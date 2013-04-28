@@ -71,7 +71,7 @@ public class WebReaderOverlayService extends OverlayService {
 
     void handleCommand(Intent intent) {
         Uri data = intent.getData();
-        Log.d("dfd", "ff");
+        mOverlayView.setUri(data);
     }
 	
 	@Override

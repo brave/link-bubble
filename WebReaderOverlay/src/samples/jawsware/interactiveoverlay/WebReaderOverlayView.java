@@ -16,16 +16,25 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import android.net.Uri;
 import android.view.Gravity;
 import android.view.MotionEvent;
+import android.view.View;
+import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jawsware.core.share.OverlayService;
 import com.jawsware.core.share.OverlayView;
 
+import java.net.URL;
+
 public class WebReaderOverlayView extends OverlayView {
 
-	private TextView info;
+	//private TextView info;
+    private WebView mWebView;
+
+    private Uri mUri;
 	
 	public WebReaderOverlayView(OverlayService service) {
 		super(service, R.layout.overlay, 1);
@@ -37,9 +46,24 @@ public class WebReaderOverlayView extends OverlayView {
 	
 	@Override
 	protected void onInflateView() {
-		info = (TextView) this.findViewById(R.id.textview_info);
+        mWebView = (WebView) findViewById(R.id.web_view);
+        ImageView background = (ImageView)findViewById(R.id.background);
+        background.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WebReaderOverlayService.stop();
+            }
+        });
 	}
 
+    public void setUri(Uri uri) {
+        mUri = uri;
+
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.loadUrl(uri.toString());
+    }
+
+    /*
 	@Override
 	protected void refreshViews() {
 		info.setText("WAITING\nWAITING");
@@ -66,6 +90,6 @@ public class WebReaderOverlayView extends OverlayView {
 
 		return true;
 	}
-	
+	*/
 	
 }
