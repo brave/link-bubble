@@ -29,7 +29,7 @@ public class WebReaderOverlayService extends OverlayService {
 
 	public static WebReaderOverlayService instance;
 
-	private SampleOverlayView overlayView;
+	private WebReaderOverlayView mOverlayView;
 
 	@Override
 	public void onCreate() {
@@ -37,15 +37,15 @@ public class WebReaderOverlayService extends OverlayService {
 		
 		instance = this;
 
-		overlayView = new SampleOverlayView(this);
+		mOverlayView = new WebReaderOverlayView(this);
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 
-		if (overlayView != null) {
-			overlayView.destory();
+		if (mOverlayView != null) {
+			mOverlayView.destory();
 		}
 
 	}

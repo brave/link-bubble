@@ -23,11 +23,11 @@ import android.widget.TextView;
 import com.jawsware.core.share.OverlayService;
 import com.jawsware.core.share.OverlayView;
 
-public class SampleOverlayView extends OverlayView {
+public class WebReaderOverlayView extends OverlayView {
 
 	private TextView info;
 	
-	public SampleOverlayView(OverlayService service) {
+	public WebReaderOverlayView(OverlayService service) {
 		super(service, R.layout.overlay, 1);
 	}
 
