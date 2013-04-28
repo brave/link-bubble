@@ -77,7 +77,7 @@ public class WebReaderOverlayService extends OverlayService {
 	protected Notification foregroundNotification(int notificationId) {
 		Notification notification;
 
-		notification = new Notification(R.drawable.ic_launcher, getString(R.string.title_notification), System.currentTimeMillis());
+		notification = new Notification(R.drawable.ic_action_link, getString(R.string.title_notification), System.currentTimeMillis());
 
 		notification.flags = notification.flags | Notification.FLAG_ONGOING_EVENT | Notification.FLAG_ONLY_ALERT_ONCE;
 

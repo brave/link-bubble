@@ -1,6 +1,6 @@
-WebReaderOverlay/bin/*
-WebReaderOverlay/gen/*
-WebReaderOverlay/out/*
+LinkLoader/bin/*
+LinkLoader/gen/*
+LinkLoader/out/*
 .DS_Store
 R.java
 .metadata/*
