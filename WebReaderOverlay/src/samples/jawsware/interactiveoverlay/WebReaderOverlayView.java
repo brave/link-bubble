@@ -20,7 +20,9 @@ import android.net.Uri;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.webkit.DownloadListener;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -61,6 +63,12 @@ public class WebReaderOverlayView extends OverlayView {
 
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.loadUrl(uri.toString());
+        mWebView.setWebViewClient(new WebViewClient() {
+
+            public void onPageFinished(WebView view, String url) {
+                mWebView.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     /*

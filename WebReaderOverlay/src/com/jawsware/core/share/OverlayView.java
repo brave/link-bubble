@@ -58,7 +58,7 @@ public abstract class OverlayView extends RelativeLayout {
 	public int getLayoutGravity() {
 		// Override this to set a custom Gravity for the view.
 
-		return Gravity.CENTER;
+		return Gravity.RIGHT;
 	}
 
 	private void setupLayoutParams() {

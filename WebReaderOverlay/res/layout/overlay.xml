@@ -17,6 +17,7 @@
         android:layout_width="400dp"
         android:layout_height="fill_parent"
         android:layout_alignParentLeft="false"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:visibility="invisible"/>
 
 </RelativeLayout>
