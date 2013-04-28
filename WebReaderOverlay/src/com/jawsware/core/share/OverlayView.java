@@ -261,8 +261,16 @@ public abstract class OverlayView extends RelativeLayout {
 		return false;
 	}
 
+    public boolean handleTouchEvents() {
+        return true;
+    }
+
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
+
+        if (handleTouchEvents() == false) {
+            return false;
+        }
 
 		 if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
 

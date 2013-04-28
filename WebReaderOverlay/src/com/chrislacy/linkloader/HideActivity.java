@@ -1,4 +1,4 @@
-package samples.jawsware.interactiveoverlay;
+package com.chrislacy.linkloader;
 
 /*
 Copyright 2011 jawsware international
@@ -20,7 +20,7 @@ import android.app.Activity;
 
 import android.os.Bundle;
 
-public class SampleOverlayHideActivity extends Activity {
+public class HideActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

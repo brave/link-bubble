@@ -1,4 +1,4 @@
-package samples.jawsware.interactiveoverlay;
+package com.chrislacy.linkloader;
 
 /*
 Copyright 2011 jawsware international
@@ -17,7 +17,6 @@ limitations under the License.
 */
 
 import android.net.Uri;
-import android.util.Log;
 import com.jawsware.core.share.OverlayService;
 
 import android.app.Notification;
@@ -89,7 +88,7 @@ public class WebReaderOverlayService extends OverlayService {
 
 
 	private PendingIntent notificationIntent() {
-		Intent intent = new Intent(this, SampleOverlayHideActivity.class);
+		Intent intent = new Intent(this, HideActivity.class);
 
 		PendingIntent pending = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 

@@ -1,4 +1,4 @@
-package samples.jawsware.interactiveoverlay;
+package com.chrislacy.linkloader;
 
 /*
 Copyright 2011 jawsware international
@@ -35,11 +35,14 @@ public class WebReaderOverlayView extends OverlayView {
 
 	//private TextView info;
     private WebView mWebView;
+    private ImageView mBackgroundView;
+    private boolean mLoading;
 
     private Uri mUri;
 	
 	public WebReaderOverlayView(OverlayService service) {
 		super(service, R.layout.overlay, 1);
+        mLoading = true;
 	}
 
 	public int getGravity() {
@@ -49,26 +52,34 @@ public class WebReaderOverlayView extends OverlayView {
 	@Override
 	protected void onInflateView() {
         mWebView = (WebView) findViewById(R.id.web_view);
-        ImageView background = (ImageView)findViewById(R.id.background);
-        background.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                WebReaderOverlayService.stop();
-            }
-        });
+        mBackgroundView = (ImageView)findViewById(R.id.background);
 	}
 
     public void setUri(Uri uri) {
         mUri = uri;
+
 
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.loadUrl(uri.toString());
         mWebView.setWebViewClient(new WebViewClient() {
 
             public void onPageFinished(WebView view, String url) {
+                mLoading = false;
                 mWebView.setVisibility(View.VISIBLE);
+                mBackgroundView.setVisibility(View.VISIBLE);
+                mBackgroundView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        WebReaderOverlayService.stop();
+                    }
+                });
             }
         });
+    }
+
+    @Override
+    public boolean handleTouchEvents() {
+        return mLoading;
     }
 
     /*

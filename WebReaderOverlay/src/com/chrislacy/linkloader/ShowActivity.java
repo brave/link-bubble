@@ -1,4 +1,4 @@
-package samples.jawsware.interactiveoverlay;
+package com.chrislacy.linkloader;
 
 /*
 Copyright 2011 jawsware international
@@ -27,7 +27,7 @@ import android.os.Bundle;
 
 import java.util.List;
 
-public class SampleOverlayShowActivity extends Activity {
+public class ShowActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +48,8 @@ public class SampleOverlayShowActivity extends Activity {
                 if (caller != null && caller.getComponent() != null) {
                     String packageName = caller.getComponent().getPackageName();
                     if (packageName.equals("com.google.android.apps.plus")) {
-                        //startService(new Intent(this, SampleOverlayService.class));
                         intent.setComponent(new ComponentName(this, WebReaderOverlayService.class));
                         startService(intent);
-                        //startSer
                     } else {
                         Intent browserIntent = getPackageManager().getLaunchIntentForPackage("com.android.chrome");
                         if (browserIntent != null) {

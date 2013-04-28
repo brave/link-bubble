@@ -10,7 +10,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center_horizontal|top"
-        android:background="@drawable/overlay_back" />
+        android:background="@drawable/overlay_back"
+        android:visibility="invisible"/>
 
     <WebView
         android:id="@+id/web_view"
