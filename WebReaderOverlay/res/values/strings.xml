@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Interactive Overlay Sample</string>
+
+    <string name="title_notification">Sample Overlay View</string>
+    <string name="message_notification">Press To Hide Overlay</string>
+                       
+</resources>

@@ -1,0 +1,9 @@
+WebReaderOverlay/bin/*
+WebReaderOverlay/gen/*
+WebReaderOverlay/out/*
+.DS_Store
+R.java
+.metadata/*
+*.pyc
+classes/
+workspace.xml
