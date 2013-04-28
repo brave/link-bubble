@@ -26,8 +26,8 @@ public class SampleOverlayHideActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		
-		SampleOverlayService.stop();
+
+        WebReaderOverlayService.stop();
 			
 		finish();
 		

@@ -49,7 +49,7 @@ public class SampleOverlayShowActivity extends Activity {
                     String packageName = caller.getComponent().getPackageName();
                     if (packageName.equals("com.google.android.apps.plus")) {
                         //startService(new Intent(this, SampleOverlayService.class));
-                        intent.setComponent(new ComponentName(this, SampleOverlayService.class));
+                        intent.setComponent(new ComponentName(this, WebReaderOverlayService.class));
                         startService(intent);
                         //startSer
                     } else {

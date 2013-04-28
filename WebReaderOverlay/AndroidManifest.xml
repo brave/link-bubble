@@ -35,7 +35,7 @@
             android:theme="@android:style/Theme.Dialog" >
         </activity>
         
-       	<service android:name="SampleOverlayService" >
+       	<service android:name="WebReaderOverlayService" >
         </service>
             
     </application>

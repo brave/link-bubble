@@ -25,9 +25,9 @@ import android.app.PendingIntent;
 
 import android.content.Intent;
 
-public class SampleOverlayService extends OverlayService {
+public class WebReaderOverlayService extends OverlayService {
 
-	public static SampleOverlayService instance;
+	public static WebReaderOverlayService instance;
 
 	private SampleOverlayView overlayView;
 
