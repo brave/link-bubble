@@ -17,9 +17,15 @@ limitations under the License.
 */
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Intent;
 
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+
+import java.util.List;
 
 public class SampleOverlayShowActivity extends Activity {
 
@@ -27,9 +33,38 @@ public class SampleOverlayShowActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		
-		startService(new Intent(this, SampleOverlayService.class));
-			
+
+        Intent intent = getIntent();
+
+        if (intent.getAction() == Intent.ACTION_VIEW) {
+
+            Uri data = intent.getData();
+            String scheme = data.getScheme();
+
+            ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+            List<ActivityManager.RecentTaskInfo> list = activityManager.getRecentTasks(1, 0);
+            if(list.size() > 0) {
+                Intent caller = list.get(0).baseIntent;
+                if (caller != null && caller.getComponent() != null) {
+                    String packageName = caller.getComponent().getPackageName();
+                    if (packageName.equals("com.google.android.apps.plus")) {
+                        //startService(new Intent(this, SampleOverlayService.class));
+                        intent.setComponent(new ComponentName(this, SampleOverlayService.class));
+                        startService(intent);
+                        //startSer
+                    } else {
+                        Intent browserIntent = getPackageManager().getLaunchIntentForPackage("com.android.chrome");
+                        if (browserIntent != null) {
+                            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                            intent.setComponent(browserIntent.getComponent());
+                            intent.setPackage(browserIntent.getPackage());
+                            startActivity(intent);
+                        }
+                    }
+                }
+            }
+        }
+
 		finish();
 		
 	}

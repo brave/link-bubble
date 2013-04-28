@@ -16,6 +16,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import android.net.Uri;
+import android.util.Log;
 import com.jawsware.core.share.OverlayService;
 
 import android.app.Notification;
@@ -34,7 +36,7 @@ public class SampleOverlayService extends OverlayService {
 		super.onCreate();
 		
 		instance = this;
-		
+
 		overlayView = new SampleOverlayView(this);
 	}
 
@@ -53,6 +55,24 @@ public class SampleOverlayService extends OverlayService {
 			instance.stopSelf();
 		}
 	}
+
+    @Override
+    public void onStart(Intent intent, int startId) {
+        handleCommand(intent);
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        handleCommand(intent);
+        // We want this service to continue running until it is explicitly
+        // stopped, so return sticky.
+        return START_STICKY;
+    }
+
+    void handleCommand(Intent intent) {
+        Uri data = intent.getData();
+        Log.d("dfd", "ff");
+    }
 	
 	@Override
 	protected Notification foregroundNotification(int notificationId) {
