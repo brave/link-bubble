@@ -23,11 +23,13 @@ import android.net.Uri;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
+import android.widget.RelativeLayout;
 import com.jawsware.core.share.OverlayService;
 import com.jawsware.core.share.OverlayView;
 
@@ -85,7 +87,9 @@ public class WebReaderOverlayView extends OverlayView {
                     }
                 });
 
-                //refreshLayout();
+                //layoutParams.height = 800;
+
+                updateViewInWidowManager();
 
                 WebReaderOverlayService.mInstance.cancelNotification();
             }
@@ -107,8 +111,12 @@ public class WebReaderOverlayView extends OverlayView {
             mWebView.setVisibility(View.VISIBLE);
             mBackgroundView.setVisibility(View.VISIBLE);
             mCroutonView.setVisibility(View.INVISIBLE);
+
+            //RelativeLayout.LayoutParams lp = (LayoutParams) mWebView.getLayoutParams();
+            //lp.height = 800;
+
         } else {
-            height = 200;
+            height = WindowManager.LayoutParams.WRAP_CONTENT;
         }
 
         layoutParams = new WindowManager.LayoutParams(width, height,

@@ -118,6 +118,14 @@ public abstract class OverlayView extends RelativeLayout {
 
 	}
 
+    public void updateViewInWidowManager() {
+        if (isVisible()) {
+            onSetupLayoutParams();
+            ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).updateViewLayout(this, layoutParams);
+            refresh();
+        }
+    }
+
 	protected void addView() {
 		setupLayoutParams();
 
