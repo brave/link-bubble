@@ -18,6 +18,7 @@ package com.jawsware.core.share;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -55,10 +56,9 @@ public abstract class OverlayView extends RelativeLayout {
 		return (OverlayService) getContext();
 	}
 
-	public int getLayoutGravity() {
+	public int getDefaultLayoutGravity() {
 		// Override this to set a custom Gravity for the view.
-
-		return Gravity.RIGHT;
+		return Gravity.RIGHT | Gravity.CENTER_VERTICAL;
 	}
 
 	private void setupLayoutParams() {
@@ -66,7 +66,7 @@ public abstract class OverlayView extends RelativeLayout {
 				WindowManager.LayoutParams.TYPE_PHONE, WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
 						| WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, PixelFormat.TRANSLUCENT);
 
-		layoutParams.gravity = getLayoutGravity();
+		layoutParams.gravity = getDefaultLayoutGravity();
 
 		onSetupLayoutParams();
 
@@ -111,18 +111,27 @@ public abstract class OverlayView extends RelativeLayout {
 
 			onSetupLayoutParams();
 
-			((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).updateViewLayout(this, layoutParams);
+            try {
+                ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).updateViewLayout(this, layoutParams);
+                refresh();
+            } catch (IllegalArgumentException ex) {
+                Log.e("LinkLoader", ex.toString(), ex);
+            }
 
 			refresh();
 		}
 
 	}
 
-    public void updateViewInWidowManager() {
+    public void updateViewLayout() {
         if (isVisible()) {
             onSetupLayoutParams();
-            ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).updateViewLayout(this, layoutParams);
-            refresh();
+            try {
+                ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).updateViewLayout(this, layoutParams);
+                refresh();
+            } catch (IllegalArgumentException ex) {
+                Log.e("LinkLoader", ex.toString(), ex);
+            }
         }
     }
 

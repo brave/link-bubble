@@ -20,25 +20,23 @@ import android.content.Context;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.net.Uri;
+import android.os.Handler;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 
-import android.widget.RelativeLayout;
 import com.jawsware.core.share.OverlayService;
 import com.jawsware.core.share.OverlayView;
 
 public class WebReaderOverlayView extends OverlayView {
 
-	//private TextView info;
+    private View mLoadingView;
+    private View mContentView;
     private WebView mWebView;
-    private ImageView mBackgroundView;
-    private View mCroutonView;
 
     enum LoadingState {
         NotSet,
@@ -47,7 +45,6 @@ public class WebReaderOverlayView extends OverlayView {
     }
 
     private LoadingState mLoadingState;
-
     private Uri mUri;
 	
 	public WebReaderOverlayView(OverlayService service) {
@@ -62,8 +59,16 @@ public class WebReaderOverlayView extends OverlayView {
 	@Override
 	protected void onInflateView() {
         mWebView = (WebView) findViewById(R.id.web_view);
-        mBackgroundView = (ImageView)findViewById(R.id.background);
-        mCroutonView = findViewById(R.id.crouton);
+        mContentView = findViewById(R.id.content);
+        mLoadingView = findViewById(R.id.loading_content);
+
+        ImageButton closeButton = (ImageButton) findViewById(R.id.close_buton);
+        closeButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WebReaderOverlayService.stop();
+            }
+        });
 	}
 
     public void setUri(Uri uri) {
@@ -76,25 +81,27 @@ public class WebReaderOverlayView extends OverlayView {
         mWebView.setWebViewClient(new WebViewClient() {
 
             public void onPageFinished(WebView view, String url) {
-                mLoadingState = LoadingState.Loaded;
-                mWebView.setVisibility(View.VISIBLE);
-                mBackgroundView.setVisibility(View.VISIBLE);
-                mCroutonView.setVisibility(View.INVISIBLE);
-                mBackgroundView.setOnClickListener(new OnClickListener() {
+
+                int delay = 3000;
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
                     @Override
-                    public void onClick(View v) {
-                        WebReaderOverlayService.stop();
+                    public void run() {
+                        mLoadingState = LoadingState.Loaded;
+                        mContentView.setVisibility(View.VISIBLE);
+                        mLoadingView.setVisibility(View.INVISIBLE);
+
+                        updateViewLayout();
+
+                        WebReaderOverlayService.mInstance.cancelNotification();
                     }
-                });
-
-                //layoutParams.height = 800;
-
-                updateViewInWidowManager();
-
-                WebReaderOverlayService.mInstance.cancelNotification();
+                }, delay);
             }
         });
     }
+
+
 
     @Override
     protected void onSetupLayoutParams() {
@@ -103,27 +110,24 @@ public class WebReaderOverlayView extends OverlayView {
         Display display = windowManager.getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        int width = size.x;
-
+        int width;
         int height;
         if (mLoadingState == LoadingState.Loaded) {
             height = 800;
-            mWebView.setVisibility(View.VISIBLE);
-            mBackgroundView.setVisibility(View.VISIBLE);
-            mCroutonView.setVisibility(View.INVISIBLE);
-
-            //RelativeLayout.LayoutParams lp = (LayoutParams) mWebView.getLayoutParams();
-            //lp.height = 800;
+            width = size.x;
+            mContentView.setVisibility(View.VISIBLE);
+            mLoadingView.setVisibility(View.INVISIBLE);
 
         } else {
-            height = WindowManager.LayoutParams.WRAP_CONTENT;
+            width = getResources().getDimensionPixelSize(R.dimen.loading_content_width);
+            height = getResources().getDimensionPixelSize(R.dimen.loading_content_height);
         }
 
         layoutParams = new WindowManager.LayoutParams(width, height,
                 WindowManager.LayoutParams.TYPE_PHONE, WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
                 | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, PixelFormat.TRANSLUCENT);
 
-        layoutParams.gravity = getLayoutGravity();
+        layoutParams.gravity = getDefaultLayoutGravity();
     }
 
     /*

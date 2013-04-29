@@ -6,16 +6,21 @@
     >
 
     <LinearLayout
-        android:id="@+id/crouton"
-        android:layout_width="fill_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="#ff0000"
+        android:id="@+id/loading_content"
+        android:layout_width="@dimen/loading_content_width"
+        android:layout_height="@dimen/loading_content_height"
+        android:background="#55000000"
+        android:padding="8dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="?android:attr/actionBarSize">
+        android:layout_alignParentLeft="true">
 
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"/>
     </LinearLayout>
 
+    <!--
     <ImageView
         android:id="@+id/background"
         android:layout_width="fill_parent"
@@ -23,13 +28,39 @@
         android:gravity="center_horizontal|top"
         android:background="@drawable/overlay_back"
         android:visibility="invisible"/>
+        -->
 
-    <WebView
-        android:id="@+id/web_view"
-        android:layout_width="400dp"
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentRight="true"
-        android:visibility="invisible"/>
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/content"
+            android:background="#00ff00"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_width="fill_parent">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/close_buton"
+                android:src="@drawable/ic_action_cancel"
+                android:paddingTop="8dp"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+        <WebView
+            android:id="@+id/web_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
 
 </RelativeLayout>
