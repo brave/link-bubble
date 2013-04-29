@@ -32,6 +32,7 @@ public class WebReaderOverlayView extends OverlayView {
     private WebView mWebView;
     private ImageView mBackgroundView;
     private boolean mLoading;
+    private View mCroutonView;
 
     private Uri mUri;
 	
@@ -48,6 +49,7 @@ public class WebReaderOverlayView extends OverlayView {
 	protected void onInflateView() {
         mWebView = (WebView) findViewById(R.id.web_view);
         mBackgroundView = (ImageView)findViewById(R.id.background);
+        mCroutonView = findViewById(R.id.crouton);
 	}
 
     public void setUri(Uri uri) {
@@ -62,12 +64,14 @@ public class WebReaderOverlayView extends OverlayView {
                 mLoading = false;
                 mWebView.setVisibility(View.VISIBLE);
                 mBackgroundView.setVisibility(View.VISIBLE);
+                mCroutonView.setVisibility(View.INVISIBLE);
                 mBackgroundView.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         WebReaderOverlayService.stop();
                     }
                 });
+
 
                 WebReaderOverlayService.mInstance.cancelNotification();
             }

@@ -5,6 +5,17 @@
     android:layout_margin="0dp"
     >
 
+    <LinearLayout
+        android:id="@+id/crouton"
+        android:layout_width="fill_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="#ff0000"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="?android:attr/actionBarSize">
+
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/background"
         android:layout_width="fill_parent"
