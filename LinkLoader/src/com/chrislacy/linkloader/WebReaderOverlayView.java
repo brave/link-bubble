@@ -52,7 +52,7 @@ public class WebReaderOverlayView extends OverlayView {
         mContentView = findViewById(R.id.content);
         mLoadingView = findViewById(R.id.loading_content);
 
-        ImageButton closeButton = (ImageButton) findViewById(R.id.close_button);
+        ImageView closeButton = (ImageView) findViewById(R.id.close_button);
         closeButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

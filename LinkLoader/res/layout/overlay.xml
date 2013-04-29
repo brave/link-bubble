@@ -55,13 +55,12 @@
             android:layout_height="?android:attr/actionBarSize"
             android:layout_width="fill_parent">
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="fill_parent"
                 android:id="@+id/close_button"
                 android:src="@drawable/ic_action_cancel_holo_light"
-                android:paddingTop="8dp"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginLeft="8dp"/>
 
         </LinearLayout>
 
