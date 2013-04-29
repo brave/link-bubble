@@ -18,8 +18,8 @@
         <ProgressBar
             android:layout_width="@dimen/loading_content_button_dimen"
             android:layout_height="@dimen/loading_content_button_dimen"
-            android:id="@+id/progressBar"/>
-
+            android:id="@+id/progress_bar"/>
+        <!--
         <ImageView
             android:layout_width="@dimen/loading_content_button_dimen"
             android:layout_height="@dimen/loading_content_button_dimen"
@@ -27,6 +27,8 @@
             android:src="@drawable/ic_action_cancel_holo_dark"
             android:layout_marginTop="@dimen/loading_content_padding"
             />
+
+            -->
 
     </LinearLayout>
 

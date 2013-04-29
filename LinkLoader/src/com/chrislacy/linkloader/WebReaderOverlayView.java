@@ -18,6 +18,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import com.jawsware.core.share.OverlayService;
 import com.jawsware.core.share.OverlayView;
 
@@ -59,6 +60,15 @@ public class WebReaderOverlayView extends OverlayView {
             }
         });
 
+        ProgressBar progressBar = (ProgressBar)findViewById(R.id.progress_bar);
+        progressBar.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WebReaderOverlayService.stop();
+            }
+        });
+
+        /*
         ImageView cancelButton = (ImageView)findViewById(R.id.cancel_button);
         cancelButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -66,6 +76,7 @@ public class WebReaderOverlayView extends OverlayView {
                 WebReaderOverlayService.stop();
             }
         });
+        */
 	}
 
 
