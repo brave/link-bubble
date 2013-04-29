@@ -16,6 +16,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import android.app.NotificationManager;
 import android.net.Uri;
 import com.jawsware.core.share.OverlayService;
 
@@ -26,7 +27,7 @@ import android.content.Intent;
 
 public class WebReaderOverlayService extends OverlayService {
 
-	public static WebReaderOverlayService instance;
+	public static WebReaderOverlayService mInstance;
 
 	private WebReaderOverlayView mOverlayView;
 
@@ -34,7 +35,7 @@ public class WebReaderOverlayService extends OverlayService {
 	public void onCreate() {
 		super.onCreate();
 		
-		instance = this;
+		mInstance = this;
 
 		mOverlayView = new WebReaderOverlayView(this);
 	}
@@ -50,8 +51,8 @@ public class WebReaderOverlayService extends OverlayService {
 	}
 	
 	static public void stop() {
-		if (instance != null) {
-			instance.stopSelf();
+		if (mInstance != null) {
+			mInstance.stopSelf();
 		}
 	}
 
@@ -94,5 +95,9 @@ public class WebReaderOverlayService extends OverlayService {
 
 		return pending;
 	}
+
+    void cancelNotification() {
+        ((NotificationManager) getSystemService(NOTIFICATION_SERVICE)).cancel(id);
+    }
 
 }

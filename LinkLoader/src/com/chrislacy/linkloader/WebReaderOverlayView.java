@@ -18,18 +18,13 @@ limitations under the License.
 
 import android.net.Uri;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
-import android.webkit.DownloadListener;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.jawsware.core.share.OverlayService;
 import com.jawsware.core.share.OverlayView;
-
-import java.net.URL;
 
 public class WebReaderOverlayView extends OverlayView {
 
@@ -73,6 +68,8 @@ public class WebReaderOverlayView extends OverlayView {
                         WebReaderOverlayService.stop();
                     }
                 });
+
+                WebReaderOverlayService.mInstance.cancelNotification();
             }
         });
     }
