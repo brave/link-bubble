@@ -105,6 +105,7 @@ public class WebReaderOverlayView extends OverlayView {
                         WebReaderOverlayService.stop();
                         return true;
                     }
+                    // TODO: Hard-code for YouTube, Instragram, Facebook and Twitter
                 }
 
                 view.loadUrl(url);
