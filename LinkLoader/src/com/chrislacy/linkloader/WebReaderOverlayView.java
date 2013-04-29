@@ -17,6 +17,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 
+import android.widget.ImageView;
 import com.jawsware.core.share.OverlayService;
 import com.jawsware.core.share.OverlayView;
 
@@ -50,14 +51,23 @@ public class WebReaderOverlayView extends OverlayView {
         mContentView = findViewById(R.id.content);
         mLoadingView = findViewById(R.id.loading_content);
 
-        ImageButton closeButton = (ImageButton) findViewById(R.id.close_buton);
+        ImageButton closeButton = (ImageButton) findViewById(R.id.close_button);
         closeButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 WebReaderOverlayService.stop();
             }
         });
+
+        ImageView cancelButton = (ImageView)findViewById(R.id.cancel_button);
+        cancelButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WebReaderOverlayService.stop();
+            }
+        });
 	}
+
 
     public void setUri(Uri uri) {
         mUri = uri;
@@ -70,7 +80,7 @@ public class WebReaderOverlayView extends OverlayView {
 
             public void onPageFinished(WebView view, String url) {
 
-                int delay = 3000;
+                int delay = 5000;
 
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
