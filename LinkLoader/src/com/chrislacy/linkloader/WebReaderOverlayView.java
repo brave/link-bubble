@@ -149,7 +149,8 @@ public class WebReaderOverlayView extends OverlayView {
         int width;
         int height;
         if (mLoadingState == LoadingState.Loaded) {
-            height = size.y;
+            // TODO: Come up with something better here
+            height = (int) (size.y - Utilities.convertDpToPixel(24, getContext()));
             width = size.x;
             mContentView.setVisibility(View.VISIBLE);
             mLoadingView.setVisibility(View.INVISIBLE);

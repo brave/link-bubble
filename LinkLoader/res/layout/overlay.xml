@@ -60,7 +60,7 @@
                 android:layout_height="fill_parent"
                 android:id="@+id/close_button"
                 android:src="@drawable/ic_action_cancel_holo_light"
-                android:layout_marginLeft="8dp"/>
+                android:layout_marginLeft="4dp"/>
 
         </LinearLayout>
 
