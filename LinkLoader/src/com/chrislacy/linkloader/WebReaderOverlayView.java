@@ -91,7 +91,7 @@ public class WebReaderOverlayView extends OverlayView {
 
             public void onPageFinished(WebView view, String url) {
 
-                int delay = 5000;
+                //int delay = 5000;
 
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -105,7 +105,7 @@ public class WebReaderOverlayView extends OverlayView {
 
                         WebReaderOverlayService.mInstance.cancelNotification();
                     }
-                }, delay);
+                }, 0);
             }
 
             public boolean shouldOverrideUrlLoading(WebView view, String url){
@@ -147,11 +147,10 @@ public class WebReaderOverlayView extends OverlayView {
         int width;
         int height;
         if (mLoadingState == LoadingState.Loaded) {
-            height = 800;
+            height = size.y;
             width = size.x;
             mContentView.setVisibility(View.VISIBLE);
             mLoadingView.setVisibility(View.INVISIBLE);
-
         } else {
             width = getResources().getDimensionPixelSize(R.dimen.loading_content_width);
             height = getResources().getDimensionPixelSize(R.dimen.loading_content_height);
