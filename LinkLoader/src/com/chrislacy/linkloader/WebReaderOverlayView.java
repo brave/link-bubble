@@ -100,33 +100,12 @@ public class WebReaderOverlayView extends OverlayView {
                         ComponentName componentName = new ComponentName(resolveInfo.activityInfo.applicationInfo.packageName, name);
                         intent.setComponent(componentName);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         WebReaderOverlayService.mInstance.getApplication().startActivity(intent);
                         WebReaderOverlayService.stop();
                         return true;
                     }
                 }
-
-                /*
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                //intent.addCategory(Intent.CATEGORY_LAUNCHER);
-                Uri uri = Uri.parse(url);
-                intent.setData(uri);
-
-                List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, 0);
-                if (resolveInfos.size() > 0) {
-                    ResolveInfo defaultResolveInfo = resolveInfos.get(0);
-                    if (defaultResolveInfo.isDefault) {
-                        //intent.setComponent(defaultResolveInfo.activityInfo.)
-
-                        ComponentName componentName = new ComponentName(defaultResolveInfo.activityInfo.applicationInfo.packageName,
-                                                                            defaultResolveInfo.activityInfo.name);
-
-                        intent.setComponent(componentName);
-                        WebReaderOverlayService.mInstance.getApplication().startActivity(intent);
-                        return true;
-                    }
-                }
-                */
 
                 view.loadUrl(url);
                 return false; // then it is not handled by default action
