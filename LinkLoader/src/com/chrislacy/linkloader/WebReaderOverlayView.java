@@ -1,22 +1,10 @@
 package com.chrislacy.linkloader;
 
-/*
-Copyright 2011 jawsware international
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.net.Uri;
@@ -97,6 +85,51 @@ public class WebReaderOverlayView extends OverlayView {
                         WebReaderOverlayService.mInstance.cancelNotification();
                     }
                 }, delay);
+            }
+
+            public boolean shouldOverrideUrlLoading(WebView view, String url){
+
+                PackageManager packageManager = getContext().getPackageManager();
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                final ResolveInfo resolveInfo = packageManager.resolveActivity(intent, 0);
+                if (resolveInfo != null && resolveInfo.activityInfo != null) {
+                    String name = resolveInfo.activityInfo.name;
+                    if (!name.contains("com.android.internal")
+                            && !name.contains("ResolverActivity")
+                            && !name.contains("com.chrislacy.linkloader")) {
+                        ComponentName componentName = new ComponentName(resolveInfo.activityInfo.applicationInfo.packageName, name);
+                        intent.setComponent(componentName);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        WebReaderOverlayService.mInstance.getApplication().startActivity(intent);
+                        WebReaderOverlayService.stop();
+                        return true;
+                    }
+                }
+
+                /*
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                //intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                Uri uri = Uri.parse(url);
+                intent.setData(uri);
+
+                List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, 0);
+                if (resolveInfos.size() > 0) {
+                    ResolveInfo defaultResolveInfo = resolveInfos.get(0);
+                    if (defaultResolveInfo.isDefault) {
+                        //intent.setComponent(defaultResolveInfo.activityInfo.)
+
+                        ComponentName componentName = new ComponentName(defaultResolveInfo.activityInfo.applicationInfo.packageName,
+                                                                            defaultResolveInfo.activityInfo.name);
+
+                        intent.setComponent(componentName);
+                        WebReaderOverlayService.mInstance.getApplication().startActivity(intent);
+                        return true;
+                    }
+                }
+                */
+
+                view.loadUrl(url);
+                return false; // then it is not handled by default action
             }
         });
     }
