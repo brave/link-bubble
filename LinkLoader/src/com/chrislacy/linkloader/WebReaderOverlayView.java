@@ -16,9 +16,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import android.content.Context;
+import android.graphics.PixelFormat;
+import android.graphics.Point;
 import android.net.Uri;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -31,14 +36,21 @@ public class WebReaderOverlayView extends OverlayView {
 	//private TextView info;
     private WebView mWebView;
     private ImageView mBackgroundView;
-    private boolean mLoading;
     private View mCroutonView;
+
+    enum LoadingState {
+        NotSet,
+        Loading,
+        Loaded,
+    }
+
+    private LoadingState mLoadingState;
 
     private Uri mUri;
 	
 	public WebReaderOverlayView(OverlayService service) {
 		super(service, R.layout.overlay, 1);
-        mLoading = true;
+        mLoadingState = LoadingState.NotSet;
 	}
 
 	public int getGravity() {
@@ -55,13 +67,14 @@ public class WebReaderOverlayView extends OverlayView {
     public void setUri(Uri uri) {
         mUri = uri;
 
+        mLoadingState = LoadingState.Loading;
 
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.loadUrl(uri.toString());
         mWebView.setWebViewClient(new WebViewClient() {
 
             public void onPageFinished(WebView view, String url) {
-                mLoading = false;
+                mLoadingState = LoadingState.Loaded;
                 mWebView.setVisibility(View.VISIBLE);
                 mBackgroundView.setVisibility(View.VISIBLE);
                 mCroutonView.setVisibility(View.INVISIBLE);
@@ -72,6 +85,7 @@ public class WebReaderOverlayView extends OverlayView {
                     }
                 });
 
+                //refreshLayout();
 
                 WebReaderOverlayService.mInstance.cancelNotification();
             }
@@ -79,8 +93,29 @@ public class WebReaderOverlayView extends OverlayView {
     }
 
     @Override
-    public boolean handleTouchEvents() {
-        return mLoading;
+    protected void onSetupLayoutParams() {
+
+        WindowManager windowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        Display display = windowManager.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+
+        int height;
+        if (mLoadingState == LoadingState.Loaded) {
+            height = 800;
+            mWebView.setVisibility(View.VISIBLE);
+            mBackgroundView.setVisibility(View.VISIBLE);
+            mCroutonView.setVisibility(View.INVISIBLE);
+        } else {
+            height = 200;
+        }
+
+        layoutParams = new WindowManager.LayoutParams(width, height,
+                WindowManager.LayoutParams.TYPE_PHONE, WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, PixelFormat.TRANSLUCENT);
+
+        layoutParams.gravity = getLayoutGravity();
     }
 
     /*
