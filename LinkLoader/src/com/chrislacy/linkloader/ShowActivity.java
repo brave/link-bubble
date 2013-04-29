@@ -42,21 +42,30 @@ public class ShowActivity extends Activity {
             String scheme = data.getScheme();
 
             ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-            List<ActivityManager.RecentTaskInfo> list = activityManager.getRecentTasks(1, 0);
-            if(list.size() > 0) {
-                Intent caller = list.get(0).baseIntent;
-                if (caller != null && caller.getComponent() != null) {
-                    String packageName = caller.getComponent().getPackageName();
-                    if (packageName.equals("com.google.android.apps.plus")) {
-                        intent.setComponent(new ComponentName(this, WebReaderOverlayService.class));
-                        startService(intent);
-                    } else {
-                        Intent browserIntent = getPackageManager().getLaunchIntentForPackage("com.android.chrome");
-                        if (browserIntent != null) {
-                            intent.addCategory(Intent.CATEGORY_LAUNCHER);
-                            intent.setComponent(browserIntent.getComponent());
-                            intent.setPackage(browserIntent.getPackage());
-                            startActivity(intent);
+            List<ActivityManager.RecentTaskInfo> list = activityManager.getRecentTasks(20, 0);
+            int listSize = list.size();
+            if(listSize > 0) {
+                for (int i = 0; i < listSize; i++) {
+                    Intent caller = list.get(i).baseIntent;
+                    if (caller != null && caller.getComponent() != null) {
+                        String packageName = caller.getComponent().getPackageName();
+                        if (packageName.equals("com.chrislacy.linkloader")) {
+                            continue;
+                        }
+                        if (packageName.equals("com.google.android.apps.plus")
+                                || packageName.equals("com.twitter.android")) {
+                            intent.setComponent(new ComponentName(this, WebReaderOverlayService.class));
+                            startService(intent);
+                            break;
+                        } else {
+                            Intent browserIntent = getPackageManager().getLaunchIntentForPackage("com.android.chrome");
+                            if (browserIntent != null) {
+                                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                                intent.setComponent(browserIntent.getComponent());
+                                intent.setPackage(browserIntent.getPackage());
+                                startActivity(intent);
+                                break;
+                            }
                         }
                     }
                 }
