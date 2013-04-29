@@ -9,7 +9,7 @@
         android:id="@+id/loading_content"
         android:layout_width="@dimen/loading_content_width"
         android:layout_height="@dimen/loading_content_height"
-        android:background="#55000000"
+        android:background="@drawable/loading_content_background"
         android:padding="8dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true">
