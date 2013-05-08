@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <PreferenceCategory
+            android:key="preference_general"
+            android:title="@string/preference_general_title"
+            >
+
+            <SwitchPreference
+                android:key="preference_app_enabled"
+                android:title="@string/preference_app_enabled_title"
+                android:defaultValue="true"
+            />
+
+            <CheckBoxPreference
+                android:key="preference_display_urls"
+                android:title="@string/preference_display_urls_title"
+                android:dependency="preference_app_enabled"
+                android:defaultValue="true"
+                 />
+
+        </PreferenceCategory>
+
+    <!--
+        <Preference
+            android:key="preference_version"
+            android:title="@string/preference_version_title" />
+            -->
+
+    <!--
+   	</PreferenceCategory>
+   	 -->
+        
+</PreferenceScreen>
+

@@ -21,9 +21,11 @@ import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Intent;
 
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import java.util.List;
 
@@ -36,44 +38,54 @@ public class ShowActivity extends Activity {
 
         Intent intent = getIntent();
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         if (intent.getAction() == Intent.ACTION_VIEW) {
 
-            Uri data = intent.getData();
-            String scheme = data.getScheme();
+            boolean appEnabled = preferences.getBoolean(SettingsActivity.KEY_APP_ENABLED, true);
+            if (appEnabled) {
+                //Uri data = intent.getData();
+                //String scheme = data.getScheme();
 
-            ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-            List<ActivityManager.RecentTaskInfo> list = activityManager.getRecentTasks(20, 0);
-            int listSize = list.size();
-            if(listSize > 0) {
-                for (int i = 0; i < listSize; i++) {
-                    Intent caller = list.get(i).baseIntent;
-                    if (caller != null && caller.getComponent() != null) {
-                        String packageName = caller.getComponent().getPackageName();
-                        if (packageName.equals("com.chrislacy.linkloader")) {
-                            continue;
-                        }
-                        if (packageName.equals("com.google.android.apps.plus")
-                                || packageName.equals("com.twitter.android")) {
-                            intent.setComponent(new ComponentName(this, WebReaderOverlayService.class));
-                            startService(intent);
-                            break;
-                        } else {
-                            Intent browserIntent = getPackageManager().getLaunchIntentForPackage("com.android.chrome");
-                            if (browserIntent != null) {
-                                intent.addCategory(Intent.CATEGORY_LAUNCHER);
-                                intent.setComponent(browserIntent.getComponent());
-                                intent.setPackage(browserIntent.getPackage());
-                                startActivity(intent);
+                ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+                List<ActivityManager.RecentTaskInfo> list = activityManager.getRecentTasks(20, 0);
+                int listSize = list.size();
+                if(listSize > 0) {
+                    for (int i = 0; i < listSize; i++) {
+                        Intent caller = list.get(i).baseIntent;
+                        if (caller != null && caller.getComponent() != null) {
+                            String packageName = caller.getComponent().getPackageName();
+                            if (packageName.equals("com.chrislacy.linkloader")) {
+                                continue;
+                            }
+                            if (packageName.equals("com.google.android.apps.plus")
+                                    || packageName.equals("com.twitter.android")) {
+                                intent.setComponent(new ComponentName(this, WebReaderOverlayService.class));
+                                startService(intent);
+                                break;
+                            } else {
+                                loadInBrowser(intent);
                                 break;
                             }
                         }
                     }
                 }
+            } else {
+                loadInBrowser(intent);
             }
         }
 
 		finish();
-		
 	}
+
+    void loadInBrowser(Intent intent) {
+        Intent browserIntent = getPackageManager().getLaunchIntentForPackage("com.android.chrome");
+        if (browserIntent != null) {
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            intent.setComponent(browserIntent.getComponent());
+            intent.setPackage(browserIntent.getPackage());
+            startActivity(intent);
+        }
+    }
     
 }
