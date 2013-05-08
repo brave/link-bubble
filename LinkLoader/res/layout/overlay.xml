@@ -62,6 +62,13 @@
                 android:src="@drawable/ic_action_cancel_holo_light"
                 android:layout_marginLeft="4dp"/>
 
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="fill_parent"
+                android:id="@+id/settings_button"
+                android:src="@drawable/ic_launcher_settings"
+                android:layout_marginLeft="20dp"/>
+
         </LinearLayout>
 
         <WebView

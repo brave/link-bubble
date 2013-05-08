@@ -1,5 +1,6 @@
 package com.chrislacy.linkloader;
 
+import android.app.Application;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -56,6 +57,18 @@ public class WebReaderOverlayView extends OverlayView {
         closeButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                WebReaderOverlayService.stop();
+            }
+        });
+
+        ImageView settingsButton = (ImageView) findViewById(R.id.settings_button);
+        settingsButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Application app = WebReaderOverlayService.mInstance.getApplication();
+                Intent intent = new Intent(app, SettingsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                app.startActivity(intent);
                 WebReaderOverlayService.stop();
             }
         });
