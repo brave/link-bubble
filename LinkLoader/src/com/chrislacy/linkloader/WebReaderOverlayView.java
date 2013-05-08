@@ -93,8 +93,17 @@ public class WebReaderOverlayView extends OverlayView {
 
             public void onPageFinished(WebView view, String url) {
 
+                mLoadingState = LoadingState.Loaded;
+                mContentView.setVisibility(View.VISIBLE);
+                mLoadingView.setVisibility(View.INVISIBLE);
+
+                updateViewLayout();
+
+                WebReaderOverlayService.mInstance.cancelNotification();
+
                 //int delay = 5000;
 
+                /*
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -108,6 +117,7 @@ public class WebReaderOverlayView extends OverlayView {
                         WebReaderOverlayService.mInstance.cancelNotification();
                     }
                 }, 0);
+                */
             }
 
             public boolean shouldOverrideUrlLoading(WebView view, String url){
