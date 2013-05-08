@@ -158,12 +158,14 @@ public class WebReaderOverlayView extends OverlayView {
         display.getSize(size);
         int width;
         int height;
+        int gravity = getDefaultLayoutGravity();
         if (mLoadingState == LoadingState.Loaded) {
             // TODO: Come up with something better here
-            height = (int) (size.y - Utilities.convertDpToPixel(24, getContext()));
+            height = (int) (size.y - Utilities.convertDpToPixel(24, getContext())) - 300;
             width = size.x;
             mContentView.setVisibility(View.VISIBLE);
             mLoadingView.setVisibility(View.INVISIBLE);
+            gravity = Gravity.RIGHT | Gravity.BOTTOM;
         } else {
             width = getResources().getDimensionPixelSize(R.dimen.loading_content_width);
             height = getResources().getDimensionPixelSize(R.dimen.loading_content_height);
@@ -173,7 +175,7 @@ public class WebReaderOverlayView extends OverlayView {
                 WindowManager.LayoutParams.TYPE_PHONE, WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
                 | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, PixelFormat.TRANSLUCENT);
 
-        layoutParams.gravity = getDefaultLayoutGravity();
+        layoutParams.gravity = gravity;
     }
 
     /*
