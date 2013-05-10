@@ -41,7 +41,11 @@
         <activity android:name="SettingsActivity"
                   android:label="@string/title_settings"
                   android:screenOrientation="user">
+        </activity>
 
+        <activity android:name="TestActivity"
+                  android:label="Test"
+                  android:theme="@android:style/Theme.Holo">
         </activity>
 
        	<service android:name="WebReaderOverlayService" >
