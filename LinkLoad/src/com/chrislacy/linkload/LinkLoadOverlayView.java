@@ -43,7 +43,7 @@ public class LinkLoadOverlayView extends OverlayView {
     private Uri mUri;
 
     public LinkLoadOverlayView(OverlayService service) {
-        super(service, R.layout.overlay, 1);
+        super(service, R.layout.linkload, 1);
         mLoadingState = LoadingState.NotSet;
     }
 
@@ -65,23 +65,18 @@ public class LinkLoadOverlayView extends OverlayView {
             }
         });
 
-        ImageView settingsButton = (ImageView) findViewById(R.id.settings_button);
-        settingsButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Application app = LinkLoadOverlayService.mInstance.getApplication();
-                Intent intent = new Intent(app, SettingsActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                app.startActivity(intent);
-                LinkLoadOverlayService.stop();
-            }
-        });
-
         ProgressBar progressBar = (ProgressBar)findViewById(R.id.progress_bar);
         progressBar.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                LinkLoadOverlayService.stop();
+                //LinkLoadOverlayService.stop();
+
+                mLoadingState = LoadingState.Loaded;
+
+                mContentView.setVisibility(View.VISIBLE);
+                mLoadingView.setVisibility(View.INVISIBLE);
+
+                updateViewLayout();
             }
         });
 
@@ -102,6 +97,7 @@ public class LinkLoadOverlayView extends OverlayView {
 
         mLoadingState = LoadingState.Loading;
 
+        /*
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.loadUrl(uri.toString());
         mWebView.getSettings().setSupportZoom(true);
@@ -120,21 +116,21 @@ public class LinkLoadOverlayView extends OverlayView {
 
                 //int delay = 5000;
 
-                /*
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mLoadingState = LoadingState.Loaded;
-                        mContentView.setVisibility(View.VISIBLE);
-                        mLoadingView.setVisibility(View.INVISIBLE);
 
-                        updateViewLayout();
+//                final Handler handler = new Handler();
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mLoadingState = LoadingState.Loaded;
+//                        mContentView.setVisibility(View.VISIBLE);
+//                        mLoadingView.setVisibility(View.INVISIBLE);
+//
+//                        updateViewLayout();
+//
+//                        WebReaderOverlayService.mInstance.cancelNotification();
+//                    }
+//                }, 0);
 
-                        WebReaderOverlayService.mInstance.cancelNotification();
-                    }
-                }, 0);
-                */
             }
 
             public boolean shouldOverrideUrlLoading(WebView view, String url){
@@ -162,6 +158,7 @@ public class LinkLoadOverlayView extends OverlayView {
                 return false; // then it is not handled by default action
             }
         });
+        */
     }
 
 

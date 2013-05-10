@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="0dp"
+    >
+
+    <LinearLayout
+        android:id="@+id/loading_content"
+        android:layout_width="@dimen/loading_content_width"
+        android:layout_height="@dimen/loading_content_height"
+        android:background="@drawable/loading_content_background"
+        android:orientation="vertical"
+        android:padding="@dimen/loading_content_padding"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
+
+        <ProgressBar
+            android:layout_width="@dimen/loading_content_button_dimen"
+            android:layout_height="@dimen/loading_content_button_dimen"
+            android:id="@+id/progress_bar"/>
+        <!--
+        <ImageView
+            android:layout_width="@dimen/loading_content_button_dimen"
+            android:layout_height="@dimen/loading_content_button_dimen"
+            android:id="@+id/cancel_button"
+            android:src="@drawable/ic_action_cancel_holo_dark"
+            android:layout_marginTop="@dimen/loading_content_padding"
+            />
+
+            -->
+
+    </LinearLayout>
+
+    <!--
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal|top"
+        android:background="@drawable/overlay_back"
+        android:visibility="invisible"/>
+        -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="invisible"
+        android:background="#66ff0000">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="@drawable/background_holo_light"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_width="fill_parent">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="fill_parent"
+                android:id="@+id/close_button"
+                android:src="@drawable/ic_action_cancel_holo_light"
+                android:layout_marginLeft="4dp"/>
+
+        </LinearLayout>
+
+        <!--
+        <WebView
+            android:id="@+id/web_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="true"
+            />
+            -->
+    </LinearLayout>
+
+</RelativeLayout>
