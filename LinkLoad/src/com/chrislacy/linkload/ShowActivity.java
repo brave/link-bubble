@@ -44,7 +44,7 @@ public class ShowActivity extends Activity {
                             }
                             if (packageName.equals("com.google.android.apps.plus")
                                     || packageName.equals("com.twitter.android")) {
-                                intent.setComponent(new ComponentName(this, WebReaderOverlayService.class));
+                                intent.setComponent(new ComponentName(this, LinkLoadOverlayService.class));
                                 startService(intent);
                                 break;
                             } else {

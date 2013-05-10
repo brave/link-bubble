@@ -46,6 +46,9 @@
 
        	<service android:name="WebReaderOverlayService" >
         </service>
+
+        <service android:name="LinkLoadOverlayService" >
+        </service>
             
     </application>
 

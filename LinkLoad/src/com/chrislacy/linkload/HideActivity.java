@@ -13,6 +13,7 @@ public class HideActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
         WebReaderOverlayService.stop();
+        LinkLoadOverlayService.stop();
 			
 		finish();
 		
