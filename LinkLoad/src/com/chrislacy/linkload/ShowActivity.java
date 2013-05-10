@@ -31,6 +31,8 @@ public class ShowActivity extends Activity {
                 //Uri data = intent.getData();
                 //String scheme = data.getScheme();
 
+                Boolean linkLoadTest = intent.getBooleanExtra(TestActivity.LINKLOAD_TEST, false);
+
                 ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
                 List<ActivityManager.RecentTaskInfo> list = activityManager.getRecentTasks(20, 0);
                 int listSize = list.size();
@@ -39,11 +41,12 @@ public class ShowActivity extends Activity {
                         Intent caller = list.get(i).baseIntent;
                         if (caller != null && caller.getComponent() != null) {
                             String packageName = caller.getComponent().getPackageName();
-                            if (packageName.equals("com.chrislacy.linkload")) {
+                            if (packageName.equals("com.chrislacy.linkload") && linkLoadTest == false) {
                                 continue;
                             }
                             if (packageName.equals("com.google.android.apps.plus")
-                                    || packageName.equals("com.twitter.android")) {
+                                    || packageName.equals("com.twitter.android")
+                                    || (packageName.equals("com.chrislacy.linkload") && linkLoadTest)) {
                                 intent.setComponent(new ComponentName(this, LinkLoadOverlayService.class));
                                 startService(intent);
                                 break;
@@ -60,7 +63,8 @@ public class ShowActivity extends Activity {
             finish();
         } else {
             finish();
-            startActivity(new Intent(this, SettingsActivity.class));
+            //startActivity(new Intent(this, SettingsActivity.class));
+            startActivity(new Intent(this, TestActivity.class));
         }
 	}
 
