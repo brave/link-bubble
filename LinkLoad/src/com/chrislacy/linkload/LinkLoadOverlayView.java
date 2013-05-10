@@ -31,7 +31,7 @@ public class LinkLoadOverlayView extends OverlayView {
 
     private View mLoadingView;
     private View mContentView;
-    private WebView mWebView;
+    private ContentWebView mWebView;
 
     enum LoadingState {
         NotSet,
@@ -53,7 +53,8 @@ public class LinkLoadOverlayView extends OverlayView {
 
     @Override
     protected void onInflateView() {
-        mWebView = (WebView) findViewById(R.id.web_view);
+        mWebView = (ContentWebView)findViewById(R.id.web_view);
+        mWebView.setOverlayView(this);
         mContentView = findViewById(R.id.content);
         mLoadingView = findViewById(R.id.loading_content);
 
@@ -69,14 +70,7 @@ public class LinkLoadOverlayView extends OverlayView {
         progressBar.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //LinkLoadOverlayService.stop();
-
-                mLoadingState = LoadingState.Loaded;
-
-                mContentView.setVisibility(View.VISIBLE);
-                mLoadingView.setVisibility(View.INVISIBLE);
-
-                updateViewLayout();
+                setLoadingState(LoadingState.Loaded);
             }
         });
 
@@ -91,6 +85,31 @@ public class LinkLoadOverlayView extends OverlayView {
         */
     }
 
+    private void setLoadingState(LoadingState loadingState) {
+
+        if (mLoadingState != loadingState) {
+            mLoadingState = loadingState;
+
+            switch (mLoadingState) {
+                case Loading:
+                    mContentView.setVisibility(View.INVISIBLE);
+                    mLoadingView.setVisibility(View.VISIBLE);
+                    break;
+
+                case Loaded:
+                    mContentView.setVisibility(View.VISIBLE);
+                    mLoadingView.setVisibility(View.INVISIBLE);
+                    break;
+            }
+
+            updateViewLayout();
+        }
+    }
+
+    boolean onBackDown() {
+        setLoadingState(LoadingState.Loading);
+        return true;
+    }
 
     public void setUri(Uri uri) {
         mUri = uri;
@@ -172,7 +191,8 @@ public class LinkLoadOverlayView extends OverlayView {
         display.getSize(size);
         int width;
         int height;
-        int gravity = getDefaultLayoutGravity();
+        int gravity;
+        int flags;
         if (mLoadingState == LoadingState.Loaded) {
             // TODO: Come up with something better here
             height = (int) (size.y - Utilities.convertDpToPixel(24, getContext())) - 300;
@@ -180,15 +200,16 @@ public class LinkLoadOverlayView extends OverlayView {
             mContentView.setVisibility(View.VISIBLE);
             mLoadingView.setVisibility(View.INVISIBLE);
             gravity = Gravity.RIGHT | Gravity.BOTTOM;
+            flags = WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
         } else {
             width = getResources().getDimensionPixelSize(R.dimen.loading_content_width);
             height = getResources().getDimensionPixelSize(R.dimen.loading_content_height);
+            gravity = getDefaultLayoutGravity();
+            flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                        | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         }
 
-        layoutParams = new WindowManager.LayoutParams(width, height,
-                WindowManager.LayoutParams.TYPE_PHONE, WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, PixelFormat.TRANSLUCENT);
-
+        layoutParams = new WindowManager.LayoutParams(width, height, WindowManager.LayoutParams.TYPE_PHONE, flags, PixelFormat.TRANSLUCENT);
         layoutParams.gravity = gravity;
     }
 

@@ -65,15 +65,15 @@
 
         </LinearLayout>
 
-        <!--
-        <WebView
+
+        <com.chrislacy.linkload.ContentWebView
             android:id="@+id/web_view"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_alignParentLeft="false"
             android:layout_alignParentRight="true"
             />
-            -->
+
     </LinearLayout>
 
 </RelativeLayout>
