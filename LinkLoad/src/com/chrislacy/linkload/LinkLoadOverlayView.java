@@ -1,5 +1,6 @@
 package com.chrislacy.linkload;
 
+import android.animation.ObjectAnimator;
 import android.app.Application;
 import android.content.ComponentName;
 import android.content.Context;
@@ -14,6 +15,8 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -86,16 +89,9 @@ public class LinkLoadOverlayView extends OverlayView {
             }
         });
 
-        /*
-        ImageView cancelButton = (ImageView)findViewById(R.id.cancel_button);
-        cancelButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                WebReaderOverlayService.stop();
-            }
-        });
-        */
     }
+
+    static final Interpolator DECELERATE_CUBIC = new DecelerateInterpolator(1.5f);
 
     private void setLoadingState(LoadingState loadingState) {
 
@@ -122,6 +118,20 @@ public class LinkLoadOverlayView extends OverlayView {
                             }
                         });
                     }
+
+                    WindowManager windowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+                    Display display = windowManager.getDefaultDisplay();
+                    Point size = new Point();
+                    display.getSize(size);
+                    int width = size.x;
+
+                    ObjectAnimator animator = ObjectAnimator.ofFloat(mContentView, "x", width, 0);
+                    animator.setDuration(1000);
+                    animator.setInterpolator(DECELERATE_CUBIC);
+                    //animator.addUpdateListener(mQuickDrawerUpdateListener);
+                    //animator.addListener(mQuickDrawerAnimatorListener);
+                    animator.start();
+
                     break;
             }
 
@@ -177,9 +187,10 @@ public class LinkLoadOverlayView extends OverlayView {
                 final ResolveInfo resolveInfo = packageManager.resolveActivity(intent, 0);
                 if (resolveInfo != null && resolveInfo.activityInfo != null) {
                     String name = resolveInfo.activityInfo.name;
-                    if (!name.contains("com.android.internal")
-                            && !name.contains("ResolverActivity")
-                            && !name.contains("com.chrislacy.linkload")) {
+                    if (//!name.contains("com.android.internal")
+                        //    && !name.contains("ResolverActivity")
+                        //    && !name.contains("com.chrislacy.linkload")) {
+                        !name.contains("com.chrislacy.linkload")) {
                         ComponentName componentName = new ComponentName(resolveInfo.activityInfo.applicationInfo.packageName, name);
                         intent.setComponent(componentName);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -198,11 +209,8 @@ public class LinkLoadOverlayView extends OverlayView {
         */
     }
 
-
-
     @Override
     protected void onSetupLayoutParams() {
-
         WindowManager windowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
         Point size = new Point();
@@ -228,6 +236,7 @@ public class LinkLoadOverlayView extends OverlayView {
         }
 
         layoutParams = new WindowManager.LayoutParams(width, height, WindowManager.LayoutParams.TYPE_PHONE, flags, PixelFormat.TRANSLUCENT);
+        //layoutParams.layoutAnimationParameters
         layoutParams.gravity = gravity;
     }
 

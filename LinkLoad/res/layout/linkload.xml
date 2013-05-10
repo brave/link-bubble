@@ -47,8 +47,7 @@
         android:id="@+id/content"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:visibility="invisible"
-        android:background="#66ff0000">
+        android:visibility="invisible">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -62,9 +61,7 @@
                 android:id="@+id/close_button"
                 android:src="@drawable/ic_action_cancel_holo_light"
                 android:layout_marginLeft="4dp"/>
-
         </LinearLayout>
-
 
         <com.chrislacy.linkload.ContentWebView
             android:id="@+id/web_view"
