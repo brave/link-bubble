@@ -73,9 +73,11 @@ public class ShowActivity extends Activity {
             } else {
                 loadInBrowser(intent);
             }
+            finish();
+        } else {
+            finish();
+            startActivity(new Intent(this, SettingsActivity.class));
         }
-
-		finish();
 	}
 
     void loadInBrowser(Intent intent) {
