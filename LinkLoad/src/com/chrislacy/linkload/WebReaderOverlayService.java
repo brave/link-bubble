@@ -1,4 +1,4 @@
-package com.chrislacy.linkloader;
+package com.chrislacy.linkload;
 
 /*
 Copyright 2011 jawsware international

@@ -1,4 +1,4 @@
-package com.chrislacy.linkloader;
+package com.chrislacy.linkload;
 
 import android.app.Application;
 import android.content.ComponentName;
@@ -142,7 +142,7 @@ public class WebReaderOverlayView extends OverlayView {
                     String name = resolveInfo.activityInfo.name;
                     if (!name.contains("com.android.internal")
                             && !name.contains("ResolverActivity")
-                            && !name.contains("com.chrislacy.linkloader")) {
+                            && !name.contains("com.chrislacy.linkload")) {
                         ComponentName componentName = new ComponentName(resolveInfo.activityInfo.applicationInfo.packageName, name);
                         intent.setComponent(componentName);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
