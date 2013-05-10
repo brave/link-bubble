@@ -1,10 +1,16 @@
 package com.chrislacy.linkload;
 
+import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import com.jawsware.core.share.OverlayService;
 
 
@@ -83,4 +89,54 @@ public class LinkLoadOverlayService extends OverlayService {
         ((NotificationManager) getSystemService(NOTIFICATION_SERVICE)).cancel(id);
     }
 
+    interface AppPollingListener {
+        void onAppChanged();
+    }
+
+    void beginAppPolling(AppPollingListener listener) {
+        mAppPollingListener = listener;
+
+        ActivityManager am = (ActivityManager) getSystemService(Activity.ACTIVITY_SERVICE);
+        ComponentName componentName = am.getRunningTasks(1).get(0).topActivity;
+        mCurrentAppPackgeName = componentName.getPackageName();
+
+        mHandler.sendEmptyMessageDelayed(ACTION_POLL_CURRENT_APP, LOOP_TIME);
+    }
+
+    void endAppPolling() {
+        mHandler.removeMessages(ACTION_POLL_CURRENT_APP);
+    }
+
+    private static final int ACTION_POLL_CURRENT_APP = 1;
+    private static final int LOOP_TIME = 50;
+
+    private AppPollingListener mAppPollingListener;
+    private String mCurrentAppPackgeName;
+    private final Handler mHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case ACTION_POLL_CURRENT_APP: {
+                    mHandler.removeMessages(ACTION_POLL_CURRENT_APP);
+
+                    ActivityManager am = (ActivityManager) getSystemService(Activity.ACTIVITY_SERVICE);
+                    ComponentName componentName = am.getRunningTasks(1).get(0).topActivity;
+                    String currentPackageName = componentName.getPackageName();
+                    //Log.d("LinkLoad", "currentAppPackgeName=" + currentPackageName);
+                    if (currentPackageName != null
+                            && mCurrentAppPackgeName != null
+                            && !currentPackageName.equals(mCurrentAppPackgeName)) {
+                        if (mAppPollingListener != null) {
+                            mAppPollingListener.onAppChanged();
+                        }
+                        mCurrentAppPackgeName = null;
+                    } else {
+                        mHandler.sendEmptyMessageDelayed(ACTION_POLL_CURRENT_APP, LOOP_TIME);
+                    }
+                    break;
+                }
+            }
+        }
+    };
 }

@@ -94,11 +94,22 @@ public class LinkLoadOverlayView extends OverlayView {
                 case Loading:
                     mContentView.setVisibility(View.INVISIBLE);
                     mLoadingView.setVisibility(View.VISIBLE);
+                    if (LinkLoadOverlayService.mInstance != null) {
+                        LinkLoadOverlayService.mInstance.endAppPolling();
+                    }
                     break;
 
                 case Loaded:
                     mContentView.setVisibility(View.VISIBLE);
                     mLoadingView.setVisibility(View.INVISIBLE);
+                    if (LinkLoadOverlayService.mInstance != null) {
+                        LinkLoadOverlayService.mInstance.beginAppPolling(new LinkLoadOverlayService.AppPollingListener() {
+                            @Override
+                            public void onAppChanged() {
+                                setLoadingState(LoadingState.Loading);
+                            }
+                        });
+                    }
                     break;
             }
 
