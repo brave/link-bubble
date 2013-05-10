@@ -39,7 +39,7 @@ public class ShowActivity extends Activity {
                         Intent caller = list.get(i).baseIntent;
                         if (caller != null && caller.getComponent() != null) {
                             String packageName = caller.getComponent().getPackageName();
-                            if (packageName.equals("com.chrislacy.linkloader")) {
+                            if (packageName.equals("com.chrislacy.linkload")) {
                                 continue;
                             }
                             if (packageName.equals("com.google.android.apps.plus")
