@@ -7,7 +7,7 @@ import android.webkit.WebView;
 
 public class ContentWebView extends WebView {
 
-    LinkLoadOverlayView mOverlayView;
+    OnKeyDownListener mListener;
 
     public ContentWebView(Context context) {
         super(context);
@@ -21,14 +21,18 @@ public class ContentWebView extends WebView {
         super(context, attrs, defStyle);
     }
 
-    void setOverlayView(LinkLoadOverlayView overlayView) {
-        mOverlayView = overlayView;
+    interface OnKeyDownListener {
+        boolean onKeyDown(int keyCode, KeyEvent event);
+    };
+
+    void setOnKeyDownListener(OnKeyDownListener listener) {
+        mListener = listener;
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (KeyEvent.KEYCODE_BACK == keyCode) {
-            if (mOverlayView != null) {
-                return mOverlayView.onBackDown();
+        if (mListener != null) {
+            if (mListener.onKeyDown(keyCode, event)) {
+                return true;
             }
         }
 

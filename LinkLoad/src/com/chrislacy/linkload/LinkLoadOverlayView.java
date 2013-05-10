@@ -11,6 +11,7 @@ import android.graphics.Point;
 import android.net.Uri;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebView;
@@ -54,7 +55,18 @@ public class LinkLoadOverlayView extends OverlayView {
     @Override
     protected void onInflateView() {
         mWebView = (ContentWebView)findViewById(R.id.web_view);
-        mWebView.setOverlayView(this);
+        mWebView.setOnKeyDownListener(new ContentWebView.OnKeyDownListener() {
+
+            @Override
+            public boolean onKeyDown(int keyCode, KeyEvent event) {
+                if (KeyEvent.KEYCODE_BACK == keyCode) {
+                    setLoadingState(LoadingState.Loading);
+                    return true;
+                }
+                return false;
+            }
+        });
+
         mContentView = findViewById(R.id.content);
         mLoadingView = findViewById(R.id.loading_content);
 
@@ -115,11 +127,6 @@ public class LinkLoadOverlayView extends OverlayView {
 
             updateViewLayout();
         }
-    }
-
-    boolean onBackDown() {
-        setLoadingState(LoadingState.Loading);
-        return true;
     }
 
     public void setUri(Uri uri) {
