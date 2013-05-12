@@ -33,7 +33,7 @@ import com.jawsware.core.share.OverlayView;
  */
 public class LinkViewContentView extends OverlayView {
 
-    private View mLoadingView;
+    LinkViewOverlayService mService;
     private View mContentView;
     private ContentWebView mWebView;
 
@@ -47,8 +47,9 @@ public class LinkViewContentView extends OverlayView {
     private Uri mUri;
 
     public LinkViewContentView(OverlayService service) {
-        super(service, R.layout.linkload, 1);
+        super(service, R.layout.content, 1);
         mLoadingState = LoadingState.NotSet;
+        mService = (LinkViewOverlayService) service;
     }
 
     public int getGravity() {
@@ -63,7 +64,8 @@ public class LinkViewContentView extends OverlayView {
             @Override
             public boolean onKeyDown(int keyCode, KeyEvent event) {
                 if (KeyEvent.KEYCODE_BACK == keyCode) {
-                    setLoadingState(LoadingState.Loading);
+                    //setLoadingState(LoadingState.Loading);
+                    mService.showLoading();
                     return true;
                 }
                 return false;
@@ -71,7 +73,6 @@ public class LinkViewContentView extends OverlayView {
         });
 
         mContentView = findViewById(R.id.content);
-        mLoadingView = findViewById(R.id.loading_content);
 
         ImageView closeButton = (ImageView) findViewById(R.id.close_button);
         closeButton.setOnClickListener(new OnClickListener() {
@@ -81,19 +82,11 @@ public class LinkViewContentView extends OverlayView {
             }
         });
 
-        ProgressBar progressBar = (ProgressBar)findViewById(R.id.progress_bar);
-        progressBar.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setLoadingState(LoadingState.Loaded);
-            }
-        });
-
     }
 
     static final Interpolator DECELERATE_CUBIC = new DecelerateInterpolator(1.5f);
 
-    private void setLoadingState(LoadingState loadingState) {
+    void setLoadingState(LoadingState loadingState) {
 
         if (mLoadingState != loadingState) {
             mLoadingState = loadingState;
@@ -101,7 +94,6 @@ public class LinkViewContentView extends OverlayView {
             switch (mLoadingState) {
                 case Loading:
                     mContentView.setVisibility(View.INVISIBLE);
-                    mLoadingView.setVisibility(View.VISIBLE);
                     if (LinkViewOverlayService.mInstance != null) {
                         LinkViewOverlayService.mInstance.endAppPolling();
                     }
@@ -109,7 +101,6 @@ public class LinkViewContentView extends OverlayView {
 
                 case Loaded:
                     mContentView.setVisibility(View.VISIBLE);
-                    mLoadingView.setVisibility(View.INVISIBLE);
                     if (LinkViewOverlayService.mInstance != null) {
                         LinkViewOverlayService.mInstance.beginAppPolling(new LinkViewOverlayService.AppPollingListener() {
                             @Override
@@ -234,7 +225,6 @@ public class LinkViewContentView extends OverlayView {
             height = (int) (size.y - Utilities.convertDpToPixel(24, getContext())) - 300;
             width = size.x;
             mContentView.setVisibility(View.VISIBLE);
-            mLoadingView.setVisibility(View.INVISIBLE);
             flags = WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
         } else {
             width = getResources().getDimensionPixelSize(R.dimen.loading_content_width);
@@ -247,34 +237,5 @@ public class LinkViewContentView extends OverlayView {
         //layoutParams.layoutAnimationParameters
         layoutParams.gravity = getDefaultLayoutGravity();
     }
-
-    /*
-	@Override
-	protected void refreshViews() {
-		info.setText("WAITING\nWAITING");
-	}
-
-	@Override
-	protected void onTouchEvent_Up(MotionEvent event) {
-		info.setText("UP\nPOINTERS: " + event.getPointerCount());
-	}
-
-	@Override
-	protected void onTouchEvent_Move(MotionEvent event) {
-		info.setText("MOVE\nPOINTERS: " + event.getPointerCount());
-	}
-
-	@Override
-	protected void onTouchEvent_Press(MotionEvent event) {
-		info.setText("DOWN\nPOINTERS: " + event.getPointerCount());
-	}
-
-	@Override
-	public boolean onTouchEvent_LongPress() {
-		info.setText("LONG\nPRESS");
-
-		return true;
-	}
-	*/
 
 }

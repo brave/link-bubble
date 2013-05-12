@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loading_content"
+    android:layout_width="@dimen/loading_content_width"
+    android:layout_height="@dimen/loading_content_height"
+    android:background="@drawable/loading_content_background"
+    android:orientation="vertical"
+    android:padding="@dimen/loading_content_padding"
+    >
+
+    <ProgressBar
+        android:layout_width="@dimen/loading_content_button_dimen"
+        android:layout_height="@dimen/loading_content_button_dimen"
+        android:id="@+id/progress_bar"/>
+
+</LinearLayout>

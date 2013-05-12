@@ -19,7 +19,8 @@ public class LinkViewOverlayService extends OverlayService {
 
     public static LinkViewOverlayService mInstance;
 
-    private LinkLoadOverlayView mOverlayView;
+    private LinkViewLoadingView mLoadingView;
+    private LinkViewContentView mContentView;
 
     @Override
     public void onCreate() {
@@ -27,17 +28,21 @@ public class LinkViewOverlayService extends OverlayService {
 
         mInstance = this;
 
-        mOverlayView = new LinkLoadOverlayView(this);
+        mLoadingView = new LinkViewLoadingView(this);
+        mContentView = new LinkViewContentView(this);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
 
-        if (mOverlayView != null) {
-            mOverlayView.destory();
+        if (mLoadingView != null) {
+            mLoadingView.destory();
         }
 
+        if (mContentView != null) {
+            mContentView.destory();
+        }
     }
 
     static public void stop() {
@@ -61,7 +66,7 @@ public class LinkViewOverlayService extends OverlayService {
 
     void handleCommand(Intent intent) {
         Uri data = intent.getData();
-        mOverlayView.setUri(data);
+        mContentView.setUri(data);
     }
 
     @Override
@@ -88,6 +93,14 @@ public class LinkViewOverlayService extends OverlayService {
 
     void cancelNotification() {
         ((NotificationManager) getSystemService(NOTIFICATION_SERVICE)).cancel(id);
+    }
+
+    void showContent() {
+        mContentView.setLoadingState(LinkViewContentView.LoadingState.Loaded);
+    }
+
+    void showLoading() {
+        mLoadingView.setLoadingState(LinkViewLoadingView.LoadingState.Loading);
     }
 
     interface AppPollingListener {
