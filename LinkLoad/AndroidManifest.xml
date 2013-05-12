@@ -45,7 +45,11 @@
 
         <activity android:name="TestActivity"
                   android:label="Test"
-                  android:theme="@android:style/Theme.Holo">
+                  android:theme="@android:style/Theme.Holo.Light">
+        </activity>
+
+        <activity android:name="LinkViewActivity"
+                  android:theme="@style/Theme.Transparent">
         </activity>
 
        	<service android:name="WebReaderOverlayService" >

@@ -161,6 +161,19 @@ public class LinkLoadOverlayView extends OverlayView {
 
                 LinkLoadOverlayService.mInstance.cancelNotification();
 
+                Intent intent = new Intent(LinkLoadOverlayService.mInstance.getApplication(), LinkViewActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra(LinkViewActivity.LINK_VIEW_URL, url);
+                LinkLoadOverlayService.mInstance.getApplication().startActivity(intent);
+
+                LinkLoadOverlayService.stop();
+
+                mWebView.stopLoading();
+
+
+                //updateViewLayout();
+
                 //int delay = 5000;
 
 
