@@ -14,6 +14,7 @@ public class HideActivity extends Activity {
 
         WebReaderOverlayService.stop();
         LinkLoadOverlayService.stop();
+        LinkViewOverlayService.stop();
 			
 		finish();
 		

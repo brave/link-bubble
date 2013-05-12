@@ -47,7 +47,8 @@ public class ShowActivity extends Activity {
                             if (packageName.equals("com.google.android.apps.plus")
                                     || packageName.equals("com.twitter.android")
                                     || (packageName.equals("com.chrislacy.linkload") && linkLoadTest)) {
-                                intent.setComponent(new ComponentName(this, LinkLoadOverlayService.class));
+                                //intent.setComponent(new ComponentName(this, LinkLoadOverlayService.class));
+                                intent.setComponent(new ComponentName(this, LinkViewOverlayService.class));
                                 startService(intent);
                                 break;
                             } else {
