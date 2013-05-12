@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import com.chrislacy.linkload.old.LinkLoadOverlayView;
 import com.jawsware.core.share.OverlayService;
 
 

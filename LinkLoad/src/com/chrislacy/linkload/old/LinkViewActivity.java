@@ -1,4 +1,4 @@
-package com.chrislacy.linkload;
+package com.chrislacy.linkload.old;
 
 
 import android.animation.Animator;
@@ -24,6 +24,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import com.chrislacy.linkload.R;
 
 public class LinkViewActivity extends Activity {
 

@@ -21,11 +21,11 @@ public class ContentWebView extends WebView {
         super(context, attrs, defStyle);
     }
 
-    interface OnKeyDownListener {
+    public interface OnKeyDownListener {
         boolean onKeyDown(int keyCode, KeyEvent event);
     };
 
-    void setOnKeyDownListener(OnKeyDownListener listener) {
+    public void setOnKeyDownListener(OnKeyDownListener listener) {
         mListener = listener;
     }
 

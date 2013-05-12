@@ -1,4 +1,4 @@
-package com.chrislacy.linkload;
+package com.chrislacy.linkload.old;
 
 /*
 Copyright 2011 jawsware international
@@ -18,6 +18,8 @@ limitations under the License.
 
 import android.app.NotificationManager;
 import android.net.Uri;
+import com.chrislacy.linkload.HideActivity;
+import com.chrislacy.linkload.R;
 import com.jawsware.core.share.OverlayService;
 
 import android.app.Notification;

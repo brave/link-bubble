@@ -1,4 +1,4 @@
-package com.chrislacy.linkload;
+package com.chrislacy.linkload.old;
 
 import android.animation.ObjectAnimator;
 import android.app.Application;
@@ -21,6 +21,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import com.chrislacy.linkload.ContentWebView;
+import com.chrislacy.linkload.R;
+import com.chrislacy.linkload.Utilities;
 import com.jawsware.core.share.OverlayService;
 import com.jawsware.core.share.OverlayView;
 
