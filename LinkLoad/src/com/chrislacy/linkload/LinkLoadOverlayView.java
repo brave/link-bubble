@@ -126,10 +126,8 @@ public class LinkLoadOverlayView extends OverlayView {
                     int width = size.x;
 
                     ObjectAnimator animator = ObjectAnimator.ofFloat(mContentView, "x", width, 0);
-                    animator.setDuration(1000);
+                    animator.setDuration(300);
                     animator.setInterpolator(DECELERATE_CUBIC);
-                    //animator.addUpdateListener(mQuickDrawerUpdateListener);
-                    //animator.addListener(mQuickDrawerAnimatorListener);
                     animator.start();
 
                     break;
@@ -230,7 +228,6 @@ public class LinkLoadOverlayView extends OverlayView {
         display.getSize(size);
         int width;
         int height;
-        int gravity;
         int flags;
         if (mLoadingState == LoadingState.Loaded) {
             // TODO: Come up with something better here
@@ -238,19 +235,17 @@ public class LinkLoadOverlayView extends OverlayView {
             width = size.x;
             mContentView.setVisibility(View.VISIBLE);
             mLoadingView.setVisibility(View.INVISIBLE);
-            gravity = Gravity.RIGHT | Gravity.BOTTOM;
             flags = WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
         } else {
             width = getResources().getDimensionPixelSize(R.dimen.loading_content_width);
             height = getResources().getDimensionPixelSize(R.dimen.loading_content_height);
-            gravity = getDefaultLayoutGravity();
             flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
                         | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         }
 
-        layoutParams = new WindowManager.LayoutParams(width, height, WindowManager.LayoutParams.TYPE_PHONE, flags, PixelFormat.TRANSLUCENT);
+        layoutParams = new WindowManager.LayoutParams(width, height, x, y, WindowManager.LayoutParams.TYPE_PHONE, flags, PixelFormat.TRANSLUCENT);
         //layoutParams.layoutAnimationParameters
-        layoutParams.gravity = gravity;
+        layoutParams.gravity = getDefaultLayoutGravity();
     }
 
     /*
