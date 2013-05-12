@@ -59,7 +59,7 @@ public class LinkViewActivity extends Activity {
             }, 100);
             */
 
-            setContentView(R.layout.linkview);
+            setContentView(R.layout.linkview_activity);
             mWebView = (WebView) findViewById(R.id.webview);
             loadUri(Uri.parse(url));
 

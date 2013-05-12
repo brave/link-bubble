@@ -243,7 +243,7 @@ public class LinkLoadOverlayView extends OverlayView {
                         | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         }
 
-        layoutParams = new WindowManager.LayoutParams(width, height, x, y, WindowManager.LayoutParams.TYPE_PHONE, flags, PixelFormat.TRANSLUCENT);
+        layoutParams = new WindowManager.LayoutParams(width, height, WindowManager.LayoutParams.TYPE_PHONE, flags, PixelFormat.TRANSLUCENT);
         //layoutParams.layoutAnimationParameters
         layoutParams.gravity = getDefaultLayoutGravity();
     }
