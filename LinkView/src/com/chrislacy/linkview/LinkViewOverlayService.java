@@ -79,9 +79,11 @@ public class LinkViewOverlayService extends OverlayService {
     protected Notification foregroundNotification(int notificationId) {
         Notification notification;
 
-        notification = new Notification(R.drawable.ic_action_link, getString(R.string.title_notification), System.currentTimeMillis());
+        notification = new Notification(R.drawable.ic_action_link, null, System.currentTimeMillis());
 
         notification.flags = notification.flags | Notification.FLAG_ONGOING_EVENT | Notification.FLAG_ONLY_ALERT_ONCE;
+        // Setting the priority to MIN means no new notification appears: http://stackoverflow.com/a/11338380/328679
+        notification.priority = Notification.PRIORITY_MIN;
 
         notification.setLatestEventInfo(this, getString(R.string.title_notification), getString(R.string.message_notification), notificationIntent());
 

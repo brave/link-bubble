@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">~LV~</string>
-    <string name="title_notification">Loading link</string>
-    <string name="message_notification">Press to cancel</string>
+    <string name="title_notification">Link View</string>
+    <string name="message_notification">Press to finish.</string>
 
     <string name="title_settings">Link Load</string>
     <string name="action_help">Help</string>
