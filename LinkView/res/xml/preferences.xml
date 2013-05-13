@@ -23,6 +23,11 @@
 
         </PreferenceCategory>
 
+    <Preference
+        android:key="preference_tests"
+        android:title="Tests">
+    </Preference>
+
     <!--
         <Preference
             android:key="preference_version"

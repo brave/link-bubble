@@ -1,6 +1,7 @@
 package com.chrislacy.linkview;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -57,5 +58,13 @@ public class SettingsActivity extends PreferenceActivity {
         super.onResume();
 
         //final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        getPreferenceScreen().findPreference("preference_tests").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(SettingsActivity.this, TestActivity.class));
+                return true;
+            }
+        });
     }
 }
