@@ -167,6 +167,11 @@ public class LinkViewOverlayService extends OverlayService {
                         int tasksSize = tasks.size();
                         for (int i = 0; i < tasksSize; i++) {
                             ComponentName componentName = activityManager.getRunningTasks(taskLimit).get(i).baseActivity;
+                            if (componentName.getClassName().equals("com.chrislacy.linkview.MainActivity")) {
+                                //Log.d("LinkView", "Ignore " + componentName.getClassName());
+                                continue;
+                            }
+
                             String currentPackageName = componentName.getPackageName();
                             if (currentPackageName != null
                                     && mCurrentAppPackgeName != null
