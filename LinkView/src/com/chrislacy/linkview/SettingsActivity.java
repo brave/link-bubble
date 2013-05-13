@@ -1,8 +1,11 @@
 package com.chrislacy.linkview;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -11,6 +14,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 
@@ -34,6 +38,15 @@ public class SettingsActivity extends PreferenceActivity {
 
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preferences);
+
+        // Lock the orientation into it's initial orientation. This means when onPause() is called, we can safely call finish().
+        // This is necessary to prevent this activity being resumed when a link is clicked.
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
 
         //mAppEnabledPreference = (SwitchPreference) getPreferenceScreen().findPreference(KEY_APP_ENABLED);
     }
@@ -66,5 +79,15 @@ public class SettingsActivity extends PreferenceActivity {
                 return true;
             }
         });
+
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        finish();
+        Log.d("LinkView", "SettingsActivity.onPause() - finishing activity");
     }
 }
