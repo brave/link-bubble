@@ -32,16 +32,17 @@ public abstract class OverlayView extends RelativeLayout {
 
 	private int layoutResId;
 	private int notificationId = 0;
+    protected Context mContext;
 
 	public OverlayView(OverlayService service, int layoutResId, int notificationId) {
 		super(service);
 
 		this.layoutResId = layoutResId;
 		this.notificationId = notificationId;
+        mContext = service;
 
-		this.setLongClickable(true);
-		
-		this.setOnLongClickListener(new View.OnLongClickListener() {
+        setLongClickable(true);
+		setOnLongClickListener(new View.OnLongClickListener() {
 			
 			@Override
 			public boolean onLongClick(View v) {
