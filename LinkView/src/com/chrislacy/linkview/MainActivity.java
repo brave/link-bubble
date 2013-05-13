@@ -62,8 +62,7 @@ public class MainActivity extends Activity {
             finish();
         } else {
             finish();
-            //startActivity(new Intent(this, SettingsActivity.class));
-            startActivity(new Intent(this, TestActivity.class));
+            startActivity(new Intent(this, SettingsActivity.class));
         }
 	}
 
