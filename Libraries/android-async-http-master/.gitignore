@@ -1,0 +1,11 @@
+_site
+MANIFEST.MF
+./*.jar
+build.num
+build
+local.properties
+bin/
+gen/
+_layouts
+.DS_Store
+gh-pages
