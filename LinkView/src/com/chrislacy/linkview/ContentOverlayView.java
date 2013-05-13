@@ -2,10 +2,15 @@ package com.chrislacy.linkview;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.net.Uri;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -13,6 +18,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import com.jawsware.core.share.OverlayService;
 import com.jawsware.core.share.OverlayView;
@@ -26,7 +33,7 @@ import com.jawsware.core.share.OverlayView;
  */
 public class ContentOverlayView extends OverlayView {
 
-    static final int ANIM_TIME = 1500;
+    static final int ANIM_TIME = 300;
 
     private LinkViewOverlayService mService;
     private View mContentView;
@@ -95,6 +102,7 @@ public class ContentOverlayView extends OverlayView {
     private void setContentState(ContentState loadingState) {
 
         if (mContentState != loadingState) {
+            Log.d("LinkView", "setContentState() - from " + mContentState + " to " + loadingState);
             mContentState = loadingState;
 
             WindowManager windowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
@@ -106,9 +114,6 @@ public class ContentOverlayView extends OverlayView {
             switch (mContentState) {
                 case Off:
                     mContentView.setVisibility(View.INVISIBLE);
-                    //if (LinkViewOverlayService.mInstance != null) {
-                    //    LinkViewOverlayService.mInstance.endAppPolling();
-                    //}
                     break;
 
                 case TurningOn:
@@ -150,6 +155,11 @@ public class ContentOverlayView extends OverlayView {
                         @Override public void onAnimationRepeat(Animator animation) {}
                     });
                     mAnimator.start();
+
+                    if (LinkViewOverlayService.mInstance != null) {
+                        LinkViewOverlayService.mInstance.endAppPolling();
+                    }
+                    break;
             }
 
             updateViewLayout();
@@ -161,7 +171,6 @@ public class ContentOverlayView extends OverlayView {
 
         //mContentState = ContentState.Loading;
 
-        /*
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.loadUrl(uri.toString());
         mWebView.getSettings().setSupportZoom(true);
@@ -170,24 +179,13 @@ public class ContentOverlayView extends OverlayView {
 
             public void onPageFinished(WebView view, String url) {
 
-                mContentState = ContentState.Loaded;
-                mContentView.setVisibility(View.VISIBLE);
-                mLoadingView.setVisibility(View.INVISIBLE);
+                //updateViewLayout();
 
-                updateViewLayout();
+                //LinkViewOverlayService.mInstance.cancelNotification();
 
-                LinkViewOverlayService.mInstance.cancelNotification();
+                //mWebView.stopLoading();
 
-                Intent intent = new Intent(LinkViewOverlayService.mInstance.getApplication(), LinkViewActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent.putExtra(LinkViewActivity.LINK_VIEW_URL, url);
-                LinkViewOverlayService.mInstance.getApplication().startActivity(intent);
-
-                LinkViewOverlayService.stop();
-
-                mWebView.stopLoading();
-
+                animateOnscreen();
 
                 //updateViewLayout();
 
@@ -212,6 +210,7 @@ public class ContentOverlayView extends OverlayView {
 
             public boolean shouldOverrideUrlLoading(WebView view, String url){
 
+                /*
                 PackageManager packageManager = getContext().getPackageManager();
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 final ResolveInfo resolveInfo = packageManager.resolveActivity(intent, 0);
@@ -229,14 +228,13 @@ public class ContentOverlayView extends OverlayView {
                         LinkViewOverlayService.stop();
                         return true;
                     }
-                    // TODO: Hard-code for YouTube, Instragram, Facebook and Twitter
-                }
+                    // TODO: Hard-code for YouTube, Instagram, Facebook and Twitter
+                }*/
 
                 view.loadUrl(url);
                 return false; // then it is not handled by default action
             }
         });
-        */
     }
 
     @Override
