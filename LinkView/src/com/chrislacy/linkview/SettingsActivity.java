@@ -22,6 +22,7 @@ public class SettingsActivity extends PreferenceActivity {
 
     public static final String KEY_APP_ENABLED = "preference_app_enabled";
     public static final String KEY_DISPLAY_URLS = "preference_display_urls";
+    public static final String KEY_TEXT_URLS = "preference_text_urls";
     public static final String KEY_WEB_VIEW_DEBUG = "preference_web_view_deubg";
 
     //private SwitchPreference mAppEnabledPreference;

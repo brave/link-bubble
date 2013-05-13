@@ -25,6 +25,8 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import com.jawsware.core.share.OverlayService;
 import com.jawsware.core.share.OverlayView;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 /**
  * Created with IntelliJ IDEA.
@@ -206,11 +208,8 @@ public class ContentOverlayView extends OverlayView {
         //mCurrentUrl = uri.toString();
 
         mWebView.stopLoading();
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.loadUrl(uri.toString());
-        mWebView.getSettings().setSupportZoom(true);
-        mWebView.getSettings().setBuiltInZoomControls(true);
-        mWebView.setWebViewClient(new WebViewClient() {
+
+        WebViewClient webViewClient = new WebViewClient() {
 
             public void onPageFinished(WebView view, String url) {
 
@@ -269,7 +268,36 @@ public class ContentOverlayView extends OverlayView {
                 view.loadUrl(url);
                 return false; // then it is not handled by default action
             }
-        });
+        };
+
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.getSettings().setSupportZoom(true);
+        mWebView.getSettings().setBuiltInZoomControls(true);
+        mWebView.setWebViewClient(webViewClient);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        if (preferences != null && preferences.getBoolean(SettingsActivity.KEY_TEXT_URLS, false)) {
+
+            AsyncHttpClient client = new AsyncHttpClient();
+
+            String diffBotToken = "0f33cad70f2dcf3f9be136ed713c6e58";
+            String diffBotUrl = "http://www.diffbot.com/api/article?token=" + diffBotToken + "&url=" + uri.toString();
+
+            client.get(diffBotUrl, new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(String response) {
+                    String html = response;
+                    String mime = "text/json";
+                    String encoding = "utf-8";
+
+                    mWebView.getSettings().setJavaScriptEnabled(true);
+                    mWebView.loadDataWithBaseURL(null, html, mime, encoding, null);
+                }
+            });
+
+        } else {
+            mWebView.loadUrl(uri.toString());
+        }
     }
 
     @Override

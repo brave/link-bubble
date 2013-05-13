@@ -11,4 +11,6 @@
     <string name="preference_app_enabled_title">Enabled</string>
     <string name="preference_version_title">Version</string>
     <string name="preference_display_urls_title">Display links</string>
+    <string name="preference_text_urls_title">Simplified sites (where applicable)</string>
+    <string name="preference_text_urls_summary">Web pages load faster and appear cleaner.</string>
 </resources>
