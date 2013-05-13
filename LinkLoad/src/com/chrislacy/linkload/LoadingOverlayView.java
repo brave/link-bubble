@@ -31,7 +31,7 @@ import com.jawsware.core.share.OverlayView;
  * Time: 10:45 AM
  * To change this template use File | Settings | File Templates.
  */
-public class LinkViewLoadingView extends OverlayView {
+public class LoadingOverlayView extends OverlayView {
 
     private View mLoadingView;
     private LinkViewOverlayService mService;
@@ -44,7 +44,7 @@ public class LinkViewLoadingView extends OverlayView {
 
     private LoadingState mLoadingState;
 
-    public LinkViewLoadingView(OverlayService service) {
+    public LoadingOverlayView(OverlayService service) {
         super(service, R.layout.loading, 1);
         mLoadingState = LoadingState.NotSet;
         mService = (LinkViewOverlayService) service;

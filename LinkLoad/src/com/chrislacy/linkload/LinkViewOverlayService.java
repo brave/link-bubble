@@ -17,8 +17,8 @@ public class LinkViewOverlayService extends OverlayService {
 
     public static LinkViewOverlayService mInstance;
 
-    private LinkViewLoadingView mLoadingView;
-    private LinkViewContentView mContentView;
+    private LoadingOverlayView mLoadingView;
+    private ContentOverlayView mContentView;
 
     @Override
     public void onCreate() {
@@ -26,8 +26,8 @@ public class LinkViewOverlayService extends OverlayService {
 
         mInstance = this;
 
-        mLoadingView = new LinkViewLoadingView(this);
-        mContentView = new LinkViewContentView(this);
+        mLoadingView = new LoadingOverlayView(this);
+        mContentView = new ContentOverlayView(this);
     }
 
     @Override
@@ -98,7 +98,7 @@ public class LinkViewOverlayService extends OverlayService {
     }
 
     void showLoading() {
-        mLoadingView.setLoadingState(LinkViewLoadingView.LoadingState.Loading);
+        mLoadingView.setLoadingState(LoadingOverlayView.LoadingState.Loading);
     }
 
     interface AppPollingListener {

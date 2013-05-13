@@ -24,7 +24,7 @@ import com.jawsware.core.share.OverlayView;
  * Time: 10:45 AM
  * To change this template use File | Settings | File Templates.
  */
-public class LinkViewContentView extends OverlayView {
+public class ContentOverlayView extends OverlayView {
 
     static final int ANIM_TIME = 1500;
 
@@ -43,7 +43,7 @@ public class LinkViewContentView extends OverlayView {
     }
     private ContentState mContentState;
 
-    public LinkViewContentView(OverlayService service) {
+    public ContentOverlayView(OverlayService service) {
         super(service, R.layout.content, 1);
         mContentState = ContentState.NotSet;
         mService = (LinkViewOverlayService) service;
