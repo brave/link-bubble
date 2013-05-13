@@ -5,11 +5,13 @@ import android.animation.ObjectAnimator;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -283,7 +285,13 @@ public class ContentOverlayView extends OverlayView {
             width = size.x;
             flags = WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
         } else {
-            width = 0;
+
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+            if (preferences != null && preferences.getBoolean(SettingsActivity.KEY_WEB_VIEW_DEBUG, false)) {
+                width = 80;
+            } else {
+                width = 0;
+            }
             flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
                     | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         }
