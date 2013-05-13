@@ -17,7 +17,7 @@
         <activity
             android:icon="@drawable/ic_launcher"
             android:label="@string/app_name"
-            android:name="ShowActivity"
+            android:name=".MainActivity"
             android:theme="@android:style/Theme.Dialog" >
 
             <intent-filter >

@@ -6,14 +6,12 @@ import android.content.ComponentName;
 import android.content.Intent;
 
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
 import java.util.List;
 
-public class ShowActivity extends Activity {
+public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
