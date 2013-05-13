@@ -1,12 +1,8 @@
 package com.chrislacy.linkload;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.app.Application;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.net.Uri;
@@ -17,10 +13,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import com.jawsware.core.share.OverlayService;
 import com.jawsware.core.share.OverlayView;
 
@@ -33,22 +26,26 @@ import com.jawsware.core.share.OverlayView;
  */
 public class LinkViewContentView extends OverlayView {
 
-    LinkViewOverlayService mService;
+    static final int ANIM_TIME = 1500;
+
+    private LinkViewOverlayService mService;
     private View mContentView;
-    private ContentWebView mWebView;
-
-    enum LoadingState {
-        NotSet,
-        Loading,
-        Loaded,
-    }
-
-    private LoadingState mLoadingState;
     private Uri mUri;
+    private ContentWebView mWebView;
+    private ObjectAnimator mAnimator;
+
+    private enum ContentState {
+        NotSet,
+        Off,
+        TurningOn,
+        On,
+        TurningOff,
+    }
+    private ContentState mContentState;
 
     public LinkViewContentView(OverlayService service) {
         super(service, R.layout.content, 1);
-        mLoadingState = LoadingState.NotSet;
+        mContentState = ContentState.NotSet;
         mService = (LinkViewOverlayService) service;
     }
 
@@ -64,7 +61,8 @@ public class LinkViewContentView extends OverlayView {
             @Override
             public boolean onKeyDown(int keyCode, KeyEvent event) {
                 if (KeyEvent.KEYCODE_BACK == keyCode) {
-                    //setLoadingState(LoadingState.Loading);
+                    //setLoadingState(ContentState.Loading);
+                    setContentState(ContentState.TurningOff);
                     mService.showLoading();
                     return true;
                 }
@@ -86,42 +84,72 @@ public class LinkViewContentView extends OverlayView {
 
     static final Interpolator DECELERATE_CUBIC = new DecelerateInterpolator(1.5f);
 
-    void setLoadingState(LoadingState loadingState) {
+    void animateOnscreen() {
+        setContentState(ContentState.TurningOn);
+    }
 
-        if (mLoadingState != loadingState) {
-            mLoadingState = loadingState;
+    void animateOffscreen() {
+        setContentState(ContentState.TurningOff);
+    }
 
-            switch (mLoadingState) {
-                case Loading:
+    private void setContentState(ContentState loadingState) {
+
+        if (mContentState != loadingState) {
+            mContentState = loadingState;
+
+            WindowManager windowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+            Display display = windowManager.getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            int width = size.x;
+
+            switch (mContentState) {
+                case Off:
                     mContentView.setVisibility(View.INVISIBLE);
-                    if (LinkViewOverlayService.mInstance != null) {
-                        LinkViewOverlayService.mInstance.endAppPolling();
-                    }
+                    //if (LinkViewOverlayService.mInstance != null) {
+                    //    LinkViewOverlayService.mInstance.endAppPolling();
+                    //}
                     break;
 
-                case Loaded:
+                case TurningOn:
                     mContentView.setVisibility(View.VISIBLE);
+
                     if (LinkViewOverlayService.mInstance != null) {
                         LinkViewOverlayService.mInstance.beginAppPolling(new LinkViewOverlayService.AppPollingListener() {
                             @Override
                             public void onAppChanged() {
-                                setLoadingState(LoadingState.Loading);
+                                animateOffscreen();
                             }
                         });
                     }
 
-                    WindowManager windowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-                    Display display = windowManager.getDefaultDisplay();
-                    Point size = new Point();
-                    display.getSize(size);
-                    int width = size.x;
-
-                    ObjectAnimator animator = ObjectAnimator.ofFloat(mContentView, "x", width, 0);
-                    animator.setDuration(300);
-                    animator.setInterpolator(DECELERATE_CUBIC);
-                    animator.start();
-
+                    mAnimator = ObjectAnimator.ofFloat(mContentView, "x", width, 0);
+                    mAnimator.setDuration(ANIM_TIME);
+                    mAnimator.setInterpolator(DECELERATE_CUBIC);
+                    mAnimator.addListener(new Animator.AnimatorListener() {
+                        @Override public void onAnimationStart(Animator animation) {}
+                        @Override public void onAnimationEnd(Animator animation) {
+                            setContentState(ContentState.On);
+                        }
+                        @Override public void onAnimationCancel(Animator animation) {}
+                        @Override public void onAnimationRepeat(Animator animation) {}
+                    });
+                    mAnimator.start();
                     break;
+
+                case TurningOff:
+                    mAnimator = ObjectAnimator.ofFloat(mContentView, "x", width);
+                    mAnimator.setDuration(ANIM_TIME);
+                    mAnimator.setInterpolator(DECELERATE_CUBIC);
+                    mAnimator.addListener(new Animator.AnimatorListener() {
+                        @Override public void onAnimationStart(Animator animation) {}
+                        @Override public void onAnimationEnd(Animator animation) {
+                            setContentState(ContentState.Off);
+                        }
+                        @Override public void onAnimationCancel(Animator animation) {}
+                        @Override public void onAnimationRepeat(Animator animation) {}
+                    });
+                    mAnimator.start();
             }
 
             updateViewLayout();
@@ -131,7 +159,7 @@ public class LinkViewContentView extends OverlayView {
     public void setUri(Uri uri) {
         mUri = uri;
 
-        mLoadingState = LoadingState.Loading;
+        //mContentState = ContentState.Loading;
 
         /*
         mWebView.getSettings().setJavaScriptEnabled(true);
@@ -142,7 +170,7 @@ public class LinkViewContentView extends OverlayView {
 
             public void onPageFinished(WebView view, String url) {
 
-                mLoadingState = LoadingState.Loaded;
+                mContentState = ContentState.Loaded;
                 mContentView.setVisibility(View.VISIBLE);
                 mLoadingView.setVisibility(View.INVISIBLE);
 
@@ -170,7 +198,7 @@ public class LinkViewContentView extends OverlayView {
 //                handler.postDelayed(new Runnable() {
 //                    @Override
 //                    public void run() {
-//                        mLoadingState = LoadingState.Loaded;
+//                        mContentState = ContentState.Loaded;
 //                        mContentView.setVisibility(View.VISIBLE);
 //                        mLoadingView.setVisibility(View.INVISIBLE);
 //
@@ -218,24 +246,29 @@ public class LinkViewContentView extends OverlayView {
         Point size = new Point();
         display.getSize(size);
         int width;
-        int height;
+        int height = (int) (size.y - Utilities.convertDpToPixel(24, getContext())) - 300;           // TODO: Come up with something better here
         int flags;
-        if (mLoadingState == LoadingState.Loaded) {
-            // TODO: Come up with something better here
-            height = (int) (size.y - Utilities.convertDpToPixel(24, getContext())) - 300;
+        if (isOnScreen()) {
             width = size.x;
-            mContentView.setVisibility(View.VISIBLE);
+            //    mContentView.setVisibility(View.VISIBLE);
             flags = WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
         } else {
-            width = getResources().getDimensionPixelSize(R.dimen.loading_content_width);
-            height = getResources().getDimensionPixelSize(R.dimen.loading_content_height);
+            width = 20;
             flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                        | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+                    | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         }
 
         layoutParams = new WindowManager.LayoutParams(width, height, WindowManager.LayoutParams.TYPE_PHONE, flags, PixelFormat.TRANSLUCENT);
         //layoutParams.layoutAnimationParameters
         layoutParams.gravity = getDefaultLayoutGravity();
+
     }
 
+    boolean isOnScreen() {
+        if (mContentState == ContentState.On || mContentState == ContentState.TurningOn || mContentState == ContentState.TurningOff) {
+            return true;
+        }
+
+        return false;
+    }
 }

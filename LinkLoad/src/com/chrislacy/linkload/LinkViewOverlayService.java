@@ -10,8 +10,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
-import com.chrislacy.linkload.old.LinkLoadOverlayView;
 import com.jawsware.core.share.OverlayService;
 
 
@@ -96,7 +94,7 @@ public class LinkViewOverlayService extends OverlayService {
     }
 
     void showContent() {
-        mContentView.setLoadingState(LinkViewContentView.LoadingState.Loaded);
+        mContentView.animateOnscreen();
     }
 
     void showLoading() {

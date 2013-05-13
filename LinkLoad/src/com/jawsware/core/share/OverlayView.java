@@ -48,7 +48,7 @@ public abstract class OverlayView extends RelativeLayout {
 				return onTouchEvent_LongPress();
 			}
 		});
-		
+
 		load();
 	}
 
