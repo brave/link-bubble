@@ -48,14 +48,14 @@
                   android:theme="@android:style/Theme.Holo.Light">
         </activity>
 
-        <activity android:name="LinkViewActivity"
+        <activity android:name="old.LinkViewActivity"
                   android:theme="@style/Theme.Transparent">
         </activity>
 
-       	<service android:name="WebReaderOverlayService" >
+       	<service android:name="old.WebReaderOverlayService" >
         </service>
 
-        <service android:name="LinkLoadOverlayService" >
+        <service android:name="old.LinkLoadOverlayService" >
         </service>
 
         <service android:name="LinkViewOverlayService"></service>
