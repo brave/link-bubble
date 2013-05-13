@@ -33,8 +33,10 @@ import com.jawsware.core.share.OverlayView;
  */
 public class ContentOverlayView extends OverlayView {
 
-    static final int ANIM_TIME = 300;
     static final String TAG = "LinkView";
+    static final boolean DEBUG = true;
+    static final int ANIM_TIME = 300;
+
 
     private View mContentView;
     private Uri mUri;
@@ -105,7 +107,9 @@ public class ContentOverlayView extends OverlayView {
     private void setContentState(ContentState loadingState) {
 
         if (mContentState != loadingState) {
-            Log.d(TAG, "setContentState() - from " + mContentState + " to " + loadingState);
+            if (DEBUG) {
+                Log.d(TAG, "setContentState() - from " + mContentState + " to " + loadingState);
+            }
             mContentState = loadingState;
 
             WindowManager windowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
@@ -181,11 +185,17 @@ public class ContentOverlayView extends OverlayView {
 
     public void setUri(Uri uri, final UriLoadedListener listener) {
         if (mUri != null && uri.toString().equals(mUri.toString()) == true) {
-            Log.d(TAG, "setUri() - early exit because the same - " + uri.toString());
+            if (DEBUG) {
+                Log.d(TAG, "setUri() - early exit because the same - " + uri.toString());
+            }
             if (mCurrentUriLoaded) {
                 listener.onPageFinished();
             }
             return;
+        }
+
+        if (DEBUG) {
+            Log.d(TAG, "Loading " + uri.toString());
         }
 
         mUri = uri;
@@ -201,6 +211,10 @@ public class ContentOverlayView extends OverlayView {
         mWebView.setWebViewClient(new WebViewClient() {
 
             public void onPageFinished(WebView view, String url) {
+
+                if (DEBUG) {
+                    Log.d(TAG, "Finished loading final url=" + url);
+                }
 
                 //mWebView.stopLoading();
                 mCurrentUriLoaded = true;
@@ -245,6 +259,10 @@ public class ContentOverlayView extends OverlayView {
                     }
                     // TODO: Hard-code for YouTube, Instagram, Facebook and Twitter
                 }*/
+
+                if (DEBUG) {
+                    Log.d(TAG, "Redirecting to " + url);
+                }
 
                 view.loadUrl(url);
                 return false; // then it is not handled by default action
