@@ -165,7 +165,7 @@ public class LinkViewOverlayService extends OverlayService {
                     List<ActivityManager.RunningTaskInfo> tasks = activityManager.getRunningTasks(taskLimit);
                     if (tasks != null) {
                         int tasksSize = tasks.size();
-                        for (int i = 0; i < tasksSize; tasksSize++) {
+                        for (int i = 0; i < tasksSize; i++) {
                             ComponentName componentName = activityManager.getRunningTasks(taskLimit).get(i).baseActivity;
                             String currentPackageName = componentName.getPackageName();
                             if (currentPackageName != null
