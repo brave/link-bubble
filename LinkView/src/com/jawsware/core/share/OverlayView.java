@@ -30,25 +30,25 @@ public abstract class OverlayView extends RelativeLayout {
 
 	protected WindowManager.LayoutParams layoutParams;
 
-	private int layoutResId;
-	private int notificationId = 0;
+	private int mLayoutResId;
+	private int mNotificationId = 0;
     protected Context mContext;
 
 	public OverlayView(OverlayService service, int layoutResId, int notificationId) {
 		super(service);
 
-		this.layoutResId = layoutResId;
-		this.notificationId = notificationId;
+		mLayoutResId = layoutResId;
+		mNotificationId = notificationId;
         mContext = service;
 
         setLongClickable(true);
 		setOnLongClickListener(new View.OnLongClickListener() {
-			
-			@Override
-			public boolean onLongClick(View v) {
-				return onTouchEvent_LongPress();
-			}
-		});
+
+            @Override
+            public boolean onLongClick(View v) {
+                return onTouchEvent_LongPress();
+            }
+        });
 
 		load();
 	}
@@ -85,7 +85,7 @@ public abstract class OverlayView extends RelativeLayout {
 
 		LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		inflater.inflate(layoutResId, this);
+		inflater.inflate(mLayoutResId, this);
 
 		onInflateView();
 
@@ -214,9 +214,9 @@ public abstract class OverlayView extends RelativeLayout {
 	@Override
 	public void setVisibility(int visibility) {
 		if (visibility == View.VISIBLE) {
-			getService().moveToForeground(notificationId, !showNotificationHidden());
+			getService().moveToForeground(mNotificationId, !showNotificationHidden());
 		} else {
-			getService().moveToBackground(notificationId, !showNotificationHidden());
+			getService().moveToBackground(mNotificationId, !showNotificationHidden());
 		}
 
 		if (getVisibility() != visibility) {
@@ -292,17 +292,11 @@ public abstract class OverlayView extends RelativeLayout {
         }
 
 		 if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
-
 			onTouchEvent_Press(event);
-
 		} else if (event.getActionMasked() == MotionEvent.ACTION_UP) {
-
 			onTouchEvent_Up(event);
-
 		} else if (event.getActionMasked() == MotionEvent.ACTION_MOVE) {
-
 			onTouchEvent_Move(event);
-
 		}
 
 		return super.onTouchEvent(event);
