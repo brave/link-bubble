@@ -113,7 +113,6 @@ public class ContentOverlayView extends OverlayView {
 
             switch (mContentState) {
                 case Off:
-                    mContentView.setVisibility(View.INVISIBLE);
                     break;
 
                 case TurningOn:
@@ -179,19 +178,10 @@ public class ContentOverlayView extends OverlayView {
 
             public void onPageFinished(WebView view, String url) {
 
-                //updateViewLayout();
-
-                //LinkViewOverlayService.mInstance.cancelNotification();
-
                 //mWebView.stopLoading();
-
                 animateOnscreen();
 
-                //updateViewLayout();
-
                 //int delay = 5000;
-
-
 //                final Handler handler = new Handler();
 //                handler.postDelayed(new Runnable() {
 //                    @Override
@@ -248,16 +238,14 @@ public class ContentOverlayView extends OverlayView {
         int flags;
         if (isOnScreen()) {
             width = size.x;
-            //    mContentView.setVisibility(View.VISIBLE);
             flags = WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
         } else {
-            width = 20;
+            width = 0;
             flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
                     | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         }
 
         layoutParams = new WindowManager.LayoutParams(width, height, WindowManager.LayoutParams.TYPE_PHONE, flags, PixelFormat.TRANSLUCENT);
-        //layoutParams.layoutAnimationParameters
         layoutParams.gravity = getDefaultLayoutGravity();
 
     }
