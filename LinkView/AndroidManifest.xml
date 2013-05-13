@@ -58,7 +58,11 @@
         <service android:name="old.LinkLoadOverlayService" >
         </service>
 
-        <service android:name="LinkViewOverlayService"></service>
+        <service android:name="LinkViewOverlayService">
+            <intent-filter>
+                <action android:name="android.intent.action.CONFIGURATION_CHANGED"/>
+            </intent-filter>
+        </service>
             
     </application>
 

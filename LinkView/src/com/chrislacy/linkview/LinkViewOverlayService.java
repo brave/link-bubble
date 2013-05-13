@@ -5,8 +5,12 @@ import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
@@ -20,6 +24,10 @@ public class LinkViewOverlayService extends OverlayService {
 
     public static LinkViewOverlayService mInstance;
 
+    private static final String TAG = "LinkView";
+
+    private static final String BROADCAST_CONFIG_CHANGED = "android.intent.action.CONFIGURATION_CHANGED";
+
     private LoadingOverlayView mLoadingView;
     private ContentOverlayView mContentView;
 
@@ -29,6 +37,10 @@ public class LinkViewOverlayService extends OverlayService {
 
         mInstance = this;
 
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(BROADCAST_CONFIG_CHANGED);
+        registerReceiver(mBroadcastReceiver, filter);
+
         mLoadingView = new LoadingOverlayView(this);
         mContentView = new ContentOverlayView(this);
     }
@@ -36,6 +48,8 @@ public class LinkViewOverlayService extends OverlayService {
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+        unregisterReceiver(mBroadcastReceiver);
 
         if (mLoadingView != null) {
             mLoadingView.destory();
@@ -194,6 +208,24 @@ public class LinkViewOverlayService extends OverlayService {
                     }
                     break;
                 }
+            }
+        }
+    };
+
+
+    public BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if (intent.getAction().equals(BROADCAST_CONFIG_CHANGED)) {
+//                Log.d(TAG, "received->" + BROADCAST_CONFIG_CHANGED);
+//                if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+//                    Log.d(TAG, "LANDSCAPE");
+//                }
+//                else {
+//                    Log.d(TAG, "PORTRAIT");
+//                }
+                mContentView.refreshLayout();
             }
         }
     };
