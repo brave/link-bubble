@@ -50,10 +50,6 @@ public class LoadingOverlayView extends OverlayView {
         mService = (LinkViewOverlayService) service;
     }
 
-    public int getGravity() {
-        return Gravity.TOP + Gravity.RIGHT;
-    }
-
     public int getDefaultLayoutGravity() {
         return Gravity.RIGHT | Gravity.CENTER_VERTICAL;
     }

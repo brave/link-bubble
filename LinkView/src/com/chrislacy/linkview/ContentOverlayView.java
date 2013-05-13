@@ -56,8 +56,8 @@ public class ContentOverlayView extends OverlayView {
         mService = (LinkViewOverlayService) service;
     }
 
-    public int getGravity() {
-        return Gravity.TOP + Gravity.RIGHT;
+    public int getDefaultLayoutGravity() {
+        return Gravity.BOTTOM + Gravity.LEFT;
     }
 
     @Override
