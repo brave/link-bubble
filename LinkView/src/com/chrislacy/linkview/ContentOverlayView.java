@@ -36,7 +36,6 @@ public class ContentOverlayView extends OverlayView {
     static final int ANIM_TIME = 300;
     static final String TAG = "LinkView";
 
-    private LinkViewOverlayService mService;
     private View mContentView;
     private Uri mUri;
     private boolean mCurrentUriLoaded;
@@ -56,7 +55,6 @@ public class ContentOverlayView extends OverlayView {
     public ContentOverlayView(OverlayService service) {
         super(service, R.layout.content, 1);
         mContentState = ContentState.NotSet;
-        mService = (LinkViewOverlayService) service;
     }
 
     public int getDefaultLayoutGravity() {
@@ -71,9 +69,7 @@ public class ContentOverlayView extends OverlayView {
             @Override
             public boolean onKeyDown(int keyCode, KeyEvent event) {
                 if (KeyEvent.KEYCODE_BACK == keyCode) {
-                    //setLoadingState(ContentState.Loading);
                     setContentState(ContentState.TurningOff);
-                    mService.showLoading();
                     return true;
                 }
                 return false;
@@ -120,6 +116,7 @@ public class ContentOverlayView extends OverlayView {
 
             switch (mContentState) {
                 case Off:
+                    LinkViewOverlayService.stop();
                     break;
 
                 case TurningOn:
@@ -146,6 +143,12 @@ public class ContentOverlayView extends OverlayView {
                         @Override public void onAnimationRepeat(Animator animation) {}
                     });
                     mAnimator.start();
+                    break;
+
+                case On:
+                    if (LinkViewOverlayService.mInstance != null) {
+                        LinkViewOverlayService.mInstance.hideLoading();
+                    }
                     break;
 
                 case TurningOff:

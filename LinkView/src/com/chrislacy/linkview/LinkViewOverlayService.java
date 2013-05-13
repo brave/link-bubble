@@ -106,7 +106,11 @@ public class LinkViewOverlayService extends OverlayService {
     }
 
     void showLoading() {
-        mLoadingView.setLoadingState(LoadingOverlayView.LoadingState.Loading);
+        mLoadingView.setLoadingState(LoadingOverlayView.LoadingState.On);
+    }
+
+    void hideLoading() {
+        mLoadingView.setLoadingState(LoadingOverlayView.LoadingState.Off);
     }
 
     interface AppPollingListener {

@@ -38,8 +38,8 @@ public class LoadingOverlayView extends OverlayView {
 
     enum LoadingState {
         NotSet,
-        Loading,
-        Loaded,
+        Off,
+        On,
     }
 
     private LoadingState mLoadingState;
@@ -62,7 +62,8 @@ public class LoadingOverlayView extends OverlayView {
         progressBar.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                setLoadingState(LoadingState.Loaded);
+                setLoadingState(LoadingState.Off);
+                mService.showContent();
             }
         });
     }
@@ -75,13 +76,12 @@ public class LoadingOverlayView extends OverlayView {
             mLoadingState = loadingState;
 
             switch (mLoadingState) {
-                case Loading:
+                case On:
                     mLoadingView.setVisibility(View.VISIBLE);
                     break;
 
-                case Loaded:
+                case Off:
                     mLoadingView.setVisibility(View.INVISIBLE);
-                    mService.showContent();
                     break;
             }
 
