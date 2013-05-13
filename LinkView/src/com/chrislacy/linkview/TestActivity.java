@@ -1,4 +1,4 @@
-package com.chrislacy.linkload;
+package com.chrislacy.linkview;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class TestActivity extends Activity {
 
-    public static final String LINKLOAD_TEST = "LINKLOAD_TEST";
+    public static final String LINKVIEW_TEST = "LINKVIEW_TEST";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class TestActivity extends Activity {
 
     void loadUrl(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        intent.putExtra(LINKLOAD_TEST, true);
+        intent.putExtra(LINKVIEW_TEST, true);
         startActivity(intent);
     }
 }

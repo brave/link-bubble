@@ -1,4 +1,4 @@
-package com.chrislacy.linkload.old;
+package com.chrislacy.linkview.old;
 
 import android.app.Application;
 import android.content.ComponentName;
@@ -20,9 +20,9 @@ import android.widget.ImageButton;
 
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import com.chrislacy.linkload.R;
-import com.chrislacy.linkload.SettingsActivity;
-import com.chrislacy.linkload.Utilities;
+import com.chrislacy.linkview.R;
+import com.chrislacy.linkview.SettingsActivity;
+import com.chrislacy.linkview.Utilities;
 import com.jawsware.core.share.OverlayService;
 import com.jawsware.core.share.OverlayView;
 
@@ -145,7 +145,7 @@ public class WebReaderOverlayView extends OverlayView {
                     String name = resolveInfo.activityInfo.name;
                     if (!name.contains("com.android.internal")
                             && !name.contains("ResolverActivity")
-                            && !name.contains("com.chrislacy.linkload")) {
+                            && !name.contains("com.chrislacy.linkview")) {
                         ComponentName componentName = new ComponentName(resolveInfo.activityInfo.applicationInfo.packageName, name);
                         intent.setComponent(componentName);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

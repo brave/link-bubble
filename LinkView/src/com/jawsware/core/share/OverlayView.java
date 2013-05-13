@@ -116,7 +116,7 @@ public abstract class OverlayView extends RelativeLayout {
                 ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).updateViewLayout(this, layoutParams);
                 refresh();
             } catch (IllegalArgumentException ex) {
-                Log.e("LinkLoad", ex.toString(), ex);
+                Log.e("LinkView", ex.toString(), ex);
             }
 
 			refresh();
@@ -131,7 +131,7 @@ public abstract class OverlayView extends RelativeLayout {
                 ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).updateViewLayout(this, layoutParams);
                 refresh();
             } catch (IllegalArgumentException ex) {
-                Log.e("LinkLoad", ex.toString(), ex);
+                Log.e("LinkView", ex.toString(), ex);
             }
         }
     }

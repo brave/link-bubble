@@ -1,4 +1,4 @@
-package com.chrislacy.linkload;
+package com.chrislacy.linkview;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
@@ -219,8 +219,8 @@ public class ContentOverlayView extends OverlayView {
                     String name = resolveInfo.activityInfo.name;
                     if (//!name.contains("com.android.internal")
                         //    && !name.contains("ResolverActivity")
-                        //    && !name.contains("com.chrislacy.linkload")) {
-                        !name.contains("com.chrislacy.linkload")) {
+                        //    && !name.contains("com.chrislacy.linkview")) {
+                        !name.contains("com.chrislacy.linkview")) {
                         ComponentName componentName = new ComponentName(resolveInfo.activityInfo.applicationInfo.packageName, name);
                         intent.setComponent(componentName);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

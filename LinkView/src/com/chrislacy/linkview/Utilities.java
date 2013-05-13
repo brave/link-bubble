@@ -1,4 +1,4 @@
-package com.chrislacy.linkload;
+package com.chrislacy.linkview;
 
 import android.content.Context;
 import android.content.res.Resources;

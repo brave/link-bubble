@@ -1,4 +1,4 @@
-package com.chrislacy.linkload;
+package com.chrislacy.linkview;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -31,7 +31,7 @@ public class ShowActivity extends Activity {
                 //Uri data = intent.getData();
                 //String scheme = data.getScheme();
 
-                Boolean linkLoadTest = intent.getBooleanExtra(TestActivity.LINKLOAD_TEST, false);
+                Boolean linkViewTest = intent.getBooleanExtra(TestActivity.LINKVIEW_TEST, false);
 
                 ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
                 List<ActivityManager.RecentTaskInfo> list = activityManager.getRecentTasks(20, 0);
@@ -41,12 +41,12 @@ public class ShowActivity extends Activity {
                         Intent caller = list.get(i).baseIntent;
                         if (caller != null && caller.getComponent() != null) {
                             String packageName = caller.getComponent().getPackageName();
-                            if (packageName.equals("com.chrislacy.linkload") && linkLoadTest == false) {
+                            if (packageName.equals("com.chrislacy.linkview") && linkViewTest == false) {
                                 continue;
                             }
                             if (packageName.equals("com.google.android.apps.plus")
                                     || packageName.equals("com.twitter.android")
-                                    || (packageName.equals("com.chrislacy.linkload") && linkLoadTest)) {
+                                    || (packageName.equals("com.chrislacy.linkview") && linkViewTest)) {
                                 //intent.setComponent(new ComponentName(this, LinkLoadOverlayService.class));
                                 intent.setComponent(new ComponentName(this, LinkViewOverlayService.class));
                                 startService(intent);

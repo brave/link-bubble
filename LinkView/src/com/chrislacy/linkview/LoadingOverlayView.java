@@ -1,4 +1,4 @@
-package com.chrislacy.linkload;
+package com.chrislacy.linkview;
 
 import android.animation.ObjectAnimator;
 import android.app.Application;

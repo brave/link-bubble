@@ -1,4 +1,4 @@
-package com.chrislacy.linkload.old;
+package com.chrislacy.linkview.old;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -11,8 +11,8 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import com.chrislacy.linkload.HideActivity;
-import com.chrislacy.linkload.R;
+import com.chrislacy.linkview.HideActivity;
+import com.chrislacy.linkview.R;
 import com.jawsware.core.share.OverlayService;
 
 

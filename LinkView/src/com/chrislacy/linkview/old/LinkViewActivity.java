@@ -1,4 +1,4 @@
-package com.chrislacy.linkload.old;
+package com.chrislacy.linkview.old;
 
 
 import android.animation.Animator;
@@ -24,7 +24,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import com.chrislacy.linkload.R;
+import com.chrislacy.linkview.R;
 
 public class LinkViewActivity extends Activity {
 
@@ -156,8 +156,8 @@ public class LinkViewActivity extends Activity {
                     String name = resolveInfo.activityInfo.name;
                     if (//!name.contains("com.android.internal")
                         //    && !name.contains("ResolverActivity")
-                        //    && !name.contains("com.chrislacy.linkload")) {
-                            !name.contains("com.chrislacy.linkload")) {
+                        //    && !name.contains("com.chrislacy.linkview")) {
+                            !name.contains("com.chrislacy.linkview")) {
                         ComponentName componentName = new ComponentName(resolveInfo.activityInfo.applicationInfo.packageName, name);
                         intent.setComponent(componentName);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
