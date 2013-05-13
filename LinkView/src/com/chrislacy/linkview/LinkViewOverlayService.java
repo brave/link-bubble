@@ -10,7 +10,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import com.jawsware.core.share.OverlayService;
+
+import java.util.List;
 
 
 public class LinkViewOverlayService extends OverlayService {
@@ -64,7 +67,12 @@ public class LinkViewOverlayService extends OverlayService {
 
     void handleCommand(Intent intent) {
         Uri data = intent.getData();
-        mContentView.setUri(data);
+        mContentView.setUri(data, new ContentOverlayView.UriLoadedListener() {
+            @Override
+            public void onPageFinished() {
+                mContentView.animateOnscreen();
+            }
+        });
     }
 
     @Override
@@ -108,15 +116,35 @@ public class LinkViewOverlayService extends OverlayService {
     void beginAppPolling(AppPollingListener listener) {
         mAppPollingListener = listener;
 
-        ActivityManager am = (ActivityManager) getSystemService(Activity.ACTIVITY_SERVICE);
-        ComponentName componentName = am.getRunningTasks(1).get(0).topActivity;
-        mCurrentAppPackgeName = componentName.getPackageName();
+        ActivityManager activityManager = (ActivityManager) getSystemService(Activity.ACTIVITY_SERVICE);
+        final int taskLimit = 10;
+        List<ActivityManager.RunningTaskInfo> tasks = activityManager.getRunningTasks(taskLimit);
+        if (tasks != null) {
+            int tasksSize = tasks.size();
+            for (int i = 0; i < tasksSize; i++) {
+                ComponentName componentName = tasks.get(i).baseActivity;
+                String packageName = componentName.getPackageName();
+                if (packageName != null) {
+                    if (packageName.equals("com.chrislacy.linkview")
+                            && componentName.getClassName().equals("com.chrislacy.linkview.MainActivity")) {
+                        //mCurrentAppPackgeName = packageName;
+                        //Log.d("LinkView", "skip packageName=" + packageName + ", className=" + componentName.getClassName());
+                    } else {
+                        mCurrentAppPackgeName = packageName;
+                        //Log.d("LinkView", "mCurrentAppPackgeName=" + packageName);
+                        break;
+                    }
+
+                }
+            }
+        }
 
         mHandler.sendEmptyMessageDelayed(ACTION_POLL_CURRENT_APP, LOOP_TIME);
     }
 
     void endAppPolling() {
         mHandler.removeMessages(ACTION_POLL_CURRENT_APP);
+        mCurrentAppPackgeName = null;
     }
 
     private static final int ACTION_POLL_CURRENT_APP = 1;
@@ -132,19 +160,26 @@ public class LinkViewOverlayService extends OverlayService {
                 case ACTION_POLL_CURRENT_APP: {
                     mHandler.removeMessages(ACTION_POLL_CURRENT_APP);
 
-                    ActivityManager am = (ActivityManager) getSystemService(Activity.ACTIVITY_SERVICE);
-                    ComponentName componentName = am.getRunningTasks(1).get(0).topActivity;
-                    String currentPackageName = componentName.getPackageName();
-                    //Log.d("LinkLoad", "currentAppPackgeName=" + currentPackageName);
-                    if (currentPackageName != null
-                            && mCurrentAppPackgeName != null
-                            && !currentPackageName.equals(mCurrentAppPackgeName)) {
-                        if (mAppPollingListener != null) {
-                            mAppPollingListener.onAppChanged();
+                    ActivityManager activityManager = (ActivityManager) getSystemService(Activity.ACTIVITY_SERVICE);
+                    final int taskLimit = 10;
+                    List<ActivityManager.RunningTaskInfo> tasks = activityManager.getRunningTasks(taskLimit);
+                    if (tasks != null) {
+                        int tasksSize = tasks.size();
+                        for (int i = 0; i < tasksSize; tasksSize++) {
+                            ComponentName componentName = activityManager.getRunningTasks(taskLimit).get(i).baseActivity;
+                            String currentPackageName = componentName.getPackageName();
+                            if (currentPackageName != null
+                                    && mCurrentAppPackgeName != null
+                                    && !currentPackageName.equals(mCurrentAppPackgeName)) {
+                                if (mAppPollingListener != null) {
+                                    mAppPollingListener.onAppChanged();
+                                }
+                                mCurrentAppPackgeName = null;
+                            } else {
+                                mHandler.sendEmptyMessageDelayed(ACTION_POLL_CURRENT_APP, LOOP_TIME);
+                            }
+                            break;
                         }
-                        mCurrentAppPackgeName = null;
-                    } else {
-                        mHandler.sendEmptyMessageDelayed(ACTION_POLL_CURRENT_APP, LOOP_TIME);
                     }
                     break;
                 }

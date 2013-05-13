@@ -34,10 +34,13 @@ import com.jawsware.core.share.OverlayView;
 public class ContentOverlayView extends OverlayView {
 
     static final int ANIM_TIME = 300;
+    static final String TAG = "LinkView";
 
     private LinkViewOverlayService mService;
     private View mContentView;
     private Uri mUri;
+    private boolean mCurrentUriLoaded;
+    private String mCurrentUrl;
     private ContentWebView mWebView;
     private ObjectAnimator mAnimator;
 
@@ -92,7 +95,11 @@ public class ContentOverlayView extends OverlayView {
     static final Interpolator DECELERATE_CUBIC = new DecelerateInterpolator(1.5f);
 
     void animateOnscreen() {
-        setContentState(ContentState.TurningOn);
+        if (mContentState != ContentState.On && mContentState != ContentState.TurningOn) {
+            setContentState(ContentState.TurningOn);
+        } else {
+            Log.d(TAG, "animateOnscreen() - ignore as already on screen");
+        }
     }
 
     void animateOffscreen() {
@@ -102,7 +109,7 @@ public class ContentOverlayView extends OverlayView {
     private void setContentState(ContentState loadingState) {
 
         if (mContentState != loadingState) {
-            Log.d("LinkView", "setContentState() - from " + mContentState + " to " + loadingState);
+            Log.d(TAG, "setContentState() - from " + mContentState + " to " + loadingState);
             mContentState = loadingState;
 
             WindowManager windowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
@@ -165,11 +172,25 @@ public class ContentOverlayView extends OverlayView {
         }
     }
 
-    public void setUri(Uri uri) {
+    interface UriLoadedListener {
+        void onPageFinished();
+    }
+
+    public void setUri(Uri uri, final UriLoadedListener listener) {
+        if (mUri != null && uri.toString().equals(mUri.toString()) == true) {
+            Log.d(TAG, "setUri() - early exit because the same - " + uri.toString());
+            if (mCurrentUriLoaded) {
+                listener.onPageFinished();
+            }
+            return;
+        }
+
         mUri = uri;
+        mCurrentUriLoaded = false;
 
-        //mContentState = ContentState.Loading;
+        //mCurrentUrl = uri.toString();
 
+        mWebView.stopLoading();
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.loadUrl(uri.toString());
         mWebView.getSettings().setSupportZoom(true);
@@ -179,7 +200,8 @@ public class ContentOverlayView extends OverlayView {
             public void onPageFinished(WebView view, String url) {
 
                 //mWebView.stopLoading();
-                animateOnscreen();
+                mCurrentUriLoaded = true;
+                listener.onPageFinished();
 
                 //int delay = 5000;
 //                final Handler handler = new Handler();
