@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">~LV~</string>
-    <string name="title_notification">Link View</string>
+    <string name="app_name">~LB~</string>
+    <string name="title_notification">Link Bubble</string>
     <string name="message_notification">Press to finish.</string>
 
-    <string name="title_settings">Link Load</string>
+    <string name="title_settings">Link Bubble</string>
     <string name="action_help">Help</string>
     <string name="preference_general_title">General</string>
     <string name="preference_app_enabled_title">Enabled</string>
