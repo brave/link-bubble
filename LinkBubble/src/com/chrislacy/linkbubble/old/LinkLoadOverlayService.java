@@ -1,4 +1,4 @@
-package com.chrislacy.linkview.old;
+package com.chrislacy.linkbubble.old;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -10,9 +10,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
-import com.chrislacy.linkview.HideActivity;
-import com.chrislacy.linkview.R;
+import com.chrislacy.linkbubble.HideActivity;
+import com.chrislacy.linkbubble.R;
 import com.jawsware.core.share.OverlayService;
 
 

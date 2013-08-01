@@ -1,4 +1,4 @@
-package com.chrislacy.linkview.old;
+package com.chrislacy.linkbubble.old;
 
 
 import android.animation.Animator;
@@ -9,13 +9,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -24,7 +22,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import com.chrislacy.linkview.R;
+import com.chrislacy.linkbubble.R;
 
 public class LinkViewActivity extends Activity {
 
@@ -156,8 +154,8 @@ public class LinkViewActivity extends Activity {
                     String name = resolveInfo.activityInfo.name;
                     if (//!name.contains("com.android.internal")
                         //    && !name.contains("ResolverActivity")
-                        //    && !name.contains("com.chrislacy.linkview")) {
-                            !name.contains("com.chrislacy.linkview")) {
+                        //    && !name.contains("com.chrislacy.linkbubble")) {
+                            !name.contains("com.chrislacy.linkbubble")) {
                         ComponentName componentName = new ComponentName(resolveInfo.activityInfo.applicationInfo.packageName, name);
                         intent.setComponent(componentName);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -1,4 +1,4 @@
-package com.chrislacy.linkview;
+package com.chrislacy.linkbubble;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -10,11 +10,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import com.jawsware.core.share.OverlayService;
 
 import java.util.List;
@@ -145,8 +143,8 @@ public class LinkViewOverlayService extends OverlayService {
                 ComponentName componentName = tasks.get(i).baseActivity;
                 String packageName = componentName.getPackageName();
                 if (packageName != null) {
-                    if (packageName.equals("com.chrislacy.linkview")
-                            && componentName.getClassName().equals("com.chrislacy.linkview.MainActivity")) {
+                    if (packageName.equals("com.chrislacy.linkbubble")
+                            && componentName.getClassName().equals("com.chrislacy.linkbubble.MainActivity")) {
                         //mCurrentAppPackgeName = packageName;
                         //Log.d("LinkView", "skip packageName=" + packageName + ", className=" + componentName.getClassName());
                     } else {
@@ -187,7 +185,7 @@ public class LinkViewOverlayService extends OverlayService {
                         int tasksSize = tasks.size();
                         for (int i = 0; i < tasksSize; i++) {
                             ComponentName componentName = activityManager.getRunningTasks(taskLimit).get(i).baseActivity;
-                            if (componentName.getClassName().equals("com.chrislacy.linkview.MainActivity")) {
+                            if (componentName.getClassName().equals("com.chrislacy.linkbubble.MainActivity")) {
                                 //Log.d("LinkView", "Ignore " + componentName.getClassName());
                                 continue;
                             }

@@ -1,4 +1,4 @@
-package com.chrislacy.linkview.old;
+package com.chrislacy.linkbubble.old;
 
 import android.app.Application;
 import android.content.ComponentName;
@@ -9,20 +9,18 @@ import android.content.pm.ResolveInfo;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.net.Uri;
-import android.os.Handler;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageButton;
 
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import com.chrislacy.linkview.R;
-import com.chrislacy.linkview.SettingsActivity;
-import com.chrislacy.linkview.Utilities;
+import com.chrislacy.linkbubble.R;
+import com.chrislacy.linkbubble.SettingsActivity;
+import com.chrislacy.linkbubble.Utilities;
 import com.jawsware.core.share.OverlayService;
 import com.jawsware.core.share.OverlayView;
 
@@ -145,7 +143,7 @@ public class WebReaderOverlayView extends OverlayView {
                     String name = resolveInfo.activityInfo.name;
                     if (!name.contains("com.android.internal")
                             && !name.contains("ResolverActivity")
-                            && !name.contains("com.chrislacy.linkview")) {
+                            && !name.contains("com.chrislacy.linkbubble")) {
                         ComponentName componentName = new ComponentName(resolveInfo.activityInfo.applicationInfo.packageName, name);
                         intent.setComponent(componentName);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

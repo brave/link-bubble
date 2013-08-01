@@ -1,4 +1,4 @@
-package com.chrislacy.linkview;
+package com.chrislacy.linkbubble;
 
 import android.content.Context;
 import android.content.res.Resources;

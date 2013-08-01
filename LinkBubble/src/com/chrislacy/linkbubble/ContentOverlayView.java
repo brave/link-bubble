@@ -1,13 +1,9 @@
-package com.chrislacy.linkview;
+package com.chrislacy.linkbubble;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.net.Uri;
@@ -248,8 +244,8 @@ public class ContentOverlayView extends OverlayView {
                     String name = resolveInfo.activityInfo.name;
                     if (//!name.contains("com.android.internal")
                         //    && !name.contains("ResolverActivity")
-                        //    && !name.contains("com.chrislacy.linkview")) {
-                        !name.contains("com.chrislacy.linkview")) {
+                        //    && !name.contains("com.chrislacy.linkbubble")) {
+                        !name.contains("com.chrislacy.linkbubble")) {
                         ComponentName componentName = new ComponentName(resolveInfo.activityInfo.applicationInfo.packageName, name);
                         intent.setComponent(componentName);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -1,25 +1,14 @@
-package com.chrislacy.linkview;
+package com.chrislacy.linkbubble;
 
-import android.animation.ObjectAnimator;
-import android.app.Application;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
-import android.net.Uri;
 import android.view.Display;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import com.jawsware.core.share.OverlayService;
 import com.jawsware.core.share.OverlayView;

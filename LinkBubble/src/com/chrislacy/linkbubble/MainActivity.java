@@ -1,4 +1,4 @@
-package com.chrislacy.linkview;
+package com.chrislacy.linkbubble;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -39,12 +39,12 @@ public class MainActivity extends Activity {
                         Intent caller = list.get(i).baseIntent;
                         if (caller != null && caller.getComponent() != null) {
                             String packageName = caller.getComponent().getPackageName();
-                            if (packageName.equals("com.chrislacy.linkview") && linkViewTest == false) {
+                            if (packageName.equals("com.chrislacy.linkbubble") && linkViewTest == false) {
                                 continue;
                             }
                             if (packageName.equals("com.google.android.apps.plus")
                                     || packageName.equals("com.twitter.android")
-                                    || (packageName.equals("com.chrislacy.linkview") && linkViewTest)) {
+                                    || (packageName.equals("com.chrislacy.linkbubble") && linkViewTest)) {
                                 //intent.setComponent(new ComponentName(this, LinkLoadOverlayService.class));
                                 intent.setComponent(new ComponentName(this, LinkViewOverlayService.class));
                                 startService(intent);

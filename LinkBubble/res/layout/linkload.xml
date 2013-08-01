@@ -62,7 +62,7 @@
                 android:layout_marginLeft="4dp"/>
         </LinearLayout>
 
-        <com.chrislacy.linkview.ContentWebView
+        <com.chrislacy.linkbubble.ContentWebView
             android:id="@+id/web_view"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
