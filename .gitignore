@@ -1,6 +1,6 @@
-LinkView/bin/*
-LinkView/gen/*
-LinkView/out/*
+LinkBubble/bin/*
+LinkBubble/gen/*
+LinkBubble/out/*
 .DS_Store
 R.java
 .metadata/*
