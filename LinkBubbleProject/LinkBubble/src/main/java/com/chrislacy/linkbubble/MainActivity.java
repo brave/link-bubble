@@ -1,6 +1,7 @@
 package com.chrislacy.linkbubble;
 
 import android.app.ActivityManager;
+import android.app.ListFragment;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +14,10 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 import java.util.Vector;
@@ -26,6 +31,8 @@ public class MainActivity extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        PreferenceManager.setDefaultValues(this, R.xml.prefs, true);
         startService(new Intent(this, MainService.class));
         getBrowsers();
 
@@ -70,7 +77,7 @@ public class MainActivity extends PreferenceActivity {
             }
             finish();
         } else {
-            getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
+            setContentView(R.layout.activity_main);
         }
     }
 

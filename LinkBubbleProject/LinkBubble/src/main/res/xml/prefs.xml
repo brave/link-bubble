@@ -6,6 +6,15 @@
         <CheckBoxPreference
             android:key="enabled"
             android:summary="Enable Link Bubble to intercept clicking on URLs"
-            android:title="Enabled" />
+            android:title="Enabled"
+            android:defaultValue="true" />
+        <Preference android:title="Clear History"
+            android:key="clear_history"
+            android:summary="Clear list of recent bubbles"/>
+        <PreferenceScreen
+            android:key="recent_bubbles"
+            android:summary="Show list of bubbles recently opened"
+            android:title="Recent Bubbles" >
+        </PreferenceScreen>
     </PreferenceCategory>
 </PreferenceScreen>

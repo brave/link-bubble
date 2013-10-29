@@ -186,6 +186,8 @@ public class Bubble extends RelativeLayout {
         mIntent = intent;
         String url = intent.getData().toString();
 
+        SettingsFragment.addRecentBubble(context, url);
+
         mContentView = new ContentView(context, Bubble.this, url, new ContentView.EventHandler() {
             @Override
             public void onCloseClicked() {
