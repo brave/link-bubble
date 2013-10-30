@@ -392,10 +392,6 @@ public class MainController implements Choreographer.FrameCallback {
                     Util.Assert(mMode == Mode.ContentView);
                     bi.mTargetX = getContentViewX(i);
                     bi.mTargetY = Config.mContentViewBubbleY;
-
-                    if (b == mSelectedBubble) {
-                        mAnimateContentViewState.setPivot(bi.mTargetX + Config.mBubbleWidth * 0.5f);
-                    }
                 }
                 bi.mDistanceX = bi.mTargetX - bi.mPosX;
                 bi.mDistanceY = bi.mTargetY - bi.mPosY;
@@ -448,6 +444,7 @@ public class MainController implements Choreographer.FrameCallback {
         public void OnEnterState() {
             mPeriod = 0.3f;
             mTime = 0.0f;
+            setPivot(mSelectedBubble.getXPos() + Config.mBubbleWidth * 0.5f);
 
             if (mMode == Mode.ContentView) {
                 mContentViewRoot.setScale(0.0f, 0.0f);
