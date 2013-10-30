@@ -500,6 +500,7 @@ public class MainController implements Choreographer.FrameCallback {
     private Badge mBadge;
     private static MainController sMainController;
     private boolean mTouchDown;
+    private boolean mAllowTouchEvents;
     private int mBubbleHomeX;
     private int mBubbleHomeY;
     private Mode mMode;
@@ -511,16 +512,6 @@ public class MainController implements Choreographer.FrameCallback {
 
     private Bubble mSelectedBubble;
     private ContentViewRoot mContentViewRoot;
-
-    private int getBubbleIndex(Bubble bubble) {
-        for (int i=0 ; i < mBubbles.size() ; ++i) {
-            if (mBubbles.get(i) == bubble) {
-                return i;
-            }
-        }
-        Util.Assert(false);
-        return 0;
-    }
 
     private float getContentViewX(int bubbleIndex) {
         float x = Config.mContentViewBubbleX - Config.mBubbleWidth * 1.2f * bubbleIndex;
@@ -583,6 +574,7 @@ public class MainController implements Choreographer.FrameCallback {
         mContext = context;
         mMode = Mode.BubbleView;
         mContentViewRoot = new ContentViewRoot(context);
+        mAllowTouchEvents = true;
 
         /*mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         mTextView = new TextView(mContext);
@@ -622,7 +614,11 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     private void switchState(State newState, boolean allowTouchDown) {
-        Util.Assert(!mTouchDown || allowTouchDown);   // todo
+        if (mTouchDown && !allowTouchDown) {
+            mAllowTouchEvents = false;
+        } else {
+            mAllowTouchEvents = true;
+        }
         Util.Assert(newState != mCurrentState);
         if (mCurrentState != null) {
             mCurrentState.OnExitState();
@@ -701,17 +697,27 @@ public class MainController implements Choreographer.FrameCallback {
         Bubble bubble = new Bubble(mContext, url, mBubbleHomeX, mBubbleHomeY, recordHistory, new Bubble.EventHandler() {
             @Override
             public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
+                Util.Assert(!mTouchDown);
+                mTouchDown = true;
                 mCurrentState.OnMotionEvent_Touch(sender, e);
             }
 
             @Override
             public void onMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
-                mCurrentState.OnMotionEvent_Move(sender, e);
+                Util.Assert(mTouchDown);
+                if (mAllowTouchEvents) {
+                    mCurrentState.OnMotionEvent_Move(sender, e);
+                }
             }
 
             @Override
             public void onMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
-                mCurrentState.OnMotionEvent_Release(sender, e);
+                Util.Assert(mTouchDown);
+                mTouchDown = false;
+                if (mAllowTouchEvents) {
+                    mCurrentState.OnMotionEvent_Release(sender, e);
+                }
+                mAllowTouchEvents = true;
             }
 
             @Override
