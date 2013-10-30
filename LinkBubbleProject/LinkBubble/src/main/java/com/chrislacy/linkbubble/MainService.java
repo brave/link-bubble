@@ -8,6 +8,9 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.IBinder;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.webkit.WebIconDatabase;
 
 /**
@@ -18,6 +21,7 @@ public class MainService extends Service {
     private final IBinder serviceBinder = new ServiceBinder();
     private static final String BCAST_CONFIGCHANGED = "android.intent.action.CONFIGURATION_CHANGED";
     private static MainController mController;
+    private PhoneStateChangeListener mPhoneListener = new PhoneStateChangeListener();
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -33,6 +37,9 @@ public class MainService extends Service {
     @Override
     public void onCreate() {
         Config.init(this);
+
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        telephonyManager.listen(mPhoneListener, PhoneStateListener.LISTEN_CALL_STATE);
 
         WebIconDatabase.getInstance().open(getDir("icons", MODE_PRIVATE).getPath());
 
@@ -54,6 +61,9 @@ public class MainService extends Service {
 
     @Override
     public void onDestroy() {
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        telephonyManager.listen(mPhoneListener, PhoneStateListener.LISTEN_NONE);
+
         mController = null;
     }
 
@@ -71,4 +81,18 @@ public class MainService extends Service {
             }
         }
     };
+
+    public class PhoneStateChangeListener extends PhoneStateListener
+    {
+        @Override
+        public void onCallStateChanged(int state, String incomingNumber)
+        {
+            super.onCallStateChanged(state, incomingNumber);
+            if (state == TelephonyManager.CALL_STATE_RINGING)
+            {
+                Log.e("LinkBubble", "Incoming phone call detected!");
+            }
+        }
+
+    }
 }
