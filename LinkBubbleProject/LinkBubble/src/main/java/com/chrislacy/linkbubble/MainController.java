@@ -148,7 +148,7 @@ public class MainController implements Choreographer.FrameCallback {
                     mBubble.getYPos() == targetInfo.mTargetY) {
 
                     mCanvas.fadeOut();
-                    Intent intent = mBubble.getIntent();
+                    String url = mBubble.getUrl();
                     destroyBubble(mBubble);
                     if (mBubbles.size() > 0) {
                         switchState(mAnimateToModeViewState);
@@ -157,7 +157,7 @@ public class MainController implements Choreographer.FrameCallback {
                     }
 
                     if (targetInfo.mAction == Canvas.BubbleAction.OpenBrowser) {
-                        MainActivity.loadInBrowser(mContext, intent, true);
+                        MainActivity.loadInBrowser(mContext, url, true);
                     }
                 }
                 else if (mMode == Mode.BubbleView) {
@@ -290,7 +290,7 @@ public class MainController implements Choreographer.FrameCallback {
                 if (mBubble.getXPos() == mTargetInfo.mTargetX &&
                     mBubble.getYPos() == mTargetInfo.mTargetY) {
 
-                    Intent intent = mBubble.getIntent();
+                    String url = mBubble.getUrl();
                     destroyBubble(mBubble);
                     if (mBubbles.size() > 0) {
                         switchState(mAnimateToModeViewState);
@@ -299,7 +299,7 @@ public class MainController implements Choreographer.FrameCallback {
                     }
 
                     if (mTargetInfo.mAction == Canvas.BubbleAction.OpenBrowser) {
-                        MainActivity.loadInBrowser(mContext, intent, true);
+                        MainActivity.loadInBrowser(mContext, url, true);
                     }
                 }
             }
@@ -693,8 +693,8 @@ public class MainController implements Choreographer.FrameCallback {
         mCurrentState.OnOrientationChanged();
     }
 
-    public void onOpenIntent(Intent intent) {
-        Bubble bubble = new Bubble(mContext, intent, mBubbleHomeX, mBubbleHomeY, new Bubble.EventHandler() {
+    public void onOpenUrl(String url, boolean recordHistory) {
+        Bubble bubble = new Bubble(mContext, url, mBubbleHomeX, mBubbleHomeY, recordHistory, new Bubble.EventHandler() {
             @Override
             public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
                 mCurrentState.OnMotionEvent_Touch(sender, e);

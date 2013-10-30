@@ -17,7 +17,7 @@ public class MainService extends Service {
 
     private final IBinder serviceBinder = new ServiceBinder();
     private static final String BCAST_CONFIGCHANGED = "android.intent.action.CONFIGURATION_CHANGED";
-    private MainController mController;
+    private static MainController mController;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -38,13 +38,14 @@ public class MainService extends Service {
 
         mController = new MainController(this);
 
-        Intent i = new Intent();
+        //Intent i = new Intent();
         //i.setData(Uri.parse("https://t.co/uxMl3bWtMP"));
         //i.setData(Uri.parse("http://t.co/oOyu7GBZMU"));
         //i.setData(Uri.parse("http://goo.gl/abc57"));
         //i.setData(Uri.parse("https://bitly.com/QtQET"));
-        i.setData(Uri.parse("http://www.duckduckgo.com"));
-        openIntent(i);
+        //i.setData(Uri.parse("http://www.duckduckgo.com"));
+        //openUrl("https://www.duckduckgo.com");
+        openUrl("http://www.duckduckgo.com", true);
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(BCAST_CONFIGCHANGED);
@@ -53,10 +54,13 @@ public class MainService extends Service {
 
     @Override
     public void onDestroy() {
+        mController = null;
     }
 
-    public void openIntent(Intent intent) {
-        mController.onOpenIntent(intent);
+    public static void openUrl(String url, boolean recordHistory) {
+        if (mController != null) {
+            mController.onOpenUrl(url, recordHistory);
+        }
     }
 
     public BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {

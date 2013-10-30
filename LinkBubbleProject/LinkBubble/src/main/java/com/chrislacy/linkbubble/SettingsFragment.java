@@ -67,22 +67,24 @@ public class SettingsFragment extends PreferenceFragment {
 
     private void updateRecentBubbles(Vector<String> urls) {
         PreferenceScreen recentPS = (PreferenceScreen) findPreference("recent_bubbles");
-        recentPS.removeAll();
+        if (recentPS != null) {
+            recentPS.removeAll();
 
-        for (int i=0 ; i < urls.size() ; ++i) {
-            Preference p = new Preference(getActivity());
-            p.setTitle(urls.get(i));
-            p.setSummary(urls.get(i));
+            for (int i=0 ; i < urls.size() ; ++i) {
+                Preference p = new Preference(getActivity());
+                p.setTitle(urls.get(i));
+                p.setSummary(urls.get(i));
 
-            p.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    // TODO: Open a new link bubble
-                    return false;
-                }
-            });
+                p.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                    @Override
+                    public boolean onPreferenceClick(Preference preference) {
+                        MainService.openUrl(preference.getTitle().toString(), false);
+                        return true;
+                    }
+                });
 
-            recentPS.addPreference(p);
+                recentPS.addPreference(p);
+            }
         }
     }
 
@@ -95,6 +97,21 @@ public class SettingsFragment extends PreferenceFragment {
 
         sFragment = this;
 
+        Preference clearButton = findPreference("clear_history");
+        if (clearButton != null) {
+            clearButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Vector<String> dummy = new Vector<String>();
+                    writeRecentBubbles(getActivity(), dummy);
+                    if (sFragment != null) {
+                        sFragment.updateRecentBubbles(dummy);
+                    }
+                    return false;
+                }
+            });
+        }
+
         Vector<String> bubbles = readRecentBubbles(getActivity());
         updateRecentBubbles(bubbles);
     }
@@ -102,5 +119,7 @@ public class SettingsFragment extends PreferenceFragment {
     @Override
     public void onDestroy() {
         sFragment = null;
+
+        super.onDestroy();
     }
 }

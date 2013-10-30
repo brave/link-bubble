@@ -15,18 +15,20 @@ import android.os.IBinder;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 public class MainActivity extends PreferenceActivity {
 
     //private boolean serviceBound = false;
-    private Intent mIntent;
-    private List<ResolveInfo> mBrowsers = new Vector<ResolveInfo>();
+    private String mUrl;
+    private List<String> mBrowsers = new Vector<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +56,12 @@ public class MainActivity extends PreferenceActivity {
                     ComponentName cn = baseIntent.getComponent();
 
                     boolean isBlacklisted = false;
-                    /*for (ResolveInfo info : mBrowsers) {
-                        String packageName = info.activityInfo.packageName;
+                    for (String packageName : mBrowsers) {
                         if (cn.getPackageName().equals(packageName)) {
                             isBlacklisted = true;
                             break;
                         }
-                    }*/
+                    }
 
                     if (!isBlacklisted) {
                         openLink = true;
@@ -69,11 +70,11 @@ public class MainActivity extends PreferenceActivity {
             }
 
             if (openLink) {
-                mIntent = intent;
+                mUrl = intent.getDataString();
                 Intent serviceIntent = new Intent(this, MainService.class);
                 bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
             } else {
-                loadInBrowser(this, intent, false);
+                loadInBrowser(this, intent.getDataString(), false);
             }
             finish();
         } else {
@@ -104,7 +105,7 @@ public class MainActivity extends PreferenceActivity {
             MainService mainService = binder.getService();
             //serviceBound = true;
 
-            mainService.openIntent(mIntent);
+            mainService.openUrl(mUrl, true);
         }
 
         @Override
@@ -114,15 +115,18 @@ public class MainActivity extends PreferenceActivity {
     };
 
     private void getBrowsers() {
-        PackageManager packageManager = getPackageManager();
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("http://www.google.com"));
-        mBrowsers = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        //PackageManager packageManager = getPackageManager();
+        //Intent intent = new Intent(Intent.ACTION_VIEW);
+        //intent.setData(Uri.parse("http://www.google.com"));
+        //mBrowsers = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        mBrowsers.add("com.android.browser");
     }
 
-    public static void loadInBrowser(Context context, Intent intent, boolean newActivity) {
+    public static void loadInBrowser(Context context, String url, boolean newActivity) {
+        Uri uri = Uri.parse(url);
         Intent browserIntent = context.getPackageManager().getLaunchIntentForPackage("com.android.browser");
         if (browserIntent != null) {
+            Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
             if (newActivity) {
@@ -130,6 +134,7 @@ public class MainActivity extends PreferenceActivity {
             }
             intent.setComponent(browserIntent.getComponent());
             intent.setPackage(browserIntent.getPackage());
+            intent.setData(uri);
             context.startActivity(intent);
         }
     }

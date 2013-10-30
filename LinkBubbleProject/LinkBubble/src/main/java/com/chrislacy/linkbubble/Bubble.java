@@ -23,7 +23,7 @@ public class Bubble extends RelativeLayout {
     private EventHandler mEventHandler;
     private ProgressBar mProgressBar;
 
-    private Intent mIntent;
+    private String mUrl;
     private ContentView mContentView;
 
     // Move animation state
@@ -174,21 +174,19 @@ public class Bubble extends RelativeLayout {
         mWindowManager.removeView(this);
     }
 
-    public Intent getIntent() {
-        return mIntent;
-    }
+    public String getUrl() { return mUrl; }
 
-    public Bubble(final Context context, Intent intent, int x, int y, EventHandler eh) {
+    public Bubble(final Context context, String url, int x, int y, boolean recordHistory, EventHandler eh) {
         super(context);
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         mEventHandler = eh;
+        mUrl = url;
 
-        mIntent = intent;
-        String url = intent.getData().toString();
+        if (recordHistory) {
+            SettingsFragment.addRecentBubble(context, mUrl);
+        }
 
-        SettingsFragment.addRecentBubble(context, url);
-
-        mContentView = new ContentView(context, Bubble.this, url, new ContentView.EventHandler() {
+        mContentView = new ContentView(context, Bubble.this, mUrl, new ContentView.EventHandler() {
             @Override
             public void onCloseClicked() {
                 mEventHandler.onCloseClicked(Bubble.this);
