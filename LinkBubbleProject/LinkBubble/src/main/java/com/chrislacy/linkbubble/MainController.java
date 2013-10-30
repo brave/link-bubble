@@ -2,10 +2,14 @@ package com.chrislacy.linkbubble;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PixelFormat;
 import android.view.Choreographer;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
+import android.widget.TextView;
 
 import java.util.Vector;
 
@@ -160,7 +164,7 @@ public class MainController implements Choreographer.FrameCallback {
                         MainActivity.loadInBrowser(mContext, url, true);
                     }
                 }
-                else if (mMode == Mode.BubbleView) {
+                else {
                     float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
                     float threshold = Config.dpToPx(900.0f);
                     if (v > threshold) {
@@ -168,10 +172,12 @@ public class MainController implements Choreographer.FrameCallback {
                         switchState(mFlickBubbleState);
                     } else {
                         mCanvas.fadeOut();
-                        switchState(mSnapToEdgeState);
+                        if (mMode == Mode.BubbleView) {
+                            switchState(mSnapToEdgeState);
+                        } else {
+                            switchState(mAnimateToModeViewState);
+                        }
                     }
-                } else {
-                    switchState(mAnimateToModeViewState);
                 }
             }
         }
@@ -277,7 +283,9 @@ public class MainController implements Choreographer.FrameCallback {
                             x = mTargetX;
                             y = mTargetY;
 
-                            if (x == Config.mBubbleSnapLeftX || x == Config.mBubbleSnapRightX) {
+                            if (mMode == Mode.ContentView) {
+                                switchState(mAnimateToModeViewState);
+                            } else if (x == Config.mBubbleSnapLeftX || x == Config.mBubbleSnapRightX) {
                                 switchState(mIdleState);
                             } else {
                                 switchState(mSnapToEdgeState);
@@ -591,8 +599,7 @@ public class MainController implements Choreographer.FrameCallback {
         mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_PHONE;
         mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
-        mWindowManager.addView(mTextView, mWindowManagerParams);
-*/
+        mWindowManager.addView(mTextView, mWindowManagerParams);*/
 
         mUpdateScheduled = false;
         mChoreographer = Choreographer.getInstance();
