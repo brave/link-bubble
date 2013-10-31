@@ -19,9 +19,14 @@ public class ContentViewRoot extends FrameLayout {
 
     private ContentView mContentView;
 
+    private boolean mEnabled;
+    private int mVisibility;
+
     public ContentViewRoot(Context context) {
         super(context);
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        mEnabled = true;
+        mVisibility = VISIBLE;
 
         mWindowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
         mWindowManagerParams.x = 0;
@@ -76,6 +81,19 @@ public class ContentViewRoot extends FrameLayout {
             mLayout_ContentView.addView(mContentView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             mWindowManager.addView(this, mWindowManagerParams);
         }
+    }
+
+    public void setVis(int vis) {
+        mVisibility = vis;
+        if (!mEnabled) {
+            vis = GONE;
+        }
+        setVisibility(vis);
+    }
+
+    public void enable(boolean enable) {
+        mEnabled = enable;
+        setVis(mVisibility);
     }
 
     public void hide() {

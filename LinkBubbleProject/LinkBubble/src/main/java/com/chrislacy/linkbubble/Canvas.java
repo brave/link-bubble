@@ -30,6 +30,8 @@ public class Canvas extends FrameLayout {
     private float mCurrentAlpha = 0.0f;
     private float mTargetAlpha = 0.0f;
 
+    private boolean mEnabled;
+
     public enum BubbleAction {
         None,
 
@@ -158,6 +160,7 @@ public class Canvas extends FrameLayout {
 
         mContext = context;
         mLayout = new RelativeLayout(context);
+        mEnabled = true;
 
         applyAlpha();
 
@@ -193,11 +196,16 @@ public class Canvas extends FrameLayout {
         int color = ((int)(255 * mCurrentAlpha) << 24);
         mLayout.setBackgroundColor(color);
 
-        if (mCurrentAlpha == 0.0f) {
+        if (!mEnabled || mCurrentAlpha == 0.0f) {
             setVisibility(GONE);
         } else {
             setVisibility(VISIBLE);
         }
+    }
+
+    public void enable(boolean enable) {
+        mEnabled = enable;
+        applyAlpha();
     }
 
     public void fadeIn() {

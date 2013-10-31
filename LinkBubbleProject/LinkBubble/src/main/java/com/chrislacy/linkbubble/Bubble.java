@@ -95,14 +95,6 @@ public class Bubble extends RelativeLayout {
         }
     }
 
-    public void hide() {
-        setVisibility(GONE);
-    }
-
-    public void show() {
-        setVisibility(VISIBLE);
-    }
-
     public int getXPos() {
         return mWindowManagerParams.x;
     }
@@ -238,7 +230,7 @@ public class Bubble extends RelativeLayout {
         mTargetX = x;
         mTargetY = y;
 
-        hide();
+        setVisibility(GONE);
 
         mShape = new ImageView(context);
         mShape.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
@@ -363,6 +355,9 @@ public class Bubble extends RelativeLayout {
                         mFlingTracker.recycle();
 
                         mEventHandler.onMotionEvent_Release(Bubble.this, e);
+                        return true;
+                    }
+                    case MotionEvent.ACTION_CANCEL: {
                         return true;
                     }
                 }

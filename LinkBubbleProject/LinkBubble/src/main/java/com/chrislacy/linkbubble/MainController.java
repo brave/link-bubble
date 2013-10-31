@@ -88,7 +88,7 @@ public class MainController implements Choreographer.FrameCallback {
             if (d >= Config.dpToPx(10.0f)) {
                 mDidMove = true;
                 if (mMode == Mode.ContentView) {
-                    mContentViewRoot.setVisibility(View.GONE);
+                    mContentViewRoot.setVis(View.GONE);
                 }
             }
         }
@@ -421,7 +421,7 @@ public class MainController implements Choreographer.FrameCallback {
             if (mTime >= mPeriod) {
                 updateBubbleVisibility();
                 if (mMode == Mode.ContentView) {
-                    mContentViewRoot.setVisibility(View.VISIBLE);
+                    mContentViewRoot.setVis(View.VISIBLE);
                     switchState(mAnimateContentViewState);
                 } else {
                     switchState(mIdleState);
@@ -504,6 +504,7 @@ public class MainController implements Choreographer.FrameCallback {
     private int mBubbleHomeX;
     private int mBubbleHomeY;
     private Mode mMode;
+    private boolean mEnabled;
 
     //private TextView mTextView;
     //private WindowManager mWindowManager;
@@ -575,6 +576,7 @@ public class MainController implements Choreographer.FrameCallback {
         mMode = Mode.BubbleView;
         mContentViewRoot = new ContentViewRoot(context);
         mAllowTouchEvents = true;
+        mEnabled = true;
 
         /*mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         mTextView = new TextView(mContext);
@@ -653,7 +655,7 @@ public class MainController implements Choreographer.FrameCallback {
         int bubbleCount = mBubbles.size();
 
         mBadge.setBubbleCount(bubbleCount);
-        if (mMode == Mode.BubbleView)
+        if (mMode == Mode.BubbleView && mEnabled)
             mBadge.show();
         else
             mBadge.hide();
@@ -661,10 +663,24 @@ public class MainController implements Choreographer.FrameCallback {
         for (int i=0 ; i < bubbleCount ; ++i) {
             Bubble b = mBubbles.get(i);
             int vis = View.VISIBLE;
-            if (mMode == Mode.BubbleView && i != bubbleCount-1)
+            if (!mEnabled || (mMode == Mode.BubbleView && i != bubbleCount-1))
                 vis = View.GONE;
             b.setVisibility(vis);
         }
+    }
+
+    public void enable() {
+        mEnabled = true;
+        updateBubbleVisibility();
+        mCanvas.enable(true);
+        mContentViewRoot.enable(true);
+    }
+
+    public void disable() {
+        mEnabled = false;
+        updateBubbleVisibility();
+        mCanvas.enable(false);
+        mContentViewRoot.enable(false);
     }
 
     public void onOrientationChanged() {

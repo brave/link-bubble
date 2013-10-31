@@ -88,9 +88,17 @@ public class MainService extends Service {
         public void onCallStateChanged(int state, String incomingNumber)
         {
             super.onCallStateChanged(state, incomingNumber);
-            if (state == TelephonyManager.CALL_STATE_RINGING)
-            {
-                Log.e("LinkBubble", "Incoming phone call detected!");
+            switch (state) {
+                case TelephonyManager.CALL_STATE_IDLE:
+                    if (mController != null) {
+                        mController.enable();
+                    }
+                    break;
+                case TelephonyManager.CALL_STATE_RINGING:
+                    if (mController != null) {
+                        mController.disable();
+                    }
+                    break;
             }
         }
 
