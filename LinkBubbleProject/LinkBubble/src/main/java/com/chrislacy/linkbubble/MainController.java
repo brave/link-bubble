@@ -18,6 +18,8 @@ import java.util.Vector;
  */
 public class MainController implements Choreographer.FrameCallback {
 
+    private static final int MAX_BUBBLES = 8;
+
     private enum Edge {
         Left,
         Right
@@ -711,55 +713,57 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void onOpenUrl(String url, boolean recordHistory) {
-        Bubble bubble = new Bubble(mContext, url, mBubbleHomeX, mBubbleHomeY, recordHistory, new Bubble.EventHandler() {
-            @Override
-            public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
-                Util.Assert(!mTouchDown);
-                mTouchDown = true;
-                mCurrentState.OnMotionEvent_Touch(sender, e);
-            }
-
-            @Override
-            public void onMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
-                Util.Assert(mTouchDown);
-                if (mAllowTouchEvents) {
-                    mCurrentState.OnMotionEvent_Move(sender, e);
+        if (mBubbles.size() < MAX_BUBBLES) {
+            Bubble bubble = new Bubble(mContext, url, mBubbleHomeX, mBubbleHomeY, recordHistory, new Bubble.EventHandler() {
+                @Override
+                public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
+                    Util.Assert(!mTouchDown);
+                    mTouchDown = true;
+                    mCurrentState.OnMotionEvent_Touch(sender, e);
                 }
-            }
 
-            @Override
-            public void onMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
-                Util.Assert(mTouchDown);
-                mTouchDown = false;
-                if (mAllowTouchEvents) {
-                    mCurrentState.OnMotionEvent_Release(sender, e);
+                @Override
+                public void onMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
+                    Util.Assert(mTouchDown);
+                    if (mAllowTouchEvents) {
+                        mCurrentState.OnMotionEvent_Move(sender, e);
+                    }
                 }
-                mAllowTouchEvents = true;
-            }
 
-            @Override
-            public void onCloseClicked(Bubble sender) {
-                destroyBubble(sender);
-                if (mBubbles.size() > 0) {
-                    switchState(mAnimateToModeViewState);
+                @Override
+                public void onMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
+                    Util.Assert(mTouchDown);
+                    mTouchDown = false;
+                    if (mAllowTouchEvents) {
+                        mCurrentState.OnMotionEvent_Release(sender, e);
+                    }
+                    mAllowTouchEvents = true;
                 }
-            }
 
-            @Override
-            public void onSharedLink(Bubble sender) {
-                Util.Assert(mCurrentState == mIdleState);
-                Util.Assert(mMode == Mode.ContentView);
-                mMode = Mode.BubbleView;
-                switchState(mAnimateContentViewState);
-            }
-        });
+                @Override
+                public void onCloseClicked(Bubble sender) {
+                    destroyBubble(sender);
+                    if (mBubbles.size() > 0) {
+                        switchState(mAnimateToModeViewState);
+                    }
+                }
 
-        if (mCurrentState.OnNewBubble(bubble)) {
-            mBubbles.add(bubble);
-            mBadge.attach(bubble);
-            updateBubbleVisibility();
-        } else {
-            mPendingBubbles.add(bubble);
+                @Override
+                public void onSharedLink(Bubble sender) {
+                    Util.Assert(mCurrentState == mIdleState);
+                    Util.Assert(mMode == Mode.ContentView);
+                    mMode = Mode.BubbleView;
+                    switchState(mAnimateContentViewState);
+                }
+            });
+
+            if (mCurrentState.OnNewBubble(bubble)) {
+                mBubbles.add(bubble);
+                mBadge.attach(bubble);
+                updateBubbleVisibility();
+            } else {
+                mPendingBubbles.add(bubble);
+            }
         }
     }
 }
