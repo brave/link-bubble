@@ -548,7 +548,8 @@ public class MainController implements Choreographer.FrameCallback {
             Bubble nextBubble = mBubbles.lastElement();
             mBadge.attach(nextBubble);
             if (mMode == Mode.ContentView) {
-                mContentViewRoot.switchContent(nextBubble.getContentView());
+                //mContentViewRoot.switchContent(nextBubble.getContentView());
+                mContentViewRoot.hide();
             } else {
                 nextBubble.setExactPos(bubble.getXPos(), bubble.getYPos());
             }
@@ -739,6 +740,9 @@ public class MainController implements Choreographer.FrameCallback {
             @Override
             public void onCloseClicked(Bubble sender) {
                 destroyBubble(sender);
+                if (mBubbles.size() > 0) {
+                    switchState(mAnimateToModeViewState);
+                }
             }
 
             @Override
