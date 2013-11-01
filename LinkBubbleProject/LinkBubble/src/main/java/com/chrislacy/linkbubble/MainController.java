@@ -36,6 +36,27 @@ public class MainController implements Choreographer.FrameCallback {
         public abstract String getName();
     }
 
+    private void doTargetAction(Canvas.BubbleAction action, String url) {
+        switch (action) {
+            case OpenBrowser: {
+                    MainActivity.loadInBrowser(mContext, url, true);
+                }
+                break;
+            case OpenTwitter: {
+                    // TODO: Retrieve the class name below from the app in case Twitter ever change it.
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.setClassName("com.twitter.android", "com.twitter.applib.PostActivity");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(Intent.EXTRA_TEXT, url);
+                    mContext.startActivity(intent);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
     // Idle - no bubbles
     private class IdleState extends State {
         public void OnMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
@@ -155,9 +176,7 @@ public class MainController implements Choreographer.FrameCallback {
                         switchState(mIdleState);
                     }
 
-                    if (targetInfo.mAction == Canvas.BubbleAction.OpenBrowser) {
-                        MainActivity.loadInBrowser(mContext, url, true);
-                    }
+                    doTargetAction(targetInfo.mAction, url);
                 }
                 else {
                     float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
@@ -268,6 +287,7 @@ public class MainController implements Choreographer.FrameCallback {
                 switch (ti.mAction) {
                     case Destroy:
                     case OpenBrowser:
+                    case OpenTwitter:
                         ti.mTargetX = (int) (0.5f + ti.mTargetX - Config.mBubbleWidth * 0.5f);
                         ti.mTargetY = (int) (0.5f + ti.mTargetY - Config.mBubbleHeight * 0.5f);
                         mTargetInfo = ti;
@@ -301,9 +321,7 @@ public class MainController implements Choreographer.FrameCallback {
                         switchState(mIdleState);
                     }
 
-                    if (mTargetInfo.mAction == Canvas.BubbleAction.OpenBrowser) {
-                        MainActivity.loadInBrowser(mContext, url, true);
-                    }
+                    doTargetAction(mTargetInfo.mAction, url);
                 }
             }
 

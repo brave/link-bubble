@@ -36,7 +36,8 @@ public class Canvas extends FrameLayout {
         None,
 
         Destroy,
-        OpenBrowser
+        OpenBrowser,
+        OpenTwitter
     }
 
     public class TargetInfo {
@@ -167,7 +168,11 @@ public class Canvas extends FrameLayout {
         addView(mLayout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
         mTargets.add(new BubbleTarget(android.R.drawable.ic_delete, BubbleAction.Destroy, 0.5f, 0.85f));
-        mTargets.add(new BubbleTarget(Config.mBrowserIcon, BubbleAction.OpenBrowser, 0.2f, 0.2f));
+        if (Config.mTwitterIcon != null) {
+            mTargets.add(new BubbleTarget(Config.mTwitterIcon, BubbleAction.OpenTwitter, 0.2f, 0.2f));
+        } else {
+            mTargets.add(new BubbleTarget(Config.mBrowserIcon, BubbleAction.OpenBrowser, 0.2f, 0.2f));
+        }
         mTargets.add(new BubbleTarget(Config.mBrowserIcon, BubbleAction.OpenBrowser, 0.8f, 0.2f));
 
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
