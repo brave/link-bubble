@@ -33,6 +33,8 @@ public class Config {
 
     public static int mContentOffset;
 
+    public static int MAX_BUBBLES;
+
     public static void init(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         wm.getDefaultDisplay().getMetrics(mDm);
@@ -46,6 +48,10 @@ public class Config {
         mScreenCenterX = (int) (mDm.widthPixels * 0.5f);
         mScreenHeight = mDm.heightPixels;
         mScreenWidth = mDm.widthPixels;
+
+        int maxBubbles1 = (int) ((mDm.widthPixels - mBubbleWidth - mBubbleWidth * 0.5f) / (Config.mBubbleWidth * 1.2f));
+        int maxBubbles2 = (int) ((mDm.heightPixels - mBubbleWidth - mBubbleWidth * 0.5f) / (Config.mBubbleWidth * 1.2f));
+        MAX_BUBBLES = Math.min(maxBubbles1, maxBubbles2);
 
         mBubbleSnapLeftX = (int) (-mBubbleWidth * 0.2f);
         mBubbleSnapRightX = (int) (mDm.widthPixels - mBubbleWidth * 0.8f);
@@ -63,6 +69,11 @@ public class Config {
         } catch (Exception e) {
             mBrowserIcon = context.getResources().getDrawable(R.drawable.target_snap);
         }
+    }
+
+    public static float getContentViewX(int bubbleIndex) {
+        float x = Config.mContentViewBubbleX - Config.mBubbleWidth * 1.2f * bubbleIndex;
+        return x;
     }
 
     public static int dpToPx(float dp) {

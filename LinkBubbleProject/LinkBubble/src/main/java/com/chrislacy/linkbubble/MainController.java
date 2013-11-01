@@ -18,8 +18,6 @@ import java.util.Vector;
  */
 public class MainController implements Choreographer.FrameCallback {
 
-    private static final int MAX_BUBBLES = 8;
-
     private enum Mode {
         BubbleView,
         ContentView
@@ -387,7 +385,7 @@ public class MainController implements Choreographer.FrameCallback {
                     bi.mTargetY = mBubbleHomeY;
                 } else {
                     Util.Assert(mMode == Mode.ContentView);
-                    bi.mTargetX = getContentViewX(i);
+                    bi.mTargetX = Config.getContentViewX(i);
                     bi.mTargetY = Config.mContentViewBubbleY;
                 }
                 bi.mDistanceX = bi.mTargetX - bi.mPosX;
@@ -510,11 +508,6 @@ public class MainController implements Choreographer.FrameCallback {
 
     private Bubble mSelectedBubble;
     private ContentViewRoot mContentViewRoot;
-
-    private float getContentViewX(int bubbleIndex) {
-        float x = Config.mContentViewBubbleX - Config.mBubbleWidth * 1.2f * bubbleIndex;
-        return x;
-    }
 
     private void setSelectedBubble(Bubble b) {
         mSelectedBubble = b;
@@ -708,7 +701,7 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void onOpenUrl(String url, boolean recordHistory) {
-        if (mBubbles.size() < MAX_BUBBLES) {
+        if (mBubbles.size() < Config.MAX_BUBBLES) {
             Bubble bubble = new Bubble(mContext, url, mBubbleHomeX, mBubbleHomeY, recordHistory, new Bubble.EventHandler() {
                 @Override
                 public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
