@@ -532,10 +532,12 @@ public class MainController implements Choreographer.FrameCallback {
 
     private void destroyBubble(Bubble bubble) {
         bubble.destroy();
+        int bubbleIndex = mBubbles.indexOf(bubble);
         mBubbles.remove(bubble);
 
         if (mBubbles.size() > 0) {
-            Bubble nextBubble = mBubbles.lastElement();
+            int nextBubbleIndex = Util.clamp(0, bubbleIndex, mBubbles.size()-1);
+            Bubble nextBubble = mBubbles.get(nextBubbleIndex);
             mBadge.attach(nextBubble);
             if (mMode == Mode.ContentView) {
                 //mContentViewRoot.switchContent(nextBubble.getContentView());
