@@ -63,9 +63,9 @@ public class ContentView extends LinearLayout {
         int xp = mOwner.getXPos();
 
         Path path = new Path();
-        path.moveTo(xp, mHeaderHeight + 1.0f);
+        path.moveTo(xp + Config.mBubbleWidth * 0.33f, mHeaderHeight + 1.0f);
         path.lineTo(xp + Config.mBubbleWidth * 0.5f, 0.0f);
-        path.lineTo(xp + Config.mBubbleWidth, mHeaderHeight + 1.0f);
+        path.lineTo(xp + Config.mBubbleWidth * 0.67f, mHeaderHeight + 1.0f);
 
         canvas.drawPath(path, mPaint);
     }
@@ -185,9 +185,9 @@ public class ContentView extends LinearLayout {
         mUrl = url;
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setColor(0xffaaaaaa);
+        mPaint.setColor(0xffdddddd);
 
-        mHeaderHeight = Config.dpToPx(20.0f);
+        mHeaderHeight = Config.dpToPx(10.0f);
 
         setOrientation(VERTICAL);
 

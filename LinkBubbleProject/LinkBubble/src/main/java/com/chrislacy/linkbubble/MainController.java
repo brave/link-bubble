@@ -20,11 +20,6 @@ public class MainController implements Choreographer.FrameCallback {
 
     private static final int MAX_BUBBLES = 8;
 
-    private enum Edge {
-        Left,
-        Right
-    }
-
     private enum Mode {
         BubbleView,
         ContentView

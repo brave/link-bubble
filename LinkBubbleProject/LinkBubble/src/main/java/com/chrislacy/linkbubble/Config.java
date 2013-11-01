@@ -55,7 +55,7 @@ public class Config {
         mContentViewBubbleX = (int) (mDm.widthPixels - mBubbleWidth - mBubbleWidth * 0.5f);
         mContentViewBubbleY = (int) (mBubbleHeight * 0.15f);
 
-        mContentOffset = (int) (mBubbleHeight * 1.3f);
+        mContentOffset = (int) (mBubbleHeight * 1.2f);
 
         PackageManager pk = context.getPackageManager();
         try {
