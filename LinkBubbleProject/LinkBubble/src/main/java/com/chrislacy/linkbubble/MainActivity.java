@@ -74,7 +74,7 @@ public class MainActivity extends PreferenceActivity {
                 Intent serviceIntent = new Intent(this, MainService.class);
                 bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
             } else {
-                loadInBrowser(this, intent.getDataString(), false);
+                loadInBrowser(this, intent);
             }
             finish();
         } else {
@@ -120,6 +120,15 @@ public class MainActivity extends PreferenceActivity {
         //intent.setData(Uri.parse("http://www.google.com"));
         //mBrowsers = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
         mBrowsers.add("com.android.browser");
+    }
+
+    public static void loadInBrowser(Context context, Intent intent) {
+        Intent browserIntent = context.getPackageManager().getLaunchIntentForPackage("com.android.browser");
+        if (browserIntent != null) {
+            intent.setComponent(browserIntent.getComponent());
+            intent.setPackage(browserIntent.getPackage());
+            context.startActivity(intent);
+        }
     }
 
     public static void loadInBrowser(Context context, String url, boolean newActivity) {
