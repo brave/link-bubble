@@ -117,7 +117,7 @@ public class MainController implements Choreographer.FrameCallback {
 
             int targetX, targetY;
 
-            float t = 0.04f;
+            float t = 0.02f;
             if (targetInfo.mAction == Canvas.BubbleAction.None) {
                 targetX = mTargetX;
                 targetY = mTargetY;
@@ -265,6 +265,7 @@ public class MainController implements Choreographer.FrameCallback {
             float v = (float) Math.sqrt(vx*vx + vy*vy);
 
             mPeriod += d/v;
+            mPeriod = Util.clamp(0.3f, mPeriod, 0.7f);
         }
         public void OnExitState() {
             mCanvas.fadeOut();
@@ -339,7 +340,7 @@ public class MainController implements Choreographer.FrameCallback {
 
         public void OnEnterState() {
             mTime = 0.0f;
-            mPeriod = 0.3f;
+            mPeriod = 0.5f;
 
             mPosX = (float) getFrontBubble().getXPos();
             if (mPosX < Config.mScreenCenterX) {
