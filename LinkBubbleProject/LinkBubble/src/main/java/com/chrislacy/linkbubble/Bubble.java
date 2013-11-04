@@ -25,6 +25,7 @@ public class Bubble extends RelativeLayout {
 
     private String mUrl;
     private ContentView mContentView;
+    private boolean mRecordHistory;
 
     // Move animation state
     private int mInitialX;
@@ -173,10 +174,7 @@ public class Bubble extends RelativeLayout {
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         mEventHandler = eh;
         mUrl = url;
-
-        if (recordHistory) {
-            SettingsFragment.addRecentBubble(context, mUrl);
-        }
+        mRecordHistory = recordHistory;
 
         mContentView = new ContentView(context, Bubble.this, mUrl, new ContentView.EventHandler() {
             @Override
@@ -190,7 +188,7 @@ public class Bubble extends RelativeLayout {
             }
 
             @Override
-            public void onPageLoaded(Bitmap bmp) {
+            public void onPageLoaded(Bitmap bmp, String url) {
                 removeView(mProgressBar);
                 setBackgroundResource(R.drawable.circle_yellow);
 
@@ -202,6 +200,10 @@ public class Bubble extends RelativeLayout {
                     halfImageWidth = 8;
                     halfImageHeight = 8;
                 } else {
+                    if (mRecordHistory && url != null) {
+                        SettingsFragment.addRecentBubble(context, url);
+                    }
+
                     int w = bmp.getWidth();
                     int h = bmp.getHeight();
 

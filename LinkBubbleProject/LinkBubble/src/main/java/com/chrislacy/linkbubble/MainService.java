@@ -35,6 +35,11 @@ public class MainService extends Service {
     }
 
     @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return START_STICKY;
+    }
+
+    @Override
     public void onCreate() {
         Config.init(this);
 
@@ -52,7 +57,8 @@ public class MainService extends Service {
         //i.setData(Uri.parse("https://bitly.com/QtQET"));
         //i.setData(Uri.parse("http://www.duckduckgo.com"));
         //openUrl("https://www.duckduckgo.com");
-        openUrl("http://www.duckduckgo.com", true);
+        //openUrl("http://www.duckduckgo.com", true);
+        //openUrl("https://t.co/uxMl3bWtMP", true);
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(BCAST_CONFIGCHANGED);

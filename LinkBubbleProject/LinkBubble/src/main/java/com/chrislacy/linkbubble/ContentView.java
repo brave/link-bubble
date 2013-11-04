@@ -53,7 +53,7 @@ public class ContentView extends LinearLayout {
     public interface EventHandler {
         public void onCloseClicked();
         public void onSharedLink();
-        public void onPageLoaded(Bitmap bmp);
+        public void onPageLoaded(Bitmap bmp, String url);
     }
 
     @Override
@@ -248,7 +248,7 @@ public class ContentView extends LinearLayout {
 
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                mEventHandler.onPageLoaded(null);
+                mEventHandler.onPageLoaded(null, null);
             }
 
             @Override
@@ -270,7 +270,7 @@ public class ContentView extends LinearLayout {
                 if (isValidUrl(url)) {
                     if (--mCount == 0) {
                         Bitmap bmp = view.getFavicon();
-                        mEventHandler.onPageLoaded(bmp);
+                        mEventHandler.onPageLoaded(bmp, url);
                     }
                 }
             }
