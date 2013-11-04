@@ -235,13 +235,12 @@ public class ContentView extends LinearLayout {
         mAppButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                String action = Intent.ACTION_SEND;
+                String action = Intent.ACTION_VIEW;
                 Intent intent = new Intent(action);
 
-                intent.setType("text/plain");
                 intent.setClassName(mShareContext, mSharePackage);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                intent.putExtra(Intent.EXTRA_TEXT, mUrl);
+                intent.setData(Uri.parse(mUrl));
 
                 mContext.startActivity(intent);
 
@@ -310,6 +309,9 @@ public class ContentView extends LinearLayout {
 
                 if (isValidUrl(url)) {
                     if (--mCount == 0) {
+                        // Store final resolved url
+                        mUrl = url;
+
                         String [] blacklist = {
                             "com.chrislacy.linkbubble",
                             "com.android.browser"
@@ -322,7 +324,7 @@ public class ContentView extends LinearLayout {
                         PackageManager manager = mContext.getPackageManager();
                         Intent intent = new Intent();
                         intent.setAction(Intent.ACTION_VIEW);
-                        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                        //intent.addCategory(Intent.CATEGORY_BROWSABLE);
                         intent.setData(Uri.parse(url));
                         List<ResolveInfo> infos = manager.queryIntentActivities (intent, PackageManager.GET_RESOLVED_FILTER);
                         for (ResolveInfo info : infos) {
