@@ -190,7 +190,7 @@ public class Bubble extends RelativeLayout {
             @Override
             public void onPageLoaded(ContentView.PageLoadInfo info) {
                 removeView(mProgressBar);
-                setBackgroundResource(R.drawable.circle_yellow);
+                setBackgroundResource(R.drawable.circle_grey);
 
                 int halfImageWidth;
                 int halfImageHeight;
