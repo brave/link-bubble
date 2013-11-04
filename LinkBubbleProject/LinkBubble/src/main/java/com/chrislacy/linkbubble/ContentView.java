@@ -4,12 +4,17 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
@@ -37,6 +42,8 @@ public class ContentView extends LinearLayout {
     private WebView mWebView;
     private ImageButton mCloseButton;
     private ImageButton mShareButton;
+    private ImageButton mAppButton;
+    private int mMaxToolbarHeight;
     private FrameLayout mToolbarSpacer;
     private View mToolbarHeader;
     private View mWebViewPlaceholder;
@@ -48,12 +55,38 @@ public class ContentView extends LinearLayout {
     private int mHeaderHeight;
     private LinearLayout.LayoutParams mWebViewLayoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1.0f);
 
+    private String mShareContext;
+    private String mSharePackage;
+
     private Paint mPaint;
+
+    // Class for a singular activity item on the list of apps to send to
+    private static class ListItem {
+        public final String name;
+        public final Drawable icon;
+        public final String context;
+        public final String packageClassName;
+        public ListItem(String text, Drawable icon, String context, String packageClassName) {
+            this.name = text;
+            this.icon = icon;
+            this.context = context;
+            this.packageClassName = packageClassName;
+        }
+        @Override
+        public String toString() {
+            return name;
+        }
+    }
+
+    public static class PageLoadInfo {
+        Bitmap bmp;
+        String url;
+    }
 
     public interface EventHandler {
         public void onCloseClicked();
         public void onSharedLink();
-        public void onPageLoaded(Bitmap bmp, String url);
+        public void onPageLoaded(PageLoadInfo info);
     }
 
     @Override
@@ -102,7 +135,7 @@ public class ContentView extends LinearLayout {
         return isValid;
     }
 
-    public void startDefaultAppOrPromptUserForSelection() {
+    private void startDefaultAppOrPromptUserForSelection() {
         String action = Intent.ACTION_SEND;
         String mimeType = "text/plain";
 
@@ -111,24 +144,6 @@ public class ContentView extends LinearLayout {
         intent.setType(mimeType);
         PackageManager pm = mContext.getPackageManager();
         List<ResolveInfo> resInfos = pm.queryIntentActivities(intent, 0);
-
-        // Class for a singular activity item on the list of apps to send to
-        class ListItem {
-            public final String name;
-            public final Drawable icon;
-            public final String context;
-            public final String packageClassName;
-            public ListItem(String text, Drawable icon, String context, String packageClassName) {
-                this.name = text;
-                this.icon = icon;
-                this.context = context;
-                this.packageClassName = packageClassName;
-            }
-            @Override
-            public String toString() {
-                return name;
-            }
-        }
 
         // Form those activities into an array for the list adapter
         final ListItem[] items = new ListItem[resInfos.size()];
@@ -198,9 +213,11 @@ public class ContentView extends LinearLayout {
         mCloseButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-            mEventHandler.onCloseClicked();
+                mEventHandler.onCloseClicked();
             }
         });
+        Drawable dClose = mCloseButton.getDrawable();
+
         mShareButton = new ImageButton(ctx);
         mShareButton.setImageResource(android.R.drawable.ic_menu_share);
         mShareButton.setOnClickListener(new OnClickListener() {
@@ -209,13 +226,37 @@ public class ContentView extends LinearLayout {
                 startDefaultAppOrPromptUserForSelection();
             }
         });
+        Drawable dShare = mShareButton.getDrawable();
+
+        mMaxToolbarHeight = Math.max(dClose.getIntrinsicHeight(), dShare.getIntrinsicHeight());
+
+        mAppButton = new ImageButton(ctx);
+        mAppButton.setVisibility(GONE);
+        mAppButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String action = Intent.ACTION_SEND;
+                Intent intent = new Intent(action);
+
+                intent.setType("text/plain");
+                intent.setClassName(mShareContext, mSharePackage);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                intent.putExtra(Intent.EXTRA_TEXT, mUrl);
+
+                mContext.startActivity(intent);
+
+                mEventHandler.onSharedLink();
+            }
+        });
 
         mToolbarLayout = new LinearLayout(ctx);
         mToolbarLayout.setBackgroundResource(R.drawable.toolbar);
         mToolbarLayout.setOrientation(HORIZONTAL);
 
         mToolbarLayout.addView(mCloseButton, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
         mToolbarLayout.addView(mToolbarSpacer, new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+        mToolbarLayout.addView(mAppButton, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mToolbarLayout.addView(mShareButton, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         mToolbarHeader = new View(mContext);
@@ -248,7 +289,7 @@ public class ContentView extends LinearLayout {
 
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                mEventHandler.onPageLoaded(null, null);
+                mEventHandler.onPageLoaded(null);
             }
 
             @Override
@@ -269,8 +310,57 @@ public class ContentView extends LinearLayout {
 
                 if (isValidUrl(url)) {
                     if (--mCount == 0) {
-                        Bitmap bmp = view.getFavicon();
-                        mEventHandler.onPageLoaded(bmp, url);
+                        String [] blacklist = {
+                            "com.chrislacy.linkbubble",
+                            "com.android.browser"
+                        };
+
+                        PageLoadInfo pli = new PageLoadInfo();
+                        pli.bmp = view.getFavicon();
+                        pli.url = url;
+
+                        PackageManager manager = mContext.getPackageManager();
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                        intent.setData(Uri.parse(url));
+                        List<ResolveInfo> infos = manager.queryIntentActivities (intent, PackageManager.GET_RESOLVED_FILTER);
+                        for (ResolveInfo info : infos) {
+                            IntentFilter filter = info.filter;
+                            if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
+
+                                // Check if blacklisted
+                                boolean packageOk = true;
+                                for (String invalidName : blacklist) {
+                                    if (invalidName.equals(info.activityInfo.packageName)) {
+                                        packageOk = false;
+                                        break;
+                                    }
+                                }
+
+                                if (packageOk) {
+                                    mShareContext = info.activityInfo.packageName;
+                                    mSharePackage = info.activityInfo.name;
+
+                                    //pli.appHandlerContext = info.activityInfo.packageName;
+                                    //pli.appHandlerPackage = info.activityInfo.name;
+                                    //pli.appHandlerDrawable = info.loadIcon(manager);
+                                    Drawable d = info.loadIcon(manager);
+
+                                    if (d != null) {
+                                        Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
+                                        Bitmap scaled = Bitmap.createScaledBitmap(bitmap, mMaxToolbarHeight, mMaxToolbarHeight, true);
+
+                                        mAppButton.setImageBitmap(scaled);
+                                        mAppButton.setVisibility(VISIBLE);
+                                    }
+
+                                    break;
+                                }
+                            }
+                        }
+
+                        mEventHandler.onPageLoaded(pli);
                     }
                 }
             }
