@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
@@ -26,21 +27,36 @@ import java.util.Vector;
 
 public class MainActivity extends PreferenceActivity {
 
+    static MainActivity sCurrentInstance;
+
     //private boolean serviceBound = false;
     private String mUrl;
     private List<String> mBrowsers = new Vector<String>();
 
+    private final Handler mHandler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        sCurrentInstance = this;
+
+        Intent intent = getIntent();
+        boolean isActionView = intent.getAction().equals(Intent.ACTION_VIEW);
+
+        if (isActionView == false) {
+            // must call before super.onCreate()
+            setTheme(android.R.style.Theme_Holo_Light);
+        }
+
         super.onCreate(savedInstanceState);
 
         PreferenceManager.setDefaultValues(this, R.xml.prefs, true);
         startService(new Intent(this, MainService.class));
         getBrowsers();
 
-        Intent intent = getIntent();
 
-        if (intent.getAction().equals(Intent.ACTION_VIEW)) {
+
+        if (isActionView) {
             boolean openLink = false;
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -83,6 +99,22 @@ public class MainActivity extends PreferenceActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        if (sCurrentInstance == this) {
+            sCurrentInstance = null;
+        }
+
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        sCurrentInstance = this;
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
 
@@ -95,6 +127,28 @@ public class MainActivity extends PreferenceActivity {
         //    unbindService(mConnection);
         //    serviceBound = false;
         //}
+
+        delayedFinishIfCurrent();
+    }
+
+    @Override
+    public void onBackPressed() {
+        delayedFinishIfCurrent();
+    }
+
+    void delayedFinishIfCurrent() {
+        // Kill the activity to ensure it is not alive in the event a link is intercepted,
+        // thus displaying the ugly UI for a few frames
+
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (sCurrentInstance == MainActivity.this) {
+
+                    finish();
+                }
+            }
+        }, 500);
     }
 
     private ServiceConnection mConnection = new ServiceConnection() {
