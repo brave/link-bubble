@@ -73,7 +73,6 @@ public class SettingsFragment extends PreferenceFragment {
             for (int i=0 ; i < urls.size() ; ++i) {
                 Preference p = new Preference(getActivity());
                 p.setTitle(urls.get(i));
-                p.setSummary(urls.get(i));
 
                 p.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                     @Override

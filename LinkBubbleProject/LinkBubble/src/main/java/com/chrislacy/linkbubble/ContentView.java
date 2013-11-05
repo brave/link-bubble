@@ -314,7 +314,10 @@ public class ContentView extends LinearLayout {
 
                         String [] blacklist = {
                             "com.chrislacy.linkbubble",
-                            "com.android.browser"
+                            "com.android.browser",
+                            "com.android.chrome",
+                            "org.mozilla.fennec",
+                            "org.mozilla.firefox_beta"
                         };
 
                         PageLoadInfo pli = new PageLoadInfo();
