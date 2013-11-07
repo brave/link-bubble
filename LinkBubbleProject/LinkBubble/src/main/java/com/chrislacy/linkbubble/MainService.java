@@ -46,6 +46,7 @@ public class MainService extends Service {
         Notification.Builder mBuilder = new Notification.Builder(this)
                         .setSmallIcon(R.drawable.ic_launcher)
                         .setContentTitle("LinkBubble")
+                        .setPriority(Notification.PRIORITY_MIN)
                         .setContentText("");
         startForeground(1, mBuilder.build());
 
