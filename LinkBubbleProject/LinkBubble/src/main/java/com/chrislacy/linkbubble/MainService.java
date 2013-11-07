@@ -1,5 +1,6 @@
 package com.chrislacy.linkbubble;
 
+import android.app.Notification;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -41,6 +42,13 @@ public class MainService extends Service {
 
     @Override
     public void onCreate() {
+
+        Notification.Builder mBuilder = new Notification.Builder(this)
+                        .setSmallIcon(R.drawable.ic_launcher)
+                        .setContentTitle("LinkBubble")
+                        .setContentText("");
+        startForeground(1, mBuilder.build());
+
         Config.init(this);
 
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
