@@ -40,7 +40,7 @@ import java.util.List;
 public class ContentView extends LinearLayout {
 
     private WebView mWebView;
-    private ImageButton mCloseButton;
+    //private ImageButton mCloseButton;
     private ImageButton mShareButton;
     private ImageButton mAppButton;
     private int mMaxToolbarHeight;
@@ -208,15 +208,15 @@ public class ContentView extends LinearLayout {
 
         mToolbarSpacer = new FrameLayout(ctx);
 
-        mCloseButton = new ImageButton(ctx);
-        mCloseButton.setImageResource(android.R.drawable.ic_delete);
-        mCloseButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mEventHandler.onCloseClicked();
-            }
-        });
-        Drawable dClose = mCloseButton.getDrawable();
+        //mCloseButton = new ImageButton(ctx);
+        //mCloseButton.setImageResource(android.R.drawable.ic_delete);
+        //mCloseButton.setOnClickListener(new OnClickListener() {
+        //    @Override
+        //   public void onClick(View v) {
+        //        mEventHandler.onCloseClicked();
+        //    }
+        //});
+        //Drawable dClose = mCloseButton.getDrawable();
 
         mShareButton = new ImageButton(ctx);
         mShareButton.setImageResource(android.R.drawable.ic_menu_share);
@@ -228,7 +228,8 @@ public class ContentView extends LinearLayout {
         });
         Drawable dShare = mShareButton.getDrawable();
 
-        mMaxToolbarHeight = Math.max(dClose.getIntrinsicHeight(), dShare.getIntrinsicHeight());
+        //mMaxToolbarHeight = Math.max(dClose.getIntrinsicHeight(), dShare.getIntrinsicHeight());
+        mMaxToolbarHeight = dShare.getIntrinsicHeight();
 
         mAppButton = new ImageButton(ctx);
         mAppButton.setVisibility(GONE);
@@ -252,7 +253,7 @@ public class ContentView extends LinearLayout {
         mToolbarLayout.setBackgroundResource(R.drawable.toolbar);
         mToolbarLayout.setOrientation(HORIZONTAL);
 
-        mToolbarLayout.addView(mCloseButton, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        //mToolbarLayout.addView(mCloseButton, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         mToolbarLayout.addView(mToolbarSpacer, new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
         mToolbarLayout.addView(mAppButton, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
