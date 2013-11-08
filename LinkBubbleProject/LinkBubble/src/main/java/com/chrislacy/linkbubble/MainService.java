@@ -71,7 +71,9 @@ public class MainService extends Service {
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(BCAST_CONFIGCHANGED);
-        this.registerReceiver(mBroadcastReceiver, filter);
+        registerReceiver(mBroadcastReceiver, filter);
+
+        registerReceiver(mDialogReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
     }
 
     @Override
@@ -87,6 +89,15 @@ public class MainService extends Service {
             mController.onOpenUrl(url, recordHistory);
         }
     }
+
+    public BroadcastReceiver mDialogReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent myIntent) {
+            if (myIntent.getAction().equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)) {
+                mController.onCloseSystemDialogs();
+            }
+        }
+    };
 
     public BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override

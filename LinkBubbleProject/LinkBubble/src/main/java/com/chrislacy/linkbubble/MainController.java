@@ -33,6 +33,7 @@ public class MainController implements Choreographer.FrameCallback {
         public boolean OnNewBubble(Bubble bubble) { Util.Assert(false); return false; }
         public void OnDestroyBubble(Bubble bubble) {}
         public void OnOrientationChanged() {}
+        public void OnCloseDialog() { }
         public abstract String getName();
     }
 
@@ -59,12 +60,31 @@ public class MainController implements Choreographer.FrameCallback {
 
     // Idle - no bubbles
     private class IdleState extends State {
+        private boolean mShouldClose;
+
+        public void setShouldClose() {
+            mShouldClose = true;
+        }
+
+        @Override
+        public void OnEnterState() {
+            if (mShouldClose) {
+                OnCloseDialog();
+                mShouldClose = false;
+            }
+        }
         public void OnMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
             switchState(mMoveFrontBubbleState, true);
             mMoveFrontBubbleState.OnMotionEvent_Touch(sender, e);
         }
         public boolean OnNewBubble(Bubble bubble) {
             return true;
+        }
+        public void OnCloseDialog() {
+            if (mMode == Mode.ContentView) {
+                mMode = Mode.BubbleView;
+                switchState(mAnimateContentViewState);
+            }
         }
         public String getName() { return "Idle"; }
     }
@@ -444,6 +464,10 @@ public class MainController implements Choreographer.FrameCallback {
 
             return true;
         }
+        @Override
+        public void OnCloseDialog() {
+            mIdleState.setShouldClose();
+        }
         public String getName() { return "AnimateToModeView"; }
     }
 
@@ -493,6 +517,10 @@ public class MainController implements Choreographer.FrameCallback {
 
             mTime += dt;
             return true;
+        }
+        @Override
+        public void OnCloseDialog() {
+            mIdleState.setShouldClose();
         }
         public String getName() { return "AnimateContentView"; }
     }
@@ -559,7 +587,6 @@ public class MainController implements Choreographer.FrameCallback {
             Bubble nextBubble = mBubbles.get(nextBubbleIndex);
             mBadge.attach(nextBubble);
             if (mMode == Mode.ContentView) {
-                //mContentViewRoot.switchContent(nextBubble.getContentView());
                 mContentViewRoot.hide();
             } else {
                 nextBubble.setExactPos(bubble.getXPos(), bubble.getYPos());
@@ -678,6 +705,12 @@ public class MainController implements Choreographer.FrameCallback {
             if (!mEnabled || (mMode == Mode.BubbleView && i != bubbleCount-1))
                 vis = View.GONE;
             b.setVisibility(vis);
+        }
+    }
+
+    public void onCloseSystemDialogs() {
+        if (mCurrentState != null) {
+            mCurrentState.OnCloseDialog();
         }
     }
 
