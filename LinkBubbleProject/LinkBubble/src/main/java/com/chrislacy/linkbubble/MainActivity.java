@@ -104,6 +104,16 @@ public class MainActivity extends PreferenceActivity {
             sCurrentInstance = null;
         }
 
+        try {
+            unbindService(mConnection);
+        } catch (Exception e) {
+
+        }
+        //if (serviceBound) {
+        //    unbindService(mConnection);
+        //    serviceBound = false;
+        //}
+
         super.onDestroy();
     }
 
@@ -117,16 +127,6 @@ public class MainActivity extends PreferenceActivity {
     @Override
     protected void onStop() {
         super.onStop();
-
-        try {
-            unbindService(mConnection);
-        } catch (Exception e) {
-
-        }
-        //if (serviceBound) {
-        //    unbindService(mConnection);
-        //    serviceBound = false;
-        //}
 
         delayedFinishIfCurrent();
     }
