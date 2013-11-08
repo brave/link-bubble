@@ -75,7 +75,6 @@ public class Bubble extends RelativeLayout {
         public void onMotionEvent_Touch(Bubble sender, TouchEvent event);
         public void onMotionEvent_Move(Bubble sender, MoveEvent event);
         public void onMotionEvent_Release(Bubble sender, ReleaseEvent event);
-        public void onCloseClicked(Bubble sender);
         public void onSharedLink(Bubble sender);
     }
 
@@ -177,11 +176,6 @@ public class Bubble extends RelativeLayout {
         mRecordHistory = recordHistory;
 
         mContentView = new ContentView(context, Bubble.this, mUrl, new ContentView.EventHandler() {
-            @Override
-            public void onCloseClicked() {
-                mEventHandler.onCloseClicked(Bubble.this);
-            }
-
             @Override
             public void onSharedLink() {
                 mEventHandler.onSharedLink(Bubble.this);

@@ -2,7 +2,9 @@ package com.chrislacy.linkbubble;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
+import android.preference.PreferenceManager;
 import android.view.Choreographer;
 import android.view.Gravity;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Vector;
 
@@ -188,15 +191,7 @@ public class MainController implements Choreographer.FrameCallback {
                     mBubble.getYPos() == targetInfo.mTargetY) {
 
                     mCanvas.fadeOut();
-                    String url = mBubble.getUrl();
-                    destroyBubble(mBubble);
-                    if (mBubbles.size() > 0) {
-                        switchState(mAnimateToModeViewState);
-                    } else {
-                        switchState(mIdleState);
-                    }
-
-                    doTargetAction(targetInfo.mAction, url);
+                    destroyBubble(mBubble, targetInfo.mAction);
                 }
                 else {
                     float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
@@ -333,16 +328,7 @@ public class MainController implements Choreographer.FrameCallback {
             } else {
                 if (mBubble.getXPos() == mTargetInfo.mTargetX &&
                     mBubble.getYPos() == mTargetInfo.mTargetY) {
-
-                    String url = mBubble.getUrl();
-                    destroyBubble(mBubble);
-                    if (mBubbles.size() > 0) {
-                        switchState(mAnimateToModeViewState);
-                    } else {
-                        switchState(mIdleState);
-                    }
-
-                    doTargetAction(mTargetInfo.mAction, url);
+                    destroyBubble(mBubble, mTargetInfo.mAction);
                 }
             }
 
@@ -577,35 +563,52 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    private void destroyBubble(Bubble bubble) {
-        bubble.destroy();
-        int bubbleIndex = mBubbles.indexOf(bubble);
-        mBubbles.remove(bubble);
+    private void destroyBubble(Bubble bubble, Canvas.BubbleAction action) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        boolean debug = prefs.getBoolean("debug_flick", true);
 
-        if (mBubbles.size() > 0) {
-            int nextBubbleIndex = Util.clamp(0, bubbleIndex, mBubbles.size()-1);
-            Bubble nextBubble = mBubbles.get(nextBubbleIndex);
-            mBadge.attach(nextBubble);
-            if (mMode == Mode.ContentView) {
-                mContentViewRoot.hide();
-            } else {
-                nextBubble.setExactPos(bubble.getXPos(), bubble.getYPos());
-            }
-            setSelectedBubble(nextBubble);
+        if (debug) {
+            Toast.makeText(mContext, "HIT TARGET!", 400).show();
         } else {
-            if (mMode == Mode.ContentView) {
-                mContentViewRoot.hide();
-            }
-            mBadge.attach(null);
-            mMode = Mode.BubbleView;
-            setSelectedBubble(null);
+            String url = bubble.getUrl();
 
-            mBubbleHomeX = Config.mBubbleSnapLeftX;
-            mBubbleHomeY = (int) (Config.mScreenHeight * 0.4f);
+            bubble.destroy();
+            int bubbleIndex = mBubbles.indexOf(bubble);
+            mBubbles.remove(bubble);
+
+            if (mBubbles.size() > 0) {
+                int nextBubbleIndex = Util.clamp(0, bubbleIndex, mBubbles.size()-1);
+                Bubble nextBubble = mBubbles.get(nextBubbleIndex);
+                mBadge.attach(nextBubble);
+                if (mMode == Mode.ContentView) {
+                    mContentViewRoot.hide();
+                } else {
+                    nextBubble.setExactPos(bubble.getXPos(), bubble.getYPos());
+                }
+                setSelectedBubble(nextBubble);
+            } else {
+                if (mMode == Mode.ContentView) {
+                    mContentViewRoot.hide();
+                }
+                mBadge.attach(null);
+                mMode = Mode.BubbleView;
+                setSelectedBubble(null);
+
+                mBubbleHomeX = Config.mBubbleSnapLeftX;
+                mBubbleHomeY = (int) (Config.mScreenHeight * 0.4f);
+            }
+
+            updateBubbleVisibility();
+            mCurrentState.OnDestroyBubble(bubble);
+
+            doTargetAction(action, url);
         }
 
-        updateBubbleVisibility();
-        mCurrentState.OnDestroyBubble(bubble);
+        if (mBubbles.size() > 0) {
+            switchState(mAnimateToModeViewState);
+        } else {
+            switchState(mIdleState);
+        }
     }
 
     public MainController(Context context) {
@@ -780,14 +783,6 @@ public class MainController implements Choreographer.FrameCallback {
                         mCurrentState.OnMotionEvent_Release(sender, e);
                     }
                     mAllowTouchEvents = true;
-                }
-
-                @Override
-                public void onCloseClicked(Bubble sender) {
-                    destroyBubble(sender);
-                    if (mBubbles.size() > 0) {
-                        switchState(mAnimateToModeViewState);
-                    }
                 }
 
                 @Override

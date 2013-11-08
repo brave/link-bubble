@@ -84,7 +84,6 @@ public class ContentView extends LinearLayout {
     }
 
     public interface EventHandler {
-        public void onCloseClicked();
         public void onSharedLink();
         public void onPageLoaded(PageLoadInfo info);
     }
