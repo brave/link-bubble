@@ -16,6 +16,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.http.SslError;
+import android.text.Html;
+import android.text.Spanned;
+import android.text.SpannedString;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -44,6 +47,7 @@ import com.chrislacy.linkbubble.R;
 public class ContentView extends LinearLayout {
 
     private WebView mWebView;
+    private CondensedTextView mTitleTextView;
     private Button mShareButton;
     private Button mAppButton;
     private int mMaxToolbarHeight;
@@ -266,6 +270,7 @@ public class ContentView extends LinearLayout {
         mMaxToolbarHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_height);
 
         mToolbarLayout = (RelativeLayout) inflate(mContext, R.layout.content_toolbar, null);
+        mTitleTextView = (CondensedTextView) mToolbarLayout.findViewById(R.id.title);
         mShareButton = (Button)mToolbarLayout.findViewById(R.id.share_button);
         mShareButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -316,6 +321,7 @@ public class ContentView extends LinearLayout {
                     ++mCount;
                 }
                 mWebView.loadUrl(url);
+                mTitleTextView.setText(null);
                 return true;
             }
 
@@ -356,6 +362,15 @@ public class ContentView extends LinearLayout {
                         PageLoadInfo pli = new PageLoadInfo();
                         pli.bmp = view.getFavicon();
                         pli.url = url;
+
+                        String title = view.getTitle();
+                        Spanned text;
+                        if (title != null) {
+                            text = Html.fromHtml("<b>" + title + "</b><br />" + "<small>" + url + "</small>");
+                        } else {
+                            text = Html.fromHtml(url);
+                        }
+                        mTitleTextView.setText(text);
 
                         PackageManager manager = mContext.getPackageManager();
                         Intent intent = new Intent();
