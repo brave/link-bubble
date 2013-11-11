@@ -4,5 +4,8 @@
     <string name="app_name">LinkBubble</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_reload_page">Reload page</string>
+    <string name="action_open_in_browser">Open in full browser</string>
+    <string name="action_upgrade_to_pro">Upgrade to Pro</string>
 
 </resources>

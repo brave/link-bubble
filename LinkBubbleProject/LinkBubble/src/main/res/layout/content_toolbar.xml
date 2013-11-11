@@ -17,7 +17,7 @@
         android:textColor="#888888"
         android:id="@+id/title"/>
 
-    <Button
+    <ImageButton
         android:layout_width="@dimen/toolbar_button_width"
         android:layout_height="@dimen/toolbar_button_height"
         android:layout_centerVertical="true"
@@ -26,7 +26,7 @@
         android:layout_alignBottom="@+id/textView"
         android:layout_toLeftOf="@+id/share_button"/>
 
-    <Button
+    <ImageButton
         android:layout_width="@dimen/toolbar_button_width"
         android:layout_height="@dimen/toolbar_button_height"
         android:layout_centerVertical="true"
@@ -35,7 +35,7 @@
         android:layout_alignBottom="@+id/textView"
         android:layout_toLeftOf="@+id/overflow_button"/>
 
-    <Button
+    <ImageButton
         android:layout_width="@dimen/toolbar_button_width"
         android:layout_height="@dimen/toolbar_button_height"
         android:layout_centerVertical="true"

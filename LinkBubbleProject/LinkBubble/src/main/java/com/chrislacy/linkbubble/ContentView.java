@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
@@ -32,6 +33,7 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.graphics.Canvas;
@@ -48,8 +50,9 @@ public class ContentView extends LinearLayout {
 
     private WebView mWebView;
     private CondensedTextView mTitleTextView;
-    private Button mShareButton;
-    private Button mAppButton;
+    private ImageButton mShareButton;
+    private ImageButton mAppButton;
+    private ImageButton mOverflowButton;
     private int mMaxToolbarHeight;
     private FrameLayout mToolbarSpacer;
     private View mToolbarHeader;
@@ -271,7 +274,7 @@ public class ContentView extends LinearLayout {
 
         mToolbarLayout = (RelativeLayout) inflate(mContext, R.layout.content_toolbar, null);
         mTitleTextView = (CondensedTextView) mToolbarLayout.findViewById(R.id.title);
-        mShareButton = (Button)mToolbarLayout.findViewById(R.id.share_button);
+        mShareButton = (ImageButton)mToolbarLayout.findViewById(R.id.share_button);
         mShareButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -279,7 +282,7 @@ public class ContentView extends LinearLayout {
             }
         });
 
-        mAppButton = (Button)mToolbarLayout.findViewById(R.id.open_in_app_button);
+        mAppButton = (ImageButton)mToolbarLayout.findViewById(R.id.open_in_app_button);
         mToolbarLayout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -293,6 +296,30 @@ public class ContentView extends LinearLayout {
                 mContext.startActivity(intent);
 
                 mEventHandler.onSharedLink();
+            }
+        });
+
+        mOverflowButton = (ImageButton)mToolbarLayout.findViewById(R.id.overflow_button);
+        mOverflowButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(mContext, mOverflowButton);
+                Resources resources = mContext.getResources();
+                popupMenu.getMenu().add(Menu.NONE, R.id.item_upgrade_to_pro, Menu.NONE,
+                        resources.getString(R.string.action_upgrade_to_pro));
+                popupMenu.getMenu().add(Menu.NONE, R.id.item_reload_page, Menu.NONE,
+                        resources.getString(R.string.action_reload_page));
+                popupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
+                                            resources.getString(R.string.action_open_in_browser));
+                popupMenu.getMenu().add(Menu.NONE, R.id.item_settings, Menu.NONE,
+                        resources.getString(R.string.action_settings));
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        return false;
+                    }
+                });
+                popupMenu.show();
             }
         });
 
