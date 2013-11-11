@@ -8,6 +8,11 @@
             android:summary="Enable Link Bubble to intercept clicking on URLs"
             android:title="Enabled"
             android:defaultValue="true" />
+        <Preference
+            android:key="preference_top_left_bubble"
+            android:title="@string/preference_top_left_bubble_title"
+            />
+
         <CheckBoxPreference
             android:key="debug_flick"
             android:summary="When enabled, flick targets show message when hit only."

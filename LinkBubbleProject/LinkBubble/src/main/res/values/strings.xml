@@ -2,10 +2,18 @@
 <resources>
 
     <string name="app_name">LinkBubble</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_use_default">Use default</string>
     <string name="action_settings">Settings</string>
     <string name="action_reload_page">Reload page</string>
     <string name="action_open_in_browser">Open in full browser</string>
     <string name="action_upgrade_to_pro">Upgrade to Pro</string>
+
+    <string name="preference_top_left_bubble_title">Top left bubble</string>
+    <string name="preference_configure_bubble_title">Configure bubble</string>
+
+    <string name="consume_category_view">View link</string>
+    <string name="consume_category_share">Send/share link</string>
 
 </resources>
