@@ -19,7 +19,10 @@
         <PreferenceScreen
             android:key="recent_bubbles"
             android:summary="Show list of bubbles recently opened"
-            android:title="Recent Bubbles" >
+            android:title="Recent Bubbles" />
+        <PreferenceScreen
+            android:key="load_url"
+            android:title="Load a URL (DEBUG)" >
         </PreferenceScreen>
     </PreferenceCategory>
 </PreferenceScreen>

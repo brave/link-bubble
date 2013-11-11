@@ -20,6 +20,7 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.view.*;
 import android.view.View;
@@ -28,11 +29,14 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.graphics.Canvas;
 
 import java.net.URL;
 import java.util.List;
+
+import com.chrislacy.linkbubble.R;
 
 /**
  * Created by gw on 19/08/13.
@@ -40,14 +44,13 @@ import java.util.List;
 public class ContentView extends LinearLayout {
 
     private WebView mWebView;
-    //private ImageButton mCloseButton;
-    private ImageButton mShareButton;
-    private ImageButton mAppButton;
+    private Button mShareButton;
+    private Button mAppButton;
     private int mMaxToolbarHeight;
     private FrameLayout mToolbarSpacer;
     private View mToolbarHeader;
     private View mWebViewPlaceholder;
-    private LinearLayout mToolbarLayout;
+    private RelativeLayout mToolbarLayout;
     private EventHandler mEventHandler;
     private Context mContext;
     private String mUrl;
@@ -217,6 +220,7 @@ public class ContentView extends LinearLayout {
         //});
         //Drawable dClose = mCloseButton.getDrawable();
 
+        /*
         mShareButton = new ImageButton(ctx);
         mShareButton.setImageResource(android.R.drawable.ic_menu_share);
         mShareButton.setOnClickListener(new OnClickListener() {
@@ -257,6 +261,35 @@ public class ContentView extends LinearLayout {
         mToolbarLayout.addView(mToolbarSpacer, new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
         mToolbarLayout.addView(mAppButton, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mToolbarLayout.addView(mShareButton, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        */
+
+        mMaxToolbarHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_height);
+
+        mToolbarLayout = (RelativeLayout) inflate(mContext, R.layout.content_toolbar, null);
+        mShareButton = (Button)mToolbarLayout.findViewById(R.id.share_button);
+        mShareButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startDefaultAppOrPromptUserForSelection();
+            }
+        });
+
+        mAppButton = (Button)mToolbarLayout.findViewById(R.id.open_in_app_button);
+        mToolbarLayout.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String action = Intent.ACTION_VIEW;
+                Intent intent = new Intent(action);
+
+                intent.setClassName(mShareContext, mSharePackage);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                intent.setData(Uri.parse(mUrl));
+
+                mContext.startActivity(intent);
+
+                mEventHandler.onSharedLink();
+            }
+        });
 
         mToolbarHeader = new View(mContext);
         addView(mToolbarHeader, ViewGroup.LayoutParams.MATCH_PARENT, mHeaderHeight);
@@ -355,8 +388,7 @@ public class ContentView extends LinearLayout {
                                     if (d != null) {
                                         Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
                                         Bitmap scaled = Bitmap.createScaledBitmap(bitmap, mMaxToolbarHeight, mMaxToolbarHeight, true);
-
-                                        mAppButton.setImageBitmap(scaled);
+                                        mAppButton.setBackground(new BitmapDrawable(scaled));
                                         mAppButton.setVisibility(VISIBLE);
                                     }
 

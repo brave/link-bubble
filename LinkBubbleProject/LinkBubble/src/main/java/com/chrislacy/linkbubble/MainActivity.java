@@ -86,9 +86,7 @@ public class MainActivity extends PreferenceActivity {
             }
 
             if (openLink) {
-                mUrl = intent.getDataString();
-                Intent serviceIntent = new Intent(this, MainService.class);
-                bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
+                openLink(intent.getDataString());
             } else {
                 loadInBrowser(this, intent);
             }
@@ -149,6 +147,12 @@ public class MainActivity extends PreferenceActivity {
                 }
             }
         }, 500);
+    }
+
+    void openLink(String url) {
+        mUrl = url;
+        Intent serviceIntent = new Intent(this, MainService.class);
+        bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
     private ServiceConnection mConnection = new ServiceConnection() {

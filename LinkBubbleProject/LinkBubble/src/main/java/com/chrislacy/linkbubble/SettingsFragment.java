@@ -1,8 +1,11 @@
 package com.chrislacy.linkbubble;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -113,6 +116,18 @@ public class SettingsFragment extends PreferenceFragment {
 
         Vector<String> bubbles = readRecentBubbles(getActivity());
         updateRecentBubbles(bubbles);
+
+        Preference loadUrlButton = findPreference("load_url");
+        if (loadUrlButton != null) {
+            loadUrlButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    MainActivity mainActivity = (MainActivity) getActivity();
+                    mainActivity.openLink("http://www.google.com");
+                    return true;
+                }
+            });
+        }
     }
 
     @Override

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:background="@drawable/toolbar"
+    android:layout_height="@dimen/toolbar_height">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium \nText"
+        android:id="@+id/textView"/>
+
+    <Button
+        android:layout_width="@dimen/toolbar_button_width"
+        android:layout_height="@dimen/toolbar_button_height"
+        android:layout_centerVertical="true"
+        android:id="@+id/open_in_app_button"
+        android:background="@drawable/ic_action_share"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_toLeftOf="@+id/share_button"/>
+
+    <Button
+        android:layout_width="@dimen/toolbar_button_width"
+        android:layout_height="@dimen/toolbar_button_height"
+        android:layout_centerVertical="true"
+        android:id="@+id/share_button"
+        android:background="@drawable/ic_action_share"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_toLeftOf="@+id/overflow_button"/>
+
+    <Button
+        android:layout_width="@dimen/toolbar_button_width"
+        android:layout_height="@dimen/toolbar_button_height"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/overflow_button"
+        android:background="@drawable/ic_action_overflow"
+        />
+
+</RelativeLayout>
