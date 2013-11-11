@@ -17,11 +17,6 @@
             android:title="@string/preference_right_consume_bubble_title"
             />
 
-        <CheckBoxPreference
-            android:key="debug_flick"
-            android:summary="When enabled, flick targets show message when hit only."
-            android:title="DEBUG - Flick Targets"
-            android:defaultValue="true" />
         <Preference android:title="Clear History"
             android:key="clear_history"
             android:summary="Clear list of recent bubbles"/>
@@ -29,9 +24,23 @@
             android:key="recent_bubbles"
             android:summary="Show list of bubbles recently opened"
             android:title="Recent Bubbles" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="preference_category_debug"
+        android:title="@string/preference_category_debug">
+
         <PreferenceScreen
             android:key="load_url"
-            android:title="Load a URL (DEBUG)" >
-        </PreferenceScreen>
+            android:title="Load a URL" />
+
+        <CheckBoxPreference
+            android:key="debug_flick"
+            android:summary="Flick targets show message when hit only."
+            android:title="Flick Targets"
+            android:defaultValue="true" />
+
     </PreferenceCategory>
+
 </PreferenceScreen>
