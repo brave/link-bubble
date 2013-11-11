@@ -10,7 +10,8 @@
     <string name="action_open_in_browser">Open in full browser</string>
     <string name="action_upgrade_to_pro">Upgrade to Pro</string>
 
-    <string name="preference_top_left_bubble_title">Top left bubble</string>
+    <string name="preference_left_consume_bubble_title">Top left Bubble</string>
+    <string name="preference_right_consume_bubble_title">Top right Bubble</string>
     <string name="preference_configure_bubble_title">Configure bubble</string>
 
     <string name="consume_category_view">View link</string>

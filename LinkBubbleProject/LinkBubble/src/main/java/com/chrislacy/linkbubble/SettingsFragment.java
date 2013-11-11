@@ -154,16 +154,30 @@ public class SettingsFragment extends PreferenceFragment {
             });
         }
 
-        Preference topLeftBubble = findPreference("preference_top_left_bubble");
-        if (topLeftBubble != null) {
-            topLeftBubble.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        final Preference leftConsumeBubblePreference = findPreference(Settings.PREFERENCE_LEFT_CONSUME_BUBBLE);
+        if (leftConsumeBubblePreference != null) {
+            leftConsumeBubblePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    AlertDialog alertDialog = getConfigureBubbleAlert(null);
+                    AlertDialog alertDialog = getConfigureBubbleAlert(Bubble.BubbleType.Consume_Left, leftConsumeBubblePreference);
                     alertDialog.show();
                     return true;
                 }
             });
+            leftConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Bubble.BubbleType.Consume_Left));
+        }
+
+        final Preference rightConsumeBubblePreference = findPreference(Settings.PREFERENCE_RIGHT_CONSUME_BUBBLE);
+        if (rightConsumeBubblePreference != null) {
+            rightConsumeBubblePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    AlertDialog alertDialog = getConfigureBubbleAlert(Bubble.BubbleType.Consume_Right, rightConsumeBubblePreference);
+                    alertDialog.show();
+                    return true;
+                }
+            });
+            rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Bubble.BubbleType.Consume_Right));
         }
     }
 
@@ -174,8 +188,7 @@ public class SettingsFragment extends PreferenceFragment {
         super.onDestroy();
     }
 
-
-    public AlertDialog getConfigureBubbleAlert(final SharedPreferences sharedPreferences) {
+    public AlertDialog getConfigureBubbleAlert(final Bubble.BubbleType bubble, final Preference preference) {
 
         final ArrayList<ActionItem> actionItems = new ArrayList<ActionItem>();
 
@@ -217,7 +230,7 @@ public class SettingsFragment extends PreferenceFragment {
 
         StickyListHeadersListView listView = new StickyListHeadersListView(getActivity());
 
-        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+        final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
         alertDialog.setTitle(R.string.preference_configure_bubble_title);
         alertDialog.setView(listView);
 
@@ -243,7 +256,10 @@ public class SettingsFragment extends PreferenceFragment {
                 Object tag = view.getTag();
                 if (tag instanceof ActionItem) {
                     ActionItem actionItem = (ActionItem) tag;
-                    Toast.makeText(getActivity(), "Select - " + actionItem.mLabel, Toast.LENGTH_SHORT).show();
+                    Settings.get().setConsumeBubble(bubble, actionItem.getLabel(),
+                                                    actionItem.mPackageName, actionItem.mActivityClassName);
+                    preference.setSummary(Settings.get().getConsumeBubbleLabel(bubble));
+                    alertDialog.dismiss();
                 }
             }
         });
@@ -330,17 +346,17 @@ public class SettingsFragment extends PreferenceFragment {
         private String mLabel;
         private Type mType;
         private String mCategory;
-        private String mContext;
-        private String mPackageClassName;
+        private String mPackageName;
+        private String mActivityClassName;
         private Drawable mIcon;
 
-        public ActionItem(Type type, Resources resources, String label, Drawable icon, String context, String packageClassName) {
+        public ActionItem(Type type, Resources resources, String label, Drawable icon, String packageName, String activityClassName) {
             mType = type;
             mLabel = label;
             mCategory = resources.getString(type == Type.View ? R.string.consume_category_view : R.string.consume_category_share);
             mIcon = icon;
-            mContext = context;
-            mPackageClassName = packageClassName;
+            mPackageName = packageName;
+            mActivityClassName = activityClassName;
         }
 
         public String getLabel() {
