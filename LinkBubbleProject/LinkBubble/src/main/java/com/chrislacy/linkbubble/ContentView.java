@@ -316,6 +316,15 @@ public class ContentView extends LinearLayout {
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.item_upgrade_to_pro:
+                                Intent intent = Config.getStoreIntent(mContext, Config.STORE_PRO_URL);
+                                if (intent != null) {
+                                    mContext.startActivity(intent);
+                                    mEventHandler.onSharedLink();
+                                }
+                                break;
+                        }
                         return false;
                     }
                 });

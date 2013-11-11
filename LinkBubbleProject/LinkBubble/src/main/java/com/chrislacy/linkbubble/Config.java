@@ -1,11 +1,17 @@
 package com.chrislacy.linkbubble;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.WindowManager;
+
+import java.util.List;
 
 /**
  * Created by gw on 2/10/13.
@@ -85,5 +91,35 @@ public class Config {
 
     public static int dpToPx(float dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, mDm);
+    }
+
+    public static final String GOOGLE_PLAY_STORE_URL_PREFIX = "http://play.google.com/store/apps/details?id=";
+    public static final String GOOGLE_PLAY_STORE_PACKAGE = "com.android.vending";
+    public static final String GOOGLE_PLAY_STORE_PRO_URL = GOOGLE_PLAY_STORE_URL_PREFIX + "com.chrislacy.actionlauncher.pro";
+
+    public static final String STORE_URL_PREFIX = GOOGLE_PLAY_STORE_URL_PREFIX;
+    public static final String STORE_PACKAGE = GOOGLE_PLAY_STORE_PACKAGE;
+    public static final String STORE_PRO_URL = GOOGLE_PLAY_STORE_PRO_URL;
+
+    public static Intent getStoreIntent(Context context, String storeProUrl) {
+        PackageManager manager = context.getPackageManager();
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(storeProUrl));
+        List<ResolveInfo> infos = manager.queryIntentActivities (intent, PackageManager.GET_RESOLVED_FILTER);
+        for (ResolveInfo info : infos) {
+            IntentFilter filter = info.filter;
+            if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
+                if (info.activityInfo.packageName.equals(STORE_PACKAGE)) {
+                    Intent result = new Intent(Intent.ACTION_VIEW);
+                    result.setClassName(info.activityInfo.packageName, info.activityInfo.name);
+                    result.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    result.setData(Uri.parse(storeProUrl));
+                    return result;
+                }
+            }
+        }
+
+        return null;
     }
 }
