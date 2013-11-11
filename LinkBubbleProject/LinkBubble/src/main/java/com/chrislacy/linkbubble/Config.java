@@ -18,6 +18,13 @@ import java.util.List;
  */
 public class Config {
 
+    public enum BubbleAction {
+        None,
+        Destroy,
+        ConsumeLeft,
+        ConsumeRight
+    }
+
     public static DisplayMetrics mDm = new DisplayMetrics();
 
     public static int mScreenCenterX;

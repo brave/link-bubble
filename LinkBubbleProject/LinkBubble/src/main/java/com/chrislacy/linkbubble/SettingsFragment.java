@@ -31,7 +31,6 @@ import java.util.List;
 import java.util.Vector;
 
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.chrislacy.linkbubble.R;
 
@@ -159,12 +158,12 @@ public class SettingsFragment extends PreferenceFragment {
             leftConsumeBubblePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    AlertDialog alertDialog = getConfigureBubbleAlert(Bubble.BubbleType.Consume_Left, leftConsumeBubblePreference);
+                    AlertDialog alertDialog = getConfigureBubbleAlert(Config.BubbleAction.ConsumeRight, leftConsumeBubblePreference);
                     alertDialog.show();
                     return true;
                 }
             });
-            leftConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Bubble.BubbleType.Consume_Left));
+            leftConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeRight));
         }
 
         final Preference rightConsumeBubblePreference = findPreference(Settings.PREFERENCE_RIGHT_CONSUME_BUBBLE);
@@ -172,12 +171,12 @@ public class SettingsFragment extends PreferenceFragment {
             rightConsumeBubblePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    AlertDialog alertDialog = getConfigureBubbleAlert(Bubble.BubbleType.Consume_Right, rightConsumeBubblePreference);
+                    AlertDialog alertDialog = getConfigureBubbleAlert(Config.BubbleAction.ConsumeLeft, rightConsumeBubblePreference);
                     alertDialog.show();
                     return true;
                 }
             });
-            rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Bubble.BubbleType.Consume_Right));
+            rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeLeft));
         }
     }
 
@@ -188,7 +187,7 @@ public class SettingsFragment extends PreferenceFragment {
         super.onDestroy();
     }
 
-    public AlertDialog getConfigureBubbleAlert(final Bubble.BubbleType bubble, final Preference preference) {
+    public AlertDialog getConfigureBubbleAlert(final Config.BubbleAction bubble, final Preference preference) {
 
         final ArrayList<ActionItem> actionItems = new ArrayList<ActionItem>();
 

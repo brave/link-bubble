@@ -32,23 +32,15 @@ public class Canvas extends FrameLayout {
 
     private boolean mEnabled;
 
-    public enum BubbleAction {
-        None,
-
-        Destroy,
-        OpenBrowser,
-        OpenTwitter
-    }
-
     public class TargetInfo {
 
         public TargetInfo() {
-            mAction = BubbleAction.None;
+            mAction = Config.BubbleAction.None;
             mTargetX = -1;
             mTargetY = -1;
         }
 
-        BubbleAction mAction;
+        Config.BubbleAction mAction;
         int mTargetX;
         int mTargetY;
     }
@@ -64,18 +56,18 @@ public class Canvas extends FrameLayout {
         private float mButtonHeight;
         private Circle mSnapCircle;
         private Circle mDefaultCircle;
-        private BubbleAction mAction;
+        private Config.BubbleAction mAction;
 
-        public BubbleTarget(Drawable d, BubbleAction action, float xFraction, float yFraction) {
+        public BubbleTarget(Drawable d, Config.BubbleAction action, float xFraction, float yFraction) {
             Init(d, action, xFraction, yFraction);
         }
 
-        public BubbleTarget(int resId, BubbleAction action, float xFraction, float yFraction) {
+        public BubbleTarget(int resId, Config.BubbleAction action, float xFraction, float yFraction) {
             Drawable d = mContext.getResources().getDrawable(resId);
             Init(d, action, xFraction, yFraction);
         }
 
-        private void Init(Drawable d, BubbleAction action, float xFraction, float yFraction) {
+        private void Init(Drawable d, Config.BubbleAction action, float xFraction, float yFraction) {
             mTargetLayout = new RelativeLayout(mContext);
             mAction = action;
             mXFraction = xFraction;
@@ -143,7 +135,7 @@ public class Canvas extends FrameLayout {
             mLayout.updateViewLayout(mTargetLayout, targetLayoutLP);
         }
 
-        public BubbleAction GetAction() {
+        public Config.BubbleAction GetAction() {
             return mAction;
         }
 
@@ -167,13 +159,13 @@ public class Canvas extends FrameLayout {
 
         addView(mLayout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-        mTargets.add(new BubbleTarget(android.R.drawable.ic_delete, BubbleAction.Destroy, 0.5f, 0.85f));
+        mTargets.add(new BubbleTarget(android.R.drawable.ic_delete, Config.BubbleAction.Destroy, 0.5f, 0.85f));
         if (Config.mTwitterIcon != null) {
-            mTargets.add(new BubbleTarget(Config.mTwitterIcon, BubbleAction.OpenTwitter, 0.2f, 0.2f));
+            mTargets.add(new BubbleTarget(Config.mTwitterIcon, Config.BubbleAction.ConsumeRight, 0.2f, 0.2f));
         } else {
-            mTargets.add(new BubbleTarget(Config.mBrowserIcon, BubbleAction.OpenBrowser, 0.2f, 0.2f));
+            mTargets.add(new BubbleTarget(Config.mBrowserIcon, Config.BubbleAction.ConsumeLeft, 0.2f, 0.2f));
         }
-        mTargets.add(new BubbleTarget(Config.mBrowserIcon, BubbleAction.OpenBrowser, 0.8f, 0.2f));
+        mTargets.add(new BubbleTarget(Config.mBrowserIcon, Config.BubbleAction.ConsumeLeft, 0.8f, 0.2f));
 
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 

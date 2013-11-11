@@ -16,12 +16,6 @@ import java.util.Vector;
 
 public class Bubble extends RelativeLayout {
 
-    public enum BubbleType {
-        Close,
-        Consume_Left,
-        Consume_Right,
-    };
-
     private Badge mBadge;
     private ImageView mShape;
     protected WindowManager mWindowManager;

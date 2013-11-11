@@ -3,15 +3,11 @@ package com.chrislacy.linkbubble;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.PixelFormat;
 import android.preference.PreferenceManager;
 import android.view.Choreographer;
-import android.view.Gravity;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Vector;
@@ -40,13 +36,13 @@ public class MainController implements Choreographer.FrameCallback {
         public abstract String getName();
     }
 
-    private void doTargetAction(Canvas.BubbleAction action, String url) {
+    private void doTargetAction(Config.BubbleAction action, String url) {
         switch (action) {
-            case OpenBrowser: {
+            case ConsumeLeft: {
                     MainActivity.loadInBrowser(mContext, url, true);
                 }
                 break;
-            case OpenTwitter: {
+            case ConsumeRight: {
                     // TODO: Retrieve the class name below from the app in case Twitter ever change it.
                     Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("text/plain");
@@ -141,7 +137,7 @@ public class MainController implements Choreographer.FrameCallback {
             int targetX, targetY;
 
             float t = 0.02f;
-            if (targetInfo.mAction == Canvas.BubbleAction.None) {
+            if (targetInfo.mAction == Config.BubbleAction.None) {
                 targetX = mTargetX;
                 targetY = mTargetY;
             } else {
@@ -186,7 +182,7 @@ public class MainController implements Choreographer.FrameCallback {
                 targetInfo.mTargetX -= Config.mBubbleWidth * 0.5f;
                 targetInfo.mTargetY -= Config.mBubbleHeight * 0.5f;
 
-                if (targetInfo.mAction != Canvas.BubbleAction.None &&
+                if (targetInfo.mAction != Config.BubbleAction.None &&
                     mBubble.getXPos() == targetInfo.mTargetX &&
                     mBubble.getYPos() == targetInfo.mTargetY) {
 
@@ -302,8 +298,8 @@ public class MainController implements Choreographer.FrameCallback {
                 Canvas.TargetInfo ti = mCanvas.getBubbleAction(bubbleCircle);
                 switch (ti.mAction) {
                     case Destroy:
-                    case OpenBrowser:
-                    case OpenTwitter:
+                    case ConsumeLeft:
+                    case ConsumeRight:
                         ti.mTargetX = (int) (0.5f + ti.mTargetX - Config.mBubbleWidth * 0.5f);
                         ti.mTargetY = (int) (0.5f + ti.mTargetY - Config.mBubbleHeight * 0.5f);
                         mTargetInfo = ti;
@@ -563,7 +559,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    private void destroyBubble(Bubble bubble, Canvas.BubbleAction action) {
+    private void destroyBubble(Bubble bubble, Config.BubbleAction action) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         boolean debug = prefs.getBoolean("debug_flick", true);
 
