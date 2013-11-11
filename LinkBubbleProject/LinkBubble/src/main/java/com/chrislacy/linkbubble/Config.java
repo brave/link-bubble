@@ -21,8 +21,8 @@ public class Config {
     public enum BubbleAction {
         None,
         Destroy,
-        ConsumeLeft,
-        ConsumeRight
+        ConsumeRight,
+        ConsumeLeft
     }
 
     public static DisplayMetrics mDm = new DisplayMetrics();

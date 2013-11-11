@@ -161,11 +161,11 @@ public class Canvas extends FrameLayout {
 
         mTargets.add(new BubbleTarget(android.R.drawable.ic_delete, Config.BubbleAction.Destroy, 0.5f, 0.85f));
         if (Config.mTwitterIcon != null) {
-            mTargets.add(new BubbleTarget(Config.mTwitterIcon, Config.BubbleAction.ConsumeRight, 0.2f, 0.2f));
+            mTargets.add(new BubbleTarget(Config.mTwitterIcon, Config.BubbleAction.ConsumeLeft, 0.2f, 0.2f));
         } else {
-            mTargets.add(new BubbleTarget(Config.mBrowserIcon, Config.BubbleAction.ConsumeLeft, 0.2f, 0.2f));
+            mTargets.add(new BubbleTarget(Config.mBrowserIcon, Config.BubbleAction.ConsumeRight, 0.2f, 0.2f));
         }
-        mTargets.add(new BubbleTarget(Config.mBrowserIcon, Config.BubbleAction.ConsumeLeft, 0.8f, 0.2f));
+        mTargets.add(new BubbleTarget(Config.mBrowserIcon, Config.BubbleAction.ConsumeRight, 0.8f, 0.2f));
 
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 

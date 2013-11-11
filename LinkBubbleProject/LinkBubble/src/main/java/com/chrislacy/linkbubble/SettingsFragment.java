@@ -158,12 +158,12 @@ public class SettingsFragment extends PreferenceFragment {
             leftConsumeBubblePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    AlertDialog alertDialog = getConfigureBubbleAlert(Config.BubbleAction.ConsumeRight, leftConsumeBubblePreference);
+                    AlertDialog alertDialog = getConfigureBubbleAlert(Config.BubbleAction.ConsumeLeft, leftConsumeBubblePreference);
                     alertDialog.show();
                     return true;
                 }
             });
-            leftConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeRight));
+            leftConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeLeft));
         }
 
         final Preference rightConsumeBubblePreference = findPreference(Settings.PREFERENCE_RIGHT_CONSUME_BUBBLE);
@@ -171,12 +171,12 @@ public class SettingsFragment extends PreferenceFragment {
             rightConsumeBubblePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    AlertDialog alertDialog = getConfigureBubbleAlert(Config.BubbleAction.ConsumeLeft, rightConsumeBubblePreference);
+                    AlertDialog alertDialog = getConfigureBubbleAlert(Config.BubbleAction.ConsumeRight, rightConsumeBubblePreference);
                     alertDialog.show();
                     return true;
                 }
             });
-            rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeLeft));
+            rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeRight));
         }
     }
 

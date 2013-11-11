@@ -51,13 +51,13 @@ public class Settings {
     void setConsumeBubble(Config.BubbleAction bubbleType, String label, String packageName, String activityClassName) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         switch (bubbleType) {
-            case ConsumeRight:
+            case ConsumeLeft:
                 editor.putString(PREFERENCE_LEFT_CONSUME_BUBBLE_LABEL, label);
                 editor.putString(PREFERENCE_LEFT_CONSUME_BUBBLE_PACKAGE_NAME, packageName);
                 editor.putString(PREFERENCE_LEFT_CONSUME_BUBBLE_ACTIVITY_CLASS_NAME, activityClassName);
                 break;
 
-            case ConsumeLeft:
+            case ConsumeRight:
                 editor.putString(PREFERENCE_RIGHT_CONSUME_BUBBLE_LABEL, label);
                 editor.putString(PREFERENCE_RIGHT_CONSUME_BUBBLE_PACKAGE_NAME, packageName);
                 editor.putString(PREFERENCE_RIGHT_CONSUME_BUBBLE_ACTIVITY_CLASS_NAME, activityClassName);
@@ -68,10 +68,10 @@ public class Settings {
 
     String getConsumeBubbleLabel(Config.BubbleAction bubbleType) {
         switch (bubbleType) {
-            case ConsumeRight:
+            case ConsumeLeft:
                 return mSharedPreferences.getString(PREFERENCE_LEFT_CONSUME_BUBBLE_LABEL, null);
 
-            case ConsumeLeft:
+            case ConsumeRight:
                 return mSharedPreferences.getString(PREFERENCE_RIGHT_CONSUME_BUBBLE_LABEL, null);
         }
         return null;

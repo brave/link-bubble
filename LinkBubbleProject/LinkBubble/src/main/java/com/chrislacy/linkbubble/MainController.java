@@ -38,11 +38,11 @@ public class MainController implements Choreographer.FrameCallback {
 
     private void doTargetAction(Config.BubbleAction action, String url) {
         switch (action) {
-            case ConsumeLeft: {
+            case ConsumeRight: {
                     MainActivity.loadInBrowser(mContext, url, true);
                 }
                 break;
-            case ConsumeRight: {
+            case ConsumeLeft: {
                     // TODO: Retrieve the class name below from the app in case Twitter ever change it.
                     Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("text/plain");
@@ -298,8 +298,8 @@ public class MainController implements Choreographer.FrameCallback {
                 Canvas.TargetInfo ti = mCanvas.getBubbleAction(bubbleCircle);
                 switch (ti.mAction) {
                     case Destroy:
-                    case ConsumeLeft:
                     case ConsumeRight:
+                    case ConsumeLeft:
                         ti.mTargetX = (int) (0.5f + ti.mTargetX - Config.mBubbleWidth * 0.5f);
                         ti.mTargetY = (int) (0.5f + ti.mTargetY - Config.mBubbleHeight * 0.5f);
                         mTargetInfo = ti;
