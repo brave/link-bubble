@@ -25,6 +25,12 @@ public class Config {
         ConsumeLeft
     }
 
+    enum ActionType {
+        Unknown,
+        View,
+        Share,
+    }
+
     public static DisplayMetrics mDm = new DisplayMetrics();
 
     public static int mScreenCenterX;

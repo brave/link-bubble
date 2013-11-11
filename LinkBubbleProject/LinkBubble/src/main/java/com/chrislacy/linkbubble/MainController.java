@@ -2,7 +2,11 @@ package com.chrislacy.linkbubble;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.view.Choreographer;
 import android.view.View;
@@ -10,6 +14,8 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Toast;
 
+import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 
 /**
@@ -37,21 +43,30 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     private void doTargetAction(Config.BubbleAction action, String url) {
+
         switch (action) {
-            case ConsumeRight: {
-                    MainActivity.loadInBrowser(mContext, url, true);
-                }
-                break;
+            case ConsumeRight:
             case ConsumeLeft: {
+                Config.ActionType actionType = Settings.get().getConsumeBubbleActionType(action);
+                if (actionType == Config.ActionType.Share) {
                     // TODO: Retrieve the class name below from the app in case Twitter ever change it.
                     Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("text/plain");
-                    intent.setClassName("com.twitter.android", "com.twitter.applib.PostActivity");
+                    intent.setClassName(Settings.get().getConsumeBubblePackageName(action),
+                                        Settings.get().getConsumeBubbleActivityClassName(action));
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(Intent.EXTRA_TEXT, url);
                     mContext.startActivity(intent);
+                } else if (actionType == Config.ActionType.View) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setClassName(Settings.get().getConsumeBubblePackageName(action),
+                                        Settings.get().getConsumeBubbleActivityClassName(action));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    intent.setData(Uri.parse(url));
+                    mContext.startActivity(intent);
                 }
                 break;
+            }
             default:
                 break;
         }

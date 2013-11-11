@@ -204,7 +204,7 @@ public class SettingsFragment extends PreferenceFragment {
             if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
                 // Ignore LinkBubble from this list
                 if (resolveInfo.activityInfo.packageName.equals(packageName) == false) {
-                    actionItems.add(new ActionItem(ActionItem.Type.View,
+                    actionItems.add(new ActionItem(Config.ActionType.View,
                                             resources,
                                             resolveInfo.loadLabel(packageManager).toString(),
                                             resolveInfo.loadIcon(packageManager),
@@ -219,7 +219,7 @@ public class SettingsFragment extends PreferenceFragment {
         intent.setType("text/plain");
         resolveInfos = packageManager.queryIntentActivities(intent, 0);
         for (ResolveInfo resolveInfo : resolveInfos) {
-            actionItems.add(new ActionItem(ActionItem.Type.Share,
+            actionItems.add(new ActionItem(Config.ActionType.Share,
                                             resources,
                                             resolveInfo.loadLabel(packageManager).toString(),
                                             resolveInfo.loadIcon(packageManager),
@@ -255,7 +255,7 @@ public class SettingsFragment extends PreferenceFragment {
                 Object tag = view.getTag();
                 if (tag instanceof ActionItem) {
                     ActionItem actionItem = (ActionItem) tag;
-                    Settings.get().setConsumeBubble(bubble, actionItem.getLabel(),
+                    Settings.get().setConsumeBubble(bubble, actionItem.mType, actionItem.getLabel(),
                                                     actionItem.mPackageName, actionItem.mActivityClassName);
                     preference.setSummary(Settings.get().getConsumeBubbleLabel(bubble));
                     alertDialog.dismiss();
@@ -328,7 +328,7 @@ public class SettingsFragment extends PreferenceFragment {
         @Override
         public long getHeaderId(int position) {
             ActionItem actionItem = mData[position];
-            if (actionItem.mType == ActionItem.Type.View) {
+            if (actionItem.mType == Config.ActionType.View) {
                 return 0;
             } else {
                 return 1;
@@ -337,22 +337,18 @@ public class SettingsFragment extends PreferenceFragment {
     };
 
     private static class ActionItem {
-        enum Type {
-            View,
-            Share,
-        }
 
         private String mLabel;
-        private Type mType;
+        private Config.ActionType mType;
         private String mCategory;
         private String mPackageName;
         private String mActivityClassName;
         private Drawable mIcon;
 
-        public ActionItem(Type type, Resources resources, String label, Drawable icon, String packageName, String activityClassName) {
+        public ActionItem(Config.ActionType type, Resources resources, String label, Drawable icon, String packageName, String activityClassName) {
             mType = type;
             mLabel = label;
-            mCategory = resources.getString(type == Type.View ? R.string.consume_category_view : R.string.consume_category_share);
+            mCategory = resources.getString(type == Config.ActionType.View ? R.string.consume_category_view : R.string.consume_category_share);
             mIcon = icon;
             mPackageName = packageName;
             mActivityClassName = activityClassName;
