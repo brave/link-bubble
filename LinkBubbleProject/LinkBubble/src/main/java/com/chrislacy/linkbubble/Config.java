@@ -39,9 +39,6 @@ public class Config {
     public static float mBubbleWidth;
     public static float mBubbleHeight;
 
-    public static Drawable mBrowserIcon;
-    public static Drawable mTwitterIcon;
-
     public static int mContentViewBubbleY;
     public static int mContentViewBubbleX;
 
@@ -76,19 +73,6 @@ public class Config {
         mContentViewBubbleY = (int) (mBubbleHeight * 0.15f);
 
         mContentOffset = (int) (mBubbleHeight * 1.2f);
-
-        PackageManager pk = context.getPackageManager();
-        try {
-            mBrowserIcon = pk.getApplicationIcon("com.android.browser");
-        } catch (Exception e) {
-            mBrowserIcon = context.getResources().getDrawable(R.drawable.target_snap);
-        }
-
-        try {
-            mTwitterIcon = pk.getApplicationIcon("com.twitter.android");
-        } catch (Exception e) {
-            mTwitterIcon = null;
-        }
     }
 
     public static float getContentViewX(int bubbleIndex) {

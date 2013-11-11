@@ -58,8 +58,8 @@ public class Canvas extends FrameLayout {
         private Circle mDefaultCircle;
         private Config.BubbleAction mAction;
 
-        public BubbleTarget(Drawable d, Config.BubbleAction action, float xFraction, float yFraction) {
-            Init(d, action, xFraction, yFraction);
+        public BubbleTarget(Config.BubbleAction action, float xFraction, float yFraction) {
+            Init(Settings.get().getConsumeBubbleIcon(action), action, xFraction, yFraction);
         }
 
         public BubbleTarget(int resId, Config.BubbleAction action, float xFraction, float yFraction) {
@@ -160,12 +160,8 @@ public class Canvas extends FrameLayout {
         addView(mLayout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
         mTargets.add(new BubbleTarget(android.R.drawable.ic_delete, Config.BubbleAction.Destroy, 0.5f, 0.85f));
-        if (Config.mTwitterIcon != null) {
-            mTargets.add(new BubbleTarget(Config.mTwitterIcon, Config.BubbleAction.ConsumeLeft, 0.2f, 0.2f));
-        } else {
-            mTargets.add(new BubbleTarget(Config.mBrowserIcon, Config.BubbleAction.ConsumeRight, 0.2f, 0.2f));
-        }
-        mTargets.add(new BubbleTarget(Config.mBrowserIcon, Config.BubbleAction.ConsumeRight, 0.8f, 0.2f));
+        mTargets.add(new BubbleTarget(Config.BubbleAction.ConsumeLeft, 0.2f, 0.2f));
+        mTargets.add(new BubbleTarget(Config.BubbleAction.ConsumeRight, 0.8f, 0.2f));
 
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 

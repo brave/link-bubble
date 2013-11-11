@@ -3,7 +3,11 @@ package com.chrislacy.linkbubble;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
+
+import com.chrislacy.linkbubble.R;
 
 public class Settings {
 
@@ -48,9 +52,9 @@ public class Settings {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
     }
 
-    void setConsumeBubble(Config.BubbleAction bubbleType, String label, String packageName, String activityClassName) {
+    void setConsumeBubble(Config.BubbleAction action, String label, String packageName, String activityClassName) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
-        switch (bubbleType) {
+        switch (action) {
             case ConsumeLeft:
                 editor.putString(PREFERENCE_LEFT_CONSUME_BUBBLE_LABEL, label);
                 editor.putString(PREFERENCE_LEFT_CONSUME_BUBBLE_PACKAGE_NAME, packageName);
@@ -66,8 +70,8 @@ public class Settings {
         editor.commit();
     }
 
-    String getConsumeBubbleLabel(Config.BubbleAction bubbleType) {
-        switch (bubbleType) {
+    String getConsumeBubbleLabel(Config.BubbleAction action) {
+        switch (action) {
             case ConsumeLeft:
                 return mSharedPreferences.getString(PREFERENCE_LEFT_CONSUME_BUBBLE_LABEL, null);
 
@@ -75,6 +79,30 @@ public class Settings {
                 return mSharedPreferences.getString(PREFERENCE_RIGHT_CONSUME_BUBBLE_LABEL, null);
         }
         return null;
+    }
+
+    String getConsumeBubblePackageName(Config.BubbleAction action) {
+        switch (action) {
+            case ConsumeLeft:
+                return mSharedPreferences.getString(PREFERENCE_LEFT_CONSUME_BUBBLE_PACKAGE_NAME, null);
+
+            case ConsumeRight:
+                return mSharedPreferences.getString(PREFERENCE_RIGHT_CONSUME_BUBBLE_PACKAGE_NAME, null);
+        }
+        return null;
+    }
+
+    Drawable getConsumeBubbleIcon(Config.BubbleAction action) {
+        PackageManager packageManager = mContext.getPackageManager();
+        try {
+            String packageName = getConsumeBubblePackageName(action);
+            if (packageName != null) {
+                return packageManager.getApplicationIcon(packageName);
+            }
+        } catch (OutOfMemoryError ex) {
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+        return mContext.getResources().getDrawable(R.drawable.ic_launcher);
     }
 
 }
