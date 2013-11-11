@@ -283,7 +283,7 @@ public class ContentView extends LinearLayout {
         });
 
         mAppButton = (ImageButton)mToolbarLayout.findViewById(R.id.open_in_app_button);
-        mToolbarLayout.setOnClickListener(new OnClickListener() {
+        mAppButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 String action = Intent.ACTION_VIEW;
