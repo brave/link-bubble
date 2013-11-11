@@ -5,6 +5,7 @@ import android.app.ListFragment;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -31,7 +32,6 @@ public class MainActivity extends PreferenceActivity {
 
     //private boolean serviceBound = false;
     private String mUrl;
-    private List<String> mBrowsers = new Vector<String>();
 
     private final Handler mHandler = new Handler();
 
@@ -52,9 +52,8 @@ public class MainActivity extends PreferenceActivity {
 
         PreferenceManager.setDefaultValues(this, R.xml.prefs, true);
         startService(new Intent(this, MainService.class));
-        getBrowsers();
 
-
+        List<Intent> browsers = Settings.get().getBrowsers();
 
         if (isActionView) {
             boolean openLink = false;
@@ -72,8 +71,8 @@ public class MainActivity extends PreferenceActivity {
                     ComponentName cn = baseIntent.getComponent();
 
                     boolean isBlacklisted = false;
-                    for (String packageName : mBrowsers) {
-                        if (cn.getPackageName().equals(packageName)) {
+                    for (Intent browser : browsers) {
+                        if (cn.getPackageName().equals(browser.getPackage())) {
                             isBlacklisted = true;
                             break;
                         }
@@ -172,13 +171,6 @@ public class MainActivity extends PreferenceActivity {
         }
     };
 
-    private void getBrowsers() {
-        //PackageManager packageManager = getPackageManager();
-        //Intent intent = new Intent(Intent.ACTION_VIEW);
-        //intent.setData(Uri.parse("http://www.google.com"));
-        //mBrowsers = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-        mBrowsers.add("com.android.browser");
-    }
 
     public static void loadInBrowser(Context context, Intent intent) {
         Intent browserIntent = context.getPackageManager().getLaunchIntentForPackage("com.android.browser");

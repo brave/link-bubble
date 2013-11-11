@@ -2,12 +2,19 @@ package com.chrislacy.linkbubble;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 
 import com.chrislacy.linkbubble.R;
+
+import java.util.List;
+import java.util.Vector;
 
 public class Settings {
 
@@ -48,10 +55,40 @@ public class Settings {
 
     private SharedPreferences mSharedPreferences;
     private Context mContext;
+    private List<Intent> mBrowsers;
+
 
     Settings(Context context) {
         mContext = context;
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+
+        mBrowsers = new Vector<Intent>();
+        updateBrowsers();
+    }
+
+    void updateBrowsers() {
+        mBrowsers.clear();
+        String packageName = mContext.getPackageName();
+        PackageManager packageManager = mContext.getPackageManager();
+        Intent queryIntent = new Intent();
+        queryIntent.setAction(Intent.ACTION_VIEW);
+        queryIntent.setData(Uri.parse("http://www.fdasfjsadfdsfas.com"));        // Something stupid that no non-browser app will handle
+        List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(queryIntent, PackageManager.GET_RESOLVED_FILTER);
+        for (ResolveInfo resolveInfo : resolveInfos) {
+            IntentFilter filter = resolveInfo.filter;
+            if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
+                // Ignore LinkBubble from this list
+                if (resolveInfo.activityInfo.packageName.equals(packageName) == false) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setClassName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
+                    mBrowsers.add(intent);
+                }
+            }
+        }
+    }
+
+    List<Intent> getBrowsers() {
+        return mBrowsers;
     }
 
     void setConsumeBubble(Config.BubbleAction action, Config.ActionType type, String label, String packageName, String activityClassName) {
@@ -142,5 +179,6 @@ public class Settings {
         }
         return mContext.getResources().getDrawable(R.drawable.ic_launcher);
     }
+
 
 }
