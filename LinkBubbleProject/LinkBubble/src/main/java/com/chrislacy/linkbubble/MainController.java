@@ -151,18 +151,23 @@ public class MainController implements Choreographer.FrameCallback {
 
             int targetX, targetY;
 
-            float t = 0.02f;
+            boolean overshoot = false;
             if (targetInfo.mAction == Config.BubbleAction.None) {
                 targetX = mTargetX;
                 targetY = mTargetY;
             } else {
-                t = 0.1f;
+                overshoot = true;
                 targetX = (int) (targetInfo.mTargetX - Config.mBubbleWidth * 0.5f);
                 targetY = (int) (targetInfo.mTargetY - Config.mBubbleHeight * 0.5f);
             }
 
+            float t = 0.02f;
+            if (mBubble.isSnapping() || overshoot) {
+                t = 0.2f;
+            }
+
             if (targetX != mSetX || targetY != mSetY) {
-                mBubble.setTargetPos(targetX, targetY, t);
+                mBubble.setTargetPos(targetX, targetY, t, overshoot);
                 mSetX = targetX;
                 mSetY = targetY;
             }
@@ -280,7 +285,7 @@ public class MainController implements Choreographer.FrameCallback {
                     mTargetX = mInitialX + (mTargetY - mInitialY) / m;
                 } else {
                     mLinear = false;
-                    mPeriod += 0.2f;
+                    mPeriod += 0.15f;
                 }
             }
 
@@ -291,7 +296,7 @@ public class MainController implements Choreographer.FrameCallback {
             float v = (float) Math.sqrt(vx*vx + vy*vy);
 
             mPeriod += d/v;
-            mPeriod = Util.clamp(0.3f, mPeriod, 0.7f);
+            mPeriod = Util.clamp(0.05f, mPeriod, 0.5f);
         }
         public void OnExitState() {
             mCanvas.fadeOut();
@@ -318,7 +323,7 @@ public class MainController implements Choreographer.FrameCallback {
                         ti.mTargetX = (int) (0.5f + ti.mTargetX - Config.mBubbleWidth * 0.5f);
                         ti.mTargetY = (int) (0.5f + ti.mTargetY - Config.mBubbleHeight * 0.5f);
                         mTargetInfo = ti;
-                        mBubble.setTargetPos(ti.mTargetX, ti.mTargetY, 0.04f);
+                        mBubble.setTargetPos(ti.mTargetX, ti.mTargetY, 0.2f, true);
                         break;
                     default:
                         if (mTime >= mPeriod) {
@@ -694,7 +699,11 @@ public class MainController implements Choreographer.FrameCallback {
             b.update(dt);
         }
 
-        mCanvas.update(dt);
+        Bubble frontBubble = null;
+        if (mBubbles.size() > 0) {
+            frontBubble = getFrontBubble();
+        }
+        mCanvas.update(dt, frontBubble);
 
         if (mCurrentState.OnUpdate(dt)) {
             scheduleUpdate();

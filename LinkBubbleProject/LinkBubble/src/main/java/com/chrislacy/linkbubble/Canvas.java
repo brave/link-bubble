@@ -21,6 +21,7 @@ public class Canvas extends FrameLayout {
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
 
+    private BubbleTarget mDeleteTarget;
     private Vector<BubbleTarget> mTargets = new Vector<BubbleTarget>();
 
     private final float mMaxAlpha = 0.9f;
@@ -116,6 +117,46 @@ public class Canvas extends FrameLayout {
             mLayout.addView(mTargetLayout, targetLayoutLP);
         }
 
+        private void update(Bubble bubble) {
+            if (!bubble.isSnapping()) {
+                float xf = (bubble.getXPos() + Config.mBubbleWidth * 0.5f) / Config.mScreenWidth;
+                xf = 2.0f * Util.clamp(0.0f, xf, 1.0f) - 1.0f;
+                Util.Assert(xf >= -1.0f && xf <= 1.0f);
+
+                mSnapCircle.mX = Config.mScreenWidth * mXFraction + xf * Config.mScreenWidth * 0.1f;
+
+                int bubbleYC = (int) (bubble.getYPos() + Config.mBubbleHeight * 0.5f);
+                int bubbleY0 = (int) (Config.mScreenHeight * 0.75f);
+                int bubbleY1 = (int) (Config.mScreenHeight * 0.90f);
+
+                int targetY0 = (int) (Config.mScreenHeight * mYFraction);
+                int targetY1 = (int) (Config.mScreenHeight * (mYFraction + 0.05f));
+
+                if (bubbleYC < bubbleY0) {
+                    mSnapCircle.mY = Config.mScreenHeight * mYFraction;
+                } else if (bubbleYC < bubbleY1) {
+                    float yf = (float)(bubbleYC - bubbleY0) / (float)(bubbleY1 - bubbleY0);
+                    mSnapCircle.mY = Config.mScreenHeight * mYFraction + yf * (targetY1 - targetY0);
+                } else {
+                    mSnapCircle.mY = bubbleYC;
+                }
+
+                mDefaultCircle.mX = mSnapCircle.mX;
+                mDefaultCircle.mY = mSnapCircle.mY;
+
+                RelativeLayout.LayoutParams imageLP = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                imageLP.leftMargin = (int) (0.5f + mDefaultCircle.mRadius - mButtonWidth * 0.5f);
+                imageLP.topMargin = (int) (0.5f + mDefaultCircle.mRadius - mButtonHeight * 0.5f);
+                mTargetLayout.updateViewLayout(mImage, imageLP);
+
+                // Add main relative layout to canvas
+                RelativeLayout.LayoutParams targetLayoutLP = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                targetLayoutLP.leftMargin = (int) (0.5f + mDefaultCircle.mX - mDefaultCircle.mRadius);
+                targetLayoutLP.topMargin = (int) (0.5f + mDefaultCircle.mY - mDefaultCircle.mRadius);
+                mLayout.updateViewLayout(mTargetLayout, targetLayoutLP);
+            }
+        }
+
         public void OnOrientationChanged() {
             mSnapCircle.mX = Config.mScreenWidth * mXFraction;
             mSnapCircle.mY = Config.mScreenHeight * mYFraction;
@@ -159,7 +200,9 @@ public class Canvas extends FrameLayout {
 
         addView(mLayout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-        mTargets.add(new BubbleTarget(android.R.drawable.ic_delete, Config.BubbleAction.Destroy, 0.5f, 0.85f));
+        mDeleteTarget = new BubbleTarget(android.R.drawable.ic_delete, Config.BubbleAction.Destroy, 0.5f, 0.85f);
+        mTargets.add(mDeleteTarget);
+
         mTargets.add(new BubbleTarget(Config.BubbleAction.ConsumeLeft, 0.2f, 0.2f));
         mTargets.add(new BubbleTarget(Config.BubbleAction.ConsumeRight, 0.8f, 0.2f));
 
@@ -171,7 +214,7 @@ public class Canvas extends FrameLayout {
         mWindowManagerParams.height = WindowManager.LayoutParams.MATCH_PARENT;
         mWindowManagerParams.width = WindowManager.LayoutParams.MATCH_PARENT;
         mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_PHONE;
-        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
+        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
         mWindowManager.addView(this, mWindowManagerParams);
     }
@@ -211,7 +254,7 @@ public class Canvas extends FrameLayout {
         MainController.scheduleUpdate();
     }
 
-    public void update(float dt) {
+    public void update(float dt, Bubble frontBubble) {
         if (mCurrentAlpha < mTargetAlpha) {
             mCurrentAlpha = Util.clamp(0.0f, mCurrentAlpha + mAlphaDelta * dt, mMaxAlpha);
             MainController.scheduleUpdate();
@@ -220,6 +263,10 @@ public class Canvas extends FrameLayout {
             MainController.scheduleUpdate();
         }
         applyAlpha();
+
+        if (frontBubble != null) {
+            mDeleteTarget.update(frontBubble);
+        }
     }
 
     public TargetInfo getBubbleAction(Circle bubbleCircle) {

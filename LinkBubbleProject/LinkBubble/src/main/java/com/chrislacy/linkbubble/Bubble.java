@@ -4,14 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+import java.io.Console;
 import java.util.Vector;
 
 public class Bubble extends RelativeLayout {
@@ -34,6 +38,9 @@ public class Bubble extends RelativeLayout {
     private int mTargetY;
     private float mAnimPeriod;
     private float mAnimTime;
+    private boolean mOvershoot;
+    private LinearInterpolator mLinearInterpolator = new LinearInterpolator();
+    private OvershootInterpolator mOvershootInterpolator = new OvershootInterpolator();
 
     private Vector<InternalMoveEvent> mMoveEvents = new Vector<InternalMoveEvent>();
     private FlingTracker mFlingTracker = null;
@@ -126,8 +133,10 @@ public class Bubble extends RelativeLayout {
         mWindowManager.updateViewLayout(this, mWindowManagerParams);
     }
 
-    public void setTargetPos(int x, int y, float t) {
+    public void setTargetPos(int x, int y, float t, boolean overshoot) {
         if (x != mTargetX || y != mTargetY) {
+            mOvershoot = overshoot;
+
             mInitialX = mWindowManagerParams.x;
             mInitialY = mWindowManagerParams.y;
 
@@ -141,14 +150,25 @@ public class Bubble extends RelativeLayout {
         }
     }
 
+    public boolean isSnapping() {
+        return mOvershoot;
+    }
+
     public void update(float dt) {
-        if (mWindowManagerParams.x != mTargetX || mWindowManagerParams.y != mTargetY) {
+        if (mAnimTime < mAnimPeriod) {
             Util.Assert(mAnimPeriod > 0.0f);
 
             mAnimTime = Util.clamp(0.0f, mAnimTime + dt, mAnimPeriod);
 
-            float interpolatedFraction = mAnimTime / mAnimPeriod;   // Linear only for now
-            Util.Assert(interpolatedFraction >= 0.0f && interpolatedFraction <= 1.0f);
+            float tf = mAnimTime / mAnimPeriod;
+            float interpolatedFraction;
+            if (mOvershoot) {
+                interpolatedFraction = mOvershootInterpolator.getInterpolation(tf);
+                //Log.e("GT", "t = " + tf + ", f = " + interpolatedFraction);
+            } else {
+                interpolatedFraction = mLinearInterpolator.getInterpolation(tf);
+                Util.Assert(interpolatedFraction >= 0.0f && interpolatedFraction <= 1.0f);
+            }
 
             int x = (int) (mInitialX + (mTargetX - mInitialX) * interpolatedFraction);
             int y = (int) (mInitialY + (mTargetY - mInitialY) * interpolatedFraction);
@@ -368,7 +388,8 @@ public class Bubble extends RelativeLayout {
         mWindowManagerParams.height = Config.dpToPx(60.0f);
         mWindowManagerParams.width = Config.dpToPx(60.0f);
         mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
-        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
+        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN |
+                                     WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
         mWindowManager.addView(this, mWindowManagerParams);
     }

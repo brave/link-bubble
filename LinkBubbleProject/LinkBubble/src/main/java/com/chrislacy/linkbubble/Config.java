@@ -73,7 +73,7 @@ public class Config {
         mBubbleSnapLeftX = (int) (-mBubbleWidth * 0.2f);
         mBubbleSnapRightX = (int) (mDm.widthPixels - mBubbleWidth * 0.8f);
         mBubbleMinY = (int) 0; //(mContentOffset + mBubbleHeight * 0.15f);
-        mBubbleMaxY = (int) (mDm.heightPixels - 2 * mBubbleHeight); //(mDm.heightPixels - 1.15f * mBubbleHeight);
+        mBubbleMaxY = (int) (mDm.heightPixels - mBubbleHeight); //(mDm.heightPixels - 1.15f * mBubbleHeight);
 
         mContentViewBubbleX = (int) (mDm.widthPixels - mBubbleWidth - mBubbleWidth * 0.5f);
         mContentViewBubbleY = (int) (mBubbleHeight * 0.15f);
