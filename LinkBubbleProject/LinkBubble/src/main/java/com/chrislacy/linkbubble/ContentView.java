@@ -407,7 +407,7 @@ public class ContentView extends LinearLayout {
                         if (title != null) {
                             mTitleTextView.setText(title);
                         }
-                        mUrlTextView.setText(url);
+                        mUrlTextView.setText(url.replace("http://", ""));
 
                         PackageManager manager = mContext.getPackageManager();
                         Intent intent = new Intent();
