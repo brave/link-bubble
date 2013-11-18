@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -49,6 +50,8 @@ public class MainActivity extends PreferenceActivity {
         }
 
         super.onCreate(savedInstanceState);
+        Crashlytics.start(this);
+
 
         PreferenceManager.setDefaultValues(this, R.xml.prefs, true);
         startService(new Intent(this, MainService.class));

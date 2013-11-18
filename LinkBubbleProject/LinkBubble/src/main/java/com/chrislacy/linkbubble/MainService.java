@@ -13,6 +13,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.webkit.WebIconDatabase;
+import com.crashlytics.android.Crashlytics;
 
 /**
  * Created by gw on 28/08/13.
@@ -42,6 +43,9 @@ public class MainService extends Service {
 
     @Override
     public void onCreate() {
+
+
+        Crashlytics.start(this);
 
         Notification.Builder mBuilder = new Notification.Builder(this)
                         .setSmallIcon(R.drawable.ic_launcher)
