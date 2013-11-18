@@ -1,48 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:background="@drawable/toolbar"
     android:layout_height="@dimen/toolbar_height">
 
-    <com.chrislacy.linkbubble.CondensedTextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_gravity="center_vertical"
         android:paddingLeft="8dp"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp"
-        android:textColor="#888888"
-        android:id="@+id/title"/>
+        android:layout_weight="1">
+
+        <com.chrislacy.linkbubble.CondensedTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#888888"
+            android:singleLine="true"
+            android:text="Here is a temp title!"
+            android:id="@+id/title_text"/>
+
+        <com.chrislacy.linkbubble.CondensedTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:paddingBottom="4dp"
+            android:textColor="#888888"
+            android:singleLine="true"
+            android:text="http://www.gooogle.com"
+            android:id="@+id/url_text"/>
+
+    </LinearLayout>
 
     <ImageButton
         android:layout_width="@dimen/toolbar_button_width"
         android:layout_height="@dimen/toolbar_button_height"
-        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
         android:id="@+id/open_in_app_button"
         android:background="@drawable/ic_action_share"
-        android:layout_alignBottom="@+id/textView"
-        android:layout_toLeftOf="@+id/share_button"/>
+        android:visibility="invisible"
+        />
 
     <ImageButton
         android:layout_width="@dimen/toolbar_button_width"
         android:layout_height="@dimen/toolbar_button_height"
-        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
         android:id="@+id/share_button"
         android:background="@drawable/ic_action_share"
-        android:layout_alignBottom="@+id/textView"
-        android:layout_toLeftOf="@+id/overflow_button"/>
+        />
 
     <ImageButton
         android:layout_width="@dimen/toolbar_button_width"
         android:layout_height="@dimen/toolbar_button_height"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
+        android:layout_gravity="center_vertical"
         android:paddingRight="8dp"
         android:id="@+id/overflow_button"
         android:background="@drawable/ic_action_overflow"
         />
 
-</RelativeLayout>
+</LinearLayout>

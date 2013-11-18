@@ -50,6 +50,7 @@ public class ContentView extends LinearLayout {
 
     private WebView mWebView;
     private CondensedTextView mTitleTextView;
+    private CondensedTextView mUrlTextView;
     private ImageButton mShareButton;
     private ImageButton mAppButton;
     private ImageButton mOverflowButton;
@@ -57,7 +58,7 @@ public class ContentView extends LinearLayout {
     private FrameLayout mToolbarSpacer;
     private View mToolbarHeader;
     private View mWebViewPlaceholder;
-    private RelativeLayout mToolbarLayout;
+    private LinearLayout mToolbarLayout;
     private EventHandler mEventHandler;
     private Context mContext;
     private String mUrl;
@@ -272,8 +273,9 @@ public class ContentView extends LinearLayout {
 
         mMaxToolbarHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_height);
 
-        mToolbarLayout = (RelativeLayout) inflate(mContext, R.layout.content_toolbar, null);
-        mTitleTextView = (CondensedTextView) mToolbarLayout.findViewById(R.id.title);
+        mToolbarLayout = (LinearLayout) inflate(mContext, R.layout.content_toolbar, null);
+        mTitleTextView = (CondensedTextView) mToolbarLayout.findViewById(R.id.title_text);
+        mUrlTextView = (CondensedTextView) mToolbarLayout.findViewById(R.id.url_text);
         mShareButton = (ImageButton)mToolbarLayout.findViewById(R.id.share_button);
         mShareButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -337,7 +339,7 @@ public class ContentView extends LinearLayout {
 
         mWebViewPlaceholder = new View(mContext);
 
-        addView(mToolbarLayout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        addView(mToolbarLayout, ViewGroup.LayoutParams.MATCH_PARENT, mContext.getResources().getDimensionPixelSize(R.dimen.toolbar_height));
 
         mWebView = new WebView(ctx);
 
@@ -358,6 +360,7 @@ public class ContentView extends LinearLayout {
                 }
                 mWebView.loadUrl(url);
                 mTitleTextView.setText(null);
+                mUrlTextView.setText(null);
                 return true;
             }
 
@@ -402,11 +405,9 @@ public class ContentView extends LinearLayout {
                         String title = view.getTitle();
                         Spanned text;
                         if (title != null) {
-                            text = Html.fromHtml("<b>" + title + "</b><br />" + "<small>" + url + "</small>");
-                        } else {
-                            text = Html.fromHtml(url);
+                            mTitleTextView.setText(title);
                         }
-                        mTitleTextView.setText(text);
+                        mUrlTextView.setText(url);
 
                         PackageManager manager = mContext.getPackageManager();
                         Intent intent = new Intent();
