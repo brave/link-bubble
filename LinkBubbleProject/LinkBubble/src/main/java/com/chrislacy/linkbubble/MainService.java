@@ -122,12 +122,12 @@ public class MainService extends Service {
             switch (state) {
                 case TelephonyManager.CALL_STATE_IDLE:
                     if (mController != null) {
-                        mController.enable();
+                        //mController.enable();
                     }
                     break;
                 case TelephonyManager.CALL_STATE_RINGING:
                     if (mController != null) {
-                        mController.disable();
+                        //mController.disable();
                     }
                     break;
             }

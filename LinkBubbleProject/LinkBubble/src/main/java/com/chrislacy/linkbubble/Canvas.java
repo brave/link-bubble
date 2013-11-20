@@ -14,9 +14,8 @@ import android.widget.RelativeLayout;
 
 import java.util.Vector;
 
-public class Canvas extends FrameLayout {
+public class Canvas extends RelativeLayout {
 
-    private RelativeLayout mLayout;
     private Context mContext;
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
@@ -32,6 +31,8 @@ public class Canvas extends FrameLayout {
     private float mTargetAlpha = 0.0f;
 
     private boolean mEnabled;
+
+    private ContentView mContentView;
 
     public class TargetInfo {
 
@@ -114,7 +115,7 @@ public class Canvas extends FrameLayout {
             RelativeLayout.LayoutParams targetLayoutLP = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             targetLayoutLP.leftMargin = (int) (0.5f + mDefaultCircle.mX - mDefaultCircle.mRadius);
             targetLayoutLP.topMargin = (int) (0.5f + mDefaultCircle.mY - mDefaultCircle.mRadius);
-            mLayout.addView(mTargetLayout, targetLayoutLP);
+            addView(mTargetLayout, targetLayoutLP);
         }
 
         private void update(Bubble bubble) {
@@ -153,7 +154,7 @@ public class Canvas extends FrameLayout {
                 RelativeLayout.LayoutParams targetLayoutLP = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 targetLayoutLP.leftMargin = (int) (0.5f + mDefaultCircle.mX - mDefaultCircle.mRadius);
                 targetLayoutLP.topMargin = (int) (0.5f + mDefaultCircle.mY - mDefaultCircle.mRadius);
-                mLayout.updateViewLayout(mTargetLayout, targetLayoutLP);
+                updateViewLayout(mTargetLayout, targetLayoutLP);
             }
         }
 
@@ -173,7 +174,7 @@ public class Canvas extends FrameLayout {
             RelativeLayout.LayoutParams targetLayoutLP = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             targetLayoutLP.leftMargin = (int) (0.5f + mDefaultCircle.mX - mDefaultCircle.mRadius);
             targetLayoutLP.topMargin = (int) (0.5f + mDefaultCircle.mY - mDefaultCircle.mRadius);
-            mLayout.updateViewLayout(mTargetLayout, targetLayoutLP);
+            updateViewLayout(mTargetLayout, targetLayoutLP);
         }
 
         public Config.BubbleAction GetAction() {
@@ -193,12 +194,9 @@ public class Canvas extends FrameLayout {
         super(context);
 
         mContext = context;
-        mLayout = new RelativeLayout(context);
         mEnabled = true;
 
         applyAlpha();
-
-        addView(mLayout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
         mDeleteTarget = new BubbleTarget(android.R.drawable.ic_delete, Config.BubbleAction.Destroy, 0.5f, 0.85f);
         mTargets.add(mDeleteTarget);
@@ -214,7 +212,7 @@ public class Canvas extends FrameLayout {
         mWindowManagerParams.height = WindowManager.LayoutParams.MATCH_PARENT;
         mWindowManagerParams.width = WindowManager.LayoutParams.MATCH_PARENT;
         mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_PHONE;
-        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
+        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
         mWindowManager.addView(this, mWindowManagerParams);
     }
@@ -226,17 +224,44 @@ public class Canvas extends FrameLayout {
         }
     }
 
+    public void setContentView(ContentView cv) {
+        if (mContentView != null) {
+            removeView(mContentView);
+        }
+        mContentView = cv;
+        if (mContentView != null) {
+            RelativeLayout.LayoutParams p = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            p.topMargin = Config.mContentOffset;
+            addView(mContentView, p);
+        }
+    }
+
     private void applyAlpha() {
         Util.Assert(mCurrentAlpha >= 0.0f && mCurrentAlpha <= 1.0f);
 
         int color = ((int)(255 * mCurrentAlpha) << 24);
-        mLayout.setBackgroundColor(color);
+        setBackgroundColor(color);
 
         if (!mEnabled || mCurrentAlpha == 0.0f) {
             setVisibility(GONE);
         } else {
             setVisibility(VISIBLE);
         }
+    }
+
+    public void setContentViewTranslation(float ty) {
+        Util.Assert(mContentView != null);
+        mContentView.setTranslationY(ty);
+    }
+
+    public void showContentView() {
+        Util.Assert(mContentView != null);
+        mContentView.setVisibility(VISIBLE);
+    }
+
+    public void hideContentView() {
+        Util.Assert(mContentView != null);
+        mContentView.setVisibility(GONE);
     }
 
     public void enable(boolean enable) {

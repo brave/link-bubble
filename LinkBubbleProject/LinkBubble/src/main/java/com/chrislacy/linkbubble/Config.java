@@ -52,6 +52,9 @@ public class Config {
 
     public static int MAX_BUBBLES;
 
+    public static int BUBBLE_HOME_X;
+    public static int BUBBLE_HOME_Y;
+
     public static void init(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         wm.getDefaultDisplay().getMetrics(mDm);

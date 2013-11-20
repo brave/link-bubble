@@ -103,7 +103,7 @@ public class ContentView extends LinearLayout {
     public void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
 
-        int xp = mOwner.getXPos();
+        int xp = (int) Config.getContentViewX(mOwner.getBubbleIndex());
 
         Path path = new Path();
         path.moveTo(xp + Config.mBubbleWidth * 0.33f, mHeaderHeight + 1.0f);
@@ -217,59 +217,6 @@ public class ContentView extends LinearLayout {
         setOrientation(VERTICAL);
 
         mToolbarSpacer = new FrameLayout(ctx);
-
-        //mCloseButton = new ImageButton(ctx);
-        //mCloseButton.setImageResource(android.R.drawable.ic_delete);
-        //mCloseButton.setOnClickListener(new OnClickListener() {
-        //    @Override
-        //   public void onClick(View v) {
-        //        mEventHandler.onCloseClicked();
-        //    }
-        //});
-        //Drawable dClose = mCloseButton.getDrawable();
-
-        /*
-        mShareButton = new ImageButton(ctx);
-        mShareButton.setImageResource(android.R.drawable.ic_menu_share);
-        mShareButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startDefaultAppOrPromptUserForSelection();
-            }
-        });
-        Drawable dShare = mShareButton.getDrawable();
-
-        //mMaxToolbarHeight = Math.max(dClose.getIntrinsicHeight(), dShare.getIntrinsicHeight());
-        mMaxToolbarHeight = dShare.getIntrinsicHeight();
-
-        mAppButton = new ImageButton(ctx);
-        mAppButton.setVisibility(GONE);
-        mAppButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String action = Intent.ACTION_VIEW;
-                Intent intent = new Intent(action);
-
-                intent.setClassName(mShareContext, mSharePackage);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                intent.setData(Uri.parse(mUrl));
-
-                mContext.startActivity(intent);
-
-                mEventHandler.onSharedLink();
-            }
-        });
-
-        mToolbarLayout = new LinearLayout(ctx);
-        mToolbarLayout.setBackgroundResource(R.drawable.toolbar);
-        mToolbarLayout.setOrientation(HORIZONTAL);
-
-        //mToolbarLayout.addView(mCloseButton, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        mToolbarLayout.addView(mToolbarSpacer, new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-        mToolbarLayout.addView(mAppButton, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        mToolbarLayout.addView(mShareButton, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        */
 
         mMaxToolbarHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_height);
 

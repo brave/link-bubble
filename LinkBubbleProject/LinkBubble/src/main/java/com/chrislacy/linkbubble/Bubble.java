@@ -45,6 +45,8 @@ public class Bubble extends RelativeLayout {
     private Vector<InternalMoveEvent> mMoveEvents = new Vector<InternalMoveEvent>();
     private FlingTracker mFlingTracker = null;
 
+    private int mBubbleIndex;
+
     private static class InternalMoveEvent {
 
         public InternalMoveEvent(float x, float y, long t) {
@@ -100,6 +102,14 @@ public class Bubble extends RelativeLayout {
             removeView(mBadge);
             mBadge = null;
         }
+    }
+
+    public void setBubbleIndex(int i) {
+        mBubbleIndex = i;
+    }
+
+    public int getBubbleIndex() {
+        return mBubbleIndex;
     }
 
     public int getXPos() {
@@ -188,8 +198,9 @@ public class Bubble extends RelativeLayout {
 
     public String getUrl() { return mUrl; }
 
-    public Bubble(final Context context, String url, int x, int y, boolean recordHistory, EventHandler eh) {
+    public Bubble(final Context context, String url, int x, int y, boolean recordHistory, int bubbleIndex, EventHandler eh) {
         super(context);
+        mBubbleIndex = bubbleIndex;
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         mEventHandler = eh;
         mUrl = url;
@@ -209,7 +220,7 @@ public class Bubble extends RelativeLayout {
                 int halfImageWidth;
                 int halfImageHeight;
 
-                if (mRecordHistory && info.url != null) {
+                if (mRecordHistory && info != null && info.url != null) {
                     SettingsFragment.addRecentBubble(context, info.url);
                 }
 
@@ -388,8 +399,7 @@ public class Bubble extends RelativeLayout {
         mWindowManagerParams.height = Config.dpToPx(60.0f);
         mWindowManagerParams.width = Config.dpToPx(60.0f);
         mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
-        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN |
-                                     WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
+        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
         mWindowManager.addView(this, mWindowManagerParams);
     }
