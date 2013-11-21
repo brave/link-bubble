@@ -43,34 +43,7 @@ public class State_BubbleView extends ControllerState {
     @Override
     public boolean OnUpdate(float dt) {
         if (mBubble != null) {
-            Circle bubbleCircle = new Circle(mTargetX + Config.mBubbleWidth * 0.5f,
-                    mTargetY + Config.mBubbleHeight * 0.5f,
-                    Config.mBubbleWidth * 0.5f);
-            Canvas.TargetInfo targetInfo = mCanvas.getBubbleAction(bubbleCircle);
-
-            int targetX, targetY;
-
-            boolean overshoot = false;
-            if (targetInfo.mAction == Config.BubbleAction.None) {
-                targetX = mTargetX;
-                targetY = mTargetY;
-            } else {
-                overshoot = true;
-                targetX = (int) (targetInfo.mTargetX - Config.mBubbleWidth * 0.5f);
-                targetY = (int) (targetInfo.mTargetY - Config.mBubbleHeight * 0.5f);
-            }
-
-            float t = 0.02f;
-            if (mBubble.isSnapping() || overshoot) {
-                t = 0.2f;
-            }
-
-            if (targetX != mSetX || targetY != mSetY) {
-                mBubble.setTargetPos(targetX, targetY, t, overshoot);
-                mSetX = targetX;
-                mSetY = targetY;
-            }
-
+            mBubble.doSnap(mCanvas, mTargetX, mTargetY);
             return true;
         }
 

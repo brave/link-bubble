@@ -99,7 +99,7 @@ public class State_Flick extends ControllerState {
                     y + Config.mBubbleHeight * 0.5f,
                     Config.mBubbleWidth * 0.5f);
 
-            Canvas.TargetInfo ti = mCanvas.getBubbleAction(bubbleCircle);
+            /*Canvas.TargetInfo ti = mCanvas.getBubbleAction(bubbleCircle);
             switch (ti.mAction) {
                 case Destroy:
                 case ConsumeRight:
@@ -109,7 +109,7 @@ public class State_Flick extends ControllerState {
                     mTargetInfo = ti;
                     mBubble.setTargetPos(ti.mTargetX, ti.mTargetY, 0.2f, true);
                     break;
-                default:
+                default:*/
                     {
                         Bubble b = mBubble;
                         if (mTime >= mPeriod) {
@@ -128,8 +128,8 @@ public class State_Flick extends ControllerState {
                         }
                         b.setExactPos((int) x, (int) y);
                     }
-                    break;
-            }
+/*                    break;
+            }*/
         } else {
             if (mBubble.getXPos() == mTargetInfo.mTargetX && mBubble.getYPos() == mTargetInfo.mTargetY) {
                 MainController.STATE_SnapToEdge.init(mBubble);

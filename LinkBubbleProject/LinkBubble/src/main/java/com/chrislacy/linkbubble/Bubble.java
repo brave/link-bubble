@@ -160,6 +160,23 @@ public class Bubble extends RelativeLayout {
         }
     }
 
+    public Config.BubbleAction doSnap(Canvas canvas, int targetX, int targetY) {
+        Circle bubbleCircle = new Circle(targetX + Config.mBubbleWidth * 0.5f,
+                                         targetY + Config.mBubbleHeight * 0.5f,
+                                         Config.mBubbleWidth * 0.5f);
+        Canvas.TargetInfo targetInfo = canvas.getBubbleAction(bubbleCircle);
+
+        if (targetInfo.mAction != Config.BubbleAction.None) {
+            setTargetPos((int) (targetInfo.mTargetX - Config.mBubbleWidth * 0.5f),
+                         (int) (targetInfo.mTargetY - Config.mBubbleHeight * 0.5f),
+                         0.3f, true);
+        } else {
+            setTargetPos(targetX, targetY, 0.02f, false);
+        }
+
+        return targetInfo.mAction;
+    }
+
     public boolean isSnapping() {
         return mOvershoot;
     }
