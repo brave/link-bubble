@@ -81,15 +81,13 @@ public class MainController implements Choreographer.FrameCallback {
     private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
     private int mFrameNumber;
 
-/*
-    private void destroyBubble(Bubble bubble, Config.BubbleAction action) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    public static boolean destroyBubble(Bubble bubble, Config.BubbleAction action) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(sMainController.mContext);
         boolean debug = prefs.getBoolean("debug_flick", true);
 
         if (debug) {
-            Toast.makeText(mContext, "HIT TARGET!", 400).show();
+            Toast.makeText(sMainController.mContext, "HIT TARGET!", 400).show();
         } else {
-            Util.Assert(false);
             String url = bubble.getUrl();
 
             bubble.destroy();
@@ -103,43 +101,29 @@ public class MainController implements Choreographer.FrameCallback {
             if (mBubbles.size() > 0) {
                 int nextBubbleIndex = Util.clamp(0, bubbleIndex, mBubbles.size()-1);
                 Bubble nextBubble = mBubbles.get(nextBubbleIndex);
-                mBadge.attach(nextBubble);
-                if (mMode == Mode.ContentView) {
-                    mContentViewRoot.hide();
-                } else {
-                    nextBubble.setExactPos(bubble.getXPos(), bubble.getYPos());
-                }
-                setSelectedBubble(nextBubble);
-            } else {
-                if (mMode == Mode.ContentView) {
-                    mContentViewRoot.hide();
-                }
-                mBadge.attach(null);
-                mMode = Mode.BubbleView;
-                setSelectedBubble(null);
+                sMainController.mBadge.attach(nextBubble);
+                sMainController.mBadge.setBubbleCount(mBubbles.size());
 
-                mBubbleHomeX = Config.mBubbleSnapLeftX;
-                mBubbleHomeY = (int) (Config.mScreenHeight * 0.4f);
+                nextBubble.setVisibility(View.VISIBLE);
+            } else {
+                sMainController.mBadge.attach(null);
+
+                Config.BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
+                Config.BUBBLE_HOME_Y = (int) (Config.mScreenHeight * 0.4f);
             }
 
-            updateBubbleVisibility();
-            mCurrentState.OnDestroyBubble(bubble);
+            sMainController.mCurrentState.OnDestroyBubble(bubble);
 
-            doTargetAction(action, url);
+            sMainController.doTargetAction(action, url);
         }
 
-        Util.Assert(false);
-        if (mBubbles.size() > 0) {
-            switchState(mAnimateToModeViewState);
-        } else {
-            switchState(mIdleState);
-        }
-    }*/
+        return mBubbles.size() > 0;
+    }
 
     public static void setAllBubblePositions(Bubble ref) {
         // Force all bubbles to be where the moved one ended up
         int bubbleCount = mBubbles.size();
-        for (int i=0 ; i < bubbleCount-1 ; ++i) {
+        for (int i=0 ; i < bubbleCount ; ++i) {
             Bubble b = mBubbles.get(i);
             if (b != ref) {
                 b.setExactPos(ref.getXPos(), ref.getYPos());
@@ -195,7 +179,7 @@ public class MainController implements Choreographer.FrameCallback {
 
     public static void switchState(ControllerState newState) {
         Util.Assert(sMainController != null);
-        Util.Assert(newState != sMainController.mCurrentState);
+        //Util.Assert(newState != sMainController.mCurrentState);
         if (sMainController.mCurrentState != null) {
             sMainController.mCurrentState.OnExitState();
         }

@@ -35,6 +35,11 @@ public class Canvas extends RelativeLayout {
 
     private ContentView mContentView;
 
+    //public enum BubbleState {
+    //    Default,
+    //    Snap
+    //}
+
     public class TargetInfo {
 
         public TargetInfo() {
@@ -108,8 +113,9 @@ public class Canvas extends RelativeLayout {
     }
 
     public void setContentViewTranslation(float ty) {
-        Util.Assert(mContentView != null);
-        mContentView.setTranslationY(ty);
+        if (mContentView != null) {
+            mContentView.setTranslationY(ty);
+        }
     }
 
     public void showContentView() {

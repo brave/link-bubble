@@ -81,17 +81,26 @@ public class State_ContentView extends ControllerState {
     @Override
     public void OnMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
         sender.clearTargetPos();
-        mTouchBubble = null;
 
         if (mDidMove) {
-            float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
-            float threshold = Config.dpToPx(900.0f);
-            if (v > threshold) {
-                MainController.STATE_Flick.init(sender, e.vx, e.vy, true);
-                MainController.switchState(MainController.STATE_Flick);
+            Canvas.TargetInfo ti = mTouchBubble.getTargetInfo(mCanvas, sender.getXPos(), sender.getYPos());
+            if (ti.mAction == Config.BubbleAction.None) {
+                float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
+                float threshold = Config.dpToPx(900.0f);
+                if (v > threshold) {
+                    MainController.STATE_Flick.init(sender, e.vx, e.vy, false);
+                    MainController.switchState(MainController.STATE_Flick);
+                } else {
+                    MainController.STATE_SnapToEdge.init(sender);
+                    MainController.switchState(MainController.STATE_SnapToEdge);
+                }
             } else {
-                MainController.STATE_AnimateToContentView.init(sender);
-                MainController.switchState(MainController.STATE_AnimateToContentView);
+                if (MainController.destroyBubble(mTouchBubble, ti.mAction)) {
+                    MainController.STATE_AnimateToContentView.init(MainController.getBubble(MainController.getBubbleCount()-1));
+                    MainController.switchState(MainController.STATE_AnimateToContentView);
+                } else {
+                    MainController.switchState(MainController.STATE_BubbleView);
+                }
             }
         } else if (mActiveBubble != sender) {
             mActiveBubble = sender;
@@ -101,6 +110,8 @@ public class State_ContentView extends ControllerState {
         } else {
             MainController.switchState(MainController.STATE_AnimateToBubbleView);
         }
+
+        mTouchBubble = null;
     }
 
     @Override
@@ -111,7 +122,6 @@ public class State_ContentView extends ControllerState {
 
     @Override
     public void OnDestroyBubble(Bubble bubble) {
-        Util.Assert(false);
     }
 
     @Override

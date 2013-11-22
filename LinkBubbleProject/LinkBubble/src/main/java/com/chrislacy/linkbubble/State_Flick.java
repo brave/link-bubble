@@ -95,11 +95,8 @@ public class State_Flick extends ControllerState {
             float x = mInitialX + (mTargetX - mInitialX) * f;
             float y = mInitialY + (mTargetY - mInitialY) * f;
 
-            Circle bubbleCircle = new Circle(x + Config.mBubbleWidth * 0.5f,
-                    y + Config.mBubbleHeight * 0.5f,
-                    Config.mBubbleWidth * 0.5f);
+            Canvas.TargetInfo ti = mBubble.getTargetInfo(mCanvas, (int)x, (int) y);
 
-            /*Canvas.TargetInfo ti = mCanvas.getBubbleAction(bubbleCircle);
             switch (ti.mAction) {
                 case Destroy:
                 case ConsumeRight:
@@ -109,7 +106,7 @@ public class State_Flick extends ControllerState {
                     mTargetInfo = ti;
                     mBubble.setTargetPos(ti.mTargetX, ti.mTargetY, 0.2f, true);
                     break;
-                default:*/
+                default:
                     {
                         Bubble b = mBubble;
                         if (mTime >= mPeriod) {
@@ -120,6 +117,8 @@ public class State_Flick extends ControllerState {
                                 MainController.STATE_AnimateToContentView.init(b);
                                 MainController.switchState(MainController.STATE_AnimateToContentView);
                             } else if (x == Config.mBubbleSnapLeftX || x == Config.mBubbleSnapRightX) {
+                                Config.BUBBLE_HOME_X = mBubble.getXPos();
+                                Config.BUBBLE_HOME_Y = mBubble.getYPos();
                                 MainController.switchState(MainController.STATE_BubbleView);
                             } else {
                                 MainController.STATE_SnapToEdge.init(b);
@@ -128,15 +127,20 @@ public class State_Flick extends ControllerState {
                         }
                         b.setExactPos((int) x, (int) y);
                     }
-/*                    break;
-            }*/
+            }
         } else {
             if (mBubble.getXPos() == mTargetInfo.mTargetX && mBubble.getYPos() == mTargetInfo.mTargetY) {
-                MainController.STATE_SnapToEdge.init(mBubble);
-                MainController.switchState(MainController.STATE_SnapToEdge);
-
-                //Util.Assert(false);
-                //destroyBubble(mBubble, mTargetInfo.mAction);
+                if (MainController.destroyBubble(mBubble, mTargetInfo.mAction)) {
+                    if (mContentViewActive)
+                        MainController.switchState(MainController.STATE_AnimateToContentView);
+                    else
+                        MainController.switchState(MainController.STATE_AnimateToBubbleView);
+                } else {
+                    if (mContentViewActive)
+                        MainController.switchState(MainController.STATE_ContentView);
+                    else
+                        MainController.switchState(MainController.STATE_BubbleView);
+                }
             }
         }
 
@@ -145,8 +149,6 @@ public class State_Flick extends ControllerState {
 
     @Override
     public void OnExitState() {
-        Config.BUBBLE_HOME_X = mBubble.getXPos();
-        Config.BUBBLE_HOME_Y = mBubble.getYPos();
         MainController.setAllBubblePositions(mBubble);
         mBubble = null;
     }
@@ -171,7 +173,6 @@ public class State_Flick extends ControllerState {
 
     @Override
     public void OnDestroyBubble(Bubble bubble) {
-        Util.Assert(false);
     }
 
     @Override

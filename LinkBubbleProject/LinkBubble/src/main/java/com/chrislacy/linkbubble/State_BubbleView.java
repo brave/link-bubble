@@ -14,8 +14,6 @@ public class State_BubbleView extends ControllerState {
     private int mInitialY;
     private int mTargetX;
     private int mTargetY;
-    private int mSetX;
-    private int mSetY;
     private Bubble mBubble;
     private Badge mBadge;
 
@@ -52,6 +50,7 @@ public class State_BubbleView extends ControllerState {
 
     @Override
     public void OnExitState() {
+        MainController.setAllBubblePositions(mBubble);
     }
 
     @Override
@@ -62,8 +61,6 @@ public class State_BubbleView extends ControllerState {
         mInitialY = e.posY;
         mTargetX = mInitialX;
         mTargetY = mInitialY;
-        mSetX = -1;
-        mSetY = -1;
     }
 
     @Override
@@ -83,24 +80,33 @@ public class State_BubbleView extends ControllerState {
     @Override
     public void OnMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
         sender.clearTargetPos();
-        mBubble = null;
 
         if (mDidMove) {
-
-            float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
-            float threshold = Config.dpToPx(900.0f);
-            if (v > threshold) {
-                MainController.STATE_Flick.init(sender, e.vx, e.vy, false);
-                MainController.switchState(MainController.STATE_Flick);
+            Canvas.TargetInfo ti = mBubble.getTargetInfo(mCanvas, sender.getXPos(), sender.getYPos());
+            if (ti.mAction == Config.BubbleAction.None) {
+                float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
+                float threshold = Config.dpToPx(900.0f);
+                if (v > threshold) {
+                    MainController.STATE_Flick.init(sender, e.vx, e.vy, false);
+                    MainController.switchState(MainController.STATE_Flick);
+                } else {
+                    MainController.STATE_SnapToEdge.init(sender);
+                    MainController.switchState(MainController.STATE_SnapToEdge);
+                }
             } else {
-                MainController.STATE_SnapToEdge.init(sender);
-                MainController.switchState(MainController.STATE_SnapToEdge);
+                if (MainController.destroyBubble(mBubble, ti.mAction)) {
+                    MainController.switchState(MainController.STATE_AnimateToBubbleView);
+                } else {
+                    MainController.switchState(MainController.STATE_BubbleView);
+                }
             }
         } else {
             mBadge.hide();
             MainController.STATE_AnimateToContentView.init(sender);
             MainController.switchState(MainController.STATE_AnimateToContentView);
         }
+
+        mBubble = null;
     }
 
     @Override
@@ -110,7 +116,6 @@ public class State_BubbleView extends ControllerState {
 
     @Override
     public void OnDestroyBubble(Bubble bubble) {
-        Util.Assert(false);
     }
 
     @Override
