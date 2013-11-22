@@ -131,10 +131,12 @@ public class State_Flick extends ControllerState {
         } else {
             if (mBubble.getXPos() == mTargetInfo.mTargetX && mBubble.getYPos() == mTargetInfo.mTargetY) {
                 if (MainController.destroyBubble(mBubble, mTargetInfo.mAction)) {
-                    if (mContentViewActive)
+                    if (mContentViewActive) {
+                        MainController.STATE_AnimateToContentView.init(MainController.getBubble(MainController.getBubbleCount()-1));
                         MainController.switchState(MainController.STATE_AnimateToContentView);
-                    else
+                    } else {
                         MainController.switchState(MainController.STATE_AnimateToBubbleView);
+                    }
                 } else {
                     if (mContentViewActive)
                         MainController.switchState(MainController.STATE_ContentView);
@@ -149,7 +151,8 @@ public class State_Flick extends ControllerState {
 
     @Override
     public void OnExitState() {
-        MainController.setAllBubblePositions(mBubble);
+        if (!mContentViewActive)
+            MainController.setAllBubblePositions(mBubble);
         mBubble = null;
     }
 

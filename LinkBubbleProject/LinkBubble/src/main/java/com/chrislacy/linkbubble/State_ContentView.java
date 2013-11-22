@@ -88,11 +88,11 @@ public class State_ContentView extends ControllerState {
                 float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
                 float threshold = Config.dpToPx(900.0f);
                 if (v > threshold) {
-                    MainController.STATE_Flick.init(sender, e.vx, e.vy, false);
+                    MainController.STATE_Flick.init(sender, e.vx, e.vy, true);
                     MainController.switchState(MainController.STATE_Flick);
                 } else {
-                    MainController.STATE_SnapToEdge.init(sender);
-                    MainController.switchState(MainController.STATE_SnapToEdge);
+                    MainController.STATE_AnimateToContentView.init(mTouchBubble);
+                    MainController.switchState(MainController.STATE_AnimateToContentView);
                 }
             } else {
                 if (MainController.destroyBubble(mTouchBubble, ti.mAction)) {
