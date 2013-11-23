@@ -35,11 +35,6 @@ public class Canvas extends RelativeLayout {
 
     private ContentView mContentView;
 
-    //public enum BubbleState {
-    //    Default,
-    //    Snap
-    //}
-
     public class TargetInfo {
 
         public TargetInfo() {

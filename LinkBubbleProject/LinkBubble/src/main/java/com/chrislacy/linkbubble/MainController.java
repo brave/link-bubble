@@ -62,7 +62,8 @@ public class MainController implements Choreographer.FrameCallback {
     public static State_AnimateToContentView STATE_AnimateToContentView;
     public static State_ContentView STATE_ContentView;
     public static State_AnimateToBubbleView STATE_AnimateToBubbleView;
-    public static State_Flick STATE_Flick;
+    public static State_Flick_ContentView STATE_Flick_ContentView;
+    public static State_Flick_BubbleView STATE_Flick_BubbleView;
 
     private ControllerState mCurrentState;
 
@@ -156,15 +157,13 @@ public class MainController implements Choreographer.FrameCallback {
         mCanvas = new Canvas(context);
         mBadge = new Badge(context);
 
-        Config.BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
-        Config.BUBBLE_HOME_Y = (int) (Config.mScreenHeight * 0.4f);
-
         STATE_BubbleView = new State_BubbleView(mCanvas, mBadge);
         STATE_SnapToEdge = new State_SnapToEdge();
         STATE_AnimateToContentView = new State_AnimateToContentView(mCanvas);
         STATE_ContentView = new State_ContentView(mCanvas);
         STATE_AnimateToBubbleView = new State_AnimateToBubbleView(mCanvas);
-        STATE_Flick = new State_Flick(mCanvas);
+        STATE_Flick_ContentView = new State_Flick_ContentView(mCanvas);
+        STATE_Flick_BubbleView = new State_Flick_BubbleView(mCanvas);
 
         switchState(STATE_BubbleView);
     }
@@ -240,31 +239,12 @@ public class MainController implements Choreographer.FrameCallback {
     }*/
 
     public void onOrientationChanged() {
-        //Util.Assert(false);
-        /*
         Config.init(mContext);
-
-        mBubbleHomeX = Config.mBubbleSnapLeftX;
-        mBubbleHomeY = (int) (Config.mScreenHeight * 0.4f);
-
-        if (mBubbles.size() > 0) {
-            Bubble b = getFrontBubble();
-
-            int x = b.getXPos();
-            if (x < Config.mScreenCenterX) {
-                x = Config.mBubbleSnapLeftX;
-            } else {
-                x = Config.mBubbleSnapRightX;
-            }
-
-            int y = b.getYPos();
-            y = Util.clamp(Config.mBubbleMinY, y, Config.mBubbleMaxY);
-
-            b.setExactPos(x, y);
-        }
-
         mCanvas.onOrientationChanged();
-        mCurrentState.OnOrientationChanged();*/
+        boolean contentView = mCurrentState.OnOrientationChanged();
+        for (int i=0 ; i < mBubbles.size() ; ++i) {
+            mBubbles.get(i).OnOrientationChanged(contentView);
+        }
     }
 
     public void onOpenUrl(String url, boolean recordHistory) {

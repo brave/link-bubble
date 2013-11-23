@@ -13,10 +13,9 @@ public class State_ContentView extends ControllerState {
     private int mInitialY;
     private int mTargetX;
     private int mTargetY;
-    private int mSetX;
-    private int mSetY;
     private Bubble mTouchBubble;
     private Bubble mActiveBubble;
+    private boolean mTouchDown;
 
     public State_ContentView(Canvas canvas) {
         mCanvas = canvas;
@@ -50,68 +49,71 @@ public class State_ContentView extends ControllerState {
 
     @Override
     public void OnMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
+        mTouchDown = true;
         mTouchBubble = sender;
         mInitialX = e.posX;
         mInitialY = e.posY;
         mTargetX = mInitialX;
         mTargetY = mInitialY;
-        mSetX = -1;
-        mSetY = -1;
 
         MainController.scheduleUpdate();
     }
 
     @Override
     public void OnMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
-        mTargetX = mInitialX + e.dx;
-        mTargetY = mInitialY + e.dy;
+        if (mTouchDown) {
+            mTargetX = mInitialX + e.dx;
+            mTargetY = mInitialY + e.dy;
 
-        mTargetX = Util.clamp(Config.mBubbleSnapLeftX, mTargetX, Config.mBubbleSnapRightX);
-        mTargetY = Util.clamp(Config.mBubbleMinY, mTargetY, Config.mBubbleMaxY);
+            mTargetX = Util.clamp(Config.mBubbleSnapLeftX, mTargetX, Config.mBubbleSnapRightX);
+            mTargetY = Util.clamp(Config.mBubbleMinY, mTargetY, Config.mBubbleMaxY);
 
-        float d = (float) Math.sqrt( (e.dx * e.dx) + (e.dy * e.dy) );
-        if (d >= Config.dpToPx(10.0f)) {
-            mDidMove = true;
-            mCanvas.hideContentView();
+            float d = (float) Math.sqrt( (e.dx * e.dx) + (e.dy * e.dy) );
+            if (d >= Config.dpToPx(10.0f)) {
+                mDidMove = true;
+                mCanvas.hideContentView();
+            }
+
+            MainController.scheduleUpdate();
         }
-
-        MainController.scheduleUpdate();
     }
 
     @Override
     public void OnMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
-        sender.clearTargetPos();
+        if (mTouchDown) {
+            sender.clearTargetPos();
 
-        if (mDidMove) {
-            Canvas.TargetInfo ti = mTouchBubble.getTargetInfo(mCanvas, sender.getXPos(), sender.getYPos());
-            if (ti.mAction == Config.BubbleAction.None) {
-                float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
-                float threshold = Config.dpToPx(900.0f);
-                if (v > threshold) {
-                    MainController.STATE_Flick.init(sender, e.vx, e.vy, true);
-                    MainController.switchState(MainController.STATE_Flick);
+            if (mDidMove) {
+                Canvas.TargetInfo ti = mTouchBubble.getTargetInfo(mCanvas, sender.getXPos(), sender.getYPos());
+                if (ti.mAction == Config.BubbleAction.None) {
+                    float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
+                    float threshold = Config.dpToPx(900.0f);
+                    if (v > threshold) {
+                        MainController.STATE_Flick_ContentView.init(sender, e.vx, e.vy);
+                        MainController.switchState(MainController.STATE_Flick_ContentView);
+                    } else {
+                        MainController.STATE_AnimateToContentView.init(mTouchBubble);
+                        MainController.switchState(MainController.STATE_AnimateToContentView);
+                    }
                 } else {
-                    MainController.STATE_AnimateToContentView.init(mTouchBubble);
-                    MainController.switchState(MainController.STATE_AnimateToContentView);
+                    if (MainController.destroyBubble(mTouchBubble, ti.mAction)) {
+                        MainController.STATE_AnimateToContentView.init(MainController.getBubble(MainController.getBubbleCount()-1));
+                        MainController.switchState(MainController.STATE_AnimateToContentView);
+                    } else {
+                        MainController.switchState(MainController.STATE_BubbleView);
+                    }
                 }
+            } else if (mActiveBubble != sender) {
+                mActiveBubble = sender;
+                mCanvas.setContentView(mActiveBubble.getContentView());
+                mCanvas.showContentView();
+                mCanvas.setContentViewTranslation(0.0f);
             } else {
-                if (MainController.destroyBubble(mTouchBubble, ti.mAction)) {
-                    MainController.STATE_AnimateToContentView.init(MainController.getBubble(MainController.getBubbleCount()-1));
-                    MainController.switchState(MainController.STATE_AnimateToContentView);
-                } else {
-                    MainController.switchState(MainController.STATE_BubbleView);
-                }
+                MainController.switchState(MainController.STATE_AnimateToBubbleView);
             }
-        } else if (mActiveBubble != sender) {
-            mActiveBubble = sender;
-            mCanvas.setContentView(mActiveBubble.getContentView());
-            mCanvas.showContentView();
-            mCanvas.setContentViewTranslation(0.0f);
-        } else {
-            MainController.switchState(MainController.STATE_AnimateToBubbleView);
-        }
 
-        mTouchBubble = null;
+            mTouchBubble = null;
+        }
     }
 
     @Override
@@ -125,8 +127,10 @@ public class State_ContentView extends ControllerState {
     }
 
     @Override
-    public void OnOrientationChanged() {
-        Util.Assert(false);
+    public boolean OnOrientationChanged() {
+        mTouchDown = false;
+        mTouchBubble = null;
+        return true;
     }
 
     @Override

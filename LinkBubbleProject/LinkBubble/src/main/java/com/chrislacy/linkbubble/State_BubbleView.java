@@ -16,6 +16,7 @@ public class State_BubbleView extends ControllerState {
     private int mTargetY;
     private Bubble mBubble;
     private Badge mBadge;
+    private boolean mTouchDown;
 
     public State_BubbleView(Canvas canvas, Badge badge) {
         mCanvas = canvas;
@@ -55,58 +56,64 @@ public class State_BubbleView extends ControllerState {
 
     @Override
     public void OnMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
+        mTouchDown = true;
         mCanvas.fadeIn();
         mBubble = sender;
         mInitialX = e.posX;
         mInitialY = e.posY;
         mTargetX = mInitialX;
         mTargetY = mInitialY;
+        mDidMove = false;
     }
 
     @Override
     public void OnMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
-        mTargetX = mInitialX + e.dx;
-        mTargetY = mInitialY + e.dy;
+        if (mTouchDown) {
+            mTargetX = mInitialX + e.dx;
+            mTargetY = mInitialY + e.dy;
 
-        mTargetX = Util.clamp(Config.mBubbleSnapLeftX, mTargetX, Config.mBubbleSnapRightX);
-        mTargetY = Util.clamp(Config.mBubbleMinY, mTargetY, Config.mBubbleMaxY);
+            mTargetX = Util.clamp(Config.mBubbleSnapLeftX, mTargetX, Config.mBubbleSnapRightX);
+            mTargetY = Util.clamp(Config.mBubbleMinY, mTargetY, Config.mBubbleMaxY);
 
-        float d = (float) Math.sqrt( (e.dx * e.dx) + (e.dy * e.dy) );
-        if (d >= Config.dpToPx(10.0f)) {
-            mDidMove = true;
+            float d = (float) Math.sqrt( (e.dx * e.dx) + (e.dy * e.dy) );
+            if (d >= Config.dpToPx(10.0f)) {
+                mDidMove = true;
+            }
         }
     }
 
     @Override
     public void OnMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
-        sender.clearTargetPos();
+        if (mTouchDown) {
+            sender.clearTargetPos();
 
-        if (mDidMove) {
-            Canvas.TargetInfo ti = mBubble.getTargetInfo(mCanvas, sender.getXPos(), sender.getYPos());
-            if (ti.mAction == Config.BubbleAction.None) {
-                float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
-                float threshold = Config.dpToPx(900.0f);
-                if (v > threshold) {
-                    MainController.STATE_Flick.init(sender, e.vx, e.vy, false);
-                    MainController.switchState(MainController.STATE_Flick);
+            if (mDidMove) {
+                Canvas.TargetInfo ti = mBubble.getTargetInfo(mCanvas, sender.getXPos(), sender.getYPos());
+                if (ti.mAction == Config.BubbleAction.None) {
+                    float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
+                    float threshold = Config.dpToPx(900.0f);
+                    if (v > threshold) {
+                        MainController.STATE_Flick_BubbleView.init(sender, e.vx, e.vy);
+                        MainController.switchState(MainController.STATE_Flick_BubbleView);
+                    } else {
+                        MainController.STATE_SnapToEdge.init(sender);
+                        MainController.switchState(MainController.STATE_SnapToEdge);
+                    }
                 } else {
-                    MainController.STATE_SnapToEdge.init(sender);
-                    MainController.switchState(MainController.STATE_SnapToEdge);
+                    if (MainController.destroyBubble(mBubble, ti.mAction)) {
+                        MainController.switchState(MainController.STATE_AnimateToBubbleView);
+                    } else {
+                        MainController.switchState(MainController.STATE_BubbleView);
+                    }
                 }
             } else {
-                if (MainController.destroyBubble(mBubble, ti.mAction)) {
-                    MainController.switchState(MainController.STATE_AnimateToBubbleView);
-                } else {
-                    MainController.switchState(MainController.STATE_BubbleView);
-                }
+                mBadge.hide();
+                MainController.STATE_AnimateToContentView.init(sender);
+                MainController.switchState(MainController.STATE_AnimateToContentView);
             }
-        } else {
-            mBadge.hide();
-            MainController.STATE_AnimateToContentView.init(sender);
-            MainController.switchState(MainController.STATE_AnimateToContentView);
-        }
 
-        mBubble = null;
+            mBubble = null;
+        }
     }
 
     @Override
@@ -119,8 +126,11 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
-    public void OnOrientationChanged() {
-        Util.Assert(false);
+    public boolean OnOrientationChanged() {
+        mTouchDown = false;
+        mBubble = null;
+        mCanvas.fadeOut();
+        return false;
     }
 
     @Override

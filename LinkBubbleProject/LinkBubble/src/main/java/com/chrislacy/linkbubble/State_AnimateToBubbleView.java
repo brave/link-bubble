@@ -116,8 +116,9 @@ public class State_AnimateToBubbleView extends ControllerState {
     }
 
     @Override
-    public void OnOrientationChanged() {
+    public boolean OnOrientationChanged() {
         Util.Assert(false);
+        return false;
     }
 
     @Override

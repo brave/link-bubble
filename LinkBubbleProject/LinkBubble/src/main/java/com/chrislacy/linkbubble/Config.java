@@ -82,6 +82,9 @@ public class Config {
         mContentViewBubbleY = (int) (mBubbleHeight * 0.15f);
 
         mContentOffset = (int) (mBubbleHeight * 1.2f);
+
+        BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
+        BUBBLE_HOME_Y = (int) (Config.mScreenHeight * 0.4f);
     }
 
     public static float getContentViewX(int bubbleIndex) {

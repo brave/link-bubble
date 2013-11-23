@@ -124,6 +124,26 @@ public class Bubble extends RelativeLayout {
         return mContentView;
     }
 
+    public void OnOrientationChanged(boolean contentViewMode) {
+        clearTargetPos();
+
+        int xPos, yPos;
+
+        if (contentViewMode) {
+            xPos = (int) Config.getContentViewX(mBubbleIndex);
+            yPos = Config.mContentViewBubbleY;
+        } else {
+            if (mWindowManagerParams.x < Config.mScreenHeight * 0.5f)
+                xPos = Config.mBubbleSnapLeftX;
+            else
+                xPos = Config.mBubbleSnapRightX;
+            float yf = (float)mWindowManagerParams.y / (float)Config.mScreenWidth;
+            yPos = (int) (yf * Config.mScreenHeight);
+        }
+
+        setExactPos(xPos, yPos);
+    }
+
     public void clearTargetPos() {
         mInitialX = -1;
         mInitialY = -1;
@@ -406,9 +426,9 @@ public class Bubble extends RelativeLayout {
                         mEventHandler.onMotionEvent_Release(Bubble.this, e);
                         return true;
                     }
-                    case MotionEvent.ACTION_CANCEL: {
-                        return true;
-                    }
+                    //case MotionEvent.ACTION_CANCEL: {
+                    //    return true;
+                    //}
                 }
 
                 return false;

@@ -12,7 +12,7 @@ public abstract class ControllerState {
     public abstract void OnMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e);
     public abstract boolean OnNewBubble(Bubble bubble);
     public abstract void OnDestroyBubble(Bubble bubble);
-    public abstract void OnOrientationChanged();
+    public abstract boolean OnOrientationChanged();
     public abstract void OnCloseDialog();
     public abstract String getName();
 }

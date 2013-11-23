@@ -125,8 +125,9 @@ public class State_AnimateToContentView extends ControllerState {
     }
 
     @Override
-    public void OnOrientationChanged() {
+    public boolean OnOrientationChanged() {
         Util.Assert(false);
+        return true;
     }
 
     @Override

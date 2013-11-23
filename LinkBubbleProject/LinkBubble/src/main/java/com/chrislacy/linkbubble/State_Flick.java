@@ -6,7 +6,7 @@ import android.view.animation.OvershootInterpolator;
 /**
  * Created by gw on 18/11/13.
  */
-public class State_Flick extends ControllerState {
+public abstract class State_Flick extends ControllerState {
 
     private Canvas mCanvas;
     private Bubble mBubble;
@@ -21,16 +21,16 @@ public class State_Flick extends ControllerState {
     private float mTargetX;
     private float mTargetY;
     private boolean mLinear;
-    private boolean mContentViewActive;
+
+    public abstract boolean isContentView();
 
     public State_Flick(Canvas canvas) {
         mCanvas = canvas;
     }
 
-    public void init(Bubble bubble, float vx, float vy, boolean contentViewActive) {
+    public void init(Bubble bubble, float vx, float vy) {
         mTargetInfo = null;
         mBubble = bubble;
-        mContentViewActive = contentViewActive;
 
         mInitialX = bubble.getXPos();
         mInitialY = bubble.getYPos();
@@ -113,7 +113,7 @@ public class State_Flick extends ControllerState {
                             x = mTargetX;
                             y = mTargetY;
 
-                            if (mContentViewActive) {
+                            if (isContentView()) {
                                 MainController.STATE_AnimateToContentView.init(b);
                                 MainController.switchState(MainController.STATE_AnimateToContentView);
                             } else if (x == Config.mBubbleSnapLeftX || x == Config.mBubbleSnapRightX) {
@@ -131,14 +131,14 @@ public class State_Flick extends ControllerState {
         } else {
             if (mBubble.getXPos() == mTargetInfo.mTargetX && mBubble.getYPos() == mTargetInfo.mTargetY) {
                 if (MainController.destroyBubble(mBubble, mTargetInfo.mAction)) {
-                    if (mContentViewActive) {
+                    if (isContentView()) {
                         MainController.STATE_AnimateToContentView.init(MainController.getBubble(MainController.getBubbleCount()-1));
                         MainController.switchState(MainController.STATE_AnimateToContentView);
                     } else {
                         MainController.switchState(MainController.STATE_AnimateToBubbleView);
                     }
                 } else {
-                    if (mContentViewActive)
+                    if (isContentView())
                         MainController.switchState(MainController.STATE_ContentView);
                     else
                         MainController.switchState(MainController.STATE_BubbleView);
@@ -151,7 +151,7 @@ public class State_Flick extends ControllerState {
 
     @Override
     public void OnExitState() {
-        if (!mContentViewActive)
+        if (!isContentView())
             MainController.setAllBubblePositions(mBubble);
         mBubble = null;
     }
@@ -179,8 +179,9 @@ public class State_Flick extends ControllerState {
     }
 
     @Override
-    public void OnOrientationChanged() {
+    public boolean OnOrientationChanged() {
         Util.Assert(false);
+        return isContentView();
     }
 
     @Override
