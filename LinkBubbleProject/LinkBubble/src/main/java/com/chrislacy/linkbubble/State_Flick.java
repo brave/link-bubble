@@ -138,10 +138,7 @@ public abstract class State_Flick extends ControllerState {
                         MainController.switchState(MainController.STATE_AnimateToBubbleView);
                     }
                 } else {
-                    if (isContentView())
-                        MainController.switchState(MainController.STATE_ContentView);
-                    else
-                        MainController.switchState(MainController.STATE_BubbleView);
+                    MainController.switchState(MainController.STATE_BubbleView);
                 }
             }
         }
@@ -180,7 +177,12 @@ public abstract class State_Flick extends ControllerState {
 
     @Override
     public boolean OnOrientationChanged() {
-        Util.Assert(false);
+        if (isContentView()) {
+            MainController.STATE_AnimateToContentView.init(mBubble);
+            MainController.switchState(MainController.STATE_AnimateToContentView);
+        } else {
+            MainController.switchState(MainController.STATE_BubbleView);
+        }
         return isContentView();
     }
 

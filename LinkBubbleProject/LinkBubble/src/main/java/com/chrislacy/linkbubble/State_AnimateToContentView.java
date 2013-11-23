@@ -126,7 +126,8 @@ public class State_AnimateToContentView extends ControllerState {
 
     @Override
     public boolean OnOrientationChanged() {
-        Util.Assert(false);
+        MainController.STATE_ContentView.init(mSelectedBubble);
+        MainController.switchState(MainController.STATE_ContentView);
         return true;
     }
 
