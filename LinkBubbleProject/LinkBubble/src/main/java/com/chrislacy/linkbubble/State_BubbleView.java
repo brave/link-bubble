@@ -135,7 +135,6 @@ public class State_BubbleView extends ControllerState {
 
     @Override
     public void OnCloseDialog() {
-        Util.Assert(false);
     }
 
     @Override

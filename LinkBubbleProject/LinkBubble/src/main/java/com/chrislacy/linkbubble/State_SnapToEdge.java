@@ -30,6 +30,8 @@ public class State_SnapToEdge extends ControllerState {
         } else {
             mDistanceX = Config.mBubbleSnapRightX - mPosX;
         }
+
+        Config.BUBBLE_HOME_Y = (int) mBubble.getYPos();
     }
 
     @Override
@@ -91,7 +93,11 @@ public class State_SnapToEdge extends ControllerState {
 
     @Override
     public void OnCloseDialog() {
-        Util.Assert(false);
+        if (mPosX < Config.mScreenCenterX) {
+            Config.BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
+        } else {
+            Config.BUBBLE_HOME_X = Config.mBubbleSnapRightX;
+        }
     }
 
     @Override

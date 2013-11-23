@@ -135,7 +135,6 @@ public class State_ContentView extends ControllerState {
 
     @Override
     public void OnCloseDialog() {
-        Util.Assert(false);
     }
 
     @Override

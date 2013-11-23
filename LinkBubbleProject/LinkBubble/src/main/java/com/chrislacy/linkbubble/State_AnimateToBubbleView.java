@@ -91,17 +91,14 @@ public class State_AnimateToBubbleView extends ControllerState {
 
     @Override
     public void OnMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
-        Util.Assert(false);
     }
 
     @Override
     public void OnMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
-        Util.Assert(false);
     }
 
     @Override
     public void OnMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
-        Util.Assert(false);
     }
 
     @Override
@@ -123,7 +120,6 @@ public class State_AnimateToBubbleView extends ControllerState {
 
     @Override
     public void OnCloseDialog() {
-        Util.Assert(false);
     }
 
     @Override

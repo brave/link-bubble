@@ -75,12 +75,10 @@ public class MainController implements Choreographer.FrameCallback {
     private Badge mBadge;
     private static MainController sMainController;
 
-    private boolean mEnabled;
-
-    private TextView mTextView;
-    private WindowManager mWindowManager;
-    private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
-    private int mFrameNumber;
+    //private TextView mTextView;
+    //private WindowManager mWindowManager;
+    //private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
+    //private int mFrameNumber;
 
     public static boolean destroyBubble(Bubble bubble, Config.BubbleAction action) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(sMainController.mContext);
@@ -122,12 +120,14 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public static void setAllBubblePositions(Bubble ref) {
-        // Force all bubbles to be where the moved one ended up
-        int bubbleCount = mBubbles.size();
-        for (int i=0 ; i < bubbleCount ; ++i) {
-            Bubble b = mBubbles.get(i);
-            if (b != ref) {
-                b.setExactPos(ref.getXPos(), ref.getYPos());
+        if (ref != null) {
+            // Force all bubbles to be where the moved one ended up
+            int bubbleCount = mBubbles.size();
+            for (int i=0 ; i < bubbleCount ; ++i) {
+                Bubble b = mBubbles.get(i);
+                if (b != ref) {
+                    b.setExactPos(ref.getXPos(), ref.getYPos());
+                }
             }
         }
     }
@@ -136,8 +136,8 @@ public class MainController implements Choreographer.FrameCallback {
         Util.Assert(sMainController == null);
         sMainController = this;
         mContext = context;
-        mEnabled = true;
 
+        /*
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         mTextView = new TextView(mContext);
         mTextView.setTextColor(0xff00ffff);
@@ -150,7 +150,7 @@ public class MainController implements Choreographer.FrameCallback {
         mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_PHONE;
         mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
-        mWindowManager.addView(mTextView, mWindowManagerParams);
+        mWindowManager.addView(mTextView, mWindowManagerParams);*/
 
         mUpdateScheduled = false;
         mChoreographer = Choreographer.getInstance();
@@ -216,27 +216,15 @@ public class MainController implements Choreographer.FrameCallback {
             scheduleUpdate();
         }
 
-        mTextView.setText("S=" + mCurrentState.getName() + " F=" + mFrameNumber++);
+        //mTextView.setText("S=" + mCurrentState.getName() + " F=" + mFrameNumber++);
     }
 
     public void onCloseSystemDialogs() {
         if (mCurrentState != null) {
-            //mCurrentState.OnCloseDialog();
+            mCurrentState.OnCloseDialog();
+            switchState(STATE_AnimateToBubbleView);
         }
     }
-
-    /*
-    public void enable() {
-        mEnabled = true;
-        updateBubbleVisibility();
-        mCanvas.enable(true);
-    }
-
-    public void disable() {
-        mEnabled = false;
-        updateBubbleVisibility();
-        mCanvas.enable(false);
-    }*/
 
     public void onOrientationChanged() {
         Config.init(mContext);

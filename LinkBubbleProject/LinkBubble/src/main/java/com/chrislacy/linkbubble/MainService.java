@@ -23,7 +23,6 @@ public class MainService extends Service {
     private final IBinder serviceBinder = new ServiceBinder();
     private static final String BCAST_CONFIGCHANGED = "android.intent.action.CONFIGURATION_CHANGED";
     private static MainController mController;
-    private PhoneStateChangeListener mPhoneListener = new PhoneStateChangeListener();
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -57,9 +56,6 @@ public class MainService extends Service {
 
         Config.init(this);
 
-        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        telephonyManager.listen(mPhoneListener, PhoneStateListener.LISTEN_CALL_STATE);
-
         WebIconDatabase.getInstance().open(getDir("icons", MODE_PRIVATE).getPath());
 
         mController = new MainController(this);
@@ -83,9 +79,6 @@ public class MainService extends Service {
 
     @Override
     public void onDestroy() {
-        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        telephonyManager.listen(mPhoneListener, PhoneStateListener.LISTEN_NONE);
-
         mController = null;
     }
 
@@ -112,26 +105,4 @@ public class MainService extends Service {
             }
         }
     };
-
-    public class PhoneStateChangeListener extends PhoneStateListener
-    {
-        @Override
-        public void onCallStateChanged(int state, String incomingNumber)
-        {
-            super.onCallStateChanged(state, incomingNumber);
-            switch (state) {
-                case TelephonyManager.CALL_STATE_IDLE:
-                    if (mController != null) {
-                        //mController.enable();
-                    }
-                    break;
-                case TelephonyManager.CALL_STATE_RINGING:
-                    if (mController != null) {
-                        //mController.disable();
-                    }
-                    break;
-            }
-        }
-
-    }
 }

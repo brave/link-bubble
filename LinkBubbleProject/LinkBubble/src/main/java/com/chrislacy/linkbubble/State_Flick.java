@@ -188,7 +188,6 @@ public abstract class State_Flick extends ControllerState {
 
     @Override
     public void OnCloseDialog() {
-        Util.Assert(false);
     }
 
     @Override

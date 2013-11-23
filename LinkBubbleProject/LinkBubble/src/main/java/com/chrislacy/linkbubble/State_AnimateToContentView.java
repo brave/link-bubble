@@ -133,7 +133,6 @@ public class State_AnimateToContentView extends ControllerState {
 
     @Override
     public void OnCloseDialog() {
-        Util.Assert(false);
     }
 
     @Override
