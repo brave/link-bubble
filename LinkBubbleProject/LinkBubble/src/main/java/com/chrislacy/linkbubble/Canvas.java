@@ -72,6 +72,7 @@ public class Canvas extends RelativeLayout {
         mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_PHONE;
         mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
+        mWindowManagerParams.setTitle("LinkBubble: Canvas");
         mWindowManager.addView(this, mWindowManagerParams);
     }
 
@@ -136,6 +137,10 @@ public class Canvas extends RelativeLayout {
     public void fadeOut() {
         mTargetAlpha = 0.0f;
         MainController.scheduleUpdate();
+    }
+
+    public void destroy() {
+        mWindowManager.removeView(this);
     }
 
     public void update(float dt, Bubble frontBubble) {

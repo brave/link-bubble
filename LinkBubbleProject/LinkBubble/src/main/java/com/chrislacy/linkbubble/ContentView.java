@@ -123,6 +123,11 @@ public class ContentView extends LinearLayout {
         }
     }
 
+    public void destroy() {
+        removeView(mWebView);
+        mWebView.destroy();
+    }
+
     private boolean isValidUrl(String urlString) {
         boolean isValid = true;
 

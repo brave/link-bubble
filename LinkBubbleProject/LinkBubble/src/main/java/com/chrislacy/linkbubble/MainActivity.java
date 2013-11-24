@@ -31,9 +31,6 @@ public class MainActivity extends PreferenceActivity {
 
     static MainActivity sCurrentInstance;
 
-    //private boolean serviceBound = false;
-    private String mUrl;
-
     private final Handler mHandler = new Handler();
 
     @Override
@@ -54,7 +51,6 @@ public class MainActivity extends PreferenceActivity {
 
 
         PreferenceManager.setDefaultValues(this, R.xml.prefs, true);
-        startService(new Intent(this, MainService.class));
 
         List<Intent> browsers = Settings.get().getBrowsers();
 
@@ -88,7 +84,7 @@ public class MainActivity extends PreferenceActivity {
             }
 
             if (openLink) {
-                openLink(intent.getDataString());
+                openLink(this, intent.getDataString(), true);
             } else {
                 loadInBrowser(this, intent);
             }
@@ -103,16 +99,6 @@ public class MainActivity extends PreferenceActivity {
         if (sCurrentInstance == this) {
             sCurrentInstance = null;
         }
-
-        try {
-            unbindService(mConnection);
-        } catch (Exception e) {
-
-        }
-        //if (serviceBound) {
-        //    unbindService(mConnection);
-        //    serviceBound = false;
-        //}
 
         super.onDestroy();
     }
@@ -151,52 +137,18 @@ public class MainActivity extends PreferenceActivity {
         }, 500);
     }
 
-    void openLink(String url) {
-        mUrl = url;
-        Intent serviceIntent = new Intent(this, MainService.class);
-        bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
+    public static void openLink(Context context, String url, boolean recordHistory) {
+        Intent serviceIntent = new Intent(context, MainService.class);
+        serviceIntent.putExtra("url", url);
+        serviceIntent.putExtra("record_history", recordHistory);
+        context.startService(serviceIntent);
     }
-
-    private ServiceConnection mConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            MainService.ServiceBinder binder = (MainService.ServiceBinder) service;
-            MainService mainService = binder.getService();
-            //serviceBound = true;
-
-            mainService.openUrl(mUrl, true);
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            //serviceBound = false;
-        }
-    };
-
 
     public static void loadInBrowser(Context context, Intent intent) {
         Intent browserIntent = context.getPackageManager().getLaunchIntentForPackage("com.android.browser");
         if (browserIntent != null) {
             intent.setComponent(browserIntent.getComponent());
             intent.setPackage(browserIntent.getPackage());
-            context.startActivity(intent);
-        }
-    }
-
-    public static void loadInBrowser(Context context, String url, boolean newActivity) {
-        Uri uri = Uri.parse(url);
-        Intent browserIntent = context.getPackageManager().getLaunchIntentForPackage("com.android.browser");
-        if (browserIntent != null) {
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_VIEW);
-            intent.addCategory(Intent.CATEGORY_LAUNCHER);
-            if (newActivity) {
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-            }
-            intent.setComponent(browserIntent.getComponent());
-            intent.setPackage(browserIntent.getPackage());
-            intent.setData(uri);
             context.startActivity(intent);
         }
     }

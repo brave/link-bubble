@@ -27,6 +27,10 @@ import java.util.Vector;
  */
 public class MainController implements Choreographer.FrameCallback {
 
+    public interface EventHandler {
+        public void onDestroy();
+    }
+
     private void doTargetAction(Config.BubbleAction action, String url) {
 
         switch (action) {
@@ -66,6 +70,8 @@ public class MainController implements Choreographer.FrameCallback {
     public static State_Flick_BubbleView STATE_Flick_BubbleView;
 
     private ControllerState mCurrentState;
+    private EventHandler mEventHandler;
+    private int mBubblesLoaded;
 
     private Context mContext;
     private Choreographer mChoreographer;
@@ -132,10 +138,11 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    public MainController(Context context) {
+    public MainController(Context context, EventHandler eh) {
         Util.Assert(sMainController == null);
         sMainController = this;
         mContext = context;
+        mEventHandler = eh;
 
         /*
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -150,6 +157,7 @@ public class MainController implements Choreographer.FrameCallback {
         mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_PHONE;
         mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
+        mWindowManagerParams.setTitle("LinkBubble: Debug Text");
         mWindowManager.addView(mTextView, mWindowManagerParams);*/
 
         mUpdateScheduled = false;
@@ -166,6 +174,13 @@ public class MainController implements Choreographer.FrameCallback {
         STATE_Flick_BubbleView = new State_Flick_BubbleView(mCanvas);
 
         switchState(STATE_BubbleView);
+    }
+
+    public void destroy() {
+        //mWindowManager.removeView(mTextView);
+        mCanvas.destroy();
+        mChoreographer.removeFrameCallback(this);
+        sMainController = null;
     }
 
     public static void scheduleUpdate() {
@@ -217,6 +232,11 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         //mTextView.setText("S=" + mCurrentState.getName() + " F=" + mFrameNumber++);
+
+        if (mCurrentState == STATE_BubbleView && mBubbles.size() == 0 &&
+                mBubblesLoaded > 0 && !mUpdateScheduled) {
+            sMainController.mEventHandler.onDestroy();
+        }
     }
 
     public void onCloseSystemDialogs() {
@@ -255,16 +275,13 @@ public class MainController implements Choreographer.FrameCallback {
 
                 @Override
                 public void onSharedLink(Bubble sender) {
-                    Util.Assert(false);
-                    //Util.Assert(mCurrentState == mIdleState);
-                    //Util.Assert(mMode == Mode.ContentView);
-                    //mMode = Mode.BubbleView;
-                    //switchState(mAnimateToModeViewState);
+                    switchState(STATE_AnimateToBubbleView);
                 }
             });
 
             mCurrentState.OnNewBubble(bubble);
             mBubbles.add(bubble);
+            ++mBubblesLoaded;
 
             int bubbleCount = mBubbles.size();
 

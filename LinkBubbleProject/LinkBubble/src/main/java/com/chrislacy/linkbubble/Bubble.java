@@ -235,6 +235,7 @@ public class Bubble extends RelativeLayout {
 
     public void destroy() {
         setOnTouchListener(null);
+        mContentView.destroy();
         mWindowManager.removeView(this);
     }
 
@@ -443,6 +444,7 @@ public class Bubble extends RelativeLayout {
         mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
         mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
+        mWindowManagerParams.setTitle("LinkBubble: Bubble");
         mWindowManager.addView(this, mWindowManagerParams);
     }
 }

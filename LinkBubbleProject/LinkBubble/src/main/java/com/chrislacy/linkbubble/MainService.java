@@ -20,23 +20,19 @@ import com.crashlytics.android.Crashlytics;
  */
 public class MainService extends Service {
 
-    private final IBinder serviceBinder = new ServiceBinder();
     private static final String BCAST_CONFIGCHANGED = "android.intent.action.CONFIGURATION_CHANGED";
-    private static MainController mController;
+    private MainController mController;
 
     @Override
     public IBinder onBind(Intent intent) {
-        return serviceBinder;
-    }
-
-    public class ServiceBinder extends Binder {
-        MainService getService() {
-            return MainService.this;
-        }
+       return null;
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public int onStartCommand(Intent cmd, int flags, int startId) {
+        String url = cmd.getStringExtra("url");
+        boolean recordHistory = cmd.getBooleanExtra("record_history", true);
+        mController.onOpenUrl(url, recordHistory);
         return START_STICKY;
     }
 
@@ -58,7 +54,12 @@ public class MainService extends Service {
 
         WebIconDatabase.getInstance().open(getDir("icons", MODE_PRIVATE).getPath());
 
-        mController = new MainController(this);
+        mController = new MainController(this, new MainController.EventHandler() {
+            @Override
+            public void onDestroy() {
+                stopSelf();
+            }
+        });
 
         //Intent i = new Intent();
         //i.setData(Uri.parse("https://t.co/uxMl3bWtMP"));
@@ -79,16 +80,13 @@ public class MainService extends Service {
 
     @Override
     public void onDestroy() {
+        unregisterReceiver(mDialogReceiver);
+        unregisterReceiver(mBroadcastReceiver);
+        mController.destroy();
         mController = null;
     }
 
-    public static void openUrl(String url, boolean recordHistory) {
-        if (mController != null) {
-            mController.onOpenUrl(url, recordHistory);
-        }
-    }
-
-    public BroadcastReceiver mDialogReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver mDialogReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent myIntent) {
             if (myIntent.getAction().equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)) {
@@ -97,7 +95,7 @@ public class MainService extends Service {
         }
     };
 
-    public BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent myIntent) {
             if ( myIntent.getAction().equals( BCAST_CONFIGCHANGED ) ) {
