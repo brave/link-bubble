@@ -45,45 +45,72 @@ public class SettingsFragment extends PreferenceFragment {
     public static final int MAX_RECENT_BUBBLES = 10;
     private static SettingsFragment sFragment;
 
-    private static String getKey(int i) {
-        return "recent_bubbble_" + i;
+    public static class RecentBubbleInfo {
+        public RecentBubbleInfo(String url, String title, String date) {
+            mUrl = url != null ? url : "";
+            mTitle = title != null ? title : "";
+            mDate = date != null ? date : "";
+        }
+        public String mUrl;
+        public String mTitle;
+        public String mDate;
     }
 
-    private static Vector<String> readRecentBubbles(Context context) {
-        Vector<String> urls = new Vector<String>();
+    private static String getUrlKey(int i) {
+        return "recent_bubbble_url_" + i;
+    }
+    private static String getTitleKey(int i) {
+        return "recent_bubbble_title_" + i;
+    }
+    private static String getDateKey(int i) {
+        return "recent_bubbble_date_" + i;
+    }
+
+    private static Vector<RecentBubbleInfo> readRecentBubbles(Context context) {
+        Vector<RecentBubbleInfo> items = new Vector<RecentBubbleInfo>();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         for (int i=0 ; i < MAX_RECENT_BUBBLES ; ++i) {
-            String url = prefs.getString(getKey(i), null);
+            String url = prefs.getString(getUrlKey(i), null);
+            String title = prefs.getString(getTitleKey(i), null);
+            String date = prefs.getString(getDateKey(i), null);
             if (url != null) {
-                urls.add(url);
+                items.add(new RecentBubbleInfo(url, title, date));
             }
         }
-        return urls;
+        return items;
     }
 
-    private static void writeRecentBubbles(Context context, Vector<String> bubbles) {
+    private static void writeRecentBubbles(Context context, Vector<RecentBubbleInfo> bubbles) {
         Util.Assert(bubbles.size() <= MAX_RECENT_BUBBLES);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
 
         for (int i=0 ; i < MAX_RECENT_BUBBLES ; ++i) {
-            String key = getKey(i);
+            String urlKey = getUrlKey(i);
+            String titleKey = getTitleKey(i);
+            String dateKey = getDateKey(i);
             if (i < bubbles.size()) {
-                editor.putString(key, bubbles.get(i));
+                RecentBubbleInfo bi = bubbles.get(i);
+
+                editor.putString(urlKey, bi.mUrl);
+                editor.putString(titleKey, bi.mTitle);
+                editor.putString(dateKey, bi.mDate);
             } else {
-                editor.remove(key);
+                editor.remove(urlKey);
+                editor.remove(titleKey);
+                editor.remove(dateKey);
             }
         }
 
         editor.commit();
     }
 
-    public static void addRecentBubble(Context context, String url) {
-        Vector<String> recentBubbles = readRecentBubbles(context);
+    public static void addRecentBubble(Context context, String url, String title, String date) {
+        Vector<RecentBubbleInfo> recentBubbles = readRecentBubbles(context);
         if (recentBubbles.size() == MAX_RECENT_BUBBLES) {
             recentBubbles.removeElementAt(MAX_RECENT_BUBBLES-1);
         }
-        recentBubbles.insertElementAt(url, 0);
+        recentBubbles.insertElementAt(new RecentBubbleInfo(url, title, date), 0);
         writeRecentBubbles(context, recentBubbles);
 
         if (sFragment != null) {
@@ -91,14 +118,35 @@ public class SettingsFragment extends PreferenceFragment {
         }
     }
 
-    private void updateRecentBubbles(Vector<String> urls) {
+    private void updateRecentBubbles(Vector<RecentBubbleInfo> urls) {
         PreferenceScreen recentPS = (PreferenceScreen) findPreference("recent_bubbles");
         if (recentPS != null) {
             recentPS.removeAll();
 
+            Preference removeAllPref = new Preference(getActivity());
+            removeAllPref.setTitle("Clear All");
+            removeAllPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Vector<RecentBubbleInfo> dummy = new Vector<RecentBubbleInfo>();
+                    writeRecentBubbles(getActivity(), dummy);
+                    if (sFragment != null) {
+                        sFragment.updateRecentBubbles(dummy);
+                    }
+                    return false;
+                }
+            });
+            recentPS.addPreference(removeAllPref);
+
             for (int i=0 ; i < urls.size() ; ++i) {
                 Preference p = new Preference(getActivity());
-                p.setTitle(urls.get(i));
+                RecentBubbleInfo bi = urls.get(i);
+                p.setTitle(bi.mTitle);
+                String summary = bi.mUrl;
+                if (bi.mDate != null && bi.mDate.length() > 0) {
+                    summary += "\n" + bi.mDate;
+                }
+                p.setSummary(summary);
 
                 p.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                     @Override
@@ -127,7 +175,7 @@ public class SettingsFragment extends PreferenceFragment {
             clearButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    Vector<String> dummy = new Vector<String>();
+                    Vector<RecentBubbleInfo> dummy = new Vector<RecentBubbleInfo>();
                     writeRecentBubbles(getActivity(), dummy);
                     if (sFragment != null) {
                         sFragment.updateRecentBubbles(dummy);
@@ -137,7 +185,7 @@ public class SettingsFragment extends PreferenceFragment {
             });
         }
 
-        Vector<String> bubbles = readRecentBubbles(getActivity());
+        Vector<RecentBubbleInfo> bubbles = readRecentBubbles(getActivity());
         updateRecentBubbles(bubbles);
 
         Preference loadUrlButton = findPreference("load_url");

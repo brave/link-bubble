@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -264,7 +265,10 @@ public class Bubble extends RelativeLayout {
                 int halfImageHeight;
 
                 if (mRecordHistory && info != null && info.url != null) {
-                    SettingsFragment.addRecentBubble(context, info.url);
+                    Time now = new Time();
+                    now.setToNow();
+                    String nowString = now.format("%H:%M, %d %b %Y");
+                    SettingsFragment.addRecentBubble(context, info.url, info.title, nowString);
                 }
 
                 if (info == null || info.bmp == null) {

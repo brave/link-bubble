@@ -92,6 +92,7 @@ public class ContentView extends LinearLayout {
     public static class PageLoadInfo {
         Bitmap bmp;
         String url;
+        String title;
     }
 
     public interface EventHandler {
@@ -353,6 +354,7 @@ public class ContentView extends LinearLayout {
                         PageLoadInfo pli = new PageLoadInfo();
                         pli.bmp = view.getFavicon();
                         pli.url = url;
+                        pli.title = view.getTitle();
 
                         String title = view.getTitle();
                         Spanned text;
