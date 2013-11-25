@@ -62,6 +62,15 @@ public class Canvas extends RelativeLayout {
         mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeLeft, 0.2f, 0.15f));
         mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeRight, 0.8f, 0.15f));
 
+        Settings.setEventHandler(new Settings.EventHandler() {
+            @Override
+            public void onConsumeBubblesChanged() {
+                for (int i=0 ; i < mTargets.size() ; ++i) {
+                    mTargets.get(i).onConsumeBubblesChanged();
+                }
+            }
+        });
+
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 
         mWindowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;

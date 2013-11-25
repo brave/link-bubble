@@ -64,6 +64,40 @@ public class BubbleTarget extends RelativeLayout {
         Init(canvas, context, d, action, xFraction, yFraction);
     }
 
+    public void onConsumeBubblesChanged() {
+        Drawable d = null;
+
+        switch (mAction) {
+            case ConsumeLeft:
+            case ConsumeRight:
+                d = Settings.get().getConsumeBubbleIcon(mAction);
+                break;
+            default:
+                break;
+        }
+
+        if (d != null) {
+
+            if (d instanceof BitmapDrawable) {
+                Bitmap bm = ((BitmapDrawable)d).getBitmap();
+                mButtonWidth = bm.getWidth();
+                mButtonHeight = bm.getHeight();
+            } else {
+                mButtonWidth = d.getIntrinsicWidth();
+                mButtonHeight = d.getIntrinsicHeight();
+            }
+            Util.Assert(mButtonWidth > 0);
+            Util.Assert(mButtonHeight > 0);
+
+            mImage.setImageDrawable(d);
+
+            RelativeLayout.LayoutParams imageLP = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            imageLP.leftMargin = (int) (0.5f + mDefaultCircle.mRadius - mButtonWidth * 0.5f);
+            imageLP.topMargin = (int) (0.5f + mDefaultCircle.mRadius - mButtonHeight * 0.5f);
+            updateViewLayout(mImage, imageLP);
+        }
+    }
+
     private void Init(Canvas canvas, Context context, Drawable d, Config.BubbleAction action, float xFraction, float yFraction) {
         mCanvas = canvas;
         mContext = context;

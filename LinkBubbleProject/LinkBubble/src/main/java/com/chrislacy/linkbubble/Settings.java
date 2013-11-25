@@ -30,6 +30,10 @@ public class Settings {
     public static final String PREFERENCE_RIGHT_CONSUME_BUBBLE_LABEL = "preference_right_consume_bubble_label";
     public static final String PREFERENCE_RIGHT_CONSUME_BUBBLE_TYPE = "preference_right_consume_bubble_type";
 
+    public interface EventHandler {
+        public void onConsumeBubblesChanged();
+    }
+
     /*
 	 *
 	 */
@@ -44,6 +48,11 @@ public class Settings {
         mInstance = null;
     }
 
+    public static void setEventHandler(EventHandler eh) {
+        Util.Assert(mInstance != null);
+        mInstance.mEventHandler = eh;
+    }
+
     /*
      *
      */
@@ -56,7 +65,7 @@ public class Settings {
     private SharedPreferences mSharedPreferences;
     private Context mContext;
     private List<Intent> mBrowsers;
-
+    private EventHandler mEventHandler;
 
     Settings(Context context) {
         mContext = context;
@@ -109,6 +118,10 @@ public class Settings {
                 break;
         }
         editor.commit();
+
+        if (mEventHandler != null) {
+            mEventHandler.onConsumeBubblesChanged();
+        }
     }
 
     String getConsumeBubbleLabel(Config.BubbleAction action) {
