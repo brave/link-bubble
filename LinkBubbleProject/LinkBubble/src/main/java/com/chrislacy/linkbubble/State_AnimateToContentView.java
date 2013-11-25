@@ -1,6 +1,8 @@
 package com.chrislacy.linkbubble;
 
+import android.util.Log;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 
 import java.util.Vector;
@@ -22,7 +24,8 @@ public class State_AnimateToContentView extends ControllerState {
     private Canvas mCanvas;
     private OvershootInterpolator mInterpolator = new OvershootInterpolator(0.5f);
     private float mTime;
-    private float mPeriod;
+    private float mBubblePeriod;
+    private float mContentPeriod;
     private Vector<BubbleInfo> mBubbleInfo = new Vector<BubbleInfo>();
     private Bubble mSelectedBubble;
 
@@ -41,7 +44,8 @@ public class State_AnimateToContentView extends ControllerState {
 
         mBubbleInfo.clear();
         mTime = 0.0f;
-        mPeriod = 0.3f;
+        mBubblePeriod = 0.3f;
+        mContentPeriod = 0.3f * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
 
         int bubbleCount = MainController.getBubbleCount();
         for (int i=0 ; i < bubbleCount ; ++i) {
@@ -65,7 +69,8 @@ public class State_AnimateToContentView extends ControllerState {
 
     @Override
     public boolean OnUpdate(float dt) {
-        float f = mInterpolator.getInterpolation(mTime / mPeriod);
+        float f = mInterpolator.getInterpolation(mTime / mBubblePeriod);
+        //Log.e("GapTech", "t=" + mTime / mBubblePeriod + ", f=" + f);
         mTime += dt;
 
         int bubbleCount = MainController.getBubbleCount();
@@ -76,7 +81,7 @@ public class State_AnimateToContentView extends ControllerState {
             float x = bi.mPosX + bi.mDistanceX * f;
             float y = bi.mPosY + bi.mDistanceY * f;
 
-            if (mTime >= mPeriod) {
+            if (mTime >= mBubblePeriod) {
                 x = bi.mTargetX;
                 y = bi.mTargetY;
             }
@@ -84,10 +89,10 @@ public class State_AnimateToContentView extends ControllerState {
             b.setExactPos((int) x, (int) y);
         }
 
-        float t = 1.0f - mTime / mPeriod;
+        float t = Util.clamp(0.0f, 1.0f - mTime / mContentPeriod, 1.0f);
         mCanvas.setContentViewTranslation(t * (Config.mScreenHeight - Config.mContentOffset));
 
-        if (mTime >= mPeriod) {
+        if (mTime >= mBubblePeriod && mTime >= mContentPeriod) {
             MainController.STATE_ContentView.init(mSelectedBubble);
             MainController.switchState(MainController.STATE_ContentView);
         }
