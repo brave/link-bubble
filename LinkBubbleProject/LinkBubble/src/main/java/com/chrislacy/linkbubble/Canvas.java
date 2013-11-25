@@ -59,8 +59,8 @@ public class Canvas extends RelativeLayout {
         mDeleteTarget = new BubbleTarget(this, mContext, android.R.drawable.ic_delete, Config.BubbleAction.Destroy, 0.5f, 0.85f);
         mTargets.add(mDeleteTarget);
 
-        mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeLeft, 0.2f, 0.2f));
-        mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeRight, 0.8f, 0.2f));
+        mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeLeft, 0.2f, 0.15f));
+        mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeRight, 0.8f, 0.15f));
 
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 

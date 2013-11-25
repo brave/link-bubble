@@ -66,7 +66,7 @@ public class Config {
         d = context.getResources().getDrawable(R.drawable.target_snap);
 
         mScreenCenterX = (int) (mDm.widthPixels * 0.5f);
-        mScreenHeight = mDm.heightPixels;
+        mScreenHeight = mDm.heightPixels - getStatusBarHeight(context);
         mScreenWidth = mDm.widthPixels;
 
         int maxBubbles1 = (int) ((mDm.widthPixels - mBubbleWidth - mBubbleWidth * 0.5f) / (Config.mBubbleWidth * 1.2f));
@@ -85,6 +85,15 @@ public class Config {
 
         BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
         BUBBLE_HOME_Y = (int) (Config.mScreenHeight * 0.4f);
+    }
+
+    private static int getStatusBarHeight(Context context) {
+        int result = 33;        // Guess 33 if we can't find the resource as this is what the value is on a N7.
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 
     public static float getContentViewX(int bubbleIndex) {
