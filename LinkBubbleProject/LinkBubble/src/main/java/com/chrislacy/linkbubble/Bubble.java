@@ -105,6 +105,10 @@ public class Bubble extends RelativeLayout {
         }
     }
 
+    public void updateIncognitoMode(boolean incognito) {
+        mContentView.updateIncognitoMode(incognito);
+    }
+
     public void setBubbleIndex(int i) {
         mBubbleIndex = i;
     }
@@ -244,6 +248,11 @@ public class Bubble extends RelativeLayout {
 
     public Bubble(final Context context, String url, int x, int y, boolean recordHistory, int bubbleIndex, EventHandler eh) {
         super(context);
+
+        if (Settings.get().isIncognitoMode()) {
+            recordHistory = false;
+        }
+
         mBubbleIndex = bubbleIndex;
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         mEventHandler = eh;

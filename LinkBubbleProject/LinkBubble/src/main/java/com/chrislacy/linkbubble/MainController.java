@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -138,6 +140,15 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
+    public void updateIncognitoMode(boolean incognito) {
+        CookieSyncManager.createInstance(mContext);
+        CookieManager.getInstance().setAcceptCookie(!incognito);
+
+        for (int i=0 ; i < mBubbles.size() ; ++i) {
+            mBubbles.get(i).updateIncognitoMode(incognito);
+        }
+    }
+
     public MainController(Context context, EventHandler eh) {
         Util.Assert(sMainController == null);
         sMainController = this;
@@ -165,6 +176,13 @@ public class MainController implements Choreographer.FrameCallback {
         mCanvas = new Canvas(context);
         mBadge = new Badge(context);
 
+        SettingsFragment.setIncognitoModeChangedEventHandler(new SettingsFragment.IncognitoModeChangedEventHandler() {
+            @Override
+            public void onIncognitoModeChanged(boolean incognito) {
+                updateIncognitoMode(incognito);
+            }
+        });
+
         STATE_BubbleView = new State_BubbleView(mCanvas, mBadge);
         STATE_SnapToEdge = new State_SnapToEdge();
         STATE_AnimateToContentView = new State_AnimateToContentView(mCanvas);
@@ -173,6 +191,7 @@ public class MainController implements Choreographer.FrameCallback {
         STATE_Flick_ContentView = new State_Flick_ContentView(mCanvas);
         STATE_Flick_BubbleView = new State_Flick_BubbleView(mCanvas);
 
+        updateIncognitoMode(Settings.get().isIncognitoMode());
         switchState(STATE_BubbleView);
     }
 

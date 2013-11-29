@@ -44,6 +44,7 @@ public class SettingsFragment extends PreferenceFragment {
 
     public static final int MAX_RECENT_BUBBLES = 10;
     private static SettingsFragment sFragment;
+    private IncognitoModeChangedEventHandler mIncognitoModeChangedEventHandler;
 
     public static class RecentBubbleInfo {
         public RecentBubbleInfo(String url, String title, String date) {
@@ -54,6 +55,15 @@ public class SettingsFragment extends PreferenceFragment {
         public String mUrl;
         public String mTitle;
         public String mDate;
+    }
+
+    public interface IncognitoModeChangedEventHandler {
+        public void onIncognitoModeChanged(boolean incognito);
+    }
+
+    public static void setIncognitoModeChangedEventHandler(IncognitoModeChangedEventHandler eh) {
+        Util.Assert(sFragment != null);
+        sFragment.mIncognitoModeChangedEventHandler = eh;
     }
 
     private static String getUrlKey(int i) {
@@ -169,6 +179,19 @@ public class SettingsFragment extends PreferenceFragment {
         addPreferencesFromResource(R.xml.prefs);
 
         sFragment = this;
+
+        Preference incognitoButton = findPreference("preference_incognito");
+        if (incognitoButton != null) {
+            incognitoButton.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    if (mIncognitoModeChangedEventHandler != null) {
+                        mIncognitoModeChangedEventHandler.onIncognitoModeChanged((Boolean)newValue);
+                    }
+                    return true;
+                }
+            });
+        }
 
         Preference clearButton = findPreference("clear_history");
         if (clearButton != null) {

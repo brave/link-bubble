@@ -30,7 +30,7 @@ public class Settings {
     public static final String PREFERENCE_RIGHT_CONSUME_BUBBLE_LABEL = "preference_right_consume_bubble_label";
     public static final String PREFERENCE_RIGHT_CONSUME_BUBBLE_TYPE = "preference_right_consume_bubble_type";
 
-    public interface EventHandler {
+    public interface ConsumeBubblesChangedEventHandler {
         public void onConsumeBubblesChanged();
     }
 
@@ -48,9 +48,9 @@ public class Settings {
         mInstance = null;
     }
 
-    public static void setEventHandler(EventHandler eh) {
+    public static void setConsumeBubblesChangedEventHandler(ConsumeBubblesChangedEventHandler eh) {
         Util.Assert(mInstance != null);
-        mInstance.mEventHandler = eh;
+        mInstance.mConsumeBubblesChangedEventHandler = eh;
     }
 
     /*
@@ -65,7 +65,7 @@ public class Settings {
     private SharedPreferences mSharedPreferences;
     private Context mContext;
     private List<Intent> mBrowsers;
-    private EventHandler mEventHandler;
+    private ConsumeBubblesChangedEventHandler mConsumeBubblesChangedEventHandler;
 
     Settings(Context context) {
         mContext = context;
@@ -119,8 +119,8 @@ public class Settings {
         }
         editor.commit();
 
-        if (mEventHandler != null) {
-            mEventHandler.onConsumeBubblesChanged();
+        if (mConsumeBubblesChangedEventHandler != null) {
+            mConsumeBubblesChangedEventHandler.onConsumeBubblesChanged();
         }
     }
 
@@ -193,5 +193,8 @@ public class Settings {
         return mContext.getResources().getDrawable(R.drawable.ic_launcher);
     }
 
+    boolean isIncognitoMode() {
+        return mSharedPreferences.getBoolean("preference_incognito", false);
+    }
 
 }

@@ -62,7 +62,7 @@ public class Canvas extends RelativeLayout {
         mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeLeft, 0.2f, 0.15f));
         mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeRight, 0.8f, 0.15f));
 
-        Settings.setEventHandler(new Settings.EventHandler() {
+        Settings.setConsumeBubblesChangedEventHandler(new Settings.ConsumeBubblesChangedEventHandler() {
             @Override
             public void onConsumeBubblesChanged() {
                 for (int i=0 ; i < mTargets.size() ; ++i) {

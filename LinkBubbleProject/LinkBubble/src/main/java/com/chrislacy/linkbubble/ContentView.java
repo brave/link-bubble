@@ -129,6 +129,25 @@ public class ContentView extends LinearLayout {
         mWebView.destroy();
     }
 
+    public void updateIncognitoMode(boolean incognito) {
+        if (incognito) {
+            mWebView.getSettings().setCacheMode(mWebView.getSettings().LOAD_NO_CACHE);
+            mWebView.getSettings().setAppCacheEnabled(false);
+            mWebView.clearHistory();
+            mWebView.clearCache(true);
+
+            mWebView.clearFormData();
+            mWebView.getSettings().setSavePassword(false);
+            mWebView.getSettings().setSaveFormData(false);
+        } else {
+            mWebView.getSettings().setCacheMode(mWebView.getSettings().LOAD_DEFAULT);
+            mWebView.getSettings().setAppCacheEnabled(true);
+
+            mWebView.getSettings().setSavePassword(true);
+            mWebView.getSettings().setSaveFormData(true);
+        }
+    }
+
     private boolean isValidUrl(String urlString) {
         boolean isValid = true;
 
@@ -434,6 +453,8 @@ public class ContentView extends LinearLayout {
 
         mWebViewPlaceholder.setBackgroundColor(0xffffffff);
         addView(mWebView, mWebViewLayoutParams);
+
+        updateIncognitoMode(Settings.get().isIncognitoMode());
 
         mWebView.loadUrl(url);
     }
