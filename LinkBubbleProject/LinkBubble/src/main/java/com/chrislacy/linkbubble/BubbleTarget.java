@@ -37,6 +37,13 @@ public class BubbleTarget extends RelativeLayout {
     private int mTargetY;
     private float mAnimPeriod;
     private float mAnimTime;
+    private boolean mEnableMove;
+
+    private final float mMaxAlpha = 1.0f;
+    private final float mFadeTime = 0.2f;
+    private final float mAlphaDelta = mMaxAlpha / mFadeTime;
+    private float mCurrentAlpha = 1.0f;
+    private float mTargetAlpha = 1.0f;
 
     private void setTargetPos(int x, int y, float t) {
         if (x != mTargetX || y != mTargetY) {
@@ -53,15 +60,15 @@ public class BubbleTarget extends RelativeLayout {
         }
     }
 
-    public BubbleTarget(Canvas canvas, Context context, Config.BubbleAction action, float xFraction, float yFraction) {
+    public BubbleTarget(Canvas canvas, Context context, Config.BubbleAction action, float xFraction, float yFraction, boolean enableMove) {
         super(context);
-        Init(canvas, context, Settings.get().getConsumeBubbleIcon(action), action, xFraction, yFraction);
+        Init(canvas, context, Settings.get().getConsumeBubbleIcon(action), action, xFraction, yFraction, enableMove);
     }
 
-    public BubbleTarget(Canvas canvas, Context context, int resId, Config.BubbleAction action, float xFraction, float yFraction) {
+    public BubbleTarget(Canvas canvas, Context context, int resId, Config.BubbleAction action, float xFraction, float yFraction, boolean enableMove) {
         super(context);
         Drawable d = context.getResources().getDrawable(resId);
-        Init(canvas, context, d, action, xFraction, yFraction);
+        Init(canvas, context, d, action, xFraction, yFraction, enableMove);
     }
 
     public void onConsumeBubblesChanged() {
@@ -98,8 +105,9 @@ public class BubbleTarget extends RelativeLayout {
         }
     }
 
-    private void Init(Canvas canvas, Context context, Drawable d, Config.BubbleAction action, float xFraction, float yFraction) {
+    private void Init(Canvas canvas, Context context, Drawable d, Config.BubbleAction action, float xFraction, float yFraction, boolean enableMove) {
         mCanvas = canvas;
+        mEnableMove = enableMove;
         mContext = context;
         mAction = action;
         mXFraction = xFraction;
@@ -149,8 +157,18 @@ public class BubbleTarget extends RelativeLayout {
         mCanvas.addView(this, mCanvasLayoutParams);
     }
 
+    public void fadeIn() {
+        mTargetAlpha = mMaxAlpha;
+        MainController.scheduleUpdate();
+    }
+
+    public void fadeOut() {
+        mTargetAlpha = 0.0f;
+        MainController.scheduleUpdate();
+    }
+
     public void update(float dt, Bubble bubble) {
-        if (!bubble.isSnapping()) {
+        if (bubble != null && !bubble.isSnapping() && mEnableMove) {
             float xf = (bubble.getXPos() + Config.mBubbleWidth * 0.5f) / Config.mScreenWidth;
             xf = 2.0f * Util.clamp(0.0f, xf, 1.0f) - 1.0f;
             Util.Assert(xf >= -1.0f && xf <= 1.0f);
@@ -199,6 +217,16 @@ public class BubbleTarget extends RelativeLayout {
 
             MainController.scheduleUpdate();
         }
+
+        if (mCurrentAlpha < mTargetAlpha) {
+            mCurrentAlpha = Util.clamp(0.0f, mCurrentAlpha + mAlphaDelta * dt, mMaxAlpha);
+            MainController.scheduleUpdate();
+        } else if (mCurrentAlpha > mTargetAlpha) {
+            mCurrentAlpha = Util.clamp(0.0f, mCurrentAlpha - mAlphaDelta * dt, mMaxAlpha);
+            MainController.scheduleUpdate();
+        }
+        Util.Assert(mCurrentAlpha >= 0.0f && mCurrentAlpha <= 1.0f);
+        setAlpha(mCurrentAlpha);
     }
 
     public void OnOrientationChanged() {

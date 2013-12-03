@@ -31,6 +31,7 @@ public class State_AnimateToBubbleView extends ControllerState {
 
     @Override
     public void OnEnterState() {
+        mCanvas.fadeOutTargets();
         mBubbleInfo.clear();
         mTime = 0.0f;
         mPeriod = 0.3f;

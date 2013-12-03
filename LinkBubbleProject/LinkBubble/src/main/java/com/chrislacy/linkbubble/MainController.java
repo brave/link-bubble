@@ -184,7 +184,7 @@ public class MainController implements Choreographer.FrameCallback {
         });
 
         STATE_BubbleView = new State_BubbleView(mCanvas, mBadge);
-        STATE_SnapToEdge = new State_SnapToEdge();
+        STATE_SnapToEdge = new State_SnapToEdge(mCanvas);
         STATE_AnimateToContentView = new State_AnimateToContentView(mCanvas);
         STATE_ContentView = new State_ContentView(mCanvas);
         STATE_AnimateToBubbleView = new State_AnimateToBubbleView(mCanvas);

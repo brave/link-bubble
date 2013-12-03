@@ -56,11 +56,11 @@ public class Canvas extends RelativeLayout {
 
         applyAlpha();
 
-        mDeleteTarget = new BubbleTarget(this, mContext, android.R.drawable.ic_delete, Config.BubbleAction.Destroy, 0.5f, 0.85f);
+        mDeleteTarget = new BubbleTarget(this, mContext, android.R.drawable.ic_delete, Config.BubbleAction.Destroy, 0.5f, 0.85f, true);
         mTargets.add(mDeleteTarget);
 
-        mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeLeft, 0.2f, 0.15f));
-        mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeRight, 0.8f, 0.15f));
+        mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeLeft, 0.2f, 0.15f, false));
+        mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeRight, 0.8f, 0.15f, false));
 
         Settings.setConsumeBubblesChangedEventHandler(new Settings.ConsumeBubblesChangedEventHandler() {
             @Override
@@ -148,6 +148,18 @@ public class Canvas extends RelativeLayout {
         MainController.scheduleUpdate();
     }
 
+    public void fadeInTargets() {
+        for (int i=0 ; i < mTargets.size() ; ++i) {
+            mTargets.get(i).fadeIn();
+        }
+    }
+
+    public void fadeOutTargets() {
+        for (int i=0 ; i < mTargets.size() ; ++i) {
+            mTargets.get(i).fadeOut();
+        }
+    }
+
     public void destroy() {
         mWindowManager.removeView(this);
     }
@@ -162,8 +174,8 @@ public class Canvas extends RelativeLayout {
         }
         applyAlpha();
 
-        if (frontBubble != null) {
-            mDeleteTarget.update(dt, frontBubble);
+        for (int i=0 ; i < mTargets.size() ; ++i) {
+            mTargets.get(i).update(dt, frontBubble);
         }
     }
 

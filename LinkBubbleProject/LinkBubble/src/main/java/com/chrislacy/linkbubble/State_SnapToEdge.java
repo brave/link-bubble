@@ -12,6 +12,11 @@ public class State_SnapToEdge extends ControllerState {
     private float mTime;
     private float mPeriod;
     private Bubble mBubble;
+    private Canvas mCanvas;
+
+    public State_SnapToEdge(Canvas c) {
+        mCanvas = c;
+    }
 
     public void init(Bubble b) {
         mBubble = b;
@@ -19,6 +24,7 @@ public class State_SnapToEdge extends ControllerState {
 
     @Override
     public void OnEnterState() {
+        mCanvas.fadeOutTargets();
         Util.Assert(mBubble != null);
 
         mTime = 0.0f;

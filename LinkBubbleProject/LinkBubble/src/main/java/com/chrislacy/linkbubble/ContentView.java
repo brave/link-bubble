@@ -319,6 +319,8 @@ public class ContentView extends LinearLayout {
         ws.setJavaScriptEnabled(true);
         ws.setSupportZoom(true);
         ws.setBuiltInZoomControls(true);
+        ws.setLoadWithOverviewMode(true);
+        ws.setUseWideViewPort(true);
 
         mWebView.setWebChromeClient(new WebChromeClient());
 

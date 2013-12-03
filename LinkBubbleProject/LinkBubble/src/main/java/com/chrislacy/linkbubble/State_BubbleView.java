@@ -17,6 +17,7 @@ public class State_BubbleView extends ControllerState {
     private Bubble mBubble;
     private Badge mBadge;
     private boolean mTouchDown;
+    private int mTouchFrameCount;
 
     public State_BubbleView(Canvas canvas, Badge badge) {
         mCanvas = canvas;
@@ -25,6 +26,7 @@ public class State_BubbleView extends ControllerState {
 
     @Override
     public void OnEnterState() {
+        mCanvas.fadeOutTargets();
         mDidMove = false;
         mBubble = null;
         mBadge.show();
@@ -41,7 +43,14 @@ public class State_BubbleView extends ControllerState {
 
     @Override
     public boolean OnUpdate(float dt) {
+
         if (mBubble != null) {
+            ++mTouchFrameCount;
+
+            if (mTouchFrameCount == 6) {
+                mCanvas.fadeInTargets();
+            }
+
             mBubble.doSnap(mCanvas, mTargetX, mTargetY);
             return true;
         }
@@ -64,6 +73,9 @@ public class State_BubbleView extends ControllerState {
         mTargetX = mInitialX;
         mTargetY = mInitialY;
         mDidMove = false;
+
+        MainController.scheduleUpdate();
+        mTouchFrameCount = 0;
     }
 
     @Override
@@ -77,6 +89,7 @@ public class State_BubbleView extends ControllerState {
 
             float d = (float) Math.sqrt( (e.dx * e.dx) + (e.dy * e.dy) );
             if (d >= Config.dpToPx(10.0f)) {
+                mCanvas.fadeInTargets();
                 mDidMove = true;
             }
         }

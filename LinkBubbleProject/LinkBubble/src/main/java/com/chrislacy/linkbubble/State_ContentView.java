@@ -16,6 +16,7 @@ public class State_ContentView extends ControllerState {
     private Bubble mTouchBubble;
     private Bubble mActiveBubble;
     private boolean mTouchDown;
+    private int mTouchFrameCount;
 
     public State_ContentView(Canvas canvas) {
         mCanvas = canvas;
@@ -35,6 +36,12 @@ public class State_ContentView extends ControllerState {
     @Override
     public boolean OnUpdate(float dt) {
         if (mTouchBubble != null) {
+            ++mTouchFrameCount;
+
+            if (mTouchFrameCount == 6) {
+                mCanvas.fadeInTargets();
+            }
+
             mTouchBubble.doSnap(mCanvas, mTargetX, mTargetY);
             return true;
         }
@@ -57,6 +64,7 @@ public class State_ContentView extends ControllerState {
         mTargetY = mInitialY;
 
         MainController.scheduleUpdate();
+        mTouchFrameCount = 0;
     }
 
     @Override
@@ -72,6 +80,7 @@ public class State_ContentView extends ControllerState {
             if (d >= Config.dpToPx(10.0f)) {
                 mDidMove = true;
                 mCanvas.hideContentView();
+                mCanvas.fadeInTargets();
             }
 
             MainController.scheduleUpdate();
