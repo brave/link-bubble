@@ -298,6 +298,13 @@ public class Bubble extends RelativeLayout {
                     String nowString = now.format("%H:%M, %d %b %Y");
                     SettingsFragment.addRecentBubble(context, info.url, info.title, nowString);
                 }
+
+                if (Settings.get().autoLoadContent()) {
+                    // TODO: The bubble animates, but the content view does not
+                    // Also, the badge count doesn't get reset
+                    //MainController.STATE_AnimateToContentView.init(Bubble.this);
+                    //MainController.switchState(MainController.STATE_AnimateToContentView);
+                }
             }
 
             @Override
