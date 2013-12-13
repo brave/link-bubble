@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -253,6 +254,7 @@ public class ContentView extends LinearLayout {
         mTitleTextView = (CondensedTextView) mToolbarLayout.findViewById(R.id.title_text);
         mUrlTextView = (CondensedTextView) mToolbarLayout.findViewById(R.id.url_text);
         mShareButton = (ImageButton)mToolbarLayout.findViewById(R.id.share_button);
+        mShareButton.setOnTouchListener(sButtonOnTouchListener);
         mShareButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -261,6 +263,7 @@ public class ContentView extends LinearLayout {
         });
 
         mAppButton = (ImageButton)mToolbarLayout.findViewById(R.id.open_in_app_button);
+        mAppButton.setOnTouchListener(sButtonOnTouchListener);
         mAppButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -278,6 +281,7 @@ public class ContentView extends LinearLayout {
         });
 
         mOverflowButton = (ImageButton)mToolbarLayout.findViewById(R.id.overflow_button);
+        mOverflowButton.setOnTouchListener(sButtonOnTouchListener);
         mOverflowButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -511,4 +515,23 @@ public class ContentView extends LinearLayout {
         }
         return null;
     }
+
+    static private final OnTouchListener sButtonOnTouchListener = new OnTouchListener() {
+
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN: {
+                    v.getBackground().setColorFilter(0x555d5d5e, PorterDuff.Mode.DARKEN);
+                    v.invalidate();
+                    break;
+                }
+                case MotionEvent.ACTION_UP: {
+                    v.getBackground().clearColorFilter();
+                    v.invalidate();
+                    break;
+                }
+            }
+            return false;
+        }
+    };
 }
