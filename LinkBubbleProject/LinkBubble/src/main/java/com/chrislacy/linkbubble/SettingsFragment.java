@@ -242,7 +242,7 @@ public class SettingsFragment extends PreferenceFragment {
                 AlertDialog alertDialog = ActionItem.getDefaultBrowserAlert(getActivity(), new ActionItem.OnActionItemSelectedListener() {
                     @Override
                     public void onSelected(ActionItem actionItem) {
-                        Settings.get().setDefaultBrowser(actionItem.getLabel(), actionItem.mPackageName, actionItem.mActivityClassName);
+                        Settings.get().setDefaultBrowser(actionItem.getLabel(), actionItem.mPackageName);
                         preference.setSummary(Settings.get().getDefaultBrowserLabel());
                     }
                 });

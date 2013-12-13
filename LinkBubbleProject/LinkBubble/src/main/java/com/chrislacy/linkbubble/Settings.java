@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
@@ -32,7 +33,6 @@ public class Settings {
 
     public static final String PREFERENCE_DEFAULT_BROWSER = "preference_default_browser";
     public static final String PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME = "preference_default_browser_package_name";
-    public static final String PREFERENCE_DEFAULT_BROWSER_ACTIVITY_CLASS_NAME = "preference_default_browser_activity_class_name";
     public static final String PREFERENCE_DEFAULT_BROWSER_LABEL = "preference_default_browser_bubble_label";
 
     public interface ConsumeBubblesChangedEventHandler {
@@ -88,6 +88,8 @@ public class Settings {
         queryIntent.setAction(Intent.ACTION_VIEW);
         queryIntent.setData(Uri.parse("http://www.fdasfjsadfdsfas.com"));        // Something stupid that no non-browser app will handle
         List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(queryIntent, PackageManager.GET_RESOLVED_FILTER);
+        String fallbackDefaultBrowserPackageName = null;
+        String fallbackDefaultBrowserActivityClassName = null;
         for (ResolveInfo resolveInfo : resolveInfos) {
             IntentFilter filter = resolveInfo.filter;
             if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
@@ -96,7 +98,41 @@ public class Settings {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setClassName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
                     mBrowsers.add(intent);
+                    if (fallbackDefaultBrowserPackageName == null) {
+                        fallbackDefaultBrowserPackageName = resolveInfo.activityInfo.packageName;
+                        fallbackDefaultBrowserActivityClassName = resolveInfo.activityInfo.name;
+                    } else if (resolveInfo.activityInfo.packageName.equals("com.android.chrome")) {
+                        fallbackDefaultBrowserPackageName = resolveInfo.activityInfo.packageName;
+                        fallbackDefaultBrowserActivityClassName = resolveInfo.activityInfo.name;
+                    }
                 }
+            }
+        }
+
+        String defaultBrowserPackage = mSharedPreferences.getString(PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME, null);
+        String rightConsumeBubblePackageName = mSharedPreferences.getString(PREFERENCE_RIGHT_CONSUME_BUBBLE_PACKAGE_NAME, null);
+        if (fallbackDefaultBrowserPackageName != null
+                && (defaultBrowserPackage == null || rightConsumeBubblePackageName == null)) {
+            try {
+                ApplicationInfo applicationInfo = packageManager.getApplicationInfo(fallbackDefaultBrowserPackageName, 0);
+                String defaultBrowserLabel = (String) packageManager.getApplicationLabel(applicationInfo);
+
+                SharedPreferences.Editor editor = mSharedPreferences.edit();
+                if (defaultBrowserPackage == null) {
+                    editor.putString(PREFERENCE_DEFAULT_BROWSER_LABEL, defaultBrowserLabel);
+                    editor.putString(PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME, fallbackDefaultBrowserPackageName);
+                }
+                if (rightConsumeBubblePackageName == null) {
+                    editor.putString(PREFERENCE_RIGHT_CONSUME_BUBBLE_LABEL, defaultBrowserLabel);
+                    editor.putString(PREFERENCE_RIGHT_CONSUME_BUBBLE_PACKAGE_NAME, fallbackDefaultBrowserPackageName);
+                    editor.putString(PREFERENCE_RIGHT_CONSUME_BUBBLE_ACTIVITY_CLASS_NAME, fallbackDefaultBrowserActivityClassName);
+                    editor.putString(PREFERENCE_RIGHT_CONSUME_BUBBLE_TYPE, Config.ActionType.View.name());
+                }
+
+                editor.commit();
+
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -105,11 +141,10 @@ public class Settings {
         return mBrowsers;
     }
 
-    void setDefaultBrowser(String label, String packageName, String activityClassName) {
+    void setDefaultBrowser(String label, String packageName) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(PREFERENCE_DEFAULT_BROWSER_LABEL, label);
         editor.putString(PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME, packageName);
-        editor.putString(PREFERENCE_DEFAULT_BROWSER_ACTIVITY_CLASS_NAME, activityClassName);
         editor.commit();
     }
 
@@ -119,10 +154,6 @@ public class Settings {
 
     String getDefaultBrowserPackageName() {
         return mSharedPreferences.getString(PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME, null);
-    }
-
-    String getDefaultBrowserActivityClassName() {
-        return mSharedPreferences.getString(PREFERENCE_DEFAULT_BROWSER_ACTIVITY_CLASS_NAME, null);
     }
 
     void setConsumeBubble(Config.BubbleAction action, Config.ActionType type, String label, String packageName, String activityClassName) {
