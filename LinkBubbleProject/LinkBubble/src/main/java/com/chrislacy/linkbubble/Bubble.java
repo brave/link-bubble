@@ -31,6 +31,7 @@ public class Bubble extends RelativeLayout {
     private String mUrl;
     private ContentView mContentView;
     private boolean mRecordHistory;
+    private boolean mAlive;
 
     // Move animation state
     private int mInitialX;
@@ -165,7 +166,9 @@ public class Bubble extends RelativeLayout {
         mWindowManagerParams.y = y;
         mTargetX = x;
         mTargetY = y;
-        mWindowManager.updateViewLayout(this, mWindowManagerParams);
+        if (mAlive) {
+            mWindowManager.updateViewLayout(this, mWindowManagerParams);
+        }
     }
 
     public void setTargetPos(int x, int y, float t, boolean overshoot) {
@@ -240,14 +243,20 @@ public class Bubble extends RelativeLayout {
 
     public void destroy() {
         setOnTouchListener(null);
-        mContentView.destroy();
-        mWindowManager.removeView(this);
+        // Will be null 
+        if (mContentView != null) {
+            mContentView.destroy();
+            mWindowManager.removeView(this);
+        }
+        mAlive = false;
     }
 
     public String getUrl() { return mUrl; }
 
     public Bubble(final Context context, String url, int x, int y, boolean recordHistory, int bubbleIndex, EventHandler eh) {
         super(context);
+
+        mAlive = true;
 
         if (Settings.get().isIncognitoMode()) {
             recordHistory = false;
@@ -263,6 +272,11 @@ public class Bubble extends RelativeLayout {
             @Override
             public void onSharedLink() {
                 mEventHandler.onSharedLink(Bubble.this);
+            }
+
+            @Override
+            public void onRedirectedToApp() {
+                MainController.destroyBubble(Bubble.this, Config.BubbleAction.Destroy);
             }
 
             @Override
@@ -392,7 +406,7 @@ public class Bubble extends RelativeLayout {
                         if (mMoveEvents.size() > 0) {
                             float firstMs = mMoveEvents.get(0).mTime;
 
-                            for (int i=0 ; i < mMoveEvents.size() ; ++i) {
+                            for (int i = 0; i < mMoveEvents.size(); ++i) {
                                 InternalMoveEvent me = mMoveEvents.get(i);
                                 float ms = me.mTime - firstMs;
                             }
@@ -403,7 +417,7 @@ public class Bubble extends RelativeLayout {
                             InternalMoveEvent lastME = mMoveEvents.lastElement();
                             InternalMoveEvent refME = null;
 
-                            for (int i=moveEventCount-1 ; i >= 0 ; --i) {
+                            for (int i = moveEventCount - 1; i >= 0; --i) {
                                 InternalMoveEvent me = mMoveEvents.get(i);
 
                                 if (lastME.mTime == me.mTime)
@@ -455,13 +469,16 @@ public class Bubble extends RelativeLayout {
         mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
         mWindowManagerParams.setTitle("LinkBubble: Bubble");
-        mWindowManager.addView(this, mWindowManagerParams);
 
-        if (bubbleIndex == 0) {
-            setExactPos((int) (Config.mBubbleSnapLeftX - Config.mBubbleWidth), y);
-            setTargetPos(x, y, 0.3f, false);
-        } else {
-            setExactPos(x, y);
+        if (mAlive) {
+            mWindowManager.addView(this, mWindowManagerParams);
+
+            if (bubbleIndex == 0) {
+                setExactPos((int) (Config.mBubbleSnapLeftX - Config.mBubbleWidth), y);
+                setTargetPos(x, y, 0.3f, false);
+            } else {
+                setExactPos(x, y);
+            }
         }
     }
 }

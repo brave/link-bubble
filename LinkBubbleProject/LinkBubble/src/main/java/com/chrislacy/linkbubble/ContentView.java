@@ -99,6 +99,7 @@ public class ContentView extends LinearLayout {
     public interface EventHandler {
         public void onSharedLink();
         public void onPageLoaded(PageLoadInfo info);
+        public void onRedirectedToApp();
     }
 
     @Override
@@ -435,33 +436,9 @@ public class ContentView extends LinearLayout {
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
         if (urlHandled(url)) {
-            destroyBubble();
+            mEventHandler.onRedirectedToApp();
         } else {
             mWebView.loadUrl(url);
-        }
-    }
-
-    private void destroyBubble() {
-
-        /*
-        int bubbleCount = MainController.getBubbleCount();
-        for (int i = 0; i < bubbleCount; i++) {
-            Bubble bubble = MainController.getBubble(i);
-            if (bubble != null) {
-                String bubbleUrl = bubble.getUrl();
-                String originalUrl = wView.getOriginalUrl();
-                if (bubbleUrl != null && originalUrl != null && bubbleUrl.equals(originalUrl)) {
-                    MainController.destroyBubble(bubble, Config.BubbleAction.Destroy);
-                    break;
-                }
-            }
-        }*/
-
-        // TODO: Figure out how to get the correct Bubble rather than closing the first one
-        int bubbleCount = MainController.getBubbleCount();
-        if (bubbleCount > 0) {
-            Bubble bubble = MainController.getBubble(0);
-            MainController.destroyBubble(bubble, Config.BubbleAction.Destroy);
         }
     }
 
@@ -473,8 +450,7 @@ public class ContentView extends LinearLayout {
             openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             openIntent.setData(Uri.parse(url));
             mContext.startActivity(openIntent);
-
-            destroyBubble();
+            mEventHandler.onRedirectedToApp();
             return true;
         } else {
             if (resolveInfo != null) {
