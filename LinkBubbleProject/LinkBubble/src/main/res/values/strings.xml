@@ -14,6 +14,7 @@
     <string name="preference_right_consume_bubble_title">Top right Bubble</string>
     <string name="preference_configure_bubble_title">Configure bubble</string>
     <string name="preference_category_debug">Debug</string>
+    <string name="preference_default_browser">Default browser</string>
 
     <string name="consume_category_view">View link</string>
     <string name="consume_category_share">Send/share link</string>

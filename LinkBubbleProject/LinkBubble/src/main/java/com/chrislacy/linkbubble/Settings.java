@@ -30,6 +30,8 @@ public class Settings {
     public static final String PREFERENCE_RIGHT_CONSUME_BUBBLE_LABEL = "preference_right_consume_bubble_label";
     public static final String PREFERENCE_RIGHT_CONSUME_BUBBLE_TYPE = "preference_right_consume_bubble_type";
 
+    public static final String PREFERENCE_DEFAULT_BROWSER = "preference_default_browser";
+
     public interface ConsumeBubblesChangedEventHandler {
         public void onConsumeBubblesChanged();
     }

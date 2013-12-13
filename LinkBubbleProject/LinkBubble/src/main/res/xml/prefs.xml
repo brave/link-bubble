@@ -27,6 +27,11 @@
             android:dependency="enabled"
             />
 
+        <Preference
+            android:key="preference_default_browser"
+            android:title="@string/preference_default_browser"
+            />
+
         <Preference android:title="Clear History"
             android:key="clear_history"
             android:summary="Clear list of recent bubbles"/>

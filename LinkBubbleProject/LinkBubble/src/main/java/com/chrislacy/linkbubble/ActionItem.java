@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
@@ -32,51 +33,48 @@ import java.util.List;
  */
 public class ActionItem {
 
-    public static AlertDialog getConfigureBubbleAlert(Context context, final Config.BubbleAction bubble, final Preference preference) {
-
+    private static ArrayList<Item> getActionItems(Context context, boolean viewItems, boolean sendItems) {
         final ArrayList<Item> actionItems = new ArrayList<Item>();
 
         String packageName = context.getPackageName();
         PackageManager packageManager = context.getPackageManager();
         Resources resources = context.getResources();
 
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("http://www.fdasfjsadfdsfas.com"));        // Something stupid that no non-browser app will handle
-        List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities (intent, PackageManager.GET_RESOLVED_FILTER);
-        for (ResolveInfo resolveInfo : resolveInfos) {
-            IntentFilter filter = resolveInfo.filter;
-            if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
-                // Ignore LinkBubble from this list
-                if (resolveInfo.activityInfo.packageName.equals(packageName) == false) {
-                    actionItems.add(new Item(Config.ActionType.View,
-                            resources,
-                            resolveInfo.loadLabel(packageManager).toString(),
-                            resolveInfo.loadIcon(packageManager),
-                            resolveInfo.activityInfo.packageName,
-                            resolveInfo.activityInfo.name));
+        if (viewItems) {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("http://www.fdasfjsadfdsfas.com"));        // Something stupid that no non-browser app will handle
+            List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities (intent, PackageManager.GET_RESOLVED_FILTER);
+            for (ResolveInfo resolveInfo : resolveInfos) {
+                IntentFilter filter = resolveInfo.filter;
+                if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
+                    // Ignore LinkBubble from this list
+                    if (resolveInfo.activityInfo.packageName.equals(packageName) == false) {
+                        actionItems.add(new Item(Config.ActionType.View,
+                                resources,
+                                resolveInfo.loadLabel(packageManager).toString(),
+                                resolveInfo.loadIcon(packageManager),
+                                resolveInfo.activityInfo.packageName,
+                                resolveInfo.activityInfo.name));
+                    }
                 }
             }
         }
 
-        // Get list of handler apps that can send
-        intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        resolveInfos = packageManager.queryIntentActivities(intent, 0);
-        for (ResolveInfo resolveInfo : resolveInfos) {
-            actionItems.add(new Item(Config.ActionType.Share,
-                    resources,
-                    resolveInfo.loadLabel(packageManager).toString(),
-                    resolveInfo.loadIcon(packageManager),
-                    resolveInfo.activityInfo.packageName,
-                    resolveInfo.activityInfo.name));
+        if (sendItems) {
+            // Get list of handler apps that can send
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, 0);
+            for (ResolveInfo resolveInfo : resolveInfos) {
+                actionItems.add(new Item(Config.ActionType.Share,
+                        resources,
+                        resolveInfo.loadLabel(packageManager).toString(),
+                        resolveInfo.loadIcon(packageManager),
+                        resolveInfo.activityInfo.packageName,
+                        resolveInfo.activityInfo.name));
+            }
         }
-
-        StickyListHeadersListView listView = new StickyListHeadersListView(context);
-
-        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle(R.string.preference_configure_bubble_title);
-        alertDialog.setView(listView);
 
         Collections.sort(actionItems, new Comparator<Item>() {
 
@@ -89,6 +87,56 @@ public class ActionItem {
                 return categoryComparison;
             }
         });
+
+        return actionItems;
+    }
+
+    public static AlertDialog getDefaultBrowserAlert(Context context) {
+        final ArrayList<Item> actionItems = getActionItems(context, true, false);
+
+        ListView listView = new ListView(context);
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setTitle(R.string.preference_default_browser);
+        alertDialog.setView(listView);
+
+        ActionItemAdapter adapter = new ActionItemAdapter(context,
+                R.layout.action_picker_item,
+                actionItems.toArray(new Item[0]));
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object tag = view.getTag();
+                if (tag instanceof Item) {
+                    Item actionItem = (Item) tag;
+                    //Settings.get().setConsumeBubble(bubble, actionItem.mType, actionItem.getLabel(),
+                    //        actionItem.mPackageName, actionItem.mActivityClassName);
+                    //preference.setSummary(Settings.get().getConsumeBubbleLabel(bubble));
+                    alertDialog.dismiss();
+                }
+            }
+        });
+
+        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+
+            @Override
+            public void onCancel(DialogInterface dialog) {
+            }
+        });
+
+        return alertDialog;
+    }
+
+    public static AlertDialog getConfigureBubbleAlert(Context context, final Config.BubbleAction bubble, final Preference preference) {
+
+        final ArrayList<Item> actionItems = getActionItems(context, true, true);
+
+        StickyListHeadersListView listView = new StickyListHeadersListView(context);
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setTitle(R.string.preference_configure_bubble_title);
+        alertDialog.setView(listView);
 
         ActionItemAdapter adapter = new ActionItemAdapter(context,
                 R.layout.action_picker_item,
@@ -108,7 +156,7 @@ public class ActionItem {
             }
         });
 
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, resources.getString(R.string.action_use_default), new DialogInterface.OnClickListener() {
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, context.getResources().getString(R.string.action_use_default), new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
