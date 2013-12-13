@@ -202,8 +202,10 @@ public class SettingsFragment extends PreferenceFragment {
                     /*
                     Intent openIntent = new Intent(Intent.ACTION_VIEW);
                     openIntent.setClassName("com.android.vending", "com.google.android.finsky.activities.MainActivity");
-                    openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                     openIntent.setData(Uri.parse("http://play.google.com/store/apps/details?id=com.chrislacy.actionlauncher.pro"));
+                    //openIntent.setClassName("com.google.android.youtube", "com.google.android.apps.youtube.app.honeycomb.Shell$WatchActivity");
+                    //openIntent.setData(Uri.parse("http://www.youtube.com/watch?v=CevxZvSJLk8"));
+                    openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     getActivity().startActivity(openIntent);
                     */
 

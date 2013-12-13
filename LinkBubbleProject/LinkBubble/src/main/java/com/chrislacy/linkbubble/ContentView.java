@@ -265,7 +265,7 @@ public class ContentView extends LinearLayout {
                 Intent intent = new Intent(action);
 
                 intent.setClassName(mShareContext, mSharePackage);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.setData(Uri.parse(mUrl));
 
                 mContext.startActivity(intent);
@@ -337,7 +337,7 @@ public class ContentView extends LinearLayout {
                 if (info != null) {
                     Intent openIntent = new Intent(Intent.ACTION_VIEW);
                     openIntent.setClassName(info.activityInfo.packageName, info.activityInfo.name);
-                    openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     openIntent.setData(Uri.parse(url));
                     mContext.startActivity(openIntent);
 

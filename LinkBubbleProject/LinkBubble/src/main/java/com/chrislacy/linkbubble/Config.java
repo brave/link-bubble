@@ -125,7 +125,7 @@ public class Config {
                 if (info.activityInfo.packageName.equals(STORE_PACKAGE)) {
                     Intent result = new Intent(Intent.ACTION_VIEW);
                     result.setClassName(info.activityInfo.packageName, info.activityInfo.name);
-                    result.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    result.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     result.setData(Uri.parse(storeProUrl));
                     return result;
                 }
