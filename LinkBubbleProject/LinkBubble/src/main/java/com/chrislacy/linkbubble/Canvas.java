@@ -107,7 +107,7 @@ public class Canvas extends RelativeLayout {
     private void applyAlpha() {
         Util.Assert(mCurrentAlpha >= 0.0f && mCurrentAlpha <= 1.0f);
 
-        int color = ((int)(255 * mCurrentAlpha) << 24);
+        int color = ((int)(180 * mCurrentAlpha) << 24);
         setBackgroundColor(color);
 
         if (!mEnabled || mCurrentAlpha == 0.0f) {
