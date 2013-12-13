@@ -98,6 +98,7 @@ public class ContentView extends LinearLayout {
 
     public interface EventHandler {
         public void onSharedLink();
+        public void onPageLoading(String url);
         public void onPageLoaded(PageLoadInfo info);
         public void onRedirectedToApp();
     }
@@ -364,6 +365,7 @@ public class ContentView extends LinearLayout {
                     return false;
                 } else {
                     mWebView.loadUrl(url);
+                    mEventHandler.onPageLoading(url);
                     mTitleTextView.setText(null);
                     mUrlTextView.setText(null);
                     return true;

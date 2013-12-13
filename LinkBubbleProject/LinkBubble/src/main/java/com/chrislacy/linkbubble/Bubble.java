@@ -27,6 +27,9 @@ public class Bubble extends RelativeLayout {
     protected WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
     private EventHandler mEventHandler;
     private ProgressBar mProgressBar;
+    private RelativeLayout.LayoutParams mProgressBarLP;
+    private boolean mProgressBarShowing;
+
 
     private String mUrl;
     private ContentView mContentView;
@@ -275,13 +278,18 @@ public class Bubble extends RelativeLayout {
             }
 
             @Override
+            public void onPageLoading(String url) {
+                showProgressBar(true);
+            }
+
+            @Override
             public void onRedirectedToApp() {
                 MainController.destroyBubble(Bubble.this, Config.BubbleAction.Destroy);
             }
 
             @Override
             public void onPageLoaded(ContentView.PageLoadInfo info) {
-                removeView(mProgressBar);
+                showProgressBar(false);
                 setBackgroundResource(R.drawable.circle_grey);
 
                 int halfImageWidth;
@@ -321,6 +329,7 @@ public class Bubble extends RelativeLayout {
                 int vPad = (int) (Config.mBubbleHeight / 2.0f - halfImageHeight);
 
                 mShape.setPadding(hPad, vPad, 0, 0);
+                mShape.setVisibility(VISIBLE);
             }
         });
 
@@ -330,11 +339,10 @@ public class Bubble extends RelativeLayout {
         mShape.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
         mProgressBar = new ProgressBar(context);
-        mProgressBar.setIndeterminate(true);
-        RelativeLayout.LayoutParams lp = new LayoutParams(Config.dpToPx(30.0f), Config.dpToPx(30.0f));
-        lp.leftMargin = Config.dpToPx(60.0f / 2.0f) - Config.dpToPx(30.0f / 2.0f);
-        lp.topMargin = Config.dpToPx(60.0f / 2.0f) - Config.dpToPx(30.0f / 2.0f);
-        addView(mProgressBar, lp);
+        mProgressBarLP = new LayoutParams(Config.dpToPx(30.0f), Config.dpToPx(30.0f));
+        mProgressBarLP.leftMargin = Config.dpToPx(60.0f / 2.0f) - Config.dpToPx(30.0f / 2.0f);
+        mProgressBarLP.topMargin = Config.dpToPx(60.0f / 2.0f) - Config.dpToPx(30.0f / 2.0f);
+        showProgressBar(true);
 
         setBackgroundResource(R.drawable.circle_grey);
 
@@ -478,6 +486,22 @@ public class Bubble extends RelativeLayout {
                 setTargetPos(x, y, 0.4f, true);
             } else {
                 setExactPos(x, y);
+            }
+        }
+    }
+
+    void showProgressBar(boolean show) {
+        if (show) {
+            if (mProgressBarShowing == false) {
+                mProgressBarShowing = true;
+                mProgressBar.setIndeterminate(true);
+                addView(mProgressBar, mProgressBarLP);
+                mShape.setVisibility(GONE);
+            }
+        } else {
+            if (mProgressBarShowing) {
+                removeView(mProgressBar);
+                mProgressBarShowing = false;
             }
         }
     }
