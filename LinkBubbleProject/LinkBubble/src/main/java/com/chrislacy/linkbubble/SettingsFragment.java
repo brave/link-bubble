@@ -234,13 +234,16 @@ public class SettingsFragment extends PreferenceFragment {
         });
         rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeRight));
 
-        final Preference defaultBrowserPreference = findPreference(Settings.PREFERENCE_DEFAULT_BROWSER);
+        Preference defaultBrowserPreference = findPreference(Settings.PREFERENCE_DEFAULT_BROWSER);
+        defaultBrowserPreference.setSummary(Settings.get().getDefaultBrowserLabel());
         defaultBrowserPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
-            public boolean onPreferenceClick(Preference preference) {
+            public boolean onPreferenceClick(final Preference preference) {
                 AlertDialog alertDialog = ActionItem.getDefaultBrowserAlert(getActivity(), new ActionItem.OnActionItemSelectedListener() {
                     @Override
                     public void onSelected(ActionItem actionItem) {
+                        Settings.get().setDefaultBrowser(actionItem.getLabel(), actionItem.mPackageName, actionItem.mActivityClassName);
+                        preference.setSummary(Settings.get().getDefaultBrowserLabel());
                     }
                 });
                 alertDialog.show();

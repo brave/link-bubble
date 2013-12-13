@@ -31,6 +31,9 @@ public class Settings {
     public static final String PREFERENCE_RIGHT_CONSUME_BUBBLE_TYPE = "preference_right_consume_bubble_type";
 
     public static final String PREFERENCE_DEFAULT_BROWSER = "preference_default_browser";
+    public static final String PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME = "preference_default_browser_package_name";
+    public static final String PREFERENCE_DEFAULT_BROWSER_ACTIVITY_CLASS_NAME = "preference_default_browser_activity_class_name";
+    public static final String PREFERENCE_DEFAULT_BROWSER_LABEL = "preference_default_browser_bubble_label";
 
     public interface ConsumeBubblesChangedEventHandler {
         public void onConsumeBubblesChanged();
@@ -100,6 +103,26 @@ public class Settings {
 
     List<Intent> getBrowsers() {
         return mBrowsers;
+    }
+
+    void setDefaultBrowser(String label, String packageName, String activityClassName) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(PREFERENCE_DEFAULT_BROWSER_LABEL, label);
+        editor.putString(PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME, packageName);
+        editor.putString(PREFERENCE_DEFAULT_BROWSER_ACTIVITY_CLASS_NAME, activityClassName);
+        editor.commit();
+    }
+
+    String getDefaultBrowserLabel() {
+        return mSharedPreferences.getString(PREFERENCE_DEFAULT_BROWSER_LABEL, null);
+    }
+
+    String getDefaultBrowserPackageName() {
+        return mSharedPreferences.getString(PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME, null);
+    }
+
+    String getDefaultBrowserActivityClassName() {
+        return mSharedPreferences.getString(PREFERENCE_DEFAULT_BROWSER_ACTIVITY_CLASS_NAME, null);
     }
 
     void setConsumeBubble(Config.BubbleAction action, Config.ActionType type, String label, String packageName, String activityClassName) {
