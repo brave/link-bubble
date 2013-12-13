@@ -23,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import java.util.List;
 import java.util.Map;
@@ -141,11 +142,20 @@ public class MainActivity extends Activity {
     }
 
     public static void loadInBrowser(Context context, Intent intent) {
-        Intent browserIntent = context.getPackageManager().getLaunchIntentForPackage("com.android.browser");
-        if (browserIntent != null) {
-            intent.setComponent(browserIntent.getComponent());
-            intent.setPackage(browserIntent.getPackage());
-            context.startActivity(intent);
+        boolean activityStarted = false;
+        String defaultBrowserPackageName = Settings.get().getDefaultBrowserPackageName();
+        if (defaultBrowserPackageName != null) {
+            Intent browserIntent = context.getPackageManager().getLaunchIntentForPackage(defaultBrowserPackageName);
+            if (browserIntent != null) {
+                intent.setComponent(browserIntent.getComponent());
+                intent.setPackage(browserIntent.getPackage());
+                context.startActivity(intent);
+                activityStarted = true;
+            }
+        }
+
+        if (activityStarted == false) {
+            Toast.makeText(context, R.string.no_default_browser, Toast.LENGTH_LONG).show();
         }
     }
 }
