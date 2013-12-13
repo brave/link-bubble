@@ -11,10 +11,12 @@
         <Preference
             android:key="preference_left_consume_bubble"
             android:title="@string/preference_left_consume_bubble_title"
+            android:dependency="enabled"
             />
         <Preference
             android:key="preference_right_consume_bubble"
             android:title="@string/preference_right_consume_bubble_title"
+            android:dependency="enabled"
             />
 
         <CheckBoxPreference
@@ -22,6 +24,7 @@
             android:title="Incognito Mode"
             android:summary="Prevent storing all history and cookies"
             android:defaultValue="false"
+            android:dependency="enabled"
             />
 
         <Preference android:title="Clear History"
