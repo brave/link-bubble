@@ -475,7 +475,7 @@ public class Bubble extends RelativeLayout {
 
             if (bubbleIndex == 0) {
                 setExactPos((int) (Config.mBubbleSnapLeftX - Config.mBubbleWidth), y);
-                setTargetPos(x, y, 0.3f, false);
+                setTargetPos(x, y, 0.4f, true);
             } else {
                 setExactPos(x, y);
             }
