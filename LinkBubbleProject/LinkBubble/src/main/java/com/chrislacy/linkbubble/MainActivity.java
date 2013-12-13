@@ -54,6 +54,14 @@ public class MainActivity extends Activity {
         if (isActionView) {
             boolean openLink = false;
 
+            String url = intent.getDataString();
+            // Special case code for the setting the default browser. If this URL is received, do nothing.
+            if (url.equals(Config.SET_DEFAULT_BROSWER_URL)) {
+                Toast.makeText(this, R.string.default_browser_set, Toast.LENGTH_SHORT).show();
+                finish();
+                return;
+            }
+
             if (Settings.get().isEnabled()) {
                 final ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
                 List<ActivityManager.RecentTaskInfo> recentTasks = activityManager.getRecentTasks(16, ActivityManager.RECENT_WITH_EXCLUDED);
@@ -78,7 +86,7 @@ public class MainActivity extends Activity {
             }
 
             if (openLink) {
-                MainApplication.openLink(this, intent.getDataString(), true);
+                MainApplication.openLink(this, url, true);
             } else {
                 MainApplication.loadInBrowser(this, intent);
             }

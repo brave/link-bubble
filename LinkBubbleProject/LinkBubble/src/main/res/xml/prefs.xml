@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
     <PreferenceCategory
-        android:summary="Settings"
-        android:title="Settings" >
+        android:key="preference_category_general"
+        android:title="@string/preference_category_general" >
         <SwitchPreference
             android:key="preference_enabled"
             android:summary="Enable Link Bubble to intercept clicking on URLs"
             android:title="Enabled"
             android:defaultValue="true" />
+
+        <Preference
+            android:key="preference_set_default_browser"
+            android:title="@string/preference_set_default_browser_title"
+            android:summary="@string/preference_set_default_browser_summary" />
 
         <CheckBoxPreference
             android:key="preference_auto_load_content"

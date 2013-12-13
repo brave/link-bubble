@@ -51,6 +51,22 @@
                   android:launchMode="singleInstance">
         </activity>
 
+        <activity android:name="com.chrislacy.linkbubble.DefaultBrowserResetActivity" android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="*"
+                    android:scheme="http" />
+                <data
+                    android:host="*"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+
         <service android:name="com.chrislacy.linkbubble.MainService" >
             <intent-filter>
                 <action android:name="android.intent.action.CONFIGURATION_CHANGED"/>

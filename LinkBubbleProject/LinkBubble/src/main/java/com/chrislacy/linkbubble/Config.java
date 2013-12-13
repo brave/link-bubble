@@ -134,4 +134,6 @@ public class Config {
 
         return null;
     }
+
+    public static final String SET_DEFAULT_BROSWER_URL = "http://linkbubble.com/configure";
 }

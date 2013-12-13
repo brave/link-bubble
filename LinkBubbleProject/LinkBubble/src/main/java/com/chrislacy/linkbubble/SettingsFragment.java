@@ -1,13 +1,16 @@
 package com.chrislacy.linkbubble;
 
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
@@ -290,11 +293,51 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        checkDefaultBrowser();
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         
         MainApplication app = (MainApplication) getActivity().getApplicationContext();
         Bus bus = app.getBus();
         bus.unregister(this);
+    }
+
+    void checkDefaultBrowser() {
+
+        Preference setDefaultPreference = getPreferenceScreen().findPreference("preference_set_default_browser");
+        // Will be null if onResume() is called after the preference has already been removed.
+        if (setDefaultPreference != null) {
+            if (Util.isDefaultBrowser(getActivity().getPackageName(), getActivity().getPackageManager())) {
+                PreferenceCategory category = (PreferenceCategory) getPreferenceScreen().findPreference("preference_category_general");
+                category.removePreference(setDefaultPreference);
+            } else {
+                setDefaultPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+
+                    @Override
+                    public boolean onPreferenceClick(Preference preference) {
+                        // Via http://stackoverflow.com/a/13239706/328679
+                        PackageManager packageManager = getActivity().getPackageManager();
+
+                        ComponentName dummyComponentName = new ComponentName(getActivity().getApplication(),
+                                                                DefaultBrowserResetActivity.class);
+                        packageManager.setComponentEnabledSetting(dummyComponentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(Config.SET_DEFAULT_BROSWER_URL));
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        getActivity().startActivity(intent);
+
+                        packageManager.setComponentEnabledSetting(dummyComponentName, PackageManager.COMPONENT_ENABLED_STATE_DEFAULT, PackageManager.DONT_KILL_APP);
+                        return true;
+                    }
+                });
+            }
+        }
     }
 }
