@@ -2,36 +2,20 @@ package com.chrislacy.linkbubble;
 
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.ListFragment;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.ServiceConnection;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import java.util.List;
-import java.util.Map;
-import java.util.Vector;
 
-public class MainActivity extends Activity {
+public class EntryActivity extends Activity {
 
-    static MainActivity sCurrentInstance;
+    static EntryActivity sCurrentInstance;
 
     private final Handler mHandler = new Handler();
 
@@ -132,7 +116,7 @@ public class MainActivity extends Activity {
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (sCurrentInstance == MainActivity.this) {
+                if (sCurrentInstance == EntryActivity.this) {
                     finish();
                 }
             }
