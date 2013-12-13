@@ -340,6 +340,28 @@ public class ContentView extends LinearLayout {
                     openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                     openIntent.setData(Uri.parse(url));
                     mContext.startActivity(openIntent);
+
+                    /*
+                    int bubbleCount = MainController.getBubbleCount();
+                    for (int i = 0; i < bubbleCount; i++) {
+                        Bubble bubble = MainController.getBubble(i);
+                        if (bubble != null) {
+                            String bubbleUrl = bubble.getUrl();
+                            String originalUrl = wView.getOriginalUrl();
+                            if (bubbleUrl != null && originalUrl != null && bubbleUrl.equals(originalUrl)) {
+                                MainController.destroyBubble(bubble, Config.BubbleAction.Destroy);
+                                break;
+                            }
+                        }
+                    }*/
+
+                    // TODO: Figure out how to get the correct Bubble rather than closing the first one
+                    int bubbleCount = MainController.getBubbleCount();
+                    if (bubbleCount > 0) {
+                        Bubble bubble = MainController.getBubble(0);
+                        MainController.destroyBubble(bubble, Config.BubbleAction.Destroy);
+                    }
+
                     return false;
                 } else {
                     mWebView.loadUrl(url);
