@@ -135,7 +135,7 @@ public class SettingsFragment extends PreferenceFragment {
                 p.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                     @Override
                     public boolean onPreferenceClick(Preference preference) {
-                        MainActivity.openLink(getActivity(), preference.getTitle().toString(), false);
+                        MainApplication.openLink(getActivity(), preference.getTitle().toString(), false);
                         return true;
                     }
                 });
@@ -190,9 +190,8 @@ public class SettingsFragment extends PreferenceFragment {
             loadUrlButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    MainActivity mainActivity = (MainActivity) getActivity();
                     //mainActivity.openLink("http://www.google.com");
-                    mainActivity.openLink(getActivity(), "http://play.google.com/store/apps/details?id=com.chrislacy.actionlauncher.pro", true);
+                    MainApplication.openLink(getActivity(), "http://play.google.com/store/apps/details?id=com.chrislacy.actionlauncher.pro", true);
                     return true;
                 }
             });

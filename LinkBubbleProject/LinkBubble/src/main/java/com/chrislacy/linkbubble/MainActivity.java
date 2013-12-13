@@ -81,9 +81,9 @@ public class MainActivity extends Activity {
             }
 
             if (openLink) {
-                openLink(this, intent.getDataString(), true);
+                MainApplication.openLink(this, intent.getDataString(), true);
             } else {
-                loadInBrowser(this, intent);
+                MainApplication.loadInBrowser(this, intent);
             }
         } else {
             startActivityForResult(new Intent(this, SettingsActivity.class), 0);
@@ -132,30 +132,5 @@ public class MainActivity extends Activity {
                 }
             }
         }, 500);
-    }
-
-    public static void openLink(Context context, String url, boolean recordHistory) {
-        Intent serviceIntent = new Intent(context, MainService.class);
-        serviceIntent.putExtra("url", url);
-        serviceIntent.putExtra("record_history", recordHistory);
-        context.startService(serviceIntent);
-    }
-
-    public static void loadInBrowser(Context context, Intent intent) {
-        boolean activityStarted = false;
-        String defaultBrowserPackageName = Settings.get().getDefaultBrowserPackageName();
-        if (defaultBrowserPackageName != null) {
-            Intent browserIntent = context.getPackageManager().getLaunchIntentForPackage(defaultBrowserPackageName);
-            if (browserIntent != null) {
-                intent.setComponent(browserIntent.getComponent());
-                intent.setPackage(browserIntent.getPackage());
-                context.startActivity(intent);
-                activityStarted = true;
-            }
-        }
-
-        if (activityStarted == false) {
-            Toast.makeText(context, R.string.no_default_browser, Toast.LENGTH_LONG).show();
-        }
     }
 }
