@@ -341,7 +341,14 @@ public class ContentView extends LinearLayout {
         ws.setLoadWithOverviewMode(true);
         ws.setUseWideViewPort(true);
 
-        mWebView.setWebChromeClient(new WebChromeClient());
+        mWebView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onReceivedTitle(WebView webView, String title) {
+                super.onReceivedTitle(webView, title);
+                mTitleTextView.setText(title);
+                mUrlTextView.setText(mUrl.replace("http://", ""));
+            }
+        });
 
         mWebView.setWebViewClient(new WebViewClient() {
             private int mCount = 0;
@@ -436,13 +443,6 @@ public class ContentView extends LinearLayout {
                         pli.bmp = view.getFavicon();
                         pli.url = url;
                         pli.title = view.getTitle();
-
-                        String title = view.getTitle();
-                        Spanned text;
-                        if (title != null) {
-                            mTitleTextView.setText(title);
-                        }
-                        mUrlTextView.setText(url.replace("http://", ""));
 
                         mEventHandler.onPageLoaded(pli);
                     }
