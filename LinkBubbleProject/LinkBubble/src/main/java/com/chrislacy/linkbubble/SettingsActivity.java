@@ -17,5 +17,6 @@ public class SettingsActivity extends PreferenceActivity {
         Crashlytics.start(this);
 
         setContentView(R.layout.activity_settings);
+        setTitle(R.string.title_settings);
     }
 }
