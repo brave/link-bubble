@@ -100,6 +100,7 @@ public class ContentView extends LinearLayout {
         public void onSharedLink();
         public void onPageLoading(String url);
         public void onPageLoaded(PageLoadInfo info);
+        public void onReceivedIcon(Bitmap bitmap);
         public void onRedirectedToApp();
     }
 
@@ -349,6 +350,12 @@ public class ContentView extends LinearLayout {
                 super.onReceivedTitle(webView, title);
                 mTitleTextView.setText(title);
                 mUrlTextView.setText(mUrl.replace("http://", ""));
+            }
+
+            @Override
+            public void `onReceivedIcon(WebView webView, Bitmap bitmap) {
+                super.onReceivedIcon(webView, bitmap);
+                mEventHandler.onReceivedIcon(bitmap);
             }
         });
 

@@ -292,23 +292,26 @@ public class Bubble extends RelativeLayout {
                 showProgressBar(false);
                 setBackgroundResource(R.drawable.circle_grey);
 
-                int halfImageWidth;
-                int halfImageHeight;
-
                 if (mRecordHistory && info != null && info.url != null) {
                     Time now = new Time();
                     now.setToNow();
                     String nowString = now.format("%H:%M, %d %b %Y");
                     SettingsFragment.addRecentBubble(context, info.url, info.title, nowString);
                 }
+            }
 
-                if (info == null || info.bmp == null) {
+            @Override
+            public void onReceivedIcon(Bitmap bitmap) {
+                int halfImageWidth;
+                int halfImageHeight;
+
+                if (bitmap == null) {
                     mShape.setImageResource(R.drawable.help_button);
                     halfImageWidth = 8;
                     halfImageHeight = 8;
                 } else {
-                    int w = info.bmp.getWidth();
-                    int h = info.bmp.getHeight();
+                    int w = bitmap.getWidth();
+                    int h = bitmap.getHeight();
 
                     int reqW = (int) (Config.mBubbleWidth * 0.5f);
                     int reqH = (int) (Config.mBubbleHeight * 0.5f);
@@ -317,10 +320,10 @@ public class Bubble extends RelativeLayout {
                         w = reqW;
                         h = reqH;
 
-                        info.bmp = Bitmap.createScaledBitmap(info.bmp, w, h, true);
+                        bitmap = Bitmap.createScaledBitmap(bitmap, w, h, true);
                     }
 
-                    mShape.setImageBitmap(info.bmp);
+                    mShape.setImageBitmap(bitmap);
                     halfImageWidth = w / 2;
                     halfImageHeight = h / 2;
                 }
