@@ -333,8 +333,8 @@ public class ContentView extends LinearLayout {
                 if (isValidUrl(url)) {
                     ++mCount;
                 }
-                ResolveInfo info = Settings.get().autoLoadContent() ? getAppThatHandlesUrl(url) : null;
-                if (info != null) {
+                ResolveInfo info = getAppThatHandlesUrl(url);
+                if (info != null && Settings.get().autoLoadContent()) {
                     Intent openIntent = new Intent(Intent.ACTION_VIEW);
                     openIntent.setClassName(info.activityInfo.packageName, info.activityInfo.name);
                     openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -364,6 +364,23 @@ public class ContentView extends LinearLayout {
 
                     return false;
                 } else {
+                    if (info != null) {
+                        Drawable d = info.loadIcon(mContext.getPackageManager());
+                        if (d != null) {
+                            mShareContext = info.activityInfo.packageName;
+                            mSharePackage = info.activityInfo.name;
+
+                            Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
+                            Bitmap scaled = Bitmap.createScaledBitmap(bitmap, mMaxToolbarHeight, mMaxToolbarHeight, true);
+                            mAppButton.setBackground(new BitmapDrawable(scaled));
+                            mAppButton.setVisibility(VISIBLE);
+                        } else {
+                            mAppButton.setVisibility(GONE);
+                        }
+                    } else {
+                        mAppButton.setVisibility(GONE);
+                    }
+
                     mWebView.loadUrl(url);
                     mTitleTextView.setText(null);
                     mUrlTextView.setText(null);
@@ -408,24 +425,6 @@ public class ContentView extends LinearLayout {
                             mTitleTextView.setText(title);
                         }
                         mUrlTextView.setText(url.replace("http://", ""));
-
-                        ResolveInfo info = getAppThatHandlesUrl(url);
-                        if (info != null) {
-                            mShareContext = info.activityInfo.packageName;
-                            mSharePackage = info.activityInfo.name;
-
-                            //pli.appHandlerContext = info.activityInfo.packageName;
-                            //pli.appHandlerPackage = info.activityInfo.name;
-                            //pli.appHandlerDrawable = info.loadIcon(manager);
-                            Drawable d = info.loadIcon(mContext.getPackageManager());
-
-                            if (d != null) {
-                                Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
-                                Bitmap scaled = Bitmap.createScaledBitmap(bitmap, mMaxToolbarHeight, mMaxToolbarHeight, true);
-                                mAppButton.setBackground(new BitmapDrawable(scaled));
-                                mAppButton.setVisibility(VISIBLE);
-                            }
-                        }
 
                         mEventHandler.onPageLoaded(pli);
                     }
