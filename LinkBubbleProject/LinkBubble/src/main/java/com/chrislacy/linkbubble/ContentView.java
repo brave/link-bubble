@@ -353,7 +353,7 @@ public class ContentView extends LinearLayout {
             }
 
             @Override
-            public void `onReceivedIcon(WebView webView, Bitmap bitmap) {
+            public void onReceivedIcon(WebView webView, Bitmap bitmap) {
                 super.onReceivedIcon(webView, bitmap);
                 mEventHandler.onReceivedIcon(bitmap);
             }
