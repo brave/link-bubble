@@ -310,9 +310,6 @@ public class Bubble extends RelativeLayout {
             }
         });
 
-        mTargetX = x;
-        mTargetY = y;
-
         setVisibility(GONE);
 
         mShape = new ImageView(context);
@@ -459,5 +456,12 @@ public class Bubble extends RelativeLayout {
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
         mWindowManagerParams.setTitle("LinkBubble: Bubble");
         mWindowManager.addView(this, mWindowManagerParams);
+
+        if (bubbleIndex == 0) {
+            setExactPos((int) (Config.mBubbleSnapLeftX - Config.mBubbleWidth), y);
+            setTargetPos(x, y, 0.3f, false);
+        } else {
+            setExactPos(x, y);
+        }
     }
 }
