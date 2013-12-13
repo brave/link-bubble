@@ -2,8 +2,11 @@ package com.chrislacy.linkbubble;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -154,6 +157,9 @@ public class SettingsFragment extends PreferenceFragment {
 
         sFragment = this;
 
+        CheckBoxPreference autoLoadContentPreference = (CheckBoxPreference)findPreference(Settings.PREFERENCE_AUTO_LOAD_CONTENT);
+        autoLoadContentPreference.setChecked(Settings.get().autoLoadContent());
+
         Preference incognitoButton = findPreference("preference_incognito");
         if (incognitoButton != null) {
             incognitoButton.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -192,6 +198,15 @@ public class SettingsFragment extends PreferenceFragment {
                 public boolean onPreferenceClick(Preference preference) {
                     //mainActivity.openLink("http://www.google.com");
                     MainApplication.openLink(getActivity(), "http://play.google.com/store/apps/details?id=com.chrislacy.actionlauncher.pro", true);
+
+                    /*
+                    Intent openIntent = new Intent(Intent.ACTION_VIEW);
+                    openIntent.setClassName("com.android.vending", "com.google.android.finsky.activities.MainActivity");
+                    openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    openIntent.setData(Uri.parse("http://play.google.com/store/apps/details?id=com.chrislacy.actionlauncher.pro"));
+                    getActivity().startActivity(openIntent);
+                    */
+
                     return true;
                 }
             });

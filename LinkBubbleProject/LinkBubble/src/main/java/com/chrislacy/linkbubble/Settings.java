@@ -19,6 +19,8 @@ import java.util.Vector;
 
 public class Settings {
 
+    public static final String PREFERENCE_AUTO_LOAD_CONTENT = "preference_auto_load_content";
+
     public static final String PREFERENCE_LEFT_CONSUME_BUBBLE = "preference_left_consume_bubble";
     public static final String PREFERENCE_LEFT_CONSUME_BUBBLE_PACKAGE_NAME = "preference_left_consume_bubble_package_name";
     public static final String PREFERENCE_LEFT_CONSUME_BUBBLE_ACTIVITY_CLASS_NAME = "preference_left_consume_bubble_activity_class_name";
@@ -297,4 +299,7 @@ public class Settings {
         return mSharedPreferences.getBoolean("preference_incognito", false);
     }
 
+    boolean autoLoadContent() {
+        return mSharedPreferences.getBoolean(PREFERENCE_AUTO_LOAD_CONTENT, false);
+    }
 }

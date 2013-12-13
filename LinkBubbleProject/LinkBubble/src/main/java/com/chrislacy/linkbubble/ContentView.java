@@ -20,6 +20,7 @@ import android.net.http.SslError;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.SpannedString;
+import android.util.Log;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -332,10 +333,20 @@ public class ContentView extends LinearLayout {
                 if (isValidUrl(url)) {
                     ++mCount;
                 }
-                mWebView.loadUrl(url);
-                mTitleTextView.setText(null);
-                mUrlTextView.setText(null);
-                return true;
+                ResolveInfo info = Settings.get().autoLoadContent() ? getAppThatHandlesUrl(url) : null;
+                if (info != null) {
+                    Intent openIntent = new Intent(Intent.ACTION_VIEW);
+                    openIntent.setClassName(info.activityInfo.packageName, info.activityInfo.name);
+                    openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    openIntent.setData(Uri.parse(url));
+                    mContext.startActivity(openIntent);
+                    return false;
+                } else {
+                    mWebView.loadUrl(url);
+                    mTitleTextView.setText(null);
+                    mUrlTextView.setText(null);
+                    return true;
+                }
             }
 
             @Override
@@ -364,14 +375,6 @@ public class ContentView extends LinearLayout {
                         // Store final resolved url
                         mUrl = url;
 
-                        String [] blacklist = {
-                            "com.chrislacy.linkbubble",
-                            "com.android.browser",
-                            "com.android.chrome",
-                            "org.mozilla.fennec",
-                            "org.mozilla.firefox_beta"
-                        };
-
                         PageLoadInfo pli = new PageLoadInfo();
                         pli.bmp = view.getFavicon();
                         pli.url = url;
@@ -384,43 +387,21 @@ public class ContentView extends LinearLayout {
                         }
                         mUrlTextView.setText(url.replace("http://", ""));
 
-                        PackageManager manager = mContext.getPackageManager();
-                        Intent intent = new Intent();
-                        intent.setAction(Intent.ACTION_VIEW);
-                        //intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                        intent.setData(Uri.parse(url));
-                        List<ResolveInfo> infos = manager.queryIntentActivities (intent, PackageManager.GET_RESOLVED_FILTER);
-                        for (ResolveInfo info : infos) {
-                            IntentFilter filter = info.filter;
-                            if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
+                        ResolveInfo info = getAppThatHandlesUrl(url);
+                        if (info != null) {
+                            mShareContext = info.activityInfo.packageName;
+                            mSharePackage = info.activityInfo.name;
 
-                                // Check if blacklisted
-                                boolean packageOk = true;
-                                for (String invalidName : blacklist) {
-                                    if (invalidName.equals(info.activityInfo.packageName)) {
-                                        packageOk = false;
-                                        break;
-                                    }
-                                }
+                            //pli.appHandlerContext = info.activityInfo.packageName;
+                            //pli.appHandlerPackage = info.activityInfo.name;
+                            //pli.appHandlerDrawable = info.loadIcon(manager);
+                            Drawable d = info.loadIcon(mContext.getPackageManager());
 
-                                if (packageOk) {
-                                    mShareContext = info.activityInfo.packageName;
-                                    mSharePackage = info.activityInfo.name;
-
-                                    //pli.appHandlerContext = info.activityInfo.packageName;
-                                    //pli.appHandlerPackage = info.activityInfo.name;
-                                    //pli.appHandlerDrawable = info.loadIcon(manager);
-                                    Drawable d = info.loadIcon(manager);
-
-                                    if (d != null) {
-                                        Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
-                                        Bitmap scaled = Bitmap.createScaledBitmap(bitmap, mMaxToolbarHeight, mMaxToolbarHeight, true);
-                                        mAppButton.setBackground(new BitmapDrawable(scaled));
-                                        mAppButton.setVisibility(VISIBLE);
-                                    }
-
-                                    break;
-                                }
+                            if (d != null) {
+                                Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
+                                Bitmap scaled = Bitmap.createScaledBitmap(bitmap, mMaxToolbarHeight, mMaxToolbarHeight, true);
+                                mAppButton.setBackground(new BitmapDrawable(scaled));
+                                mAppButton.setVisibility(VISIBLE);
                             }
                         }
 
@@ -459,5 +440,41 @@ public class ContentView extends LinearLayout {
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
         mWebView.loadUrl(url);
+    }
+
+    ResolveInfo getAppThatHandlesUrl(String url) {
+        final String [] blacklist = {
+                "com.chrislacy.linkbubble",
+                "com.android.browser",
+                "com.android.chrome",
+                "org.mozilla.fennec",
+                "org.mozilla.firefox_beta"
+        };
+
+        PackageManager manager = mContext.getPackageManager();
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        //intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        List<ResolveInfo> infos = manager.queryIntentActivities (intent, PackageManager.GET_RESOLVED_FILTER);
+        for (ResolveInfo info : infos) {
+            IntentFilter filter = info.filter;
+            if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
+
+                // Check if blacklisted
+                boolean packageOk = true;
+                for (String invalidName : blacklist) {
+                    if (invalidName.equals(info.activityInfo.packageName)) {
+                        packageOk = false;
+                        break;
+                    }
+                }
+
+                if (packageOk) {
+                    return info;
+                }
+            }
+        }
+        return null;
     }
 }
