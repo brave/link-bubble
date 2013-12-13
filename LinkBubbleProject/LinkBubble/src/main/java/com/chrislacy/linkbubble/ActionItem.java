@@ -33,8 +33,36 @@ import java.util.List;
  */
 public class ActionItem {
 
-    private static ArrayList<Item> getActionItems(Context context, boolean viewItems, boolean sendItems) {
-        final ArrayList<Item> actionItems = new ArrayList<Item>();
+    String mLabel;
+    Config.ActionType mType;
+    String mCategory;
+    String mPackageName;
+    String mActivityClassName;
+    private Drawable mIcon;
+
+    public ActionItem(Config.ActionType type, Resources resources, String label, Drawable icon, String packageName, String activityClassName) {
+        mType = type;
+        mLabel = label;
+        mCategory = resources.getString(type == Config.ActionType.View ? R.string.consume_category_view : R.string.consume_category_share);
+        mIcon = icon;
+        mPackageName = packageName;
+        mActivityClassName = activityClassName;
+    }
+
+    public String getLabel() {
+        return mLabel;
+    }
+
+    public String getCategory() {
+        return mCategory;
+    }
+
+    public interface OnActionItemSelectedListener {
+        public void onSelected(ActionItem actionItem);
+    }
+
+    private static ArrayList<ActionItem> getActionItems(Context context, boolean viewItems, boolean sendItems) {
+        final ArrayList<ActionItem> actionItems = new ArrayList<ActionItem>();
 
         String packageName = context.getPackageName();
         PackageManager packageManager = context.getPackageManager();
@@ -50,7 +78,7 @@ public class ActionItem {
                 if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
                     // Ignore LinkBubble from this list
                     if (resolveInfo.activityInfo.packageName.equals(packageName) == false) {
-                        actionItems.add(new Item(Config.ActionType.View,
+                        actionItems.add(new ActionItem(Config.ActionType.View,
                                 resources,
                                 resolveInfo.loadLabel(packageManager).toString(),
                                 resolveInfo.loadIcon(packageManager),
@@ -67,7 +95,7 @@ public class ActionItem {
             intent.setType("text/plain");
             List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, 0);
             for (ResolveInfo resolveInfo : resolveInfos) {
-                actionItems.add(new Item(Config.ActionType.Share,
+                actionItems.add(new ActionItem(Config.ActionType.Share,
                         resources,
                         resolveInfo.loadLabel(packageManager).toString(),
                         resolveInfo.loadIcon(packageManager),
@@ -76,10 +104,10 @@ public class ActionItem {
             }
         }
 
-        Collections.sort(actionItems, new Comparator<Item>() {
+        Collections.sort(actionItems, new Comparator<ActionItem>() {
 
             @Override
-            public int compare(Item lhs, Item rhs) {
+            public int compare(ActionItem lhs, ActionItem rhs) {
                 int categoryComparison = lhs.getCategory().compareTo(rhs.getCategory());
                 if (categoryComparison == 0) {
                     return lhs.getLabel().compareTo(rhs.getLabel());
@@ -91,8 +119,8 @@ public class ActionItem {
         return actionItems;
     }
 
-    public static AlertDialog getDefaultBrowserAlert(Context context) {
-        final ArrayList<Item> actionItems = getActionItems(context, true, false);
+    public static AlertDialog getDefaultBrowserAlert(Context context, final OnActionItemSelectedListener onActionItemSelectedListener) {
+        final ArrayList<ActionItem> actionItems = getActionItems(context, true, false);
 
         ListView listView = new ListView(context);
 
@@ -102,14 +130,16 @@ public class ActionItem {
 
         ActionItemAdapter adapter = new ActionItemAdapter(context,
                 R.layout.action_picker_item,
-                actionItems.toArray(new Item[0]));
+                actionItems.toArray(new ActionItem[0]));
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object tag = view.getTag();
-                if (tag instanceof Item) {
-                    Item actionItem = (Item) tag;
+                if (tag instanceof ActionItem) {
+                    if (onActionItemSelectedListener != null) {
+                        onActionItemSelectedListener.onSelected((ActionItem) tag);
+                    }
                     //Settings.get().setConsumeBubble(bubble, actionItem.mType, actionItem.getLabel(),
                     //        actionItem.mPackageName, actionItem.mActivityClassName);
                     //preference.setSummary(Settings.get().getConsumeBubbleLabel(bubble));
@@ -128,9 +158,9 @@ public class ActionItem {
         return alertDialog;
     }
 
-    public static AlertDialog getConfigureBubbleAlert(Context context, final Config.BubbleAction bubble, final Preference preference) {
+    public static AlertDialog getConfigureBubbleAlert(Context context, final OnActionItemSelectedListener onActionItemSelectedListener) {
 
-        final ArrayList<Item> actionItems = getActionItems(context, true, true);
+        final ArrayList<ActionItem> actionItems = getActionItems(context, true, true);
 
         StickyListHeadersListView listView = new StickyListHeadersListView(context);
 
@@ -140,17 +170,16 @@ public class ActionItem {
 
         ActionItemAdapter adapter = new ActionItemAdapter(context,
                 R.layout.action_picker_item,
-                actionItems.toArray(new Item[0]));
+                actionItems.toArray(new ActionItem[0]));
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object tag = view.getTag();
-                if (tag instanceof Item) {
-                    Item actionItem = (Item) tag;
-                    Settings.get().setConsumeBubble(bubble, actionItem.mType, actionItem.getLabel(),
-                            actionItem.mPackageName, actionItem.mActivityClassName);
-                    preference.setSummary(Settings.get().getConsumeBubbleLabel(bubble));
+                if (tag instanceof ActionItem) {
+                    if (onActionItemSelectedListener != null) {
+                        onActionItemSelectedListener.onSelected((ActionItem) tag);
+                    }
                     alertDialog.dismiss();
                 }
             }
@@ -174,13 +203,13 @@ public class ActionItem {
         return alertDialog;
     }
 
-    private static class ActionItemAdapter extends ArrayAdapter<Item> implements StickyListHeadersAdapter {
+    private static class ActionItemAdapter extends ArrayAdapter<ActionItem> implements StickyListHeadersAdapter {
 
         Context mContext;
         int mLayoutResourceId;
-        Item mData[] = null;
+        ActionItem mData[] = null;
 
-        public ActionItemAdapter(Context context, int layoutResourceId, Item[] data) {
+        public ActionItemAdapter(Context context, int layoutResourceId, ActionItem[] data) {
             super(context, layoutResourceId, data);
             mLayoutResourceId = layoutResourceId;
             mContext = context;
@@ -195,7 +224,7 @@ public class ActionItem {
                 convertView = inflater.inflate(mLayoutResourceId, parent, false);
             }
 
-            Item actionItem = mData[position];
+            ActionItem actionItem = mData[position];
 
             TextView label = (TextView) convertView.findViewById(R.id.label);
             label.setText(actionItem.getLabel());
@@ -212,7 +241,7 @@ public class ActionItem {
         public View getHeaderView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
             convertView = inflater.inflate(R.layout.section_header, parent, false);
-            Item actionItem = mData[position];
+            ActionItem actionItem = mData[position];
             TextView headerLabel = (TextView)convertView.findViewById(R.id.section_text);
             headerLabel.setText(actionItem.getCategory());
             return convertView;
@@ -220,7 +249,7 @@ public class ActionItem {
 
         @Override
         public long getHeaderId(int position) {
-            Item actionItem = mData[position];
+            ActionItem actionItem = mData[position];
             if (actionItem.mType == Config.ActionType.View) {
                 return 0;
             } else {
@@ -228,32 +257,5 @@ public class ActionItem {
             }
         }
     };
-
-    private static class Item {
-
-        private String mLabel;
-        private Config.ActionType mType;
-        private String mCategory;
-        private String mPackageName;
-        private String mActivityClassName;
-        private Drawable mIcon;
-
-        public Item(Config.ActionType type, Resources resources, String label, Drawable icon, String packageName, String activityClassName) {
-            mType = type;
-            mLabel = label;
-            mCategory = resources.getString(type == Config.ActionType.View ? R.string.consume_category_view : R.string.consume_category_share);
-            mIcon = icon;
-            mPackageName = packageName;
-            mActivityClassName = activityClassName;
-        }
-
-        public String getLabel() {
-            return mLabel;
-        }
-
-        public String getCategory() {
-            return mCategory;
-        }
-    }
 
 }

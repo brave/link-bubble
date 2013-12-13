@@ -199,37 +199,50 @@ public class SettingsFragment extends PreferenceFragment {
         }
 
         final Preference leftConsumeBubblePreference = findPreference(Settings.PREFERENCE_LEFT_CONSUME_BUBBLE);
-        if (leftConsumeBubblePreference != null) {
-            leftConsumeBubblePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    AlertDialog alertDialog = ActionItem.getConfigureBubbleAlert(getActivity(),                            Config.BubbleAction.ConsumeLeft, leftConsumeBubblePreference);
-                    alertDialog.show();
-                    return true;
-                }
-            });
-            leftConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeLeft));
-        }
+        leftConsumeBubblePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                AlertDialog alertDialog = ActionItem.getConfigureBubbleAlert(getActivity(), new ActionItem.OnActionItemSelectedListener() {
+                    @Override
+                    public void onSelected(ActionItem actionItem) {
+                        Settings.get().setConsumeBubble(Config.BubbleAction.ConsumeLeft, actionItem.mType, actionItem.getLabel(),
+                                actionItem.mPackageName, actionItem.mActivityClassName);
+                        leftConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeLeft));
+                    }
+                });
+                alertDialog.show();
+                return true;
+            }
+        });
+        leftConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeLeft));
 
         final Preference rightConsumeBubblePreference = findPreference(Settings.PREFERENCE_RIGHT_CONSUME_BUBBLE);
-        if (rightConsumeBubblePreference != null) {
-            rightConsumeBubblePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    AlertDialog alertDialog = ActionItem.getConfigureBubbleAlert(getActivity(),
-                            Config.BubbleAction.ConsumeRight, rightConsumeBubblePreference);
-                    alertDialog.show();
-                    return true;
-                }
-            });
-            rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeRight));
-        }
+        rightConsumeBubblePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                AlertDialog alertDialog = ActionItem.getConfigureBubbleAlert(getActivity(), new ActionItem.OnActionItemSelectedListener() {
+                    @Override
+                    public void onSelected(ActionItem actionItem) {
+                        Settings.get().setConsumeBubble(Config.BubbleAction.ConsumeRight, actionItem.mType, actionItem.getLabel(),
+                                actionItem.mPackageName, actionItem.mActivityClassName);
+                        rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeRight));
+                    }
+                });
+                alertDialog.show();
+                return true;
+            }
+        });
+        rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeRight));
 
         final Preference defaultBrowserPreference = findPreference(Settings.PREFERENCE_DEFAULT_BROWSER);
         defaultBrowserPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                AlertDialog alertDialog = ActionItem.getDefaultBrowserAlert(getActivity());
+                AlertDialog alertDialog = ActionItem.getDefaultBrowserAlert(getActivity(), new ActionItem.OnActionItemSelectedListener() {
+                    @Override
+                    public void onSelected(ActionItem actionItem) {
+                    }
+                });
                 alertDialog.show();
                 return true;
             }
