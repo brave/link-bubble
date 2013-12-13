@@ -176,12 +176,13 @@ public class MainController implements Choreographer.FrameCallback {
         mCanvas = new Canvas(context);
         mBadge = new Badge(context);
 
+        /*
         SettingsFragment.setIncognitoModeChangedEventHandler(new SettingsFragment.IncognitoModeChangedEventHandler() {
             @Override
             public void onIncognitoModeChanged(boolean incognito) {
                 updateIncognitoMode(incognito);
             }
-        });
+        });*/
 
         STATE_BubbleView = new State_BubbleView(mCanvas, mBadge);
         STATE_SnapToEdge = new State_SnapToEdge(mCanvas);
