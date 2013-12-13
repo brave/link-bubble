@@ -11,6 +11,10 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
+
 import java.util.Vector;
 
 
@@ -20,8 +24,20 @@ import java.util.Vector;
 public class SettingsFragment extends PreferenceFragment {
 
     public static final int MAX_RECENT_BUBBLES = 10;
-    private static SettingsFragment sFragment;
-    private IncognitoModeChangedEventHandler mIncognitoModeChangedEventHandler;
+
+    public static class IncognitoModeChangedEvent {
+        public IncognitoModeChangedEvent(boolean value) {
+            mIncognito = value;
+        }
+        boolean mIncognito;
+    }
+
+    public static class RecentBubblesChangedEvent {
+        public RecentBubblesChangedEvent(Vector<RecentBubbleInfo> bi) {
+            mBubbleInfo = bi;
+        }
+        Vector<RecentBubbleInfo> mBubbleInfo;
+    }
 
     public static class RecentBubbleInfo {
         public RecentBubbleInfo(String url, String title, String date) {
@@ -36,11 +52,6 @@ public class SettingsFragment extends PreferenceFragment {
 
     public interface IncognitoModeChangedEventHandler {
         public void onIncognitoModeChanged(boolean incognito);
-    }
-
-    public static void setIncognitoModeChangedEventHandler(IncognitoModeChangedEventHandler eh) {
-        Util.Assert(sFragment != null);
-        sFragment.mIncognitoModeChangedEventHandler = eh;
     }
 
     private static String getUrlKey(int i) {
@@ -100,9 +111,14 @@ public class SettingsFragment extends PreferenceFragment {
         recentBubbles.insertElementAt(new RecentBubbleInfo(url, title, date), 0);
         writeRecentBubbles(context, recentBubbles);
 
-        if (sFragment != null) {
-            sFragment.updateRecentBubbles(recentBubbles);
-        }
+        MainApplication app = (MainApplication) context.getApplicationContext();
+        Bus bus = app.getBus();
+        bus.post(new RecentBubblesChangedEvent(recentBubbles));
+    }
+
+    @Subscribe
+    public void onRecentBubblesChanged(RecentBubblesChangedEvent event) {
+        updateRecentBubbles(event.mBubbleInfo);
     }
 
     private void updateRecentBubbles(Vector<RecentBubbleInfo> urls) {
@@ -117,9 +133,7 @@ public class SettingsFragment extends PreferenceFragment {
                 public boolean onPreferenceClick(Preference preference) {
                     Vector<RecentBubbleInfo> dummy = new Vector<RecentBubbleInfo>();
                     writeRecentBubbles(getActivity(), dummy);
-                    if (sFragment != null) {
-                        sFragment.updateRecentBubbles(dummy);
-                    }
+                    updateRecentBubbles(dummy);
                     return false;
                 }
             });
@@ -152,10 +166,12 @@ public class SettingsFragment extends PreferenceFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        MainApplication app = (MainApplication) getActivity().getApplicationContext();
+        Bus bus = app.getBus();
+        bus.register(this);
+
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.prefs);
-
-        sFragment = this;
 
         CheckBoxPreference autoLoadContentPreference = (CheckBoxPreference)findPreference(Settings.PREFERENCE_AUTO_LOAD_CONTENT);
         autoLoadContentPreference.setChecked(Settings.get().autoLoadContent());
@@ -165,9 +181,11 @@ public class SettingsFragment extends PreferenceFragment {
             incognitoButton.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    if (mIncognitoModeChangedEventHandler != null) {
-                        mIncognitoModeChangedEventHandler.onIncognitoModeChanged((Boolean)newValue);
-                    }
+
+                    MainApplication app = (MainApplication) getActivity().getApplication();
+                    Bus bus = app.getBus();
+                    bus.post(new IncognitoModeChangedEvent((Boolean)newValue));
+
                     return true;
                 }
             });
@@ -180,9 +198,7 @@ public class SettingsFragment extends PreferenceFragment {
                 public boolean onPreferenceClick(Preference preference) {
                     Vector<RecentBubbleInfo> dummy = new Vector<RecentBubbleInfo>();
                     writeRecentBubbles(getActivity(), dummy);
-                    if (sFragment != null) {
-                        sFragment.updateRecentBubbles(dummy);
-                    }
+                    updateRecentBubbles(dummy);
                     return false;
                 }
             });
@@ -270,9 +286,10 @@ public class SettingsFragment extends PreferenceFragment {
 
     @Override
     public void onDestroy() {
-        sFragment = null;
-
         super.onDestroy();
+        
+        MainApplication app = (MainApplication) getActivity().getApplicationContext();
+        Bus bus = app.getBus();
+        bus.unregister(this);
     }
-
 }

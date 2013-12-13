@@ -1,5 +1,6 @@
 package com.chrislacy.linkbubble;
 
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -19,6 +20,9 @@ import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
 
 import java.util.List;
 import java.util.Set;
@@ -149,6 +153,11 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
+    @Subscribe
+    public void onIncognitoModeChanged(SettingsFragment.IncognitoModeChangedEvent event) {
+        updateIncognitoMode(event.mIncognito);
+    }
+
     public MainController(Context context, EventHandler eh) {
         Util.Assert(sMainController == null);
         sMainController = this;
@@ -173,16 +182,12 @@ public class MainController implements Choreographer.FrameCallback {
 
         mUpdateScheduled = false;
         mChoreographer = Choreographer.getInstance();
-        mCanvas = new Canvas(context);
-        mBadge = new Badge(context);
+        mCanvas = new Canvas(mContext);
+        mBadge = new Badge(mContext);
 
-        /*
-        SettingsFragment.setIncognitoModeChangedEventHandler(new SettingsFragment.IncognitoModeChangedEventHandler() {
-            @Override
-            public void onIncognitoModeChanged(boolean incognito) {
-                updateIncognitoMode(incognito);
-            }
-        });*/
+        MainApplication app = (MainApplication) mContext.getApplicationContext();
+        Bus bus = app.getBus();
+        bus.register(this);
 
         STATE_BubbleView = new State_BubbleView(mCanvas, mBadge);
         STATE_SnapToEdge = new State_SnapToEdge(mCanvas);
@@ -197,6 +202,10 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void destroy() {
+        MainApplication app = (MainApplication) mContext.getApplicationContext();
+        Bus bus = app.getBus();
+        bus.unregister(this);
+
         //mWindowManager.removeView(mTextView);
         mCanvas.destroy();
         mChoreographer.removeFrameCallback(this);

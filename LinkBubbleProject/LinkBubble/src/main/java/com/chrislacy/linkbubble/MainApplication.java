@@ -6,14 +6,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.squareup.otto.Bus;
+
 
 public class MainApplication extends Application {
+
+    private Bus mBus;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
         Settings.initModule(this);
+
+        mBus = new Bus();
+    }
+
+    public Bus getBus() {
+        return mBus;
     }
 
     /**
