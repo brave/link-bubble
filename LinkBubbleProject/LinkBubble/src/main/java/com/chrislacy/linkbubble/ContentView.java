@@ -358,54 +358,10 @@ public class ContentView extends LinearLayout {
                 if (isValidUrl(url)) {
                     ++mCount;
                 }
-                ResolveInfo info = getAppThatHandlesUrl(url);
-                if (info != null && Settings.get().autoLoadContent()) {
-                    Intent openIntent = new Intent(Intent.ACTION_VIEW);
-                    openIntent.setClassName(info.activityInfo.packageName, info.activityInfo.name);
-                    openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    openIntent.setData(Uri.parse(url));
-                    mContext.startActivity(openIntent);
 
-                    /*
-                    int bubbleCount = MainController.getBubbleCount();
-                    for (int i = 0; i < bubbleCount; i++) {
-                        Bubble bubble = MainController.getBubble(i);
-                        if (bubble != null) {
-                            String bubbleUrl = bubble.getUrl();
-                            String originalUrl = wView.getOriginalUrl();
-                            if (bubbleUrl != null && originalUrl != null && bubbleUrl.equals(originalUrl)) {
-                                MainController.destroyBubble(bubble, Config.BubbleAction.Destroy);
-                                break;
-                            }
-                        }
-                    }*/
-
-                    // TODO: Figure out how to get the correct Bubble rather than closing the first one
-                    int bubbleCount = MainController.getBubbleCount();
-                    if (bubbleCount > 0) {
-                        Bubble bubble = MainController.getBubble(0);
-                        MainController.destroyBubble(bubble, Config.BubbleAction.Destroy);
-                    }
-
+                if (urlHandled(url)) {
                     return false;
                 } else {
-                    if (info != null) {
-                        Drawable d = info.loadIcon(mContext.getPackageManager());
-                        if (d != null) {
-                            mShareContext = info.activityInfo.packageName;
-                            mSharePackage = info.activityInfo.name;
-
-                            Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
-                            Bitmap scaled = Bitmap.createScaledBitmap(bitmap, mMaxToolbarHeight, mMaxToolbarHeight, true);
-                            mAppButton.setBackground(new BitmapDrawable(scaled));
-                            mAppButton.setVisibility(VISIBLE);
-                        } else {
-                            mAppButton.setVisibility(GONE);
-                        }
-                    } else {
-                        mAppButton.setVisibility(GONE);
-                    }
-
                     mWebView.loadUrl(url);
                     mTitleTextView.setText(null);
                     mUrlTextView.setText(null);
@@ -478,10 +434,64 @@ public class ContentView extends LinearLayout {
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
-        mWebView.loadUrl(url);
+        if (urlHandled(url) == false) {
+            mWebView.loadUrl(url);
+        }
     }
 
-    ResolveInfo getAppThatHandlesUrl(String url) {
+    private boolean urlHandled(String url) {
+        ResolveInfo resolveInfo = getAppThatHandlesUrl(url);
+        if (resolveInfo != null && Settings.get().autoLoadContent()) {
+            Intent openIntent = new Intent(Intent.ACTION_VIEW);
+            openIntent.setClassName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
+            openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            openIntent.setData(Uri.parse(url));
+            mContext.startActivity(openIntent);
+
+            /*
+            int bubbleCount = MainController.getBubbleCount();
+            for (int i = 0; i < bubbleCount; i++) {
+                Bubble bubble = MainController.getBubble(i);
+                if (bubble != null) {
+                    String bubbleUrl = bubble.getUrl();
+                    String originalUrl = wView.getOriginalUrl();
+                    if (bubbleUrl != null && originalUrl != null && bubbleUrl.equals(originalUrl)) {
+                        MainController.destroyBubble(bubble, Config.BubbleAction.Destroy);
+                        break;
+                    }
+                }
+            }*/
+
+            // TODO: Figure out how to get the correct Bubble rather than closing the first one
+            int bubbleCount = MainController.getBubbleCount();
+            if (bubbleCount > 0) {
+                Bubble bubble = MainController.getBubble(0);
+                MainController.destroyBubble(bubble, Config.BubbleAction.Destroy);
+            }
+
+            return true;
+        } else {
+            if (resolveInfo != null) {
+                Drawable d = resolveInfo.loadIcon(mContext.getPackageManager());
+                if (d != null) {
+                    mShareContext = resolveInfo.activityInfo.packageName;
+                    mSharePackage = resolveInfo.activityInfo.name;
+
+                    Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
+                    Bitmap scaled = Bitmap.createScaledBitmap(bitmap, mMaxToolbarHeight, mMaxToolbarHeight, true);
+                    mAppButton.setBackground(new BitmapDrawable(scaled));
+                    mAppButton.setVisibility(VISIBLE);
+                } else {
+                    mAppButton.setVisibility(GONE);
+                }
+            } else {
+                mAppButton.setVisibility(GONE);
+            }
+            return false;
+        }
+    }
+
+    private ResolveInfo getAppThatHandlesUrl(String url) {
         final String [] blacklist = {
                 "com.chrislacy.linkbubble",
                 "com.android.browser",
