@@ -35,26 +35,20 @@
     </LinearLayout>
 
     <ImageButton
-        android:layout_width="@dimen/toolbar_button_width"
-        android:layout_height="@dimen/toolbar_button_height"
-        android:layout_gravity="center_vertical"
+        style="@style/ToolbarButton"
         android:id="@+id/open_in_app_button"
         android:background="@drawable/ic_action_share"
         android:visibility="invisible"
         />
 
     <ImageButton
-        android:layout_width="@dimen/toolbar_button_width"
-        android:layout_height="@dimen/toolbar_button_height"
-        android:layout_gravity="center_vertical"
+        style="@style/ToolbarButton"
         android:id="@+id/share_button"
         android:background="@drawable/ic_action_share"
         />
 
     <ImageButton
-        android:layout_width="@dimen/toolbar_button_width"
-        android:layout_height="@dimen/toolbar_button_height"
-        android:layout_gravity="center_vertical"
+        style="@style/ToolbarButton"
         android:paddingRight="8dp"
         android:id="@+id/overflow_button"
         android:background="@drawable/ic_action_overflow"
