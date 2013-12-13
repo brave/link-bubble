@@ -309,6 +309,14 @@ public class ContentView extends LinearLayout {
                                 mEventHandler.onSharedLink();
                                 break;
                             }
+
+                            case R.id.item_settings: {
+                                Intent intent = new Intent(mContext, SettingsActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                mContext.startActivity(intent);
+                                mEventHandler.onSharedLink();
+                                break;
+                            }
                         }
                         return false;
                     }
