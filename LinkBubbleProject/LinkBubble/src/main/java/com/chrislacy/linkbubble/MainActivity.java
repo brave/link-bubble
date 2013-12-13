@@ -1,5 +1,6 @@
 package com.chrislacy.linkbubble;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ListFragment;
 import android.content.ComponentName;
@@ -27,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
-public class MainActivity extends PreferenceActivity {
+public class MainActivity extends Activity {
 
     static MainActivity sCurrentInstance;
 
@@ -40,11 +41,6 @@ public class MainActivity extends PreferenceActivity {
 
         Intent intent = getIntent();
         boolean isActionView = intent.getAction().equals(Intent.ACTION_VIEW);
-
-        if (isActionView == false) {
-            // must call before super.onCreate()
-            setTheme(android.R.style.Theme_Holo_Light);
-        }
 
         super.onCreate(savedInstanceState);
         Crashlytics.start(this);
@@ -88,10 +84,11 @@ public class MainActivity extends PreferenceActivity {
             } else {
                 loadInBrowser(this, intent);
             }
-            finish();
         } else {
-            setContentView(R.layout.activity_main);
+            startActivityForResult(new Intent(this, SettingsActivity.class), 0);
         }
+
+        finish();
     }
 
     @Override
@@ -130,7 +127,6 @@ public class MainActivity extends PreferenceActivity {
             @Override
             public void run() {
                 if (sCurrentInstance == MainActivity.this) {
-
                     finish();
                 }
             }

@@ -18,4 +18,6 @@
     <string name="consume_category_view">View link</string>
     <string name="consume_category_share">Send/share link</string>
 
+    <string name="title_settings">Settings</string>
+
 </resources>
