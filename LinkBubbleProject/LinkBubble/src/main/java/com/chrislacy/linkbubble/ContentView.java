@@ -292,13 +292,23 @@ public class ContentView extends LinearLayout {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.item_upgrade_to_pro:
+                            case R.id.item_upgrade_to_pro: {
                                 Intent intent = Config.getStoreIntent(mContext, Config.STORE_PRO_URL);
                                 if (intent != null) {
                                     mContext.startActivity(intent);
                                     mEventHandler.onSharedLink();
                                 }
                                 break;
+                            }
+
+                            case R.id.item_open_in_browser: {
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse(mUrl));
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                MainApplication.loadInBrowser(mContext, intent);
+                                mEventHandler.onSharedLink();
+                                break;
+                            }
                         }
                         return false;
                     }

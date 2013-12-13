@@ -7,7 +7,7 @@
     <string name="action_use_default">Use default</string>
     <string name="action_settings">Settings</string>
     <string name="action_reload_page">Reload page</string>
-    <string name="action_open_in_browser">Open in full browser</string>
+    <string name="action_open_in_browser">Open in browser</string>
     <string name="action_upgrade_to_pro">Upgrade to Pro</string>
 
     <string name="preference_show_when_ready_title">Show content when ready</string>

@@ -1,6 +1,7 @@
 package com.chrislacy.linkbubble;
 
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -200,6 +201,17 @@ public class Settings {
 
     String getDefaultBrowserPackageName() {
         return mSharedPreferences.getString(PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME, null);
+    }
+
+    ComponentName getDefaultBrowserComponentName(Context context) {
+        String defaultBrowserPackageName = getDefaultBrowserPackageName();
+        if (defaultBrowserPackageName != null) {
+            Intent browserIntent = context.getPackageManager().getLaunchIntentForPackage(defaultBrowserPackageName);
+            if (browserIntent != null) {
+                return browserIntent.getComponent();
+            }
+        }
+        return null;
     }
 
     void setConsumeBubble(Config.BubbleAction action, Config.ActionType type, String label, String packageName, String activityClassName) {
