@@ -78,6 +78,7 @@ public class Settings {
 
         mBrowsers = new Vector<Intent>();
         updateBrowsers();
+        setDefaultLeftConsumeBubble();
     }
 
     void updateBrowsers() {
@@ -115,26 +116,69 @@ public class Settings {
                 && (defaultBrowserPackage == null || rightConsumeBubblePackageName == null)) {
             try {
                 ApplicationInfo applicationInfo = packageManager.getApplicationInfo(fallbackDefaultBrowserPackageName, 0);
-                String defaultBrowserLabel = (String) packageManager.getApplicationLabel(applicationInfo);
+                String defaultBrowserLabel = packageManager.getApplicationLabel(applicationInfo).toString();
 
-                SharedPreferences.Editor editor = mSharedPreferences.edit();
                 if (defaultBrowserPackage == null) {
+                    SharedPreferences.Editor editor = mSharedPreferences.edit();
                     editor.putString(PREFERENCE_DEFAULT_BROWSER_LABEL, defaultBrowserLabel);
                     editor.putString(PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME, fallbackDefaultBrowserPackageName);
+                    editor.commit();
                 }
                 if (rightConsumeBubblePackageName == null) {
-                    editor.putString(PREFERENCE_RIGHT_CONSUME_BUBBLE_LABEL, defaultBrowserLabel);
-                    editor.putString(PREFERENCE_RIGHT_CONSUME_BUBBLE_PACKAGE_NAME, fallbackDefaultBrowserPackageName);
-                    editor.putString(PREFERENCE_RIGHT_CONSUME_BUBBLE_ACTIVITY_CLASS_NAME, fallbackDefaultBrowserActivityClassName);
-                    editor.putString(PREFERENCE_RIGHT_CONSUME_BUBBLE_TYPE, Config.ActionType.View.name());
+                    setConsumeBubble(Config.BubbleAction.ConsumeRight, Config.ActionType.Share,
+                            defaultBrowserLabel,
+                            fallbackDefaultBrowserPackageName, fallbackDefaultBrowserActivityClassName);
                 }
-
-                editor.commit();
 
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private ResolveInfo findResolveInfoForPackageName(List<ResolveInfo> resolveInfos, String packageName) {
+        for (ResolveInfo resolveInfo : resolveInfos) {
+            if (resolveInfo.activityInfo.packageName.equals(packageName)) {
+                return resolveInfo;
+            }
+        }
+
+        return null;
+    }
+
+    private void setDefaultLeftConsumeBubble() {
+        String leftConsumeBubblePackageName = mSharedPreferences.getString(PREFERENCE_LEFT_CONSUME_BUBBLE_PACKAGE_NAME, null);
+        if (leftConsumeBubblePackageName == null) {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            PackageManager packageManager = mContext.getPackageManager();
+            List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, 0);
+
+            if (setDefaultLeftConsumeBubble(findResolveInfoForPackageName(resolveInfos, "com.ideashower.readitlater.pro"), packageManager) == false) {
+                if (setDefaultLeftConsumeBubble(findResolveInfoForPackageName(resolveInfos, "com.instapaper.android"), packageManager) == false) {
+                    if (setDefaultLeftConsumeBubble(findResolveInfoForPackageName(resolveInfos, "com.facebook.katana"), packageManager) == false) {
+                        if (setDefaultLeftConsumeBubble(findResolveInfoForPackageName(resolveInfos, "com.twitter.android"), packageManager) == false) {
+                            if (setDefaultLeftConsumeBubble(findResolveInfoForPackageName(resolveInfos, "com.google.android.apps.plus"), packageManager) == false) {
+                                if (setDefaultLeftConsumeBubble(findResolveInfoForPackageName(resolveInfos, "com.google.android.gm"), packageManager) == false) {
+                                    // Can't imagine *none* of the above apps will not be installed too often, but if so, fall back to the first item in the list...
+                                    setDefaultLeftConsumeBubble(resolveInfos.get(0), packageManager);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private boolean setDefaultLeftConsumeBubble(ResolveInfo resolveInfo, PackageManager packageManager) {
+        if (resolveInfo != null) {
+            setConsumeBubble(Config.BubbleAction.ConsumeLeft, Config.ActionType.Share,
+                    resolveInfo.loadLabel(packageManager).toString(),
+                    resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
+            return true;
+        }
+        return false;
     }
 
     List<Intent> getBrowsers() {
