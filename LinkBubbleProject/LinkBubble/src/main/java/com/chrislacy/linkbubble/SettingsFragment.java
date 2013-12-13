@@ -282,6 +282,11 @@ public class SettingsFragment extends PreferenceFragment {
                 return true;
             }
         });
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        if (prefs.getBoolean("auto_load_url", true)) {
+            MainApplication.openLink(getActivity(), "http://abc.net.au", false);
+        }
     }
 
     @Override

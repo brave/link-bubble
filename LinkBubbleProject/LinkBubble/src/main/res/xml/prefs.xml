@@ -59,6 +59,12 @@
             android:title="Load a URL" />
 
         <CheckBoxPreference
+            android:key="auto_load_url"
+            android:title="Auto load URL"
+            android:summary="Load abc.net.au on app boot"
+            android:defaultValue="false"/>
+
+        <CheckBoxPreference
             android:key="debug_flick"
             android:summary="Flick targets show message when hit only."
             android:title="Flick Targets"
