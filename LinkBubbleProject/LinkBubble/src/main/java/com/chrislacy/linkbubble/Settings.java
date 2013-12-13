@@ -20,6 +20,7 @@ import java.util.Vector;
 
 public class Settings {
 
+    public static final String PREFERENCE_ENABLED = "preference_enabled";
     public static final String PREFERENCE_AUTO_LOAD_CONTENT = "preference_auto_load_content";
 
     public static final String PREFERENCE_LEFT_CONSUME_BUBBLE = "preference_left_consume_bubble";
@@ -313,5 +314,9 @@ public class Settings {
 
     boolean autoLoadContent() {
         return mSharedPreferences.getBoolean(PREFERENCE_AUTO_LOAD_CONTENT, false);
+    }
+
+    boolean isEnabled() {
+        return mSharedPreferences.getBoolean(PREFERENCE_ENABLED, false);
     }
 }

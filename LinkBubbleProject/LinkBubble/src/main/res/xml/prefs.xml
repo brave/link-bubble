@@ -3,8 +3,8 @@
     <PreferenceCategory
         android:summary="Settings"
         android:title="Settings" >
-        <CheckBoxPreference
-            android:key="enabled"
+        <SwitchPreference
+            android:key="preference_enabled"
             android:summary="Enable Link Bubble to intercept clicking on URLs"
             android:title="Enabled"
             android:defaultValue="true" />
@@ -14,17 +14,17 @@
             android:title="@string/preference_show_when_ready_title"
             android:summary="@string/preference_show_when_ready_summary"
             android:defaultValue="false"
-            android:dependency="enabled"/>
+            android:dependency="preference_enabled"/>
 
         <Preference
             android:key="preference_left_consume_bubble"
             android:title="@string/preference_left_consume_bubble_title"
-            android:dependency="enabled"
+            android:dependency="preference_enabled"
             />
         <Preference
             android:key="preference_right_consume_bubble"
             android:title="@string/preference_right_consume_bubble_title"
-            android:dependency="enabled"
+            android:dependency="preference_enabled"
             />
 
         <CheckBoxPreference
@@ -32,7 +32,7 @@
             android:title="Incognito Mode"
             android:summary="Prevent storing all history and cookies"
             android:defaultValue="false"
-            android:dependency="enabled"
+            android:dependency="preference_enabled"
             />
 
         <Preference

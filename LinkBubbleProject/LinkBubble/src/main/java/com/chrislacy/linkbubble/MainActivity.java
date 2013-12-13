@@ -54,10 +54,7 @@ public class MainActivity extends Activity {
         if (isActionView) {
             boolean openLink = false;
 
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            boolean enabled = prefs.getBoolean("enabled", true);
-
-            if (enabled) {
+            if (Settings.get().isEnabled()) {
                 final ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
                 List<ActivityManager.RecentTaskInfo> recentTasks = activityManager.getRecentTasks(16, ActivityManager.RECENT_WITH_EXCLUDED);
 
