@@ -64,6 +64,15 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
+    public void OnPageLoaded(Bubble bubble) {
+        if (Settings.get().autoLoadContent()) {
+            mBadge.hide();
+            MainController.STATE_AnimateToContentView.init(bubble);
+            MainController.switchState(MainController.STATE_AnimateToContentView);
+        }
+    }
+
+    @Override
     public void OnMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
         mTouchDown = true;
         mCanvas.fadeIn();

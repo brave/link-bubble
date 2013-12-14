@@ -39,6 +39,7 @@ public class State_AnimateToContentView extends ControllerState {
 
     @Override
     public void OnEnterState() {
+        mCanvas.fadeIn();
         mCanvas.fadeOutTargets();
         Util.Assert(mSelectedBubble != null);
         mCanvas.setContentView(mSelectedBubble.getContentView());

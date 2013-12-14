@@ -14,5 +14,6 @@ public abstract class ControllerState {
     public abstract void OnDestroyBubble(Bubble bubble);
     public abstract boolean OnOrientationChanged();
     public abstract void OnCloseDialog();
+    public void OnPageLoaded(Bubble bubble) {}
     public abstract String getName();
 }

@@ -92,6 +92,10 @@ public class MainController implements Choreographer.FrameCallback {
     //private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
     //private int mFrameNumber;
 
+    public static void onPageLoaded(Bubble bubble) {
+        sMainController.mCurrentState.OnPageLoaded(bubble);
+    }
+
     public static boolean destroyBubble(Bubble bubble, Config.BubbleAction action) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(sMainController.mContext);
         boolean debug = prefs.getBoolean("debug_flick", true);
@@ -103,6 +107,7 @@ public class MainController implements Choreographer.FrameCallback {
 
             bubble.destroy();
             int bubbleIndex = mBubbles.indexOf(bubble);
+            Util.Assert(bubbleIndex >= 0 && bubbleIndex < mBubbles.size());
             mBubbles.remove(bubble);
 
             for (int i=0 ; i < mBubbles.size() ; ++i) {
@@ -285,44 +290,46 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void onOpenUrl(String url, boolean recordHistory) {
-        if (mBubbles.size() < Config.MAX_BUBBLES) {
-            Bubble bubble = new Bubble(mContext, url, Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y, recordHistory, mBubbles.size(), new Bubble.EventHandler() {
-                @Override
-                public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
-                    mCurrentState.OnMotionEvent_Touch(sender, e);
+        if (ContentView.doUrlRedirect(mContext, url) == false) {
+            if (mBubbles.size() < Config.MAX_BUBBLES) {
+                Bubble bubble = new Bubble(mContext, url, Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y, recordHistory, mBubbles.size(), new Bubble.EventHandler() {
+                    @Override
+                    public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
+                        mCurrentState.OnMotionEvent_Touch(sender, e);
+                    }
+
+                    @Override
+                    public void onMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
+                        mCurrentState.OnMotionEvent_Move(sender, e);
+                    }
+
+                    @Override
+                    public void onMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
+                        mCurrentState.OnMotionEvent_Release(sender, e);
+                    }
+
+                    @Override
+                    public void onSharedLink(Bubble sender) {
+                        switchState(STATE_AnimateToBubbleView);
+                    }
+                });
+
+                mCurrentState.OnNewBubble(bubble);
+                mBubbles.add(bubble);
+                ++mBubblesLoaded;
+
+                int bubbleCount = mBubbles.size();
+
+                mBadge.attach(bubble);
+                mBadge.setBubbleCount(bubbleCount);
+
+                for (int i=0 ; i < bubbleCount ; ++i) {
+                    Bubble b = mBubbles.get(i);
+                    int vis = View.VISIBLE;
+                    if (i != bubbleCount-1)
+                        vis = View.GONE;
+                    b.setVisibility(vis);
                 }
-
-                @Override
-                public void onMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
-                    mCurrentState.OnMotionEvent_Move(sender, e);
-                }
-
-                @Override
-                public void onMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
-                    mCurrentState.OnMotionEvent_Release(sender, e);
-                }
-
-                @Override
-                public void onSharedLink(Bubble sender) {
-                    switchState(STATE_AnimateToBubbleView);
-                }
-            });
-
-            mCurrentState.OnNewBubble(bubble);
-            mBubbles.add(bubble);
-            ++mBubblesLoaded;
-
-            int bubbleCount = mBubbles.size();
-
-            mBadge.attach(bubble);
-            mBadge.setBubbleCount(bubbleCount);
-
-            for (int i=0 ; i < bubbleCount ; ++i) {
-                Bubble b = mBubbles.get(i);
-                int vis = View.VISIBLE;
-                if (i != bubbleCount-1)
-                    vis = View.GONE;
-                b.setVisibility(vis);
             }
         }
     }

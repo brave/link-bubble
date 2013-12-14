@@ -102,7 +102,6 @@ public class ContentView extends LinearLayout {
         public void onPageLoading(String url);
         public void onPageLoaded(PageLoadInfo info);
         public void onReceivedIcon(Bitmap bitmap);
-        public void onRedirectedToApp();
     }
 
     @Override
@@ -372,9 +371,10 @@ public class ContentView extends LinearLayout {
                     ++mCount;
                 }
 
-                if (urlHandled(url)) {
+                if (doUrlRedirect(mContext, url)) {
                     return false;
                 } else {
+                    setAppButton(url);
                     mWebView.loadUrl(url);
                     mEventHandler.onPageLoading(url);
                     mTitleTextView.setText(null);
@@ -448,49 +448,49 @@ public class ContentView extends LinearLayout {
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
-        if (urlHandled(url)) {
-            mEventHandler.onRedirectedToApp();
+        setAppButton(url);
+        mWebView.loadUrl(url);
+    }
+
+    private void setAppButton(String url) {
+        ResolveInfo resolveInfo = getAppThatHandlesUrl(mContext, url);
+        if (resolveInfo != null) {
+            Drawable d = resolveInfo.loadIcon(mContext.getPackageManager());
+            if (d != null) {
+                mShareContext = resolveInfo.activityInfo.packageName;
+                mSharePackage = resolveInfo.activityInfo.name;
+
+                Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
+                Bitmap scaled = Bitmap.createScaledBitmap(bitmap, mMaxToolbarHeight, mMaxToolbarHeight, true);
+                mAppButton.setBackground(new BitmapDrawable(scaled));
+                mAppButton.setVisibility(VISIBLE);
+            } else {
+                mAppButton.setVisibility(GONE);
+            }
         } else {
-            mWebView.loadUrl(url);
+            mAppButton.setVisibility(GONE);
         }
     }
 
-    private boolean urlHandled(String url) {
-        ResolveInfo resolveInfo = getAppThatHandlesUrl(url);
+    public static boolean doUrlRedirect(Context context, String url) {
+        ResolveInfo resolveInfo = getAppThatHandlesUrl(context, url);
         if (resolveInfo != null && Settings.get().autoLoadContent()) {
             Intent openIntent = new Intent(Intent.ACTION_VIEW);
             openIntent.setClassName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
             openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             openIntent.setData(Uri.parse(url));
-            mContext.startActivity(openIntent);
-            mEventHandler.onRedirectedToApp();
+            context.startActivity(openIntent);
             return true;
-        } else {
-            if (resolveInfo != null) {
-                Drawable d = resolveInfo.loadIcon(mContext.getPackageManager());
-                if (d != null) {
-                    mShareContext = resolveInfo.activityInfo.packageName;
-                    mSharePackage = resolveInfo.activityInfo.name;
-
-                    Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
-                    Bitmap scaled = Bitmap.createScaledBitmap(bitmap, mMaxToolbarHeight, mMaxToolbarHeight, true);
-                    mAppButton.setBackground(new BitmapDrawable(scaled));
-                    mAppButton.setVisibility(VISIBLE);
-                } else {
-                    mAppButton.setVisibility(GONE);
-                }
-            } else {
-                mAppButton.setVisibility(GONE);
-            }
-            return false;
         }
+
+        return false;
     }
 
-    private ResolveInfo getAppThatHandlesUrl(String url) {
+    private static ResolveInfo getAppThatHandlesUrl(Context context, String url) {
 
         List<Intent> browsers = Settings.get().getBrowsers();
 
-        PackageManager manager = mContext.getPackageManager();
+        PackageManager manager = context.getPackageManager();
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
@@ -500,7 +500,7 @@ public class ContentView extends LinearLayout {
             if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
 
                 // Check if this item is a browser, and if so, ignore it
-                boolean packageOk = !info.activityInfo.packageName.equals(mContext.getPackageName());
+                boolean packageOk = !info.activityInfo.packageName.equals(context.getPackageName());
                 for (Intent browser : browsers) {
                     if (info.activityInfo.packageName.equals(browser.getComponent().getPackageName())) {
                         packageOk = false;

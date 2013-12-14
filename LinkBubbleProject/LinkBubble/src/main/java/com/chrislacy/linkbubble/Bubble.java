@@ -283,11 +283,6 @@ public class Bubble extends RelativeLayout {
             }
 
             @Override
-            public void onRedirectedToApp() {
-                MainController.destroyBubble(Bubble.this, Config.BubbleAction.Destroy);
-            }
-
-            @Override
             public void onPageLoaded(ContentView.PageLoadInfo info) {
                 showProgressBar(false);
                 setBackgroundResource(R.drawable.circle_grey);
@@ -299,12 +294,7 @@ public class Bubble extends RelativeLayout {
                     SettingsFragment.addRecentBubble(context, info.url, info.title, nowString);
                 }
 
-                if (Settings.get().autoLoadContent()) {
-                    // TODO: The bubble animates, but the content view does not
-                    // Also, the badge count doesn't get reset
-                    //MainController.STATE_AnimateToContentView.init(Bubble.this);
-                    //MainController.switchState(MainController.STATE_AnimateToContentView);
-                }
+                MainController.onPageLoaded(Bubble.this);
             }
 
             @Override
