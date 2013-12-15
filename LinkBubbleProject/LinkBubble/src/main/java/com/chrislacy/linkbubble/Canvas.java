@@ -21,7 +21,6 @@ public class Canvas extends RelativeLayout {
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
 
-    private BubbleTarget mDeleteTarget;
     private Vector<BubbleTarget> mTargets = new Vector<BubbleTarget>();
 
     private final float mMaxAlpha = 0.9f;
@@ -56,11 +55,9 @@ public class Canvas extends RelativeLayout {
 
         applyAlpha();
 
-        mDeleteTarget = new BubbleTarget(this, mContext, android.R.drawable.ic_delete, Config.BubbleAction.Destroy, 0.5f, 0.85f, true);
-        mTargets.add(mDeleteTarget);
-
-        mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeLeft, 0.2f, 0.15f, false));
-        mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeRight, 0.8f, 0.15f, false));
+        mTargets.add(new BubbleTarget(this, mContext, android.R.drawable.ic_delete, Config.BubbleAction.Destroy, 0.5f, 0.85f, true));
+        mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeLeft, 0.2f, 0.15f, true));
+        mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeRight, 0.8f, 0.15f, true));
 
         Settings.setConsumeBubblesChangedEventHandler(new Settings.ConsumeBubblesChangedEventHandler() {
             @Override

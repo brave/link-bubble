@@ -175,20 +175,39 @@ public class BubbleTarget extends RelativeLayout {
 
             mSnapCircle.mX = Config.mScreenWidth * mXFraction + xf * Config.mScreenWidth * 0.1f;
 
-            int bubbleYC = (int) (bubble.getYPos() + Config.mBubbleHeight * 0.5f);
-            int bubbleY0 = (int) (Config.mScreenHeight * 0.75f);
-            int bubbleY1 = (int) (Config.mScreenHeight * 0.90f);
+            if (mYFraction > 0.5f) {
+                int bubbleYC = (int) (bubble.getYPos() + Config.mBubbleHeight * 0.5f);
+                int bubbleY0 = (int) (Config.mScreenHeight * 0.75f);
+                int bubbleY1 = (int) (Config.mScreenHeight * 0.90f);
 
-            int targetY0 = (int) (Config.mScreenHeight * mYFraction);
-            int targetY1 = (int) (Config.mScreenHeight * (mYFraction + 0.05f));
+                int targetY0 = (int) (Config.mScreenHeight * mYFraction);
+                int targetY1 = (int) (Config.mScreenHeight * (mYFraction + 0.05f));
 
-            if (bubbleYC < bubbleY0) {
-                mSnapCircle.mY = Config.mScreenHeight * mYFraction;
-            } else if (bubbleYC < bubbleY1) {
-                float yf = (float)(bubbleYC - bubbleY0) / (float)(bubbleY1 - bubbleY0);
-                mSnapCircle.mY = Config.mScreenHeight * mYFraction + yf * (targetY1 - targetY0);
+                if (bubbleYC < bubbleY0) {
+                    mSnapCircle.mY = Config.mScreenHeight * mYFraction;
+                } else if (bubbleYC < bubbleY1) {
+                    float yf = (float)(bubbleYC - bubbleY0) / (float)(bubbleY1 - bubbleY0);
+                    mSnapCircle.mY = Config.mScreenHeight * mYFraction + yf * (targetY1 - targetY0);
+                } else {
+                    mSnapCircle.mY = bubbleYC;
+                }
             } else {
-                mSnapCircle.mY = bubbleYC;
+                int bubbleYC = (int) (bubble.getYPos() + Config.mBubbleHeight * 0.5f);
+                int bubbleY0 = (int) (Config.mScreenHeight * 0.25f);
+                int bubbleY1 = (int) (Config.mScreenHeight * 0.10f);
+
+                int targetY0 = (int) (Config.mScreenHeight * mYFraction);
+                int targetY1 = (int) (Config.mScreenHeight * (mYFraction + 0.05f));
+
+                if (bubbleYC > bubbleY0) {
+                    mSnapCircle.mY = Config.mScreenHeight * mYFraction;
+                } else if (bubbleYC > bubbleY1) {
+                    float yf = (float)(bubbleYC - bubbleY0) / (float)(bubbleY1 - bubbleY0);
+                    mSnapCircle.mY = Config.mScreenHeight * mYFraction - yf * (targetY1 - targetY0);
+                } else {
+                    mSnapCircle.mY = bubbleYC;
+                }
+
             }
 
             mDefaultCircle.mX = mSnapCircle.mX;
