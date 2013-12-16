@@ -32,7 +32,8 @@ public class MainService extends Service {
     public int onStartCommand(Intent cmd, int flags, int startId) {
         String url = cmd.getStringExtra("url");
         boolean recordHistory = cmd.getBooleanExtra("record_history", true);
-        mController.onOpenUrl(url, recordHistory);
+        long startTime = cmd.getLongExtra("start_time", System.currentTimeMillis());
+        mController.onOpenUrl(url, recordHistory, startTime);
         return START_STICKY;
     }
 

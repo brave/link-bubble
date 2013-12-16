@@ -277,10 +277,11 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    public void onOpenUrl(String url, boolean recordHistory) {
-        if (ContentView.doUrlRedirectToApp(mContext, url) == false) {
+    public void onOpenUrl(String url, boolean recordHistory, long startTime) {
+        if (ContentView.doUrlRedirectToApp(mContext, url, startTime) == false) {
             if (mBubbles.size() < Config.MAX_BUBBLES) {
-                Bubble bubble = new Bubble(mContext, url, Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y, recordHistory, mBubbles.size(), new Bubble.EventHandler() {
+                Bubble bubble = new Bubble(mContext, url, Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y, startTime, recordHistory,
+                        mBubbles.size(), new Bubble.EventHandler() {
                     @Override
                     public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
                         mCurrentState.OnMotionEvent_Touch(sender, e);

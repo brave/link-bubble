@@ -256,7 +256,8 @@ public class Bubble extends RelativeLayout {
 
     public String getUrl() { return mUrl; }
 
-    public Bubble(final Context context, String url, int x, int y, boolean recordHistory, int bubbleIndex, EventHandler eh) {
+    public Bubble(final Context context, String url, int x, int y, long startTime,
+                  boolean recordHistory, int bubbleIndex, EventHandler eh) {
         super(context);
 
         mAlive = true;
@@ -271,7 +272,7 @@ public class Bubble extends RelativeLayout {
         mUrl = url;
         mRecordHistory = recordHistory;
 
-        mContentView = new ContentView(context, Bubble.this, mUrl, new ContentView.EventHandler() {
+        mContentView = new ContentView(context, Bubble.this, mUrl, startTime, new ContentView.EventHandler() {
             @Override
             public void onSharedLink() {
                 mEventHandler.onSharedLink(Bubble.this);

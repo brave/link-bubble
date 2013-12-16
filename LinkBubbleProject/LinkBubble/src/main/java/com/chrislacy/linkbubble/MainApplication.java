@@ -40,6 +40,7 @@ public class MainApplication extends Application {
         Intent serviceIntent = new Intent(context, MainService.class);
         serviceIntent.putExtra("url", url);
         serviceIntent.putExtra("record_history", recordHistory);
+        serviceIntent.putExtra("start_time", System.currentTimeMillis());
         context.startService(serviceIntent);
     }
 

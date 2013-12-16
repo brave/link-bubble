@@ -57,6 +57,7 @@ public class ContentView extends LinearLayout {
     private EventHandler mEventHandler;
     private Context mContext;
     private String mUrl;
+    private long mStartTime;
     private Bubble mOwner;
     private int mHeaderHeight;
     private LinearLayout.LayoutParams mWebViewLayoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1.0f);
@@ -224,7 +225,7 @@ public class ContentView extends LinearLayout {
         dialog.show();
     }
 
-    ContentView(final Context ctx, Bubble owner, String url, EventHandler eh) {
+    ContentView(final Context ctx, Bubble owner, String url, long startTime, EventHandler eh) {
         super(ctx);
         mContext = ctx;
         mEventHandler = eh;
@@ -363,7 +364,7 @@ public class ContentView extends LinearLayout {
                     ++mCount;
                 }
 
-                if (doUrlRedirectToApp(mContext, url)) {
+                if (doUrlRedirectToApp(mContext, url, mStartTime)) {
                     return false;
                 } else {
                     setAppButton(url);
@@ -409,6 +410,11 @@ public class ContentView extends LinearLayout {
 
                         mEventHandler.onPageLoaded(pli);
                         Log.d(TAG, "onPageFinished() - url: " + url);
+
+                        if (mStartTime > -1) {
+                            Log.d("LoadTime", "Saved " + ((System.currentTimeMillis()-mStartTime)/1000) + " seconds.");
+                            mStartTime = -1;
+                        }
                     }
                 }
             }
@@ -444,6 +450,7 @@ public class ContentView extends LinearLayout {
 
         setAppButton(url);
         Log.d(TAG, "load url: " + url);
+        mStartTime = startTime;
         mWebView.loadUrl(url);
         mTitleTextView.setText(R.string.loading);
         mUrlTextView.setText(url.replace("http://", ""));
@@ -469,7 +476,7 @@ public class ContentView extends LinearLayout {
         }
     }
 
-    public static boolean doUrlRedirectToApp(Context context, String url) {
+    public static boolean doUrlRedirectToApp(Context context, String url, long startTime) {
         ResolveInfo resolveInfo = getAppThatHandlesUrl(context, url);
         if (resolveInfo != null && Settings.get().autoLoadContent()) {
             Intent openIntent = new Intent(Intent.ACTION_VIEW);
@@ -478,6 +485,9 @@ public class ContentView extends LinearLayout {
             openIntent.setData(Uri.parse(url));
             context.startActivity(openIntent);
             Log.d(TAG, "redirect to app: " + resolveInfo.loadLabel(context.getPackageManager()) + ", url:" + url);
+            if (startTime > -1) {
+                Log.d("LoadTime", "Saved " + ((System.currentTimeMillis()-startTime)/1000) + " seconds.");
+            }
             return true;
         }
 
