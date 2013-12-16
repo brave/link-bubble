@@ -1,5 +1,6 @@
 package com.chrislacy.linkbubble;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.view.Choreographer;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.widget.Toast;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -278,10 +281,31 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    public void onOpenUrl(String url, boolean recordHistory, long startTime) {
-        ResolveInfo resolveInfo = Settings.get().getAppThatHandlesUrl(url);
-        if (resolveInfo != null && Settings.get().autoLoadContent()) {
-            if (MainApplication.loadResolveInfoIntent(mContext, resolveInfo, url, startTime)) {
+    public void onOpenUrl(final String url, boolean recordHistory, long startTime) {
+        final List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
+        if (resolveInfos != null && resolveInfos.size() > 0 && Settings.get().autoLoadContent()) {
+            if (resolveInfos.size() == 1) {
+                if (MainApplication.loadResolveInfoIntent(mContext, resolveInfos.get(0), url, startTime)) {
+                    return;
+                }
+            } else {
+                AlertDialog dialog = ActionItem.getActionItemPickerAlert(mContext, resolveInfos, R.string.pick_default_app,
+                        new ActionItem.OnActionItemSelectedListener() {
+                            @Override
+                            public void onSelected(ActionItem actionItem) {
+                                for (ResolveInfo resolveInfo : resolveInfos) {
+                                    if (resolveInfo.activityInfo.packageName.equals(actionItem.mPackageName)
+                                            && resolveInfo.activityInfo.name.equals(actionItem.mActivityClassName)) {
+                                        MainApplication.loadIntent(mContext, actionItem.mPackageName,
+                                                actionItem.mActivityClassName, url, -1);
+                                        break;
+                                    }
+                                }
+
+                            }
+                        });
+                dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                dialog.show();
                 return;
             }
         }

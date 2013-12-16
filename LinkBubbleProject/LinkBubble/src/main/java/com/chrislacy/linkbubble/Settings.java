@@ -364,11 +364,12 @@ public class Settings {
         return null;
     }
 
+    /*
     ResolveInfo getAppThatHandlesUrl(String url) {
         List<ResolveInfo> results = getAppsThatHandleUrl(url);
         if (results != null && results.size() > 0) {
             return results.get(0);
         }
         return null;
-    }
+    }*/
 }
