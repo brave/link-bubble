@@ -40,6 +40,8 @@ public class MainService extends Service {
     @Override
     public void onCreate() {
 
+        setTheme(android.R.style.Theme_Holo_Light);
+
         super.onCreate();
 
         Crashlytics.start(this);
