@@ -330,6 +330,7 @@ public class Bubble extends RelativeLayout {
 
                 mShape.setPadding(hPad, vPad, 0, 0);
                 mShape.setVisibility(VISIBLE);
+                showProgressBar(false);
             }
         });
 
