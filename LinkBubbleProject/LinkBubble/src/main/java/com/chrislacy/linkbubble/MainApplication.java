@@ -63,16 +63,12 @@ public class MainApplication extends Application {
 
     public static boolean loadResolveInfoIntent(Context context, ResolveInfo resolveInfo, String url, long startTime) {
         if (resolveInfo.activityInfo != null) {
-            return loadResolveInfoIntent(context, resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name, url, startTime);
+            return loadIntent(context, resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name, url, startTime);
         }
         return false;
     }
 
-    public static boolean loadResolveInfoIntent(Context context, ComponentName componentName, String url, long startTime) {
-        return loadResolveInfoIntent(context, componentName.getPackageName(), componentName.getClassName(), url, startTime);
-    }
-
-    public static boolean loadResolveInfoIntent(Context context, String packageName, String className, String url, long startTime) {
+    public static boolean loadIntent(Context context, String packageName, String className, String url, long startTime) {
         Intent openIntent = new Intent(Intent.ACTION_VIEW);
         openIntent.setClassName(packageName, className);
         openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);

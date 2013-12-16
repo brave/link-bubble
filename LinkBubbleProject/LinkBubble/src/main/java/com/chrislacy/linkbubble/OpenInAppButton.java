@@ -211,9 +211,10 @@ public class OpenInAppButton extends FrameLayout implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-
         if (v.getTag() instanceof ContentView.AppForUrl) {
-            openApp((ContentView.AppForUrl) v.getTag());
+            ContentView.AppForUrl appForUrl = (ContentView.AppForUrl)v.getTag();
+            MainApplication.loadIntent(getContext(), appForUrl.mResolveInfo.activityInfo.packageName,
+                    appForUrl.mResolveInfo.activityInfo.name, appForUrl.mUrl, -1);
 
             if (mOnOpenInAppClickListener != null) {
                 mOnOpenInAppClickListener.appOpened();
@@ -230,7 +231,7 @@ public class OpenInAppButton extends FrameLayout implements View.OnClickListener
                             public void onSelected(ActionItem actionItem) {
                                 ContentView.AppForUrl appForUrl = getAppForUrl(actionItem.mPackageName, actionItem.mActivityClassName);
                                 if (appForUrl != null) {
-                                    openApp(appForUrl);
+                                    MainApplication.loadIntent(getContext(), appForUrl.mResolveInfo.activityInfo.packageName,                                            appForUrl.mResolveInfo.activityInfo.name, appForUrl.mUrl, -1);
                                 }
 
                                 if (mOnOpenInAppClickListener != null) {
@@ -242,14 +243,6 @@ public class OpenInAppButton extends FrameLayout implements View.OnClickListener
                 dialog.show();
             }
         }
-    }
-
-    private void openApp(ContentView.AppForUrl appForUrl) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setClassName(appForUrl.mResolveInfo.activityInfo.packageName, appForUrl.mResolveInfo.activityInfo.name);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        intent.setData(Uri.parse(appForUrl.mUrl));
-        getContext().startActivity(intent);
     }
 
     private ContentView.AppForUrl getAppForUrl(String packageName, String className) {
