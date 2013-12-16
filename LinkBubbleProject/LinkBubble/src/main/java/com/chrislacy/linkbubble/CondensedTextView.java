@@ -3,6 +3,7 @@ package com.chrislacy.linkbubble;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.TextView;
 
 public class CondensedTextView extends TextView {
@@ -20,9 +21,11 @@ public class CondensedTextView extends TextView {
     public CondensedTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        if (sCustomTypeface == null) {
-            sCustomTypeface = Typeface.createFromAsset(context.getAssets(), "RobotoCondensed-Regular.ttf");
+        if (isInEditMode() == false) {
+            if (sCustomTypeface == null) {
+                sCustomTypeface = Typeface.createFromAsset(context.getAssets(), "RobotoCondensed-Regular.ttf");
+            }
+            setTypeface(sCustomTypeface);
         }
-        setTypeface(sCustomTypeface);
     }
 }
