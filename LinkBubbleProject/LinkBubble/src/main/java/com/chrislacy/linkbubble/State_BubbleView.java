@@ -110,6 +110,7 @@ public class State_BubbleView extends ControllerState {
             sender.clearTargetPos();
 
             if (mDidMove) {
+                mCanvas.fadeOut();
                 Canvas.TargetInfo ti = mBubble.getTargetInfo(mCanvas, sender.getXPos(), sender.getYPos());
                 if (ti.mAction == Config.BubbleAction.None) {
                     float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
