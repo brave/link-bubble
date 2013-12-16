@@ -1,17 +1,24 @@
 package com.chrislacy.linkbubble;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.preference.PreferenceCategory;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import java.util.List;
 
-public class OpenInAppButton extends FrameLayout {
+public class OpenInAppButton extends FrameLayout implements View.OnClickListener {
+
+    private OnOpenInAppClickListener mOnOpenInAppClickListener;
 
     private static final int NUM_ITEMS_IN_PREVIEW = 2;
     List<ContentView.AppForUrl> mAppsForUrl;
@@ -34,7 +41,10 @@ public class OpenInAppButton extends FrameLayout {
     // (0 means it's not scaled at all, 1 means it's scaled to nothing)
     private static final float PERSPECTIVE_SCALE_FACTOR = 0.35f;
 
-
+    interface OnOpenInAppClickListener {
+        void appOpened();
+        void appPickerOpened();
+    }
 
     public OpenInAppButton(Context context) {
         this(context, null);
@@ -52,6 +62,12 @@ public class OpenInAppButton extends FrameLayout {
         mAppStackPadding = resources.getDimensionPixelSize(R.dimen.app_stack_padding);
         mPreviewXOffset = resources.getDimensionPixelSize(R.dimen.app_stack_x_offset);
         mPreviewYOffset = resources.getDimensionPixelSize(R.dimen.app_stack_y_offset);
+
+        setOnClickListener(this);
+    }
+
+    void setOnOpenInAppClickListener(OnOpenInAppClickListener listener) {
+        mOnOpenInAppClickListener = listener;
     }
 
     boolean configure(List<ContentView.AppForUrl> appsForUrl) {
@@ -187,6 +203,27 @@ public class OpenInAppButton extends FrameLayout {
             d.setFilterBitmap(false);
         }
         canvas.restore();
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        if (v.getTag() instanceof ContentView.AppForUrl) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            ContentView.AppForUrl appForUrl = (ContentView.AppForUrl) v.getTag();
+            intent.setClassName(appForUrl.mResolveInfo.activityInfo.packageName, appForUrl.mResolveInfo.activityInfo.name);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.setData(Uri.parse(appForUrl.mUrl));
+            getContext().startActivity(intent);
+
+            if (mOnOpenInAppClickListener != null) {
+                mOnOpenInAppClickListener.appOpened();
+            }
+        } else {
+            if (mAppsForUrl != null && mAppsForUrl.size() > 1) {
+                Toast.makeText(getContext(), "Display app picker", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 }

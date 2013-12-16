@@ -274,19 +274,15 @@ public class ContentView extends LinearLayout {
 
         mOpenInAppButton = (OpenInAppButton)mToolbarLayout.findViewById(R.id.open_in_app_button);
         mOpenInAppButton.setOnTouchListener(sButtonOnTouchListener);
-        mOpenInAppButton.setOnClickListener(new OnClickListener() {
+        mOpenInAppButton.setOnOpenInAppClickListener(new OpenInAppButton.OnOpenInAppClickListener() {
+
             @Override
-            public void onClick(View v) {
-                String action = Intent.ACTION_VIEW;
-                Intent intent = new Intent(action);
+            public void appOpened() {
+                mEventHandler.onSharedLink();
+            }
 
-                AppForUrl appForUrl = (AppForUrl) v.getTag();
-                intent.setClassName(appForUrl.mResolveInfo.activityInfo.packageName, appForUrl.mResolveInfo.activityInfo.name);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.setData(Uri.parse(appForUrl.mUrl));
-
-                mContext.startActivity(intent);
-
+            @Override
+            public void appPickerOpened() {
                 mEventHandler.onSharedLink();
             }
         });
