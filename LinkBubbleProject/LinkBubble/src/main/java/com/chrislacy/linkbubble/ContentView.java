@@ -5,12 +5,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -18,15 +16,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.http.SslError;
-import android.text.Html;
-import android.text.Spanned;
-import android.text.SpannedString;
 import android.util.Log;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListAdapter;
 import android.view.*;
 import android.view.View;
@@ -36,19 +30,18 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.graphics.Canvas;
 
 import java.net.URL;
 import java.util.List;
 
-import com.chrislacy.linkbubble.R;
-
 /**
  * Created by gw on 19/08/13.
  */
 public class ContentView extends LinearLayout {
+
+    private static final String TAG = "UrlLoad";
 
     private WebView mWebView;
     private CondensedTextView mTitleTextView;
@@ -371,10 +364,11 @@ public class ContentView extends LinearLayout {
                     ++mCount;
                 }
 
-                if (doUrlRedirect(mContext, url)) {
+                if (doUrlRedirectToApp(mContext, url)) {
                     return false;
                 } else {
                     setAppButton(url);
+                    Log.d(TAG, "redirect to url: " + url);
                     mWebView.loadUrl(url);
                     mEventHandler.onPageLoading(url);
                     mTitleTextView.setText(null);
@@ -415,6 +409,7 @@ public class ContentView extends LinearLayout {
                         pli.title = view.getTitle();
 
                         mEventHandler.onPageLoaded(pli);
+                        Log.d(TAG, "onPageFinished() - url: " + url);
                     }
                 }
             }
@@ -449,6 +444,7 @@ public class ContentView extends LinearLayout {
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
         setAppButton(url);
+        Log.d(TAG, "load url: " + url);
         mWebView.loadUrl(url);
     }
 
@@ -472,7 +468,7 @@ public class ContentView extends LinearLayout {
         }
     }
 
-    public static boolean doUrlRedirect(Context context, String url) {
+    public static boolean doUrlRedirectToApp(Context context, String url) {
         ResolveInfo resolveInfo = getAppThatHandlesUrl(context, url);
         if (resolveInfo != null && Settings.get().autoLoadContent()) {
             Intent openIntent = new Intent(Intent.ACTION_VIEW);
@@ -480,6 +476,7 @@ public class ContentView extends LinearLayout {
             openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             openIntent.setData(Uri.parse(url));
             context.startActivity(openIntent);
+            Log.d(TAG, "redirect to app: " + resolveInfo.loadLabel(context.getPackageManager()) + ", url:" + url);
             return true;
         }
 

@@ -1,31 +1,19 @@
 package com.chrislacy.linkbubble;
 
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.view.Choreographer;
-import android.view.Gravity;
 import android.view.View;
-import android.view.WindowManager;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.OvershootInterpolator;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
-import java.util.List;
-import java.util.Set;
 import java.util.Vector;
 
 /**
@@ -290,7 +278,7 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void onOpenUrl(String url, boolean recordHistory) {
-        if (ContentView.doUrlRedirect(mContext, url) == false) {
+        if (ContentView.doUrlRedirectToApp(mContext, url) == false) {
             if (mBubbles.size() < Config.MAX_BUBBLES) {
                 Bubble bubble = new Bubble(mContext, url, Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y, recordHistory, mBubbles.size(), new Bubble.EventHandler() {
                     @Override
