@@ -345,7 +345,6 @@ public class ContentView extends LinearLayout {
             public void onReceivedTitle(WebView webView, String title) {
                 super.onReceivedTitle(webView, title);
                 mTitleTextView.setText(title);
-                mUrlTextView.setText(mUrl.replace("http://", ""));
             }
 
             @Override
@@ -372,7 +371,7 @@ public class ContentView extends LinearLayout {
                     mWebView.loadUrl(url);
                     mEventHandler.onPageLoading(url);
                     mTitleTextView.setText(null);
-                    mUrlTextView.setText(null);
+                    mUrlTextView.setText(url.replace("http://", ""));
                     return true;
                 }
             }
@@ -446,6 +445,7 @@ public class ContentView extends LinearLayout {
         setAppButton(url);
         Log.d(TAG, "load url: " + url);
         mWebView.loadUrl(url);
+        mUrlTextView.setText(url.replace("http://", ""));
     }
 
     private void setAppButton(String url) {
