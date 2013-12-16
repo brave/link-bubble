@@ -518,12 +518,20 @@ public class ContentView extends LinearLayout {
         public boolean onTouch(View v, MotionEvent event) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN: {
-                    v.getBackground().setColorFilter(0x555d5d5e, PorterDuff.Mode.DARKEN);
+                    if (v.getBackground() == null) {
+                        v.setBackgroundColor(0x555d5d5e);
+                    } else {
+                        v.getBackground().setColorFilter(0x555d5d5e, PorterDuff.Mode.DARKEN);
+                    }
                     v.invalidate();
                     break;
                 }
                 case MotionEvent.ACTION_UP: {
-                    v.getBackground().clearColorFilter();
+                    if (v.getBackground() == null) {
+                        v.setBackgroundColor(0x00000000);
+                    } else {
+                        v.getBackground().clearColorFilter();
+                    }
                     v.invalidate();
                     break;
                 }
