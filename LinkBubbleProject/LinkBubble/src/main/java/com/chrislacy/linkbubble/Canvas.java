@@ -33,6 +33,7 @@ public class Canvas extends RelativeLayout {
     private boolean mEnabled;
 
     private ContentView mContentView;
+    ContentView getContentView() { return mContentView; }
 
     public class TargetInfo {
 
@@ -92,6 +93,7 @@ public class Canvas extends RelativeLayout {
     public void setContentView(ContentView cv) {
         if (mContentView != null) {
             removeView(mContentView);
+            mContentView.hidePopups();
         }
         mContentView = cv;
         if (mContentView != null) {

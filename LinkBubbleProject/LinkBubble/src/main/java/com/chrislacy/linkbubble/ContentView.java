@@ -59,6 +59,7 @@ public class ContentView extends LinearLayout {
     private Context mContext;
     private String mUrl;
     private List<AppForUrl> mAppsForUrl;
+    private PopupMenu mOverflowPopupMenu;
     private long mStartTime;
     private Bubble mOwner;
     private int mHeaderHeight;
@@ -290,17 +291,17 @@ public class ContentView extends LinearLayout {
         mOverflowButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopupMenu popupMenu = new PopupMenu(mContext, mOverflowButton);
+                mOverflowPopupMenu = new PopupMenu(mContext, mOverflowButton);
                 Resources resources = mContext.getResources();
-                popupMenu.getMenu().add(Menu.NONE, R.id.item_upgrade_to_pro, Menu.NONE,
-                        resources.getString(R.string.action_upgrade_to_pro));
-                popupMenu.getMenu().add(Menu.NONE, R.id.item_reload_page, Menu.NONE,
-                        resources.getString(R.string.action_reload_page));
-                popupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
-                                            resources.getString(R.string.action_open_in_browser));
-                popupMenu.getMenu().add(Menu.NONE, R.id.item_settings, Menu.NONE,
+                mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_upgrade_to_pro, Menu.NONE,
+                                                    resources.getString(R.string.action_upgrade_to_pro));
+                mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_reload_page, Menu.NONE,
+                                                    resources.getString(R.string.action_reload_page));
+                mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
+                                                    resources.getString(R.string.action_open_in_browser));
+                mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_settings, Menu.NONE,
                         resources.getString(R.string.action_settings));
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                mOverflowPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
@@ -330,10 +331,19 @@ public class ContentView extends LinearLayout {
                                 break;
                             }
                         }
+                        mOverflowPopupMenu = null;
                         return false;
                     }
                 });
-                popupMenu.show();
+                mOverflowPopupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
+                    @Override
+                    public void onDismiss(PopupMenu menu) {
+                        if (mOverflowPopupMenu == menu) {
+                            mOverflowPopupMenu = null;
+                        }
+                    }
+                });
+                mOverflowPopupMenu.show();
             }
         });
 
@@ -511,7 +521,14 @@ public class ContentView extends LinearLayout {
         }
     }
 
-    static private final OnTouchListener sButtonOnTouchListener = new OnTouchListener() {
+    void hidePopups() {
+        if (mOverflowPopupMenu != null) {
+            mOverflowPopupMenu.dismiss();
+            mOverflowPopupMenu = null;
+        }
+    }
+
+    static final OnTouchListener sButtonOnTouchListener = new OnTouchListener() {
 
         public boolean onTouch(View v, MotionEvent event) {
             switch (event.getAction()) {
