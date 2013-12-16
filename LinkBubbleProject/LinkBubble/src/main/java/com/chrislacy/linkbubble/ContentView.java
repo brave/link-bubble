@@ -71,10 +71,20 @@ public class ContentView extends LinearLayout {
     static class AppForUrl {
         ResolveInfo mResolveInfo;
         String mUrl;
+        Drawable mIcon;
 
         AppForUrl(ResolveInfo resolveInfo, String url) {
             mResolveInfo = resolveInfo;
             mUrl = url;
+        }
+
+        Drawable getIcon(Context context) {
+            if (mIcon == null) {
+                // TODO: Handle OutOfMemory error
+                mIcon = mResolveInfo.loadIcon(context.getPackageManager());
+            }
+
+            return mIcon;
         }
     };
 

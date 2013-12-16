@@ -37,7 +37,6 @@
     <com.chrislacy.linkbubble.OpenInAppButton
         style="@style/ToolbarButton"
         android:id="@+id/open_in_app_button"
-        android:background="@drawable/ic_action_share"
         android:visibility="invisible"
         />
 

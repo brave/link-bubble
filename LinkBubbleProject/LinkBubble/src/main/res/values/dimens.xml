@@ -5,5 +5,8 @@
 
     <dimen name="toolbar_height">48dp</dimen>
 
+    <dimen name="app_stack_padding">2dp</dimen>
+    <dimen name="app_stack_x_offset">4dp</dimen>
+    <dimen name="app_stack_y_offset">-1dp</dimen>
 
 </resources>
