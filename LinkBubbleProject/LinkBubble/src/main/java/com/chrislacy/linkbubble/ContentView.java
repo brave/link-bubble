@@ -58,16 +58,23 @@ public class ContentView extends LinearLayout {
     private EventHandler mEventHandler;
     private Context mContext;
     private String mUrl;
-    private List<ResolveInfo> mAppsForUrl;
+    private List<AppForUrl> mAppsForUrl;
     private long mStartTime;
     private Bubble mOwner;
     private int mHeaderHeight;
     private LinearLayout.LayoutParams mWebViewLayoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1.0f);
 
-    private String mShareContext;
-    private String mSharePackage;
-
     private Paint mPaint;
+
+    private static class AppForUrl {
+        ResolveInfo mResolveInfo;
+        String mUrl;
+
+        AppForUrl(ResolveInfo resolveInfo, String url) {
+            mResolveInfo = resolveInfo;
+            mUrl = url;
+        }
+    };
 
     // Class for a singular activity item on the list of apps to send to
     private static class ListItem {
@@ -265,9 +272,10 @@ public class ContentView extends LinearLayout {
                 String action = Intent.ACTION_VIEW;
                 Intent intent = new Intent(action);
 
-                intent.setClassName(mShareContext, mSharePackage);
+                AppForUrl appForUrl = (AppForUrl) v.getTag();
+                intent.setClassName(appForUrl.mResolveInfo.activityInfo.packageName, appForUrl.mResolveInfo.activityInfo.name);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.setData(Uri.parse(mUrl));
+                intent.setData(Uri.parse(appForUrl.mUrl));
 
                 mContext.startActivity(intent);
 
@@ -367,7 +375,7 @@ public class ContentView extends LinearLayout {
                 }
 
                 List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
-                updateAppsForUrl(resolveInfos);
+                updateAppsForUrl(resolveInfos, url);
                 if (Settings.get().autoLoadContent() && resolveInfos != null && resolveInfos.size() > 0) {
                     if (MainApplication.loadResolveInfoIntent(mContext, resolveInfos.get(0), url, mStartTime)) {
                         return false;
@@ -465,16 +473,14 @@ public class ContentView extends LinearLayout {
 
     private void setAppButton() {
         if (mAppsForUrl != null && mAppsForUrl.size() > 0) {
-            ResolveInfo resolveInfo = mAppsForUrl.get(0);
-            Drawable d = resolveInfo.loadIcon(mContext.getPackageManager());
+            AppForUrl appForUrl = mAppsForUrl.get(0);
+            Drawable d = appForUrl.mResolveInfo.loadIcon(mContext.getPackageManager());
             if (d != null) {
-                mShareContext = resolveInfo.activityInfo.packageName;
-                mSharePackage = resolveInfo.activityInfo.name;
-
                 Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
                 Bitmap scaled = Bitmap.createScaledBitmap(bitmap, mMaxToolbarHeight, mMaxToolbarHeight, true);
                 mAppButton.setBackground(new BitmapDrawable(scaled));
                 mAppButton.setVisibility(VISIBLE);
+                mAppButton.setTag(appForUrl);
             } else {
                 mAppButton.setVisibility(GONE);
             }
@@ -485,29 +491,30 @@ public class ContentView extends LinearLayout {
 
     private void updateAppsForUrl(String url) {
         List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
-        updateAppsForUrl(resolveInfos);
+        updateAppsForUrl(resolveInfos, url);
     }
 
-    private void updateAppsForUrl(List<ResolveInfo> resolveInfos) {
+    private void updateAppsForUrl(List<ResolveInfo> resolveInfos, String url) {
         if (resolveInfos != null && resolveInfos.size() > 0) {
             if (mAppsForUrl == null) {
-                mAppsForUrl = new ArrayList<ResolveInfo>();
+                mAppsForUrl = new ArrayList<AppForUrl>();
             }
 
             for (ResolveInfo resolveInfoToAdd : resolveInfos) {
                 if (resolveInfoToAdd.activityInfo != null) {
                     boolean alreadyAdded = false;
                     for (int i = 0; i < mAppsForUrl.size(); i++) {
-                        ResolveInfo addedResolveInfo = mAppsForUrl.get(0);
-                        if (addedResolveInfo.activityInfo.packageName.equals(resolveInfoToAdd.activityInfo.packageName)
-                                && addedResolveInfo.activityInfo.name.equals(resolveInfoToAdd.activityInfo.name)) {
+                        AppForUrl exisiting = mAppsForUrl.get(0);
+                        if (exisiting.mResolveInfo.activityInfo.packageName.equals(resolveInfoToAdd.activityInfo.packageName)
+                                && exisiting.mResolveInfo.activityInfo.name.equals(resolveInfoToAdd.activityInfo.name)) {
                             alreadyAdded = true;
+                            exisiting.mUrl = url;   // Update the Url
                             break;
                         }
                     }
 
                     if (alreadyAdded == false) {
-                        mAppsForUrl.add(resolveInfoToAdd);
+                        mAppsForUrl.add(new AppForUrl(resolveInfoToAdd, url));
                     }
                 }
             }
