@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
@@ -53,7 +52,7 @@ public class ContentView extends LinearLayout {
     private CondensedTextView mTitleTextView;
     private CondensedTextView mUrlTextView;
     private ImageButton mShareButton;
-    private ImageButton mAppButton;
+    private OpenInAppButton mOpenInAppButton;
     private ImageButton mOverflowButton;
     private int mMaxToolbarHeight;
     private FrameLayout mToolbarSpacer;
@@ -71,7 +70,7 @@ public class ContentView extends LinearLayout {
 
     private Paint mPaint;
 
-    private static class AppForUrl {
+    static class AppForUrl {
         ResolveInfo mResolveInfo;
         String mUrl;
 
@@ -269,9 +268,9 @@ public class ContentView extends LinearLayout {
             }
         });
 
-        mAppButton = (ImageButton)mToolbarLayout.findViewById(R.id.open_in_app_button);
-        mAppButton.setOnTouchListener(sButtonOnTouchListener);
-        mAppButton.setOnClickListener(new OnClickListener() {
+        mOpenInAppButton = (OpenInAppButton)mToolbarLayout.findViewById(R.id.open_in_app_button);
+        mOpenInAppButton.setOnTouchListener(sButtonOnTouchListener);
+        mOpenInAppButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 String action = Intent.ACTION_VIEW;
@@ -477,20 +476,8 @@ public class ContentView extends LinearLayout {
     }
 
     private void setAppButton() {
-        if (mAppsForUrl != null && mAppsForUrl.size() > 0) {
-            AppForUrl appForUrl = mAppsForUrl.get(0);
-            Drawable d = appForUrl.mResolveInfo.loadIcon(mContext.getPackageManager());
-            if (d != null) {
-                Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
-                Bitmap scaled = Bitmap.createScaledBitmap(bitmap, mMaxToolbarHeight, mMaxToolbarHeight, true);
-                mAppButton.setBackground(new BitmapDrawable(scaled));
-                mAppButton.setVisibility(VISIBLE);
-                mAppButton.setTag(appForUrl);
-            } else {
-                mAppButton.setVisibility(GONE);
-            }
-        } else {
-            mAppButton.setVisibility(GONE);
+        if (mOpenInAppButton.configure(mAppsForUrl) == false) {
+            mOpenInAppButton.setVisibility(GONE);
         }
     }
 
