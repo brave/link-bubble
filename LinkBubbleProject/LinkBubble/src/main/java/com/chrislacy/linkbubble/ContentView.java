@@ -11,7 +11,6 @@ import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.http.SslError;
@@ -30,7 +29,6 @@ import android.widget.ListAdapter;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -189,7 +187,7 @@ public class ContentView extends LinearLayout {
         return isValid;
     }
 
-    private void startDefaultAppOrPromptUserForSelection() {
+    private void showSelectShareMethod() {
         String action = Intent.ACTION_SEND;
         String mimeType = "text/plain";
 
@@ -268,7 +266,7 @@ public class ContentView extends LinearLayout {
         mShareButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startDefaultAppOrPromptUserForSelection();
+                showSelectShareMethod();
             }
         });
 
