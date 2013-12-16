@@ -34,6 +34,7 @@ import android.widget.TextView;
 import android.graphics.Canvas;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -57,6 +58,7 @@ public class ContentView extends LinearLayout {
     private EventHandler mEventHandler;
     private Context mContext;
     private String mUrl;
+    private List<ResolveInfo> mAppsForUrl;
     private long mStartTime;
     private Bubble mOwner;
     private int mHeaderHeight;
@@ -364,17 +366,21 @@ public class ContentView extends LinearLayout {
                     ++mCount;
                 }
 
-                if (doUrlRedirectToApp(mContext, url, mStartTime)) {
-                    return false;
-                } else {
-                    setAppButton(url);
-                    Log.d(TAG, "redirect to url: " + url);
-                    mWebView.loadUrl(url);
-                    mEventHandler.onPageLoading(url);
-                    mTitleTextView.setText(R.string.loading);
-                    mUrlTextView.setText(url.replace("http://", ""));
-                    return true;
+                List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
+                updateAppsForUrl(resolveInfos);
+                if (Settings.get().autoLoadContent() && resolveInfos != null && resolveInfos.size() > 0) {
+                    if (MainApplication.loadResolveInfoIntent(mContext, resolveInfos.get(0), url, mStartTime)) {
+                        return false;
+                    }
                 }
+
+                setAppButton();
+                Log.d(TAG, "redirect to url: " + url);
+                mWebView.loadUrl(url);
+                mEventHandler.onPageLoading(url);
+                mTitleTextView.setText(R.string.loading);
+                mUrlTextView.setText(url.replace("http://", ""));
+                return true;
             }
 
             @Override
@@ -448,7 +454,8 @@ public class ContentView extends LinearLayout {
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
-        setAppButton(url);
+        updateAppsForUrl(url);
+        setAppButton();
         Log.d(TAG, "load url: " + url);
         mStartTime = startTime;
         mWebView.loadUrl(url);
@@ -456,9 +463,9 @@ public class ContentView extends LinearLayout {
         mUrlTextView.setText(url.replace("http://", ""));
     }
 
-    private void setAppButton(String url) {
-        ResolveInfo resolveInfo = getAppThatHandlesUrl(mContext, url);
-        if (resolveInfo != null) {
+    private void setAppButton() {
+        if (mAppsForUrl != null && mAppsForUrl.size() > 0) {
+            ResolveInfo resolveInfo = mAppsForUrl.get(0);
             Drawable d = resolveInfo.loadIcon(mContext.getPackageManager());
             if (d != null) {
                 mShareContext = resolveInfo.activityInfo.packageName;
@@ -476,52 +483,35 @@ public class ContentView extends LinearLayout {
         }
     }
 
-    public static boolean doUrlRedirectToApp(Context context, String url, long startTime) {
-        ResolveInfo resolveInfo = getAppThatHandlesUrl(context, url);
-        if (resolveInfo != null && Settings.get().autoLoadContent()) {
-            Intent openIntent = new Intent(Intent.ACTION_VIEW);
-            openIntent.setClassName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
-            openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            openIntent.setData(Uri.parse(url));
-            context.startActivity(openIntent);
-            Log.d(TAG, "redirect to app: " + resolveInfo.loadLabel(context.getPackageManager()) + ", url:" + url);
-            if (startTime > -1) {
-                Log.d("LoadTime", "Saved " + ((System.currentTimeMillis()-startTime)/1000) + " seconds.");
-            }
-            return true;
-        }
-
-        return false;
+    private void updateAppsForUrl(String url) {
+        List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
+        updateAppsForUrl(resolveInfos);
     }
 
-    private static ResolveInfo getAppThatHandlesUrl(Context context, String url) {
+    private void updateAppsForUrl(List<ResolveInfo> resolveInfos) {
+        if (resolveInfos != null && resolveInfos.size() > 0) {
+            if (mAppsForUrl == null) {
+                mAppsForUrl = new ArrayList<ResolveInfo>();
+            }
 
-        List<Intent> browsers = Settings.get().getBrowsers();
-
-        PackageManager manager = context.getPackageManager();
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
-        List<ResolveInfo> infos = manager.queryIntentActivities (intent, PackageManager.GET_RESOLVED_FILTER);
-        for (ResolveInfo info : infos) {
-            IntentFilter filter = info.filter;
-            if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
-
-                // Check if this item is a browser, and if so, ignore it
-                boolean packageOk = !info.activityInfo.packageName.equals(context.getPackageName());
-                for (Intent browser : browsers) {
-                    if (info.activityInfo.packageName.equals(browser.getComponent().getPackageName())) {
-                        packageOk = false;
-                        break;
+            for (ResolveInfo resolveInfoToAdd : resolveInfos) {
+                if (resolveInfoToAdd.activityInfo != null) {
+                    boolean alreadyAdded = false;
+                    for (int i = 0; i < mAppsForUrl.size(); i++) {
+                        ResolveInfo addedResolveInfo = mAppsForUrl.get(0);
+                        if (addedResolveInfo.activityInfo.packageName.equals(resolveInfoToAdd.activityInfo.packageName)
+                                && addedResolveInfo.activityInfo.name.equals(resolveInfoToAdd.activityInfo.name)) {
+                            alreadyAdded = true;
+                            break;
+                        }
                     }
-                }
 
-                if (packageOk) {
-                    return info;
+                    if (alreadyAdded == false) {
+                        mAppsForUrl.add(resolveInfoToAdd);
+                    }
                 }
             }
         }
-        return null;
     }
 
     static private final OnTouchListener sButtonOnTouchListener = new OnTouchListener() {

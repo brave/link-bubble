@@ -13,8 +13,10 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 
+import android.util.Log;
 import com.chrislacy.linkbubble.R;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -318,5 +320,55 @@ public class Settings {
 
     boolean isEnabled() {
         return mSharedPreferences.getBoolean(PREFERENCE_ENABLED, false);
+    }
+
+    List<ResolveInfo> getAppsThatHandleUrl(String url) {
+
+        List<Intent> browsers = Settings.get().getBrowsers();
+
+        PackageManager manager = mContext.getPackageManager();
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        List<ResolveInfo> infos = manager.queryIntentActivities(intent, PackageManager.GET_RESOLVED_FILTER);
+
+        ArrayList<ResolveInfo> results = null;
+
+        for (ResolveInfo info : infos) {
+            IntentFilter filter = info.filter;
+            if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
+
+                // Check if this item is a browser, and if so, ignore it
+                boolean packageOk = !info.activityInfo.packageName.equals(mContext.getPackageName());
+                for (Intent browser : browsers) {
+                    if (info.activityInfo.packageName.equals(browser.getComponent().getPackageName())) {
+                        packageOk = false;
+                        break;
+                    }
+                }
+
+                if (packageOk) {
+                    if (results == null) {
+                        results = new ArrayList<ResolveInfo>();
+                    }
+                    results.add(info);
+                    Log.d("appHandles", info.loadLabel(manager) + " for url:" + url);
+                }
+            }
+        }
+
+        if (results != null && results.size() > 0) {
+            return results;
+        }
+
+        return null;
+    }
+
+    ResolveInfo getAppThatHandlesUrl(String url) {
+        List<ResolveInfo> results = getAppsThatHandleUrl(url);
+        if (results != null && results.size() > 0) {
+            return results.get(0);
+        }
+        return null;
     }
 }

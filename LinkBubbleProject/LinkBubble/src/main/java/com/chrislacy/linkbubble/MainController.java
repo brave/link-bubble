@@ -3,6 +3,7 @@ package com.chrislacy.linkbubble;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.view.Choreographer;
@@ -278,47 +279,52 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void onOpenUrl(String url, boolean recordHistory, long startTime) {
-        if (ContentView.doUrlRedirectToApp(mContext, url, startTime) == false) {
-            if (mBubbles.size() < Config.MAX_BUBBLES) {
-                Bubble bubble = new Bubble(mContext, url, Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y, startTime, recordHistory,
-                        mBubbles.size(), new Bubble.EventHandler() {
-                    @Override
-                    public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
-                        mCurrentState.OnMotionEvent_Touch(sender, e);
-                    }
+        ResolveInfo resolveInfo = Settings.get().getAppThatHandlesUrl(url);
+        if (resolveInfo != null && Settings.get().autoLoadContent()) {
+            if (MainApplication.loadResolveInfoIntent(mContext, resolveInfo, url, startTime)) {
+                return;
+            }
+        }
 
-                    @Override
-                    public void onMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
-                        mCurrentState.OnMotionEvent_Move(sender, e);
-                    }
-
-                    @Override
-                    public void onMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
-                        mCurrentState.OnMotionEvent_Release(sender, e);
-                    }
-
-                    @Override
-                    public void onSharedLink(Bubble sender) {
-                        switchState(STATE_AnimateToBubbleView);
-                    }
-                });
-
-                mCurrentState.OnNewBubble(bubble);
-                mBubbles.add(bubble);
-                ++mBubblesLoaded;
-
-                int bubbleCount = mBubbles.size();
-
-                mBadge.attach(bubble);
-                mBadge.setBubbleCount(bubbleCount);
-
-                for (int i=0 ; i < bubbleCount ; ++i) {
-                    Bubble b = mBubbles.get(i);
-                    int vis = View.VISIBLE;
-                    if (i != bubbleCount-1)
-                        vis = View.GONE;
-                    b.setVisibility(vis);
+        if (mBubbles.size() < Config.MAX_BUBBLES) {
+            Bubble bubble = new Bubble(mContext, url, Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y, startTime, recordHistory,
+                    mBubbles.size(), new Bubble.EventHandler() {
+                @Override
+                public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
+                    mCurrentState.OnMotionEvent_Touch(sender, e);
                 }
+
+                @Override
+                public void onMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
+                    mCurrentState.OnMotionEvent_Move(sender, e);
+                }
+
+                @Override
+                public void onMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
+                    mCurrentState.OnMotionEvent_Release(sender, e);
+                }
+
+                @Override
+                public void onSharedLink(Bubble sender) {
+                    switchState(STATE_AnimateToBubbleView);
+                }
+            });
+
+            mCurrentState.OnNewBubble(bubble);
+            mBubbles.add(bubble);
+            ++mBubblesLoaded;
+
+            int bubbleCount = mBubbles.size();
+
+            mBadge.attach(bubble);
+            mBadge.setBubbleCount(bubbleCount);
+
+            for (int i=0 ; i < bubbleCount ; ++i) {
+                Bubble b = mBubbles.get(i);
+                int vis = View.VISIBLE;
+                if (i != bubbleCount-1)
+                    vis = View.GONE;
+                b.setVisibility(vis);
             }
         }
     }
