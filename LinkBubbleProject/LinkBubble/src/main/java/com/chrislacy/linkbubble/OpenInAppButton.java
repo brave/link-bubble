@@ -120,7 +120,7 @@ public class OpenInAppButton extends FrameLayout {
     protected void dispatchDraw(android.graphics.Canvas canvas) {
         super.dispatchDraw(canvas);
 
-        if (mAppsForUrl.size() == 0) {
+        if (mAppsForUrl == null || mAppsForUrl.size() <= 1) {
             return;
         }
 
