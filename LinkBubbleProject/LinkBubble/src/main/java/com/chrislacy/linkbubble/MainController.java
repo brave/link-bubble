@@ -67,6 +67,8 @@ public class MainController implements Choreographer.FrameCallback {
     public static State_Flick_ContentView STATE_Flick_ContentView;
     public static State_Flick_BubbleView STATE_Flick_BubbleView;
 
+    public static ContentActivity sContentActivity;
+
     private ControllerState mCurrentState;
     private EventHandler mEventHandler;
     private int mBubblesLoaded;
@@ -257,11 +259,26 @@ public class MainController implements Choreographer.FrameCallback {
             scheduleUpdate();
         }
 
+        showContentActivity();
         //mTextView.setText("S=" + mCurrentState.getName() + " F=" + mFrameNumber++);
 
         if (mCurrentState == STATE_BubbleView && mBubbles.size() == 0 &&
                 mBubblesLoaded > 0 && !mUpdateScheduled) {
             sMainController.mEventHandler.onDestroy();
+        }
+    }
+
+    static void updateBackgroundColor(int color) {
+        if (sContentActivity != null) {
+            sContentActivity.updateBackgroundColor(color);
+        }
+    }
+
+    public void showContentActivity() {
+        if (sContentActivity == null) {
+            Intent intent = new Intent(mContext, ContentActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            mContext.startActivity(intent);
         }
     }
 
@@ -351,5 +368,17 @@ public class MainController implements Choreographer.FrameCallback {
                 b.setVisibility(vis);
             }
         }
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onContentActivityResumed(ContentActivity.ContentActivityResumedEvent event) {
+        sContentActivity = event.mActivity;
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onContentActivityPaused(ContentActivity.ContentActivityPausedEvent event) {
+        sContentActivity = null;
     }
 }
