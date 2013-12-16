@@ -120,12 +120,16 @@ public class ActionItem {
     }
 
     public static AlertDialog getDefaultBrowserAlert(Context context, final OnActionItemSelectedListener onActionItemSelectedListener) {
-        final ArrayList<ActionItem> actionItems = getActionItems(context, true, false);
+        ArrayList<ActionItem> actionItems = getActionItems(context, true, false);
+        return getActionItemPickerAlert(context, actionItems, R.string.preference_default_browser, onActionItemSelectedListener);
+    }
 
+    public static AlertDialog getActionItemPickerAlert(Context context, final ArrayList<ActionItem> actionItems,
+                                                       int titleString, final OnActionItemSelectedListener onActionItemSelectedListener) {
         ListView listView = new ListView(context);
 
         final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle(R.string.preference_default_browser);
+        alertDialog.setTitle(titleString);
         alertDialog.setView(listView);
 
         ActionItemAdapter adapter = new ActionItemAdapter(context,
