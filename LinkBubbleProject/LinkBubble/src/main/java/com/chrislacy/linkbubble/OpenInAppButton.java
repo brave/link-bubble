@@ -1,7 +1,9 @@
 package com.chrislacy.linkbubble;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,9 +13,11 @@ import android.net.Uri;
 import android.preference.PreferenceCategory;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OpenInAppButton extends FrameLayout implements View.OnClickListener {
@@ -221,7 +225,19 @@ public class OpenInAppButton extends FrameLayout implements View.OnClickListener
             }
         } else {
             if (mAppsForUrl != null && mAppsForUrl.size() > 1) {
-                Toast.makeText(getContext(), "Display app picker", Toast.LENGTH_SHORT).show();
+                ArrayList<ResolveInfo> resolveInfos = new ArrayList<ResolveInfo>();
+                for (ContentView.AppForUrl item : mAppsForUrl) {
+                    resolveInfos.add(item.mResolveInfo);
+                }
+                AlertDialog dialog = ActionItem.getActionItemPickerAlert(getContext(), resolveInfos, R.string.pick_default_app,
+                        new ActionItem.OnActionItemSelectedListener() {
+                            @Override
+                            public void onSelected(ActionItem actionItem) {
+
+                            }
+                        });
+                dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                dialog.show();
             }
         }
     }

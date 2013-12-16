@@ -124,6 +124,36 @@ public class ActionItem {
         return getActionItemPickerAlert(context, actionItems, R.string.preference_default_browser, onActionItemSelectedListener);
     }
 
+    public static AlertDialog getActionItemPickerAlert(Context context, final List<ResolveInfo> resolveInfos,
+                                                       int titleString, final OnActionItemSelectedListener onActionItemSelectedListener) {
+        ArrayList<ActionItem> actionItems = new ArrayList<ActionItem>();
+        Resources resources = context.getResources();
+        PackageManager packageManager = context.getPackageManager();
+
+        for (ResolveInfo resolveInfo : resolveInfos) {
+            actionItems.add(new ActionItem(Config.ActionType.View,
+                    resources,
+                    resolveInfo.loadLabel(packageManager).toString(),
+                    resolveInfo.loadIcon(packageManager),
+                    resolveInfo.activityInfo.packageName,
+                    resolveInfo.activityInfo.name));
+        }
+
+        Collections.sort(actionItems, new Comparator<ActionItem>() {
+
+            @Override
+            public int compare(ActionItem lhs, ActionItem rhs) {
+                int categoryComparison = lhs.getCategory().compareTo(rhs.getCategory());
+                if (categoryComparison == 0) {
+                    return lhs.getLabel().compareTo(rhs.getLabel());
+                }
+                return categoryComparison;
+            }
+        });
+
+        return getActionItemPickerAlert(context, actionItems, titleString, onActionItemSelectedListener);
+    }
+
     public static AlertDialog getActionItemPickerAlert(Context context, final ArrayList<ActionItem> actionItems,
                                                        int titleString, final OnActionItemSelectedListener onActionItemSelectedListener) {
         ListView listView = new ListView(context);

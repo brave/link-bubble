@@ -10,6 +10,7 @@
     <string name="action_open_in_browser">Open in browser</string>
     <string name="action_upgrade_to_pro">Upgrade to Pro</string>
 
+    <string name="pick_default_app">Select default app</string>
     <string name="default_browser_set">Link Bubble has been set as the default browser.</string>
 
     <string name="preference_category_general">General</string>
