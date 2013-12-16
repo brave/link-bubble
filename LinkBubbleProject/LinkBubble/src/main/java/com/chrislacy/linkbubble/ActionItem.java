@@ -224,7 +224,7 @@ public class ActionItem {
         public View getView(int position, View convertView, ViewGroup parent) {
 
             if(convertView==null){
-                LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
+                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = inflater.inflate(mLayoutResourceId, parent, false);
             }
 
