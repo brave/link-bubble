@@ -370,7 +370,7 @@ public class ContentView extends LinearLayout {
                     Log.d(TAG, "redirect to url: " + url);
                     mWebView.loadUrl(url);
                     mEventHandler.onPageLoading(url);
-                    mTitleTextView.setText(null);
+                    mTitleTextView.setText(R.string.loading);
                     mUrlTextView.setText(url.replace("http://", ""));
                     return true;
                 }
@@ -445,6 +445,7 @@ public class ContentView extends LinearLayout {
         setAppButton(url);
         Log.d(TAG, "load url: " + url);
         mWebView.loadUrl(url);
+        mTitleTextView.setText(R.string.loading);
         mUrlTextView.setText(url.replace("http://", ""));
     }
 
