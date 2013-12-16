@@ -54,8 +54,6 @@ public class ContentView extends LinearLayout {
     private ImageButton mShareButton;
     private OpenInAppButton mOpenInAppButton;
     private ImageButton mOverflowButton;
-    private int mMaxToolbarHeight;
-    private FrameLayout mToolbarSpacer;
     private View mToolbarHeader;
     private View mWebViewPlaceholder;
     private LinearLayout mToolbarLayout;
@@ -251,10 +249,6 @@ public class ContentView extends LinearLayout {
         mHeaderHeight = Config.dpToPx(10.0f);
 
         setOrientation(VERTICAL);
-
-        mToolbarSpacer = new FrameLayout(ctx);
-
-        mMaxToolbarHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_height);
 
         mToolbarLayout = (LinearLayout) inflate(mContext, R.layout.content_toolbar, null);
         mTitleTextView = (CondensedTextView) mToolbarLayout.findViewById(R.id.title_text);
