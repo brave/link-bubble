@@ -213,12 +213,7 @@ public class OpenInAppButton extends FrameLayout implements View.OnClickListener
     public void onClick(View v) {
 
         if (v.getTag() instanceof ContentView.AppForUrl) {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            ContentView.AppForUrl appForUrl = (ContentView.AppForUrl) v.getTag();
-            intent.setClassName(appForUrl.mResolveInfo.activityInfo.packageName, appForUrl.mResolveInfo.activityInfo.name);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            intent.setData(Uri.parse(appForUrl.mUrl));
-            getContext().startActivity(intent);
+            openApp((ContentView.AppForUrl) v.getTag());
 
             if (mOnOpenInAppClickListener != null) {
                 mOnOpenInAppClickListener.appOpened();
@@ -233,7 +228,14 @@ public class OpenInAppButton extends FrameLayout implements View.OnClickListener
                         new ActionItem.OnActionItemSelectedListener() {
                             @Override
                             public void onSelected(ActionItem actionItem) {
+                                ContentView.AppForUrl appForUrl = getAppForUrl(actionItem.mPackageName, actionItem.mActivityClassName);
+                                if (appForUrl != null) {
+                                    openApp(appForUrl);
+                                }
 
+                                if (mOnOpenInAppClickListener != null) {
+                                    mOnOpenInAppClickListener.appOpened();
+                                }
                             }
                         });
                 dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
@@ -242,4 +244,22 @@ public class OpenInAppButton extends FrameLayout implements View.OnClickListener
         }
     }
 
+    private void openApp(ContentView.AppForUrl appForUrl) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setClassName(appForUrl.mResolveInfo.activityInfo.packageName, appForUrl.mResolveInfo.activityInfo.name);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.setData(Uri.parse(appForUrl.mUrl));
+        getContext().startActivity(intent);
+    }
+
+    private ContentView.AppForUrl getAppForUrl(String packageName, String className) {
+        for (ContentView.AppForUrl appForUrl : mAppsForUrl) {
+            if (appForUrl.mResolveInfo.activityInfo.packageName.equals(packageName)
+                    && appForUrl.mResolveInfo.activityInfo.name.equals(className)) {
+                return appForUrl;
+            }
+        }
+
+        return null;
+    }
 }
