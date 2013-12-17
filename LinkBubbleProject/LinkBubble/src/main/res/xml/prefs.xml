@@ -98,7 +98,7 @@
             android:key="debug_flick"
             android:summary="Flick targets show message when hit only."
             android:title="Flick Targets"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
 
     </PreferenceCategory>
 
