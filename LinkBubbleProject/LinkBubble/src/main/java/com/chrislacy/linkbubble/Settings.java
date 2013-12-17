@@ -22,8 +22,8 @@ import org.json.JSONObject;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
 import java.util.Vector;
 
 public class Settings {
@@ -86,7 +86,7 @@ public class Settings {
 
     private SharedPreferences mSharedPreferences;
     private Context mContext;
-    private HashMap<String, String> mDefaultAppsMap = new HashMap<String, String>();
+    private TreeMap<String, String> mDefaultAppsMap = new TreeMap<String, String>();
     private List<Intent> mBrowsers;
     private ConsumeBubblesChangedEventHandler mConsumeBubblesChangedEventHandler;
 
@@ -496,6 +496,18 @@ public class Settings {
                 e.printStackTrace();
             }
         }
+    }
+
+    public TreeMap<String, ComponentName> getDefaultAppsMap() {
+        if (mDefaultAppsMap != null && mDefaultAppsMap.size() > 0) {
+            TreeMap<String, ComponentName> result = new TreeMap<String, ComponentName>();
+            for (String host : mDefaultAppsMap.keySet()) {
+                result.put(host, ComponentName.unflattenFromString(mDefaultAppsMap.get(host)));
+            }
+            return result;
+        }
+
+        return null;
     }
 
 }

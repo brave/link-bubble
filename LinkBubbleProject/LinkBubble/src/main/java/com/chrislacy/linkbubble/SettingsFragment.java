@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -19,6 +20,7 @@ import android.preference.PreferenceScreen;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
+import java.util.TreeMap;
 import java.util.Vector;
 
 
@@ -166,6 +168,31 @@ public class SettingsFragment extends PreferenceFragment {
         }
     }
 
+    private void configureDefaultAppsList() {
+        PreferenceCategory preferenceCategory = (PreferenceCategory)findPreference("preference_category_other_apps");
+        preferenceCategory.removeAll();
+
+        Preference noticePreference = new Preference(getActivity());
+        noticePreference.setSummary(R.string.preference_default_apps_notice_title);
+        preferenceCategory.addPreference(noticePreference);
+
+        PackageManager packageManager = getActivity().getPackageManager();
+        TreeMap<String, ComponentName> defaultAppsMap = Settings.get().getDefaultAppsMap();
+        for (String key : defaultAppsMap.keySet()) {
+            ComponentName componentName = defaultAppsMap.get(key);
+            try {
+                ActivityInfo info = packageManager.getActivityInfo(componentName, 0);
+                Preference preference = new Preference(getActivity());
+                preference.setTitle(info.loadLabel(packageManager));
+                preference.setIcon(info.loadIcon(packageManager));
+                preference.setSummary(key);
+                preferenceCategory.addPreference(preference);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -294,6 +321,8 @@ public class SettingsFragment extends PreferenceFragment {
                 return true;
             }
         });
+
+        configureDefaultAppsList();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         if (prefs.getBoolean("auto_load_url", true)) {
