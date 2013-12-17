@@ -16,6 +16,8 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import com.chrislacy.linkbubble.R;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -40,6 +42,8 @@ public class Settings {
     public static final String PREFERENCE_DEFAULT_BROWSER = "preference_default_browser";
     public static final String PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME = "preference_default_browser_package_name";
     public static final String PREFERENCE_DEFAULT_BROWSER_LABEL = "preference_default_browser_bubble_label";
+
+    public static final String PREFERENCE_DEFAULT_APP_PREFIX = "preference_default_app_";
 
     public interface ConsumeBubblesChangedEventHandler {
         public void onConsumeBubblesChanged();
@@ -371,6 +375,11 @@ public class Settings {
         }
 
         if (results != null && results.size() > 0) {
+            ResolveInfo defaultApp = getDefaultApp(url, results);
+            if (defaultApp != null) {
+                results.clear();
+                results.add(defaultApp);
+            }
             return results;
         }
 
@@ -385,4 +394,49 @@ public class Settings {
         }
         return null;
     }*/
+
+    private String getDefaultAppKey(String urlHost) {
+        return PREFERENCE_DEFAULT_APP_PREFIX + urlHost;
+    }
+
+    private ResolveInfo getDefaultApp(String urlAsString, List<ResolveInfo> resolveInfos) {
+        try {
+            URL url = new URL(urlAsString);
+            String host = url.getHost();
+            if (host.length() > 1) {
+                String flattenedComponentName = mSharedPreferences.getString(getDefaultAppKey(host), null);
+                if (flattenedComponentName != null) {
+                    ComponentName componentName = ComponentName.unflattenFromString(flattenedComponentName);
+                    if (componentName != null) {
+                        for (ResolveInfo resolveInfo : resolveInfos) {
+                            if (resolveInfo.activityInfo.packageName.equals(componentName.getPackageName())
+                                    && resolveInfo.activityInfo.name.equals(componentName.getClassName())) {
+                                return resolveInfo;
+                            }
+                        }
+                    }
+                }
+            }
+
+        } catch (MalformedURLException e) {
+        }
+
+        return null;
+    }
+
+    public void setDefaultApp(String urlAsString, ResolveInfo resolveInfo) {
+        try {
+            URL url = new URL(urlAsString);
+            String host = url.getHost();
+            if (host.length() > 1) {
+                ComponentName componentName = new ComponentName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
+                SharedPreferences.Editor editor = mSharedPreferences.edit();
+                editor.putString(getDefaultAppKey(host), componentName.flattenToString());
+                editor.commit();
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

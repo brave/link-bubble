@@ -2,20 +2,16 @@ package com.chrislacy.linkbubble;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.preference.PreferenceCategory;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -231,7 +227,9 @@ public class OpenInAppButton extends FrameLayout implements View.OnClickListener
                             public void onSelected(ActionItem actionItem) {
                                 ContentView.AppForUrl appForUrl = getAppForUrl(actionItem.mPackageName, actionItem.mActivityClassName);
                                 if (appForUrl != null) {
-                                    MainApplication.loadIntent(getContext(), appForUrl.mResolveInfo.activityInfo.packageName,                                            appForUrl.mResolveInfo.activityInfo.name, appForUrl.mUrl, -1);
+                                    Settings.get().setDefaultApp(appForUrl.mUrl, appForUrl.mResolveInfo);
+                                    MainApplication.loadIntent(getContext(), appForUrl.mResolveInfo.activityInfo.packageName,
+                                            appForUrl.mResolveInfo.activityInfo.name, appForUrl.mUrl, -1);
                                 }
 
                                 if (mOnOpenInAppClickListener != null) {
