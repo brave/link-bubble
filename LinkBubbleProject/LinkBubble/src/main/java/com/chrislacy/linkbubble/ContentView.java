@@ -295,8 +295,11 @@ public class ContentView extends LinearLayout {
                                                     resources.getString(R.string.action_upgrade_to_pro));
                 mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_reload_page, Menu.NONE,
                                                     resources.getString(R.string.action_reload_page));
-                mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
-                                                    resources.getString(R.string.action_open_in_browser));
+                String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
+                if (defaultBrowserLabel != null) {
+                    mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
+                                                        String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
+                }
                 mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_settings, Menu.NONE,
                         resources.getString(R.string.action_settings));
                 mOverflowPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
