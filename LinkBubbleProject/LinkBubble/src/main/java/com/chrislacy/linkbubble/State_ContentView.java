@@ -42,7 +42,9 @@ public class State_ContentView extends ControllerState {
                 mCanvas.fadeInTargets();
             }
 
-            mTouchBubble.doSnap(mCanvas, mTargetX, mTargetY);
+            if (mDidMove) {
+                mTouchBubble.doSnap(mCanvas, mTargetX, mTargetY);
+            }
             return true;
         }
 
