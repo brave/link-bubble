@@ -18,6 +18,8 @@ import java.util.List;
  */
 public class Config {
 
+    static boolean USE_CONTENT_ACTIVITY = false;
+
     public enum BubbleAction {
         None,
         Destroy,

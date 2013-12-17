@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Choreographer;
 import android.view.View;
 import android.view.WindowManager;
@@ -24,6 +26,8 @@ import java.util.Vector;
  * Created by gw on 2/10/13.
  */
 public class MainController implements Choreographer.FrameCallback {
+
+    private static final String TAG = "MainController";
 
     public interface EventHandler {
         public void onDestroy();
@@ -228,9 +232,6 @@ public class MainController implements Choreographer.FrameCallback {
         }
         sMainController.mCurrentState = newState;
         sMainController.mCurrentState.OnEnterState();
-        if (newState instanceof State_Flick_BubbleView) {
-            hideContentActivity();
-        }
         scheduleUpdate();
     }
 
@@ -278,7 +279,7 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     private void showContentActivity() {
-        if (sContentActivity == null) {
+        if (sContentActivity == null && Config.USE_CONTENT_ACTIVITY) {
             Intent intent = new Intent(mContext, ContentActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             mContext.startActivity(intent);
@@ -287,7 +288,10 @@ public class MainController implements Choreographer.FrameCallback {
 
     static void hideContentActivity() {
         if (sContentActivity != null) {
+            long startTime = System.currentTimeMillis();
             sContentActivity.finish();
+            long endTime = System.currentTimeMillis();
+            Log.d(TAG, "sContentActivity.finish() time=" + (endTime - startTime));
             sContentActivity = null;
         }
     }
