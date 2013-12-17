@@ -254,7 +254,7 @@ public class ContentView extends LinearLayout {
         mUrl = url;
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setColor(0xffdddddd);
+        mPaint.setColor(getResources().getColor(R.color.content_toolbar_background));
 
         mHeaderHeight = Config.dpToPx(10.0f);
 
