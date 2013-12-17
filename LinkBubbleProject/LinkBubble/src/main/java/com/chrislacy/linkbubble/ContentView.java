@@ -539,7 +539,19 @@ public class ContentView extends LinearLayout {
         }
     }
 
-    void hidePopups() {
+    void onAnimateOnScreen() {
+        hidePopups();
+    }
+
+    void onAnimateOffscreen() {
+        hidePopups();
+    }
+
+    void onCurrentContentViewChanged(boolean isCurrent) {
+        hidePopups();
+    }
+
+    private void hidePopups() {
         if (mOverflowPopupMenu != null) {
             mOverflowPopupMenu.dismiss();
             mOverflowPopupMenu = null;

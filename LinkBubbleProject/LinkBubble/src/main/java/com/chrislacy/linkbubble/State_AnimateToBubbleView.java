@@ -33,7 +33,7 @@ public class State_AnimateToBubbleView extends ControllerState {
     public void OnEnterState() {
         mCanvas.fadeOutTargets();
         if (mCanvas.getContentView() != null) {
-            mCanvas.getContentView().hidePopups();
+            mCanvas.getContentView().onAnimateOffscreen();
         }
         mBubbleInfo.clear();
         mTime = 0.0f;

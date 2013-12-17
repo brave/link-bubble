@@ -42,7 +42,7 @@ public class State_AnimateToContentView extends ControllerState {
         mCanvas.fadeIn();
         mCanvas.fadeOutTargets();
         if (mCanvas.getContentView() != null) {
-            mCanvas.getContentView().hidePopups();
+            mCanvas.getContentView().onAnimateOnScreen();
         }
         Util.Assert(mSelectedBubble != null);
         mCanvas.setContentView(mSelectedBubble.getContentView());

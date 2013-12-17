@@ -93,13 +93,14 @@ public class Canvas extends RelativeLayout {
     public void setContentView(ContentView cv) {
         if (mContentView != null) {
             removeView(mContentView);
-            mContentView.hidePopups();
+            mContentView.onCurrentContentViewChanged(false);
         }
         mContentView = cv;
         if (mContentView != null) {
             RelativeLayout.LayoutParams p = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             p.topMargin = Config.mContentOffset;
             addView(mContentView, p);
+            mContentView.onCurrentContentViewChanged(true);
         }
     }
 
