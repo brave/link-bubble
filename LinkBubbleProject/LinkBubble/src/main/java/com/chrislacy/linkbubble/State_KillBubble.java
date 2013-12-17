@@ -36,7 +36,7 @@ public class State_KillBubble extends ControllerState {
         mBubbleInfo.mPosX = (float) bubble.getXPos();
         mBubbleInfo.mPosY = (float) bubble.getYPos();
 
-        mBubbleInfo.mTargetX = Config.mScreenCenterX;
+        mBubbleInfo.mTargetX = mBubbleInfo.mPosX;
         mBubbleInfo.mTargetY = Config.mScreenHeight + Config.mBubbleHeight;
         mBubbleInfo.mDistanceX = mBubbleInfo.mTargetX - mBubbleInfo.mPosX;
         mBubbleInfo.mDistanceY = mBubbleInfo.mTargetY - mBubbleInfo.mPosY;
@@ -48,7 +48,7 @@ public class State_KillBubble extends ControllerState {
         mCanvas.fadeOutTargets();
         mCanvas.getContentView().onAnimateOffscreen();
         mTime = 0.0f;
-        mPeriod = 0.6f;
+        mPeriod = 0.3f;
         mCanvas.setContentViewTranslation(0.0f);
     }
 
