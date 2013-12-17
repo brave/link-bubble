@@ -313,6 +313,9 @@ public class MainController implements Choreographer.FrameCallback {
         if (resolveInfos != null && resolveInfos.size() > 0 && Settings.get().autoLoadContent()) {
             if (resolveInfos.size() == 1) {
                 if (MainApplication.loadResolveInfoIntent(mContext, resolveInfos.get(0), url, startTime)) {
+                    if (mBubbles.size() == 0) {
+                        mEventHandler.onDestroy();
+                    }
                     return;
                 }
             } else {
@@ -333,6 +336,9 @@ public class MainController implements Choreographer.FrameCallback {
                         });
                 dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
                 dialog.show();
+                if (mBubbles.size() == 0) {
+                    mEventHandler.onDestroy();
+                }
                 return;
             }
         }
