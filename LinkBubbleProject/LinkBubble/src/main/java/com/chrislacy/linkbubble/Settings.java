@@ -15,10 +15,14 @@ import android.preference.PreferenceManager;
 
 import android.util.Log;
 import com.chrislacy.linkbubble.R;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
@@ -43,7 +47,10 @@ public class Settings {
     public static final String PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME = "preference_default_browser_package_name";
     public static final String PREFERENCE_DEFAULT_BROWSER_LABEL = "preference_default_browser_bubble_label";
 
-    public static final String PREFERENCE_DEFAULT_APP_PREFIX = "preference_default_app_";
+    public static final String PREFERENCE_DEFAULT_APPS = "preference_default_apps";
+
+    private static final String DEFAULT_APPS_MAP_KEY_HOST = "host";
+    private static final String DEFAULT_APPS_MAP_KEY_COMPONENT = "component";
 
     public interface ConsumeBubblesChangedEventHandler {
         public void onConsumeBubblesChanged();
@@ -79,6 +86,7 @@ public class Settings {
 
     private SharedPreferences mSharedPreferences;
     private Context mContext;
+    private HashMap<String, String> mDefaultAppsMap = new HashMap<String, String>();
     private List<Intent> mBrowsers;
     private ConsumeBubblesChangedEventHandler mConsumeBubblesChangedEventHandler;
 
@@ -89,6 +97,9 @@ public class Settings {
         mBrowsers = new Vector<Intent>();
         updateBrowsers();
         setDefaultLeftConsumeBubble();
+
+        String defaultAppsString = mSharedPreferences.getString(PREFERENCE_DEFAULT_APPS, null);
+        updateDefaultApps(defaultAppsString);
     }
 
     void updateBrowsers() {
@@ -395,16 +406,17 @@ public class Settings {
         return null;
     }*/
 
+    /*
     private String getDefaultAppKey(String urlHost) {
         return PREFERENCE_DEFAULT_APP_PREFIX + urlHost;
-    }
+    }*/
 
     private ResolveInfo getDefaultApp(String urlAsString, List<ResolveInfo> resolveInfos) {
         try {
             URL url = new URL(urlAsString);
             String host = url.getHost();
             if (host.length() > 1) {
-                String flattenedComponentName = mSharedPreferences.getString(getDefaultAppKey(host), null);
+                String flattenedComponentName = mDefaultAppsMap.get(host);
                 if (flattenedComponentName != null) {
                     ComponentName componentName = ComponentName.unflattenFromString(flattenedComponentName);
                     if (componentName != null) {
@@ -430,12 +442,59 @@ public class Settings {
             String host = url.getHost();
             if (host.length() > 1) {
                 ComponentName componentName = new ComponentName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
-                SharedPreferences.Editor editor = mSharedPreferences.edit();
-                editor.putString(getDefaultAppKey(host), componentName.flattenToString());
-                editor.commit();
+                addDefaultApp(host, componentName);
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void addDefaultApp(String host, ComponentName componentName) {
+
+        mDefaultAppsMap.put(host, componentName.flattenToString());
+
+        JSONArray jsonArray = new JSONArray();
+        for (String key : mDefaultAppsMap.keySet()) {
+            String component = mDefaultAppsMap.get(key);
+            JSONObject object = new JSONObject();
+            try {
+                object.put(DEFAULT_APPS_MAP_KEY_HOST, key);
+                object.put(DEFAULT_APPS_MAP_KEY_COMPONENT, component);
+                jsonArray.put(object);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(PREFERENCE_DEFAULT_APPS, jsonArray.toString());
+        editor.commit();
+    }
+
+    private void updateDefaultApps(String defaultApps) {
+        try {
+            if (defaultApps != null) {
+                updateDefaultApps(new JSONArray(defaultApps));
+            } else {
+                mDefaultAppsMap.clear();
+            }
+        } catch (JSONException e) {
+            mDefaultAppsMap.clear();
+        }
+    }
+
+    private void updateDefaultApps(JSONArray defaultApps) {
+        mDefaultAppsMap.clear();
+
+        for (int i = 0; i < defaultApps.length(); i++) {
+            try {
+                JSONObject object = defaultApps.getJSONObject(i);
+                String host = object.getString(DEFAULT_APPS_MAP_KEY_HOST);
+                String flattenedName = object.getString(DEFAULT_APPS_MAP_KEY_COMPONENT);
+                mDefaultAppsMap.put(host, flattenedName);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
