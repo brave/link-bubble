@@ -70,6 +70,7 @@ public class MainController implements Choreographer.FrameCallback {
     public static State_AnimateToBubbleView STATE_AnimateToBubbleView;
     public static State_Flick_ContentView STATE_Flick_ContentView;
     public static State_Flick_BubbleView STATE_Flick_BubbleView;
+    public static State_KillBubble STATE_KillBubble;
 
     public static ContentActivity sContentActivity;
 
@@ -200,6 +201,7 @@ public class MainController implements Choreographer.FrameCallback {
         STATE_AnimateToBubbleView = new State_AnimateToBubbleView(mCanvas);
         STATE_Flick_ContentView = new State_Flick_ContentView(mCanvas);
         STATE_Flick_BubbleView = new State_Flick_BubbleView(mCanvas);
+        STATE_KillBubble = new State_KillBubble(mCanvas);
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
         switchState(STATE_BubbleView);
@@ -371,7 +373,13 @@ public class MainController implements Choreographer.FrameCallback {
 
                 @Override
                 public void onSharedLink(Bubble sender) {
-                    switchState(STATE_AnimateToBubbleView);
+                    if (mBubbles.size() > 1) {
+                        destroyBubble(sender, Config.BubbleAction.Destroy);
+                        switchState(MainController.STATE_AnimateToBubbleView);
+                    } else {
+                        MainController.STATE_KillBubble.init(sender);
+                        switchState(MainController.STATE_KillBubble);
+                    }
                 }
             });
 
