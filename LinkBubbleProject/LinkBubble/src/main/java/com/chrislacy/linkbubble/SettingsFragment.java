@@ -181,7 +181,7 @@ public class SettingsFragment extends PreferenceFragment {
         if (defaultAppsMap != null && defaultAppsMap.size() > 0) {
             noticePreference.setSummary(R.string.preference_default_apps_notice_summary);
             preferenceCategory.addPreference(noticePreference);
-            
+
             for (String key : defaultAppsMap.keySet()) {
                 ComponentName componentName = defaultAppsMap.get(key);
                 try {
@@ -204,6 +204,7 @@ public class SettingsFragment extends PreferenceFragment {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             Settings.get().removeDefaultApp(host);
+                                            configureDefaultAppsList();
                                         }
                                     });
                             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, resources.getString(R.string.action_cancel),
@@ -369,6 +370,7 @@ public class SettingsFragment extends PreferenceFragment {
         super.onResume();
 
         checkDefaultBrowser();
+        configureDefaultAppsList();
     }
 
     @Override
