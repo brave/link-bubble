@@ -35,6 +35,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.graphics.Canvas;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -508,7 +509,24 @@ public class ContentView extends LinearLayout {
                         if (exisiting.mResolveInfo.activityInfo.packageName.equals(resolveInfoToAdd.activityInfo.packageName)
                                 && exisiting.mResolveInfo.activityInfo.name.equals(resolveInfoToAdd.activityInfo.name)) {
                             alreadyAdded = true;
-                            exisiting.mUrl = url;   // Update the Url
+                            if (exisiting.mUrl.equals(url) == false) {
+                                try {
+                                    URL existingUrl = new URL(exisiting.mUrl);
+                                    URL updatedUrl = new URL(url);
+                                    if (updatedUrl.getHost().contains(existingUrl.getHost())
+                                            && updatedUrl.getHost().length() > existingUrl.getHost().length()) {
+                                        // don't update the url in this case. This means prevents, as an example, saving a host like
+                                        // "mobile.twitter.com" instead of using "twitter.com". This occurs when loading
+                                        // "https://twitter.com/lokibartleby/status/412160702707539968" with Tweet Lanes
+                                        // and the official Twitter client installed.
+                                    } else {
+                                        exisiting.mUrl = url;   // Update the Url
+                                    }
+                                } catch (MalformedURLException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
                             break;
                         }
                     }
