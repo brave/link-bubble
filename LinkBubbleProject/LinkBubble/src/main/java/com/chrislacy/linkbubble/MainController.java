@@ -315,6 +315,18 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void onOpenUrl(final String url, boolean recordHistory, long startTime) {
+        if (Settings.get().redirectUrlToBrowser(url)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            if (MainApplication.loadInBrowser(mContext, intent, false)) {
+                if (mBubbles.size() == 0) {
+                    mEventHandler.onDestroy();
+                }
+                return;
+            }
+        }
+
         final List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
         if (resolveInfos != null && resolveInfos.size() > 0 && Settings.get().autoLoadContent()) {
             if (resolveInfos.size() == 1) {

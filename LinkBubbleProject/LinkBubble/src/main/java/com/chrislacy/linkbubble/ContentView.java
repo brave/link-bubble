@@ -332,7 +332,7 @@ public class ContentView extends LinearLayout {
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(Uri.parse(mUrl));
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                MainApplication.loadInBrowser(mContext, intent);
+                                MainApplication.loadInBrowser(mContext, intent, true);
                                 mEventHandler.onSharedLink();
                                 break;
                             }
@@ -402,6 +402,16 @@ public class ContentView extends LinearLayout {
 
                 List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
                 updateAppsForUrl(resolveInfos, url);
+                if (Settings.get().redirectUrlToBrowser(url)) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    if (MainApplication.loadInBrowser(mContext, intent, false)) {
+                        mEventHandler.onSharedLink();
+                        return false;
+                    }
+                }
+
                 if (Settings.get().autoLoadContent() && resolveInfos != null && resolveInfos.size() > 0) {
                     if (MainApplication.loadResolveInfoIntent(mContext, resolveInfos.get(0), url, mStartTime)) {
                         mEventHandler.onSharedLink();

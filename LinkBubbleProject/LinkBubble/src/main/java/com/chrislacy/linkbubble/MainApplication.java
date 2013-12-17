@@ -47,7 +47,7 @@ public class MainApplication extends Application {
         context.startService(serviceIntent);
     }
 
-    public static void loadInBrowser(Context context, Intent intent) {
+    public static boolean loadInBrowser(Context context, Intent intent, boolean showToastIfNoBrowser) {
         boolean activityStarted = false;
         ComponentName defaultBrowserComponentName = Settings.get().getDefaultBrowserComponentName(context);
         if (defaultBrowserComponentName != null) {
@@ -56,9 +56,10 @@ public class MainApplication extends Application {
             activityStarted = true;
         }
 
-        if (activityStarted == false) {
+        if (activityStarted == false && showToastIfNoBrowser) {
             Toast.makeText(context, R.string.no_default_browser, Toast.LENGTH_LONG).show();
         }
+        return activityStarted;
     }
 
     public static boolean loadResolveInfoIntent(Context context, ResolveInfo resolveInfo, String url, long startTime) {

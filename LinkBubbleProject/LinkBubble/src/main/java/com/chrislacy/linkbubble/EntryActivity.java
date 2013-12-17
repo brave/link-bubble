@@ -72,7 +72,7 @@ public class EntryActivity extends Activity {
             if (openLink) {
                 MainApplication.openLink(this, url, true);
             } else {
-                MainApplication.loadInBrowser(this, intent);
+                MainApplication.loadInBrowser(this, intent, true);
             }
         } else {
             startActivityForResult(new Intent(this, SettingsActivity.class), 0);

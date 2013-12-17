@@ -47,6 +47,7 @@ public class Settings {
     public static final String PREFERENCE_DEFAULT_BROWSER_LABEL = "preference_default_browser_bubble_label";
 
     public static final String PREFERENCE_DEFAULT_APPS = "preference_default_apps";
+    public static final String PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT = "preference_google_accounts_redirect";
 
     private static final String DEFAULT_APPS_MAP_KEY_HOST = "host";
     private static final String DEFAULT_APPS_MAP_KEY_COMPONENT = "component";
@@ -348,9 +349,16 @@ public class Settings {
         return mSharedPreferences.getBoolean(PREFERENCE_ENABLED, false);
     }
 
+    boolean redirectUrlToBrowser(String url) {
+        if (url.contains("accounts.google.com") && mSharedPreferences.getBoolean(PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT, true)) {
+            return true;
+        }
+        return false;
+    }
+
     List<ResolveInfo> getAppsThatHandleUrl(String url) {
 
-        List<Intent> browsers = Settings.get().getBrowsers();
+        List<Intent> browsers = getBrowsers();
 
         PackageManager manager = mContext.getPackageManager();
         Intent intent = new Intent();
