@@ -50,4 +50,10 @@ public class ContentActivity extends Activity {
     void updateBackgroundColor(int color) {
         mBackgroundView.setBackgroundColor(color);
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, 0);
+    }
 }
