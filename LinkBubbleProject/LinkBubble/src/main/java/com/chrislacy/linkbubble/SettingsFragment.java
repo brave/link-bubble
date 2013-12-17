@@ -3,10 +3,12 @@ package com.chrislacy.linkbubble;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -178,17 +180,46 @@ public class SettingsFragment extends PreferenceFragment {
 
         PackageManager packageManager = getActivity().getPackageManager();
         TreeMap<String, ComponentName> defaultAppsMap = Settings.get().getDefaultAppsMap();
-        for (String key : defaultAppsMap.keySet()) {
-            ComponentName componentName = defaultAppsMap.get(key);
-            try {
-                ActivityInfo info = packageManager.getActivityInfo(componentName, 0);
-                Preference preference = new Preference(getActivity());
-                preference.setTitle(info.loadLabel(packageManager));
-                preference.setIcon(info.loadIcon(packageManager));
-                preference.setSummary(key);
-                preferenceCategory.addPreference(preference);
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
+        if (defaultAppsMap != null && defaultAppsMap.size() > 0) {
+
+            for (String key : defaultAppsMap.keySet()) {
+                ComponentName componentName = defaultAppsMap.get(key);
+                try {
+                    ActivityInfo info = packageManager.getActivityInfo(componentName, 0);
+                    final CharSequence label = info.loadLabel(packageManager);
+                    final String host = key;
+                    Preference preference = new Preference(getActivity());
+                    preference.setTitle(label);
+                    preference.setIcon(info.loadIcon(packageManager));
+                    preference.setSummary(key);
+                    preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                        @Override
+                        public boolean onPreferenceClick(Preference preference) {
+                            Resources resources = getActivity().getResources();
+                            AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+                            alertDialog.setTitle(R.string.remove_default_title);
+                            alertDialog.setMessage(String.format(resources.getString(R.string.remove_default_message), label, host, host));
+                            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, resources.getString(R.string.action_remove),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Settings.get().removeDefaultApp(host);
+                                        }
+                                    });
+                            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, resources.getString(R.string.action_cancel),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                        }
+                                    });
+                            alertDialog.show();
+                            return true;
+                        }
+                    });
+                    preferenceCategory.addPreference(preference);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

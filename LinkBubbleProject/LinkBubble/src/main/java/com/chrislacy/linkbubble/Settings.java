@@ -453,6 +453,17 @@ public class Settings {
 
         mDefaultAppsMap.put(host, componentName.flattenToString());
 
+        saveDefaultApps();
+    }
+
+    void removeDefaultApp(String host) {
+        if (mDefaultAppsMap.containsKey(host)) {
+            mDefaultAppsMap.remove(host);
+            saveDefaultApps();
+        }
+    }
+
+    private void saveDefaultApps() {
         JSONArray jsonArray = new JSONArray();
         for (String key : mDefaultAppsMap.keySet()) {
             String component = mDefaultAppsMap.get(key);
