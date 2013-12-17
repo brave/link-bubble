@@ -9,6 +9,8 @@ import com.squareup.otto.Bus;
 
 public class ContentActivity extends Activity {
 
+    static final boolean DEBUG_DRAW = false;
+
     class ContentActivityResumedEvent {
         ContentActivity mActivity;
         ContentActivityResumedEvent(ContentActivity activity) {
@@ -33,6 +35,9 @@ public class ContentActivity extends Activity {
         setContentView(R.layout.activity_content);
 
         mBackgroundView = findViewById(R.id.background);
+        if (DEBUG_DRAW) {
+            updateBackgroundColor(0x00000000);
+        }
     }
 
     @Override
@@ -48,7 +53,7 @@ public class ContentActivity extends Activity {
     }
 
     void updateBackgroundColor(int color) {
-        mBackgroundView.setBackgroundColor(color);
+        mBackgroundView.setBackgroundColor(DEBUG_DRAW ? 0x5500ff00 : color);
     }
 
     @Override
