@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -79,6 +80,7 @@ public class MainService extends Service {
         registerReceiver(mBroadcastReceiver, filter);
 
         registerReceiver(mDialogReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+        registerReceiver(mPhoneStateReceiver, new IntentFilter(TelephonyManager.ACTION_PHONE_STATE_CHANGED));
     }
 
     @Override
@@ -103,6 +105,22 @@ public class MainService extends Service {
         public void onReceive(Context context, Intent myIntent) {
             if ( myIntent.getAction().equals( BCAST_CONFIGCHANGED ) ) {
                 mController.onOrientationChanged();
+            }
+        }
+    };
+
+    private BroadcastReceiver mPhoneStateReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Bundle extras = intent.getExtras();
+            if (extras != null) {
+                String state = extras.getString(TelephonyManager.EXTRA_STATE);
+                if (state.equals(TelephonyManager.EXTRA_STATE_RINGING) || state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
+                    mController.switchState(MainController.STATE_AnimateToBubbleView);
+                } else if (state.equals(TelephonyManager.EXTRA_STATE_IDLE)) {
+
+                }
             }
         }
     };
