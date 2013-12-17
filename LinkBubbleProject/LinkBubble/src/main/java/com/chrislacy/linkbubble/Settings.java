@@ -14,7 +14,6 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 
 import android.util.Log;
-import com.chrislacy.linkbubble.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -98,8 +97,7 @@ public class Settings {
         updateBrowsers();
         setDefaultLeftConsumeBubble();
 
-        String defaultAppsString = mSharedPreferences.getString(PREFERENCE_DEFAULT_APPS, null);
-        updateDefaultApps(defaultAppsString);
+        configureDefaultApps(mSharedPreferences.getString(PREFERENCE_DEFAULT_APPS, null));
     }
 
     void updateBrowsers() {
@@ -482,30 +480,27 @@ public class Settings {
         editor.commit();
     }
 
-    private void updateDefaultApps(String defaultApps) {
+    private void configureDefaultApps(String defaultAppsAsString) {
         try {
-            if (defaultApps != null) {
-                updateDefaultApps(new JSONArray(defaultApps));
+            if (defaultAppsAsString != null) {
+                JSONArray defaultApps = new JSONArray(defaultAppsAsString);
+                mDefaultAppsMap.clear();
+
+                for (int i = 0; i < defaultApps.length(); i++) {
+                    try {
+                        JSONObject object = defaultApps.getJSONObject(i);
+                        String host = object.getString(DEFAULT_APPS_MAP_KEY_HOST);
+                        String flattenedName = object.getString(DEFAULT_APPS_MAP_KEY_COMPONENT);
+                        mDefaultAppsMap.put(host, flattenedName);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             } else {
                 mDefaultAppsMap.clear();
             }
         } catch (JSONException e) {
             mDefaultAppsMap.clear();
-        }
-    }
-
-    private void updateDefaultApps(JSONArray defaultApps) {
-        mDefaultAppsMap.clear();
-
-        for (int i = 0; i < defaultApps.length(); i++) {
-            try {
-                JSONObject object = defaultApps.getJSONObject(i);
-                String host = object.getString(DEFAULT_APPS_MAP_KEY_HOST);
-                String flattenedName = object.getString(DEFAULT_APPS_MAP_KEY_COMPONENT);
-                mDefaultAppsMap.put(host, flattenedName);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
         }
     }
 
