@@ -361,7 +361,8 @@ public class SettingsFragment extends PreferenceFragment {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         if (prefs.getBoolean("auto_load_url", true)) {
-            MainApplication.openLink(getActivity(), "http://abc.net.au", false);
+                MainApplication.openLink(getActivity(), "http://abc.net.au", false);
+            //MainApplication.openLink(getActivity(), "https://twitter.com/lokibartleby/status/412160702707539968", false);
         }
     }
 
