@@ -21,6 +21,10 @@
     <string name="preference_configure_bubble_title">Configure bubble</string>
     <string name="preference_category_debug">Debug</string>
     <string name="preference_default_browser">Default fallback browser</string>
+    <string name="preference_category_fallback_browser">Default fallback browser</string>
+    <string name="preference_category_other_apps">Other apps</string>
+    <string name="preference_default_apps_title">Default apps</string>
+    <string name="preference_default_apps_notice_title">In the event more than one non-browser app on your system will handle a URL, the following apps are used.</string>
     <string name="preference_set_default_browser_title">Set default browser</string>
     <string name="preference_set_default_browser_summary">Link Bubble is not the default browser. Let\'s make it the default shall we?</string>
 

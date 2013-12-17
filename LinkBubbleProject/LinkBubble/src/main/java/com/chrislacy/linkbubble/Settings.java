@@ -217,6 +217,19 @@ public class Settings {
         return null;
     }
 
+    Drawable getDefaultBrowserIcon(Context context) {
+        ComponentName componentName = getDefaultBrowserComponentName(context);
+        if (componentName != null) {
+            try {
+                return context.getPackageManager().getActivityIcon(componentName);
+            } catch (PackageManager.NameNotFoundException e) {
+                Log.e("Exception", e.getMessage(), e);
+            }
+        }
+
+        return null;
+    }
+
     void setConsumeBubble(Config.BubbleAction action, Config.ActionType type, String label, String packageName, String activityClassName) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         switch (action) {

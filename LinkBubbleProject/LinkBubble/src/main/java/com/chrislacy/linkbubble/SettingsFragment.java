@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -270,7 +271,11 @@ public class SettingsFragment extends PreferenceFragment {
         rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeRight));
 
         Preference defaultBrowserPreference = findPreference(Settings.PREFERENCE_DEFAULT_BROWSER);
-        defaultBrowserPreference.setSummary(Settings.get().getDefaultBrowserLabel());
+        defaultBrowserPreference.setTitle(Settings.get().getDefaultBrowserLabel());
+        Drawable defaultBrowserIcon = Settings.get().getDefaultBrowserIcon(getActivity());
+        if (defaultBrowserIcon != null) {
+            defaultBrowserPreference.setIcon(defaultBrowserIcon);
+        }
         defaultBrowserPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(final Preference preference) {
@@ -278,7 +283,11 @@ public class SettingsFragment extends PreferenceFragment {
                     @Override
                     public void onSelected(ActionItem actionItem) {
                         Settings.get().setDefaultBrowser(actionItem.getLabel(), actionItem.mPackageName);
-                        preference.setSummary(Settings.get().getDefaultBrowserLabel());
+                        preference.setTitle(Settings.get().getDefaultBrowserLabel());
+                        Drawable defaultBrowserIcon = Settings.get().getDefaultBrowserIcon(getActivity());
+                        if (defaultBrowserIcon != null) {
+                            preference.setIcon(defaultBrowserIcon);
+                        }
                     }
                 });
                 alertDialog.show();

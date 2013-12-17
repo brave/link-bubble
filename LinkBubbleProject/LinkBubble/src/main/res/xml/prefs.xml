@@ -40,10 +40,35 @@
             android:dependency="preference_enabled"
             />
 
-        <Preference
-            android:key="preference_default_browser"
-            android:title="@string/preference_default_browser"
-            />
+        <!--
+        -->
+        <PreferenceScreen
+            android:key="preference_default_apps"
+            android:title="@string/preference_default_apps_title"
+             >
+
+            <PreferenceCategory
+                android:key="preference_category_fallback_browser"
+                android:title="@string/preference_category_fallback_browser" >
+
+                <Preference
+                    android:key="preference_default_browser"
+                    />
+
+            </PreferenceCategory>
+
+            <PreferenceCategory
+                android:key="preference_category_other_apps"
+                android:title="@string/preference_category_other_apps" >
+
+                <Preference
+                    android:key="preference_default_apps_notice"
+                    android:summary="@string/preference_default_apps_notice_title"
+                    />
+
+            </PreferenceCategory>
+
+        </PreferenceScreen>
 
         <Preference android:title="Clear History"
             android:key="clear_history"
