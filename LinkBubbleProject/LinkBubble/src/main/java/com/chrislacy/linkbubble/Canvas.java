@@ -90,6 +90,9 @@ public class Canvas extends RelativeLayout {
             BubbleTarget bt = mTargets.get(i);
             bt.OnOrientationChanged();
         }
+        if (mContentView != null) {
+            mContentView.onOrientationChanged();
+        }
     }
 
     public void setContentView(ContentView cv) {

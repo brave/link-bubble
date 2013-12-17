@@ -580,6 +580,10 @@ public class ContentView extends LinearLayout {
         resetButtonPressedStates();
     }
 
+    void onOrientationChanged() {
+        invalidate();
+    }
+
     private void hidePopups() {
         if (mOverflowPopupMenu != null) {
             mOverflowPopupMenu.dismiss();
