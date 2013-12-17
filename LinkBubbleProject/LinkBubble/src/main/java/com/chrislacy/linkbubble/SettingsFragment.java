@@ -175,13 +175,11 @@ public class SettingsFragment extends PreferenceFragment {
         preferenceCategory.removeAll();
 
         Preference noticePreference = new Preference(getActivity());
-        noticePreference.setSummary(R.string.preference_default_apps_notice_title);
-        preferenceCategory.addPreference(noticePreference);
 
         PackageManager packageManager = getActivity().getPackageManager();
         TreeMap<String, ComponentName> defaultAppsMap = Settings.get().getDefaultAppsMap();
         if (defaultAppsMap != null && defaultAppsMap.size() > 0) {
-
+            noticePreference.setSummary(R.string.preference_default_apps_notice_summary);
             for (String key : defaultAppsMap.keySet()) {
                 ComponentName componentName = defaultAppsMap.get(key);
                 try {
@@ -221,7 +219,11 @@ public class SettingsFragment extends PreferenceFragment {
                     e.printStackTrace();
                 }
             }
+        } else {
+            noticePreference.setSummary(R.string.preference_default_apps_notice_no_defaults_summary);
         }
+
+        preferenceCategory.addPreference(noticePreference);
     }
 
     @Override
