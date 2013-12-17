@@ -315,6 +315,19 @@ public class ContentView extends LinearLayout {
                                 break;
                             }
 
+                            case R.id.item_reload_page: {
+                                mEventHandler.onPageLoading(mUrl);
+                                mWebView.stopLoading();
+                                mWebView.reload();
+                                updateAppsForUrl(mUrl);
+                                setAppButton();
+                                Log.d(TAG, "reload url: " + mUrl);
+                                mStartTime = System.currentTimeMillis();
+                                mTitleTextView.setText(R.string.loading);
+                                mUrlTextView.setText(mUrl.replace("http://", ""));
+                                break;
+                            }
+
                             case R.id.item_open_in_browser: {
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(Uri.parse(mUrl));
