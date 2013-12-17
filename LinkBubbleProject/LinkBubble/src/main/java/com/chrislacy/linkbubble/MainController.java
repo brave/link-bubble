@@ -116,6 +116,7 @@ public class MainController implements Choreographer.FrameCallback {
 
                 nextBubble.setVisibility(View.VISIBLE);
             } else {
+                hideContentActivity();
                 sMainController.mBadge.attach(null);
 
                 Config.BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
@@ -227,6 +228,9 @@ public class MainController implements Choreographer.FrameCallback {
         }
         sMainController.mCurrentState = newState;
         sMainController.mCurrentState.OnEnterState();
+        if (newState instanceof State_Flick_BubbleView) {
+            hideContentActivity();
+        }
         scheduleUpdate();
     }
 
@@ -259,7 +263,6 @@ public class MainController implements Choreographer.FrameCallback {
             scheduleUpdate();
         }
 
-        showContentActivity();
         //mTextView.setText("S=" + mCurrentState.getName() + " F=" + mFrameNumber++);
 
         if (mCurrentState == STATE_BubbleView && mBubbles.size() == 0 &&
@@ -274,11 +277,18 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    public void showContentActivity() {
+    private void showContentActivity() {
         if (sContentActivity == null) {
             Intent intent = new Intent(mContext, ContentActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             mContext.startActivity(intent);
+        }
+    }
+
+    static void hideContentActivity() {
+        if (sContentActivity != null) {
+            sContentActivity.finish();
+            sContentActivity = null;
         }
     }
 
@@ -333,6 +343,7 @@ public class MainController implements Choreographer.FrameCallback {
                 @Override
                 public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
                     mCurrentState.OnMotionEvent_Touch(sender, e);
+                    showContentActivity();
                 }
 
                 @Override
@@ -343,6 +354,9 @@ public class MainController implements Choreographer.FrameCallback {
                 @Override
                 public void onMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
                     mCurrentState.OnMotionEvent_Release(sender, e);
+                    if (mCurrentState instanceof State_SnapToEdge) {
+                        hideContentActivity();
+                    }
                 }
 
                 @Override

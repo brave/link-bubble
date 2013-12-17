@@ -82,6 +82,7 @@ public class State_AnimateToBubbleView extends ControllerState {
 
         if (mTime >= mPeriod) {
             MainController.switchState(MainController.STATE_BubbleView);
+            MainController.hideContentActivity();
         }
 
         return true;

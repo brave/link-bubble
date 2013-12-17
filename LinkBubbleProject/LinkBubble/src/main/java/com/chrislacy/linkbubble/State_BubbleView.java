@@ -118,6 +118,7 @@ public class State_BubbleView extends ControllerState {
                     if (v > threshold) {
                         MainController.STATE_Flick_BubbleView.init(sender, e.vx, e.vy);
                         MainController.switchState(MainController.STATE_Flick_BubbleView);
+                        MainController.hideContentActivity();
                     } else {
                         MainController.STATE_SnapToEdge.init(sender);
                         MainController.switchState(MainController.STATE_SnapToEdge);
