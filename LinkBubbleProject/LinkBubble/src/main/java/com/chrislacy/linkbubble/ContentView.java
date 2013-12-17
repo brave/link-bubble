@@ -404,6 +404,7 @@ public class ContentView extends LinearLayout {
                 updateAppsForUrl(resolveInfos, url);
                 if (Settings.get().autoLoadContent() && resolveInfos != null && resolveInfos.size() > 0) {
                     if (MainApplication.loadResolveInfoIntent(mContext, resolveInfos.get(0), url, mStartTime)) {
+                        mEventHandler.onSharedLink();
                         return false;
                     }
                 }
