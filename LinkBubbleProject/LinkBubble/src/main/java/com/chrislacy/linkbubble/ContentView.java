@@ -50,9 +50,9 @@ public class ContentView extends LinearLayout {
     private WebView mWebView;
     private CondensedTextView mTitleTextView;
     private CondensedTextView mUrlTextView;
-    private ImageButton mShareButton;
+    private ContentViewButton mShareButton;
     private OpenInAppButton mOpenInAppButton;
-    private ImageButton mOverflowButton;
+    private ContentViewButton mOverflowButton;
     private View mToolbarHeader;
     private View mWebViewPlaceholder;
     private LinearLayout mToolbarLayout;
@@ -263,8 +263,7 @@ public class ContentView extends LinearLayout {
         mToolbarLayout = (LinearLayout) inflate(mContext, R.layout.content_toolbar, null);
         mTitleTextView = (CondensedTextView) mToolbarLayout.findViewById(R.id.title_text);
         mUrlTextView = (CondensedTextView) mToolbarLayout.findViewById(R.id.url_text);
-        mShareButton = (ImageButton)mToolbarLayout.findViewById(R.id.share_button);
-        mShareButton.setOnTouchListener(sButtonOnTouchListener);
+        mShareButton = (ContentViewButton)mToolbarLayout.findViewById(R.id.share_button);
         mShareButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -273,7 +272,6 @@ public class ContentView extends LinearLayout {
         });
 
         mOpenInAppButton = (OpenInAppButton)mToolbarLayout.findViewById(R.id.open_in_app_button);
-        mOpenInAppButton.setOnTouchListener(sButtonOnTouchListener);
         mOpenInAppButton.setOnOpenInAppClickListener(new OpenInAppButton.OnOpenInAppClickListener() {
 
             @Override
@@ -287,8 +285,7 @@ public class ContentView extends LinearLayout {
             }
         });
 
-        mOverflowButton = (ImageButton)mToolbarLayout.findViewById(R.id.overflow_button);
-        mOverflowButton.setOnTouchListener(sButtonOnTouchListener);
+        mOverflowButton = (ContentViewButton)mToolbarLayout.findViewById(R.id.overflow_button);
         mOverflowButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -485,7 +482,9 @@ public class ContentView extends LinearLayout {
     }
 
     private void setAppButton() {
-        if (mOpenInAppButton.configure(mAppsForUrl) == false) {
+        if (mOpenInAppButton.configure(mAppsForUrl)) {
+            mOpenInAppButton.invalidate();
+        } else {
             mOpenInAppButton.setVisibility(GONE);
         }
     }
@@ -541,14 +540,17 @@ public class ContentView extends LinearLayout {
 
     void onAnimateOnScreen() {
         hidePopups();
+        resetButtonPressedStates();
     }
 
     void onAnimateOffscreen() {
         hidePopups();
+        resetButtonPressedStates();
     }
 
     void onCurrentContentViewChanged(boolean isCurrent) {
         hidePopups();
+        resetButtonPressedStates();
     }
 
     private void hidePopups() {
@@ -558,30 +560,9 @@ public class ContentView extends LinearLayout {
         }
     }
 
-    static final OnTouchListener sButtonOnTouchListener = new OnTouchListener() {
-
-        public boolean onTouch(View v, MotionEvent event) {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN: {
-                    if (v.getBackground() == null) {
-                        v.setBackgroundColor(0x555d5d5e);
-                    } else {
-                        v.getBackground().setColorFilter(0x555d5d5e, PorterDuff.Mode.DARKEN);
-                    }
-                    v.invalidate();
-                    break;
-                }
-                case MotionEvent.ACTION_UP: {
-                    if (v.getBackground() == null) {
-                        v.setBackgroundColor(0x00000000);
-                    } else {
-                        v.getBackground().clearColorFilter();
-                    }
-                    v.invalidate();
-                    break;
-                }
-            }
-            return false;
-        }
-    };
+    private void resetButtonPressedStates() {
+        mShareButton.setIsTouched(false);
+        mOpenInAppButton.setIsTouched(false);
+        mOverflowButton.setIsTouched(false);
+    }
 }

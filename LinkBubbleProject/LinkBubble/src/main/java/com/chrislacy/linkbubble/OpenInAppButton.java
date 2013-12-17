@@ -16,7 +16,7 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OpenInAppButton extends FrameLayout implements View.OnClickListener {
+public class OpenInAppButton extends ContentViewButton implements View.OnClickListener {
 
     private OnOpenInAppClickListener mOnOpenInAppClickListener;
 
@@ -144,6 +144,10 @@ public class OpenInAppButton extends FrameLayout implements View.OnClickListener
         Drawable d = mAppsForUrl.get(0).getIcon(context);
         if (d != null) {
             computePreviewDrawingParams(d);
+        }
+
+        if (mIsTouched) {
+            canvas.drawColor(sTouchedColor);
         }
 
         int nItemsInPreview = Math.min(mAppsForUrl.size(), NUM_ITEMS_IN_PREVIEW);

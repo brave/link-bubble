@@ -40,13 +40,13 @@
         android:visibility="invisible"
         />
 
-    <ImageButton
+    <com.chrislacy.linkbubble.ContentViewButton
         style="@style/ToolbarButton"
         android:id="@+id/share_button"
         android:background="@drawable/ic_action_share"
         />
 
-    <ImageButton
+    <com.chrislacy.linkbubble.ContentViewButton
         style="@style/ToolbarButton"
         android:paddingRight="8dp"
         android:id="@+id/overflow_button"
