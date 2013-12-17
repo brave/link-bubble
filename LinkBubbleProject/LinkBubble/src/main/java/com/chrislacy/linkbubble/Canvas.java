@@ -7,6 +7,8 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -77,7 +79,7 @@ public class Canvas extends RelativeLayout {
         mWindowManagerParams.height = WindowManager.LayoutParams.MATCH_PARENT;
         mWindowManagerParams.width = WindowManager.LayoutParams.MATCH_PARENT;
         mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_PHONE;
-        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
+        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
         mWindowManagerParams.setTitle("LinkBubble: Canvas");
         mWindowManager.addView(this, mWindowManagerParams);
@@ -101,6 +103,7 @@ public class Canvas extends RelativeLayout {
             p.topMargin = Config.mContentOffset;
             addView(mContentView, p);
             mContentView.onCurrentContentViewChanged(true);
+            mContentView.requestFocus();
         }
     }
 
