@@ -17,6 +17,7 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AbsListView;
@@ -27,6 +28,7 @@ import android.widget.TextView;
 import com.chrislacy.linkbubble.R;
 import com.flavienlaurent.notboringactionbar.AlphaForegroundColorSpan;
 import com.flavienlaurent.notboringactionbar.KenBurnsView;
+import com.google.android.apps.dashclock.ui.SwipeDismissListViewTouchListener;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
@@ -40,6 +42,7 @@ public class HomeActivity extends Activity {
     private int mHeaderHeight;
     private int mMinHeaderTranslation;
     private ListView mListView;
+    private HistoryAdapter mHistoryAdapter;
     private KenBurnsView mHeaderPicture;
     private ImageView mHeaderLogo;
     private View mHeader;
@@ -88,11 +91,35 @@ public class HomeActivity extends Activity {
             return;
         }
 
-        mListView.setAdapter(new HistoryAdapter(this, R.layout.history_item,
-                                                recentBubbles.toArray(new Settings.RecentBubbleInfo[0])));
+        mHistoryAdapter = new HistoryAdapter(this, R.layout.history_item, recentBubbles.toArray(new Settings.RecentBubbleInfo[0]));
+
+        mListView.setAdapter(mHistoryAdapter);
+
+        final SwipeDismissListViewTouchListener swipeDismissTouchListener =
+                new SwipeDismissListViewTouchListener(
+                        mListView,
+                        new SwipeDismissListViewTouchListener.DismissCallbacks() {
+                            public boolean canDismiss(int position) {
+                                //return position < mSelectedExtensionsAdapter.getCount() - 1;
+                                return true;
+                            }
+
+                            public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+                                /*
+                                for (int position : reverseSortedPositions) {
+                                    mSelectedExtensions.remove(position);
+                                }
+                                repopulateAvailableExtensions();
+                                */
+                                mHistoryAdapter.notifyDataSetChanged();
+                            }
+                        });
+        //mListView.setOnItemClickListener(this);
+
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
+                swipeDismissTouchListener.setEnabled(scrollState != AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL);
             }
 
             @Override
@@ -108,6 +135,13 @@ public class HomeActivity extends Activity {
                 //---------------------------------
                 //better way thanks to @cyrilmottier
                 setTitleAlpha(clamp(5.0F * ratio - 4.0F, 0.0F, 1.0F));
+            }
+        });
+
+        mListView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return swipeDismissTouchListener.onTouch(view, motionEvent);
             }
         });
     }
