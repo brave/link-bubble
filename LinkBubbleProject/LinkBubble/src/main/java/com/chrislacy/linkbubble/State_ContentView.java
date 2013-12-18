@@ -31,6 +31,7 @@ public class State_ContentView extends ControllerState {
         Util.Assert(mActiveBubble != null);
         mDidMove = false;
         mTouchBubble = null;
+        MainController.get().beginAppPolling();
     }
 
     @Override
