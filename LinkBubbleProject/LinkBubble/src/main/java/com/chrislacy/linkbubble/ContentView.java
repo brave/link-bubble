@@ -88,24 +88,6 @@ public class ContentView extends LinearLayout {
         }
     };
 
-    // Class for a singular activity item on the list of apps to send to
-    private static class ListItem {
-        public final String name;
-        public final Drawable icon;
-        public final String context;
-        public final String packageClassName;
-        public ListItem(String text, Drawable icon, String context, String packageClassName) {
-            this.name = text;
-            this.icon = icon;
-            this.context = context;
-            this.packageClassName = packageClassName;
-        }
-        @Override
-        public String toString() {
-            return name;
-        }
-    }
-
     public static class PageLoadInfo {
         Bitmap bmp;
         String url;
@@ -190,60 +172,21 @@ public class ContentView extends LinearLayout {
     }
 
     private void showSelectShareMethod() {
-        String action = Intent.ACTION_SEND;
-        String mimeType = "text/plain";
 
-        // Get list of handler apps that can send
-        final Intent intent = new Intent(action);
-        intent.setType(mimeType);
-        PackageManager pm = mContext.getPackageManager();
-        List<ResolveInfo> resInfos = pm.queryIntentActivities(intent, 0);
-
-        // Form those activities into an array for the list adapter
-        final ListItem[] items = new ListItem[resInfos.size()];
-        int i = 0;
-        for (ResolveInfo resInfo : resInfos) {
-            String context = resInfo.activityInfo.packageName;
-            String packageClassName = resInfo.activityInfo.name;
-            CharSequence label = resInfo.loadLabel(pm);
-            Drawable icon = resInfo.loadIcon(pm);
-            items[i] = new ListItem(label.toString(), icon, context, packageClassName);
-            i++;
-        }
-        ListAdapter adapter = new ArrayAdapter<ListItem>(mContext, android.R.layout.select_dialog_item,
-                                                         android.R.id.text1, items) {
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View v = super.getView(position, convertView, parent);
-                TextView tv = (TextView)v.findViewById(android.R.id.text1);
-                tv.setCompoundDrawablesWithIntrinsicBounds(items[position].icon, null, null, null);
-                int dp5 = (int) (15 * getResources().getDisplayMetrics().density * 0.5f);
-                tv.setCompoundDrawablePadding(dp5);
-                return v;
-            }
-        };
-
-        // Build the list of send applications
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle("Share with");
-        builder.setIcon(android.R.drawable.sym_def_app_icon);
-
-        builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+        AlertDialog alertDialog = ActionItem.getShareAlert(mContext, new ActionItem.OnActionItemSelectedListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-            dialog.dismiss();
+            public void onSelected(ActionItem actionItem) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.setClassName(actionItem.mPackageName, actionItem.mActivityClassName);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(Intent.EXTRA_TEXT, mUrl);
+                mContext.startActivity(intent);
 
-            intent.setClassName(items[which].context, items[which].packageClassName);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(Intent.EXTRA_TEXT, mUrl);
-            mContext.startActivity(intent);
-
-            mEventHandler.onSharedLink();
+                mEventHandler.onSharedLink();
             }
         });
-
-        AlertDialog dialog = builder.create();
-        dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-        dialog.show();
+        alertDialog.show();
     }
 
     ContentView(final Context ctx, Bubble owner, String url, long startTime, EventHandler eh) {

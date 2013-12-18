@@ -15,9 +15,11 @@ import android.preference.Preference;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
@@ -234,6 +236,39 @@ public class ActionItem {
             }
         });
 
+        return alertDialog;
+    }
+
+    public static AlertDialog getShareAlert(Context context, final OnActionItemSelectedListener onActionItemSelectedListener) {
+
+        // Build the list of send applications
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(R.string.share_via);
+        builder.setIcon(android.R.drawable.sym_def_app_icon);
+
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+
+        ArrayList<ActionItem> actionItems = getActionItems(context, false, true);
+        ActionItemAdapter adapter = new ActionItemAdapter(context,
+                R.layout.action_picker_item,
+                actionItems.toArray(new ActionItem[0]));
+
+        ListView listView = new ListView(context);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object tag = view.getTag();
+                if (tag instanceof ActionItem) {
+                    if (onActionItemSelectedListener != null) {
+                        onActionItemSelectedListener.onSelected((ActionItem) tag);
+                    }
+                    alertDialog.dismiss();
+                }
+            }
+        });
+        alertDialog.setView(listView);
         return alertDialog;
     }
 

@@ -14,6 +14,7 @@
     <string name="action_open_in_browser">Open in %1$s</string>
     <string name="action_upgrade_to_pro">★Upgrade to Pro★</string>
     <string name="action_share">Share</string>
+    <string name="share_via">Share via...</string>
 
     <string name="pick_default_app">Select default app</string>
     <string name="default_browser_set">Link Bubble has been set as the default browser.</string>
