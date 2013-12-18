@@ -263,7 +263,9 @@ public class ContentView extends LinearLayout {
         mToolbarLayout = (LinearLayout) inflate(mContext, R.layout.content_toolbar, null);
         mTitleTextView = (CondensedTextView) mToolbarLayout.findViewById(R.id.title_text);
         mUrlTextView = (CondensedTextView) mToolbarLayout.findViewById(R.id.url_text);
+
         mShareButton = (ContentViewButton)mToolbarLayout.findViewById(R.id.share_button);
+        mShareButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_share));
         mShareButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -286,6 +288,7 @@ public class ContentView extends LinearLayout {
         });
 
         mOverflowButton = (ContentViewButton)mToolbarLayout.findViewById(R.id.overflow_button);
+        mOverflowButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_overflow));
         mOverflowButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

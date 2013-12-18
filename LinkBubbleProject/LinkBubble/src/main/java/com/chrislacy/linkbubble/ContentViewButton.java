@@ -2,15 +2,22 @@ package com.chrislacy.linkbubble;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 public class ContentViewButton extends FrameLayout {
 
     boolean mIsTouched;
+    private int mMaxIconSize;
+    private ImageView mImageView;
 
     static final int sTouchedColor = 0x555d5d5e;
 
@@ -26,6 +33,10 @@ public class ContentViewButton extends FrameLayout {
         super(context, attrs, defStyle);
 
         setOnTouchListener(mButtonOnTouchListener);
+
+        mImageView = new ImageView(context);
+        mImageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView(mImageView);
     }
 
     private OnTouchListener mButtonOnTouchListener = new OnTouchListener() {
@@ -48,20 +59,53 @@ public class ContentViewButton extends FrameLayout {
     void setIsTouched(boolean isTouched) {
 
         if (isTouched && mIsTouched != isTouched) {
-            if (getBackground() == null) {
-                //setBackgroundColor(sTouchedColor);
-            } else {
-                getBackground().setColorFilter(sTouchedColor, PorterDuff.Mode.DARKEN);
-            }
+            setBackgroundColor(sTouchedColor);
             invalidate();
         } else if (isTouched == false && mIsTouched != isTouched) {
-            //setBackgroundColor(0x00000000);
-            if (getBackground() != null) {
-                getBackground().clearColorFilter();
-            }
+            setBackgroundColor(0);
             invalidate();
         }
 
         mIsTouched = isTouched;
+    }
+
+    int getMaxIconSize() {
+        if (mMaxIconSize == 0) {
+            mMaxIconSize = getResources().getDimensionPixelSize(R.dimen.content_view_button_max_height);
+        }
+        return mMaxIconSize;
+    }
+
+    public void setImageDrawable(Drawable drawable) {
+
+        if (drawable instanceof BitmapDrawable) {
+            int maxIconSize = getMaxIconSize();
+
+            BitmapDrawable bitmapDrawable = (BitmapDrawable)drawable;
+            int width = bitmapDrawable.getBitmap().getWidth();
+            int height = bitmapDrawable.getBitmap().getHeight();
+            if (width > 0 && height > 0 && (width > maxIconSize || height > maxIconSize)) {
+                int newHeight;
+                int newWidth;
+                if (width > height) {
+                    newWidth = maxIconSize;
+                    newHeight = (int)((float)(height / width) * maxIconSize);
+                } else if (width < height) {
+                    newHeight = maxIconSize;
+                    newWidth = (int)((float)(width / height) * maxIconSize);
+                } else {
+                    newWidth = newHeight = maxIconSize;
+                }
+
+                try {
+                    Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmapDrawable.getBitmap(), newWidth, newHeight, true);
+                    drawable = new BitmapDrawable(getResources(), resizedBitmap);
+                } catch (java.lang.OutOfMemoryError ex) {
+
+                }
+            }
+        }
+
+        mImageView.setImageDrawable(drawable);
     }
 }

@@ -77,7 +77,7 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
             ContentView.AppForUrl appForUrl = appsForUrl.get(0);
             Drawable d = appForUrl.getIcon(getContext());
             if (d != null) {
-                setBackground(d);
+                setImageDrawable(d);
                 setVisibility(VISIBLE);
                 setTag(appForUrl);
                 return true;
