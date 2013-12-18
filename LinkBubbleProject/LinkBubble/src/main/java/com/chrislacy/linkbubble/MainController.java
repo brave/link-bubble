@@ -403,13 +403,12 @@ public class MainController implements Choreographer.FrameCallback {
 
                 @Override
                 public void onSharedLink(Bubble sender) {
-                    MainController mainController = MainController.get();
                     if (mBubbles.size() > 1) {
                         destroyBubble(sender, Config.BubbleAction.Destroy);
-                        switchState(mainController.STATE_AnimateToBubbleView);
+                        switchState(STATE_AnimateToBubbleView);
                     } else {
-                        mainController.STATE_KillBubble.init(sender);
-                        switchState(mainController.STATE_KillBubble);
+                        STATE_KillBubble.init(sender);
+                        switchState(STATE_KillBubble);
                     }
                 }
             });
@@ -445,7 +444,7 @@ public class MainController implements Choreographer.FrameCallback {
         @Override
         public void onAppChanged() {
             if (mCurrentState != null && mCurrentState instanceof State_AnimateToBubbleView == false) {
-                switchState(MainController.get().STATE_AnimateToBubbleView);
+                switchState(STATE_AnimateToBubbleView);
             }
         }
     };
