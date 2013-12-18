@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="content_toolbar_background">#ffefefef</color>
+    <color name="badge_background">#cccccc</color>
+    <color name="badge_text">#333333</color>
+    <!--<color name="badge_highlight">#aaaaaa</color>-->
+    <color name="badge_highlight">@color/badge_text</color>
 </resources>
 

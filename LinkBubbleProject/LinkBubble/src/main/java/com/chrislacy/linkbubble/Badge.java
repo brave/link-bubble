@@ -2,6 +2,7 @@ package com.chrislacy.linkbubble;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.view.Gravity;
 import android.widget.TextView;
 
 /**
@@ -15,9 +16,9 @@ public class Badge extends TextView {
         super(context);
 
         setBackgroundResource(R.drawable.badge_shape);
-        setTextColor(0xffffffff);
+        setTextColor(getResources().getColor(R.color.badge_text));
         setTypeface(null, Typeface.BOLD);
-        setPadding(Config.dpToPx(6), 0, Config.dpToPx(6), 0);
+        setPadding(Config.dpToPx(5), 0, Config.dpToPx(5), Config.dpToPx(1));
     }
 
     public void show() {
