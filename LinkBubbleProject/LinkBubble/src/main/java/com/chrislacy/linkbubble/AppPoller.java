@@ -22,7 +22,7 @@ public class AppPoller {
 
     private Context mContext;
     private AppPollerListener mAppPollingListener;
-    private String mCurrentAppPackgeName;
+    private String mCurrentAppFlatComponentName;
     private boolean mPolling = false;
 
     AppPoller(Context context) {
@@ -34,10 +34,12 @@ public class AppPoller {
     }
 
     void beginAppPolling() {
-        ActivityManager am = (ActivityManager)mContext.getSystemService(Activity.ACTIVITY_SERVICE);
-        ComponentName componentName = am.getRunningTasks(1).get(0).topActivity;
-        mCurrentAppPackgeName = componentName.getPackageName();
-        Log.d(TAG, "beginAppPolling() - current app:" + mCurrentAppPackgeName);
+        if (mCurrentAppFlatComponentName == null) {
+            ActivityManager am = (ActivityManager)mContext.getSystemService(Activity.ACTIVITY_SERVICE);
+            ComponentName componentName = am.getRunningTasks(1).get(0).topActivity;
+            mCurrentAppFlatComponentName = componentName.flattenToShortString();
+            Log.d(TAG, "beginAppPolling() - current app:" + mCurrentAppFlatComponentName);
+        }
 
         if (mPolling == false) {
             mHandler.sendEmptyMessageDelayed(ACTION_POLL_CURRENT_APP, LOOP_TIME);
@@ -48,6 +50,7 @@ public class AppPoller {
     void endAppPolling() {
         mHandler.removeMessages(ACTION_POLL_CURRENT_APP);
         mPolling = false;
+        mCurrentAppFlatComponentName = null;
     }
 
     private final Handler mHandler = new Handler() {
@@ -60,15 +63,15 @@ public class AppPoller {
 
                     ActivityManager am = (ActivityManager)mContext.getSystemService(Activity.ACTIVITY_SERVICE);
                     ComponentName componentName = am.getRunningTasks(1).get(0).topActivity;
-                    String currentPackageName = componentName.getPackageName();
-                    if (currentPackageName != null
-                            && mCurrentAppPackgeName != null
-                            && !currentPackageName.equals(mCurrentAppPackgeName)) {
-                        Log.d(TAG, "current app changed from " + mCurrentAppPackgeName + " to " + currentPackageName);
+                    String currentAppFlatComponentName = componentName.flattenToShortString();
+                    if (currentAppFlatComponentName != null
+                            && mCurrentAppFlatComponentName != null
+                            && !currentAppFlatComponentName.equals(mCurrentAppFlatComponentName)) {
+                        Log.d(TAG, "current app changed from " + mCurrentAppFlatComponentName + " to " + currentAppFlatComponentName);
+                        mCurrentAppFlatComponentName = currentAppFlatComponentName;
                         if (mAppPollingListener != null) {
                             mAppPollingListener.onAppChanged();
                         }
-                        mCurrentAppPackgeName = currentPackageName;
                     } else {
                         mHandler.sendEmptyMessageDelayed(ACTION_POLL_CURRENT_APP, LOOP_TIME);
                     }
