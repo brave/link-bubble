@@ -53,18 +53,8 @@ public class Settings {
     private static final String DEFAULT_APPS_MAP_KEY_HOST = "host";
     private static final String DEFAULT_APPS_MAP_KEY_COMPONENT = "component";
 
-    private static final int MAX_RECENT_BUBBLES = 10;
-
     public interface ConsumeBubblesChangedEventHandler {
         public void onConsumeBubblesChanged();
-    }
-
-
-    public static class RecentBubblesChangedEvent {
-        public RecentBubblesChangedEvent(Vector<RecentBubbleInfo> bi) {
-            mBubbleInfo = bi;
-        }
-        Vector<RecentBubbleInfo> mBubbleInfo;
     }
 
     /*
@@ -533,79 +523,5 @@ public class Settings {
         }
 
         return null;
-    }
-
-    public static class RecentBubbleInfo {
-        public RecentBubbleInfo(String url, String title, String date) {
-            mUrl = url != null ? url : "";
-            mTitle = title != null ? title : "";
-            mDate = date != null ? date : "";
-        }
-        public String mUrl;
-        public String mTitle;
-        public String mDate;
-    }
-
-    private static String getUrlKey(int i) {
-        return "recent_bubbble_url_" + i;
-    }
-    private static String getTitleKey(int i) {
-        return "recent_bubbble_title_" + i;
-    }
-    private static String getDateKey(int i) {
-        return "recent_bubbble_date_" + i;
-    }
-
-    Vector<RecentBubbleInfo> getRecentBubbles() {
-        Vector<RecentBubbleInfo> items = new Vector<RecentBubbleInfo>();
-        for (int i=0 ; i < MAX_RECENT_BUBBLES ; ++i) {
-            String url = mSharedPreferences.getString(getUrlKey(i), null);
-            String title = mSharedPreferences.getString(getTitleKey(i), null);
-            String date = mSharedPreferences.getString(getDateKey(i), null);
-            if (url != null) {
-                items.add(new RecentBubbleInfo(url, title, date));
-            }
-        }
-        return items;
-    }
-
-    private void writeRecentBubbles(Vector<RecentBubbleInfo> bubbles) {
-        Util.Assert(bubbles.size() <= MAX_RECENT_BUBBLES);
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-
-        for (int i=0 ; i < MAX_RECENT_BUBBLES ; ++i) {
-            String urlKey = getUrlKey(i);
-            String titleKey = getTitleKey(i);
-            String dateKey = getDateKey(i);
-            if (i < bubbles.size()) {
-                RecentBubbleInfo bi = bubbles.get(i);
-
-                editor.putString(urlKey, bi.mUrl);
-                editor.putString(titleKey, bi.mTitle);
-                editor.putString(dateKey, bi.mDate);
-            } else {
-                editor.remove(urlKey);
-                editor.remove(titleKey);
-                editor.remove(dateKey);
-            }
-        }
-
-        editor.commit();
-    }
-
-
-
-
-    public void addRecentBubble(String url, String title, String date) {
-        Vector<RecentBubbleInfo> recentBubbles = getRecentBubbles();
-        if (recentBubbles.size() == MAX_RECENT_BUBBLES) {
-            recentBubbles.removeElementAt(MAX_RECENT_BUBBLES-1);
-        }
-        recentBubbles.insertElementAt(new RecentBubbleInfo(url, title, date), 0);
-        writeRecentBubbles(recentBubbles);
-
-        MainApplication app = (MainApplication) mContext.getApplicationContext();
-        Bus bus = app.getBus();
-        bus.post(new RecentBubblesChangedEvent(recentBubbles));
     }
 }

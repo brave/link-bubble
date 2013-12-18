@@ -15,6 +15,7 @@ import com.squareup.otto.Bus;
 public class MainApplication extends Application {
 
     private Bus mBus;
+    MainDatabaseHelper mDatabaseHelper;
 
     @Override
     public void onCreate() {
@@ -23,6 +24,8 @@ public class MainApplication extends Application {
         Settings.initModule(this);
 
         mBus = new Bus();
+
+        mDatabaseHelper = new MainDatabaseHelper(this);
     }
 
     public Bus getBus() {

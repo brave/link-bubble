@@ -39,6 +39,7 @@ import com.google.android.apps.dashclock.ui.SwipeDismissListViewTouchListener;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 public class HomeActivity extends Activity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
@@ -93,12 +94,14 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         mPlaceHolderView = getLayoutInflater().inflate(R.layout.view_home_header, mListView, false);
         mListView.addHeaderView(mPlaceHolderView);
 
-        Vector<Settings.RecentBubbleInfo> recentBubbles = Settings.get().getRecentBubbles();
-        if (recentBubbles == null || recentBubbles.size() == 0) {
+        MainDatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
+
+        List<LinkHistoryRecord> linkHistoryRecords = databaseHelper.getAllLinkHistoryRecords();
+        if (linkHistoryRecords == null || linkHistoryRecords.size() == 0) {
             return;
         }
 
-        mHistoryAdapter = new HistoryAdapter(this, R.layout.history_item, recentBubbles.toArray(new Settings.RecentBubbleInfo[0]));
+        mHistoryAdapter = new HistoryAdapter(this, R.layout.history_item, linkHistoryRecords.toArray(new LinkHistoryRecord[0]));
 
         mListView.setAdapter(mHistoryAdapter);
 
@@ -259,23 +262,18 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         return super.onOptionsItemSelected(item);
     }
 
-    @Subscribe
-    public void onRecentBubblesChanged(Settings.RecentBubblesChangedEvent event) {
-        //(ArrayAdapter<String>)(mListView.getAdapter()).no;
-    }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (view.getTag() instanceof Settings.RecentBubbleInfo) {
-            Settings.RecentBubbleInfo recentBubbleInfo = (Settings.RecentBubbleInfo)view.getTag();
-            MainApplication.openLink(this, recentBubbleInfo.mUrl, true);
+        if (view.getTag() instanceof LinkHistoryRecord) {
+            LinkHistoryRecord linkHistoryRecord = (LinkHistoryRecord)view.getTag();
+            MainApplication.openLink(this, linkHistoryRecord.getUrl(), true);
         }
     }
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        if (view.getTag() instanceof Settings.RecentBubbleInfo) {
-            final Settings.RecentBubbleInfo recentBubbleInfo = (Settings.RecentBubbleInfo)view.getTag();
+        if (view.getTag() instanceof LinkHistoryRecord) {
+            final LinkHistoryRecord linkHistoryRecord = (LinkHistoryRecord)view.getTag();
             Resources resources = getResources();
             
             PopupMenu popupMenu;
@@ -300,7 +298,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                     switch (item.getItemId()) {
                         case R.id.item_open_in_browser: {
                             Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.setData(Uri.parse(recentBubbleInfo.mUrl));
+                            intent.setData(Uri.parse(linkHistoryRecord.getUrl()));
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             MainApplication.loadInBrowser(HomeActivity.this, intent, true);
                             return true;
@@ -314,7 +312,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                                     intent.setType("text/plain");
                                     intent.setClassName(actionItem.mPackageName, actionItem.mActivityClassName);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    intent.putExtra(Intent.EXTRA_TEXT, recentBubbleInfo.mUrl);
+                                    intent.putExtra(Intent.EXTRA_TEXT, linkHistoryRecord.getUrl());
                                     startActivity(intent);
                                 }
                             });
@@ -329,5 +327,11 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         }
 
         return false;
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onLinkHistoryRecordChangedEvent(LinkHistoryRecord.ChangedEvent event) {
+        mHistoryAdapter.notifyDataSetChanged();
     }
 }

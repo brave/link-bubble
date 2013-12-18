@@ -15,6 +15,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import com.squareup.otto.Bus;
 
 import java.io.Console;
 import java.util.Vector;
@@ -289,10 +290,12 @@ public class Bubble extends RelativeLayout {
                 setBackgroundResource(R.drawable.circle_grey);
 
                 if (mRecordHistory && info != null && info.url != null) {
-                    Time now = new Time();
-                    now.setToNow();
-                    String nowString = now.format("%H:%M, %d %b %Y");
-                    Settings.get().addRecentBubble(info.url, info.title, nowString);
+                    LinkHistoryRecord linkHistoryRecord = new LinkHistoryRecord(info.title, info.url, System.currentTimeMillis());
+
+                    MainApplication app = (MainApplication) getContext().getApplicationContext();
+
+                    app.mDatabaseHelper.addLinkHistoryRecord(linkHistoryRecord);
+                    app.getBus().post(new LinkHistoryRecord.ChangedEvent(linkHistoryRecord));
                 }
 
                 MainController.get().onPageLoaded(Bubble.this);

@@ -7,13 +7,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class HistoryAdapter extends ArrayAdapter<Settings.RecentBubbleInfo> {
+public class HistoryAdapter extends ArrayAdapter<LinkHistoryRecord> {
 
     Context mContext;
     int mLayoutResourceId;
-    Settings.RecentBubbleInfo mData[] = null;
+    LinkHistoryRecord mData[] = null;
 
-    public HistoryAdapter(Context context, int layoutResourceId, Settings.RecentBubbleInfo[] data) {
+    public HistoryAdapter(Context context, int layoutResourceId, LinkHistoryRecord[] data) {
         super(context, layoutResourceId, data);
         mLayoutResourceId = layoutResourceId;
         mContext = context;
@@ -28,15 +28,15 @@ public class HistoryAdapter extends ArrayAdapter<Settings.RecentBubbleInfo> {
             convertView = inflater.inflate(mLayoutResourceId, parent, false);
         }
 
-        Settings.RecentBubbleInfo recentBubbleInfo = mData[position];
+        LinkHistoryRecord linkHistoryRecord = mData[position];
 
         TextView title = (TextView) convertView.findViewById(R.id.page_title);
-        title.setText(recentBubbleInfo.mTitle);
+        title.setText(linkHistoryRecord.getTitle());
 
         TextView url = (TextView) convertView.findViewById(R.id.page_url);
-        url.setText(recentBubbleInfo.mUrl);
+        url.setText(linkHistoryRecord.getUrl());
 
-        convertView.setTag(recentBubbleInfo);
+        convertView.setTag(linkHistoryRecord);
 
         return convertView;
     }
