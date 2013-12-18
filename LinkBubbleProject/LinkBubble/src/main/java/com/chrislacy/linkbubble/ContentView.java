@@ -474,17 +474,15 @@ public class ContentView extends LinearLayout {
         mWebView.setOnKeyListener(new OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(event.getAction() == KeyEvent.ACTION_DOWN)
-                {
+                if(event.getAction() == KeyEvent.ACTION_DOWN) {
                     WebView webView = (WebView) v;
-
-                    switch(keyCode)
-                    {
+                    switch(keyCode) {
                         case KeyEvent.KEYCODE_BACK:
-                            if(webView.canGoBack())
-                            {
+                            if(webView.canGoBack()) {
                                 webView.goBack();
                                 return true;
+                            } else {
+                                mEventHandler.onSharedLink();
                             }
                             break;
                     }
