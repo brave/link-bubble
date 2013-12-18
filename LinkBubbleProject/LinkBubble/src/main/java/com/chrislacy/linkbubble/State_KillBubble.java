@@ -50,6 +50,8 @@ public class State_KillBubble extends ControllerState {
         mTime = 0.0f;
         mPeriod = 0.3f;
         mCanvas.setContentViewTranslation(0.0f);
+
+        MainController.endAppPolling();
     }
 
     @Override

@@ -77,6 +77,7 @@ public class MainController implements Choreographer.FrameCallback {
     private ControllerState mCurrentState;
     private EventHandler mEventHandler;
     private int mBubblesLoaded;
+    private AppPoller mAppPoller;
 
     private Context mContext;
     private Choreographer mChoreographer;
@@ -168,6 +169,9 @@ public class MainController implements Choreographer.FrameCallback {
         sMainController = this;
         mContext = context;
         mEventHandler = eh;
+
+        mAppPoller = new AppPoller(context);
+        mAppPoller.setListener(mAppPollerListener);
 
         /*
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -413,6 +417,23 @@ public class MainController implements Choreographer.FrameCallback {
             }
         }
     }
+
+    static void beginAppPolling() {
+        sMainController.mAppPoller.beginAppPolling();
+    }
+
+    static void endAppPolling() {
+        sMainController.mAppPoller.endAppPolling();
+    }
+
+    AppPoller.AppPollerListener mAppPollerListener = new AppPoller.AppPollerListener() {
+        @Override
+        public void onAppChanged() {
+            if (mCurrentState != null && mCurrentState instanceof State_AnimateToBubbleView == false) {
+                switchState(MainController.STATE_AnimateToBubbleView);
+            }
+        }
+    };
 
     @SuppressWarnings("unused")
     @Subscribe

@@ -54,6 +54,8 @@ public class State_AnimateToBubbleView extends ControllerState {
         }
 
         mCanvas.setContentViewTranslation(0.0f);
+
+        MainController.endAppPolling();
     }
 
     @Override

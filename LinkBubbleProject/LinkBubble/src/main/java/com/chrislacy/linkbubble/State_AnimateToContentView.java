@@ -70,6 +70,8 @@ public class State_AnimateToContentView extends ControllerState {
 
         mCanvas.showContentView();
         mCanvas.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
+
+        MainController.beginAppPolling();
     }
 
     @Override
