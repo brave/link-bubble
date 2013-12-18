@@ -2,6 +2,7 @@ package com.chrislacy.linkbubble;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -275,20 +276,24 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         if (view.getTag() instanceof Settings.RecentBubbleInfo) {
             final Settings.RecentBubbleInfo recentBubbleInfo = (Settings.RecentBubbleInfo)view.getTag();
+            Resources resources = getResources();
+            
             PopupMenu popupMenu;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 popupMenu = new PopupMenu(this, view, Gravity.RIGHT);
             } else {
                 popupMenu = new PopupMenu(this, view);
             }
-            Resources resources = getResources();
-            popupMenu.getMenu().add(Menu.NONE, R.id.item_share, Menu.NONE,
-                    resources.getString(R.string.action_share));
+
             String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
             if (defaultBrowserLabel != null) {
                 popupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
                         String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
             }
+
+            popupMenu.getMenu().add(Menu.NONE, R.id.item_share, Menu.NONE,
+                    resources.getString(R.string.action_share));
+
             popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
@@ -301,8 +306,19 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                             return true;
                         }
 
-                        case R.id.share_button: {
-
+                        case R.id.item_share: {
+                            AlertDialog alertDialog = ActionItem.getShareAlert(HomeActivity.this, new ActionItem.OnActionItemSelectedListener() {
+                                @Override
+                                public void onSelected(ActionItem actionItem) {
+                                    Intent intent = new Intent(Intent.ACTION_SEND);
+                                    intent.setType("text/plain");
+                                    intent.setClassName(actionItem.mPackageName, actionItem.mActivityClassName);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.putExtra(Intent.EXTRA_TEXT, recentBubbleInfo.mUrl);
+                                    startActivity(intent);
+                                }
+                            });
+                            alertDialog.show();
                         }
                     }
                     return false;
