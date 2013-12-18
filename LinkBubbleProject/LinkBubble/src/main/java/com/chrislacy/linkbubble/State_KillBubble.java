@@ -10,41 +10,26 @@ import java.util.Vector;
  */
 public class State_KillBubble extends ControllerState {
 
-    private class BubbleInfo {
-        public Bubble mBubble;
-        public float mPosX;
-        public float mPosY;
-        public float mDistanceX;
-        public float mDistanceY;
-        public float mTargetX;
-        public float mTargetY;
-    }
-
     private Canvas mCanvas;
     private float mTime;
     private float mPeriod;
-    private BubbleInfo mBubbleInfo;
+
+    private Bubble mBubble;
+    private float mBubbleY0;
 
     public State_KillBubble(Canvas canvas) {
         mCanvas = canvas;
     }
 
     public void init(Bubble bubble) {
-        Util.Assert(mBubbleInfo == null);
-        mBubbleInfo = new BubbleInfo();
-        mBubbleInfo.mBubble = bubble;
-        mBubbleInfo.mPosX = (float) bubble.getXPos();
-        mBubbleInfo.mPosY = (float) bubble.getYPos();
-
-        mBubbleInfo.mTargetX = mBubbleInfo.mPosX;
-        mBubbleInfo.mTargetY = Config.mScreenHeight + Config.mBubbleHeight;
-        mBubbleInfo.mDistanceX = mBubbleInfo.mTargetX - mBubbleInfo.mPosX;
-        mBubbleInfo.mDistanceY = mBubbleInfo.mTargetY - mBubbleInfo.mPosY;
+        Util.Assert(mBubble == null);
+        mBubble = bubble;
+        mBubbleY0 = mBubble.getYPos();
     }
 
     @Override
     public void OnEnterState() {
-        Util.Assert(mBubbleInfo != null);
+        Util.Assert(mBubble != null);
         mCanvas.fadeOutTargets();
         mCanvas.getContentView().onAnimateOffscreen();
         mTime = 0.0f;
@@ -59,17 +44,11 @@ public class State_KillBubble extends ControllerState {
         float t = mTime / mPeriod;
         mTime += dt;
 
-        float x = mBubbleInfo.mPosX + mBubbleInfo.mDistanceX * t;
-        float y = mBubbleInfo.mPosY + mBubbleInfo.mDistanceY * t;
+        float dy = t * Config.mScreenHeight;
 
-        if (mTime >= mPeriod) {
-            x = mBubbleInfo.mTargetX;
-            y = mBubbleInfo.mTargetY;
-        }
+        mBubble.setExactPos(mBubble.getXPos(), (int) (dy + mBubbleY0));
 
-        mBubbleInfo.mBubble.setExactPos((int) x, (int) y);
-
-        mCanvas.setContentViewTranslation(t * (Config.mScreenHeight - Config.mContentOffset));
+        mCanvas.setContentViewTranslation(dy);
 
         if (mTime >= mPeriod) {
             MainController mainController = MainController.get();
@@ -84,8 +63,8 @@ public class State_KillBubble extends ControllerState {
     public void OnExitState() {
         mCanvas.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
         mCanvas.setContentView(null);
-        MainController.get().destroyBubble(mBubbleInfo.mBubble, Config.BubbleAction.Destroy);
-        mBubbleInfo = null;
+        MainController.get().destroyBubble(mBubble, Config.BubbleAction.Destroy);
+        mBubble = null;
     }
 
     @Override
