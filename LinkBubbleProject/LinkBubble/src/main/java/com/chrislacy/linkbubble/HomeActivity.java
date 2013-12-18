@@ -30,6 +30,7 @@ import com.flavienlaurent.notboringactionbar.KenBurnsView;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class HomeActivity extends Activity {
 
@@ -79,13 +80,16 @@ public class HomeActivity extends Activity {
     }
 
     private void setupListView() {
-        ArrayList<String> FAKES = new ArrayList<String>();
-        for (int i = 0; i < 1000; i++) {
-            FAKES.add("entry " + i);
-        }
         mPlaceHolderView = getLayoutInflater().inflate(R.layout.view_home_header, mListView, false);
         mListView.addHeaderView(mPlaceHolderView);
-        mListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, FAKES));
+
+        Vector<Settings.RecentBubbleInfo> recentBubbles = Settings.get().getRecentBubbles();
+        if (recentBubbles == null || recentBubbles.size() == 0) {
+            return;
+        }
+
+        mListView.setAdapter(new HistoryAdapter(this, R.layout.history_item,
+                                                recentBubbles.toArray(new Settings.RecentBubbleInfo[0])));
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {

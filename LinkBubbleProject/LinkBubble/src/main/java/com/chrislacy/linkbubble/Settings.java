@@ -556,13 +556,12 @@ public class Settings {
         return "recent_bubbble_date_" + i;
     }
 
-    private static Vector<RecentBubbleInfo> readRecentBubbles(Context context) {
+    Vector<RecentBubbleInfo> getRecentBubbles() {
         Vector<RecentBubbleInfo> items = new Vector<RecentBubbleInfo>();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         for (int i=0 ; i < MAX_RECENT_BUBBLES ; ++i) {
-            String url = prefs.getString(getUrlKey(i), null);
-            String title = prefs.getString(getTitleKey(i), null);
-            String date = prefs.getString(getDateKey(i), null);
+            String url = mSharedPreferences.getString(getUrlKey(i), null);
+            String title = mSharedPreferences.getString(getTitleKey(i), null);
+            String date = mSharedPreferences.getString(getDateKey(i), null);
             if (url != null) {
                 items.add(new RecentBubbleInfo(url, title, date));
             }
@@ -570,10 +569,9 @@ public class Settings {
         return items;
     }
 
-    private static void writeRecentBubbles(Context context, Vector<RecentBubbleInfo> bubbles) {
+    private void writeRecentBubbles(Vector<RecentBubbleInfo> bubbles) {
         Util.Assert(bubbles.size() <= MAX_RECENT_BUBBLES);
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = prefs.edit();
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
 
         for (int i=0 ; i < MAX_RECENT_BUBBLES ; ++i) {
             String urlKey = getUrlKey(i);
@@ -598,15 +596,15 @@ public class Settings {
 
 
 
-    public void addRecentBubble(Context context, String url, String title, String date) {
-        Vector<RecentBubbleInfo> recentBubbles = readRecentBubbles(context);
+    public void addRecentBubble(String url, String title, String date) {
+        Vector<RecentBubbleInfo> recentBubbles = getRecentBubbles();
         if (recentBubbles.size() == MAX_RECENT_BUBBLES) {
             recentBubbles.removeElementAt(MAX_RECENT_BUBBLES-1);
         }
         recentBubbles.insertElementAt(new RecentBubbleInfo(url, title, date), 0);
-        writeRecentBubbles(context, recentBubbles);
+        writeRecentBubbles(recentBubbles);
 
-        MainApplication app = (MainApplication) context.getApplicationContext();
+        MainApplication app = (MainApplication) mContext.getApplicationContext();
         Bus bus = app.getBus();
         bus.post(new RecentBubblesChangedEvent(recentBubbles));
     }
