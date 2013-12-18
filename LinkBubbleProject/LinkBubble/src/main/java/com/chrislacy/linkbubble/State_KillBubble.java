@@ -51,7 +51,7 @@ public class State_KillBubble extends ControllerState {
         mPeriod = 0.3f;
         mCanvas.setContentViewTranslation(0.0f);
 
-        MainController.endAppPolling();
+        MainController.get().endAppPolling();
     }
 
     @Override
@@ -72,8 +72,9 @@ public class State_KillBubble extends ControllerState {
         mCanvas.setContentViewTranslation(t * (Config.mScreenHeight - Config.mContentOffset));
 
         if (mTime >= mPeriod) {
-            MainController.switchState(MainController.STATE_BubbleView);
-            MainController.hideContentActivity();
+            MainController mainController = MainController.get();
+            mainController.switchState(mainController.STATE_BubbleView);
+            mainController.hideContentActivity();
         }
 
         return true;
@@ -83,7 +84,7 @@ public class State_KillBubble extends ControllerState {
     public void OnExitState() {
         mCanvas.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
         mCanvas.setContentView(null);
-        MainController.destroyBubble(mBubbleInfo.mBubble, Config.BubbleAction.Destroy);
+        MainController.get().destroyBubble(mBubbleInfo.mBubble, Config.BubbleAction.Destroy);
         mBubbleInfo = null;
     }
 
@@ -111,7 +112,8 @@ public class State_KillBubble extends ControllerState {
 
     @Override
     public boolean OnOrientationChanged() {
-        MainController.switchState(MainController.STATE_BubbleView);
+        MainController mainController = MainController.get();
+        mainController.switchState(mainController.STATE_BubbleView);
         return false;
     }
 

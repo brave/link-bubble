@@ -187,7 +187,7 @@ public class Bubble extends RelativeLayout {
             mAnimPeriod = t;
             mAnimTime = 0.0f;
 
-            MainController.scheduleUpdate();
+            MainController.get().scheduleUpdate();
         }
     }
 
@@ -240,7 +240,7 @@ public class Bubble extends RelativeLayout {
             mWindowManagerParams.y = y;
             mWindowManager.updateViewLayout(this, mWindowManagerParams);
 
-            MainController.scheduleUpdate();
+            MainController.get().scheduleUpdate();
         }
     }
 
@@ -295,7 +295,7 @@ public class Bubble extends RelativeLayout {
                     SettingsFragment.addRecentBubble(context, info.url, info.title, nowString);
                 }
 
-                MainController.onPageLoaded(Bubble.this);
+                MainController.get().onPageLoaded(Bubble.this);
             }
 
             @Override

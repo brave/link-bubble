@@ -56,7 +56,7 @@ public class BubbleTarget extends RelativeLayout {
             mAnimPeriod = t;
             mAnimTime = 0.0f;
 
-            MainController.scheduleUpdate();
+            MainController.get().scheduleUpdate();
         }
     }
 
@@ -159,12 +159,12 @@ public class BubbleTarget extends RelativeLayout {
 
     public void fadeIn() {
         mTargetAlpha = mMaxAlpha;
-        MainController.scheduleUpdate();
+        MainController.get().scheduleUpdate();
     }
 
     public void fadeOut() {
         mTargetAlpha = 0.0f;
-        MainController.scheduleUpdate();
+        MainController.get().scheduleUpdate();
     }
 
     public void update(float dt, Bubble bubble) {
@@ -234,15 +234,15 @@ public class BubbleTarget extends RelativeLayout {
             mCanvasLayoutParams.topMargin = y;
             mCanvas.updateViewLayout(this, mCanvasLayoutParams);
 
-            MainController.scheduleUpdate();
+            MainController.get().scheduleUpdate();
         }
 
         if (mCurrentAlpha < mTargetAlpha) {
             mCurrentAlpha = Util.clamp(0.0f, mCurrentAlpha + mAlphaDelta * dt, mMaxAlpha);
-            MainController.scheduleUpdate();
+            MainController.get().scheduleUpdate();
         } else if (mCurrentAlpha > mTargetAlpha) {
             mCurrentAlpha = Util.clamp(0.0f, mCurrentAlpha - mAlphaDelta * dt, mMaxAlpha);
-            MainController.scheduleUpdate();
+            MainController.get().scheduleUpdate();
         }
         Util.Assert(mCurrentAlpha >= 0.0f && mCurrentAlpha <= 1.0f);
         setAlpha(mCurrentAlpha);

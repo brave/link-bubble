@@ -52,10 +52,11 @@ public class State_AnimateToContentView extends ControllerState {
         mBubblePeriod = 0.3f;
         mContentPeriod = 0.3f * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
 
-        int bubbleCount = MainController.getBubbleCount();
+        MainController mainController = MainController.get();
+        int bubbleCount = mainController.getBubbleCount();
         for (int i=0 ; i < bubbleCount ; ++i) {
             BubbleInfo bi = new BubbleInfo();
-            Bubble b = MainController.getBubble(i);
+            Bubble b = mainController.getBubble(i);
             b.setVisibility(View.VISIBLE);
 
             bi.mPosX = (float) b.getXPos();
@@ -71,7 +72,7 @@ public class State_AnimateToContentView extends ControllerState {
         mCanvas.showContentView();
         mCanvas.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
 
-        MainController.beginAppPolling();
+        mainController.beginAppPolling();
     }
 
     @Override
@@ -80,10 +81,11 @@ public class State_AnimateToContentView extends ControllerState {
         //Log.e("GapTech", "t=" + mTime / mBubblePeriod + ", f=" + f);
         mTime += dt;
 
-        int bubbleCount = MainController.getBubbleCount();
+        MainController mainController = MainController.get();
+        int bubbleCount = mainController.getBubbleCount();
         for (int i=0 ; i < bubbleCount ; ++i) {
             BubbleInfo bi = mBubbleInfo.get(i);
-            Bubble b = MainController.getBubble(i);
+            Bubble b = mainController.getBubble(i);
 
             float x = bi.mPosX + bi.mDistanceX * f;
             float y = bi.mPosY + bi.mDistanceY * f;
@@ -100,8 +102,8 @@ public class State_AnimateToContentView extends ControllerState {
         mCanvas.setContentViewTranslation(t * (Config.mScreenHeight - Config.mContentOffset));
 
         if (mTime >= mBubblePeriod && mTime >= mContentPeriod) {
-            MainController.STATE_ContentView.init(mSelectedBubble);
-            MainController.switchState(MainController.STATE_ContentView);
+            mainController.STATE_ContentView.init(mSelectedBubble);
+            mainController.switchState(mainController.STATE_ContentView);
         }
 
         return true;
@@ -138,8 +140,9 @@ public class State_AnimateToContentView extends ControllerState {
 
     @Override
     public boolean OnOrientationChanged() {
-        MainController.STATE_ContentView.init(mSelectedBubble);
-        MainController.switchState(MainController.STATE_ContentView);
+        MainController mainController = MainController.get();
+        mainController.STATE_ContentView.init(mSelectedBubble);
+        mainController.switchState(mainController.STATE_ContentView);
         return true;
     }
 

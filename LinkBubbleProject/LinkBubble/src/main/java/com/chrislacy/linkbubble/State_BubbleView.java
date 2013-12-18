@@ -32,10 +32,11 @@ public class State_BubbleView extends ControllerState {
         mBadge.show();
         mCanvas.fadeOut();
 
-        for (int i=0 ; i < MainController.getBubbleCount() ; ++i) {
-            Bubble b = MainController.getBubble(i);
+        MainController mainController = MainController.get();
+        for (int i=0 ; i < mainController.getBubbleCount() ; ++i) {
+            Bubble b = mainController.getBubble(i);
             int vis = View.VISIBLE;
-            if (i != MainController.getBubbleCount()-1)
+            if (i != mainController.getBubbleCount()-1)
                 vis = View.GONE;
             b.setVisibility(vis);
         }
@@ -60,15 +61,16 @@ public class State_BubbleView extends ControllerState {
 
     @Override
     public void OnExitState() {
-        MainController.setAllBubblePositions(mBubble);
+        MainController.get().setAllBubblePositions(mBubble);
     }
 
     @Override
     public void OnPageLoaded(Bubble bubble) {
         if (Settings.get().autoLoadContent()) {
             mBadge.hide();
-            MainController.STATE_AnimateToContentView.init(bubble);
-            MainController.switchState(MainController.STATE_AnimateToContentView);
+            MainController mainController = MainController.get();
+            mainController.STATE_AnimateToContentView.init(bubble);
+            mainController.switchState(mainController.STATE_AnimateToContentView);
         }
     }
 
@@ -83,7 +85,7 @@ public class State_BubbleView extends ControllerState {
         mTargetY = mInitialY;
         mDidMove = false;
 
-        MainController.scheduleUpdate();
+        MainController.get().scheduleUpdate();
         mTouchFrameCount = 0;
     }
 
@@ -109,6 +111,7 @@ public class State_BubbleView extends ControllerState {
         if (mTouchDown) {
             sender.clearTargetPos();
 
+            MainController mainController = MainController.get();
             if (mDidMove) {
                 mCanvas.fadeOut();
                 Canvas.TargetInfo ti = mBubble.getTargetInfo(mCanvas, sender.getXPos(), sender.getYPos());
@@ -116,24 +119,24 @@ public class State_BubbleView extends ControllerState {
                     float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
                     float threshold = Config.dpToPx(900.0f);
                     if (v > threshold) {
-                        MainController.STATE_Flick_BubbleView.init(sender, e.vx, e.vy);
-                        MainController.switchState(MainController.STATE_Flick_BubbleView);
-                        MainController.hideContentActivity();
+                        mainController.STATE_Flick_BubbleView.init(sender, e.vx, e.vy);
+                        mainController.switchState(mainController.STATE_Flick_BubbleView);
+                        mainController.hideContentActivity();
                     } else {
-                        MainController.STATE_SnapToEdge.init(sender);
-                        MainController.switchState(MainController.STATE_SnapToEdge);
+                        mainController.STATE_SnapToEdge.init(sender);
+                        mainController.switchState(mainController.STATE_SnapToEdge);
                     }
                 } else {
-                    if (MainController.destroyBubble(mBubble, ti.mAction)) {
-                        MainController.switchState(MainController.STATE_AnimateToBubbleView);
+                    if (mainController.destroyBubble(mBubble, ti.mAction)) {
+                        mainController.switchState(mainController.STATE_AnimateToBubbleView);
                     } else {
-                        MainController.switchState(MainController.STATE_BubbleView);
+                        mainController.switchState(mainController.STATE_BubbleView);
                     }
                 }
             } else {
                 mBadge.hide();
-                MainController.STATE_AnimateToContentView.init(sender);
-                MainController.switchState(MainController.STATE_AnimateToContentView);
+                mainController.STATE_AnimateToContentView.init(sender);
+                mainController.switchState(mainController.STATE_AnimateToContentView);
             }
 
             mBubble = null;

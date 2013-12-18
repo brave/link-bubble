@@ -115,7 +115,7 @@ public class Canvas extends RelativeLayout {
 
         int color = ((int)(180 * mCurrentAlpha) << 24);
         if (Config.USE_CONTENT_ACTIVITY) {
-            MainController.updateBackgroundColor(color);
+            MainController.get().updateBackgroundColor(color);
         } else {
             setBackgroundColor(color);
         }
@@ -150,12 +150,12 @@ public class Canvas extends RelativeLayout {
 
     public void fadeIn() {
         mTargetAlpha = mMaxAlpha;
-        MainController.scheduleUpdate();
+        MainController.get().scheduleUpdate();
     }
 
     public void fadeOut() {
         mTargetAlpha = 0.0f;
-        MainController.scheduleUpdate();
+        MainController.get().scheduleUpdate();
     }
 
     public void fadeInTargets() {
@@ -177,10 +177,10 @@ public class Canvas extends RelativeLayout {
     public void update(float dt, Bubble frontBubble) {
         if (mCurrentAlpha < mTargetAlpha) {
             mCurrentAlpha = Util.clamp(0.0f, mCurrentAlpha + mAlphaDelta * dt, mMaxAlpha);
-            MainController.scheduleUpdate();
+            MainController.get().scheduleUpdate();
         } else if (mCurrentAlpha > mTargetAlpha) {
             mCurrentAlpha = Util.clamp(0.0f, mCurrentAlpha - mAlphaDelta * dt, mMaxAlpha);
-            MainController.scheduleUpdate();
+            MainController.get().scheduleUpdate();
         }
         applyAlpha();
 

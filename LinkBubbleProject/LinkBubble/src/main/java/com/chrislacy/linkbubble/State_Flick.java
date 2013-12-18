@@ -87,6 +87,7 @@ public abstract class State_Flick extends ControllerState {
 
     @Override
     public boolean OnUpdate(float dt) {
+        MainController mainController = MainController.get();
         if (mTargetInfo == null) {
             float tf = mTime / mPeriod;
             float f = (mLinear ? mLinearInterpolator.getInterpolation(tf) : mOvershootInterpolator.getInterpolation(tf));
@@ -96,7 +97,6 @@ public abstract class State_Flick extends ControllerState {
             float y = mInitialY + (mTargetY - mInitialY) * f;
 
             Canvas.TargetInfo ti = mBubble.getTargetInfo(mCanvas, (int)x, (int) y);
-
             switch (ti.mAction) {
                 case Destroy:
                 case ConsumeRight:
@@ -114,15 +114,15 @@ public abstract class State_Flick extends ControllerState {
                             y = mTargetY;
 
                             if (isContentView()) {
-                                MainController.STATE_AnimateToContentView.init(b);
-                                MainController.switchState(MainController.STATE_AnimateToContentView);
+                                mainController.STATE_AnimateToContentView.init(b);
+                                mainController.switchState(mainController.STATE_AnimateToContentView);
                             } else if (x == Config.mBubbleSnapLeftX || x == Config.mBubbleSnapRightX) {
                                 Config.BUBBLE_HOME_X = mBubble.getXPos();
                                 Config.BUBBLE_HOME_Y = mBubble.getYPos();
-                                MainController.switchState(MainController.STATE_BubbleView);
+                                mainController.switchState(mainController.STATE_BubbleView);
                             } else {
-                                MainController.STATE_SnapToEdge.init(b);
-                                MainController.switchState(MainController.STATE_SnapToEdge);
+                                mainController.STATE_SnapToEdge.init(b);
+                                mainController.switchState(mainController.STATE_SnapToEdge);
                             }
                         }
                         b.setExactPos((int) x, (int) y);
@@ -130,15 +130,15 @@ public abstract class State_Flick extends ControllerState {
             }
         } else {
             if (mBubble.getXPos() == mTargetInfo.mTargetX && mBubble.getYPos() == mTargetInfo.mTargetY) {
-                if (MainController.destroyBubble(mBubble, mTargetInfo.mAction)) {
+                if (mainController.destroyBubble(mBubble, mTargetInfo.mAction)) {
                     if (isContentView()) {
-                        MainController.STATE_AnimateToContentView.init(MainController.getBubble(MainController.getBubbleCount()-1));
-                        MainController.switchState(MainController.STATE_AnimateToContentView);
+                        mainController.STATE_AnimateToContentView.init(mainController.getBubble(mainController.getBubbleCount()-1));
+                        mainController.switchState(mainController.STATE_AnimateToContentView);
                     } else {
-                        MainController.switchState(MainController.STATE_AnimateToBubbleView);
+                        mainController.switchState(mainController.STATE_AnimateToBubbleView);
                     }
                 } else {
-                    MainController.switchState(MainController.STATE_BubbleView);
+                    mainController.switchState(mainController.STATE_BubbleView);
                 }
             }
         }
@@ -149,7 +149,7 @@ public abstract class State_Flick extends ControllerState {
     @Override
     public void OnExitState() {
         if (!isContentView())
-            MainController.setAllBubblePositions(mBubble);
+            MainController.get().setAllBubblePositions(mBubble);
         mBubble = null;
     }
 
@@ -177,11 +177,12 @@ public abstract class State_Flick extends ControllerState {
 
     @Override
     public boolean OnOrientationChanged() {
+        MainController mainController = MainController.get();
         if (isContentView()) {
-            MainController.STATE_AnimateToContentView.init(mBubble);
-            MainController.switchState(MainController.STATE_AnimateToContentView);
+            mainController.STATE_AnimateToContentView.init(mBubble);
+            mainController.switchState(mainController.STATE_AnimateToContentView);
         } else {
-            MainController.switchState(MainController.STATE_BubbleView);
+            mainController.switchState(mainController.STATE_BubbleView);
         }
         return isContentView();
     }

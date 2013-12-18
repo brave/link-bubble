@@ -52,7 +52,8 @@ public class State_SnapToEdge extends ControllerState {
 
         if (mTime >= mPeriod) {
             x = Util.clamp(Config.mBubbleSnapLeftX, x, Config.mBubbleSnapRightX);
-            MainController.switchState(MainController.STATE_BubbleView);
+            MainController mainController = MainController.get();
+            mainController.switchState(mainController.STATE_BubbleView);
         }
 
         Config.BUBBLE_HOME_X = (int) x;
@@ -64,7 +65,7 @@ public class State_SnapToEdge extends ControllerState {
 
     @Override
     public void OnExitState() {
-        MainController.setAllBubblePositions(mBubble);
+        MainController.get().setAllBubblePositions(mBubble);
         mBubble = null;
     }
 
@@ -93,7 +94,8 @@ public class State_SnapToEdge extends ControllerState {
 
     @Override
     public boolean OnOrientationChanged() {
-        MainController.switchState(MainController.STATE_BubbleView);
+        MainController mainController = MainController.get();
+        mainController.switchState(mainController.STATE_BubbleView);
         return false;
     }
 

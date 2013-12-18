@@ -39,10 +39,11 @@ public class State_AnimateToBubbleView extends ControllerState {
         mTime = 0.0f;
         mPeriod = 0.3f;
 
-        int bubbleCount = MainController.getBubbleCount();
+        MainController mainController = MainController.get();
+        int bubbleCount = mainController.getBubbleCount();
         for (int i=0 ; i < bubbleCount ; ++i) {
             BubbleInfo bi = new BubbleInfo();
-            Bubble b = MainController.getBubble(i);
+            Bubble b = mainController.getBubble(i);
             bi.mPosX = (float) b.getXPos();
             bi.mPosY = (float) b.getYPos();
 
@@ -55,7 +56,7 @@ public class State_AnimateToBubbleView extends ControllerState {
 
         mCanvas.setContentViewTranslation(0.0f);
 
-        MainController.endAppPolling();
+        mainController.endAppPolling();
     }
 
     @Override
@@ -63,10 +64,11 @@ public class State_AnimateToBubbleView extends ControllerState {
         float f = mInterpolator.getInterpolation(mTime / mPeriod);
         mTime += dt;
 
-        int bubbleCount = MainController.getBubbleCount();
+        MainController mainController = MainController.get();
+        int bubbleCount = mainController.getBubbleCount();
         for (int i=0 ; i < bubbleCount ; ++i) {
             BubbleInfo bi = mBubbleInfo.get(i);
-            Bubble b = MainController.getBubble(i);
+            Bubble b = mainController.getBubble(i);
 
             float x = bi.mPosX + bi.mDistanceX * f;
             float y = bi.mPosY + bi.mDistanceY * f;
@@ -83,8 +85,8 @@ public class State_AnimateToBubbleView extends ControllerState {
         mCanvas.setContentViewTranslation(t * (Config.mScreenHeight - Config.mContentOffset));
 
         if (mTime >= mPeriod) {
-            MainController.switchState(MainController.STATE_BubbleView);
-            MainController.hideContentActivity();
+            mainController.switchState(mainController.STATE_BubbleView);
+            mainController.hideContentActivity();
         }
 
         return true;
@@ -121,7 +123,8 @@ public class State_AnimateToBubbleView extends ControllerState {
 
     @Override
     public boolean OnOrientationChanged() {
-        MainController.switchState(MainController.STATE_BubbleView);
+        MainController mainController = MainController.get();
+        mainController.switchState(mainController.STATE_BubbleView);
         return false;
     }
 

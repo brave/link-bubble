@@ -29,6 +29,13 @@ public class MainController implements Choreographer.FrameCallback {
 
     private static final String TAG = "MainController";
 
+    private static MainController sInstance;
+    private static ContentActivity sContentActivity;
+
+    public static MainController get() {
+        return sInstance;
+    }
+
     public interface EventHandler {
         public void onDestroy();
     }
@@ -63,16 +70,14 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    public static State_BubbleView STATE_BubbleView;
-    public static State_SnapToEdge STATE_SnapToEdge;
-    public static State_AnimateToContentView STATE_AnimateToContentView;
-    public static State_ContentView STATE_ContentView;
-    public static State_AnimateToBubbleView STATE_AnimateToBubbleView;
-    public static State_Flick_ContentView STATE_Flick_ContentView;
-    public static State_Flick_BubbleView STATE_Flick_BubbleView;
-    public static State_KillBubble STATE_KillBubble;
-
-    public static ContentActivity sContentActivity;
+    public State_BubbleView STATE_BubbleView;
+    public State_SnapToEdge STATE_SnapToEdge;
+    public State_AnimateToContentView STATE_AnimateToContentView;
+    public State_ContentView STATE_ContentView;
+    public State_AnimateToBubbleView STATE_AnimateToBubbleView;
+    public State_Flick_ContentView STATE_Flick_ContentView;
+    public State_Flick_BubbleView STATE_Flick_BubbleView;
+    public State_KillBubble STATE_KillBubble;
 
     private ControllerState mCurrentState;
     private EventHandler mEventHandler;
@@ -85,23 +90,22 @@ public class MainController implements Choreographer.FrameCallback {
     private static Vector<Bubble> mBubbles = new Vector<Bubble>();
     private Canvas mCanvas;
     private Badge mBadge;
-    private static MainController sMainController;
 
     //private TextView mTextView;
     //private WindowManager mWindowManager;
     //private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
     //private int mFrameNumber;
 
-    public static void onPageLoaded(Bubble bubble) {
-        sMainController.mCurrentState.OnPageLoaded(bubble);
+    public void onPageLoaded(Bubble bubble) {
+        mCurrentState.OnPageLoaded(bubble);
     }
 
-    public static boolean destroyBubble(Bubble bubble, Config.BubbleAction action) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(sMainController.mContext);
+    public boolean destroyBubble(Bubble bubble, Config.BubbleAction action) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         boolean debug = prefs.getBoolean("debug_flick", true);
 
         if (debug) {
-            Toast.makeText(sMainController.mContext, "HIT TARGET!", 400).show();
+            Toast.makeText(mContext, "HIT TARGET!", 400).show();
         } else {
             String url = bubble.getUrl();
 
@@ -117,27 +121,27 @@ public class MainController implements Choreographer.FrameCallback {
             if (mBubbles.size() > 0) {
                 int nextBubbleIndex = Util.clamp(0, bubbleIndex, mBubbles.size()-1);
                 Bubble nextBubble = mBubbles.get(nextBubbleIndex);
-                sMainController.mBadge.attach(nextBubble);
-                sMainController.mBadge.setBubbleCount(mBubbles.size());
+                mBadge.attach(nextBubble);
+                mBadge.setBubbleCount(mBubbles.size());
 
                 nextBubble.setVisibility(View.VISIBLE);
             } else {
                 hideContentActivity();
-                sMainController.mBadge.attach(null);
+                mBadge.attach(null);
 
                 Config.BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
                 Config.BUBBLE_HOME_Y = (int) (Config.mScreenHeight * 0.4f);
             }
 
-            sMainController.mCurrentState.OnDestroyBubble(bubble);
+            mCurrentState.OnDestroyBubble(bubble);
 
-            sMainController.doTargetAction(action, url);
+            doTargetAction(action, url);
         }
 
         return mBubbles.size() > 0;
     }
 
-    public static void setAllBubblePositions(Bubble ref) {
+    public void setAllBubblePositions(Bubble ref) {
         if (ref != null) {
             // Force all bubbles to be where the moved one ended up
             int bubbleCount = mBubbles.size();
@@ -165,8 +169,8 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public MainController(Context context, EventHandler eh) {
-        Util.Assert(sMainController == null);
-        sMainController = this;
+        Util.Assert(sInstance == null);
+        sInstance = this;
         mContext = context;
         mEventHandler = eh;
 
@@ -219,33 +223,31 @@ public class MainController implements Choreographer.FrameCallback {
         //mWindowManager.removeView(mTextView);
         mCanvas.destroy();
         mChoreographer.removeFrameCallback(this);
-        sMainController = null;
+        sInstance = null;
     }
 
-    public static void scheduleUpdate() {
-        Util.Assert(sMainController != null);
-        if (!sMainController.mUpdateScheduled) {
-            sMainController.mUpdateScheduled = true;
-            sMainController.mChoreographer.postFrameCallback(sMainController);
+    public void scheduleUpdate() {
+        if (!mUpdateScheduled) {
+            mUpdateScheduled = true;
+            mChoreographer.postFrameCallback(this);
         }
     }
 
-    public static void switchState(ControllerState newState) {
-        Util.Assert(sMainController != null);
+    public void switchState(ControllerState newState) {
         //Util.Assert(newState != sMainController.mCurrentState);
-        if (sMainController.mCurrentState != null) {
-            sMainController.mCurrentState.OnExitState();
+        if (mCurrentState != null) {
+            mCurrentState.OnExitState();
         }
-        sMainController.mCurrentState = newState;
-        sMainController.mCurrentState.OnEnterState();
+        mCurrentState = newState;
+        mCurrentState.OnEnterState();
         scheduleUpdate();
     }
 
-    public static int getBubbleCount() {
+    public int getBubbleCount() {
         return mBubbles.size();
     }
 
-    public static Bubble getBubble(int index) {
+    public Bubble getBubble(int index) {
         return mBubbles.get(index);
     }
 
@@ -274,11 +276,11 @@ public class MainController implements Choreographer.FrameCallback {
 
         if (mCurrentState == STATE_BubbleView && mBubbles.size() == 0 &&
                 mBubblesLoaded > 0 && !mUpdateScheduled) {
-            sMainController.mEventHandler.onDestroy();
+            mEventHandler.onDestroy();
         }
     }
 
-    static void updateBackgroundColor(int color) {
+    public void updateBackgroundColor(int color) {
         if (sContentActivity != null) {
             sContentActivity.updateBackgroundColor(color);
         }
@@ -292,7 +294,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    static void hideContentActivity() {
+    public void hideContentActivity() {
         if (sContentActivity != null) {
             long startTime = System.currentTimeMillis();
             sContentActivity.finish();
@@ -389,12 +391,13 @@ public class MainController implements Choreographer.FrameCallback {
 
                 @Override
                 public void onSharedLink(Bubble sender) {
+                    MainController mainController = MainController.get();
                     if (mBubbles.size() > 1) {
                         destroyBubble(sender, Config.BubbleAction.Destroy);
-                        switchState(MainController.STATE_AnimateToBubbleView);
+                        switchState(mainController.STATE_AnimateToBubbleView);
                     } else {
-                        MainController.STATE_KillBubble.init(sender);
-                        switchState(MainController.STATE_KillBubble);
+                        mainController.STATE_KillBubble.init(sender);
+                        switchState(mainController.STATE_KillBubble);
                     }
                 }
             });
@@ -418,19 +421,19 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    static void beginAppPolling() {
-        sMainController.mAppPoller.beginAppPolling();
+    void beginAppPolling() {
+        mAppPoller.beginAppPolling();
     }
 
-    static void endAppPolling() {
-        sMainController.mAppPoller.endAppPolling();
+    void endAppPolling() {
+        mAppPoller.endAppPolling();
     }
 
     AppPoller.AppPollerListener mAppPollerListener = new AppPoller.AppPollerListener() {
         @Override
         public void onAppChanged() {
             if (mCurrentState != null && mCurrentState instanceof State_AnimateToBubbleView == false) {
-                switchState(MainController.STATE_AnimateToBubbleView);
+                switchState(MainController.get().STATE_AnimateToBubbleView);
             }
         }
     };
