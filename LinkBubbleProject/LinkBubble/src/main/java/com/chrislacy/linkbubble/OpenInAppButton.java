@@ -58,7 +58,7 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
         super(context, attrs, defStyle);
 
         Resources resources = context.getResources();
-        mAppStackPreviewSize = resources.getDimensionPixelSize(R.dimen.toolbar_height);
+        mAppStackPreviewSize = resources.getDimensionPixelSize(R.dimen.content_view_button_max_height);
         mAppStackPadding = resources.getDimensionPixelSize(R.dimen.app_stack_padding);
         mPreviewXOffset = resources.getDimensionPixelSize(R.dimen.app_stack_x_offset);
         mPreviewYOffset = resources.getDimensionPixelSize(R.dimen.app_stack_y_offset);
@@ -84,7 +84,7 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
             }
         } else if (appsForUrlSize > 1) {
             setVisibility(VISIBLE);
-            setBackground(null);
+            setImageDrawable(null);
             return true;
         }
 

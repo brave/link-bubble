@@ -7,7 +7,7 @@
     <dimen name="content_view_button_max_height">40dp</dimen>
 
     <dimen name="app_stack_padding">2dp</dimen>
-    <dimen name="app_stack_x_offset">4dp</dimen>
-    <dimen name="app_stack_y_offset">-1dp</dimen>
+    <dimen name="app_stack_x_offset">8dp</dimen>
+    <dimen name="app_stack_y_offset">3dp</dimen>
 
 </resources>
