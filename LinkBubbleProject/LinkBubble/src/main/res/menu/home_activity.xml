@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/action_upgrade_to_pro"
+          android:title="@string/action_upgrade_to_pro"
+          android:showAsAction="never"/>
+
+
+    <item android:id="@+id/action_help"
+        android:title="@string/action_help"
+        android:showAsAction="never"/>
+  
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:showAsAction="never"/>
+
+
+
+</menu>
