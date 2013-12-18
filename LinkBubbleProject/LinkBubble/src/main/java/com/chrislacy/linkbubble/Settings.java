@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 
 import android.util.Log;
+import com.squareup.otto.Bus;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,8 +53,18 @@ public class Settings {
     private static final String DEFAULT_APPS_MAP_KEY_HOST = "host";
     private static final String DEFAULT_APPS_MAP_KEY_COMPONENT = "component";
 
+    private static final int MAX_RECENT_BUBBLES = 10;
+
     public interface ConsumeBubblesChangedEventHandler {
         public void onConsumeBubblesChanged();
+    }
+
+
+    public static class RecentBubblesChangedEvent {
+        public RecentBubblesChangedEvent(Vector<RecentBubbleInfo> bi) {
+            mBubbleInfo = bi;
+        }
+        Vector<RecentBubbleInfo> mBubbleInfo;
     }
 
     /*
@@ -524,4 +535,79 @@ public class Settings {
         return null;
     }
 
+    public static class RecentBubbleInfo {
+        public RecentBubbleInfo(String url, String title, String date) {
+            mUrl = url != null ? url : "";
+            mTitle = title != null ? title : "";
+            mDate = date != null ? date : "";
+        }
+        public String mUrl;
+        public String mTitle;
+        public String mDate;
+    }
+
+    private static String getUrlKey(int i) {
+        return "recent_bubbble_url_" + i;
+    }
+    private static String getTitleKey(int i) {
+        return "recent_bubbble_title_" + i;
+    }
+    private static String getDateKey(int i) {
+        return "recent_bubbble_date_" + i;
+    }
+
+    private static Vector<RecentBubbleInfo> readRecentBubbles(Context context) {
+        Vector<RecentBubbleInfo> items = new Vector<RecentBubbleInfo>();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        for (int i=0 ; i < MAX_RECENT_BUBBLES ; ++i) {
+            String url = prefs.getString(getUrlKey(i), null);
+            String title = prefs.getString(getTitleKey(i), null);
+            String date = prefs.getString(getDateKey(i), null);
+            if (url != null) {
+                items.add(new RecentBubbleInfo(url, title, date));
+            }
+        }
+        return items;
+    }
+
+    private static void writeRecentBubbles(Context context, Vector<RecentBubbleInfo> bubbles) {
+        Util.Assert(bubbles.size() <= MAX_RECENT_BUBBLES);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        for (int i=0 ; i < MAX_RECENT_BUBBLES ; ++i) {
+            String urlKey = getUrlKey(i);
+            String titleKey = getTitleKey(i);
+            String dateKey = getDateKey(i);
+            if (i < bubbles.size()) {
+                RecentBubbleInfo bi = bubbles.get(i);
+
+                editor.putString(urlKey, bi.mUrl);
+                editor.putString(titleKey, bi.mTitle);
+                editor.putString(dateKey, bi.mDate);
+            } else {
+                editor.remove(urlKey);
+                editor.remove(titleKey);
+                editor.remove(dateKey);
+            }
+        }
+
+        editor.commit();
+    }
+
+
+
+
+    public void addRecentBubble(Context context, String url, String title, String date) {
+        Vector<RecentBubbleInfo> recentBubbles = readRecentBubbles(context);
+        if (recentBubbles.size() == MAX_RECENT_BUBBLES) {
+            recentBubbles.removeElementAt(MAX_RECENT_BUBBLES-1);
+        }
+        recentBubbles.insertElementAt(new RecentBubbleInfo(url, title, date), 0);
+        writeRecentBubbles(context, recentBubbles);
+
+        MainApplication app = (MainApplication) context.getApplicationContext();
+        Bus bus = app.getBus();
+        bus.post(new RecentBubblesChangedEvent(recentBubbles));
+    }
 }

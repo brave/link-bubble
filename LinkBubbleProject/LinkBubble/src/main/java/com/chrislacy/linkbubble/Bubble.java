@@ -292,7 +292,7 @@ public class Bubble extends RelativeLayout {
                     Time now = new Time();
                     now.setToNow();
                     String nowString = now.format("%H:%M, %d %b %Y");
-                    SettingsFragment.addRecentBubble(context, info.url, info.title, nowString);
+                    Settings.get().addRecentBubble(context, info.url, info.title, nowString);
                 }
 
                 MainController.get().onPageLoaded(Bubble.this);

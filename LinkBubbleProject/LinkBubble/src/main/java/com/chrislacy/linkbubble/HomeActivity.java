@@ -27,6 +27,7 @@ import android.widget.TextView;
 import com.chrislacy.linkbubble.R;
 import com.flavienlaurent.notboringactionbar.AlphaForegroundColorSpan;
 import com.flavienlaurent.notboringactionbar.KenBurnsView;
+import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 
@@ -209,5 +210,12 @@ public class HomeActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+    @Subscribe
+    public void onRecentBubblesChanged(Settings.RecentBubblesChangedEvent event) {
+        //(ArrayAdapter<String>)(mListView.getAdapter()).no;
     }
 }

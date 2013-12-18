@@ -78,14 +78,6 @@
             android:dependency="preference_enabled"
             />
 
-        <Preference android:title="Clear History"
-            android:key="clear_history"
-            android:summary="Clear list of recent bubbles"/>
-        <PreferenceScreen
-            android:key="recent_bubbles"
-            android:summary="Show list of bubbles recently opened"
-            android:title="Recent Bubbles" />
-
     </PreferenceCategory>
 
     <PreferenceCategory
