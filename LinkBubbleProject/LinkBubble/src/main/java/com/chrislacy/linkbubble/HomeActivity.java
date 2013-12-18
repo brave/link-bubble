@@ -8,12 +8,16 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.RectF;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.TypefaceSpan;
+import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,9 +25,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import com.chrislacy.linkbubble.R;
 import com.flavienlaurent.notboringactionbar.AlphaForegroundColorSpan;
@@ -34,7 +40,7 @@ import com.squareup.otto.Subscribe;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends Activity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     private static final String TAG = "HomeActivity";
     private int mActionBarTitleColor;
@@ -114,7 +120,8 @@ public class HomeActivity extends Activity {
                                 mHistoryAdapter.notifyDataSetChanged();
                             }
                         });
-        //mListView.setOnItemClickListener(this);
+        mListView.setOnItemClickListener(this);
+        mListView.setOnItemLongClickListener(this);
 
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -251,10 +258,60 @@ public class HomeActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
     @Subscribe
     public void onRecentBubblesChanged(Settings.RecentBubblesChangedEvent event) {
         //(ArrayAdapter<String>)(mListView.getAdapter()).no;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (view.getTag() instanceof Settings.RecentBubbleInfo) {
+            Settings.RecentBubbleInfo recentBubbleInfo = (Settings.RecentBubbleInfo)view.getTag();
+            MainApplication.openLink(this, recentBubbleInfo.mUrl, true);
+        }
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        if (view.getTag() instanceof Settings.RecentBubbleInfo) {
+            final Settings.RecentBubbleInfo recentBubbleInfo = (Settings.RecentBubbleInfo)view.getTag();
+            PopupMenu popupMenu;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                popupMenu = new PopupMenu(this, view, Gravity.RIGHT);
+            } else {
+                popupMenu = new PopupMenu(this, view);
+            }
+            Resources resources = getResources();
+            popupMenu.getMenu().add(Menu.NONE, R.id.item_share, Menu.NONE,
+                    resources.getString(R.string.action_share));
+            String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
+            if (defaultBrowserLabel != null) {
+                popupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
+                        String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
+            }
+            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.item_open_in_browser: {
+                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                            intent.setData(Uri.parse(recentBubbleInfo.mUrl));
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            MainApplication.loadInBrowser(HomeActivity.this, intent, true);
+                            return true;
+                        }
+
+                        case R.id.share_button: {
+
+                        }
+                    }
+                    return false;
+                }
+            });
+            popupMenu.show();
+            return true;
+        }
+
+        return false;
     }
 }

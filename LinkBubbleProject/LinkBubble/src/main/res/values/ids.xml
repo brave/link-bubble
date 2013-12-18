@@ -4,5 +4,6 @@
     <item name="item_open_in_browser" type="id"/>
     <item name="item_settings" type="id"/>
     <item name="item_reload_page" type="id"/>
+    <item name="item_share" type="id"/>
 
 </resources>

@@ -1,21 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:paddingRight="8dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/page_title"
-        android:text="@string/action_settings"
-        android:layout_gravity="center_horizontal"/>
-    <TextView
-        android:id="@+id/page_url"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/action_settings"
-        android:layout_gravity="center_horizontal"
-        android:singleLine="true"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1">
+        <com.chrislacy.linkbubble.CondensedTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/page_title"
+            android:text="Web page title goes here"
+            android:singleLine="true"
+            />
+        <com.chrislacy.linkbubble.CondensedTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/page_url"
+            android:text="http://www.google.com"
+            android:singleLine="true"/>
+
+        <com.chrislacy.linkbubble.CondensedTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/page_date"
+            android:text="11am"
+            android:singleLine="true"/>
+
+    </LinearLayout>
+
+    <!--
+    <ImageView
+        android:id="@+id/open_in_browser"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_launcher"
+        android:layout_gravity="center_vertical"/>
+    -->
+
 </LinearLayout>
