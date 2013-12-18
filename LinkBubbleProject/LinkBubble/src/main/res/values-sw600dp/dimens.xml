@@ -1,3 +1,4 @@
 <resources>
     <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="content_view_button_max_height">48dp</dimen>
 </resources>
