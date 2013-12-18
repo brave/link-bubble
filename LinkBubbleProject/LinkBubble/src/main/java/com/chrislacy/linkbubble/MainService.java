@@ -22,7 +22,6 @@ import com.crashlytics.android.Crashlytics;
 public class MainService extends Service {
 
     private static final String BCAST_CONFIGCHANGED = "android.intent.action.CONFIGURATION_CHANGED";
-    private MainController mController;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -34,7 +33,7 @@ public class MainService extends Service {
         String url = cmd.getStringExtra("url");
         boolean recordHistory = cmd.getBooleanExtra("record_history", true);
         long startTime = cmd.getLongExtra("start_time", System.currentTimeMillis());
-        mController.onOpenUrl(url, recordHistory, startTime);
+        MainController.get().onOpenUrl(url, recordHistory, startTime);
         return START_STICKY;
     }
 
@@ -58,7 +57,7 @@ public class MainService extends Service {
 
         WebIconDatabase.getInstance().open(getDir("icons", MODE_PRIVATE).getPath());
 
-        mController = new MainController(this, new MainController.EventHandler() {
+        MainController.create(this, new MainController.EventHandler() {
             @Override
             public void onDestroy() {
                 stopSelf();
@@ -86,24 +85,23 @@ public class MainService extends Service {
     public void onDestroy() {
         unregisterReceiver(mDialogReceiver);
         unregisterReceiver(mBroadcastReceiver);
-        mController.destroy();
-        mController = null;
+        MainController.destroy();
     }
 
-    private BroadcastReceiver mDialogReceiver = new BroadcastReceiver() {
+    private static BroadcastReceiver mDialogReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent myIntent) {
             if (myIntent.getAction().equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)) {
-                mController.onCloseSystemDialogs();
+                MainController.get().onCloseSystemDialogs();
             }
         }
     };
 
-    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+    private static BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent myIntent) {
             if ( myIntent.getAction().equals( BCAST_CONFIGCHANGED ) ) {
-                mController.onOrientationChanged();
+                MainController.get().onOrientationChanged();
             }
         }
     };

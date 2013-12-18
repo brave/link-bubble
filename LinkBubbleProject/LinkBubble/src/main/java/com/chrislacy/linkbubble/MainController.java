@@ -36,8 +36,99 @@ public class MainController implements Choreographer.FrameCallback {
         return sInstance;
     }
 
+    public static void create(Context context, EventHandler eventHandler) {
+        if (sInstance != null) {
+            new RuntimeException("Only one instance of MainController allowed at any one time");
+        }
+        sInstance = new MainController(context, eventHandler);
+    }
+
+    public static void destroy() {
+        if (sInstance == null) {
+            new RuntimeException("No instance to destroy");
+        }
+
+        MainApplication app = (MainApplication) sInstance.mContext.getApplicationContext();
+        Bus bus = app.getBus();
+        bus.unregister(sInstance);
+
+        //mWindowManager.removeView(mTextView);
+        sInstance.mCanvas.destroy();
+        sInstance.mChoreographer.removeFrameCallback(sInstance);
+        sInstance = null;
+    }
+
     public interface EventHandler {
         public void onDestroy();
+    }
+
+    public State_BubbleView STATE_BubbleView;
+    public State_SnapToEdge STATE_SnapToEdge;
+    public State_AnimateToContentView STATE_AnimateToContentView;
+    public State_ContentView STATE_ContentView;
+    public State_AnimateToBubbleView STATE_AnimateToBubbleView;
+    public State_Flick_ContentView STATE_Flick_ContentView;
+    public State_Flick_BubbleView STATE_Flick_BubbleView;
+    public State_KillBubble STATE_KillBubble;
+
+    private ControllerState mCurrentState;
+    private EventHandler mEventHandler;
+    private int mBubblesLoaded;
+    private AppPoller mAppPoller;
+
+    private Context mContext;
+    private Choreographer mChoreographer;
+    private boolean mUpdateScheduled;
+    private static Vector<Bubble> mBubbles = new Vector<Bubble>();
+    private Canvas mCanvas;
+    private Badge mBadge;
+
+
+    private MainController(Context context, EventHandler eventHandler) {
+        Util.Assert(sInstance == null);
+        sInstance = this;
+        mContext = context;
+        mEventHandler = eventHandler;
+
+        mAppPoller = new AppPoller(context);
+        mAppPoller.setListener(mAppPollerListener);
+
+        /*
+        mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        mTextView = new TextView(mContext);
+        mTextView.setTextColor(0xff00ffff);
+        mTextView.setTextSize(32.0f);
+        mWindowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
+        mWindowManagerParams.x = 500;
+        mWindowManagerParams.y = 16;
+        mWindowManagerParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        mWindowManagerParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_PHONE;
+        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
+        mWindowManagerParams.format = PixelFormat.TRANSPARENT;
+        mWindowManagerParams.setTitle("LinkBubble: Debug Text");
+        mWindowManager.addView(mTextView, mWindowManagerParams);*/
+
+        mUpdateScheduled = false;
+        mChoreographer = Choreographer.getInstance();
+        mCanvas = new Canvas(mContext);
+        mBadge = new Badge(mContext);
+
+        MainApplication app = (MainApplication) mContext.getApplicationContext();
+        Bus bus = app.getBus();
+        bus.register(this);
+
+        STATE_BubbleView = new State_BubbleView(mCanvas, mBadge);
+        STATE_SnapToEdge = new State_SnapToEdge(mCanvas);
+        STATE_AnimateToContentView = new State_AnimateToContentView(mCanvas);
+        STATE_ContentView = new State_ContentView(mCanvas);
+        STATE_AnimateToBubbleView = new State_AnimateToBubbleView(mCanvas);
+        STATE_Flick_ContentView = new State_Flick_ContentView(mCanvas);
+        STATE_Flick_BubbleView = new State_Flick_BubbleView(mCanvas);
+        STATE_KillBubble = new State_KillBubble(mCanvas);
+
+        updateIncognitoMode(Settings.get().isIncognitoMode());
+        switchState(STATE_BubbleView);
     }
 
     private void doTargetAction(Config.BubbleAction action, String url) {
@@ -69,27 +160,6 @@ public class MainController implements Choreographer.FrameCallback {
                 break;
         }
     }
-
-    public State_BubbleView STATE_BubbleView;
-    public State_SnapToEdge STATE_SnapToEdge;
-    public State_AnimateToContentView STATE_AnimateToContentView;
-    public State_ContentView STATE_ContentView;
-    public State_AnimateToBubbleView STATE_AnimateToBubbleView;
-    public State_Flick_ContentView STATE_Flick_ContentView;
-    public State_Flick_BubbleView STATE_Flick_BubbleView;
-    public State_KillBubble STATE_KillBubble;
-
-    private ControllerState mCurrentState;
-    private EventHandler mEventHandler;
-    private int mBubblesLoaded;
-    private AppPoller mAppPoller;
-
-    private Context mContext;
-    private Choreographer mChoreographer;
-    private boolean mUpdateScheduled;
-    private static Vector<Bubble> mBubbles = new Vector<Bubble>();
-    private Canvas mCanvas;
-    private Badge mBadge;
 
     //private TextView mTextView;
     //private WindowManager mWindowManager;
@@ -166,64 +236,6 @@ public class MainController implements Choreographer.FrameCallback {
     @Subscribe
     public void onIncognitoModeChanged(SettingsFragment.IncognitoModeChangedEvent event) {
         updateIncognitoMode(event.mIncognito);
-    }
-
-    public MainController(Context context, EventHandler eh) {
-        Util.Assert(sInstance == null);
-        sInstance = this;
-        mContext = context;
-        mEventHandler = eh;
-
-        mAppPoller = new AppPoller(context);
-        mAppPoller.setListener(mAppPollerListener);
-
-        /*
-        mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        mTextView = new TextView(mContext);
-        mTextView.setTextColor(0xff00ffff);
-        mTextView.setTextSize(32.0f);
-        mWindowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
-        mWindowManagerParams.x = 500;
-        mWindowManagerParams.y = 16;
-        mWindowManagerParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        mWindowManagerParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
-        mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_PHONE;
-        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
-        mWindowManagerParams.format = PixelFormat.TRANSPARENT;
-        mWindowManagerParams.setTitle("LinkBubble: Debug Text");
-        mWindowManager.addView(mTextView, mWindowManagerParams);*/
-
-        mUpdateScheduled = false;
-        mChoreographer = Choreographer.getInstance();
-        mCanvas = new Canvas(mContext);
-        mBadge = new Badge(mContext);
-
-        MainApplication app = (MainApplication) mContext.getApplicationContext();
-        Bus bus = app.getBus();
-        bus.register(this);
-
-        STATE_BubbleView = new State_BubbleView(mCanvas, mBadge);
-        STATE_SnapToEdge = new State_SnapToEdge(mCanvas);
-        STATE_AnimateToContentView = new State_AnimateToContentView(mCanvas);
-        STATE_ContentView = new State_ContentView(mCanvas);
-        STATE_AnimateToBubbleView = new State_AnimateToBubbleView(mCanvas);
-        STATE_Flick_ContentView = new State_Flick_ContentView(mCanvas);
-        STATE_Flick_BubbleView = new State_Flick_BubbleView(mCanvas);
-        STATE_KillBubble = new State_KillBubble(mCanvas);
-
-        updateIncognitoMode(Settings.get().isIncognitoMode());
-        switchState(STATE_BubbleView);
-    }
-
-    public void destroy() {
-        MainApplication app = (MainApplication) mContext.getApplicationContext();
-        Bus bus = app.getBus();
-        bus.unregister(this);
-
-        //mWindowManager.removeView(mTextView);
-        mCanvas.destroy();
-        mChoreographer.removeFrameCallback(this);
-        sInstance = null;
     }
 
     public void scheduleUpdate() {
