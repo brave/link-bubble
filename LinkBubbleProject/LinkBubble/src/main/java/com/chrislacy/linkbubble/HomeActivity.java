@@ -162,6 +162,7 @@ public class HomeActivity extends Activity {
     private void setupActionBar() {
         ActionBar actionBar = getActionBar();
         actionBar.setIcon(R.drawable.ic_transparent);
+        actionBar.setDisplayHomeAsUpEnabled(false);
 
         //getActionBarTitleView().setAlpha(0f);
     }
