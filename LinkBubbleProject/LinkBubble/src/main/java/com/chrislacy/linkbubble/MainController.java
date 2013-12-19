@@ -33,6 +33,7 @@ public class MainController implements Choreographer.FrameCallback {
     private static ContentActivity sContentActivity;
 
     public static MainController get() {
+        Util.Assert(sInstance != null);
         return sInstance;
     }
 

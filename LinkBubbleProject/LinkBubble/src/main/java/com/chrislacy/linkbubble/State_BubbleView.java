@@ -127,10 +127,20 @@ public class State_BubbleView extends ControllerState {
                         mainController.switchState(mainController.STATE_SnapToEdge);
                     }
                 } else {
-                    if (mainController.destroyBubble(mBubble, ti.mAction)) {
-                        mainController.switchState(mainController.STATE_AnimateToBubbleView);
-                    } else {
+                    if (ti.mAction == Config.BubbleAction.Destroy) {
+                        int bubbleCount = mainController.getBubbleCount();
+                        for (int i=bubbleCount-1 ; i >= 0; --i) {
+                            Bubble b = mainController.getBubble(i);
+                            mainController.destroyBubble(b, Config.BubbleAction.Destroy);
+                        }
+                        Util.Assert(mainController.getBubbleCount() == 0);
                         mainController.switchState(mainController.STATE_BubbleView);
+                    } else {
+                        if (mainController.destroyBubble(mBubble, ti.mAction)) {
+                            mainController.switchState(mainController.STATE_AnimateToBubbleView);
+                        } else {
+                            mainController.switchState(mainController.STATE_BubbleView);
+                        }
                     }
                 }
             } else {
