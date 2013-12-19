@@ -92,6 +92,9 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         mAlphaForegroundColorSpan = new AlphaForegroundColorSpan(mActionBarTitleColor);
 
         setupActionBar();
+
+        mPlaceHolderView = getLayoutInflater().inflate(R.layout.view_home_header, mListView, false);
+        mListView.addHeaderView(mPlaceHolderView);
         setupListView();
     }
 
@@ -110,9 +113,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     }
 
     private void setupListView() {
-        mPlaceHolderView = getLayoutInflater().inflate(R.layout.view_home_header, mListView, false);
-        mListView.addHeaderView(mPlaceHolderView);
-
         MainDatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
         mLinkHistoryRecords = databaseHelper.getAllLinkHistoryRecords();
         if (mLinkHistoryRecords == null || mLinkHistoryRecords.size() == 0) {
@@ -366,12 +366,12 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 
         @Override
         public int getCount() {
-            return mLinkHistoryRecords.size();
+            return mLinkHistoryRecords != null ? mLinkHistoryRecords.size() : 0;
         }
 
         @Override
         public Object getItem(int position) {
-            return mLinkHistoryRecords.get(position);
+            return mLinkHistoryRecords != null ? mLinkHistoryRecords.get(position) : position;
         }
 
         @Override
@@ -404,10 +404,12 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     @SuppressWarnings("unused")
     @Subscribe
     public void onLinkHistoryRecordChangedEvent(LinkHistoryRecord.ChangedEvent event) {
-        synchronized (mLinkHistoryRecords) {
-            MainDatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
-            mLinkHistoryRecords = databaseHelper.getAllLinkHistoryRecords();
+        if (mLinkHistoryRecords != null) {
+            synchronized (mLinkHistoryRecords) {
+                setupListView();
+            }
+        } else {
+            setupListView();
         }
-        mHistoryAdapter.notifyDataSetChanged();
     }
 }

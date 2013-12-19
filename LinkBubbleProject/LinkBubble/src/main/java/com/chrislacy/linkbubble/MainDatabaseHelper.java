@@ -55,6 +55,7 @@ public class MainDatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_TITLE, linkHistoryRecord.getTitle());
         values.put(KEY_URL, linkHistoryRecord.getUrl());
         values.put(KEY_TIME, linkHistoryRecord.getTime());
+        Log.d("LBtime", "save mTime:" + linkHistoryRecord.getTime());
         return values;
     }
 
@@ -110,7 +111,9 @@ public class MainDatabaseHelper extends SQLiteOpenHelper {
         linkHistoryRecord.setId(Integer.parseInt(cursor.getString(0)));
         linkHistoryRecord.setTitle(cursor.getString(1));
         linkHistoryRecord.setUrl(cursor.getString(2));
-        linkHistoryRecord.setTime(cursor.getInt(3));
+        int t = cursor.getInt(3);
+        linkHistoryRecord.setTime(t);
+        Log.d("LBtime", "get mTime:" + t);
 
         return linkHistoryRecord;
     }
