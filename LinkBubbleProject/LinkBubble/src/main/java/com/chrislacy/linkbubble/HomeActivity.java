@@ -19,15 +19,18 @@ import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
@@ -36,6 +39,7 @@ import com.chrislacy.linkbubble.R;
 import com.flavienlaurent.notboringactionbar.AlphaForegroundColorSpan;
 import com.flavienlaurent.notboringactionbar.KenBurnsView;
 import com.google.android.apps.dashclock.ui.SwipeDismissListViewTouchListener;
+import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
@@ -50,7 +54,8 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     private int mHeaderHeight;
     private int mMinHeaderTranslation;
     private ListView mListView;
-    private HistoryAdapter mHistoryAdapter;
+    private LinkHistoryAdapter mHistoryAdapter;
+    private List<LinkHistoryRecord> mLinkHistoryRecords;
     private KenBurnsView mHeaderPicture;
     private ImageView mHeaderLogo;
     private View mHeader;
@@ -90,18 +95,31 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         setupListView();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        ((MainApplication)getApplicationContext()).getBus().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        ((MainApplication)getApplicationContext()).getBus().unregister(this);
+    }
+
     private void setupListView() {
         mPlaceHolderView = getLayoutInflater().inflate(R.layout.view_home_header, mListView, false);
         mListView.addHeaderView(mPlaceHolderView);
 
         MainDatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
-
-        List<LinkHistoryRecord> linkHistoryRecords = databaseHelper.getAllLinkHistoryRecords();
-        if (linkHistoryRecords == null || linkHistoryRecords.size() == 0) {
+        mLinkHistoryRecords = databaseHelper.getAllLinkHistoryRecords();
+        if (mLinkHistoryRecords == null || mLinkHistoryRecords.size() == 0) {
             return;
         }
 
-        mHistoryAdapter = new HistoryAdapter(this, R.layout.history_item, linkHistoryRecords.toArray(new LinkHistoryRecord[0]));
+        mHistoryAdapter = new LinkHistoryAdapter(this);
 
         mListView.setAdapter(mHistoryAdapter);
 
@@ -329,9 +347,59 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         return false;
     }
 
+
+    private class LinkHistoryAdapter extends BaseAdapter {
+
+        Context mContext;
+
+        public LinkHistoryAdapter(Context context) {
+            mContext = context;
+        }
+
+        @Override
+        public int getCount() {
+            return mLinkHistoryRecords.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return mLinkHistoryRecords.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            if (convertView==null) {
+                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.history_item, parent, false);
+            }
+
+            LinkHistoryRecord linkHistoryRecord = mLinkHistoryRecords.get(position);
+
+            TextView title = (TextView) convertView.findViewById(R.id.page_title);
+            title.setText(linkHistoryRecord.getTitle());
+
+            TextView url = (TextView) convertView.findViewById(R.id.page_url);
+            url.setText(linkHistoryRecord.getUrl());
+
+            convertView.setTag(linkHistoryRecord);
+
+            return convertView;
+        }
+    }
+
     @SuppressWarnings("unused")
     @Subscribe
     public void onLinkHistoryRecordChangedEvent(LinkHistoryRecord.ChangedEvent event) {
+        synchronized (mLinkHistoryRecords) {
+            MainDatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
+            mLinkHistoryRecords = databaseHelper.getAllLinkHistoryRecords();
+        }
         mHistoryAdapter.notifyDataSetChanged();
     }
 }
