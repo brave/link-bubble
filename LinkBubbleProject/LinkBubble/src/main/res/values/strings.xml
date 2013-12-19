@@ -12,6 +12,7 @@
     <string name="action_help">Help</string>
     <string name="action_reload_page">Reload page</string>
     <string name="action_open_in_browser">Open in %1$s</string>
+    <string name="action_open_in_bubble">Open in bubble</string>
     <string name="action_upgrade_to_pro">★Upgrade to Pro★</string>
     <string name="action_share">Share</string>
     <string name="share_via">Share via...</string>

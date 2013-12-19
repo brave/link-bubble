@@ -61,6 +61,7 @@ public class ContentView extends FrameLayout {
     private String mUrl;
     private List<AppForUrl> mAppsForUrl;
     private PopupMenu mOverflowPopupMenu;
+    private PopupMenu mLongPressPopupMenu;
     private long mStartTime;
     private Bubble mOwner;
     private int mHeaderHeight;
@@ -313,6 +314,57 @@ public class ContentView extends FrameLayout {
         ws.setLoadWithOverviewMode(true);
         ws.setUseWideViewPort(true);
 
+        mWebView.setLongClickable(true);
+        mWebView.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                WebView.HitTestResult hitTestResult = mWebView.getHitTestResult();
+                switch (hitTestResult.getType()) {
+                    case WebView.HitTestResult.SRC_ANCHOR_TYPE:
+                    case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: {
+                        mLongPressPopupMenu = new PopupMenu(mContext, v);
+                        Resources resources = mContext.getResources();
+
+                        String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
+                        if (defaultBrowserLabel != null) {
+                            mLongPressPopupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
+                                    String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
+                        }
+
+                        mLongPressPopupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_bubble, Menu.NONE, resources.getString(R.string.action_open_in_bubble));
+
+                        mLongPressPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                switch (item.getItemId()) {
+                                    case R.id.item_open_in_bubble:
+                                        break;
+                                    case R.id.item_open_in_browser:
+                                        break;
+                                }
+                                mLongPressPopupMenu = null;
+                                return false;
+                            }
+                        });
+
+                        mLongPressPopupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
+                            @Override
+                            public void onDismiss(PopupMenu menu) {
+                                if (mLongPressPopupMenu == menu) {
+                                    mLongPressPopupMenu = null;
+                                }
+                            }
+                        });
+                        mLongPressPopupMenu.show();
+                        return true;
+                    }
+                    default:
+                        return false;
+                }
+            }
+        });
+
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onReceivedTitle(WebView webView, String title) {
@@ -519,6 +571,10 @@ public class ContentView extends FrameLayout {
         if (mOverflowPopupMenu != null) {
             mOverflowPopupMenu.dismiss();
             mOverflowPopupMenu = null;
+        }
+        if (mLongPressPopupMenu != null) {
+            mLongPressPopupMenu.dismiss();
+            mLongPressPopupMenu = null;
         }
     }
 
