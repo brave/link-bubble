@@ -14,6 +14,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.http.SslError;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -25,6 +26,7 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ListAdapter;
 import android.view.View;
 import android.webkit.WebView;
@@ -43,7 +45,7 @@ import java.util.List;
 /**
  * Created by gw on 19/08/13.
  */
-public class ContentView extends LinearLayout {
+public class ContentView extends FrameLayout {
 
     private static final String TAG = "UrlLoad";
 
@@ -53,8 +55,6 @@ public class ContentView extends LinearLayout {
     private ContentViewButton mShareButton;
     private OpenInAppButton mOpenInAppButton;
     private ContentViewButton mOverflowButton;
-    private View mToolbarHeader;
-    private View mWebViewPlaceholder;
     private LinearLayout mToolbarLayout;
     private EventHandler mEventHandler;
     private Context mContext;
@@ -64,9 +64,20 @@ public class ContentView extends LinearLayout {
     private long mStartTime;
     private Bubble mOwner;
     private int mHeaderHeight;
-    private LinearLayout.LayoutParams mWebViewLayoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1.0f);
 
     private Paint mPaint;
+
+    public ContentView(Context context) {
+        this(context, null);
+    }
+
+    public ContentView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public ContentView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
 
     static class AppForUrl {
         ResolveInfo mResolveInfo;
@@ -113,16 +124,6 @@ public class ContentView extends LinearLayout {
         path.lineTo(xp + Config.mBubbleWidth * 0.67f, mHeaderHeight + 1.0f);
 
         canvas.drawPath(path, mPaint);
-    }
-
-    public void enableWebView(boolean enable) {
-        if (enable) {
-            removeView(mWebViewPlaceholder);
-            addView(mWebView, mWebViewLayoutParams);
-        } else {
-            removeView(mWebView);
-            addView(mWebViewPlaceholder, mWebViewLayoutParams);
-        }
     }
 
     public void destroy() {
@@ -189,25 +190,18 @@ public class ContentView extends LinearLayout {
         alertDialog.show();
     }
 
-    ContentView(final Context ctx, Bubble owner, String url, long startTime, EventHandler eh) {
-        super(ctx);
-        mContext = ctx;
-        mEventHandler = eh;
-        mOwner = owner;
-        mUrl = url;
-
+    void configure(Bubble owner, String url, long startTime, EventHandler eh) {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setColor(getResources().getColor(R.color.content_toolbar_background));
 
-        mHeaderHeight = Config.dpToPx(10.0f);
+        mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_header);
 
-        setOrientation(VERTICAL);
+        mWebView = (WebView) findViewById(R.id.webView);
+        mToolbarLayout = (LinearLayout) findViewById(R.id.content_toolbar);
+        mTitleTextView = (CondensedTextView) findViewById(R.id.title_text);
+        mUrlTextView = (CondensedTextView) findViewById(R.id.url_text);
 
-        mToolbarLayout = (LinearLayout) inflate(mContext, R.layout.content_toolbar, null);
-        mTitleTextView = (CondensedTextView) mToolbarLayout.findViewById(R.id.title_text);
-        mUrlTextView = (CondensedTextView) mToolbarLayout.findViewById(R.id.url_text);
-
-        mShareButton = (ContentViewButton)mToolbarLayout.findViewById(R.id.share_button);
+        mShareButton = (ContentViewButton)findViewById(R.id.share_button);
         mShareButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_share));
         mShareButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -216,7 +210,7 @@ public class ContentView extends LinearLayout {
             }
         });
 
-        mOpenInAppButton = (OpenInAppButton)mToolbarLayout.findViewById(R.id.open_in_app_button);
+        mOpenInAppButton = (OpenInAppButton)findViewById(R.id.open_in_app_button);
         mOpenInAppButton.setOnOpenInAppClickListener(new OpenInAppButton.OnOpenInAppClickListener() {
 
             @Override
@@ -238,13 +232,13 @@ public class ContentView extends LinearLayout {
                 mOverflowPopupMenu = new PopupMenu(mContext, mOverflowButton);
                 Resources resources = mContext.getResources();
                 mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_upgrade_to_pro, Menu.NONE,
-                                                    resources.getString(R.string.action_upgrade_to_pro));
+                        resources.getString(R.string.action_upgrade_to_pro));
                 mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_reload_page, Menu.NONE,
-                                                    resources.getString(R.string.action_reload_page));
+                        resources.getString(R.string.action_reload_page));
                 String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
                 if (defaultBrowserLabel != null) {
                     mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
-                                                        String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
+                            String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
                 }
                 mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_settings, Menu.NONE,
                         resources.getString(R.string.action_settings));
@@ -307,14 +301,10 @@ public class ContentView extends LinearLayout {
             }
         });
 
-        mToolbarHeader = new View(mContext);
-        addView(mToolbarHeader, ViewGroup.LayoutParams.MATCH_PARENT, mHeaderHeight);
-
-        mWebViewPlaceholder = new View(mContext);
-
-        addView(mToolbarLayout, ViewGroup.LayoutParams.MATCH_PARENT, mContext.getResources().getDimensionPixelSize(R.dimen.toolbar_height));
-
-        mWebView = new WebView(ctx);
+        mContext = getContext();
+        mEventHandler = eh;
+        mOwner = owner;
+        mUrl = url;
 
         WebSettings ws = mWebView.getSettings();
         ws.setJavaScriptEnabled(true);
@@ -409,7 +399,7 @@ public class ContentView extends LinearLayout {
                         Log.d(TAG, "onPageFinished() - url: " + url);
 
                         if (mStartTime > -1) {
-                            Log.d("LoadTime", "Saved " + ((System.currentTimeMillis()-mStartTime)/1000) + " seconds.");
+                            Log.d("LoadTime", "Saved " + ((System.currentTimeMillis() - mStartTime) / 1000) + " seconds.");
                             mStartTime = -1;
                         }
                     }
@@ -420,11 +410,11 @@ public class ContentView extends LinearLayout {
         mWebView.setOnKeyListener(new OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(event.getAction() == KeyEvent.ACTION_DOWN) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     WebView webView = (WebView) v;
-                    switch(keyCode) {
+                    switch (keyCode) {
                         case KeyEvent.KEYCODE_BACK:
-                            if(webView.canGoBack()) {
+                            if (webView.canGoBack()) {
                                 webView.goBack();
                                 return true;
                             } else {
@@ -437,9 +427,6 @@ public class ContentView extends LinearLayout {
                 return false;
             }
         });
-
-        mWebViewPlaceholder.setBackgroundColor(0xffffffff);
-        addView(mWebView, mWebViewLayoutParams);
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
 

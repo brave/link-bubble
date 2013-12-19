@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import com.squareup.otto.Bus;
@@ -273,7 +274,8 @@ public class Bubble extends RelativeLayout {
         mUrl = url;
         mRecordHistory = recordHistory;
 
-        mContentView = new ContentView(context, Bubble.this, mUrl, startTime, new ContentView.EventHandler() {
+        mContentView = (ContentView)inflate(context, R.layout.view_content, null);
+        mContentView.configure(Bubble.this, mUrl, startTime, new ContentView.EventHandler() {
             @Override
             public void onSharedLink() {
                 mEventHandler.onSharedLink(Bubble.this);
