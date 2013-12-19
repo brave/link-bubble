@@ -111,9 +111,7 @@ public class MainDatabaseHelper extends SQLiteOpenHelper {
         linkHistoryRecord.setId(Integer.parseInt(cursor.getString(0)));
         linkHistoryRecord.setTitle(cursor.getString(1));
         linkHistoryRecord.setUrl(cursor.getString(2));
-        int t = cursor.getInt(3);
-        linkHistoryRecord.setTime(t);
-        Log.d("LBtime", "get mTime:" + t);
+        linkHistoryRecord.setTime(cursor.getLong(3));
 
         return linkHistoryRecord;
     }
@@ -132,7 +130,7 @@ public class MainDatabaseHelper extends SQLiteOpenHelper {
                 linkHistoryRecord.setId(Integer.parseInt(cursor.getString(0)));
                 linkHistoryRecord.setTitle(cursor.getString(1));
                 linkHistoryRecord.setUrl(cursor.getString(2));
-                linkHistoryRecord.setTime(cursor.getInt(3));
+                linkHistoryRecord.setTime(cursor.getLong(3));
 
                 records.add(linkHistoryRecord);
             } while (cursor.moveToNext());
