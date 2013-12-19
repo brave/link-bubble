@@ -84,10 +84,6 @@
         android:key="preference_category_debug"
         android:title="@string/preference_category_debug">
 
-        <PreferenceScreen
-            android:key="load_url"
-            android:title="Load a URL" />
-
         <CheckBoxPreference
             android:key="auto_load_url"
             android:title="Auto load URL"

@@ -524,4 +524,8 @@ public class Settings {
 
         return null;
     }
+
+    public boolean debugAutoLoadUrl() {
+        return mSharedPreferences.getBoolean("auto_load_url", false);
+    }
 }

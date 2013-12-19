@@ -131,29 +131,6 @@ public class SettingsFragment extends PreferenceFragment {
             });
         }
 
-        Preference loadUrlButton = findPreference("load_url");
-        if (loadUrlButton != null) {
-            loadUrlButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    //mainActivity.openLink("http://www.google.com");
-                    MainApplication.openLink(getActivity(), "http://play.google.com/store/apps/details?id=com.chrislacy.actionlauncher.pro", true);
-
-                    /*
-                    Intent openIntent = new Intent(Intent.ACTION_VIEW);
-                    openIntent.setClassName("com.android.vending", "com.google.android.finsky.activities.EntryActivity");
-                    openIntent.setData(Uri.parse("http://play.google.com/store/apps/details?id=com.chrislacy.actionlauncher.pro"));
-                    //openIntent.setClassName("com.google.android.youtube", "com.google.android.apps.youtube.app.honeycomb.Shell$WatchActivity");
-                    //openIntent.setData(Uri.parse("http://www.youtube.com/watch?v=CevxZvSJLk8"));
-                    openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    getActivity().startActivity(openIntent);
-                    */
-
-                    return true;
-                }
-            });
-        }
-
         final Preference leftConsumeBubblePreference = findPreference(Settings.PREFERENCE_LEFT_CONSUME_BUBBLE);
         leftConsumeBubblePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
@@ -216,12 +193,6 @@ public class SettingsFragment extends PreferenceFragment {
         });
 
         configureDefaultAppsList();
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        if (prefs.getBoolean("auto_load_url", true)) {
-                MainApplication.openLink(getActivity(), "http://abc.net.au", false);
-            //MainApplication.openLink(getActivity(), "https://twitter.com/lokibartleby/status/412160702707539968", false);
-        }
     }
 
     @Override

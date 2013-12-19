@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -12,6 +13,7 @@ import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -96,6 +98,11 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 
         mPlaceHolderView = getLayoutInflater().inflate(R.layout.view_home_header, mListView, false);
         mListView.addHeaderView(mPlaceHolderView);
+
+        if (Settings.get().debugAutoLoadUrl()) {
+            MainApplication.openLink(this, "http://abc.net.au", false);
+            //MainApplication.openLink(getActivity(), "https://twitter.com/lokibartleby/status/412160702707539968", false);
+        }
     }
 
     @Override
