@@ -275,6 +275,14 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                     return true;
                 }
             }
+
+            case R.id.action_clear_history: {
+                MainDatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
+                databaseHelper.deleteAllLinkHistoryRecords();
+                mLinkHistoryRecords = null;
+                mHistoryAdapter.notifyDataSetChanged();
+                break;
+            }
         }
 
         return super.onOptionsItemSelected(item);

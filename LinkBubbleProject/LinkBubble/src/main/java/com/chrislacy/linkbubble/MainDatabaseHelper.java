@@ -83,6 +83,12 @@ public class MainDatabaseHelper extends SQLiteOpenHelper {
         Log.d(TAG, "deleted linkHistoryRecord:" + linkHistoryRecord.toString());
     }
 
+    public void deleteAllLinkHistoryRecords() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_LINK_HISTORY, null, null);
+        db.close();
+    }
+
     public LinkHistoryRecord getLinkHistoryRecord(int id){
 
         SQLiteDatabase db = getReadableDatabase();
