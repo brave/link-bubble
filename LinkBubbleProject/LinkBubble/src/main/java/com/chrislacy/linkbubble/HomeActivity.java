@@ -135,13 +135,16 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                             }
 
                             public void onDismiss(ListView listView, int[] reverseSortedPositions) {
-                                /*
+                                MainDatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
+
                                 for (int position : reverseSortedPositions) {
-                                    mSelectedExtensions.remove(position);
+                                    Object item = listView.getItemAtPosition(position);
+                                    if (item instanceof LinkHistoryRecord) {
+                                        databaseHelper.deleteLinkHistoryRecord((LinkHistoryRecord)item);
+                                    }
                                 }
-                                repopulateAvailableExtensions();
-                                */
-                                mHistoryAdapter.notifyDataSetChanged();
+
+                                updateListViewData();
                             }
                         });
         mListView.setOnItemClickListener(this);
