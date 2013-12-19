@@ -43,6 +43,7 @@ import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -359,9 +360,11 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     private class LinkHistoryAdapter extends BaseAdapter {
 
         Context mContext;
+        Date mDate;
 
         public LinkHistoryAdapter(Context context) {
             mContext = context;
+            mDate = new Date();
         }
 
         @Override
@@ -382,7 +385,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            if (convertView==null) {
+            if (convertView == null) {
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = inflater.inflate(R.layout.history_item, parent, false);
             }
@@ -394,6 +397,10 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 
             TextView url = (TextView) convertView.findViewById(R.id.page_url);
             url.setText(linkHistoryRecord.getUrl());
+
+            TextView time = (TextView) convertView.findViewById(R.id.page_date);
+            mDate.setTime(linkHistoryRecord.getTime());
+            time.setText(Util.getPrettyDate(mDate));
 
             convertView.setTag(linkHistoryRecord);
 
