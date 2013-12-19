@@ -69,7 +69,7 @@ public class MainDatabaseHelper extends SQLiteOpenHelper {
     public List<LinkHistoryRecord> getAllLinkHistoryRecords() {
         List<LinkHistoryRecord> records = new LinkedList<LinkHistoryRecord>();
 
-        String query = "SELECT  * FROM " + TABLE_LINK_HISTORY;
+        String query = "SELECT * FROM " + TABLE_LINK_HISTORY + " ORDER BY " + KEY_TIME + " DESC;";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
