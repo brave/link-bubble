@@ -96,12 +96,13 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 
         mPlaceHolderView = getLayoutInflater().inflate(R.layout.view_home_header, mListView, false);
         mListView.addHeaderView(mPlaceHolderView);
-        setupListView();
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
+        updateListViewData();
 
         ((MainApplication)getApplicationContext()).getBus().register(this);
     }
@@ -174,6 +175,16 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                 return swipeDismissTouchListener.onTouch(view, motionEvent);
             }
         });
+    }
+
+    void updateListViewData() {
+        if (mLinkHistoryRecords != null) {
+            synchronized (mLinkHistoryRecords) {
+                setupListView();
+            }
+        } else {
+            setupListView();
+        }
     }
 
     private void setTitleAlpha(float alpha) {
@@ -411,12 +422,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     @SuppressWarnings("unused")
     @Subscribe
     public void onLinkHistoryRecordChangedEvent(LinkHistoryRecord.ChangedEvent event) {
-        if (mLinkHistoryRecords != null) {
-            synchronized (mLinkHistoryRecords) {
-                setupListView();
-            }
-        } else {
-            setupListView();
-        }
+        updateListViewData();
     }
 }
