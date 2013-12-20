@@ -447,6 +447,12 @@ public class ContentView extends FrameLayout {
                 super.onPageFinished(view, url);
 
                 if (isValidUrl(url)) {
+                    updateAppsForUrl(url);
+                    setAppButton();
+
+                    mTitleTextView.setText(view.getTitle());
+                    mUrlTextView.setText(url.replace("http://", ""));
+
                     if (--mCount == 0) {
                         // Store final resolved url
                         mUrl = url;
@@ -477,7 +483,11 @@ public class ContentView extends FrameLayout {
                         case KeyEvent.KEYCODE_BACK:
                             if (webView.canGoBack()) {
                                 webView.stopLoading();
+                                String urlBefore = webView.getUrl();
                                 webView.goBack();
+                                updateAppsForUrl(webView.getUrl());
+                                Log.d(TAG, "Go back: " + urlBefore + " -> " + webView.getUrl());
+                                setAppButton();
                                 return true;
                             } else {
                                 mEventHandler.onSharedLink();
@@ -554,6 +564,10 @@ public class ContentView extends FrameLayout {
                         mAppsForUrl.add(new AppForUrl(resolveInfoToAdd, url));
                     }
                 }
+            }
+        } else {
+            if (mAppsForUrl != null) {
+                mAppsForUrl.clear();
             }
         }
     }
