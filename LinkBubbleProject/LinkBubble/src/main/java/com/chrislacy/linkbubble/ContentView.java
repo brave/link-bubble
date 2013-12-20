@@ -476,6 +476,7 @@ public class ContentView extends FrameLayout {
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_BACK:
                             if (webView.canGoBack()) {
+                                webView.stopLoading();
                                 webView.goBack();
                                 return true;
                             } else {
