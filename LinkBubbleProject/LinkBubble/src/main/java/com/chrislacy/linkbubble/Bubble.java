@@ -259,20 +259,16 @@ public class Bubble extends RelativeLayout {
     public String getUrl() { return mUrl; }
 
     public Bubble(final Context context, String url, int x, int y, long startTime,
-                  boolean recordHistory, int bubbleIndex, EventHandler eh) {
+                  int bubbleIndex, EventHandler eh) {
         super(context);
 
         mAlive = true;
-
-        if (Settings.get().isIncognitoMode()) {
-            recordHistory = false;
-        }
 
         mBubbleIndex = bubbleIndex;
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         mEventHandler = eh;
         mUrl = url;
-        mRecordHistory = recordHistory;
+        mRecordHistory = Settings.get().isIncognitoMode() ? false : true;
 
         mContentView = (ContentView)inflate(context, R.layout.view_content, null);
         mContentView.configure(Bubble.this, mUrl, startTime, new ContentView.EventHandler() {

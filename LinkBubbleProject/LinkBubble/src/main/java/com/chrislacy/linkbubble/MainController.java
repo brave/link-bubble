@@ -330,7 +330,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    public void onOpenUrl(final String url, boolean recordHistory, long startTime) {
+    public void onOpenUrl(final String url, long startTime) {
         if (Settings.get().redirectUrlToBrowser(url)) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(url));
@@ -378,7 +378,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         if (mBubbles.size() < Config.MAX_BUBBLES) {
-            Bubble bubble = new Bubble(mContext, url, Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y, startTime, recordHistory,
+            Bubble bubble = new Bubble(mContext, url, Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y, startTime,
                     mBubbles.size(), new Bubble.EventHandler() {
                 @Override
                 public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {

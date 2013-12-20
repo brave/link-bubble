@@ -42,10 +42,9 @@ public class MainApplication extends Application {
         super.onTerminate();
     }
 
-    public static void openLink(Context context, String url, boolean recordHistory) {
+    public static void openLink(Context context, String url) {
         Intent serviceIntent = new Intent(context, MainService.class);
         serviceIntent.putExtra("url", url);
-        serviceIntent.putExtra("record_history", recordHistory);
         serviceIntent.putExtra("start_time", System.currentTimeMillis());
         context.startService(serviceIntent);
     }

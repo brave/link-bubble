@@ -31,9 +31,8 @@ public class MainService extends Service {
     @Override
     public int onStartCommand(Intent cmd, int flags, int startId) {
         String url = cmd.getStringExtra("url");
-        boolean recordHistory = cmd.getBooleanExtra("record_history", true);
         long startTime = cmd.getLongExtra("start_time", System.currentTimeMillis());
-        MainController.get().onOpenUrl(url, recordHistory, startTime);
+        MainController.get().onOpenUrl(url, startTime);
         return START_STICKY;
     }
 

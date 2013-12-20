@@ -100,7 +100,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         mListView.addHeaderView(mPlaceHolderView);
 
         if (Settings.get().debugAutoLoadUrl()) {
-            MainApplication.openLink(this, "http://abc.net.au", false);
+            MainApplication.openLink(this, "http://abc.net.au");
             //MainApplication.openLink(getActivity(), "https://twitter.com/lokibartleby/status/412160702707539968", false);
         }
     }
@@ -314,7 +314,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (view.getTag() instanceof LinkHistoryRecord) {
             LinkHistoryRecord linkHistoryRecord = (LinkHistoryRecord)view.getTag();
-            MainApplication.openLink(this, linkHistoryRecord.getUrl(), true);
+            MainApplication.openLink(this, linkHistoryRecord.getUrl());
         }
     }
 

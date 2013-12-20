@@ -70,7 +70,7 @@ public class EntryActivity extends Activity {
             }
 
             if (openLink) {
-                MainApplication.openLink(this, url, true);
+                MainApplication.openLink(this, url);
             } else {
                 MainApplication.loadInBrowser(this, intent, true);
             }
