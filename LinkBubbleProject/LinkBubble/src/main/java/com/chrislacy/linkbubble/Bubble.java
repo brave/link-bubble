@@ -312,8 +312,8 @@ public class Bubble extends RelativeLayout {
                     int w = bitmap.getWidth();
                     int h = bitmap.getHeight();
 
-                    int reqW = (int) (Config.mBubbleWidth * 0.5f);
-                    int reqH = (int) (Config.mBubbleHeight * 0.5f);
+                    int reqW = Math.min((int) (Config.mBubbleWidth * 0.5f), w*2);
+                    int reqH = Math.min((int) (Config.mBubbleHeight * 0.5f), h*2);
 
                     if (w != reqW || h != reqH) {
                         w = reqW;
