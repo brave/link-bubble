@@ -117,10 +117,7 @@ public class State_ContentView extends ControllerState {
                     }
                 }
             } else if (mActiveBubble != sender) {
-                mActiveBubble = sender;
-                mCanvas.setContentView(mActiveBubble.getContentView());
-                mCanvas.showContentView();
-                mCanvas.setContentViewTranslation(0.0f);
+                setActiveBubble(sender);
             } else {
                 mainController.switchState(mainController.STATE_AnimateToBubbleView);
             }
@@ -153,5 +150,16 @@ public class State_ContentView extends ControllerState {
     @Override
     public String getName() {
         return "ContentView";
+    }
+
+    void setActiveBubble(Bubble bubble) {
+        mActiveBubble = bubble;
+        mCanvas.setContentView(mActiveBubble.getContentView());
+        mCanvas.showContentView();
+        mCanvas.setContentViewTranslation(0.0f);
+    }
+
+    Bubble getActiveBubble() {
+        return mActiveBubble;
     }
 }

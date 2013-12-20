@@ -19,6 +19,7 @@
         android:layout_marginTop="@dimen/toolbar_header">
 
         <LinearLayout
+            android:id="@+id/content_text_container"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

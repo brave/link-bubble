@@ -451,6 +451,42 @@ public class MainController implements Choreographer.FrameCallback {
         }
     };
 
+    boolean showPreviousBubble() {
+        if (mCurrentState instanceof State_ContentView) {
+            State_ContentView contentViewState = (State_ContentView)mCurrentState;
+            Bubble activeBubble = contentViewState.getActiveBubble();
+            if (activeBubble != null) {
+                int index = activeBubble.getBubbleIndex();
+                if (index > 0) {
+                    for (Bubble bubble : mBubbles) {
+                        if (index-1 == bubble.getBubbleIndex()) {
+                            contentViewState.setActiveBubble(bubble);
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    boolean showNextBubble() {
+        if (mCurrentState instanceof State_ContentView) {
+            State_ContentView contentViewState = (State_ContentView)mCurrentState;
+            Bubble activeBubble = contentViewState.getActiveBubble();
+            if (activeBubble != null) {
+                int index = activeBubble.getBubbleIndex();
+                for (Bubble bubble : mBubbles) {
+                    if (index+1 == bubble.getBubbleIndex()) {
+                        contentViewState.setActiveBubble(bubble);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     @SuppressWarnings("unused")
     @Subscribe
     public void onContentActivityResumed(ContentActivity.ContentActivityResumedEvent event) {

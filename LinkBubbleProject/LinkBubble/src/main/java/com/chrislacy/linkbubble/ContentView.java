@@ -202,6 +202,16 @@ public class ContentView extends FrameLayout {
         mTitleTextView = (CondensedTextView) findViewById(R.id.title_text);
         mUrlTextView = (CondensedTextView) findViewById(R.id.url_text);
 
+        View textContainer = findViewById(R.id.content_text_container);
+        textContainer.setOnTouchListener(new OnSwipeTouchListener() {
+            public void onSwipeRight() {
+                MainController.get().showPreviousBubble();
+            }
+            public void onSwipeLeft() {
+                MainController.get().showNextBubble();
+            }
+        });
+
         mShareButton = (ContentViewButton)findViewById(R.id.share_button);
         mShareButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_share));
         mShareButton.setOnClickListener(new OnClickListener() {
