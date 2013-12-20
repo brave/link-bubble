@@ -146,7 +146,7 @@ public class Settings {
                     editor.commit();
                 }
                 if (rightConsumeBubblePackageName == null) {
-                    setConsumeBubble(Config.BubbleAction.ConsumeRight, Config.ActionType.Share,
+                    setConsumeBubble(Config.BubbleAction.ConsumeRight, Config.ActionType.View,
                             defaultBrowserLabel,
                             fallbackDefaultBrowserPackageName, fallbackDefaultBrowserActivityClassName);
                 }

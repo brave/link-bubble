@@ -149,12 +149,8 @@ public class MainController implements Choreographer.FrameCallback {
                     intent.putExtra(Intent.EXTRA_TEXT, url);
                     mContext.startActivity(intent);
                 } else if (actionType == Config.ActionType.View) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setClassName(Settings.get().getConsumeBubblePackageName(action),
-                                        Settings.get().getConsumeBubbleActivityClassName(action));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                    intent.setData(Uri.parse(url));
-                    mContext.startActivity(intent);
+                    MainApplication.loadIntent(mContext, Settings.get().getConsumeBubblePackageName(action),
+                            Settings.get().getConsumeBubbleActivityClassName(action), url, -1);
                 }
                 break;
             }
