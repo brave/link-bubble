@@ -17,6 +17,7 @@ import android.net.http.SslError;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -25,6 +26,7 @@ import android.view.WindowManager;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
@@ -33,6 +35,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.graphics.Canvas;
@@ -61,7 +64,7 @@ public class ContentView extends FrameLayout {
     private String mUrl;
     private List<AppForUrl> mAppsForUrl;
     private PopupMenu mOverflowPopupMenu;
-    private PopupMenu mLongPressPopupMenu;
+    private AlertDialog mLongPressAlertDialog;
     private long mStartTime;
     private Bubble mOwner;
     private int mHeaderHeight;
@@ -280,11 +283,7 @@ public class ContentView extends FrameLayout {
                             }
 
                             case R.id.item_open_in_browser: {
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setData(Uri.parse(mUrl));
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                MainApplication.loadInBrowser(mContext, intent, true);
-                                mEventHandler.onSharedLink();
+                                openInBrowser(mUrl);
                                 break;
                             }
 
@@ -333,40 +332,43 @@ public class ContentView extends FrameLayout {
                 switch (hitTestResult.getType()) {
                     case WebView.HitTestResult.SRC_ANCHOR_TYPE:
                     case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: {
-                        mLongPressPopupMenu = new PopupMenu(mContext, v);
+                        final String url = hitTestResult.getExtra();
+                        if (url == null) {
+                            return false;
+                        }
                         Resources resources = mContext.getResources();
 
+                        ArrayList<String> longClickSelections = new ArrayList<String>();
+                        longClickSelections.add(resources.getString(R.string.action_open_in_bubble));
                         String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
                         if (defaultBrowserLabel != null) {
-                            mLongPressPopupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
-                                    String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
+                            longClickSelections.add(String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
                         }
 
-                        mLongPressPopupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_bubble, Menu.NONE, resources.getString(R.string.action_open_in_bubble));
-
-                        mLongPressPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        ListView listView = new ListView(getContext());
+                        listView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,
+                                                longClickSelections.toArray(new String[0])));
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                switch (item.getItemId()) {
-                                    case R.id.item_open_in_bubble:
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                switch (position) {
+                                    case 0:
                                         break;
-                                    case R.id.item_open_in_browser:
+
+                                    case 1:
+                                        openInBrowser(url);
                                         break;
                                 }
-                                mLongPressPopupMenu = null;
-                                return false;
-                            }
-                        });
-
-                        mLongPressPopupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
-                            @Override
-                            public void onDismiss(PopupMenu menu) {
-                                if (mLongPressPopupMenu == menu) {
-                                    mLongPressPopupMenu = null;
+                                if (mLongPressAlertDialog != null) {
+                                    mLongPressAlertDialog.dismiss();
                                 }
                             }
                         });
-                        mLongPressPopupMenu.show();
+
+                        mLongPressAlertDialog = new AlertDialog.Builder(getContext()).create();
+                        mLongPressAlertDialog.setView(listView);
+                        mLongPressAlertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                        mLongPressAlertDialog.show();
                         return true;
                     }
                     default:
@@ -401,11 +403,7 @@ public class ContentView extends FrameLayout {
                 List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
                 updateAppsForUrl(resolveInfos, url);
                 if (Settings.get().redirectUrlToBrowser(url)) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(url));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    if (MainApplication.loadInBrowser(mContext, intent, false)) {
-                        mEventHandler.onSharedLink();
+                    if (openInBrowser(url)) {
                         return false;
                     }
                 }
@@ -582,9 +580,9 @@ public class ContentView extends FrameLayout {
             mOverflowPopupMenu.dismiss();
             mOverflowPopupMenu = null;
         }
-        if (mLongPressPopupMenu != null) {
-            mLongPressPopupMenu.dismiss();
-            mLongPressPopupMenu = null;
+        if (mLongPressAlertDialog != null) {
+            mLongPressAlertDialog.dismiss();
+            mLongPressAlertDialog = null;
         }
     }
 
@@ -592,5 +590,17 @@ public class ContentView extends FrameLayout {
         mShareButton.setIsTouched(false);
         mOpenInAppButton.setIsTouched(false);
         mOverflowButton.setIsTouched(false);
+    }
+
+    private boolean openInBrowser(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        if (MainApplication.loadInBrowser(mContext, intent, true)) {
+            mEventHandler.onSharedLink();
+            return true;
+        }
+
+        return false;
     }
 }
