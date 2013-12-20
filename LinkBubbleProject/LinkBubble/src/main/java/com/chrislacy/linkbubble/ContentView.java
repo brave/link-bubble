@@ -353,6 +353,7 @@ public class ContentView extends FrameLayout {
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 switch (position) {
                                     case 0:
+                                        //MainController.get().onOpenUrl(url, System.currentTimeMillis());
                                         break;
 
                                     case 1:
