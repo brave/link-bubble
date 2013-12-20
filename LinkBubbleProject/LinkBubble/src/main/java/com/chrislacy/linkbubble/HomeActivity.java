@@ -103,6 +103,12 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             MainApplication.openLink(this, "http://abc.net.au");
             //MainApplication.openLink(getActivity(), "https://twitter.com/lokibartleby/status/412160702707539968", false);
         }
+
+        Vector<String> urls = Settings.get().loadCurrentBubbles();
+        for (String url : urls) {
+            MainApplication.openLink(this, url);
+        }
+
     }
 
     @Override

@@ -183,6 +183,8 @@ public class MainController implements Choreographer.FrameCallback {
             Util.Assert(bubbleIndex >= 0 && bubbleIndex < mBubbles.size());
             mBubbles.remove(bubble);
 
+            Settings.get().saveCurrentBubbles(mBubbles);
+
             for (int i=0 ; i < mBubbles.size() ; ++i) {
                 mBubbles.get(i).setBubbleIndex(i);
             }
@@ -455,6 +457,8 @@ public class MainController implements Choreographer.FrameCallback {
             mCurrentState.OnNewBubble(bubble);
             mBubbles.add(bubble);
             ++mBubblesLoaded;
+
+            Settings.get().saveCurrentBubbles(mBubbles);
 
             int bubbleCount = mBubbles.size();
 

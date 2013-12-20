@@ -12,6 +12,7 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import java.util.List;
+import java.util.Vector;
 
 public class EntryActivity extends Activity {
 

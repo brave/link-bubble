@@ -47,6 +47,7 @@ public class Settings {
     public static final String PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME = "preference_default_browser_package_name";
     public static final String PREFERENCE_DEFAULT_BROWSER_LABEL = "preference_default_browser_bubble_label";
 
+    public static final String PREFERENCE_CURRENT_BUBBLES = "preference_current_bubbles";
     public static final String PREFERENCE_DEFAULT_APPS = "preference_default_apps";
     public static final String PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT = "preference_google_accounts_redirect";
 
@@ -468,6 +469,32 @@ public class Settings {
             mDefaultAppsMap.remove(host);
             saveDefaultApps();
         }
+    }
+
+    public Vector<String> loadCurrentBubbles() {
+        Vector<String> urls = new Vector<String>();
+        String json = mSharedPreferences.getString(PREFERENCE_CURRENT_BUBBLES, "[]");
+        try {
+            JSONArray jsonArray = new JSONArray(json);
+            for (int i=0 ; i < jsonArray.length() ; ++i) {
+                urls.add(jsonArray.getString(i));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return urls;
+    }
+
+    public void saveCurrentBubbles(List<Bubble> bubbles) {
+        JSONArray jsonArray = new JSONArray();
+        for (Bubble b : bubbles) {
+            String url = b.getUrl();
+            jsonArray.put(url);
+        }
+
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(PREFERENCE_CURRENT_BUBBLES, jsonArray.toString());
+        editor.commit();
     }
 
     private void saveDefaultApps() {

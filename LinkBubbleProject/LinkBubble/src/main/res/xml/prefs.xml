@@ -96,6 +96,11 @@
             android:title="Flick Targets"
             android:defaultValue="false" />
 
+        <Preference
+            android:key="debug_crash"
+            android:summary="CRASH THE APP (TEST RECOVERY)."
+            android:title="Crash!"/>
+
     </PreferenceCategory>
 
 </PreferenceScreen>

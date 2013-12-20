@@ -131,6 +131,15 @@ public class SettingsFragment extends PreferenceFragment {
             });
         }
 
+        Preference crashButton = findPreference("debug_crash");
+        if (crashButton != null) {
+            crashButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    throw new RuntimeException("CRASH BUTTON PRESSED!");                }
+            });
+        }
+
         final Preference leftConsumeBubblePreference = findPreference(Settings.PREFERENCE_LEFT_CONSUME_BUBBLE);
         leftConsumeBubblePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
