@@ -27,14 +27,9 @@ public class State_AnimateToContentView extends ControllerState {
     private float mBubblePeriod;
     private float mContentPeriod;
     private Vector<BubbleInfo> mBubbleInfo = new Vector<BubbleInfo>();
-    private Bubble mSelectedBubble;
 
     public State_AnimateToContentView(Canvas canvas) {
         mCanvas = canvas;
-    }
-
-    public void init(Bubble b) {
-        mSelectedBubble = b;
     }
 
     @Override
@@ -44,8 +39,7 @@ public class State_AnimateToContentView extends ControllerState {
         if (mCanvas.getContentView() != null) {
             mCanvas.getContentView().onAnimateOnScreen();
         }
-        Util.Assert(mSelectedBubble != null);
-        mCanvas.setContentView(mSelectedBubble.getContentView());
+        mCanvas.setContentView(MainController.get().getActiveBubble().getContentView());
 
         mBubbleInfo.clear();
         mTime = 0.0f;
@@ -102,7 +96,7 @@ public class State_AnimateToContentView extends ControllerState {
         mCanvas.setContentViewTranslation(t * (Config.mScreenHeight - Config.mContentOffset));
 
         if (mTime >= mBubblePeriod && mTime >= mContentPeriod) {
-            mainController.STATE_ContentView.init(mSelectedBubble);
+            //mainController.STATE_ContentView.init(mSelectedBubble);
             mainController.switchState(mainController.STATE_ContentView);
         }
 
@@ -111,7 +105,6 @@ public class State_AnimateToContentView extends ControllerState {
 
     @Override
     public void OnExitState() {
-        mSelectedBubble = null;
         mCanvas.setContentViewTranslation(0.0f);
     }
 
@@ -141,7 +134,7 @@ public class State_AnimateToContentView extends ControllerState {
     @Override
     public boolean OnOrientationChanged() {
         MainController mainController = MainController.get();
-        mainController.STATE_ContentView.init(mSelectedBubble);
+        //mainController.STATE_ContentView.init(mSelectedBubble);
         mainController.switchState(mainController.STATE_ContentView);
         return true;
     }

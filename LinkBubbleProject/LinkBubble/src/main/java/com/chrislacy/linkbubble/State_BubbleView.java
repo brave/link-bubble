@@ -36,7 +36,7 @@ public class State_BubbleView extends ControllerState {
         for (int i=0 ; i < mainController.getBubbleCount() ; ++i) {
             Bubble b = mainController.getBubble(i);
             int vis = View.VISIBLE;
-            if (i != mainController.getBubbleCount()-1)
+            if (b != mainController.getActiveBubble())
                 vis = View.GONE;
             b.setVisibility(vis);
         }
@@ -69,7 +69,6 @@ public class State_BubbleView extends ControllerState {
         if (Settings.get().autoLoadContent()) {
             mBadge.hide();
             MainController mainController = MainController.get();
-            mainController.STATE_AnimateToContentView.init(bubble);
             mainController.switchState(mainController.STATE_AnimateToContentView);
         }
     }
@@ -145,7 +144,6 @@ public class State_BubbleView extends ControllerState {
                 }
             } else {
                 mBadge.hide();
-                mainController.STATE_AnimateToContentView.init(sender);
                 mainController.switchState(mainController.STATE_AnimateToContentView);
             }
 

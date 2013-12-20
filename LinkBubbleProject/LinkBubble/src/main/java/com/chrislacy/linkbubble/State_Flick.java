@@ -114,7 +114,6 @@ public abstract class State_Flick extends ControllerState {
                             y = mTargetY;
 
                             if (isContentView()) {
-                                mainController.STATE_AnimateToContentView.init(b);
                                 mainController.switchState(mainController.STATE_AnimateToContentView);
                             } else if (x == Config.mBubbleSnapLeftX || x == Config.mBubbleSnapRightX) {
                                 Config.BUBBLE_HOME_X = mBubble.getXPos();
@@ -132,7 +131,6 @@ public abstract class State_Flick extends ControllerState {
             if (mBubble.getXPos() == mTargetInfo.mTargetX && mBubble.getYPos() == mTargetInfo.mTargetY) {
                 if (mainController.destroyBubble(mBubble, mTargetInfo.mAction)) {
                     if (isContentView()) {
-                        mainController.STATE_AnimateToContentView.init(mainController.getBubble(mainController.getBubbleCount()-1));
                         mainController.switchState(mainController.STATE_AnimateToContentView);
                     } else {
                         mainController.switchState(mainController.STATE_AnimateToBubbleView);
@@ -179,7 +177,6 @@ public abstract class State_Flick extends ControllerState {
     public boolean OnOrientationChanged() {
         MainController mainController = MainController.get();
         if (isContentView()) {
-            mainController.STATE_AnimateToContentView.init(mBubble);
             mainController.switchState(mainController.STATE_AnimateToContentView);
         } else {
             mainController.switchState(mainController.STATE_BubbleView);

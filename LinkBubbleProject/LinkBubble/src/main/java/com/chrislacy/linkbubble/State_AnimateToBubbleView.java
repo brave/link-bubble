@@ -31,6 +31,8 @@ public class State_AnimateToBubbleView extends ControllerState {
 
     @Override
     public void OnEnterState() {
+        MainController.get().getActiveBubble().readd();
+
         mCanvas.fadeOutTargets();
         if (mCanvas.getContentView() != null) {
             mCanvas.getContentView().onAnimateOffscreen();

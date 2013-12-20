@@ -14,7 +14,6 @@ public class State_ContentView extends ControllerState {
     private int mTargetX;
     private int mTargetY;
     private Bubble mTouchBubble;
-    private Bubble mActiveBubble;
     private boolean mTouchDown;
     private int mTouchFrameCount;
 
@@ -22,13 +21,9 @@ public class State_ContentView extends ControllerState {
         mCanvas = canvas;
     }
 
-    public void init(Bubble b) {
-        mActiveBubble = b;
-    }
-
     @Override
     public void OnEnterState() {
-        Util.Assert(mActiveBubble != null);
+        Util.Assert(MainController.get().getActiveBubble() != null);
         mDidMove = false;
         mTouchBubble = null;
         MainController.get().beginAppPolling();
@@ -54,7 +49,6 @@ public class State_ContentView extends ControllerState {
 
     @Override
     public void OnExitState() {
-        mActiveBubble = null;
     }
 
     @Override
@@ -105,18 +99,16 @@ public class State_ContentView extends ControllerState {
                         mainController.STATE_Flick_ContentView.init(sender, e.vx, e.vy);
                         mainController.switchState(mainController.STATE_Flick_ContentView);
                     } else {
-                        mainController.STATE_AnimateToContentView.init(mTouchBubble);
                         mainController.switchState(mainController.STATE_AnimateToContentView);
                     }
                 } else {
                     if (mainController.destroyBubble(mTouchBubble, ti.mAction)) {
-                        mainController.STATE_AnimateToContentView.init(mainController.getBubble(mainController.getBubbleCount()-1));
                         mainController.switchState(mainController.STATE_AnimateToContentView);
                     } else {
                         mainController.switchState(mainController.STATE_BubbleView);
                     }
                 }
-            } else if (mActiveBubble != sender) {
+            } else if (MainController.get().getActiveBubble() != sender) {
                 setActiveBubble(sender);
             } else {
                 mainController.switchState(mainController.STATE_AnimateToBubbleView);
@@ -152,13 +144,9 @@ public class State_ContentView extends ControllerState {
     }
 
     void setActiveBubble(Bubble bubble) {
-        mActiveBubble = bubble;
-        mCanvas.setContentView(mActiveBubble.getContentView());
+        MainController.get().setActiveBubble(bubble);
+        mCanvas.setContentView(bubble.getContentView());
         mCanvas.showContentView();
         mCanvas.setContentViewTranslation(0.0f);
-    }
-
-    Bubble getActiveBubble() {
-        return mActiveBubble;
     }
 }

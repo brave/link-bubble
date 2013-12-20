@@ -258,6 +258,11 @@ public class Bubble extends RelativeLayout {
 
     public String getUrl() { return mUrl; }
 
+    public void readd() {
+        mWindowManager.removeView(this);
+        mWindowManager.addView(this, mWindowManagerParams);
+    }
+
     public Bubble(final Context context, String url, int x0, int y0, int targetX, int targetY, float targetTime, long startTime,
                   int bubbleIndex, EventHandler eh) {
         super(context);
