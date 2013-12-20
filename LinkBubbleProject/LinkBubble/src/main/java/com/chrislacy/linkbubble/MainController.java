@@ -56,6 +56,7 @@ public class MainController implements Choreographer.FrameCallback {
         //mWindowManager.removeView(mTextView);
         sInstance.mCanvas.destroy();
         sInstance.mChoreographer.removeFrameCallback(sInstance);
+        sInstance.endAppPolling();
         sInstance = null;
     }
 

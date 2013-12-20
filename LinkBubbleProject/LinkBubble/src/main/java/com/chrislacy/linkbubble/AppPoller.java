@@ -61,6 +61,11 @@ public class AppPoller {
                 case ACTION_POLL_CURRENT_APP: {
                     mHandler.removeMessages(ACTION_POLL_CURRENT_APP);
 
+                    if (MainController.get() == null) {
+                        Log.d(TAG, "No main controller, exit");
+                        break;
+                    }
+
                     ActivityManager am = (ActivityManager)mContext.getSystemService(Activity.ACTIVITY_SERVICE);
                     ComponentName componentName = am.getRunningTasks(1).get(0).topActivity;
                     String currentAppFlatComponentName = componentName.flattenToShortString();
