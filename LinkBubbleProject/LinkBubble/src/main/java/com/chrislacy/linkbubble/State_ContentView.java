@@ -128,8 +128,7 @@ public class State_ContentView extends ControllerState {
 
     @Override
     public boolean OnNewBubble(Bubble bubble) {
-        Util.Assert(false);
-        return false;
+        return true;
     }
 
     @Override

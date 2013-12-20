@@ -258,7 +258,7 @@ public class Bubble extends RelativeLayout {
 
     public String getUrl() { return mUrl; }
 
-    public Bubble(final Context context, String url, int x, int y, long startTime,
+    public Bubble(final Context context, String url, int x0, int y0, int targetX, int targetY, float targetTime, long startTime,
                   int bubbleIndex, EventHandler eh) {
         super(context);
 
@@ -472,8 +472,8 @@ public class Bubble extends RelativeLayout {
         });
 
         mWindowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
-        mWindowManagerParams.x = x;
-        mWindowManagerParams.y = y;
+        mWindowManagerParams.x = x0;
+        mWindowManagerParams.y = y0;
         mWindowManagerParams.height = Config.dpToPx(60.0f);
         mWindowManagerParams.width = Config.dpToPx(60.0f);
         mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
@@ -484,11 +484,9 @@ public class Bubble extends RelativeLayout {
         if (mAlive) {
             mWindowManager.addView(this, mWindowManagerParams);
 
-            if (bubbleIndex == 0) {
-                setExactPos((int) (Config.mBubbleSnapLeftX - Config.mBubbleWidth), y);
-                setTargetPos(x, y, 0.4f, true);
-            } else {
-                setExactPos(x, y);
+            setExactPos(x0, y0);
+            if (targetX != x0 || targetY != y0) {
+                setTargetPos(targetX, targetY, targetTime, true);
             }
         }
     }

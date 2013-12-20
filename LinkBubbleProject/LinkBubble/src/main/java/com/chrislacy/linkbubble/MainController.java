@@ -378,8 +378,36 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         if (mBubbles.size() < Config.MAX_BUBBLES) {
-            Bubble bubble = new Bubble(mContext, url, Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y, startTime,
-                    mBubbles.size(), new Bubble.EventHandler() {
+
+            int x, targetX, y, targetY;
+            float time;
+
+            int bubbleIndex = mBubbles.size();
+
+            if (mCurrentState == STATE_ContentView) {
+                x = (int) Config.getContentViewX(bubbleIndex);
+                y = (int) -Config.mBubbleHeight;
+                targetX = x;
+                targetY = Config.mContentViewBubbleY;
+                time = 0.4f;
+            } else {
+                if (bubbleIndex == 0) {
+                    x = (int) (Config.mBubbleSnapLeftX - Config.mBubbleWidth);
+                    y = Config.BUBBLE_HOME_Y;
+                    targetX = Config.BUBBLE_HOME_X;
+                    targetY = y;
+                    time = 0.4f;
+                } else {
+                    x = Config.BUBBLE_HOME_X;
+                    y = Config.BUBBLE_HOME_Y;
+                    targetX = x;
+                    targetY = y;
+                    time = 0.0f;
+                }
+            }
+
+            Bubble bubble = new Bubble(mContext, url, x, y, targetX, targetY, time, startTime,
+                    bubbleIndex, new Bubble.EventHandler() {
                 @Override
                 public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
                     mCurrentState.OnMotionEvent_Touch(sender, e);
@@ -420,12 +448,16 @@ public class MainController implements Choreographer.FrameCallback {
             mBadge.attach(bubble);
             mBadge.setBubbleCount(bubbleCount);
 
-            for (int i=0 ; i < bubbleCount ; ++i) {
-                Bubble b = mBubbles.get(i);
-                int vis = View.VISIBLE;
-                if (i != bubbleCount-1)
-                    vis = View.GONE;
-                b.setVisibility(vis);
+            if (mCurrentState == STATE_ContentView) {
+                bubble.setVisibility(View.VISIBLE);
+            } else {
+                for (int i=0 ; i < bubbleCount ; ++i) {
+                    Bubble b = mBubbles.get(i);
+                    int vis = View.VISIBLE;
+                    if (i != bubbleCount-1)
+                        vis = View.GONE;
+                    b.setVisibility(vis);
+                }
             }
         }
     }
