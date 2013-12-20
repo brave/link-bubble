@@ -39,6 +39,7 @@ public class State_ContentView extends ControllerState {
             }
 
             if (mDidMove) {
+                MainController.get().setActiveBubble(mTouchBubble);
                 mTouchBubble.doSnap(mCanvas, mTargetX, mTargetY);
             }
             return true;
@@ -109,6 +110,7 @@ public class State_ContentView extends ControllerState {
                     }
                 }
             } else if (MainController.get().getActiveBubble() != sender) {
+                mCanvas.fadeOutTargets();
                 setActiveBubble(sender);
             } else {
                 mainController.switchState(mainController.STATE_AnimateToBubbleView);
