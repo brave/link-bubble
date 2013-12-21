@@ -56,7 +56,7 @@ public class State_AnimateToContentView extends ControllerState {
             bi.mPosX = (float) b.getXPos();
             bi.mPosY = (float) b.getYPos();
 
-            bi.mTargetX = Config.getContentViewX(i);
+            bi.mTargetX = Config.getContentViewX(i, MainController.get().getBubbleCount());
             bi.mTargetY = Config.mContentViewBubbleY;
             bi.mDistanceX = bi.mTargetX - bi.mPosX;
             bi.mDistanceY = bi.mTargetY - bi.mPosY;

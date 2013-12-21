@@ -98,9 +98,20 @@ public class Config {
         return result;
     }
 
-    public static float getContentViewX(int bubbleIndex) {
-        float x = Config.mContentViewBubbleX - Config.mBubbleWidth * 1.2f * bubbleIndex;
-        return x;
+    public static float getContentViewX(int bubbleIndex, int bubbleCount) {
+
+        float spaceUsed = bubbleCount * Config.mBubbleWidth + (bubbleCount-1) * Config.mBubbleWidth * 0.2f;
+        float x0 = Config.mScreenCenterX - spaceUsed * 0.5f;
+        return x0 + bubbleIndex * Config.mBubbleWidth * 1.2f;
+
+        /*
+        if (bubbleIndex == 0) {
+            return Config.mScreenCenterX;
+        } else if ((bubbleIndex & 1) == 0) {
+            return Config.mScreenCenterX + (bubbleIndex/2) * Config.mBubbleWidth * 1.2f;
+        } else {
+            return Config.mScreenCenterX - (1+bubbleIndex/2) * Config.mBubbleWidth * 1.2f;
+        }*/
     }
 
     public static int dpToPx(float dp) {

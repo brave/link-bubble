@@ -68,6 +68,7 @@ public class ContentView extends FrameLayout {
     private long mStartTime;
     private Bubble mOwner;
     private int mHeaderHeight;
+    private int mMarkerX;
 
     private Paint mPaint;
 
@@ -120,12 +121,12 @@ public class ContentView extends FrameLayout {
     public void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
 
-        int xp = (int) Config.getContentViewX(mOwner.getBubbleIndex());
+        //int xp = (int) Config.getContentViewX(mOwner.getBubbleIndex(), MainController.get().getBubbleCount());
 
         Path path = new Path();
-        path.moveTo(xp + Config.mBubbleWidth * 0.33f, mHeaderHeight + 1.0f);
-        path.lineTo(xp + Config.mBubbleWidth * 0.5f, 0.0f);
-        path.lineTo(xp + Config.mBubbleWidth * 0.67f, mHeaderHeight + 1.0f);
+        path.moveTo(mMarkerX + Config.mBubbleWidth * 0.33f, mHeaderHeight + 1.0f);
+        path.lineTo(mMarkerX + Config.mBubbleWidth * 0.5f, 0.0f);
+        path.lineTo(mMarkerX + Config.mBubbleWidth * 0.67f, mHeaderHeight + 1.0f);
 
         canvas.drawPath(path, mPaint);
     }
@@ -192,6 +193,11 @@ public class ContentView extends FrameLayout {
             }
         });
         alertDialog.show();
+    }
+
+    public void setMarkerX(int x) {
+        mMarkerX = x;
+        invalidate();
     }
 
     void configure(Bubble owner, String url, long startTime, EventHandler eh) {

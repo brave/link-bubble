@@ -117,6 +117,7 @@ public class Bubble extends RelativeLayout {
 
     public void setBubbleIndex(int i) {
         mBubbleIndex = i;
+        mContentView.setMarkerX((int) Config.getContentViewX(i, MainController.get().getBubbleCount()));
     }
 
     public int getBubbleIndex() {
@@ -141,7 +142,7 @@ public class Bubble extends RelativeLayout {
         int xPos, yPos;
 
         if (contentViewMode) {
-            xPos = (int) Config.getContentViewX(mBubbleIndex);
+            xPos = (int) Config.getContentViewX(mBubbleIndex, MainController.get().getBubbleCount());
             yPos = Config.mContentViewBubbleY;
         } else {
             if (mWindowManagerParams.x < Config.mScreenHeight * 0.5f)
@@ -219,7 +220,7 @@ public class Bubble extends RelativeLayout {
         return mOvershoot;
     }
 
-    public void update(float dt) {
+    public void update(float dt, boolean contentView) {
         if (mAnimTime < mAnimPeriod) {
             Util.Assert(mAnimPeriod > 0.0f);
 
@@ -241,6 +242,10 @@ public class Bubble extends RelativeLayout {
             mWindowManagerParams.x = x;
             mWindowManagerParams.y = y;
             mWindowManager.updateViewLayout(this, mWindowManagerParams);
+
+            if (contentView) {
+                mContentView.setMarkerX(x);
+            }
 
             MainController.get().scheduleUpdate();
         }
@@ -264,12 +269,11 @@ public class Bubble extends RelativeLayout {
     }
 
     public Bubble(final Context context, String url, int x0, int y0, int targetX, int targetY, float targetTime, long startTime,
-                  int bubbleIndex, EventHandler eh) {
+                  EventHandler eh) {
         super(context);
 
         mAlive = true;
 
-        mBubbleIndex = bubbleIndex;
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         mEventHandler = eh;
         mUrl = url;

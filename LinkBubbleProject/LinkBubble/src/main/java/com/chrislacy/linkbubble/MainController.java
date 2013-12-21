@@ -179,8 +179,18 @@ public class MainController implements Choreographer.FrameCallback {
             String url = bubble.getUrl();
 
             bubble.destroy();
+
+            //int bubbleCount = mBubbles.size();
             int bubbleIndex = mBubbles.indexOf(bubble);
             Util.Assert(bubbleIndex >= 0 && bubbleIndex < mBubbles.size());
+
+            /*if (bubbleCount > 3) {
+                while (bubbleIndex + 2 < mBubbles.size()) {
+                    Collections.swap(mBubbles, bubbleIndex, bubbleIndex+2);
+                    bubbleIndex += 2;
+                }
+            }*/
+            mBubbles.remove(bubble);
             mBubbles.remove(bubble);
 
             Settings.get().saveCurrentBubbles(mBubbles);
@@ -274,7 +284,7 @@ public class MainController implements Choreographer.FrameCallback {
         int bubbleCount = mBubbles.size();
         for (int i=0 ; i < bubbleCount ; ++i) {
             Bubble b = mBubbles.get(i);
-            b.update(dt);
+            b.update(dt, mCurrentState == STATE_ContentView);
         }
 
         Bubble frontBubble = null;
@@ -400,7 +410,7 @@ public class MainController implements Choreographer.FrameCallback {
             int bubbleIndex = mBubbles.size();
 
             if (mCurrentState == STATE_ContentView) {
-                x = (int) Config.getContentViewX(bubbleIndex);
+                x = (int) Config.getContentViewX(bubbleIndex, MainController.get().getBubbleCount()+1);
                 y = (int) -Config.mBubbleHeight;
                 targetX = x;
                 targetY = Config.mContentViewBubbleY;
@@ -422,7 +432,7 @@ public class MainController implements Choreographer.FrameCallback {
             }
 
             Bubble bubble = new Bubble(mContext, url, x, y, targetX, targetY, time, startTime,
-                    bubbleIndex, new Bubble.EventHandler() {
+                    new Bubble.EventHandler() {
                 @Override
                 public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
                     mCurrentState.OnMotionEvent_Touch(sender, e);
@@ -458,6 +468,10 @@ public class MainController implements Choreographer.FrameCallback {
             mBubbles.add(bubble);
             ++mBubblesLoaded;
 
+            for (int i=0 ; i < mBubbles.size() ; ++i) {
+                mBubbles.get(i).setBubbleIndex(i);
+            }
+
             Settings.get().saveCurrentBubbles(mBubbles);
 
             int bubbleCount = mBubbles.size();
@@ -467,6 +481,12 @@ public class MainController implements Choreographer.FrameCallback {
 
             if (mCurrentState == STATE_ContentView) {
                 bubble.setVisibility(View.VISIBLE);
+                for (int i=0 ; i < bubbleCount ; ++i) {
+                    Bubble b = mBubbles.get(i);
+                    if (b != bubble) {
+                        b.setTargetPos((int)Config.getContentViewX(b.getBubbleIndex(), MainController.get().getBubbleCount()), b.getYPos(), 0.2f, false);
+                    }
+                }
             } else {
                 mFrontBubble = bubble;
                 for (int i=0 ; i < bubbleCount ; ++i) {
