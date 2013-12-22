@@ -58,7 +58,7 @@ public class Canvas extends RelativeLayout {
 
         applyAlpha();
 
-        mTargets.add(new BubbleTarget(this, mContext, android.R.drawable.ic_delete, Config.BubbleAction.Destroy, 0.5f, 0.85f, true));
+        mTargets.add(new BubbleTarget(this, mContext, R.drawable.close_indicator, Config.BubbleAction.Destroy, 0.5f, 0.85f, true));
         mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeLeft, 0.2f, 0.15f, true));
         mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeRight, 0.8f, 0.15f, true));
 
