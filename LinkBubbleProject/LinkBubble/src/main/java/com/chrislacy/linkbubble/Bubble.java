@@ -28,6 +28,7 @@ public class Bubble extends RelativeLayout {
 
     private Badge mBadge;
     private ImageView mShape;
+    private ImageView mAdditionalFaviconView;
     protected WindowManager mWindowManager;
     protected WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
     private EventHandler mEventHandler;
@@ -271,6 +272,10 @@ public class Bubble extends RelativeLayout {
         return mShape.getDrawable();
     }
 
+    public void setAdditionalFaviconView(ImageView imageView) {
+        mAdditionalFaviconView = imageView;
+    }
+
     public void readd() {
         mWindowManager.removeView(this);
         mWindowManager.addView(this, mWindowManagerParams);
@@ -340,6 +345,9 @@ public class Bubble extends RelativeLayout {
                     }
 
                     mShape.setImageBitmap(bitmap);
+                    if (mAdditionalFaviconView != null) {
+                        mAdditionalFaviconView.setImageBitmap(bitmap);
+                    }
                     halfImageWidth = w / 2;
                     halfImageHeight = h / 2;
                 }

@@ -85,9 +85,10 @@ class BubbleCoverFlowAdapter extends FancyCoverFlowAdapter {
             reuseableView.setLayoutParams(new FancyCoverFlow.LayoutParams(mItemSize, mItemSize));
         }
 
-        Bubble info = getItem(i);
+        Bubble bubble = getItem(i);
         //viewHolder.mTextView.setText(info.getUrl().getHost());
-        viewHolder.mFaviconImageView.setImageDrawable(info.getFavicon());
+        viewHolder.mFaviconImageView.setImageDrawable(bubble.getFavicon());
+        bubble.setAdditionalFaviconView(viewHolder.mFaviconImageView);
         return reuseableView;
     }
 
