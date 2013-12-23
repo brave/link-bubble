@@ -74,6 +74,9 @@ public class Config {
         int maxBubbles1 = (int) ((mDm.widthPixels - mBubbleWidth - mBubbleWidth * 0.5f) / (Config.mBubbleWidth * 1.2f));
         int maxBubbles2 = (int) ((mDm.heightPixels - mBubbleWidth - mBubbleWidth * 0.5f) / (Config.mBubbleWidth * 1.2f));
         MAX_BUBBLES = Math.min(maxBubbles1, maxBubbles2);
+        if (MAX_BUBBLES < 5) {
+            MAX_BUBBLES = 5;
+        }
 
         mBubbleSnapLeftX = (int) (-mBubbleWidth * 0.2f);
         mBubbleSnapRightX = (int) (mDm.widthPixels - mBubbleWidth * 0.8f);
