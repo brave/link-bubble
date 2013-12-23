@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
+import java.net.MalformedURLException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
@@ -175,7 +176,7 @@ public class MainController implements Choreographer.FrameCallback {
         if (debug) {
             Toast.makeText(mContext, "HIT TARGET!", 400).show();
         } else {
-            String url = bubble.getUrl();
+            String url = bubble.getUrl().toString();
 
             bubble.destroy();
 
@@ -434,38 +435,44 @@ public class MainController implements Choreographer.FrameCallback {
                 }
             }
 
-            Bubble bubble = new Bubble(mContext, url, x, y, targetX, targetY, time, startTime,
-                    new Bubble.EventHandler() {
-                @Override
-                public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
-                    mCurrentState.OnMotionEvent_Touch(sender, e);
-                    showContentActivity();
-                }
-
-                @Override
-                public void onMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
-                    mCurrentState.OnMotionEvent_Move(sender, e);
-                }
-
-                @Override
-                public void onMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
-                    mCurrentState.OnMotionEvent_Release(sender, e);
-                    if (mCurrentState instanceof State_SnapToEdge) {
-                        hideContentActivity();
+            Bubble bubble = null;
+            try {
+                bubble = new Bubble(mContext, url, x, y, targetX, targetY, time, startTime,
+                        new Bubble.EventHandler() {
+                    @Override
+                    public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
+                        mCurrentState.OnMotionEvent_Touch(sender, e);
+                        showContentActivity();
                     }
-                }
 
-                @Override
-                public void onSharedLink(Bubble sender) {
-                    if (mBubbles.size() > 1) {
-                        destroyBubble(sender, Config.BubbleAction.Destroy);
-                        switchState(STATE_AnimateToBubbleView);
-                    } else {
-                        STATE_KillBubble.init(sender);
-                        switchState(STATE_KillBubble);
+                    @Override
+                    public void onMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
+                        mCurrentState.OnMotionEvent_Move(sender, e);
                     }
-                }
-            });
+
+                    @Override
+                    public void onMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
+                        mCurrentState.OnMotionEvent_Release(sender, e);
+                        if (mCurrentState instanceof State_SnapToEdge) {
+                            hideContentActivity();
+                        }
+                    }
+
+                    @Override
+                    public void onSharedLink(Bubble sender) {
+                        if (mBubbles.size() > 1) {
+                            destroyBubble(sender, Config.BubbleAction.Destroy);
+                            switchState(STATE_AnimateToBubbleView);
+                        } else {
+                            STATE_KillBubble.init(sender);
+                            switchState(STATE_KillBubble);
+                        }
+                    }
+                });
+            } catch (MalformedURLException e) {
+                // TODO: Inform the user somehow?
+                return;
+            }
 
             mCurrentState.OnNewBubble(bubble);
             mBubbles.add(bubble);

@@ -19,6 +19,8 @@ import android.widget.RelativeLayout;
 import com.squareup.otto.Bus;
 
 import java.io.Console;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Vector;
 
 public class Bubble extends RelativeLayout {
@@ -32,8 +34,7 @@ public class Bubble extends RelativeLayout {
     private RelativeLayout.LayoutParams mProgressBarLP;
     private boolean mProgressBarShowing;
 
-
-    private String mUrl;
+    private URL mUrl;
     private ContentView mContentView;
     private boolean mRecordHistory;
     private boolean mAlive;
@@ -261,7 +262,7 @@ public class Bubble extends RelativeLayout {
         mAlive = false;
     }
 
-    public String getUrl() { return mUrl; }
+    public URL getUrl() { return mUrl; }
 
     public void readd() {
         mWindowManager.removeView(this);
@@ -269,18 +270,18 @@ public class Bubble extends RelativeLayout {
     }
 
     public Bubble(final Context context, String url, int x0, int y0, int targetX, int targetY, float targetTime, long startTime,
-                  EventHandler eh) {
+                  EventHandler eh) throws MalformedURLException {
         super(context);
 
         mAlive = true;
 
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         mEventHandler = eh;
-        mUrl = url;
+        mUrl = new URL(url);
         mRecordHistory = Settings.get().isIncognitoMode() ? false : true;
 
         mContentView = (ContentView)inflate(context, R.layout.view_content, null);
-        mContentView.configure(Bubble.this, mUrl, startTime, new ContentView.EventHandler() {
+        mContentView.configure(Bubble.this, mUrl.toString(), startTime, new ContentView.EventHandler() {
             @Override
             public void onSharedLink() {
                 mEventHandler.onSharedLink(Bubble.this);

@@ -488,8 +488,8 @@ public class Settings {
     public void saveCurrentBubbles(List<Bubble> bubbles) {
         JSONArray jsonArray = new JSONArray();
         for (Bubble b : bubbles) {
-            String url = b.getUrl();
-            jsonArray.put(url);
+            URL url = b.getUrl();
+            jsonArray.put(url.toString());
         }
 
         SharedPreferences.Editor editor = mSharedPreferences.edit();
