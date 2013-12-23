@@ -34,7 +34,6 @@ public class MainController implements Choreographer.FrameCallback {
     private static ContentActivity sContentActivity;
 
     public static MainController get() {
-        Util.Assert(sInstance != null);
         return sInstance;
     }
 
@@ -274,6 +273,10 @@ public class MainController implements Choreographer.FrameCallback {
 
     public Bubble getBubble(int index) {
         return mBubbles.get(index);
+    }
+
+    public List<Bubble> getBubbles() {
+        return mBubbles;
     }
 
     public void doFrame(long frameTimeNanos) {
