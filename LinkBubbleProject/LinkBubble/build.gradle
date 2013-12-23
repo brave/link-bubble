@@ -2,7 +2,6 @@ buildscript {
     repositories {
         mavenCentral()
         maven { url 'http://download.crashlytics.com/maven' }
-
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.6.+'
@@ -16,12 +15,11 @@ apply plugin: 'crashlytics'
 repositories {
     mavenCentral()
     maven { url 'http://download.crashlytics.com/maven' }
-
 }
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.0"
+    buildToolsVersion '19.0.0'
 
     defaultConfig {
         minSdkVersion 16
@@ -34,4 +32,5 @@ dependencies {
     compile 'com.crashlytics.android:crashlytics:1.+'
     compile files('libs/otto-1.3.4.jar')
     compile files('libs/rebound_1.1.jar')
+    compile project(':Libraries:FancyCoverFlow:library')
 }

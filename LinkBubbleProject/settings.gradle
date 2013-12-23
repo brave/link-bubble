@@ -1,1 +1,2 @@
 include ':LinkBubble'
+include ':Libraries:FancyCoverFlow:library'
