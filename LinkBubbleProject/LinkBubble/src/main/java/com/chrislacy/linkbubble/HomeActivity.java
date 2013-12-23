@@ -2,6 +2,7 @@ package com.chrislacy.linkbubble;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -37,6 +38,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 import com.chrislacy.linkbubble.R;
 import com.flavienlaurent.notboringactionbar.AlphaForegroundColorSpan;
 import com.flavienlaurent.notboringactionbar.KenBurnsView;
@@ -109,6 +111,14 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             MainApplication.openLink(this, url);
         }
 
+        FancyCoverFlow fancyCoverFlow = (FancyCoverFlow) findViewById(R.id.fancyCoverFlow);
+
+        ActivityManager activityManager = (ActivityManager)getSystemService(Activity.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> runningTaskInfos = activityManager.getRunningTasks(20);
+
+        BubbleCoverFlowAdapter adapter = new BubbleCoverFlowAdapter(this, runningTaskInfos, getPackageManager());
+        fancyCoverFlow.setAdapter(adapter);
+        fancyCoverFlow.setSelection(adapter.MIDDLE, false);
     }
 
     @Override
