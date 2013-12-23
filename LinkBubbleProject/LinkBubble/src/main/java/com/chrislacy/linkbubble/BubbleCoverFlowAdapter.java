@@ -24,27 +24,34 @@ class BubbleCoverFlowAdapter extends FancyCoverFlowAdapter {
     List<Bubble> mBubbles;
     int mItemSize;
 
-    public final int mSize;
-    private final int mMiddleIndex;
+    private final int mSize;
+    private final int mStartIndex;
+    private final boolean mLoop;
 
-    public BubbleCoverFlowAdapter(Context context, List<Bubble> bubbles) {
+    public BubbleCoverFlowAdapter(Context context, List<Bubble> bubbles, boolean loop) {
         super();
         mContext = context;
         mBubbles = bubbles;
 
         mItemSize = context.getResources().getDimensionPixelSize(R.dimen.bubble_cover_flow_item_size);
 
-        mSize = Integer.MAX_VALUE;
-        int halfMaxValue = mSize/2;
-        mMiddleIndex = halfMaxValue - halfMaxValue % bubbles.size();
+        mLoop = loop;
+        if (mLoop) {
+            mSize = Integer.MAX_VALUE;
+            int halfMaxValue = mSize/2;
+            mStartIndex = halfMaxValue - halfMaxValue % bubbles.size();
+        } else {
+            mSize = bubbles.size();
+            mStartIndex = 0;
+        }
     }
 
     // =============================================================================
     // Supertype overrides
     // =============================================================================
 
-    public int getMiddleIndex() {
-        return mMiddleIndex;
+    public int getStartIndex() {
+        return mStartIndex;
     }
 
     @Override

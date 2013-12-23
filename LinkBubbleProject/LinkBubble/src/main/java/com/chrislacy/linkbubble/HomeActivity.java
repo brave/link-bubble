@@ -114,9 +114,9 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         if (MainController.get() != null && MainController.get().getBubbleCount() > 0) {
             FancyCoverFlow fancyCoverFlow = (FancyCoverFlow) findViewById(R.id.fancyCoverFlow);
 
-            BubbleCoverFlowAdapter adapter = new BubbleCoverFlowAdapter(this, MainController.get().getBubbles());
+            BubbleCoverFlowAdapter adapter = new BubbleCoverFlowAdapter(this, MainController.get().getBubbles(), false);
             fancyCoverFlow.setAdapter(adapter);
-            fancyCoverFlow.setSelection(adapter.getMiddleIndex(), false);
+            fancyCoverFlow.setSelection(adapter.getStartIndex(), false);
         }
     }
 
