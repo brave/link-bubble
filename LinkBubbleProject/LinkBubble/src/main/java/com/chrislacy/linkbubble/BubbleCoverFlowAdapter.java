@@ -20,8 +20,8 @@ class BubbleCoverFlowAdapter extends FancyCoverFlowAdapter {
     PackageManager mPackageManager;
     int mItemSize;
 
-    public static final int HALF_MAX_VALUE = Integer.MAX_VALUE/2;
-    public final int MIDDLE;
+    public final int mSize;
+    private final int mMiddleIndex;
 
     public BubbleCoverFlowAdapter(Context context, List<ActivityManager.RunningTaskInfo> runningTaskInfos,
                               PackageManager packageManager) {
@@ -30,16 +30,23 @@ class BubbleCoverFlowAdapter extends FancyCoverFlowAdapter {
         mPackageManager = packageManager;
 
         mItemSize = context.getResources().getDimensionPixelSize(R.dimen.bubble_cover_flow_image_size);
-        MIDDLE = HALF_MAX_VALUE - HALF_MAX_VALUE % runningTaskInfos.size();
+
+        mSize = Integer.MAX_VALUE;
+        int halfMaxValue = mSize/2;
+        mMiddleIndex = halfMaxValue - halfMaxValue % bubbles.size();
     }
 
     // =============================================================================
     // Supertype overrides
     // =============================================================================
 
+    public int getMiddleIndex() {
+        return mMiddleIndex;
+    }
+
     @Override
     public int getCount() {
-        return Integer.MAX_VALUE;
+        return mSize;
     }
 
     @Override

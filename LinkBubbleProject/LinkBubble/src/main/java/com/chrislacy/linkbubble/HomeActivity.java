@@ -118,7 +118,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 
         BubbleCoverFlowAdapter adapter = new BubbleCoverFlowAdapter(this, runningTaskInfos, getPackageManager());
         fancyCoverFlow.setAdapter(adapter);
-        fancyCoverFlow.setSelection(adapter.MIDDLE, false);
+        fancyCoverFlow.setSelection(adapter.getMiddleIndex(), false);
     }
 
     @Override
