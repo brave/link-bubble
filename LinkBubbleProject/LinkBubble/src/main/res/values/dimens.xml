@@ -15,6 +15,6 @@
     <dimen name="header_height">320dp</dimen>
     <dimen name="header_logo_size">100dp</dimen>
 
-    <dimen name="bubble_cover_flow_item_size">100dp</dimen>
+    <dimen name="bubble_cover_flow_item_size">60dp</dimen>
     <dimen name="bubble_cover_flow_image_size">60dp</dimen>
 </resources>

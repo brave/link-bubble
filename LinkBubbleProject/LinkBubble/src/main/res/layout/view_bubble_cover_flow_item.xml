@@ -1,10 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.chrislacy.linkbubble.CondensedTextView xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/text_view"
-  android:layout_width="@dimen/bubble_cover_flow_item_size"
-  android:layout_height="@dimen/bubble_cover_flow_item_size"
-  android:text="blerg"
-  android:gravity="center"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/bubble_cover_flow_item_size"
+    android:layout_height="@dimen/bubble_cover_flow_item_size"
     >
 
-</com.chrislacy.linkbubble.CondensedTextView>
+    <ImageView
+        android:layout_width="@dimen/bubble_cover_flow_image_size"
+        android:layout_height="@dimen/bubble_cover_flow_image_size"
+        android:src="@drawable/circle_grey"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/favicon"
+        android:layout_width="@dimen/bubble_cover_flow_image_size"
+        android:layout_height="@dimen/bubble_cover_flow_image_size"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/help_button"
+        android:scaleType="center"/>
+    <!--
+    <com.chrislacy.linkbubble.CondensedTextView
+      android:id="@+id/text_view"
+      android:text="blerg"
+      android:layout_gravity="bottom|center_horizontal"
+      android:gravity="center"
+      android:layout_width="wrap_content"
+      android:layout_height="40dp"
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="true"/>-->
+
+</RelativeLayout>

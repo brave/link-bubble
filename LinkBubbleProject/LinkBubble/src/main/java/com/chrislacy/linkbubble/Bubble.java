@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.Gravity;
@@ -262,7 +263,13 @@ public class Bubble extends RelativeLayout {
         mAlive = false;
     }
 
-    public URL getUrl() { return mUrl; }
+    public URL getUrl() {
+        return mUrl;
+    }
+
+    public Drawable getFavicon() {
+        return mShape.getDrawable();
+    }
 
     public void readd() {
         mWindowManager.removeView(this);
