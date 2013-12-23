@@ -25,7 +25,7 @@ public class Canvas extends RelativeLayout {
 
     private Vector<BubbleTarget> mTargets = new Vector<BubbleTarget>();
 
-    private final float mMaxAlpha = 0.9f;
+    private final float mMaxAlpha = 1.0f;
     private final float mFadeTime = 0.2f;
     private final float mAlphaDelta = mMaxAlpha / mFadeTime;
 
@@ -57,6 +57,8 @@ public class Canvas extends RelativeLayout {
         mEnabled = true;
 
         applyAlpha();
+
+        setBackground(getResources().getDrawable(R.drawable.masked_background));
 
         mTargets.add(new BubbleTarget(this, mContext, R.drawable.close_indicator, Config.BubbleAction.Destroy, 0.5f, 0.85f, true));
         mTargets.add(new BubbleTarget(this, mContext, Config.BubbleAction.ConsumeLeft, 0.2f, 0.15f, true));
@@ -117,7 +119,8 @@ public class Canvas extends RelativeLayout {
         if (Config.USE_CONTENT_ACTIVITY) {
             MainController.get().updateBackgroundColor(color);
         } else {
-            setBackgroundColor(color);
+            setAlpha(mCurrentAlpha);
+            //setBackgroundColor(color);
         }
 
         if (!mEnabled || mCurrentAlpha == 0.0f) {
