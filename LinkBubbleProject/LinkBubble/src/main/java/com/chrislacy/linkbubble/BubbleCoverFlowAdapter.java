@@ -12,22 +12,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import at.technikum.mti.fancycoverflow.FancyCoverFlowAdapter;
 
+import java.net.URL;
 import java.util.List;
 
 class BubbleCoverFlowAdapter extends FancyCoverFlowAdapter {
 
-    List<ActivityManager.RunningTaskInfo> mRunningTaskInfos;
-    PackageManager mPackageManager;
+    Context mContext;
+    List<Bubble> mBubbles;
     int mItemSize;
 
     public final int mSize;
     private final int mMiddleIndex;
 
-    public BubbleCoverFlowAdapter(Context context, List<ActivityManager.RunningTaskInfo> runningTaskInfos,
-                              PackageManager packageManager) {
+    public BubbleCoverFlowAdapter(Context context, List<Bubble> bubbles) {
         super();
-        mRunningTaskInfos = runningTaskInfos;
-        mPackageManager = packageManager;
+        mContext = context;
+        mBubbles = bubbles;
 
         mItemSize = context.getResources().getDimensionPixelSize(R.dimen.bubble_cover_flow_image_size);
 
@@ -50,8 +50,8 @@ class BubbleCoverFlowAdapter extends FancyCoverFlowAdapter {
     }
 
     @Override
-    public ActivityManager.RunningTaskInfo  getItem(int position) {
-        return mRunningTaskInfos.get(position % mRunningTaskInfos.size());
+    public Bubble getItem(int position) {
+        return mBubbles.get(position % mBubbles.size());
     }
 
     @Override
@@ -70,17 +70,14 @@ class BubbleCoverFlowAdapter extends FancyCoverFlowAdapter {
             textView = (TextView) inflater.inflate(R.layout.view_bubble_cover_flow_item, viewGroup, false);
         }
 
-        ActivityManager.RunningTaskInfo info = getItem(i);
-        final ComponentName componentName = info.topActivity;
+        Bubble info = getItem(i);
 
-        try {
-            ApplicationInfo applicationInfo = mPackageManager.getApplicationInfo(componentName.getPackageName(), 0);
-            Drawable icon = applicationInfo.loadIcon(mPackageManager);
-            icon.setBounds(0, 0, mItemSize, mItemSize);
-            textView.setCompoundDrawables(null, icon, null, null);
-            textView.setText(applicationInfo.loadLabel(mPackageManager));
-        } catch (PackageManager.NameNotFoundException e) {
-        }
+        Drawable icon = mContext.getResources().getDrawable(R.drawable.circle_grey);
+        icon.setBounds(0, 0, mItemSize, mItemSize);
+        textView.setCompoundDrawables(null, icon, null, null);
+
+        URL url = info.getUrl();
+        textView.setText(url.getHost());
         return textView;
     }
 }

@@ -111,14 +111,13 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             MainApplication.openLink(this, url);
         }
 
-        FancyCoverFlow fancyCoverFlow = (FancyCoverFlow) findViewById(R.id.fancyCoverFlow);
+        if (MainController.get() != null && MainController.get().getBubbleCount() > 0) {
+            FancyCoverFlow fancyCoverFlow = (FancyCoverFlow) findViewById(R.id.fancyCoverFlow);
 
-        ActivityManager activityManager = (ActivityManager)getSystemService(Activity.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningTaskInfo> runningTaskInfos = activityManager.getRunningTasks(20);
-
-        BubbleCoverFlowAdapter adapter = new BubbleCoverFlowAdapter(this, runningTaskInfos, getPackageManager());
-        fancyCoverFlow.setAdapter(adapter);
-        fancyCoverFlow.setSelection(adapter.getMiddleIndex(), false);
+            BubbleCoverFlowAdapter adapter = new BubbleCoverFlowAdapter(this, MainController.get().getBubbles());
+            fancyCoverFlow.setAdapter(adapter);
+            fancyCoverFlow.setSelection(adapter.getMiddleIndex(), false);
+        }
     }
 
     @Override
