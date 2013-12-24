@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -73,6 +74,18 @@ public class ContentView extends FrameLayout {
     private int mMarkerX;
 
     private Paint mPaint;
+
+    private static final String JS_VARIABLE = "LinkBubble";
+    private static final String JS_EMBED = "javascript:(function() {\n"+
+                                            "    var elems = document.getElementsByTagName('*'), i;\n"+
+                                            "    for (i in elems) {\n"+
+                                            "    var elem = elems[i];\n"+
+                                            "    if (elem.src != null && elem.src.indexOf(\"https://www.youtube.com/embed/\") != -1) {\n"+
+                                            //"       console.log(\"found embed: \" + elem.src);\n"+
+                                            "       " + JS_VARIABLE + ".onYouTubeEmbed(elem.src);\n"+
+                                            "    }\n"+
+                                            "}\n"+
+                                            "})();";
 
     public ContentView(Context context) {
         this(context, null);
@@ -483,6 +496,13 @@ public class ContentView extends FrameLayout {
                             Log.d("LoadTime", "Saved " + ((System.currentTimeMillis() - mStartTime) / 1000) + " seconds.");
                             mStartTime = -1;
                         }
+
+                        if (Settings.get().scanPageForKnownUrls()) {
+                            view.loadUrl(JS_EMBED);
+                        }
+                        //view.loadUrl("javascript:(function() { " +
+                        //        "document.getElementsByTagName('body')[0].style.color = 'red'; " +
+                        //        "})()");
                     }
                 }
             }
@@ -513,6 +533,11 @@ public class ContentView extends FrameLayout {
                 return false;
             }
         });
+
+        if (Settings.get().scanPageForKnownUrls()) {
+            mJSEmbedHandler = new JSEmbedHandler();
+            mWebView.addJavascriptInterface(mJSEmbedHandler, JS_VARIABLE);
+        }
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
@@ -602,7 +627,9 @@ public class ContentView extends FrameLayout {
                 // So, in the event contains results, and these results reference a different URL that which matched the
                 // resolveInfos passed in, clear mAppsForUrl.
                 if (mAppsForUrl.size() > 0) {
-                    if (mAppsForUrl.get(0).mUrl.getHost().equals(currentUrl.getHost()) == false) {
+                    URL firstUrl = mAppsForUrl.get(0).mUrl;
+                    if ((currentUrl.getHost().contains(firstUrl.getHost())
+                            && currentUrl.getHost().length() > firstUrl.getHost().length()) == false) {
                         mAppsForUrl.clear();    // start again
                     }
                 }
@@ -664,4 +691,14 @@ public class ContentView extends FrameLayout {
 
         return false;
     }
+
+    public class JSEmbedHandler {
+
+        @JavascriptInterface
+        public void onYouTubeEmbed(String src) {
+            Log.d(TAG, "onYouTubeEmbed() - " + src);
+        }
+    };
+
+    private JSEmbedHandler mJSEmbedHandler;
 }

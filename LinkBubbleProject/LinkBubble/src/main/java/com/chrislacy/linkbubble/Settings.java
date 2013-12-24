@@ -405,6 +405,10 @@ public class Settings {
         return null;
     }
 
+    public boolean scanPageForKnownUrls() {
+        return true;
+    }
+
     /*
     ResolveInfo getAppThatHandlesUrl(String url) {
         List<ResolveInfo> results = getAppsThatHandleUrl(url);
