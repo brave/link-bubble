@@ -62,7 +62,9 @@ public class ContentView extends FrameLayout {
     private EventHandler mEventHandler;
     private Context mContext;
     private String mUrl;
-    private List<AppForUrl> mAppsForUrl;
+    private List<AppForUrl> mAppsForUrl = new ArrayList<AppForUrl>();
+    private List<ResolveInfo> mTempAppsForUrl = new ArrayList<ResolveInfo>();
+    private URL mTempUrl;
     private PopupMenu mOverflowPopupMenu;
     private AlertDialog mLongPressAlertDialog;
     private long mStartTime;
@@ -86,10 +88,10 @@ public class ContentView extends FrameLayout {
 
     static class AppForUrl {
         ResolveInfo mResolveInfo;
-        String mUrl;
+        URL mUrl;
         Drawable mIcon;
 
-        AppForUrl(ResolveInfo resolveInfo, String url) {
+        AppForUrl(ResolveInfo resolveInfo, URL url) {
             mResolveInfo = resolveInfo;
             mUrl = url;
         }
@@ -203,6 +205,12 @@ public class ContentView extends FrameLayout {
     void configure(Bubble owner, String url, long startTime, EventHandler eh) {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setColor(getResources().getColor(R.color.content_toolbar_background));
+
+        try {
+            mTempUrl = new URL(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_header);
 
@@ -532,49 +540,80 @@ public class ContentView extends FrameLayout {
 
     private void updateAppsForUrl(List<ResolveInfo> resolveInfos, String url) {
         if (resolveInfos != null && resolveInfos.size() > 0) {
-            if (mAppsForUrl == null) {
-                mAppsForUrl = new ArrayList<AppForUrl>();
+            mTempAppsForUrl.clear();
+            if (mTempUrl.toString().equals(url) == false) {
+                try {
+                    mTempUrl = new URL(url);
+                } catch (MalformedURLException e) {
+                    return;
+                }
             }
-
             for (ResolveInfo resolveInfoToAdd : resolveInfos) {
                 if (resolveInfoToAdd.activityInfo != null) {
                     boolean alreadyAdded = false;
                     for (int i = 0; i < mAppsForUrl.size(); i++) {
-                        AppForUrl exisiting = mAppsForUrl.get(i);
-                        if (exisiting.mResolveInfo.activityInfo.packageName.equals(resolveInfoToAdd.activityInfo.packageName)
-                                && exisiting.mResolveInfo.activityInfo.name.equals(resolveInfoToAdd.activityInfo.name)) {
+                        AppForUrl existing = mAppsForUrl.get(i);
+                        if (existing.mResolveInfo.activityInfo.packageName.equals(resolveInfoToAdd.activityInfo.packageName)
+                                && existing.mResolveInfo.activityInfo.name.equals(resolveInfoToAdd.activityInfo.name)) {
                             alreadyAdded = true;
-                            if (exisiting.mUrl.equals(url) == false) {
-                                try {
-                                    URL existingUrl = new URL(exisiting.mUrl);
-                                    URL updatedUrl = new URL(url);
-                                    if (updatedUrl.getHost().contains(existingUrl.getHost())
-                                            && updatedUrl.getHost().length() > existingUrl.getHost().length()) {
-                                        // don't update the url in this case. This means prevents, as an example, saving a host like
-                                        // "mobile.twitter.com" instead of using "twitter.com". This occurs when loading
-                                        // "https://twitter.com/lokibartleby/status/412160702707539968" with Tweet Lanes
-                                        // and the official Twitter client installed.
-                                    } else {
-                                        exisiting.mUrl = url;   // Update the Url
+                            if (existing.mUrl.equals(url) == false) {
+                                if (mTempUrl.getHost().contains(existing.mUrl.getHost())
+                                        && mTempUrl.getHost().length() > existing.mUrl.getHost().length()) {
+                                    // don't update the url in this case. This means prevents, as an example, saving a host like
+                                    // "mobile.twitter.com" instead of using "twitter.com". This occurs when loading
+                                    // "https://twitter.com/lokibartleby/status/412160702707539968" with Tweet Lanes
+                                    // and the official Twitter client installed.
+                                } else {
+                                    try {
+                                        existing.mUrl = new URL(url.toString());   // Update the Url
+                                    } catch (MalformedURLException e) {
+                                        e.printStackTrace();
                                     }
-                                } catch (MalformedURLException e) {
-                                    e.printStackTrace();
                                 }
-
                             }
                             break;
                         }
                     }
 
                     if (alreadyAdded == false) {
-                        mAppsForUrl.add(new AppForUrl(resolveInfoToAdd, url));
+                        mTempAppsForUrl.add(resolveInfoToAdd);
                     }
                 }
             }
-        } else {
-            if (mAppsForUrl != null) {
-                mAppsForUrl.clear();
+
+            if (mTempAppsForUrl.size() > 0) {
+                URL currentUrl;
+                try {
+                    currentUrl = new URL(url.toString());
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                    return;
+                }
+
+                // We need to handle the following case:
+                //   * Load reddit.com/r/Android. The app to handle that URL might be "Reddit is Fun" or something similar.
+                //   * Click on a link to play.google.com/store/, which is handled by the "Google Play" app.
+                //   * The code below adds "Google Play" to the app list that contains "Reddit is Fun",
+                //       even though "Reddit is Fun" is not applicable for this link.
+                // Unfortunately there is no way reliable way to find out when a user has clicked on a link using the WebView.
+                // http://stackoverflow.com/a/17937536/328679 is close, but doesn't work because it relies on onPageFinished()
+                // being called, which will not be called if the current page is still loading when the link was clicked.
+                //
+                // So, in the event contains results, and these results reference a different URL that which matched the
+                // resolveInfos passed in, clear mAppsForUrl.
+                if (mAppsForUrl.size() > 0) {
+                    if (mAppsForUrl.get(0).mUrl.getHost().equals(currentUrl.getHost()) == false) {
+                        mAppsForUrl.clear();    // start again
+                    }
+                }
+
+                for (ResolveInfo resolveInfoToAdd : mTempAppsForUrl) {
+                    mAppsForUrl.add(new AppForUrl(resolveInfoToAdd, currentUrl));
+                }
             }
+
+        } else {
+            mAppsForUrl.clear();
         }
     }
 

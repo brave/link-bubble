@@ -214,7 +214,7 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
         if (v.getTag() instanceof ContentView.AppForUrl) {
             ContentView.AppForUrl appForUrl = (ContentView.AppForUrl)v.getTag();
             MainApplication.loadIntent(getContext(), appForUrl.mResolveInfo.activityInfo.packageName,
-                    appForUrl.mResolveInfo.activityInfo.name, appForUrl.mUrl, -1);
+                    appForUrl.mResolveInfo.activityInfo.name, appForUrl.mUrl.toString(), -1);
 
             if (mOnOpenInAppClickListener != null) {
                 mOnOpenInAppClickListener.appOpened();
@@ -231,9 +231,9 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
                             public void onSelected(ActionItem actionItem) {
                                 ContentView.AppForUrl appForUrl = getAppForUrl(actionItem.mPackageName, actionItem.mActivityClassName);
                                 if (appForUrl != null) {
-                                    Settings.get().setDefaultApp(appForUrl.mUrl, appForUrl.mResolveInfo);
+                                    Settings.get().setDefaultApp(appForUrl.mUrl.toString(), appForUrl.mResolveInfo);
                                     MainApplication.loadIntent(getContext(), appForUrl.mResolveInfo.activityInfo.packageName,
-                                            appForUrl.mResolveInfo.activityInfo.name, appForUrl.mUrl, -1);
+                                            appForUrl.mResolveInfo.activityInfo.name, appForUrl.mUrl.toString(), -1);
                                 }
 
                                 if (mOnOpenInAppClickListener != null) {
