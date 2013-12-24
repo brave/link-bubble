@@ -22,7 +22,7 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
 
     private static final int NUM_ITEMS_IN_PREVIEW = 2;
     private List<ContentView.AppForUrl> mAppsForUrl;
-    private List<String> mYouTubeEmbedIds;
+    private List<String> mYouTubeEmbedIds = null;
     private PreviewItemDrawingParams mParams = new PreviewItemDrawingParams(0, 0, 0, 0);
     private int mAppStackPadding;
     private int mAppStackPreviewSize;
@@ -225,6 +225,14 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
         canvas.restore();
     }
 
+    private void loadYouTubeVideo(ResolveInfo resolveInfo, String id) {
+        MainApplication.loadIntent(getContext(), resolveInfo.activityInfo.packageName,
+                resolveInfo.activityInfo.name, Config.YOUTUBE_WATCH_PREFIX + id, -1);
+        if (mOnOpenInAppClickListener != null) {
+            mOnOpenInAppClickListener.onYouTubeEmbedOpened();
+        }
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getTag() instanceof ContentView.AppForUrl) {
@@ -235,13 +243,28 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
             if (mOnOpenInAppClickListener != null) {
                 mOnOpenInAppClickListener.appOpened();
             }
-        } else if (v.getTag() instanceof ResolveInfo && mYouTubeEmbedIds.size() > 0) {
-            ResolveInfo resolveInfo = (ResolveInfo)v.getTag();
-            MainApplication.loadIntent(getContext(), resolveInfo.activityInfo.packageName,
-                    resolveInfo.activityInfo.name, Config.YOUTUBE_WATCH_PREFIX + mYouTubeEmbedIds.get(0), -1);
-            if (mOnOpenInAppClickListener != null) {
-                mOnOpenInAppClickListener.onYouTubeEmbedOpened();
-            }
+        } else if (v.getTag() instanceof ResolveInfo && mYouTubeEmbedIds != null && mYouTubeEmbedIds.size() > 0) {
+            /*
+            if (mYouTubeEmbedIds.size() > 1) {
+                // https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM,CevxZvSJLk8&key=AIzaSyChiS6yef7AIe5p0JvJGnHrHmmimehIuDs&part=snippet&fields=items(snippet(title,thumbnails(default)))
+                ArrayList<ResolveInfo> resolveInfos = new ArrayList<ResolveInfo>();
+                for (ContentView.AppForUrl item : mAppsForUrl) {
+                    resolveInfos.add(item.mResolveInfo);
+                }
+                AlertDialog dialog = ActionItem.getActionItemPickerAlert(getContext(), resolveInfos, R.string.pick_default_app,
+                        new ActionItem.OnActionItemSelectedListener() {
+                            @Override
+                            public void onSelected(ActionItem actionItem) {
+                                loadYouTubeVideo((ResolveInfo)v.getTag(), mYouTubeEmbedIds.get(0));
+                            }
+                        });
+                dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                dialog.show();
+
+            } else {
+                loadYouTubeVideo((ResolveInfo) v.getTag(), mYouTubeEmbedIds.get(0));
+            }*/
+            loadYouTubeVideo((ResolveInfo) v.getTag(), mYouTubeEmbedIds.get(0));
         } else {
             if (mAppsForUrl != null && mAppsForUrl.size() > 1) {
                 ArrayList<ResolveInfo> resolveInfos = new ArrayList<ResolveInfo>();
