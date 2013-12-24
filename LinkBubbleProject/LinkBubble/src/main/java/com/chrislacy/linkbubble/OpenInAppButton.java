@@ -11,7 +11,6 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +42,7 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
     private static final float PERSPECTIVE_SCALE_FACTOR = 0.35f;
 
     interface OnOpenInAppClickListener {
-        void appOpened();
+        void onAppOpened();
         void onYouTubeEmbedOpened();
     }
 
@@ -241,7 +240,7 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
                     appForUrl.mResolveInfo.activityInfo.name, appForUrl.mUrl.toString(), -1);
 
             if (mOnOpenInAppClickListener != null) {
-                mOnOpenInAppClickListener.appOpened();
+                mOnOpenInAppClickListener.onAppOpened();
             }
         } else if (v.getTag() instanceof ResolveInfo && mYouTubeEmbedIds != null && mYouTubeEmbedIds.size() > 0) {
             /*
@@ -283,7 +282,7 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
                                 }
 
                                 if (mOnOpenInAppClickListener != null) {
-                                    mOnOpenInAppClickListener.appOpened();
+                                    mOnOpenInAppClickListener.onAppOpened();
                                 }
                             }
                         });

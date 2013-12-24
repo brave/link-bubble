@@ -2,26 +2,20 @@ package com.chrislacy.linkbubble;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
@@ -30,15 +24,12 @@ import android.webkit.WebSettings;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
-import android.widget.ListAdapter;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 import android.graphics.Canvas;
 
 import java.net.MalformedURLException;
@@ -256,7 +247,7 @@ public class ContentView extends FrameLayout {
         mOpenInAppButton.setOnOpenInAppClickListener(new OpenInAppButton.OnOpenInAppClickListener() {
 
             @Override
-            public void appOpened() {
+            public void onAppOpened() {
                 mEventHandler.onSharedLink();
             }
 
@@ -302,7 +293,7 @@ public class ContentView extends FrameLayout {
                                 mWebView.stopLoading();
                                 mWebView.reload();
                                 updateAppsForUrl(mUrl);
-                                setAppButton();
+                                setOpenInAppButton();
                                 Log.d(TAG, "reload url: " + mUrl);
                                 mStartTime = System.currentTimeMillis();
                                 mTitleTextView.setText(R.string.loading);
@@ -444,7 +435,7 @@ public class ContentView extends FrameLayout {
                     }
                 }
 
-                setAppButton();
+                setOpenInAppButton();
                 Log.d(TAG, "redirect to url: " + url);
                 mWebView.loadUrl(url);
                 mEventHandler.onPageLoading(url);
@@ -476,7 +467,7 @@ public class ContentView extends FrameLayout {
 
                 if (isValidUrl(url)) {
                     updateAppsForUrl(url);
-                    setAppButton();
+                    setOpenInAppButton();
 
                     mTitleTextView.setText(view.getTitle());
                     mUrlTextView.setText(url.replace("http://", ""));
@@ -522,7 +513,7 @@ public class ContentView extends FrameLayout {
                                 webView.goBack();
                                 updateAppsForUrl(webView.getUrl());
                                 Log.d(TAG, "Go back: " + urlBefore + " -> " + webView.getUrl());
-                                setAppButton();
+                                setOpenInAppButton();
                                 return true;
                             } else {
                                 mEventHandler.onSharedLink();
@@ -543,7 +534,7 @@ public class ContentView extends FrameLayout {
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
         updateAppsForUrl(url);
-        setAppButton();
+        setOpenInAppButton();
         Log.d(TAG, "load url: " + url);
         mStartTime = startTime;
         mWebView.loadUrl(url);
@@ -551,7 +542,7 @@ public class ContentView extends FrameLayout {
         mUrlTextView.setText(url.replace("http://", ""));
     }
 
-    private void setAppButton() {
+    private void setOpenInAppButton() {
         if (mOpenInAppButton.configure(mAppsForUrl, mYouTubeEmbedIds)) {
             mOpenInAppButton.invalidate();
         } else {
@@ -701,8 +692,8 @@ public class ContentView extends FrameLayout {
         public void onYouTubeEmbed(String src) {
             Log.d(TAG, "onYouTubeEmbed() - " + src);
 
-            if (src.contains(YOUTUBE_EMBED_PREFIX)) {
-                String videoId = src.replace(YOUTUBE_EMBED_PREFIX, "");
+            if (src.contains(Config.YOUTUBE_EMBED_PREFIX)) {
+                String videoId = src.replace(Config.YOUTUBE_EMBED_PREFIX, "");
                 if (videoId.length() > 0) {
                     boolean onList = false;
                     if (mYouTubeEmbedIds.size() > 0) {
@@ -715,7 +706,7 @@ public class ContentView extends FrameLayout {
                     }
                     if (onList == false) {
                         mYouTubeEmbedIds.add(videoId);
-                        setAppButton();
+                        setOpenInAppButton();
                     }
                 }
             }
