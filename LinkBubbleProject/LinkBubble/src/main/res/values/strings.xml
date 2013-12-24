@@ -22,6 +22,7 @@
     <string name="clear_history">Clear history</string>
 
     <string name="preference_category_general">General</string>
+    <string name="preference_enabled_title">Enabled</string>
     <string name="preference_show_when_ready_title">Show content when ready</string>
     <string name="preference_show_when_ready_summary">If disabled, content will display when you click the Bubble.</string>
     <string name="preference_left_consume_bubble_title">Left Bubble</string>

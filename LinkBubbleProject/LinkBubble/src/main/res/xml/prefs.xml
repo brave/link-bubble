@@ -2,8 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
         <SwitchPreference
             android:key="preference_enabled"
-            android:summary="Enable Link Bubble to intercept clicking on URLs"
-            android:title="Enabled"
+            android:title="@string/preference_enabled_title"
             android:defaultValue="true" />
 
         <Preference
