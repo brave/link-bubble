@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-    <PreferenceCategory
-        android:key="preference_category_general"
-        android:title="@string/preference_category_general" >
         <SwitchPreference
             android:key="preference_enabled"
             android:summary="Enable Link Bubble to intercept clicking on URLs"
@@ -29,14 +26,6 @@
         <Preference
             android:key="preference_right_consume_bubble"
             android:title="@string/preference_right_consume_bubble_title"
-            android:dependency="preference_enabled"
-            />
-
-        <CheckBoxPreference
-            android:key="preference_incognito"
-            android:title="Incognito Mode"
-            android:summary="Prevent storing all history and cookies"
-            android:defaultValue="false"
             android:dependency="preference_enabled"
             />
 
@@ -70,37 +59,54 @@
 
         </PreferenceScreen>
 
+
         <CheckBoxPreference
-            android:key="preference_google_accounts_redirect"
-            android:title="@string/preference_google_account_redirect_title"
-            android:summary="@string/preference_google_account_redirect_summary"
-            android:defaultValue="true"
+            android:key="preference_incognito"
+            android:title="Incognito Mode"
+            android:summary="Prevent storing all history and cookies"
+            android:defaultValue="false"
             android:dependency="preference_enabled"
             />
 
-    </PreferenceCategory>
 
-    <PreferenceCategory
-        android:key="preference_category_debug"
-        android:title="@string/preference_category_debug">
+        <PreferenceScreen
+            android:key="preference_more"
+            android:title="@string/preference_more"
+            >
 
-        <CheckBoxPreference
-            android:key="auto_load_url"
-            android:title="Auto load URL"
-            android:summary="Load abc.net.au on app boot"
-            android:defaultValue="false"/>
 
-        <CheckBoxPreference
-            android:key="debug_flick"
-            android:summary="Flick targets show message when hit only."
-            android:title="Flick Targets"
-            android:defaultValue="false" />
+            <CheckBoxPreference
+                android:key="preference_google_accounts_redirect"
+                android:title="@string/preference_google_account_redirect_title"
+                android:summary="@string/preference_google_account_redirect_summary"
+                android:defaultValue="true"
+                android:dependency="preference_enabled"
+                />
 
-        <Preference
-            android:key="debug_crash"
-            android:summary="CRASH THE APP (TEST RECOVERY)."
-            android:title="Crash!"/>
+            <PreferenceScreen
+                android:key="preference_category_debug"
+                android:title="@string/preference_category_debug">
 
-    </PreferenceCategory>
+                <CheckBoxPreference
+                    android:key="auto_load_url"
+                    android:title="Auto load URL"
+                    android:summary="Load abc.net.au on app boot"
+                    android:defaultValue="false"/>
+
+                <CheckBoxPreference
+                    android:key="debug_flick"
+                    android:summary="Flick targets show message when hit only."
+                    android:title="Flick Targets"
+                    android:defaultValue="false" />
+
+                <Preference
+                    android:key="debug_crash"
+                    android:summary="CRASH THE APP (TEST RECOVERY)."
+                    android:title="Crash!"/>
+
+            </PreferenceScreen>
+
+        </PreferenceScreen>
+
 
 </PreferenceScreen>

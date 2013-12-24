@@ -227,8 +227,7 @@ public class SettingsFragment extends PreferenceFragment {
         // Will be null if onResume() is called after the preference has already been removed.
         if (setDefaultPreference != null) {
             if (Util.isDefaultBrowser(getActivity().getPackageName(), getActivity().getPackageManager())) {
-                PreferenceCategory category = (PreferenceCategory) getPreferenceScreen().findPreference("preference_category_general");
-                category.removePreference(setDefaultPreference);
+                getPreferenceScreen().removePreference(setDefaultPreference);
             } else {
                 setDefaultPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 
