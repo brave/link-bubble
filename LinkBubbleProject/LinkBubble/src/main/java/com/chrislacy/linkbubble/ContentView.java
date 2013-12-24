@@ -540,7 +540,7 @@ public class ContentView extends FrameLayout {
                 if (resolveInfoToAdd.activityInfo != null) {
                     boolean alreadyAdded = false;
                     for (int i = 0; i < mAppsForUrl.size(); i++) {
-                        AppForUrl exisiting = mAppsForUrl.get(0);
+                        AppForUrl exisiting = mAppsForUrl.get(i);
                         if (exisiting.mResolveInfo.activityInfo.packageName.equals(resolveInfoToAdd.activityInfo.packageName)
                                 && exisiting.mResolveInfo.activityInfo.name.equals(resolveInfoToAdd.activityInfo.name)) {
                             alreadyAdded = true;
