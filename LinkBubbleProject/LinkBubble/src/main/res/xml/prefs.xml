@@ -72,15 +72,21 @@
         <PreferenceScreen
             android:key="preference_more"
             android:title="@string/preference_more"
+            android:dependency="preference_enabled"
             >
-
 
             <CheckBoxPreference
                 android:key="preference_google_accounts_redirect"
                 android:title="@string/preference_google_account_redirect_title"
                 android:summary="@string/preference_google_account_redirect_summary"
                 android:defaultValue="true"
-                android:dependency="preference_enabled"
+                />
+
+            <CheckBoxPreference
+                android:key="preference_scan_for_youtube_embeds"
+                android:title="@string/preference_scan_for_youtube_embeds_title"
+                android:summary="@string/preference_scan_for_youtube_embeds_summary"
+                android:defaultValue="true"
                 />
 
             <PreferenceScreen

@@ -497,7 +497,7 @@ public class ContentView extends FrameLayout {
                             mStartTime = -1;
                         }
 
-                        if (Settings.get().scanPageForKnownUrls()) {
+                        if (Settings.get().checkForYouTubeEmbeds()) {
                             view.loadUrl(JS_EMBED);
                         }
                         //view.loadUrl("javascript:(function() { " +
@@ -534,7 +534,7 @@ public class ContentView extends FrameLayout {
             }
         });
 
-        if (Settings.get().scanPageForKnownUrls()) {
+        if (Settings.get().checkForYouTubeEmbeds()) {
             mJSEmbedHandler = new JSEmbedHandler();
             mWebView.addJavascriptInterface(mJSEmbedHandler, JS_VARIABLE);
         }

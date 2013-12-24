@@ -30,6 +30,7 @@ public class Settings {
 
     public static final String PREFERENCE_ENABLED = "preference_enabled";
     public static final String PREFERENCE_AUTO_LOAD_CONTENT = "preference_auto_load_content";
+    public static final String PREFERENCE_CHECK_FOR_YOUTUBE_EMBEDS = "preference_scan_for_youtube_embeds";
 
     public static final String PREFERENCE_LEFT_CONSUME_BUBBLE = "preference_left_consume_bubble";
     public static final String PREFERENCE_LEFT_CONSUME_BUBBLE_PACKAGE_NAME = "preference_left_consume_bubble_package_name";
@@ -351,6 +352,10 @@ public class Settings {
         return mSharedPreferences.getBoolean(PREFERENCE_ENABLED, false);
     }
 
+    public boolean checkForYouTubeEmbeds() {
+        return mSharedPreferences.getBoolean(PREFERENCE_CHECK_FOR_YOUTUBE_EMBEDS, false);
+    }
+
     boolean redirectUrlToBrowser(String url) {
         if (url.contains("accounts.google.com") && mSharedPreferences.getBoolean(PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT, true)) {
             return true;
@@ -403,10 +408,6 @@ public class Settings {
         }
 
         return null;
-    }
-
-    public boolean scanPageForKnownUrls() {
-        return true;
     }
 
     /*

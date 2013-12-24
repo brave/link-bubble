@@ -42,6 +42,8 @@
     <string name="preference_set_default_browser_title">Set default browser</string>
     <string name="preference_set_default_browser_summary">Link Bubble is not the default browser. Let\'s make it the default shall we?</string>
     <string name="preference_more">More…</string>
+    <string name="preference_scan_for_youtube_embeds_title">Check for YouTube embeds</string>
+    <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
 
     <string name="remove_default_title">Remove default?</string>
     <string name="remove_default_message">Remove %1$s as the default app to load %2$s links with?\n\nNote: you can set a new default app to use next
