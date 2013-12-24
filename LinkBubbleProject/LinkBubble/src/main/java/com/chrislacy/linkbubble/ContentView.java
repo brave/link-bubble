@@ -490,6 +490,9 @@ public class ContentView extends FrameLayout {
                         }
 
                         if (Settings.get().checkForYouTubeEmbeds()) {
+                            if (mYouTubeEmbedIds != null) {
+                                mYouTubeEmbedIds.clear();
+                            }
                             view.loadUrl(JS_EMBED);
                         }
                         //view.loadUrl("javascript:(function() { " +
