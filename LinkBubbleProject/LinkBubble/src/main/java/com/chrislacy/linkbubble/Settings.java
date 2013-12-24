@@ -91,6 +91,8 @@ public class Settings {
     private Context mContext;
     private TreeMap<String, String> mDefaultAppsMap = new TreeMap<String, String>();
     private List<Intent> mBrowsers;
+    private ResolveInfo mYouTubeViewResolveInfo;
+    private boolean mCheckedForYouTubeResolveInfo = false;
     private ConsumeBubblesChangedEventHandler mConsumeBubblesChangedEventHandler;
 
     Settings(Context context) {
@@ -167,6 +169,25 @@ public class Settings {
         }
 
         return null;
+    }
+
+    public ResolveInfo getYouTubeViewResolveInfo() {
+        if (mCheckedForYouTubeResolveInfo == false) {
+            PackageManager packageManager = mContext.getPackageManager();
+            Intent queryIntent = new Intent();
+            queryIntent.setAction(Intent.ACTION_VIEW);
+            queryIntent.setData(Uri.parse("http://www.youtube.com/watch?v=jNQXAC9IVRw"));
+            List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(queryIntent, PackageManager.GET_RESOLVED_FILTER);
+            for (ResolveInfo resolveInfo : resolveInfos) {
+                if (resolveInfo.activityInfo != null && resolveInfo.activityInfo.packageName.contains("com.google.android.youtube")) {
+                    mYouTubeViewResolveInfo = resolveInfo;
+                    break;
+                }
+            }
+            mCheckedForYouTubeResolveInfo = true;
+        }
+
+        return mYouTubeViewResolveInfo;
     }
 
     private void setDefaultLeftConsumeBubble() {

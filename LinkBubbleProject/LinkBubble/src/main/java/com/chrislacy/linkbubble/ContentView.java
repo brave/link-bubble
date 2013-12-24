@@ -66,6 +66,7 @@ public class ContentView extends FrameLayout {
     private List<AppForUrl> mAppsForUrl = new ArrayList<AppForUrl>();
     private List<ResolveInfo> mTempAppsForUrl = new ArrayList<ResolveInfo>();
     private URL mTempUrl;
+    private List<String> mYouTubeEmbedIds = new ArrayList<String>();
     private PopupMenu mOverflowPopupMenu;
     private AlertDialog mLongPressAlertDialog;
     private long mStartTime;
@@ -80,7 +81,7 @@ public class ContentView extends FrameLayout {
                                             "    var elems = document.getElementsByTagName('*'), i;\n"+
                                             "    for (i in elems) {\n"+
                                             "    var elem = elems[i];\n"+
-                                            "    if (elem.src != null && elem.src.indexOf(\"https://www.youtube.com/embed/\") != -1) {\n"+
+                                            "    if (elem.src != null && elem.src.indexOf(\"" + Config.YOUTUBE_EMBED_PREFIX + "\") != -1) {\n"+
                                             //"       console.log(\"found embed: \" + elem.src);\n"+
                                             "       " + JS_VARIABLE + ".onYouTubeEmbed(elem.src);\n"+
                                             "    }\n"+
@@ -260,8 +261,8 @@ public class ContentView extends FrameLayout {
             }
 
             @Override
-            public void appPickerOpened() {
-                mEventHandler.onSharedLink();
+            public void onYouTubeEmbedOpened() {
+
             }
         });
 
@@ -551,7 +552,7 @@ public class ContentView extends FrameLayout {
     }
 
     private void setAppButton() {
-        if (mOpenInAppButton.configure(mAppsForUrl)) {
+        if (mOpenInAppButton.configure(mAppsForUrl, mYouTubeEmbedIds)) {
             mOpenInAppButton.invalidate();
         } else {
             mOpenInAppButton.setVisibility(GONE);
@@ -692,11 +693,32 @@ public class ContentView extends FrameLayout {
         return false;
     }
 
+
+    // For security reasons, all callbacks should be in a self contained class
     public class JSEmbedHandler {
 
         @JavascriptInterface
         public void onYouTubeEmbed(String src) {
             Log.d(TAG, "onYouTubeEmbed() - " + src);
+
+            if (src.contains(YOUTUBE_EMBED_PREFIX)) {
+                String videoId = src.replace(YOUTUBE_EMBED_PREFIX, "");
+                if (videoId.length() > 0) {
+                    boolean onList = false;
+                    if (mYouTubeEmbedIds.size() > 0) {
+                        for (String s : mYouTubeEmbedIds) {
+                            if (s.equals(videoId)) {
+                                onList = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (onList == false) {
+                        mYouTubeEmbedIds.add(videoId);
+                        setAppButton();
+                    }
+                }
+            }
         }
     };
 

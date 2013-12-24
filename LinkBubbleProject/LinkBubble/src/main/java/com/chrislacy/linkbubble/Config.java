@@ -152,4 +152,7 @@ public class Config {
     }
 
     public static final String SET_DEFAULT_BROSWER_URL = "http://linkbubble.com/configure";
+
+    public static final String YOUTUBE_WATCH_PREFIX = "http://www.youtube.com/watch?v=";
+    public static final String YOUTUBE_EMBED_PREFIX = "https://www.youtube.com/embed/";
 }

@@ -21,7 +21,8 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
     private OnOpenInAppClickListener mOnOpenInAppClickListener;
 
     private static final int NUM_ITEMS_IN_PREVIEW = 2;
-    List<ContentView.AppForUrl> mAppsForUrl;
+    private List<ContentView.AppForUrl> mAppsForUrl;
+    private List<String> mYouTubeEmbedIds;
     private PreviewItemDrawingParams mParams = new PreviewItemDrawingParams(0, 0, 0, 0);
     private int mAppStackPadding;
     private int mAppStackPreviewSize;
@@ -43,7 +44,7 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
 
     interface OnOpenInAppClickListener {
         void appOpened();
-        void appPickerOpened();
+        void onYouTubeEmbedOpened();
     }
 
     public OpenInAppButton(Context context) {
@@ -70,7 +71,7 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
         mOnOpenInAppClickListener = listener;
     }
 
-    boolean configure(List<ContentView.AppForUrl> appsForUrl) {
+    boolean configure(List<ContentView.AppForUrl> appsForUrl, List<String> youTubeEmbedIds) {
         mAppsForUrl = appsForUrl;
         int appsForUrlSize = appsForUrl != null ? appsForUrl.size() : 0;
         if (appsForUrlSize == 1) {
@@ -86,6 +87,21 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
             setVisibility(VISIBLE);
             setImageDrawable(null);
             return true;
+        }
+
+        mYouTubeEmbedIds = youTubeEmbedIds;
+        if (mYouTubeEmbedIds.size() > 0) {
+            setVisibility(VISIBLE);
+            ResolveInfo youTubeResolveInfo = Settings.get().getYouTubeViewResolveInfo();
+            if (youTubeResolveInfo != null) {
+                Drawable d = youTubeResolveInfo.loadIcon(getContext().getPackageManager());
+                if (d != null) {
+                    setImageDrawable(d);
+                    setVisibility(VISIBLE);
+                    setTag(youTubeResolveInfo);
+                    return true;
+                }
+            }
         }
 
         return false;
@@ -218,6 +234,13 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
 
             if (mOnOpenInAppClickListener != null) {
                 mOnOpenInAppClickListener.appOpened();
+            }
+        } else if (v.getTag() instanceof ResolveInfo && mYouTubeEmbedIds.size() > 0) {
+            ResolveInfo resolveInfo = (ResolveInfo)v.getTag();
+            MainApplication.loadIntent(getContext(), resolveInfo.activityInfo.packageName,
+                    resolveInfo.activityInfo.name, Config.YOUTUBE_WATCH_PREFIX + mYouTubeEmbedIds.get(0), -1);
+            if (mOnOpenInAppClickListener != null) {
+                mOnOpenInAppClickListener.onYouTubeEmbedOpened();
             }
         } else {
             if (mAppsForUrl != null && mAppsForUrl.size() > 1) {
