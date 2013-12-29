@@ -428,7 +428,7 @@ public class ContentView extends FrameLayout {
                     }
                 }
 
-                if (Settings.get().autoLoadContent() && resolveInfos != null && resolveInfos.size() > 0) {
+                if (Settings.get().getAutoContentDisplayAppRedirect() && resolveInfos != null && resolveInfos.size() > 0) {
                     if (MainApplication.loadResolveInfoIntent(mContext, resolveInfos.get(0), url, mStartTime)) {
                         mEventHandler.onSharedLink();
                         return false;

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Choreographer;
@@ -20,7 +19,6 @@ import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
 import java.net.MalformedURLException;
-import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
 
@@ -373,7 +371,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         final List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
-        if (resolveInfos != null && resolveInfos.size() > 0 && Settings.get().autoLoadContent()) {
+        if (resolveInfos != null && resolveInfos.size() > 0 && Settings.get().getAutoContentDisplayAppRedirect()) {
             if (resolveInfos.size() == 1) {
                 if (MainApplication.loadResolveInfoIntent(mContext, resolveInfos.get(0), url, startTime)) {
                     if (mBubbles.size() == 0) {

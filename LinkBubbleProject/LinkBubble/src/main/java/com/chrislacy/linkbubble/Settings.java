@@ -14,7 +14,6 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 
 import android.util.Log;
-import com.squareup.otto.Bus;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,8 +28,13 @@ import java.util.Vector;
 public class Settings {
 
     public static final String PREFERENCE_ENABLED = "preference_enabled";
-    public static final String PREFERENCE_AUTO_LOAD_CONTENT = "preference_auto_load_content";
+    public static final String PREFERENCE_AUTO_CONTENT_DISPLAY_TYPE = "preference_auto_content_display";
     public static final String PREFERENCE_CHECK_FOR_YOUTUBE_EMBEDS = "preference_scan_for_youtube_embeds";
+
+    public static final String PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT = "preference_auto_content_display_app_redirect";
+    public static final boolean PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT_DEFAULT = true;
+    public static final String PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED = "preference_auto_content_display_link_loaded";
+    public static final boolean PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED_DEFAULT = true;
 
     public static final String PREFERENCE_LEFT_CONSUME_BUBBLE = "preference_left_consume_bubble";
     public static final String PREFERENCE_LEFT_CONSUME_BUBBLE_PACKAGE_NAME = "preference_left_consume_bubble_package_name";
@@ -54,6 +58,7 @@ public class Settings {
 
     private static final String DEFAULT_APPS_MAP_KEY_HOST = "host";
     private static final String DEFAULT_APPS_MAP_KEY_COMPONENT = "component";
+
 
     public interface ConsumeBubblesChangedEventHandler {
         public void onConsumeBubblesChanged();
@@ -361,12 +366,28 @@ public class Settings {
         return mContext.getResources().getDrawable(R.drawable.ic_launcher);
     }
 
-    boolean isIncognitoMode() {
-        return mSharedPreferences.getBoolean("preference_incognito", false);
+    boolean getAutoContentDisplayAppRedirect() {
+        return mSharedPreferences.getBoolean(PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT, PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT_DEFAULT);
     }
 
-    boolean autoLoadContent() {
-        return mSharedPreferences.getBoolean(PREFERENCE_AUTO_LOAD_CONTENT, false);
+    void setAutoContentDisplayAppRedirect(boolean value) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putBoolean(PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT, value);
+        editor.commit();
+    }
+
+    boolean getAutoContentDisplayLinkLoaded() {
+        return mSharedPreferences.getBoolean(PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED, PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED_DEFAULT);
+    }
+
+    void setAutoContentDisplayLinkLoaded(boolean value) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putBoolean(PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED, value);
+        editor.commit();
+    }
+
+    boolean isIncognitoMode() {
+        return mSharedPreferences.getBoolean("preference_incognito", false);
     }
 
     boolean isEnabled() {

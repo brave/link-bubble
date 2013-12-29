@@ -23,8 +23,12 @@
 
     <string name="preference_category_general">General</string>
     <string name="preference_enabled_title">Enabled</string>
-    <string name="preference_show_when_ready_title">Show content when ready</string>
-    <string name="preference_show_when_ready_summary">If disabled, content will display when you click the Bubble.</string>
+    <string name="preference_auto_content_display_title">Auto content display</string>
+    <string name="preference_auto_content_display_app_redirect">App redirect</string>
+    <string name="preference_auto_content_display_link_loaded">Link loaded</string>
+    <string name="preference_auto_content_display_always">Always</string>
+    <string name="preference_auto_content_display_never">Never</string>
+
     <string name="preference_left_consume_bubble_title">Left Bubble</string>
     <string name="preference_right_consume_bubble_title">Right Bubble</string>
     <string name="preference_configure_bubble_title">Configure bubble</string>

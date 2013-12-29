@@ -2,7 +2,6 @@ package com.chrislacy.linkbubble;
 
 import android.app.AlertDialog;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,18 +11,16 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
 
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import com.squareup.otto.Bus;
-import com.squareup.otto.Subscribe;
 
 import java.util.TreeMap;
-import java.util.Vector;
 
 
 /**
@@ -31,7 +28,7 @@ import java.util.Vector;
  */
 public class SettingsFragment extends PreferenceFragment {
 
-
+    private Preference mAutoContentDisplayPreference;
 
     public static class IncognitoModeChangedEvent {
         public IncognitoModeChangedEvent(boolean value) {
@@ -113,8 +110,16 @@ public class SettingsFragment extends PreferenceFragment {
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.prefs);
 
-        CheckBoxPreference autoLoadContentPreference = (CheckBoxPreference)findPreference(Settings.PREFERENCE_AUTO_LOAD_CONTENT);
-        autoLoadContentPreference.setChecked(Settings.get().autoLoadContent());
+        mAutoContentDisplayPreference = findPreference(Settings.PREFERENCE_AUTO_CONTENT_DISPLAY_TYPE);
+        mAutoContentDisplayPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                AlertDialog alertDialog = getAutoContentDisplayDialog();
+                alertDialog.show();
+                return true;
+            }
+        });
+        updateAutoContentDisplayPreference();
 
         Preference incognitoButton = findPreference("preference_incognito");
         if (incognitoButton != null) {
@@ -221,6 +226,18 @@ public class SettingsFragment extends PreferenceFragment {
         bus.unregister(this);
     }
 
+    //@Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        Preference pref = findPreference(key);
+
+        //Settings.get().refresh(key);
+
+        if (pref instanceof ListPreference) {
+            ListPreference listPref = (ListPreference) pref;
+            pref.setSummary(listPref.getEntry());
+        }
+    }
+
     void checkDefaultBrowser() {
 
         Preference setDefaultPreference = getPreferenceScreen().findPreference("preference_set_default_browser");
@@ -250,6 +267,47 @@ public class SettingsFragment extends PreferenceFragment {
                     }
                 });
             }
+        }
+    }
+
+    AlertDialog getAutoContentDisplayDialog() {
+
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_multiple_choice);
+        listAdapter.add(getString(R.string.preference_auto_content_display_app_redirect));
+        listAdapter.add(getString(R.string.preference_auto_content_display_link_loaded));
+
+        final ListView listView = new ListView(getActivity());
+        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        listView.setAdapter(listAdapter);
+        listView.setItemChecked(0, Settings.get().getAutoContentDisplayAppRedirect());
+        listView.setItemChecked(1, Settings.get().getAutoContentDisplayLinkLoaded());
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(listView);
+        builder.setIcon(0);
+        builder.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Settings.get().setAutoContentDisplayAppRedirect(listView.isItemChecked(0));
+                Settings.get().setAutoContentDisplayLinkLoaded(listView.isItemChecked(1));
+                updateAutoContentDisplayPreference();
+            }
+        });
+        builder.setTitle(R.string.preference_auto_content_display_title);
+
+        return builder.create();
+    }
+
+    void updateAutoContentDisplayPreference() {
+        boolean appRedirect = Settings.get().getAutoContentDisplayAppRedirect();
+        boolean linkLoaded = Settings.get().getAutoContentDisplayLinkLoaded();
+        if (appRedirect && linkLoaded) {
+            mAutoContentDisplayPreference.setSummary(R.string.preference_auto_content_display_always);
+        } else if (appRedirect) {
+            mAutoContentDisplayPreference.setSummary(R.string.preference_auto_content_display_app_redirect);
+        } else if (linkLoaded) {
+            mAutoContentDisplayPreference.setSummary(R.string.preference_auto_content_display_link_loaded);
+        } else {
+            mAutoContentDisplayPreference.setSummary(R.string.preference_auto_content_display_never);
         }
     }
 }

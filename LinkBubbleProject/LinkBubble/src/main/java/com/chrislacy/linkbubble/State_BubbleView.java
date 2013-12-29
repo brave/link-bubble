@@ -1,6 +1,5 @@
 package com.chrislacy.linkbubble;
 
-import android.graphics.*;
 import android.view.View;
 
 /**
@@ -66,7 +65,7 @@ public class State_BubbleView extends ControllerState {
 
     @Override
     public void OnPageLoaded(Bubble bubble) {
-        if (Settings.get().autoLoadContent()) {
+        if (Settings.get().getAutoContentDisplayLinkLoaded()) {
             mBadge.hide();
             MainController mainController = MainController.get();
             mainController.switchState(mainController.STATE_AnimateToContentView);
