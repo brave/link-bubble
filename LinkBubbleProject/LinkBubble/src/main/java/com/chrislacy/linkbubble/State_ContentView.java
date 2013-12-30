@@ -114,6 +114,7 @@ public class State_ContentView extends ControllerState {
                 mCanvas.fadeOutTargets();
                 setActiveBubble(sender);
             } else {
+                mainController.getActiveBubble().readd();
                 mainController.switchState(mainController.STATE_AnimateToBubbleView);
             }
 
