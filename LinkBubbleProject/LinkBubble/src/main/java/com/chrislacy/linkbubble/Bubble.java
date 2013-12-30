@@ -168,6 +168,10 @@ public class Bubble extends RelativeLayout {
 
         mAnimPeriod = 0.0f;
         mAnimTime = 0.0f;
+
+        if (mContentView != null) {
+            mContentView.setMarkerX((int) Config.getContentViewX(mBubbleIndex, MainController.get().getBubbleCount()));
+        }
     }
 
     public void setExactPos(int x, int y) {
