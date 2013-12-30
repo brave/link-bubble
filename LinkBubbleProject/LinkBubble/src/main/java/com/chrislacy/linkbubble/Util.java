@@ -7,6 +7,12 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -104,5 +110,40 @@ public class Util {
         }
 
         return result;
+    }
+
+
+    public static String downloadJSONAsString(String url, int timeout) {
+        try {
+            URL u = new URL(url);
+            HttpURLConnection connection = (HttpURLConnection) u.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Content-length", "0");
+            connection.setUseCaches(false);
+            connection.setAllowUserInteraction(false);
+            connection.setConnectTimeout(timeout);
+            connection.setReadTimeout(timeout);
+            connection.connect();
+            int status = connection.getResponseCode();
+
+            switch (status) {
+                case 200:
+                case 201:
+                    BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line+"\n");
+                    }
+                    br.close();
+                    return sb.toString();
+            }
+
+        } catch (MalformedURLException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 }
