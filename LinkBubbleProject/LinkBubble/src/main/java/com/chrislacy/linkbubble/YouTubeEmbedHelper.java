@@ -22,6 +22,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,22 +54,44 @@ public class YouTubeEmbedHelper {
         return mEmbedIds.size();
     }
 
+    /*
+     * Known YouTube embed URLs:
+        * http://www.youtube.com/embed/oSAW1tSNIa4?version=3&rel=1&fs=1&showsearch=0&showinfo=1&iv_load_policy=1&wmode=transparent
+        * https://www.youtube.com/embed/q1dpQKntj_w
+     */
     boolean onYouTubeEmbedFound(String src) {
-        if (src.contains(Config.YOUTUBE_EMBED_PREFIX)) {
-            String videoId = src.replace(Config.YOUTUBE_EMBED_PREFIX, "");
-            if (videoId.length() > 0) {
-                boolean onList = false;
-                if (mEmbedIds.size() > 0) {
-                    for (String s : mEmbedIds) {
-                        if (s.equals(videoId)) {
-                            onList = true;
-                            break;
+        if (src == null || src.isEmpty()) {
+            return false;
+        }
+
+        int prefixStartIndex = src.indexOf(Config.YOUTUBE_EMBED_PREFIX);
+        if (prefixStartIndex > -1) {
+            URL url;
+            try {
+                url = new URL(src);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+            String path = url.getPath();
+            int pathStartIndex = path.indexOf(Config.YOUTUBE_EMBED_PATH_SUFFIX);
+            if (pathStartIndex > -1) {
+                String videoId = path.substring(pathStartIndex, Config.YOUTUBE_EMBED_PATH_SUFFIX.length());
+                if (videoId.length() > 0) {
+                    boolean onList = false;
+                    if (mEmbedIds.size() > 0) {
+                        for (String s : mEmbedIds) {
+                            if (s.equals(videoId)) {
+                                onList = true;
+                                break;
+                            }
                         }
                     }
-                }
-                if (onList == false) {
-                    mEmbedIds.add(videoId);
-                    return true;
+                    if (onList == false) {
+                        mEmbedIds.add(videoId);
+                        return true;
+                    }
                 }
             }
         }

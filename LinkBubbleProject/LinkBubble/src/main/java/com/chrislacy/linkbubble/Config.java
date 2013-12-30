@@ -154,7 +154,8 @@ public class Config {
     public static final String SET_DEFAULT_BROSWER_URL = "http://linkbubble.com/configure";
 
     public static final String YOUTUBE_WATCH_PREFIX = "http://www.youtube.com/watch?v=";
-    public static final String YOUTUBE_EMBED_PREFIX = "https://www.youtube.com/embed/";
+    public static final String YOUTUBE_EMBED_PATH_SUFFIX = "embed/";
+    public static final String YOUTUBE_EMBED_PREFIX = "://www.youtube.com/" + YOUTUBE_EMBED_PATH_SUFFIX;
 
     public static final String YOUTUBE_API_KEY = "AIzaSyChiS6yef7AIe5p0JvJGnHrHmmimehIuDs";
 }
