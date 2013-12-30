@@ -44,7 +44,7 @@ public class State_AnimateToContentView extends ControllerState {
         mBubbleInfo.clear();
         mTime = 0.0f;
         mBubblePeriod = 0.3f;
-        mContentPeriod = 0.3f * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
+        mContentPeriod = mBubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
 
         MainController mainController = MainController.get();
         int bubbleCount = mainController.getBubbleCount();

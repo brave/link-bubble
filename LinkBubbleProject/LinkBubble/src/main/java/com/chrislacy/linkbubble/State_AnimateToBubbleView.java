@@ -22,7 +22,8 @@ public class State_AnimateToBubbleView extends ControllerState {
     private Canvas mCanvas;
     private OvershootInterpolator mInterpolator = new OvershootInterpolator(0.5f);
     private float mTime;
-    private float mPeriod;
+    private float mBubblePeriod;
+    private float mContentPeriod;
     private Vector<BubbleInfo> mBubbleInfo = new Vector<BubbleInfo>();
 
     public State_AnimateToBubbleView(Canvas canvas) {
@@ -39,7 +40,8 @@ public class State_AnimateToBubbleView extends ControllerState {
         }
         mBubbleInfo.clear();
         mTime = 0.0f;
-        mPeriod = 0.3f;
+        mBubblePeriod = 0.3f;
+        mContentPeriod = mBubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
 
         MainController mainController = MainController.get();
         int bubbleCount = mainController.getBubbleCount();
@@ -63,7 +65,7 @@ public class State_AnimateToBubbleView extends ControllerState {
 
     @Override
     public boolean OnUpdate(float dt) {
-        float f = mInterpolator.getInterpolation(mTime / mPeriod);
+        float f = mInterpolator.getInterpolation(mTime / mBubblePeriod);
         mTime += dt;
 
         MainController mainController = MainController.get();
@@ -75,7 +77,7 @@ public class State_AnimateToBubbleView extends ControllerState {
             float x = bi.mPosX + bi.mDistanceX * f;
             float y = bi.mPosY + bi.mDistanceY * f;
 
-            if (mTime >= mPeriod) {
+            if (mTime >= mBubblePeriod) {
                 x = bi.mTargetX;
                 y = bi.mTargetY;
             }
@@ -83,10 +85,10 @@ public class State_AnimateToBubbleView extends ControllerState {
             b.setExactPos((int) x, (int) y);
         }
 
-        float t = mTime / mPeriod;
+        float t = Util.clamp(0.0f, mTime / mContentPeriod, 1.0f);
         mCanvas.setContentViewTranslation(t * (Config.mScreenHeight - Config.mContentOffset));
 
-        if (mTime >= mPeriod) {
+        if (mTime >= mBubblePeriod && mTime >= mContentPeriod) {
             mainController.switchState(mainController.STATE_BubbleView);
             mainController.hideContentActivity();
         }
