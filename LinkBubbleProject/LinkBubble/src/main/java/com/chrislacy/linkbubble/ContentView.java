@@ -434,11 +434,6 @@ public class ContentView extends FrameLayout {
                     if (resolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo) {
                         // TODO: Fix to handle multiple apps
                         if (MainApplication.loadResolveInfoIntent(mContext, resolveInfo, url, mStartTime)) {
-                            // TODO: NOTE: Can app to crash without an exception!
-                            // Reporoducable 100% by:
-                            //  * Having "App redirect" and "Link loaded" checked for "Auto content display" in the settings.
-                            //  * Having Tweet Lanes installed
-                            //  * loading "http://twitter.com/androidpolice"
                             mEventHandler.onSharedLink();
                             return false;
                         }

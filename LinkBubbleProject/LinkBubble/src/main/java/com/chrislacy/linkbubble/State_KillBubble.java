@@ -31,7 +31,10 @@ public class State_KillBubble extends ControllerState {
     public void OnEnterState() {
         Util.Assert(mBubble != null);
         mCanvas.fadeOutTargets();
-        mCanvas.getContentView().onAnimateOffscreen();
+        ContentView contentView = mCanvas.getContentView();
+        if (contentView != null) {
+            contentView.onAnimateOffscreen();
+        }
         mTime = 0.0f;
         mPeriod = 0.3f;
         mCanvas.setContentViewTranslation(0.0f);
