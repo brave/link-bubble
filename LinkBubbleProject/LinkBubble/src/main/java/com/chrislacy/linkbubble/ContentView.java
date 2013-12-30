@@ -59,6 +59,7 @@ public class ContentView extends FrameLayout {
     private List<ResolveInfo> mTempAppsForUrl = new ArrayList<ResolveInfo>();
     private URL mTempUrl;
     private YouTubeEmbedHelper mYouTubeEmbedHelper;
+    private boolean mCheckedForEmbeds;
     private PopupMenu mOverflowPopupMenu;
     private AlertDialog mLongPressAlertDialog;
     private long mStartTime;
@@ -380,6 +381,28 @@ public class ContentView extends FrameLayout {
                 super.onReceivedIcon(webView, bitmap);
                 mEventHandler.onReceivedIcon(bitmap);
             }
+
+            @Override
+            public void onProgressChanged(WebView webView, int progress) {
+                //Log.d(TAG, "onProgressChanged() - progress:" + progress);
+
+                // At 60%, the page is more often largely viewable, but waiting for background shite to finish which can
+                // take many, many seconds, even on a strong connection. Thus, do a check for embeds now to prevent the button
+                // not being updated until 100% is reached, which feels too slow as a user.
+                if (progress >= 60) {
+                    if (mCheckedForEmbeds == false) {
+                        mCheckedForEmbeds = true;
+                        if (mYouTubeEmbedHelper != null) {
+                            mYouTubeEmbedHelper.clear();
+                        }
+
+                        if (Settings.get().checkForYouTubeEmbeds()) {
+                            Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds()");
+                            webView.loadUrl(JS_EMBED);
+                        }
+                    }
+                }
+            }
         });
 
         mWebView.setWebViewClient(new WebViewClient() {
@@ -433,14 +456,14 @@ public class ContentView extends FrameLayout {
             }
 
             @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
+            public void onPageFinished(WebView webView, String url) {
+                super.onPageFinished(webView, url);
 
                 if (isValidUrl(url)) {
                     updateAppsForUrl(url);
                     setOpenInAppButton();
 
-                    mTitleTextView.setText(view.getTitle());
+                    mTitleTextView.setText(webView.getTitle());
                     mUrlTextView.setText(url.replace("http://", ""));
 
                     if (--mCount == 0) {
@@ -448,9 +471,9 @@ public class ContentView extends FrameLayout {
                         mUrl = url;
 
                         PageLoadInfo pli = new PageLoadInfo();
-                        pli.bmp = view.getFavicon();
+                        pli.bmp = webView.getFavicon();
                         pli.url = url;
-                        pli.title = view.getTitle();
+                        pli.title = webView.getTitle();
 
                         mEventHandler.onPageLoaded(pli);
                         Log.d(TAG, "onPageFinished() - url: " + url);
@@ -460,15 +483,17 @@ public class ContentView extends FrameLayout {
                             mStartTime = -1;
                         }
 
-                        if (Settings.get().checkForYouTubeEmbeds()) {
+                        if (mCheckedForEmbeds == false) {
+                            mCheckedForEmbeds = true;
                             if (mYouTubeEmbedHelper != null) {
                                 mYouTubeEmbedHelper.clear();
                             }
-                            view.loadUrl(JS_EMBED);
                         }
-                        //view.loadUrl("javascript:(function() { " +
-                        //        "document.getElementsByTagName('body')[0].style.color = 'red'; " +
-                        //        "})()");
+                        // Always check again at 100%
+                        if (Settings.get().checkForYouTubeEmbeds()) {
+                            webView.loadUrl(JS_EMBED);
+                            Log.d(TAG, "onPageFinished() - checkForYouTubeEmbeds()");
+                        }
                     }
                 }
             }
@@ -722,7 +747,6 @@ public class ContentView extends FrameLayout {
 
         return false;
     }
-
 
     // For security reasons, all callbacks should be in a self contained class
     public class JSEmbedHandler {
