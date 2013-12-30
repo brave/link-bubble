@@ -155,4 +155,6 @@ public class Config {
 
     public static final String YOUTUBE_WATCH_PREFIX = "http://www.youtube.com/watch?v=";
     public static final String YOUTUBE_EMBED_PREFIX = "https://www.youtube.com/embed/";
+
+    public static final String YOUTUBE_API_KEY = "AIzaSyChiS6yef7AIe5p0JvJGnHrHmmimehIuDs";
 }

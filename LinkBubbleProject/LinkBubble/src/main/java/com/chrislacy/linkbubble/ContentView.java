@@ -58,7 +58,7 @@ public class ContentView extends FrameLayout {
     private List<AppForUrl> mAppsForUrl = new ArrayList<AppForUrl>();
     private List<ResolveInfo> mTempAppsForUrl = new ArrayList<ResolveInfo>();
     private URL mTempUrl;
-    private List<String> mYouTubeEmbedIds = new ArrayList<String>();
+    private YouTubeEmbedHelper mYouTubeEmbedHelper;
     private PopupMenu mOverflowPopupMenu;
     private AlertDialog mLongPressAlertDialog;
     private long mStartTime;
@@ -461,8 +461,8 @@ public class ContentView extends FrameLayout {
                         }
 
                         if (Settings.get().checkForYouTubeEmbeds()) {
-                            if (mYouTubeEmbedIds != null) {
-                                mYouTubeEmbedIds.clear();
+                            if (mYouTubeEmbedHelper != null) {
+                                mYouTubeEmbedHelper.clear();
                             }
                             view.loadUrl(JS_EMBED);
                         }
@@ -582,7 +582,7 @@ public class ContentView extends FrameLayout {
     }
 
     private void setOpenInAppButton() {
-        if (mOpenInAppButton.configure(mAppsForUrl, mYouTubeEmbedIds)) {
+        if (mOpenInAppButton.configure(mAppsForUrl, mYouTubeEmbedHelper)) {
             mOpenInAppButton.invalidate();
         } else {
             mOpenInAppButton.setVisibility(GONE);
@@ -727,30 +727,32 @@ public class ContentView extends FrameLayout {
     // For security reasons, all callbacks should be in a self contained class
     public class JSEmbedHandler {
 
+        private Runnable mUpdateOpenInAppRunnable = null;
+
         @JavascriptInterface
         public void onYouTubeEmbed(String src) {
             Log.d(TAG, "onYouTubeEmbed() - " + src);
 
-            if (src.contains(Config.YOUTUBE_EMBED_PREFIX)) {
-                String videoId = src.replace(Config.YOUTUBE_EMBED_PREFIX, "");
-                if (videoId.length() > 0) {
-                    boolean onList = false;
-                    if (mYouTubeEmbedIds.size() > 0) {
-                        for (String s : mYouTubeEmbedIds) {
-                            if (s.equals(videoId)) {
-                                onList = true;
-                                break;
-                            }
+            if (mYouTubeEmbedHelper == null) {
+                mYouTubeEmbedHelper = new YouTubeEmbedHelper(mContext);
+            }
+
+            if (mYouTubeEmbedHelper.onYouTubeEmbedFound(src)) {
+                if (mUpdateOpenInAppRunnable == null) {
+                    mUpdateOpenInAppRunnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            setOpenInAppButton();
                         }
-                    }
-                    if (onList == false) {
-                        mYouTubeEmbedIds.add(videoId);
-                        setOpenInAppButton();
-                    }
+                    };
                 }
+
+                mOpenInAppButton.post(mUpdateOpenInAppRunnable);
             }
         }
     };
 
     private JSEmbedHandler mJSEmbedHandler;
+
+
 }

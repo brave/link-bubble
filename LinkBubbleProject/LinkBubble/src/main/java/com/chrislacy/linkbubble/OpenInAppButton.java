@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -17,11 +18,13 @@ import java.util.List;
 
 public class OpenInAppButton extends ContentViewButton implements View.OnClickListener {
 
+    private static final String TAG = "OpenInAppButton";
+
     private OnOpenInAppClickListener mOnOpenInAppClickListener;
 
     private static final int NUM_ITEMS_IN_PREVIEW = 2;
     private List<ContentView.AppForUrl> mAppsForUrl;
-    private List<String> mYouTubeEmbedIds = null;
+    private YouTubeEmbedHelper mYouTubeEmbedHelper = null;
     private PreviewItemDrawingParams mParams = new PreviewItemDrawingParams(0, 0, 0, 0);
     private int mAppStackPadding;
     private int mAppStackPreviewSize;
@@ -70,7 +73,7 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
         mOnOpenInAppClickListener = listener;
     }
 
-    boolean configure(List<ContentView.AppForUrl> appsForUrl, List<String> youTubeEmbedIds) {
+    boolean configure(List<ContentView.AppForUrl> appsForUrl, YouTubeEmbedHelper youTubeEmbedHelper) {
         mAppsForUrl = appsForUrl;
         int appsForUrlSize = appsForUrl != null ? appsForUrl.size() : 0;
         if (appsForUrlSize == 1) {
@@ -88,21 +91,22 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
             return true;
         }
 
-        mYouTubeEmbedIds = youTubeEmbedIds;
-        if (mYouTubeEmbedIds.size() > 0) {
-            setVisibility(VISIBLE);
-            ResolveInfo youTubeResolveInfo = Settings.get().getYouTubeViewResolveInfo();
-            if (youTubeResolveInfo != null) {
-                Drawable d = youTubeResolveInfo.loadIcon(getContext().getPackageManager());
+        mYouTubeEmbedHelper = youTubeEmbedHelper;
+        if (mYouTubeEmbedHelper != null && mYouTubeEmbedHelper.size() > 0) {
+            if (mYouTubeEmbedHelper.mYouTubeResolveInfo != null) {
+                Drawable d = mYouTubeEmbedHelper.mYouTubeResolveInfo.loadIcon(getContext().getPackageManager());
                 if (d != null) {
                     setImageDrawable(d);
+                    setTag(mYouTubeEmbedHelper.mYouTubeResolveInfo);
+                    Log.d(TAG, "YouTube embed");
                     setVisibility(VISIBLE);
-                    setTag(youTubeResolveInfo);
                     return true;
                 }
             }
         }
 
+        Log.d(TAG, "Gone");
+        setVisibility(GONE);
         return false;
     }
 
@@ -224,13 +228,7 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
         canvas.restore();
     }
 
-    private void loadYouTubeVideo(ResolveInfo resolveInfo, String id) {
-        MainApplication.loadIntent(getContext(), resolveInfo.activityInfo.packageName,
-                resolveInfo.activityInfo.name, Config.YOUTUBE_WATCH_PREFIX + id, -1);
-        if (mOnOpenInAppClickListener != null) {
-            mOnOpenInAppClickListener.onYouTubeEmbedOpened();
-        }
-    }
+
 
     @Override
     public void onClick(View v) {
@@ -242,7 +240,7 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
             if (mOnOpenInAppClickListener != null) {
                 mOnOpenInAppClickListener.onAppOpened();
             }
-        } else if (v.getTag() instanceof ResolveInfo && mYouTubeEmbedIds != null && mYouTubeEmbedIds.size() > 0) {
+        } else if (v.getTag() instanceof ResolveInfo && mYouTubeEmbedHelper != null && mYouTubeEmbedHelper.size() > 0) {
             /*
             if (mYouTubeEmbedIds.size() > 1) {
                 // https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM,CevxZvSJLk8&key=AIzaSyChiS6yef7AIe5p0JvJGnHrHmmimehIuDs&part=snippet&fields=items(snippet(title,thumbnails(default)))
@@ -263,7 +261,12 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
             } else {
                 loadYouTubeVideo((ResolveInfo) v.getTag(), mYouTubeEmbedIds.get(0));
             }*/
-            loadYouTubeVideo((ResolveInfo) v.getTag(), mYouTubeEmbedIds.get(0));
+            //if (mYouTubeEmbedHelper.loadYouTubeVideo((ResolveInfo) v.getTag(), mYouTubeEmbedIds.get(0));
+            if (mYouTubeEmbedHelper.onOpenInAppButtonClick()) {
+                if (mOnOpenInAppClickListener != null) {
+                    mOnOpenInAppClickListener.onYouTubeEmbedOpened();
+                }
+            }
         } else {
             if (mAppsForUrl != null && mAppsForUrl.size() > 1) {
                 ArrayList<ResolveInfo> resolveInfos = new ArrayList<ResolveInfo>();
