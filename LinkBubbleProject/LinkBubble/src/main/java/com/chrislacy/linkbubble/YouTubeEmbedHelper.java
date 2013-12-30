@@ -77,7 +77,7 @@ public class YouTubeEmbedHelper {
             String path = url.getPath();
             int pathStartIndex = path.indexOf(Config.YOUTUBE_EMBED_PATH_SUFFIX);
             if (pathStartIndex > -1) {
-                String videoId = path.substring(pathStartIndex, Config.YOUTUBE_EMBED_PATH_SUFFIX.length());
+                String videoId = path.substring(pathStartIndex + Config.YOUTUBE_EMBED_PATH_SUFFIX.length());
                 if (videoId.length() > 0) {
                     boolean onList = false;
                     if (mEmbedIds.size() > 0) {
