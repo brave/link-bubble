@@ -59,6 +59,8 @@
 
     <string name="title_settings">Settings</string>
 
+    <string name="title_youtube_embed_to_load">Select video to play</string>
+
     <string name="loading">Loading…</string>
 
     <string name="no_default_browser">No default browser found on the system.</string>
