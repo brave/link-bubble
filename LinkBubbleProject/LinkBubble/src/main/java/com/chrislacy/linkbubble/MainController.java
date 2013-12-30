@@ -464,8 +464,11 @@ public class MainController implements Choreographer.FrameCallback {
                     @Override
                     public void onSharedLink(Bubble sender) {
                         if (mBubbles.size() > 1) {
+                            int bubbleIndex = sender.getBubbleIndex();
                             destroyBubble(sender, Config.BubbleAction.Destroy);
-                            switchState(STATE_AnimateToBubbleView);
+                            int nextBubbleIndex = Util.clamp(0, bubbleIndex, mBubbles.size()-1);
+                            Bubble nextBubble = mBubbles.get(nextBubbleIndex);
+                            STATE_ContentView.setActiveBubble(nextBubble);
                         } else {
                             STATE_KillBubble.init(sender);
                             switchState(STATE_KillBubble);

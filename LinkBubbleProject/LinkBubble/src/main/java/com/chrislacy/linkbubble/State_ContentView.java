@@ -148,6 +148,7 @@ public class State_ContentView extends ControllerState {
 
     void setActiveBubble(Bubble bubble) {
         MainController.get().setActiveBubble(bubble);
+        bubble.setTargetPos((int)Config.getContentViewX(bubble.getBubbleIndex(), MainController.get().getBubbleCount()), bubble.getYPos(), 0.2f, false);
         mCanvas.setContentView(bubble.getContentView());
         mCanvas.showContentView();
         mCanvas.setContentViewTranslation(0.0f);
