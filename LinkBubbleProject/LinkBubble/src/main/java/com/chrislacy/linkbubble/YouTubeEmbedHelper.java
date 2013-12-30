@@ -7,12 +7,16 @@ import android.content.pm.ResolveInfo;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
+import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -173,11 +177,7 @@ public class YouTubeEmbedHelper {
                 mLoadingAlertDialog = null;
 
                 ListView listView = new ListView(mContext);
-                ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1);
-                for (EmbedInfo embedInfo : mEmbedInfo) {
-                    listAdapter.add(embedInfo.mTitle);
-                }
-                listView.setAdapter(listAdapter);
+                listView.setAdapter(new EmbedItemAdapter());
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                 builder.setView(listView);
@@ -190,4 +190,42 @@ public class YouTubeEmbedHelper {
             }
         }
     };
+
+
+    private class EmbedItemAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return mEmbedInfo.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return mEmbedInfo.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            if (convertView == null) {
+                LayoutInflater inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.view_youtube_embed_item, null);
+            }
+
+            EmbedInfo embedInfo = mEmbedInfo.get(position);
+
+            ImageView imageView = (ImageView)convertView.findViewById(R.id.image);
+            Picasso.with(mContext).load(embedInfo.mThumbnailUrl).into(imageView);
+
+            TextView textView = (TextView)convertView.findViewById(R.id.text);
+            textView.setText(embedInfo.mTitle);
+
+            return convertView;
+        }
+    }
 }

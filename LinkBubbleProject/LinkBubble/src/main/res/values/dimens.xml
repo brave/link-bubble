@@ -17,4 +17,7 @@
 
     <dimen name="bubble_cover_flow_item_size">60dp</dimen>
     <dimen name="bubble_cover_flow_image_size">60dp</dimen>
+
+    <dimen name="youtube_emebed_item_height">160dp</dimen>
+
 </resources>
