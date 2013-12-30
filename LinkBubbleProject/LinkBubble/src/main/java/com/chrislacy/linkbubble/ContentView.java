@@ -35,6 +35,7 @@ import android.graphics.Canvas;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -184,7 +185,7 @@ public class ContentView extends FrameLayout {
         return isValid;
     }
 
-    private void showSelectShareMethod() {
+    private void showSelectShareMethod(final String url, final boolean closeBubbleOnShare) {
 
         AlertDialog alertDialog = ActionItem.getShareAlert(mContext, new ActionItem.OnActionItemSelectedListener() {
             @Override
@@ -193,10 +194,12 @@ public class ContentView extends FrameLayout {
                 intent.setType("text/plain");
                 intent.setClassName(actionItem.mPackageName, actionItem.mActivityClassName);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra(Intent.EXTRA_TEXT, mUrl);
+                intent.putExtra(Intent.EXTRA_TEXT, url);
                 mContext.startActivity(intent);
 
-                mEventHandler.onSharedLink();
+                if (closeBubbleOnShare) {
+                    mEventHandler.onSharedLink();
+                }
             }
         });
         alertDialog.show();
@@ -239,7 +242,7 @@ public class ContentView extends FrameLayout {
         mShareButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                showSelectShareMethod();
+                showSelectShareMethod(mUrl, true);
             }
         });
 
@@ -355,40 +358,8 @@ public class ContentView extends FrameLayout {
                         if (url == null) {
                             return false;
                         }
-                        Resources resources = mContext.getResources();
 
-                        ArrayList<String> longClickSelections = new ArrayList<String>();
-                        longClickSelections.add(resources.getString(R.string.action_open_in_bubble));
-                        String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
-                        if (defaultBrowserLabel != null) {
-                            longClickSelections.add(String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
-                        }
-
-                        ListView listView = new ListView(getContext());
-                        listView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,
-                                                longClickSelections.toArray(new String[0])));
-                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                switch (position) {
-                                    case 0:
-                                        MainController.get().onOpenUrl(url, System.currentTimeMillis());
-                                        break;
-
-                                    case 1:
-                                        openInBrowser(url);
-                                        break;
-                                }
-                                if (mLongPressAlertDialog != null) {
-                                    mLongPressAlertDialog.dismiss();
-                                }
-                            }
-                        });
-
-                        mLongPressAlertDialog = new AlertDialog.Builder(getContext()).create();
-                        mLongPressAlertDialog.setView(listView);
-                        mLongPressAlertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                        mLongPressAlertDialog.show();
+                        onUrlLongClick(url);
                         return true;
                     }
                     default:
@@ -543,6 +514,71 @@ public class ContentView extends FrameLayout {
         mWebView.loadUrl(url);
         mTitleTextView.setText(R.string.loading);
         mUrlTextView.setText(url.replace("http://", ""));
+    }
+
+    private void onUrlLongClick(final String url) {
+        Resources resources = mContext.getResources();
+
+        final ArrayList<String> longClickSelections = new ArrayList<String>();
+
+        final String shareLabel = resources.getString(R.string.action_share);
+        longClickSelections.add(shareLabel);
+
+        final String openInNewBubbleLabel = resources.getString(R.string.action_open_in_new_bubble);
+        longClickSelections.add(openInNewBubbleLabel);
+
+        String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
+        final String openInBrowserLabel = defaultBrowserLabel != null ?
+                String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel) : null;
+        if (openInBrowserLabel != null) {
+            longClickSelections.add(openInBrowserLabel);
+        }
+
+        final String leftConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeLeft);
+        if (leftConsumeBubbleLabel != null) {
+            if (defaultBrowserLabel == null || defaultBrowserLabel.equals(leftConsumeBubbleLabel) == false) {
+                longClickSelections.add(leftConsumeBubbleLabel);
+            }
+        }
+
+        final String rightConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeRight);
+        if (rightConsumeBubbleLabel != null) {
+            if (defaultBrowserLabel == null || defaultBrowserLabel.equals(rightConsumeBubbleLabel) == false) {
+                longClickSelections.add(rightConsumeBubbleLabel);
+            }
+        }
+
+        Collections.sort(longClickSelections);
+
+        ListView listView = new ListView(getContext());
+        listView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,
+                longClickSelections.toArray(new String[0])));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String string = longClickSelections.get(position);
+                if (string.equals(openInNewBubbleLabel)) {
+                    MainController.get().onOpenUrl(url, System.currentTimeMillis());
+                } else if (openInBrowserLabel != null && string.equals(openInBrowserLabel)) {
+                    openInBrowser(url);
+                } else if (string.equals(shareLabel)) {
+                    showSelectShareMethod(url, false);
+                } else if (leftConsumeBubbleLabel != null && string.equals(leftConsumeBubbleLabel)) {
+                    MainApplication.handleBubbleAction(mContext, Config.BubbleAction.ConsumeLeft, url);
+                } else if (rightConsumeBubbleLabel != null && string.equals(rightConsumeBubbleLabel)) {
+                    MainApplication.handleBubbleAction(mContext, Config.BubbleAction.ConsumeRight, url);
+                }
+
+                if (mLongPressAlertDialog != null) {
+                    mLongPressAlertDialog.dismiss();
+                }
+            }
+        });
+
+        mLongPressAlertDialog = new AlertDialog.Builder(getContext()).create();
+        mLongPressAlertDialog.setView(listView);
+        mLongPressAlertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+        mLongPressAlertDialog.show();
     }
 
     private void setOpenInAppButton() {

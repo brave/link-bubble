@@ -137,20 +137,7 @@ public class MainController implements Choreographer.FrameCallback {
         switch (action) {
             case ConsumeRight:
             case ConsumeLeft: {
-                Config.ActionType actionType = Settings.get().getConsumeBubbleActionType(action);
-                if (actionType == Config.ActionType.Share) {
-                    // TODO: Retrieve the class name below from the app in case Twitter ever change it.
-                    Intent intent = new Intent(Intent.ACTION_SEND);
-                    intent.setType("text/plain");
-                    intent.setClassName(Settings.get().getConsumeBubblePackageName(action),
-                                        Settings.get().getConsumeBubbleActivityClassName(action));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra(Intent.EXTRA_TEXT, url);
-                    mContext.startActivity(intent);
-                } else if (actionType == Config.ActionType.View) {
-                    MainApplication.loadIntent(mContext, Settings.get().getConsumeBubblePackageName(action),
-                            Settings.get().getConsumeBubbleActivityClassName(action), url, -1);
-                }
+                MainApplication.handleBubbleAction(mContext, action, url);
                 break;
             }
             default:

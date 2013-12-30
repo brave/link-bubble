@@ -83,4 +83,23 @@ public class MainApplication extends Application {
         }
         return true;
     }
+
+    public static boolean handleBubbleAction(Context context, Config.BubbleAction action, String url) {
+        Config.ActionType actionType = Settings.get().getConsumeBubbleActionType(action);
+        if (actionType == Config.ActionType.Share) {
+            // TODO: Retrieve the class name below from the app in case Twitter ever change it.
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.setClassName(Settings.get().getConsumeBubblePackageName(action),
+                    Settings.get().getConsumeBubbleActivityClassName(action));
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(Intent.EXTRA_TEXT, url);
+            context.startActivity(intent);
+            return true;
+        } else if (actionType == Config.ActionType.View) {
+            return MainApplication.loadIntent(context, Settings.get().getConsumeBubblePackageName(action),
+                    Settings.get().getConsumeBubbleActivityClassName(action), url, -1);
+        }
+        return false;
+    }
 }
