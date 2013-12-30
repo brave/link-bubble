@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -184,9 +185,20 @@ public class YouTubeEmbedHelper {
                 builder.setIcon(0);
                 builder.setTitle(R.string.title_youtube_embed_to_load);
 
-                AlertDialog alertDialog = builder.create();
+                final AlertDialog alertDialog = builder.create();
                 alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
                 alertDialog.show();
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        EmbedInfo embedInfo = (EmbedInfo) view.getTag();
+                        if (embedInfo != null) {
+                            loadYouTubeVideo(embedInfo.mId);
+                        }
+                        alertDialog.dismiss();
+                    }
+                });
             }
         }
     };
@@ -224,6 +236,8 @@ public class YouTubeEmbedHelper {
 
             TextView textView = (TextView)convertView.findViewById(R.id.text);
             textView.setText(embedInfo.mTitle);
+
+            convertView.setTag(embedInfo);
 
             return convertView;
         }
