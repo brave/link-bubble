@@ -293,6 +293,9 @@ public class ContentView extends FrameLayout {
                             }
 
                             case R.id.item_reload_page: {
+                                if (mYouTubeEmbedHelper != null) {
+                                    mYouTubeEmbedHelper.clear();
+                                }
                                 mEventHandler.onPageLoading(mUrl);
                                 mWebView.stopLoading();
                                 mWebView.reload();
@@ -414,6 +417,10 @@ public class ContentView extends FrameLayout {
                     ++mCount;
                 }
 
+                if (mYouTubeEmbedHelper != null) {
+                    mYouTubeEmbedHelper.clear();
+                }
+
                 List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
                 updateAppsForUrl(resolveInfos, url);
                 if (Settings.get().redirectUrlToBrowser(url)) {
@@ -511,6 +518,9 @@ public class ContentView extends FrameLayout {
                                 String urlBefore = webView.getUrl();
                                 webView.goBack();
                                 updateAppsForUrl(webView.getUrl());
+                                if (mYouTubeEmbedHelper != null) {
+                                    mYouTubeEmbedHelper.clear();
+                                }
                                 Log.d(TAG, "Go back: " + urlBefore + " -> " + webView.getUrl());
                                 setOpenInAppButton();
                                 return true;
