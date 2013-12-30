@@ -430,9 +430,13 @@ public class ContentView extends FrameLayout {
                 }
 
                 if (Settings.get().getAutoContentDisplayAppRedirect() && resolveInfos != null && resolveInfos.size() > 0) {
-                    if (MainApplication.loadResolveInfoIntent(mContext, resolveInfos.get(0), url, mStartTime)) {
-                        mEventHandler.onSharedLink();
-                        return false;
+                    ResolveInfo resolveInfo = resolveInfos.get(0);
+                    if (resolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo) {
+                        // TODO: Fix to handle multiple apps
+                        if (MainApplication.loadResolveInfoIntent(mContext, resolveInfo, url, mStartTime)) {
+                            mEventHandler.onSharedLink();
+                            return false;
+                        }
                     }
                 }
 

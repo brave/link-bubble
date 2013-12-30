@@ -97,6 +97,7 @@ public class Settings {
     private TreeMap<String, String> mDefaultAppsMap = new TreeMap<String, String>();
     private List<Intent> mBrowsers;
     private ResolveInfo mYouTubeViewResolveInfo;
+    ResolveInfo mLinkBubbleEntryActivityResolveInfo;
     private boolean mCheckedForYouTubeResolveInfo = false;
     private ConsumeBubblesChangedEventHandler mConsumeBubblesChangedEventHandler;
 
@@ -125,7 +126,9 @@ public class Settings {
             IntentFilter filter = resolveInfo.filter;
             if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
                 // Ignore LinkBubble from this list
-                if (resolveInfo.activityInfo.packageName.equals(packageName) == false) {
+                if (resolveInfo.activityInfo.packageName.equals(packageName)) {
+                    mLinkBubbleEntryActivityResolveInfo = resolveInfo;
+                } else {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setClassName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
                     mBrowsers.add(intent);
@@ -480,6 +483,10 @@ public class Settings {
                                     && resolveInfo.activityInfo.name.equals(componentName.getClassName())) {
                                 return resolveInfo;
                             }
+                        }
+
+                        if (componentName.getPackageName().equals(mContext.getPackageName())) {
+                            return mLinkBubbleEntryActivityResolveInfo;
                         }
                     }
                 }

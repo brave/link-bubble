@@ -360,7 +360,9 @@ public class MainController implements Choreographer.FrameCallback {
         final List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
         if (resolveInfos != null && resolveInfos.size() > 0 && Settings.get().getAutoContentDisplayAppRedirect()) {
             if (resolveInfos.size() == 1) {
-                if (MainApplication.loadResolveInfoIntent(mContext, resolveInfos.get(0), url, startTime)) {
+                ResolveInfo resolveInfo = resolveInfos.get(0);
+                if (resolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo
+                    && MainApplication.loadResolveInfoIntent(mContext, resolveInfo, url, startTime)) {
                     if (mBubbles.size() == 0) {
                         mEventHandler.onDestroy();
                     }
@@ -371,15 +373,27 @@ public class MainController implements Choreographer.FrameCallback {
                         new ActionItem.OnActionItemSelectedListener() {
                             @Override
                             public void onSelected(ActionItem actionItem) {
+                                boolean loaded = false;
+                                String appPackageName = mContext.getPackageName();
                                 for (ResolveInfo resolveInfo : resolveInfos) {
                                     if (resolveInfo.activityInfo.packageName.equals(actionItem.mPackageName)
                                             && resolveInfo.activityInfo.name.equals(actionItem.mActivityClassName)) {
-                                        MainApplication.loadIntent(mContext, actionItem.mPackageName,
+                                        Settings.get().setDefaultApp(url, resolveInfo);
+
+                                        // Jump out of the loop and load directly via a Bubble below
+                                        if (resolveInfo.activityInfo.packageName.equals(appPackageName)) {
+                                            break;
+                                        }
+
+                                        loaded = MainApplication.loadIntent(mContext, actionItem.mPackageName,
                                                 actionItem.mActivityClassName, url, -1);
                                         break;
                                     }
                                 }
 
+                                if (loaded == false) {
+                                    openUrlInBubble(url, System.currentTimeMillis());
+                                }
                             }
                         });
                 dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
@@ -391,6 +405,10 @@ public class MainController implements Choreographer.FrameCallback {
             }
         }
 
+        openUrlInBubble(url, startTime);
+    }
+
+    private void openUrlInBubble(String url, long startTime) {
         if (mBubbles.size() < Config.MAX_BUBBLES) {
 
             int x, targetX, y, targetY;

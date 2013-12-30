@@ -132,6 +132,10 @@ public class ActionItem {
         Resources resources = context.getResources();
         PackageManager packageManager = context.getPackageManager();
 
+        if (Settings.get().mLinkBubbleEntryActivityResolveInfo != null) {
+            resolveInfos.add(Settings.get().mLinkBubbleEntryActivityResolveInfo);
+        }
+
         for (ResolveInfo resolveInfo : resolveInfos) {
             actionItems.add(new ActionItem(Config.ActionType.View,
                     resources,
