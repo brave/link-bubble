@@ -50,6 +50,7 @@ public class ContentView extends FrameLayout {
     private CondensedTextView mUrlTextView;
     private ContentViewButton mShareButton;
     private OpenInAppButton mOpenInAppButton;
+    private OpenEmbedButton mOpenEmbedButton;
     private ContentViewButton mOverflowButton;
     private LinearLayout mToolbarLayout;
     private EventHandler mEventHandler;
@@ -255,6 +256,11 @@ public class ContentView extends FrameLayout {
                 mEventHandler.onSharedLink();
             }
 
+        });
+
+        mOpenEmbedButton = (OpenEmbedButton)findViewById(R.id.open_embed_button);
+        mOpenEmbedButton.setOnOpenEmbedClickListener(new OpenEmbedButton.OnOpenEmbedClickListener() {
+
             @Override
             public void onYouTubeEmbedOpened() {
 
@@ -300,7 +306,8 @@ public class ContentView extends FrameLayout {
                                 mWebView.stopLoading();
                                 mWebView.reload();
                                 updateAppsForUrl(mUrl);
-                                setOpenInAppButton();
+                                configureOpenInAppButton();
+                                configureOpenEmbedButton();
                                 Log.d(TAG, "reload url: " + mUrl);
                                 mStartTime = System.currentTimeMillis();
                                 mTitleTextView.setText(R.string.loading);
@@ -440,7 +447,8 @@ public class ContentView extends FrameLayout {
                     }
                 }
 
-                setOpenInAppButton();
+                configureOpenInAppButton();
+                configureOpenEmbedButton();
                 Log.d(TAG, "redirect to url: " + url);
                 mWebView.loadUrl(url);
                 mEventHandler.onPageLoading(url);
@@ -472,7 +480,8 @@ public class ContentView extends FrameLayout {
 
                 if (isValidUrl(url)) {
                     updateAppsForUrl(url);
-                    setOpenInAppButton();
+                    configureOpenInAppButton();
+                    configureOpenEmbedButton();
 
                     mTitleTextView.setText(webView.getTitle());
                     mUrlTextView.setText(url.replace("http://", ""));
@@ -526,7 +535,8 @@ public class ContentView extends FrameLayout {
                                     mYouTubeEmbedHelper.clear();
                                 }
                                 Log.d(TAG, "Go back: " + urlBefore + " -> " + webView.getUrl());
-                                setOpenInAppButton();
+                                configureOpenInAppButton();
+                                configureOpenEmbedButton();
                                 return true;
                             } else {
                                 mEventHandler.onSharedLink();
@@ -547,7 +557,8 @@ public class ContentView extends FrameLayout {
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
         updateAppsForUrl(url);
-        setOpenInAppButton();
+        configureOpenInAppButton();
+        configureOpenEmbedButton();
         Log.d(TAG, "load url: " + url);
         mStartTime = startTime;
         mWebView.loadUrl(url);
@@ -620,8 +631,16 @@ public class ContentView extends FrameLayout {
         mLongPressAlertDialog.show();
     }
 
-    private void setOpenInAppButton() {
-        if (mOpenInAppButton.configure(mAppsForUrl, mYouTubeEmbedHelper)) {
+    private void configureOpenEmbedButton() {
+        if (mOpenEmbedButton.configure(mYouTubeEmbedHelper)) {
+            mOpenEmbedButton.invalidate();
+        } else {
+            mOpenEmbedButton.setVisibility(GONE);
+        }
+    }
+
+    private void configureOpenInAppButton() {
+        if (mOpenInAppButton.configure(mAppsForUrl)) {
             mOpenInAppButton.invalidate();
         } else {
             mOpenInAppButton.setVisibility(GONE);
@@ -746,6 +765,7 @@ public class ContentView extends FrameLayout {
 
     private void resetButtonPressedStates() {
         mShareButton.setIsTouched(false);
+        mOpenEmbedButton.setIsTouched(false);
         mOpenInAppButton.setIsTouched(false);
         mOverflowButton.setIsTouched(false);
     }
@@ -780,12 +800,12 @@ public class ContentView extends FrameLayout {
                     mUpdateOpenInAppRunnable = new Runnable() {
                         @Override
                         public void run() {
-                            setOpenInAppButton();
+                            configureOpenEmbedButton();
                         }
                     };
                 }
 
-                mOpenInAppButton.post(mUpdateOpenInAppRunnable);
+                mOpenEmbedButton.post(mUpdateOpenInAppRunnable);
             }
         }
     };

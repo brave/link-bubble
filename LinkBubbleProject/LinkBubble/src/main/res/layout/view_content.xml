@@ -46,6 +46,21 @@
 
         </LinearLayout>
 
+        <com.chrislacy.linkbubble.OpenEmbedButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/ToolbarButton"
+            android:id="@+id/open_embed_button"
+            android:visibility="invisible">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:paddingBottom="6dp"
+                android:src="@drawable/embed"
+                android:layout_gravity="bottom|right"/>
+
+        </com.chrislacy.linkbubble.OpenEmbedButton>
+
         <com.chrislacy.linkbubble.OpenInAppButton
             style="@style/ToolbarButton"
             android:id="@+id/open_in_app_button"
