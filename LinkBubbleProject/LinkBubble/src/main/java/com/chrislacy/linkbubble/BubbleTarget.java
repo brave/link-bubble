@@ -210,6 +210,8 @@ public class BubbleTarget extends RelativeLayout {
 
             }
 
+            mSnapCircle.mY = Util.clamp(0, mSnapCircle.mY, Config.mScreenHeight - mDefaultCircle.mRadius);
+
             mDefaultCircle.mX = mSnapCircle.mX;
             mDefaultCircle.mY = mSnapCircle.mY;
 
