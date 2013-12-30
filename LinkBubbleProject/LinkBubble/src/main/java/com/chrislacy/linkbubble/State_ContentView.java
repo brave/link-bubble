@@ -92,6 +92,7 @@ public class State_ContentView extends ControllerState {
             sender.clearTargetPos();
 
             if (mDidMove) {
+                // NPE here with sender null: http://pastebin.com/GvQW57Dk
                 Canvas.TargetInfo ti = mTouchBubble.getTargetInfo(mCanvas, sender.getXPos(), sender.getYPos());
                 if (ti.mAction == Config.BubbleAction.None) {
                     float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
