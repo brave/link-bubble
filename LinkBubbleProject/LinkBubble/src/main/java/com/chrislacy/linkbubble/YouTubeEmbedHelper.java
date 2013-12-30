@@ -182,7 +182,7 @@ public class YouTubeEmbedHelper {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                 builder.setView(listView);
-                builder.setIcon(0);
+                builder.setIcon(mYouTubeResolveInfo.loadIcon(mContext.getPackageManager()));
                 builder.setTitle(R.string.title_youtube_embed_to_load);
 
                 final AlertDialog alertDialog = builder.create();

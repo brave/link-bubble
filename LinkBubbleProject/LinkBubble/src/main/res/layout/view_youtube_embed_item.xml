@@ -18,6 +18,7 @@
     <TextView
         android:id="@+id/text"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="17sp"
         android:text="@string/action_open_in_browser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
