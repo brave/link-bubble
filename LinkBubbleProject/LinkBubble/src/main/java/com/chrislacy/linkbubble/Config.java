@@ -159,6 +159,9 @@ public class Config {
     public static final String YOUTUBE_EMBED_PREFIX = "://www.youtube.com/" + YOUTUBE_EMBED_PATH_SUFFIX;
 
     public static final String YOUTUBE_API_KEY = "AIzaSyChiS6yef7AIe5p0JvJGnHrHmmimehIuDs";
+    public static final String YOUTUBE_API_THUMBNAILS_LOW_QUALITY = "thumbnails(default)";
+    public static final String YOUTUBE_API_THUMBNAILS_HIGH_QUALITY = "thumbnails(default,medium)";
+
     private static long sMaxMemory = -1;
     public static boolean isLowMemoryDevice() {
         if (sMaxMemory == -1) {

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ResolveInfo;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -159,8 +160,18 @@ public class YouTubeEmbedHelper {
                 idsAsString += id;
             }
 
+            ConnectivityManager connectivityManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+            String thumbnailsArg;
+            if (Config.isLowMemoryDevice()
+                || connectivityManager.isActiveNetworkMetered()
+                || NetworkConnectivity.isConnectedFast(mContext) == false) {
+                thumbnailsArg = Config.YOUTUBE_API_THUMBNAILS_LOW_QUALITY;
+            } else {
+                thumbnailsArg = Config.YOUTUBE_API_THUMBNAILS_HIGH_QUALITY;
+            }
+
             String url = "https://www.googleapis.com/youtube/v3/videos?id=" + idsAsString + "&key=" + Config.YOUTUBE_API_KEY +
-                    "&part=snippet&fields=items(id,snippet(title,thumbnails(default)))";
+                    "&part=snippet&fields=items(id,snippet(title," + thumbnailsArg + "))";
 
             String jsonAsString = Util.downloadJSONAsString(url, 5000);
 
@@ -180,10 +191,19 @@ public class YouTubeEmbedHelper {
                             embedInfo.mTitle = snippet.getString("title");
                             JSONObject thumbnails = snippet.getJSONObject("thumbnails");
                             if (thumbnails != null) {
-                                JSONObject defaultEntry = thumbnails.getJSONObject("default");
-                                if (defaultEntry != null) {
-                                    embedInfo.mThumbnailUrl = defaultEntry.getString("url");
+                                JSONObject mediumEntry = thumbnails.getJSONObject("medium");
+                                if (mediumEntry != null) {
+                                    embedInfo.mThumbnailUrl = mediumEntry.getString("url");
                                     mEmbedInfo.add(embedInfo);
+                                }
+
+                                // Fallback to checking for default...
+                                if (embedInfo.mThumbnailUrl == null) {
+                                    JSONObject defaultEntry = thumbnails.getJSONObject("default");
+                                    if (defaultEntry != null) {
+                                        embedInfo.mThumbnailUrl = defaultEntry.getString("url");
+                                        mEmbedInfo.add(embedInfo);
+                                    }
                                 }
                             }
                         }
