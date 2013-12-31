@@ -11,12 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.flavienlaurent.notboringactionbar.KenBurnsView
-            android:id="@+id/header_picture"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/picture0" />
-
         <ImageView
             android:id="@+id/header_logo"
             android:layout_width="@dimen/header_logo_size"

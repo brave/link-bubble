@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
-//import android.text.method.AllCapsTransformationMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,7 +17,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import at.technikum.mti.fancycoverflow.FancyCoverFlow;
-import com.flavienlaurent.notboringactionbar.KenBurnsView;
 
 import java.util.Vector;
 
