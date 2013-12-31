@@ -35,14 +35,14 @@
     <style name="ContentTheme" parent="ContentThemeBase"/>
 
     <style name="HomeTheme" parent="@android:style/Theme.Holo.Light">
-        <item name="android:windowBackground">@null</item>
+        <!--<item name="android:windowBackground">@null</item>-->
+
         <item name="android:actionBarStyle">@style/ActionBarStyle.Translucent</item>
         <item name="android:windowActionBarOverlay">true</item>
     </style>
 
     <style name="ActionBarStyle.Translucent" parent="@android:Widget.ActionBar">
         <item name="android:background">@drawable/actionbar_background</item>
-        <item name="android:displayOptions">homeAsUp|showHome|showTitle</item>
         <item name="android:titleTextStyle">@style/ActionBarStyle.Translucent.TitleTextStyle</item>
     </style>
 
