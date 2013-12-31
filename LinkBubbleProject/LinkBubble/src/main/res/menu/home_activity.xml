@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:id="@+id/view_history"
+          android:title="@string/view_history"
+          android:icon="@drawable/ic_action_clock"
+          android:showAsAction="always">
+    </item>
+
     <item android:id="@+id/action_upgrade_to_pro"
           android:title="@string/action_upgrade_to_pro"
           android:showAsAction="never"/>

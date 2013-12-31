@@ -64,5 +64,9 @@
 
     <string name="loading">Loading…</string>
 
+    <string name="histroy_unread">Unread</string>
+    <string name="histroy_all">All</string>
+    <string name="view_history">History</string>
+
     <string name="no_default_browser">No default browser found on the system.</string>
 </resources>
