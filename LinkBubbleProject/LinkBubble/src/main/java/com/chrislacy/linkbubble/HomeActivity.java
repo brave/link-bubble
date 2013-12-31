@@ -1,5 +1,6 @@
 package com.chrislacy.linkbubble;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -101,6 +102,12 @@ public class HomeActivity extends Activity {
             fancyCoverFlow.setAdapter(adapter);
             fancyCoverFlow.setSelection(adapter.getStartIndex(), false);
         }*/
+
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayUseLogoEnabled(false);
+        actionBar.setIcon(null);
     }
 
     @Override
