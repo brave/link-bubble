@@ -8,6 +8,7 @@ import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.WindowManager;
 
@@ -158,4 +159,17 @@ public class Config {
     public static final String YOUTUBE_EMBED_PREFIX = "://www.youtube.com/" + YOUTUBE_EMBED_PATH_SUFFIX;
 
     public static final String YOUTUBE_API_KEY = "AIzaSyChiS6yef7AIe5p0JvJGnHrHmmimehIuDs";
+    private static long sMaxMemory = -1;
+    public static boolean isLowMemoryDevice() {
+        if (sMaxMemory == -1) {
+            sMaxMemory = Runtime.getRuntime().maxMemory();
+            Log.d("LinkBubble", "maxMemory=" + (sMaxMemory/1024/1024) + "MB");
+        }
+
+        if (sMaxMemory <= 32 * 1024 * 1024) {
+            return true;
+        }
+
+        return false;
+    }
 }
