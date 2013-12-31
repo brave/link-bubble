@@ -34,7 +34,8 @@
 
         <activity
             android:name=".HistoryActivity"
-            android:theme="@style/Theme.PageIndicatorDefaults">
+            android:theme="@android:style/Theme.Holo.Light"
+            android:label="@string/history">
         </activity>
 
         <activity

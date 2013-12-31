@@ -300,7 +300,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.view_history:
+            case R.id.action_history:
                 startActivityForResult(new Intent(this, HistoryActivity.class), 0);
                 break;
 
