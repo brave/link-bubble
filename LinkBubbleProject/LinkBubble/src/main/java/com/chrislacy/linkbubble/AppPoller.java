@@ -51,6 +51,7 @@ public class AppPoller {
         mHandler.removeMessages(ACTION_POLL_CURRENT_APP);
         mPolling = false;
         mCurrentAppFlatComponentName = null;
+        Log.d(TAG, "endAppPolling()");
     }
 
     private final Handler mHandler = new Handler() {
@@ -67,6 +68,7 @@ public class AppPoller {
                     }
 
                     ActivityManager am = (ActivityManager)mContext.getSystemService(Activity.ACTIVITY_SERVICE);
+                    //Log.d(TAG, "Checking current tasks...");
                     ComponentName componentName = am.getRunningTasks(1).get(0).topActivity;
                     String currentAppFlatComponentName = componentName.flattenToShortString();
                     if (currentAppFlatComponentName != null
