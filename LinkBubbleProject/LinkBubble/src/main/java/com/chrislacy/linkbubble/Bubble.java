@@ -1,12 +1,9 @@
 package com.chrislacy.linkbubble;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
-import android.text.format.Time;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
@@ -14,12 +11,9 @@ import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import com.squareup.otto.Bus;
 
-import java.io.Console;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Vector;
@@ -311,7 +305,7 @@ public class Bubble extends RelativeLayout {
             @Override
             public void onPageLoaded(ContentView.PageLoadInfo info) {
                 showProgressBar(false);
-                setBackgroundResource(R.drawable.circle_grey);
+                setBackgroundResource(R.drawable.bubble_light);
 
                 if (mRecordHistory && info != null && info.url != null) {
                     LinkHistoryRecord linkHistoryRecord = new LinkHistoryRecord(info.title, info.url, System.currentTimeMillis());
@@ -376,7 +370,7 @@ public class Bubble extends RelativeLayout {
         mProgressBarLP.topMargin = Config.dpToPx(60.0f / 2.0f) - Config.dpToPx(30.0f / 2.0f);
         showProgressBar(true);
 
-        setBackgroundResource(R.drawable.circle_grey);
+        setBackgroundResource(R.drawable.bubble_light);
 
         addView(mShape);
 

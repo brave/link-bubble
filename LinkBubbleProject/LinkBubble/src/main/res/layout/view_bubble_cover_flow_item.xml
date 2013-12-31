@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="@dimen/bubble_cover_flow_image_size"
         android:layout_height="@dimen/bubble_cover_flow_image_size"
-        android:src="@drawable/circle_grey"
+        android:src="@drawable/bubble_light"
         android:layout_gravity="top|center_horizontal"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
