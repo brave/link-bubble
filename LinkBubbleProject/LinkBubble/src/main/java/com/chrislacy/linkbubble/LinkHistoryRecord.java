@@ -1,8 +1,6 @@
 package com.chrislacy.linkbubble;
 
-/**
- * Created by chrislacy on 5/1/2013.
- */
+
 public class LinkHistoryRecord {
 
     private int mId;
