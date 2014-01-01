@@ -95,8 +95,9 @@ public class Bubble extends RelativeLayout {
         if (mBadge == null) {
             mBadge = badge;
 
-            RelativeLayout.LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            lp.leftMargin = Config.dpToPx(40.0f);
+            int badgeSize = getResources().getDimensionPixelSize(R.dimen.badge_size);
+            RelativeLayout.LayoutParams lp = new LayoutParams(badgeSize, badgeSize);
+            lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             addView(mBadge, lp);
         }
     }

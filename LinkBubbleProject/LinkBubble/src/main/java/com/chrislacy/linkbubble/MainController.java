@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Choreographer;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
@@ -114,7 +115,9 @@ public class MainController implements Choreographer.FrameCallback {
         mUpdateScheduled = false;
         mChoreographer = Choreographer.getInstance();
         mCanvas = new Canvas(mContext);
-        mBadge = new Badge(mContext);
+
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        mBadge = (Badge) inflater.inflate(R.layout.view_badge, null);
 
         MainApplication app = (MainApplication) mContext.getApplicationContext();
         Bus bus = app.getBus();

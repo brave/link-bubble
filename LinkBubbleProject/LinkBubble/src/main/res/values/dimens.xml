@@ -20,4 +20,6 @@
 
     <dimen name="youtube_emebed_item_height">160dp</dimen>
 
+    <dimen name="badge_size">24dp</dimen>
+
 </resources>
