@@ -62,6 +62,10 @@ public class MainDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void addHistoryRecord(HistoryRecord historyRecord){
+        if (Settings.get().isIncognitoMode() == true) {
+            return;
+        }
+
         Log.d(TAG, "addHistoryRecord() - " + historyRecord.toString());
 
         SQLiteDatabase db = getWritableDatabase();
