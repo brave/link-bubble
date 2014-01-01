@@ -212,7 +212,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
             title.setText(historyRecord.getTitle());
 
             TextView url = (TextView) convertView.findViewById(R.id.page_url);
-            url.setText(historyRecord.getUrl());
+            url.setText(historyRecord.getHost());
 
             TextView time = (TextView) convertView.findViewById(R.id.page_date);
             mDate.setTime(historyRecord.getTime());
