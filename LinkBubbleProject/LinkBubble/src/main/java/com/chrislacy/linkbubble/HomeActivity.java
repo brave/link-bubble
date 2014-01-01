@@ -141,7 +141,7 @@ public class HomeActivity extends Activity {
         super.onCreateOptionsMenu(menu);
 
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.home_activity, menu);
+        inflater.inflate(R.menu.home_activity_pro, menu);
 
         return true;
     }
