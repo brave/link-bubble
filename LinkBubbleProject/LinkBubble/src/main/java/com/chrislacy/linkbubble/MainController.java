@@ -166,17 +166,8 @@ public class MainController implements Choreographer.FrameCallback {
 
             bubble.destroy();
 
-            //int bubbleCount = mBubbles.size();
             int bubbleIndex = mBubbles.indexOf(bubble);
             Util.Assert(bubbleIndex >= 0 && bubbleIndex < mBubbles.size());
-
-            /*if (bubbleCount > 3) {
-                while (bubbleIndex + 2 < mBubbles.size()) {
-                    Collections.swap(mBubbles, bubbleIndex, bubbleIndex+2);
-                    bubbleIndex += 2;
-                }
-            }*/
-            mBubbles.remove(bubble);
             mBubbles.remove(bubble);
 
             Settings.get().saveCurrentBubbles(mBubbles);
