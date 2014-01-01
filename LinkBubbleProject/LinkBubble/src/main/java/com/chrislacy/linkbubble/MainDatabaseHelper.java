@@ -50,46 +50,46 @@ public class MainDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    private ContentValues getContentValues(LinkHistoryRecord linkHistoryRecord) {
+    private ContentValues getContentValues(HistoryRecord historyRecord) {
         ContentValues values = new ContentValues();
-        values.put(KEY_TITLE, linkHistoryRecord.getTitle());
-        values.put(KEY_URL, linkHistoryRecord.getUrl());
-        values.put(KEY_TIME, linkHistoryRecord.getTime());
+        values.put(KEY_TITLE, historyRecord.getTitle());
+        values.put(KEY_URL, historyRecord.getUrl());
+        values.put(KEY_TIME, historyRecord.getTime());
         return values;
     }
 
-    public void addLinkHistoryRecord(LinkHistoryRecord linkHistoryRecord){
-        Log.d(TAG, "addLinkHistoryRecord() - " + linkHistoryRecord.toString());
+    public void addHistoryRecord(HistoryRecord historyRecord){
+        Log.d(TAG, "addHistoryRecord() - " + historyRecord.toString());
 
         SQLiteDatabase db = getWritableDatabase();
-        db.insert(TABLE_LINK_HISTORY, null, getContentValues(linkHistoryRecord));
+        db.insert(TABLE_LINK_HISTORY, null, getContentValues(historyRecord));
         db.close();
     }
 
-    public int updateLinkHistoryRecord(LinkHistoryRecord linkHistoryRecord) {
+    public int updateHistoryRecord(HistoryRecord historyRecord) {
         SQLiteDatabase db = getWritableDatabase();
-        ContentValues values = getContentValues(linkHistoryRecord);
+        ContentValues values = getContentValues(historyRecord);
         int i = db.update(TABLE_LINK_HISTORY, values,
-                            KEY_ID + " = ?", new String[] { String.valueOf(linkHistoryRecord.getId()) });
+                            KEY_ID + " = ?", new String[] { String.valueOf(historyRecord.getId()) });
         db.close();
         return i;
     }
 
-    public void deleteLinkHistoryRecord(LinkHistoryRecord linkHistoryRecord) {
+    public void deleteHistoryRecord(HistoryRecord historyRecord) {
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(TABLE_LINK_HISTORY, KEY_ID + " = ?", new String[] { String.valueOf(linkHistoryRecord.getId()) });
+        db.delete(TABLE_LINK_HISTORY, KEY_ID + " = ?", new String[] { String.valueOf(historyRecord.getId()) });
         db.close();
 
-        Log.d(TAG, "deleted linkHistoryRecord:" + linkHistoryRecord.toString());
+        Log.d(TAG, "deleted historyRecord:" + historyRecord.toString());
     }
 
-    public void deleteAllLinkHistoryRecords() {
+    public void deleteAllHistoryRecords() {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_LINK_HISTORY, null, null);
         db.close();
     }
 
-    public LinkHistoryRecord getLinkHistoryRecord(int id){
+    public HistoryRecord getHistoryRecord(int id){
 
         SQLiteDatabase db = getReadableDatabase();
 
@@ -106,17 +106,17 @@ public class MainDatabaseHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
         }
 
-        LinkHistoryRecord linkHistoryRecord = new LinkHistoryRecord();
-        linkHistoryRecord.setId(Integer.parseInt(cursor.getString(0)));
-        linkHistoryRecord.setTitle(cursor.getString(1));
-        linkHistoryRecord.setUrl(cursor.getString(2));
-        linkHistoryRecord.setTime(cursor.getLong(3));
+        HistoryRecord historyRecord = new HistoryRecord();
+        historyRecord.setId(Integer.parseInt(cursor.getString(0)));
+        historyRecord.setTitle(cursor.getString(1));
+        historyRecord.setUrl(cursor.getString(2));
+        historyRecord.setTime(cursor.getLong(3));
 
-        return linkHistoryRecord;
+        return historyRecord;
     }
 
-    public List<LinkHistoryRecord> getAllLinkHistoryRecords() {
-        List<LinkHistoryRecord> records = new LinkedList<LinkHistoryRecord>();
+    public List<HistoryRecord> getAllHistoryRecords() {
+        List<HistoryRecord> records = new LinkedList<HistoryRecord>();
 
         String query = "SELECT * FROM " + TABLE_LINK_HISTORY + " ORDER BY " + KEY_TIME + " DESC;";
 
@@ -125,13 +125,13 @@ public class MainDatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                LinkHistoryRecord linkHistoryRecord = new LinkHistoryRecord();
-                linkHistoryRecord.setId(Integer.parseInt(cursor.getString(0)));
-                linkHistoryRecord.setTitle(cursor.getString(1));
-                linkHistoryRecord.setUrl(cursor.getString(2));
-                linkHistoryRecord.setTime(cursor.getLong(3));
+                HistoryRecord historyRecord = new HistoryRecord();
+                historyRecord.setId(Integer.parseInt(cursor.getString(0)));
+                historyRecord.setTitle(cursor.getString(1));
+                historyRecord.setUrl(cursor.getString(2));
+                historyRecord.setTime(cursor.getLong(3));
 
-                records.add(linkHistoryRecord);
+                records.add(historyRecord);
             } while (cursor.moveToNext());
         }
 

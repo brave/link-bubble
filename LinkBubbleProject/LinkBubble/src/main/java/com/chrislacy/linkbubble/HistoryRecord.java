@@ -1,16 +1,16 @@
 package com.chrislacy.linkbubble;
 
 
-public class LinkHistoryRecord {
+public class HistoryRecord {
 
     private int mId;
     private String mUrl;
     private String mTitle;
     private long mTime;
 
-    public LinkHistoryRecord(){}
+    public HistoryRecord(){}
 
-    public LinkHistoryRecord(String title, String url, long time) {
+    public HistoryRecord(String title, String url, long time) {
         super();
         mTitle = title;
         mUrl = url;
@@ -51,15 +51,15 @@ public class LinkHistoryRecord {
 
     @Override
     public String toString() {
-        return "LinkHistoryRecord [id=" + mId + ", title=" + mTitle + ", url=" + mUrl + "]";
+        return "HistoryRecord [id=" + mId + ", title=" + mTitle + ", url=" + mUrl + "]";
     }
 
 
     public static class ChangedEvent {
-        public ChangedEvent(LinkHistoryRecord linkHistoryRecord) {
-            mLinkHistoryRecord = linkHistoryRecord;
+        public ChangedEvent(HistoryRecord historyRecord) {
+            mHistoryRecord = historyRecord;
         }
-        LinkHistoryRecord mLinkHistoryRecord;
+        HistoryRecord mHistoryRecord;
     }
 
 

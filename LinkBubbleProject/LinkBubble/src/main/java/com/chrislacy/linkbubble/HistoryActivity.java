@@ -13,16 +13,13 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import com.google.android.apps.dashclock.ui.SwipeDismissListViewTouchListener;
 import com.squareup.otto.Subscribe;
 
 import java.util.Date;
@@ -32,8 +29,8 @@ import java.util.List;
 public class HistoryActivity extends Activity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     private ListView mListView;
-    private LinkHistoryAdapter mHistoryAdapter;
-    private List<LinkHistoryRecord> mLinkHistoryRecords;
+    private HistoryAdapter mHistoryAdapter;
+    private List<HistoryRecord> mHistoryRecords;
 
 
     @Override
@@ -62,12 +59,12 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
 
     private void setupListView() {
         MainDatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
-        mLinkHistoryRecords = databaseHelper.getAllLinkHistoryRecords();
-        if (mLinkHistoryRecords == null || mLinkHistoryRecords.size() == 0) {
+        mHistoryRecords = databaseHelper.getAllHistoryRecords();
+        if (mHistoryRecords == null || mHistoryRecords.size() == 0) {
             return;
         }
 
-        mHistoryAdapter = new LinkHistoryAdapter(this);
+        mHistoryAdapter = new HistoryAdapter(this);
 
         mListView.setAdapter(mHistoryAdapter);
         mListView.setOnItemClickListener(this);
@@ -75,8 +72,8 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
     }
 
     void updateListViewData() {
-        if (mLinkHistoryRecords != null) {
-            synchronized (mLinkHistoryRecords) {
+        if (mHistoryRecords != null) {
+            synchronized (mHistoryRecords) {
                 setupListView();
             }
         } else {
@@ -99,8 +96,8 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
         switch (item.getItemId()) {
             case R.id.action_clear_history: {
                 MainDatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
-                databaseHelper.deleteAllLinkHistoryRecords();
-                mLinkHistoryRecords = null;
+                databaseHelper.deleteAllHistoryRecords();
+                mHistoryRecords = null;
                 mHistoryAdapter.notifyDataSetChanged();
                 break;
             }
@@ -111,16 +108,16 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (view.getTag() instanceof LinkHistoryRecord) {
-            LinkHistoryRecord linkHistoryRecord = (LinkHistoryRecord)view.getTag();
-            MainApplication.openLink(this, linkHistoryRecord.getUrl());
+        if (view.getTag() instanceof HistoryRecord) {
+            HistoryRecord historyRecord = (HistoryRecord)view.getTag();
+            MainApplication.openLink(this, historyRecord.getUrl());
         }
     }
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        if (view.getTag() instanceof LinkHistoryRecord) {
-            final LinkHistoryRecord linkHistoryRecord = (LinkHistoryRecord)view.getTag();
+        if (view.getTag() instanceof HistoryRecord) {
+            final HistoryRecord historyRecord = (HistoryRecord)view.getTag();
             Resources resources = getResources();
 
             PopupMenu popupMenu;
@@ -145,7 +142,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                     switch (item.getItemId()) {
                         case R.id.item_open_in_browser: {
                             Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.setData(Uri.parse(linkHistoryRecord.getUrl()));
+                            intent.setData(Uri.parse(historyRecord.getUrl()));
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             MainApplication.loadInBrowser(HistoryActivity.this, intent, true);
                             return true;
@@ -159,7 +156,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                                     intent.setType("text/plain");
                                     intent.setClassName(actionItem.mPackageName, actionItem.mActivityClassName);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    intent.putExtra(Intent.EXTRA_TEXT, linkHistoryRecord.getUrl());
+                                    intent.putExtra(Intent.EXTRA_TEXT, historyRecord.getUrl());
                                     startActivity(intent);
                                 }
                             });
@@ -176,24 +173,24 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
         return false;
     }
 
-    private class LinkHistoryAdapter extends BaseAdapter {
+    private class HistoryAdapter extends BaseAdapter {
 
         Context mContext;
         Date mDate;
 
-        public LinkHistoryAdapter(Context context) {
+        public HistoryAdapter(Context context) {
             mContext = context;
             mDate = new Date();
         }
 
         @Override
         public int getCount() {
-            return mLinkHistoryRecords != null ? mLinkHistoryRecords.size() : 0;
+            return mHistoryRecords != null ? mHistoryRecords.size() : 0;
         }
 
         @Override
         public Object getItem(int position) {
-            return mLinkHistoryRecords != null ? mLinkHistoryRecords.get(position) : position;
+            return mHistoryRecords != null ? mHistoryRecords.get(position) : position;
         }
 
         @Override
@@ -209,19 +206,19 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                 convertView = inflater.inflate(R.layout.history_item, parent, false);
             }
 
-            LinkHistoryRecord linkHistoryRecord = mLinkHistoryRecords.get(position);
+            HistoryRecord historyRecord = mHistoryRecords.get(position);
 
             TextView title = (TextView) convertView.findViewById(R.id.page_title);
-            title.setText(linkHistoryRecord.getTitle());
+            title.setText(historyRecord.getTitle());
 
             TextView url = (TextView) convertView.findViewById(R.id.page_url);
-            url.setText(linkHistoryRecord.getUrl());
+            url.setText(historyRecord.getUrl());
 
             TextView time = (TextView) convertView.findViewById(R.id.page_date);
-            mDate.setTime(linkHistoryRecord.getTime());
+            mDate.setTime(historyRecord.getTime());
             time.setText(Util.getPrettyDate(mDate));
 
-            convertView.setTag(linkHistoryRecord);
+            convertView.setTag(historyRecord);
 
             return convertView;
         }
@@ -229,7 +226,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
 
     @SuppressWarnings("unused")
     @Subscribe
-    public void onLinkHistoryRecordChangedEvent(LinkHistoryRecord.ChangedEvent event) {
+    public void onHistoryRecordChangedEvent(HistoryRecord.ChangedEvent event) {
         updateListViewData();
     }
 }
