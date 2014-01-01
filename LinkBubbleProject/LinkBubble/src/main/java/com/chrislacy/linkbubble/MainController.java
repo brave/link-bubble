@@ -19,6 +19,7 @@ import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.Vector;
 
@@ -353,6 +354,9 @@ public class MainController implements Choreographer.FrameCallback {
                 if (mBubbles.size() == 0) {
                     mEventHandler.onDestroy();
                 }
+
+                String title = String.format(mContext.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
+                MainApplication.saveUrlInHistory(mContext, null, url, title);
                 return;
             }
         }
@@ -366,6 +370,10 @@ public class MainController implements Choreographer.FrameCallback {
                     if (mBubbles.size() == 0) {
                         mEventHandler.onDestroy();
                     }
+
+                    String title = String.format(mContext.getString(R.string.link_loaded_with_app),
+                                                 resolveInfo.loadLabel(mContext.getPackageManager()));
+                    MainApplication.saveUrlInHistory(mContext, resolveInfo, url, title);
                     return;
                 }
             } else {

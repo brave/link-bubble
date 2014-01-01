@@ -450,6 +450,8 @@ public class ContentView extends FrameLayout {
                 updateAppsForUrl(resolveInfos, url);
                 if (Settings.get().redirectUrlToBrowser(url)) {
                     if (openInBrowser(url)) {
+                        String title = String.format(mContext.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
+                        MainApplication.saveUrlInHistory(mContext, null, url, title);
                         return false;
                     }
                 }
@@ -459,6 +461,10 @@ public class ContentView extends FrameLayout {
                     if (resolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo) {
                         // TODO: Fix to handle multiple apps
                         if (MainApplication.loadResolveInfoIntent(mContext, resolveInfo, url, mStartTime)) {
+                            String title = String.format(mContext.getString(R.string.link_loaded_with_app),
+                                                        resolveInfo.loadLabel(mContext.getPackageManager()));
+                            MainApplication.saveUrlInHistory(mContext, resolveInfo, url, title);
+
                             mEventHandler.onSharedLink();
                             return false;
                         }

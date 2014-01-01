@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.squareup.otto.Bus;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 
 public class MainApplication extends Application {
 
@@ -101,5 +104,29 @@ public class MainApplication extends Application {
                     Settings.get().getConsumeBubbleActivityClassName(action), url, -1);
         }
         return false;
+    }
+
+    public static void saveUrlInHistory(Context context, ResolveInfo resolveInfo, String url, String title) {
+        saveUrlInHistory(context, resolveInfo, url, null, title);
+    }
+
+    public static void saveUrlInHistory(Context context, ResolveInfo resolveInfo, String url, String host, String title) {
+
+        if (host == null) {
+            try {
+            URL _url = new URL(url);
+            host = _url.getHost();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        HistoryRecord historyRecord = new HistoryRecord(title, url, host, System.currentTimeMillis());
+
+        MainApplication app = (MainApplication) context.getApplicationContext();
+
+        app.mDatabaseHelper.addHistoryRecord(historyRecord);
+        app.getBus().post(new HistoryRecord.ChangedEvent(historyRecord));
+
     }
 }

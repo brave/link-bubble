@@ -71,6 +71,8 @@
     <string name="histroy_unread">Unread</string>
     <string name="histroy_all">All</string>
     <string name="history">History</string>
+    <string name="link_loaded_with_app">Loaded with %1$s</string>
+    <string name="link_redirected">Redirected to %1$s</string>
 
     <string name="no_default_browser">No default browser found on the system.</string>
 </resources>

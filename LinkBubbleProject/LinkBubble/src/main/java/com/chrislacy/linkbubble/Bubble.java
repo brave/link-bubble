@@ -308,12 +308,7 @@ public class Bubble extends RelativeLayout {
                 setBackgroundResource(R.drawable.bubble_light);
 
                 if (mRecordHistory && info != null && info.url != null) {
-                    HistoryRecord historyRecord = new HistoryRecord(info.title, info.url, info.mHost, System.currentTimeMillis());
-
-                    MainApplication app = (MainApplication) getContext().getApplicationContext();
-
-                    app.mDatabaseHelper.addHistoryRecord(historyRecord);
-                    app.getBus().post(new HistoryRecord.ChangedEvent(historyRecord));
+                    MainApplication.saveUrlInHistory(getContext(), null, info.url, info.mHost, info.title);
                 }
 
                 MainController.get().onPageLoaded(Bubble.this);
