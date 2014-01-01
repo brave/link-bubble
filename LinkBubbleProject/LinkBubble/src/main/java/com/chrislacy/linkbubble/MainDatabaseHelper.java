@@ -21,10 +21,11 @@ public class MainDatabaseHelper extends SQLiteOpenHelper {
     // Link History Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_TITLE = "title";
-    private static final String KEY_URL = "author";
+    private static final String KEY_URL = "url";
+    private static final String KEY_HOST = "host";
     private static final String KEY_TIME = "time";
 
-    private static final String[] LINK_HISTORY_COLUMNS = {KEY_ID, KEY_TITLE, KEY_URL, KEY_TIME};
+    private static final String[] LINK_HISTORY_COLUMNS = {KEY_ID, KEY_TITLE, KEY_URL, KEY_HOST, KEY_TIME};
 
     public MainDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -36,6 +37,7 @@ public class MainDatabaseHelper extends SQLiteOpenHelper {
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 KEY_TITLE + " TEXT, " +
                 KEY_URL + " TEXT, " +
+                KEY_HOST + " TEXT, " +
                 KEY_TIME + " INTEGER" + " )";
 
         db.execSQL(CREATE_LINK_HISTORY_TABLE);
@@ -54,6 +56,7 @@ public class MainDatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_TITLE, historyRecord.getTitle());
         values.put(KEY_URL, historyRecord.getUrl());
+        values.put(KEY_HOST, historyRecord.getHost());
         values.put(KEY_TIME, historyRecord.getTime());
         return values;
     }
@@ -110,7 +113,8 @@ public class MainDatabaseHelper extends SQLiteOpenHelper {
         historyRecord.setId(Integer.parseInt(cursor.getString(0)));
         historyRecord.setTitle(cursor.getString(1));
         historyRecord.setUrl(cursor.getString(2));
-        historyRecord.setTime(cursor.getLong(3));
+        historyRecord.setHost(cursor.getString(3));
+        historyRecord.setTime(cursor.getLong(4));
 
         return historyRecord;
     }
@@ -129,7 +133,8 @@ public class MainDatabaseHelper extends SQLiteOpenHelper {
                 historyRecord.setId(Integer.parseInt(cursor.getString(0)));
                 historyRecord.setTitle(cursor.getString(1));
                 historyRecord.setUrl(cursor.getString(2));
-                historyRecord.setTime(cursor.getLong(3));
+                historyRecord.setHost(cursor.getString(3));
+                historyRecord.setTime(cursor.getLong(4));
 
                 records.add(historyRecord);
             } while (cursor.moveToNext());

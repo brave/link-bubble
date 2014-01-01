@@ -118,6 +118,7 @@ public class ContentView extends FrameLayout {
     public static class PageLoadInfo {
         Bitmap bmp;
         String url;
+        String mHost;
         String title;
     }
 
@@ -167,12 +168,20 @@ public class ContentView extends FrameLayout {
     }
 
     private boolean isValidUrl(String urlString) {
+        try {
+            return isValidUrl(new URL(urlString));
+        } catch (Exception e) {
+            // This should never really happen...!
+        }
+        return true;
+    }
+
+    private boolean isValidUrl(URL url) {
         boolean isValid = true;
 
-        String [] urlBlacklist = { "t.co", "goo.gl", "bit.ly" };
+        if (url != null) {
+            String [] urlBlacklist = { "t.co", "goo.gl", "bit.ly" };
 
-        try {
-            URL url = new URL(urlString);
             String hostName = url.getHost();
 
             for (int i=0 ; i < urlBlacklist.length ; ++i) {
@@ -181,8 +190,6 @@ public class ContentView extends FrameLayout {
                     break;
                 }
             }
-        } catch (Exception e) {
-            // This should never really happen...!
         }
 
         return isValid;
@@ -486,28 +493,35 @@ public class ContentView extends FrameLayout {
             }
 
             @Override
-            public void onPageFinished(WebView webView, String url) {
-                super.onPageFinished(webView, url);
+            public void onPageFinished(WebView webView, String urlAsString) {
+                super.onPageFinished(webView, urlAsString);
 
+                URL url = null;
+                try {
+                    url = new URL(urlAsString);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
                 if (isValidUrl(url)) {
-                    updateAppsForUrl(url);
+                    updateAppsForUrl(urlAsString);
                     configureOpenInAppButton();
                     configureOpenEmbedButton();
 
                     mTitleTextView.setText(webView.getTitle());
-                    mUrlTextView.setText(url.replace("http://", ""));
+                    mUrlTextView.setText(urlAsString.replace("http://", ""));
 
                     if (--mCount == 0) {
                         // Store final resolved url
-                        mUrl = url;
+                        mUrl = urlAsString;
 
-                        PageLoadInfo pli = new PageLoadInfo();
-                        pli.bmp = webView.getFavicon();
-                        pli.url = url;
-                        pli.title = webView.getTitle();
+                        PageLoadInfo pageLoadInfo = new PageLoadInfo();
+                        pageLoadInfo.bmp = webView.getFavicon();
+                        pageLoadInfo.url = urlAsString;
+                        pageLoadInfo.mHost = url.getHost();
+                        pageLoadInfo.title = webView.getTitle();
 
-                        mEventHandler.onPageLoaded(pli);
-                        Log.d(TAG, "onPageFinished() - url: " + url);
+                        mEventHandler.onPageLoaded(pageLoadInfo);
+                        Log.d(TAG, "onPageFinished() - url: " + urlAsString);
 
                         if (mStartTime > -1) {
                             Log.d("LoadTime", "Saved " + ((System.currentTimeMillis() - mStartTime) / 1000) + " seconds.");

@@ -5,14 +5,16 @@ public class HistoryRecord {
 
     private int mId;
     private String mUrl;
+    private String mHost;
     private String mTitle;
     private long mTime;
 
     public HistoryRecord(){}
 
-    public HistoryRecord(String title, String url, long time) {
+    public HistoryRecord(String title, String url, String host, long time) {
         super();
         mTitle = title;
+        mHost = host;
         mUrl = url;
         mTime = time;
     }
@@ -31,6 +33,14 @@ public class HistoryRecord {
 
     public void setUrl(String url) {
         mUrl = url;
+    }
+
+    public String getHost() {
+        return mHost;
+    }
+
+    public void setHost(String host) {
+        mHost = host;
     }
 
     public String getTitle() {
