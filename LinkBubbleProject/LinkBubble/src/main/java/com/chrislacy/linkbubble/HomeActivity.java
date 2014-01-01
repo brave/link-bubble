@@ -45,7 +45,7 @@ public class HomeActivity extends Activity {
         //Typeface light = Typeface.create("sans-serif-light", Typeface.NORMAL);
 
         mContent = new FrameLayout(this);
-        mContent.setBackgroundColor(0xC0000000);
+        //mContent.setBackgroundColor(0xC0000000);
 
         final FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
@@ -119,15 +119,15 @@ public class HomeActivity extends Activity {
 
     void animateOn() {
 
-        bg.setScaleX(0.01f);
-        bg.animate().alpha(1f).scaleX(1f).setStartDelay(500).start();
+        bg.setScaleX(0.0f);
+        bg.animate().alpha(1f).scaleX(1f).start();
 
         logo.setAlpha(0f);
         logo.setVisibility(View.VISIBLE);
         logo.setScaleX(0.5f);
         logo.setScaleY(0.5f);
         logo.animate().alpha(1f).scaleX(1f).scaleY(1f)
-                .setDuration(1000).setStartDelay(500)
+                .setDuration(1000)
                 .setInterpolator(new AnticipateOvershootInterpolator())
                 .start();
 

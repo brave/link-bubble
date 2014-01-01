@@ -23,7 +23,8 @@
         <activity
             android:name=".HomeActivity"
             android:theme="@style/HomeTheme"
-            android:label="">
+            android:label=""
+            android:excludeFromRecents="false">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
