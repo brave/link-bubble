@@ -141,7 +141,7 @@ public class HomeActivity extends Activity {
         super.onCreateOptionsMenu(menu);
 
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.home_activity_pro, menu);
+        inflater.inflate(R.menu.home_activity, menu);
 
         return true;
     }
@@ -159,13 +159,14 @@ public class HomeActivity extends Activity {
                 return true;
             }
 
+            /*
             case R.id.action_upgrade_to_pro: {
                 Intent intent = Config.getStoreIntent(this, Config.STORE_PRO_URL);
                 if (intent != null) {
                     startActivity(intent);
                     return true;
                 }
-            }
+            }*/
         }
 
         return super.onOptionsItemSelected(item);
