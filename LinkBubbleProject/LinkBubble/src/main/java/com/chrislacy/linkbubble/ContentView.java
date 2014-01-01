@@ -31,6 +31,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.graphics.Canvas;
+import android.widget.Toast;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -360,8 +361,8 @@ public class ContentView extends FrameLayout {
         mWebView.setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-
                 WebView.HitTestResult hitTestResult = mWebView.getHitTestResult();
+                Log.d(TAG, "onLongClick type: " + hitTestResult.getType());
                 switch (hitTestResult.getType()) {
                     case WebView.HitTestResult.SRC_ANCHOR_TYPE:
                     case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: {
@@ -373,7 +374,17 @@ public class ContentView extends FrameLayout {
                         onUrlLongClick(url);
                         return true;
                     }
+
+                    case WebView.HitTestResult.UNKNOWN_TYPE:
                     default:
+                        String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
+                        String message;
+                        if (defaultBrowserLabel != null) {
+                            message = String.format(getResources().getString(R.string.long_press_unsupported_default_browser), defaultBrowserLabel);
+                        } else {
+                            message = getResources().getString(R.string.long_press_unsupported_no_default_browser);
+                        }
+                        Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
                         return false;
                 }
             }
