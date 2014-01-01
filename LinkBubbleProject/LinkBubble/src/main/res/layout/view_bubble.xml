@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.chrislacy.linkbubble.BubbleView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bubble_light"
+    >
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="@dimen/progress_bar_size"
+        android:layout_height="@dimen/progress_bar_size"
+        android:id="@+id/progressBar"
+        android:layout_gravity="center"/>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/favicon"
+        android:src="@drawable/fallback_favicon"
+        android:layout_gravity="center"/>
+
+</com.chrislacy.linkbubble.BubbleView>

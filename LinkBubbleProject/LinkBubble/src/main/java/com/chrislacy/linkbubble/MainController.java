@@ -441,7 +441,9 @@ public class MainController implements Choreographer.FrameCallback {
 
             BubbleView bubble = null;
             try {
-                bubble = new BubbleView(mContext, url, x, y, targetX, targetY, time, startTime,
+                LayoutInflater inflater = LayoutInflater.from(mContext);
+                bubble = (BubbleView) inflater.inflate(R.layout.view_bubble, null);
+                bubble.configure(url, x, y, targetX, targetY, time, startTime,
                         new BubbleView.EventHandler() {
                     @Override
                     public void onMotionEvent_Touch(BubbleView sender, BubbleView.TouchEvent e) {

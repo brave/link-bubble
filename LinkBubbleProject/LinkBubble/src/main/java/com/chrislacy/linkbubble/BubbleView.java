@@ -4,30 +4,29 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Vector;
 
-public class BubbleView extends RelativeLayout {
+public class BubbleView extends FrameLayout {
 
     private Badge mBadge;
-    private ImageView mShape;
+    private ImageView mFavicon;
     private ImageView mAdditionalFaviconView;
     protected WindowManager mWindowManager;
     protected WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
     private EventHandler mEventHandler;
     private ProgressBar mProgressBar;
-    private RelativeLayout.LayoutParams mProgressBarLP;
     private boolean mProgressBarShowing;
 
     private URL mUrl;
@@ -91,13 +90,25 @@ public class BubbleView extends RelativeLayout {
         public void onSharedLink(BubbleView sender);
     }
 
+    public BubbleView(Context context) {
+        this(context, null);
+    }
+
+    public BubbleView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public BubbleView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
+
     public void attachBadge(Badge badge) {
         if (mBadge == null) {
             mBadge = badge;
 
             int badgeSize = getResources().getDimensionPixelSize(R.dimen.badge_size);
-            RelativeLayout.LayoutParams lp = new LayoutParams(badgeSize, badgeSize);
-            lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            FrameLayout.LayoutParams lp = new LayoutParams(badgeSize, badgeSize);
+            lp.gravity = Gravity.TOP|Gravity.RIGHT;
             addView(mBadge, lp);
         }
     }
@@ -268,7 +279,7 @@ public class BubbleView extends RelativeLayout {
     }
 
     public Drawable getFavicon() {
-        return mShape.getDrawable();
+        return mFavicon.getDrawable();
     }
 
     public void setAdditionalFaviconView(ImageView imageView) {
@@ -280,18 +291,16 @@ public class BubbleView extends RelativeLayout {
         mWindowManager.addView(this, mWindowManagerParams);
     }
 
-    public BubbleView(final Context context, String url, int x0, int y0, int targetX, int targetY, float targetTime, long startTime,
+    public void configure(String url, int x0, int y0, int targetX, int targetY, float targetTime, long startTime,
                   EventHandler eh) throws MalformedURLException {
-        super(context);
-
         mAlive = true;
 
-        mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        mWindowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         mEventHandler = eh;
         mUrl = new URL(url);
         mRecordHistory = Settings.get().isIncognitoMode() ? false : true;
 
-        mContentView = (ContentView)inflate(context, R.layout.view_content, null);
+        mContentView = (ContentView)inflate(getContext(), R.layout.view_content, null);
         mContentView.configure(BubbleView.this, mUrl.toString(), startTime, new ContentView.EventHandler() {
             @Override
             public void onSharedLink() {
@@ -321,13 +330,8 @@ public class BubbleView extends RelativeLayout {
 
             @Override
             public void onReceivedIcon(Bitmap bitmap) {
-                int halfImageWidth;
-                int halfImageHeight;
-
                 if (bitmap == null) {
-                    mShape.setImageResource(R.drawable.fallback_favicon);
-                    halfImageWidth = 24;
-                    halfImageHeight = 24;
+                    mFavicon.setImageResource(R.drawable.fallback_favicon);
                 } else {
                     int w = bitmap.getWidth();
                     int h = bitmap.getHeight();
@@ -342,37 +346,22 @@ public class BubbleView extends RelativeLayout {
                         bitmap = Bitmap.createScaledBitmap(bitmap, w, h, true);
                     }
 
-                    mShape.setImageBitmap(bitmap);
+                    mFavicon.setImageBitmap(bitmap);
                     if (mAdditionalFaviconView != null) {
                         mAdditionalFaviconView.setImageBitmap(bitmap);
                     }
-                    halfImageWidth = w / 2;
-                    halfImageHeight = h / 2;
                 }
 
-                int hPad = (int) (Config.mBubbleWidth / 2.0f - halfImageWidth);
-                int vPad = (int) (Config.mBubbleHeight / 2.0f - halfImageHeight);
-
-                mShape.setPadding(hPad, vPad, 0, 0);
-                mShape.setVisibility(VISIBLE);
+                mFavicon.setVisibility(VISIBLE);
                 showProgressBar(false);
             }
         });
 
         setVisibility(GONE);
 
-        mShape = new ImageView(context);
-        mShape.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-
-        mProgressBar = new ProgressBar(context);
-        mProgressBarLP = new LayoutParams(Config.dpToPx(30.0f), Config.dpToPx(30.0f));
-        mProgressBarLP.leftMargin = Config.dpToPx(60.0f / 2.0f) - Config.dpToPx(30.0f / 2.0f);
-        mProgressBarLP.topMargin = Config.dpToPx(60.0f / 2.0f) - Config.dpToPx(30.0f / 2.0f);
+        mFavicon = (ImageView) findViewById(R.id.favicon);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         showProgressBar(true);
-
-        setBackgroundResource(R.drawable.bubble_light);
-
-        addView(mShape);
 
         setOnTouchListener(new OnTouchListener() {
             private float mStartTouchXRaw;
@@ -519,12 +508,12 @@ public class BubbleView extends RelativeLayout {
             if (mProgressBarShowing == false) {
                 mProgressBarShowing = true;
                 mProgressBar.setIndeterminate(true);
-                addView(mProgressBar, mProgressBarLP);
-                mShape.setVisibility(GONE);
+                mProgressBar.setVisibility(VISIBLE);
+                mFavicon.setVisibility(GONE);
             }
         } else {
             if (mProgressBarShowing) {
-                removeView(mProgressBar);
+                mProgressBar.setVisibility(GONE);
                 mProgressBarShowing = false;
             }
         }
