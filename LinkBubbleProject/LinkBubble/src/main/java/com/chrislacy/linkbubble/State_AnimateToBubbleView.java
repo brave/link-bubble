@@ -1,6 +1,5 @@
 package com.chrislacy.linkbubble;
 
-import android.view.View;
 import android.view.animation.OvershootInterpolator;
 
 import java.util.Vector;
@@ -45,7 +44,7 @@ public class State_AnimateToBubbleView extends ControllerState {
         int bubbleCount = mainController.getBubbleCount();
         for (int i=0 ; i < bubbleCount ; ++i) {
             BubbleInfo bi = new BubbleInfo();
-            Bubble b = mainController.getBubble(i);
+            BubbleView b = mainController.getBubble(i);
             bi.mPosX = (float) b.getXPos();
             bi.mPosY = (float) b.getYPos();
 
@@ -70,7 +69,7 @@ public class State_AnimateToBubbleView extends ControllerState {
         int bubbleCount = mainController.getBubbleCount();
         for (int i=0 ; i < bubbleCount ; ++i) {
             BubbleInfo bi = mBubbleInfo.get(i);
-            Bubble b = mainController.getBubble(i);
+            BubbleView b = mainController.getBubble(i);
 
             float x = bi.mPosX + bi.mDistanceX * f;
             float y = bi.mPosY + bi.mDistanceY * f;
@@ -101,25 +100,25 @@ public class State_AnimateToBubbleView extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
+    public void OnMotionEvent_Touch(BubbleView sender, BubbleView.TouchEvent e) {
     }
 
     @Override
-    public void OnMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
+    public void OnMotionEvent_Move(BubbleView sender, BubbleView.MoveEvent e) {
     }
 
     @Override
-    public void OnMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
+    public void OnMotionEvent_Release(BubbleView sender, BubbleView.ReleaseEvent e) {
     }
 
     @Override
-    public boolean OnNewBubble(Bubble bubble) {
+    public boolean OnNewBubble(BubbleView bubble) {
         Util.Assert(false);
         return false;
     }
 
     @Override
-    public void OnDestroyBubble(Bubble bubble) {
+    public void OnDestroyBubble(BubbleView bubble) {
         Util.Assert(false);
     }
 

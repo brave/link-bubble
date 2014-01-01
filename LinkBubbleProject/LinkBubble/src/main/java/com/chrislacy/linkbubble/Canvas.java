@@ -1,18 +1,10 @@
 package com.chrislacy.linkbubble;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.view.Gravity;
-import android.view.KeyEvent;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import java.util.Vector;
@@ -187,7 +179,7 @@ public class Canvas extends RelativeLayout {
         mWindowManager.removeView(this);
     }
 
-    public void update(float dt, Bubble frontBubble) {
+    public void update(float dt, BubbleView frontBubble) {
         if (mCurrentAlpha < mTargetAlpha) {
             mCurrentAlpha = Util.clamp(0.0f, mCurrentAlpha + mAlphaDelta * dt, mMaxAlpha);
             MainController.get().scheduleUpdate();

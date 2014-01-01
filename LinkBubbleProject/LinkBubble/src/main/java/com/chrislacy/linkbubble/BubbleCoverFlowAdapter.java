@@ -1,34 +1,26 @@
 package com.chrislacy.linkbubble;
 
-import android.app.ActivityManager;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.TextView;
 import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 import at.technikum.mti.fancycoverflow.FancyCoverFlowAdapter;
 
-import java.net.URL;
 import java.util.List;
 
 class BubbleCoverFlowAdapter extends FancyCoverFlowAdapter {
 
     Context mContext;
-    List<Bubble> mBubbles;
+    List<BubbleView> mBubbles;
     int mItemSize;
 
     private final int mSize;
     private final int mStartIndex;
     private final boolean mLoop;
 
-    public BubbleCoverFlowAdapter(Context context, List<Bubble> bubbles, boolean loop) {
+    public BubbleCoverFlowAdapter(Context context, List<BubbleView> bubbles, boolean loop) {
         super();
         mContext = context;
         mBubbles = bubbles;
@@ -60,7 +52,7 @@ class BubbleCoverFlowAdapter extends FancyCoverFlowAdapter {
     }
 
     @Override
-    public Bubble getItem(int position) {
+    public BubbleView getItem(int position) {
         return mBubbles.get(position % mBubbles.size());
     }
 
@@ -85,7 +77,7 @@ class BubbleCoverFlowAdapter extends FancyCoverFlowAdapter {
             reuseableView.setLayoutParams(new FancyCoverFlow.LayoutParams(mItemSize, mItemSize));
         }
 
-        Bubble bubble = getItem(i);
+        BubbleView bubble = getItem(i);
         //viewHolder.mTextView.setText(info.getUrl().getHost());
         viewHolder.mFaviconImageView.setImageDrawable(bubble.getFavicon());
         bubble.setAdditionalFaviconView(viewHolder.mFaviconImageView);

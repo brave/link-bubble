@@ -18,7 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Vector;
 
-public class Bubble extends RelativeLayout {
+public class BubbleView extends RelativeLayout {
 
     private Badge mBadge;
     private ImageView mShape;
@@ -85,10 +85,10 @@ public class Bubble extends RelativeLayout {
     }
 
     public interface EventHandler {
-        public void onMotionEvent_Touch(Bubble sender, TouchEvent event);
-        public void onMotionEvent_Move(Bubble sender, MoveEvent event);
-        public void onMotionEvent_Release(Bubble sender, ReleaseEvent event);
-        public void onSharedLink(Bubble sender);
+        public void onMotionEvent_Touch(BubbleView sender, TouchEvent event);
+        public void onMotionEvent_Move(BubbleView sender, MoveEvent event);
+        public void onMotionEvent_Release(BubbleView sender, ReleaseEvent event);
+        public void onSharedLink(BubbleView sender);
     }
 
     public void attachBadge(Badge badge) {
@@ -280,7 +280,7 @@ public class Bubble extends RelativeLayout {
         mWindowManager.addView(this, mWindowManagerParams);
     }
 
-    public Bubble(final Context context, String url, int x0, int y0, int targetX, int targetY, float targetTime, long startTime,
+    public BubbleView(final Context context, String url, int x0, int y0, int targetX, int targetY, float targetTime, long startTime,
                   EventHandler eh) throws MalformedURLException {
         super(context);
 
@@ -292,10 +292,10 @@ public class Bubble extends RelativeLayout {
         mRecordHistory = Settings.get().isIncognitoMode() ? false : true;
 
         mContentView = (ContentView)inflate(context, R.layout.view_content, null);
-        mContentView.configure(Bubble.this, mUrl.toString(), startTime, new ContentView.EventHandler() {
+        mContentView.configure(BubbleView.this, mUrl.toString(), startTime, new ContentView.EventHandler() {
             @Override
             public void onSharedLink() {
-                mEventHandler.onSharedLink(Bubble.this);
+                mEventHandler.onSharedLink(BubbleView.this);
             }
 
             @Override
@@ -316,7 +316,7 @@ public class Bubble extends RelativeLayout {
                     MainApplication.saveUrlInHistory(getContext(), null, info.url, info.mHost, info.title);
                 }
 
-                MainController.get().onPageLoaded(Bubble.this);
+                MainController.get().onPageLoaded(BubbleView.this);
             }
 
             @Override
@@ -397,7 +397,7 @@ public class Bubble extends RelativeLayout {
                         InternalMoveEvent me = new InternalMoveEvent(mStartTouchXRaw, mStartTouchYRaw, event.getEventTime());
                         mMoveEvents.add(me);
 
-                        mEventHandler.onMotionEvent_Touch(Bubble.this, e);
+                        mEventHandler.onMotionEvent_Touch(BubbleView.this, e);
 
                         mStartTouchX = mWindowManagerParams.x;
                         mStartTouchY = mWindowManagerParams.y;
@@ -420,7 +420,7 @@ public class Bubble extends RelativeLayout {
                         MoveEvent e = new MoveEvent();
                         e.dx = deltaX;
                         e.dy = deltaY;
-                        mEventHandler.onMotionEvent_Move(Bubble.this, e);
+                        mEventHandler.onMotionEvent_Move(BubbleView.this, e);
 
                         event.offsetLocation(mWindowManagerParams.x - mStartTouchX, mWindowManagerParams.y - mStartTouchY);
                         mFlingTracker.addMovement(event);
@@ -482,7 +482,7 @@ public class Bubble extends RelativeLayout {
 
                         mFlingTracker.recycle();
 
-                        mEventHandler.onMotionEvent_Release(Bubble.this, e);
+                        mEventHandler.onMotionEvent_Release(BubbleView.this, e);
                         return true;
                     }
                     //case MotionEvent.ACTION_CANCEL: {

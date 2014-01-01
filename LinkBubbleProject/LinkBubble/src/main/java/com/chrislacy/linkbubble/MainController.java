@@ -20,7 +20,6 @@ import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 import java.util.Vector;
 
@@ -82,10 +81,10 @@ public class MainController implements Choreographer.FrameCallback {
     private Context mContext;
     private Choreographer mChoreographer;
     private boolean mUpdateScheduled;
-    private static Vector<Bubble> mBubbles = new Vector<Bubble>();
+    private static Vector<BubbleView> mBubbles = new Vector<BubbleView>();
     private Canvas mCanvas;
     private Badge mBadge;
-    private Bubble mFrontBubble;
+    private BubbleView mFrontBubble;
 
     private MainController(Context context, EventHandler eventHandler) {
         Util.Assert(sInstance == null);
@@ -154,11 +153,11 @@ public class MainController implements Choreographer.FrameCallback {
     //private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
     //private int mFrameNumber;
 
-    public void onPageLoaded(Bubble bubble) {
+    public void onPageLoaded(BubbleView bubble) {
         mCurrentState.OnPageLoaded(bubble);
     }
 
-    public boolean destroyBubble(Bubble bubble, Config.BubbleAction action) {
+    public boolean destroyBubble(BubbleView bubble, Config.BubbleAction action) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         boolean debug = prefs.getBoolean("debug_flick", true);
 
@@ -181,7 +180,7 @@ public class MainController implements Choreographer.FrameCallback {
 
             if (mBubbles.size() > 0) {
                 int nextBubbleIndex = Util.clamp(0, bubbleIndex, mBubbles.size()-1);
-                Bubble nextBubble = mBubbles.get(nextBubbleIndex);
+                BubbleView nextBubble = mBubbles.get(nextBubbleIndex);
                 mFrontBubble = nextBubble;
                 mBadge.attach(nextBubble);
                 mBadge.setBubbleCount(mBubbles.size());
@@ -204,12 +203,12 @@ public class MainController implements Choreographer.FrameCallback {
         return mBubbles.size() > 0;
     }
 
-    public void setAllBubblePositions(Bubble ref) {
+    public void setAllBubblePositions(BubbleView ref) {
         if (ref != null) {
             // Force all bubbles to be where the moved one ended up
             int bubbleCount = mBubbles.size();
             for (int i=0 ; i < bubbleCount ; ++i) {
-                Bubble b = mBubbles.get(i);
+                BubbleView b = mBubbles.get(i);
                 if (b != ref) {
                     b.setExactPos(ref.getXPos(), ref.getYPos());
                 }
@@ -252,11 +251,11 @@ public class MainController implements Choreographer.FrameCallback {
         return mBubbles.size();
     }
 
-    public Bubble getBubble(int index) {
+    public BubbleView getBubble(int index) {
         return mBubbles.get(index);
     }
 
-    public List<Bubble> getBubbles() {
+    public List<BubbleView> getBubbles() {
         return mBubbles;
     }
 
@@ -267,11 +266,11 @@ public class MainController implements Choreographer.FrameCallback {
 
         int bubbleCount = mBubbles.size();
         for (int i=0 ; i < bubbleCount ; ++i) {
-            Bubble b = mBubbles.get(i);
+            BubbleView b = mBubbles.get(i);
             b.update(dt, mCurrentState == STATE_ContentView);
         }
 
-        Bubble frontBubble = null;
+        BubbleView frontBubble = null;
         if (mBubbles.size() > 0) {
             frontBubble =  getActiveBubble();
         }
@@ -329,12 +328,12 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    public Bubble getActiveBubble() {
+    public BubbleView getActiveBubble() {
         Util.Assert(mFrontBubble != null);
         return mFrontBubble;
     }
 
-    public void setActiveBubble(Bubble b) {
+    public void setActiveBubble(BubbleView b) {
         mFrontBubble = b;
         Util.Assert(mFrontBubble != null);
     }
@@ -382,7 +381,7 @@ public class MainController implements Choreographer.FrameCallback {
                                             && resolveInfo.activityInfo.name.equals(actionItem.mActivityClassName)) {
                                         Settings.get().setDefaultApp(url, resolveInfo);
 
-                                        // Jump out of the loop and load directly via a Bubble below
+                                        // Jump out of the loop and load directly via a BubbleView below
                                         if (resolveInfo.activityInfo.packageName.equals(appPackageName)) {
                                             break;
                                         }
@@ -440,23 +439,23 @@ public class MainController implements Choreographer.FrameCallback {
                 }
             }
 
-            Bubble bubble = null;
+            BubbleView bubble = null;
             try {
-                bubble = new Bubble(mContext, url, x, y, targetX, targetY, time, startTime,
-                        new Bubble.EventHandler() {
+                bubble = new BubbleView(mContext, url, x, y, targetX, targetY, time, startTime,
+                        new BubbleView.EventHandler() {
                     @Override
-                    public void onMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
+                    public void onMotionEvent_Touch(BubbleView sender, BubbleView.TouchEvent e) {
                         mCurrentState.OnMotionEvent_Touch(sender, e);
                         showContentActivity();
                     }
 
                     @Override
-                    public void onMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
+                    public void onMotionEvent_Move(BubbleView sender, BubbleView.MoveEvent e) {
                         mCurrentState.OnMotionEvent_Move(sender, e);
                     }
 
                     @Override
-                    public void onMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
+                    public void onMotionEvent_Release(BubbleView sender, BubbleView.ReleaseEvent e) {
                         mCurrentState.OnMotionEvent_Release(sender, e);
                         if (mCurrentState instanceof State_SnapToEdge) {
                             hideContentActivity();
@@ -464,12 +463,12 @@ public class MainController implements Choreographer.FrameCallback {
                     }
 
                     @Override
-                    public void onSharedLink(Bubble sender) {
+                    public void onSharedLink(BubbleView sender) {
                         if (mBubbles.size() > 1) {
                             int bubbleIndex = sender.getBubbleIndex();
                             destroyBubble(sender, Config.BubbleAction.Destroy);
                             int nextBubbleIndex = Util.clamp(0, bubbleIndex, mBubbles.size()-1);
-                            Bubble nextBubble = mBubbles.get(nextBubbleIndex);
+                            BubbleView nextBubble = mBubbles.get(nextBubbleIndex);
                             STATE_ContentView.setActiveBubble(nextBubble);
                         } else {
                             STATE_KillBubble.init(sender);
@@ -500,7 +499,7 @@ public class MainController implements Choreographer.FrameCallback {
             if (mCurrentState == STATE_ContentView) {
                 bubble.setVisibility(View.VISIBLE);
                 for (int i=0 ; i < bubbleCount ; ++i) {
-                    Bubble b = mBubbles.get(i);
+                    BubbleView b = mBubbles.get(i);
                     if (b != bubble) {
                         b.setTargetPos((int)Config.getContentViewX(b.getBubbleIndex(), MainController.get().getBubbleCount()), b.getYPos(), 0.2f, false);
                     }
@@ -508,7 +507,7 @@ public class MainController implements Choreographer.FrameCallback {
             } else {
                 mFrontBubble = bubble;
                 for (int i=0 ; i < bubbleCount ; ++i) {
-                    Bubble b = mBubbles.get(i);
+                    BubbleView b = mBubbles.get(i);
                     int vis = View.VISIBLE;
                     if (b != mFrontBubble)
                         vis = View.GONE;
@@ -538,11 +537,11 @@ public class MainController implements Choreographer.FrameCallback {
     boolean showPreviousBubble() {
         if (mCurrentState instanceof State_ContentView) {
             State_ContentView contentViewState = (State_ContentView)mCurrentState;
-            Bubble activeBubble = getActiveBubble();
+            BubbleView activeBubble = getActiveBubble();
             if (activeBubble != null) {
                 int index = activeBubble.getBubbleIndex();
                 if (index > 0) {
-                    for (Bubble bubble : mBubbles) {
+                    for (BubbleView bubble : mBubbles) {
                         if (index-1 == bubble.getBubbleIndex()) {
                             contentViewState.setActiveBubble(bubble);
                             return true;
@@ -557,10 +556,10 @@ public class MainController implements Choreographer.FrameCallback {
     boolean showNextBubble() {
         if (mCurrentState instanceof State_ContentView) {
             State_ContentView contentViewState = (State_ContentView)mCurrentState;
-            Bubble activeBubble = getActiveBubble();
+            BubbleView activeBubble = getActiveBubble();
             if (activeBubble != null) {
                 int index = activeBubble.getBubbleIndex();
-                for (Bubble bubble : mBubbles) {
+                for (BubbleView bubble : mBubbles) {
                     if (index+1 == bubble.getBubbleIndex()) {
                         contentViewState.setActiveBubble(bubble);
                         return true;

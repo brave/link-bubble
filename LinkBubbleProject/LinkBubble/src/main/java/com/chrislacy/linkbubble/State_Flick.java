@@ -9,7 +9,7 @@ import android.view.animation.OvershootInterpolator;
 public abstract class State_Flick extends ControllerState {
 
     private Canvas mCanvas;
-    private Bubble mBubble;
+    private BubbleView mBubble;
     private Canvas.TargetInfo mTargetInfo;
 
     private OvershootInterpolator mOvershootInterpolator = new OvershootInterpolator(1.5f);
@@ -28,7 +28,7 @@ public abstract class State_Flick extends ControllerState {
         mCanvas = canvas;
     }
 
-    public void init(Bubble bubble, float vx, float vy) {
+    public void init(BubbleView bubble, float vx, float vy) {
         mTargetInfo = null;
         mBubble = bubble;
 
@@ -108,7 +108,7 @@ public abstract class State_Flick extends ControllerState {
                     break;
                 default:
                     {
-                        Bubble b = mBubble;
+                        BubbleView b = mBubble;
                         if (mTime >= mPeriod) {
                             x = mTargetX;
                             y = mTargetY;
@@ -152,25 +152,25 @@ public abstract class State_Flick extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
+    public void OnMotionEvent_Touch(BubbleView sender, BubbleView.TouchEvent e) {
     }
 
     @Override
-    public void OnMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
+    public void OnMotionEvent_Move(BubbleView sender, BubbleView.MoveEvent e) {
     }
 
     @Override
-    public void OnMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
+    public void OnMotionEvent_Release(BubbleView sender, BubbleView.ReleaseEvent e) {
     }
 
     @Override
-    public boolean OnNewBubble(Bubble bubble) {
+    public boolean OnNewBubble(BubbleView bubble) {
         Util.Assert(false);
         return false;
     }
 
     @Override
-    public void OnDestroyBubble(Bubble bubble) {
+    public void OnDestroyBubble(BubbleView bubble) {
     }
 
     @Override

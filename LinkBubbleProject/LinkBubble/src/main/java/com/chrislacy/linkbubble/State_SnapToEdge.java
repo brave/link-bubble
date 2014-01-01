@@ -11,14 +11,14 @@ public class State_SnapToEdge extends ControllerState {
     private OvershootInterpolator mInterpolator = new OvershootInterpolator(1.5f);
     private float mTime;
     private float mPeriod;
-    private Bubble mBubble;
+    private BubbleView mBubble;
     private Canvas mCanvas;
 
     public State_SnapToEdge(Canvas c) {
         mCanvas = c;
     }
 
-    public void init(Bubble b) {
+    public void init(BubbleView b) {
         mBubble = b;
     }
 
@@ -48,7 +48,7 @@ public class State_SnapToEdge extends ControllerState {
         float x = mPosX + mDistanceX * f;
         float y = (float) mBubble.getYPos();
 
-        Bubble b = mBubble;
+        BubbleView b = mBubble;
 
         if (mTime >= mPeriod) {
             x = Util.clamp(Config.mBubbleSnapLeftX, x, Config.mBubbleSnapRightX);
@@ -70,25 +70,25 @@ public class State_SnapToEdge extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
+    public void OnMotionEvent_Touch(BubbleView sender, BubbleView.TouchEvent e) {
     }
 
     @Override
-    public void OnMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
+    public void OnMotionEvent_Move(BubbleView sender, BubbleView.MoveEvent e) {
     }
 
     @Override
-    public void OnMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
+    public void OnMotionEvent_Release(BubbleView sender, BubbleView.ReleaseEvent e) {
     }
 
     @Override
-    public boolean OnNewBubble(Bubble bubble) {
+    public boolean OnNewBubble(BubbleView bubble) {
         Util.Assert(false);
         return false;
     }
 
     @Override
-    public void OnDestroyBubble(Bubble bubble) {
+    public void OnDestroyBubble(BubbleView bubble) {
         Util.Assert(false);
     }
 

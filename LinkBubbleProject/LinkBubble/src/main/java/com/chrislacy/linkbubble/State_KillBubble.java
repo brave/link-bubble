@@ -1,10 +1,5 @@
 package com.chrislacy.linkbubble;
 
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
-
-import java.util.Vector;
-
 /**
  * Created by gw on 18/11/13.
  */
@@ -14,14 +9,14 @@ public class State_KillBubble extends ControllerState {
     private float mTime;
     private float mPeriod;
 
-    private Bubble mBubble;
+    private BubbleView mBubble;
     private float mBubbleY0;
 
     public State_KillBubble(Canvas canvas) {
         mCanvas = canvas;
     }
 
-    public void init(Bubble bubble) {
+    public void init(BubbleView bubble) {
         Util.Assert(mBubble == null);
         mBubble = bubble;
         mBubbleY0 = mBubble.getYPos();
@@ -71,25 +66,25 @@ public class State_KillBubble extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
+    public void OnMotionEvent_Touch(BubbleView sender, BubbleView.TouchEvent e) {
     }
 
     @Override
-    public void OnMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
+    public void OnMotionEvent_Move(BubbleView sender, BubbleView.MoveEvent e) {
     }
 
     @Override
-    public void OnMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
+    public void OnMotionEvent_Release(BubbleView sender, BubbleView.ReleaseEvent e) {
     }
 
     @Override
-    public boolean OnNewBubble(Bubble bubble) {
+    public boolean OnNewBubble(BubbleView bubble) {
         Util.Assert(false);
         return false;
     }
 
     @Override
-    public void OnDestroyBubble(Bubble bubble) {
+    public void OnDestroyBubble(BubbleView bubble) {
     }
 
     @Override

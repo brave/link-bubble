@@ -2,9 +2,7 @@ package com.chrislacy.linkbubble;
 
 import android.animation.Animator;
 import android.content.Context;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.TextView;
@@ -14,7 +12,7 @@ import android.widget.TextView;
  */
 public class Badge extends TextView {
 
-    private Bubble mBubble;
+    private BubbleView mBubble;
 
     public Badge(Context context) {
         this(context, null);
@@ -104,7 +102,7 @@ public class Badge extends TextView {
         }
     }
 
-    public void attach(Bubble bubble) {
+    public void attach(BubbleView bubble) {
         if (mBubble != null) {
             mBubble.detachBadge();
         }

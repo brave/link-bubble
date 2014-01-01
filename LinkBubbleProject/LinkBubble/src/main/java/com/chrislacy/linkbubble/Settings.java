@@ -539,9 +539,9 @@ public class Settings {
         return urls;
     }
 
-    public void saveCurrentBubbles(List<Bubble> bubbles) {
+    public void saveCurrentBubbles(List<BubbleView> bubbles) {
         JSONArray jsonArray = new JSONArray();
-        for (Bubble b : bubbles) {
+        for (BubbleView b : bubbles) {
             URL url = b.getUrl();
             jsonArray.put(url.toString());
         }

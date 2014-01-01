@@ -65,7 +65,7 @@ public class ContentView extends FrameLayout {
     private PopupMenu mOverflowPopupMenu;
     private AlertDialog mLongPressAlertDialog;
     private long mStartTime;
-    private Bubble mOwner;
+    private BubbleView mOwner;
     private int mHeaderHeight;
     private int mMarkerX;
 
@@ -220,7 +220,7 @@ public class ContentView extends FrameLayout {
         invalidate();
     }
 
-    void configure(Bubble owner, String url, long startTime, EventHandler eh) {
+    void configure(BubbleView owner, String url, long startTime, EventHandler eh) {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setColor(getResources().getColor(R.color.content_toolbar_background));
 

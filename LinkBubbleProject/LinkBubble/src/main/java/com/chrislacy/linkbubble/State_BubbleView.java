@@ -13,7 +13,7 @@ public class State_BubbleView extends ControllerState {
     private int mInitialY;
     private int mTargetX;
     private int mTargetY;
-    private Bubble mBubble;
+    private BubbleView mBubble;
     private Badge mBadge;
     private boolean mTouchDown;
     private int mTouchFrameCount;
@@ -33,7 +33,7 @@ public class State_BubbleView extends ControllerState {
 
         MainController mainController = MainController.get();
         for (int i=0 ; i < mainController.getBubbleCount() ; ++i) {
-            Bubble b = mainController.getBubble(i);
+            BubbleView b = mainController.getBubble(i);
             int vis = View.VISIBLE;
             if (b != mainController.getActiveBubble())
                 vis = View.GONE;
@@ -64,7 +64,7 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
-    public void OnPageLoaded(Bubble bubble) {
+    public void OnPageLoaded(BubbleView bubble) {
         if (Settings.get().getAutoContentDisplayLinkLoaded()) {
             mBadge.hide();
             MainController mainController = MainController.get();
@@ -73,7 +73,7 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
+    public void OnMotionEvent_Touch(BubbleView sender, BubbleView.TouchEvent e) {
         mTouchDown = true;
         mCanvas.fadeIn();
         mBubble = sender;
@@ -88,7 +88,7 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
+    public void OnMotionEvent_Move(BubbleView sender, BubbleView.MoveEvent e) {
         if (mTouchDown) {
             mTargetX = mInitialX + e.dx;
             mTargetY = mInitialY + e.dy;
@@ -105,7 +105,7 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
+    public void OnMotionEvent_Release(BubbleView sender, BubbleView.ReleaseEvent e) {
         if (mTouchDown) {
             sender.clearTargetPos();
 
@@ -128,7 +128,7 @@ public class State_BubbleView extends ControllerState {
                     if (ti.mAction == Config.BubbleAction.Destroy) {
                         int bubbleCount = mainController.getBubbleCount();
                         for (int i=bubbleCount-1 ; i >= 0; --i) {
-                            Bubble b = mainController.getBubble(i);
+                            BubbleView b = mainController.getBubble(i);
                             mainController.destroyBubble(b, Config.BubbleAction.Destroy);
                         }
                         Util.Assert(mainController.getBubbleCount() == 0);
@@ -151,12 +151,12 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
-    public boolean OnNewBubble(Bubble bubble) {
+    public boolean OnNewBubble(BubbleView bubble) {
         return true;
     }
 
     @Override
-    public void OnDestroyBubble(Bubble bubble) {
+    public void OnDestroyBubble(BubbleView bubble) {
     }
 
     @Override

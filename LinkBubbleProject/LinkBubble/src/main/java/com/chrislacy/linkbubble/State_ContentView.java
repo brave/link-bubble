@@ -1,7 +1,5 @@
 package com.chrislacy.linkbubble;
 
-import android.view.View;
-
 /**
  * Created by gw on 18/11/13.
  */
@@ -13,7 +11,7 @@ public class State_ContentView extends ControllerState {
     private int mInitialY;
     private int mTargetX;
     private int mTargetY;
-    private Bubble mTouchBubble;
+    private BubbleView mTouchBubble;
     private boolean mTouchDown;
     private int mTouchFrameCount;
 
@@ -54,7 +52,7 @@ public class State_ContentView extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Touch(Bubble sender, Bubble.TouchEvent e) {
+    public void OnMotionEvent_Touch(BubbleView sender, BubbleView.TouchEvent e) {
         mTouchDown = true;
         mTouchBubble = sender;
         mInitialX = e.posX;
@@ -67,7 +65,7 @@ public class State_ContentView extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Move(Bubble sender, Bubble.MoveEvent e) {
+    public void OnMotionEvent_Move(BubbleView sender, BubbleView.MoveEvent e) {
         if (mTouchDown) {
             mTargetX = mInitialX + e.dx;
             mTargetY = mInitialY + e.dy;
@@ -87,7 +85,7 @@ public class State_ContentView extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Release(Bubble sender, Bubble.ReleaseEvent e) {
+    public void OnMotionEvent_Release(BubbleView sender, BubbleView.ReleaseEvent e) {
         MainController mainController = MainController.get();
         if (mTouchDown) {
             sender.clearTargetPos();
@@ -124,12 +122,12 @@ public class State_ContentView extends ControllerState {
     }
 
     @Override
-    public boolean OnNewBubble(Bubble bubble) {
+    public boolean OnNewBubble(BubbleView bubble) {
         return true;
     }
 
     @Override
-    public void OnDestroyBubble(Bubble bubble) {
+    public void OnDestroyBubble(BubbleView bubble) {
     }
 
     @Override
@@ -148,7 +146,7 @@ public class State_ContentView extends ControllerState {
         return "ContentView";
     }
 
-    void setActiveBubble(Bubble bubble) {
+    void setActiveBubble(BubbleView bubble) {
         MainController.get().setActiveBubble(bubble);
         bubble.setTargetPos((int)Config.getContentViewX(bubble.getBubbleIndex(), MainController.get().getBubbleCount()), bubble.getYPos(), 0.2f, false);
         mCanvas.setContentView(bubble.getContentView());
