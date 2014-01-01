@@ -6,19 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".NoBoringActionBarActivity">
 
-    <FrameLayout
-        android:id="@+id/header"
+    <View
+        android:id="@+id/background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/highlight_color"
+        android:alpha="0"
+        >
+
+    </View>
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible">
 
         <ImageView
             android:id="@+id/header_logo"
-            android:layout_width="@dimen/header_logo_size"
-            android:layout_height="@dimen/header_logo_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/text_logo" />
 
-
+        <!--
         <at.technikum.mti.fancycoverflow.FancyCoverFlow
             xmlns:fancyCoverFlow="http://schemas.android.com/apk/res-auto"
             android:id="@+id/fancyCoverFlow"
@@ -31,7 +42,7 @@
             fancyCoverFlow:unselectedScale="0.4"
             fancyCoverFlow:scaleDownGravity="0.25"
             />
-
+            -->
     </FrameLayout>
 
 </FrameLayout>

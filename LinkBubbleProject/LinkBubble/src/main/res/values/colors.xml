@@ -9,5 +9,8 @@
     <color name="badge_highlight">@color/badge_text</color>
 
     <color name="actionbar_title_color">@android:color/black</color>
+
+    <color name="highlight_color">#ff3fcdfd</color>
+
 </resources>
 
