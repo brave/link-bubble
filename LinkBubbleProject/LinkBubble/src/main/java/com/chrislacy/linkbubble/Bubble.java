@@ -307,6 +307,10 @@ public class Bubble extends RelativeLayout {
                 showProgressBar(false);
                 setBackgroundResource(R.drawable.bubble_light);
 
+                if (info.bmp == null) {
+                    onReceivedIcon(null);
+                }
+
                 if (mRecordHistory && info != null && info.url != null) {
                     MainApplication.saveUrlInHistory(getContext(), null, info.url, info.mHost, info.title);
                 }
@@ -320,9 +324,9 @@ public class Bubble extends RelativeLayout {
                 int halfImageHeight;
 
                 if (bitmap == null) {
-                    mShape.setImageResource(R.drawable.help_button);
-                    halfImageWidth = 8;
-                    halfImageHeight = 8;
+                    mShape.setImageResource(R.drawable.fallback_favicon);
+                    halfImageWidth = 24;
+                    halfImageHeight = 24;
                 } else {
                     int w = bitmap.getWidth();
                     int h = bitmap.getHeight();

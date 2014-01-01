@@ -20,7 +20,7 @@
         android:layout_gravity="top|center_horizontal"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/help_button"
+        android:src="@drawable/fallback_favicon"
         android:scaleType="center"/>
     <!--
     <com.chrislacy.linkbubble.CondensedTextView
