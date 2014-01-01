@@ -36,6 +36,7 @@ public class State_ContentView extends ControllerState {
 
             if (mTouchFrameCount == 6) {
                 mCanvas.fadeInTargets();
+                mCanvas.hideContentView();
             }
 
             if (mDidMove) {

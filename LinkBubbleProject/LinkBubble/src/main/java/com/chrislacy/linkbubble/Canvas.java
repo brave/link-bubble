@@ -32,6 +32,9 @@ public class Canvas extends RelativeLayout {
     private float mCurrentAlpha = 0.0f;
     private float mTargetAlpha = 0.0f;
 
+    private float mCurrentAlphaContentView = 1.0f;
+    private float mTargetAlphaContentView = 1.0f;
+
     private boolean mEnabled;
 
     private ContentView mContentView;
@@ -100,6 +103,9 @@ public class Canvas extends RelativeLayout {
     public void setContentView(ContentView cv) {
         if (mContentView != null) {
             removeView(mContentView);
+            mContentView.setAlpha(1.0f);
+            mCurrentAlphaContentView = 1.0f;
+            mTargetAlphaContentView = 1.0f;
             mContentView.onCurrentContentViewChanged(false);
         }
         mContentView = cv;
@@ -128,6 +134,11 @@ public class Canvas extends RelativeLayout {
         } else {
             setVisibility(VISIBLE);
         }
+
+        if (mContentView != null) {
+            Util.Assert(mCurrentAlphaContentView >= 0.0f && mCurrentAlphaContentView <= 1.0f);
+            mContentView.setAlpha(mCurrentAlphaContentView);
+        }
     }
 
     public void setContentViewTranslation(float ty) {
@@ -138,17 +149,16 @@ public class Canvas extends RelativeLayout {
 
     public void showContentView() {
         Util.Assert(mContentView != null);
-        mContentView.setVisibility(VISIBLE);
+        mCurrentAlphaContentView = 1.0f;
+        mTargetAlphaContentView = 1.0f;
+        mContentView.setAlpha(1.0f);
     }
 
     public void hideContentView() {
         Util.Assert(mContentView != null);
-        mContentView.setVisibility(GONE);
-    }
-
-    public void enable(boolean enable) {
-        mEnabled = enable;
-        applyAlpha();
+        mCurrentAlphaContentView = mContentView.getAlpha();
+        mTargetAlphaContentView = 0.0f;
+        MainController.get().scheduleUpdate();
     }
 
     public void fadeIn() {
@@ -185,6 +195,15 @@ public class Canvas extends RelativeLayout {
             mCurrentAlpha = Util.clamp(0.0f, mCurrentAlpha - mAlphaDelta * dt, mMaxAlpha);
             MainController.get().scheduleUpdate();
         }
+
+        if (mCurrentAlphaContentView < mTargetAlphaContentView) {
+            mCurrentAlphaContentView = Util.clamp(0.0f, mCurrentAlphaContentView + mAlphaDelta * dt, 1.0f);
+            MainController.get().scheduleUpdate();
+        } else if (mCurrentAlphaContentView > mTargetAlphaContentView) {
+            mCurrentAlphaContentView = Util.clamp(0.0f, mCurrentAlphaContentView - mAlphaDelta * dt, 1.0f);
+            MainController.get().scheduleUpdate();
+        }
+
         applyAlpha();
 
         for (int i=0 ; i < mTargets.size() ; ++i) {
