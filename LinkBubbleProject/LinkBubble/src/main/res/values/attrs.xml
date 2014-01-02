@@ -32,7 +32,8 @@
     <declare-styleable name="FlipImageView">
         <attr name="isAnimated" format="boolean" />
         <attr name="isFlipped" format="boolean" />
-        <attr name="flipDrawable" format="reference" />
+        <attr name="defaultView" format="reference" />
+        <attr name="flipView" format="reference" />
         <attr name="flipDuration" format="integer" />
         <attr name="flipInterpolator" format="reference" />
         <attr name="flipRotations">

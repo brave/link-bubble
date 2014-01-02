@@ -50,53 +50,16 @@
             android:src="@drawable/text_logo"
             android:layout_marginBottom="20dp"/>
 
-            <com.chrislacy.linkbubble.FlipView
-                xmlns:fiv="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/imageview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_launcher"
-                fiv:flipDrawable="@drawable/ic_action_gear_dark"
-                fiv:isAnimated="true"/>
+        <com.chrislacy.linkbubble.FlipView
+            xmlns:fiv="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/imageview"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/stat_height"
+            android:src="@drawable/ic_launcher"
+            fiv:defaultView="@layout/view_stat_time_per_day"
+            fiv:flipView="@layout/view_stat_time_per_link"
+            fiv:isAnimated="true"/>
 
-        <LinearLayout
-            android:id="@+id/stat_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/header_logo"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:layout_marginBottom="40dp">
-
-            <com.chrislacy.linkbubble.CondensedTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/stat_time_saved"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@android:color/holo_red_light"
-                android:textAppearance="?android:attr/textAppearanceMedium"/>
-
-            <com.chrislacy.linkbubble.CondensedTextView
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_gravity="center_horizontal"
-                android:text="2.3\nseconds"
-                android:textColor="@android:color/white"
-                android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textStyle="bold"
-                android:textSize="28sp"
-                android:background="@drawable/circle_red"/>
-
-            <com.chrislacy.linkbubble.CondensedTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/stat_per_link"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@android:color/holo_red_light"
-                android:textAppearance="?android:attr/textAppearanceMedium"/>
-
-        </LinearLayout>
 
         </LinearLayout>
 
