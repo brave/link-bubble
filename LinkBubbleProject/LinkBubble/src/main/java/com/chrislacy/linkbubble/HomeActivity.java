@@ -2,7 +2,9 @@ package com.chrislacy.linkbubble;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -68,7 +70,7 @@ public class HomeActivity extends Activity {
         historyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(HomeActivity.this, HistoryActivity.class), 0);
+                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v);
             }
         });
 
@@ -76,7 +78,7 @@ public class HomeActivity extends Activity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(HomeActivity.this, SettingsActivity.class), 0);
+                startActivity(new Intent(HomeActivity.this, SettingsActivity.class), v);
             }
         });
 
@@ -125,40 +127,18 @@ public class HomeActivity extends Activity {
         //tv.animate().alpha(1f).setDuration(1000).setStartDelay(1000).start();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
+    void startActivity(Intent intent, View view) {
+        boolean useLaunchAnimation = (view != null) &&
+                !intent.hasExtra(Constant.INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION);
 
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.home_activity, menu);
+        if (useLaunchAnimation) {
+            ActivityOptions opts = ActivityOptions.makeScaleUpAnimation(view, 0, 0,
+                    view.getMeasuredWidth(), view.getMeasuredHeight());
 
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_history:
-                startActivityForResult(new Intent(this, HistoryActivity.class), 0);
-                break;
-
-            case R.id.action_settings: {
-                startActivityForResult(new Intent(this, SettingsActivity.class), 0);
-                return true;
-            }
-
-            /*
-            case R.id.action_upgrade_to_pro: {
-                Intent intent = Config.getStoreIntent(this, Config.STORE_PRO_URL);
-                if (intent != null) {
-                    startActivity(intent);
-                    return true;
-                }
-            }*/
+            startActivity(intent, opts.toBundle());
+        } else {
+            startActivity(intent);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
 }
