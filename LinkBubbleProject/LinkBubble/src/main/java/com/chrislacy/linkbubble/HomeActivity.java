@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
+import android.widget.Button;
 
 import java.util.Vector;
 
@@ -50,11 +51,22 @@ public class HomeActivity extends Activity {
             fancyCoverFlow.setSelection(adapter.getStartIndex(), false);
         }*/
 
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setDisplayUseLogoEnabled(false);
-        actionBar.setIcon(null);
+        View historyButton = findViewById(R.id.history);
+        historyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(HomeActivity.this, HistoryActivity.class), 0);
+            }
+        });
+
+        View settingsButton = findViewById(R.id.settings);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(HomeActivity.this, SettingsActivity.class), 0);
+            }
+        });
+
     }
 
     @Override
