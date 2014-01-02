@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-// THIS IS A BETA! I DON'T RECOMMEND USING IT IN PRODUCTION CODE JUST YET
-
-package com.google.android.apps.dashclock.ui;
+package com.chrislacy.linkbubble;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.graphics.Rect;
+import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
@@ -34,17 +34,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+// via https://github.com/romannurik/Android-SwipeToDismiss/
+
 /**
- * A {@link android.view.View.OnTouchListener} that makes the list items in a {@link ListView}
+ * A {@link View.OnTouchListener} that makes the list items in a {@link ListView}
  * dismissable. {@link ListView} is given special treatment because by default it handles touches
  * for its list items... i.e. it's in charge of drawing the pressed state (the list selector),
  * handling list item clicks, etc.
  *
- * <p>After creating the listener, the caller should also call {@link
- * ListView#setOnScrollListener(android.widget.AbsListView.OnScrollListener)}, passing in the scroll
- * listener returned by {@link #makeScrollListener()}. If a scroll listener is already assigned, the
- * caller should still pass scroll changes through to this listener. This will ensure that this
- * {@link SwipeDismissListViewTouchListener} is paused during list view scrolling.</p>
+ * <p>After creating the listener, the caller should also call
+ * {@link ListView#setOnScrollListener(AbsListView.OnScrollListener)}, passing
+ * in the scroll listener returned by {@link #makeScrollListener()}. If a scroll listener is
+ * already assigned, the caller should still pass scroll changes through to this listener. This will
+ * ensure that this {@link SwipeDismissListViewTouchListener} is paused during list view
+ * scrolling.</p>
  *
  * <p>Example usage:</p>
  *
@@ -65,7 +68,12 @@ import java.util.List;
  * </pre>
  *
  * <p>This class Requires API level 12 or later due to use of {@link
- * android.view.ViewPropertyAnimator}.</p>
+ * ViewPropertyAnimator}.</p>
+ *
+ * <p>For a generalized {@link View.OnTouchListener} that makes any view dismissable,
+ * see {@link SwipeDismissTouchListener}.</p>
+ *
+ * @see SwipeDismissTouchListener
  */
 public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
     // Cached ViewConfiguration and system-wide constant values
@@ -83,7 +91,9 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
     private List<PendingDismissData> mPendingDismisses = new ArrayList<PendingDismissData>();
     private int mDismissAnimationRefCount = 0;
     private float mDownX;
+    private float mDownY;
     private boolean mSwiping;
+    private int mSwipingSlop;
     private VelocityTracker mVelocityTracker;
     private int mDownPosition;
     private View mDownView;
@@ -138,8 +148,8 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
     }
 
     /**
-     * Returns an {@link android.widget.AbsListView.OnScrollListener} to be added to the {@link
-     * ListView} using {@link ListView#setOnScrollListener(android.widget.AbsListView.OnScrollListener)}.
+     * Returns an {@link AbsListView.OnScrollListener} to be added to the {@link
+     * ListView} using {@link ListView#setOnScrollListener(AbsListView.OnScrollListener)}.
      * If a scroll listener is already assigned, the caller should still pass scroll changes through
      * to this listener. This will ensure that this {@link SwipeDismissListViewTouchListener} is
      * paused during list view scrolling.</p>
@@ -192,6 +202,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
 
                 if (mDownView != null) {
                     mDownX = motionEvent.getRawX();
+                    mDownY = motionEvent.getRawY();
                     mDownPosition = mListView.getPositionForView(mDownView);
                     if (mCallbacks.canDismiss(mDownPosition)) {
                         mVelocityTracker = VelocityTracker.obtain();
@@ -200,8 +211,30 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
                         mDownView = null;
                     }
                 }
-                view.onTouchEvent(motionEvent);
-                return true;
+                return false;
+            }
+
+            case MotionEvent.ACTION_CANCEL: {
+                if (mVelocityTracker == null) {
+                    break;
+                }
+
+                if (mDownView != null && mSwiping) {
+                    // cancel
+                    mDownView.animate()
+                            .translationX(0)
+                            .alpha(1)
+                            .setDuration(mAnimationTime)
+                            .setListener(null);
+                }
+                mVelocityTracker.recycle();
+                mVelocityTracker = null;
+                mDownX = 0;
+                mDownY = 0;
+                mDownView = null;
+                mDownPosition = ListView.INVALID_POSITION;
+                mSwiping = false;
+                break;
             }
 
             case MotionEvent.ACTION_UP: {
@@ -221,12 +254,12 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
                     dismiss = true;
                     dismissRight = deltaX > 0;
                 } else if (mMinFlingVelocity <= absVelocityX && absVelocityX <= mMaxFlingVelocity
-                        && absVelocityY < absVelocityX) {
+                        && absVelocityY < absVelocityX && mSwiping) {
                     // dismiss only if flinging in the same direction as dragging
                     dismiss = (velocityX < 0) == (deltaX < 0);
                     dismissRight = mVelocityTracker.getXVelocity() > 0;
                 }
-                if (dismiss) {
+                if (dismiss && mDownPosition != ListView.INVALID_POSITION) {
                     // dismiss
                     final View downView = mDownView; // mDownView gets null'd before animation ends
                     final int downPosition = mDownPosition;
@@ -252,6 +285,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
                 mVelocityTracker.recycle();
                 mVelocityTracker = null;
                 mDownX = 0;
+                mDownY = 0;
                 mDownView = null;
                 mDownPosition = ListView.INVALID_POSITION;
                 mSwiping = false;
@@ -265,8 +299,10 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
 
                 mVelocityTracker.addMovement(motionEvent);
                 float deltaX = motionEvent.getRawX() - mDownX;
-                if (Math.abs(deltaX) > mSlop) {
+                float deltaY = motionEvent.getRawY() - mDownY;
+                if (Math.abs(deltaX) > mSlop && Math.abs(deltaY) < Math.abs(deltaX) / 2) {
                     mSwiping = true;
+                    mSwipingSlop = (deltaX > 0 ? mSlop : -mSlop);
                     mListView.requestDisallowInterceptTouchEvent(true);
 
                     // Cancel ListView's touch (un-highlighting the item)
@@ -279,7 +315,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
                 }
 
                 if (mSwiping) {
-                    mDownView.setTranslationX(deltaX);
+                    mDownView.setTranslationX(deltaX - mSwipingSlop);
                     mDownView.setAlpha(Math.max(0f, Math.min(1f,
                             1f - 2f * Math.abs(deltaX) / mViewWidth)));
                     return true;
@@ -330,6 +366,10 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
                         dismissPositions[i] = mPendingDismisses.get(i).position;
                     }
                     mCallbacks.onDismiss(mListView, dismissPositions);
+                    
+                    // Reset mDownPosition to avoid MotionEvent.ACTION_UP trying to start a dismiss 
+                    // animation with a stale position
+                    mDownPosition = ListView.INVALID_POSITION;
 
                     ViewGroup.LayoutParams lp;
                     for (PendingDismissData pendingDismiss : mPendingDismisses) {
@@ -340,6 +380,12 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
                         lp.height = originalHeight;
                         pendingDismiss.view.setLayoutParams(lp);
                     }
+
+                    // Send a cancel event
+                    long time = SystemClock.uptimeMillis();
+                    MotionEvent cancelEvent = MotionEvent.obtain(time, time,
+                            MotionEvent.ACTION_CANCEL, 0, 0, 0);
+                    mListView.dispatchTouchEvent(cancelEvent);
 
                     mPendingDismisses.clear();
                 }
