@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -69,6 +70,38 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
         mListView.setAdapter(mHistoryAdapter);
         mListView.setOnItemClickListener(this);
         mListView.setOnItemLongClickListener(this);
+
+        final SwipeDismissListViewTouchListener swipeDismissTouchListener =
+                new SwipeDismissListViewTouchListener(
+                        mListView,
+                        new SwipeDismissListViewTouchListener.DismissCallbacks() {
+                            public boolean canDismiss(int position) {
+                                return true;
+                            }
+
+                            public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+                                MainDatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
+
+                                for (int position : reverseSortedPositions) {
+                                    Object item = listView.getItemAtPosition(position);
+                                    if (item instanceof HistoryRecord) {
+                                        databaseHelper.deleteHistoryRecord((HistoryRecord)item);
+                                    }
+                                }
+
+                                updateListViewData();
+                            }
+                        });
+        mListView.setOnItemClickListener(this);
+        mListView.setOnScrollListener(swipeDismissTouchListener.makeScrollListener());
+        mListView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return swipeDismissTouchListener.onTouch(view, motionEvent);
+            }
+        });
+
+        mListView.setItemsCanFocus(true);
     }
 
     void updateListViewData() {
