@@ -110,6 +110,7 @@ public class BubbleView extends FrameLayout {
             int badgeSize = getResources().getDimensionPixelSize(R.dimen.badge_size);
             FrameLayout.LayoutParams lp = new LayoutParams(badgeSize, badgeSize);
             lp.gravity = Gravity.TOP|Gravity.RIGHT;
+            lp.leftMargin = badgeMargin;
             lp.rightMargin = badgeMargin;
             lp.topMargin = badgeMargin;
             addView(mBadgeView, lp);

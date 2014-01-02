@@ -3,8 +3,10 @@ package com.chrislacy.linkbubble;
 import android.animation.Animator;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 /**
@@ -40,6 +42,16 @@ public class BadgeView extends TextView {
                 .setInterpolator(new AnticipateOvershootInterpolator())
                 .setListener(mShowListener)
                 .start();
+
+        if (mBubble != null) {
+            FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) getLayoutParams();
+            int x = mBubble.getXPos();
+            if (x > Config.mScreenCenterX) {
+                lp.gravity = Gravity.TOP|Gravity.LEFT;
+            } else {
+                lp.gravity = Gravity.TOP|Gravity.RIGHT;
+            }
+        }
     }
 
     public void hide() {
