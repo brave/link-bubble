@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
@@ -248,6 +249,11 @@ public class BubbleTarget extends RelativeLayout {
         }
         Util.Assert(mCurrentAlpha >= 0.0f && mCurrentAlpha <= 1.0f);
         setAlpha(mCurrentAlpha);
+        if (mCurrentAlpha == 0.0f) {
+            setVisibility(GONE);
+        } else {
+            setVisibility(VISIBLE);
+        }
     }
 
     public void OnOrientationChanged() {
