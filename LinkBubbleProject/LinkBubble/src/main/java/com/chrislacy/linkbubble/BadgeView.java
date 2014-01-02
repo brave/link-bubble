@@ -16,6 +16,14 @@ public class BadgeView extends TextView {
 
     private BubbleView mBubble;
 
+    enum AnimState {
+        None,
+        Hiding,
+        Showing,
+    }
+
+    AnimState mAnimState;
+
     public BadgeView(Context context) {
         this(context, null);
     }
@@ -26,17 +34,21 @@ public class BadgeView extends TextView {
 
     public BadgeView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
+        mAnimState = AnimState.None;
     }
 
     public void show() {
-        if (getVisibility() == View.VISIBLE) {
-            return;
+        if (getVisibility() != View.VISIBLE) {
+            setAlpha(0f);
+            setVisibility(View.VISIBLE);
+            setScaleX(0.33f);
+            setScaleY(0.33f);
+        } else if (mAnimState == AnimState.Hiding) {
+            animate().cancel();
+            setVisibility(View.VISIBLE);
         }
 
-        setAlpha(0f);
-        setVisibility(View.VISIBLE);
-        setScaleX(0.33f);
-        setScaleY(0.33f);
         animate().alpha(1f).scaleX(1f).scaleY(1f)
                 .setDuration(667)
                 .setInterpolator(new AnticipateOvershootInterpolator())
@@ -66,12 +78,12 @@ public class BadgeView extends TextView {
     private Animator.AnimatorListener mShowListener = new Animator.AnimatorListener() {
         @Override
         public void onAnimationStart(Animator animation) {
-
+            mAnimState = AnimState.Showing;
         }
 
         @Override
         public void onAnimationEnd(Animator animation) {
-
+            mAnimState = AnimState.None;
         }
 
         @Override
@@ -88,12 +100,13 @@ public class BadgeView extends TextView {
     private Animator.AnimatorListener mHideListener = new Animator.AnimatorListener() {
         @Override
         public void onAnimationStart(Animator animation) {
-
+            mAnimState = AnimState.Hiding;
         }
 
         @Override
         public void onAnimationEnd(Animator animation) {
             setVisibility(View.GONE);
+            mAnimState = AnimState.None;
         }
 
         @Override
