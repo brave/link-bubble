@@ -12,5 +12,7 @@
 
     <color name="highlight_color">#ff3fcdfd</color>
 
+    <color name="progress_default_progress_color">#30333333</color>
+
 </resources>
 

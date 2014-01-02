@@ -26,7 +26,7 @@ public class BubbleView extends FrameLayout {
     protected WindowManager mWindowManager;
     protected WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
     private EventHandler mEventHandler;
-    private ProgressBar mProgressBar;
+    private ProgressIndicator mProgressIndicator;
     private boolean mProgressBarShowing;
 
     private URL mUrl;
@@ -313,12 +313,17 @@ public class BubbleView extends FrameLayout {
 
             @Override
             public void onPageLoading(String url) {
-                showProgressBar(true);
+                showProgressBar(true, 0);
+            }
+
+            @Override
+            public void onProgressChanged(int progress) {
+                showProgressBar(true, progress);
             }
 
             @Override
             public void onPageLoaded(ContentView.PageLoadInfo info) {
-                showProgressBar(false);
+                showProgressBar(false, 0);
 
                 if (info.bmp == null) {
                     onReceivedIcon(null);
@@ -356,15 +361,15 @@ public class BubbleView extends FrameLayout {
                 }
 
                 mFavicon.setVisibility(VISIBLE);
-                showProgressBar(false);
+                showProgressBar(false, 0);
             }
         });
 
         setVisibility(GONE);
 
         mFavicon = (ImageView) findViewById(R.id.favicon);
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-        showProgressBar(true);
+        mProgressIndicator = (ProgressIndicator) findViewById(R.id.progressIndicator);
+        showProgressBar(true, 0);
 
         setOnTouchListener(new OnTouchListener() {
             private float mStartTouchXRaw;
@@ -507,17 +512,18 @@ public class BubbleView extends FrameLayout {
         }
     }
 
-    void showProgressBar(boolean show) {
+    void showProgressBar(boolean show, int progress) {
         if (show) {
             if (mProgressBarShowing == false) {
                 mProgressBarShowing = true;
-                mProgressBar.setIndeterminate(true);
-                mProgressBar.setVisibility(VISIBLE);
+                //mProgressBar.setIndeterminate(true);
+                mProgressIndicator.setVisibility(VISIBLE);
                 mFavicon.setVisibility(GONE);
             }
+            mProgressIndicator.setProgress(progress);
         } else {
             if (mProgressBarShowing) {
-                mProgressBar.setVisibility(GONE);
+                mProgressIndicator.setVisibility(GONE);
                 mProgressBarShowing = false;
             }
         }

@@ -13,13 +13,13 @@
         android:background="@drawable/bubble_light"
         android:layout_gravity="center"/>
 
-    <ProgressBar
+    <com.chrislacy.linkbubble.ProgressIndicator
         style="?android:attr/progressBarStyleSmall"
         android:layout_width="@dimen/progress_bar_size"
         android:layout_height="@dimen/progress_bar_size"
-        android:id="@+id/progressBar"
+        android:id="@+id/progressIndicator"
+        android:indeterminate="true"
         android:layout_gravity="center"/>
-
 
     <ImageView
         android:layout_width="wrap_content"

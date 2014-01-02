@@ -125,6 +125,7 @@ public class ContentView extends FrameLayout {
     public interface EventHandler {
         public void onSharedLink();
         public void onPageLoading(String url);
+        public void onProgressChanged(int progress);
         public void onPageLoaded(PageLoadInfo info);
         public void onReceivedIcon(Bitmap bitmap);
     }
@@ -413,6 +414,8 @@ public class ContentView extends FrameLayout {
             @Override
             public void onProgressChanged(WebView webView, int progress) {
                 //Log.d(TAG, "onProgressChanged() - progress:" + progress);
+
+                mEventHandler.onProgressChanged(progress);
 
                 // At 60%, the page is more often largely viewable, but waiting for background shite to finish which can
                 // take many, many seconds, even on a strong connection. Thus, do a check for embeds now to prevent the button
