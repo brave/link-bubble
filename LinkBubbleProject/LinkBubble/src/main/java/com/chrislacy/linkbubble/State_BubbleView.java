@@ -14,13 +14,13 @@ public class State_BubbleView extends ControllerState {
     private int mTargetX;
     private int mTargetY;
     private BubbleView mBubble;
-    private Badge mBadge;
+    private BadgeView mBadgeView;
     private boolean mTouchDown;
     private int mTouchFrameCount;
 
-    public State_BubbleView(Canvas canvas, Badge badge) {
+    public State_BubbleView(Canvas canvas, BadgeView badgeView) {
         mCanvas = canvas;
-        mBadge = badge;
+        mBadgeView = badgeView;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class State_BubbleView extends ControllerState {
         mCanvas.fadeOutTargets();
         mDidMove = false;
         mBubble = null;
-        mBadge.show();
+        mBadgeView.show();
         mCanvas.fadeOut();
 
         MainController mainController = MainController.get();
@@ -66,7 +66,7 @@ public class State_BubbleView extends ControllerState {
     @Override
     public void OnPageLoaded(BubbleView bubble) {
         if (Settings.get().getAutoContentDisplayLinkLoaded()) {
-            mBadge.hide();
+            mBadgeView.hide();
             MainController mainController = MainController.get();
             mainController.switchState(mainController.STATE_AnimateToContentView);
         }
@@ -142,7 +142,7 @@ public class State_BubbleView extends ControllerState {
                     }
                 }
             } else {
-                mBadge.hide();
+                mBadgeView.hide();
                 mainController.switchState(mainController.STATE_AnimateToContentView);
             }
 

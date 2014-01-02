@@ -20,7 +20,7 @@ import java.util.Vector;
 
 public class BubbleView extends FrameLayout {
 
-    private Badge mBadge;
+    private BadgeView mBadgeView;
     private ImageView mFavicon;
     private ImageView mAdditionalFaviconView;
     protected WindowManager mWindowManager;
@@ -102,9 +102,9 @@ public class BubbleView extends FrameLayout {
         super(context, attrs, defStyle);
     }
 
-    public void attachBadge(Badge badge) {
-        if (mBadge == null) {
-            mBadge = badge;
+    public void attachBadge(BadgeView badgeView) {
+        if (mBadgeView == null) {
+            mBadgeView = badgeView;
 
             int badgeMargin = getResources().getDimensionPixelSize(R.dimen.badge_margin);
             int badgeSize = getResources().getDimensionPixelSize(R.dimen.badge_size);
@@ -112,14 +112,14 @@ public class BubbleView extends FrameLayout {
             lp.gravity = Gravity.TOP|Gravity.RIGHT;
             lp.rightMargin = badgeMargin;
             lp.topMargin = badgeMargin;
-            addView(mBadge, lp);
+            addView(mBadgeView, lp);
         }
     }
 
     public void detachBadge() {
-        if (mBadge != null) {
-            removeView(mBadge);
-            mBadge = null;
+        if (mBadgeView != null) {
+            removeView(mBadgeView);
+            mBadgeView = null;
         }
     }
 

@@ -83,7 +83,7 @@ public class MainController implements Choreographer.FrameCallback {
     private boolean mUpdateScheduled;
     private static Vector<BubbleView> mBubbles = new Vector<BubbleView>();
     private Canvas mCanvas;
-    private Badge mBadge;
+    private BadgeView mBadgeView;
     private BubbleView mFrontBubble;
 
     private MainController(Context context, EventHandler eventHandler) {
@@ -116,13 +116,13 @@ public class MainController implements Choreographer.FrameCallback {
         mCanvas = new Canvas(mContext);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        mBadge = (Badge) inflater.inflate(R.layout.view_badge, null);
+        mBadgeView = (BadgeView) inflater.inflate(R.layout.view_badge, null);
 
         MainApplication app = (MainApplication) mContext.getApplicationContext();
         Bus bus = app.getBus();
         bus.register(this);
 
-        STATE_BubbleView = new State_BubbleView(mCanvas, mBadge);
+        STATE_BubbleView = new State_BubbleView(mCanvas, mBadgeView);
         STATE_SnapToEdge = new State_SnapToEdge(mCanvas);
         STATE_AnimateToContentView = new State_AnimateToContentView(mCanvas);
         STATE_ContentView = new State_ContentView(mCanvas);
@@ -182,13 +182,13 @@ public class MainController implements Choreographer.FrameCallback {
                 int nextBubbleIndex = Util.clamp(0, bubbleIndex, mBubbles.size()-1);
                 BubbleView nextBubble = mBubbles.get(nextBubbleIndex);
                 mFrontBubble = nextBubble;
-                mBadge.attach(nextBubble);
-                mBadge.setBubbleCount(mBubbles.size());
+                mBadgeView.attach(nextBubble);
+                mBadgeView.setBubbleCount(mBubbles.size());
 
                 nextBubble.setVisibility(View.VISIBLE);
             } else {
                 hideContentActivity();
-                mBadge.attach(null);
+                mBadgeView.attach(null);
                 mFrontBubble = null;
 
                 Config.BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
@@ -495,8 +495,8 @@ public class MainController implements Choreographer.FrameCallback {
 
             int bubbleCount = mBubbles.size();
 
-            mBadge.attach(bubble);
-            mBadge.setBubbleCount(bubbleCount);
+            mBadgeView.attach(bubble);
+            mBadgeView.setBubbleCount(bubbleCount);
 
             if (mCurrentState == STATE_ContentView) {
                 bubble.setVisibility(View.VISIBLE);

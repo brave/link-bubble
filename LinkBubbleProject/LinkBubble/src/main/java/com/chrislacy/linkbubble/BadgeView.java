@@ -10,19 +10,19 @@ import android.widget.TextView;
 /**
  * Created by gw on 12/10/13.
  */
-public class Badge extends TextView {
+public class BadgeView extends TextView {
 
     private BubbleView mBubble;
 
-    public Badge(Context context) {
+    public BadgeView(Context context) {
         this(context, null);
     }
 
-    public Badge(Context context, AttributeSet attrs) {
+    public BadgeView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public Badge(Context context, AttributeSet attrs, int defStyle) {
+    public BadgeView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
