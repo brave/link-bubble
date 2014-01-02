@@ -10,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
-import android.widget.FrameLayout;
 
 import java.util.Vector;
 
@@ -18,7 +17,7 @@ public class HomeActivity extends Activity {
 
     private static final String TAG = "HomeActivity";
 
-    FrameLayout mContentView;
+    View mContentView;
     View mBackgroundView;
 
     final Handler mHandler = new Handler();
@@ -30,7 +29,7 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.activity_home);
 
         mBackgroundView = findViewById(R.id.background);
-        mContentView = (FrameLayout) findViewById(R.id.content);
+        mContentView = findViewById(R.id.content);
 
         if (Settings.get().debugAutoLoadUrl()) {
             MainApplication.openLink(this, "http://abc.net.au");

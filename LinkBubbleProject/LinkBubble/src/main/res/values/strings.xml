@@ -74,5 +74,9 @@
     <string name="link_loaded_with_app">Loaded with %1$s</string>
     <string name="link_redirected">Redirected to %1$s</string>
 
+    <string name="stat_time_saved">you save</string>
+    <string name="stat_per_day">per day</string>
+    <string name="stat_per_link">per link</string>
+
     <string name="no_default_browser">No default browser found on the system.</string>
 </resources>
