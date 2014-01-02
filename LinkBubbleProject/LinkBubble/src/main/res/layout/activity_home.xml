@@ -32,83 +32,53 @@
             android:layout_marginBottom="20dp"/>
 
 
-            <LinearLayout
-                android:id="@+id/saved_per_link"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/header_logo"
-                android:orientation="vertical"
-                android:paddingLeft="20dp">
-
-                <com.chrislacy.linkbubble.CondensedTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/stat_time_saved"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@android:color/holo_red_light"
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
-
-                <com.chrislacy.linkbubble.CondensedTextView
-                    android:layout_width="140dp"
-                    android:layout_height="140dp"
-                    android:layout_gravity="center_horizontal"
-                    android:text="2.3\nseconds"
-                    android:textColor="@android:color/white"
-                    android:gravity="center"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textStyle="bold"
-                    android:textSize="28sp"
-                    android:background="@drawable/circle_red"/>
-
-                <com.chrislacy.linkbubble.CondensedTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/stat_per_link"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@android:color/holo_red_light"
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
-
-            </LinearLayout>
-
-
         <LinearLayout
-            android:id="@+id/saved_total"
+            android:id="@+id/stat_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/saved_per_link"
             android:layout_below="@id/header_logo"
+            android:layout_centerHorizontal="true"
             android:orientation="vertical"
-            android:paddingLeft="20dp">
+            android:layout_marginBottom="40dp">
 
             <com.chrislacy.linkbubble.CondensedTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/stat_time_saved"
                 android:layout_gravity="center_horizontal"
-                android:textColor="@android:color/holo_purple"
+                android:textColor="@android:color/holo_red_light"
                 android:textAppearance="?android:attr/textAppearanceMedium"/>
 
             <com.chrislacy.linkbubble.CondensedTextView
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:layout_gravity="center_horizontal"
-                android:text="14\nminutes"
+                android:text="2.3\nseconds"
                 android:textColor="@android:color/white"
                 android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textStyle="bold"
                 android:textSize="28sp"
-                android:background="@drawable/circle_purple"/>
+                android:background="@drawable/circle_red"/>
 
             <com.chrislacy.linkbubble.CondensedTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/stat_per_link"
                 android:layout_gravity="center_horizontal"
-                android:textColor="@android:color/holo_purple"
+                android:textColor="@android:color/holo_red_light"
                 android:textAppearance="?android:attr/textAppearanceMedium"/>
 
         </LinearLayout>
+
+        <Button
+            style="@style/HistoryButton"
+            android:id="@+id/history"
+            android:text="@string/history"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/stat_container"
+            />
+
 
     <!--
         <at.technikum.mti.fancycoverflow.FancyCoverFlow
