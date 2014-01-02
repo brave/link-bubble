@@ -4,7 +4,8 @@
     <item>
         <shape android:shape="oval" >
             <solid android:color="@color/content_toolbar_background" />
-            <size android:height="60dp" android:width="60dp"/>
+            <size android:height="@dimen/bubble_icon_size"
+                  android:width="@dimen/bubble_icon_size"/>
         </shape>
     </item>
     <item>

@@ -106,9 +106,12 @@ public class BubbleView extends FrameLayout {
         if (mBadge == null) {
             mBadge = badge;
 
+            int badgeMargin = getResources().getDimensionPixelSize(R.dimen.badge_margin);
             int badgeSize = getResources().getDimensionPixelSize(R.dimen.badge_size);
             FrameLayout.LayoutParams lp = new LayoutParams(badgeSize, badgeSize);
             lp.gravity = Gravity.TOP|Gravity.RIGHT;
+            lp.rightMargin = badgeMargin;
+            lp.topMargin = badgeMargin;
             addView(mBadge, lp);
         }
     }
@@ -315,7 +318,6 @@ public class BubbleView extends FrameLayout {
             @Override
             public void onPageLoaded(ContentView.PageLoadInfo info) {
                 showProgressBar(false);
-                setBackgroundResource(R.drawable.bubble_light);
 
                 if (info.bmp == null) {
                     onReceivedIcon(null);
@@ -486,8 +488,9 @@ public class BubbleView extends FrameLayout {
         mWindowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
         mWindowManagerParams.x = x0;
         mWindowManagerParams.y = y0;
-        mWindowManagerParams.height = Config.dpToPx(60.0f);
-        mWindowManagerParams.width = Config.dpToPx(60.0f);
+        int bubbleSize = getResources().getDimensionPixelSize(R.dimen.bubble_size);
+        mWindowManagerParams.height = bubbleSize;
+        mWindowManagerParams.width = bubbleSize;
         mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
         mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;

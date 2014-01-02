@@ -21,6 +21,9 @@
     <dimen name="youtube_emebed_item_height">160dp</dimen>
 
     <dimen name="badge_size">24dp</dimen>
+    <dimen name="badge_margin">2dp</dimen>
+    <dimen name="bubble_size">64dp</dimen>
+    <dimen name="bubble_icon_size">60dp</dimen>
     <dimen name="progress_bar_size">32dp</dimen>
 
 </resources>
