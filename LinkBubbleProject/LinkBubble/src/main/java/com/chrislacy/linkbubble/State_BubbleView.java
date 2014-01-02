@@ -85,6 +85,8 @@ public class State_BubbleView extends ControllerState {
 
         MainController.get().scheduleUpdate();
         mTouchFrameCount = 0;
+
+        mBadgeView.hide();
     }
 
     @Override
