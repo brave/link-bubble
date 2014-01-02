@@ -18,8 +18,12 @@ public class HomeActivity extends Activity {
 
     private static final String TAG = "HomeActivity";
 
+    private static final String PLAYED_INTRO_ANIM_KEY = "PlayedIntroAnimation";
+
     View mContentView;
     View mBackgroundView;
+
+    boolean mPlayedIntroAnimation;
 
     final Handler mHandler = new Handler();
 
@@ -31,6 +35,15 @@ public class HomeActivity extends Activity {
 
         mBackgroundView = findViewById(R.id.background);
         mContentView = findViewById(R.id.content);
+
+        if (savedInstanceState != null) {
+            mPlayedIntroAnimation = savedInstanceState.getBoolean(PLAYED_INTRO_ANIM_KEY);
+        }
+
+        if (mPlayedIntroAnimation) {
+            mBackgroundView.setAlpha(1.f);
+            mContentView.setVisibility(View.VISIBLE);
+        }
 
         if (Settings.get().debugAutoLoadUrl()) {
             MainApplication.openLink(this, "http://abc.net.au");
@@ -73,7 +86,24 @@ public class HomeActivity extends Activity {
     public void onResume() {
         super.onResume();
 
-        animateOn();
+        if (mPlayedIntroAnimation == false) {
+            animateOn();
+            mPlayedIntroAnimation = true;
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+        savedInstanceState.putBoolean(PLAYED_INTRO_ANIM_KEY, mPlayedIntroAnimation);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        mPlayedIntroAnimation = savedInstanceState.getBoolean(PLAYED_INTRO_ANIM_KEY);
     }
 
     void animateOn() {
