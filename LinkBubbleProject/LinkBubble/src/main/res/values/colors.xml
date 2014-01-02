@@ -5,7 +5,7 @@
     <drawable name="white_button_pressed">#ddd</drawable>
     <drawable name="white_button_normal">#fff</drawable>
 
-    <color name="content_toolbar_background">#ffefefef</color>
+    <color name="content_toolbar_background">#ffe5e5e5</color>
     <color name="badge_background">#cccccc</color>
     <color name="badge_text">#333333</color>
     <!--<color name="badge_highlight">#aaaaaa</color>-->
