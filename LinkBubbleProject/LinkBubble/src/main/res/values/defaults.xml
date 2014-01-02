@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="default_fiv_isAnimated">true</bool>
+    <bool name="default_fiv_isFlipped">false</bool>
+    <integer name="default_fiv_duration">500</integer>
+    <!--Rotation Y-->
+    <integer name="default_fiv_rotations">2</integer>
+    <!--Default rotation is CCW-->
+    <bool name="default_fiv_isRotationReversed">false</bool>
+</resources>
