@@ -14,27 +14,27 @@
         android:layout_height="wrap_content"
         android:text="@string/stat_time_saved"
         android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/holo_purple"
+        android:textColor="@android:color/holo_orange_dark"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <com.chrislacy.linkbubble.CondensedTextView
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_gravity="center_horizontal"
-        android:text="2.3\nseconds"
+        android:text="3.1\nminutes"
         android:textColor="@android:color/white"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
         android:textSize="28sp"
-        android:background="@drawable/circle_purple"/>
+        android:background="@drawable/circle_stat_per_day"/>
 
     <com.chrislacy.linkbubble.CondensedTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/stat_per_link"
+        android:text="@string/stat_per_day"
         android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/holo_purple"
+        android:textColor="@android:color/holo_orange_dark"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
 </LinearLayout>
