@@ -13,7 +13,7 @@
 
     <color name="actionbar_title_color">@android:color/black</color>
 
-    <color name="highlight_color">#ff3fcdfd</color>
+    <color name="highlight_color">@color/content_toolbar_background</color>
 
     <color name="progress_default_progress_color">#30333333</color>
 
