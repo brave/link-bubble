@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -512,6 +513,20 @@ public class BubbleView extends FrameLayout {
         }
     }
 
+    Handler mHandler = new Handler();
+    float mTempProgress = 0.f;
+    Runnable mProgressRunnable = new Runnable() {
+        @Override
+        public void run() {
+            mProgressIndicator.setProgress((int) mTempProgress);
+            mTempProgress += .3f;
+            if (mTempProgress >= 100) {
+                mTempProgress -= 100;
+            }
+            mHandler.postDelayed(mProgressRunnable, 33);
+        }
+    };
+
     void showProgressBar(boolean show, int progress) {
         if (show) {
             if (mProgressBarShowing == false) {
@@ -519,8 +534,10 @@ public class BubbleView extends FrameLayout {
                 //mProgressBar.setIndeterminate(true);
                 mProgressIndicator.setVisibility(VISIBLE);
                 mFavicon.setVisibility(GONE);
+
+                mHandler.postDelayed(mProgressRunnable, 10);
             }
-            mProgressIndicator.setProgress(progress);
+            //mProgressIndicator.setProgress(progress);
         } else {
             if (mProgressBarShowing) {
                 mProgressIndicator.setVisibility(GONE);
