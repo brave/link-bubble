@@ -585,6 +585,6 @@ public class BubbleView extends FrameLayout {
     };*/
 
     void showProgressBar(boolean show, int progress) {
-        mProgressIndicator.setProgress(show, progress);
+        mProgressIndicator.setProgress(show, progress, mUrl);
     }
 }

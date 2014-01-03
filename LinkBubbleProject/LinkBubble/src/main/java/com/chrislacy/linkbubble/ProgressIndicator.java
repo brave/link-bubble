@@ -15,6 +15,8 @@ import android.view.animation.RotateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import java.net.URL;
+
 public class ProgressIndicator extends FrameLayout {
 
     private int mMax;
@@ -73,7 +75,7 @@ public class ProgressIndicator extends FrameLayout {
         return mProgress;
     }
 
-    public void setProgress(boolean show, int progress) {
+    public void setProgress(boolean show, int progress, URL url) {
 
         if (show && progress < 100) {
             mIndicator.setVisibility(VISIBLE);
@@ -90,7 +92,7 @@ public class ProgressIndicator extends FrameLayout {
         }
 
         mProgress = progress;
-        mProgressArcView.setProgress(show == false ? 100 : progress, mMax);
+        mProgressArcView.setProgress(show == false ? 100 : progress, mMax, url);
     }
 
 
@@ -103,6 +105,7 @@ public class ProgressIndicator extends FrameLayout {
         private float mProgress;
         private static final float SWEEP_INC = 2.5f;
         private static final float START_INC = 0;
+        private String mUrl;
 
         public ProgressArcView(Context context) {
             super(context);
@@ -128,8 +131,19 @@ public class ProgressIndicator extends FrameLayout {
             mFramePaint.setStyle(Paint.Style.STROKE);
         }
 
-        void setProgress(int progress, int maxProgress) {
-            mProgress = (float)progress / (float)maxProgress;
+        void setProgress(int progress, int maxProgress, URL url) {
+            float progressN = (float)progress / (float)maxProgress;
+            String urlAsString = url.toString();
+
+            // If the url is the same, and currently we're at 100%, and this progress is < 100%,
+            // don't change the visual arc as it just looks messy.
+            if (mProgress >= .999f && progressN < .999f && mUrl.equals(urlAsString)) {
+                mUrl = urlAsString;
+                return;
+            }
+            mUrl = urlAsString;
+
+            mProgress = progressN;
             invalidate();
         }
 
