@@ -56,7 +56,6 @@ public class OpenEmbedButton extends ContentViewButton implements View.OnClickLi
             }
         }
 
-        Log.d(TAG, "Gone");
         setVisibility(GONE);
         return false;
     }

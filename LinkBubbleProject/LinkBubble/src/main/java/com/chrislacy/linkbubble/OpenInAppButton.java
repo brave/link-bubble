@@ -89,7 +89,6 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
             return true;
         }
 
-        Log.d(TAG, "Gone");
         setVisibility(GONE);
         return false;
     }
