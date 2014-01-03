@@ -69,6 +69,7 @@ public class ContentView extends FrameLayout {
     private BubbleView mOwner;
     private int mHeaderHeight;
     private int mMarkerX;
+    private Path mTempPath = new Path();
 
     private Paint mPaint;
 
@@ -135,14 +136,12 @@ public class ContentView extends FrameLayout {
     public void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
 
-        //int xp = (int) Config.getContentViewX(mOwner.getBubbleIndex(), MainController.get().getBubbleCount());
+        mTempPath.reset();
+        mTempPath.moveTo(mMarkerX + Config.mBubbleWidth * 0.33f, mHeaderHeight + 1.0f);
+        mTempPath.lineTo(mMarkerX + Config.mBubbleWidth * 0.5f, 0.0f);
+        mTempPath.lineTo(mMarkerX + Config.mBubbleWidth * 0.67f, mHeaderHeight + 1.0f);
 
-        Path path = new Path();
-        path.moveTo(mMarkerX + Config.mBubbleWidth * 0.33f, mHeaderHeight + 1.0f);
-        path.lineTo(mMarkerX + Config.mBubbleWidth * 0.5f, 0.0f);
-        path.lineTo(mMarkerX + Config.mBubbleWidth * 0.67f, mHeaderHeight + 1.0f);
-
-        canvas.drawPath(path, mPaint);
+        canvas.drawPath(mTempPath, mPaint);
     }
 
     public void destroy() {
