@@ -321,35 +321,45 @@ public class BubbleView extends FrameLayout {
             @Override
             public void onPageLoading(String url) {
                 showProgressBar(true, 0);
-                onReceivedIcon(null);
+
+                boolean setDefaultFavicon = true;
 
                 try {
                     // TODO: remove this allocation
-                    URL _url = new URL(url);
-                    String faviconUrl = "http://" + _url.getHost() + "/favicon.ico";
-                    //String faviconUrl = "http://1.gravatar.com/blavatar/f8748081423ce49bd3ecb267cd4effc7?s=16";
-                    Picasso.with(getContext()).cancelRequest(mFavicon);
-                    Picasso.with(getContext())
-                            .load(faviconUrl)
-                            .transform(mFaviconTransformation)
-                            .placeholder(R.drawable.fallback_favicon)
-                            .into(mFavicon, new Callback() {
-                        @Override
-                        public void onSuccess() {
-                            if (mAdditionalFaviconView != null) {
-                                mAdditionalFaviconView.setImageDrawable(mFavicon.getDrawable());
-                            }
-                        }
+                    URL previousUrl = mUrl;
+                    mUrl = new URL(url);
 
-                        @Override
-                        public void onError() {
-                            onReceivedIcon(null);
-                        }
-                    });
+                    if (previousUrl != null && previousUrl.getHost().equals(mUrl.getHost())) {
+                        setDefaultFavicon = false;
+                    } else {
+                        String faviconUrl = "http://" + mUrl.getHost() + "/favicon.ico";
+                        //String faviconUrl = "http://1.gravatar.com/blavatar/f8748081423ce49bd3ecb267cd4effc7?s=16";
+                        Picasso.with(getContext()).cancelRequest(mFavicon);
+                        Picasso.with(getContext())
+                                .load(faviconUrl)
+                                .transform(mFaviconTransformation)
+                                .placeholder(R.drawable.fallback_favicon)
+                                .into(mFavicon, new Callback() {
+                                    @Override
+                                    public void onSuccess() {
+                                        if (mAdditionalFaviconView != null) {
+                                            mAdditionalFaviconView.setImageDrawable(mFavicon.getDrawable());
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onError() {
+                                        onReceivedIcon(null);
+                                    }
+                                });
+                    }
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
 
+                if (setDefaultFavicon) {
+                    onReceivedIcon(null);
+                }
             }
 
             @Override
