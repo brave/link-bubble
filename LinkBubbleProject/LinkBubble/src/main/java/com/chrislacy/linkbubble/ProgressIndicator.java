@@ -9,6 +9,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -77,6 +78,7 @@ public class ProgressIndicator extends FrameLayout {
         }
 
         mProgress = progress;
+        mArcView.setProgress(progress, mMax);
     }
 
 
@@ -84,8 +86,9 @@ public class ProgressIndicator extends FrameLayout {
         private Paint mPaint;
         private Paint mFramePaint;
         private RectF mOval;
-        private float mStart = -90;
-        private float mSweep;
+        //private float mStart = -90;
+        //private float mSweep;
+        private float mProgress;
         private boolean mUseCenter = false;
         private static final float SWEEP_INC = 2.5f;
         private static final float START_INC = 0;
@@ -103,9 +106,6 @@ public class ProgressIndicator extends FrameLayout {
             mPaint.setStrokeWidth(strokeWidth);
 
             int size = resources.getDimensionPixelSize(R.dimen.bubble_progress_size) - strokeWidth;
-            int iconStrokeSize = resources.getDimensionPixelSize(R.dimen.bubble_icon_stroke_size);
-            //float offset = (float)(strokeWidth)/2.f + iconStrokeSize;
-            //mOval = new RectF(offset, offset, size+offset, size+offset);
             float offset = (float)(strokeWidth)/2.f;
             mOval = new RectF(offset, offset, size+offset, size+offset);
 
@@ -120,10 +120,17 @@ public class ProgressIndicator extends FrameLayout {
             mFramePaint.setStyle(style);
         }
 
+        void setProgress(int progress, int maxProgress) {
+            mProgress = (float)progress / (float)maxProgress;
+            invalidate();
+        }
+
         @Override
         protected void onDraw(Canvas canvas) {
-            canvas.drawArc(mOval, mStart, mSweep, mUseCenter, mPaint);
+            float sweep = 360.f * mProgress;
+            canvas.drawArc(mOval, -90, sweep, mUseCenter, mPaint);
 
+            /*
             mSweep += SWEEP_INC;
             if (mSweep > 360) {
                 mSweep -= 360;
@@ -133,6 +140,7 @@ public class ProgressIndicator extends FrameLayout {
                 }
             }
             invalidate();
+            */
         }
     }
 }
