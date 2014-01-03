@@ -171,25 +171,26 @@ public class ContentView extends FrameLayout {
     private boolean isValidUrl(String urlString) {
         try {
             return isValidUrl(new URL(urlString));
-        } catch (Exception e) {
-            // This should never really happen...!
+        } catch (MalformedURLException e) {
+            return false;
         }
-        return true;
     }
 
     private boolean isValidUrl(URL url) {
+        if (url == null) {
+            return false;
+        }
+
         boolean isValid = true;
 
-        if (url != null) {
-            String [] urlBlacklist = { "t.co", "goo.gl", "bit.ly" };
+        String [] urlBlacklist = { "t.co", "goo.gl", "bit.ly" };
 
-            String hostName = url.getHost();
+        String hostName = url.getHost();
 
-            for (int i=0 ; i < urlBlacklist.length ; ++i) {
-                if (hostName.equalsIgnoreCase(urlBlacklist[i])) {
-                    isValid = false;
-                    break;
-                }
+        for (int i=0 ; i < urlBlacklist.length ; ++i) {
+            if (hostName.equalsIgnoreCase(urlBlacklist[i])) {
+                isValid = false;
+                break;
             }
         }
 
