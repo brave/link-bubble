@@ -607,6 +607,7 @@ public class ContentView extends FrameLayout {
         Log.d(TAG, "load url: " + url);
         mStartTime = startTime;
         mWebView.loadUrl(url);
+        mEventHandler.onPageLoading(url);
         mTitleTextView.setText(R.string.loading);
         mUrlTextView.setText(url.replace("http://", ""));
     }

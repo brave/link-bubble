@@ -14,6 +14,9 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -304,6 +307,10 @@ public class BubbleView extends FrameLayout {
         mUrl = new URL(url);
         mRecordHistory = Settings.get().isIncognitoMode() ? false : true;
 
+        mFavicon = (ImageView) findViewById(R.id.favicon);
+        mProgressIndicator = (ProgressIndicator) findViewById(R.id.progressIndicator);
+        showProgressBar(true, 0);
+
         mContentView = (ContentView)inflate(getContext(), R.layout.view_content, null);
         mContentView.configure(BubbleView.this, mUrl.toString(), startTime, new ContentView.EventHandler() {
             @Override
@@ -315,6 +322,34 @@ public class BubbleView extends FrameLayout {
             public void onPageLoading(String url) {
                 showProgressBar(true, 0);
                 onReceivedIcon(null);
+
+                try {
+                    // TODO: remove this allocation
+                    URL _url = new URL(url);
+                    String faviconUrl = "http://" + _url.getHost() + "/favicon.ico";
+                    //String faviconUrl = "http://1.gravatar.com/blavatar/f8748081423ce49bd3ecb267cd4effc7?s=16";
+                    Picasso.with(getContext()).cancelRequest(mFavicon);
+                    Picasso.with(getContext())
+                            .load(faviconUrl)
+                            .transform(mFaviconTransformation)
+                            .placeholder(R.drawable.fallback_favicon)
+                            .into(mFavicon, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            if (mAdditionalFaviconView != null) {
+                                mAdditionalFaviconView.setImageDrawable(mFavicon.getDrawable());
+                            }
+                        }
+
+                        @Override
+                        public void onError() {
+                            onReceivedIcon(null);
+                        }
+                    });
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+
             }
 
             @Override
@@ -326,8 +361,8 @@ public class BubbleView extends FrameLayout {
             public void onPageLoaded(ContentView.PageLoadInfo info) {
                 showProgressBar(false, 0);
 
-                if (info == null || info.bmp == null) {
-                    onReceivedIcon(null);
+                if (info != null && info.bmp != null) {
+                    onReceivedIcon(info.bmp);
                 }
 
                 if (mRecordHistory && info != null && info.url != null) {
@@ -342,18 +377,7 @@ public class BubbleView extends FrameLayout {
                 if (bitmap == null) {
                     mFavicon.setImageResource(R.drawable.fallback_favicon);
                 } else {
-                    int w = bitmap.getWidth();
-                    int h = bitmap.getHeight();
-
-                    int reqW = Math.min((int) (Config.mBubbleWidth * 0.5f), w*2);
-                    int reqH = Math.min((int) (Config.mBubbleHeight * 0.5f), h*2);
-
-                    if (w != reqW || h != reqH) {
-                        w = reqW;
-                        h = reqH;
-
-                        bitmap = Bitmap.createScaledBitmap(bitmap, w, h, true);
-                    }
+                    bitmap = mFaviconTransformation.transform(bitmap);
 
                     mFavicon.setImageBitmap(bitmap);
                     if (mAdditionalFaviconView != null) {
@@ -367,10 +391,6 @@ public class BubbleView extends FrameLayout {
         });
 
         setVisibility(GONE);
-
-        mFavicon = (ImageView) findViewById(R.id.favicon);
-        mProgressIndicator = (ProgressIndicator) findViewById(R.id.progressIndicator);
-        showProgressBar(true, 0);
 
         setOnTouchListener(new OnTouchListener() {
             private float mStartTouchXRaw;
@@ -512,6 +532,32 @@ public class BubbleView extends FrameLayout {
             }
         }
     }
+
+    private static class FaviconTransformation implements Transformation {
+        @Override
+        public Bitmap transform(Bitmap source) {
+            int w = source.getWidth();
+            int h = source.getHeight();
+
+            int reqW = Math.min((int) (Config.mBubbleWidth * 0.5f), w*2);
+            int reqH = Math.min((int) (Config.mBubbleHeight * 0.5f), h*2);
+
+            if (w != reqW || h != reqH) {
+                w = reqW;
+                h = reqH;
+
+                Bitmap result = Bitmap.createScaledBitmap(source, w, h, true);
+                return result;
+            }
+
+            return source;
+        }
+
+        @Override
+        public String key() { return "faviconTransformation()"; }
+    }
+
+    private FaviconTransformation mFaviconTransformation = new FaviconTransformation();
 
     /*
     Handler mHandler = new Handler();
