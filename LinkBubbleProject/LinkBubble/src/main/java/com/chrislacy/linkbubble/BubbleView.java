@@ -325,7 +325,7 @@ public class BubbleView extends FrameLayout {
             public void onPageLoaded(ContentView.PageLoadInfo info) {
                 showProgressBar(false, 0);
 
-                if (info.bmp == null) {
+                if (info == null || info.bmp == null) {
                     onReceivedIcon(null);
                 }
 
