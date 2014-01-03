@@ -28,17 +28,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/progressIndicator"
-        android:layout_gravity="center">
-
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/indicator_image"
-            android:src="@drawable/loading_dots"
-            android:layout_gravity="center"/>
-
-    </com.chrislacy.linkbubble.ProgressIndicator>
-
+        android:layout_gravity="center"/>
 
     <ImageView
         android:layout_width="wrap_content"

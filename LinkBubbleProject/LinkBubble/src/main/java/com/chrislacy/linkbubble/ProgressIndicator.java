@@ -12,17 +12,19 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 public class ProgressIndicator extends FrameLayout {
 
     private int mMax;
     private int mProgress;
 
-    private View mIndicator;
+    private ImageView mIndicator;
     private Animation mRotationAnimation;
 
     ArcView mArcView;
@@ -44,12 +46,23 @@ public class ProgressIndicator extends FrameLayout {
         mMax = 100;
         mProgress = 0;
 
+        mRotationAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        mRotationAnimation.setInterpolator(new LinearInterpolator());
+        mRotationAnimation.setRepeatCount(Animation.INFINITE);
+        mRotationAnimation.setDuration(1000);
+
         mArcView = new ArcView(getContext());
         int bubbleProgressSize = getResources().getDimensionPixelSize(R.dimen.bubble_progress_size);
-        FrameLayout.LayoutParams lp = new LayoutParams(bubbleProgressSize, bubbleProgressSize);
-        lp.gravity = Gravity.CENTER;
-        addView(mArcView, lp);
+        FrameLayout.LayoutParams arcLP = new LayoutParams(bubbleProgressSize, bubbleProgressSize);
+        arcLP.gravity = Gravity.CENTER;
+        addView(mArcView, arcLP);
         mArcView.startDraw(Paint.Style.STROKE, false);
+
+        mIndicator = new ImageView(getContext());
+        mIndicator.setImageResource(R.drawable.loading_dots);
+        FrameLayout.LayoutParams indicatorLP = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        indicatorLP.gravity = Gravity.CENTER;
+        addView(mIndicator, indicatorLP);
     }
 
     public int getMax() {
@@ -65,20 +78,24 @@ public class ProgressIndicator extends FrameLayout {
         return mProgress;
     }
 
-    public void setProgress(int progress) {
+    public void setProgress(boolean show, int progress) {
 
-        if (mIndicator == null) {
-            mIndicator = findViewById(R.id.indicator_image);
-
-            RotateAnimation rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-            mIndicator.setAnimation(rotate);
-            rotate.setInterpolator(new LinearInterpolator());
-            rotate.setRepeatCount(Animation.INFINITE);
-            rotate.setDuration(1000);
+        if (show && progress < 100) {
+            mIndicator.setVisibility(VISIBLE);
+            if (mIndicator.getAnimation() == null) {
+                mIndicator.setAnimation(mRotationAnimation);
+                mRotationAnimation.start();
+            }
+        } else {
+            mIndicator.setVisibility(GONE);
+            if (mIndicator.getAnimation() != null) {
+                mRotationAnimation.cancel();
+                mIndicator.setAnimation(null);
+            }
         }
 
         mProgress = progress;
-        mArcView.setProgress(progress, mMax);
+        mArcView.setProgress(show == false ? 100 : progress, mMax);
     }
 
 

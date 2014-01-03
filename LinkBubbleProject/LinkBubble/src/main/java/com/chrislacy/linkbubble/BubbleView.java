@@ -513,6 +513,7 @@ public class BubbleView extends FrameLayout {
         }
     }
 
+    /*
     Handler mHandler = new Handler();
     float mTempProgress = 0.f;
     Runnable mProgressRunnable = new Runnable() {
@@ -525,24 +526,21 @@ public class BubbleView extends FrameLayout {
             }
             mHandler.postDelayed(mProgressRunnable, 33);
         }
-    };
+    };*/
 
     void showProgressBar(boolean show, int progress) {
         if (show) {
             if (mProgressBarShowing == false) {
                 mProgressBarShowing = true;
-                //mProgressBar.setIndeterminate(true);
                 mProgressIndicator.setVisibility(VISIBLE);
                 mFavicon.setVisibility(GONE);
-
-                mHandler.postDelayed(mProgressRunnable, 10);
+                //mHandler.postDelayed(mProgressRunnable, 10);
             }
-            //mProgressIndicator.setProgress(progress);
         } else {
             if (mProgressBarShowing) {
-                mProgressIndicator.setVisibility(GONE);
                 mProgressBarShowing = false;
             }
         }
+        mProgressIndicator.setProgress(show, progress);
     }
 }
