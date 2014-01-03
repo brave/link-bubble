@@ -4,12 +4,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +23,7 @@ public class ProgressIndicator extends FrameLayout {
     private ImageView mIndicator;
     private Animation mRotationAnimation;
 
-    ArcView mArcView;
+    ProgressArcView mProgressArcView;
 
     public ProgressIndicator(Context context) {
         this(context, null);
@@ -51,12 +47,11 @@ public class ProgressIndicator extends FrameLayout {
         mRotationAnimation.setRepeatCount(Animation.INFINITE);
         mRotationAnimation.setDuration(1000);
 
-        mArcView = new ArcView(getContext());
+        mProgressArcView = new ProgressArcView(getContext());
         int bubbleProgressSize = getResources().getDimensionPixelSize(R.dimen.bubble_progress_size);
         FrameLayout.LayoutParams arcLP = new LayoutParams(bubbleProgressSize, bubbleProgressSize);
         arcLP.gravity = Gravity.CENTER;
-        addView(mArcView, arcLP);
-        mArcView.startDraw(Paint.Style.STROKE, false);
+        addView(mProgressArcView, arcLP);
 
         mIndicator = new ImageView(getContext());
         mIndicator.setImageResource(R.drawable.loading_dots);
@@ -95,22 +90,21 @@ public class ProgressIndicator extends FrameLayout {
         }
 
         mProgress = progress;
-        mArcView.setProgress(show == false ? 100 : progress, mMax);
+        mProgressArcView.setProgress(show == false ? 100 : progress, mMax);
     }
 
 
-    private static class ArcView extends View {
+    private static class ProgressArcView extends View {
         private Paint mPaint;
         private Paint mFramePaint;
         private RectF mOval;
         //private float mStart = -90;
         //private float mSweep;
         private float mProgress;
-        private boolean mUseCenter = false;
         private static final float SWEEP_INC = 2.5f;
         private static final float START_INC = 0;
 
-        public ArcView(Context context) {
+        public ProgressArcView(Context context) {
             super(context);
 
             Resources resources = context.getResources();
@@ -129,12 +123,9 @@ public class ProgressIndicator extends FrameLayout {
             mFramePaint = new Paint();
             mFramePaint.setAntiAlias(true);
             mFramePaint.setStrokeWidth(strokeWidth);
-        }
 
-        public void startDraw(Paint.Style style, boolean use_centre) {
-            mUseCenter = use_centre;
-            mPaint.setStyle(style);
-            mFramePaint.setStyle(style);
+            mPaint.setStyle(Paint.Style.STROKE);
+            mFramePaint.setStyle(Paint.Style.STROKE);
         }
 
         void setProgress(int progress, int maxProgress) {
@@ -145,7 +136,7 @@ public class ProgressIndicator extends FrameLayout {
         @Override
         protected void onDraw(Canvas canvas) {
             float sweep = 360.f * mProgress;
-            canvas.drawArc(mOval, -90, sweep, mUseCenter, mPaint);
+            canvas.drawArc(mOval, -90, sweep, false, mPaint);
 
             /*
             mSweep += SWEEP_INC;
