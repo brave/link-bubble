@@ -28,7 +28,6 @@ public class BubbleView extends FrameLayout {
     protected WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
     private EventHandler mEventHandler;
     private ProgressIndicator mProgressIndicator;
-    private boolean mProgressBarShowing;
 
     private URL mUrl;
     private ContentView mContentView;
@@ -529,18 +528,6 @@ public class BubbleView extends FrameLayout {
     };*/
 
     void showProgressBar(boolean show, int progress) {
-        if (show) {
-            if (mProgressBarShowing == false) {
-                mProgressBarShowing = true;
-                mProgressIndicator.setVisibility(VISIBLE);
-                mFavicon.setVisibility(GONE);
-                //mHandler.postDelayed(mProgressRunnable, 10);
-            }
-        } else {
-            if (mProgressBarShowing) {
-                mProgressBarShowing = false;
-            }
-        }
         mProgressIndicator.setProgress(show, progress);
     }
 }
