@@ -6,12 +6,22 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
-public class ProgressIndicator extends ProgressBar {
+public class ProgressIndicator extends FrameLayout {
 
     private int mMax;
     private int mProgress;
+
+    private View mIndicator;
+    private Animation mRotationAnimation;
 
     private Paint mProgressPaint;
     private RectF mTempRectF = new RectF();
@@ -70,6 +80,18 @@ public class ProgressIndicator extends ProgressBar {
     }
 
     public void setProgress(int progress) {
+
+        Log.d("blerg", "progress: " + progress);
+        if (mIndicator == null) {
+            mIndicator = findViewById(R.id.indicator_image);
+
+            RotateAnimation rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            mIndicator.setAnimation(rotate);
+            rotate.setInterpolator(new LinearInterpolator());
+            rotate.setRepeatCount(Animation.INFINITE);
+            rotate.setDuration(1000);
+        }
+
         mProgress = progress;
         invalidate();
     }
