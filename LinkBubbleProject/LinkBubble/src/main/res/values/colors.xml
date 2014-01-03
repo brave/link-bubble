@@ -2,7 +2,7 @@
 <resources>
     <drawable name="actionbar_background">#aa000000</drawable>
 
-    <drawable name="white_button_pressed">#ddd</drawable>
+    <drawable name="white_button_pressed">#eee</drawable>
     <drawable name="white_button_normal">#fff</drawable>
 
     <color name="home_background">#ffe5e5e5</color>
