@@ -84,7 +84,7 @@ public class ProgressIndicator extends FrameLayout {
         private Paint mPaint;
         private Paint mFramePaint;
         private RectF mOval;
-        private float mStart;
+        private float mStart = -90;
         private float mSweep;
         private boolean mUseCenter = false;
         private static final float SWEEP_INC = 2.5f;
@@ -99,13 +99,15 @@ public class ProgressIndicator extends FrameLayout {
             mPaint = new Paint();
             mPaint.setAntiAlias(true);
             //mPaint.setColor(resources.getColor(android.R.color.holo_purple));
-            mPaint.setColor(resources.getColor(R.color.progress_default_progress_color));
+            mPaint.setColor(resources.getColor(R.color.bubble_border));
             mPaint.setStrokeWidth(strokeWidth);
 
             int size = resources.getDimensionPixelSize(R.dimen.bubble_progress_size) - strokeWidth;
             int iconStrokeSize = resources.getDimensionPixelSize(R.dimen.bubble_icon_stroke_size);
-            float offset = (float)(strokeWidth)/2.f + iconStrokeSize;
-            mOval = new RectF(offset, offset, size, size);
+            //float offset = (float)(strokeWidth)/2.f + iconStrokeSize;
+            //mOval = new RectF(offset, offset, size+offset, size+offset);
+            float offset = (float)(strokeWidth)/2.f;
+            mOval = new RectF(offset, offset, size+offset, size+offset);
 
             mFramePaint = new Paint();
             mFramePaint.setAntiAlias(true);

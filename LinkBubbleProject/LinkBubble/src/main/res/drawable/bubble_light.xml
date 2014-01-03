@@ -10,7 +10,7 @@
     </item>
     <item>
         <shape android:shape="oval" >
-            <stroke android:width="@dimen/bubble_icon_stroke_size" android:color="#666666" />
+            <stroke android:width="@dimen/bubble_icon_stroke_size" android:color="@color/bubble_border" />
         </shape>
     </item>
 

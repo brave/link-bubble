@@ -15,7 +15,7 @@
 
     <color name="highlight_color">@color/content_toolbar_background</color>
 
-    <color name="progress_default_progress_color">#30333333</color>
+    <color name="bubble_border">#666666</color>
 
 </resources>
 
