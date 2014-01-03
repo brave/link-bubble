@@ -314,6 +314,7 @@ public class BubbleView extends FrameLayout {
             @Override
             public void onPageLoading(String url) {
                 showProgressBar(true, 0);
+                onReceivedIcon(null);
             }
 
             @Override
