@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
+import com.linkbubble.physics.Circle;
 
 import java.util.Vector;
 
@@ -30,7 +31,7 @@ public class Canvas extends RelativeLayout {
     private boolean mEnabled;
 
     private ContentView mContentView;
-    ContentView getContentView() { return mContentView; }
+    public ContentView getContentView() { return mContentView; }
 
     public class TargetInfo {
 
@@ -40,9 +41,9 @@ public class Canvas extends RelativeLayout {
             mTargetY = -1;
         }
 
-        Config.BubbleAction mAction;
-        int mTargetX;
-        int mTargetY;
+        public Config.BubbleAction mAction;
+        public int mTargetX;
+        public int mTargetY;
     }
 
     public Canvas(Context context) {

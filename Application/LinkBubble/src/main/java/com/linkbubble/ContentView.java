@@ -779,12 +779,12 @@ public class ContentView extends FrameLayout {
         }
     }
 
-    void onAnimateOnScreen() {
+    public void onAnimateOnScreen() {
         hidePopups();
         resetButtonPressedStates();
     }
 
-    void onAnimateOffscreen() {
+    public void onAnimateOffscreen() {
         hidePopups();
         resetButtonPressedStates();
     }

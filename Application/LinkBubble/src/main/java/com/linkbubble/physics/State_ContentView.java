@@ -1,4 +1,11 @@
-package com.linkbubble;
+package com.linkbubble.physics;
+
+import com.linkbubble.BubbleView;
+import com.linkbubble.Canvas;
+import com.linkbubble.Config;
+import com.linkbubble.MainController;
+import com.linkbubble.Util;
+import com.linkbubble.physics.ControllerState;
 
 /**
  * Created by gw on 18/11/13.
@@ -146,7 +153,7 @@ public class State_ContentView extends ControllerState {
         return "ContentView";
     }
 
-    void setActiveBubble(BubbleView bubble) {
+    public void setActiveBubble(BubbleView bubble) {
         MainController.get().setActiveBubble(bubble);
         bubble.setTargetPos((int)Config.getContentViewX(bubble.getBubbleIndex(), MainController.get().getBubbleCount()), bubble.getYPos(), 0.2f, false);
         mCanvas.setContentView(bubble.getContentView());
