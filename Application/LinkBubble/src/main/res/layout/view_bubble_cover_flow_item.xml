@@ -23,7 +23,7 @@
         android:src="@drawable/fallback_favicon"
         android:scaleType="center"/>
     <!--
-    <com.chrislacy.linkbubble.CondensedTextView
+    <com.linkbubble.CondensedTextView
       android:id="@+id/text_view"
       android:text="blerg"
       android:layout_gravity="bottom|center_horizontal"

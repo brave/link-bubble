@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.chrislacy.linkbubble.BubbleView
+<com.linkbubble.BubbleView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/bubble_size"
     android:layout_height="@dimen/bubble_size"
@@ -14,7 +14,7 @@
         android:layout_gravity="center"/>
 
     <!--
-    <com.chrislacy.linkbubble.ProgressIndicator
+    <com.linkbubble.ProgressIndicator
         style="?android:attr/progressBarStyleSmall"
         android:layout_width="@dimen/progress_bar_size"
         android:layout_height="@dimen/progress_bar_size"
@@ -24,7 +24,7 @@
         android:progressDrawable="@drawable/loading_grey"/>
     -->
 
-    <com.chrislacy.linkbubble.ProgressIndicator
+    <com.linkbubble.ProgressIndicator
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/progressIndicator"
@@ -37,4 +37,4 @@
         android:src="@drawable/fallback_favicon"
         android:layout_gravity="center"/>
 
-</com.chrislacy.linkbubble.BubbleView>
+</com.linkbubble.BubbleView>
