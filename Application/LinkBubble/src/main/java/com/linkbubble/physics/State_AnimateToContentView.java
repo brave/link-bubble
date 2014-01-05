@@ -1,13 +1,20 @@
-package com.linkbubble;
+package com.linkbubble.physics;
 
+import android.view.View;
 import android.view.animation.OvershootInterpolator;
+import com.linkbubble.BubbleView;
+import com.linkbubble.Canvas;
+import com.linkbubble.Config;
+import com.linkbubble.MainController;
+import com.linkbubble.Util;
+import com.linkbubble.physics.ControllerState;
 
 import java.util.Vector;
 
 /**
  * Created by gw on 18/11/13.
  */
-public class State_AnimateToBubbleView extends ControllerState {
+public class State_AnimateToContentView extends ControllerState {
 
     private class BubbleInfo {
         public float mPosX;
@@ -25,16 +32,19 @@ public class State_AnimateToBubbleView extends ControllerState {
     private float mContentPeriod;
     private Vector<BubbleInfo> mBubbleInfo = new Vector<BubbleInfo>();
 
-    public State_AnimateToBubbleView(Canvas canvas) {
+    public State_AnimateToContentView(Canvas canvas) {
         mCanvas = canvas;
     }
 
     @Override
     public void OnEnterState() {
+        mCanvas.fadeIn();
         mCanvas.fadeOutTargets();
         if (mCanvas.getContentView() != null) {
-            mCanvas.getContentView().onAnimateOffscreen();
+            mCanvas.getContentView().onAnimateOnScreen();
         }
+        mCanvas.setContentView(MainController.get().getActiveBubble().getContentView());
+
         mBubbleInfo.clear();
         mTime = 0.0f;
         mBubblePeriod = 0.3f;
@@ -45,24 +55,28 @@ public class State_AnimateToBubbleView extends ControllerState {
         for (int i=0 ; i < bubbleCount ; ++i) {
             BubbleInfo bi = new BubbleInfo();
             BubbleView b = mainController.getBubble(i);
+            b.setVisibility(View.VISIBLE);
+
             bi.mPosX = (float) b.getXPos();
             bi.mPosY = (float) b.getYPos();
 
-            bi.mTargetX = Config.BUBBLE_HOME_X;
-            bi.mTargetY = Config.BUBBLE_HOME_Y;
+            bi.mTargetX = Config.getContentViewX(i, MainController.get().getBubbleCount());
+            bi.mTargetY = Config.mContentViewBubbleY;
             bi.mDistanceX = bi.mTargetX - bi.mPosX;
             bi.mDistanceY = bi.mTargetY - bi.mPosY;
             mBubbleInfo.add(bi);
         }
 
-        mCanvas.setContentViewTranslation(0.0f);
+        mCanvas.showContentView();
+        mCanvas.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
 
-        mainController.endAppPolling();
+        mainController.beginAppPolling();
     }
 
     @Override
     public boolean OnUpdate(float dt) {
         float f = mInterpolator.getInterpolation(mTime / mBubblePeriod);
+        //Log.e("GapTech", "t=" + mTime / mBubblePeriod + ", f=" + f);
         mTime += dt;
 
         MainController mainController = MainController.get();
@@ -82,12 +96,12 @@ public class State_AnimateToBubbleView extends ControllerState {
             b.setExactPos((int) x, (int) y);
         }
 
-        float t = Util.clamp(0.0f, mTime / mContentPeriod, 1.0f);
+        float t = Util.clamp(0.0f, 1.0f - mTime / mContentPeriod, 1.0f);
         mCanvas.setContentViewTranslation(t * (Config.mScreenHeight - Config.mContentOffset));
 
         if (mTime >= mBubblePeriod && mTime >= mContentPeriod) {
-            mainController.switchState(mainController.STATE_BubbleView);
-            mainController.hideContentActivity();
+            //mainController.STATE_ContentView.init(mSelectedBubble);
+            mainController.switchState(mainController.STATE_ContentView);
         }
 
         return true;
@@ -95,8 +109,7 @@ public class State_AnimateToBubbleView extends ControllerState {
 
     @Override
     public void OnExitState() {
-        mCanvas.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
-        mCanvas.setContentView(null);
+        mCanvas.setContentViewTranslation(0.0f);
     }
 
     @Override
@@ -125,8 +138,9 @@ public class State_AnimateToBubbleView extends ControllerState {
     @Override
     public boolean OnOrientationChanged() {
         MainController mainController = MainController.get();
-        mainController.switchState(mainController.STATE_BubbleView);
-        return false;
+        //mainController.STATE_ContentView.init(mSelectedBubble);
+        mainController.switchState(mainController.STATE_ContentView);
+        return true;
     }
 
     @Override
@@ -135,6 +149,6 @@ public class State_AnimateToBubbleView extends ControllerState {
 
     @Override
     public String getName() {
-        return "AnimateToBubbleView";
+        return "AnimateToContentView";
     }
 }

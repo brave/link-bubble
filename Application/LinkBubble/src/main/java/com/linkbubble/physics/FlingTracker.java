@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.physics;
 
 import android.view.MotionEvent;
 
@@ -86,7 +86,7 @@ public class FlingTracker {
     }
 
     static FlingTracker sTracker;
-    static FlingTracker obtain() {
+    public static FlingTracker obtain() {
         if (sTracker == null) {
             sTracker = new FlingTracker();
         }

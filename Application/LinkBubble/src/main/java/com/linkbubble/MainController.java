@@ -16,6 +16,15 @@ import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.widget.Toast;
 
+import com.linkbubble.physics.ControllerState;
+import com.linkbubble.physics.State_AnimateToBubbleView;
+import com.linkbubble.physics.State_AnimateToContentView;
+import com.linkbubble.physics.State_BubbleView;
+import com.linkbubble.physics.State_ContentView;
+import com.linkbubble.physics.State_Flick_BubbleView;
+import com.linkbubble.physics.State_Flick_ContentView;
+import com.linkbubble.physics.State_KillBubble;
+import com.linkbubble.physics.State_SnapToEdge;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -519,11 +528,11 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    void beginAppPolling() {
+    public void beginAppPolling() {
         mAppPoller.beginAppPolling();
     }
 
-    void endAppPolling() {
+    public void endAppPolling() {
         mAppPoller.endAppPolling();
     }
 

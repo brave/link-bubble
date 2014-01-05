@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.physics;
 
 /**
  * Created by gw on 23/10/13.

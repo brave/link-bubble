@@ -1,4 +1,6 @@
-package com.linkbubble;
+package com.linkbubble.physics;
+
+import com.linkbubble.BubbleView;
 
 /**
  * Created by gw on 18/11/13.

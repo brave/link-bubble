@@ -379,7 +379,7 @@ public class Settings {
         editor.commit();
     }
 
-    boolean getAutoContentDisplayLinkLoaded() {
+    public boolean getAutoContentDisplayLinkLoaded() {
         return mSharedPreferences.getBoolean(PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED, PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED_DEFAULT);
     }
 

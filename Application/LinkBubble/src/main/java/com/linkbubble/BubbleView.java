@@ -12,6 +12,8 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import com.linkbubble.physics.Circle;
+import com.linkbubble.physics.FlingTracker;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
@@ -64,24 +66,24 @@ public class BubbleView extends FrameLayout {
     }
 
     public static class TouchEvent {
-        int posX;
-        int posY;
-        float rawX;
-        float rawY;
+        public int posX;
+        public int posY;
+        public float rawX;
+        public float rawY;
     }
 
     public static class MoveEvent {
-        int dx;
-        int dy;
+        public int dx;
+        public int dy;
     }
 
     public static class ReleaseEvent {
-        int posX;
-        int posY;
-        float vx;
-        float vy;
-        float rawX;
-        float rawY;
+        public int posX;
+        public int posY;
+        public float vx;
+        public float vy;
+        public float rawX;
+        public float rawY;
     }
 
     public interface EventHandler {
