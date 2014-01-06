@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NoBoringActionBarActivity">
+
+    <View
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/home_background"
+        android:alpha="0"
+        >
+
+    </View>
+
+    <RelativeLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        >
+
+        <ImageView
+            android:id="@+id/settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:src="@drawable/settings_button"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/header_logo"
+            android:layout_width="240dp"
+            android:layout_height="160dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/text_logo"
+            android:layout_marginBottom="20dp"/>
+
+        <com.linkbubble.ui.FlipView
+            xmlns:fiv="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/imageview"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/stat_height"
+            android:src="@drawable/ic_launcher"
+            fiv:defaultView="@layout/view_stat_time_per_day"
+            fiv:flipView="@layout/view_stat_time_per_link"
+            fiv:isAnimated="true"/>
+
+
+        </LinearLayout>
+
+        <Button
+            style="@style/HistoryButton"
+            android:id="@+id/history"
+            android:text="@string/history"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            />
+
+
+    <!--
+        <at.technikum.mti.fancycoverflow.FancyCoverFlow
+            xmlns:fancyCoverFlow="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/fancyCoverFlow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            fancyCoverFlow:maxRotation="-60"
+            fancyCoverFlow:unselectedAlpha="0.3"
+            fancyCoverFlow:unselectedSaturation="0.0"
+            fancyCoverFlow:unselectedScale="0.4"
+            fancyCoverFlow:scaleDownGravity="0.25"
+            />
+            -->
+    </RelativeLayout>
+
+</FrameLayout>

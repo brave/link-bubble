@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/stat_container"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/stat_height"
+    android:layout_below="@id/header_logo"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:layout_marginBottom="40dp">
+
+    <com.linkbubble.ui.CondensedTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stat_time_saved"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <com.linkbubble.ui.CondensedTextView
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_gravity="center_horizontal"
+        android:text="3.1\nminutes"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:textSize="28sp"
+        android:background="@drawable/circle_stat_per_day"/>
+
+    <com.linkbubble.ui.CondensedTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stat_per_day"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+</LinearLayout>
