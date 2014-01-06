@@ -3,7 +3,8 @@
 
     <solid android:color="@color/content_toolbar_background"/>
 
+    <!--
     <corners android:bottomRightRadius="0dp" android:bottomLeftRadius="0dp"
         android:topLeftRadius="6dp" android:topRightRadius="6dp"/>
-
+    -->
 </shape>
