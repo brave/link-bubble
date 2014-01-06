@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import com.linkbubble.Constant;
+import com.linkbubble.MainApplication;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -89,11 +90,10 @@ public class LoadFaviconTask extends UiAsyncTask<Void, Void, Bitmap> {
 
     // Runs in background thread
     private Bitmap loadFaviconFromDb() {
-        /* LB_CHANGE:
-        ContentResolver resolver = sContext.getContentResolver();
-        return BrowserDB.getFaviconForFaviconUrl(resolver, mFaviconUrl);
-        */
-        return null;
+
+        // LB_CHANGE:
+        MainApplication mainApplication = (MainApplication) sContext.getApplicationContext();
+        return mainApplication.mDatabaseHelper.getFavicon(mFaviconUrl);
     }
 
     // Runs in background thread
@@ -102,10 +102,9 @@ public class LoadFaviconTask extends UiAsyncTask<Void, Void, Bitmap> {
             return;
         }
 
-        /* LB_CHANGE:
-        ContentResolver resolver = sContext.getContentResolver();
-        BrowserDB.updateFaviconForUrl(resolver, mPageUrl, favicon, mFaviconUrl);
-        */
+        // LB_CHANGE:
+        MainApplication mainApplication = (MainApplication) sContext.getApplicationContext();
+        mainApplication.mDatabaseHelper.addFaviconForUrl(mFaviconUrl, favicon, mPageUrl);
     }
 
     /**
