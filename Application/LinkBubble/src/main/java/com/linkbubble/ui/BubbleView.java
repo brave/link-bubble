@@ -300,8 +300,15 @@ public class BubbleView extends FrameLayout {
     }
 
     public void readd() {
+        boolean showing = mProgressIndicator.isIndicatorShowing();
+        int progress = mProgressIndicator.getProgress();
+        URL url = mProgressIndicator.getUrl();
+
         mWindowManager.removeView(this);
         mWindowManager.addView(this, mWindowManagerParams);
+        if (url != null) {
+            mProgressIndicator.setProgress(showing, progress, url);
+        }
     }
 
     public void configure(String url, int x0, int y0, int targetX, int targetY, float targetTime, long startTime,

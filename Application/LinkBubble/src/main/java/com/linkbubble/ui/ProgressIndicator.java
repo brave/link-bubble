@@ -22,6 +22,7 @@ public class ProgressIndicator extends FrameLayout {
 
     private int mMax;
     private int mProgress;
+    private URL mUrl;
 
     private ImageView mIndicator;
     private Animation mRotationAnimation;
@@ -72,6 +73,10 @@ public class ProgressIndicator extends FrameLayout {
         invalidate();
     }
 
+    public URL getUrl() {
+        return mUrl;
+    }
+
     public int getProgress() {
         return mProgress;
     }
@@ -92,10 +97,19 @@ public class ProgressIndicator extends FrameLayout {
             }
         }
 
+        mUrl = url;
         mProgress = progress;
         mProgressArcView.setProgress(show == false ? 100 : progress, mMax, url);
     }
 
+    boolean isIndicatorShowing() {
+        return mIndicator.getVisibility() == VISIBLE;
+    }
+
+    @Override
+    public void setVisibility(int visibility) {
+        super.setVisibility(visibility);
+    }
 
     private static class ProgressArcView extends View {
         private Paint mPaint;
