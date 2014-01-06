@@ -7,7 +7,7 @@ import com.linkbubble.ui.Canvas;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
 import com.linkbubble.Settings;
-import com.linkbubble.Util;
+import com.linkbubble.util.Util;
 
 /**
  * Created by gw on 18/11/13.

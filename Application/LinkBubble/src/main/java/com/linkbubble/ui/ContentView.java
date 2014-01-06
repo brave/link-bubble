@@ -33,13 +33,13 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.graphics.Canvas;
 import android.widget.Toast;
-import com.linkbubble.ActionItem;
+import com.linkbubble.util.ActionItem;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.YouTubeEmbedHelper;
+import com.linkbubble.util.YouTubeEmbedHelper;
 
 import java.net.MalformedURLException;
 import java.net.URL;

@@ -21,13 +21,13 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import com.linkbubble.ActionItem;
+import com.linkbubble.util.ActionItem;
 import com.linkbubble.HistoryRecord;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainDatabaseHelper;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.Util;
+import com.linkbubble.util.Util;
 import com.squareup.otto.Subscribe;
 
 import java.util.Date;

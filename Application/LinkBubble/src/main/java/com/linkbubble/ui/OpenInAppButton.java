@@ -11,7 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.WindowManager;
-import com.linkbubble.ActionItem;
+import com.linkbubble.util.ActionItem;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.Settings;

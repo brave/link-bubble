@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.util;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -20,6 +20,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.linkbubble.Config;
+import com.linkbubble.R;
+import com.linkbubble.Settings;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
