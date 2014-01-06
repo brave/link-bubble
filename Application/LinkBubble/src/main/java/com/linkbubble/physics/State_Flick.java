@@ -3,7 +3,7 @@ package com.linkbubble.physics;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import com.linkbubble.ui.BubbleView;
-import com.linkbubble.ui.Canvas;
+import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
 import com.linkbubble.util.Util;
@@ -13,9 +13,9 @@ import com.linkbubble.util.Util;
  */
 public abstract class State_Flick extends ControllerState {
 
-    private Canvas mCanvas;
+    private CanvasView mCanvasView;
     private BubbleView mBubble;
-    private Canvas.TargetInfo mTargetInfo;
+    private CanvasView.TargetInfo mTargetInfo;
 
     private OvershootInterpolator mOvershootInterpolator = new OvershootInterpolator(1.5f);
     private LinearInterpolator mLinearInterpolator = new LinearInterpolator();
@@ -29,8 +29,8 @@ public abstract class State_Flick extends ControllerState {
 
     public abstract boolean isContentView();
 
-    public State_Flick(Canvas canvas) {
-        mCanvas = canvas;
+    public State_Flick(CanvasView canvasView) {
+        mCanvasView = canvasView;
     }
 
     public void init(BubbleView bubble, float vx, float vy) {
@@ -101,7 +101,7 @@ public abstract class State_Flick extends ControllerState {
             float x = mInitialX + (mTargetX - mInitialX) * f;
             float y = mInitialY + (mTargetY - mInitialY) * f;
 
-            Canvas.TargetInfo ti = mBubble.getTargetInfo(mCanvas, (int)x, (int) y);
+            CanvasView.TargetInfo ti = mBubble.getTargetInfo(mCanvasView, (int)x, (int) y);
             switch (ti.mAction) {
                 case Destroy:
                 case ConsumeRight:

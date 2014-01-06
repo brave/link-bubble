@@ -2,7 +2,7 @@ package com.linkbubble.physics;
 
 import android.view.animation.OvershootInterpolator;
 import com.linkbubble.ui.BubbleView;
-import com.linkbubble.ui.Canvas;
+import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
 import com.linkbubble.util.Util;
@@ -17,10 +17,10 @@ public class State_SnapToEdge extends ControllerState {
     private float mTime;
     private float mPeriod;
     private BubbleView mBubble;
-    private Canvas mCanvas;
+    private CanvasView mCanvasView;
 
-    public State_SnapToEdge(Canvas c) {
-        mCanvas = c;
+    public State_SnapToEdge(CanvasView c) {
+        mCanvasView = c;
     }
 
     public void init(BubbleView b) {
@@ -29,7 +29,7 @@ public class State_SnapToEdge extends ControllerState {
 
     @Override
     public void OnEnterState() {
-        mCanvas.fadeOutTargets();
+        mCanvasView.fadeOutTargets();
         Util.Assert(mBubble != null);
 
         mTime = 0.0f;

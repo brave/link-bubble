@@ -15,7 +15,7 @@ import com.linkbubble.physics.Circle;
 
 import java.util.Vector;
 
-public class Canvas extends RelativeLayout {
+public class CanvasView extends RelativeLayout {
 
     private Context mContext;
     private WindowManager mWindowManager;
@@ -51,7 +51,7 @@ public class Canvas extends RelativeLayout {
         public int mTargetY;
     }
 
-    public Canvas(Context context) {
+    public CanvasView(Context context) {
         super(context);
 
         mContext = context;
@@ -84,7 +84,7 @@ public class Canvas extends RelativeLayout {
         mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_PHONE;
         mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
-        mWindowManagerParams.setTitle("LinkBubble: Canvas");
+        mWindowManagerParams.setTitle("LinkBubble: CanvasView");
         mWindowManager.addView(this, mWindowManagerParams);
     }
 

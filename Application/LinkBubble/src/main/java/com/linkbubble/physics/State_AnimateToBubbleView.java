@@ -2,7 +2,7 @@ package com.linkbubble.physics;
 
 import android.view.animation.OvershootInterpolator;
 import com.linkbubble.ui.BubbleView;
-import com.linkbubble.ui.Canvas;
+import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
 import com.linkbubble.util.Util;
@@ -23,22 +23,22 @@ public class State_AnimateToBubbleView extends ControllerState {
         public float mTargetY;
     }
 
-    private Canvas mCanvas;
+    private CanvasView mCanvasView;
     private OvershootInterpolator mInterpolator = new OvershootInterpolator(0.5f);
     private float mTime;
     private float mBubblePeriod;
     private float mContentPeriod;
     private Vector<BubbleInfo> mBubbleInfo = new Vector<BubbleInfo>();
 
-    public State_AnimateToBubbleView(Canvas canvas) {
-        mCanvas = canvas;
+    public State_AnimateToBubbleView(CanvasView canvasView) {
+        mCanvasView = canvasView;
     }
 
     @Override
     public void OnEnterState() {
-        mCanvas.fadeOutTargets();
-        if (mCanvas.getContentView() != null) {
-            mCanvas.getContentView().onAnimateOffscreen();
+        mCanvasView.fadeOutTargets();
+        if (mCanvasView.getContentView() != null) {
+            mCanvasView.getContentView().onAnimateOffscreen();
         }
         mBubbleInfo.clear();
         mTime = 0.0f;
@@ -60,7 +60,7 @@ public class State_AnimateToBubbleView extends ControllerState {
             mBubbleInfo.add(bi);
         }
 
-        mCanvas.setContentViewTranslation(0.0f);
+        mCanvasView.setContentViewTranslation(0.0f);
 
         mainController.endAppPolling();
     }
@@ -88,7 +88,7 @@ public class State_AnimateToBubbleView extends ControllerState {
         }
 
         float t = Util.clamp(0.0f, mTime / mContentPeriod, 1.0f);
-        mCanvas.setContentViewTranslation(t * (Config.mScreenHeight - Config.mContentOffset));
+        mCanvasView.setContentViewTranslation(t * (Config.mScreenHeight - Config.mContentOffset));
 
         if (mTime >= mBubblePeriod && mTime >= mContentPeriod) {
             mainController.switchState(mainController.STATE_BubbleView);
@@ -100,8 +100,8 @@ public class State_AnimateToBubbleView extends ControllerState {
 
     @Override
     public void OnExitState() {
-        mCanvas.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
-        mCanvas.setContentView(null);
+        mCanvasView.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
+        mCanvasView.setContentView(null);
     }
 
     @Override

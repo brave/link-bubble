@@ -1,7 +1,7 @@
 package com.linkbubble.physics;
 
 import com.linkbubble.ui.BubbleView;
-import com.linkbubble.ui.Canvas;
+import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
 import com.linkbubble.util.Util;
@@ -11,7 +11,7 @@ import com.linkbubble.util.Util;
  */
 public class State_ContentView extends ControllerState {
 
-    private Canvas mCanvas;
+    private CanvasView mCanvasView;
     private boolean mDidMove;
     private int mInitialX;
     private int mInitialY;
@@ -21,8 +21,8 @@ public class State_ContentView extends ControllerState {
     private boolean mTouchDown;
     private int mTouchFrameCount;
 
-    public State_ContentView(Canvas canvas) {
-        mCanvas = canvas;
+    public State_ContentView(CanvasView canvasView) {
+        mCanvasView = canvasView;
     }
 
     @Override
@@ -39,13 +39,13 @@ public class State_ContentView extends ControllerState {
             ++mTouchFrameCount;
 
             if (mTouchFrameCount == 6) {
-                mCanvas.fadeInTargets();
-                mCanvas.hideContentView();
+                mCanvasView.fadeInTargets();
+                mCanvasView.hideContentView();
             }
 
             if (mDidMove) {
                 MainController.get().setActiveBubble(mTouchBubble);
-                mTouchBubble.doSnap(mCanvas, mTargetX, mTargetY);
+                mTouchBubble.doSnap(mCanvasView, mTargetX, mTargetY);
             }
             return true;
         }
@@ -82,8 +82,8 @@ public class State_ContentView extends ControllerState {
             float d = (float) Math.sqrt( (e.dx * e.dx) + (e.dy * e.dy) );
             if (d >= Config.dpToPx(10.0f)) {
                 mDidMove = true;
-                mCanvas.hideContentView();
-                mCanvas.fadeInTargets();
+                mCanvasView.hideContentView();
+                mCanvasView.fadeInTargets();
             }
 
             MainController.get().scheduleUpdate();
@@ -98,7 +98,7 @@ public class State_ContentView extends ControllerState {
 
             if (mDidMove) {
                 // NPE here with sender null: http://pastebin.com/GvQW57Dk
-                Canvas.TargetInfo ti = mTouchBubble.getTargetInfo(mCanvas, sender.getXPos(), sender.getYPos());
+                CanvasView.TargetInfo ti = mTouchBubble.getTargetInfo(mCanvasView, sender.getXPos(), sender.getYPos());
                 if (ti.mAction == Config.BubbleAction.None) {
                     float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
                     float threshold = Config.dpToPx(900.0f);
@@ -116,7 +116,7 @@ public class State_ContentView extends ControllerState {
                     }
                 }
             } else if (MainController.get().getActiveBubble() != sender) {
-                mCanvas.fadeOutTargets();
+                mCanvasView.fadeOutTargets();
                 setActiveBubble(sender);
             } else {
                 mainController.getActiveBubble().readd();
@@ -155,8 +155,8 @@ public class State_ContentView extends ControllerState {
     public void setActiveBubble(BubbleView bubble) {
         MainController.get().setActiveBubble(bubble);
         bubble.setTargetPos((int)Config.getContentViewX(bubble.getBubbleIndex(), MainController.get().getBubbleCount()), bubble.getYPos(), 0.2f, false);
-        mCanvas.setContentView(bubble.getContentView());
-        mCanvas.showContentView();
-        mCanvas.setContentViewTranslation(0.0f);
+        mCanvasView.setContentView(bubble.getContentView());
+        mCanvasView.showContentView();
+        mCanvasView.setContentViewTranslation(0.0f);
     }
 }
