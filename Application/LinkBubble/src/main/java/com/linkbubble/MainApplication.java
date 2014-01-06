@@ -9,8 +9,8 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
-import com.linkbubble.db.MainDatabaseHelper;
 import com.squareup.otto.Bus;
 
 import java.net.MalformedURLException;
@@ -20,7 +20,7 @@ import java.net.URL;
 public class MainApplication extends Application {
 
     private Bus mBus;
-    public MainDatabaseHelper mDatabaseHelper;
+    public DatabaseHelper mDatabaseHelper;
 
     @Override
     public void onCreate() {
@@ -30,7 +30,7 @@ public class MainApplication extends Application {
 
         mBus = new Bus();
 
-        mDatabaseHelper = new MainDatabaseHelper(this);
+        mDatabaseHelper = new DatabaseHelper(this);
     }
 
     public Bus getBus() {

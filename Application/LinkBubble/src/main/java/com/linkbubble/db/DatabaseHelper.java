@@ -11,7 +11,7 @@ import com.linkbubble.Settings;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MainDatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "LinkBubbleDB";
 
@@ -29,7 +29,7 @@ public class MainDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String[] LINK_HISTORY_COLUMNS = {KEY_ID, KEY_TITLE, KEY_URL, KEY_HOST, KEY_TIME};
 
-    public MainDatabaseHelper(Context context) {
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

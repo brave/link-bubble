@@ -21,10 +21,10 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.MainApplication;
-import com.linkbubble.db.MainDatabaseHelper;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.Util;
@@ -66,7 +66,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
     }
 
     private void setupListView() {
-        MainDatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
+        DatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
         mHistoryRecords = databaseHelper.getAllHistoryRecords();
         if (mHistoryRecords == null || mHistoryRecords.size() == 0) {
             return;
@@ -87,7 +87,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                             }
 
                             public void onDismiss(ListView listView, int[] reverseSortedPositions) {
-                                MainDatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
+                                DatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
 
                                 for (int position : reverseSortedPositions) {
                                     Object item = listView.getItemAtPosition(position);
@@ -135,7 +135,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_clear_history: {
-                MainDatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
+                DatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
                 databaseHelper.deleteAllHistoryRecords();
                 mHistoryRecords = null;
                 mHistoryAdapter.notifyDataSetChanged();
