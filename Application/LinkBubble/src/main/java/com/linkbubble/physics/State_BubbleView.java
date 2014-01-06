@@ -3,7 +3,7 @@ package com.linkbubble.physics;
 import android.view.View;
 import com.linkbubble.ui.BadgeView;
 import com.linkbubble.ui.BubbleView;
-import com.linkbubble.ui.Canvas;
+import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
 import com.linkbubble.Settings;
@@ -14,7 +14,7 @@ import com.linkbubble.util.Util;
  */
 public class State_BubbleView extends ControllerState {
 
-    private Canvas mCanvas;
+    private CanvasView mCanvasView;
     private boolean mDidMove;
     private int mInitialX;
     private int mInitialY;
@@ -25,18 +25,18 @@ public class State_BubbleView extends ControllerState {
     private boolean mTouchDown;
     private int mTouchFrameCount;
 
-    public State_BubbleView(Canvas canvas, BadgeView badgeView) {
-        mCanvas = canvas;
+    public State_BubbleView(CanvasView canvasView, BadgeView badgeView) {
+        mCanvasView = canvasView;
         mBadgeView = badgeView;
     }
 
     @Override
     public void OnEnterState() {
-        mCanvas.fadeOutTargets();
+        mCanvasView.fadeOutTargets();
         mDidMove = false;
         mBubble = null;
         mBadgeView.show();
-        mCanvas.fadeOut();
+        mCanvasView.fadeOut();
 
         MainController mainController = MainController.get();
         for (int i=0 ; i < mainController.getBubbleCount() ; ++i) {
@@ -55,10 +55,10 @@ public class State_BubbleView extends ControllerState {
             ++mTouchFrameCount;
 
             if (mTouchFrameCount == 6) {
-                mCanvas.fadeInTargets();
+                mCanvasView.fadeInTargets();
             }
 
-            mBubble.doSnap(mCanvas, mTargetX, mTargetY);
+            mBubble.doSnap(mCanvasView, mTargetX, mTargetY);
             return true;
         }
 
@@ -82,7 +82,7 @@ public class State_BubbleView extends ControllerState {
     @Override
     public void OnMotionEvent_Touch(BubbleView sender, BubbleView.TouchEvent e) {
         mTouchDown = true;
-        mCanvas.fadeIn();
+        mCanvasView.fadeIn();
         mBubble = sender;
         mInitialX = e.posX;
         mInitialY = e.posY;
@@ -107,7 +107,7 @@ public class State_BubbleView extends ControllerState {
 
             float d = (float) Math.sqrt( (e.dx * e.dx) + (e.dy * e.dy) );
             if (d >= Config.dpToPx(10.0f)) {
-                mCanvas.fadeInTargets();
+                mCanvasView.fadeInTargets();
                 mDidMove = true;
             }
         }
@@ -120,8 +120,8 @@ public class State_BubbleView extends ControllerState {
 
             MainController mainController = MainController.get();
             if (mDidMove) {
-                mCanvas.fadeOut();
-                Canvas.TargetInfo ti = mBubble.getTargetInfo(mCanvas, sender.getXPos(), sender.getYPos());
+                mCanvasView.fadeOut();
+                CanvasView.TargetInfo ti = mBubble.getTargetInfo(mCanvasView, sender.getXPos(), sender.getYPos());
                 if (ti.mAction == Config.BubbleAction.None) {
                     float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
                     float threshold = Config.dpToPx(900.0f);
@@ -172,7 +172,7 @@ public class State_BubbleView extends ControllerState {
     public boolean OnOrientationChanged() {
         mTouchDown = false;
         mBubble = null;
-        mCanvas.fadeOut();
+        mCanvasView.fadeOut();
         return false;
     }
 

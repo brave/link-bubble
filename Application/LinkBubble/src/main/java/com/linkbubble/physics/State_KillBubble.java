@@ -1,7 +1,7 @@
 package com.linkbubble.physics;
 
 import com.linkbubble.ui.BubbleView;
-import com.linkbubble.ui.Canvas;
+import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.ui.ContentView;
 import com.linkbubble.MainController;
@@ -12,15 +12,15 @@ import com.linkbubble.util.Util;
  */
 public class State_KillBubble extends ControllerState {
 
-    private Canvas mCanvas;
+    private CanvasView mCanvasView;
     private float mTime;
     private float mPeriod;
 
     private BubbleView mBubble;
     private float mBubbleY0;
 
-    public State_KillBubble(Canvas canvas) {
-        mCanvas = canvas;
+    public State_KillBubble(CanvasView canvasView) {
+        mCanvasView = canvasView;
     }
 
     public void init(BubbleView bubble) {
@@ -32,14 +32,14 @@ public class State_KillBubble extends ControllerState {
     @Override
     public void OnEnterState() {
         Util.Assert(mBubble != null);
-        mCanvas.fadeOutTargets();
-        ContentView contentView = mCanvas.getContentView();
+        mCanvasView.fadeOutTargets();
+        ContentView contentView = mCanvasView.getContentView();
         if (contentView != null) {
             contentView.onAnimateOffscreen();
         }
         mTime = 0.0f;
         mPeriod = 0.3f;
-        mCanvas.setContentViewTranslation(0.0f);
+        mCanvasView.setContentViewTranslation(0.0f);
 
         MainController.get().endAppPolling();
     }
@@ -53,7 +53,7 @@ public class State_KillBubble extends ControllerState {
 
         mBubble.setExactPos(mBubble.getXPos(), (int) (dy + mBubbleY0));
 
-        mCanvas.setContentViewTranslation(dy);
+        mCanvasView.setContentViewTranslation(dy);
 
         if (mTime >= mPeriod) {
             MainController mainController = MainController.get();
@@ -66,8 +66,8 @@ public class State_KillBubble extends ControllerState {
 
     @Override
     public void OnExitState() {
-        mCanvas.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
-        mCanvas.setContentView(null);
+        mCanvasView.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
+        mCanvasView.setContentView(null);
         MainController.get().destroyBubble(mBubble, Config.BubbleAction.Destroy);
         mBubble = null;
     }

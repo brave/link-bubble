@@ -22,7 +22,7 @@ public class BubbleTarget extends RelativeLayout {
     private Context mContext;
     private ImageView mCircleView;
     private ImageView mImage;
-    private Canvas mCanvas;
+    private CanvasView mCanvasView;
 
     private float mXFraction;
     private float mYFraction;
@@ -66,15 +66,15 @@ public class BubbleTarget extends RelativeLayout {
         }
     }
 
-    public BubbleTarget(Canvas canvas, Context context, Config.BubbleAction action, float xFraction, float yFraction, boolean enableMove) {
+    public BubbleTarget(CanvasView canvasView, Context context, Config.BubbleAction action, float xFraction, float yFraction, boolean enableMove) {
         super(context);
-        Init(canvas, context, Settings.get().getConsumeBubbleIcon(action), action, xFraction, yFraction, enableMove);
+        Init(canvasView, context, Settings.get().getConsumeBubbleIcon(action), action, xFraction, yFraction, enableMove);
     }
 
-    public BubbleTarget(Canvas canvas, Context context, int resId, Config.BubbleAction action, float xFraction, float yFraction, boolean enableMove) {
+    public BubbleTarget(CanvasView canvasView, Context context, int resId, Config.BubbleAction action, float xFraction, float yFraction, boolean enableMove) {
         super(context);
         Drawable d = context.getResources().getDrawable(resId);
-        Init(canvas, context, d, action, xFraction, yFraction, enableMove);
+        Init(canvasView, context, d, action, xFraction, yFraction, enableMove);
     }
 
     public void onConsumeBubblesChanged() {
@@ -111,8 +111,8 @@ public class BubbleTarget extends RelativeLayout {
         }
     }
 
-    private void Init(Canvas canvas, Context context, Drawable d, Config.BubbleAction action, float xFraction, float yFraction, boolean enableMove) {
-        mCanvas = canvas;
+    private void Init(CanvasView canvasView, Context context, Drawable d, Config.BubbleAction action, float xFraction, float yFraction, boolean enableMove) {
+        mCanvasView = canvasView;
         mEnableMove = enableMove;
         mContext = context;
         mAction = action;
@@ -155,12 +155,12 @@ public class BubbleTarget extends RelativeLayout {
         imageLP.topMargin = (int) (0.5f + mDefaultCircle.mRadius - mButtonHeight * 0.5f);
         addView(mImage, imageLP);
 
-        // Add main relative layout to canvas
+        // Add main relative layout to canvasView
         mCanvasLayoutParams.leftMargin = (int) (0.5f + mDefaultCircle.mX - mDefaultCircle.mRadius);
         mCanvasLayoutParams.topMargin = (int) (0.5f + mDefaultCircle.mY - mDefaultCircle.mRadius);
         mCanvasLayoutParams.rightMargin = -100;
         mCanvasLayoutParams.bottomMargin = -100;
-        mCanvas.addView(this, mCanvasLayoutParams);
+        mCanvasView.addView(this, mCanvasLayoutParams);
     }
 
     public void fadeIn() {
@@ -240,7 +240,7 @@ public class BubbleTarget extends RelativeLayout {
 
             mCanvasLayoutParams.leftMargin = x;
             mCanvasLayoutParams.topMargin = y;
-            mCanvas.updateViewLayout(this, mCanvasLayoutParams);
+            mCanvasView.updateViewLayout(this, mCanvasLayoutParams);
 
             MainController.get().scheduleUpdate();
         }
@@ -272,7 +272,7 @@ public class BubbleTarget extends RelativeLayout {
         RelativeLayout.LayoutParams targetLayoutLP = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         targetLayoutLP.leftMargin = (int) (0.5f + mDefaultCircle.mX - mDefaultCircle.mRadius);
         targetLayoutLP.topMargin = (int) (0.5f + mDefaultCircle.mY - mDefaultCircle.mRadius);
-        mCanvas.updateViewLayout(this, targetLayoutLP);
+        mCanvasView.updateViewLayout(this, targetLayoutLP);
     }
 
     public Config.BubbleAction GetAction() {

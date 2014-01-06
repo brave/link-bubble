@@ -3,7 +3,7 @@ package com.linkbubble.physics;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import com.linkbubble.ui.BubbleView;
-import com.linkbubble.ui.Canvas;
+import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
 import com.linkbubble.util.Util;
@@ -24,25 +24,25 @@ public class State_AnimateToContentView extends ControllerState {
         public float mTargetY;
     }
 
-    private Canvas mCanvas;
+    private CanvasView mCanvasView;
     private OvershootInterpolator mInterpolator = new OvershootInterpolator(0.5f);
     private float mTime;
     private float mBubblePeriod;
     private float mContentPeriod;
     private Vector<BubbleInfo> mBubbleInfo = new Vector<BubbleInfo>();
 
-    public State_AnimateToContentView(Canvas canvas) {
-        mCanvas = canvas;
+    public State_AnimateToContentView(CanvasView canvasView) {
+        mCanvasView = canvasView;
     }
 
     @Override
     public void OnEnterState() {
-        mCanvas.fadeIn();
-        mCanvas.fadeOutTargets();
-        if (mCanvas.getContentView() != null) {
-            mCanvas.getContentView().onAnimateOnScreen();
+        mCanvasView.fadeIn();
+        mCanvasView.fadeOutTargets();
+        if (mCanvasView.getContentView() != null) {
+            mCanvasView.getContentView().onAnimateOnScreen();
         }
-        mCanvas.setContentView(MainController.get().getActiveBubble().getContentView());
+        mCanvasView.setContentView(MainController.get().getActiveBubble().getContentView());
 
         mBubbleInfo.clear();
         mTime = 0.0f;
@@ -66,8 +66,8 @@ public class State_AnimateToContentView extends ControllerState {
             mBubbleInfo.add(bi);
         }
 
-        mCanvas.showContentView();
-        mCanvas.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
+        mCanvasView.showContentView();
+        mCanvasView.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
 
         mainController.beginAppPolling();
     }
@@ -96,7 +96,7 @@ public class State_AnimateToContentView extends ControllerState {
         }
 
         float t = Util.clamp(0.0f, 1.0f - mTime / mContentPeriod, 1.0f);
-        mCanvas.setContentViewTranslation(t * (Config.mScreenHeight - Config.mContentOffset));
+        mCanvasView.setContentViewTranslation(t * (Config.mScreenHeight - Config.mContentOffset));
 
         if (mTime >= mBubblePeriod && mTime >= mContentPeriod) {
             //mainController.STATE_ContentView.init(mSelectedBubble);
@@ -108,7 +108,7 @@ public class State_AnimateToContentView extends ControllerState {
 
     @Override
     public void OnExitState() {
-        mCanvas.setContentViewTranslation(0.0f);
+        mCanvasView.setContentViewTranslation(0.0f);
     }
 
     @Override

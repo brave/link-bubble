@@ -27,7 +27,7 @@ import com.linkbubble.physics.State_KillBubble;
 import com.linkbubble.physics.State_SnapToEdge;
 import com.linkbubble.ui.BadgeView;
 import com.linkbubble.ui.BubbleView;
-import com.linkbubble.ui.Canvas;
+import com.linkbubble.ui.CanvasView;
 import com.linkbubble.ui.ContentActivity;
 import com.linkbubble.ui.SettingsFragment;
 import com.linkbubble.util.ActionItem;
@@ -71,7 +71,7 @@ public class MainController implements Choreographer.FrameCallback {
         bus.unregister(sInstance);
 
         //mWindowManager.removeView(mTextView);
-        sInstance.mCanvas.destroy();
+        sInstance.mCanvasView.destroy();
         sInstance.mChoreographer.removeFrameCallback(sInstance);
         sInstance.endAppPolling();
         sInstance = null;
@@ -99,7 +99,7 @@ public class MainController implements Choreographer.FrameCallback {
     private Choreographer mChoreographer;
     private boolean mUpdateScheduled;
     private static Vector<BubbleView> mBubbles = new Vector<BubbleView>();
-    private Canvas mCanvas;
+    private CanvasView mCanvasView;
     private BadgeView mBadgeView;
     private BubbleView mFrontBubble;
 
@@ -130,7 +130,7 @@ public class MainController implements Choreographer.FrameCallback {
 
         mUpdateScheduled = false;
         mChoreographer = Choreographer.getInstance();
-        mCanvas = new Canvas(mContext);
+        mCanvasView = new CanvasView(mContext);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         mBadgeView = (BadgeView) inflater.inflate(R.layout.view_badge, null);
@@ -139,14 +139,14 @@ public class MainController implements Choreographer.FrameCallback {
         Bus bus = app.getBus();
         bus.register(this);
 
-        STATE_BubbleView = new State_BubbleView(mCanvas, mBadgeView);
-        STATE_SnapToEdge = new State_SnapToEdge(mCanvas);
-        STATE_AnimateToContentView = new State_AnimateToContentView(mCanvas);
-        STATE_ContentView = new State_ContentView(mCanvas);
-        STATE_AnimateToBubbleView = new State_AnimateToBubbleView(mCanvas);
-        STATE_Flick_ContentView = new State_Flick_ContentView(mCanvas);
-        STATE_Flick_BubbleView = new State_Flick_BubbleView(mCanvas);
-        STATE_KillBubble = new State_KillBubble(mCanvas);
+        STATE_BubbleView = new State_BubbleView(mCanvasView, mBadgeView);
+        STATE_SnapToEdge = new State_SnapToEdge(mCanvasView);
+        STATE_AnimateToContentView = new State_AnimateToContentView(mCanvasView);
+        STATE_ContentView = new State_ContentView(mCanvasView);
+        STATE_AnimateToBubbleView = new State_AnimateToBubbleView(mCanvasView);
+        STATE_Flick_ContentView = new State_Flick_ContentView(mCanvasView);
+        STATE_Flick_BubbleView = new State_Flick_BubbleView(mCanvasView);
+        STATE_KillBubble = new State_KillBubble(mCanvasView);
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
         switchState(STATE_BubbleView);
@@ -291,7 +291,7 @@ public class MainController implements Choreographer.FrameCallback {
         if (mBubbles.size() > 0) {
             frontBubble =  getActiveBubble();
         }
-        mCanvas.update(dt, frontBubble);
+        mCanvasView.update(dt, frontBubble);
 
         if (mCurrentState.OnUpdate(dt)) {
             scheduleUpdate();
@@ -338,7 +338,7 @@ public class MainController implements Choreographer.FrameCallback {
 
     public void onOrientationChanged() {
         Config.init(mContext);
-        mCanvas.onOrientationChanged();
+        mCanvasView.onOrientationChanged();
         boolean contentView = mCurrentState.OnOrientationChanged();
         for (int i=0 ; i < mBubbles.size() ; ++i) {
             mBubbles.get(i).OnOrientationChanged(contentView);
