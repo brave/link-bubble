@@ -18,7 +18,7 @@ import java.net.URL;
 public class MainApplication extends Application {
 
     private Bus mBus;
-    MainDatabaseHelper mDatabaseHelper;
+    public MainDatabaseHelper mDatabaseHelper;
 
     @Override
     public void onCreate() {

@@ -1,12 +1,11 @@
 package com.linkbubble.physics;
 
-import com.linkbubble.BubbleView;
-import com.linkbubble.Canvas;
+import com.linkbubble.ui.BubbleView;
+import com.linkbubble.ui.Canvas;
 import com.linkbubble.Config;
-import com.linkbubble.ContentView;
+import com.linkbubble.ui.ContentView;
 import com.linkbubble.MainController;
 import com.linkbubble.Util;
-import com.linkbubble.physics.ControllerState;
 
 /**
  * Created by gw on 18/11/13.

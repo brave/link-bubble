@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.linkbubble.ContentView
+<com.linkbubble.ui.ContentView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
@@ -27,7 +27,7 @@
             android:paddingLeft="8dp"
             android:layout_weight="1">
 
-            <com.linkbubble.CondensedTextView
+            <com.linkbubble.ui.CondensedTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -35,7 +35,7 @@
                 android:singleLine="true"
                 android:id="@+id/title_text"/>
 
-            <com.linkbubble.CondensedTextView
+            <com.linkbubble.ui.CondensedTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -46,7 +46,7 @@
 
         </LinearLayout>
 
-        <com.linkbubble.OpenEmbedButton
+        <com.linkbubble.ui.OpenEmbedButton
             xmlns:android="http://schemas.android.com/apk/res/android"
             style="@style/ToolbarButton"
             android:id="@+id/open_embed_button"
@@ -59,20 +59,20 @@
                 android:src="@drawable/embed"
                 android:layout_gravity="bottom|right"/>
 
-        </com.linkbubble.OpenEmbedButton>
+        </com.linkbubble.ui.OpenEmbedButton>
 
-        <com.linkbubble.OpenInAppButton
+        <com.linkbubble.ui.OpenInAppButton
             style="@style/ToolbarButton"
             android:id="@+id/open_in_app_button"
             android:visibility="invisible"
             />
 
-        <com.linkbubble.ContentViewButton
+        <com.linkbubble.ui.ContentViewButton
             style="@style/ToolbarButton"
             android:id="@+id/share_button"
             />
 
-        <com.linkbubble.ContentViewButton
+        <com.linkbubble.ui.ContentViewButton
             style="@style/ToolbarButton"
             android:id="@+id/overflow_button"
             />
@@ -92,4 +92,4 @@
         android:layout_marginTop="@dimen/webview_margin_top"
         />
 
-</com.linkbubble.ContentView>
+</com.linkbubble.ui.ContentView>

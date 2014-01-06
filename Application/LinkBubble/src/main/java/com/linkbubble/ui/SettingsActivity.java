@@ -1,8 +1,9 @@
-package com.linkbubble;
+package com.linkbubble.ui;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import com.crashlytics.android.Crashlytics;
+import com.linkbubble.R;
 
 /**
  * Created by chrislacy on 5/1/2013.

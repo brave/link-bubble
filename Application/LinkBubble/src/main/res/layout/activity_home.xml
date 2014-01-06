@@ -50,7 +50,7 @@
             android:src="@drawable/text_logo"
             android:layout_marginBottom="20dp"/>
 
-        <com.linkbubble.FlipView
+        <com.linkbubble.ui.FlipView
             xmlns:fiv="http://schemas.android.com/apk/res-auto"
             android:id="@+id/imageview"
             android:layout_width="match_parent"

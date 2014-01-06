@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,6 +21,13 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import com.linkbubble.ActionItem;
+import com.linkbubble.HistoryRecord;
+import com.linkbubble.MainApplication;
+import com.linkbubble.MainDatabaseHelper;
+import com.linkbubble.R;
+import com.linkbubble.Settings;
+import com.linkbubble.Util;
 import com.squareup.otto.Subscribe;
 
 import java.util.Date;

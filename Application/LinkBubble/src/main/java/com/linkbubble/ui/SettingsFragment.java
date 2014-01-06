@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.ui;
 
 import android.app.AlertDialog;
 import android.content.ComponentName;
@@ -18,6 +18,12 @@ import android.preference.PreferenceFragment;
 
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import com.linkbubble.ActionItem;
+import com.linkbubble.Config;
+import com.linkbubble.MainApplication;
+import com.linkbubble.R;
+import com.linkbubble.Settings;
+import com.linkbubble.Util;
 import com.squareup.otto.Bus;
 
 import java.util.TreeMap;
@@ -34,7 +40,7 @@ public class SettingsFragment extends PreferenceFragment {
         public IncognitoModeChangedEvent(boolean value) {
             mIncognito = value;
         }
-        boolean mIncognito;
+        public boolean mIncognito;
     }
 
     public interface IncognitoModeChangedEventHandler {

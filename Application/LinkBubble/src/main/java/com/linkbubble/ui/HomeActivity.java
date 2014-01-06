@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.ui;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
+import com.linkbubble.Constant;
+import com.linkbubble.MainApplication;
+import com.linkbubble.R;
+import com.linkbubble.Settings;
 
 import java.util.Vector;
 

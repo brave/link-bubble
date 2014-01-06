@@ -2,12 +2,11 @@ package com.linkbubble.physics;
 
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
-import com.linkbubble.BubbleView;
-import com.linkbubble.Canvas;
+import com.linkbubble.ui.BubbleView;
+import com.linkbubble.ui.Canvas;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
 import com.linkbubble.Util;
-import com.linkbubble.physics.ControllerState;
 
 /**
  * Created by gw on 18/11/13.

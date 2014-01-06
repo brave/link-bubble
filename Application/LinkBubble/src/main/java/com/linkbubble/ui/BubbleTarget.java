@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.ui;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,6 +8,11 @@ import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import com.linkbubble.Config;
+import com.linkbubble.MainController;
+import com.linkbubble.R;
+import com.linkbubble.Settings;
+import com.linkbubble.Util;
 import com.linkbubble.physics.Circle;
 
 /**

@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.ui;
 
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
