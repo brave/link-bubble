@@ -23,6 +23,9 @@ import com.linkbubble.physics.FlingTracker;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
+import org.mozilla.gecko.favicons.Favicons;
+import org.mozilla.gecko.favicons.LoadFaviconTask;
+import org.mozilla.gecko.favicons.OnFaviconLoadedListener;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -42,6 +45,7 @@ public class BubbleView extends FrameLayout {
     private ContentView mContentView;
     private boolean mRecordHistory;
     private boolean mAlive;
+    private int mFaviconLoadId;
 
     // Move animation state
     private int mInitialX;
@@ -311,6 +315,58 @@ public class BubbleView extends FrameLayout {
         }
     }
 
+    public void setFaviconLoadId(int faviconLoadId) {
+        mFaviconLoadId = faviconLoadId;
+    }
+
+    public int getFaviconLoadId() {
+        return mFaviconLoadId;
+    }
+
+    private void loadFavicon() {
+        maybeCancelFaviconLoad();
+
+        final int tabFaviconSize = getResources().getDimensionPixelSize(R.dimen.browser_toolbar_favicon_size);
+
+        //int flags = (tab.isPrivate() || tab.getErrorType() != Tab.ErrorType.NONE) ? 0 : LoadFaviconTask.FLAG_PERSIST;
+        int flags = Settings.get().isIncognitoMode() ? 0 : LoadFaviconTask.FLAG_PERSIST;
+        String faviconUrl = "http://" + mUrl.getHost() + "/favicon.ico";
+        int id = Favicons.getFaviconForSize(mUrl.toString(), faviconUrl, tabFaviconSize, flags, mOnFaviconLoadedListener);
+
+        setFaviconLoadId(id);
+        if (id != Favicons.LOADED) {
+            // We're loading the current tab's favicon from somewhere
+            // other than the cache.
+            // Display the globe favicon until then.
+            //mBrowserToolbar.showDefaultFavicon();
+            mFavicon.setImageResource(R.drawable.fallback_favicon);
+        }
+    }
+
+    OnFaviconLoadedListener mOnFaviconLoadedListener = new OnFaviconLoadedListener() {
+        @Override
+        public void onFaviconLoaded(String url, String faviconURL, Bitmap favicon) {
+            if (favicon != null) {
+                Bitmap transformed = mFaviconTransformation.transform(favicon);
+                mFavicon.setImageBitmap(transformed);
+                mFaviconLoadId = Favicons.LOADED;
+            }
+        }
+    };
+
+    private void maybeCancelFaviconLoad() {
+        int faviconLoadId = getFaviconLoadId();
+
+        if (Favicons.NOT_LOADING == faviconLoadId) {
+            return;
+        }
+
+        // Cancel load task and reset favicon load state if it wasn't already
+        // in NOT_LOADING state.
+        Favicons.cancelFaviconLoad(faviconLoadId);
+        setFaviconLoadId(Favicons.NOT_LOADING);
+    }
+
     public void configure(String url, int x0, int y0, int targetX, int targetY, float targetTime, long startTime,
                   EventHandler eh) throws MalformedURLException {
         mAlive = true;
@@ -342,9 +398,11 @@ public class BubbleView extends FrameLayout {
                     URL previousUrl = mUrl;
                     mUrl = new URL(url);
 
-                    if (previousUrl != null && previousUrl.getHost().equals(mUrl.getHost())) {
+                    if (previousUrl != null && previousUrl.getHost().equals(mUrl.getHost()) && mFaviconLoadId == Favicons.LOADED) {
                         setDefaultFavicon = false;
                     } else {
+                        loadFavicon();
+                        /*
                         String faviconUrl = "http://" + mUrl.getHost() + "/favicon.ico";
                         //String faviconUrl = "http://1.gravatar.com/blavatar/f8748081423ce49bd3ecb267cd4effc7?s=16";
                         Picasso.with(getContext()).cancelRequest(mFavicon);
@@ -365,6 +423,7 @@ public class BubbleView extends FrameLayout {
                                         onReceivedIcon(null);
                                     }
                                 });
+                        */
                     }
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
@@ -398,10 +457,12 @@ public class BubbleView extends FrameLayout {
             @Override
             public void onReceivedIcon(Bitmap bitmap) {
                 if (bitmap == null) {
+                    mFaviconLoadId = Favicons.NOT_LOADING;
                     mFavicon.setImageResource(R.drawable.fallback_favicon);
                 } else {
                     bitmap = mFaviconTransformation.transform(bitmap);
 
+                    mFaviconLoadId = Favicons.LOADED;
                     mFavicon.setImageBitmap(bitmap);
                     if (mAdditionalFaviconView != null) {
                         mAdditionalFaviconView.setImageBitmap(bitmap);
