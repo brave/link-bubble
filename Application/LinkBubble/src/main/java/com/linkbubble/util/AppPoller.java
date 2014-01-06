@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.util;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -7,13 +7,14 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import com.linkbubble.MainController;
 
 
 public class AppPoller {
 
     private static final String TAG = "AppPoller";
 
-    interface AppPollerListener {
+    public interface AppPollerListener {
         void onAppChanged();
     }
 
@@ -25,15 +26,15 @@ public class AppPoller {
     private String mCurrentAppFlatComponentName;
     private boolean mPolling = false;
 
-    AppPoller(Context context) {
+    public AppPoller(Context context) {
         mContext = context;
     }
 
-    void setListener(AppPollerListener listener) {
+    public void setListener(AppPollerListener listener) {
         mAppPollingListener = listener;
     }
 
-    void beginAppPolling() {
+    public void beginAppPolling() {
         if (mCurrentAppFlatComponentName == null) {
             ActivityManager am = (ActivityManager)mContext.getSystemService(Activity.ACTIVITY_SERVICE);
             ComponentName componentName = am.getRunningTasks(1).get(0).topActivity;
@@ -47,7 +48,7 @@ public class AppPoller {
         mPolling = true;
     }
 
-    void endAppPolling() {
+    public void endAppPolling() {
         mHandler.removeMessages(ACTION_POLL_CURRENT_APP);
         mPolling = false;
         mCurrentAppFlatComponentName = null;

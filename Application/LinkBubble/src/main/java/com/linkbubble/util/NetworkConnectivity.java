@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

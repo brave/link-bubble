@@ -15,6 +15,7 @@ import android.preference.PreferenceManager;
 
 import android.util.Log;
 import com.linkbubble.ui.BubbleView;
+import com.linkbubble.util.Util;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

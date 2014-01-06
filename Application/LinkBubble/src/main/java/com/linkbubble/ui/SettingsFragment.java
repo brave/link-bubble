@@ -18,12 +18,12 @@ import android.preference.PreferenceFragment;
 
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import com.linkbubble.ActionItem;
+import com.linkbubble.util.ActionItem;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.Util;
+import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
 
 import java.util.TreeMap;

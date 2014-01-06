@@ -30,6 +30,9 @@ import com.linkbubble.ui.BubbleView;
 import com.linkbubble.ui.Canvas;
 import com.linkbubble.ui.ContentActivity;
 import com.linkbubble.ui.SettingsFragment;
+import com.linkbubble.util.ActionItem;
+import com.linkbubble.util.AppPoller;
+import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 

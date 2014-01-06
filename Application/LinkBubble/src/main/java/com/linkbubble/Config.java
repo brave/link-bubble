@@ -27,7 +27,7 @@ public class Config {
         ConsumeLeft
     }
 
-    enum ActionType {
+    public enum ActionType {
         Unknown,
         View,
         Share,

@@ -17,7 +17,7 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.Util;
+import com.linkbubble.util.Util;
 import com.linkbubble.physics.Circle;
 import com.linkbubble.physics.FlingTracker;
 import com.squareup.picasso.Callback;
