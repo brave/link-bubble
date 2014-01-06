@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.linkbubble.db.HistoryRecord;
+import com.linkbubble.db.MainDatabaseHelper;
 import com.squareup.otto.Bus;
 
 import java.net.MalformedURLException;

@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.db;
 
 
 public class HistoryRecord {
