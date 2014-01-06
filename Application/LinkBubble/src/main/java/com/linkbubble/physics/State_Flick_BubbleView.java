@@ -1,6 +1,6 @@
 package com.linkbubble.physics;
 
-import com.linkbubble.Canvas;
+import com.linkbubble.ui.Canvas;
 
 /**
  * Created by gw on 24/11/13.

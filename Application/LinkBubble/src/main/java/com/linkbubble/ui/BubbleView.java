@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.ui;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -12,6 +12,12 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import com.linkbubble.Config;
+import com.linkbubble.MainApplication;
+import com.linkbubble.MainController;
+import com.linkbubble.R;
+import com.linkbubble.Settings;
+import com.linkbubble.Util;
 import com.linkbubble.physics.Circle;
 import com.linkbubble.physics.FlingTracker;
 import com.squareup.picasso.Callback;

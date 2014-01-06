@@ -25,6 +25,11 @@ import com.linkbubble.physics.State_Flick_BubbleView;
 import com.linkbubble.physics.State_Flick_ContentView;
 import com.linkbubble.physics.State_KillBubble;
 import com.linkbubble.physics.State_SnapToEdge;
+import com.linkbubble.ui.BadgeView;
+import com.linkbubble.ui.BubbleView;
+import com.linkbubble.ui.Canvas;
+import com.linkbubble.ui.ContentActivity;
+import com.linkbubble.ui.SettingsFragment;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -545,7 +550,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
     };
 
-    boolean showPreviousBubble() {
+    public boolean showPreviousBubble() {
         if (mCurrentState instanceof State_ContentView) {
             State_ContentView contentViewState = (State_ContentView)mCurrentState;
             BubbleView activeBubble = getActiveBubble();
@@ -564,7 +569,7 @@ public class MainController implements Choreographer.FrameCallback {
         return false;
     }
 
-    boolean showNextBubble() {
+    public boolean showNextBubble() {
         if (mCurrentState instanceof State_ContentView) {
             State_ContentView contentViewState = (State_ContentView)mCurrentState;
             BubbleView activeBubble = getActiveBubble();

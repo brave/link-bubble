@@ -1,10 +1,11 @@
-package com.linkbubble;
+package com.linkbubble.ui;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import com.linkbubble.YouTubeEmbedHelper;
 
 
 public class OpenEmbedButton extends ContentViewButton implements View.OnClickListener {

@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.ui;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -11,6 +11,10 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.WindowManager;
+import com.linkbubble.ActionItem;
+import com.linkbubble.MainApplication;
+import com.linkbubble.R;
+import com.linkbubble.Settings;
 
 import java.util.ArrayList;
 import java.util.List;

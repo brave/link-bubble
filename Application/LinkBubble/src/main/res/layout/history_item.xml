@@ -14,7 +14,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_weight="1">
-        <com.linkbubble.CondensedTextView
+        <com.linkbubble.ui.CondensedTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             >
 
-            <com.linkbubble.CondensedTextView
+            <com.linkbubble.ui.CondensedTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -39,7 +39,7 @@
                 android:singleLine="true"
                 android:layout_weight="1"/>
 
-            <com.linkbubble.CondensedTextView
+            <com.linkbubble.ui.CondensedTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"

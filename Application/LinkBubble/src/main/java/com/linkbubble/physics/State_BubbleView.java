@@ -1,14 +1,13 @@
 package com.linkbubble.physics;
 
 import android.view.View;
-import com.linkbubble.BadgeView;
-import com.linkbubble.BubbleView;
-import com.linkbubble.Canvas;
+import com.linkbubble.ui.BadgeView;
+import com.linkbubble.ui.BubbleView;
+import com.linkbubble.ui.Canvas;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
 import com.linkbubble.Settings;
 import com.linkbubble.Util;
-import com.linkbubble.physics.ControllerState;
 
 /**
  * Created by gw on 18/11/13.

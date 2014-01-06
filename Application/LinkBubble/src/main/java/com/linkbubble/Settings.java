@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 
 import android.util.Log;
+import com.linkbubble.ui.BubbleView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -97,7 +98,7 @@ public class Settings {
     private TreeMap<String, String> mDefaultAppsMap = new TreeMap<String, String>();
     private List<Intent> mBrowsers;
     private ResolveInfo mYouTubeViewResolveInfo;
-    ResolveInfo mLinkBubbleEntryActivityResolveInfo;
+    public ResolveInfo mLinkBubbleEntryActivityResolveInfo;
     private boolean mCheckedForYouTubeResolveInfo = false;
     private ConsumeBubblesChangedEventHandler mConsumeBubblesChangedEventHandler;
 
@@ -233,18 +234,18 @@ public class Settings {
         return false;
     }
 
-    List<Intent> getBrowsers() {
+    public List<Intent> getBrowsers() {
         return mBrowsers;
     }
 
-    void setDefaultBrowser(String label, String packageName) {
+    public void setDefaultBrowser(String label, String packageName) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(PREFERENCE_DEFAULT_BROWSER_LABEL, label);
         editor.putString(PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME, packageName);
         editor.commit();
     }
 
-    String getDefaultBrowserLabel() {
+    public String getDefaultBrowserLabel() {
         return mSharedPreferences.getString(PREFERENCE_DEFAULT_BROWSER_LABEL, null);
     }
 
@@ -263,7 +264,7 @@ public class Settings {
         return null;
     }
 
-    Drawable getDefaultBrowserIcon(Context context) {
+    public Drawable getDefaultBrowserIcon(Context context) {
         ComponentName componentName = getDefaultBrowserComponentName(context);
         if (componentName != null) {
             try {
@@ -276,7 +277,7 @@ public class Settings {
         return null;
     }
 
-    void setConsumeBubble(Config.BubbleAction action, Config.ActionType type, String label, String packageName, String activityClassName) {
+    public void setConsumeBubble(Config.BubbleAction action, Config.ActionType type, String label, String packageName, String activityClassName) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         switch (action) {
             case ConsumeLeft:
@@ -300,7 +301,7 @@ public class Settings {
         }
     }
 
-    String getConsumeBubbleLabel(Config.BubbleAction action) {
+    public String getConsumeBubbleLabel(Config.BubbleAction action) {
         switch (action) {
             case ConsumeLeft:
                 return mSharedPreferences.getString(PREFERENCE_LEFT_CONSUME_BUBBLE_LABEL, null);
@@ -356,7 +357,7 @@ public class Settings {
         return Config.ActionType.Unknown;
     }
 
-    Drawable getConsumeBubbleIcon(Config.BubbleAction action) {
+    public Drawable getConsumeBubbleIcon(Config.BubbleAction action) {
         PackageManager packageManager = mContext.getPackageManager();
         try {
             String packageName = getConsumeBubblePackageName(action);
@@ -369,11 +370,11 @@ public class Settings {
         return mContext.getResources().getDrawable(R.drawable.ic_launcher);
     }
 
-    boolean getAutoContentDisplayAppRedirect() {
+    public boolean getAutoContentDisplayAppRedirect() {
         return mSharedPreferences.getBoolean(PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT, PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT_DEFAULT);
     }
 
-    void setAutoContentDisplayAppRedirect(boolean value) {
+    public void setAutoContentDisplayAppRedirect(boolean value) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putBoolean(PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT, value);
         editor.commit();
@@ -383,17 +384,17 @@ public class Settings {
         return mSharedPreferences.getBoolean(PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED, PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED_DEFAULT);
     }
 
-    void setAutoContentDisplayLinkLoaded(boolean value) {
+    public void setAutoContentDisplayLinkLoaded(boolean value) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putBoolean(PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED, value);
         editor.commit();
     }
 
-    boolean isIncognitoMode() {
+    public boolean isIncognitoMode() {
         return mSharedPreferences.getBoolean("preference_incognito", false);
     }
 
-    boolean isEnabled() {
+    public boolean isEnabled() {
         return mSharedPreferences.getBoolean(PREFERENCE_ENABLED, false);
     }
 
@@ -401,14 +402,14 @@ public class Settings {
         return mSharedPreferences.getBoolean(PREFERENCE_CHECK_FOR_YOUTUBE_EMBEDS, false);
     }
 
-    boolean redirectUrlToBrowser(String url) {
+    public boolean redirectUrlToBrowser(String url) {
         if (url.contains("accounts.google.com") && mSharedPreferences.getBoolean(PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT, true)) {
             return true;
         }
         return false;
     }
 
-    List<ResolveInfo> getAppsThatHandleUrl(String url) {
+    public List<ResolveInfo> getAppsThatHandleUrl(String url) {
 
         List<Intent> browsers = getBrowsers();
 
@@ -518,7 +519,7 @@ public class Settings {
         saveDefaultApps();
     }
 
-    void removeDefaultApp(String host) {
+    public void removeDefaultApp(String host) {
         if (mDefaultAppsMap.containsKey(host)) {
             mDefaultAppsMap.remove(host);
             saveDefaultApps();

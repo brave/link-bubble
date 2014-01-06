@@ -7,7 +7,7 @@
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:name="com.linkbubble.SettingsFragment"
+        android:name="com.linkbubble.ui.SettingsFragment"
         android:id="@+id/fragment" />
 
 </LinearLayout>

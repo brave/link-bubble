@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.ui;
 
 
 import android.content.Context;
@@ -13,6 +13,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.Transformation;
 import android.widget.FrameLayout;
+import com.linkbubble.R;
 
 
 /**

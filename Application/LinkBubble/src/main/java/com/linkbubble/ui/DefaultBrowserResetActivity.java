@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.ui;
 
 import android.app.Activity;
 

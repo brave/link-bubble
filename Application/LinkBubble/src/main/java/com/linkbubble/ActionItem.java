@@ -34,10 +34,10 @@ import java.util.List;
 public class ActionItem {
 
     String mLabel;
-    Config.ActionType mType;
+    public Config.ActionType mType;
     String mCategory;
-    String mPackageName;
-    String mActivityClassName;
+    public String mPackageName;
+    public String mActivityClassName;
     private Drawable mIcon;
 
     public ActionItem(Config.ActionType type, Resources resources, String label, Drawable icon, String packageName, String activityClassName) {

@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.ui;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -11,6 +11,11 @@ import android.preference.PreferenceManager;
 
 import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
+import com.linkbubble.Config;
+import com.linkbubble.MainApplication;
+import com.linkbubble.R;
+import com.linkbubble.Settings;
+
 import java.util.List;
 
 public class EntryActivity extends Activity {

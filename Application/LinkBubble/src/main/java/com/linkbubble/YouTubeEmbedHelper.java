@@ -36,18 +36,18 @@ public class YouTubeEmbedHelper {
     }
     private List<EmbedInfo> mEmbedInfo = new ArrayList<EmbedInfo>();
 
-    ResolveInfo mYouTubeResolveInfo;
+    public ResolveInfo mYouTubeResolveInfo;
 
-    YouTubeEmbedHelper(Context context) {
+    public YouTubeEmbedHelper(Context context) {
         mContext = context;
         mYouTubeResolveInfo = Settings.get().getYouTubeViewResolveInfo();
     }
 
-    void clear() {
+    public void clear() {
         mEmbedIds.clear();
     }
 
-    int size() {
+    public int size() {
         return mEmbedIds.size();
     }
 
@@ -56,7 +56,7 @@ public class YouTubeEmbedHelper {
         * http://www.youtube.com/embed/oSAW1tSNIa4?version=3&rel=1&fs=1&showsearch=0&showinfo=1&iv_load_policy=1&wmode=transparent
         * https://www.youtube.com/embed/q1dpQKntj_w
      */
-    boolean onYouTubeEmbedFound(String src) {
+    public boolean onYouTubeEmbedFound(String src) {
         if (src == null || src.isEmpty()) {
             return false;
         }
@@ -104,7 +104,7 @@ public class YouTubeEmbedHelper {
         return false;
     }
 
-    boolean onOpenInAppButtonClick() {
+    public boolean onOpenInAppButtonClick() {
         int size = mEmbedIds.size();
         if (size == 1) {
             return loadYouTubeVideo(mEmbedIds.get(0));

@@ -1,22 +1,24 @@
-package com.linkbubble;
+package com.linkbubble.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import com.crashlytics.android.Crashlytics;
+import com.linkbubble.MainApplication;
+import com.linkbubble.R;
 
 public class ContentActivity extends Activity {
 
     static final boolean DEBUG_DRAW = false;
 
-    class ContentActivityResumedEvent {
-        ContentActivity mActivity;
+    public class ContentActivityResumedEvent {
+        public ContentActivity mActivity;
         ContentActivityResumedEvent(ContentActivity activity) {
             mActivity = activity;
         }
     };
 
-    class ContentActivityPausedEvent {
+    public class ContentActivityPausedEvent {
         ContentActivity mActivity;
         ContentActivityPausedEvent(ContentActivity activity) {
             mActivity = activity;
@@ -50,7 +52,7 @@ public class ContentActivity extends Activity {
         super.onPause();
     }
 
-    void updateBackgroundColor(int color) {
+    public void updateBackgroundColor(int color) {
         mBackgroundView.setBackgroundColor(DEBUG_DRAW ? 0x5500ff00 : color);
     }
 

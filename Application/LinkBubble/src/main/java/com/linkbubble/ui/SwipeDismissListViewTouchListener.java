@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.linkbubble;
+package com.linkbubble.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

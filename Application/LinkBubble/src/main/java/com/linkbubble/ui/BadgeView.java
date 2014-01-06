@@ -1,4 +1,4 @@
-package com.linkbubble;
+package com.linkbubble.ui;
 
 import android.animation.Animator;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import com.linkbubble.Config;
 
 /**
  * Created by gw on 12/10/13.
