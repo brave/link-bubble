@@ -18,7 +18,7 @@ import com.linkbubble.physics.Circle;
 /**
  * Created by gw on 21/11/13.
  */
-public class BubbleTarget extends RelativeLayout {
+public class BubbleTargetView extends RelativeLayout {
     private Context mContext;
     private ImageView mCircleView;
     private ImageView mImage;
@@ -66,12 +66,12 @@ public class BubbleTarget extends RelativeLayout {
         }
     }
 
-    public BubbleTarget(CanvasView canvasView, Context context, Config.BubbleAction action, float xFraction, float yFraction, boolean enableMove) {
+    public BubbleTargetView(CanvasView canvasView, Context context, Config.BubbleAction action, float xFraction, float yFraction, boolean enableMove) {
         super(context);
         Init(canvasView, context, Settings.get().getConsumeBubbleIcon(action), action, xFraction, yFraction, enableMove);
     }
 
-    public BubbleTarget(CanvasView canvasView, Context context, int resId, Config.BubbleAction action, float xFraction, float yFraction, boolean enableMove) {
+    public BubbleTargetView(CanvasView canvasView, Context context, int resId, Config.BubbleAction action, float xFraction, float yFraction, boolean enableMove) {
         super(context);
         Drawable d = context.getResources().getDrawable(resId);
         Init(canvasView, context, d, action, xFraction, yFraction, enableMove);
