@@ -144,9 +144,10 @@ public class ContentView extends FrameLayout {
         super.dispatchDraw(canvas);
 
         mTempPath.reset();
-        mTempPath.moveTo(mMarkerX + Config.mBubbleWidth * 0.33f, mHeaderHeight + 1.0f);
-        mTempPath.lineTo(mMarkerX + Config.mBubbleWidth * 0.5f, 0.0f);
-        mTempPath.lineTo(mMarkerX + Config.mBubbleWidth * 0.67f, mHeaderHeight + 1.0f);
+        float mCenterX = mMarkerX + Config.mBubbleWidth * 0.5f;
+        mTempPath.moveTo(mCenterX - mHeaderHeight, mHeaderHeight + 1.0f);
+        mTempPath.lineTo(mCenterX, 0.0f);
+        mTempPath.lineTo(mCenterX + mHeaderHeight, mHeaderHeight + 1.0f);
 
         canvas.drawPath(mTempPath, mPaint);
     }
