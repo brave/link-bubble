@@ -3,7 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="content_bubble_y_offset">0dp</dimen>
+    <!--  (bubble_size - bubble_icon_size) / 2 -->
+    <dimen name="content_bubble_y_offset">-2dp</dimen>
     <dimen name="toolbar_header">8dp</dimen>
     <dimen name="toolbar_height">48dp</dimen>
     <dimen name="webview_margin_top">56dp</dimen>   <!-- Must equal toolbar_header + toolbar_height -->
@@ -28,7 +29,7 @@
     <dimen name="bubble_icon_stroke_size">1px</dimen>
     <dimen name="bubble_progress_size">52dp</dimen>
     <dimen name="bubble_progress_stroke">1px</dimen>
-    <dimen name="content_offset">62dp</dimen>
+    <dimen name="content_offset">60dp</dimen>
     <dimen name="progress_bar_size">32dp</dimen>
     <dimen name="progress_inner_size">20dp</dimen>
     <dimen name="stat_height">200dp</dimen>
