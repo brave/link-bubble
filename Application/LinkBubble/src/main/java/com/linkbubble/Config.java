@@ -80,9 +80,9 @@ public class Config {
         mBubbleMaxY = (int) (mDm.heightPixels - mBubbleHeight); //(mDm.heightPixels - 1.15f * mBubbleHeight);
 
         mContentViewBubbleX = (int) (mDm.widthPixels - mBubbleWidth - mBubbleWidth * 0.5f);
-        mContentViewBubbleY = (int) (mBubbleHeight * 0.15f);
+        mContentViewBubbleY = context.getResources().getDimensionPixelSize(R.dimen.content_bubble_y_offset);
 
-        mContentOffset = (int) (mBubbleHeight * 1.2f);
+        mContentOffset = context.getResources().getDimensionPixelSize(R.dimen.content_offset);
 
         BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
         BUBBLE_HOME_Y = (int) (Config.mScreenHeight * 0.4f);
