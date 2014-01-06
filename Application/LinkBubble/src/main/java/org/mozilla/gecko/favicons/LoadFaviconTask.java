@@ -51,7 +51,8 @@ public class LoadFaviconTask extends UiAsyncTask<Void, Void, Bitmap> {
     public static final int FLAG_SCALE = 2;
     private static final int MAX_REDIRECTS_TO_FOLLOW = 5;
 
-    private static AtomicInteger mNextFaviconLoadId = new AtomicInteger(0);
+    // LB_CHANGE: change default so as to not conflict with Favicons.LOADED
+    private static AtomicInteger mNextFaviconLoadId = new AtomicInteger(111);
     private int mId;
     private String mPageUrl;
     private String mFaviconUrl;

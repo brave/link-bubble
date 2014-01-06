@@ -331,15 +331,16 @@ public class BubbleView extends FrameLayout {
         //int flags = (tab.isPrivate() || tab.getErrorType() != Tab.ErrorType.NONE) ? 0 : LoadFaviconTask.FLAG_PERSIST;
         int flags = Settings.get().isIncognitoMode() ? 0 : LoadFaviconTask.FLAG_PERSIST;
         String faviconUrl = "http://" + mUrl.getHost() + "/favicon.ico";
+        int faviconLoadIdBefore = mFaviconLoadId;
         int id = Favicons.getFaviconForSize(mUrl.toString(), faviconUrl, Integer.MAX_VALUE, flags, mOnFaviconLoadedListener);
 
-        setFaviconLoadId(id);
-        if (id != Favicons.LOADED) {
-            // We're loading the current tab's favicon from somewhere
-            // other than the cache.
-            // Display the globe favicon until then.
-            //mBrowserToolbar.showDefaultFavicon();
-            mFavicon.setImageResource(R.drawable.fallback_favicon);
+        // If the favicon is cached, mOnFaviconLoadedListener.onFaviconLoaded() will be called before this check is reached,
+        // and this call will have already set mFaviconLoadId. Thus only act on the id return value if the value was not already changed
+        if (faviconLoadIdBefore == mFaviconLoadId) {
+            setFaviconLoadId(id);
+            if (id != Favicons.LOADED) {
+                mFavicon.setImageResource(R.drawable.fallback_favicon);
+            }
         }
     }
 
@@ -349,7 +350,7 @@ public class BubbleView extends FrameLayout {
             if (favicon != null) {
                 Bitmap transformed = mFaviconTransformation.transform(favicon);
                 mFavicon.setImageBitmap(transformed);
-                mFaviconLoadId = Favicons.LOADED;
+                setFaviconLoadId(Favicons.LOADED);
             }
         }
     };
@@ -402,6 +403,9 @@ public class BubbleView extends FrameLayout {
                         setDefaultFavicon = false;
                     } else {
                         loadFavicon();
+                        if (mFaviconLoadId == Favicons.LOADED || mFaviconLoadId == Favicons.NOT_LOADING) {
+                            setDefaultFavicon = false;
+                        }
                         /*
                         String faviconUrl = "http://" + mUrl.getHost() + "/favicon.ico";
                         //String faviconUrl = "http://1.gravatar.com/blavatar/f8748081423ce49bd3ecb267cd4effc7?s=16";
