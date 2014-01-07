@@ -411,14 +411,17 @@ public class MainController implements Choreographer.FrameCallback {
 
                                 if (loaded == false) {
                                     openUrlInBubble(url, System.currentTimeMillis());
+                                } else {
+                                    if (mBubbles.size() == 0) {
+                                        mEventHandler.onDestroy();
+                                    }
                                 }
                             }
                         });
+                dialog.setCancelable(false);
                 dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
                 dialog.show();
-                if (mBubbles.size() == 0) {
-                    mEventHandler.onDestroy();
-                }
+
                 return;
             }
         }
