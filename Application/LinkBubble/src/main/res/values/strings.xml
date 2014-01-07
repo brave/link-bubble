@@ -65,6 +65,8 @@
 
     <string name="title_youtube_embed_to_load">Select video to play</string>
     <string name="loading_youtube_embed_info">Fetching info about YouTube videos…</string>
+    <string name="youtube_embed_error_title">Oops</string>
+    <string name="youtube_embed_error_summary">Unable to retrieve info about YouTube videos at this time. Please try again later.</string>
 
     <string name="loading">Loading…</string>
 

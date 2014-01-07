@@ -2,6 +2,7 @@ package com.linkbubble.util;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.ResolveInfo;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
@@ -137,7 +138,7 @@ public class YouTubeEmbedHelper {
         AlertDialog alertDialog = builder.create();
         alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
 
-        new DownloadYouTubeEmbedInfo(alertDialog).execute(null, null, null);
+        new DownloadYouTubeEmbedInfo(true, alertDialog).execute(null, null, null);
 
         return alertDialog;
     }
@@ -146,9 +147,11 @@ public class YouTubeEmbedHelper {
 
     private class DownloadYouTubeEmbedInfo extends AsyncTask<Void, Void, Void> {
         private AlertDialog mLoadingAlertDialog;
+        private boolean mShowResultsOnCompletion;
 
-        DownloadYouTubeEmbedInfo(AlertDialog loadingAlertDialog) {
+        DownloadYouTubeEmbedInfo(boolean showResultsOnCompletion, AlertDialog loadingAlertDialog) {
             super();
+            mShowResultsOnCompletion = showResultsOnCompletion;
             mLoadingAlertDialog = loadingAlertDialog;
         }
 
@@ -175,80 +178,99 @@ public class YouTubeEmbedHelper {
             String url = "https://www.googleapis.com/youtube/v3/videos?id=" + idsAsString + "&key=" + Config.YOUTUBE_API_KEY +
                     "&part=snippet&fields=items(id,snippet(title," + thumbnailsArg + "))";
 
-            String jsonAsString = Util.downloadJSONAsString(url, 5000);
-
             mEmbedInfo.clear();
-
-            try {
-                JSONObject jsonObject = new JSONObject(jsonAsString);
-                Object itemsObject = jsonObject.get("items");
-                if (itemsObject instanceof JSONArray) {
-                    JSONArray jsonArray = (JSONArray)itemsObject;
-                    for (int i = 0; i < jsonArray.length(); ++i) {
-                        JSONObject item = jsonArray.getJSONObject(i);
-                        EmbedInfo embedInfo = new EmbedInfo();
-                        embedInfo.mId = item.getString("id");
-                        JSONObject snippet = item.getJSONObject("snippet");
-                        if (snippet != null) {
-                            embedInfo.mTitle = snippet.getString("title");
-                            JSONObject thumbnails = snippet.getJSONObject("thumbnails");
-                            if (thumbnails != null) {
-                                JSONObject mediumEntry = thumbnails.getJSONObject("medium");
-                                if (mediumEntry != null) {
-                                    embedInfo.mThumbnailUrl = mediumEntry.getString("url");
-                                    mEmbedInfo.add(embedInfo);
-                                }
-
-                                // Fallback to checking for default...
-                                if (embedInfo.mThumbnailUrl == null) {
-                                    JSONObject defaultEntry = thumbnails.getJSONObject("default");
-                                    if (defaultEntry != null) {
-                                        embedInfo.mThumbnailUrl = defaultEntry.getString("url");
+            String jsonAsString = Util.downloadJSONAsString(url, 5000);
+            if (jsonAsString != null) {
+                try {
+                    JSONObject jsonObject = new JSONObject(jsonAsString);
+                    Object itemsObject = jsonObject.get("items");
+                    if (itemsObject instanceof JSONArray) {
+                        JSONArray jsonArray = (JSONArray)itemsObject;
+                        for (int i = 0; i < jsonArray.length(); ++i) {
+                            JSONObject item = jsonArray.getJSONObject(i);
+                            EmbedInfo embedInfo = new EmbedInfo();
+                            embedInfo.mId = item.getString("id");
+                            JSONObject snippet = item.getJSONObject("snippet");
+                            if (snippet != null) {
+                                embedInfo.mTitle = snippet.getString("title");
+                                JSONObject thumbnails = snippet.getJSONObject("thumbnails");
+                                if (thumbnails != null) {
+                                    JSONObject mediumEntry = thumbnails.getJSONObject("medium");
+                                    if (mediumEntry != null) {
+                                        embedInfo.mThumbnailUrl = mediumEntry.getString("url");
                                         mEmbedInfo.add(embedInfo);
+                                    }
+
+                                    // Fallback to checking for default...
+                                    if (embedInfo.mThumbnailUrl == null) {
+                                        JSONObject defaultEntry = thumbnails.getJSONObject("default");
+                                        if (defaultEntry != null) {
+                                            embedInfo.mThumbnailUrl = defaultEntry.getString("url");
+                                            mEmbedInfo.add(embedInfo);
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
 
             return null;
         }
 
         protected void onPostExecute(Void result) {
-            if (mEmbedInfo.size() > 0) {
+            if (mShowResultsOnCompletion) {
                 mLoadingAlertDialog.dismiss();
                 mLoadingAlertDialog = null;
 
-                ListView listView = new ListView(mContext);
-                listView.setAdapter(new EmbedItemAdapter());
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                builder.setView(listView);
-                builder.setIcon(mYouTubeResolveInfo.loadIcon(mContext.getPackageManager()));
-                builder.setTitle(R.string.title_youtube_embed_to_load);
-
-                final AlertDialog alertDialog = builder.create();
-                alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                alertDialog.show();
-
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        EmbedInfo embedInfo = (EmbedInfo) view.getTag();
-                        if (embedInfo != null) {
-                            loadYouTubeVideo(embedInfo.mId);
-                        }
-                        alertDialog.dismiss();
-                    }
-                });
+                showEmbedResultsDialog();
             }
         }
     };
 
+    void showEmbedResultsDialog() {
+        if (mEmbedInfo.size() > 0) {
+            ListView listView = new ListView(mContext);
+            listView.setAdapter(new EmbedItemAdapter());
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            builder.setView(listView);
+            builder.setIcon(mYouTubeResolveInfo.loadIcon(mContext.getPackageManager()));
+            builder.setTitle(R.string.title_youtube_embed_to_load);
+
+            final AlertDialog alertDialog = builder.create();
+            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            alertDialog.show();
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    EmbedInfo embedInfo = (EmbedInfo) view.getTag();
+                    if (embedInfo != null) {
+                        loadYouTubeVideo(embedInfo.mId);
+                    }
+                    alertDialog.dismiss();
+                }
+            });
+        } else {
+            final AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
+            alertDialog.setTitle(R.string.youtube_embed_error_title);
+            alertDialog.setMessage(mContext.getString(R.string.youtube_embed_error_summary));
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, mContext.getResources().getString(R.string.action_ok), new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    alertDialog.dismiss();
+                }
+
+            });
+            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            alertDialog.show();
+        }
+    }
 
     private class EmbedItemAdapter extends BaseAdapter {
 
