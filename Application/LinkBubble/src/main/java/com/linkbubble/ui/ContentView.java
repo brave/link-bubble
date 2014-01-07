@@ -639,15 +639,7 @@ public class ContentView extends FrameLayout {
         final String shareLabel = resources.getString(R.string.action_share);
         longClickSelections.add(shareLabel);
 
-        final String openInNewBubbleLabel = resources.getString(R.string.action_open_in_new_bubble);
-        longClickSelections.add(openInNewBubbleLabel);
-
         String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
-        final String openInBrowserLabel = defaultBrowserLabel != null ?
-                String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel) : null;
-        if (openInBrowserLabel != null) {
-            longClickSelections.add(openInBrowserLabel);
-        }
 
         final String leftConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeLeft);
         if (leftConsumeBubbleLabel != null) {
@@ -664,6 +656,15 @@ public class ContentView extends FrameLayout {
         }
 
         Collections.sort(longClickSelections);
+
+        final String openInNewBubbleLabel = resources.getString(R.string.action_open_in_new_bubble);
+        longClickSelections.add(0, openInNewBubbleLabel);
+
+        final String openInBrowserLabel = defaultBrowserLabel != null ?
+                String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel) : null;
+        if (openInBrowserLabel != null) {
+            longClickSelections.add(1, openInBrowserLabel);
+        }
 
         ListView listView = new ListView(getContext());
         listView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,
