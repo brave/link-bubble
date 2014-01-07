@@ -37,6 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String[] LINK_HISTORY_COLUMNS = {KEY_ID, KEY_TITLE, KEY_URL, KEY_HOST, KEY_TIME};
     private static final String[] FAVICON_COLUMNS = {KEY_ID, KEY_URL, KEY_PAGE_URL, KEY_DATA};
+    private static final String[] FAVICON_DATA = {KEY_DATA};
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -173,6 +174,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param faviconUrl The URL of the favicon to fetch from the database.
      * @return The decoded Bitmap from the database, if any. null if none is stored.
      */
+    /*
     public FaviconRecord getFaviconRecord(String faviconUrl) {
 
         SQLiteDatabase db = getReadableDatabase();
@@ -198,15 +200,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         byte[] byteArray = cursor.getBlob(3);
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         faviconRecord.setFavicon(bitmap);
+        cursor.closeZZZ();  // TODO, also put this inside the if check above
 
         return faviconRecord;
-    }
+    }*/
     public Bitmap getFavicon(String faviconUrl) {
 
         SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_FAVICON_CACHE, // a. table
-                FAVICON_COLUMNS, // b. column names
+                FAVICON_DATA, // b. column names
                 " " + KEY_URL + " = ?", // c. selections
                 new String[] { faviconUrl }, // d. selections args
                 null, // e. group by
@@ -219,7 +222,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
 
-                byte[] byteArray = cursor.getBlob(3);
+                byte[] byteArray = cursor.getBlob(0);
                 result = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
             }
             cursor.close();
