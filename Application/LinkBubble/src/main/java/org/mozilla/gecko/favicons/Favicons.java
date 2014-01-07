@@ -7,8 +7,6 @@ package org.mozilla.gecko.favicons;
 
 import com.linkbubble.R;
 import org.mozilla.gecko.favicons.cache.FaviconCache;
-import org.mozilla.gecko.gfx.BitmapUtils;
-import org.mozilla.gecko.util.GeckoJarReader;
 import org.mozilla.gecko.util.NonEvictingLruCache;
 import org.mozilla.gecko.util.ThreadUtils;
 
