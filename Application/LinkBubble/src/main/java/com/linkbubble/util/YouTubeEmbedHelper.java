@@ -394,7 +394,9 @@ public class YouTubeEmbedHelper {
             EmbedInfo embedInfo = mEmbedInfo.get(position);
 
             ImageView imageView = (ImageView)convertView.findViewById(R.id.image);
-            Picasso.with(mContext).load(embedInfo.mThumbnailUrl).into(imageView);
+            if (embedInfo.mThumbnailUrl != null) {
+                Picasso.with(mContext).load(embedInfo.mThumbnailUrl).into(imageView);
+            }
 
             TextView textView = (TextView)convertView.findViewById(R.id.text);
             textView.setText(embedInfo.mTitle);
