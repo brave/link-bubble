@@ -81,16 +81,26 @@ public class ContentView extends FrameLayout {
     private Paint mPaint;
 
     private static final String JS_VARIABLE = "LinkBubble";
-    private static final String JS_EMBED = "javascript:(function() {\n"+
-                                            "    var elems = document.getElementsByTagName('*'), i;\n"+
-                                            "    for (i in elems) {\n"+
-                                            "    var elem = elems[i];\n"+
-                                            "    if (elem.src != null && elem.src.indexOf(\"" + Config.YOUTUBE_EMBED_PREFIX + "\") != -1) {\n"+
-                                            //"       console.log(\"found embed: \" + elem.src);\n"+
-                                            "       " + JS_VARIABLE + ".onYouTubeEmbed(elem.src);\n"+
-                                            "    }\n"+
-                                            "}\n"+
-                                            "})();";
+    private static final String JS_EMBED = "javascript:(function() {\n" +
+            "    var elems = document.getElementsByTagName('*'), i;\n" +
+            "    var resultArray = null;\n" +
+            "    var resultCount = 0;\n" +
+            "    for (i in elems) {\n" +
+            "       var elem = elems[i];\n" +
+            "       if (elem.src != null && elem.src.indexOf(\"" + Config.YOUTUBE_EMBED_PREFIX + "\") != -1) {\n" +
+                //"           //console.log(\"found embed: \" + elem.src);\n" +
+            "           if (resultArray == null) {\n" +
+            "               resultArray = new Array();\n" +
+                //"           console.log(\"allocate array\");\n" +
+            "           }\n" +
+            "           resultArray[resultCount] = elem.src;\n" +
+            "           resultCount++;\n" +
+            "       }\n" +
+            "    }\n" +
+            "    if (resultCount > 0) {\n" +
+            "       " + JS_VARIABLE + ".onEmbeds(resultArray.toString());\n" +
+            "    }\n" +
+            "})();";
 
     public ContentView(Context context) {
         this(context, null);
@@ -842,14 +852,19 @@ public class ContentView extends FrameLayout {
         private Runnable mUpdateOpenInAppRunnable = null;
 
         @JavascriptInterface
-        public void onYouTubeEmbed(String src) {
-            Log.d(TAG, "onYouTubeEmbed() - " + src);
+        public void onEmbeds(String string) {
+            Log.d(TAG, "onEmbeds() - " + string);
+
+            if (string == null || string.length() == 0) {
+                return;
+            }
 
             if (mYouTubeEmbedHelper == null) {
                 mYouTubeEmbedHelper = new YouTubeEmbedHelper(mContext);
             }
 
-            if (mYouTubeEmbedHelper.onYouTubeEmbedFound(src)) {
+            String[] strings = string.split(",");
+            if (mYouTubeEmbedHelper.onEmbeds(strings)) {
                 if (mUpdateOpenInAppRunnable == null) {
                     mUpdateOpenInAppRunnable = new Runnable() {
                         @Override

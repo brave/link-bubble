@@ -63,43 +63,44 @@ public class YouTubeEmbedHelper {
         * http://www.youtube.com/embed/oSAW1tSNIa4?version=3&rel=1&fs=1&showsearch=0&showinfo=1&iv_load_policy=1&wmode=transparent
         * https://www.youtube.com/embed/q1dpQKntj_w
      */
-    public boolean onYouTubeEmbedFound(String src) {
-        if (src == null || src.isEmpty()) {
+    public boolean onEmbeds(String[] strings) {
+        if (strings == null || strings.length == 0) {
             return false;
         }
 
-        int prefixStartIndex = src.indexOf(Config.YOUTUBE_EMBED_PREFIX);
-        if (prefixStartIndex > -1) {
-            URL url;
-            try {
-                url = new URL(src);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-                return false;
-            }
+        for (String string : strings) {
+            int prefixStartIndex = string.indexOf(Config.YOUTUBE_EMBED_PREFIX);
+            if (prefixStartIndex > -1) {
+                URL url;
+                try {
+                    url = new URL(string);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                    break;
+                }
 
-            String path = url.getPath();
-            int pathStartIndex = path.indexOf(Config.YOUTUBE_EMBED_PATH_SUFFIX);
-            if (pathStartIndex > -1) {
-                String videoId = path.substring(pathStartIndex + Config.YOUTUBE_EMBED_PATH_SUFFIX.length());
-                if (videoId.length() > 0) {
-                    boolean onList = false;
-                    if (mEmbedIds.size() > 0) {
-                        for (String s : mEmbedIds) {
-                            if (s.equals(videoId)) {
-                                onList = true;
-                                break;
+                String path = url.getPath();
+                int pathStartIndex = path.indexOf(Config.YOUTUBE_EMBED_PATH_SUFFIX);
+                if (pathStartIndex > -1) {
+                    String videoId = path.substring(pathStartIndex + Config.YOUTUBE_EMBED_PATH_SUFFIX.length());
+                    if (videoId.length() > 0) {
+                        boolean onList = false;
+                        if (mEmbedIds.size() > 0) {
+                            for (String s : mEmbedIds) {
+                                if (s.equals(videoId)) {
+                                    onList = true;
+                                    break;
+                                }
                             }
                         }
-                    }
-                    if (onList == false) {
-                        mEmbedIds.add(videoId);
-                        return true;
+                        if (onList == false) {
+                            mEmbedIds.add(videoId);
+                        }
                     }
                 }
             }
         }
-        return false;
+        return mEmbedIds.size() > 0;
     }
 
     private boolean loadYouTubeVideo(String id) {
