@@ -2,9 +2,13 @@ package com.linkbubble.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
+import com.linkbubble.R;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -23,6 +27,20 @@ public class BubbleFlowView extends FancyCoverFlow {
         MainApplication app = (MainApplication) context.getApplicationContext();
         Bus bus = app.getBus();
         bus.register(this);
+
+        setBackgroundColor(0x33ff0000);
+    }
+
+    void expand() {
+        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) getLayoutParams();
+        lp.width = RelativeLayout.LayoutParams.MATCH_PARENT;
+        setLayoutParams(lp);
+    }
+
+    void collapse() {
+        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) getLayoutParams();
+        lp.width = getResources().getDimensionPixelSize(R.dimen.bubble_size);
+        setLayoutParams(lp);
     }
 
     void bubblesUpdated() {
