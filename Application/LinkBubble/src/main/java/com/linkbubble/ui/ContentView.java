@@ -296,7 +296,7 @@ public class ContentView extends FrameLayout {
         });
 
         mOverflowButton = (ContentViewButton)mToolbarLayout.findViewById(R.id.overflow_button);
-        mOverflowButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_overflow));
+        mOverflowButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_overflow_round));
         mOverflowButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
