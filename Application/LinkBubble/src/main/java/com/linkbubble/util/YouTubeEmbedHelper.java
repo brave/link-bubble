@@ -196,10 +196,14 @@ public class YouTubeEmbedHelper {
                                 embedInfo.mTitle = snippet.getString("title");
                                 JSONObject thumbnails = snippet.getJSONObject("thumbnails");
                                 if (thumbnails != null) {
-                                    JSONObject mediumEntry = thumbnails.getJSONObject("medium");
-                                    if (mediumEntry != null) {
-                                        embedInfo.mThumbnailUrl = mediumEntry.getString("url");
-                                        mEmbedInfo.add(embedInfo);
+                                    try {
+                                        JSONObject mediumEntry = thumbnails.getJSONObject("medium");
+                                        if (mediumEntry != null) {
+                                            embedInfo.mThumbnailUrl = mediumEntry.getString("url");
+                                            mEmbedInfo.add(embedInfo);
+                                        }
+                                    } catch (JSONException e) {
+                                      // ignore "org.json.JSONException: No value for medium"
                                     }
 
                                     // Fallback to checking for default...
