@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.squareup.otto.Bus;
+import org.mozilla.gecko.favicons.Favicons;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,6 +32,12 @@ public class MainApplication extends Application {
         mBus = new Bus();
 
         mDatabaseHelper = new DatabaseHelper(this);
+
+        try {
+            Favicons.attachToContext(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public Bus getBus() {
@@ -43,6 +50,8 @@ public class MainApplication extends Application {
     @Override
     public void onTerminate() {
         Settings.deinitModule();
+
+        Favicons.close();
 
         super.onTerminate();
     }

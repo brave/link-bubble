@@ -28,7 +28,7 @@ android {
 }
 
 dependencies {
-    //compile 'com.android.support:support-v4:18.0.+'
+    compile 'com.android.support:support-v4:19.0.+'
     compile 'se.emilsjolander:stickylistheaders:2.1.2'
     compile 'com.crashlytics.android:crashlytics:1.+'
     compile files('libs/otto-1.3.4.jar')
