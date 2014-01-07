@@ -348,8 +348,8 @@ public class BubbleView extends FrameLayout {
         @Override
         public void onFaviconLoaded(String url, String faviconURL, Bitmap favicon) {
             if (favicon != null) {
-                Bitmap transformed = mFaviconTransformation.transform(favicon);
-                mFavicon.setImageBitmap(transformed);
+                // Note: don't upsize favicon because Favicons.getFaviconForSize() already does this
+                mFavicon.setImageBitmap(favicon);
                 setFaviconLoadId(Favicons.LOADED);
             }
         }
