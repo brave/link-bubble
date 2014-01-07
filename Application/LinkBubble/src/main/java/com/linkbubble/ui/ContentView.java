@@ -142,7 +142,8 @@ public class ContentView extends FrameLayout {
     }
 
     public interface EventHandler {
-        public void onSharedLink();
+        public void onDestroyBubble();
+        public void onMinimizeBubbles();
         public void onPageLoading(String url);
         public void onProgressChanged(int progress);
         public void onPageLoaded(PageLoadInfo info);
@@ -228,7 +229,7 @@ public class ContentView extends FrameLayout {
                 mContext.startActivity(intent);
 
                 if (closeBubbleOnShare) {
-                    mEventHandler.onSharedLink();
+                    mEventHandler.onDestroyBubble();
                 }
             }
         });
@@ -281,7 +282,7 @@ public class ContentView extends FrameLayout {
 
             @Override
             public void onAppOpened() {
-                mEventHandler.onSharedLink();
+                mEventHandler.onDestroyBubble();
             }
 
         });
@@ -321,7 +322,7 @@ public class ContentView extends FrameLayout {
                                 Intent intent = Config.getStoreIntent(mContext, Config.STORE_PRO_URL);
                                 if (intent != null) {
                                     mContext.startActivity(intent);
-                                    mEventHandler.onSharedLink();
+                                    mEventHandler.onMinimizeBubbles();
                                 }
                                 break;
                             }
@@ -352,7 +353,7 @@ public class ContentView extends FrameLayout {
                                 Intent intent = new Intent(mContext, SettingsActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 mContext.startActivity(intent);
-                                mEventHandler.onSharedLink();
+                                mEventHandler.onMinimizeBubbles();
                                 break;
                             }
                         }
@@ -493,7 +494,7 @@ public class ContentView extends FrameLayout {
                                                         resolveInfo.loadLabel(mContext.getPackageManager()));
                             MainApplication.saveUrlInHistory(mContext, resolveInfo, url, title);
 
-                            mEventHandler.onSharedLink();
+                            mEventHandler.onDestroyBubble();
                             return false;
                         }
                     }
@@ -592,7 +593,7 @@ public class ContentView extends FrameLayout {
                                 configureOpenEmbedButton();
                                 return true;
                             } else {
-                                mEventHandler.onSharedLink();
+                                mEventHandler.onDestroyBubble();
                             }
                             break;
                     }
@@ -608,7 +609,7 @@ public class ContentView extends FrameLayout {
                                         String contentDisposition, String mimetype,
                                         long contentLength) {
                 openInBrowser(url);
-                mEventHandler.onSharedLink();
+                mEventHandler.onDestroyBubble();
             }
         });
 
@@ -839,7 +840,7 @@ public class ContentView extends FrameLayout {
         intent.setData(Uri.parse(url));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         if (MainApplication.loadInBrowser(mContext, intent, true)) {
-            mEventHandler.onSharedLink();
+            mEventHandler.onDestroyBubble();
             return true;
         }
 
