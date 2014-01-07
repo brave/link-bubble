@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
+import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
+import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 
@@ -55,14 +57,9 @@ public class HomeActivity extends Activity {
             MainApplication.openLink(this, url);
         }
 
-        /*
-        if (MainController.get() != null && MainController.get().getBubbleCount() > 0) {
-            FancyCoverFlow fancyCoverFlow = (FancyCoverFlow) findViewById(R.id.fancyCoverFlow);
-
-            BubbleCoverFlowAdapter adapter = new BubbleCoverFlowAdapter(this, MainController.get().getBubbles(), false);
-            fancyCoverFlow.setAdapter(adapter);
-            fancyCoverFlow.setSelection(adapter.getStartIndex(), false);
-        }*/
+        BubbleFlowView bubbleFlow = (BubbleFlowView) findViewById(R.id.bubble_flow);
+        BubbleFlowAdapter adapter = new BubbleFlowAdapter(this, false);
+        bubbleFlow.setAdapter(adapter);
 
         View historyButton = findViewById(R.id.history);
         historyButton.setOnClickListener(new View.OnClickListener() {

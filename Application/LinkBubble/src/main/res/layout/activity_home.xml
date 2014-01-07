@@ -73,20 +73,20 @@
             />
 
 
-    <!--
-        <at.technikum.mti.fancycoverflow.FancyCoverFlow
+
+        <com.linkbubble.ui.BubbleFlowView
             xmlns:fancyCoverFlow="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/fancyCoverFlow"
+            android:id="@+id/bubble_flow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_gravity="top|center"
             fancyCoverFlow:maxRotation="-60"
             fancyCoverFlow:unselectedAlpha="0.3"
             fancyCoverFlow:unselectedSaturation="0.0"
             fancyCoverFlow:unselectedScale="0.4"
             fancyCoverFlow:scaleDownGravity="0.25"
             />
-            -->
+
     </RelativeLayout>
 
 </FrameLayout>

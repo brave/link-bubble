@@ -81,6 +81,20 @@ public class MainController implements Choreographer.FrameCallback {
         public void onDestroy();
     }
 
+    public static class BubbleAddedEvent {
+        public BubbleView mBubbleView;
+        BubbleAddedEvent(BubbleView bubble) {
+            mBubbleView = bubble;
+        }
+    };
+
+    public static class BubbleRemovedEvent {
+        public BubbleView mBubbleView;
+        BubbleRemovedEvent(BubbleView bubble) {
+            mBubbleView = bubble;
+        }
+    };
+
     public State_BubbleView STATE_BubbleView;
     public State_SnapToEdge STATE_SnapToEdge;
     public State_AnimateToContentView STATE_AnimateToContentView;
@@ -211,6 +225,8 @@ public class MainController implements Choreographer.FrameCallback {
                 Config.BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
                 Config.BUBBLE_HOME_Y = (int) (Config.mScreenHeight * 0.4f);
             }
+
+            ((MainApplication)mContext.getApplicationContext()).getBus().post(new BubbleRemovedEvent(bubble));
 
             mCurrentState.OnDestroyBubble(bubble);
 
@@ -544,6 +560,8 @@ public class MainController implements Choreographer.FrameCallback {
                     b.setVisibility(vis);
                 }
             }
+
+            ((MainApplication)mContext.getApplicationContext()).getBus().post(new BubbleAddedEvent(bubble));
         }
     }
 

@@ -1,5 +1,6 @@
 package com.linkbubble.ui;
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,28 +8,30 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 import at.technikum.mti.fancycoverflow.FancyCoverFlowAdapter;
+import com.linkbubble.MainController;
 import com.linkbubble.R;
 
 import java.util.List;
 
-class BubbleCoverFlowAdapter extends FancyCoverFlowAdapter {
+public class BubbleFlowAdapter extends FancyCoverFlowAdapter {
+
 
     Context mContext;
     List<BubbleView> mBubbles;
     int mItemSize;
 
-    private final int mSize;
-    private final int mStartIndex;
+    //private final int mSize;
+    //private final int mStartIndex;
     private final boolean mLoop;
 
-    public BubbleCoverFlowAdapter(Context context, List<BubbleView> bubbles, boolean loop) {
+    public BubbleFlowAdapter(Context context, boolean loop) {
         super();
         mContext = context;
-        mBubbles = bubbles;
 
         mItemSize = context.getResources().getDimensionPixelSize(R.dimen.bubble_cover_flow_item_size);
 
         mLoop = loop;
+        /*
         if (mLoop) {
             mSize = Integer.MAX_VALUE;
             int halfMaxValue = mSize/2;
@@ -36,20 +39,27 @@ class BubbleCoverFlowAdapter extends FancyCoverFlowAdapter {
         } else {
             mSize = bubbles.size();
             mStartIndex = 0;
-        }
+        }*/
+    }
+
+    void setBubbles(List<BubbleView> bubbles) {
+        mBubbles = bubbles;
+        notifyDataSetChanged();
     }
 
     // =============================================================================
     // Supertype overrides
     // =============================================================================
 
+    /*
     public int getStartIndex() {
         return mStartIndex;
-    }
+    }*/
 
     @Override
     public int getCount() {
-        return mSize;
+        //return mSize;
+        return mBubbles == null ? 0 : mBubbles.size();
     }
 
     @Override
@@ -89,4 +99,5 @@ class BubbleCoverFlowAdapter extends FancyCoverFlowAdapter {
         //TextView mTextView;
         ImageView mFaviconImageView;
     }
+
 }
