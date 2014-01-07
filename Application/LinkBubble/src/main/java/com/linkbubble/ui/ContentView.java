@@ -69,7 +69,7 @@ public class ContentView extends FrameLayout {
     private List<ResolveInfo> mTempAppsForUrl = new ArrayList<ResolveInfo>();
     private URL mTempUrl;
     private YouTubeEmbedHelper mYouTubeEmbedHelper;
-    private boolean mCheckedForEmbeds;
+    private int mCheckForEmbedsCount;
     private PopupMenu mOverflowPopupMenu;
     private AlertDialog mLongPressAlertDialog;
     private long mStartTime;
@@ -430,14 +430,20 @@ public class ContentView extends FrameLayout {
                 // take many, many seconds, even on a strong connection. Thus, do a check for embeds now to prevent the button
                 // not being updated until 100% is reached, which feels too slow as a user.
                 if (progress >= 60) {
-                    if (mCheckedForEmbeds == false) {
-                        mCheckedForEmbeds = true;
+                    if (mCheckForEmbedsCount == 0) {
+                        mCheckForEmbedsCount = 1;
                         if (mYouTubeEmbedHelper != null) {
                             mYouTubeEmbedHelper.clear();
                         }
 
                         if (Settings.get().checkForYouTubeEmbeds()) {
-                            Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds()");
+                            Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
+                            webView.loadUrl(JS_EMBED);
+                        }
+                    } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
+                        mCheckForEmbedsCount = 2;
+                        if (Settings.get().checkForYouTubeEmbeds()) {
+                            Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
                             webView.loadUrl(JS_EMBED);
                         }
                     }
@@ -546,12 +552,6 @@ public class ContentView extends FrameLayout {
                             mStartTime = -1;
                         }
 
-                        if (mCheckedForEmbeds == false) {
-                            mCheckedForEmbeds = true;
-                            if (mYouTubeEmbedHelper != null) {
-                                mYouTubeEmbedHelper.clear();
-                            }
-                        }
                         // Always check again at 100%
                         if (Settings.get().checkForYouTubeEmbeds()) {
                             webView.loadUrl(JS_EMBED);
