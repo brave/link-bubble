@@ -3,28 +3,23 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item>
-        <shape android:shape="oval" >
-            <solid android:color="@android:color/white" />
-            <size android:height="50dp"
-                  android:width="50dp"/>
+        <shape android:shape="rectangle" >
+            <solid android:color="@color/white_button_normal" />
+            <size android:height="@dimen/bubble_icon_size"
+                  android:width="@dimen/bubble_icon_size"/>
         </shape>
     </item>
-
     <item>
-        <shape android:shape="oval" >
+        <shape android:shape="rectangle" >
             <stroke android:width="@dimen/bubble_icon_stroke_size" android:color="@color/bubble_border" />
         </shape>
     </item>
 
     <!--
     <item android:left="4dp" android:top="4dp" android:right="4dp" android:bottom="4dp">
-        <shape android:shape="oval" >
+        <shape android:shape="rectangle">
             <stroke android:width="@dimen/bubble_icon_stroke_size" android:color="@color/bubble_border" />
         </shape>
     </item> -->
-
-    <item>
-        <bitmap android:src="@drawable/ic_action_gear_dark" />
-    </item>
 
 </layer-list>
