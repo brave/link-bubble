@@ -19,8 +19,6 @@ import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.util.NetworkConnectivity;
-import com.linkbubble.util.Util;
 import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +40,7 @@ public class YouTubeEmbedHelper {
         String mId;
     }
     private List<EmbedInfo> mEmbedInfo = new ArrayList<EmbedInfo>();
+    private DownloadYouTubeEmbedInfoTask mCurrentDownloadTask;
 
     public ResolveInfo mYouTubeResolveInfo;
 
@@ -52,6 +51,14 @@ public class YouTubeEmbedHelper {
 
     public void clear() {
         mEmbedIds.clear();
+        if (mCurrentDownloadTask != null) {
+            synchronized (mCurrentDownloadTask) {
+                if (mCurrentDownloadTask != null) {
+                    mCurrentDownloadTask.cancel(true);
+                }
+                mCurrentDownloadTask = null;
+            }
+        }
     }
 
     public int size() {
@@ -67,6 +74,8 @@ public class YouTubeEmbedHelper {
         if (strings == null || strings.length == 0) {
             return false;
         }
+
+        boolean listChanged = false;
 
         for (String string : strings) {
             int prefixStartIndex = string.indexOf(Config.YOUTUBE_EMBED_PREFIX);
@@ -95,11 +104,28 @@ public class YouTubeEmbedHelper {
                         }
                         if (onList == false) {
                             mEmbedIds.add(videoId);
+                            listChanged = true;
                         }
                     }
                 }
             }
         }
+
+        if (listChanged) {
+            if (mCurrentDownloadTask != null) {
+                synchronized (mCurrentDownloadTask) {
+                    if (mCurrentDownloadTask != null) {
+                        mCurrentDownloadTask.cancel(true);
+                    }
+                    mCurrentDownloadTask = new DownloadYouTubeEmbedInfoTask(false, null);
+                    mCurrentDownloadTask.execute(null, null, null);
+                }
+            } else {
+                mCurrentDownloadTask = new DownloadYouTubeEmbedInfoTask(false, null);
+                mCurrentDownloadTask.execute(null, null, null);
+            }
+        }
+
         return mEmbedIds.size() > 0;
     }
 
@@ -124,39 +150,131 @@ public class YouTubeEmbedHelper {
         return false;
     }
 
+    private boolean embedInfoMatchesIds() {
+        if (mEmbedIds.size() == mEmbedInfo.size()) {
+            for (String id : mEmbedIds) {
+                boolean found = false;
+                for (EmbedInfo info : mEmbedInfo) {
+                    if (info.mId.equals(id)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found == false) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
     private AlertDialog getMultipleEmbedsDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        if (embedInfoMatchesIds()) {
+            return getEmbedResultsDialog();
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 
-        LayoutInflater inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.view_loading, null);
+            LayoutInflater inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.view_loading, null);
 
-        TextView textView = (TextView) view.findViewById(R.id.loading_text);
-        textView.setText(R.string.loading_youtube_embed_info);
+            TextView textView = (TextView) view.findViewById(R.id.loading_text);
+            textView.setText(R.string.loading_youtube_embed_info);
 
-        builder.setView(view);
-        builder.setIcon(0);
+            builder.setView(view);
+            builder.setIcon(0);
 
-        AlertDialog alertDialog = builder.create();
-        alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            AlertDialog alertDialog = builder.create();
+            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
 
-        new DownloadYouTubeEmbedInfo(true, alertDialog).execute(null, null, null);
+            if (mCurrentDownloadTask != null) {
+                synchronized (mCurrentDownloadTask) {
+                    if (mCurrentDownloadTask != null) {
+                        mCurrentDownloadTask.cancel(true);
+                    }
+                    mCurrentDownloadTask = new DownloadYouTubeEmbedInfoTask(true, alertDialog);
+                    mCurrentDownloadTask.execute(null, null, null);
+                }
+            } else {
+                mCurrentDownloadTask = new DownloadYouTubeEmbedInfoTask(true, alertDialog);
+                mCurrentDownloadTask.execute(null, null, null);
+            }
 
-        return alertDialog;
+            return alertDialog;
+        }
+    }
+
+    AlertDialog getEmbedResultsDialog() {
+        if (mEmbedInfo.size() > 0) {
+            ListView listView = new ListView(mContext);
+            listView.setAdapter(new EmbedItemAdapter());
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            builder.setView(listView);
+            builder.setIcon(mYouTubeResolveInfo.loadIcon(mContext.getPackageManager()));
+            builder.setTitle(R.string.title_youtube_embed_to_load);
+
+            final AlertDialog alertDialog = builder.create();
+            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    EmbedInfo embedInfo = (EmbedInfo) view.getTag();
+                    if (embedInfo != null) {
+                        loadYouTubeVideo(embedInfo.mId);
+                    }
+                    alertDialog.dismiss();
+                }
+            });;
+
+            return alertDialog;
+        } else {
+            final AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
+            alertDialog.setTitle(R.string.youtube_embed_error_title);
+            alertDialog.setMessage(mContext.getString(R.string.youtube_embed_error_summary));
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, mContext.getResources().getString(R.string.action_ok), new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    alertDialog.dismiss();
+                }
+
+            });
+            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            return alertDialog;
+        }
     }
 
     //https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM,CevxZvSJLk8&key=AIzaSyChiS6yef7AIe5p0JvJGnHrHmmimehIuDs&part=snippet&fields=items(snippet(title,thumbnails(default)))
 
-    private class DownloadYouTubeEmbedInfo extends AsyncTask<Void, Void, Void> {
+    private class DownloadYouTubeEmbedInfoTask extends AsyncTask<Void, Void, Boolean> {
         private AlertDialog mLoadingAlertDialog;
         private boolean mShowResultsOnCompletion;
 
-        DownloadYouTubeEmbedInfo(boolean showResultsOnCompletion, AlertDialog loadingAlertDialog) {
+        DownloadYouTubeEmbedInfoTask(boolean showResultsOnCompletion, AlertDialog loadingAlertDialog) {
             super();
             mShowResultsOnCompletion = showResultsOnCompletion;
             mLoadingAlertDialog = loadingAlertDialog;
         }
 
-        protected Void doInBackground(Void... arg) {
+        protected Boolean doInBackground(Void... arg) {
+
+            // This only should happen on a page change, in which case, abort
+            if (mEmbedIds.size() == 0 || isCancelled()) {
+                return false;
+            }
+
+            if (mCurrentDownloadTask != null) {
+                synchronized (mCurrentDownloadTask) {
+                    if (mCurrentDownloadTask != this) {
+                        return false;
+                    }
+                }
+            }
 
             String idsAsString = "";
             for (String id : mEmbedIds) {
@@ -223,59 +341,30 @@ public class YouTubeEmbedHelper {
                 }
             }
 
-            return null;
+            if (mCurrentDownloadTask != null) {
+                synchronized (mCurrentDownloadTask) {
+                    if (mCurrentDownloadTask != this) {
+                        return false;
+                    }
+                }
+            }
+
+            if (isCancelled()) {
+                return false;
+            }
+
+            return mEmbedInfo.size() > 0 ? true : false;
         }
 
-        protected void onPostExecute(Void result) {
-            if (mShowResultsOnCompletion) {
+        protected void onPostExecute(Boolean result) {
+            if (result.booleanValue() == true && mShowResultsOnCompletion && isCancelled() == false) {
                 mLoadingAlertDialog.dismiss();
                 mLoadingAlertDialog = null;
 
-                showEmbedResultsDialog();
+                getEmbedResultsDialog().show();
             }
         }
     };
-
-    void showEmbedResultsDialog() {
-        if (mEmbedInfo.size() > 0) {
-            ListView listView = new ListView(mContext);
-            listView.setAdapter(new EmbedItemAdapter());
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-            builder.setView(listView);
-            builder.setIcon(mYouTubeResolveInfo.loadIcon(mContext.getPackageManager()));
-            builder.setTitle(R.string.title_youtube_embed_to_load);
-
-            final AlertDialog alertDialog = builder.create();
-            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-            alertDialog.show();
-
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    EmbedInfo embedInfo = (EmbedInfo) view.getTag();
-                    if (embedInfo != null) {
-                        loadYouTubeVideo(embedInfo.mId);
-                    }
-                    alertDialog.dismiss();
-                }
-            });
-        } else {
-            final AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
-            alertDialog.setTitle(R.string.youtube_embed_error_title);
-            alertDialog.setMessage(mContext.getString(R.string.youtube_embed_error_summary));
-            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, mContext.getResources().getString(R.string.action_ok), new DialogInterface.OnClickListener() {
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    alertDialog.dismiss();
-                }
-
-            });
-            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-            alertDialog.show();
-        }
-    }
 
     private class EmbedItemAdapter extends BaseAdapter {
 
