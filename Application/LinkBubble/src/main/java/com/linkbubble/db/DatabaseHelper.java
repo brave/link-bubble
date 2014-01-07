@@ -36,8 +36,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_DATA = "data";
 
     private static final String[] LINK_HISTORY_COLUMNS = {KEY_ID, KEY_TITLE, KEY_URL, KEY_HOST, KEY_TIME};
-    private static final String[] FAVICON_COLUMNS = {KEY_ID, KEY_URL, KEY_PAGE_URL, KEY_DATA};
-    private static final String[] FAVICON_DATA = {KEY_DATA};
+    private static final String[] FAVICON_COLUMNS = {KEY_ID, KEY_URL, KEY_PAGE_URL, KEY_DATA, KEY_TIME};
+    private static final String[] FAVICON_EXISTS_COLUMNS = {KEY_ID, KEY_TIME};
+    private static final String[] FAVICON_FETCH_COLUMNS = {KEY_ID, KEY_TIME, KEY_DATA};
+
+    private static final int FAVICON_EXPIRE_TIME = 7 * 24 * 60 * 60 * 1000;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -209,7 +212,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_FAVICON_CACHE, // a. table
-                FAVICON_DATA, // b. column names
+                FAVICON_FETCH_COLUMNS, // b. column names
                 " " + KEY_URL + " = ?", // c. selections
                 new String[] { faviconUrl }, // d. selections args
                 null, // e. group by
@@ -219,22 +222,84 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor != null) {
             Bitmap result = null;
+            long idToDelete = -1;
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
 
-                byte[] byteArray = cursor.getBlob(0);
-                result = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                long id = cursor.getLong(0);
+                long createTime = cursor.getLong(1);
+                long timeDelta = System.currentTimeMillis() - createTime;
+                if (timeDelta < FAVICON_EXPIRE_TIME) {
+                    byte[] byteArray = cursor.getBlob(2);
+                    result = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                    Log.d(TAG, "getFavicon() - fetched favicon for " + faviconUrl);
+                } else {
+                    idToDelete = id;
+                }
             }
             cursor.close();
+
+            if (idToDelete > -1) {
+                deleteFavicon(idToDelete);
+            }
+
             return result;
         }
 
         return null;
     }
 
+    public boolean faviconExists(String faviconUrl) {
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_FAVICON_CACHE, // a. table
+                FAVICON_EXISTS_COLUMNS, // b. column names
+                " " + KEY_URL + " = ?", // c. selections
+                new String[] { faviconUrl }, // d. selections args
+                null, // e. group by
+                null, // f. having
+                null, // g. order by
+                null); // h. limit
+
+        if (cursor != null) {
+            boolean result = false;
+            long idToDelete = -1;
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+
+                long id = cursor.getLong(0);
+                long createTime = cursor.getLong(1);
+                long timeDelta = System.currentTimeMillis() - createTime;
+                if (timeDelta >= FAVICON_EXPIRE_TIME) {
+                    idToDelete = id;
+                } else {
+                    result = true;
+                }
+            }
+            cursor.close();
+
+            if (idToDelete > -1) {
+                deleteFavicon(idToDelete);
+            }
+
+            return result;
+        }
+
+        return false;
+    }
+
+    private void deleteFavicon(long id) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_FAVICON_CACHE, KEY_ID + " = ?", new String[] { String.valueOf(id) });
+        db.close();
+
+        Log.d(TAG, "deleteFavicon() - id:" + id);
+    }
+
     public void addFaviconForUrl(String faviconUrl,
                                     Bitmap favicon, String pageUri) {
-        if (Settings.get().isIncognitoMode() == true) {
+        if (Settings.get().isIncognitoMode() == true || faviconUrl == null || favicon == null) {
             return;
         }
 
@@ -250,9 +315,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.w(TAG, "Favicon compression failed.");
         }
         values.put(KEY_DATA, data);
+        values.put(KEY_TIME, System.currentTimeMillis());
 
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_FAVICON_CACHE, null, values);
         db.close();
+
+        Log.d(TAG, "addFaviconForUrl() - " + faviconUrl);
     }
 }

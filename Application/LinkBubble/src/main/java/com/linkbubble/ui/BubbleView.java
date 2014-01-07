@@ -323,6 +323,10 @@ public class BubbleView extends FrameLayout {
         return mFaviconLoadId;
     }
 
+    private String getDefaultFaviconUrl(URL url) {
+        return url.getProtocol() + "://" + url.getHost() + "/favicon.ico";
+    }
+
     private void loadFavicon() {
         maybeCancelFaviconLoad();
 
@@ -330,7 +334,7 @@ public class BubbleView extends FrameLayout {
 
         //int flags = (tab.isPrivate() || tab.getErrorType() != Tab.ErrorType.NONE) ? 0 : LoadFaviconTask.FLAG_PERSIST;
         int flags = Settings.get().isIncognitoMode() ? 0 : LoadFaviconTask.FLAG_PERSIST;
-        String faviconUrl = "http://" + mUrl.getHost() + "/favicon.ico";
+        String faviconUrl = getDefaultFaviconUrl(mUrl);
         int faviconLoadIdBefore = mFaviconLoadId;
         int id = Favicons.getFaviconForSize(mUrl.toString(), faviconUrl, Integer.MAX_VALUE, flags, mOnFaviconLoadedListener);
 
@@ -459,17 +463,23 @@ public class BubbleView extends FrameLayout {
             }
 
             @Override
-            public void onReceivedIcon(Bitmap bitmap) {
-                if (bitmap == null) {
+            public void onReceivedIcon(Bitmap favicon) {
+                if (favicon == null) {
                     mFaviconLoadId = Favicons.NOT_LOADING;
                     mFavicon.setImageResource(R.drawable.fallback_favicon);
                 } else {
-                    bitmap = mFaviconTransformation.transform(bitmap);
+                    MainApplication mainApplication = (MainApplication) getContext().getApplicationContext();
+                    String faviconUrl = getDefaultFaviconUrl(mUrl);
+                    if(mainApplication.mDatabaseHelper.faviconExists(faviconUrl) == false) {
+                        mainApplication.mDatabaseHelper.addFaviconForUrl(faviconUrl, favicon, mUrl.toString());
+                    }
+
+                    favicon = mFaviconTransformation.transform(favicon);
 
                     mFaviconLoadId = Favicons.LOADED;
-                    mFavicon.setImageBitmap(bitmap);
+                    mFavicon.setImageBitmap(favicon);
                     if (mAdditionalFaviconView != null) {
-                        mAdditionalFaviconView.setImageBitmap(bitmap);
+                        mAdditionalFaviconView.setImageBitmap(favicon);
                     }
                 }
 
