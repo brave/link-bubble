@@ -7,7 +7,6 @@ package org.mozilla.gecko.gfx;
 
 import com.linkbubble.R;
 import org.mozilla.gecko.util.ThreadUtils;
-import org.mozilla.gecko.util.GeckoJarReader;
 import org.mozilla.gecko.util.UiAsyncTask;
 
 import android.content.Context;
@@ -56,6 +55,7 @@ public final class BitmapUtils {
                 @Override
                 public Drawable doInBackground(Void... params) {
                     try {
+                        /* LB_CHANGE:
                         if (data.startsWith("jar:jar")) {
                             return GeckoJarReader.getBitmapDrawable(context.getResources(), data);
                         }
@@ -63,7 +63,7 @@ public final class BitmapUtils {
                         // Don't attempt to validate the JAR signature when loading an add-on icon
                         if (data.startsWith("jar:file")) {
                             return GeckoJarReader.getBitmapDrawable(context.getResources(), Uri.decode(data));
-                        }
+                        }*/
 
                         URL url = new URL(data);
                         InputStream is = (InputStream) url.getContent();

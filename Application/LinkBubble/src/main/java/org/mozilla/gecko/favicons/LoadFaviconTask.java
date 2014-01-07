@@ -19,7 +19,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.entity.BufferedHttpEntity;
 import org.mozilla.gecko.gfx.BitmapUtils;
-import org.mozilla.gecko.util.GeckoJarReader;
 import org.mozilla.gecko.util.ThreadUtils;
 import org.mozilla.gecko.util.UiAsyncTask;
 import static org.mozilla.gecko.favicons.Favicons.sContext;
@@ -172,6 +171,7 @@ public class LoadFaviconTask extends UiAsyncTask<Void, Void, Bitmap> {
         if (uri == null) {
             return null;
         }
+        /* LB_CHANGE:
         if (uri.startsWith("jar:jar:")) {
             Log.d(LOGTAG, "Fetching favicon from JAR.");
             try {
@@ -181,7 +181,7 @@ public class LoadFaviconTask extends UiAsyncTask<Void, Void, Bitmap> {
                 Log.w(LOGTAG, "Error fetching favicon from JAR.", e);
                 return null;
             }
-        }
+        }*/
         return null;
     }
 
