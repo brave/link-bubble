@@ -482,7 +482,7 @@ public class MainController implements Choreographer.FrameCallback {
                     }
 
                     @Override
-                    public void onSharedLink(BubbleView sender) {
+                    public void onDestroyBubble(BubbleView sender) {
                         if (mBubbles.size() > 1) {
                             int bubbleIndex = sender.getBubbleIndex();
                             destroyBubble(sender, Config.BubbleAction.Destroy);
@@ -494,6 +494,14 @@ public class MainController implements Choreographer.FrameCallback {
                             switchState(STATE_KillBubble);
                         }
                     }
+
+                    @Override
+                    public void onMinimizeBubbles() {
+                        if (mCurrentState != null && mCurrentState instanceof State_AnimateToBubbleView == false) {
+                            switchState(STATE_AnimateToBubbleView);
+                        }
+                    }
+
                 });
             } catch (MalformedURLException e) {
                 // TODO: Inform the user somehow?

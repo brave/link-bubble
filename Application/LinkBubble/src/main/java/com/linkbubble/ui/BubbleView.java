@@ -100,7 +100,8 @@ public class BubbleView extends FrameLayout {
         public void onMotionEvent_Touch(BubbleView sender, TouchEvent event);
         public void onMotionEvent_Move(BubbleView sender, MoveEvent event);
         public void onMotionEvent_Release(BubbleView sender, ReleaseEvent event);
-        public void onSharedLink(BubbleView sender);
+        public void onDestroyBubble(BubbleView sender);
+        public void onMinimizeBubbles();
     }
 
     public BubbleView(Context context) {
@@ -387,9 +388,15 @@ public class BubbleView extends FrameLayout {
 
         mContentView = (ContentView)inflate(getContext(), R.layout.view_content, null);
         mContentView.configure(BubbleView.this, mUrl.toString(), startTime, new ContentView.EventHandler() {
+
             @Override
-            public void onSharedLink() {
-                mEventHandler.onSharedLink(BubbleView.this);
+            public void onDestroyBubble() {
+                mEventHandler.onDestroyBubble(BubbleView.this);
+            }
+
+            @Override
+            public void onMinimizeBubbles() {
+                mEventHandler.onMinimizeBubbles();
             }
 
             @Override
