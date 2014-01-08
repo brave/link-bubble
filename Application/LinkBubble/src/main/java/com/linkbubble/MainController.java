@@ -162,17 +162,17 @@ public class MainController implements Choreographer.FrameCallback {
         mBubbleFlowView.configure(bubbleFlowViewX, 0, bubbleFlowViewX, 0, 0.f, new BubbleFlowView.EventHandler() {
             @Override
             public void onMotionEvent_Touch(BubbleFlowView sender, DraggableHelper.TouchEvent event) {
-
+                mCurrentState.onTouchActionDown(sender, event);
             }
 
             @Override
             public void onMotionEvent_Move(BubbleFlowView sender, DraggableHelper.MoveEvent event) {
-
+                mCurrentState.onTouchActionMove(sender, event);
             }
 
             @Override
             public void onMotionEvent_Release(BubbleFlowView sender, DraggableHelper.ReleaseEvent event) {
-
+                mCurrentState.onTouchActionRelease(sender, event);
             }
         });
 

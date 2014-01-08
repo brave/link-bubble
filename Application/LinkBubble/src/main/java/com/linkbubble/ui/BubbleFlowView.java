@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.PixelFormat;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.View;
 import android.view.WindowManager;
 import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 import com.linkbubble.Config;
@@ -12,10 +13,11 @@ import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.physics.Circle;
 import com.linkbubble.physics.DraggableHelper;
+import com.linkbubble.physics.DraggableItem;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
-public class BubbleFlowView extends FancyCoverFlow {
+public class BubbleFlowView extends FancyCoverFlow implements DraggableItem {
 
     private DraggableHelper mDraggableHelper;
     private WindowManager mWindowManager;
@@ -110,6 +112,22 @@ public class BubbleFlowView extends FancyCoverFlow {
         return mDraggableHelper.isSnapping();
     }
 
+    @Override
+    public DraggableHelper getDraggableHelper() {
+        return mDraggableHelper;
+    }
+
+    @Override
+    public BubbleView getBubbleView() {
+        return null;
+    }
+
+    @Override
+    public View getDraggableView() {
+        return this;
+    }
+
+    @Override
     public void update(float dt, boolean contentView) {
         if (mDraggableHelper.update(dt, contentView)) {
             if (contentView) {
