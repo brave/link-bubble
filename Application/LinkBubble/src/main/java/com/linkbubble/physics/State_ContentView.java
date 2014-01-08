@@ -104,7 +104,7 @@ public class State_ContentView extends ControllerState {
                     float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
                     float threshold = Config.dpToPx(900.0f);
                     if (v > threshold) {
-                        mainController.STATE_Flick_ContentView.init(sender.getBubbleView(), e.vx, e.vy);
+                        mainController.STATE_Flick_ContentView.init(sender, e.vx, e.vy);
                         mainController.switchState(mainController.STATE_Flick_ContentView);
                     } else {
                         mainController.switchState(mainController.STATE_AnimateToContentView);
