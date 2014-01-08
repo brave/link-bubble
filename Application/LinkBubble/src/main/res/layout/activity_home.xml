@@ -72,19 +72,9 @@
             android:layout_marginBottom="20dp"
             />
 
-        <com.linkbubble.ui.BubbleFlowView
-            xmlns:fancyCoverFlow="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/bubble_flow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|center"
-            android:layout_centerHorizontal="true"
-            fancyCoverFlow:maxRotation="-60"
-            fancyCoverFlow:unselectedAlpha="0.3"
-            fancyCoverFlow:unselectedSaturation="0.0"
-            fancyCoverFlow:unselectedScale="0.4"
-            fancyCoverFlow:scaleDownGravity="0.25"
-            />
+        <!--
+        <include layout="@layout/view_bubble_flow" />
+        -->
 
     </RelativeLayout>
 
