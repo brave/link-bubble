@@ -80,7 +80,7 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Touch(BubbleView sender, BubbleView.TouchEvent e) {
+    public void OnMotionEvent_Touch(BubbleView sender, Draggable.TouchEvent e) {
         mTouchDown = true;
         mCanvasView.fadeIn();
         mBubble = sender;
@@ -97,7 +97,7 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Move(BubbleView sender, BubbleView.MoveEvent e) {
+    public void OnMotionEvent_Move(BubbleView sender, Draggable.MoveEvent e) {
         if (mTouchDown) {
             mTargetX = mInitialX + e.dx;
             mTargetY = mInitialY + e.dy;
@@ -114,7 +114,7 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Release(BubbleView sender, BubbleView.ReleaseEvent e) {
+    public void OnMotionEvent_Release(BubbleView sender, Draggable.ReleaseEvent e) {
         if (mTouchDown) {
             sender.clearTargetPos();
 

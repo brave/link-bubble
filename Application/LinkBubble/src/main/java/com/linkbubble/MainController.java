@@ -17,6 +17,7 @@ import android.webkit.CookieSyncManager;
 import android.widget.Toast;
 
 import com.linkbubble.physics.ControllerState;
+import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.State_AnimateToBubbleView;
 import com.linkbubble.physics.State_AnimateToContentView;
 import com.linkbubble.physics.State_BubbleView;
@@ -158,17 +159,17 @@ public class MainController implements Choreographer.FrameCallback {
         int bubbleFlowViewX = (Config.mScreenWidth - mContext.getResources().getDimensionPixelSize(R.dimen.bubble_flow_width)) / 2;
         mBubbleFlowView.configure(bubbleFlowViewX, 0, bubbleFlowViewX, 0, 0.f, new BubbleFlowView.EventHandler() {
             @Override
-            public void onMotionEvent_Touch(BubbleFlowView sender, BubbleFlowView.TouchEvent event) {
+            public void onMotionEvent_Touch(BubbleFlowView sender, Draggable.TouchEvent event) {
 
             }
 
             @Override
-            public void onMotionEvent_Move(BubbleFlowView sender, BubbleFlowView.MoveEvent event) {
+            public void onMotionEvent_Move(BubbleFlowView sender, Draggable.MoveEvent event) {
 
             }
 
             @Override
-            public void onMotionEvent_Release(BubbleFlowView sender, BubbleFlowView.ReleaseEvent event) {
+            public void onMotionEvent_Release(BubbleFlowView sender, Draggable.ReleaseEvent event) {
 
             }
         });
@@ -510,18 +511,18 @@ public class MainController implements Choreographer.FrameCallback {
                 bubble.configure(url, x, y, targetX, targetY, time, startTime,
                         new BubbleView.EventHandler() {
                     @Override
-                    public void onMotionEvent_Touch(BubbleView sender, BubbleView.TouchEvent e) {
+                    public void onMotionEvent_Touch(BubbleView sender, Draggable.TouchEvent e) {
                         mCurrentState.OnMotionEvent_Touch(sender, e);
                         showContentActivity();
                     }
 
                     @Override
-                    public void onMotionEvent_Move(BubbleView sender, BubbleView.MoveEvent e) {
+                    public void onMotionEvent_Move(BubbleView sender, Draggable.MoveEvent e) {
                         mCurrentState.OnMotionEvent_Move(sender, e);
                     }
 
                     @Override
-                    public void onMotionEvent_Release(BubbleView sender, BubbleView.ReleaseEvent e) {
+                    public void onMotionEvent_Release(BubbleView sender, Draggable.ReleaseEvent e) {
                         mCurrentState.OnMotionEvent_Release(sender, e);
                         if (mCurrentState instanceof State_SnapToEdge) {
                             hideContentActivity();
