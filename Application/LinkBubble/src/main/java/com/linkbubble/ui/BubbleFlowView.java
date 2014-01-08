@@ -13,11 +13,11 @@ import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.physics.Circle;
 import com.linkbubble.physics.DraggableHelper;
-import com.linkbubble.physics.DraggableItem;
+import com.linkbubble.physics.Draggable;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
-public class BubbleFlowView extends FancyCoverFlow implements DraggableItem {
+public class BubbleFlowView extends FancyCoverFlow implements Draggable {
 
     private DraggableHelper mDraggableHelper;
     private WindowManager mWindowManager;

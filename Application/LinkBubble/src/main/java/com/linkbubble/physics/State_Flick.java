@@ -13,7 +13,7 @@ import com.linkbubble.util.Util;
 public abstract class State_Flick extends ControllerState {
 
     private CanvasView mCanvasView;
-    private DraggableItem mDraggable;
+    private Draggable mDraggable;
     private CanvasView.TargetInfo mTargetInfo;
 
     private OvershootInterpolator mOvershootInterpolator = new OvershootInterpolator(1.5f);
@@ -32,12 +32,12 @@ public abstract class State_Flick extends ControllerState {
         mCanvasView = canvasView;
     }
 
-    public void init(DraggableItem draggableItem, float vx, float vy) {
+    public void init(Draggable draggable, float vx, float vy) {
         mTargetInfo = null;
-        mDraggable = draggableItem;
+        mDraggable = draggable;
 
-        mInitialX = draggableItem.getDraggableHelper().getXPos();
-        mInitialY = draggableItem.getDraggableHelper().getYPos();
+        mInitialX = draggable.getDraggableHelper().getXPos();
+        mInitialY = draggable.getDraggableHelper().getYPos();
         mTime = 0.0f;
         mPeriod = 0.0f;
         mLinear = true;
@@ -112,7 +112,7 @@ public abstract class State_Flick extends ControllerState {
                     break;
                 default:
                     {
-                        DraggableItem draggableItem = mDraggable;
+                        Draggable draggable = mDraggable;
                         if (mTime >= mPeriod) {
                             x = mTargetX;
                             y = mTargetY;
@@ -124,11 +124,11 @@ public abstract class State_Flick extends ControllerState {
                                 Config.BUBBLE_HOME_Y = mDraggable.getDraggableHelper().getYPos();
                                 mainController.switchState(mainController.STATE_BubbleView);
                             } else {
-                                mainController.STATE_SnapToEdge.init(draggableItem);
+                                mainController.STATE_SnapToEdge.init(draggable);
                                 mainController.switchState(mainController.STATE_SnapToEdge);
                             }
                         }
-                        draggableItem.getDraggableHelper().setExactPos((int) x, (int) y);
+                        draggable.getDraggableHelper().setExactPos((int) x, (int) y);
                     }
             }
         } else {
@@ -157,25 +157,25 @@ public abstract class State_Flick extends ControllerState {
     }
 
     @Override
-    public void onTouchActionDown(DraggableItem sender, DraggableHelper.TouchEvent e) {
+    public void onTouchActionDown(Draggable sender, DraggableHelper.TouchEvent e) {
     }
 
     @Override
-    public void onTouchActionMove(DraggableItem sender, DraggableHelper.MoveEvent e) {
+    public void onTouchActionMove(Draggable sender, DraggableHelper.MoveEvent e) {
     }
 
     @Override
-    public void onTouchActionRelease(DraggableItem sender, DraggableHelper.ReleaseEvent e) {
+    public void onTouchActionRelease(Draggable sender, DraggableHelper.ReleaseEvent e) {
     }
 
     @Override
-    public boolean onNewDraggable(DraggableItem draggableItem) {
+    public boolean onNewDraggable(Draggable draggable) {
         Util.Assert(false);
         return false;
     }
 
     @Override
-    public void onDestroyDraggable(DraggableItem draggableItem) {
+    public void onDestroyDraggable(Draggable draggable) {
     }
 
     @Override

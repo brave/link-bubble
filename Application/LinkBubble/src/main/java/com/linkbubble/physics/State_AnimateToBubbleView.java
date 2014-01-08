@@ -48,9 +48,9 @@ public class State_AnimateToBubbleView extends ControllerState {
         int draggableCount = mainController.getDraggableCount();
         for (int i=0 ; i < draggableCount ; ++i) {
             DraggableInfo draggableInfo = new DraggableInfo();
-            DraggableItem draggableItem = mainController.getDraggable(i);
-            draggableInfo.mPosX = (float) draggableItem.getDraggableHelper().getXPos();
-            draggableInfo.mPosY = (float) draggableItem.getDraggableHelper().getYPos();
+            Draggable draggable = mainController.getDraggable(i);
+            draggableInfo.mPosX = (float) draggable.getDraggableHelper().getXPos();
+            draggableInfo.mPosY = (float) draggable.getDraggableHelper().getYPos();
 
             draggableInfo.mTargetX = Config.BUBBLE_HOME_X;
             draggableInfo.mTargetY = Config.BUBBLE_HOME_Y;
@@ -73,7 +73,7 @@ public class State_AnimateToBubbleView extends ControllerState {
         int draggableCount = mainController.getDraggableCount();
         for (int i=0 ; i < draggableCount ; ++i) {
             DraggableInfo draggableInfo = mDraggableInfo.get(i);
-            DraggableItem draggableItem = mainController.getDraggable(i);
+            Draggable draggable = mainController.getDraggable(i);
 
             float x = draggableInfo.mPosX + draggableInfo.mDistanceX * f;
             float y = draggableInfo.mPosY + draggableInfo.mDistanceY * f;
@@ -83,7 +83,7 @@ public class State_AnimateToBubbleView extends ControllerState {
                 y = draggableInfo.mTargetY;
             }
 
-            draggableItem.getDraggableHelper().setExactPos((int) x, (int) y);
+            draggable.getDraggableHelper().setExactPos((int) x, (int) y);
         }
 
         float t = Util.clamp(0.0f, mTime / mContentPeriod, 1.0f);
@@ -104,25 +104,25 @@ public class State_AnimateToBubbleView extends ControllerState {
     }
 
     @Override
-    public void onTouchActionDown(DraggableItem sender, DraggableHelper.TouchEvent e) {
+    public void onTouchActionDown(Draggable sender, DraggableHelper.TouchEvent e) {
     }
 
     @Override
-    public void onTouchActionMove(DraggableItem sender, DraggableHelper.MoveEvent e) {
+    public void onTouchActionMove(Draggable sender, DraggableHelper.MoveEvent e) {
     }
 
     @Override
-    public void onTouchActionRelease(DraggableItem sender, DraggableHelper.ReleaseEvent e) {
+    public void onTouchActionRelease(Draggable sender, DraggableHelper.ReleaseEvent e) {
     }
 
     @Override
-    public boolean onNewDraggable(DraggableItem draggableItem) {
+    public boolean onNewDraggable(Draggable draggable) {
         Util.Assert(false);
         return false;
     }
 
     @Override
-    public void onDestroyDraggable(DraggableItem draggableItem) {
+    public void onDestroyDraggable(Draggable draggable) {
         Util.Assert(false);
     }
 

@@ -15,15 +15,15 @@ public class State_SnapToEdge extends ControllerState {
     private OvershootInterpolator mInterpolator = new OvershootInterpolator(1.5f);
     private float mTime;
     private float mPeriod;
-    private DraggableItem mDraggable;
+    private Draggable mDraggable;
     private CanvasView mCanvasView;
 
     public State_SnapToEdge(CanvasView c) {
         mCanvasView = c;
     }
 
-    public void init(DraggableItem draggableItem) {
-        mDraggable = draggableItem;
+    public void init(Draggable draggable) {
+        mDraggable = draggable;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class State_SnapToEdge extends ControllerState {
         float x = mPosX + mDistanceX * f;
         float y = (float) mDraggable.getDraggableHelper().getYPos();
 
-        DraggableItem draggableItem = mDraggable;
+        Draggable draggable = mDraggable;
 
         if (mTime >= mPeriod) {
             x = Util.clamp(Config.mBubbleSnapLeftX, x, Config.mBubbleSnapRightX);
@@ -62,7 +62,7 @@ public class State_SnapToEdge extends ControllerState {
 
         Config.BUBBLE_HOME_X = (int) x;
         Config.BUBBLE_HOME_Y = (int) y;
-        draggableItem.getDraggableHelper().setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
+        draggable.getDraggableHelper().setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
 
         return true;
     }
@@ -74,25 +74,25 @@ public class State_SnapToEdge extends ControllerState {
     }
 
     @Override
-    public void onTouchActionDown(DraggableItem sender, DraggableHelper.TouchEvent e) {
+    public void onTouchActionDown(Draggable sender, DraggableHelper.TouchEvent e) {
     }
 
     @Override
-    public void onTouchActionMove(DraggableItem sender, DraggableHelper.MoveEvent e) {
+    public void onTouchActionMove(Draggable sender, DraggableHelper.MoveEvent e) {
     }
 
     @Override
-    public void onTouchActionRelease(DraggableItem sender, DraggableHelper.ReleaseEvent e) {
+    public void onTouchActionRelease(Draggable sender, DraggableHelper.ReleaseEvent e) {
     }
 
     @Override
-    public boolean onNewDraggable(DraggableItem draggableItem) {
+    public boolean onNewDraggable(Draggable draggable) {
         Util.Assert(false);
         return false;
     }
 
     @Override
-    public void onDestroyDraggable(DraggableItem draggableItem) {
+    public void onDestroyDraggable(Draggable draggable) {
         Util.Assert(false);
     }
 

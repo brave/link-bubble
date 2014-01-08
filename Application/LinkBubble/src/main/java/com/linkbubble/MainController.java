@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.linkbubble.physics.ControllerState;
 import com.linkbubble.physics.DraggableHelper;
-import com.linkbubble.physics.DraggableItem;
+import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.State_AnimateToBubbleView;
 import com.linkbubble.physics.State_AnimateToContentView;
 import com.linkbubble.physics.State_BubbleView;
@@ -117,7 +117,7 @@ public class MainController implements Choreographer.FrameCallback {
     private Choreographer mChoreographer;
     private boolean mUpdateScheduled;
     private static Vector<BubbleView> mBubbles = new Vector<BubbleView>();
-    private static Vector<DraggableItem> mDraggables = new Vector<DraggableItem>();
+    private static Vector<Draggable> mDraggables = new Vector<Draggable>();
     private CanvasView mCanvasView;
     private BadgeView mBadgeView;
     private BubbleView mFrontBubble;
@@ -215,8 +215,8 @@ public class MainController implements Choreographer.FrameCallback {
         mCurrentState.onPageLoaded(bubble);
     }
 
-    public boolean destroyBubble(DraggableItem draggableItem, Config.BubbleAction action) {
-        return destroyBubble(draggableItem.getBubbleView(), action);
+    public boolean destroyBubble(Draggable draggable, Config.BubbleAction action) {
+        return destroyBubble(draggable.getBubbleView(), action);
     }
 
     public boolean destroyBubble(BubbleView bubble, Config.BubbleAction action) {
@@ -273,16 +273,16 @@ public class MainController implements Choreographer.FrameCallback {
         return mBubbles.size() > 0;
     }
 
-    public void setAllDraggablePositions(DraggableItem ref) {
+    public void setAllDraggablePositions(Draggable ref) {
         if (ref != null) {
             // Force all bubbles to be where the moved one ended up
             int bubbleCount = mDraggables.size();
             int xPos = ref.getDraggableHelper().getXPos();
             int yPos = ref.getDraggableHelper().getYPos();
             for (int i=0 ; i < bubbleCount ; ++i) {
-                DraggableItem draggableItem = mDraggables.get(i);
-                if (draggableItem != ref) {
-                    draggableItem.getDraggableHelper().setExactPos(xPos, yPos);
+                Draggable draggable = mDraggables.get(i);
+                if (draggable != ref) {
+                    draggable.getDraggableHelper().setExactPos(xPos, yPos);
                 }
             }
         }
@@ -327,7 +327,7 @@ public class MainController implements Choreographer.FrameCallback {
         return mDraggables.size();
     }
 
-    public DraggableItem getDraggable(int index) {
+    public Draggable getDraggable(int index) {
         return mDraggables.get(index);
     }
 
@@ -342,8 +342,8 @@ public class MainController implements Choreographer.FrameCallback {
 
         int draggableCount = mDraggables.size();
         for (int i=0 ; i < draggableCount ; ++i) {
-            DraggableItem draggableItem = mDraggables.get(i);
-            draggableItem.update(dt, mCurrentState == STATE_ContentView);
+            Draggable draggable = mDraggables.get(i);
+            draggable.update(dt, mCurrentState == STATE_ContentView);
         }
 
         if (mBubbleFlowView != null) {
@@ -418,8 +418,8 @@ public class MainController implements Choreographer.FrameCallback {
         Util.Assert(mFrontBubble != null);
     }
 
-    public void setActiveBubble(DraggableItem draggableItem) {
-        setActiveBubble(draggableItem.getBubbleView());
+    public void setActiveBubble(Draggable draggable) {
+        setActiveBubble(draggable.getBubbleView());
     }
 
     public void onOpenUrl(final String url, long startTime) {
@@ -526,7 +526,7 @@ public class MainController implements Choreographer.FrameCallback {
                 }
             }
 
-            DraggableItem draggable = null;
+            Draggable draggable = null;
             BubbleView bubble;
             try {
                 LayoutInflater inflater = LayoutInflater.from(mContext);
@@ -554,13 +554,13 @@ public class MainController implements Choreographer.FrameCallback {
                     }
 
                     @Override
-                    public void onDestroyDraggable(DraggableItem sender) {
+                    public void onDestroyDraggable(Draggable sender) {
                         if (mDraggables.size() > 1) {
                             BubbleView bubbleView = sender.getBubbleView();
                             int bubbleIndex = bubbleView.getBubbleIndex();
                             destroyBubble(sender, Config.BubbleAction.Destroy);
                             int nextBubbleIndex = Util.clamp(0, bubbleIndex, mDraggables.size()-1);
-                            DraggableItem nextBubble = mDraggables.get(nextBubbleIndex);
+                            Draggable nextBubble = mDraggables.get(nextBubbleIndex);
                             STATE_ContentView.setActiveBubble(nextBubble);
                         } else {
                             STATE_KillBubble.init(sender);
@@ -598,7 +598,7 @@ public class MainController implements Choreographer.FrameCallback {
             if (mCurrentState == STATE_ContentView) {
                 draggable.getDraggableView().setVisibility(View.VISIBLE);
                 for (int i=0 ; i < draggableCount ; ++i) {
-                    DraggableItem draggableItem = mDraggables.get(i);
+                    Draggable draggableItem = mDraggables.get(i);
                     if (draggableItem != bubble) {
                         draggableItem.getDraggableHelper().setTargetPos((int)Config.getContentViewX(draggableItem.getBubbleView().getBubbleIndex(),
                                 getBubbleCount()), draggableItem.getDraggableHelper().getYPos(), 0.2f, false);
@@ -607,7 +607,7 @@ public class MainController implements Choreographer.FrameCallback {
             } else {
                 mFrontBubble = bubble;
                 for (int i=0 ; i < draggableCount ; ++i) {
-                    DraggableItem draggableItem = mDraggables.get(i);
+                    Draggable draggableItem = mDraggables.get(i);
                     int vis = View.VISIBLE;
                     if (draggableItem != mFrontBubble) {
                         vis = View.GONE;
