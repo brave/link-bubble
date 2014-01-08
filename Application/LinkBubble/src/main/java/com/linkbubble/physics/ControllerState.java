@@ -13,7 +13,7 @@ public abstract class ControllerState {
     public abstract void onTouchActionMove(DraggableItem sender, DraggableHelper.MoveEvent e);
     public abstract void onTouchActionRelease(DraggableItem sender, DraggableHelper.ReleaseEvent e);
     public abstract boolean OnNewDraggable(DraggableHelper draggable);
-    public abstract void onDestroyBubble(BubbleView bubble);
+    public abstract void onDestroyDraggable(DraggableItem draggableItem);
     public abstract boolean OnOrientationChanged();
     public abstract void OnCloseDialog();
     public void OnPageLoaded(BubbleView bubble) {}

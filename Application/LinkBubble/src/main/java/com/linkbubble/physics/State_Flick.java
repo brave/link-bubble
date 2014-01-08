@@ -175,7 +175,7 @@ public abstract class State_Flick extends ControllerState {
     }
 
     @Override
-    public void onDestroyBubble(BubbleView bubble) {
+    public void onDestroyDraggable(DraggableItem draggableItem) {
     }
 
     @Override
