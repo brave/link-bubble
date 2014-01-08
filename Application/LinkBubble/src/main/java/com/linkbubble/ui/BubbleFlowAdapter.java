@@ -17,7 +17,7 @@ public class BubbleFlowAdapter extends FancyCoverFlowAdapter {
 
 
     Context mContext;
-    List<BubbleView> mBubbles;
+    List<BubbleLegacyView> mBubbles;
     int mItemSize;
 
     //private final int mSize;
@@ -42,7 +42,7 @@ public class BubbleFlowAdapter extends FancyCoverFlowAdapter {
         }*/
     }
 
-    void setBubbles(List<BubbleView> bubbles) {
+    void setBubbles(List<BubbleLegacyView> bubbles) {
         mBubbles = bubbles;
         notifyDataSetChanged();
     }

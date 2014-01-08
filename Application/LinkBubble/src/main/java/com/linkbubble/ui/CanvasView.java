@@ -185,7 +185,7 @@ public class CanvasView extends RelativeLayout {
         mWindowManager.removeView(this);
     }
 
-    public void update(float dt, BubbleView frontBubble) {
+    public void update(float dt, BubbleLegacyView frontBubble) {
         if (mCurrentAlpha < mTargetAlpha) {
             mCurrentAlpha = Util.clamp(0.0f, mCurrentAlpha + mAlphaDelta * dt, mMaxAlpha);
             MainController.get().scheduleUpdate();

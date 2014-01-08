@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 
 import android.util.Log;
+import com.linkbubble.ui.BubbleLegacyView;
 import com.linkbubble.ui.BubbleView;
 import com.linkbubble.util.Util;
 import org.json.JSONArray;
@@ -541,9 +542,9 @@ public class Settings {
         return urls;
     }
 
-    public void saveCurrentBubbles(List<BubbleView> bubbles) {
+    public void saveCurrentBubbles(List<BubbleLegacyView> bubbles) {
         JSONArray jsonArray = new JSONArray();
-        for (BubbleView b : bubbles) {
+        for (BubbleLegacyView b : bubbles) {
             URL url = b.getUrl();
             jsonArray.put(url.toString());
         }

@@ -118,7 +118,7 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
     }
 
     @Override
-    public BubbleView getBubbleView() {
+    public BubbleLegacyView getBubbleLegacyView() {
         return null;
     }
 

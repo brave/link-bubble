@@ -15,7 +15,7 @@ import com.linkbubble.Config;
  */
 public class BadgeView extends TextView {
 
-    private BubbleView mBubble;
+    private BubbleLegacyView mBubble;
 
     enum AnimState {
         None,
@@ -132,7 +132,7 @@ public class BadgeView extends TextView {
         }
     }
 
-    public void attach(BubbleView bubble) {
+    public void attach(BubbleLegacyView bubble) {
         if (mBubble != null) {
             mBubble.detachBadge();
         }

@@ -173,7 +173,7 @@ public class BubbleTargetView extends RelativeLayout {
         MainController.get().scheduleUpdate();
     }
 
-    public void update(float dt, BubbleView bubble) {
+    public void update(float dt, BubbleLegacyView bubble) {
         if (bubble != null && !bubble.isSnapping() && mEnableMove) {
             float xf = (bubble.getXPos() + Config.mBubbleWidth * 0.5f) / Config.mScreenWidth;
             xf = 2.0f * Util.clamp(0.0f, xf, 1.0f) - 1.0f;
