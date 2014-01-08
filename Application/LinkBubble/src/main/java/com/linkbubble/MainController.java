@@ -496,7 +496,7 @@ public class MainController implements Choreographer.FrameCallback {
             int bubbleIndex = mBubbles.size();
 
             if (mCurrentState == STATE_ContentView) {
-                x = (int) Config.getContentViewX(bubbleIndex, MainController.get().getBubbleCount()+1);
+                x = (int) Config.getContentViewX(bubbleIndex, getBubbleCount()+1);
                 y = (int) -Config.mBubbleHeight;
                 targetX = x;
                 targetY = Config.mContentViewBubbleY;
@@ -590,7 +590,7 @@ public class MainController implements Choreographer.FrameCallback {
                 for (int i=0 ; i < bubbleCount ; ++i) {
                     BubbleView b = mBubbles.get(i);
                     if (b != bubble) {
-                        b.setTargetPos((int)Config.getContentViewX(b.getBubbleIndex(), MainController.get().getBubbleCount()), b.getYPos(), 0.2f, false);
+                        b.setTargetPos((int)Config.getContentViewX(b.getBubbleIndex(), getBubbleCount()), b.getYPos(), 0.2f, false);
                     }
                 }
             } else {

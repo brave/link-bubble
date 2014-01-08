@@ -1,6 +1,5 @@
 package com.linkbubble.physics;
 
-import com.linkbubble.ui.BubbleView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.ui.ContentView;
