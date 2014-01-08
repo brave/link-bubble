@@ -543,9 +543,10 @@ public class MainController implements Choreographer.FrameCallback {
                     }
 
                     @Override
-                    public void onDestroyBubble(BubbleView sender) {
+                    public void onDestroyDraggable(DraggableItem sender) {
                         if (mBubbles.size() > 1) {
-                            int bubbleIndex = sender.getBubbleIndex();
+                            BubbleView bubbleView = sender.getBubbleView();
+                            int bubbleIndex = bubbleView.getBubbleIndex();
                             destroyBubble(sender, Config.BubbleAction.Destroy);
                             int nextBubbleIndex = Util.clamp(0, bubbleIndex, mBubbles.size()-1);
                             BubbleView nextBubble = mBubbles.get(nextBubbleIndex);

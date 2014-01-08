@@ -16,17 +16,17 @@ public class State_KillBubble extends ControllerState {
     private float mTime;
     private float mPeriod;
 
-    private BubbleView mBubble;
+    private DraggableItem mBubble;
     private float mBubbleY0;
 
     public State_KillBubble(CanvasView canvasView) {
         mCanvasView = canvasView;
     }
 
-    public void init(BubbleView bubble) {
+    public void init(DraggableItem bubble) {
         Util.Assert(mBubble == null);
         mBubble = bubble;
-        mBubbleY0 = mBubble.getYPos();
+        mBubbleY0 = mBubble.getDraggableHelper().getYPos();
     }
 
     @Override
@@ -51,7 +51,7 @@ public class State_KillBubble extends ControllerState {
 
         float dy = t * Config.mScreenHeight;
 
-        mBubble.setExactPos(mBubble.getXPos(), (int) (dy + mBubbleY0));
+        mBubble.getDraggableHelper().setExactPos(mBubble.getDraggableHelper().getXPos(), (int) (dy + mBubbleY0));
 
         mCanvasView.setContentViewTranslation(dy);
 

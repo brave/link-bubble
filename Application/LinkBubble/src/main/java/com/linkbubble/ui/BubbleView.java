@@ -45,7 +45,7 @@ public class BubbleView extends FrameLayout implements DraggableItem {
         public void onMotionEvent_Touch(BubbleView sender, DraggableHelper.TouchEvent event);
         public void onMotionEvent_Move(BubbleView sender, DraggableHelper.MoveEvent event);
         public void onMotionEvent_Release(BubbleView sender, DraggableHelper.ReleaseEvent event);
-        public void onDestroyBubble(BubbleView sender);
+        public void onDestroyDraggable(DraggableItem sender);
         public void onMinimizeBubbles();
     }
 
@@ -304,7 +304,7 @@ public class BubbleView extends FrameLayout implements DraggableItem {
 
             @Override
             public void onDestroyBubble() {
-                mEventHandler.onDestroyBubble(BubbleView.this);
+                mEventHandler.onDestroyDraggable(BubbleView.this);
             }
 
             @Override
