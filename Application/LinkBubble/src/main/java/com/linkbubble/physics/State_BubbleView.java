@@ -126,11 +126,11 @@ public class State_BubbleView extends ControllerState {
                     float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
                     float threshold = Config.dpToPx(900.0f);
                     if (v > threshold) {
-                        mainController.STATE_Flick_BubbleView.init(sender.getBubbleView(), e.vx, e.vy);
+                        mainController.STATE_Flick_BubbleView.init(sender, e.vx, e.vy);
                         mainController.switchState(mainController.STATE_Flick_BubbleView);
                         mainController.hideContentActivity();
                     } else {
-                        mainController.STATE_SnapToEdge.init(sender.getBubbleView());
+                        mainController.STATE_SnapToEdge.init(sender);
                         mainController.switchState(mainController.STATE_SnapToEdge);
                     }
                 } else {
