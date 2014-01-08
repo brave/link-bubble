@@ -3,41 +3,28 @@ package com.linkbubble.ui;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.OvershootInterpolator;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.physics.Circle;
-import com.linkbubble.physics.Draggable;
-import com.linkbubble.physics.FlingTracker;
-import com.linkbubble.util.Util;
+import com.linkbubble.physics.DraggableHelper;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
-import java.net.URL;
-import java.util.Vector;
-
 public class BubbleFlowView extends FancyCoverFlow {
 
-    private Draggable mDraggable;
+    private DraggableHelper mDraggableHelper;
     private WindowManager mWindowManager;
     private EventHandler mEventHandler;
 
     public interface EventHandler {
-        public void onMotionEvent_Touch(BubbleFlowView sender, Draggable.TouchEvent event);
-        public void onMotionEvent_Move(BubbleFlowView sender, Draggable.MoveEvent event);
-        public void onMotionEvent_Release(BubbleFlowView sender, Draggable.ReleaseEvent event);
+        public void onMotionEvent_Touch(BubbleFlowView sender, DraggableHelper.TouchEvent event);
+        public void onMotionEvent_Move(BubbleFlowView sender, DraggableHelper.MoveEvent event);
+        public void onMotionEvent_Release(BubbleFlowView sender, DraggableHelper.ReleaseEvent event);
     }
 
     public BubbleFlowView(Context context) {
@@ -74,27 +61,27 @@ public class BubbleFlowView extends FancyCoverFlow {
         windowManagerParams.format = PixelFormat.TRANSPARENT;
         windowManagerParams.setTitle("LinkBubble: BubbleFlowView");
 
-        mDraggable = new Draggable(this, mWindowManager, windowManagerParams, new Draggable.OnTouchActionEventListener() {
+        mDraggableHelper = new DraggableHelper(this, mWindowManager, windowManagerParams, new DraggableHelper.OnTouchActionEventListener() {
 
             @Override
-            public void onActionDown(Draggable.TouchEvent event) {
+            public void onActionDown(DraggableHelper.TouchEvent event) {
                 mEventHandler.onMotionEvent_Touch(BubbleFlowView.this, event);
             }
 
             @Override
-            public void onActionMove(Draggable.MoveEvent event) {
+            public void onActionMove(DraggableHelper.MoveEvent event) {
                 mEventHandler.onMotionEvent_Move(BubbleFlowView.this, event);
             }
 
             @Override
-            public void onActionUp(Draggable.ReleaseEvent event) {
+            public void onActionUp(DraggableHelper.ReleaseEvent event) {
                 mEventHandler.onMotionEvent_Release(BubbleFlowView.this, event);
             }
         });
 
         mEventHandler = eh;
 
-        if (mDraggable.isAlive()) {
+        if (mDraggableHelper.isAlive()) {
             mWindowManager.addView(this, windowManagerParams);
 
             setExactPos(x0, y0);
@@ -111,22 +98,22 @@ public class BubbleFlowView extends FancyCoverFlow {
         //    mContentView.destroy();
             mWindowManager.removeView(this);
         //}
-        mDraggable.destroy();
+        mDraggableHelper.destroy();
     }
 
     public void readd() {
         mWindowManager.removeView(this);
-        mWindowManager.addView(this, mDraggable.getWindowManagerParams());
+        mWindowManager.addView(this, mDraggableHelper.getWindowManagerParams());
     }
 
     public boolean isSnapping() {
-        return mDraggable.isSnapping();
+        return mDraggableHelper.isSnapping();
     }
 
     public void update(float dt, boolean contentView) {
-        if (mDraggable.update(dt, contentView)) {
+        if (mDraggableHelper.update(dt, contentView)) {
             if (contentView) {
-                //mContentView.setMarkerX(mDraggable.getXPos());
+                //mContentView.setMarkerX(mDraggableHelper.getXPos());
             }
         }
     }
@@ -155,11 +142,11 @@ public class BubbleFlowView extends FancyCoverFlow {
     }
 
     public int getXPos() {
-        return mDraggable.getXPos();
+        return mDraggableHelper.getXPos();
     }
 
     public int getYPos() {
-        return mDraggable.getYPos();
+        return mDraggableHelper.getYPos();
     }
 
     public void expand() {
@@ -193,7 +180,7 @@ public class BubbleFlowView extends FancyCoverFlow {
             xPos = (int) Config.getContentViewX(0, MainController.get().getBubbleCount());
             yPos = Config.mContentViewBubbleY;
         } else {
-            WindowManager.LayoutParams windowManagerParms = mDraggable.getWindowManagerParams();
+            WindowManager.LayoutParams windowManagerParms = mDraggableHelper.getWindowManagerParams();
             if (windowManagerParms.x < Config.mScreenHeight * 0.5f)
                 xPos = Config.mBubbleSnapLeftX;
             else
@@ -207,15 +194,15 @@ public class BubbleFlowView extends FancyCoverFlow {
 
 
     public void clearTargetPos() {
-        mDraggable.clearTargetPos();
+        mDraggableHelper.clearTargetPos();
     }
 
     public void setExactPos(int x, int y) {
-        mDraggable.setExactPos(x, y);
+        mDraggableHelper.setExactPos(x, y);
     }
 
     public void setTargetPos(int x, int y, float t, boolean overshoot) {
-        mDraggable.setTargetPos(x, y, t, overshoot);
+        mDraggableHelper.setTargetPos(x, y, t, overshoot);
     }
 
     public void attachBadge(BadgeView badgeView) {

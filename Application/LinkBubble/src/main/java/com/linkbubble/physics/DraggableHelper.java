@@ -11,7 +11,7 @@ import com.linkbubble.util.Util;
 
 import java.util.Vector;
 
-public class Draggable {
+public class DraggableHelper {
 
     public interface OnTouchActionEventListener {
         void onActionDown(TouchEvent event);
@@ -73,8 +73,8 @@ public class Draggable {
 
     private OnTouchActionEventListener mOnTouchActionEventListener;
 
-    public Draggable(View view, WindowManager windowManager, WindowManager.LayoutParams windowManagerParams,
-                     OnTouchActionEventListener onTouchEventListener) {
+    public DraggableHelper(View view, WindowManager windowManager, WindowManager.LayoutParams windowManagerParams,
+                           OnTouchActionEventListener onTouchEventListener) {
         mView = view;
         mAlive = true;
         mWindowManager = windowManager;
@@ -94,7 +94,7 @@ public class Draggable {
                     case MotionEvent.ACTION_DOWN: {
                         mStartTouchXRaw = event.getRawX();
                         mStartTouchYRaw = event.getRawY();
-                        Draggable.TouchEvent e = new Draggable.TouchEvent();
+                        DraggableHelper.TouchEvent e = new DraggableHelper.TouchEvent();
                         e.posX = mWindowManagerParams.x;
                         e.posY = mWindowManagerParams.y;
                         e.rawX = mStartTouchXRaw;
@@ -126,7 +126,7 @@ public class Draggable {
                         InternalMoveEvent me = new InternalMoveEvent(touchXRaw, touchYRaw, event.getEventTime());
                         mMoveEvents.add(me);
 
-                        Draggable.MoveEvent e = new Draggable.MoveEvent();
+                        DraggableHelper.MoveEvent e = new DraggableHelper.MoveEvent();
                         e.dx = deltaX;
                         e.dy = deltaY;
                         if (mOnTouchActionEventListener != null) {
@@ -140,7 +140,7 @@ public class Draggable {
                     }
                     case MotionEvent.ACTION_UP: {
 
-                        Draggable.ReleaseEvent e = new Draggable.ReleaseEvent();
+                        DraggableHelper.ReleaseEvent e = new DraggableHelper.ReleaseEvent();
                         e.posX = mWindowManagerParams.x;
                         e.posY = mWindowManagerParams.y;
                         e.vx = 0.0f;
