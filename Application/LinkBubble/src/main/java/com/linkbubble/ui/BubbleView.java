@@ -25,29 +25,19 @@ import org.mozilla.gecko.favicons.OnFaviconLoadedListener;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class BubbleView extends FrameLayout implements Draggable {
+public class BubbleView extends FrameLayout  {
 
-    private DraggableHelper mDraggableHelper;
     private BadgeView mBadgeView;
-    private ImageView mFavicon;
-    private ImageView mAdditionalFaviconView;
+    protected ImageView mFavicon;
+    protected ImageView mAdditionalFaviconView;
     protected WindowManager mWindowManager;
-    private EventHandler mEventHandler;
-    private ProgressIndicator mProgressIndicator;
 
-    private URL mUrl;
-    private ContentView mContentView;
-    private boolean mRecordHistory;
-    private int mFaviconLoadId;
-    private int mBubbleIndex;
+    protected ProgressIndicator mProgressIndicator;
 
-    public interface EventHandler {
-        public void onMotionEvent_Touch(BubbleView sender, DraggableHelper.TouchEvent event);
-        public void onMotionEvent_Move(BubbleView sender, DraggableHelper.MoveEvent event);
-        public void onMotionEvent_Release(BubbleView sender, DraggableHelper.ReleaseEvent event);
-        public void onDestroyDraggable(Draggable sender);
-        public void onMinimizeBubbles();
-    }
+    protected URL mUrl;
+
+    protected int mFaviconLoadId;
+
 
     public BubbleView(Context context) {
         this(context, null);
@@ -61,19 +51,8 @@ public class BubbleView extends FrameLayout implements Draggable {
         super(context, attrs, defStyle);
     }
 
-    @Override
-    public DraggableHelper getDraggableHelper() {
-        return mDraggableHelper;
-    }
-
-    @Override
-    public BubbleView getBubbleView() {
-        return this;
-    }
-
-    @Override
-    public View getDraggableView() {
-        return this;
+    void configure(String url) throws MalformedURLException {
+        mUrl = new URL(url);
     }
 
     public void attachBadge(BadgeView badgeView) {
@@ -98,90 +77,6 @@ public class BubbleView extends FrameLayout implements Draggable {
         }
     }
 
-    public void updateIncognitoMode(boolean incognito) {
-        mContentView.updateIncognitoMode(incognito);
-    }
-
-    public void setBubbleIndex(int i) {
-        mBubbleIndex = i;
-        mContentView.setMarkerX((int) Config.getContentViewX(i, MainController.get().getBubbleCount()));
-    }
-
-    public int getBubbleIndex() {
-        return mBubbleIndex;
-    }
-
-    public int getXPos() {
-        return mDraggableHelper.getXPos();
-    }
-
-    public int getYPos() {
-        return mDraggableHelper.getYPos();
-    }
-
-    public ContentView getContentView() {
-        return mContentView;
-    }
-
-    public void onOrientationChanged(boolean contentViewMode) {
-        clearTargetPos();
-
-        int xPos, yPos;
-
-        if (contentViewMode) {
-            xPos = (int) Config.getContentViewX(mBubbleIndex, MainController.get().getBubbleCount());
-            yPos = Config.mContentViewBubbleY;
-        } else {
-            WindowManager.LayoutParams windowManagerParms = mDraggableHelper.getWindowManagerParams();
-            if (windowManagerParms.x < Config.mScreenHeight * 0.5f)
-                xPos = Config.mBubbleSnapLeftX;
-            else
-                xPos = Config.mBubbleSnapRightX;
-            float yf = (float)windowManagerParms.y / (float)Config.mScreenWidth;
-            yPos = (int) (yf * Config.mScreenHeight);
-        }
-
-        setExactPos(xPos, yPos);
-    }
-
-    public void clearTargetPos() {
-        mDraggableHelper.clearTargetPos();
-
-        if (mContentView != null) {
-            mContentView.setMarkerX((int) Config.getContentViewX(mBubbleIndex, MainController.get().getBubbleCount()));
-        }
-    }
-
-    public void setExactPos(int x, int y) {
-        mDraggableHelper.setExactPos(x, y);
-    }
-
-    public void setTargetPos(int x, int y, float t, boolean overshoot) {
-        mDraggableHelper.setTargetPos(x, y, t, overshoot);
-    }
-
-    public boolean isSnapping() {
-        return mDraggableHelper.isSnapping();
-    }
-
-    @Override
-    public void update(float dt, boolean contentView) {
-        if (mDraggableHelper.update(dt, contentView)) {
-            if (contentView) {
-                mContentView.setMarkerX(mDraggableHelper.getXPos());
-            }
-        }
-    }
-
-    public void destroy() {
-        setOnTouchListener(null);
-        // Will be null 
-        if (mContentView != null) {
-            mContentView.destroy();
-        }
-        mDraggableHelper.destroy();
-    }
-
     public URL getUrl() {
         return mUrl;
     }
@@ -194,17 +89,6 @@ public class BubbleView extends FrameLayout implements Draggable {
         mAdditionalFaviconView = imageView;
     }
 
-    public void readd() {
-        boolean showing = mProgressIndicator.isIndicatorShowing();
-        int progress = mProgressIndicator.getProgress();
-        URL url = mProgressIndicator.getUrl();
-
-        mWindowManager.removeView(this);
-        mWindowManager.addView(this, mDraggableHelper.getWindowManagerParams());
-        if (url != null) {
-            mProgressIndicator.setProgress(showing, progress, url);
-        }
-    }
 
     public void setFaviconLoadId(int faviconLoadId) {
         mFaviconLoadId = faviconLoadId;
@@ -214,11 +98,11 @@ public class BubbleView extends FrameLayout implements Draggable {
         return mFaviconLoadId;
     }
 
-    private String getDefaultFaviconUrl(URL url) {
+    protected String getDefaultFaviconUrl(URL url) {
         return url.getProtocol() + "://" + url.getHost() + "/favicon.ico";
     }
 
-    private void loadFavicon() {
+    protected void loadFavicon() {
         maybeCancelFaviconLoad();
 
         final int tabFaviconSize = getResources().getDimensionPixelSize(R.dimen.browser_toolbar_favicon_size);
@@ -263,169 +147,6 @@ public class BubbleView extends FrameLayout implements Draggable {
         setFaviconLoadId(Favicons.NOT_LOADING);
     }
 
-    public void configure(String url, int x0, int y0, int targetX, int targetY, float targetTime, long startTime,
-                  EventHandler eh) throws MalformedURLException {
-        mWindowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-
-        WindowManager.LayoutParams windowManagerParams = new WindowManager.LayoutParams();
-        windowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
-        windowManagerParams.x = x0;
-        windowManagerParams.y = y0;
-        int bubbleSize = getResources().getDimensionPixelSize(R.dimen.bubble_size);
-        windowManagerParams.height = bubbleSize;
-        windowManagerParams.width = bubbleSize;
-        windowManagerParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
-        windowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
-        windowManagerParams.format = PixelFormat.TRANSPARENT;
-        windowManagerParams.setTitle("LinkBubble: Bubble");
-
-        mDraggableHelper = new DraggableHelper(this, mWindowManager, windowManagerParams, new DraggableHelper.OnTouchActionEventListener() {
-
-            @Override
-            public void onActionDown(DraggableHelper.TouchEvent event) {
-                mEventHandler.onMotionEvent_Touch(BubbleView.this, event);
-            }
-
-            @Override
-            public void onActionMove(DraggableHelper.MoveEvent event) {
-                mEventHandler.onMotionEvent_Move(BubbleView.this, event);
-            }
-
-            @Override
-            public void onActionUp(DraggableHelper.ReleaseEvent event) {
-                mEventHandler.onMotionEvent_Release(BubbleView.this, event);
-            }
-        });
-
-        mEventHandler = eh;
-        mUrl = new URL(url);
-        mRecordHistory = Settings.get().isIncognitoMode() ? false : true;
-
-        mFavicon = (ImageView) findViewById(R.id.favicon);
-        mProgressIndicator = (ProgressIndicator) findViewById(R.id.progressIndicator);
-        showProgressBar(true, 0);
-
-        mContentView = (ContentView)inflate(getContext(), R.layout.view_content, null);
-        mContentView.configure(BubbleView.this, mUrl.toString(), startTime, new ContentView.EventHandler() {
-
-            @Override
-            public void onDestroyBubble() {
-                mEventHandler.onDestroyDraggable(BubbleView.this);
-            }
-
-            @Override
-            public void onMinimizeBubbles() {
-                mEventHandler.onMinimizeBubbles();
-            }
-
-            @Override
-            public void onPageLoading(String url) {
-                showProgressBar(true, 0);
-
-                boolean setDefaultFavicon = true;
-
-                try {
-                    // TODO: remove this allocation
-                    URL previousUrl = mUrl;
-                    mUrl = new URL(url);
-
-                    if (previousUrl != null && previousUrl.getHost().equals(mUrl.getHost()) && mFaviconLoadId == Favicons.LOADED) {
-                        setDefaultFavicon = false;
-                    } else {
-                        loadFavicon();
-                        if (mFaviconLoadId == Favicons.LOADED || mFaviconLoadId == Favicons.NOT_LOADING) {
-                            setDefaultFavicon = false;
-                        }
-                        /*
-                        String faviconUrl = "http://" + mUrl.getHost() + "/favicon.ico";
-                        //String faviconUrl = "http://1.gravatar.com/blavatar/f8748081423ce49bd3ecb267cd4effc7?s=16";
-                        Picasso.with(getContext()).cancelRequest(mFavicon);
-                        Picasso.with(getContext())
-                                .load(faviconUrl)
-                                .transform(mFaviconTransformation)
-                                .placeholder(R.drawable.fallback_favicon)
-                                .into(mFavicon, new Callback() {
-                                    @Override
-                                    public void onSuccess() {
-                                        if (mAdditionalFaviconView != null) {
-                                            mAdditionalFaviconView.setImageDrawable(mFavicon.getDrawable());
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onError() {
-                                        onReceivedIcon(null);
-                                    }
-                                });
-                        */
-                    }
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-
-                if (setDefaultFavicon) {
-                    onReceivedIcon(null);
-                }
-            }
-
-            @Override
-            public void onProgressChanged(int progress) {
-                showProgressBar(true, progress);
-            }
-
-            @Override
-            public void onPageLoaded(ContentView.PageLoadInfo info) {
-                showProgressBar(false, 0);
-
-                if (info != null && info.bmp != null) {
-                    onReceivedIcon(info.bmp);
-                }
-
-                if (mRecordHistory && info != null && info.url != null) {
-                    MainApplication.saveUrlInHistory(getContext(), null, info.url, info.mHost, info.title);
-                }
-
-                MainController.get().onPageLoaded(BubbleView.this);
-            }
-
-            @Override
-            public void onReceivedIcon(Bitmap favicon) {
-                if (favicon == null) {
-                    mFaviconLoadId = Favicons.NOT_LOADING;
-                    mFavicon.setImageResource(R.drawable.fallback_favicon);
-                } else {
-                    MainApplication mainApplication = (MainApplication) getContext().getApplicationContext();
-                    String faviconUrl = getDefaultFaviconUrl(mUrl);
-                    if(mainApplication.mDatabaseHelper.faviconExists(faviconUrl) == false) {
-                        mainApplication.mDatabaseHelper.addFaviconForUrl(faviconUrl, favicon, mUrl.toString());
-                    }
-
-                    favicon = mFaviconTransformation.transform(favicon);
-
-                    mFaviconLoadId = Favicons.LOADED;
-                    mFavicon.setImageBitmap(favicon);
-                    if (mAdditionalFaviconView != null) {
-                        mAdditionalFaviconView.setImageBitmap(favicon);
-                    }
-                }
-
-                mFavicon.setVisibility(VISIBLE);
-                showProgressBar(false, 0);
-            }
-        });
-
-        setVisibility(GONE);
-
-
-        if (mDraggableHelper.isAlive()) {
-            mWindowManager.addView(this, windowManagerParams);
-
-            setExactPos(x0, y0);
-            if (targetX != x0 || targetY != y0) {
-                setTargetPos(targetX, targetY, targetTime, true);
-            }
-        }
-    }
 
     private static class FaviconTransformation implements Transformation {
         @Override
@@ -451,7 +172,39 @@ public class BubbleView extends FrameLayout implements Draggable {
         public String key() { return "faviconTransformation()"; }
     }
 
-    private FaviconTransformation mFaviconTransformation = new FaviconTransformation();
+    protected FaviconTransformation mFaviconTransformation = new FaviconTransformation();
+
+    protected void onPageLoaded(ContentView.PageLoadInfo info) {
+        showProgressBar(false, 0);
+
+        if (info != null && info.bmp != null) {
+            onReceivedIcon(info.bmp);
+        }
+    }
+
+    protected void onReceivedIcon(Bitmap favicon) {
+        if (favicon == null) {
+            mFaviconLoadId = Favicons.NOT_LOADING;
+            mFavicon.setImageResource(R.drawable.fallback_favicon);
+        } else {
+            MainApplication mainApplication = (MainApplication) getContext().getApplicationContext();
+            String faviconUrl = getDefaultFaviconUrl(mUrl);
+            if(mainApplication.mDatabaseHelper.faviconExists(faviconUrl) == false) {
+                mainApplication.mDatabaseHelper.addFaviconForUrl(faviconUrl, favicon, mUrl.toString());
+            }
+
+            favicon = mFaviconTransformation.transform(favicon);
+
+            mFaviconLoadId = Favicons.LOADED;
+            mFavicon.setImageBitmap(favicon);
+            if (mAdditionalFaviconView != null) {
+                mAdditionalFaviconView.setImageBitmap(favicon);
+            }
+        }
+
+        mFavicon.setVisibility(VISIBLE);
+        showProgressBar(false, 0);
+    }
 
     /*
     Handler mHandler = new Handler();

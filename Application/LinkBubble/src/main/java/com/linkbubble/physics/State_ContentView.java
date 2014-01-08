@@ -1,6 +1,6 @@
 package com.linkbubble.physics;
 
-import com.linkbubble.ui.BubbleView;
+import com.linkbubble.ui.BubbleLegacyView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
@@ -155,8 +155,9 @@ public class State_ContentView extends ControllerState {
 
     public void setActiveBubble(Draggable draggable) {
         MainController.get().setActiveBubble(draggable);
-        BubbleView bubble = draggable.getBubbleView();
-        draggable.getDraggableHelper().setTargetPos((int)Config.getContentViewX(bubble.getBubbleIndex(), MainController.get().getDraggableCount()), bubble.getYPos(), 0.2f, false);
+        BubbleLegacyView bubble = draggable.getBubbleLegacyView();
+        draggable.getDraggableHelper().setTargetPos((int) Config.getContentViewX(bubble.getBubbleIndex(),
+                MainController.get().getDraggableCount()), bubble.getYPos(), 0.2f, false);
         mCanvasView.setContentView(bubble.getContentView());
         mCanvasView.showContentView();
         mCanvasView.setContentViewTranslation(0.0f);

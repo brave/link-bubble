@@ -28,8 +28,8 @@ import com.linkbubble.physics.State_Flick_ContentView;
 import com.linkbubble.physics.State_KillBubble;
 import com.linkbubble.physics.State_SnapToEdge;
 import com.linkbubble.ui.BadgeView;
-import com.linkbubble.ui.BubbleFlowAdapter;
 import com.linkbubble.ui.BubbleFlowView;
+import com.linkbubble.ui.BubbleLegacyView;
 import com.linkbubble.ui.BubbleView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.ui.ContentActivity;
@@ -116,11 +116,11 @@ public class MainController implements Choreographer.FrameCallback {
     private Context mContext;
     private Choreographer mChoreographer;
     private boolean mUpdateScheduled;
-    private static Vector<BubbleView> mBubbles = new Vector<BubbleView>();
+    private static Vector<BubbleLegacyView> mBubbles = new Vector<BubbleLegacyView>();
     private static Vector<Draggable> mDraggables = new Vector<Draggable>();
     private CanvasView mCanvasView;
     private BadgeView mBadgeView;
-    private BubbleView mFrontBubble;
+    private BubbleLegacyView mFrontBubble;
     private BubbleFlowView mBubbleFlowView;
 
     private MainController(Context context, EventHandler eventHandler) {
@@ -213,15 +213,15 @@ public class MainController implements Choreographer.FrameCallback {
     //private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
     //private int mFrameNumber;
 
-    public void onPageLoaded(BubbleView bubble) {
+    public void onPageLoaded(BubbleLegacyView bubble) {
         mCurrentState.onPageLoaded(bubble);
     }
 
     public boolean destroyBubble(Draggable draggable, Config.BubbleAction action) {
-        return destroyBubble(draggable.getBubbleView(), action);
+        return destroyBubble(draggable.getBubbleLegacyView(), action);
     }
 
-    public boolean destroyBubble(BubbleView bubble, Config.BubbleAction action) {
+    public boolean destroyBubble(BubbleLegacyView bubble, Config.BubbleAction action) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         boolean debug = prefs.getBoolean("debug_flick", true);
 
@@ -250,7 +250,7 @@ public class MainController implements Choreographer.FrameCallback {
 
             if (mBubbles.size() > 0) {
                 int nextBubbleIndex = Util.clamp(0, draggableIndex, mBubbles.size()-1);
-                BubbleView nextBubble = mBubbles.get(nextBubbleIndex);
+                BubbleLegacyView nextBubble = mBubbles.get(nextBubbleIndex);
                 mFrontBubble = nextBubble;
                 mBadgeView.attach(nextBubble);
                 mBadgeView.setBubbleCount(mBubbles.size());
@@ -333,7 +333,7 @@ public class MainController implements Choreographer.FrameCallback {
         return mDraggables.get(index);
     }
 
-    public List<BubbleView> getBubbles() {
+    public List<BubbleLegacyView> getBubbles() {
         return mBubbles;
     }
 
@@ -352,7 +352,7 @@ public class MainController implements Choreographer.FrameCallback {
             mBubbleFlowView.update(dt, mCurrentState == STATE_ContentView);
         }
 
-        BubbleView frontBubble = null;
+        BubbleLegacyView frontBubble = null;
         if (mBubbles.size() > 0) {
             frontBubble = getActiveBubble();
         }
@@ -410,18 +410,18 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    public BubbleView getActiveBubble() {
+    public BubbleLegacyView getActiveBubble() {
         Util.Assert(mFrontBubble != null);
         return mFrontBubble;
     }
 
-    public void setActiveBubble(BubbleView b) {
+    public void setActiveBubble(BubbleLegacyView b) {
         mFrontBubble = b;
         Util.Assert(mFrontBubble != null);
     }
 
     public void setActiveBubble(Draggable draggable) {
-        setActiveBubble(draggable.getBubbleView());
+        setActiveBubble(draggable.getBubbleLegacyView());
     }
 
     public void onOpenUrl(final String url, long startTime) {
@@ -529,26 +529,26 @@ public class MainController implements Choreographer.FrameCallback {
             }
 
             Draggable draggable = null;
-            BubbleView bubble;
+            BubbleLegacyView bubble;
             try {
                 LayoutInflater inflater = LayoutInflater.from(mContext);
-                bubble = (BubbleView) inflater.inflate(R.layout.view_bubble, null);
+                bubble = (BubbleLegacyView) inflater.inflate(R.layout.view_bubble_legacy, null);
                 draggable = bubble;
                 bubble.configure(url, x, y, targetX, targetY, time, startTime,
-                        new BubbleView.EventHandler() {
+                        new BubbleLegacyView.EventHandler() {
                     @Override
-                    public void onMotionEvent_Touch(BubbleView sender, DraggableHelper.TouchEvent e) {
+                    public void onMotionEvent_Touch(BubbleLegacyView sender, DraggableHelper.TouchEvent e) {
                         mCurrentState.onTouchActionDown(sender, e);
                         showContentActivity();
                     }
 
                     @Override
-                    public void onMotionEvent_Move(BubbleView sender, DraggableHelper.MoveEvent e) {
+                    public void onMotionEvent_Move(BubbleLegacyView sender, DraggableHelper.MoveEvent e) {
                         mCurrentState.onTouchActionMove(sender, e);
                     }
 
                     @Override
-                    public void onMotionEvent_Release(BubbleView sender, DraggableHelper.ReleaseEvent e) {
+                    public void onMotionEvent_Release(BubbleLegacyView sender, DraggableHelper.ReleaseEvent e) {
                         mCurrentState.onTouchActionRelease(sender, e);
                         if (mCurrentState instanceof State_SnapToEdge) {
                             hideContentActivity();
@@ -558,7 +558,7 @@ public class MainController implements Choreographer.FrameCallback {
                     @Override
                     public void onDestroyDraggable(Draggable sender) {
                         if (mDraggables.size() > 1) {
-                            BubbleView bubbleView = sender.getBubbleView();
+                            BubbleLegacyView bubbleView = sender.getBubbleLegacyView();
                             int bubbleIndex = bubbleView.getBubbleIndex();
                             destroyBubble(sender, Config.BubbleAction.Destroy);
                             int nextBubbleIndex = Util.clamp(0, bubbleIndex, mDraggables.size()-1);
@@ -602,7 +602,7 @@ public class MainController implements Choreographer.FrameCallback {
                 for (int i=0 ; i < draggableCount ; ++i) {
                     Draggable draggableItem = mDraggables.get(i);
                     if (draggableItem != bubble) {
-                        draggableItem.getDraggableHelper().setTargetPos((int)Config.getContentViewX(draggableItem.getBubbleView().getBubbleIndex(),
+                        draggableItem.getDraggableHelper().setTargetPos((int)Config.getContentViewX(draggableItem.getBubbleLegacyView().getBubbleIndex(),
                                 getBubbleCount()), draggableItem.getDraggableHelper().getYPos(), 0.2f, false);
                     }
                 }
