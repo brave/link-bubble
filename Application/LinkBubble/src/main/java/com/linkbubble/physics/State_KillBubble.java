@@ -1,6 +1,5 @@
 package com.linkbubble.physics;
 
-import com.linkbubble.ui.BubbleView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.ui.ContentView;
@@ -16,22 +15,22 @@ public class State_KillBubble extends ControllerState {
     private float mTime;
     private float mPeriod;
 
-    private BubbleView mBubble;
+    private Draggable mDraggable;
     private float mBubbleY0;
 
     public State_KillBubble(CanvasView canvasView) {
         mCanvasView = canvasView;
     }
 
-    public void init(BubbleView bubble) {
-        Util.Assert(mBubble == null);
-        mBubble = bubble;
-        mBubbleY0 = mBubble.getYPos();
+    public void init(Draggable draggable) {
+        Util.Assert(mDraggable == null);
+        mDraggable = draggable;
+        mBubbleY0 = mDraggable.getDraggableHelper().getYPos();
     }
 
     @Override
-    public void OnEnterState() {
-        Util.Assert(mBubble != null);
+    public void onEnterState() {
+        Util.Assert(mDraggable != null);
         mCanvasView.fadeOutTargets();
         ContentView contentView = mCanvasView.getContentView();
         if (contentView != null) {
@@ -45,13 +44,13 @@ public class State_KillBubble extends ControllerState {
     }
 
     @Override
-    public boolean OnUpdate(float dt) {
+    public boolean onUpdate(float dt) {
         float t = mTime / mPeriod;
         mTime += dt;
 
         float dy = t * Config.mScreenHeight;
 
-        mBubble.setExactPos(mBubble.getXPos(), (int) (dy + mBubbleY0));
+        mDraggable.getDraggableHelper().setExactPos(mDraggable.getDraggableHelper().getXPos(), (int) (dy + mBubbleY0));
 
         mCanvasView.setContentViewTranslation(dy);
 
@@ -65,44 +64,44 @@ public class State_KillBubble extends ControllerState {
     }
 
     @Override
-    public void OnExitState() {
+    public void onExitState() {
         mCanvasView.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
         mCanvasView.setContentView(null);
-        MainController.get().destroyBubble(mBubble, Config.BubbleAction.Destroy);
-        mBubble = null;
+        MainController.get().destroyBubble(mDraggable, Config.BubbleAction.Destroy);
+        mDraggable = null;
     }
 
     @Override
-    public void OnMotionEvent_Touch(BubbleView sender, BubbleView.TouchEvent e) {
+    public void onTouchActionDown(Draggable sender, DraggableHelper.TouchEvent e) {
     }
 
     @Override
-    public void OnMotionEvent_Move(BubbleView sender, BubbleView.MoveEvent e) {
+    public void onTouchActionMove(Draggable sender, DraggableHelper.MoveEvent e) {
     }
 
     @Override
-    public void OnMotionEvent_Release(BubbleView sender, BubbleView.ReleaseEvent e) {
+    public void onTouchActionRelease(Draggable sender, DraggableHelper.ReleaseEvent e) {
     }
 
     @Override
-    public boolean OnNewBubble(BubbleView bubble) {
+    public boolean onNewDraggable(Draggable draggable) {
         Util.Assert(false);
         return false;
     }
 
     @Override
-    public void OnDestroyBubble(BubbleView bubble) {
+    public void onDestroyDraggable(Draggable draggable) {
     }
 
     @Override
-    public boolean OnOrientationChanged() {
+    public boolean onOrientationChanged() {
         MainController mainController = MainController.get();
         mainController.switchState(mainController.STATE_BubbleView);
         return false;
     }
 
     @Override
-    public void OnCloseDialog() {
+    public void onCloseDialog() {
     }
 
     @Override
