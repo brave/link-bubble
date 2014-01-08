@@ -8,4 +8,5 @@ public interface Draggable {
     public BubbleView getBubbleView();
     public View getDraggableView();
     public void update(float dt, boolean contentView);
+    public void onOrientationChanged(boolean contentViewMode);
 }

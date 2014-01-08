@@ -123,7 +123,7 @@ public class BubbleView extends FrameLayout implements Draggable {
         return mContentView;
     }
 
-    public void OnOrientationChanged(boolean contentViewMode) {
+    public void onOrientationChanged(boolean contentViewMode) {
         clearTargetPos();
 
         int xPos, yPos;

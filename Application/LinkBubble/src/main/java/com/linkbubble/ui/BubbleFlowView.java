@@ -188,7 +188,7 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
         }
     }
 
-    public void OnOrientationChanged(boolean contentViewMode) {
+    public void onOrientationChanged(boolean contentViewMode) {
         clearTargetPos();
 
         int xPos, yPos;
