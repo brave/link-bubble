@@ -1,7 +1,6 @@
 package com.linkbubble.physics;
 
 import android.view.animation.OvershootInterpolator;
-import com.linkbubble.ui.BubbleView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
@@ -16,44 +15,44 @@ public class State_SnapToEdge extends ControllerState {
     private OvershootInterpolator mInterpolator = new OvershootInterpolator(1.5f);
     private float mTime;
     private float mPeriod;
-    private BubbleView mBubble;
+    private Draggable mDraggable;
     private CanvasView mCanvasView;
 
     public State_SnapToEdge(CanvasView c) {
         mCanvasView = c;
     }
 
-    public void init(BubbleView b) {
-        mBubble = b;
+    public void init(Draggable draggable) {
+        mDraggable = draggable;
     }
 
     @Override
-    public void OnEnterState() {
+    public void onEnterState() {
         mCanvasView.fadeOutTargets();
-        Util.Assert(mBubble != null);
+        Util.Assert(mDraggable != null);
 
         mTime = 0.0f;
         mPeriod = 0.5f;
 
-        mPosX = (float) mBubble.getXPos();
+        mPosX = (float) mDraggable.getDraggableHelper().getXPos();
         if (mPosX < Config.mScreenCenterX) {
             mDistanceX = Config.mBubbleSnapLeftX - mPosX;
         } else {
             mDistanceX = Config.mBubbleSnapRightX - mPosX;
         }
 
-        Config.BUBBLE_HOME_Y = (int) mBubble.getYPos();
+        Config.BUBBLE_HOME_Y = (int) mDraggable.getDraggableHelper().getYPos();
     }
 
     @Override
-    public boolean OnUpdate(float dt) {
+    public boolean onUpdate(float dt) {
         float f = mInterpolator.getInterpolation(mTime / mPeriod);
         mTime += dt;
 
         float x = mPosX + mDistanceX * f;
-        float y = (float) mBubble.getYPos();
+        float y = (float) mDraggable.getDraggableHelper().getYPos();
 
-        BubbleView b = mBubble;
+        Draggable draggable = mDraggable;
 
         if (mTime >= mPeriod) {
             x = Util.clamp(Config.mBubbleSnapLeftX, x, Config.mBubbleSnapRightX);
@@ -63,49 +62,49 @@ public class State_SnapToEdge extends ControllerState {
 
         Config.BUBBLE_HOME_X = (int) x;
         Config.BUBBLE_HOME_Y = (int) y;
-        b.setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
+        draggable.getDraggableHelper().setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
 
         return true;
     }
 
     @Override
-    public void OnExitState() {
-        MainController.get().setAllBubblePositions(mBubble);
-        mBubble = null;
+    public void onExitState() {
+        MainController.get().setAllDraggablePositions(mDraggable);
+        mDraggable = null;
     }
 
     @Override
-    public void OnMotionEvent_Touch(BubbleView sender, BubbleView.TouchEvent e) {
+    public void onTouchActionDown(Draggable sender, DraggableHelper.TouchEvent e) {
     }
 
     @Override
-    public void OnMotionEvent_Move(BubbleView sender, BubbleView.MoveEvent e) {
+    public void onTouchActionMove(Draggable sender, DraggableHelper.MoveEvent e) {
     }
 
     @Override
-    public void OnMotionEvent_Release(BubbleView sender, BubbleView.ReleaseEvent e) {
+    public void onTouchActionRelease(Draggable sender, DraggableHelper.ReleaseEvent e) {
     }
 
     @Override
-    public boolean OnNewBubble(BubbleView bubble) {
+    public boolean onNewDraggable(Draggable draggable) {
         Util.Assert(false);
         return false;
     }
 
     @Override
-    public void OnDestroyBubble(BubbleView bubble) {
+    public void onDestroyDraggable(Draggable draggable) {
         Util.Assert(false);
     }
 
     @Override
-    public boolean OnOrientationChanged() {
+    public boolean onOrientationChanged() {
         MainController mainController = MainController.get();
         mainController.switchState(mainController.STATE_BubbleView);
         return false;
     }
 
     @Override
-    public void OnCloseDialog() {
+    public void onCloseDialog() {
         if (mPosX < Config.mScreenCenterX) {
             Config.BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
         } else {

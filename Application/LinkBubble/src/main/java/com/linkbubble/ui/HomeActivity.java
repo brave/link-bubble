@@ -57,15 +57,27 @@ public class HomeActivity extends Activity {
             MainApplication.openLink(this, url);
         }
 
-        BubbleFlowView bubbleFlow = (BubbleFlowView) findViewById(R.id.bubble_flow);
-        BubbleFlowAdapter adapter = new BubbleFlowAdapter(this, false);
-        bubbleFlow.setAdapter(adapter);
+        final BubbleFlowView bubbleFlow = (BubbleFlowView) findViewById(R.id.bubble_flow);
+        if (bubbleFlow != null) {
+            BubbleFlowAdapter adapter = new BubbleFlowAdapter(this, false);
+            bubbleFlow.setAdapter(adapter);
+            bubbleFlow.expand();
+        }
 
         View historyButton = findViewById(R.id.history);
         historyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v);
+                if (bubbleFlow != null) {
+                    if (mExpanded) {
+                        bubbleFlow.collapse();
+                    } else {
+                        bubbleFlow.expand();
+                    }
+                    mExpanded = !mExpanded;
+                } else {
+                    startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v);
+                }
             }
         });
 
@@ -78,6 +90,8 @@ public class HomeActivity extends Activity {
         });
 
     }
+
+    boolean mExpanded = true;
 
     @Override
     public void onResume() {

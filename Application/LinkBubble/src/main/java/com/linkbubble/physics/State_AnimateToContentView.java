@@ -2,7 +2,6 @@ package com.linkbubble.physics;
 
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
-import com.linkbubble.ui.BubbleView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
@@ -15,7 +14,7 @@ import java.util.Vector;
  */
 public class State_AnimateToContentView extends ControllerState {
 
-    private class BubbleInfo {
+    private class DraggableInfo {
         public float mPosX;
         public float mPosY;
         public float mDistanceX;
@@ -29,14 +28,14 @@ public class State_AnimateToContentView extends ControllerState {
     private float mTime;
     private float mBubblePeriod;
     private float mContentPeriod;
-    private Vector<BubbleInfo> mBubbleInfo = new Vector<BubbleInfo>();
+    private Vector<DraggableInfo> mDraggableInfo = new Vector<DraggableInfo>();
 
     public State_AnimateToContentView(CanvasView canvasView) {
         mCanvasView = canvasView;
     }
 
     @Override
-    public void OnEnterState() {
+    public void onEnterState() {
         mCanvasView.fadeIn();
         mCanvasView.fadeOutTargets();
         if (mCanvasView.getContentView() != null) {
@@ -44,26 +43,26 @@ public class State_AnimateToContentView extends ControllerState {
         }
         mCanvasView.setContentView(MainController.get().getActiveBubble().getContentView());
 
-        mBubbleInfo.clear();
+        mDraggableInfo.clear();
         mTime = 0.0f;
         mBubblePeriod = 0.3f;
         mContentPeriod = mBubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
 
         MainController mainController = MainController.get();
-        int bubbleCount = mainController.getBubbleCount();
-        for (int i=0 ; i < bubbleCount ; ++i) {
-            BubbleInfo bi = new BubbleInfo();
-            BubbleView b = mainController.getBubble(i);
-            b.setVisibility(View.VISIBLE);
+        int draggableCount = mainController.getDraggableCount();
+        for (int i=0 ; i < draggableCount ; ++i) {
+            DraggableInfo draggableInfo = new DraggableInfo();
+            Draggable draggable = mainController.getDraggable(i);
+            draggable.getDraggableView().setVisibility(View.VISIBLE);
 
-            bi.mPosX = (float) b.getXPos();
-            bi.mPosY = (float) b.getYPos();
+            draggableInfo.mPosX = (float) draggable.getDraggableHelper().getXPos();
+            draggableInfo.mPosY = (float) draggable.getDraggableHelper().getYPos();
 
-            bi.mTargetX = Config.getContentViewX(i, MainController.get().getBubbleCount());
-            bi.mTargetY = Config.mContentViewBubbleY;
-            bi.mDistanceX = bi.mTargetX - bi.mPosX;
-            bi.mDistanceY = bi.mTargetY - bi.mPosY;
-            mBubbleInfo.add(bi);
+            draggableInfo.mTargetX = Config.getContentViewX(i, draggableCount);
+            draggableInfo.mTargetY = Config.mContentViewBubbleY;
+            draggableInfo.mDistanceX = draggableInfo.mTargetX - draggableInfo.mPosX;
+            draggableInfo.mDistanceY = draggableInfo.mTargetY - draggableInfo.mPosY;
+            mDraggableInfo.add(draggableInfo);
         }
 
         mCanvasView.showContentView();
@@ -73,26 +72,26 @@ public class State_AnimateToContentView extends ControllerState {
     }
 
     @Override
-    public boolean OnUpdate(float dt) {
+    public boolean onUpdate(float dt) {
         float f = mInterpolator.getInterpolation(mTime / mBubblePeriod);
         //Log.e("GapTech", "t=" + mTime / mBubblePeriod + ", f=" + f);
         mTime += dt;
 
         MainController mainController = MainController.get();
-        int bubbleCount = mainController.getBubbleCount();
-        for (int i=0 ; i < bubbleCount ; ++i) {
-            BubbleInfo bi = mBubbleInfo.get(i);
-            BubbleView b = mainController.getBubble(i);
+        int draggableCount = mainController.getDraggableCount();
+        for (int i=0 ; i < draggableCount; ++i) {
+            DraggableInfo draggableInfo = mDraggableInfo.get(i);
+            Draggable draggable = mainController.getDraggable(i);
 
-            float x = bi.mPosX + bi.mDistanceX * f;
-            float y = bi.mPosY + bi.mDistanceY * f;
+            float x = draggableInfo.mPosX + draggableInfo.mDistanceX * f;
+            float y = draggableInfo.mPosY + draggableInfo.mDistanceY * f;
 
             if (mTime >= mBubblePeriod) {
-                x = bi.mTargetX;
-                y = bi.mTargetY;
+                x = draggableInfo.mTargetX;
+                y = draggableInfo.mTargetY;
             }
 
-            b.setExactPos((int) x, (int) y);
+            draggable.getDraggableHelper().setExactPos((int) x, (int) y);
         }
 
         float t = Util.clamp(0.0f, 1.0f - mTime / mContentPeriod, 1.0f);
@@ -107,35 +106,35 @@ public class State_AnimateToContentView extends ControllerState {
     }
 
     @Override
-    public void OnExitState() {
+    public void onExitState() {
         mCanvasView.setContentViewTranslation(0.0f);
     }
 
     @Override
-    public void OnMotionEvent_Touch(BubbleView sender, BubbleView.TouchEvent e) {
+    public void onTouchActionDown(Draggable sender, DraggableHelper.TouchEvent e) {
     }
 
     @Override
-    public void OnMotionEvent_Move(BubbleView sender, BubbleView.MoveEvent e) {
+    public void onTouchActionMove(Draggable sender, DraggableHelper.MoveEvent e) {
     }
 
     @Override
-    public void OnMotionEvent_Release(BubbleView sender, BubbleView.ReleaseEvent e) {
+    public void onTouchActionRelease(Draggable sender, DraggableHelper.ReleaseEvent e) {
     }
 
     @Override
-    public boolean OnNewBubble(BubbleView bubble) {
+    public boolean onNewDraggable(Draggable draggable) {
         Util.Assert(false);
         return false;
     }
 
     @Override
-    public void OnDestroyBubble(BubbleView bubble) {
+    public void onDestroyDraggable(Draggable draggable) {
         Util.Assert(false);
     }
 
     @Override
-    public boolean OnOrientationChanged() {
+    public boolean onOrientationChanged() {
         MainController mainController = MainController.get();
         //mainController.STATE_ContentView.init(mSelectedBubble);
         mainController.switchState(mainController.STATE_ContentView);
@@ -143,7 +142,7 @@ public class State_AnimateToContentView extends ControllerState {
     }
 
     @Override
-    public void OnCloseDialog() {
+    public void onCloseDialog() {
     }
 
     @Override
