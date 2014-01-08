@@ -155,6 +155,7 @@ public class MainController implements Choreographer.FrameCallback {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         mBadgeView = (BadgeView) inflater.inflate(R.layout.view_badge, null);
 
+        /*
         mBubbleFlowView = (BubbleFlowView) inflater.inflate(R.layout.view_bubble_flow, null);
         BubbleFlowAdapter bubbleFlowAdapter = new BubbleFlowAdapter(mContext, false);
         mBubbleFlowView.setAdapter(bubbleFlowAdapter);
@@ -175,6 +176,7 @@ public class MainController implements Choreographer.FrameCallback {
                 mCurrentState.onTouchActionRelease(sender, event);
             }
         });
+        */
 
         MainApplication app = (MainApplication) mContext.getApplicationContext();
         Bus bus = app.getBus();
