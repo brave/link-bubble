@@ -30,7 +30,7 @@ public class State_KillBubble extends ControllerState {
     }
 
     @Override
-    public void OnEnterState() {
+    public void onEnterState() {
         Util.Assert(mBubble != null);
         mCanvasView.fadeOutTargets();
         ContentView contentView = mCanvasView.getContentView();
@@ -45,7 +45,7 @@ public class State_KillBubble extends ControllerState {
     }
 
     @Override
-    public boolean OnUpdate(float dt) {
+    public boolean onUpdate(float dt) {
         float t = mTime / mPeriod;
         mTime += dt;
 
@@ -65,7 +65,7 @@ public class State_KillBubble extends ControllerState {
     }
 
     @Override
-    public void OnExitState() {
+    public void onExitState() {
         mCanvasView.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
         mCanvasView.setContentView(null);
         MainController.get().destroyBubble(mBubble, Config.BubbleAction.Destroy);
@@ -85,7 +85,7 @@ public class State_KillBubble extends ControllerState {
     }
 
     @Override
-    public boolean OnNewDraggable(DraggableHelper draggable) {
+    public boolean onNewDraggable(DraggableItem draggableItem) {
         Util.Assert(false);
         return false;
     }
@@ -95,14 +95,14 @@ public class State_KillBubble extends ControllerState {
     }
 
     @Override
-    public boolean OnOrientationChanged() {
+    public boolean onOrientationChanged() {
         MainController mainController = MainController.get();
         mainController.switchState(mainController.STATE_BubbleView);
         return false;
     }
 
     @Override
-    public void OnCloseDialog() {
+    public void onCloseDialog() {
     }
 
     @Override
