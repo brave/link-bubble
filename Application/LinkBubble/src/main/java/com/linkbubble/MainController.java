@@ -26,6 +26,8 @@ import com.linkbubble.physics.State_Flick_ContentView;
 import com.linkbubble.physics.State_KillBubble;
 import com.linkbubble.physics.State_SnapToEdge;
 import com.linkbubble.ui.BadgeView;
+import com.linkbubble.ui.BubbleFlowAdapter;
+import com.linkbubble.ui.BubbleFlowView;
 import com.linkbubble.ui.BubbleView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.ui.ContentActivity;
@@ -116,6 +118,7 @@ public class MainController implements Choreographer.FrameCallback {
     private CanvasView mCanvasView;
     private BadgeView mBadgeView;
     private BubbleView mFrontBubble;
+    private BubbleFlowView mBubbleFlowView;
 
     private MainController(Context context, EventHandler eventHandler) {
         Util.Assert(sInstance == null);
@@ -148,6 +151,27 @@ public class MainController implements Choreographer.FrameCallback {
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         mBadgeView = (BadgeView) inflater.inflate(R.layout.view_badge, null);
+
+        mBubbleFlowView = (BubbleFlowView) inflater.inflate(R.layout.view_bubble_flow, null);
+        BubbleFlowAdapter bubbleFlowAdapter = new BubbleFlowAdapter(mContext, false);
+        mBubbleFlowView.setAdapter(bubbleFlowAdapter);
+        int bubbleFlowViewX = (Config.mScreenWidth - mContext.getResources().getDimensionPixelSize(R.dimen.bubble_flow_width)) / 2;
+        mBubbleFlowView.configure(bubbleFlowViewX, 0, bubbleFlowViewX, 0, 0.f, new BubbleFlowView.EventHandler() {
+            @Override
+            public void onMotionEvent_Touch(BubbleFlowView sender, BubbleFlowView.TouchEvent event) {
+
+            }
+
+            @Override
+            public void onMotionEvent_Move(BubbleFlowView sender, BubbleFlowView.MoveEvent event) {
+
+            }
+
+            @Override
+            public void onMotionEvent_Release(BubbleFlowView sender, BubbleFlowView.ReleaseEvent event) {
+
+            }
+        });
 
         MainApplication app = (MainApplication) mContext.getApplicationContext();
         Bus bus = app.getBus();
@@ -301,6 +325,10 @@ public class MainController implements Choreographer.FrameCallback {
         for (int i=0 ; i < bubbleCount ; ++i) {
             BubbleView b = mBubbles.get(i);
             b.update(dt, mCurrentState == STATE_ContentView);
+        }
+
+        if (mBubbleFlowView != null) {
+            mBubbleFlowView.update(dt, mCurrentState == STATE_ContentView);
         }
 
         BubbleView frontBubble = null;
