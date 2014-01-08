@@ -1,7 +1,6 @@
 package com.linkbubble.physics;
 
 import android.view.animation.OvershootInterpolator;
-import com.linkbubble.ui.BubbleView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
@@ -16,33 +15,33 @@ public class State_SnapToEdge extends ControllerState {
     private OvershootInterpolator mInterpolator = new OvershootInterpolator(1.5f);
     private float mTime;
     private float mPeriod;
-    private BubbleView mBubble;
+    private DraggableItem mDraggable;
     private CanvasView mCanvasView;
 
     public State_SnapToEdge(CanvasView c) {
         mCanvasView = c;
     }
 
-    public void init(BubbleView b) {
-        mBubble = b;
+    public void init(DraggableItem b) {
+        mDraggable = b;
     }
 
     @Override
     public void OnEnterState() {
         mCanvasView.fadeOutTargets();
-        Util.Assert(mBubble != null);
+        Util.Assert(mDraggable != null);
 
         mTime = 0.0f;
         mPeriod = 0.5f;
 
-        mPosX = (float) mBubble.getXPos();
+        mPosX = (float) mDraggable.getDraggableHelper().getXPos();
         if (mPosX < Config.mScreenCenterX) {
             mDistanceX = Config.mBubbleSnapLeftX - mPosX;
         } else {
             mDistanceX = Config.mBubbleSnapRightX - mPosX;
         }
 
-        Config.BUBBLE_HOME_Y = (int) mBubble.getYPos();
+        Config.BUBBLE_HOME_Y = (int) mDraggable.getDraggableHelper().getYPos();
     }
 
     @Override
@@ -51,9 +50,9 @@ public class State_SnapToEdge extends ControllerState {
         mTime += dt;
 
         float x = mPosX + mDistanceX * f;
-        float y = (float) mBubble.getYPos();
+        float y = (float) mDraggable.getDraggableHelper().getYPos();
 
-        BubbleView b = mBubble;
+        DraggableItem b = mDraggable;
 
         if (mTime >= mPeriod) {
             x = Util.clamp(Config.mBubbleSnapLeftX, x, Config.mBubbleSnapRightX);
@@ -63,15 +62,15 @@ public class State_SnapToEdge extends ControllerState {
 
         Config.BUBBLE_HOME_X = (int) x;
         Config.BUBBLE_HOME_Y = (int) y;
-        b.setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
+        b.getDraggableHelper().setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
 
         return true;
     }
 
     @Override
     public void OnExitState() {
-        MainController.get().setAllBubblePositions(mBubble);
-        mBubble = null;
+        MainController.get().setAllBubblePositions(mDraggable);
+        mDraggable = null;
     }
 
     @Override

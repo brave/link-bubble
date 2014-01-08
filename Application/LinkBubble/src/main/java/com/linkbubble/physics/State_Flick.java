@@ -2,7 +2,6 @@ package com.linkbubble.physics;
 
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
-import com.linkbubble.ui.BubbleView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
@@ -14,7 +13,7 @@ import com.linkbubble.util.Util;
 public abstract class State_Flick extends ControllerState {
 
     private CanvasView mCanvasView;
-    private BubbleView mBubble;
+    private DraggableItem mDraggable;
     private CanvasView.TargetInfo mTargetInfo;
 
     private OvershootInterpolator mOvershootInterpolator = new OvershootInterpolator(1.5f);
@@ -33,12 +32,12 @@ public abstract class State_Flick extends ControllerState {
         mCanvasView = canvasView;
     }
 
-    public void init(BubbleView bubble, float vx, float vy) {
+    public void init(DraggableItem bubble, float vx, float vy) {
         mTargetInfo = null;
-        mBubble = bubble;
+        mDraggable = bubble;
 
-        mInitialX = bubble.getXPos();
-        mInitialY = bubble.getYPos();
+        mInitialX = bubble.getDraggableHelper().getXPos();
+        mInitialY = bubble.getDraggableHelper().getYPos();
         mTime = 0.0f;
         mPeriod = 0.0f;
         mLinear = true;
@@ -87,7 +86,7 @@ public abstract class State_Flick extends ControllerState {
 
     @Override
     public void OnEnterState() {
-        Util.Assert(mBubble != null);
+        Util.Assert(mDraggable != null);
     }
 
     @Override
@@ -101,7 +100,7 @@ public abstract class State_Flick extends ControllerState {
             float x = mInitialX + (mTargetX - mInitialX) * f;
             float y = mInitialY + (mTargetY - mInitialY) * f;
 
-            CanvasView.TargetInfo ti = mBubble.getDraggableHelper().getTargetInfo(mCanvasView, (int) x, (int) y);
+            CanvasView.TargetInfo ti = mDraggable.getDraggableHelper().getTargetInfo(mCanvasView, (int) x, (int) y);
             switch (ti.mAction) {
                 case Destroy:
                 case ConsumeRight:
@@ -109,11 +108,11 @@ public abstract class State_Flick extends ControllerState {
                     ti.mTargetX = (int) (0.5f + ti.mTargetX - Config.mBubbleWidth * 0.5f);
                     ti.mTargetY = (int) (0.5f + ti.mTargetY - Config.mBubbleHeight * 0.5f);
                     mTargetInfo = ti;
-                    mBubble.setTargetPos(ti.mTargetX, ti.mTargetY, 0.2f, true);
+                    mDraggable.getDraggableHelper().setTargetPos(ti.mTargetX, ti.mTargetY, 0.2f, true);
                     break;
                 default:
                     {
-                        BubbleView b = mBubble;
+                        DraggableItem draggableItem = mDraggable;
                         if (mTime >= mPeriod) {
                             x = mTargetX;
                             y = mTargetY;
@@ -121,20 +120,21 @@ public abstract class State_Flick extends ControllerState {
                             if (isContentView()) {
                                 mainController.switchState(mainController.STATE_AnimateToContentView);
                             } else if (x == Config.mBubbleSnapLeftX || x == Config.mBubbleSnapRightX) {
-                                Config.BUBBLE_HOME_X = mBubble.getXPos();
-                                Config.BUBBLE_HOME_Y = mBubble.getYPos();
+                                Config.BUBBLE_HOME_X = mDraggable.getDraggableHelper().getXPos();
+                                Config.BUBBLE_HOME_Y = mDraggable.getDraggableHelper().getYPos();
                                 mainController.switchState(mainController.STATE_BubbleView);
                             } else {
-                                mainController.STATE_SnapToEdge.init(b);
+                                mainController.STATE_SnapToEdge.init(draggableItem);
                                 mainController.switchState(mainController.STATE_SnapToEdge);
                             }
                         }
-                        b.setExactPos((int) x, (int) y);
+                        draggableItem.getDraggableHelper().setExactPos((int) x, (int) y);
                     }
             }
         } else {
-            if (mBubble.getXPos() == mTargetInfo.mTargetX && mBubble.getYPos() == mTargetInfo.mTargetY) {
-                if (mainController.destroyBubble(mBubble, mTargetInfo.mAction)) {
+            if (mDraggable.getDraggableHelper().getXPos() == mTargetInfo.mTargetX
+                    && mDraggable.getDraggableHelper().getYPos() == mTargetInfo.mTargetY) {
+                if (mainController.destroyBubble(mDraggable, mTargetInfo.mAction)) {
                     if (isContentView()) {
                         mainController.switchState(mainController.STATE_AnimateToContentView);
                     } else {
@@ -152,8 +152,8 @@ public abstract class State_Flick extends ControllerState {
     @Override
     public void OnExitState() {
         if (!isContentView())
-            MainController.get().setAllBubblePositions(mBubble);
-        mBubble = null;
+            MainController.get().setAllBubblePositions(mDraggable);
+        mDraggable = null;
     }
 
     @Override
