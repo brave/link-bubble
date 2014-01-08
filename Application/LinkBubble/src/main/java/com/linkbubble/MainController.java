@@ -403,8 +403,8 @@ public class MainController implements Choreographer.FrameCallback {
         Config.init(mContext);
         mCanvasView.onOrientationChanged();
         boolean contentView = mCurrentState.onOrientationChanged();
-        for (int i=0 ; i < mBubbles.size() ; ++i) {
-            mBubbles.get(i).OnOrientationChanged(contentView);
+        for (int i=0 ; i < mDraggables.size() ; ++i) {
+            mDraggables.get(i).onOrientationChanged(contentView);
         }
     }
 
