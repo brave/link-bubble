@@ -211,7 +211,7 @@ public class MainController implements Choreographer.FrameCallback {
     //private int mFrameNumber;
 
     public void onPageLoaded(BubbleView bubble) {
-        mCurrentState.OnPageLoaded(bubble);
+        mCurrentState.onPageLoaded(bubble);
     }
 
     public boolean destroyBubble(DraggableItem draggableItem, Config.BubbleAction action) {
@@ -307,10 +307,10 @@ public class MainController implements Choreographer.FrameCallback {
     public void switchState(ControllerState newState) {
         //Util.Assert(newState != sMainController.mCurrentState);
         if (mCurrentState != null) {
-            mCurrentState.OnExitState();
+            mCurrentState.onExitState();
         }
         mCurrentState = newState;
-        mCurrentState.OnEnterState();
+        mCurrentState.onEnterState();
         scheduleUpdate();
     }
 
@@ -347,7 +347,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
         mCanvasView.update(dt, frontBubble);
 
-        if (mCurrentState.OnUpdate(dt)) {
+        if (mCurrentState.onUpdate(dt)) {
             scheduleUpdate();
         }
 
@@ -385,7 +385,7 @@ public class MainController implements Choreographer.FrameCallback {
 
     public void onCloseSystemDialogs() {
         if (mCurrentState != null) {
-            mCurrentState.OnCloseDialog();
+            mCurrentState.onCloseDialog();
             switchState(STATE_AnimateToBubbleView);
         }
     }
@@ -393,7 +393,7 @@ public class MainController implements Choreographer.FrameCallback {
     public void onOrientationChanged() {
         Config.init(mContext);
         mCanvasView.onOrientationChanged();
-        boolean contentView = mCurrentState.OnOrientationChanged();
+        boolean contentView = mCurrentState.onOrientationChanged();
         for (int i=0 ; i < mBubbles.size() ; ++i) {
             mBubbles.get(i).OnOrientationChanged(contentView);
         }
@@ -570,7 +570,7 @@ public class MainController implements Choreographer.FrameCallback {
                 return;
             }
 
-            mCurrentState.OnNewDraggable(bubble.getDraggableHelper());
+            mCurrentState.onNewDraggable(bubble);
             mBubbles.add(bubble);
             ++mBubblesLoaded;
 

@@ -26,7 +26,7 @@ public class State_ContentView extends ControllerState {
     }
 
     @Override
-    public void OnEnterState() {
+    public void onEnterState() {
         Util.Assert(MainController.get().getActiveBubble() != null);
         mDidMove = false;
         mTouchBubble = null;
@@ -34,7 +34,7 @@ public class State_ContentView extends ControllerState {
     }
 
     @Override
-    public boolean OnUpdate(float dt) {
+    public boolean onUpdate(float dt) {
         if (mTouchBubble != null) {
             ++mTouchFrameCount;
 
@@ -54,7 +54,7 @@ public class State_ContentView extends ControllerState {
     }
 
     @Override
-    public void OnExitState() {
+    public void onExitState() {
     }
 
     @Override
@@ -129,7 +129,7 @@ public class State_ContentView extends ControllerState {
     }
 
     @Override
-    public boolean OnNewDraggable(DraggableHelper draggable) {
+    public boolean onNewDraggable(DraggableItem draggableItem) {
         return true;
     }
 
@@ -138,14 +138,14 @@ public class State_ContentView extends ControllerState {
     }
 
     @Override
-    public boolean OnOrientationChanged() {
+    public boolean onOrientationChanged() {
         mTouchDown = false;
         mTouchBubble = null;
         return true;
     }
 
     @Override
-    public void OnCloseDialog() {
+    public void onCloseDialog() {
     }
 
     @Override

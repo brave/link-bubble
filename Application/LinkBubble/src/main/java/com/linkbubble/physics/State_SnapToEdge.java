@@ -27,7 +27,7 @@ public class State_SnapToEdge extends ControllerState {
     }
 
     @Override
-    public void OnEnterState() {
+    public void onEnterState() {
         mCanvasView.fadeOutTargets();
         Util.Assert(mDraggable != null);
 
@@ -45,7 +45,7 @@ public class State_SnapToEdge extends ControllerState {
     }
 
     @Override
-    public boolean OnUpdate(float dt) {
+    public boolean onUpdate(float dt) {
         float f = mInterpolator.getInterpolation(mTime / mPeriod);
         mTime += dt;
 
@@ -68,7 +68,7 @@ public class State_SnapToEdge extends ControllerState {
     }
 
     @Override
-    public void OnExitState() {
+    public void onExitState() {
         MainController.get().setAllBubblePositions(mDraggable);
         mDraggable = null;
     }
@@ -86,7 +86,7 @@ public class State_SnapToEdge extends ControllerState {
     }
 
     @Override
-    public boolean OnNewDraggable(DraggableHelper draggable) {
+    public boolean onNewDraggable(DraggableItem draggableItem) {
         Util.Assert(false);
         return false;
     }
@@ -97,14 +97,14 @@ public class State_SnapToEdge extends ControllerState {
     }
 
     @Override
-    public boolean OnOrientationChanged() {
+    public boolean onOrientationChanged() {
         MainController mainController = MainController.get();
         mainController.switchState(mainController.STATE_BubbleView);
         return false;
     }
 
     @Override
-    public void OnCloseDialog() {
+    public void onCloseDialog() {
         if (mPosX < Config.mScreenCenterX) {
             Config.BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
         } else {

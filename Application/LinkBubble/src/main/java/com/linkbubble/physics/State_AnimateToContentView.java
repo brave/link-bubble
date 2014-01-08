@@ -36,7 +36,7 @@ public class State_AnimateToContentView extends ControllerState {
     }
 
     @Override
-    public void OnEnterState() {
+    public void onEnterState() {
         mCanvasView.fadeIn();
         mCanvasView.fadeOutTargets();
         if (mCanvasView.getContentView() != null) {
@@ -73,7 +73,7 @@ public class State_AnimateToContentView extends ControllerState {
     }
 
     @Override
-    public boolean OnUpdate(float dt) {
+    public boolean onUpdate(float dt) {
         float f = mInterpolator.getInterpolation(mTime / mBubblePeriod);
         //Log.e("GapTech", "t=" + mTime / mBubblePeriod + ", f=" + f);
         mTime += dt;
@@ -107,7 +107,7 @@ public class State_AnimateToContentView extends ControllerState {
     }
 
     @Override
-    public void OnExitState() {
+    public void onExitState() {
         mCanvasView.setContentViewTranslation(0.0f);
     }
 
@@ -124,7 +124,7 @@ public class State_AnimateToContentView extends ControllerState {
     }
 
     @Override
-    public boolean OnNewDraggable(DraggableHelper draggable) {
+    public boolean onNewDraggable(DraggableItem draggableItem) {
         Util.Assert(false);
         return false;
     }
@@ -135,7 +135,7 @@ public class State_AnimateToContentView extends ControllerState {
     }
 
     @Override
-    public boolean OnOrientationChanged() {
+    public boolean onOrientationChanged() {
         MainController mainController = MainController.get();
         //mainController.STATE_ContentView.init(mSelectedBubble);
         mainController.switchState(mainController.STATE_ContentView);
@@ -143,7 +143,7 @@ public class State_AnimateToContentView extends ControllerState {
     }
 
     @Override
-    public void OnCloseDialog() {
+    public void onCloseDialog() {
     }
 
     @Override

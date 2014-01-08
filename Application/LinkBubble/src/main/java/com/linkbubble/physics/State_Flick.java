@@ -85,12 +85,12 @@ public abstract class State_Flick extends ControllerState {
     }
 
     @Override
-    public void OnEnterState() {
+    public void onEnterState() {
         Util.Assert(mDraggable != null);
     }
 
     @Override
-    public boolean OnUpdate(float dt) {
+    public boolean onUpdate(float dt) {
         MainController mainController = MainController.get();
         if (mTargetInfo == null) {
             float tf = mTime / mPeriod;
@@ -150,7 +150,7 @@ public abstract class State_Flick extends ControllerState {
     }
 
     @Override
-    public void OnExitState() {
+    public void onExitState() {
         if (!isContentView())
             MainController.get().setAllBubblePositions(mDraggable);
         mDraggable = null;
@@ -169,7 +169,7 @@ public abstract class State_Flick extends ControllerState {
     }
 
     @Override
-    public boolean OnNewDraggable(DraggableHelper draggable) {
+    public boolean onNewDraggable(DraggableItem draggableItem) {
         Util.Assert(false);
         return false;
     }
@@ -179,7 +179,7 @@ public abstract class State_Flick extends ControllerState {
     }
 
     @Override
-    public boolean OnOrientationChanged() {
+    public boolean onOrientationChanged() {
         MainController mainController = MainController.get();
         if (isContentView()) {
             mainController.switchState(mainController.STATE_AnimateToContentView);
@@ -190,7 +190,7 @@ public abstract class State_Flick extends ControllerState {
     }
 
     @Override
-    public void OnCloseDialog() {
+    public void onCloseDialog() {
     }
 
     @Override

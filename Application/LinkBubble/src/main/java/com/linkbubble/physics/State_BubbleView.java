@@ -31,7 +31,7 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
-    public void OnEnterState() {
+    public void onEnterState() {
         mCanvasView.fadeOutTargets();
         mDidMove = false;
         mBubble = null;
@@ -49,7 +49,7 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
-    public boolean OnUpdate(float dt) {
+    public boolean onUpdate(float dt) {
 
         if (mBubble != null) {
             ++mTouchFrameCount;
@@ -66,12 +66,12 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
-    public void OnExitState() {
+    public void onExitState() {
         MainController.get().setAllBubblePositions(mBubble);
     }
 
     @Override
-    public void OnPageLoaded(BubbleView bubble) {
+    public void onPageLoaded(DraggableItem draggableItem) {
         if (Settings.get().getAutoContentDisplayLinkLoaded()) {
             mBadgeView.hide();
             MainController mainController = MainController.get();
@@ -161,7 +161,7 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
-    public boolean OnNewDraggable(DraggableHelper draggable) {
+    public boolean onNewDraggable(DraggableItem draggableItem) {
         return true;
     }
 
@@ -170,7 +170,7 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
-    public boolean OnOrientationChanged() {
+    public boolean onOrientationChanged() {
         mTouchDown = false;
         mBubble = null;
         mCanvasView.fadeOut();
@@ -178,7 +178,7 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
-    public void OnCloseDialog() {
+    public void onCloseDialog() {
     }
 
     @Override
