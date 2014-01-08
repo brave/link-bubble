@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import org.mozilla.gecko.favicons.Favicons;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Vector;
 
 
 public class MainApplication extends Application {
@@ -58,7 +60,16 @@ public class MainApplication extends Application {
 
     public static void openLink(Context context, String url) {
         Intent serviceIntent = new Intent(context, MainService.class);
+        serviceIntent.putExtra("cmd", "open");
         serviceIntent.putExtra("url", url);
+        serviceIntent.putExtra("start_time", System.currentTimeMillis());
+        context.startService(serviceIntent);
+    }
+
+    public static void restoreLinks(Context context, String [] urls) {
+        Intent serviceIntent = new Intent(context, MainService.class);
+        serviceIntent.putExtra("cmd", "restore");
+        serviceIntent.putExtra("urls", urls);
         serviceIntent.putExtra("start_time", System.currentTimeMillis());
         context.startService(serviceIntent);
     }
