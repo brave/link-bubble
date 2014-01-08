@@ -14,8 +14,9 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.physics.Draggable;
+import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.physics.Circle;
+import com.linkbubble.physics.DraggableItem;
 import com.squareup.picasso.Transformation;
 import org.mozilla.gecko.favicons.Favicons;
 import org.mozilla.gecko.favicons.LoadFaviconTask;
@@ -24,9 +25,9 @@ import org.mozilla.gecko.favicons.OnFaviconLoadedListener;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class BubbleView extends FrameLayout {
+public class BubbleView extends FrameLayout implements DraggableItem {
 
-    private Draggable mDraggable;
+    private DraggableHelper mDraggableHelper;
     private BadgeView mBadgeView;
     private ImageView mFavicon;
     private ImageView mAdditionalFaviconView;
@@ -40,11 +41,10 @@ public class BubbleView extends FrameLayout {
     private int mFaviconLoadId;
     private int mBubbleIndex;
 
-
     public interface EventHandler {
-        public void onMotionEvent_Touch(BubbleView sender, Draggable.TouchEvent event);
-        public void onMotionEvent_Move(BubbleView sender, Draggable.MoveEvent event);
-        public void onMotionEvent_Release(BubbleView sender, Draggable.ReleaseEvent event);
+        public void onMotionEvent_Touch(BubbleView sender, DraggableHelper.TouchEvent event);
+        public void onMotionEvent_Move(BubbleView sender, DraggableHelper.MoveEvent event);
+        public void onMotionEvent_Release(BubbleView sender, DraggableHelper.ReleaseEvent event);
         public void onDestroyBubble(BubbleView sender);
         public void onMinimizeBubbles();
     }
@@ -59,6 +59,11 @@ public class BubbleView extends FrameLayout {
 
     public BubbleView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+    }
+
+    @Override
+    public DraggableHelper getDraggableHelper() {
+        return mDraggableHelper;
     }
 
     public void attachBadge(BadgeView badgeView) {
@@ -97,11 +102,11 @@ public class BubbleView extends FrameLayout {
     }
 
     public int getXPos() {
-        return mDraggable.getXPos();
+        return mDraggableHelper.getXPos();
     }
 
     public int getYPos() {
-        return mDraggable.getYPos();
+        return mDraggableHelper.getYPos();
     }
 
     public ContentView getContentView() {
@@ -117,7 +122,7 @@ public class BubbleView extends FrameLayout {
             xPos = (int) Config.getContentViewX(mBubbleIndex, MainController.get().getBubbleCount());
             yPos = Config.mContentViewBubbleY;
         } else {
-            WindowManager.LayoutParams windowManagerParms = mDraggable.getWindowManagerParams();
+            WindowManager.LayoutParams windowManagerParms = mDraggableHelper.getWindowManagerParams();
             if (windowManagerParms.x < Config.mScreenHeight * 0.5f)
                 xPos = Config.mBubbleSnapLeftX;
             else
@@ -130,7 +135,7 @@ public class BubbleView extends FrameLayout {
     }
 
     public void clearTargetPos() {
-        mDraggable.clearTargetPos();
+        mDraggableHelper.clearTargetPos();
 
         if (mContentView != null) {
             mContentView.setMarkerX((int) Config.getContentViewX(mBubbleIndex, MainController.get().getBubbleCount()));
@@ -138,11 +143,11 @@ public class BubbleView extends FrameLayout {
     }
 
     public void setExactPos(int x, int y) {
-        mDraggable.setExactPos(x, y);
+        mDraggableHelper.setExactPos(x, y);
     }
 
     public void setTargetPos(int x, int y, float t, boolean overshoot) {
-        mDraggable.setTargetPos(x, y, t, overshoot);
+        mDraggableHelper.setTargetPos(x, y, t, overshoot);
     }
 
     public CanvasView.TargetInfo getTargetInfo(CanvasView canvasView, int x, int y) {
@@ -168,13 +173,13 @@ public class BubbleView extends FrameLayout {
     }
 
     public boolean isSnapping() {
-        return mDraggable.isSnapping();
+        return mDraggableHelper.isSnapping();
     }
 
     public void update(float dt, boolean contentView) {
-        if (mDraggable.update(dt, contentView)) {
+        if (mDraggableHelper.update(dt, contentView)) {
             if (contentView) {
-                mContentView.setMarkerX(mDraggable.getXPos());
+                mContentView.setMarkerX(mDraggableHelper.getXPos());
             }
         }
     }
@@ -185,7 +190,7 @@ public class BubbleView extends FrameLayout {
         if (mContentView != null) {
             mContentView.destroy();
         }
-        mDraggable.destroy();
+        mDraggableHelper.destroy();
     }
 
     public URL getUrl() {
@@ -206,7 +211,7 @@ public class BubbleView extends FrameLayout {
         URL url = mProgressIndicator.getUrl();
 
         mWindowManager.removeView(this);
-        mWindowManager.addView(this, mDraggable.getWindowManagerParams());
+        mWindowManager.addView(this, mDraggableHelper.getWindowManagerParams());
         if (url != null) {
             mProgressIndicator.setProgress(showing, progress, url);
         }
@@ -285,20 +290,20 @@ public class BubbleView extends FrameLayout {
         windowManagerParams.format = PixelFormat.TRANSPARENT;
         windowManagerParams.setTitle("LinkBubble: Bubble");
 
-        mDraggable = new Draggable(this, mWindowManager, windowManagerParams, new Draggable.OnTouchActionEventListener() {
+        mDraggableHelper = new DraggableHelper(this, mWindowManager, windowManagerParams, new DraggableHelper.OnTouchActionEventListener() {
 
             @Override
-            public void onActionDown(Draggable.TouchEvent event) {
+            public void onActionDown(DraggableHelper.TouchEvent event) {
                 mEventHandler.onMotionEvent_Touch(BubbleView.this, event);
             }
 
             @Override
-            public void onActionMove(Draggable.MoveEvent event) {
+            public void onActionMove(DraggableHelper.MoveEvent event) {
                 mEventHandler.onMotionEvent_Move(BubbleView.this, event);
             }
 
             @Override
-            public void onActionUp(Draggable.ReleaseEvent event) {
+            public void onActionUp(DraggableHelper.ReleaseEvent event) {
                 mEventHandler.onMotionEvent_Release(BubbleView.this, event);
             }
         });
@@ -423,7 +428,7 @@ public class BubbleView extends FrameLayout {
         setVisibility(GONE);
 
 
-        if (mDraggable.isAlive()) {
+        if (mDraggableHelper.isAlive()) {
             mWindowManager.addView(this, windowManagerParams);
 
             setExactPos(x0, y0);

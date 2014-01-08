@@ -75,25 +75,25 @@ public class State_SnapToEdge extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Touch(BubbleView sender, Draggable.TouchEvent e) {
+    public void OnMotionEvent_Touch(BubbleView sender, DraggableHelper.TouchEvent e) {
     }
 
     @Override
-    public void OnMotionEvent_Move(BubbleView sender, Draggable.MoveEvent e) {
+    public void OnMotionEvent_Move(BubbleView sender, DraggableHelper.MoveEvent e) {
     }
 
     @Override
-    public void OnMotionEvent_Release(BubbleView sender, Draggable.ReleaseEvent e) {
+    public void OnMotionEvent_Release(BubbleView sender, DraggableHelper.ReleaseEvent e) {
     }
 
     @Override
-    public boolean OnNewBubble(BubbleView bubble) {
+    public boolean OnNewDraggable(DraggableHelper draggable) {
         Util.Assert(false);
         return false;
     }
 
     @Override
-    public void OnDestroyBubble(BubbleView bubble) {
+    public void onDestroyBubble(BubbleView bubble) {
         Util.Assert(false);
     }
 
