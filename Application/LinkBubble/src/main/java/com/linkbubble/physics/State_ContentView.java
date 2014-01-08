@@ -58,7 +58,7 @@ public class State_ContentView extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Touch(BubbleView sender, BubbleView.TouchEvent e) {
+    public void OnMotionEvent_Touch(BubbleView sender, Draggable.TouchEvent e) {
         mTouchDown = true;
         mTouchBubble = sender;
         mInitialX = e.posX;
@@ -71,7 +71,7 @@ public class State_ContentView extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Move(BubbleView sender, BubbleView.MoveEvent e) {
+    public void OnMotionEvent_Move(BubbleView sender, Draggable.MoveEvent e) {
         if (mTouchDown) {
             mTargetX = mInitialX + e.dx;
             mTargetY = mInitialY + e.dy;
@@ -91,7 +91,7 @@ public class State_ContentView extends ControllerState {
     }
 
     @Override
-    public void OnMotionEvent_Release(BubbleView sender, BubbleView.ReleaseEvent e) {
+    public void OnMotionEvent_Release(BubbleView sender, Draggable.ReleaseEvent e) {
         MainController mainController = MainController.get();
         if (mTouchDown) {
             sender.clearTargetPos();

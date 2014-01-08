@@ -17,6 +17,7 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.physics.Draggable;
 import com.linkbubble.util.Util;
 import com.linkbubble.physics.Circle;
 import com.linkbubble.physics.FlingTracker;
@@ -75,31 +76,12 @@ public class BubbleView extends FrameLayout {
         public float mX, mY;
     }
 
-    public static class TouchEvent {
-        public int posX;
-        public int posY;
-        public float rawX;
-        public float rawY;
-    }
 
-    public static class MoveEvent {
-        public int dx;
-        public int dy;
-    }
-
-    public static class ReleaseEvent {
-        public int posX;
-        public int posY;
-        public float vx;
-        public float vy;
-        public float rawX;
-        public float rawY;
-    }
 
     public interface EventHandler {
-        public void onMotionEvent_Touch(BubbleView sender, TouchEvent event);
-        public void onMotionEvent_Move(BubbleView sender, MoveEvent event);
-        public void onMotionEvent_Release(BubbleView sender, ReleaseEvent event);
+        public void onMotionEvent_Touch(BubbleView sender, Draggable.TouchEvent event);
+        public void onMotionEvent_Move(BubbleView sender, Draggable.MoveEvent event);
+        public void onMotionEvent_Release(BubbleView sender, Draggable.ReleaseEvent event);
         public void onDestroyBubble(BubbleView sender);
         public void onMinimizeBubbles();
     }
@@ -510,7 +492,7 @@ public class BubbleView extends FrameLayout {
                     case MotionEvent.ACTION_DOWN: {
                         mStartTouchXRaw = event.getRawX();
                         mStartTouchYRaw = event.getRawY();
-                        TouchEvent e = new TouchEvent();
+                        Draggable.TouchEvent e = new Draggable.TouchEvent();
                         e.posX = mWindowManagerParams.x;
                         e.posY = mWindowManagerParams.y;
                         e.rawX = mStartTouchXRaw;
@@ -540,7 +522,7 @@ public class BubbleView extends FrameLayout {
                         InternalMoveEvent me = new InternalMoveEvent(touchXRaw, touchYRaw, event.getEventTime());
                         mMoveEvents.add(me);
 
-                        MoveEvent e = new MoveEvent();
+                        Draggable.MoveEvent e = new Draggable.MoveEvent();
                         e.dx = deltaX;
                         e.dy = deltaY;
                         mEventHandler.onMotionEvent_Move(BubbleView.this, e);
@@ -552,7 +534,7 @@ public class BubbleView extends FrameLayout {
                     }
                     case MotionEvent.ACTION_UP: {
 
-                        ReleaseEvent e = new ReleaseEvent();
+                        Draggable.ReleaseEvent e = new Draggable.ReleaseEvent();
                         e.posX = mWindowManagerParams.x;
                         e.posY = mWindowManagerParams.y;
                         e.vx = 0.0f;
