@@ -91,7 +91,7 @@ public class State_KillBubble extends ControllerState {
     }
 
     @Override
-    public void onDestroyBubble(BubbleView bubble) {
+    public void onDestroyDraggable(DraggableItem draggableItem) {
     }
 
     @Override

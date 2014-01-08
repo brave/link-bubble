@@ -258,7 +258,7 @@ public class MainController implements Choreographer.FrameCallback {
 
             ((MainApplication)mContext.getApplicationContext()).getBus().post(new BubbleRemovedEvent(bubble));
 
-            mCurrentState.onDestroyBubble(bubble);
+            mCurrentState.onDestroyDraggable(bubble);
 
             doTargetAction(action, url);
         }

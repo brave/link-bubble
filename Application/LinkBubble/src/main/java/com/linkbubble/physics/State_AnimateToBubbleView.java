@@ -123,7 +123,7 @@ public class State_AnimateToBubbleView extends ControllerState {
     }
 
     @Override
-    public void onDestroyBubble(BubbleView bubble) {
+    public void onDestroyDraggable(DraggableItem draggableItem) {
         Util.Assert(false);
     }
 

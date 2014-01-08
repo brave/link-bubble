@@ -134,7 +134,7 @@ public class State_ContentView extends ControllerState {
     }
 
     @Override
-    public void onDestroyBubble(BubbleView bubble) {
+    public void onDestroyDraggable(DraggableItem draggableItem) {
     }
 
     @Override
