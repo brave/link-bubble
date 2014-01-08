@@ -17,7 +17,7 @@ public class State_ContentView extends ControllerState {
     private int mInitialY;
     private int mTargetX;
     private int mTargetY;
-    private DraggableItem mTouchBubble;
+    private DraggableItem mDraggableItem;
     private boolean mTouchDown;
     private int mTouchFrameCount;
 
@@ -29,13 +29,13 @@ public class State_ContentView extends ControllerState {
     public void onEnterState() {
         Util.Assert(MainController.get().getActiveBubble() != null);
         mDidMove = false;
-        mTouchBubble = null;
+        mDraggableItem = null;
         MainController.get().beginAppPolling();
     }
 
     @Override
     public boolean onUpdate(float dt) {
-        if (mTouchBubble != null) {
+        if (mDraggableItem != null) {
             ++mTouchFrameCount;
 
             if (mTouchFrameCount == 6) {
@@ -44,8 +44,8 @@ public class State_ContentView extends ControllerState {
             }
 
             if (mDidMove) {
-                MainController.get().setActiveBubble(mTouchBubble);
-                mTouchBubble.getDraggableHelper().doSnap(mCanvasView, mTargetX, mTargetY);
+                MainController.get().setActiveBubble(mDraggableItem);
+                mDraggableItem.getDraggableHelper().doSnap(mCanvasView, mTargetX, mTargetY);
             }
             return true;
         }
@@ -60,7 +60,7 @@ public class State_ContentView extends ControllerState {
     @Override
     public void onTouchActionDown(DraggableItem sender, DraggableHelper.TouchEvent e) {
         mTouchDown = true;
-        mTouchBubble = sender;
+        mDraggableItem = sender;
         mInitialX = e.posX;
         mInitialY = e.posY;
         mTargetX = mInitialX;
@@ -98,7 +98,7 @@ public class State_ContentView extends ControllerState {
 
             if (mDidMove) {
                 // NPE here with sender null: http://pastebin.com/GvQW57Dk
-                CanvasView.TargetInfo ti = mTouchBubble.getDraggableHelper().getTargetInfo(mCanvasView,
+                CanvasView.TargetInfo ti = mDraggableItem.getDraggableHelper().getTargetInfo(mCanvasView,
                         sender.getDraggableHelper().getXPos(), sender.getDraggableHelper().getYPos());
                 if (ti.mAction == Config.BubbleAction.None) {
                     float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
@@ -110,7 +110,7 @@ public class State_ContentView extends ControllerState {
                         mainController.switchState(mainController.STATE_AnimateToContentView);
                     }
                 } else {
-                    if (mainController.destroyBubble(mTouchBubble, ti.mAction)) {
+                    if (mainController.destroyBubble(mDraggableItem, ti.mAction)) {
                         mainController.switchState(mainController.STATE_AnimateToContentView);
                     } else {
                         mainController.switchState(mainController.STATE_BubbleView);
@@ -124,7 +124,7 @@ public class State_ContentView extends ControllerState {
                 mainController.switchState(mainController.STATE_AnimateToBubbleView);
             }
 
-            mTouchBubble = null;
+            mDraggableItem = null;
         }
     }
 
@@ -140,7 +140,7 @@ public class State_ContentView extends ControllerState {
     @Override
     public boolean onOrientationChanged() {
         mTouchDown = false;
-        mTouchBubble = null;
+        mDraggableItem = null;
         return true;
     }
 
@@ -156,7 +156,7 @@ public class State_ContentView extends ControllerState {
     public void setActiveBubble(DraggableItem draggableItem) {
         MainController.get().setActiveBubble(draggableItem);
         BubbleView bubble = draggableItem.getBubbleView();
-        draggableItem.getDraggableHelper().setTargetPos((int)Config.getContentViewX(bubble.getBubbleIndex(), MainController.get().getBubbleCount()), bubble.getYPos(), 0.2f, false);
+        draggableItem.getDraggableHelper().setTargetPos((int)Config.getContentViewX(bubble.getBubbleIndex(), MainController.get().getDraggableCount()), bubble.getYPos(), 0.2f, false);
         mCanvasView.setContentView(bubble.getContentView());
         mCanvasView.showContentView();
         mCanvasView.setContentViewTranslation(0.0f);

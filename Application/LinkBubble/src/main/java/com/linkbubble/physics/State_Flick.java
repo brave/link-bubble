@@ -32,12 +32,12 @@ public abstract class State_Flick extends ControllerState {
         mCanvasView = canvasView;
     }
 
-    public void init(DraggableItem bubble, float vx, float vy) {
+    public void init(DraggableItem draggableItem, float vx, float vy) {
         mTargetInfo = null;
-        mDraggable = bubble;
+        mDraggable = draggableItem;
 
-        mInitialX = bubble.getDraggableHelper().getXPos();
-        mInitialY = bubble.getDraggableHelper().getYPos();
+        mInitialX = draggableItem.getDraggableHelper().getXPos();
+        mInitialY = draggableItem.getDraggableHelper().getYPos();
         mTime = 0.0f;
         mPeriod = 0.0f;
         mLinear = true;
@@ -152,7 +152,7 @@ public abstract class State_Flick extends ControllerState {
     @Override
     public void onExitState() {
         if (!isContentView())
-            MainController.get().setAllBubblePositions(mDraggable);
+            MainController.get().setAllDraggablePositions(mDraggable);
         mDraggable = null;
     }
 
