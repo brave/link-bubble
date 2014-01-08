@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.linkbubble.physics.ControllerState;
 import com.linkbubble.physics.DraggableHelper;
+import com.linkbubble.physics.DraggableItem;
 import com.linkbubble.physics.State_AnimateToBubbleView;
 import com.linkbubble.physics.State_AnimateToContentView;
 import com.linkbubble.physics.State_BubbleView;
@@ -213,6 +214,10 @@ public class MainController implements Choreographer.FrameCallback {
         mCurrentState.OnPageLoaded(bubble);
     }
 
+    public boolean destroyBubble(DraggableItem draggableItem, Config.BubbleAction action) {
+        return destroyBubble(draggableItem.getBubbleView(), action);
+    }
+
     public boolean destroyBubble(BubbleView bubble, Config.BubbleAction action) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         boolean debug = prefs.getBoolean("debug_flick", true);
@@ -272,6 +277,10 @@ public class MainController implements Choreographer.FrameCallback {
                 }
             }
         }
+    }
+
+    public void setAllBubblePositions(DraggableItem draggableItem) {
+        setAllBubblePositions(draggableItem.getBubbleView());
     }
 
     public void updateIncognitoMode(boolean incognito) {
@@ -400,6 +409,10 @@ public class MainController implements Choreographer.FrameCallback {
         Util.Assert(mFrontBubble != null);
     }
 
+    public void setActiveBubble(DraggableItem draggableItem) {
+        setActiveBubble(draggableItem.getBubbleView());
+    }
+
     public void onOpenUrl(final String url, long startTime) {
         if (Settings.get().redirectUrlToBrowser(url)) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -512,18 +525,18 @@ public class MainController implements Choreographer.FrameCallback {
                         new BubbleView.EventHandler() {
                     @Override
                     public void onMotionEvent_Touch(BubbleView sender, DraggableHelper.TouchEvent e) {
-                        mCurrentState.OnMotionEvent_Touch(sender, e);
+                        mCurrentState.onTouchActionDown(sender, e);
                         showContentActivity();
                     }
 
                     @Override
                     public void onMotionEvent_Move(BubbleView sender, DraggableHelper.MoveEvent e) {
-                        mCurrentState.OnMotionEvent_Move(sender, e);
+                        mCurrentState.onTouchActionMove(sender, e);
                     }
 
                     @Override
                     public void onMotionEvent_Release(BubbleView sender, DraggableHelper.ReleaseEvent e) {
-                        mCurrentState.OnMotionEvent_Release(sender, e);
+                        mCurrentState.onTouchActionRelease(sender, e);
                         if (mCurrentState instanceof State_SnapToEdge) {
                             hideContentActivity();
                         }

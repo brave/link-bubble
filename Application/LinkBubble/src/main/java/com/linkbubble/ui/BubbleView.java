@@ -66,6 +66,11 @@ public class BubbleView extends FrameLayout implements DraggableItem {
         return mDraggableHelper;
     }
 
+    @Override
+    public BubbleView getBubbleView() {
+        return this;
+    }
+
     public void attachBadge(BadgeView badgeView) {
         if (mBadgeView == null) {
             mBadgeView = badgeView;
@@ -148,28 +153,6 @@ public class BubbleView extends FrameLayout implements DraggableItem {
 
     public void setTargetPos(int x, int y, float t, boolean overshoot) {
         mDraggableHelper.setTargetPos(x, y, t, overshoot);
-    }
-
-    public CanvasView.TargetInfo getTargetInfo(CanvasView canvasView, int x, int y) {
-        Circle bubbleCircle = new Circle(x + Config.mBubbleWidth * 0.5f,
-                y + Config.mBubbleHeight * 0.5f,
-                Config.mBubbleWidth * 0.5f);
-        CanvasView.TargetInfo targetInfo = canvasView.getBubbleAction(bubbleCircle);
-        return targetInfo;
-    }
-
-    public Config.BubbleAction doSnap(CanvasView canvasView, int targetX, int targetY) {
-        CanvasView.TargetInfo targetInfo = getTargetInfo(canvasView, targetX, targetY);
-
-        if (targetInfo.mAction != Config.BubbleAction.None) {
-            setTargetPos((int) (targetInfo.mTargetX - Config.mBubbleWidth * 0.5f),
-                         (int) (targetInfo.mTargetY - Config.mBubbleHeight * 0.5f),
-                         0.3f, true);
-        } else {
-            setTargetPos(targetX, targetY, 0.02f, false);
-        }
-
-        return targetInfo.mAction;
     }
 
     public boolean isSnapping() {
