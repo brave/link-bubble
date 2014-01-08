@@ -2,7 +2,6 @@ package com.linkbubble.physics;
 
 import android.view.View;
 import com.linkbubble.ui.BadgeView;
-import com.linkbubble.ui.BubbleView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
@@ -20,7 +19,7 @@ public class State_BubbleView extends ControllerState {
     private int mInitialY;
     private int mTargetX;
     private int mTargetY;
-    private DraggableItem mBubble;
+    private DraggableItem mDraggableItem;
     private BadgeView mBadgeView;
     private boolean mTouchDown;
     private int mTouchFrameCount;
@@ -34,31 +33,31 @@ public class State_BubbleView extends ControllerState {
     public void onEnterState() {
         mCanvasView.fadeOutTargets();
         mDidMove = false;
-        mBubble = null;
+        mDraggableItem = null;
         mBadgeView.show();
         mCanvasView.fadeOut();
 
         MainController mainController = MainController.get();
-        for (int i=0 ; i < mainController.getBubbleCount() ; ++i) {
-            BubbleView b = mainController.getBubble(i);
+        for (int i=0 ; i < mainController.getDraggableCount() ; ++i) {
+            DraggableItem draggableItem = mainController.getDraggable(i);
             int vis = View.VISIBLE;
-            if (b != mainController.getActiveBubble())
+            if (draggableItem != mainController.getActiveBubble())
                 vis = View.GONE;
-            b.setVisibility(vis);
+            draggableItem.getDraggableView().setVisibility(vis);
         }
     }
 
     @Override
     public boolean onUpdate(float dt) {
 
-        if (mBubble != null) {
+        if (mDraggableItem != null) {
             ++mTouchFrameCount;
 
             if (mTouchFrameCount == 6) {
                 mCanvasView.fadeInTargets();
             }
 
-            mBubble.getDraggableHelper().doSnap(mCanvasView, mTargetX, mTargetY);
+            mDraggableItem.getDraggableHelper().doSnap(mCanvasView, mTargetX, mTargetY);
             return true;
         }
 
@@ -67,7 +66,7 @@ public class State_BubbleView extends ControllerState {
 
     @Override
     public void onExitState() {
-        MainController.get().setAllBubblePositions(mBubble);
+        MainController.get().setAllDraggablePositions(mDraggableItem);
     }
 
     @Override
@@ -83,7 +82,7 @@ public class State_BubbleView extends ControllerState {
     public void onTouchActionDown(DraggableItem sender, DraggableHelper.TouchEvent e) {
         mTouchDown = true;
         mCanvasView.fadeIn();
-        mBubble = sender;
+        mDraggableItem = sender;
         mInitialX = e.posX;
         mInitialY = e.posY;
         mTargetX = mInitialX;
@@ -121,7 +120,7 @@ public class State_BubbleView extends ControllerState {
             MainController mainController = MainController.get();
             if (mDidMove) {
                 mCanvasView.fadeOut();
-                CanvasView.TargetInfo ti = mBubble.getDraggableHelper().getTargetInfo(mCanvasView,
+                CanvasView.TargetInfo ti = mDraggableItem.getDraggableHelper().getTargetInfo(mCanvasView,
                         sender.getDraggableHelper().getXPos(), sender.getDraggableHelper().getYPos());
                 if (ti.mAction == Config.BubbleAction.None) {
                     float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
@@ -136,15 +135,15 @@ public class State_BubbleView extends ControllerState {
                     }
                 } else {
                     if (ti.mAction == Config.BubbleAction.Destroy) {
-                        int bubbleCount = mainController.getBubbleCount();
-                        for (int i=bubbleCount-1 ; i >= 0; --i) {
-                            BubbleView b = mainController.getBubble(i);
-                            mainController.destroyBubble(b, Config.BubbleAction.Destroy);
+                        int draggableCount = mainController.getDraggableCount();
+                        for (int i=draggableCount-1 ; i >= 0; --i) {
+                            DraggableItem draggableItem = mainController.getDraggable(i);
+                            mainController.destroyBubble(draggableItem, Config.BubbleAction.Destroy);
                         }
-                        Util.Assert(mainController.getBubbleCount() == 0);
+                        Util.Assert(mainController.getDraggableCount() == 0);
                         mainController.switchState(mainController.STATE_BubbleView);
                     } else {
-                        if (mainController.destroyBubble(mBubble, ti.mAction)) {
+                        if (mainController.destroyBubble(mDraggableItem, ti.mAction)) {
                             mainController.switchState(mainController.STATE_AnimateToBubbleView);
                         } else {
                             mainController.switchState(mainController.STATE_BubbleView);
@@ -156,7 +155,7 @@ public class State_BubbleView extends ControllerState {
                 mainController.switchState(mainController.STATE_AnimateToContentView);
             }
 
-            mBubble = null;
+            mDraggableItem = null;
         }
     }
 
@@ -172,7 +171,7 @@ public class State_BubbleView extends ControllerState {
     @Override
     public boolean onOrientationChanged() {
         mTouchDown = false;
-        mBubble = null;
+        mDraggableItem = null;
         mCanvasView.fadeOut();
         return false;
     }

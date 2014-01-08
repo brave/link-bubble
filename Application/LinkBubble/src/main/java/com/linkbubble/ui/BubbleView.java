@@ -6,6 +6,7 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -68,6 +69,11 @@ public class BubbleView extends FrameLayout implements DraggableItem {
 
     @Override
     public BubbleView getBubbleView() {
+        return this;
+    }
+
+    @Override
+    public View getDraggableView() {
         return this;
     }
 
@@ -159,6 +165,7 @@ public class BubbleView extends FrameLayout implements DraggableItem {
         return mDraggableHelper.isSnapping();
     }
 
+    @Override
     public void update(float dt, boolean contentView) {
         if (mDraggableHelper.update(dt, contentView)) {
             if (contentView) {

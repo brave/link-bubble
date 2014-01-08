@@ -22,8 +22,8 @@ public class State_SnapToEdge extends ControllerState {
         mCanvasView = c;
     }
 
-    public void init(DraggableItem b) {
-        mDraggable = b;
+    public void init(DraggableItem draggableItem) {
+        mDraggable = draggableItem;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class State_SnapToEdge extends ControllerState {
         float x = mPosX + mDistanceX * f;
         float y = (float) mDraggable.getDraggableHelper().getYPos();
 
-        DraggableItem b = mDraggable;
+        DraggableItem draggableItem = mDraggable;
 
         if (mTime >= mPeriod) {
             x = Util.clamp(Config.mBubbleSnapLeftX, x, Config.mBubbleSnapRightX);
@@ -62,14 +62,14 @@ public class State_SnapToEdge extends ControllerState {
 
         Config.BUBBLE_HOME_X = (int) x;
         Config.BUBBLE_HOME_Y = (int) y;
-        b.getDraggableHelper().setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
+        draggableItem.getDraggableHelper().setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
 
         return true;
     }
 
     @Override
     public void onExitState() {
-        MainController.get().setAllBubblePositions(mDraggable);
+        MainController.get().setAllDraggablePositions(mDraggable);
         mDraggable = null;
     }
 

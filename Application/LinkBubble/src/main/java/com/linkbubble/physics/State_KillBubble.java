@@ -15,22 +15,22 @@ public class State_KillBubble extends ControllerState {
     private float mTime;
     private float mPeriod;
 
-    private DraggableItem mBubble;
+    private DraggableItem mDraggableItem;
     private float mBubbleY0;
 
     public State_KillBubble(CanvasView canvasView) {
         mCanvasView = canvasView;
     }
 
-    public void init(DraggableItem bubble) {
-        Util.Assert(mBubble == null);
-        mBubble = bubble;
-        mBubbleY0 = mBubble.getDraggableHelper().getYPos();
+    public void init(DraggableItem draggableItem) {
+        Util.Assert(mDraggableItem == null);
+        mDraggableItem = draggableItem;
+        mBubbleY0 = mDraggableItem.getDraggableHelper().getYPos();
     }
 
     @Override
     public void onEnterState() {
-        Util.Assert(mBubble != null);
+        Util.Assert(mDraggableItem != null);
         mCanvasView.fadeOutTargets();
         ContentView contentView = mCanvasView.getContentView();
         if (contentView != null) {
@@ -50,7 +50,7 @@ public class State_KillBubble extends ControllerState {
 
         float dy = t * Config.mScreenHeight;
 
-        mBubble.getDraggableHelper().setExactPos(mBubble.getDraggableHelper().getXPos(), (int) (dy + mBubbleY0));
+        mDraggableItem.getDraggableHelper().setExactPos(mDraggableItem.getDraggableHelper().getXPos(), (int) (dy + mBubbleY0));
 
         mCanvasView.setContentViewTranslation(dy);
 
@@ -67,8 +67,8 @@ public class State_KillBubble extends ControllerState {
     public void onExitState() {
         mCanvasView.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
         mCanvasView.setContentView(null);
-        MainController.get().destroyBubble(mBubble, Config.BubbleAction.Destroy);
-        mBubble = null;
+        MainController.get().destroyBubble(mDraggableItem, Config.BubbleAction.Destroy);
+        mDraggableItem = null;
     }
 
     @Override

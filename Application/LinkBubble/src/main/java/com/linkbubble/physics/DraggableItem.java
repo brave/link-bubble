@@ -1,8 +1,11 @@
 package com.linkbubble.physics;
 
+import android.view.View;
 import com.linkbubble.ui.BubbleView;
 
 public interface DraggableItem {
-    DraggableHelper getDraggableHelper();
-    BubbleView getBubbleView();
+    public DraggableHelper getDraggableHelper();
+    public BubbleView getBubbleView();
+    public View getDraggableView();
+    public void update(float dt, boolean contentView);
 }
