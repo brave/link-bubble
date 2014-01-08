@@ -16,8 +16,7 @@ import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.physics.DraggableHelper;
-import com.linkbubble.physics.Circle;
-import com.linkbubble.physics.DraggableItem;
+import com.linkbubble.physics.Draggable;
 import com.squareup.picasso.Transformation;
 import org.mozilla.gecko.favicons.Favicons;
 import org.mozilla.gecko.favicons.LoadFaviconTask;
@@ -26,7 +25,7 @@ import org.mozilla.gecko.favicons.OnFaviconLoadedListener;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class BubbleView extends FrameLayout implements DraggableItem {
+public class BubbleView extends FrameLayout implements Draggable {
 
     private DraggableHelper mDraggableHelper;
     private BadgeView mBadgeView;
@@ -46,7 +45,7 @@ public class BubbleView extends FrameLayout implements DraggableItem {
         public void onMotionEvent_Touch(BubbleView sender, DraggableHelper.TouchEvent event);
         public void onMotionEvent_Move(BubbleView sender, DraggableHelper.MoveEvent event);
         public void onMotionEvent_Release(BubbleView sender, DraggableHelper.ReleaseEvent event);
-        public void onDestroyDraggable(DraggableItem sender);
+        public void onDestroyDraggable(Draggable sender);
         public void onMinimizeBubbles();
     }
 

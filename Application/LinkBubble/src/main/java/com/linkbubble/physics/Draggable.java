@@ -3,7 +3,7 @@ package com.linkbubble.physics;
 import android.view.View;
 import com.linkbubble.ui.BubbleView;
 
-public interface DraggableItem {
+public interface Draggable {
     public DraggableHelper getDraggableHelper();
     public BubbleView getBubbleView();
     public View getDraggableView();
