@@ -6,9 +6,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.webkit.WebIconDatabase;
 import com.crashlytics.android.Crashlytics;
+
+import java.util.Vector;
 
 /**
  * Created by gw on 28/08/13.
@@ -16,6 +19,7 @@ import com.crashlytics.android.Crashlytics;
 public class MainService extends Service {
 
     private static final String BCAST_CONFIGCHANGED = "android.intent.action.CONFIGURATION_CHANGED";
+    private boolean mRestoreComplete;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -23,15 +27,31 @@ public class MainService extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent cmd, int flags, int startId) {
-        String url = cmd.getStringExtra("url");
-        long startTime = cmd.getLongExtra("start_time", System.currentTimeMillis());
-        MainController.get().onOpenUrl(url, startTime);
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
+        String cmd = intent.getStringExtra("cmd");
+        long startTime = intent.getLongExtra("start_time", System.currentTimeMillis());
+
+        if (cmd.compareTo("open") == 0) {
+            String url = intent.getStringExtra("url");
+            MainController.get().onOpenUrl(url, startTime);
+        } else if (cmd.compareTo("restore") == 0) {
+            if (!mRestoreComplete) {
+                String [] urls = intent.getStringArrayExtra("urls");
+                for (String url : urls) {
+                    MainController.get().onOpenUrl(url, startTime);
+                }
+                mRestoreComplete = true;
+            }
+        }
+
         return START_STICKY;
     }
 
     @Override
     public void onCreate() {
+
+        mRestoreComplete = false;
 
         setTheme(android.R.style.Theme_Holo_Light);
 

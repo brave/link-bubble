@@ -53,9 +53,7 @@ public class HomeActivity extends Activity {
         }
 
         Vector<String> urls = Settings.get().loadCurrentBubbles();
-        for (String url : urls) {
-            MainApplication.openLink(this, url);
-        }
+        MainApplication.restoreLinks(this, urls.toArray(new String[urls.size()]));
 
         final BubbleFlowView bubbleFlow = (BubbleFlowView) findViewById(R.id.bubble_flow);
         if (bubbleFlow != null) {
