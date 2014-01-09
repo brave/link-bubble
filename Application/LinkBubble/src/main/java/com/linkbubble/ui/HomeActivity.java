@@ -9,7 +9,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
-import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
