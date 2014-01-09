@@ -12,6 +12,8 @@ import com.linkbubble.Config;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.physics.Draggable;
+import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.util.Util;
 import com.linkbubble.physics.Circle;
 
@@ -173,16 +175,17 @@ public class BubbleTargetView extends RelativeLayout {
         MainController.get().scheduleUpdate();
     }
 
-    public void update(float dt, BubbleLegacyView bubble) {
-        if (bubble != null && !bubble.isSnapping() && mEnableMove) {
-            float xf = (bubble.getXPos() + Config.mBubbleWidth * 0.5f) / Config.mScreenWidth;
+    public void update(float dt, Draggable draggable) {
+        DraggableHelper draggableHelper = draggable.getDraggableHelper();
+        if (draggable != null && !draggableHelper.isSnapping() && mEnableMove) {
+            float xf = (draggableHelper.getXPos() + Config.mBubbleWidth * 0.5f) / Config.mScreenWidth;
             xf = 2.0f * Util.clamp(0.0f, xf, 1.0f) - 1.0f;
             Util.Assert(xf >= -1.0f && xf <= 1.0f);
 
             mSnapCircle.mX = Config.mScreenWidth * mXFraction + xf * Config.mScreenWidth * 0.1f;
 
             if (mYFraction > 0.5f) {
-                int bubbleYC = (int) (bubble.getYPos() + Config.mBubbleHeight * 0.5f);
+                int bubbleYC = (int) (draggableHelper.getYPos() + Config.mBubbleHeight * 0.5f);
                 int bubbleY0 = (int) (Config.mScreenHeight * 0.75f);
                 int bubbleY1 = (int) (Config.mScreenHeight * 0.90f);
 
@@ -198,7 +201,7 @@ public class BubbleTargetView extends RelativeLayout {
                     mSnapCircle.mY = bubbleYC;
                 }
             } else {
-                int bubbleYC = (int) (bubble.getYPos() + Config.mBubbleHeight * 0.5f);
+                int bubbleYC = (int) (draggableHelper.getYPos() + Config.mBubbleHeight * 0.5f);
                 int bubbleY0 = (int) (Config.mScreenHeight * 0.25f);
                 int bubbleY1 = (int) (Config.mScreenHeight * 0.10f);
 
@@ -213,7 +216,6 @@ public class BubbleTargetView extends RelativeLayout {
                 } else {
                     mSnapCircle.mY = bubbleYC;
                 }
-
             }
 
             mSnapCircle.mY = Util.clamp(0, mSnapCircle.mY, Config.mScreenHeight - mDefaultCircle.mRadius);

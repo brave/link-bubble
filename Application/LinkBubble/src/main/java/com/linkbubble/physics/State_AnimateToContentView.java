@@ -41,7 +41,7 @@ public class State_AnimateToContentView extends ControllerState {
         if (mCanvasView.getContentView() != null) {
             mCanvasView.getContentView().onAnimateOnScreen();
         }
-        mCanvasView.setContentView(MainController.get().getActiveBubble().getContentView());
+        mCanvasView.setContentView(MainController.get().getActiveDraggable().getContentView());
 
         mDraggableInfo.clear();
         mTime = 0.0f;
