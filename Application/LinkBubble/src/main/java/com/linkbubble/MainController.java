@@ -272,7 +272,7 @@ public class MainController implements Choreographer.FrameCallback {
             doTargetAction(action, url);
         }
 
-        return mBubbles.size() > 0;
+        return getBubbleCount() > 0;
     }
 
     public void setAllDraggablePositions(Draggable ref) {
@@ -430,7 +430,7 @@ public class MainController implements Choreographer.FrameCallback {
             intent.setData(Uri.parse(url));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             if (MainApplication.loadInBrowser(mContext, intent, false)) {
-                if (mBubbles.size() == 0) {
+                if (getBubbleCount() == 0) {
                     mEventHandler.onDestroy();
                 }
 
@@ -446,7 +446,7 @@ public class MainController implements Choreographer.FrameCallback {
                 ResolveInfo resolveInfo = resolveInfos.get(0);
                 if (resolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo
                     && MainApplication.loadResolveInfoIntent(mContext, resolveInfo, url, startTime)) {
-                    if (mBubbles.size() == 0) {
+                    if (getBubbleCount() == 0) {
                         mEventHandler.onDestroy();
                     }
 
@@ -481,7 +481,7 @@ public class MainController implements Choreographer.FrameCallback {
                                 if (loaded == false) {
                                     openUrlInBubble(url, System.currentTimeMillis());
                                 } else {
-                                    if (mBubbles.size() == 0) {
+                                    if (getBubbleCount() == 0) {
                                         mEventHandler.onDestroy();
                                     }
                                 }
