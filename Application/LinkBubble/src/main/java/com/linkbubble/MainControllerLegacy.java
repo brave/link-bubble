@@ -203,7 +203,9 @@ public class MainControllerLegacy extends MainController {
                                     destroyBubble(sender, Config.BubbleAction.Destroy);
                                     int nextBubbleIndex = Util.clamp(0, bubbleIndex, mDraggables.size()-1);
                                     Draggable nextBubble = mDraggables.get(nextBubbleIndex);
-                                    STATE_ContentView.setActiveBubble(nextBubble);
+                                    if (mCurrentState == STATE_ContentView) {
+                                        STATE_ContentView.setActiveBubble(nextBubble);
+                                    }
                                 } else {
                                     STATE_KillBubble.init(sender);
                                     switchState(STATE_KillBubble);
