@@ -2,6 +2,7 @@ package com.linkbubble;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import com.linkbubble.physics.Draggable;
@@ -28,9 +29,8 @@ public class MainControllerNew extends MainController {
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         mBubblePagerDraggable = (BubblePagerDraggable) inflater.inflate(R.layout.view_bubble_pager, null);
-
-        int bubbleFlowViewX = (Config.mScreenWidth - context.getResources().getDimensionPixelSize(R.dimen.bubble_pager_width)) / 2;
-        mBubblePagerDraggable.configure(bubbleFlowViewX, 0, bubbleFlowViewX, 0, 0.f, null);
+        mBubblePagerDraggable.configure(0, 0, 0, 0, 0.f, null);
+        mBubblePagerDraggable.setVisibility(View.GONE);
 
         mBubbleDraggable = (BubbleDraggable) inflater.inflate(R.layout.view_bubble_draggable, null);
         mBubbleDraggable.configure((int) (Config.mBubbleSnapLeftX - Config.mBubbleWidth), Config.BUBBLE_HOME_Y,
@@ -121,5 +121,11 @@ public class MainControllerNew extends MainController {
     @Override
     public ContentView getActiveContentView() {
         return mBubblePagerDraggable.getContentView();
+    }
+
+    @Override
+    public void showBubblePager(boolean show) {
+        mBubblePagerDraggable.setVisibility(show ? View.VISIBLE : View.GONE);
+        mBubbleDraggable.setVisibility(show ? View.GONE : View.VISIBLE);
     }
 }
