@@ -222,6 +222,8 @@ public abstract class MainController implements Choreographer.FrameCallback {
         scheduleUpdate();
     }
 
+    public void showBubblePager(boolean show) {}
+
     public abstract int getBubbleCount();
 
     public int getDraggableCount() {

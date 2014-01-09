@@ -31,6 +31,7 @@ public class State_ContentView extends ControllerState {
         mDidMove = false;
         mDraggable = null;
         MainController.get().beginAppPolling();
+        MainController.get().showBubblePager(true);
     }
 
     @Override
@@ -55,6 +56,7 @@ public class State_ContentView extends ControllerState {
 
     @Override
     public void onExitState() {
+        MainController.get().showBubblePager(false);
     }
 
     @Override
