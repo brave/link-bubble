@@ -50,6 +50,13 @@ public class MainControllerNew extends MainController {
             }
         });
 
+        mBubbleDraggable.setOnUpdateListener(new BubbleDraggable.OnUpdateListener() {
+            @Override
+            public void onUpdate(Draggable draggable, float dt, boolean contentView) {
+                mBubblePagerDraggable.syncWithBubble(draggable);
+            }
+        });
+
         mDraggables.add(mBubbleDraggable);
         setActiveDraggable(mBubbleDraggable);
     }
@@ -90,10 +97,6 @@ public class MainControllerNew extends MainController {
         for (int i=0 ; i < draggableCount ; ++i) {
             Draggable draggable = mDraggables.get(i);
             draggable.update(dt, mCurrentState == STATE_ContentView);
-        }
-
-        if (mBubblePagerDraggable != null) {
-            mBubblePagerDraggable.update(dt, mCurrentState == STATE_ContentView);
         }
 
         Draggable frontDraggable = null;
