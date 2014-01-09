@@ -49,7 +49,7 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
         super(context, attrs, defStyle);
     }
 
-    public void configure(int x0, int y0, int targetX, int targetY, float targetTime, EventHandler eh)  {
+    public void configure(int x0, int y0, int targetX, int targetY, float targetTime, EventHandler eventHandler)  {
 
         ViewPager pager = getViewPager();
         PagerAdapter adapter = new BubblePagerAdapter(getContext());
@@ -84,23 +84,27 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
 
             @Override
             public void onActionDown(DraggableHelper.TouchEvent event) {
-                //collapse();
-                mEventHandler.onMotionEvent_Touch(BubblePagerDraggable.this, event);
+                if (mEventHandler != null) {
+                    mEventHandler.onMotionEvent_Touch(BubblePagerDraggable.this, event);
+                }
             }
 
             @Override
             public void onActionMove(DraggableHelper.MoveEvent event) {
-                mEventHandler.onMotionEvent_Move(BubblePagerDraggable.this, event);
+                if (mEventHandler != null) {
+                    mEventHandler.onMotionEvent_Move(BubblePagerDraggable.this, event);
+                }
             }
 
             @Override
             public void onActionUp(DraggableHelper.ReleaseEvent event) {
-                //expand();
-                mEventHandler.onMotionEvent_Release(BubblePagerDraggable.this, event);
+                if (mEventHandler != null) {
+                    mEventHandler.onMotionEvent_Release(BubblePagerDraggable.this, event);
+                }
             }
         });
 
-        mEventHandler = eh;
+        mEventHandler = eventHandler;
 
         if (mDraggableHelper.isAlive()) {
             mWindowManager.addView(this, windowManagerParams);
