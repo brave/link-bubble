@@ -28,6 +28,7 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
     private WindowManager mWindowManager;
     private EventHandler mEventHandler;
     private int mBubbleFlowWidth;
+    private int mBubbleFlowHeight;
 
     private static Vector<BubblePagerItemView> mBubbles = new Vector<BubblePagerItemView>();
 
@@ -67,13 +68,13 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
         mWindowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
 
         mBubbleFlowWidth = getResources().getDimensionPixelSize(R.dimen.bubble_pager_width);
+        mBubbleFlowHeight = getResources().getDimensionPixelSize(R.dimen.bubble_pager_height);
 
         WindowManager.LayoutParams windowManagerParams = new WindowManager.LayoutParams();
         windowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
         windowManagerParams.x = x0;
         windowManagerParams.y = y0;
-        int bubbleFlowHeight = getResources().getDimensionPixelSize(R.dimen.bubble_pager_height);
-        windowManagerParams.height = bubbleFlowHeight;
+        windowManagerParams.height = mBubbleFlowHeight;
         windowManagerParams.width = mBubbleFlowWidth;
         windowManagerParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
         windowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
@@ -148,6 +149,15 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
                 //mContentView.setMarkerX(mDraggableHelper.getXPos());
             }
         }
+    }
+
+    public void syncWithBubble(Draggable draggable) {
+        WindowManager.LayoutParams draggableParams = draggable.getDraggableHelper().getWindowManagerParams();
+
+        int xOffset = (draggableParams.width - mBubbleFlowWidth) / 2;
+        int yOffset = (draggableParams.height - mBubbleFlowHeight) / 2;
+
+        mDraggableHelper.setExactPos(draggableParams.x + xOffset, draggableParams.y + yOffset);
     }
 
     @Override

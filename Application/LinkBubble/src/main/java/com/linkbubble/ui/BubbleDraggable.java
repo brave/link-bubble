@@ -3,6 +3,7 @@ package com.linkbubble.ui;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -18,6 +19,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     private DraggableHelper mDraggableHelper;
     private WindowManager mWindowManager;
     private EventHandler mEventHandler;
+    private OnUpdateListener mOnUpdateListener;
 
     public interface EventHandler {
         public void onMotionEvent_Touch(BubbleDraggable sender, DraggableHelper.TouchEvent event);
@@ -92,6 +94,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         mDraggableHelper.destroy();
     }
 
+    public void setOnUpdateListener(OnUpdateListener onUpdateListener) {
+        mOnUpdateListener = onUpdateListener;
+    }
 
     @Override
     public DraggableHelper getDraggableHelper() {
@@ -114,6 +119,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             if (contentView) {
                 //mContentView.setMarkerX(mDraggableHelper.getXPos());
             }
+        }
+
+        if (mOnUpdateListener != null) {
+            mOnUpdateListener.onUpdate(this, dt, contentView);
         }
     }
 

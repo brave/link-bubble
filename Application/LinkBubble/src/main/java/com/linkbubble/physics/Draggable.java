@@ -12,4 +12,8 @@ public interface Draggable {
     public void onOrientationChanged(boolean contentViewMode);
     public void readd();
     public ContentView getContentView();
+
+    public interface OnUpdateListener {
+        public void onUpdate(Draggable draggable, float dt, boolean contentView);
+    }
 }
