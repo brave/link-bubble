@@ -1,6 +1,7 @@
 package com.linkbubble.physics;
 
 import android.view.View;
+import com.linkbubble.Constant;
 import com.linkbubble.ui.BadgeView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
@@ -41,7 +42,7 @@ public class State_BubbleView extends ControllerState {
         for (int i=0 ; i < mainController.getDraggableCount() ; ++i) {
             Draggable draggable = mainController.getDraggable(i);
             int vis = View.VISIBLE;
-            if (draggable != mainController.getActiveBubble())
+            if (draggable != mainController.getActiveDraggable())
                 vis = View.GONE;
             draggable.getDraggableView().setVisibility(vis);
         }
@@ -152,7 +153,9 @@ public class State_BubbleView extends ControllerState {
                 }
             } else {
                 mBadgeView.hide();
-                mainController.switchState(mainController.STATE_AnimateToContentView);
+                if (Constant.USE_NEW_CONTROLLER == false) {
+                    mainController.switchState(mainController.STATE_AnimateToContentView);
+                }
             }
 
             mDraggable = null;

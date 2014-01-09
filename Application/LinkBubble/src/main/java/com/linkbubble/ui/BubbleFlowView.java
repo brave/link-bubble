@@ -4,24 +4,38 @@ import android.content.Context;
 import android.graphics.PixelFormat;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
+import com.linkbubble.Settings;
 import com.linkbubble.physics.Circle;
 import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.physics.Draggable;
+import com.linkbubble.physics.State_AnimateToBubbleView;
+import com.linkbubble.physics.State_ContentView;
+import com.linkbubble.physics.State_SnapToEdge;
+import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
+
+import java.net.MalformedURLException;
+import java.util.Vector;
 
 public class BubbleFlowView extends FancyCoverFlow implements Draggable {
 
     private DraggableHelper mDraggableHelper;
     private WindowManager mWindowManager;
     private EventHandler mEventHandler;
+    private int mBubbleFlowWidth;
+
+    private static Vector<BubbleLegacyView> mBubbles = new Vector<BubbleLegacyView>();
 
     public interface EventHandler {
         public void onMotionEvent_Touch(BubbleFlowView sender, DraggableHelper.TouchEvent event);
@@ -40,15 +54,13 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
     public BubbleFlowView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        MainApplication app = (MainApplication) context.getApplicationContext();
-        Bus bus = app.getBus();
-        bus.register(this);
-
         setBackgroundColor(0x33ff0000);
     }
 
     public void configure(int x0, int y0, int targetX, int targetY, float targetTime, EventHandler eh)  {
         mWindowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+
+        mBubbleFlowWidth = getResources().getDimensionPixelSize(R.dimen.bubble_flow_width);
 
         WindowManager.LayoutParams windowManagerParams = new WindowManager.LayoutParams();
         windowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
@@ -56,8 +68,7 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
         windowManagerParams.y = y0;
         int bubbleFlowHeight = getResources().getDimensionPixelSize(R.dimen.bubble_flow_height);
         windowManagerParams.height = bubbleFlowHeight;
-        int bubbleFlowWidth = getResources().getDimensionPixelSize(R.dimen.bubble_flow_width);
-        windowManagerParams.width = bubbleFlowWidth;
+        windowManagerParams.width = mBubbleFlowWidth;
         windowManagerParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
         windowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         windowManagerParams.format = PixelFormat.TRANSPARENT;
@@ -67,6 +78,7 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
 
             @Override
             public void onActionDown(DraggableHelper.TouchEvent event) {
+                //collapse();
                 mEventHandler.onMotionEvent_Touch(BubbleFlowView.this, event);
             }
 
@@ -77,6 +89,7 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
 
             @Override
             public void onActionUp(DraggableHelper.ReleaseEvent event) {
+                //expand();
                 mEventHandler.onMotionEvent_Release(BubbleFlowView.this, event);
             }
         });
@@ -103,9 +116,18 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
         mDraggableHelper.destroy();
     }
 
+    public int getBubbleCount() {
+        return mBubbles.size();
+    }
+
     public void readd() {
         mWindowManager.removeView(this);
         mWindowManager.addView(this, mDraggableHelper.getWindowManagerParams());
+    }
+
+    @Override
+    public ContentView getContentView() {
+        return null;
     }
 
     public boolean isSnapping() {
@@ -136,29 +158,6 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
         }
     }
 
-    public CanvasView.TargetInfo getTargetInfo(CanvasView canvasView, int x, int y) {
-        Circle bubbleCircle = new Circle(x + Config.mBubbleWidth * 0.5f,
-                y + Config.mBubbleHeight * 0.5f,
-                Config.mBubbleWidth * 0.5f);
-        CanvasView.TargetInfo targetInfo = canvasView.getBubbleAction(bubbleCircle);
-        return targetInfo;
-    }
-
-
-    public Config.BubbleAction doSnap(CanvasView canvasView, int targetX, int targetY) {
-        CanvasView.TargetInfo targetInfo = getTargetInfo(canvasView, targetX, targetY);
-
-        if (targetInfo.mAction != Config.BubbleAction.None) {
-            setTargetPos((int) (targetInfo.mTargetX - Config.mBubbleWidth * 0.5f),
-                    (int) (targetInfo.mTargetY - Config.mBubbleHeight * 0.5f),
-                    0.3f, true);
-        } else {
-            setTargetPos(targetX, targetY, 0.02f, false);
-        }
-
-        return targetInfo.mAction;
-    }
-
     public int getXPos() {
         return mDraggableHelper.getXPos();
     }
@@ -169,7 +168,7 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
 
     public void expand() {
         WindowManager.LayoutParams lp = (WindowManager.LayoutParams) getLayoutParams();
-        lp.width = 400;
+        lp.width = mBubbleFlowWidth;
         setLayoutParams(lp);
     }
 
@@ -177,15 +176,6 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
         WindowManager.LayoutParams lp = (WindowManager.LayoutParams) getLayoutParams();
         lp.width = getResources().getDimensionPixelSize(R.dimen.bubble_size);
         setLayoutParams(lp);
-    }
-
-    void bubblesUpdated() {
-        BubbleFlowAdapter adapter = (BubbleFlowAdapter)getAdapter();
-        if (adapter.mBubbles == null) {
-            adapter.setBubbles(MainController.get().getBubbles());
-        } else {
-            adapter.notifyDataSetChanged();
-        }
     }
 
     public void onOrientationChanged(boolean contentViewMode) {
@@ -247,19 +237,134 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
         }*/
     }
 
-    public ContentView getCurrentContentView() {
-        return null;
+    public void openUrlInBubble(String url, long startTime) {
+
+        int x, targetX, y, targetY;
+        float time;
+
+        int bubbleIndex = mBubbles.size();
+
+        if (MainController.get().isStateActive(State_ContentView.class)) {
+            x = (int) Config.getContentViewX(bubbleIndex, getBubbleCount()+1);
+            y = (int) -Config.mBubbleHeight;
+            targetX = x;
+            targetY = Config.mContentViewBubbleY;
+            time = 0.4f;
+        } else {
+            if (bubbleIndex == 0) {
+                x = (int) (Config.mBubbleSnapLeftX - Config.mBubbleWidth);
+                y = Config.BUBBLE_HOME_Y;
+                targetX = Config.BUBBLE_HOME_X;
+                targetY = y;
+                time = 0.4f;
+            } else {
+                x = Config.BUBBLE_HOME_X;
+                y = Config.BUBBLE_HOME_Y;
+                targetX = x;
+                targetY = y;
+                time = 0.0f;
+            }
+        }
+
+        BubbleLegacyView bubble;
+        try {
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            bubble = (BubbleLegacyView) inflater.inflate(R.layout.view_bubble_legacy, null);
+            bubble.configure(url, x, y, targetX, targetY, time, startTime,
+                    new BubbleLegacyView.EventHandler() {
+                        @Override
+                        public void onMotionEvent_Touch(BubbleLegacyView sender, DraggableHelper.TouchEvent e) {
+                            //mCurrentState.onTouchActionDown(sender, e);
+                        }
+
+                        @Override
+                        public void onMotionEvent_Move(BubbleLegacyView sender, DraggableHelper.MoveEvent e) {
+                            //mCurrentState.onTouchActionMove(sender, e);
+                        }
+
+                        @Override
+                        public void onMotionEvent_Release(BubbleLegacyView sender, DraggableHelper.ReleaseEvent e) {
+                            //mCurrentState.onTouchActionRelease(sender, e);
+                        }
+
+                        @Override
+                        public void onDestroyDraggable(Draggable sender) {
+                            if (mBubbles.size() > 1) {
+                                /* BFV_CHANGE:
+                                BubbleView bubbleView = sender.getBubbleView();
+                                int bubbleIndex = bubbleView.getBubbleIndex();
+                                destroyBubble(sender, Config.BubbleAction.Destroy);
+                                int nextBubbleIndex = Util.clamp(0, bubbleIndex, mDraggables.size() - 1);
+                                Draggable nextBubble = mDraggables.get(nextBubbleIndex);
+                                STATE_ContentView.setActiveBubble(nextBubble);
+                                */
+                            } else {
+                                /* BFV_CHANGE:
+                                STATE_KillBubble.init(sender);
+                                switchState(STATE_KillBubble);
+                                */
+                            }
+                        }
+
+                        @Override
+                        public void onMinimizeBubbles() {
+                            if (MainController.get().isStateActive(State_AnimateToBubbleView.class) == false) {
+                                MainController.get().switchState(MainController.get().STATE_AnimateToBubbleView);
+                            }
+                        }
+
+                    });
+        } catch (MalformedURLException e) {
+            // TODO: Inform the user somehow?
+            return;
+        }
+
+        mBubbles.add(bubble);
+
+        for (int i=0 ; i < mBubbles.size() ; ++i) {
+            mBubbles.get(i).setBubbleIndex(i);
+        }
+
+        Settings.get().saveCurrentBubbles(mBubbles);
+
+        // BFV_CHANGE:
+        /*
+        mBadgeView.attach(bubble);
+        mBadgeView.setBubbleCount(mBubbles.size());
+        int draggableCount = mDraggables.size();
+        if (MainController.get().isStateActive(State_ContentView.class)) {
+            draggable.getDraggableView().setVisibility(View.VISIBLE);
+            for (int i=0 ; i < draggableCount ; ++i) {
+                Draggable draggableItem = mDraggables.get(i);
+                if (draggableItem != bubble) {
+                    draggableItem.getDraggableHelper().setTargetPos((int)Config.getContentViewX(draggableItem.getBubbleView().getBubbleIndex(),
+                            getBubbleCount()), draggableItem.getDraggableHelper().getYPos(), 0.2f, false);
+                }
+            }
+        } else {
+            mFrontBubble = bubble;
+            for (int i=0 ; i < draggableCount ; ++i) {
+                Draggable draggableItem = mDraggables.get(i);
+                int vis = View.VISIBLE;
+                if (draggableItem != mFrontBubble) {
+                    vis = View.GONE;
+                }
+                draggableItem.getDraggableView().setVisibility(vis);
+            }
+        }*/
+
+        BubbleFlowAdapter adapter = (BubbleFlowAdapter)getAdapter();
+        if (adapter.mBubbles == null) {
+            adapter.setBubbles(mBubbles);
+        } else {
+            adapter.notifyDataSetChanged();
+        }
     }
 
-    @SuppressWarnings("unused")
-    @Subscribe
-    public void onBubbleAdded(MainController.BubbleAddedEvent event) {
-        bubblesUpdated();
+    public void updateIncognitoMode(boolean incognito) {
+        for (int i=0 ; i < mBubbles.size() ; ++i) {
+            mBubbles.get(i).updateIncognitoMode(incognito);
+        }
     }
 
-    @SuppressWarnings("unused")
-    @Subscribe
-    public void onContentActivityPaused(MainController.BubbleRemovedEvent event) {
-        bubblesUpdated();
-    }
 }

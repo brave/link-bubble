@@ -10,6 +10,7 @@ import com.linkbubble.Config;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.physics.Draggable;
 import com.linkbubble.util.Util;
 import com.linkbubble.physics.Circle;
 
@@ -185,7 +186,7 @@ public class CanvasView extends RelativeLayout {
         mWindowManager.removeView(this);
     }
 
-    public void update(float dt, BubbleLegacyView frontBubble) {
+    public void update(float dt, Draggable frontDraggable) {
         if (mCurrentAlpha < mTargetAlpha) {
             mCurrentAlpha = Util.clamp(0.0f, mCurrentAlpha + mAlphaDelta * dt, mMaxAlpha);
             MainController.get().scheduleUpdate();
@@ -205,7 +206,7 @@ public class CanvasView extends RelativeLayout {
         applyAlpha();
 
         for (int i=0 ; i < mTargets.size() ; ++i) {
-            mTargets.get(i).update(dt, frontBubble);
+            mTargets.get(i).update(dt, frontDraggable);
         }
     }
 

@@ -27,7 +27,7 @@ public class State_ContentView extends ControllerState {
 
     @Override
     public void onEnterState() {
-        Util.Assert(MainController.get().getActiveBubble() != null);
+        Util.Assert(MainController.get().getActiveDraggable() != null);
         mDidMove = false;
         mDraggable = null;
         MainController.get().beginAppPolling();
@@ -44,7 +44,7 @@ public class State_ContentView extends ControllerState {
             }
 
             if (mDidMove) {
-                MainController.get().setActiveBubble(mDraggable);
+                MainController.get().setActiveDraggable(mDraggable);
                 mDraggable.getDraggableHelper().doSnap(mCanvasView, mTargetX, mTargetY);
             }
             return true;
@@ -116,11 +116,11 @@ public class State_ContentView extends ControllerState {
                         mainController.switchState(mainController.STATE_BubbleView);
                     }
                 }
-            } else if (MainController.get().getActiveBubble() != sender) {
+            } else if (MainController.get().getActiveDraggable() != sender) {
                 mCanvasView.fadeOutTargets();
                 setActiveBubble(sender);
             } else {
-                mainController.getActiveBubble().readd();
+                mainController.getActiveDraggable().readd();
                 mainController.switchState(mainController.STATE_AnimateToBubbleView);
             }
 
@@ -154,7 +154,7 @@ public class State_ContentView extends ControllerState {
     }
 
     public void setActiveBubble(Draggable draggable) {
-        MainController.get().setActiveBubble(draggable);
+        MainController.get().setActiveDraggable(draggable);
         BubbleLegacyView bubble = draggable.getBubbleLegacyView();
         draggable.getDraggableHelper().setTargetPos((int) Config.getContentViewX(bubble.getBubbleIndex(),
                 MainController.get().getDraggableCount()), bubble.getYPos(), 0.2f, false);
