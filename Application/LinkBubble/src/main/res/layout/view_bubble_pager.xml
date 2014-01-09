@@ -7,10 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="top|center"
-    android:layout_centerHorizontal="true"
-    android:background="#CCC">
+    android:layout_centerHorizontal="true">
     <android.support.v4.view.ViewPager
-        android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/bubble_pager_item_width"
+        android:layout_height="@dimen/bubble_pager_item_height"
         android:layout_gravity="center_horizontal" />
 </com.linkbubble.ui.BubblePagerDraggable>

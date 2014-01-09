@@ -2,7 +2,7 @@
 
 <com.linkbubble.ui.BubblePagerItemView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/bubble_size"
+    android:layout_width="@dimen/bubble_pager_item_width"
     android:layout_height="@dimen/bubble_size"
     >
 

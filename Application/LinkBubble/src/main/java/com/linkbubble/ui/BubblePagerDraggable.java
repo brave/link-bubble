@@ -66,13 +66,13 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
 
         mWindowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
 
-        mBubbleFlowWidth = getResources().getDimensionPixelSize(R.dimen.bubble_flow_width);
+        mBubbleFlowWidth = getResources().getDimensionPixelSize(R.dimen.bubble_pager_width);
 
         WindowManager.LayoutParams windowManagerParams = new WindowManager.LayoutParams();
         windowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
         windowManagerParams.x = x0;
         windowManagerParams.y = y0;
-        int bubbleFlowHeight = getResources().getDimensionPixelSize(R.dimen.bubble_flow_height);
+        int bubbleFlowHeight = getResources().getDimensionPixelSize(R.dimen.bubble_pager_height);
         windowManagerParams.height = bubbleFlowHeight;
         windowManagerParams.width = mBubbleFlowWidth;
         windowManagerParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;

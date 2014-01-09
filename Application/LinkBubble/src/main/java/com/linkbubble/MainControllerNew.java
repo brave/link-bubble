@@ -26,7 +26,7 @@ public class MainControllerNew extends MainController {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         mBubblePagerDraggable = (BubblePagerDraggable) inflater.inflate(R.layout.view_bubble_pager, null);
 
-        int bubbleFlowViewX = (Config.mScreenWidth - context.getResources().getDimensionPixelSize(R.dimen.bubble_flow_width)) / 2;
+        int bubbleFlowViewX = (Config.mScreenWidth - context.getResources().getDimensionPixelSize(R.dimen.bubble_pager_width)) / 2;
         mBubblePagerDraggable.configure(bubbleFlowViewX, 0, bubbleFlowViewX, 0, 0.f, new BubblePagerDraggable.EventHandler() {
             @Override
             public void onMotionEvent_Touch(BubblePagerDraggable sender, DraggableHelper.TouchEvent event) {

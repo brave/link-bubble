@@ -17,9 +17,6 @@
     <dimen name="header_height">320dp</dimen>
     <dimen name="header_logo_size">100dp</dimen>
 
-    <dimen name="bubble_cover_flow_item_size">60dp</dimen>
-    <dimen name="bubble_cover_flow_image_size">60dp</dimen>
-
     <dimen name="youtube_emebed_item_height">160dp</dimen>
 
     <dimen name="badge_size">24dp</dimen>
@@ -27,8 +24,10 @@
     <dimen name="bubble_size">64dp</dimen>
     <dimen name="bubble_icon_size">60dp</dimen>
     <dimen name="bubble_icon_stroke_size">1px</dimen>
-    <dimen name="bubble_flow_width">280dp</dimen>
-    <dimen name="bubble_flow_height">@dimen/bubble_size</dimen>
+    <dimen name="bubble_pager_item_width">80dp</dimen>
+    <dimen name="bubble_pager_item_height">@dimen/bubble_size</dimen>
+    <dimen name="bubble_pager_height">@dimen/bubble_pager_item_height</dimen>
+    <dimen name="bubble_pager_width">280dp</dimen>
     <dimen name="bubble_progress_size">52dp</dimen>
     <dimen name="bubble_progress_stroke">1px</dimen>
     <dimen name="content_offset">60dp</dimen>
