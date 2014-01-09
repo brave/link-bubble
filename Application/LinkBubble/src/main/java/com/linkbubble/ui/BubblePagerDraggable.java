@@ -5,6 +5,7 @@ import android.graphics.PixelFormat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,6 +66,22 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
         //If hardware acceleration is enabled, you should also remove
         // clipping on the pager for its children.
         pager.setClipChildren(false);
+
+        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i2) {
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                BubblePagerItemView bubble = mBubbles.get(i);
+                MainController.get().showContentView(bubble.getContentView());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+            }
+        });
 
         mWindowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
 
