@@ -12,9 +12,6 @@ import android.widget.Toast;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.physics.State_AnimateToBubbleView;
-import com.linkbubble.physics.State_SnapToEdge;
-import com.linkbubble.ui.BubbleFlowAdapter;
-import com.linkbubble.ui.BubbleFlowView;
 import com.linkbubble.ui.BubbleLegacyView;
 import com.linkbubble.util.Util;
 

@@ -5,6 +5,8 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import at.technikum.mti.fancycoverflow.FancyCoverFlow;
@@ -55,27 +57,27 @@ public class HomeActivity extends Activity {
         Vector<String> urls = Settings.get().loadCurrentBubbles();
         MainApplication.restoreLinks(this, urls.toArray(new String[urls.size()]));
 
-        final BubbleFlowView bubbleFlow = (BubbleFlowView) findViewById(R.id.bubble_flow);
-        if (bubbleFlow != null) {
-            BubbleFlowAdapter adapter = new BubbleFlowAdapter(this, false);
-            bubbleFlow.setAdapter(adapter);
-            bubbleFlow.expand();
+        final BubblePagerView bubblePagerView = (BubblePagerView) findViewById(R.id.bubble_pager);
+        if (bubblePagerView != null) {
+            ViewPager pager = bubblePagerView.getViewPager();
+            PagerAdapter adapter = new BubblePagerAdapter(this);
+            pager.setAdapter(adapter);
+            //Necessary or the pager will only have one extra page to show
+            // make this at least however many pages you can see
+            pager.setOffscreenPageLimit(adapter.getCount());
+            //A little space between pages
+            pager.setPageMargin(15);
+
+            //If hardware acceleration is enabled, you should also remove
+            // clipping on the pager for its children.
+            pager.setClipChildren(false);
         }
 
         View historyButton = findViewById(R.id.history);
         historyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (bubbleFlow != null) {
-                    if (mExpanded) {
-                        bubbleFlow.collapse();
-                    } else {
-                        bubbleFlow.expand();
-                    }
-                    mExpanded = !mExpanded;
-                } else {
-                    startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v);
-                }
+                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v);
             }
         });
 

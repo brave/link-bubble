@@ -6,8 +6,7 @@ import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
-import com.linkbubble.ui.BubbleFlowAdapter;
-import com.linkbubble.ui.BubbleFlowView;
+import com.linkbubble.ui.BubblePagerDraggable;
 
 
 public class MainControllerNew extends MainController {
@@ -19,34 +18,33 @@ public class MainControllerNew extends MainController {
         sInstance = new MainControllerNew(context, eventHandler);
     }
 
-    private BubbleFlowView mBubbleFlowView;
+    private BubblePagerDraggable mBubblePagerDraggable;
 
     protected MainControllerNew(Context context, EventHandler eventHandler) {
         super(context, eventHandler);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        mBubbleFlowView = (BubbleFlowView) inflater.inflate(R.layout.view_bubble_flow, null);
-        BubbleFlowAdapter bubbleFlowAdapter = new BubbleFlowAdapter(context, false);
-        mBubbleFlowView.setAdapter(bubbleFlowAdapter);
+        mBubblePagerDraggable = (BubblePagerDraggable) inflater.inflate(R.layout.view_bubble_pager, null);
+
         int bubbleFlowViewX = (Config.mScreenWidth - context.getResources().getDimensionPixelSize(R.dimen.bubble_flow_width)) / 2;
-        mBubbleFlowView.configure(bubbleFlowViewX, 0, bubbleFlowViewX, 0, 0.f, new BubbleFlowView.EventHandler() {
+        mBubblePagerDraggable.configure(bubbleFlowViewX, 0, bubbleFlowViewX, 0, 0.f, new BubblePagerDraggable.EventHandler() {
             @Override
-            public void onMotionEvent_Touch(BubbleFlowView sender, DraggableHelper.TouchEvent event) {
+            public void onMotionEvent_Touch(BubblePagerDraggable sender, DraggableHelper.TouchEvent event) {
                 mCurrentState.onTouchActionDown(sender, event);
             }
 
             @Override
-            public void onMotionEvent_Move(BubbleFlowView sender, DraggableHelper.MoveEvent event) {
+            public void onMotionEvent_Move(BubblePagerDraggable sender, DraggableHelper.MoveEvent event) {
                 mCurrentState.onTouchActionMove(sender, event);
             }
 
             @Override
-            public void onMotionEvent_Release(BubbleFlowView sender, DraggableHelper.ReleaseEvent event) {
+            public void onMotionEvent_Release(BubblePagerDraggable sender, DraggableHelper.ReleaseEvent event) {
                 mCurrentState.onTouchActionRelease(sender, event);
             }
         });
-        mDraggables.add(mBubbleFlowView);
-        setActiveDraggable(mBubbleFlowView);
+        mDraggables.add(mBubblePagerDraggable);
+        setActiveDraggable(mBubblePagerDraggable);
     }
 
     @Override
@@ -59,19 +57,19 @@ public class MainControllerNew extends MainController {
         CookieSyncManager.createInstance(mContext);
         CookieManager.getInstance().setAcceptCookie(!incognito);
 
-        if (mBubbleFlowView != null) {
-            mBubbleFlowView.updateIncognitoMode(incognito);
+        if (mBubblePagerDraggable != null) {
+            mBubblePagerDraggable.updateIncognitoMode(incognito);
         }
     }
 
     @Override
     public int getBubbleCount() {
-        return mBubbleFlowView != null ? mBubbleFlowView.getBubbleCount() : 0;
+        return mBubblePagerDraggable != null ? mBubblePagerDraggable.getBubbleCount() : 0;
     }
 
     @Override
     protected void openUrlInBubble(String url, long startTime) {
-        mBubbleFlowView.openUrlInBubble(url, startTime);
+        mBubblePagerDraggable.openUrlInBubble(url, startTime);
         ++mBubblesLoaded;
     }
 
@@ -87,8 +85,8 @@ public class MainControllerNew extends MainController {
             draggable.update(dt, mCurrentState == STATE_ContentView);
         }
 
-        if (mBubbleFlowView != null) {
-            mBubbleFlowView.update(dt, mCurrentState == STATE_ContentView);
+        if (mBubblePagerDraggable != null) {
+            mBubblePagerDraggable.update(dt, mCurrentState == STATE_ContentView);
         }
 
         Draggable frontDraggable = null;

@@ -12,7 +12,7 @@ import org.mozilla.gecko.favicons.Favicons;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class BubbleFlowItemView extends BubbleView {
+public class BubblePagerItemView extends BubbleView {
 
     public interface BubbleFlowItemViewListener {
         public void onDestroyBubble();
@@ -23,15 +23,15 @@ public class BubbleFlowItemView extends BubbleView {
     protected ContentView mContentView;
     private BubbleFlowItemViewListener mListener;
 
-    public BubbleFlowItemView(Context context) {
+    public BubblePagerItemView(Context context) {
         this(context, null);
     }
 
-    public BubbleFlowItemView(Context context, AttributeSet attrs) {
+    public BubblePagerItemView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public BubbleFlowItemView(Context context, AttributeSet attrs, int defStyle) {
+    public BubblePagerItemView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -111,14 +111,14 @@ public class BubbleFlowItemView extends BubbleView {
 
             @Override
             public void onPageLoaded(ContentView.PageLoadInfo info) {
-                BubbleFlowItemView.this.onPageLoaded(info);
+                BubblePagerItemView.this.onPageLoaded(info);
 
                 mListener.onPageLoaded(info);
             }
 
             @Override
             public void onReceivedIcon(Bitmap favicon) {
-                BubbleFlowItemView.this.onReceivedIcon(favicon);
+                BubblePagerItemView.this.onReceivedIcon(favicon);
             }
         });
     }
