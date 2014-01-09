@@ -8,6 +8,7 @@ import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.ui.BubbleDraggable;
 import com.linkbubble.ui.BubblePagerDraggable;
+import com.linkbubble.ui.ContentView;
 
 
 public class MainControllerNew extends MainController {
@@ -115,5 +116,10 @@ public class MainControllerNew extends MainController {
                 mBubblesLoaded > 0 && !mUpdateScheduled) {
             mEventHandler.onDestroy();
         }
+    }
+
+    @Override
+    public ContentView getActiveContentView() {
+        return mBubblePagerDraggable.getContentView();
     }
 }

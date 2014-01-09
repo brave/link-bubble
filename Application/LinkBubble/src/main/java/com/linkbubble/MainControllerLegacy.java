@@ -13,6 +13,7 @@ import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.physics.State_AnimateToBubbleView;
 import com.linkbubble.ui.BubbleLegacyView;
+import com.linkbubble.ui.ContentView;
 import com.linkbubble.util.Util;
 
 import java.net.MalformedURLException;
@@ -107,6 +108,8 @@ public class MainControllerLegacy extends MainController {
         return mBubbles.size();
     }
 
+
+
     @Override
     public void doFrame(long frameTimeNanos) {
         mUpdateScheduled = false;
@@ -135,6 +138,11 @@ public class MainControllerLegacy extends MainController {
                 mBubblesLoaded > 0 && !mUpdateScheduled) {
             mEventHandler.onDestroy();
         }
+    }
+
+    @Override
+    public ContentView getActiveContentView() {
+        return ((BubbleLegacyView)getActiveDraggable()).getContentView();
     }
 
     @Override

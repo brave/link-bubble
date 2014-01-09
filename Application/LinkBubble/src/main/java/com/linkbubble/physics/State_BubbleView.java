@@ -71,7 +71,7 @@ public class State_BubbleView extends ControllerState {
     }
 
     @Override
-    public void onPageLoaded(Draggable draggable) {
+    public void onPageLoaded() {
         if (Settings.get().getAutoContentDisplayLinkLoaded()) {
             mBadgeView.hide();
             MainController mainController = MainController.get();
@@ -153,9 +153,7 @@ public class State_BubbleView extends ControllerState {
                 }
             } else {
                 mBadgeView.hide();
-                if (Constant.USE_NEW_CONTROLLER == false) {
-                    mainController.switchState(mainController.STATE_AnimateToContentView);
-                }
+                mainController.switchState(mainController.STATE_AnimateToContentView);
             }
 
             mDraggable = null;

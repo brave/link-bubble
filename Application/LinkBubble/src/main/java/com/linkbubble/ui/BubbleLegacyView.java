@@ -105,7 +105,7 @@ public class BubbleLegacyView extends BubbleView implements Draggable {
                     MainApplication.saveUrlInHistory(getContext(), null, info.url, info.mHost, info.title);
                 }
 
-                MainController.get().onPageLoaded(BubbleLegacyView.this);
+                MainController.get().onPageLoaded();
             }
 
             @Override
@@ -194,7 +194,6 @@ public class BubbleLegacyView extends BubbleView implements Draggable {
         mContentView.updateIncognitoMode(incognito);
     }
 
-    @Override
     public ContentView getContentView() {
         return mContentView;
     }

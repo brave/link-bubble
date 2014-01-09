@@ -155,11 +155,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         mWindowManager.addView(this, mDraggableHelper.getWindowManagerParams());
     }
 
-    @Override
-    public ContentView getContentView() {
-        return null;
-    }
-
     public void clearTargetPos() {
         mDraggableHelper.clearTargetPos();
     }
