@@ -35,7 +35,7 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
     private EventHandler mEventHandler;
     private int mBubbleFlowWidth;
 
-    private static Vector<BubbleLegacyView> mBubbles = new Vector<BubbleLegacyView>();
+    private static Vector<BubbleFlowItemView> mBubbles = new Vector<BubbleFlowItemView>();
 
     public interface EventHandler {
         public void onMotionEvent_Touch(BubbleFlowView sender, DraggableHelper.TouchEvent event);
@@ -266,44 +266,16 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
             }
         }
 
-        BubbleLegacyView bubble;
+        BubbleFlowItemView bubble;
         try {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            bubble = (BubbleLegacyView) inflater.inflate(R.layout.view_bubble_legacy, null);
-            bubble.configure(url, x, y, targetX, targetY, time, startTime,
-                    new BubbleLegacyView.EventHandler() {
-                        @Override
-                        public void onMotionEvent_Touch(BubbleLegacyView sender, DraggableHelper.TouchEvent e) {
-                            //mCurrentState.onTouchActionDown(sender, e);
-                        }
+            bubble = (BubbleFlowItemView) inflater.inflate(R.layout.view_bubble_flow_item, null);
+            bubble.configure(url, startTime,
+                    new BubbleFlowItemView.BubbleFlowItemViewListener() {
 
                         @Override
-                        public void onMotionEvent_Move(BubbleLegacyView sender, DraggableHelper.MoveEvent e) {
-                            //mCurrentState.onTouchActionMove(sender, e);
-                        }
+                        public void onDestroyBubble() {
 
-                        @Override
-                        public void onMotionEvent_Release(BubbleLegacyView sender, DraggableHelper.ReleaseEvent e) {
-                            //mCurrentState.onTouchActionRelease(sender, e);
-                        }
-
-                        @Override
-                        public void onDestroyDraggable(Draggable sender) {
-                            if (mBubbles.size() > 1) {
-                                /* BFV_CHANGE:
-                                BubbleView bubbleView = sender.getBubbleView();
-                                int bubbleIndex = bubbleView.getBubbleIndex();
-                                destroyBubble(sender, Config.BubbleAction.Destroy);
-                                int nextBubbleIndex = Util.clamp(0, bubbleIndex, mDraggables.size() - 1);
-                                Draggable nextBubble = mDraggables.get(nextBubbleIndex);
-                                STATE_ContentView.setActiveBubble(nextBubble);
-                                */
-                            } else {
-                                /* BFV_CHANGE:
-                                STATE_KillBubble.init(sender);
-                                switchState(STATE_KillBubble);
-                                */
-                            }
                         }
 
                         @Override
@@ -313,6 +285,11 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
                             }
                         }
 
+                        @Override
+                        public void onPageLoaded(ContentView.PageLoadInfo info) {
+
+                        }
+
                     });
         } catch (MalformedURLException e) {
             // TODO: Inform the user somehow?
@@ -320,10 +297,6 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
         }
 
         mBubbles.add(bubble);
-
-        for (int i=0 ; i < mBubbles.size() ; ++i) {
-            mBubbles.get(i).setBubbleIndex(i);
-        }
 
         Settings.get().saveCurrentBubbles(mBubbles);
 

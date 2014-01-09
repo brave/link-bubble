@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 import at.technikum.mti.fancycoverflow.FancyCoverFlowAdapter;
-import com.linkbubble.MainController;
 import com.linkbubble.R;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public class BubbleFlowAdapter extends FancyCoverFlowAdapter {
 
 
     Context mContext;
-    List<BubbleLegacyView> mBubbles;
+    List<BubbleFlowItemView> mBubbles;
     int mItemSize;
 
     //private final int mSize;
@@ -42,7 +41,7 @@ public class BubbleFlowAdapter extends FancyCoverFlowAdapter {
         }*/
     }
 
-    void setBubbles(List<BubbleLegacyView> bubbles) {
+    void setBubbles(List<BubbleFlowItemView> bubbles) {
         mBubbles = bubbles;
         notifyDataSetChanged();
     }
