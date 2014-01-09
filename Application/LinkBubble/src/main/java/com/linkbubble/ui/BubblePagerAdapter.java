@@ -25,10 +25,7 @@ public class BubblePagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        TextView view = new TextView(mContext);
-        view.setText("Item "+position);
-        view.setGravity(Gravity.CENTER);
-        view.setBackgroundColor(Color.argb(255, position * 50, position * 10, position * 50));
+        View view = mBubbles.get(position);
 
         container.addView(view);
         return view;
