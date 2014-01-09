@@ -32,9 +32,9 @@ public class BubbleLegacyView extends BubbleFlowItemView implements Draggable {
         public void onMinimizeBubbles();
     }
 
-
     private DraggableHelper mDraggableHelper;
     private EventHandler mEventHandler;
+    protected WindowManager mWindowManager;
 
     private boolean mRecordHistory;
     protected int mBubbleIndex;
@@ -54,7 +54,29 @@ public class BubbleLegacyView extends BubbleFlowItemView implements Draggable {
 
     public void configure(String url, int x0, int y0, int targetX, int targetY, float targetTime, long startTime,
                           EventHandler eh) throws MalformedURLException {
-        super.configure(url);
+        mEventHandler = eh;
+        mRecordHistory = Settings.get().isIncognitoMode() ? false : true;
+
+        super.configure(url, startTime, new BubbleFlowItemViewListener() {
+            @Override
+            public void onDestroyBubble() {
+                mEventHandler.onDestroyDraggable(BubbleLegacyView.this);
+            }
+
+            @Override
+            public void onMinimizeBubbles() {
+                mEventHandler.onMinimizeBubbles();
+            }
+
+            @Override
+            public void onPageLoaded(ContentView.PageLoadInfo info) {
+                if (mRecordHistory && info != null && info.url != null) {
+                    MainApplication.saveUrlInHistory(getContext(), null, info.url, info.mHost, info.title);
+                }
+
+                MainController.get().onPageLoaded(BubbleLegacyView.this);
+            }
+        });
 
         mWindowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
 
@@ -88,101 +110,7 @@ public class BubbleLegacyView extends BubbleFlowItemView implements Draggable {
             }
         });
 
-        mEventHandler = eh;
-
-        mRecordHistory = Settings.get().isIncognitoMode() ? false : true;
-
-        mFavicon = (ImageView) findViewById(R.id.favicon);
-        mProgressIndicator = (ProgressIndicator) findViewById(R.id.progressIndicator);
-        showProgressBar(true, 0);
-
-        mContentView = (ContentView)inflate(getContext(), R.layout.view_content, null);
-        mContentView.configure(this, mUrl.toString(), startTime, new ContentView.EventHandler() {
-
-            @Override
-            public void onDestroyBubble() {
-                mEventHandler.onDestroyDraggable(BubbleLegacyView.this);
-            }
-
-            @Override
-            public void onMinimizeBubbles() {
-                mEventHandler.onMinimizeBubbles();
-            }
-
-            @Override
-            public void onPageLoading(String url) {
-                showProgressBar(true, 0);
-
-                boolean setDefaultFavicon = true;
-
-                try {
-                    // TODO: remove this allocation
-                    URL previousUrl = mUrl;
-                    mUrl = new URL(url);
-
-                    if (previousUrl != null && previousUrl.getHost().equals(mUrl.getHost()) && mFaviconLoadId == Favicons.LOADED) {
-                        setDefaultFavicon = false;
-                    } else {
-                        loadFavicon();
-                        if (mFaviconLoadId == Favicons.LOADED || mFaviconLoadId == Favicons.NOT_LOADING) {
-                            setDefaultFavicon = false;
-                        }
-                        /*
-                        String faviconUrl = "http://" + mUrl.getHost() + "/favicon.ico";
-                        //String faviconUrl = "http://1.gravatar.com/blavatar/f8748081423ce49bd3ecb267cd4effc7?s=16";
-                        Picasso.with(getContext()).cancelRequest(mFavicon);
-                        Picasso.with(getContext())
-                                .load(faviconUrl)
-                                .transform(mFaviconTransformation)
-                                .placeholder(R.drawable.fallback_favicon)
-                                .into(mFavicon, new Callback() {
-                                    @Override
-                                    public void onSuccess() {
-                                        if (mAdditionalFaviconView != null) {
-                                            mAdditionalFaviconView.setImageDrawable(mFavicon.getDrawable());
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onError() {
-                                        onReceivedIcon(null);
-                                    }
-                                });
-                        */
-                    }
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-
-                if (setDefaultFavicon) {
-                    onReceivedIcon(null);
-                }
-            }
-
-            @Override
-            public void onProgressChanged(int progress) {
-                showProgressBar(true, progress);
-            }
-
-            @Override
-            public void onPageLoaded(ContentView.PageLoadInfo info) {
-                BubbleLegacyView.this.onPageLoaded(info);
-
-                if (mRecordHistory && info != null && info.url != null) {
-                    MainApplication.saveUrlInHistory(getContext(), null, info.url, info.mHost, info.title);
-                }
-
-                MainController.get().onPageLoaded(BubbleLegacyView.this);
-            }
-
-            @Override
-            public void onReceivedIcon(Bitmap favicon) {
-                BubbleLegacyView.this.onReceivedIcon(favicon);
-            }
-        });
-
         setVisibility(GONE);
-
 
         if (mDraggableHelper.isAlive()) {
             mWindowManager.addView(this, windowManagerParams);
@@ -195,11 +123,10 @@ public class BubbleLegacyView extends BubbleFlowItemView implements Draggable {
     }
 
     public void destroy() {
+        super.destroy();
+
         setOnTouchListener(null);
-        // Will be null
-        if (mContentView != null) {
-            mContentView.destroy();
-        }
+
         mDraggableHelper.destroy();
     }
 
@@ -226,14 +153,15 @@ public class BubbleLegacyView extends BubbleFlowItemView implements Draggable {
     }
 
     public void readd() {
-        boolean showing = mProgressIndicator.isIndicatorShowing();
-        int progress = mProgressIndicator.getProgress();
-        URL url = mProgressIndicator.getUrl();
+        ProgressIndicator progressIndicator = getProgressIndicator();
+        boolean showing = progressIndicator.isIndicatorShowing();
+        int progress = progressIndicator.getProgress();
+        URL url = progressIndicator.getUrl();
 
         mWindowManager.removeView(this);
         mWindowManager.addView(this, mDraggableHelper.getWindowManagerParams());
         if (url != null) {
-            mProgressIndicator.setProgress(showing, progress, url);
+            progressIndicator.setProgress(showing, progress, url);
         }
     }
 
