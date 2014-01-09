@@ -62,7 +62,7 @@ public class MainControllerLegacy extends MainController {
             Util.Assert(draggableIndex >= 0 && draggableIndex < mDraggables.size());
             mDraggables.remove(bubble);
 
-            Settings.get().saveCurrentBubbles(mBubbles);
+            Settings.get().saveCurrentBubblesLegacy(mBubbles);
 
             for (int i=0 ; i < mBubbles.size() ; ++i) {
                 mBubbles.get(i).setBubbleIndex(i);
@@ -235,7 +235,7 @@ public class MainControllerLegacy extends MainController {
                 mBubbles.get(i).setBubbleIndex(i);
             }
 
-            Settings.get().saveCurrentBubbles(mBubbles);
+            Settings.get().saveCurrentBubblesLegacy(mBubbles);
 
             mBadgeView.attach(bubble);
             mBadgeView.setBubbleCount(mBubbles.size());

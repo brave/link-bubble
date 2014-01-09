@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 
 import android.util.Log;
+import com.linkbubble.ui.BubbleFlowItemView;
 import com.linkbubble.ui.BubbleLegacyView;
 import com.linkbubble.ui.BubbleView;
 import com.linkbubble.util.Util;
@@ -542,9 +543,21 @@ public class Settings {
         return urls;
     }
 
-    public void saveCurrentBubbles(List<BubbleLegacyView> bubbles) {
+    public void saveCurrentBubblesLegacy(List<BubbleLegacyView> bubbles) {
         JSONArray jsonArray = new JSONArray();
         for (BubbleLegacyView b : bubbles) {
+            URL url = b.getUrl();
+            jsonArray.put(url.toString());
+        }
+
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(PREFERENCE_CURRENT_BUBBLES, jsonArray.toString());
+        editor.commit();
+    }
+
+    public void saveCurrentBubbles(List<BubbleFlowItemView> bubbles) {
+        JSONArray jsonArray = new JSONArray();
+        for (BubbleFlowItemView b : bubbles) {
             URL url = b.getUrl();
             jsonArray.put(url.toString());
         }
