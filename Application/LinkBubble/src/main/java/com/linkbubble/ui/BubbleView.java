@@ -28,16 +28,11 @@ import java.net.URL;
 public class BubbleView extends FrameLayout  {
 
     private BadgeView mBadgeView;
-    protected ImageView mFavicon;
-    protected ImageView mAdditionalFaviconView;
-    protected WindowManager mWindowManager;
-
-    protected ProgressIndicator mProgressIndicator;
-
-    protected URL mUrl;
-
+    private ImageView mFavicon;
+    private ImageView mAdditionalFaviconView;
     protected int mFaviconLoadId;
-
+    private ProgressIndicator mProgressIndicator;
+    protected URL mUrl;
 
     public BubbleView(Context context) {
         this(context, null);
@@ -53,6 +48,10 @@ public class BubbleView extends FrameLayout  {
 
     void configure(String url) throws MalformedURLException {
         mUrl = new URL(url);
+
+        mFavicon = (ImageView) findViewById(R.id.favicon);
+        mProgressIndicator = (ProgressIndicator) findViewById(R.id.progressIndicator);
+        showProgressBar(true, 0);
     }
 
     public void attachBadge(BadgeView badgeView) {
@@ -79,6 +78,10 @@ public class BubbleView extends FrameLayout  {
 
     public URL getUrl() {
         return mUrl;
+    }
+
+    protected ProgressIndicator getProgressIndicator() {
+        return mProgressIndicator;
     }
 
     public Drawable getFavicon() {
