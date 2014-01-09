@@ -160,8 +160,6 @@ public class State_ContentView extends ControllerState {
         BubbleLegacyView bubble = draggable.getBubbleLegacyView();
         draggable.getDraggableHelper().setTargetPos((int) Config.getContentViewX(bubble.getBubbleIndex(),
                 MainController.get().getDraggableCount()), bubble.getYPos(), 0.2f, false);
-        mCanvasView.setContentView(bubble.getContentView());
-        mCanvasView.showContentView();
-        mCanvasView.setContentViewTranslation(0.0f);
+        MainController.get().showContentView(bubble.getContentView());
     }
 }

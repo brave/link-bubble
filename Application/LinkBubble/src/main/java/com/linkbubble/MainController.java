@@ -224,6 +224,12 @@ public abstract class MainController implements Choreographer.FrameCallback {
 
     public void showBubblePager(boolean show) {}
 
+    public void showContentView(ContentView contentView) {
+        mCanvasView.setContentView(contentView);
+        mCanvasView.showContentView();
+        mCanvasView.setContentViewTranslation(0.0f);
+    }
+
     public abstract int getBubbleCount();
 
     public int getDraggableCount() {
