@@ -72,10 +72,6 @@
             android:layout_marginBottom="20dp"
             />
 
-        <!--
-        <include layout="@layout/view_bubble_flow" />
-        -->
-
     </RelativeLayout>
 
 </FrameLayout>

@@ -28,8 +28,6 @@ import com.linkbubble.physics.State_Flick_ContentView;
 import com.linkbubble.physics.State_KillBubble;
 import com.linkbubble.physics.State_SnapToEdge;
 import com.linkbubble.ui.BadgeView;
-import com.linkbubble.ui.BubbleFlowAdapter;
-import com.linkbubble.ui.BubbleFlowView;
 import com.linkbubble.ui.BubbleLegacyView;
 import com.linkbubble.ui.BubbleView;
 import com.linkbubble.ui.CanvasView;

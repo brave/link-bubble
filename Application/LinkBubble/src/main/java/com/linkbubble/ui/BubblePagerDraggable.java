@@ -2,62 +2,68 @@ package com.linkbubble.ui;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
-import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 import com.linkbubble.Config;
-import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.physics.Circle;
-import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.physics.Draggable;
+import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.physics.State_AnimateToBubbleView;
 import com.linkbubble.physics.State_ContentView;
-import com.linkbubble.physics.State_SnapToEdge;
-import com.linkbubble.util.Util;
-import com.squareup.otto.Bus;
-import com.squareup.otto.Subscribe;
 
 import java.net.MalformedURLException;
 import java.util.Vector;
 
-public class BubbleFlowView extends FancyCoverFlow implements Draggable {
+
+public class BubblePagerDraggable extends BubblePagerView implements Draggable {
 
     private DraggableHelper mDraggableHelper;
     private WindowManager mWindowManager;
     private EventHandler mEventHandler;
     private int mBubbleFlowWidth;
 
-    private static Vector<BubbleFlowItemView> mBubbles = new Vector<BubbleFlowItemView>();
+    private static Vector<BubblePagerItemView> mBubbles = new Vector<BubblePagerItemView>();
 
     public interface EventHandler {
-        public void onMotionEvent_Touch(BubbleFlowView sender, DraggableHelper.TouchEvent event);
-        public void onMotionEvent_Move(BubbleFlowView sender, DraggableHelper.MoveEvent event);
-        public void onMotionEvent_Release(BubbleFlowView sender, DraggableHelper.ReleaseEvent event);
+        public void onMotionEvent_Touch(BubblePagerDraggable sender, DraggableHelper.TouchEvent event);
+        public void onMotionEvent_Move(BubblePagerDraggable sender, DraggableHelper.MoveEvent event);
+        public void onMotionEvent_Release(BubblePagerDraggable sender, DraggableHelper.ReleaseEvent event);
     }
 
-    public BubbleFlowView(Context context) {
+    public BubblePagerDraggable(Context context) {
         this(context, null);
     }
 
-    public BubbleFlowView(Context context, AttributeSet attrs) {
+    public BubblePagerDraggable(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public BubbleFlowView(Context context, AttributeSet attrs, int defStyle) {
+    public BubblePagerDraggable(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
-        setBackgroundColor(0x33ff0000);
     }
 
     public void configure(int x0, int y0, int targetX, int targetY, float targetTime, EventHandler eh)  {
+
+        ViewPager pager = getViewPager();
+        PagerAdapter adapter = new BubblePagerAdapter(getContext());
+        pager.setAdapter(adapter);
+        //Necessary or the pager will only have one extra page to show
+        // make this at least however many pages you can see
+        pager.setOffscreenPageLimit(adapter.getCount());
+        //A little space between pages
+        pager.setPageMargin(15);
+
+        //If hardware acceleration is enabled, you should also remove
+        // clipping on the pager for its children.
+        pager.setClipChildren(false);
+
         mWindowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
 
         mBubbleFlowWidth = getResources().getDimensionPixelSize(R.dimen.bubble_flow_width);
@@ -79,18 +85,18 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
             @Override
             public void onActionDown(DraggableHelper.TouchEvent event) {
                 //collapse();
-                mEventHandler.onMotionEvent_Touch(BubbleFlowView.this, event);
+                mEventHandler.onMotionEvent_Touch(BubblePagerDraggable.this, event);
             }
 
             @Override
             public void onActionMove(DraggableHelper.MoveEvent event) {
-                mEventHandler.onMotionEvent_Move(BubbleFlowView.this, event);
+                mEventHandler.onMotionEvent_Move(BubblePagerDraggable.this, event);
             }
 
             @Override
             public void onActionUp(DraggableHelper.ReleaseEvent event) {
                 //expand();
-                mEventHandler.onMotionEvent_Release(BubbleFlowView.this, event);
+                mEventHandler.onMotionEvent_Release(BubblePagerDraggable.this, event);
             }
         });
 
@@ -107,31 +113,13 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
     }
 
     public void destroy() {
-        setOnTouchListener(null);
-        // Will be null
-        //if (mContentView != null) {
-        //    mContentView.destroy();
-            mWindowManager.removeView(this);
-        //}
+        //setOnTouchListener(null);
+        mWindowManager.removeView(this);
         mDraggableHelper.destroy();
     }
 
     public int getBubbleCount() {
         return mBubbles.size();
-    }
-
-    public void readd() {
-        mWindowManager.removeView(this);
-        mWindowManager.addView(this, mDraggableHelper.getWindowManagerParams());
-    }
-
-    @Override
-    public ContentView getContentView() {
-        return null;
-    }
-
-    public boolean isSnapping() {
-        return mDraggableHelper.isSnapping();
     }
 
     @Override
@@ -158,26 +146,7 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
         }
     }
 
-    public int getXPos() {
-        return mDraggableHelper.getXPos();
-    }
-
-    public int getYPos() {
-        return mDraggableHelper.getYPos();
-    }
-
-    public void expand() {
-        WindowManager.LayoutParams lp = (WindowManager.LayoutParams) getLayoutParams();
-        lp.width = mBubbleFlowWidth;
-        setLayoutParams(lp);
-    }
-
-    void collapse() {
-        WindowManager.LayoutParams lp = (WindowManager.LayoutParams) getLayoutParams();
-        lp.width = getResources().getDimensionPixelSize(R.dimen.bubble_size);
-        setLayoutParams(lp);
-    }
-
+    @Override
     public void onOrientationChanged(boolean contentViewMode) {
         clearTargetPos();
 
@@ -200,6 +169,18 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
         setExactPos(xPos, yPos);
     }
 
+    @Override
+    public void readd() {
+        mWindowManager.removeView(this);
+        mWindowManager.addView(this, mDraggableHelper.getWindowManagerParams());
+    }
+
+    @Override
+    public ContentView getContentView() {
+        return null;
+    }
+
+
 
     public void clearTargetPos() {
         mDraggableHelper.clearTargetPos();
@@ -213,29 +194,6 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
         mDraggableHelper.setTargetPos(x, y, t, overshoot);
     }
 
-    public void attachBadge(BadgeView badgeView) {
-        /*
-        if (mBadgeView == null) {
-            mBadgeView = badgeView;
-
-            int badgeMargin = getResources().getDimensionPixelSize(R.dimen.badge_margin);
-            int badgeSize = getResources().getDimensionPixelSize(R.dimen.badge_size);
-            FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(badgeSize, badgeSize);
-            lp.gravity = Gravity.TOP|Gravity.RIGHT;
-            lp.leftMargin = badgeMargin;
-            lp.rightMargin = badgeMargin;
-            lp.topMargin = badgeMargin;
-            addView(mBadgeView, lp);
-        }*/
-    }
-
-    public void detachBadge() {
-        /*
-        if (mBadgeView != null) {
-            removeView(mBadgeView);
-            mBadgeView = null;
-        }*/
-    }
 
     public void openUrlInBubble(String url, long startTime) {
 
@@ -266,12 +224,12 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
             }
         }
 
-        BubbleFlowItemView bubble;
+        BubblePagerItemView bubble;
         try {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            bubble = (BubbleFlowItemView) inflater.inflate(R.layout.view_bubble_flow_item, null);
+            bubble = (BubblePagerItemView) inflater.inflate(R.layout.view_bubble_pager_item, null);
             bubble.configure(url, startTime,
-                    new BubbleFlowItemView.BubbleFlowItemViewListener() {
+                    new BubblePagerItemView.BubbleFlowItemViewListener() {
 
                         @Override
                         public void onDestroyBubble() {
@@ -326,7 +284,7 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
             }
         }*/
 
-        BubbleFlowAdapter adapter = (BubbleFlowAdapter)getAdapter();
+        BubblePagerAdapter adapter = (BubblePagerAdapter) getViewPager().getAdapter();
         if (adapter.mBubbles == null) {
             adapter.setBubbles(mBubbles);
         } else {
@@ -339,5 +297,4 @@ public class BubbleFlowView extends FancyCoverFlow implements Draggable {
             mBubbles.get(i).updateIncognitoMode(incognito);
         }
     }
-
 }
