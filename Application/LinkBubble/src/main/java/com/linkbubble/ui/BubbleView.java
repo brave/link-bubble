@@ -177,6 +177,33 @@ public class BubbleView extends FrameLayout  {
 
     protected FaviconTransformation mFaviconTransformation = new FaviconTransformation();
 
+    void onPageLoading(String url) {
+        showProgressBar(true, 0);
+
+        boolean setDefaultFavicon = true;
+
+        try {
+            // TODO: remove this allocation
+            URL previousUrl = mUrl;
+            mUrl = new URL(url);
+
+            if (previousUrl != null && previousUrl.getHost().equals(mUrl.getHost()) && mFaviconLoadId == Favicons.LOADED) {
+                setDefaultFavicon = false;
+            } else {
+                loadFavicon();
+                if (mFaviconLoadId == Favicons.LOADED || mFaviconLoadId == Favicons.NOT_LOADING) {
+                    setDefaultFavicon = false;
+                }
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        if (setDefaultFavicon) {
+            onReceivedIcon(null);
+        }
+    }
+
     protected void onPageLoaded(ContentView.PageLoadInfo info) {
         showProgressBar(false, 0);
 
@@ -207,6 +234,10 @@ public class BubbleView extends FrameLayout  {
 
         mFavicon.setVisibility(VISIBLE);
         showProgressBar(false, 0);
+    }
+
+    public void onProgressChanged(int progress) {
+        showProgressBar(true, progress);
     }
 
     /*

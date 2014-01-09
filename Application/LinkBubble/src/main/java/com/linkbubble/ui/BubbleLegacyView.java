@@ -21,7 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class BubbleLegacyView extends BubbleFlowItemView implements Draggable {
+public class BubbleLegacyView extends BubbleView implements Draggable {
 
 
     public interface EventHandler {
@@ -35,6 +35,7 @@ public class BubbleLegacyView extends BubbleFlowItemView implements Draggable {
     private DraggableHelper mDraggableHelper;
     private EventHandler mEventHandler;
     protected WindowManager mWindowManager;
+    protected ContentView mContentView;
 
     private boolean mRecordHistory;
     protected int mBubbleIndex;
@@ -57,26 +58,7 @@ public class BubbleLegacyView extends BubbleFlowItemView implements Draggable {
         mEventHandler = eh;
         mRecordHistory = Settings.get().isIncognitoMode() ? false : true;
 
-        super.configure(url, startTime, new BubbleFlowItemViewListener() {
-            @Override
-            public void onDestroyBubble() {
-                mEventHandler.onDestroyDraggable(BubbleLegacyView.this);
-            }
-
-            @Override
-            public void onMinimizeBubbles() {
-                mEventHandler.onMinimizeBubbles();
-            }
-
-            @Override
-            public void onPageLoaded(ContentView.PageLoadInfo info) {
-                if (mRecordHistory && info != null && info.url != null) {
-                    MainApplication.saveUrlInHistory(getContext(), null, info.url, info.mHost, info.title);
-                }
-
-                MainController.get().onPageLoaded(BubbleLegacyView.this);
-            }
-        });
+        super.configure(url);
 
         mWindowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
 
@@ -90,7 +72,47 @@ public class BubbleLegacyView extends BubbleFlowItemView implements Draggable {
         windowManagerParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
         windowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         windowManagerParams.format = PixelFormat.TRANSPARENT;
-        windowManagerParams.setTitle("LinkBubble: Bubble");
+        windowManagerParams.setTitle("LinkBubble: BubbleLegacyView");
+
+        mContentView = (ContentView)inflate(getContext(), R.layout.view_content, null);
+        mContentView.configure(this, url, startTime, new ContentView.EventHandler() {
+
+            @Override
+            public void onDestroyBubble() {
+                mEventHandler.onDestroyDraggable(BubbleLegacyView.this);
+            }
+
+            @Override
+            public void onMinimizeBubbles() {
+                mEventHandler.onMinimizeBubbles();
+            }
+
+            @Override
+            public void onPageLoading(String url) {
+                BubbleLegacyView.this.onPageLoading(url);
+            }
+
+            @Override
+            public void onProgressChanged(int progress) {
+                BubbleLegacyView.this.onProgressChanged(progress);
+            }
+
+            @Override
+            public void onPageLoaded(ContentView.PageLoadInfo info) {
+                BubbleLegacyView.this.onPageLoaded(info);
+
+                if (mRecordHistory && info != null && info.url != null) {
+                    MainApplication.saveUrlInHistory(getContext(), null, info.url, info.mHost, info.title);
+                }
+
+                MainController.get().onPageLoaded(BubbleLegacyView.this);
+            }
+
+            @Override
+            public void onReceivedIcon(Bitmap favicon) {
+                BubbleLegacyView.this.onReceivedIcon(favicon);
+            }
+        });
 
         mDraggableHelper = new DraggableHelper(this, mWindowManager, windowManagerParams, new DraggableHelper.OnTouchActionEventListener() {
 
@@ -123,9 +145,12 @@ public class BubbleLegacyView extends BubbleFlowItemView implements Draggable {
     }
 
     public void destroy() {
-        super.destroy();
 
         setOnTouchListener(null);
+
+        if (mContentView != null) {
+            mContentView.destroy();
+        }
 
         mDraggableHelper.destroy();
     }
@@ -163,6 +188,15 @@ public class BubbleLegacyView extends BubbleFlowItemView implements Draggable {
         if (url != null) {
             progressIndicator.setProgress(showing, progress, url);
         }
+    }
+
+    public void updateIncognitoMode(boolean incognito) {
+        mContentView.updateIncognitoMode(incognito);
+    }
+
+    @Override
+    public ContentView getContentView() {
+        return mContentView;
     }
 
     @Override
