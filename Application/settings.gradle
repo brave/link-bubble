@@ -1,3 +1,2 @@
 include ':LinkBubble'
-include ':Libraries:FancyCoverFlow:library'
 //include ':Libraries:ViewPagerIndicator:library'
