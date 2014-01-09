@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import com.linkbubble.Config;
+import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
@@ -189,12 +190,9 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
         mWindowManager.addView(this, mDraggableHelper.getWindowManagerParams());
     }
 
-    @Override
     public ContentView getContentView() {
-        return null;
+        return mBubbles != null && mBubbles.size() > 0 ? mBubbles.get(0).getContentView() : null;
     }
-
-
 
     public void clearTargetPos() {
         mDraggableHelper.clearTargetPos();
@@ -259,7 +257,11 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
 
                         @Override
                         public void onPageLoaded(ContentView.PageLoadInfo info) {
+                            if (info != null && info.url != null) {
+                                MainApplication.saveUrlInHistory(getContext(), null, info.url, info.mHost, info.title);
+                            }
 
+                            MainController.get().onPageLoaded();
                         }
 
                     });

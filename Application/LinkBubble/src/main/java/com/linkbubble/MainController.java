@@ -32,6 +32,7 @@ import com.linkbubble.ui.BubbleLegacyView;
 import com.linkbubble.ui.BubbleView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.ui.ContentActivity;
+import com.linkbubble.ui.ContentView;
 import com.linkbubble.ui.SettingsFragment;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.AppPoller;
@@ -72,6 +73,8 @@ public abstract class MainController implements Choreographer.FrameCallback {
         sInstance.endAppPolling();
         sInstance = null;
     }
+
+    public abstract ContentView getActiveContentView();
 
     public interface EventHandler {
         public void onDestroy();
@@ -167,8 +170,8 @@ public abstract class MainController implements Choreographer.FrameCallback {
     //private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
     //private int mFrameNumber;
 
-    public void onPageLoaded(BubbleLegacyView bubble) {
-        mCurrentState.onPageLoaded(bubble);
+    public void onPageLoaded() {
+        mCurrentState.onPageLoaded();
     }
 
     public boolean isStateActive(Class<?> clazz) {

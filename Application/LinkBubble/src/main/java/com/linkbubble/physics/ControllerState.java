@@ -14,6 +14,6 @@ public abstract class ControllerState {
     public abstract void onDestroyDraggable(Draggable draggable);
     public abstract boolean onOrientationChanged();
     public abstract void onCloseDialog();
-    public void onPageLoaded(Draggable draggable) {}
+    public void onPageLoaded() {}
     public abstract String getName();
 }
