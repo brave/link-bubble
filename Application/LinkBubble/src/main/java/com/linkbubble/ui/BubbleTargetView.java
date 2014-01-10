@@ -176,7 +176,7 @@ public class BubbleTargetView extends RelativeLayout {
     }
 
     public void update(float dt, Draggable draggable) {
-        DraggableHelper draggableHelper = draggable.getDraggableHelper();
+        DraggableHelper draggableHelper = draggable != null ? draggable.getDraggableHelper() : null;
         if (draggable != null && !draggableHelper.isSnapping() && mEnableMove) {
             float xf = (draggableHelper.getXPos() + Config.mBubbleWidth * 0.5f) / Config.mScreenWidth;
             xf = 2.0f * Util.clamp(0.0f, xf, 1.0f) - 1.0f;
