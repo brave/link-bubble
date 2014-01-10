@@ -298,19 +298,46 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
         }
     }
 
-    public void destroyCurrentBubble() {
-        int currentIndex = getViewPager().getCurrentItem();
-        mBubbles.remove(currentIndex);
+    private void destroyBubble(BubblePagerItemView bubble) {
+        mBubbles.remove(bubble);
+        bubble.destroy();
+    }
+
+    private void postDestroyedBubble() {
         mBubbleDraggable.mBadgeView.setCount(mBubbles.size());
         getViewPager().getAdapter().notifyDataSetChanged();
+
+        int bubbleCount = mBubbles.size();
+        int currentItem = getViewPager().getCurrentItem();
+        if (currentItem >= bubbleCount) {
+            if (bubbleCount > 0) {
+                setCurrentBubble(mBubbles.get(bubbleCount-1), true);
+            } else {
+                setCurrentBubble(null, false);
+            }
+        } else {
+            if (bubbleCount == 0) {
+                setCurrentBubble(null, true);
+            } else {
+                setCurrentBubble(mBubbles.get(currentItem), true);
+            }
+        }
 
         Settings.get().saveCurrentBubbles(mBubbles);
     }
 
+    public void destroyCurrentBubble() {
+        BubblePagerItemView currentBubble = getCurrentBubble();
+        destroyBubble(currentBubble);
+        postDestroyedBubble();
+    }
+
     public void destroyAllBubbles() {
+        for (BubblePagerItemView bubble : mBubbles) {
+            destroyBubble(bubble);
+        }
         mBubbles.clear();
-        mBubbleDraggable.mBadgeView.setCount(mBubbles.size());
-        getViewPager().getAdapter().notifyDataSetChanged();
+        postDestroyedBubble();
     }
 
     public void updateIncognitoMode(boolean incognito) {
