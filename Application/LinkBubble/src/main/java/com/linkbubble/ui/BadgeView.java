@@ -9,6 +9,9 @@ import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.linkbubble.Config;
+import com.linkbubble.Constant;
+import com.linkbubble.MainController;
+import com.linkbubble.physics.Draggable;
 
 /**
  * Created by gw on 12/10/13.
@@ -16,6 +19,7 @@ import com.linkbubble.Config;
 public class BadgeView extends TextView {
 
     private BubbleLegacyView mBubble;
+    int mCount;
 
     enum AnimState {
         None,
@@ -37,6 +41,7 @@ public class BadgeView extends TextView {
         super(context, attrs, defStyle);
 
         mAnimState = AnimState.None;
+        mCount = 0;
     }
 
     public void show() {
@@ -56,9 +61,10 @@ public class BadgeView extends TextView {
                 .setListener(mShowListener)
                 .start();
 
-        if (mBubble != null) {
+        Draggable activeDraggable = MainController.get().getActiveDraggable();
+        if (activeDraggable != null) {
             FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) getLayoutParams();
-            int x = mBubble.getXPos();
+            int x = activeDraggable.getDraggableHelper().getXPos();
             if (x > Config.mScreenCenterX) {
                 lp.gravity = Gravity.TOP|Gravity.LEFT;
             } else {
@@ -121,14 +127,17 @@ public class BadgeView extends TextView {
         }
     };
 
-    public void setBubbleCount(int count) {
+    public void setCount(int count) {
+        mCount = count;
+        setText(Integer.toString(count));
         if (count < 2) {
-            if (mBubble != null)
+            if (mBubble != null) {
                 mBubble.detachBadge();
+            }
         } else {
-            setText(Integer.toString(count));
-            if (mBubble != null)
+            if (mBubble != null) {
                 mBubble.attachBadge(this);
+            }
         }
     }
 

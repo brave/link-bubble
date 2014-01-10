@@ -121,7 +121,22 @@ public class MainControllerNew extends MainController {
         }
 
         mBubblePagerDraggable.openUrlInBubble(url, startTime);
+        showBadge(getBubbleCount() > 1 ? true : false);
         ++mBubblesLoaded;
+    }
+
+    @Override
+    public void showBadge(boolean show) {
+        if (mBubbleDraggable != null) {
+            mBubbleDraggable.mBadgeView.setCount(mBubblePagerDraggable.getBubbleCount());
+            if (show) {
+                if (mBubblePagerDraggable.getBubbleCount() > 1) {
+                    mBubbleDraggable.mBadgeView.show();
+                }
+            } else {
+                mBubbleDraggable.mBadgeView.hide();
+            }
+        }
     }
 
     @Override

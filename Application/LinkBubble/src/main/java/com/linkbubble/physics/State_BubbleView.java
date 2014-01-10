@@ -20,13 +20,11 @@ public class State_BubbleView extends ControllerState {
     private int mTargetX;
     private int mTargetY;
     private Draggable mDraggable;
-    private BadgeView mBadgeView;
     private boolean mTouchDown;
     private int mTouchFrameCount;
 
-    public State_BubbleView(CanvasView canvasView, BadgeView badgeView) {
+    public State_BubbleView(CanvasView canvasView) {
         mCanvasView = canvasView;
-        mBadgeView = badgeView;
     }
 
     @Override
@@ -34,10 +32,10 @@ public class State_BubbleView extends ControllerState {
         mCanvasView.fadeOutTargets();
         mDidMove = false;
         mDraggable = null;
-        mBadgeView.show();
         mCanvasView.fadeOut();
 
         MainController mainController = MainController.get();
+        mainController.showBadge(true);
         for (int i=0 ; i < mainController.getDraggableCount() ; ++i) {
             Draggable draggable = mainController.getDraggable(i);
             int vis = View.VISIBLE;
@@ -72,8 +70,8 @@ public class State_BubbleView extends ControllerState {
     @Override
     public void onPageLoaded() {
         if (Settings.get().getAutoContentDisplayLinkLoaded()) {
-            mBadgeView.hide();
             MainController mainController = MainController.get();
+            mainController.showBadge(false);
             mainController.switchState(mainController.STATE_AnimateToContentView);
         }
     }
@@ -89,10 +87,10 @@ public class State_BubbleView extends ControllerState {
         mTargetY = mInitialY;
         mDidMove = false;
 
-        MainController.get().scheduleUpdate();
+        MainController mainController = MainController.get();
+        mainController.scheduleUpdate();
+        mainController.showBadge(false);
         mTouchFrameCount = 0;
-
-        mBadgeView.hide();
     }
 
     @Override
@@ -146,7 +144,7 @@ public class State_BubbleView extends ControllerState {
                     }
                 }
             } else {
-                mBadgeView.hide();
+                mainController.showBadge(false);
                 mainController.switchState(mainController.STATE_AnimateToContentView);
             }
 
