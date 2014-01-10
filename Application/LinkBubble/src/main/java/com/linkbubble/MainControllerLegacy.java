@@ -35,7 +35,7 @@ public class MainControllerLegacy extends MainController {
     }
 
     @Override
-    public boolean destroyBubble(Draggable draggable, Config.BubbleAction action) {
+    public boolean destroyDraggable(Draggable draggable, Config.BubbleAction action) {
         return destroyBubble(draggable.getBubbleLegacyView(), action);
     }
 
@@ -150,7 +150,7 @@ public class MainControllerLegacy extends MainController {
         int draggableCount = getDraggableCount();
         for (int i=draggableCount-1 ; i >= 0; --i) {
             Draggable draggable = getDraggable(i);
-            destroyBubble(draggable, Config.BubbleAction.Destroy);
+            destroyDraggable(draggable, Config.BubbleAction.Destroy);
         }
         Util.Assert(getDraggableCount() == 0);
     }
@@ -218,7 +218,7 @@ public class MainControllerLegacy extends MainController {
                                 if (mDraggables.size() > 1) {
                                     BubbleLegacyView bubbleView = sender.getBubbleLegacyView();
                                     int bubbleIndex = bubbleView.getBubbleIndex();
-                                    destroyBubble(sender, Config.BubbleAction.Destroy);
+                                    destroyDraggable(sender, Config.BubbleAction.Destroy);
                                     int nextBubbleIndex = Util.clamp(0, bubbleIndex, mDraggables.size()-1);
                                     Draggable nextBubble = mDraggables.get(nextBubbleIndex);
                                     if (mCurrentState == STATE_ContentView) {
