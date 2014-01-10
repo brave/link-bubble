@@ -38,6 +38,9 @@ public class BubbleTargetView extends RelativeLayout {
 
     private RelativeLayout.LayoutParams mCanvasLayoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
+    private int mHomeX;
+    private int mHomeY;
+
     private LinearInterpolator mLinearInterpolator = new LinearInterpolator();
     private int mInitialX;
     private int mInitialY;
@@ -46,12 +49,9 @@ public class BubbleTargetView extends RelativeLayout {
     private float mAnimPeriod;
     private float mAnimTime;
     private boolean mEnableMove;
+    private float mTransitionTimeLeft;
 
-    private final float mMaxAlpha = 1.0f;
-    private final float mFadeTime = 0.2f;
-    private final float mAlphaDelta = mMaxAlpha / mFadeTime;
-    private float mCurrentAlpha = 1.0f;
-    private float mTargetAlpha = 1.0f;
+    private final float TRANSITION_TIME = 0.15f;
 
     private void setTargetPos(int x, int y, float t) {
         if (x != mTargetX || y != mTargetY) {
@@ -68,15 +68,15 @@ public class BubbleTargetView extends RelativeLayout {
         }
     }
 
-    public BubbleTargetView(CanvasView canvasView, Context context, Config.BubbleAction action, float xFraction, float yFraction, boolean enableMove) {
+    public BubbleTargetView(CanvasView canvasView, Context context, Config.BubbleAction action, float xFraction, float yFraction) {
         super(context);
-        Init(canvasView, context, Settings.get().getConsumeBubbleIcon(action), action, xFraction, yFraction, enableMove);
+        Init(canvasView, context, Settings.get().getConsumeBubbleIcon(action), action, xFraction, yFraction);
     }
 
-    public BubbleTargetView(CanvasView canvasView, Context context, int resId, Config.BubbleAction action, float xFraction, float yFraction, boolean enableMove) {
+    public BubbleTargetView(CanvasView canvasView, Context context, int resId, Config.BubbleAction action, float xFraction, float yFraction) {
         super(context);
         Drawable d = context.getResources().getDrawable(resId);
-        Init(canvasView, context, d, action, xFraction, yFraction, enableMove);
+        Init(canvasView, context, d, action, xFraction, yFraction);
     }
 
     public void onConsumeBubblesChanged() {
@@ -113,9 +113,10 @@ public class BubbleTargetView extends RelativeLayout {
         }
     }
 
-    private void Init(CanvasView canvasView, Context context, Drawable d, Config.BubbleAction action, float xFraction, float yFraction, boolean enableMove) {
+    private void Init(CanvasView canvasView, Context context, Drawable d, Config.BubbleAction action, float xFraction, float yFraction) {
+
         mCanvasView = canvasView;
-        mEnableMove = enableMove;
+        mEnableMove = false;
         mContext = context;
         mAction = action;
         mXFraction = xFraction;
@@ -150,6 +151,24 @@ public class BubbleTargetView extends RelativeLayout {
         Util.Assert(defaultWidth > 0 && defaultHeight > 0 && defaultWidth == defaultHeight);
         mDefaultCircle = new Circle(Config.mScreenWidth * mXFraction, Config.mScreenHeight * mYFraction, defaultWidth * 0.5f);
 
+        switch (action) {
+            case ConsumeLeft:
+                mHomeX = (int) -mSnapWidth;
+                mHomeY = (int) -mSnapHeight;
+                break;
+            case ConsumeRight:
+                mHomeX = Config.mScreenWidth + (int) mSnapWidth;
+                mHomeY = (int) -mSnapHeight;
+                break;
+            case Destroy:
+                mHomeX = (int) Config.mScreenCenterX; //mSnapWidth;
+                mHomeY = (int) Config.mScreenHeight + (int) mSnapHeight;
+                break;
+            default:
+                Util.Assert(false);
+                break;
+        }
+
         addView(mCircleView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         RelativeLayout.LayoutParams imageLP = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -158,21 +177,24 @@ public class BubbleTargetView extends RelativeLayout {
         addView(mImage, imageLP);
 
         // Add main relative layout to canvasView
-        mCanvasLayoutParams.leftMargin = (int) (0.5f + mDefaultCircle.mX - mDefaultCircle.mRadius);
-        mCanvasLayoutParams.topMargin = (int) (0.5f + mDefaultCircle.mY - mDefaultCircle.mRadius);
+        mCanvasLayoutParams.leftMargin = mHomeX;
+        mCanvasLayoutParams.topMargin = mHomeY;
         mCanvasLayoutParams.rightMargin = -100;
         mCanvasLayoutParams.bottomMargin = -100;
         mCanvasView.addView(this, mCanvasLayoutParams);
+        setVisibility(GONE);
     }
 
     public void fadeIn() {
-        mTargetAlpha = mMaxAlpha;
+        setVisibility(VISIBLE);
+        mEnableMove = true;
+        mTransitionTimeLeft = TRANSITION_TIME;
         MainController.get().scheduleUpdate();
     }
 
     public void fadeOut() {
-        mTargetAlpha = 0.0f;
-        MainController.get().scheduleUpdate();
+        mEnableMove = false;
+        setTargetPos(mHomeX, mHomeY, TRANSITION_TIME);
     }
 
     public void update(float dt, Draggable draggable) {
@@ -223,8 +245,13 @@ public class BubbleTargetView extends RelativeLayout {
             mDefaultCircle.mX = mSnapCircle.mX;
             mDefaultCircle.mY = mSnapCircle.mY;
 
-            setTargetPos((int) (0.5f + mDefaultCircle.mX - mDefaultCircle.mRadius),
-                    (int) (0.5f + mDefaultCircle.mY - mDefaultCircle.mRadius), 0.03f);
+            int x = (int) (0.5f + mDefaultCircle.mX - mDefaultCircle.mRadius);
+            int y = (int) (0.5f + mDefaultCircle.mY - mDefaultCircle.mRadius);
+            float remainingTime = Math.max(0.02f, mTransitionTimeLeft);
+            if (mTransitionTimeLeft > 0.0f) {
+                mTransitionTimeLeft -= dt;
+            }
+            setTargetPos(x, y, remainingTime);
         }
 
         if (mAnimTime < mAnimPeriod) {
@@ -245,21 +272,8 @@ public class BubbleTargetView extends RelativeLayout {
             mCanvasView.updateViewLayout(this, mCanvasLayoutParams);
 
             MainController.get().scheduleUpdate();
-        }
-
-        if (mCurrentAlpha < mTargetAlpha) {
-            mCurrentAlpha = Util.clamp(0.0f, mCurrentAlpha + mAlphaDelta * dt, mMaxAlpha);
-            MainController.get().scheduleUpdate();
-        } else if (mCurrentAlpha > mTargetAlpha) {
-            mCurrentAlpha = Util.clamp(0.0f, mCurrentAlpha - mAlphaDelta * dt, mMaxAlpha);
-            MainController.get().scheduleUpdate();
-        }
-        Util.Assert(mCurrentAlpha >= 0.0f && mCurrentAlpha <= 1.0f);
-        setAlpha(mCurrentAlpha);
-        if (mCurrentAlpha == 0.0f) {
+        } else if (!mEnableMove) {
             setVisibility(GONE);
-        } else {
-            setVisibility(VISIBLE);
         }
     }
 

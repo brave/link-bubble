@@ -25,7 +25,7 @@ public class CanvasView extends RelativeLayout {
     private Vector<BubbleTargetView> mTargets = new Vector<BubbleTargetView>();
 
     private final float mMaxAlpha = 1.0f;
-    private final float mFadeTime = 0.2f;
+    private final float mFadeTime = 0.3f;
     private final float mAlphaDelta = mMaxAlpha / mFadeTime;
 
     private float mCurrentAlpha = 0.0f;
@@ -62,9 +62,9 @@ public class CanvasView extends RelativeLayout {
 
         setBackground(getResources().getDrawable(R.drawable.masked_background));
 
-        mTargets.add(new BubbleTargetView(this, mContext, R.drawable.close_indicator, Config.BubbleAction.Destroy, 0.5f, 0.85f, true));
-        mTargets.add(new BubbleTargetView(this, mContext, Config.BubbleAction.ConsumeLeft, 0.2f, 0.15f, true));
-        mTargets.add(new BubbleTargetView(this, mContext, Config.BubbleAction.ConsumeRight, 0.8f, 0.15f, true));
+        mTargets.add(new BubbleTargetView(this, mContext, R.drawable.close_indicator, Config.BubbleAction.Destroy, 0.5f, 0.85f));
+        mTargets.add(new BubbleTargetView(this, mContext, Config.BubbleAction.ConsumeLeft, 0.2f, 0.15f));
+        mTargets.add(new BubbleTargetView(this, mContext, Config.BubbleAction.ConsumeRight, 0.8f, 0.15f));
 
         Settings.setConsumeBubblesChangedEventHandler(new Settings.ConsumeBubblesChangedEventHandler() {
             @Override
