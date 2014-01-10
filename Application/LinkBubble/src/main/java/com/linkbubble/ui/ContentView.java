@@ -47,6 +47,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by gw on 19/08/13.
@@ -78,8 +79,13 @@ public class ContentView extends FrameLayout {
     private int mHeaderHeight;
     private int mMarkerX;
     private Path mTempPath = new Path();
+    private int mLoadCount = 0;
+    private String mCurrentLoadedUrl;
+    private boolean mLoadingPrev;
 
     private Paint mPaint;
+
+    private Stack<String> mUrlHistory = new Stack<String>();
 
     private static final String JS_VARIABLE = "LinkBubble";
     private static final String JS_EMBED = "javascript:(function() {\n" +
@@ -464,12 +470,19 @@ public class ContentView extends FrameLayout {
         });
 
         mWebView.setWebViewClient(new WebViewClient() {
-            private int mCount = 0;
-
             @Override
             public boolean shouldOverrideUrlLoading(WebView wView, String url) {
+
+                if (mLoadCount == 0) {
+                    if (mCurrentLoadedUrl != null && !mLoadingPrev) {
+                        mUrlHistory.push(mCurrentLoadedUrl);
+                    }
+                    mCurrentLoadedUrl = null;
+                    mLoadingPrev = false;
+                }
+
                 if (isValidUrl(url)) {
-                    ++mCount;
+                    ++mLoadCount;
                 }
 
                 if (mYouTubeEmbedHelper != null) {
@@ -524,7 +537,7 @@ public class ContentView extends FrameLayout {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favIcon) {
                 if (isValidUrl(url)) {
-                    mCount = Math.max(mCount, 1);
+                    mLoadCount = Math.max(mLoadCount, 1);
                 }
             }
 
@@ -546,9 +559,10 @@ public class ContentView extends FrameLayout {
                     mTitleTextView.setText(webView.getTitle());
                     mUrlTextView.setText(urlAsString.replace("http://", ""));
 
-                    if (--mCount == 0) {
+                    if (--mLoadCount == 0) {
                         // Store final resolved url
                         mUrl = urlAsString;
+                        mCurrentLoadedUrl = mUrl;
 
                         PageLoadInfo pageLoadInfo = new PageLoadInfo();
                         pageLoadInfo.bmp = webView.getFavicon();
@@ -580,11 +594,17 @@ public class ContentView extends FrameLayout {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     WebView webView = (WebView) v;
                     switch (keyCode) {
-                        case KeyEvent.KEYCODE_BACK:
-                            if (webView.canGoBack()) {
+                        case KeyEvent.KEYCODE_BACK: {
+                            if (mUrlHistory.size() == 0) {
+                                mEventHandler.onDestroyBubble();
+                            } else {
                                 webView.stopLoading();
                                 String urlBefore = webView.getUrl();
-                                webView.goBack();
+
+                                String prevUrl = mUrlHistory.pop();
+                                mLoadingPrev = true;
+                                webView.loadUrl(prevUrl);
+
                                 updateAppsForUrl(webView.getUrl());
                                 if (mYouTubeEmbedHelper != null) {
                                     mYouTubeEmbedHelper.clear();
@@ -593,10 +613,9 @@ public class ContentView extends FrameLayout {
                                 configureOpenInAppButton();
                                 configureOpenEmbedButton();
                                 return true;
-                            } else {
-                                mEventHandler.onDestroyBubble();
                             }
                             break;
+                        }
                     }
                 }
 
