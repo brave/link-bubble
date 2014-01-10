@@ -29,10 +29,10 @@ public class BubbleView extends FrameLayout  {
 
     private BadgeView mBadgeView;
     private ImageView mFavicon;
-    private ImageView mAdditionalFaviconView;
     protected int mFaviconLoadId;
     private ProgressIndicator mProgressIndicator;
     protected URL mUrl;
+    private BubbleView mImitator;       //
 
     public BubbleView(Context context) {
         this(context, null);
@@ -46,12 +46,16 @@ public class BubbleView extends FrameLayout  {
         super(context, attrs, defStyle);
     }
 
-    void configure(String url) throws MalformedURLException {
-        mUrl = new URL(url);
-
+    void configure() {
         mFavicon = (ImageView) findViewById(R.id.favicon);
         mProgressIndicator = (ProgressIndicator) findViewById(R.id.progressIndicator);
         showProgressBar(true, 0);
+    }
+
+    void configure(String url) throws MalformedURLException {
+        mUrl = new URL(url);
+
+        configure();
     }
 
     public void attachBadge(BadgeView badgeView) {
@@ -88,10 +92,9 @@ public class BubbleView extends FrameLayout  {
         return mFavicon.getDrawable();
     }
 
-    public void setAdditionalFaviconView(ImageView imageView) {
-        mAdditionalFaviconView = imageView;
+    public void setImitator(BubbleView bubbleView) {
+        mImitator = bubbleView;
     }
-
 
     public void setFaviconLoadId(int faviconLoadId) {
         mFaviconLoadId = faviconLoadId;
@@ -216,6 +219,10 @@ public class BubbleView extends FrameLayout  {
         if (favicon == null) {
             mFaviconLoadId = Favicons.NOT_LOADING;
             mFavicon.setImageResource(R.drawable.fallback_favicon);
+            if (mImitator != null) {
+                mImitator.mFaviconLoadId = Favicons.NOT_LOADING;
+                mImitator.mFavicon.setImageResource(R.drawable.fallback_favicon);
+            }
         } else {
             MainApplication mainApplication = (MainApplication) getContext().getApplicationContext();
             String faviconUrl = getDefaultFaviconUrl(mUrl);
@@ -227,8 +234,9 @@ public class BubbleView extends FrameLayout  {
 
             mFaviconLoadId = Favicons.LOADED;
             mFavicon.setImageBitmap(favicon);
-            if (mAdditionalFaviconView != null) {
-                mAdditionalFaviconView.setImageBitmap(favicon);
+            if (mImitator != null) {
+                mImitator.mFaviconLoadId = Favicons.LOADED;
+                mImitator.mFavicon.setImageBitmap(favicon);
             }
         }
 
@@ -257,5 +265,8 @@ public class BubbleView extends FrameLayout  {
 
     void showProgressBar(boolean show, int progress) {
         mProgressIndicator.setProgress(show, progress, mUrl);
+        if (mImitator != null) {
+            mImitator.mProgressIndicator.setProgress(show, progress, mUrl);
+        }
     }
 }

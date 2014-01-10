@@ -13,6 +13,8 @@ import com.linkbubble.R;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
 
+import java.net.MalformedURLException;
+
 
 public class BubbleDraggable extends BubbleView implements Draggable {
 
@@ -40,6 +42,12 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     public void configure(int x0, int y0, int targetX, int targetY, float targetTime, EventHandler eh)  {
+
+        try {
+            super.configure("http://blerg.com"); // the URL is not actually used...
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
         mWindowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
 

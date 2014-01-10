@@ -33,9 +33,6 @@ public class MainControllerNew extends MainController {
         super(context, eventHandler);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        mBubblePagerDraggable = (BubblePagerDraggable) inflater.inflate(R.layout.view_bubble_pager, null);
-        mBubblePagerDraggable.configure(0, 0, 0, 0, 0.f, null);
-        mBubblePagerDraggable.setVisibility(View.GONE);
 
         mBubbleDraggable = (BubbleDraggable) inflater.inflate(R.layout.view_bubble_draggable, null);
         mBubbleDraggable.configure((int) (Config.mBubbleSnapLeftX - Config.mBubbleWidth), Config.BUBBLE_HOME_Y,
@@ -62,6 +59,11 @@ public class MainControllerNew extends MainController {
                 mBubblePagerDraggable.syncWithBubble(draggable);
             }
         });
+
+        mBubblePagerDraggable = (BubblePagerDraggable) inflater.inflate(R.layout.view_bubble_pager, null);
+        mBubblePagerDraggable.configure(0, 0, 0, 0, 0.f, null);
+        mBubblePagerDraggable.setBubbleDraggable(mBubbleDraggable);
+        mBubblePagerDraggable.setVisibility(View.GONE);
     }
 
     @Override
