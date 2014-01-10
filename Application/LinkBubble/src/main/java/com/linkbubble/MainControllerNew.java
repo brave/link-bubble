@@ -1,15 +1,20 @@
 package com.linkbubble;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.widget.Toast;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.ui.BubbleDraggable;
+import com.linkbubble.ui.BubbleLegacyView;
 import com.linkbubble.ui.BubblePagerDraggable;
 import com.linkbubble.ui.ContentView;
+import com.linkbubble.util.Util;
 
 
 public class MainControllerNew extends MainController {
@@ -57,11 +62,6 @@ public class MainControllerNew extends MainController {
                 mBubblePagerDraggable.syncWithBubble(draggable);
             }
         });
-    }
-
-    @Override
-    public boolean destroyDraggable(Draggable draggable, Config.BubbleAction action) {
-        return false;
     }
 
     @Override
@@ -158,18 +158,51 @@ public class MainControllerNew extends MainController {
     }
 
     @Override
+    public boolean destroyDraggable(Draggable draggable, Config.BubbleAction action) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        boolean debug = prefs.getBoolean("debug_flick", true);
+
+        if (debug) {
+            Toast.makeText(mContext, "HIT TARGET!", 400).show();
+        } else {
+            String currentBubbleUrl = mBubblePagerDraggable.getContentView().getCurrentUrl();
+            mBubblePagerDraggable.destroyCurrentBubble();
+            if (mBubblePagerDraggable.getBubbleCount() == 0) {
+                removeBubbleDraggable();
+
+                Config.BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
+                Config.BUBBLE_HOME_Y = (int) (Config.mScreenHeight * 0.4f);
+            }
+
+            mCurrentState.onDestroyDraggable(null);
+
+            doTargetAction(action, currentBubbleUrl);
+        }
+
+        return getBubbleCount() > 0;
+    }
+
+    @Override
     public void destroyAllBubbles() {
         mBubblePagerDraggable.destroyAllBubbles();
+        removeBubbleDraggable();
+    }
+
+    private void removeBubbleDraggable() {
+        mBubbleDraggable.destroy();
         mDraggables.remove(mBubbleDraggable);
         if (mFrontDraggable == mBubbleDraggable) {
-            mBubbleDraggable.destroy();
             mFrontDraggable = null;
         }
     }
 
     @Override
     public void showBubblePager(boolean show) {
-        mBubblePagerDraggable.setVisibility(show ? View.VISIBLE : View.GONE);
+        if (show) {
+            mBubblePagerDraggable.show();
+        } else {
+            mBubblePagerDraggable.hide();
+        }
         mBubbleDraggable.setVisibility(show ? View.GONE : View.VISIBLE);
     }
 }
