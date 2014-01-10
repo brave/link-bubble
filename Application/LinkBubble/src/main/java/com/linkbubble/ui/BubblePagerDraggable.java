@@ -247,34 +247,6 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
 
 
     public void openUrlInBubble(String url, long startTime) {
-
-        int x, targetX, y, targetY;
-        float time;
-
-        int bubbleIndex = mBubbles.size();
-
-        if (MainController.get().isStateActive(State_ContentView.class)) {
-            x = (int) Config.getContentViewX(bubbleIndex, getBubbleCount()+1);
-            y = (int) -Config.mBubbleHeight;
-            targetX = x;
-            targetY = Config.mContentViewBubbleY;
-            time = 0.4f;
-        } else {
-            if (bubbleIndex == 0) {
-                x = (int) (Config.mBubbleSnapLeftX - Config.mBubbleWidth);
-                y = Config.BUBBLE_HOME_Y;
-                targetX = Config.BUBBLE_HOME_X;
-                targetY = y;
-                time = 0.4f;
-            } else {
-                x = Config.BUBBLE_HOME_X;
-                y = Config.BUBBLE_HOME_Y;
-                targetX = x;
-                targetY = y;
-                time = 0.0f;
-            }
-        }
-
         BubblePagerItemView bubble;
         try {
             LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -317,32 +289,6 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
         mBubbleDraggable.mBadgeView.setCount(mBubbles.size());
 
         Settings.get().saveCurrentBubbles(mBubbles);
-
-        // BFV_CHANGE:
-        /*
-        mBadgeView.attach(bubble);
-        mBadgeView.setCount(mBubbles.size());
-        int draggableCount = mDraggables.size();
-        if (MainController.get().isStateActive(State_ContentView.class)) {
-            draggable.getDraggableView().setVisibility(View.VISIBLE);
-            for (int i=0 ; i < draggableCount ; ++i) {
-                Draggable draggableItem = mDraggables.get(i);
-                if (draggableItem != bubble) {
-                    draggableItem.getDraggableHelper().setTargetPos((int)Config.getContentViewX(draggableItem.getBubbleView().getBubbleIndex(),
-                            getBubbleCount()), draggableItem.getDraggableHelper().getYPos(), 0.2f, false);
-                }
-            }
-        } else {
-            mFrontBubble = bubble;
-            for (int i=0 ; i < draggableCount ; ++i) {
-                Draggable draggableItem = mDraggables.get(i);
-                int vis = View.VISIBLE;
-                if (draggableItem != mFrontBubble) {
-                    vis = View.GONE;
-                }
-                draggableItem.getDraggableView().setVisibility(vis);
-            }
-        }*/
 
         BubblePagerAdapter adapter = (BubblePagerAdapter) getViewPager().getAdapter();
         if (adapter.mBubbles == null) {
