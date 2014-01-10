@@ -94,6 +94,10 @@ public class BubbleView extends FrameLayout  {
 
     public void setImitator(BubbleView bubbleView) {
         mImitator = bubbleView;
+        if (mImitator != null) {
+            mImitator.mFavicon.setImageDrawable(mFavicon.getDrawable());
+            mImitator.mProgressIndicator.setProgress(mProgressIndicator.getVisibility() == VISIBLE, mProgressIndicator.getProgress(), mUrl);
+        }
     }
 
     public void setFaviconLoadId(int faviconLoadId) {
