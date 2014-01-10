@@ -1,12 +1,10 @@
 package com.linkbubble.ui;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -316,13 +314,14 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
         }
 
         mBubbles.add(bubble);
+        mBubbleDraggable.mBadgeView.setCount(mBubbles.size());
 
         Settings.get().saveCurrentBubbles(mBubbles);
 
         // BFV_CHANGE:
         /*
         mBadgeView.attach(bubble);
-        mBadgeView.setBubbleCount(mBubbles.size());
+        mBadgeView.setCount(mBubbles.size());
         int draggableCount = mDraggables.size();
         if (MainController.get().isStateActive(State_ContentView.class)) {
             draggable.getDraggableView().setVisibility(View.VISIBLE);
@@ -356,6 +355,7 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
     public void destroyCurrentBubble() {
         int currentIndex = getViewPager().getCurrentItem();
         mBubbles.remove(currentIndex);
+        mBubbleDraggable.mBadgeView.setCount(mBubbles.size());
         getViewPager().getAdapter().notifyDataSetChanged();
 
         Settings.get().saveCurrentBubbles(mBubbles);
@@ -363,6 +363,7 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
 
     public void destroyAllBubbles() {
         mBubbles.clear();
+        mBubbleDraggable.mBadgeView.setCount(mBubbles.size());
         getViewPager().getAdapter().notifyDataSetChanged();
     }
 

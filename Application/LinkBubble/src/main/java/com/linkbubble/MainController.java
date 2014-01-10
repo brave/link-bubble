@@ -101,7 +101,6 @@ public abstract class MainController implements Choreographer.FrameCallback {
     protected boolean mUpdateScheduled;
     protected static Vector<Draggable> mDraggables = new Vector<Draggable>();
     protected CanvasView mCanvasView;
-    protected BadgeView mBadgeView;
     protected Draggable mFrontDraggable;
 
 
@@ -134,14 +133,11 @@ public abstract class MainController implements Choreographer.FrameCallback {
         mChoreographer = Choreographer.getInstance();
         mCanvasView = new CanvasView(mContext);
 
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        mBadgeView = (BadgeView) inflater.inflate(R.layout.view_badge, null);
-
         MainApplication app = (MainApplication) mContext.getApplicationContext();
         Bus bus = app.getBus();
         bus.register(this);
 
-        STATE_BubbleView = new State_BubbleView(mCanvasView, mBadgeView);
+        STATE_BubbleView = new State_BubbleView(mCanvasView);
         STATE_SnapToEdge = new State_SnapToEdge(mCanvasView);
         STATE_AnimateToContentView = new State_AnimateToContentView(mCanvasView);
         STATE_ContentView = new State_ContentView(mCanvasView);
@@ -285,7 +281,7 @@ public abstract class MainController implements Choreographer.FrameCallback {
     }
 
     public Draggable getActiveDraggable() {
-        Util.Assert(mFrontDraggable != null);
+        //Util.Assert(mFrontDraggable != null);
         return mFrontDraggable;
     }
 
@@ -369,6 +365,8 @@ public abstract class MainController implements Choreographer.FrameCallback {
     }
 
     protected abstract void openUrlInBubble(String url, long startTime);
+
+    public abstract void showBadge(boolean show);
 
     public void beginAppPolling() {
         mAppPoller.beginAppPolling();

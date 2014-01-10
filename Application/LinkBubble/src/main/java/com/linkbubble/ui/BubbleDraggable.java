@@ -22,6 +22,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     private WindowManager mWindowManager;
     private EventHandler mEventHandler;
     private OnUpdateListener mOnUpdateListener;
+    public BadgeView mBadgeView;
 
     public interface EventHandler {
         public void onMotionEvent_Touch(BubbleDraggable sender, DraggableHelper.TouchEvent event);
@@ -48,6 +49,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+
+        mBadgeView = (BadgeView) findViewById(R.id.badge_view);
+        mBadgeView.hide();
+        mBadgeView.setVisibility(View.GONE);
 
         mWindowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
 
@@ -103,6 +108,16 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
     public void setOnUpdateListener(OnUpdateListener onUpdateListener) {
         mOnUpdateListener = onUpdateListener;
+    }
+
+    void showBadge(boolean show) {
+        if (mBadgeView != null) {
+            if (show) {
+                mBadgeView.show();
+            } else {
+                mBadgeView.hide();
+            }
+        }
     }
 
     @Override

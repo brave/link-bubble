@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.physics.State_AnimateToBubbleView;
+import com.linkbubble.ui.BadgeView;
 import com.linkbubble.ui.BubbleLegacyView;
 import com.linkbubble.ui.ContentView;
 import com.linkbubble.util.Util;
@@ -20,6 +21,8 @@ import java.net.MalformedURLException;
 import java.util.Vector;
 
 public class MainControllerLegacy extends MainController {
+
+    protected BadgeView mBadgeView;
 
     public static void create(Context context, EventHandler eventHandler) {
         if (sInstance != null) {
@@ -32,6 +35,9 @@ public class MainControllerLegacy extends MainController {
 
     private MainControllerLegacy(Context context, EventHandler eventHandler) {
         super(context, eventHandler);
+
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        mBadgeView = (BadgeView) inflater.inflate(R.layout.view_badge, null);
     }
 
     @Override
@@ -71,7 +77,7 @@ public class MainControllerLegacy extends MainController {
                 BubbleLegacyView nextBubble = mBubbles.get(nextBubbleIndex);
                 mFrontDraggable = nextBubble;
                 mBadgeView.attach(nextBubble);
-                mBadgeView.setBubbleCount(mBubbles.size());
+                mBadgeView.setCount(mBubbles.size());
 
                 nextBubble.setVisibility(View.VISIBLE);
             } else {
@@ -255,7 +261,7 @@ public class MainControllerLegacy extends MainController {
             Settings.get().saveCurrentBubblesLegacy(mBubbles);
 
             mBadgeView.attach(bubble);
-            mBadgeView.setBubbleCount(mBubbles.size());
+            mBadgeView.setCount(mBubbles.size());
             int draggableCount = mDraggables.size();
             if (mCurrentState == STATE_ContentView) {
                 draggable.getDraggableView().setVisibility(View.VISIBLE);
@@ -279,6 +285,17 @@ public class MainControllerLegacy extends MainController {
             }
 
             //((MainApplication)mContext.getApplicationContext()).getBus().post(new BubbleAddedEvent(bubble));
+        }
+    }
+
+    @Override
+    public void showBadge(boolean show) {
+        if (mBadgeView != null) {
+            if (show) {
+                mBadgeView.show();
+            } else {
+                mBadgeView.hide();
+            }
         }
     }
 }
