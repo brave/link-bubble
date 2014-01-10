@@ -4,6 +4,7 @@ package com.linkbubble.ui;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
+import android.view.View;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
@@ -123,6 +124,15 @@ public class BubblePagerItemView extends BubbleView {
             }
         });
         mContentView.setMarkerX(Config.mScreenCenterX);
+
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainController mainController = MainController.get();
+                mainController.getActiveDraggable().readd();
+                mainController.switchState(mainController.STATE_AnimateToBubbleView);
+            }
+        });
     }
 
     void destroy() {
