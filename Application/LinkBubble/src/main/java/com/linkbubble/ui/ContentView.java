@@ -33,6 +33,7 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.graphics.Canvas;
 import android.widget.Toast;
+import com.linkbubble.Constant;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
@@ -155,7 +156,7 @@ public class ContentView extends FrameLayout {
         super.dispatchDraw(canvas);
 
         mTempPath.reset();
-        float mCenterX = mMarkerX + Config.mBubbleWidth * 0.5f;
+        float mCenterX = mMarkerX + (Constant.USE_NEW_CONTROLLER ? 0 : (Config.mBubbleWidth * 0.5f));
         mTempPath.moveTo(mCenterX - mHeaderHeight, mHeaderHeight + 1.0f);
         mTempPath.lineTo(mCenterX, 0.0f);
         mTempPath.lineTo(mCenterX + mHeaderHeight, mHeaderHeight + 1.0f);

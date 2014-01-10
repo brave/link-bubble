@@ -4,6 +4,7 @@ package com.linkbubble.ui;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
+import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
@@ -121,6 +122,7 @@ public class BubblePagerItemView extends BubbleView {
                 BubblePagerItemView.this.onReceivedIcon(favicon);
             }
         });
+        mContentView.setMarkerX(Config.mScreenCenterX);
     }
 
     void destroy() {
