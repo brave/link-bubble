@@ -325,6 +325,14 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
         }
     }
 
+    public void destroyCurrentBubble() {
+        int currentIndex = getViewPager().getCurrentItem();
+        mBubbles.remove(currentIndex);
+        getViewPager().getAdapter().notifyDataSetChanged();
+
+        Settings.get().saveCurrentBubbles(mBubbles);
+    }
+
     public void destroyAllBubbles() {
         mBubbles.clear();
         getViewPager().getAdapter().notifyDataSetChanged();
@@ -334,5 +342,14 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
         for (int i=0 ; i < mBubbles.size() ; ++i) {
             mBubbles.get(i).updateIncognitoMode(incognito);
         }
+    }
+
+    public void show() {
+        setVisibility(View.VISIBLE);
+        getViewPager().getAdapter().notifyDataSetChanged();
+    }
+
+    public void hide() {
+        setVisibility(View.GONE);
     }
 }
