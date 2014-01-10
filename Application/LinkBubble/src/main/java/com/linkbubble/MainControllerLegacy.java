@@ -146,6 +146,16 @@ public class MainControllerLegacy extends MainController {
     }
 
     @Override
+    public void destroyAllBubbles() {
+        int draggableCount = getDraggableCount();
+        for (int i=draggableCount-1 ; i >= 0; --i) {
+            Draggable draggable = getDraggable(i);
+            destroyBubble(draggable, Config.BubbleAction.Destroy);
+        }
+        Util.Assert(getDraggableCount() == 0);
+    }
+
+    @Override
     protected void openUrlInBubble(String url, long startTime) {
         if (mDraggables.size() < Config.MAX_BUBBLES) {
 

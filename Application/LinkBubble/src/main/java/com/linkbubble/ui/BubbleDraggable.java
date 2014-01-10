@@ -90,7 +90,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
     public void destroy() {
         //setOnTouchListener(null);
-        mWindowManager.removeView(this);
         mDraggableHelper.destroy();
     }
 

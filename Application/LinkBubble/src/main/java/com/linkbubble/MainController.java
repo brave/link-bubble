@@ -76,6 +76,8 @@ public abstract class MainController implements Choreographer.FrameCallback {
 
     public abstract ContentView getActiveContentView();
 
+    public abstract void destroyAllBubbles();
+
     public interface EventHandler {
         public void onDestroy();
     }

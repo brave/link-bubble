@@ -57,9 +57,6 @@ public class MainControllerNew extends MainController {
                 mBubblePagerDraggable.syncWithBubble(draggable);
             }
         });
-
-        mDraggables.add(mBubbleDraggable);
-        setActiveDraggable(mBubbleDraggable);
     }
 
     @Override
@@ -84,6 +81,43 @@ public class MainControllerNew extends MainController {
 
     @Override
     protected void openUrlInBubble(String url, long startTime) {
+        if (mDraggables.contains(mBubbleDraggable) == false) {
+            mDraggables.add(mBubbleDraggable);
+        }
+        if (mFrontDraggable == null) {
+            int x, targetX, y, targetY;
+            float time;
+
+            int bubbleIndex = mDraggables.size();
+
+            if (mCurrentState == STATE_ContentView) {
+                x = (int) Config.getContentViewX(bubbleIndex, getBubbleCount()+1);
+                y = (int) -Config.mBubbleHeight;
+                targetX = x;
+                targetY = Config.mContentViewBubbleY;
+                time = 0.4f;
+            } else {
+                if (bubbleIndex == 0) {
+                    x = (int) (Config.mBubbleSnapLeftX - Config.mBubbleWidth);
+                    y = Config.BUBBLE_HOME_Y;
+                    targetX = Config.BUBBLE_HOME_X;
+                    targetY = y;
+                    time = 0.4f;
+                } else {
+                    x = Config.BUBBLE_HOME_X;
+                    y = Config.BUBBLE_HOME_Y;
+                    targetX = x;
+                    targetY = y;
+                    time = 0.0f;
+                }
+            }
+
+            setActiveDraggable(mBubbleDraggable);
+
+            mBubbleDraggable.setExactPos(x, y);
+            mBubbleDraggable.setTargetPos(targetX, targetY, time, true);
+        }
+
         mBubblePagerDraggable.openUrlInBubble(url, startTime);
         ++mBubblesLoaded;
     }
@@ -121,6 +155,16 @@ public class MainControllerNew extends MainController {
     @Override
     public ContentView getActiveContentView() {
         return mBubblePagerDraggable.getContentView();
+    }
+
+    @Override
+    public void destroyAllBubbles() {
+        mBubblePagerDraggable.destroyAllBubbles();
+        mDraggables.remove(mBubbleDraggable);
+        if (mFrontDraggable == mBubbleDraggable) {
+            mBubbleDraggable.destroy();
+            mFrontDraggable = null;
+        }
     }
 
     @Override
