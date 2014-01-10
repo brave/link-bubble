@@ -1,6 +1,7 @@
 package com.linkbubble.ui;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -31,6 +32,8 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
     private EventHandler mEventHandler;
     private int mBubbleFlowWidth;
     private int mBubbleFlowHeight;
+    private BubblePagerItemView mCurrentBubble;
+    private BubbleDraggable mBubbleDraggable;
 
     private static Vector<BubblePagerItemView> mBubbles = new Vector<BubblePagerItemView>();
 
@@ -75,7 +78,7 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
             @Override
             public void onPageSelected(int i) {
                 BubblePagerItemView bubble = mBubbles.get(i);
-                MainController.get().showContentView(bubble.getContentView());
+                setCurrentBubble(bubble, true);
             }
 
             @Override
@@ -143,6 +146,27 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
 
     public int getBubbleCount() {
         return mBubbles.size();
+    }
+
+    public BubblePagerItemView getCurrentBubble() {
+        return mCurrentBubble;
+    }
+
+    private void setCurrentBubble(BubblePagerItemView bubble, boolean showContentView) {
+        if (mCurrentBubble != null) {
+            mCurrentBubble.setImitator(null);
+        }
+        mCurrentBubble = bubble;
+        if (mCurrentBubble != null) {
+            mCurrentBubble.setImitator(mBubbleDraggable);
+        }
+        if (showContentView) {
+            MainController.get().showContentView(bubble.getContentView());
+        }
+    }
+
+    public void setBubbleDraggable(BubbleDraggable bubbleDraggable) {
+        mBubbleDraggable = bubbleDraggable;
     }
 
     @Override
@@ -285,6 +309,10 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
         } catch (MalformedURLException e) {
             // TODO: Inform the user somehow?
             return;
+        }
+
+        if (mCurrentBubble == null) {
+            setCurrentBubble(bubble, false);
         }
 
         mBubbles.add(bubble);
