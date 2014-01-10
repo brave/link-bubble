@@ -125,6 +125,9 @@ public class BubbleView extends FrameLayout  {
             setFaviconLoadId(id);
             if (id != Favicons.LOADED) {
                 mFavicon.setImageResource(R.drawable.fallback_favicon);
+                if (mImitator != null) {
+                    mImitator.mFavicon.setImageResource(R.drawable.fallback_favicon);
+                }
             }
         }
     }
@@ -136,6 +139,10 @@ public class BubbleView extends FrameLayout  {
                 // Note: don't upsize favicon because Favicons.getFaviconForSize() already does this
                 mFavicon.setImageBitmap(favicon);
                 setFaviconLoadId(Favicons.LOADED);
+                if (mImitator != null) {
+                    mImitator.mFavicon.setImageBitmap(favicon);
+                    mImitator.setFaviconLoadId(Favicons.LOADED);
+                }
             }
         }
     };
