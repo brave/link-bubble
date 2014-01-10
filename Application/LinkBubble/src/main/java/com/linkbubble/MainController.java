@@ -183,7 +183,7 @@ public abstract class MainController implements Choreographer.FrameCallback {
         return false;
     }
 
-    public abstract boolean destroyBubble(Draggable draggable, Config.BubbleAction action);
+    public abstract boolean destroyDraggable(Draggable draggable, Config.BubbleAction action);
 
     public void setAllDraggablePositions(Draggable ref) {
         if (ref != null) {

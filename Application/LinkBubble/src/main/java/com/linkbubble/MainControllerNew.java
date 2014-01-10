@@ -60,7 +60,7 @@ public class MainControllerNew extends MainController {
     }
 
     @Override
-    public boolean destroyBubble(Draggable draggable, Config.BubbleAction action) {
+    public boolean destroyDraggable(Draggable draggable, Config.BubbleAction action) {
         return false;
     }
 

@@ -1,8 +1,6 @@
 package com.linkbubble.physics;
 
-import android.util.Log;
 import android.view.View;
-import com.linkbubble.Constant;
 import com.linkbubble.ui.BadgeView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
@@ -140,7 +138,7 @@ public class State_BubbleView extends ControllerState {
                         mainController.destroyAllBubbles();
                         mainController.switchState(mainController.STATE_BubbleView);
                     } else {
-                        if (mainController.destroyBubble(mDraggable, ti.mAction)) {
+                        if (mainController.destroyDraggable(mDraggable, ti.mAction)) {
                             mainController.switchState(mainController.STATE_AnimateToBubbleView);
                         } else {
                             mainController.switchState(mainController.STATE_BubbleView);
