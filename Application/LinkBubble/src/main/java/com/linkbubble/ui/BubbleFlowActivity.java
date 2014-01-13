@@ -51,9 +51,9 @@ public class BubbleFlowActivity extends Activity {
                 int centerIndex = mBubbleFlowView.getCenterIndex();
                 int count = mBubbleFlowView.getCount();
                 if (centerIndex+1 < count) {
-                    mBubbleFlowView.remove(centerIndex+1);
+                    mBubbleFlowView.remove(centerIndex + 1);
                 } else if (count > 2) {
-                    mBubbleFlowView.remove(centerIndex-1);
+                    mBubbleFlowView.remove(centerIndex - 1);
                 }
             }
         });
@@ -73,4 +73,15 @@ public class BubbleFlowActivity extends Activity {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        mBubbleFlowView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mBubbleFlowView.setCenterIndex(6);
+            }
+        }, 100);
+    }
 }

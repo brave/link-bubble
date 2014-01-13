@@ -35,8 +35,13 @@
         <activity
             android:name=".ui.BubbleFlowActivity"
             android:theme="@android:style/Theme.Holo.Light"
+            android:label="LinkBubble - BubbleFlow"
             android:excludeFromRecents="false">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
 
