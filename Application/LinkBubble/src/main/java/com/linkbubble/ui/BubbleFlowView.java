@@ -123,6 +123,9 @@ public class BubbleFlowView extends HorizontalScrollView {
                 view.startAnimation(anim);
             }
         }
+        // Remove and re-add to ensure view is drawn last.
+        mContent.removeView(centerView);
+        mContent.addView(centerView);
         mIsExpanded = true;
     }
 
@@ -142,6 +145,9 @@ public class BubbleFlowView extends HorizontalScrollView {
                 view.startAnimation(anim);
             }
         }
+        // Remove and re-add to ensure view is drawn last.
+        mContent.removeView(centerView);
+        mContent.addView(centerView);
         mIsExpanded = false;
     }
 
