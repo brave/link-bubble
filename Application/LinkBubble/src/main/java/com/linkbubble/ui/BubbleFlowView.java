@@ -2,6 +2,7 @@ package com.linkbubble.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -162,18 +163,32 @@ public class BubbleFlowView extends HorizontalScrollView {
             mOnScrollChangedListener.onScrollChanged(this, x, y, oldX, oldY);
         }
 
-        float targetScale = .7f;
-        int centerIndex = getCenterIndex();
+        updateScales(x);
+    }
+
+    void updateScales(int x) {
+
+        float centerX = x + (mWidth/2) - (mItemWidth/2);
+        float fullScaleX = mItemWidth * .3f;
+        float minScaleX = mItemWidth * 1.2f;
+
+        float minScale = .7f;
+        //int centerIndex = getCenterIndex();
         int size = mViews.size();
         for (int i = 0; i < size; i++) {
             View view = mViews.get(i);
-            if (i == centerIndex) {
-                view.setScaleX(1.f);
-                view.setScaleY(1.f);
+            float xDelta = Math.abs(centerX - (i * mItemWidth));
+            float targetScale;
+            if (xDelta < fullScaleX) {
+                targetScale = 1.f;
+            } else if (xDelta > minScaleX) {
+                targetScale = minScale;
             } else {
-                view.setScaleX(targetScale);
-                view.setScaleY(targetScale);
+                float ratio = 1.f - ((xDelta - fullScaleX) / (minScaleX - fullScaleX));
+                targetScale = minScale + (ratio * (1.f-minScale));
             }
+            view.setScaleX(targetScale);
+            view.setScaleY(targetScale);
         }
     }
 
