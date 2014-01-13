@@ -48,7 +48,13 @@ public class BubbleFlowActivity extends Activity {
         findViewById(R.id.remove_bubble_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int centerIndex = mBubbleFlowView.getCenterIndex();
+                int count = mBubbleFlowView.getCount();
+                if (centerIndex+1 < count) {
+                    mBubbleFlowView.remove(centerIndex+1);
+                } else if (count > 2) {
+                    mBubbleFlowView.remove(centerIndex-1);
+                }
             }
         });
 
