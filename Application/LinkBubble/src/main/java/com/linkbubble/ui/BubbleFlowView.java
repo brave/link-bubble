@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
+import android.widget.TextView;
+import com.linkbubble.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +16,17 @@ import java.util.List;
 
 public class BubbleFlowView extends HorizontalScrollView {
 
+    public interface OnScrollChangedListener {
+        void onScrollChanged(BubbleFlowView bubbleFlowView, int x, int y, int oldx, int oldy);
+    }
+
     List<View> mViews;
     FrameLayout mContent;
     boolean mExpanded;
     int mWidth;
     int mItemWidth;
     int mItemHeight;
+    private OnScrollChangedListener mOnScrollChangedListener;
 
     public BubbleFlowView(Context context) {
         this(context, null);
@@ -36,11 +43,14 @@ public class BubbleFlowView extends HorizontalScrollView {
 
         mContent = new FrameLayout(context);
         mContent.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.TOP|Gravity.LEFT));
-        //mContent.setBackgroundColor(0x6600ff00);
 
         addView(mContent);
 
         mExpanded = true;
+    }
+
+    public void setBubbleFlowViewListener(OnScrollChangedListener onScrollChangedListener) {
+        mOnScrollChangedListener = onScrollChangedListener;
     }
 
     void configure(int width, int itemWidth, int itemHeight) {
@@ -55,9 +65,15 @@ public class BubbleFlowView extends HorizontalScrollView {
         mContent.addView(view, lp);
         mContent.invalidate();
 
-        mViews.add(view);
-
         view.setBackgroundColor(mViews.size() % 2 == 0 ? 0x66660066 : 0x66666600);
+
+        TextView debugIndexTextView = (TextView) view.findViewById(R.id.debug_index);
+        if (debugIndexTextView != null) {
+            debugIndexTextView.setText("" + mViews.size());
+            debugIndexTextView.setVisibility(VISIBLE);
+        }
+
+        mViews.add(view);
 
         ViewGroup.LayoutParams contentLP = mContent.getLayoutParams();
         contentLP.width = mViews.size() * mItemWidth + mItemWidth;
@@ -71,6 +87,21 @@ public class BubbleFlowView extends HorizontalScrollView {
         mContent.invalidate();
     }
 
+    int getCenterIndex() {
+        int centerX = (mWidth/2) + getScrollX();
+        int closestXAbsDelta = Integer.MAX_VALUE;
+        int closestIndex = -1;
+        for (int i = 0; i < mViews.size(); i++) {
+            int x = (i * mItemWidth) + (mItemWidth/2);
+            int absDelta = Math.abs(x-centerX);
+            if (absDelta < closestXAbsDelta) {
+                closestXAbsDelta = absDelta;
+                closestIndex = i;
+            }
+        }
+        return closestIndex;
+    }
+
     void expand() {
 
     }
@@ -81,5 +112,18 @@ public class BubbleFlowView extends HorizontalScrollView {
 
     boolean isExpanded() {
         return mExpanded;
+    }
+
+    @Override
+    protected void onScrollChanged(int x, int y, int oldX, int oldY) {
+        super.onScrollChanged(x, y, oldX, oldY);
+        if (mOnScrollChangedListener != null) {
+            mOnScrollChangedListener.onScrollChanged(this, x, y, oldX, oldY);
+        }
+    }
+
+    String getDebugString() {
+        return "count:" + mViews.size() + ", center index:" + getCenterIndex() + ", width:" + mContent.getWidth()
+                + ", scrollX:" + getScrollX() + ", total:" + (getScrollX() + mWidth);
     }
 }
