@@ -33,6 +33,14 @@
         </activity>
 
         <activity
+            android:name=".ui.BubbleFlowActivity"
+            android:theme="@android:style/Theme.Holo.Light"
+            android:excludeFromRecents="false">
+
+
+        </activity>
+
+        <activity
             android:name=".ui.HistoryActivity"
             android:theme="@android:style/Theme.Holo.Light"
             android:label="@string/history">

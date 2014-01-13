@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.linkbubble.ui.BubbleFlowView
+        android:id="@+id/bubble_flow"
+        android:layout_width="@dimen/bubble_pager_width"
+        android:layout_height="@dimen/bubble_pager_height"
+        android:layout_gravity="top|center_horizontal"/>
+
+    <LinearLayout
+        android:layout_width="@dimen/bubble_pager_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/add_bubble_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ Bubble"/>
+
+        <Button
+            android:id="@+id/remove_bubble_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="- Bubble"/>
+
+        <Button
+            android:id="@+id/animate_bubble_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shrink"/>
+
+    </LinearLayout>
+
+</FrameLayout>
