@@ -11,6 +11,12 @@
         android:layout_height="@dimen/bubble_pager_height"
         android:layout_gravity="top|center_horizontal"/>
 
+    <View
+        android:layout_width="1dp"
+        android:layout_height="@dimen/bubble_pager_height"
+        android:background="@android:color/holo_blue_dark"
+        android:layout_gravity="top|center_horizontal"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
