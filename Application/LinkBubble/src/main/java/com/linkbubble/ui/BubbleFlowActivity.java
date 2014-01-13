@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import com.linkbubble.R;
 
@@ -24,7 +25,7 @@ public class BubbleFlowActivity extends Activity {
         mBubbleFlowView.configure(getResources().getDimensionPixelSize(R.dimen.bubble_pager_width),
                 getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_width),
                 getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_height));
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 9; i++) {
             BubbleFlowItemView bubble = (BubbleFlowItemView) inflater.inflate(R.layout.view_bubble_flow_item, null);
             mBubbleFlowView.add(bubble);
         }
@@ -51,13 +52,16 @@ public class BubbleFlowActivity extends Activity {
             }
         });
 
-        findViewById(R.id.animate_bubble_button).setOnClickListener(new View.OnClickListener() {
+        final Button animateButton = (Button) findViewById(R.id.animate_bubble_button);
+        animateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mBubbleFlowView.isExpanded()) {
                     mBubbleFlowView.shrink();
+                    animateButton.setText("Expand");
                 } else {
                     mBubbleFlowView.expand();
+                    animateButton.setText("Shrink");
                 }
             }
         });
