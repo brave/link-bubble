@@ -11,6 +11,13 @@
         android:layout_height="@dimen/bubble_pager_height"
         android:layout_gravity="top|center_horizontal"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/debug_text"
+        android:text="blerg"/>
+
     <LinearLayout
         android:layout_width="@dimen/bubble_pager_width"
         android:layout_height="wrap_content"

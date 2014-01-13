@@ -4,7 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/bubble_pager_item_width"
     android:layout_height="@dimen/bubble_size"
-    android:background="#66ff"
     >
 
     <ImageView
@@ -37,5 +36,13 @@
         android:id="@+id/favicon"
         android:src="@drawable/fallback_favicon"
         android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/debug_index"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:visibility="gone"
+        android:text="0"/>
 
 </com.linkbubble.ui.BubbleFlowItemView>
