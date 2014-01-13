@@ -25,7 +25,7 @@ public class BubbleFlowActivity extends Activity {
         mBubbleFlowView.configure(getResources().getDimensionPixelSize(R.dimen.bubble_pager_width),
                 getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_width),
                 getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_height));
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 19; i++) {
             BubbleFlowItemView bubble = (BubbleFlowItemView) inflater.inflate(R.layout.view_bubble_flow_item, null);
             mBubbleFlowView.add(bubble);
         }
