@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
@@ -22,7 +23,7 @@ public class BubbleFlowView extends HorizontalScrollView {
 
     List<View> mViews;
     FrameLayout mContent;
-    boolean mExpanded;
+    boolean mIsExpanded;
     int mWidth;
     int mItemWidth;
     int mItemHeight;
@@ -46,7 +47,7 @@ public class BubbleFlowView extends HorizontalScrollView {
 
         addView(mContent);
 
-        mExpanded = true;
+        mIsExpanded = true;
     }
 
     public void setBubbleFlowViewListener(OnScrollChangedListener onScrollChangedListener) {
@@ -102,16 +103,50 @@ public class BubbleFlowView extends HorizontalScrollView {
         return closestIndex;
     }
 
-    void expand() {
+    private static final int ANIM_DURATION = 500;
 
+    void expand() {
+        if (mIsExpanded) {
+            return;
+        }
+
+        int size = mViews.size();
+        int centerIndex = getCenterIndex();
+        View centerView = mViews.get(centerIndex);
+        for (int i = 0; i < size; i++) {
+            View view = mViews.get(i);
+            if (centerView != view) {
+                int xOffset = (int) (centerView.getX() - (i * mItemWidth));
+                TranslateAnimation anim = new TranslateAnimation(xOffset, 0, 0, 0);
+                anim.setDuration(ANIM_DURATION);
+                anim.setFillAfter(true);
+                view.startAnimation(anim);
+            }
+        }
+        mIsExpanded = true;
     }
 
     void shrink() {
-
+        if (mIsExpanded == false) {
+            return;
+        }
+        int size = mViews.size();
+        View centerView = mViews.get(getCenterIndex());
+        for (int i = 0; i < size; i++) {
+            View view = mViews.get(i);
+            if (centerView != view) {
+                int xOffset = (int) (centerView.getX() - (i * mItemWidth));
+                TranslateAnimation anim = new TranslateAnimation(0, xOffset, 0, 0);
+                anim.setDuration(ANIM_DURATION);
+                anim.setFillAfter(true);
+                view.startAnimation(anim);
+            }
+        }
+        mIsExpanded = false;
     }
 
     boolean isExpanded() {
-        return mExpanded;
+        return mIsExpanded;
     }
 
     @Override
@@ -119,6 +154,20 @@ public class BubbleFlowView extends HorizontalScrollView {
         super.onScrollChanged(x, y, oldX, oldY);
         if (mOnScrollChangedListener != null) {
             mOnScrollChangedListener.onScrollChanged(this, x, y, oldX, oldY);
+        }
+
+        float targetScale = .7f;
+        int centerIndex = getCenterIndex();
+        int size = mViews.size();
+        for (int i = 0; i < size; i++) {
+            View view = mViews.get(i);
+            if (i == centerIndex) {
+                view.setScaleX(1.f);
+                view.setScaleY(1.f);
+            } else {
+                view.setScaleX(targetScale);
+                view.setScaleY(targetScale);
+            }
         }
     }
 
