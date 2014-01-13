@@ -47,3 +47,6 @@ com_crashlytics_export_strings.xml
 *.ipr
 *~
 *.swp
+
+Application/gradle/wrapper/gradle-wrapper.jar
+Application/gradle/wrapper/gradle-wrapper.properties
