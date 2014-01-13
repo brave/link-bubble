@@ -82,11 +82,24 @@ public class BubbleFlowView extends HorizontalScrollView {
         mContent.setLayoutParams(contentLP);
     }
 
-    void remove(View view) {
-        mViews.remove(view);
+    void updatePositions() {
+        for (int i = 0; i < mViews.size(); i++) {
+            View view = mViews.get(i);
+            FrameLayout.LayoutParams lp = (LayoutParams) view.getLayoutParams();
+            lp.leftMargin = i * mItemWidth;
+        }
+    }
 
+    void remove(int index) {
+        View view = mViews.get(index);
+        mViews.remove(view);
         mContent.removeView(view);
+        updatePositions();
         mContent.invalidate();
+    }
+
+    int getCount() {
+        return mViews.size();
     }
 
     int getCenterIndex() {
