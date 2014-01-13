@@ -117,6 +117,11 @@ public class BubbleFlowView extends HorizontalScrollView {
         return closestIndex;
     }
 
+    void setCenterIndex(int index) {
+        int scrollToX = (index * mItemWidth) - (mWidth/2) + (mItemWidth/2);
+        smoothScrollTo(scrollToX, 0);
+    }
+
     private static final int ANIM_DURATION = 500;
 
     void expand() {
