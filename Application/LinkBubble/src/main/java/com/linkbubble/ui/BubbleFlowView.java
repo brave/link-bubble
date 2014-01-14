@@ -24,6 +24,7 @@ public class BubbleFlowView extends HorizontalScrollView {
 
     public interface Listener {
         void onCenterItemClicked(View view);
+        // Note: only called when scrolling has finished
         void onCenterItemChanged(View view);
     }
 
@@ -34,7 +35,6 @@ public class BubbleFlowView extends HorizontalScrollView {
     private int mItemWidth;
     private int mItemHeight;
     private int mEdgeMargin;
-    private int mOldScrollCenterIndex;
     private int mIndexOnActionDown;
     private boolean mFlingCalled;
 
@@ -159,10 +159,6 @@ public class BubbleFlowView extends HorizontalScrollView {
     void setCenterIndex(int index) {
         int scrollToX = mEdgeMargin + (index * mItemWidth) - (mWidth/2) + (mItemWidth/2);
         smoothScrollTo(scrollToX, 0);
-
-        if (mBubbleFlowListener != null) {
-            mBubbleFlowListener.onCenterItemChanged(mViews.get(index));
-        }
     }
 
     private static final int ANIM_DURATION = 500;
@@ -221,12 +217,10 @@ public class BubbleFlowView extends HorizontalScrollView {
     protected void onScrollChanged(int x, int y, int oldX, int oldY) {
         super.onScrollChanged(x, y, oldX, oldY);
 
-        updateScales(x);
+        updateScales(x, oldX);
     }
 
-    void updateScales(int x) {
-
-        int currentCenterIndex = getCenterIndex();
+    void updateScales(int x, int oldX) {
 
         float centerX = x + (mWidth/2) - (mItemWidth/2);
         float fullScaleX = mItemWidth * .3f;
@@ -250,12 +244,28 @@ public class BubbleFlowView extends HorizontalScrollView {
             view.setScaleX(targetScale);
             view.setScaleY(targetScale);
         }
+    }
 
-        if (mOldScrollCenterIndex != currentCenterIndex && mBubbleFlowListener != null) {
-            mBubbleFlowListener.onCenterItemChanged(mViews.get(currentCenterIndex));
+    private static final int SCROLL_FINISHED_CHECK_TIME = 33;
+    private int mScrollFinishedCheckerInitialXPosition;
+    private Runnable mScrollFinishedChecker = new Runnable() {
+
+        public void run() {
+            if(mScrollFinishedCheckerInitialXPosition - getScrollX() == 0){
+                if (mBubbleFlowListener != null) {
+                    int currentCenterIndex = getCenterIndex();
+                    mBubbleFlowListener.onCenterItemChanged(mViews.get(currentCenterIndex));
+                }
+            }else{
+                mScrollFinishedCheckerInitialXPosition = getScrollX();
+                postDelayed(mScrollFinishedChecker, SCROLL_FINISHED_CHECK_TIME);
+            }
         }
+    };
 
-        mOldScrollCenterIndex = currentCenterIndex;
+    public void startScrollFinishedCheckTask(){
+        mScrollFinishedCheckerInitialXPosition = getScrollX();
+        postDelayed(mScrollFinishedChecker, SCROLL_FINISHED_CHECK_TIME);
     }
 
     /*
@@ -350,6 +360,7 @@ public class BubbleFlowView extends HorizontalScrollView {
                         }
                     }
                     mIndexOnActionDown = -1;
+                    startScrollFinishedCheckTask();
                     return true;
             }
 
