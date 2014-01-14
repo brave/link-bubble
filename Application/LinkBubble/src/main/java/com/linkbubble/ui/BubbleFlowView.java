@@ -22,8 +22,8 @@ public class BubbleFlowView extends HorizontalScrollView {
     private static final String TAG = "BubbleFlowView";
     private static final boolean DEBUG = false;
 
-    public interface OnScrollChangedListener {
-        void onScrollChanged(BubbleFlowView bubbleFlowView, int x, int y, int oldx, int oldy);
+    public interface Listener {
+        void onCenterItemClicked(View view);
     }
 
     private List<View> mViews;
@@ -36,7 +36,7 @@ public class BubbleFlowView extends HorizontalScrollView {
     private int mIndexOnActionDown;
     private boolean mFlingCalled;
 
-    private OnScrollChangedListener mOnScrollChangedListener;
+    private Listener mBubbleFlowListener;
 
     public BubbleFlowView(Context context) {
         this(context, null);
@@ -61,8 +61,8 @@ public class BubbleFlowView extends HorizontalScrollView {
         setOnTouchListener(mOnTouchListener);
     }
 
-    public void setBubbleFlowViewListener(OnScrollChangedListener onScrollChangedListener) {
-        mOnScrollChangedListener = onScrollChangedListener;
+    public void setBubbleFlowViewListener(Listener listener) {
+        mBubbleFlowListener = listener;
     }
 
     void configure(int width, int itemWidth, int itemHeight) {
@@ -91,7 +91,14 @@ public class BubbleFlowView extends HorizontalScrollView {
             public void onClick(View v) {
                 int index = mViews.indexOf(v);
                 if (index > -1) {
-                    setCenterIndex(index);
+                    int currentCenterIndex = getCenterIndex();
+                    if (currentCenterIndex != index) {
+                        setCenterIndex(index);
+                    } else {
+                        if (mBubbleFlowListener != null) {
+                            mBubbleFlowListener.onCenterItemClicked(v);
+                        }
+                    }
                 }
             }
         });
@@ -207,9 +214,6 @@ public class BubbleFlowView extends HorizontalScrollView {
     @Override
     protected void onScrollChanged(int x, int y, int oldX, int oldY) {
         super.onScrollChanged(x, y, oldX, oldY);
-        if (mOnScrollChangedListener != null) {
-            mOnScrollChangedListener.onScrollChanged(this, x, y, oldX, oldY);
-        }
 
         updateScales(x);
     }

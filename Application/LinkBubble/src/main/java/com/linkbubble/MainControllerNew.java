@@ -11,10 +11,8 @@ import android.widget.Toast;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.ui.BubbleDraggable;
-import com.linkbubble.ui.BubbleLegacyView;
-import com.linkbubble.ui.BubblePagerDraggable;
+import com.linkbubble.ui.BubbleFlowDraggable;
 import com.linkbubble.ui.ContentView;
-import com.linkbubble.util.Util;
 
 
 public class MainControllerNew extends MainController {
@@ -26,7 +24,7 @@ public class MainControllerNew extends MainController {
         sInstance = new MainControllerNew(context, eventHandler);
     }
 
-    private BubblePagerDraggable mBubblePagerDraggable;
+    private BubbleFlowDraggable mBubbleFlowDraggable;
     private BubbleDraggable mBubbleDraggable;
 
     protected MainControllerNew(Context context, EventHandler eventHandler) {
@@ -56,14 +54,14 @@ public class MainControllerNew extends MainController {
         mBubbleDraggable.setOnUpdateListener(new BubbleDraggable.OnUpdateListener() {
             @Override
             public void onUpdate(Draggable draggable, float dt, boolean contentView) {
-                mBubblePagerDraggable.syncWithBubble(draggable);
+                mBubbleFlowDraggable.syncWithBubble(draggable);
             }
         });
 
-        mBubblePagerDraggable = (BubblePagerDraggable) inflater.inflate(R.layout.view_bubble_pager, null);
-        mBubblePagerDraggable.configure(0, 0, 0, 0, 0.f, null);
-        mBubblePagerDraggable.setBubbleDraggable(mBubbleDraggable);
-        mBubblePagerDraggable.setVisibility(View.GONE);
+        mBubbleFlowDraggable = (BubbleFlowDraggable) inflater.inflate(R.layout.view_bubble_flow, null);
+        mBubbleFlowDraggable.configure(null);
+        mBubbleFlowDraggable.setBubbleDraggable(mBubbleDraggable);
+        mBubbleFlowDraggable.setVisibility(View.GONE);
     }
 
     @Override
@@ -71,14 +69,14 @@ public class MainControllerNew extends MainController {
         CookieSyncManager.createInstance(mContext);
         CookieManager.getInstance().setAcceptCookie(!incognito);
 
-        if (mBubblePagerDraggable != null) {
-            mBubblePagerDraggable.updateIncognitoMode(incognito);
+        if (mBubbleFlowDraggable != null) {
+            mBubbleFlowDraggable.updateIncognitoMode(incognito);
         }
     }
 
     @Override
     public int getBubbleCount() {
-        return mBubblePagerDraggable != null ? mBubblePagerDraggable.getBubbleCount() : 0;
+        return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getBubbleCount() : 0;
     }
 
     @Override
@@ -120,7 +118,7 @@ public class MainControllerNew extends MainController {
             mBubbleDraggable.setTargetPos(targetX, targetY, time, true);
         }
 
-        mBubblePagerDraggable.openUrlInBubble(url, startTime);
+        mBubbleFlowDraggable.openUrlInBubble(url, startTime);
         showBadge(getBubbleCount() > 1 ? true : false);
         ++mBubblesLoaded;
     }
@@ -128,9 +126,9 @@ public class MainControllerNew extends MainController {
     @Override
     public void showBadge(boolean show) {
         if (mBubbleDraggable != null) {
-            mBubbleDraggable.mBadgeView.setCount(mBubblePagerDraggable.getBubbleCount());
+            mBubbleDraggable.mBadgeView.setCount(mBubbleFlowDraggable.getBubbleCount());
             if (show) {
-                if (mBubblePagerDraggable.getBubbleCount() > 1) {
+                if (mBubbleFlowDraggable.getBubbleCount() > 1) {
                     mBubbleDraggable.mBadgeView.show();
                 }
             } else {
@@ -171,7 +169,7 @@ public class MainControllerNew extends MainController {
 
     @Override
     public ContentView getActiveContentView() {
-        return mBubblePagerDraggable.getContentView();
+        return mBubbleFlowDraggable.getContentView();
     }
 
     @Override
@@ -182,9 +180,9 @@ public class MainControllerNew extends MainController {
         if (debug) {
             Toast.makeText(mContext, "HIT TARGET!", 400).show();
         } else {
-            String currentBubbleUrl = mBubblePagerDraggable.getContentView().getCurrentUrl();
-            mBubblePagerDraggable.destroyCurrentBubble();
-            if (mBubblePagerDraggable.getBubbleCount() == 0) {
+            String currentBubbleUrl = mBubbleFlowDraggable.getContentView().getCurrentUrl();
+            mBubbleFlowDraggable.destroyCurrentBubble();
+            if (mBubbleFlowDraggable.getBubbleCount() == 0) {
                 removeBubbleDraggable();
 
                 Config.BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
@@ -201,7 +199,7 @@ public class MainControllerNew extends MainController {
 
     @Override
     public void destroyAllBubbles() {
-        mBubblePagerDraggable.destroyAllBubbles();
+        mBubbleFlowDraggable.destroyAllBubbles();
         removeBubbleDraggable();
     }
 
@@ -216,9 +214,9 @@ public class MainControllerNew extends MainController {
     @Override
     public void showBubblePager(boolean show) {
         if (show) {
-            mBubblePagerDraggable.show();
+            mBubbleFlowDraggable.show();
         } else {
-            mBubblePagerDraggable.hide();
+            mBubbleFlowDraggable.hide();
         }
         mBubbleDraggable.setVisibility(show ? View.GONE : View.VISIBLE);
     }
