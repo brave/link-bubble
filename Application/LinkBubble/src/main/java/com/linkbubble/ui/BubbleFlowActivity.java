@@ -29,12 +29,6 @@ public class BubbleFlowActivity extends Activity {
             BubbleFlowItemView bubble = (BubbleFlowItemView) inflater.inflate(R.layout.view_bubble_flow_item, null);
             mBubbleFlowView.add(bubble);
         }
-        mBubbleFlowView.setBubbleFlowViewListener(new BubbleFlowView.OnScrollChangedListener() {
-            @Override
-            public void onScrollChanged(BubbleFlowView bubbleFlowView, int x, int y, int oldx, int oldy) {
-                debugText.setText(mBubbleFlowView.getDebugString());
-            }
-        });
         debugText.setText(mBubbleFlowView.getDebugString());
 
         findViewById(R.id.add_bubble_button).setOnClickListener(new View.OnClickListener() {

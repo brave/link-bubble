@@ -23,64 +23,48 @@ import java.net.MalformedURLException;
 import java.util.Vector;
 
 
-public class BubblePagerDraggable extends BubblePagerView implements Draggable {
+public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     private DraggableHelper mDraggableHelper;
     private WindowManager mWindowManager;
     private EventHandler mEventHandler;
     private int mBubbleFlowWidth;
     private int mBubbleFlowHeight;
-    private BubblePagerItemView mCurrentBubble;
+    private BubbleFlowItemView mCurrentBubble;
     private BubbleDraggable mBubbleDraggable;
 
-    private static Vector<BubblePagerItemView> mBubbles = new Vector<BubblePagerItemView>();
+    private static Vector<BubbleFlowItemView> mBubbles = new Vector<BubbleFlowItemView>();
 
     public interface EventHandler {
-        public void onMotionEvent_Touch(BubblePagerDraggable sender, DraggableHelper.TouchEvent event);
-        public void onMotionEvent_Move(BubblePagerDraggable sender, DraggableHelper.MoveEvent event);
-        public void onMotionEvent_Release(BubblePagerDraggable sender, DraggableHelper.ReleaseEvent event);
+        public void onMotionEvent_Touch(BubbleFlowDraggable sender, DraggableHelper.TouchEvent event);
+        public void onMotionEvent_Move(BubbleFlowDraggable sender, DraggableHelper.MoveEvent event);
+        public void onMotionEvent_Release(BubbleFlowDraggable sender, DraggableHelper.ReleaseEvent event);
     }
 
-    public BubblePagerDraggable(Context context) {
+    public BubbleFlowDraggable(Context context) {
         this(context, null);
     }
 
-    public BubblePagerDraggable(Context context, AttributeSet attrs) {
+    public BubbleFlowDraggable(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public BubblePagerDraggable(Context context, AttributeSet attrs, int defStyle) {
+    public BubbleFlowDraggable(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
-    public void configure(int x0, int y0, int targetX, int targetY, float targetTime, EventHandler eventHandler)  {
+    public void configure(EventHandler eventHandler)  {
 
-        ViewPager pager = getViewPager();
-        PagerAdapter adapter = new BubblePagerAdapter(getContext());
-        pager.setAdapter(adapter);
-        //Necessary or the pager will only have one extra page to show
-        // make this at least however many pages you can see
-        pager.setOffscreenPageLimit(adapter.getCount());
-        //A little space between pages
-        pager.setPageMargin(15);
+        super.configure(getResources().getDimensionPixelSize(R.dimen.bubble_pager_width),
+                getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_width),
+                getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_height));
 
-        //If hardware acceleration is enabled, you should also remove
-        // clipping on the pager for its children.
-        pager.setClipChildren(false);
-
-        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        setBubbleFlowViewListener(new BubbleFlowView.Listener() {
             @Override
-            public void onPageScrolled(int i, float v, int i2) {
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-                BubblePagerItemView bubble = mBubbles.get(i);
-                setCurrentBubble(bubble, true);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
+            public void onCenterItemClicked(View view) {
+                MainController mainController = MainController.get();
+                mainController.getActiveDraggable().readd();
+                mainController.switchState(mainController.STATE_AnimateToBubbleView);
             }
         });
 
@@ -91,8 +75,8 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
 
         WindowManager.LayoutParams windowManagerParams = new WindowManager.LayoutParams();
         windowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
-        windowManagerParams.x = x0;
-        windowManagerParams.y = y0;
+        windowManagerParams.x = 0;
+        windowManagerParams.y = 0;
         windowManagerParams.height = mBubbleFlowHeight;
         windowManagerParams.width = mBubbleFlowWidth;
         windowManagerParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
@@ -105,21 +89,21 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
             @Override
             public void onActionDown(DraggableHelper.TouchEvent event) {
                 if (mEventHandler != null) {
-                    mEventHandler.onMotionEvent_Touch(BubblePagerDraggable.this, event);
+                    mEventHandler.onMotionEvent_Touch(BubbleFlowDraggable.this, event);
                 }
             }
 
             @Override
             public void onActionMove(DraggableHelper.MoveEvent event) {
                 if (mEventHandler != null) {
-                    mEventHandler.onMotionEvent_Move(BubblePagerDraggable.this, event);
+                    mEventHandler.onMotionEvent_Move(BubbleFlowDraggable.this, event);
                 }
             }
 
             @Override
             public void onActionUp(DraggableHelper.ReleaseEvent event) {
                 if (mEventHandler != null) {
-                    mEventHandler.onMotionEvent_Release(BubblePagerDraggable.this, event);
+                    mEventHandler.onMotionEvent_Release(BubbleFlowDraggable.this, event);
                 }
             }
         });
@@ -129,10 +113,7 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
         if (mDraggableHelper.isAlive()) {
             mWindowManager.addView(this, windowManagerParams);
 
-            setExactPos(x0, y0);
-            if (targetX != x0 || targetY != y0) {
-                setTargetPos(targetX, targetY, targetTime, true);
-            }
+            setExactPos(0, 0);
         }
     }
 
@@ -146,11 +127,11 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
         return mBubbles.size();
     }
 
-    public BubblePagerItemView getCurrentBubble() {
+    public BubbleFlowItemView getCurrentBubble() {
         return mCurrentBubble;
     }
 
-    private void setCurrentBubble(BubblePagerItemView bubble, boolean showContentView) {
+    private void setCurrentBubble(BubbleFlowItemView bubble, boolean showContentView) {
         if (mCurrentBubble != null) {
             mCurrentBubble.setImitator(null);
         }
@@ -247,12 +228,12 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
 
 
     public void openUrlInBubble(String url, long startTime) {
-        BubblePagerItemView bubble;
+        BubbleFlowItemView bubble;
         try {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            bubble = (BubblePagerItemView) inflater.inflate(R.layout.view_bubble_pager_item, null);
+            bubble = (BubbleFlowItemView) inflater.inflate(R.layout.view_bubble_flow_item, null);
             bubble.configure(url, startTime,
-                    new BubblePagerItemView.BubbleFlowItemViewListener() {
+                    new BubbleFlowItemView.BubbleFlowItemViewListener() {
 
                         @Override
                         public void onDestroyBubble() {
@@ -288,23 +269,20 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
         mBubbles.add(bubble);
         mBubbleDraggable.mBadgeView.setCount(mBubbles.size());
 
-        Settings.get().saveCurrentBubblesPager(mBubbles);
+        Settings.get().saveCurrentBubbles(mBubbles);
 
-        BubblePagerAdapter adapter = (BubblePagerAdapter) getViewPager().getAdapter();
-        if (adapter.mBubbles == null) {
-            adapter.setBubbles(mBubbles);
-        } else {
-            adapter.notifyDataSetChanged();
-        }
+        add(bubble);
     }
 
-    private void destroyBubble(BubblePagerItemView bubble) {
+    private void destroyBubble(BubbleFlowItemView bubble) {
         mBubbles.remove(bubble);
         bubble.destroy();
     }
 
     private void postDestroyedBubble() {
+        /*
         mBubbleDraggable.mBadgeView.setCount(mBubbles.size());
+
         getViewPager().getAdapter().notifyDataSetChanged();
 
         int bubbleCount = mBubbles.size();
@@ -321,19 +299,19 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
             } else {
                 setCurrentBubble(mBubbles.get(currentItem), true);
             }
-        }
+        }*/
 
-        Settings.get().saveCurrentBubblesPager(mBubbles);
+        Settings.get().saveCurrentBubbles(mBubbles);
     }
 
     public void destroyCurrentBubble() {
-        BubblePagerItemView currentBubble = getCurrentBubble();
+        BubbleFlowItemView currentBubble = getCurrentBubble();
         destroyBubble(currentBubble);
         postDestroyedBubble();
     }
 
     public void destroyAllBubbles() {
-        for (BubblePagerItemView bubble : mBubbles) {
+        for (BubbleFlowItemView bubble : mBubbles) {
             destroyBubble(bubble);
         }
         mBubbles.clear();
@@ -348,7 +326,7 @@ public class BubblePagerDraggable extends BubblePagerView implements Draggable {
 
     public void show() {
         setVisibility(View.VISIBLE);
-        getViewPager().getAdapter().notifyDataSetChanged();
+        //getViewPager().getAdapter().notifyDataSetChanged();
     }
 
     public void hide() {
