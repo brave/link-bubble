@@ -24,6 +24,7 @@ public class BubbleFlowView extends HorizontalScrollView {
 
     public interface Listener {
         void onCenterItemClicked(View view);
+        void onCenterItemChanged(View view);
     }
 
     private List<View> mViews;
@@ -33,6 +34,7 @@ public class BubbleFlowView extends HorizontalScrollView {
     private int mItemWidth;
     private int mItemHeight;
     private int mEdgeMargin;
+    private int mOldScrollCenterIndex;
     private int mIndexOnActionDown;
     private boolean mFlingCalled;
 
@@ -157,6 +159,10 @@ public class BubbleFlowView extends HorizontalScrollView {
     void setCenterIndex(int index) {
         int scrollToX = mEdgeMargin + (index * mItemWidth) - (mWidth/2) + (mItemWidth/2);
         smoothScrollTo(scrollToX, 0);
+
+        if (mBubbleFlowListener != null) {
+            mBubbleFlowListener.onCenterItemChanged(mViews.get(index));
+        }
     }
 
     private static final int ANIM_DURATION = 500;
@@ -220,6 +226,8 @@ public class BubbleFlowView extends HorizontalScrollView {
 
     void updateScales(int x) {
 
+        int currentCenterIndex = getCenterIndex();
+
         float centerX = x + (mWidth/2) - (mItemWidth/2);
         float fullScaleX = mItemWidth * .3f;
         float minScaleX = mItemWidth * 1.2f;
@@ -242,6 +250,12 @@ public class BubbleFlowView extends HorizontalScrollView {
             view.setScaleX(targetScale);
             view.setScaleY(targetScale);
         }
+
+        if (mOldScrollCenterIndex != currentCenterIndex && mBubbleFlowListener != null) {
+            mBubbleFlowListener.onCenterItemChanged(mViews.get(currentCenterIndex));
+        }
+
+        mOldScrollCenterIndex = currentCenterIndex;
     }
 
     /*
