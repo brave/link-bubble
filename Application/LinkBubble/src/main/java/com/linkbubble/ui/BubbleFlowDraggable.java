@@ -84,7 +84,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         windowManagerParams.format = PixelFormat.TRANSPARENT;
         windowManagerParams.setTitle("LinkBubble: BubbleFlowView");
 
-        mDraggableHelper = new DraggableHelper(this, mWindowManager, windowManagerParams, new DraggableHelper.OnTouchActionEventListener() {
+        mDraggableHelper = new DraggableHelper(this, mWindowManager, windowManagerParams, false, new DraggableHelper.OnTouchActionEventListener() {
 
             @Override
             public void onActionDown(DraggableHelper.TouchEvent event) {
