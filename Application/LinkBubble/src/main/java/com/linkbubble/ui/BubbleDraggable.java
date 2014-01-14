@@ -69,7 +69,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         windowManagerParams.format = PixelFormat.TRANSPARENT;
         windowManagerParams.setTitle("LinkBubble: BubbleDraggable");
 
-        mDraggableHelper = new DraggableHelper(this, mWindowManager, windowManagerParams, new DraggableHelper.OnTouchActionEventListener() {
+        mDraggableHelper = new DraggableHelper(this, mWindowManager, windowManagerParams, true, new DraggableHelper.OnTouchActionEventListener() {
 
             @Override
             public void onActionDown(DraggableHelper.TouchEvent event) {

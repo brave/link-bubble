@@ -114,7 +114,7 @@ public class BubbleLegacyView extends BubbleView implements Draggable {
             }
         });
 
-        mDraggableHelper = new DraggableHelper(this, mWindowManager, windowManagerParams, new DraggableHelper.OnTouchActionEventListener() {
+        mDraggableHelper = new DraggableHelper(this, mWindowManager, windowManagerParams, true, new DraggableHelper.OnTouchActionEventListener() {
 
             @Override
             public void onActionDown(DraggableHelper.TouchEvent event) {

@@ -75,7 +75,7 @@ public class DraggableHelper {
 
     private OnTouchActionEventListener mOnTouchActionEventListener;
 
-    public DraggableHelper(View view, WindowManager windowManager, WindowManager.LayoutParams windowManagerParams,
+    public DraggableHelper(View view, WindowManager windowManager, WindowManager.LayoutParams windowManagerParams, boolean setOnTouchListener,
                            OnTouchActionEventListener onTouchEventListener) {
         mView = view;
         mAlive = true;
@@ -83,133 +83,137 @@ public class DraggableHelper {
         mWindowManagerParams = windowManagerParams;
         mOnTouchActionEventListener = onTouchEventListener;
 
-        mView.setOnTouchListener(new View.OnTouchListener() {
-            private float mStartTouchXRaw;
-            private float mStartTouchYRaw;
-            private int mStartTouchX;
-            private int mStartTouchY;
-
-            @Override
-            public boolean onTouch(android.view.View v, MotionEvent event) {
-
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN: {
-                        mStartTouchXRaw = event.getRawX();
-                        mStartTouchYRaw = event.getRawY();
-                        DraggableHelper.TouchEvent e = new DraggableHelper.TouchEvent();
-                        e.posX = mWindowManagerParams.x;
-                        e.posY = mWindowManagerParams.y;
-                        e.rawX = mStartTouchXRaw;
-                        e.rawY = mStartTouchYRaw;
-
-                        mMoveEvents.clear();
-                        InternalMoveEvent me = new InternalMoveEvent(mStartTouchXRaw, mStartTouchYRaw, event.getEventTime());
-                        mMoveEvents.add(me);
-
-                        if (mOnTouchActionEventListener != null) {
-                            mOnTouchActionEventListener.onActionDown(e);
-                        }
-
-                        mStartTouchX = mWindowManagerParams.x;
-                        mStartTouchY = mWindowManagerParams.y;
-
-                        mFlingTracker = FlingTracker.obtain();
-                        mFlingTracker.addMovement(event);
-
-                        return true;
-                    }
-                    case MotionEvent.ACTION_MOVE: {
-                        float touchXRaw = event.getRawX();
-                        float touchYRaw = event.getRawY();
-
-                        int deltaX = (int) (touchXRaw - mStartTouchXRaw);
-                        int deltaY = (int) (touchYRaw - mStartTouchYRaw);
-
-                        InternalMoveEvent me = new InternalMoveEvent(touchXRaw, touchYRaw, event.getEventTime());
-                        mMoveEvents.add(me);
-
-                        DraggableHelper.MoveEvent e = new DraggableHelper.MoveEvent();
-                        e.dx = deltaX;
-                        e.dy = deltaY;
-                        if (mOnTouchActionEventListener != null) {
-                            mOnTouchActionEventListener.onActionMove(e);
-                        }
-
-                        event.offsetLocation(mWindowManagerParams.x - mStartTouchX, mWindowManagerParams.y - mStartTouchY);
-                        mFlingTracker.addMovement(event);
-
-                        return true;
-                    }
-                    case MotionEvent.ACTION_UP: {
-
-                        DraggableHelper.ReleaseEvent e = new DraggableHelper.ReleaseEvent();
-                        e.posX = mWindowManagerParams.x;
-                        e.posY = mWindowManagerParams.y;
-                        e.vx = 0.0f;
-                        e.vy = 0.0f;
-                        e.rawX = event.getRawX();
-                        e.rawY = event.getRawY();
-
-                        if (mMoveEvents.size() > 0) {
-                            float firstMs = mMoveEvents.get(0).mTime;
-
-                            for (int i = 0; i < mMoveEvents.size(); ++i) {
-                                InternalMoveEvent me = mMoveEvents.get(i);
-                                float ms = me.mTime - firstMs;
-                            }
-                        }
-
-                        int moveEventCount = mMoveEvents.size();
-                        if (moveEventCount > 2) {
-                            InternalMoveEvent lastME = mMoveEvents.lastElement();
-                            InternalMoveEvent refME = null;
-
-                            for (int i = moveEventCount - 1; i >= 0; --i) {
-                                InternalMoveEvent me = mMoveEvents.get(i);
-
-                                if (lastME.mTime == me.mTime)
-                                    continue;
-
-                                refME = me;
-
-                                float touchTime = (lastME.mTime - me.mTime) / 1000.0f;
-                                if (touchTime > 0.03f) {
-                                    break;
-                                }
-                            }
-
-                            if (refME != null) {
-                                Util.Assert(refME.mTime != lastME.mTime);
-                                float touchTime = (lastME.mTime - refME.mTime) / 1000.0f;
-                                e.vx = (lastME.mX - refME.mX) / touchTime;
-                                e.vy = (lastME.mY - refME.mY) / touchTime;
-                            }
-                        }
-
-                        mFlingTracker.computeCurrentVelocity(1000);
-                        float fvx = mFlingTracker.getXVelocity();
-                        float fvy = mFlingTracker.getYVelocity();
-
-                        e.vx = fvx;
-                        e.vy = fvy;
-
-                        mFlingTracker.recycle();
-
-                        if (mOnTouchActionEventListener != null) {
-                            mOnTouchActionEventListener.onActionUp(e);
-                        }
-
-                        return true;
-                    }
-                    //case MotionEvent.ACTION_CANCEL: {
-                    //    return true;
-                    //}
-                }
-
-                return false;
-            }
-        });
+        if (setOnTouchListener) {
+            mView.setOnTouchListener(mOnTouchListener);
+        }
     }
+
+    private View.OnTouchListener mOnTouchListener = new View.OnTouchListener() {
+        private float mStartTouchXRaw;
+        private float mStartTouchYRaw;
+        private int mStartTouchX;
+        private int mStartTouchY;
+
+        @Override
+        public boolean onTouch(android.view.View v, MotionEvent event) {
+
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN: {
+                    mStartTouchXRaw = event.getRawX();
+                    mStartTouchYRaw = event.getRawY();
+                    DraggableHelper.TouchEvent e = new DraggableHelper.TouchEvent();
+                    e.posX = mWindowManagerParams.x;
+                    e.posY = mWindowManagerParams.y;
+                    e.rawX = mStartTouchXRaw;
+                    e.rawY = mStartTouchYRaw;
+
+                    mMoveEvents.clear();
+                    InternalMoveEvent me = new InternalMoveEvent(mStartTouchXRaw, mStartTouchYRaw, event.getEventTime());
+                    mMoveEvents.add(me);
+
+                    if (mOnTouchActionEventListener != null) {
+                        mOnTouchActionEventListener.onActionDown(e);
+                    }
+
+                    mStartTouchX = mWindowManagerParams.x;
+                    mStartTouchY = mWindowManagerParams.y;
+
+                    mFlingTracker = FlingTracker.obtain();
+                    mFlingTracker.addMovement(event);
+
+                    return true;
+                }
+                case MotionEvent.ACTION_MOVE: {
+                    float touchXRaw = event.getRawX();
+                    float touchYRaw = event.getRawY();
+
+                    int deltaX = (int) (touchXRaw - mStartTouchXRaw);
+                    int deltaY = (int) (touchYRaw - mStartTouchYRaw);
+
+                    InternalMoveEvent me = new InternalMoveEvent(touchXRaw, touchYRaw, event.getEventTime());
+                    mMoveEvents.add(me);
+
+                    DraggableHelper.MoveEvent e = new DraggableHelper.MoveEvent();
+                    e.dx = deltaX;
+                    e.dy = deltaY;
+                    if (mOnTouchActionEventListener != null) {
+                        mOnTouchActionEventListener.onActionMove(e);
+                    }
+
+                    event.offsetLocation(mWindowManagerParams.x - mStartTouchX, mWindowManagerParams.y - mStartTouchY);
+                    mFlingTracker.addMovement(event);
+
+                    return true;
+                }
+                case MotionEvent.ACTION_UP: {
+
+                    DraggableHelper.ReleaseEvent e = new DraggableHelper.ReleaseEvent();
+                    e.posX = mWindowManagerParams.x;
+                    e.posY = mWindowManagerParams.y;
+                    e.vx = 0.0f;
+                    e.vy = 0.0f;
+                    e.rawX = event.getRawX();
+                    e.rawY = event.getRawY();
+
+                    if (mMoveEvents.size() > 0) {
+                        float firstMs = mMoveEvents.get(0).mTime;
+
+                        for (int i = 0; i < mMoveEvents.size(); ++i) {
+                            InternalMoveEvent me = mMoveEvents.get(i);
+                            float ms = me.mTime - firstMs;
+                        }
+                    }
+
+                    int moveEventCount = mMoveEvents.size();
+                    if (moveEventCount > 2) {
+                        InternalMoveEvent lastME = mMoveEvents.lastElement();
+                        InternalMoveEvent refME = null;
+
+                        for (int i = moveEventCount - 1; i >= 0; --i) {
+                            InternalMoveEvent me = mMoveEvents.get(i);
+
+                            if (lastME.mTime == me.mTime)
+                                continue;
+
+                            refME = me;
+
+                            float touchTime = (lastME.mTime - me.mTime) / 1000.0f;
+                            if (touchTime > 0.03f) {
+                                break;
+                            }
+                        }
+
+                        if (refME != null) {
+                            Util.Assert(refME.mTime != lastME.mTime);
+                            float touchTime = (lastME.mTime - refME.mTime) / 1000.0f;
+                            e.vx = (lastME.mX - refME.mX) / touchTime;
+                            e.vy = (lastME.mY - refME.mY) / touchTime;
+                        }
+                    }
+
+                    mFlingTracker.computeCurrentVelocity(1000);
+                    float fvx = mFlingTracker.getXVelocity();
+                    float fvy = mFlingTracker.getYVelocity();
+
+                    e.vx = fvx;
+                    e.vy = fvy;
+
+                    mFlingTracker.recycle();
+
+                    if (mOnTouchActionEventListener != null) {
+                        mOnTouchActionEventListener.onActionUp(e);
+                    }
+
+                    return true;
+                }
+                //case MotionEvent.ACTION_CANCEL: {
+                //    return true;
+                //}
+            }
+
+            return false;
+        }
+    };
 
     public void clearTargetPos() {
         mInitialX = -1;
