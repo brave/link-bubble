@@ -96,6 +96,7 @@ public class BubbleFlowView extends HorizontalScrollView {
                     int currentCenterIndex = getCenterIndex();
                     if (currentCenterIndex != index) {
                         setCenterIndex(index);
+                        startScrollFinishedCheckTask();
                     } else {
                         if (mBubbleFlowListener != null) {
                             mBubbleFlowListener.onCenterItemClicked(v);
