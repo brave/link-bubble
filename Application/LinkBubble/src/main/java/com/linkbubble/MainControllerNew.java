@@ -12,6 +12,8 @@ import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.ui.BubbleDraggable;
 import com.linkbubble.ui.BubbleFlowDraggable;
+import com.linkbubble.ui.BubbleFlowItemView;
+import com.linkbubble.ui.BubbleFlowView;
 import com.linkbubble.ui.ContentView;
 
 
@@ -72,6 +74,15 @@ public class MainControllerNew extends MainController {
         if (mBubbleFlowDraggable != null) {
             mBubbleFlowDraggable.updateIncognitoMode(incognito);
         }
+    }
+
+    @Override
+    public void startDraggingFromContentView(BubbleFlowItemView view) {
+        mCanvasView.fadeInTargets();
+        mCanvasView.hideContentView();
+
+        MainController.get().setActiveDraggable(mBubbleDraggable);
+        //mDraggable.getDraggableHelper().doSnap(mCanvasView, mTargetX, mTargetY);
     }
 
     @Override
@@ -212,12 +223,37 @@ public class MainControllerNew extends MainController {
     }
 
     @Override
-    public void showBubblePager(boolean show) {
+    public void showBubbleFlow(boolean show, long time) {
         if (show) {
-            mBubbleFlowDraggable.show();
+            mBubbleFlowDraggable.setVisibility(View.VISIBLE);
+            mBubbleFlowDraggable.expand(time, mOnBubbleFlowExpandFinishedListener);
         } else {
-            mBubbleFlowDraggable.hide();
+            mBubbleFlowDraggable.collapse(time, mOnBubbleFlowCollapseFinishedListener);
         }
-        mBubbleDraggable.setVisibility(show ? View.GONE : View.VISIBLE);
     }
+
+    BubbleFlowView.AnimationEventListener mOnBubbleFlowExpandFinishedListener = new BubbleFlowView.AnimationEventListener() {
+        @Override
+        public void onAnimationStart(BubbleFlowView sender) {
+            mBubbleDraggable.setAlpha(0.f);
+        }
+
+        @Override
+        public void onAnimationEnd(BubbleFlowView sender) {
+
+        }
+    };
+
+    BubbleFlowView.AnimationEventListener mOnBubbleFlowCollapseFinishedListener = new BubbleFlowView.AnimationEventListener() {
+
+        @Override
+        public void onAnimationStart(BubbleFlowView sender) {
+            mBubbleDraggable.setAlpha(1.f);
+        }
+
+        @Override
+        public void onAnimationEnd(BubbleFlowView sender) {
+            sender.setVisibility(View.GONE);
+        }
+    };
 }

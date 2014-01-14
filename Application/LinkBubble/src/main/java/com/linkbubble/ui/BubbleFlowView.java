@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -23,9 +24,15 @@ public class BubbleFlowView extends HorizontalScrollView {
     private static final boolean DEBUG = false;
 
     public interface Listener {
-        void onCenterItemClicked(View view);
+        void onCenterItemClicked(BubbleFlowView sender, View view);
+        void onCenterItemLongClicked(BubbleFlowView sender, View view);
         // Note: only called when scrolling has finished
-        void onCenterItemChanged(View view);
+        void onCenterItemChanged(BubbleFlowView sender, View view);
+    }
+
+    public interface AnimationEventListener {
+        void onAnimationStart(BubbleFlowView sender);
+        void onAnimationEnd(BubbleFlowView sender);
     }
 
     private List<View> mViews;
@@ -99,10 +106,31 @@ public class BubbleFlowView extends HorizontalScrollView {
                         startScrollFinishedCheckTask();
                     } else {
                         if (mBubbleFlowListener != null) {
-                            mBubbleFlowListener.onCenterItemClicked(v);
+                            mBubbleFlowListener.onCenterItemClicked(BubbleFlowView.this, v);
                         }
                     }
                 }
+            }
+        });
+
+        view.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                int index = mViews.indexOf(v);
+                if (index > -1) {
+                    int currentCenterIndex = getCenterIndex();
+                    if (currentCenterIndex != index) {
+                        setCenterIndex(index);
+                        startScrollFinishedCheckTask();
+                        return true;
+                    } else {
+                        if (mBubbleFlowListener != null) {
+                            mBubbleFlowListener.onCenterItemLongClicked(BubbleFlowView.this, v);
+                            return true;
+                        }
+                    }
+                }
+                return false;
             }
         });
 
@@ -162,9 +190,13 @@ public class BubbleFlowView extends HorizontalScrollView {
         smoothScrollTo(scrollToX, 0);
     }
 
-    private static final int ANIM_DURATION = 500;
+    private static final int DEFAULT_ANIM_TIME = 300;
 
-    void expand() {
+    public void expand() {
+        expand(DEFAULT_ANIM_TIME, null);
+    }
+
+    public void expand(long time, final AnimationEventListener animationEventListener) {
         if (mIsExpanded) {
             return;
         }
@@ -172,38 +204,107 @@ public class BubbleFlowView extends HorizontalScrollView {
         int size = mViews.size();
         int centerIndex = getCenterIndex();
         View centerView = mViews.get(centerIndex);
+        boolean addedAnimationListener = false;
         for (int i = 0; i < size; i++) {
             View view = mViews.get(i);
             if (centerView != view) {
                 int xOffset = (int) (centerView.getX() - ((i * mItemWidth) + mEdgeMargin));
                 TranslateAnimation anim = new TranslateAnimation(xOffset, 0, 0, 0);
-                anim.setDuration(ANIM_DURATION);
+                anim.setDuration(time);
                 anim.setFillAfter(true);
+                if (addedAnimationListener == false) {
+                    anim.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            if (animationEventListener != null) {
+                                animationEventListener.onAnimationStart(BubbleFlowView.this);
+                            }
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            if (animationEventListener != null) {
+                                animationEventListener.onAnimationStart(BubbleFlowView.this);
+                            }
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+                    addedAnimationListener = true;
+                }
                 view.startAnimation(anim);
             }
         }
+
+        if (centerIndex == 0 && mViews.size() == 1) {
+            if (animationEventListener != null) {
+                animationEventListener.onAnimationStart(this);
+                animationEventListener.onAnimationEnd(this);
+            }
+        }
+
         // Remove and re-add to ensure view is drawn last.
         mContent.removeView(centerView);
         mContent.addView(centerView);
         mIsExpanded = true;
     }
 
-    void shrink() {
+    public void collapse() {
+        collapse(DEFAULT_ANIM_TIME, null);
+    }
+
+    public void collapse(long time, final AnimationEventListener animationEventListener) {
         if (mIsExpanded == false) {
             return;
         }
         int size = mViews.size();
-        View centerView = mViews.get(getCenterIndex());
+        int centerIndex = getCenterIndex();
+        View centerView = mViews.get(centerIndex);
+        boolean addedAnimationListener = false;
         for (int i = 0; i < size; i++) {
             View view = mViews.get(i);
             if (centerView != view) {
                 int xOffset = (int) (centerView.getX() - ((i * mItemWidth) + mEdgeMargin));
                 TranslateAnimation anim = new TranslateAnimation(0, xOffset, 0, 0);
-                anim.setDuration(ANIM_DURATION);
+                anim.setDuration(time);
                 anim.setFillAfter(true);
+                if (addedAnimationListener == false) {
+                    anim.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            if (animationEventListener != null) {
+                                animationEventListener.onAnimationStart(BubbleFlowView.this);
+                            }
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            if (animationEventListener != null) {
+                                animationEventListener.onAnimationEnd(BubbleFlowView.this);
+                            }
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+                    addedAnimationListener = true;
+                }
                 view.startAnimation(anim);
             }
         }
+
+        if (centerIndex == 0 && mViews.size() == 1) {
+            if (animationEventListener != null) {
+                animationEventListener.onAnimationStart(this);
+                animationEventListener.onAnimationEnd(this);
+            }
+        }
+
         // Remove and re-add to ensure view is drawn last.
         mContent.removeView(centerView);
         mContent.addView(centerView);
@@ -255,7 +356,7 @@ public class BubbleFlowView extends HorizontalScrollView {
             if(mScrollFinishedCheckerInitialXPosition - getScrollX() == 0){
                 if (mBubbleFlowListener != null) {
                     int currentCenterIndex = getCenterIndex();
-                    mBubbleFlowListener.onCenterItemChanged(mViews.get(currentCenterIndex));
+                    mBubbleFlowListener.onCenterItemChanged(BubbleFlowView.this, mViews.get(currentCenterIndex));
                 }
             }else{
                 mScrollFinishedCheckerInitialXPosition = getScrollX();

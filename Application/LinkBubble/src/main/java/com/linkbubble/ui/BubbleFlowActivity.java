@@ -57,11 +57,11 @@ public class BubbleFlowActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if (mBubbleFlowView.isExpanded()) {
-                    mBubbleFlowView.shrink();
+                    mBubbleFlowView.collapse();
                     animateButton.setText("Expand");
                 } else {
                     mBubbleFlowView.expand();
-                    animateButton.setText("Shrink");
+                    animateButton.setText("Collapse");
                 }
             }
         });

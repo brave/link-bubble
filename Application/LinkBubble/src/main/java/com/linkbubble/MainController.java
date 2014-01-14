@@ -28,6 +28,7 @@ import com.linkbubble.physics.State_Flick_ContentView;
 import com.linkbubble.physics.State_KillBubble;
 import com.linkbubble.physics.State_SnapToEdge;
 import com.linkbubble.ui.BadgeView;
+import com.linkbubble.ui.BubbleFlowItemView;
 import com.linkbubble.ui.BubbleLegacyView;
 import com.linkbubble.ui.BubbleView;
 import com.linkbubble.ui.CanvasView;
@@ -220,7 +221,12 @@ public abstract class MainController implements Choreographer.FrameCallback {
         scheduleUpdate();
     }
 
-    public void showBubblePager(boolean show) {}
+    // TODO: think of a better name
+    public void startDraggingFromContentView(BubbleFlowItemView view) {}
+
+    public void showBubbleFlow(boolean show, long time) {}
+
+    //public void showBubblePager(boolean show) {}
 
     public void showContentView(ContentView contentView) {
         mCanvasView.setContentView(contentView);
