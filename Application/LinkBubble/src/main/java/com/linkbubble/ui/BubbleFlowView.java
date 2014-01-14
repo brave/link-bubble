@@ -28,6 +28,7 @@ public class BubbleFlowView extends HorizontalScrollView {
     int mWidth;
     int mItemWidth;
     int mItemHeight;
+    int mEdgeMargin;
     private OnScrollChangedListener mOnScrollChangedListener;
 
     public BubbleFlowView(Context context) {
@@ -59,11 +60,12 @@ public class BubbleFlowView extends HorizontalScrollView {
         mWidth = width;
         mItemWidth = itemWidth;
         mItemHeight = itemHeight;
+        mEdgeMargin = (width - itemWidth) / 2;
     }
 
     void add(View view) {
         FrameLayout.LayoutParams lp = new LayoutParams(mItemWidth, mItemHeight, Gravity.TOP|Gravity.LEFT);
-        lp.leftMargin = mViews.size() * mItemWidth;
+        lp.leftMargin = mEdgeMargin + mViews.size() * mItemWidth;
         mContent.addView(view, lp);
         mContent.invalidate();
 
@@ -77,16 +79,25 @@ public class BubbleFlowView extends HorizontalScrollView {
 
         mViews.add(view);
 
+        updatePositions();
+
         ViewGroup.LayoutParams contentLP = mContent.getLayoutParams();
-        contentLP.width = mViews.size() * mItemWidth + mItemWidth;
+        contentLP.width = (mViews.size() * mItemWidth) + mItemWidth + (2 * mEdgeMargin);
         mContent.setLayoutParams(contentLP);
     }
 
     void updatePositions() {
-        for (int i = 0; i < mViews.size(); i++) {
+        int size = mViews.size();
+        for (int i = 0; i < size; i++) {
             View view = mViews.get(i);
             FrameLayout.LayoutParams lp = (LayoutParams) view.getLayoutParams();
-            lp.leftMargin = i * mItemWidth;
+            lp.leftMargin = mEdgeMargin + (i * mItemWidth);
+
+            if (size-1 == i) {
+                lp.rightMargin = mEdgeMargin;
+            } else {
+                lp.rightMargin = 0;
+            }
         }
     }
 
@@ -107,7 +118,7 @@ public class BubbleFlowView extends HorizontalScrollView {
         int closestXAbsDelta = Integer.MAX_VALUE;
         int closestIndex = -1;
         for (int i = 0; i < mViews.size(); i++) {
-            int x = (i * mItemWidth) + (mItemWidth/2);
+            int x = mEdgeMargin + (i * mItemWidth) + (mItemWidth/2);
             int absDelta = Math.abs(x-centerX);
             if (absDelta < closestXAbsDelta) {
                 closestXAbsDelta = absDelta;
@@ -118,7 +129,7 @@ public class BubbleFlowView extends HorizontalScrollView {
     }
 
     void setCenterIndex(int index) {
-        int scrollToX = (index * mItemWidth) - (mWidth/2) + (mItemWidth/2);
+        int scrollToX = mEdgeMargin + (index * mItemWidth) - (mWidth/2) + (mItemWidth/2);
         smoothScrollTo(scrollToX, 0);
     }
 
@@ -135,7 +146,7 @@ public class BubbleFlowView extends HorizontalScrollView {
         for (int i = 0; i < size; i++) {
             View view = mViews.get(i);
             if (centerView != view) {
-                int xOffset = (int) (centerView.getX() - (i * mItemWidth));
+                int xOffset = (int) (centerView.getX() - ((i * mItemWidth) + mEdgeMargin));
                 TranslateAnimation anim = new TranslateAnimation(xOffset, 0, 0, 0);
                 anim.setDuration(ANIM_DURATION);
                 anim.setFillAfter(true);
@@ -157,7 +168,7 @@ public class BubbleFlowView extends HorizontalScrollView {
         for (int i = 0; i < size; i++) {
             View view = mViews.get(i);
             if (centerView != view) {
-                int xOffset = (int) (centerView.getX() - (i * mItemWidth));
+                int xOffset = (int) (centerView.getX() - ((i * mItemWidth) + mEdgeMargin));
                 TranslateAnimation anim = new TranslateAnimation(0, xOffset, 0, 0);
                 anim.setDuration(ANIM_DURATION);
                 anim.setFillAfter(true);
@@ -195,7 +206,7 @@ public class BubbleFlowView extends HorizontalScrollView {
         int size = mViews.size();
         for (int i = 0; i < size; i++) {
             View view = mViews.get(i);
-            float xDelta = Math.abs(centerX - (i * mItemWidth));
+            float xDelta = Math.abs(centerX - ((i * mItemWidth) + mEdgeMargin));
             float targetScale;
             if (xDelta < fullScaleX) {
                 targetScale = 1.f;
