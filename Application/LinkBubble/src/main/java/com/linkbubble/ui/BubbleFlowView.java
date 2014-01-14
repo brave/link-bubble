@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
@@ -18,17 +19,23 @@ import java.util.List;
 
 public class BubbleFlowView extends HorizontalScrollView {
 
+    private static final String TAG = "BubbleFlowView";
+    private static final boolean DEBUG = false;
+
     public interface OnScrollChangedListener {
         void onScrollChanged(BubbleFlowView bubbleFlowView, int x, int y, int oldx, int oldy);
     }
 
-    List<View> mViews;
-    FrameLayout mContent;
-    boolean mIsExpanded;
-    int mWidth;
-    int mItemWidth;
-    int mItemHeight;
-    int mEdgeMargin;
+    private List<View> mViews;
+    private FrameLayout mContent;
+    private boolean mIsExpanded;
+    private int mWidth;
+    private int mItemWidth;
+    private int mItemHeight;
+    private int mEdgeMargin;
+    private int mIndexOnActionDown;
+    private boolean mFlingCalled;
+
     private OnScrollChangedListener mOnScrollChangedListener;
 
     public BubbleFlowView(Context context) {
@@ -50,6 +57,8 @@ public class BubbleFlowView extends HorizontalScrollView {
         addView(mContent);
 
         mIsExpanded = true;
+
+        setOnTouchListener(mOnTouchListener);
     }
 
     public void setBubbleFlowViewListener(OnScrollChangedListener onScrollChangedListener) {
@@ -230,6 +239,105 @@ public class BubbleFlowView extends HorizontalScrollView {
             view.setScaleY(targetScale);
         }
     }
+
+    /*
+     * Override the fling functionality by manually setting the target index to animate towards.
+     * This allows us to ensure a view is always centered in the middle of the BubbleFlowView
+     */
+    @Override
+    public void fling(int velocityX) {
+        mFlingCalled = true;
+        String debugMessage = "fling() - velocityX:" + velocityX;
+
+        int currentIndex = getCenterIndex();
+        int targetIndex;
+        int absVelocityX = Math.abs(velocityX);
+        if (absVelocityX > 8000) {
+            //super.fling(velocityX);
+            if (velocityX < 0) {
+                targetIndex = 0;
+            } else {
+                targetIndex = mViews.size();
+            }
+        } else {
+            if (absVelocityX > 6000) {
+                if (velocityX < 0) {
+                    targetIndex = currentIndex - 6;
+                } else {
+                    targetIndex = currentIndex + 6;
+                }
+            } else if (absVelocityX > 4500) {
+                if (velocityX < 0) {
+                    targetIndex = currentIndex - 2;
+                } else {
+                    targetIndex = currentIndex + 2;
+                }
+            } else if (absVelocityX > 2000) {
+                if (velocityX < 0) {
+                    targetIndex = currentIndex - 1;
+                } else {
+                    targetIndex = currentIndex + 1;
+                }
+            } else {
+                if (velocityX < 0 && (currentIndex == mIndexOnActionDown)) {
+                    targetIndex = mIndexOnActionDown - 1;
+                    debugMessage += ", [babyFling] mIndexOnActionDown: " + mIndexOnActionDown + ", target: " + targetIndex;
+                } else if (velocityX > 0 && (currentIndex == mIndexOnActionDown)) {
+                    targetIndex = mIndexOnActionDown + 1;
+                    debugMessage += ", [babyFling] mIndexOnActionDown: " + mIndexOnActionDown + ", target: " + targetIndex;
+                } else {
+                    debugMessage += ", [babyFling] mIndexOnActionDown: " + mIndexOnActionDown + ", currentIndex: " + currentIndex;
+                    targetIndex = currentIndex;
+                }
+            }
+        }
+
+        if (targetIndex < 0) {
+            targetIndex = 0;
+        } else if (targetIndex >= mViews.size()) {
+            targetIndex = mViews.size() - 1;
+        }
+        debugMessage += ", delta:" + (targetIndex-currentIndex);
+        setCenterIndex(targetIndex);
+
+        if (DEBUG) {
+            Log.d(TAG, debugMessage);
+        }
+    }
+
+    private OnTouchListener mOnTouchListener = new OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent ev) {
+            final int action = ev.getAction();
+
+            switch (action & MotionEvent.ACTION_MASK) {
+                case MotionEvent.ACTION_DOWN:
+                    mIndexOnActionDown = getCenterIndex();
+                    break;
+
+                case MotionEvent.ACTION_MOVE:
+                    // Sometimes ACTION_DOWN is not called, so ensure mIndexOnActionDown is set
+                    if (mIndexOnActionDown == -1) {
+                        mIndexOnActionDown = getCenterIndex();
+                    }
+                    break;
+
+                case MotionEvent.ACTION_UP:
+                    mFlingCalled = false;
+                    BubbleFlowView.this.onTouchEvent(ev);
+                    if (mFlingCalled == false) {
+                        setCenterIndex(getCenterIndex());
+                        if (DEBUG) {
+                            Log.d(TAG, "No fling - back to middle!");
+                        }
+                    }
+                    mIndexOnActionDown = -1;
+                    return true;
+            }
+
+            return false;
+        }
+    };
 
     String getDebugString() {
         return "count:" + mViews.size() + ", center index:" + getCenterIndex() + ", width:" + mContent.getWidth()
