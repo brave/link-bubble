@@ -77,6 +77,16 @@ public class BubbleFlowView extends HorizontalScrollView {
             debugIndexTextView.setVisibility(VISIBLE);
         }
 
+        view.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int index = mViews.indexOf(v);
+                if (index > -1) {
+                    setCenterIndex(index);
+                }
+            }
+        });
+
         mViews.add(view);
 
         updatePositions();
