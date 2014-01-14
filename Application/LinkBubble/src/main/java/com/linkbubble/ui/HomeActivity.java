@@ -56,22 +56,6 @@ public class HomeActivity extends Activity {
         Vector<String> urls = Settings.get().loadCurrentBubbles();
         MainApplication.restoreLinks(this, urls.toArray(new String[urls.size()]));
 
-        final BubblePagerView bubblePagerView = (BubblePagerView) findViewById(R.id.bubble_pager);
-        if (bubblePagerView != null) {
-            ViewPager pager = bubblePagerView.getViewPager();
-            PagerAdapter adapter = new BubblePagerAdapter(this);
-            pager.setAdapter(adapter);
-            //Necessary or the pager will only have one extra page to show
-            // make this at least however many pages you can see
-            pager.setOffscreenPageLimit(adapter.getCount());
-            //A little space between pages
-            pager.setPageMargin(15);
-
-            //If hardware acceleration is enabled, you should also remove
-            // clipping on the pager for its children.
-            pager.setClipChildren(false);
-        }
-
         View historyButton = findViewById(R.id.history);
         historyButton.setOnClickListener(new View.OnClickListener() {
             @Override
