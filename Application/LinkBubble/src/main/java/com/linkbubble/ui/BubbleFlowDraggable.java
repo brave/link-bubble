@@ -2,14 +2,13 @@ package com.linkbubble.ui;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import com.linkbubble.Config;
+import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
@@ -17,7 +16,6 @@ import com.linkbubble.Settings;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.physics.State_AnimateToBubbleView;
-import com.linkbubble.physics.State_ContentView;
 
 import java.net.MalformedURLException;
 import java.util.Vector;
@@ -61,14 +59,22 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
         setBubbleFlowViewListener(new BubbleFlowView.Listener() {
             @Override
-            public void onCenterItemClicked(View view) {
+            public void onCenterItemClicked(BubbleFlowView sender, View view) {
                 MainController mainController = MainController.get();
                 mainController.getActiveDraggable().readd();
                 mainController.switchState(mainController.STATE_AnimateToBubbleView);
             }
 
             @Override
-            public void onCenterItemChanged(View view) {
+            public void onCenterItemLongClicked(BubbleFlowView sender, View view) {
+                if (view instanceof BubbleFlowItemView) {
+                    //shrink(Constant.BUBBLE_ANIM_TIME);
+                    //MainController.get().startDraggingFromContentView((BubbleFlowItemView)view);
+                }
+            }
+
+            @Override
+            public void onCenterItemChanged(BubbleFlowView sender, View view) {
                 if (view instanceof BubbleFlowItemView) {
                     MainController.get().showContentView(((BubbleFlowItemView)view).getContentView());
                 }
@@ -331,12 +337,4 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     }
 
-    public void show() {
-        setVisibility(View.VISIBLE);
-        //getViewPager().getAdapter().notifyDataSetChanged();
-    }
-
-    public void hide() {
-        setVisibility(View.GONE);
-    }
 }

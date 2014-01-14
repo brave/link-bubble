@@ -2,6 +2,7 @@ package com.linkbubble.physics;
 
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
+import com.linkbubble.Constant;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
@@ -45,7 +46,7 @@ public class State_AnimateToContentView extends ControllerState {
 
         mDraggableInfo.clear();
         mTime = 0.0f;
-        mBubblePeriod = 0.3f;
+        mBubblePeriod = (float)Constant.BUBBLE_ANIM_TIME / 1000.f;
         mContentPeriod = mBubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
 
         MainController mainController = MainController.get();
@@ -69,6 +70,7 @@ public class State_AnimateToContentView extends ControllerState {
         mCanvasView.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
 
         mainController.beginAppPolling();
+        mainController.showBubbleFlow(true, (long) (mContentPeriod * 1000));
     }
 
     @Override
