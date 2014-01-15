@@ -109,11 +109,7 @@ public class BubbleFlowView extends HorizontalScrollView {
         mEdgeMargin = (width - itemWidth) / 2;
     }
 
-    void add(View view) {
-        FrameLayout.LayoutParams lp = new LayoutParams(mItemWidth, mItemHeight, Gravity.TOP|Gravity.LEFT);
-        lp.leftMargin = mEdgeMargin + mViews.size() * mItemWidth;
-        mContent.addView(view, lp);
-        mContent.invalidate();
+    void add(View view, boolean insertNextToCenterItem) {
 
         //view.setBackgroundColor(mViews.size() % 2 == 0 ? 0xff660066 : 0xff666600);
 
@@ -127,7 +123,19 @@ public class BubbleFlowView extends HorizontalScrollView {
         view.setOnLongClickListener(mViewOnLongClickListener);
         view.setOnTouchListener(mViewOnTouchListener);
 
-        mViews.add(view);
+        int centerIndex = getCenterIndex();
+        int insertAtIndex = insertNextToCenterItem ? centerIndex + 1 : mViews.size();
+
+        FrameLayout.LayoutParams lp = new LayoutParams(mItemWidth, mItemHeight, Gravity.TOP|Gravity.LEFT);
+        lp.leftMargin = mEdgeMargin + insertAtIndex * mItemWidth;
+        mContent.addView(view, lp);
+        mContent.invalidate();
+
+        if (insertNextToCenterItem) {
+            mViews.add(centerIndex+1, view);
+        } else {
+            mViews.add(view);
+        }
 
         updatePositions();
         updateScales(getScrollX());
