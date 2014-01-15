@@ -118,10 +118,20 @@ public class BubbleFlowView extends HorizontalScrollView {
         mViews.add(view);
 
         updatePositions();
+        updateScales(getScrollX());
 
         ViewGroup.LayoutParams contentLP = mContent.getLayoutParams();
         contentLP.width = (mViews.size() * mItemWidth) + mItemWidth + (2 * mEdgeMargin);
         mContent.setLayoutParams(contentLP);
+    }
+
+    void remove(int index) {
+        View view = mViews.get(index);
+        mViews.remove(view);
+        mContent.removeView(view);
+        updatePositions();
+        updateScales(getScrollX());
+        mContent.invalidate();
     }
 
     void updatePositions() {
@@ -139,12 +149,29 @@ public class BubbleFlowView extends HorizontalScrollView {
         }
     }
 
-    void remove(int index) {
-        View view = mViews.get(index);
-        mViews.remove(view);
-        mContent.removeView(view);
-        updatePositions();
-        mContent.invalidate();
+    void updateScales(int scrollX) {
+        float centerX = scrollX + (mWidth/2) - (mItemWidth/2);
+        float fullScaleX = mItemWidth * .3f;
+        float minScaleX = mItemWidth * 1.2f;
+
+        float minScale = .7f;
+        //int centerIndex = getCenterIndex();
+        int size = mViews.size();
+        for (int i = 0; i < size; i++) {
+            View view = mViews.get(i);
+            float xDelta = Math.abs(centerX - ((i * mItemWidth) + mEdgeMargin));
+            float targetScale;
+            if (xDelta < fullScaleX) {
+                targetScale = 1.f;
+            } else if (xDelta > minScaleX) {
+                targetScale = minScale;
+            } else {
+                float ratio = 1.f - ((xDelta - fullScaleX) / (minScaleX - fullScaleX));
+                targetScale = minScale + (ratio * (1.f-minScale));
+            }
+            view.setScaleX(targetScale);
+            view.setScaleY(targetScale);
+        }
     }
 
     int getCount() {
@@ -293,33 +320,7 @@ public class BubbleFlowView extends HorizontalScrollView {
     protected void onScrollChanged(int x, int y, int oldX, int oldY) {
         super.onScrollChanged(x, y, oldX, oldY);
 
-        updateScales(x, oldX);
-    }
-
-    void updateScales(int x, int oldX) {
-
-        float centerX = x + (mWidth/2) - (mItemWidth/2);
-        float fullScaleX = mItemWidth * .3f;
-        float minScaleX = mItemWidth * 1.2f;
-
-        float minScale = .7f;
-        //int centerIndex = getCenterIndex();
-        int size = mViews.size();
-        for (int i = 0; i < size; i++) {
-            View view = mViews.get(i);
-            float xDelta = Math.abs(centerX - ((i * mItemWidth) + mEdgeMargin));
-            float targetScale;
-            if (xDelta < fullScaleX) {
-                targetScale = 1.f;
-            } else if (xDelta > minScaleX) {
-                targetScale = minScale;
-            } else {
-                float ratio = 1.f - ((xDelta - fullScaleX) / (minScaleX - fullScaleX));
-                targetScale = minScale + (ratio * (1.f-minScale));
-            }
-            view.setScaleX(targetScale);
-            view.setScaleY(targetScale);
-        }
+        updateScales(x);
     }
 
     private static final int SCROLL_FINISHED_CHECK_TIME = 33;
