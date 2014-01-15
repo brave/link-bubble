@@ -33,7 +33,7 @@ public class BubbleFlowActivity extends Activity {
                 getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_height));
         for (int i = 0; i < 19; i++) {
             BubbleFlowItemView bubble = (BubbleFlowItemView) inflater.inflate(R.layout.view_bubble_flow_item, null);
-            mBubbleFlowView.add(bubble);
+            mBubbleFlowView.add(bubble, false);
         }
         debugText.setText(mBubbleFlowView.getDebugString());
 
@@ -41,7 +41,7 @@ public class BubbleFlowActivity extends Activity {
             @Override
             public void onClick(View v) {
                 BubbleFlowItemView bubble = (BubbleFlowItemView) inflater.inflate(R.layout.view_bubble_flow_item, null);
-                mBubbleFlowView.add(bubble);
+                mBubbleFlowView.add(bubble, false);
             }
         });
 

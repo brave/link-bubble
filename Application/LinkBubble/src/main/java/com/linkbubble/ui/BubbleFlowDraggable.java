@@ -291,7 +291,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
         Settings.get().saveCurrentBubbles(mBubbles);
 
-        add(bubble);
+        add(bubble, true);
     }
 
     private void destroyBubble(BubbleFlowItemView bubble, boolean removeFromList) {
