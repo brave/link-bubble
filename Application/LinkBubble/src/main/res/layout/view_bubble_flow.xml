@@ -6,4 +6,4 @@
     android:layout_width="fill_parent"
     android:layout_height="@dimen/bubble_pager_height"
     android:layout_gravity="top|center_horizontal"
-    android:background="#33ff0000"/>
+    />
