@@ -3,7 +3,7 @@
 <com.linkbubble.ui.BubbleFlowDraggable
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/bubble_flow"
-    android:layout_width="@dimen/bubble_pager_width"
+    android:layout_width="fill_parent"
     android:layout_height="@dimen/bubble_pager_height"
     android:layout_gravity="top|center_horizontal"
     android:background="#33ff0000"/>

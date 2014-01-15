@@ -53,7 +53,12 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     public void configure(EventHandler eventHandler)  {
 
-        super.configure(getResources().getDimensionPixelSize(R.dimen.bubble_pager_width),
+        mWindowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+
+        mBubbleFlowWidth = Config.mScreenWidth;
+        mBubbleFlowHeight = getResources().getDimensionPixelSize(R.dimen.bubble_pager_height);
+
+        super.configure(mBubbleFlowWidth,
                 getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_width),
                 getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_height));
 
@@ -80,11 +85,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                 }
             }
         });
-
-        mWindowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-
-        mBubbleFlowWidth = getResources().getDimensionPixelSize(R.dimen.bubble_pager_width);
-        mBubbleFlowHeight = getResources().getDimensionPixelSize(R.dimen.bubble_pager_height);
 
         WindowManager.LayoutParams windowManagerParams = new WindowManager.LayoutParams();
         windowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
