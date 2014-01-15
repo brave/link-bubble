@@ -22,6 +22,7 @@ public class BubbleFlowView extends HorizontalScrollView {
 
     private static final String TAG = "BubbleFlowView";
     private static final boolean DEBUG = false;
+    private static final int INVALID_POINTER = -1;
 
     public interface Listener {
         void onCenterItemClicked(BubbleFlowView sender, View view);
@@ -32,6 +33,12 @@ public class BubbleFlowView extends HorizontalScrollView {
 
     public interface AnimationEventListener {
         void onAnimationEnd(BubbleFlowView sender);
+    }
+
+    public interface TouchInterceptor {
+        boolean onTouchActionDown(MotionEvent event);
+        boolean onTouchActionMove(MotionEvent event);
+        boolean onTouchActionUp(MotionEvent event);
     }
 
     private List<View> mViews;
@@ -45,6 +52,10 @@ public class BubbleFlowView extends HorizontalScrollView {
     private boolean mFlingCalled;
 
     private Listener mBubbleFlowListener;
+    private TouchInterceptor mTouchInterceptor;
+    private int mActiveTouchPointerId = INVALID_POINTER;
+    private boolean mInterceptingTouch = false;
+    private int mLastMotionY;
 
     public BubbleFlowView(Context context) {
         this(context, null);
@@ -71,6 +82,13 @@ public class BubbleFlowView extends HorizontalScrollView {
 
     public void setBubbleFlowViewListener(Listener listener) {
         mBubbleFlowListener = listener;
+    }
+
+    public void setTouchInterceptor(TouchInterceptor touchInterceptor) {
+        mTouchInterceptor = touchInterceptor;
+        if (mTouchInterceptor == null) {
+            mInterceptingTouch = false;
+        }
     }
 
     void configure(int width, int itemWidth, int itemHeight) {
@@ -427,24 +445,108 @@ public class BubbleFlowView extends HorizontalScrollView {
         }
     }
 
+    /*
+     * BubbleFlowView extends HorizontalScrollView, which does NOT intercept touch events when the delta is on the Y axis only.
+     * We need to detect y input delta when passing input via the TouchInterceptor, thus override this function to ensure
+     * true is returned in this case (but only if mTouchInterceptor != null).
+     */
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+
+        final int action = event.getAction();
+        if ((action == MotionEvent.ACTION_MOVE) && mInterceptingTouch && mTouchInterceptor != null) {
+            return true;
+        }
+
+        switch (action & MotionEvent.ACTION_MASK) {
+            case MotionEvent.ACTION_MOVE:
+                if (mActiveTouchPointerId == INVALID_POINTER) {
+                    // If we don't have a valid id, the touch down wasn't on content.
+                    break;
+                }
+
+                final int pointerIndex = event.findPointerIndex(mActiveTouchPointerId);
+                if (pointerIndex == -1) {
+                    Log.e(TAG, "Invalid pointerId=" + mActiveTouchPointerId
+                            + " in onInterceptTouchEvent");
+                    break;
+                }
+
+                final int y = (int) event.getY(pointerIndex);
+                final int yDiff = (int) Math.abs(y - mLastMotionY);
+                if (yDiff > 0) {
+                    mLastMotionY = y;
+                    // Here is the crux of it all...
+                    if (mTouchInterceptor != null) {
+                        mInterceptingTouch = true;
+                    }
+                }
+
+            case MotionEvent.ACTION_DOWN:
+                // ACTION_DOWN always refers to pointer index 0.
+                mLastMotionY = (int) event.getY();
+                mActiveTouchPointerId = event.getPointerId(0);
+                break;
+
+            case MotionEvent.ACTION_CANCEL:
+            case MotionEvent.ACTION_UP:
+                mActiveTouchPointerId = INVALID_POINTER;
+                mInterceptingTouch = false;
+                break;
+        }
+
+        if (super.onInterceptTouchEvent(event)) {
+            return true;
+        }
+
+        return mInterceptingTouch;
+    }
+
     private OnTouchListener mOnTouchListener = new OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent ev) {
             final int action = ev.getAction();
 
-            switch (action & MotionEvent.ACTION_MASK) {
+            int maskedAction = action & MotionEvent.ACTION_MASK;
+            switch (maskedAction) {
                 case MotionEvent.ACTION_DOWN:
+                    Log.d("blerg", "Down");
+                    if (mTouchInterceptor != null && mTouchInterceptor.onTouchActionDown(ev)) {
+                        return true;
+                    }
+
+                    mActiveTouchPointerId = ev.getPointerId(0);
+                    mLastMotionY = (int) ev.getX();
                     mIndexOnActionDown = getCenterIndex();
                     break;
 
                 case MotionEvent.ACTION_MOVE:
+                    Log.d("blerg", "Move");
+                    if (mTouchInterceptor != null && mTouchInterceptor.onTouchActionMove(ev)) {
+                        return true;
+                    }
+
                     // Sometimes ACTION_DOWN is not called, so ensure mIndexOnActionDown is set
                     if (mIndexOnActionDown == -1) {
+                        mActiveTouchPointerId = ev.getPointerId(0);
                         mIndexOnActionDown = getCenterIndex();
                     }
+
+                    final int activePointerIndex = ev.findPointerIndex(mActiveTouchPointerId);
+                    if (activePointerIndex == -1) {
+                        Log.e(TAG, "Invalid pointerId=" + mActiveTouchPointerId + " in onTouchEvent");
+                        break;
+                    }
+
+                    mLastMotionY = (int) ev.getY(activePointerIndex);
                     break;
 
                 case MotionEvent.ACTION_UP:
+                    Log.d("blerg", "Up");
+                    if (mTouchInterceptor != null && mTouchInterceptor.onTouchActionUp(ev)) {
+                        return true;
+                    }
+
                     mFlingCalled = false;
                     BubbleFlowView.this.onTouchEvent(ev);
                     if (mFlingCalled == false) {
@@ -455,7 +557,13 @@ public class BubbleFlowView extends HorizontalScrollView {
                     }
                     mIndexOnActionDown = -1;
                     startScrollFinishedCheckTask();
+                    mActiveTouchPointerId = INVALID_POINTER;
                     return true;
+
+                case MotionEvent.ACTION_CANCEL:
+                    mActiveTouchPointerId = INVALID_POINTER;
+                    break;
+
             }
 
             return false;
