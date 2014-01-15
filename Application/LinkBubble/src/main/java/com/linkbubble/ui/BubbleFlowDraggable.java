@@ -89,9 +89,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
             @Override
             public void onCenterItemChanged(BubbleFlowView sender, View view) {
-                if (view instanceof BubbleFlowItemView) {
-                    MainController.get().showContentView(((BubbleFlowItemView)view).getContentView());
-                }
+                setCurrentBubble((BubbleFlowItemView)view, true);
             }
         });
 
