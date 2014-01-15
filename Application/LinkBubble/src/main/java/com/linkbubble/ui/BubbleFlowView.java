@@ -112,44 +112,8 @@ public class BubbleFlowView extends HorizontalScrollView {
             debugIndexTextView.setVisibility(VISIBLE);
         }
 
-        view.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int index = mViews.indexOf(v);
-                if (index > -1) {
-                    int currentCenterIndex = getCenterIndex();
-                    if (currentCenterIndex != index) {
-                        setCenterIndex(index);
-                        startScrollFinishedCheckTask();
-                    } else {
-                        if (mBubbleFlowListener != null) {
-                            mBubbleFlowListener.onCenterItemClicked(BubbleFlowView.this, v);
-                        }
-                    }
-                }
-            }
-        });
-
-        view.setOnLongClickListener(new OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                int index = mViews.indexOf(v);
-                if (index > -1) {
-                    int currentCenterIndex = getCenterIndex();
-                    if (currentCenterIndex != index) {
-                        setCenterIndex(index);
-                        startScrollFinishedCheckTask();
-                        return true;
-                    } else {
-                        if (mBubbleFlowListener != null) {
-                            mBubbleFlowListener.onCenterItemLongClicked(BubbleFlowView.this, v);
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            }
-        });
+        view.setOnClickListener(mViewOnClickListener);
+        view.setOnLongClickListener(mViewOnLongClickListener);
 
         mViews.add(view);
 
@@ -202,7 +166,7 @@ public class BubbleFlowView extends HorizontalScrollView {
         return closestIndex;
     }
 
-    void setCenterIndex(int index) {
+    public void setCenterIndex(int index) {
         int scrollToX = mEdgeMargin + (index * mItemWidth) - (mWidth/2) + (mItemWidth/2);
         smoothScrollTo(scrollToX, 0);
     }
@@ -566,6 +530,45 @@ public class BubbleFlowView extends HorizontalScrollView {
 
             }
 
+            return false;
+        }
+    };
+
+    private OnClickListener mViewOnClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int index = mViews.indexOf(v);
+            if (index > -1) {
+                int currentCenterIndex = getCenterIndex();
+                if (currentCenterIndex != index) {
+                    setCenterIndex(index);
+                    startScrollFinishedCheckTask();
+                } else {
+                    if (mBubbleFlowListener != null) {
+                        mBubbleFlowListener.onCenterItemClicked(BubbleFlowView.this, v);
+                    }
+                }
+            }
+        }
+    };
+
+    OnLongClickListener mViewOnLongClickListener = new OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            int index = mViews.indexOf(v);
+            if (index > -1) {
+                int currentCenterIndex = getCenterIndex();
+                if (currentCenterIndex != index) {
+                    setCenterIndex(index);
+                    startScrollFinishedCheckTask();
+                    return true;
+                } else {
+                    if (mBubbleFlowListener != null) {
+                        mBubbleFlowListener.onCenterItemLongClicked(BubbleFlowView.this, v);
+                        return true;
+                    }
+                }
+            }
             return false;
         }
     };

@@ -224,9 +224,8 @@ public abstract class MainController implements Choreographer.FrameCallback {
     // TODO: think of a better name
     public void startDraggingFromContentView() {}
 
-    public void showBubbleFlow(boolean show, long time) {}
-
-    //public void showBubblePager(boolean show) {}
+    public void expandBubbleFlow(long time) {}
+    public void collapseBubbleFlow(long time) {}
 
     public void showContentView(ContentView contentView) {
         mCanvasView.setContentView(contentView);

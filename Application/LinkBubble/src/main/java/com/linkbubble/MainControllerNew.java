@@ -234,14 +234,15 @@ public class MainControllerNew extends MainController {
     }
 
     @Override
-    public void showBubbleFlow(boolean show, long time) {
-        if (show) {
-            mBubbleFlowDraggable.setVisibility(View.VISIBLE);
-            mBubbleFlowDraggable.expand(time, mOnBubbleFlowExpandFinishedListener);
-            mBubbleDraggable.postDelayed(mSetBubbleGoneRunnable, 33);
-        } else {
-            mBubbleFlowDraggable.collapse(time, mOnBubbleFlowCollapseFinishedListener);
-        }
+    public void expandBubbleFlow(long time) {
+        mBubbleFlowDraggable.setVisibility(View.VISIBLE);
+        mBubbleFlowDraggable.expand(time, mOnBubbleFlowExpandFinishedListener);
+        mBubbleDraggable.postDelayed(mSetBubbleGoneRunnable, 33);
+    }
+
+    @Override
+    public void collapseBubbleFlow(long time) {
+        mBubbleFlowDraggable.collapse(time, mOnBubbleFlowCollapseFinishedListener);
     }
 
     BubbleFlowView.AnimationEventListener mOnBubbleFlowExpandFinishedListener = new BubbleFlowView.AnimationEventListener() {

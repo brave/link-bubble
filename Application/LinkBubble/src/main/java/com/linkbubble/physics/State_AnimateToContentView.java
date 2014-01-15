@@ -70,7 +70,7 @@ public class State_AnimateToContentView extends ControllerState {
         mCanvasView.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
 
         mainController.beginAppPolling();
-        mainController.showBubbleFlow(true, (long) (mContentPeriod * 1000));
+        mainController.expandBubbleFlow((long) (mContentPeriod * 1000));
     }
 
     @Override

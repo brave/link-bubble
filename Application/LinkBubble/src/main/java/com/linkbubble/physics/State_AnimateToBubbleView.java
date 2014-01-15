@@ -63,7 +63,7 @@ public class State_AnimateToBubbleView extends ControllerState {
         mCanvasView.setContentViewTranslation(0.0f);
 
         mainController.endAppPolling();
-        mainController.showBubbleFlow(false, (long) (mContentPeriod * 1000));
+        mainController.collapseBubbleFlow((long) (mContentPeriod * 1000));
     }
 
     @Override
