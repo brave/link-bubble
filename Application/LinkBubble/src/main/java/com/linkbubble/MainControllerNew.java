@@ -3,6 +3,7 @@ package com.linkbubble;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.CookieManager;
@@ -77,11 +78,13 @@ public class MainControllerNew extends MainController {
     }
 
     @Override
-    public void startDraggingFromContentView(BubbleFlowItemView view) {
+    public void startDraggingFromContentView() {
         mCanvasView.fadeInTargets();
         mCanvasView.hideContentView();
 
-        MainController.get().setActiveDraggable(mBubbleDraggable);
+        //mBubbleDraggable.setAlpha(1.f);
+        mBubbleFlowDraggable.collapse();
+        //MainController.get().setActiveDraggable(mBubbleDraggable);
         //mDraggable.getDraggableHelper().doSnap(mCanvasView, mTargetX, mTargetY);
     }
 
@@ -158,7 +161,12 @@ public class MainControllerNew extends MainController {
         for (int i=0 ; i < draggableCount ; ++i) {
             Draggable draggable = mDraggables.get(i);
             draggable.update(dt, mCurrentState == STATE_ContentView);
-        }
+        }/*
+        if (mBubbleDraggable.getVisibility() == View.VISIBLE) {
+            mBubbleDraggable.update(dt, mCurrentState == STATE_ContentView);
+        } else {
+            mBubbleFlowDraggable.update(dt, mCurrentState == STATE_ContentView);
+        }*/
 
         Draggable frontDraggable = null;
         if (getBubbleCount() > 0) {
@@ -226,6 +234,7 @@ public class MainControllerNew extends MainController {
     public void showBubbleFlow(boolean show, long time) {
         if (show) {
             mBubbleFlowDraggable.setVisibility(View.VISIBLE);
+            mBubbleDraggable.setVisibility(View.GONE);
             mBubbleFlowDraggable.expand(time, mOnBubbleFlowExpandFinishedListener);
         } else {
             mBubbleFlowDraggable.collapse(time, mOnBubbleFlowCollapseFinishedListener);
@@ -233,10 +242,6 @@ public class MainControllerNew extends MainController {
     }
 
     BubbleFlowView.AnimationEventListener mOnBubbleFlowExpandFinishedListener = new BubbleFlowView.AnimationEventListener() {
-        @Override
-        public void onAnimationStart(BubbleFlowView sender) {
-            mBubbleDraggable.setAlpha(0.f);
-        }
 
         @Override
         public void onAnimationEnd(BubbleFlowView sender) {
@@ -247,13 +252,10 @@ public class MainControllerNew extends MainController {
     BubbleFlowView.AnimationEventListener mOnBubbleFlowCollapseFinishedListener = new BubbleFlowView.AnimationEventListener() {
 
         @Override
-        public void onAnimationStart(BubbleFlowView sender) {
-            mBubbleDraggable.setAlpha(1.f);
-        }
-
-        @Override
         public void onAnimationEnd(BubbleFlowView sender) {
-            sender.setVisibility(View.GONE);
+            //sender.setVisibility(View.GONE);
+            mBubbleFlowDraggable.setVisibility(View.GONE);
+            mBubbleDraggable.setVisibility(View.VISIBLE);
         }
     };
 }

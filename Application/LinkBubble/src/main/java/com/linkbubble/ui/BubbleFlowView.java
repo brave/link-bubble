@@ -31,7 +31,6 @@ public class BubbleFlowView extends HorizontalScrollView {
     }
 
     public interface AnimationEventListener {
-        void onAnimationStart(BubbleFlowView sender);
         void onAnimationEnd(BubbleFlowView sender);
     }
 
@@ -87,7 +86,7 @@ public class BubbleFlowView extends HorizontalScrollView {
         mContent.addView(view, lp);
         mContent.invalidate();
 
-        view.setBackgroundColor(mViews.size() % 2 == 0 ? 0x66660066 : 0x66666600);
+        //view.setBackgroundColor(mViews.size() % 2 == 0 ? 0xff660066 : 0xff666600);
 
         TextView debugIndexTextView = (TextView) view.findViewById(R.id.debug_index);
         if (debugIndexTextView != null) {
@@ -216,15 +215,12 @@ public class BubbleFlowView extends HorizontalScrollView {
                     anim.setAnimationListener(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
-                            if (animationEventListener != null) {
-                                animationEventListener.onAnimationStart(BubbleFlowView.this);
-                            }
                         }
 
                         @Override
                         public void onAnimationEnd(Animation animation) {
                             if (animationEventListener != null) {
-                                animationEventListener.onAnimationStart(BubbleFlowView.this);
+                                animationEventListener.onAnimationEnd(BubbleFlowView.this);
                             }
                         }
 
@@ -241,7 +237,6 @@ public class BubbleFlowView extends HorizontalScrollView {
 
         if (centerIndex == 0 && mViews.size() == 1) {
             if (animationEventListener != null) {
-                animationEventListener.onAnimationStart(this);
                 animationEventListener.onAnimationEnd(this);
             }
         }
@@ -275,9 +270,7 @@ public class BubbleFlowView extends HorizontalScrollView {
                     anim.setAnimationListener(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
-                            if (animationEventListener != null) {
-                                animationEventListener.onAnimationStart(BubbleFlowView.this);
-                            }
+
                         }
 
                         @Override
@@ -300,7 +293,6 @@ public class BubbleFlowView extends HorizontalScrollView {
 
         if (centerIndex == 0 && mViews.size() == 1) {
             if (animationEventListener != null) {
-                animationEventListener.onAnimationStart(this);
                 animationEventListener.onAnimationEnd(this);
             }
         }

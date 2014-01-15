@@ -222,7 +222,7 @@ public abstract class MainController implements Choreographer.FrameCallback {
     }
 
     // TODO: think of a better name
-    public void startDraggingFromContentView(BubbleFlowItemView view) {}
+    public void startDraggingFromContentView() {}
 
     public void showBubbleFlow(boolean show, long time) {}
 
