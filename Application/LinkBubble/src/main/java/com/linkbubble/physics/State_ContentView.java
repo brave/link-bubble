@@ -1,5 +1,6 @@
 package com.linkbubble.physics;
 
+import com.linkbubble.Constant;
 import com.linkbubble.ui.BubbleLegacyView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
@@ -39,7 +40,7 @@ public class State_ContentView extends ControllerState {
         if (mDraggable != null) {
             ++mTouchFrameCount;
 
-            if (mTouchFrameCount == 6) {
+            if (mTouchFrameCount == 6 && Constant.USE_NEW_CONTROLLER == false) {
                 mCanvasView.fadeInTargets();
                 mCanvasView.hideContentView();
             }

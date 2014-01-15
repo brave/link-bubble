@@ -69,7 +69,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             public void onCenterItemLongClicked(BubbleFlowView sender, View view) {
                 if (view instanceof BubbleFlowItemView) {
                     //shrink(Constant.BUBBLE_ANIM_TIME);
-                    //MainController.get().startDraggingFromContentView((BubbleFlowItemView)view);
+                    MainController.get().startDraggingFromContentView();
                 }
             }
 

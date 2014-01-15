@@ -50,6 +50,8 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             e.printStackTrace();
         }
 
+        //setBackgroundColor(0xff00ff00);
+
         mBadgeView = (BadgeView) findViewById(R.id.badge_view);
         mBadgeView.hide();
         mBadgeView.setVisibility(View.GONE);
