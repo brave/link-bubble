@@ -162,10 +162,15 @@ public class ContentView extends FrameLayout {
         super.dispatchDraw(canvas);
 
         mTempPath.reset();
-        float mCenterX = mMarkerX + (Constant.USE_NEW_CONTROLLER ? 0 : (Config.mBubbleWidth * 0.5f));
-        mTempPath.moveTo(mCenterX - mHeaderHeight, mHeaderHeight + 1.0f);
-        mTempPath.lineTo(mCenterX, 0.0f);
-        mTempPath.lineTo(mCenterX + mHeaderHeight, mHeaderHeight + 1.0f);
+        float centerX;
+        if (Constant.USE_NEW_CONTROLLER) {
+            centerX = Config.mScreenCenterX;
+        } else {
+            centerX = mMarkerX + (Config.mBubbleWidth * 0.5f);
+        }
+        mTempPath.moveTo(centerX - mHeaderHeight, mHeaderHeight + 1.0f);
+        mTempPath.lineTo(centerX, 0.0f);
+        mTempPath.lineTo(centerX + mHeaderHeight, mHeaderHeight + 1.0f);
 
         canvas.drawPath(mTempPath, mPaint);
     }
