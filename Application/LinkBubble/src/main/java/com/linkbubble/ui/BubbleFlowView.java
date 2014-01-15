@@ -41,8 +41,8 @@ public class BubbleFlowView extends HorizontalScrollView {
         boolean onTouchActionUp(MotionEvent event);
     }
 
-    private List<View> mViews;
-    private FrameLayout mContent;
+    protected List<View> mViews;
+    protected FrameLayout mContent;
     private boolean mIsExpanded;
     private int mWidth;
     protected int mItemWidth;

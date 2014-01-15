@@ -163,9 +163,9 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         mCurrentBubble = bubble;
         if (mCurrentBubble != null) {
             mCurrentBubble.setImitator(mBubbleDraggable);
-        }
-        if (showContentView) {
-            MainController.get().showContentView(bubble.getContentView());
+            if (showContentView) {
+                MainController.get().showContentView(mCurrentBubble.getContentView());
+            }
         }
     }
 
@@ -289,34 +289,38 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     private void destroyBubble(BubbleFlowItemView bubble, boolean removeFromList) {
+        int index = mViews.indexOf(bubble);
+        mContent.removeView(bubble);
+        mViews.remove(bubble);
+        updatePositions();
+        updateScales(getScrollX());
+
         if (removeFromList) {
             mBubbles.remove(bubble);
         }
         bubble.destroy();
+
+        if (mCurrentBubble == bubble) {
+            BubbleFlowItemView newCurrentBubble = null;
+            int viewsCount = mViews.size();
+            if (viewsCount > 0) {
+                if (viewsCount == 1) {
+                    newCurrentBubble = (BubbleFlowItemView) mViews.get(0);
+                } else if (index < viewsCount) {
+                    newCurrentBubble = (BubbleFlowItemView) mViews.get(index);
+                } else {
+                    if (index > 0) {
+                        newCurrentBubble = (BubbleFlowItemView) mViews.get(index-1);
+                    } else {
+                        newCurrentBubble = (BubbleFlowItemView) mViews.get(0);
+                    }
+                }
+            }
+            setCurrentBubble(newCurrentBubble, false);
+        }
     }
 
     private void postDestroyedBubble() {
-        /*
-        mBubbleDraggable.mBadgeView.setCount(mBubbles.size());
-
-        getViewPager().getAdapter().notifyDataSetChanged();
-
-        int bubbleCount = mBubbles.size();
-        int currentItem = getViewPager().getCurrentItem();
-        if (currentItem >= bubbleCount) {
-            if (bubbleCount > 0) {
-                setCurrentBubble(mBubbles.get(bubbleCount-1), true);
-            } else {
-                setCurrentBubble(null, false);
-            }
-        } else {
-            if (bubbleCount == 0) {
-                setCurrentBubble(null, true);
-            } else {
-                setCurrentBubble(mBubbles.get(currentItem), true);
-            }
-        }*/
-
         Settings.get().saveCurrentBubbles(mBubbles);
     }
 
