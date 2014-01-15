@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
@@ -82,10 +83,12 @@ public class MainControllerNew extends MainController {
         mCanvasView.fadeInTargets();
         mCanvasView.hideContentView();
 
-        //mBubbleDraggable.setAlpha(1.f);
-        mBubbleFlowDraggable.collapse();
-        //MainController.get().setActiveDraggable(mBubbleDraggable);
-        //mDraggable.getDraggableHelper().doSnap(mCanvasView, mTargetX, mTargetY);
+        // When we start dragging, configure the BubbleFlowView to pass all its input to our TouchInterceptor so we
+        // can re-route it to the BubbleDraggable. This is a bit messy, but necessary so as to cleanly using the same
+        // MotionEvent chain for the BubbleFlowDraggable and BubbleDraggable so the items visually sync up.
+        mBubbleFlowDraggable.setTouchInterceptor(mBubbleFlowTouchInterceptor);
+        mBubbleFlowDraggable.collapse(Constant.BUBBLE_ANIM_TIME, mOnBubbleFlowCollapseFinishedListener);
+        mBubbleDraggable.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -256,6 +259,29 @@ public class MainControllerNew extends MainController {
             //sender.setVisibility(View.GONE);
             mBubbleFlowDraggable.setVisibility(View.GONE);
             mBubbleDraggable.setVisibility(View.VISIBLE);
+        }
+    };
+
+    /*
+     * Pass all the input along to mBubbleDraggable
+     */
+    BubbleFlowView.TouchInterceptor mBubbleFlowTouchInterceptor = new BubbleFlowView.TouchInterceptor() {
+
+        @Override
+        public boolean onTouchActionDown(MotionEvent event) {
+            return mBubbleDraggable.getDraggableHelper().onTouchActionDown(event);
+        }
+
+        @Override
+        public boolean onTouchActionMove(MotionEvent event) {
+            return mBubbleDraggable.getDraggableHelper().onTouchActionMove(event);
+        }
+
+        @Override
+        public boolean onTouchActionUp(MotionEvent event) {
+            boolean result = mBubbleDraggable.getDraggableHelper().onTouchActionUp(event);
+            mBubbleFlowDraggable.setTouchInterceptor(null);
+            return result;
         }
     };
 }
