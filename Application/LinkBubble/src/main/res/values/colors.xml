@@ -8,7 +8,7 @@
     <color name="home_background">#ffe5e5e5</color>
     <color name="content_toolbar_background">#ffefefef</color>
     <color name="badge_background">#cccccc</color>
-    <color name="badge_text">#333333</color>
+    <color name="badge_text">@color/bubble_border</color>
     <!--<color name="badge_highlight">#aaaaaa</color>-->
     <color name="badge_highlight">@color/badge_text</color>
 

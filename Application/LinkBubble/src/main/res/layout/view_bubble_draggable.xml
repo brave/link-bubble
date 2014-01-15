@@ -33,7 +33,6 @@
         android:text="3"
         android:background="@drawable/badge_shape"
         android:textColor="@color/badge_text"
-        android:textStyle="bold"
         android:textSize="16dp"
         android:layout_marginLeft="@dimen/badge_margin"
         android:layout_marginRight="@dimen/badge_margin"
