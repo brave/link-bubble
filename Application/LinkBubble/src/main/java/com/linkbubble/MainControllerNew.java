@@ -237,8 +237,8 @@ public class MainControllerNew extends MainController {
     public void showBubbleFlow(boolean show, long time) {
         if (show) {
             mBubbleFlowDraggable.setVisibility(View.VISIBLE);
-            mBubbleDraggable.setVisibility(View.GONE);
             mBubbleFlowDraggable.expand(time, mOnBubbleFlowExpandFinishedListener);
+            mBubbleDraggable.postDelayed(mSetBubbleGoneRunnable, 33);
         } else {
             mBubbleFlowDraggable.collapse(time, mOnBubbleFlowCollapseFinishedListener);
         }
@@ -256,9 +256,22 @@ public class MainControllerNew extends MainController {
 
         @Override
         public void onAnimationEnd(BubbleFlowView sender) {
-            //sender.setVisibility(View.GONE);
-            mBubbleFlowDraggable.setVisibility(View.GONE);
             mBubbleDraggable.setVisibility(View.VISIBLE);
+            mBubbleFlowDraggable.postDelayed(mSetBubbleFlowGoneRunnable, 33);
+        }
+    };
+
+    Runnable mSetBubbleFlowGoneRunnable = new Runnable() {
+        @Override
+        public void run() {
+            mBubbleFlowDraggable.setVisibility(View.GONE);
+        }
+    };
+
+    Runnable mSetBubbleGoneRunnable = new Runnable() {
+        @Override
+        public void run() {
+            mBubbleDraggable.setVisibility(View.GONE);
         }
     };
 
