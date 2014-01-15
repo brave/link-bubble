@@ -69,6 +69,12 @@ public class MainControllerNew extends MainController {
     }
 
     @Override
+    public void onOrientationChanged() {
+        super.onOrientationChanged();
+        mBubbleFlowDraggable.onOrientationChanged(mCurrentState.onOrientationChanged());
+    }
+
+    @Override
     public void updateIncognitoMode(boolean incognito) {
         CookieSyncManager.createInstance(mContext);
         CookieManager.getInstance().setAcceptCookie(!incognito);

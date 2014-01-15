@@ -2,6 +2,7 @@ package com.linkbubble.ui;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     private int mBubbleFlowHeight;
     private BubbleFlowItemView mCurrentBubble;
     private BubbleDraggable mBubbleDraggable;
+    private Point mTempSize = new Point();
 
     private static Vector<BubbleFlowItemView> mBubbles = new Vector<BubbleFlowItemView>();
 
@@ -58,7 +60,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         mBubbleFlowWidth = Config.mScreenWidth;
         mBubbleFlowHeight = getResources().getDimensionPixelSize(R.dimen.bubble_pager_height);
 
-        super.configure(mBubbleFlowWidth,
+        configure(mBubbleFlowWidth,
                 getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_width),
                 getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_height));
 
@@ -130,6 +132,15 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     }
 
+    @Override
+    void configure(int width, int itemWidth, int itemHeight) {
+        super.configure(width, itemWidth, itemHeight);
+
+        if (mDraggableHelper != null && mDraggableHelper.getWindowManagerParams() != null) {
+            mDraggableHelper.getWindowManagerParams().width = width;
+        }
+    }
+
     public void destroy() {
         //setOnTouchListener(null);
         mWindowManager.removeView(this);
@@ -198,23 +209,12 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     public void onOrientationChanged(boolean contentViewMode) {
         clearTargetPos();
 
-        int xPos, yPos;
+        mWindowManager.getDefaultDisplay().getSize(mTempSize);
+        configure(mTempSize.x, mItemWidth, mItemHeight);
+        updatePositions();
+        updateScales(getScrollX());
 
-        if (contentViewMode) {
-            //xPos = (int) Config.getContentViewX(mBubbleIndex, MainController.get().getBubbleCount());
-            xPos = (int) Config.getContentViewX(0, MainController.get().getBubbleCount());
-            yPos = Config.mContentViewBubbleY;
-        } else {
-            WindowManager.LayoutParams windowManagerParms = mDraggableHelper.getWindowManagerParams();
-            if (windowManagerParms.x < Config.mScreenHeight * 0.5f)
-                xPos = Config.mBubbleSnapLeftX;
-            else
-                xPos = Config.mBubbleSnapRightX;
-            float yf = (float)windowManagerParms.y / (float)Config.mScreenWidth;
-            yPos = (int) (yf * Config.mScreenHeight);
-        }
-
-        setExactPos(xPos, yPos);
+        setExactPos(0, 0);
     }
 
     @Override

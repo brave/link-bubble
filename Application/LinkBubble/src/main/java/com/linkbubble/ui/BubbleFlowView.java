@@ -45,8 +45,8 @@ public class BubbleFlowView extends HorizontalScrollView {
     private FrameLayout mContent;
     private boolean mIsExpanded;
     private int mWidth;
-    private int mItemWidth;
-    private int mItemHeight;
+    protected int mItemWidth;
+    protected int mItemHeight;
     private int mEdgeMargin;
     private int mIndexOnActionDown;
     private boolean mFlingCalled;
