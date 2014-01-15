@@ -17,6 +17,7 @@ import com.linkbubble.Settings;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.physics.State_AnimateToBubbleView;
+import com.linkbubble.util.VerticalGestureListener;
 
 import java.net.MalformedURLException;
 import java.util.Iterator;
@@ -79,6 +80,11 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                     //shrink(Constant.BUBBLE_ANIM_TIME);
                     MainController.get().startDraggingFromContentView();
                 }
+            }
+
+            @Override
+            public void onCenterItemSwiped(VerticalGestureListener.GestureDirection gestureDirection) {
+                // TODO: Implement me
             }
 
             @Override
