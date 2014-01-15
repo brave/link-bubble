@@ -1,9 +1,11 @@
 package com.linkbubble.ui;
 
 import android.app.Activity;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import com.linkbubble.R;
@@ -18,11 +20,15 @@ public class BubbleFlowActivity extends Activity {
 
         setContentView(R.layout.activity_bubble_flow);
 
+        Point size = new Point();
+        WindowManager w = getWindowManager();
+        w.getDefaultDisplay().getSize(size);
+
         final TextView debugText = (TextView) findViewById(R.id.debug_text);
 
         final LayoutInflater inflater = LayoutInflater.from(this);
         mBubbleFlowView = (BubbleFlowView) findViewById(R.id.bubble_flow);
-        mBubbleFlowView.configure(getResources().getDimensionPixelSize(R.dimen.bubble_pager_width),
+        mBubbleFlowView.configure(size.x,
                 getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_width),
                 getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_height));
         for (int i = 0; i < 19; i++) {
