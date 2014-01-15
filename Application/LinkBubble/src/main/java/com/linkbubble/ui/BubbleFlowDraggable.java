@@ -19,6 +19,7 @@ import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.physics.State_AnimateToBubbleView;
 
 import java.net.MalformedURLException;
+import java.util.Iterator;
 import java.util.Vector;
 
 
@@ -287,8 +288,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         add(bubble);
     }
 
-    private void destroyBubble(BubbleFlowItemView bubble) {
-        mBubbles.remove(bubble);
+    private void destroyBubble(BubbleFlowItemView bubble, boolean removeFromList) {
+        if (removeFromList) {
+            mBubbles.remove(bubble);
+        }
         bubble.destroy();
     }
 
@@ -319,14 +322,18 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     public void destroyCurrentBubble() {
         BubbleFlowItemView currentBubble = getCurrentBubble();
-        destroyBubble(currentBubble);
+        destroyBubble(currentBubble, true);
         postDestroyedBubble();
     }
 
     public void destroyAllBubbles() {
-        for (BubbleFlowItemView bubble : mBubbles) {
-            destroyBubble(bubble);
+        Iterator<BubbleFlowItemView> iterator = mBubbles.iterator();
+        while (iterator.hasNext()) {
+            BubbleFlowItemView item = iterator.next();
+            destroyBubble(item, false);
+            iterator.remove();
         }
+
         mBubbles.clear();
         postDestroyedBubble();
     }
