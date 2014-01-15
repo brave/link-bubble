@@ -2,7 +2,9 @@ package com.linkbubble.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,7 +14,9 @@ import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
+import com.linkbubble.Config;
 import com.linkbubble.R;
+import com.linkbubble.util.VerticalGestureListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +31,7 @@ public class BubbleFlowView extends HorizontalScrollView {
     public interface Listener {
         void onCenterItemClicked(BubbleFlowView sender, View view);
         void onCenterItemLongClicked(BubbleFlowView sender, View view);
+        void onCenterItemSwiped(VerticalGestureListener.GestureDirection gestureDirection);
         // Note: only called when scrolling has finished
         void onCenterItemChanged(BubbleFlowView sender, View view);
     }
@@ -57,6 +62,10 @@ public class BubbleFlowView extends HorizontalScrollView {
     private boolean mInterceptingTouch = false;
     private int mLastMotionY;
 
+    private GestureDetector mVerticalGestureDetector;
+    private VerticalGestureListener mVerticalGestureListener = new VerticalGestureListener();
+    private long mLastVerticalGestureTime;
+
     public BubbleFlowView(Context context) {
         this(context, null);
     }
@@ -78,6 +87,8 @@ public class BubbleFlowView extends HorizontalScrollView {
         mIsExpanded = true;
 
         setOnTouchListener(mOnTouchListener);
+
+        mVerticalGestureDetector = new GestureDetector(mVerticalGestureListener);
     }
 
     public void setBubbleFlowViewListener(Listener listener) {
@@ -114,6 +125,7 @@ public class BubbleFlowView extends HorizontalScrollView {
 
         view.setOnClickListener(mViewOnClickListener);
         view.setOnLongClickListener(mViewOnLongClickListener);
+        view.setOnTouchListener(mViewOnTouchListener);
 
         mViews.add(view);
 
@@ -475,7 +487,6 @@ public class BubbleFlowView extends HorizontalScrollView {
             int maskedAction = action & MotionEvent.ACTION_MASK;
             switch (maskedAction) {
                 case MotionEvent.ACTION_DOWN:
-                    Log.d("blerg", "Down");
                     if (mTouchInterceptor != null && mTouchInterceptor.onTouchActionDown(ev)) {
                         return true;
                     }
@@ -486,7 +497,6 @@ public class BubbleFlowView extends HorizontalScrollView {
                     break;
 
                 case MotionEvent.ACTION_MOVE:
-                    Log.d("blerg", "Move");
                     if (mTouchInterceptor != null && mTouchInterceptor.onTouchActionMove(ev)) {
                         return true;
                     }
@@ -507,7 +517,6 @@ public class BubbleFlowView extends HorizontalScrollView {
                     break;
 
                 case MotionEvent.ACTION_UP:
-                    Log.d("blerg", "Up");
                     if (mTouchInterceptor != null && mTouchInterceptor.onTouchActionUp(ev)) {
                         return true;
                     }
@@ -538,6 +547,12 @@ public class BubbleFlowView extends HorizontalScrollView {
     private OnClickListener mViewOnClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
+            // If we just registered a vertical gesture, don't trigger a click also.
+            long delta = System.currentTimeMillis() - mLastVerticalGestureTime;
+            if (delta < 33) {
+                return;
+            }
+
             int index = mViews.indexOf(v);
             if (index > -1) {
                 int currentCenterIndex = getCenterIndex();
@@ -571,6 +586,26 @@ public class BubbleFlowView extends HorizontalScrollView {
                 }
             }
             return false;
+        }
+    };
+
+    OnTouchListener mViewOnTouchListener = new OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent event) {
+            boolean result = false;
+            if (mViews.indexOf(view) == getCenterIndex()) {
+                result = mVerticalGestureDetector.onTouchEvent(event);
+                VerticalGestureListener.GestureDirection gestureDirection = mVerticalGestureListener.getLastGestureDirection();
+                if (gestureDirection == VerticalGestureListener.GestureDirection.Down
+                        || gestureDirection == VerticalGestureListener.GestureDirection.Up) {
+                    mLastVerticalGestureTime = System.currentTimeMillis();
+                    mVerticalGestureListener.resetLastGestureDirection();
+                    if (mBubbleFlowListener != null) {
+                        mBubbleFlowListener.onCenterItemSwiped(gestureDirection);
+                    }
+                }
+            }
+            return result;
         }
     };
 

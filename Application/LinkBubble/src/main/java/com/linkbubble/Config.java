@@ -57,6 +57,8 @@ public class Config {
     public static int BUBBLE_HOME_X;
     public static int BUBBLE_HOME_Y;
 
+    public static int sDensityDpi;
+
     public static void init(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         wm.getDefaultDisplay().getMetrics(mDm);
@@ -86,6 +88,8 @@ public class Config {
 
         BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
         BUBBLE_HOME_Y = (int) (Config.mScreenHeight * 0.4f);
+
+        sDensityDpi = mDm.densityDpi;
     }
 
     private static int getStatusBarHeight(Context context) {
