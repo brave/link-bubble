@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 import com.linkbubble.Config;
+import com.linkbubble.Constant;
 import com.linkbubble.R;
 import com.linkbubble.util.VerticalGestureListener;
 
@@ -139,6 +140,21 @@ public class BubbleFlowView extends HorizontalScrollView {
 
         updatePositions();
         updateScales(getScrollX());
+
+        if (insertNextToCenterItem) {
+            TranslateAnimation slideOnAnim = new TranslateAnimation(0, 0, -mItemHeight, 0);
+            slideOnAnim.setDuration(Constant.BUBBLE_ANIM_TIME);
+            slideOnAnim.setFillAfter(true);
+            view.startAnimation(slideOnAnim);
+
+            for (int i = centerIndex + 2; i < mViews.size(); i++) {
+                View viewToShift = mViews.get(i);
+                TranslateAnimation slideRightAnim = new TranslateAnimation(-mItemWidth, 0, 0, 0);
+                slideRightAnim.setDuration(Constant.BUBBLE_ANIM_TIME);
+                slideRightAnim.setFillAfter(true);
+                viewToShift.startAnimation(slideRightAnim);
+            }
+        }
 
         ViewGroup.LayoutParams contentLP = mContent.getLayoutParams();
         contentLP.width = (mViews.size() * mItemWidth) + mItemWidth + (2 * mEdgeMargin);
