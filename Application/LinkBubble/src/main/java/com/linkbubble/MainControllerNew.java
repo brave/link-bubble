@@ -166,6 +166,10 @@ public class MainControllerNew extends MainController {
 
         float dt = 1.0f / 60.0f;
 
+        if (mBubbleFlowDraggable.update()) {
+            scheduleUpdate();
+        }
+
         int draggableCount = mDraggables.size();
         for (int i=0 ; i < draggableCount ; ++i) {
             Draggable draggable = mDraggables.get(i);

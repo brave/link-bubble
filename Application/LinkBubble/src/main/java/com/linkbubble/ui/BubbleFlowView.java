@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 import com.linkbubble.Constant;
+import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.util.TranslateAnimationEx;
 import com.linkbubble.util.VerticalGestureListener;
@@ -70,6 +71,9 @@ public class BubbleFlowView extends HorizontalScrollView {
     private VerticalGestureListener mVerticalGestureListener = new VerticalGestureListener();
     private long mLastVerticalGestureTime;
 
+    private int mTouchFrameCount;
+    private View mTouchView;
+
     public BubbleFlowView(Context context) {
         this(context, null);
     }
@@ -97,6 +101,22 @@ public class BubbleFlowView extends HorizontalScrollView {
 
     public void setBubbleFlowViewListener(Listener listener) {
         mBubbleFlowListener = listener;
+    }
+
+    public boolean update() {
+        if (mTouchView != null) {
+            ++mTouchFrameCount;
+
+            if (mTouchFrameCount == 6) {
+                if (mBubbleFlowListener != null) {
+                    mBubbleFlowListener.onCenterItemLongClicked(BubbleFlowView.this, mTouchView);
+                }
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     public void setTouchInterceptor(TouchInterceptor touchInterceptor) {
@@ -675,11 +695,6 @@ public class BubbleFlowView extends HorizontalScrollView {
                     setCenterIndex(index);
                     startScrollFinishedCheckTask();
                     return true;
-                } else {
-                    if (mBubbleFlowListener != null) {
-                        mBubbleFlowListener.onCenterItemLongClicked(BubbleFlowView.this, v);
-                        return true;
-                    }
                 }
             }
             return false;
@@ -691,6 +706,16 @@ public class BubbleFlowView extends HorizontalScrollView {
         public boolean onTouch(View view, MotionEvent event) {
             boolean result = false;
             if (mViews.indexOf(view) == getCenterIndex()) {
+
+                int action = event.getAction();
+                if (action == MotionEvent.ACTION_DOWN) {
+                    mTouchView = view;
+                    mTouchFrameCount = 0;
+                    MainController.get().scheduleUpdate();
+                } else if (action == MotionEvent.ACTION_UP) {
+                    mTouchView = null;
+                }
+
                 result = mVerticalGestureDetector.onTouchEvent(event);
                 VerticalGestureListener.GestureDirection gestureDirection = mVerticalGestureListener.getLastGestureDirection();
                 if (gestureDirection == VerticalGestureListener.GestureDirection.Down
