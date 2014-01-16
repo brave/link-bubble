@@ -161,13 +161,59 @@ public class BubbleFlowView extends HorizontalScrollView {
         mContent.setLayoutParams(contentLP);
     }
 
-    void remove(int index) {
-        View view = mViews.get(index);
-        mViews.remove(view);
-        mContent.removeView(view);
-        updatePositions();
-        updateScales(getScrollX());
-        mContent.invalidate();
+    void remove(final int index, boolean animateOff) {
+        final View view = mViews.get(index);
+
+        if (animateOff) {
+            TranslateAnimation slideOffAnim = new TranslateAnimation(0, 0, 0, -mItemHeight);
+            slideOffAnim.setDuration(Constant.BUBBLE_ANIM_TIME);
+            slideOffAnim.setFillAfter(true);
+            slideOffAnim.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    mContent.removeView(view);
+
+                    // Cancel the current animation on the views so the offset no longer applies
+                    for (int i = 0; i < mViews.size(); i++) {
+                        View view = mViews.get(i);
+                        Animation viewAnimation = view.getAnimation();
+                        if (viewAnimation != null) {
+                            viewAnimation.cancel();
+                            view.setAnimation(null);
+                        }
+                    }
+                    updatePositions();
+                    updateScales(getScrollX());
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+            view.startAnimation(slideOffAnim);
+
+            mViews.remove(view);
+
+            for (int i = index; i < mViews.size(); i++) {
+                View viewToShift = mViews.get(i);
+                TranslateAnimation slideAnim = new TranslateAnimation(0, -mItemWidth, 0, 0);
+                slideAnim.setDuration(Constant.BUBBLE_ANIM_TIME);
+                slideAnim.setFillAfter(true);
+                viewToShift.startAnimation(slideAnim);
+            }
+        } else {
+            mViews.remove(view);
+            mContent.removeView(view);
+            updatePositions();
+            updateScales(getScrollX());
+            mContent.invalidate();
+        }
     }
 
     void updatePositions() {
