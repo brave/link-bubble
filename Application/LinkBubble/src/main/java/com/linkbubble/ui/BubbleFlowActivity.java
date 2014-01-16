@@ -24,8 +24,6 @@ public class BubbleFlowActivity extends Activity {
         WindowManager w = getWindowManager();
         w.getDefaultDisplay().getSize(size);
 
-        final TextView debugText = (TextView) findViewById(R.id.debug_text);
-
         final LayoutInflater inflater = LayoutInflater.from(this);
         mBubbleFlowView = (BubbleFlowView) findViewById(R.id.bubble_flow);
         mBubbleFlowView.configure(size.x,
@@ -35,7 +33,6 @@ public class BubbleFlowActivity extends Activity {
             BubbleFlowItemView bubble = (BubbleFlowItemView) inflater.inflate(R.layout.view_bubble_flow_item, null);
             mBubbleFlowView.add(bubble, false);
         }
-        debugText.setText(mBubbleFlowView.getDebugString());
 
         findViewById(R.id.add_bubble_button).setOnClickListener(new View.OnClickListener() {
             @Override
