@@ -151,4 +151,19 @@ public class MainApplication extends Application {
         app.getBus().post(new HistoryRecord.ChangedEvent(historyRecord));
 
     }
+
+    public static void postEvent(Context context, Object event) {
+        MainApplication app = (MainApplication) context.getApplicationContext();
+        app.getBus().post(event);
+    }
+
+    public static void registerForBus(Context context, Object object) {
+        MainApplication app = (MainApplication) context.getApplicationContext();
+        app.getBus().register(object);
+    }
+
+    public static void unregisterForBus(Context context, Object object) {
+        MainApplication app = (MainApplication) context.getApplicationContext();
+        app.getBus().unregister(object);
+    }
 }

@@ -54,6 +54,26 @@ public abstract class MainController implements Choreographer.FrameCallback {
     protected static MainController sInstance;
     private static ContentActivity sContentActivity;
 
+    // Simple event classes used for the event bus
+    public static class BeginBubbleDragEvent {
+    }
+
+    public static class EndBubbleDragEvent {
+    }
+
+    public static class BeginExpandTransitionEvent {
+    }
+
+    public static class EndCollapseTransitionEvent {
+    }
+
+    public static class OrientationChangedEvent {
+    }
+
+    private OrientationChangedEvent mOrientationChangedEvent = new OrientationChangedEvent();
+
+    // End of event bus classes
+
     public static MainController get() {
         return sInstance;
     }
@@ -139,9 +159,9 @@ public abstract class MainController implements Choreographer.FrameCallback {
         Bus bus = app.getBus();
         bus.register(this);
 
-        STATE_BubbleView = new State_BubbleView(mCanvasView);
+        STATE_BubbleView = new State_BubbleView(mContext, mCanvasView);
         STATE_SnapToEdge = new State_SnapToEdge(mCanvasView);
-        STATE_AnimateToContentView = new State_AnimateToContentView(mCanvasView);
+        STATE_AnimateToContentView = new State_AnimateToContentView(mContext, mCanvasView);
         STATE_ContentView = new State_ContentView(mCanvasView);
         STATE_AnimateToBubbleView = new State_AnimateToBubbleView(mCanvasView);
         STATE_Flick_ContentView = new State_Flick_ContentView(mCanvasView);
@@ -150,19 +170,6 @@ public abstract class MainController implements Choreographer.FrameCallback {
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
         switchState(STATE_BubbleView);
-    }
-
-    protected void doTargetAction(Config.BubbleAction action, String url) {
-
-        switch (action) {
-            case ConsumeRight:
-            case ConsumeLeft: {
-                MainApplication.handleBubbleAction(mContext, action, url);
-                break;
-            }
-            default:
-                break;
-        }
     }
 
     //private TextView mTextView;
@@ -279,11 +286,11 @@ public abstract class MainController implements Choreographer.FrameCallback {
 
     public void onOrientationChanged() {
         Config.init(mContext);
-        mCanvasView.onOrientationChanged();
         boolean contentView = mCurrentState.onOrientationChanged();
         for (int i=0 ; i < mDraggables.size() ; ++i) {
             mDraggables.get(i).onOrientationChanged(contentView);
         }
+        MainApplication.postEvent(mContext, mOrientationChangedEvent);
     }
 
     public Draggable getActiveDraggable() {

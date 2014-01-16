@@ -1,8 +1,10 @@
 package com.linkbubble.physics;
 
+import android.content.Context;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import com.linkbubble.Constant;
+import com.linkbubble.MainApplication;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
@@ -24,6 +26,9 @@ public class State_AnimateToContentView extends ControllerState {
         public float mTargetY;
     }
 
+    private Context mContext;
+    private MainController.BeginExpandTransitionEvent mBeginExpandTransitionEvent = new MainController.BeginExpandTransitionEvent();
+
     private CanvasView mCanvasView;
     private OvershootInterpolator mInterpolator = new OvershootInterpolator(0.5f);
     private float mTime;
@@ -31,13 +36,15 @@ public class State_AnimateToContentView extends ControllerState {
     private float mContentPeriod;
     private Vector<DraggableInfo> mDraggableInfo = new Vector<DraggableInfo>();
 
-    public State_AnimateToContentView(CanvasView canvasView) {
+    public State_AnimateToContentView(Context context, CanvasView canvasView) {
         mCanvasView = canvasView;
+        mContext = context;
     }
 
     @Override
     public void onEnterState() {
-        mCanvasView.fadeIn();
+        MainApplication.postEvent(mContext, mBeginExpandTransitionEvent);
+
         mCanvasView.fadeOutTargets();
         if (mCanvasView.getContentView() != null) {
             mCanvasView.getContentView().onAnimateOnScreen();
