@@ -18,7 +18,6 @@ import com.linkbubble.physics.Draggable;
  */
 public class BadgeView extends TextView {
 
-    private BubbleLegacyView mBubble;
     int mCount;
 
     enum AnimState {
@@ -130,25 +129,5 @@ public class BadgeView extends TextView {
     public void setCount(int count) {
         mCount = count;
         setText(Integer.toString(count));
-        if (count < 2) {
-            if (mBubble != null) {
-                mBubble.detachBadge();
-            }
-        } else {
-            if (mBubble != null) {
-                mBubble.attachBadge(this);
-            }
-        }
-    }
-
-    public void attach(BubbleLegacyView bubble) {
-        if (mBubble != null) {
-            mBubble.detachBadge();
-        }
-
-        if (bubble != null) {
-            mBubble = bubble;
-            mBubble.attachBadge(this);
-        }
     }
 }

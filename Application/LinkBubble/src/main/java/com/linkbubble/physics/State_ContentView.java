@@ -1,7 +1,6 @@
 package com.linkbubble.physics;
 
 import com.linkbubble.Constant;
-import com.linkbubble.ui.BubbleLegacyView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
@@ -39,11 +38,6 @@ public class State_ContentView extends ControllerState {
     public boolean onUpdate(float dt) {
         if (mDraggable != null) {
             ++mTouchFrameCount;
-
-            if (mTouchFrameCount == 6 && Constant.USE_NEW_CONTROLLER == false) {
-                mCanvasView.fadeInTargets();
-                mCanvasView.hideContentView();
-            }
 
             if (mDidMove) {
                 MainController.get().setActiveDraggable(mDraggable);
@@ -120,8 +114,13 @@ public class State_ContentView extends ControllerState {
                     }
                 }
             } else if (MainController.get().getActiveDraggable() != sender) {
-                mCanvasView.fadeOutTargets();
-                setActiveBubble(sender);
+
+                // TODO: GW: I don't think this code path ever gets hit currently. Left as an assert
+                // to test if we hit this, and if so, work out what needs to be done.
+                Util.Assert(false);
+
+                //mCanvasView.fadeOutTargets();
+                //setActiveBubble(sender);
             } else {
                 mainController.getActiveDraggable().readd();
                 mainController.switchState(mainController.STATE_AnimateToBubbleView);
@@ -154,13 +153,5 @@ public class State_ContentView extends ControllerState {
     @Override
     public String getName() {
         return "ContentView";
-    }
-
-    public void setActiveBubble(Draggable draggable) {
-        MainController.get().setActiveDraggable(draggable);
-        BubbleLegacyView bubble = draggable.getBubbleLegacyView();
-        draggable.getDraggableHelper().setTargetPos((int) Config.getContentViewX(bubble.getBubbleIndex(),
-                MainController.get().getDraggableCount()), bubble.getYPos(), 0.2f, false);
-        MainController.get().showContentView(bubble.getContentView());
     }
 }

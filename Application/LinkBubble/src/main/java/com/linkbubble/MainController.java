@@ -29,7 +29,6 @@ import com.linkbubble.physics.State_KillBubble;
 import com.linkbubble.physics.State_SnapToEdge;
 import com.linkbubble.ui.BadgeView;
 import com.linkbubble.ui.BubbleFlowItemView;
-import com.linkbubble.ui.BubbleLegacyView;
 import com.linkbubble.ui.BubbleView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.ui.ContentActivity;

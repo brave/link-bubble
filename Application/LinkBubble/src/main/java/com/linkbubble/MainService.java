@@ -70,21 +70,12 @@ public class MainService extends Service {
 
         WebIconDatabase.getInstance().open(getDir("icons", MODE_PRIVATE).getPath());
 
-        if (Constant.USE_NEW_CONTROLLER) {
-            MainControllerNew.create(this, new MainController.EventHandler() {
+        MainControllerNew.create(this, new MainController.EventHandler() {
                 @Override
                 public void onDestroy() {
                     stopSelf();
                 }
             });
-        } else {
-            MainControllerLegacy.create(this, new MainController.EventHandler() {
-                @Override
-                public void onDestroy() {
-                    stopSelf();
-                }
-            });
-        }
 
         //Intent i = new Intent();
         //i.setData(Uri.parse("https://t.co/uxMl3bWtMP"));

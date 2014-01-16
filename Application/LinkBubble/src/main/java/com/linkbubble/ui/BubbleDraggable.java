@@ -128,11 +128,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     @Override
-    public BubbleLegacyView getBubbleLegacyView() {
-        return null;
-    }
-
-    @Override
     public View getDraggableView() {
         return this;
     }
