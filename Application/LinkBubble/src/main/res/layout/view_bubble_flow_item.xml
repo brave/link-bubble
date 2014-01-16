@@ -37,12 +37,4 @@
         android:src="@drawable/fallback_favicon"
         android:layout_gravity="center"/>
 
-    <TextView
-        android:id="@+id/debug_index"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|top"
-        android:visibility="gone"
-        android:text="0"/>
-
 </com.linkbubble.ui.BubbleFlowItemView>

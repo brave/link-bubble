@@ -120,12 +120,6 @@ public class BubbleFlowView extends HorizontalScrollView {
 
         //view.setBackgroundColor(mViews.size() % 2 == 0 ? 0xff660066 : 0xff666600);
 
-        TextView debugIndexTextView = (TextView) view.findViewById(R.id.debug_index);
-        if (debugIndexTextView != null) {
-            debugIndexTextView.setText("" + mViews.size());
-            debugIndexTextView.setVisibility(VISIBLE);
-        }
-
         view.setOnClickListener(mViewOnClickListener);
         view.setOnLongClickListener(mViewOnLongClickListener);
         view.setOnTouchListener(mViewOnTouchListener);
@@ -711,9 +705,4 @@ public class BubbleFlowView extends HorizontalScrollView {
             return result;
         }
     };
-
-    String getDebugString() {
-        return "count:" + mViews.size() + ", center index:" + getCenterIndex() + ", width:" + mContent.getWidth()
-                + ", scrollX:" + getScrollX() + ", total:" + (getScrollX() + mWidth);
-    }
 }
