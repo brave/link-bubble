@@ -60,6 +60,7 @@ public class ContentView extends FrameLayout {
     private CondensedTextView mTitleTextView;
     private CondensedTextView mUrlTextView;
     private ContentViewButton mShareButton;
+    private ContentViewButton mReloadButton;
     private OpenInAppButton mOpenInAppButton;
     private OpenEmbedButton mOpenEmbedButton;
     private ContentViewButton mOverflowButton;
@@ -308,6 +309,16 @@ public class ContentView extends FrameLayout {
             }
         });
 
+        mReloadButton = (ContentViewButton)findViewById(R.id.reload_button);
+        mReloadButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_reload));
+        mReloadButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mReloadButton.setVisibility(GONE);
+                mWebView.reload();
+            }
+        });
+
         mOverflowButton = (ContentViewButton)mToolbarLayout.findViewById(R.id.overflow_button);
         mOverflowButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_overflow_round));
         mOverflowButton.setOnClickListener(new OnClickListener() {
@@ -532,6 +543,8 @@ public class ContentView extends FrameLayout {
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 mEventHandler.onPageLoaded(null);
+                mReloadButton.setVisibility(VISIBLE);
+                mShareButton.setVisibility(GONE);
             }
 
             @Override
@@ -543,6 +556,10 @@ public class ContentView extends FrameLayout {
             public void onPageStarted(WebView view, String url, Bitmap favIcon) {
                 if (isValidUrl(url)) {
                     mLoadCount = Math.max(mLoadCount, 1);
+                }
+
+                if (mShareButton.getVisibility() == GONE) {
+                    mShareButton.setVisibility(VISIBLE);
                 }
             }
 
