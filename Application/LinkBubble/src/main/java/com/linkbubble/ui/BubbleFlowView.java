@@ -2,7 +2,6 @@ package com.linkbubble.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -10,13 +9,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.view.animation.Transformation;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
-import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.R;
+import com.linkbubble.util.TranslateAnimationEx;
 import com.linkbubble.util.VerticalGestureListener;
 
 import java.util.ArrayList;
@@ -28,6 +28,7 @@ public class BubbleFlowView extends HorizontalScrollView {
     private static final String TAG = "BubbleFlowView";
     private static final boolean DEBUG = false;
     private static final int INVALID_POINTER = -1;
+    private static final float MIN_SCALE = .7f;
 
     public interface Listener {
         void onCenterItemClicked(BubbleFlowView sender, View view);
@@ -53,6 +54,8 @@ public class BubbleFlowView extends HorizontalScrollView {
     private int mWidth;
     protected int mItemWidth;
     protected int mItemHeight;
+    private float mFullScaleX;
+    private float mMinScaleX;
     private int mEdgeMargin;
     private int mIndexOnActionDown;
     private boolean mFlingCalled;
@@ -108,6 +111,9 @@ public class BubbleFlowView extends HorizontalScrollView {
         mItemWidth = itemWidth;
         mItemHeight = itemHeight;
         mEdgeMargin = (width - itemWidth) / 2;
+
+        mFullScaleX = mItemWidth * .3f;
+        mMinScaleX = mItemWidth * 1.2f;
     }
 
     void add(View view, boolean insertNextToCenterItem) {
@@ -201,8 +207,14 @@ public class BubbleFlowView extends HorizontalScrollView {
             mViews.remove(view);
 
             for (int i = index; i < mViews.size(); i++) {
-                View viewToShift = mViews.get(i);
-                TranslateAnimation slideAnim = new TranslateAnimation(0, -mItemWidth, 0, 0);
+                final View viewToShift = mViews.get(i);
+                TranslateAnimationEx slideAnim = new TranslateAnimationEx(0, -mItemWidth, 0, 0, new TranslateAnimationEx.TransformationListener() {
+                    @Override
+                    public void onApplyTransform(float interpolatedTime, Transformation t, float dx, float dy) {
+                        float centerX = getScrollX() + (mWidth/2) - (mItemWidth/2);
+                        updateScaleForView(viewToShift, centerX, viewToShift.getX() + dx);
+                    }
+                });
                 slideAnim.setDuration(Constant.BUBBLE_ANIM_TIME);
                 slideAnim.setFillAfter(true);
                 viewToShift.startAnimation(slideAnim);
@@ -233,27 +245,26 @@ public class BubbleFlowView extends HorizontalScrollView {
 
     void updateScales(int scrollX) {
         float centerX = scrollX + (mWidth/2) - (mItemWidth/2);
-        float fullScaleX = mItemWidth * .3f;
-        float minScaleX = mItemWidth * 1.2f;
 
-        float minScale = .7f;
-        //int centerIndex = getCenterIndex();
         int size = mViews.size();
         for (int i = 0; i < size; i++) {
-            View view = mViews.get(i);
-            float xDelta = Math.abs(centerX - ((i * mItemWidth) + mEdgeMargin));
-            float targetScale;
-            if (xDelta < fullScaleX) {
-                targetScale = 1.f;
-            } else if (xDelta > minScaleX) {
-                targetScale = minScale;
-            } else {
-                float ratio = 1.f - ((xDelta - fullScaleX) / (minScaleX - fullScaleX));
-                targetScale = minScale + (ratio * (1.f-minScale));
-            }
-            view.setScaleX(targetScale);
-            view.setScaleY(targetScale);
+            updateScaleForView(mViews.get(i), centerX, ((i * mItemWidth) + mEdgeMargin));
         }
+    }
+
+    void updateScaleForView(View view, float centerX, float viewX) {
+        float xDelta = Math.abs(centerX - viewX);
+        float targetScale;
+        if (xDelta < mFullScaleX) {
+            targetScale = 1.f;
+        } else if (xDelta > mMinScaleX) {
+            targetScale = MIN_SCALE;
+        } else {
+            float ratio = 1.f - ((xDelta - mFullScaleX) / (mMinScaleX - mFullScaleX));
+            targetScale = MIN_SCALE + (ratio * (1.f- MIN_SCALE));
+        }
+        view.setScaleX(targetScale);
+        view.setScaleY(targetScale);
     }
 
     int getCount() {
