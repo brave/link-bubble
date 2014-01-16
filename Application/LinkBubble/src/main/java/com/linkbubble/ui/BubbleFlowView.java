@@ -206,18 +206,35 @@ public class BubbleFlowView extends HorizontalScrollView {
 
             mViews.remove(view);
 
-            for (int i = index; i < mViews.size(); i++) {
-                final View viewToShift = mViews.get(i);
-                TranslateAnimationEx slideAnim = new TranslateAnimationEx(0, -mItemWidth, 0, 0, new TranslateAnimationEx.TransformationListener() {
-                    @Override
-                    public void onApplyTransform(float interpolatedTime, Transformation t, float dx, float dy) {
-                        float centerX = getScrollX() + (mWidth/2) - (mItemWidth/2);
-                        updateScaleForView(viewToShift, centerX, viewToShift.getX() + dx);
-                    }
-                });
-                slideAnim.setDuration(Constant.BUBBLE_ANIM_TIME);
-                slideAnim.setFillAfter(true);
-                viewToShift.startAnimation(slideAnim);
+            int viewsSize = mViews.size();
+            if (index < viewsSize) {
+                for (int i = index; i < viewsSize; i++) {
+                    final View viewToShift = mViews.get(i);
+                    TranslateAnimationEx slideAnim = new TranslateAnimationEx(0, -mItemWidth, 0, 0, new TranslateAnimationEx.TransformationListener() {
+                        @Override
+                        public void onApplyTransform(float interpolatedTime, Transformation t, float dx, float dy) {
+                            float centerX = getScrollX() + (mWidth/2) - (mItemWidth/2);
+                            updateScaleForView(viewToShift, centerX, viewToShift.getX() + dx);
+                        }
+                    });
+                    slideAnim.setDuration(Constant.BUBBLE_ANIM_TIME);
+                    slideAnim.setFillAfter(true);
+                    viewToShift.startAnimation(slideAnim);
+                }
+            } else if (viewsSize > 0) {
+                for (int i = 0; i < index; i++) {
+                    final View viewToShift = mViews.get(i);
+                    TranslateAnimationEx slideAnim = new TranslateAnimationEx(0, mItemWidth, 0, 0, new TranslateAnimationEx.TransformationListener() {
+                        @Override
+                        public void onApplyTransform(float interpolatedTime, Transformation t, float dx, float dy) {
+                            float centerX = getScrollX() + (mWidth/2) - (mItemWidth/2);
+                            updateScaleForView(viewToShift, centerX, viewToShift.getX() + dx);
+                        }
+                    });
+                    slideAnim.setDuration(Constant.BUBBLE_ANIM_TIME);
+                    slideAnim.setFillAfter(true);
+                    viewToShift.startAnimation(slideAnim);
+                }
             }
         } else {
             mViews.remove(view);
