@@ -201,6 +201,15 @@ public class MainControllerNew extends MainController {
     }
 
     @Override
+    public void onDestroyCurrentBubble() {
+        mBubbleFlowDraggable.destroyCurrentBubble(true);
+        if (mBubbleFlowDraggable.getBubbleCount() == 0) {
+            STATE_KillBubble.init(mBubbleDraggable);
+            switchState(STATE_KillBubble);
+        }
+    }
+
+    @Override
     public boolean destroyDraggable(Draggable draggable, Config.BubbleAction action) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         boolean debug = prefs.getBoolean("debug_flick", true);
@@ -208,8 +217,7 @@ public class MainControllerNew extends MainController {
         if (debug) {
             Toast.makeText(mContext, "HIT TARGET!", 400).show();
         } else {
-            String currentBubbleUrl = mBubbleFlowDraggable.getContentView().getCurrentUrl();
-            mBubbleFlowDraggable.destroyCurrentBubble();
+            mBubbleFlowDraggable.destroyCurrentBubble(false);
             if (mBubbleFlowDraggable.getBubbleCount() == 0) {
                 removeBubbleDraggable();
 
@@ -218,8 +226,6 @@ public class MainControllerNew extends MainController {
             }
 
             mCurrentState.onDestroyDraggable(null);
-
-            doTargetAction(action, currentBubbleUrl);
         }
 
         return getBubbleCount() > 0;
