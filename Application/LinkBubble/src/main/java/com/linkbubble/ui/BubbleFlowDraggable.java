@@ -255,7 +255,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
                         @Override
                         public void onDestroyBubble() {
-
+                            remove(getCenterIndex(), true);
                         }
 
                         @Override
