@@ -164,11 +164,7 @@ public class ContentView extends FrameLayout {
 
         mTempPath.reset();
         float centerX;
-        if (Constant.USE_NEW_CONTROLLER) {
-            centerX = Config.mScreenCenterX;
-        } else {
-            centerX = mMarkerX + (Config.mBubbleWidth * 0.5f);
-        }
+        centerX = Config.mScreenCenterX;
         mTempPath.moveTo(centerX - mHeaderHeight, mHeaderHeight + 1.0f);
         mTempPath.lineTo(centerX, 0.0f);
         mTempPath.lineTo(centerX + mHeaderHeight, mHeaderHeight + 1.0f);

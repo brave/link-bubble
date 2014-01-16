@@ -183,11 +183,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     @Override
-    public BubbleLegacyView getBubbleLegacyView() {
-        return null;
-    }
-
-    @Override
     public View getDraggableView() {
         return this;
     }
