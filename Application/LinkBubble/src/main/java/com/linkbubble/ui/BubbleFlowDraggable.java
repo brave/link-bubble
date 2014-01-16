@@ -255,7 +255,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
                         @Override
                         public void onDestroyBubble() {
-                            remove(getCenterIndex(), true);
+                            MainController.get().onDestroyCurrentBubble();
                         }
 
                         @Override
@@ -292,12 +292,12 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         add(bubble, true);
     }
 
-    private void destroyBubble(BubbleFlowItemView bubble, boolean removeFromList) {
+    private void destroyBubble(BubbleFlowItemView bubble, boolean animateRemove, boolean removeFromList) {
         int index = mViews.indexOf(bubble);
-        mContent.removeView(bubble);
-        mViews.remove(bubble);
-        updatePositions();
-        updateScales(getScrollX());
+        if (index == -1) {
+            return;
+        }
+        remove(index, animateRemove);
 
         if (removeFromList) {
             mBubbles.remove(bubble);
@@ -320,7 +320,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                     }
                 }
             }
-            setCurrentBubble(newCurrentBubble, false);
+            setCurrentBubble(newCurrentBubble, animateRemove);
         }
     }
 
@@ -328,9 +328,9 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         Settings.get().saveCurrentBubbles(mBubbles);
     }
 
-    public void destroyCurrentBubble() {
+    public void destroyCurrentBubble(boolean animateRemove) {
         BubbleFlowItemView currentBubble = getCurrentBubble();
-        destroyBubble(currentBubble, true);
+        destroyBubble(currentBubble, animateRemove, true);
         postDestroyedBubble();
     }
 
@@ -338,7 +338,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         Iterator<BubbleFlowItemView> iterator = mBubbles.iterator();
         while (iterator.hasNext()) {
             BubbleFlowItemView item = iterator.next();
-            destroyBubble(item, false);
+            destroyBubble(item, false, false);
             iterator.remove();
         }
 
