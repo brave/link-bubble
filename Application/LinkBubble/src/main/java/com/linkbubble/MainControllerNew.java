@@ -64,6 +64,7 @@ public class MainControllerNew extends MainController {
 
         mBubbleFlowDraggable = (BubbleFlowDraggable) inflater.inflate(R.layout.view_bubble_flow, null);
         mBubbleFlowDraggable.configure(null);
+        mBubbleFlowDraggable.collapse(0, null);
         mBubbleFlowDraggable.setBubbleDraggable(mBubbleDraggable);
         mBubbleFlowDraggable.setVisibility(View.GONE);
     }
