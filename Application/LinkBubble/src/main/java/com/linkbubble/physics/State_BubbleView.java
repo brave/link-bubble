@@ -1,6 +1,10 @@
 package com.linkbubble.physics;
 
+import android.content.Context;
 import android.view.View;
+
+import com.linkbubble.MainApplication;
+import com.linkbubble.MainControllerNew;
 import com.linkbubble.ui.BadgeView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
@@ -13,6 +17,7 @@ import com.linkbubble.util.Util;
  */
 public class State_BubbleView extends ControllerState {
 
+    private Context mContext;
     private CanvasView mCanvasView;
     private boolean mDidMove;
     private int mInitialX;
@@ -23,16 +28,22 @@ public class State_BubbleView extends ControllerState {
     private boolean mTouchDown;
     private int mTouchFrameCount;
 
-    public State_BubbleView(CanvasView canvasView) {
+    private MainController.EndCollapseTransitionEvent mEndCollapseTransitionEvent = new MainController.EndCollapseTransitionEvent();
+    private MainController.BeginBubbleDragEvent mBeginBubbleDragEvent = new MainController.BeginBubbleDragEvent();
+    private MainController.EndBubbleDragEvent mEndBubbleDragEvent = new MainController.EndBubbleDragEvent();
+
+    public State_BubbleView(Context context, CanvasView canvasView) {
         mCanvasView = canvasView;
+        mContext = context;
     }
 
     @Override
     public void onEnterState() {
+        MainApplication.postEvent(mContext, mEndCollapseTransitionEvent);
+
         mCanvasView.fadeOutTargets();
         mDidMove = false;
         mDraggable = null;
-        mCanvasView.fadeOut();
 
         MainController mainController = MainController.get();
         mainController.showBadge(true);
@@ -79,7 +90,6 @@ public class State_BubbleView extends ControllerState {
     @Override
     public void onTouchActionDown(Draggable sender, DraggableHelper.TouchEvent e) {
         mTouchDown = true;
-        mCanvasView.fadeIn();
         mDraggable = sender;
         mInitialX = e.posX;
         mInitialY = e.posY;
@@ -91,6 +101,8 @@ public class State_BubbleView extends ControllerState {
         mainController.scheduleUpdate();
         mainController.showBadge(false);
         mTouchFrameCount = 0;
+
+        MainApplication.postEvent(mContext, mBeginBubbleDragEvent);
     }
 
     @Override
@@ -113,11 +125,11 @@ public class State_BubbleView extends ControllerState {
     @Override
     public void onTouchActionRelease(Draggable sender, DraggableHelper.ReleaseEvent e) {
         if (mTouchDown) {
+            MainApplication.postEvent(mContext, mEndBubbleDragEvent);
             sender.getDraggableHelper().clearTargetPos();
 
             MainController mainController = MainController.get();
             if (mDidMove) {
-                mCanvasView.fadeOut();
                 CanvasView.TargetInfo ti = mDraggable.getDraggableHelper().getTargetInfo(mCanvasView,
                         sender.getDraggableHelper().getXPos(), sender.getDraggableHelper().getYPos());
                 if (ti.mAction == Config.BubbleAction.None) {
@@ -165,7 +177,6 @@ public class State_BubbleView extends ControllerState {
     public boolean onOrientationChanged() {
         mTouchDown = false;
         mDraggable = null;
-        mCanvasView.fadeOut();
         return false;
     }
 

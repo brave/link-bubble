@@ -7,12 +7,14 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import com.linkbubble.Config;
+import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.util.Util;
 import com.linkbubble.physics.Circle;
+import com.squareup.otto.Subscribe;
 
 import java.util.Vector;
 
@@ -55,6 +57,8 @@ public class CanvasView extends RelativeLayout {
     public CanvasView(Context context) {
         super(context);
 
+        MainApplication.registerForBus(context, this);
+
         mContext = context;
         mEnabled = true;
 
@@ -87,16 +91,6 @@ public class CanvasView extends RelativeLayout {
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
         mWindowManagerParams.setTitle("LinkBubble: CanvasView");
         mWindowManager.addView(this, mWindowManagerParams);
-    }
-
-    public void onOrientationChanged() {
-        for (int i=0 ; i < mTargets.size() ; ++i) {
-            BubbleTargetView bt = mTargets.get(i);
-            bt.OnOrientationChanged();
-        }
-        if (mContentView != null) {
-            mContentView.onOrientationChanged();
-        }
     }
 
     public void setContentView(ContentView cv) {
@@ -160,12 +154,49 @@ public class CanvasView extends RelativeLayout {
         MainController.get().scheduleUpdate();
     }
 
-    public void fadeIn() {
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onBeginBubbleDrag(MainController.BeginBubbleDragEvent e) {
+        fadeIn();
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEndBubbleDragEvent(MainController.EndBubbleDragEvent e) {
+        fadeOut();
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onBeginExpandTransition(MainController.BeginExpandTransitionEvent e) {
+        fadeIn();
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEndCollapseTransition(MainController.EndCollapseTransitionEvent e) {
+        fadeOut();
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onOrientationChanged(MainController.OrientationChangedEvent e) {
+        fadeOut();
+        for (int i=0 ; i < mTargets.size() ; ++i) {
+            BubbleTargetView bt = mTargets.get(i);
+            bt.OnOrientationChanged();
+        }
+        if (mContentView != null) {
+            mContentView.onOrientationChanged();
+        }
+    }
+
+    private void fadeIn() {
         mTargetAlpha = mMaxAlpha;
         MainController.get().scheduleUpdate();
     }
 
-    public void fadeOut() {
+    private void fadeOut() {
         mTargetAlpha = 0.0f;
         MainController.get().scheduleUpdate();
     }
@@ -183,6 +214,8 @@ public class CanvasView extends RelativeLayout {
     }
 
     public void destroy() {
+        MainApplication.unregisterForBus(mContext, this);
+
         mWindowManager.removeView(this);
     }
 
