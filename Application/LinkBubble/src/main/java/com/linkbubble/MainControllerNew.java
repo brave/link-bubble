@@ -274,6 +274,10 @@ public class MainControllerNew extends MainController {
         @Override
         public void onAnimationEnd(BubbleFlowView sender) {
             mBubbleDraggable.setVisibility(View.VISIBLE);
+            BubbleFlowItemView currentBubble = mBubbleFlowDraggable.getCurrentBubble();
+            if (currentBubble != null) {
+                currentBubble.setImitator(mBubbleDraggable);
+            }
             mBubbleFlowDraggable.postDelayed(mSetBubbleFlowGoneRunnable, 33);
         }
     };
