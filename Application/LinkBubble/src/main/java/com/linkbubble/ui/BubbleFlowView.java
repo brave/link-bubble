@@ -376,6 +376,9 @@ public class BubbleFlowView extends HorizontalScrollView {
         }
         int size = mViews.size();
         int centerIndex = getCenterIndex();
+        if (centerIndex == -1) {
+            return;
+        }
         View centerView = mViews.get(centerIndex);
         boolean addedAnimationListener = false;
         for (int i = 0; i < size; i++) {
@@ -441,7 +444,9 @@ public class BubbleFlowView extends HorizontalScrollView {
             if(mScrollFinishedCheckerInitialXPosition - getScrollX() == 0){
                 if (mBubbleFlowListener != null) {
                     int currentCenterIndex = getCenterIndex();
-                    mBubbleFlowListener.onCenterItemChanged(BubbleFlowView.this, mViews.get(currentCenterIndex));
+                    if (currentCenterIndex > -1) {
+                        mBubbleFlowListener.onCenterItemChanged(BubbleFlowView.this, mViews.get(currentCenterIndex));
+                    }
                 }
             }else{
                 mScrollFinishedCheckerInitialXPosition = getScrollX();
