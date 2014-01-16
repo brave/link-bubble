@@ -148,8 +148,8 @@ public class CanvasView extends RelativeLayout {
     }
 
     public void hideContentView() {
-        Util.Assert(mContentView != null);
-        mCurrentAlphaContentView = mContentView.getAlpha();
+        //Util.Assert(mContentView != null);
+        mCurrentAlphaContentView = mContentView != null ? mContentView.getAlpha() : 1.f;
         mTargetAlphaContentView = 0.0f;
         MainController.get().scheduleUpdate();
     }
