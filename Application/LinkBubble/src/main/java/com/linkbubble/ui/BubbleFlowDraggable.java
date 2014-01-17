@@ -255,11 +255,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         mDraggableHelper.setExactPos(x, y);
     }
 
-    public void setTargetPos(int x, int y, float t, boolean overshoot) {
-        mDraggableHelper.setTargetPos(x, y, t, overshoot);
-    }
-
-
     public void openUrlInBubble(String url, long startTime) {
         BubbleFlowItemView bubble;
         try {

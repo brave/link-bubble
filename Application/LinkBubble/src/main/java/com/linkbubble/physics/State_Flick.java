@@ -108,7 +108,7 @@ public abstract class State_Flick extends ControllerState {
                     ti.mTargetX = (int) (0.5f + ti.mTargetX - Config.mBubbleWidth * 0.5f);
                     ti.mTargetY = (int) (0.5f + ti.mTargetY - Config.mBubbleHeight * 0.5f);
                     mTargetInfo = ti;
-                    mDraggable.getDraggableHelper().setTargetPos(ti.mTargetX, ti.mTargetY, 0.2f, true);
+                    mDraggable.getDraggableHelper().setTargetPos(ti.mTargetX, ti.mTargetY, 0.2f, DraggableHelper.AnimationType.LargeOvershoot);
                     break;
                 default:
                     {

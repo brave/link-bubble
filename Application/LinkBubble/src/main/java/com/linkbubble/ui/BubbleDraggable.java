@@ -106,7 +106,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
             setExactPos(x0, y0);
             if (targetX != x0 || targetY != y0) {
-                setTargetPos(targetX, targetY, targetTime, true);
+                setTargetPos(targetX, targetY, targetTime, DraggableHelper.AnimationType.LargeOvershoot);
             }
         }
     }
@@ -171,8 +171,8 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         mDraggableHelper.setExactPos(x, y);
     }
 
-    public void setTargetPos(int x, int y, float t, boolean overshoot) {
-        mDraggableHelper.setTargetPos(x, y, t, overshoot);
+    public void setTargetPos(int x, int y, float t, DraggableHelper.AnimationType type) {
+        mDraggableHelper.setTargetPos(x, y, t, type);
     }
 
 }
