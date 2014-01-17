@@ -16,11 +16,6 @@ public class State_SnapToEdge extends ControllerState {
     private float mTime;
     private float mPeriod;
     private Draggable mDraggable;
-    private CanvasView mCanvasView;
-
-    public State_SnapToEdge(CanvasView c) {
-        mCanvasView = c;
-    }
 
     public void init(Draggable draggable) {
         mDraggable = draggable;

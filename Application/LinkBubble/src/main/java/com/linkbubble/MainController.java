@@ -225,7 +225,7 @@ public class MainController implements Choreographer.FrameCallback {
         bus.register(this);
 
         STATE_BubbleView = new State_BubbleView(mContext, mCanvasView);
-        STATE_SnapToEdge = new State_SnapToEdge(mCanvasView);
+        STATE_SnapToEdge = new State_SnapToEdge();
         STATE_AnimateToContentView = new State_AnimateToContentView(mContext, mCanvasView);
         STATE_ContentView = new State_ContentView(mCanvasView);
         STATE_AnimateToBubbleView = new State_AnimateToBubbleView(mCanvasView);
