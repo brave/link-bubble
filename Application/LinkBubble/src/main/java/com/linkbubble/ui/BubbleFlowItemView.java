@@ -128,7 +128,6 @@ public class BubbleFlowItemView extends BubbleView {
             @Override
             public void onClick(View v) {
                 MainController mainController = MainController.get();
-                mainController.getActiveDraggable().readd();
                 mainController.switchState(mainController.STATE_AnimateToBubbleView);
             }
         });

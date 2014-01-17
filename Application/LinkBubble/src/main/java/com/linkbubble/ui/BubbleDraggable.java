@@ -163,12 +163,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         setExactPos(xPos, yPos);
     }
 
-    @Override
-    public void readd() {
-        mWindowManager.removeView(this);
-        mWindowManager.addView(this, mDraggableHelper.getWindowManagerParams());
-    }
-
     public void clearTargetPos() {
         mDraggableHelper.clearTargetPos();
     }
