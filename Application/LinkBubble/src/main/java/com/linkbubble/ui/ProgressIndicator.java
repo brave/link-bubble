@@ -92,7 +92,7 @@ public class ProgressIndicator extends FrameLayout {
         return mIndicatorImage.getVisibility() == VISIBLE;
     }
 
-    private static class ProgressImageView extends ImageView {
+    private class ProgressImageView extends ImageView {
 
         private Animation mRotationAnimation;
 
@@ -109,7 +109,7 @@ public class ProgressIndicator extends FrameLayout {
         protected void onAttachedToWindow() {
             super.onAttachedToWindow();
 
-            if (getVisibility() == VISIBLE) {
+            if (getVisibility() == VISIBLE && mProgress < 100) {
                 startAnimation(mRotationAnimation);
             }
         }

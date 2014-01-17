@@ -96,7 +96,7 @@ public class BubbleView extends FrameLayout  {
         mImitator = bubbleView;
         if (mImitator != null) {
             mImitator.mFavicon.setImageDrawable(mFavicon.getDrawable());
-            mImitator.mProgressIndicator.setProgress(mProgressIndicator.getVisibility() == VISIBLE, mProgressIndicator.getProgress(), mUrl);
+            mImitator.mProgressIndicator.setProgress(mProgressIndicator.isIndicatorShowing(), mProgressIndicator.getProgress(), mUrl);
         }
     }
 
