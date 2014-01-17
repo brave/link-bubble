@@ -19,7 +19,6 @@ public class State_ContentView extends ControllerState {
     private int mTargetY;
     private Draggable mDraggable;
     private boolean mTouchDown;
-    private int mTouchFrameCount;
 
     public State_ContentView(CanvasView canvasView) {
         mCanvasView = canvasView;
@@ -37,8 +36,6 @@ public class State_ContentView extends ControllerState {
     @Override
     public boolean onUpdate(float dt) {
         if (mDraggable != null) {
-            ++mTouchFrameCount;
-
             if (mDidMove) {
                 MainController.get().setActiveDraggable(mDraggable);
                 mDraggable.getDraggableHelper().doSnap(mCanvasView, mTargetX, mTargetY);
@@ -67,7 +64,6 @@ public class State_ContentView extends ControllerState {
         mTargetY = mInitialY;
 
         MainController.get().scheduleUpdate();
-        mTouchFrameCount = 0;
     }
 
     @Override

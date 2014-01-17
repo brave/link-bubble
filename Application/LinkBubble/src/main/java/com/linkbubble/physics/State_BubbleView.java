@@ -24,7 +24,6 @@ public class State_BubbleView extends ControllerState {
     private int mTargetY;
     private Draggable mDraggable;
     private boolean mTouchDown;
-    private int mTouchFrameCount;
 
     private MainController.EndCollapseTransitionEvent mEndCollapseTransitionEvent = new MainController.EndCollapseTransitionEvent();
 
@@ -55,8 +54,6 @@ public class State_BubbleView extends ControllerState {
     public boolean onUpdate(float dt) {
 
         if (mDraggable != null) {
-            ++mTouchFrameCount;
-
             mDraggable.getDraggableHelper().doSnap(mCanvasView, mTargetX, mTargetY);
             return true;
         }
@@ -94,7 +91,6 @@ public class State_BubbleView extends ControllerState {
         MainController mainController = MainController.get();
         mainController.scheduleUpdate();
         mainController.showBadge(false);
-        mTouchFrameCount = 0;
     }
 
     @Override
