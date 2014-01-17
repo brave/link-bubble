@@ -539,35 +539,7 @@ public class MainController implements Choreographer.FrameCallback {
             mDraggables.add(mBubbleDraggable);
         }
         if (getBubbleCount() == 0) {
-            int x, targetX, y, targetY;
-            float time;
-
-            int bubbleIndex = mDraggables.size();
-
-            if (mCurrentState == STATE_ContentView) {
-                x = (int) Config.getContentViewX(bubbleIndex, getBubbleCount()+1);
-                y = (int) -Config.mBubbleHeight;
-                targetX = x;
-                targetY = Config.mContentViewBubbleY;
-                time = 0.4f;
-            } else {
-                if (bubbleIndex == 0) {
-                    x = (int) (Config.mBubbleSnapLeftX - Config.mBubbleWidth);
-                    y = Config.BUBBLE_HOME_Y;
-                    targetX = Config.BUBBLE_HOME_X;
-                    targetY = y;
-                    time = 0.4f;
-                } else {
-                    x = Config.BUBBLE_HOME_X;
-                    y = Config.BUBBLE_HOME_Y;
-                    targetX = x;
-                    targetY = y;
-                    time = 0.0f;
-                }
-            }
-
-            mBubbleDraggable.setExactPos(x, y);
-            mBubbleDraggable.setTargetPos(targetX, targetY, time, true);
+            mBubbleDraggable.setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
         }
 
         mBubbleFlowDraggable.openUrlInBubble(url, startTime);
