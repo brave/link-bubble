@@ -26,7 +26,6 @@ public class State_ContentView extends ControllerState {
 
     @Override
     public void onEnterState() {
-        Util.Assert(MainController.get().getActiveDraggable() != null);
         mDidMove = false;
         mDraggable = null;
         MainController.get().beginAppPolling();
@@ -37,7 +36,6 @@ public class State_ContentView extends ControllerState {
     public boolean onUpdate(float dt) {
         if (mDraggable != null) {
             if (mDidMove) {
-                MainController.get().setActiveDraggable(mDraggable);
                 mDraggable.getDraggableHelper().doSnap(mCanvasView, mTargetX, mTargetY);
             }
             return true;
@@ -111,13 +109,6 @@ public class State_ContentView extends ControllerState {
                         mainController.switchState(mainController.STATE_BubbleView);
                     }
                 }
-            } else if (MainController.get().getActiveDraggable() != sender) {
-
-                // TODO: GW: I don't think this code path ever gets hit currently. Left as an assert
-                // to test if we hit this, and if so, work out what needs to be done.
-                Util.Assert(false);
-
-                //setActiveBubble(sender);
             } else {
                 mainController.switchState(mainController.STATE_AnimateToBubbleView);
             }

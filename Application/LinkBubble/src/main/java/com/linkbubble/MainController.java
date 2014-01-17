@@ -130,7 +130,6 @@ public class MainController implements Choreographer.FrameCallback {
     protected boolean mUpdateScheduled;
     protected static Vector<Draggable> mDraggables = new Vector<Draggable>();
     protected CanvasView mCanvasView;
-    protected Draggable mFrontDraggable;
 
     private BubbleFlowDraggable mBubbleFlowDraggable;
     private BubbleDraggable mBubbleDraggable;
@@ -369,6 +368,10 @@ public class MainController implements Choreographer.FrameCallback {
         mCanvasView.setContentViewTranslation(0.0f);
     }
 
+    public BubbleDraggable getBubbleDraggable() {
+        return mBubbleDraggable;
+    }
+
     public int getBubbleCount() {
         return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getBubbleCount() : 0;
     }
@@ -398,7 +401,7 @@ public class MainController implements Choreographer.FrameCallback {
 
         Draggable frontDraggable = null;
         if (getBubbleCount() > 0) {
-            frontDraggable = getActiveDraggable();
+            frontDraggable = mBubbleDraggable;
         }
         mCanvasView.update(dt, frontDraggable);
 
@@ -455,16 +458,6 @@ public class MainController implements Choreographer.FrameCallback {
         }
         mBubbleFlowDraggable.onOrientationChanged(mCurrentState.onOrientationChanged());
         MainApplication.postEvent(mContext, mOrientationChangedEvent);
-    }
-
-    public Draggable getActiveDraggable() {
-        //Util.Assert(mFrontDraggable != null);
-        return mFrontDraggable;
-    }
-
-    public void setActiveDraggable(Draggable draggable) {
-        mFrontDraggable = draggable;
-        Util.Assert(mFrontDraggable != null);
     }
 
     public void onOpenUrl(final String url, long startTime) {
@@ -545,7 +538,7 @@ public class MainController implements Choreographer.FrameCallback {
         if (mDraggables.contains(mBubbleDraggable) == false) {
             mDraggables.add(mBubbleDraggable);
         }
-        if (mFrontDraggable == null) {
+        if (getBubbleCount() == 0) {
             int x, targetX, y, targetY;
             float time;
 
@@ -572,8 +565,6 @@ public class MainController implements Choreographer.FrameCallback {
                     time = 0.0f;
                 }
             }
-
-            setActiveDraggable(mBubbleDraggable);
 
             mBubbleDraggable.setExactPos(x, y);
             mBubbleDraggable.setTargetPos(targetX, targetY, time, true);
@@ -640,9 +631,6 @@ public class MainController implements Choreographer.FrameCallback {
     private void removeBubbleDraggable() {
         mBubbleDraggable.destroy();
         mDraggables.remove(mBubbleDraggable);
-        if (mFrontDraggable == mBubbleDraggable) {
-            mFrontDraggable = null;
-        }
     }
 
     public void expandBubbleFlow(long time) {
