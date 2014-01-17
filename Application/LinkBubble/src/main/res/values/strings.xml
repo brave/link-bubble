@@ -22,6 +22,8 @@
     <string name="clear_history">Clear history</string>
 
     <string name="preference_category_general">General</string>
+    <string name="preference_category_configuration">Configuration</string>
+    <string name="preference_category_browser">Browser</string>
     <string name="preference_enabled_title">Enabled</string>
     <string name="preference_auto_content_display_title">Auto content display</string>
     <string name="preference_auto_content_display_app_redirect">App redirect</string>
@@ -49,6 +51,14 @@
     <string name="preference_more">More…</string>
     <string name="preference_scan_for_youtube_embeds_title">Check for YouTube embeds</string>
     <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
+
+    <string name="preference_help_title">Help</string>
+    <string name="preference_say_thanks_title">Say thanks!</string>
+    <string name="preference_say_thanks_summary">Enjoying Link Bubble? Please consider leaving a Play Store review.</string>
+    <string name="preference_get_pro_title">Link Bubble Pro</string>
+    <string name="preference_get_pro_summary">Upgrade to Pro for more features.</string>
+    <string name="preference_version_title">Version</string>
+    <string name="preference_version_summary">What\'s new?</string>
 
     <string name="remove_default_title">Remove default?</string>
     <string name="remove_default_message">Remove %1$s as the default app to load %2$s links with?\n\nNote: you can set a new default app to use next
@@ -81,4 +91,7 @@
     <string name="stat_per_link">per link</string>
 
     <string name="no_default_browser">No default browser found on the system.</string>
+
+    <string name="title_changelog">Change log</string>
+    <string name="changelog_close">Close</string>
 </resources>
