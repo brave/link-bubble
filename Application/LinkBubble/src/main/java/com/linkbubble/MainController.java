@@ -262,7 +262,7 @@ public class MainController implements Choreographer.FrameCallback {
 
         mBubbleDraggable.setOnUpdateListener(new BubbleDraggable.OnUpdateListener() {
             @Override
-            public void onUpdate(Draggable draggable, float dt, boolean contentView) {
+            public void onUpdate(Draggable draggable, float dt) {
                 mBubbleFlowDraggable.syncWithBubble(draggable);
             }
         });
@@ -393,13 +393,8 @@ public class MainController implements Choreographer.FrameCallback {
         int draggableCount = mDraggables.size();
         for (int i=0 ; i < draggableCount ; ++i) {
             Draggable draggable = mDraggables.get(i);
-            draggable.update(dt, mCurrentState == STATE_ContentView);
-        }/*
-        if (mBubbleDraggable.getVisibility() == View.VISIBLE) {
-            mBubbleDraggable.update(dt, mCurrentState == STATE_ContentView);
-        } else {
-            mBubbleFlowDraggable.update(dt, mCurrentState == STATE_ContentView);
-        }*/
+            draggable.update(dt);
+        }
 
         Draggable frontDraggable = null;
         if (getBubbleCount() > 0) {

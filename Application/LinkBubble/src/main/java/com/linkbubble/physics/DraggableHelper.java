@@ -312,7 +312,7 @@ public class DraggableHelper {
 
     public View getView() { return mView; }
 
-    public boolean update(float dt, boolean contentView) {
+    public boolean update(float dt) {
         if (mAnimTime < mAnimPeriod) {
             Util.Assert(mAnimPeriod > 0.0f);
 
