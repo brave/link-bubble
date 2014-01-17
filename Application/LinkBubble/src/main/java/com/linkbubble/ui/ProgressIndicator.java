@@ -122,6 +122,7 @@ public class ProgressIndicator extends FrameLayout {
                     startAnimation(mRotationAnimation);
                 } else {
                     mRotationAnimation.cancel();
+                    setAnimation(null);
                 }
             }
 
