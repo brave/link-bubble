@@ -63,7 +63,6 @@ public class State_SnapToEdge extends ControllerState {
 
     @Override
     public void onExitState() {
-        MainController.get().setAllDraggablePositions(mDraggable);
         mDraggable = null;
     }
 

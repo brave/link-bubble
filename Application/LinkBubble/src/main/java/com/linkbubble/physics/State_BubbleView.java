@@ -34,15 +34,6 @@ public class State_BubbleView extends ControllerState {
     public void onEnterState() {
         mDidMove = false;
         mDraggable = null;
-
-        MainController mainController = MainController.get();
-        for (int i=0 ; i < mainController.getDraggableCount() ; ++i) {
-            Draggable draggable = mainController.getDraggable(i);
-            int vis = View.VISIBLE;
-            if (draggable != mainController.getBubbleDraggable())
-                vis = View.GONE;
-            draggable.getDraggableView().setVisibility(vis);
-        }
     }
 
     @Override
@@ -58,7 +49,6 @@ public class State_BubbleView extends ControllerState {
 
     @Override
     public void onExitState() {
-        MainController.get().setAllDraggablePositions(mDraggable);
     }
 
     @Override

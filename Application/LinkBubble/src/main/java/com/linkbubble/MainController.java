@@ -128,7 +128,6 @@ public class MainController implements Choreographer.FrameCallback {
     protected Context mContext;
     private Choreographer mChoreographer;
     protected boolean mUpdateScheduled;
-    protected static Vector<Draggable> mDraggables = new Vector<Draggable>();
     protected CanvasView mCanvasView;
 
     private BubbleFlowDraggable mBubbleFlowDraggable;
@@ -291,21 +290,6 @@ public class MainController implements Choreographer.FrameCallback {
         return false;
     }
 
-    public void setAllDraggablePositions(Draggable ref) {
-        if (ref != null) {
-            // Force all bubbles to be where the moved one ended up
-            int bubbleCount = mDraggables.size();
-            int xPos = ref.getDraggableHelper().getXPos();
-            int yPos = ref.getDraggableHelper().getYPos();
-            for (int i=0 ; i < bubbleCount ; ++i) {
-                Draggable draggable = mDraggables.get(i);
-                if (draggable != ref) {
-                    draggable.getDraggableHelper().setExactPos(xPos, yPos);
-                }
-            }
-        }
-    }
-
     public void updateIncognitoMode(boolean incognito) {
         CookieSyncManager.createInstance(mContext);
         CookieManager.getInstance().setAcceptCookie(!incognito);
@@ -376,14 +360,6 @@ public class MainController implements Choreographer.FrameCallback {
         return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getBubbleCount() : 0;
     }
 
-    public int getDraggableCount() {
-        return mDraggables.size();
-    }
-
-    public Draggable getDraggable(int index) {
-        return mDraggables.get(index);
-    }
-
     public void doFrame(long frameTimeNanos) {
         mUpdateScheduled = false;
 
@@ -393,11 +369,7 @@ public class MainController implements Choreographer.FrameCallback {
             scheduleUpdate();
         }
 
-        int draggableCount = mDraggables.size();
-        for (int i=0 ; i < draggableCount ; ++i) {
-            Draggable draggable = mDraggables.get(i);
-            draggable.update(dt);
-        }
+        mBubbleDraggable.update(dt);
 
         Draggable frontDraggable = null;
         if (getBubbleCount() > 0) {
@@ -412,7 +384,7 @@ public class MainController implements Choreographer.FrameCallback {
         //mTextView.setText("S=" + mCurrentState.getName() + " F=" + mFrameNumber++);
 
         if ((mCurrentState == STATE_BubbleView || mCurrentState == STATE_ContentView)
-                && mDraggables.size() == 0 && mBubblesLoaded > 0 && !mUpdateScheduled) {
+                && getBubbleCount() == 0 && mBubblesLoaded > 0 && !mUpdateScheduled) {
             mEventHandler.onDestroy();
         }
     }
@@ -453,9 +425,7 @@ public class MainController implements Choreographer.FrameCallback {
     public void onOrientationChanged() {
         Config.init(mContext);
         boolean contentView = mCurrentState.onOrientationChanged();
-        for (int i=0 ; i < mDraggables.size() ; ++i) {
-            mDraggables.get(i).onOrientationChanged(contentView);
-        }
+        mBubbleDraggable.onOrientationChanged(contentView);
         mBubbleFlowDraggable.onOrientationChanged(mCurrentState.onOrientationChanged());
         MainApplication.postEvent(mContext, mOrientationChangedEvent);
     }
@@ -535,10 +505,8 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     protected void openUrlInBubble(String url, long startTime) {
-        if (mDraggables.contains(mBubbleDraggable) == false) {
-            mDraggables.add(mBubbleDraggable);
-        }
         if (getBubbleCount() == 0) {
+            mBubbleDraggable.setVisibility(View.VISIBLE);
             mBubbleDraggable.setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
         }
 
@@ -602,7 +570,6 @@ public class MainController implements Choreographer.FrameCallback {
 
     private void removeBubbleDraggable() {
         mBubbleDraggable.destroy();
-        mDraggables.remove(mBubbleDraggable);
     }
 
     public void expandBubbleFlow(long time) {
