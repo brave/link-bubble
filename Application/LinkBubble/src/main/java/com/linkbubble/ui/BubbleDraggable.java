@@ -112,16 +112,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         mOnUpdateListener = onUpdateListener;
     }
 
-    void showBadge(boolean show) {
-        if (mBadgeView != null) {
-            if (show) {
-                mBadgeView.show();
-            } else {
-                mBadgeView.hide();
-            }
-        }
-    }
-
     @Override
     public DraggableHelper getDraggableHelper() {
         return mDraggableHelper;
@@ -157,10 +147,11 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             yPos = Config.mContentViewBubbleY;
         } else {
             WindowManager.LayoutParams windowManagerParms = mDraggableHelper.getWindowManagerParams();
-            if (windowManagerParms.x < Config.mScreenHeight * 0.5f)
+            if (windowManagerParms.x < Config.mScreenHeight * 0.5f) {
                 xPos = Config.mBubbleSnapLeftX;
-            else
+            } else {
                 xPos = Config.mBubbleSnapRightX;
+            }
             float yf = (float)windowManagerParms.y / (float)Config.mScreenWidth;
             yPos = (int) (yf * Config.mScreenHeight);
         }
