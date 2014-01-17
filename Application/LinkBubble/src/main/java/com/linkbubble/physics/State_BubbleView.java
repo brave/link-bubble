@@ -87,6 +87,9 @@ public class State_BubbleView extends ControllerState {
 
     @Override
     public void onTouchActionDown(Draggable sender, DraggableHelper.TouchEvent e) {
+        if (sender == null) {
+            throw new RuntimeException("Must have valid sender");
+        }
         mTouchDown = true;
         mDraggable = sender;
         mInitialX = e.posX;
@@ -159,6 +162,7 @@ public class State_BubbleView extends ControllerState {
             }
 
             mDraggable = null;
+            mTouchDown = false;
         }
     }
 
