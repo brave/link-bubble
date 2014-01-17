@@ -131,15 +131,11 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     @Override
-    public void update(float dt, boolean contentView) {
-        if (mDraggableHelper.update(dt, contentView)) {
-            if (contentView) {
-                //mContentView.setMarkerX(mDraggableHelper.getXPos());
-            }
-        }
+    public void update(float dt) {
+        mDraggableHelper.update(dt);
 
         if (mOnUpdateListener != null) {
-            mOnUpdateListener.onUpdate(this, dt, contentView);
+            mOnUpdateListener.onUpdate(this, dt);
         }
     }
 
