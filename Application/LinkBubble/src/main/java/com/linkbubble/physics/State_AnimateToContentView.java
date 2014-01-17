@@ -26,9 +26,6 @@ public class State_AnimateToContentView extends ControllerState {
         public float mTargetY;
     }
 
-    private Context mContext;
-    private MainController.BeginExpandTransitionEvent mBeginExpandTransitionEvent = new MainController.BeginExpandTransitionEvent();
-
     private CanvasView mCanvasView;
     private OvershootInterpolator mInterpolator = new OvershootInterpolator(0.5f);
     private float mTime;
@@ -36,15 +33,12 @@ public class State_AnimateToContentView extends ControllerState {
     private float mContentPeriod;
     private Vector<DraggableInfo> mDraggableInfo = new Vector<DraggableInfo>();
 
-    public State_AnimateToContentView(Context context, CanvasView canvasView) {
+    public State_AnimateToContentView(CanvasView canvasView) {
         mCanvasView = canvasView;
-        mContext = context;
     }
 
     @Override
     public void onEnterState() {
-        MainApplication.postEvent(mContext, mBeginExpandTransitionEvent);
-
         if (mCanvasView.getContentView() != null) {
             mCanvasView.getContentView().onAnimateOnScreen();
         }

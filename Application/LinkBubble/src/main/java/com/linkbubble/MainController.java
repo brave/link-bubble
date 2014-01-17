@@ -75,6 +75,8 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     private OrientationChangedEvent mOrientationChangedEvent = new OrientationChangedEvent();
+    private EndCollapseTransitionEvent mEndCollapseTransitionEvent = new EndCollapseTransitionEvent();
+    private BeginExpandTransitionEvent mBeginExpandTransitionEvent = new BeginExpandTransitionEvent();
 
     // End of event bus classes
 
@@ -145,6 +147,8 @@ public class MainController implements Choreographer.FrameCallback {
 
         @Override
         public void onAnimationEnd(BubbleFlowView sender) {
+            MainApplication.postEvent(mContext, mEndCollapseTransitionEvent);
+
             mBubbleDraggable.setVisibility(View.VISIBLE);
             BubbleFlowItemView currentBubble = mBubbleFlowDraggable.getCurrentBubble();
             if (currentBubble != null) {
@@ -226,7 +230,7 @@ public class MainController implements Choreographer.FrameCallback {
 
         STATE_BubbleView = new State_BubbleView(mContext, mCanvasView);
         STATE_SnapToEdge = new State_SnapToEdge();
-        STATE_AnimateToContentView = new State_AnimateToContentView(mContext, mCanvasView);
+        STATE_AnimateToContentView = new State_AnimateToContentView(mCanvasView);
         STATE_ContentView = new State_ContentView(mCanvasView);
         STATE_AnimateToBubbleView = new State_AnimateToBubbleView(mCanvasView);
         STATE_Flick_ContentView = new State_Flick_ContentView(mCanvasView);
@@ -234,7 +238,6 @@ public class MainController implements Choreographer.FrameCallback {
         STATE_KillBubble = new State_KillBubble(mCanvasView);
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
-        switchState(STATE_BubbleView);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
 
@@ -269,6 +272,8 @@ public class MainController implements Choreographer.FrameCallback {
         mBubbleFlowDraggable.collapse(0, null);
         mBubbleFlowDraggable.setBubbleDraggable(mBubbleDraggable);
         mBubbleFlowDraggable.setVisibility(View.GONE);
+
+        switchState(STATE_BubbleView);
     }
 
     //private TextView mTextView;
@@ -311,9 +316,22 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
+    @SuppressWarnings("unused")
     @Subscribe
     public void onIncognitoModeChanged(SettingsFragment.IncognitoModeChangedEvent event) {
         updateIncognitoMode(event.mIncognito);
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEndCollapseTransition(EndCollapseTransitionEvent e) {
+        showBadge(true);
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onBeginExpandTransition(MainController.BeginExpandTransitionEvent e) {
+        showBadge(false);
     }
 
     public void scheduleUpdate() {
@@ -633,6 +651,8 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void expandBubbleFlow(long time) {
+        MainApplication.postEvent(mContext, mBeginExpandTransitionEvent);
+
         mBubbleFlowDraggable.setVisibility(View.VISIBLE);
         mBubbleFlowDraggable.expand(time, mOnBubbleFlowExpandFinishedListener);
         mBubbleDraggable.postDelayed(mSetBubbleGoneRunnable, 33);
