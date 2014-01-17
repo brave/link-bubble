@@ -15,6 +15,13 @@ import java.util.Vector;
 
 public class DraggableHelper {
 
+    public enum AnimationType {
+        Linear,
+        SmallOvershoot,
+        MediumOvershoot,
+        LargeOvershoot
+    }
+
     public interface OnTouchActionEventListener {
         void onActionDown(TouchEvent event);
         void onActionMove(MoveEvent event);
@@ -66,9 +73,11 @@ public class DraggableHelper {
     private int mTargetY;
     private float mAnimPeriod;
     private float mAnimTime;
-    private boolean mOvershoot;
+    private AnimationType mAnimType;
     private LinearInterpolator mLinearInterpolator = new LinearInterpolator();
-    private OvershootInterpolator mOvershootInterpolator = new OvershootInterpolator();
+    private OvershootInterpolator mOvershootInterpolatorSmall = new OvershootInterpolator(0.5f);
+    private OvershootInterpolator mOvershootInterpolatorMedium = new OvershootInterpolator(1.5f);
+    private OvershootInterpolator mOvershootInterpolatorLarge = new OvershootInterpolator(2.0f);
 
     private Vector<InternalMoveEvent> mMoveEvents = new Vector<InternalMoveEvent>();
     private FlingTracker mFlingTracker = null;
@@ -253,9 +262,9 @@ public class DraggableHelper {
         }
     }
 
-    public void setTargetPos(int x, int y, float t, boolean overshoot) {
+    public void setTargetPos(int x, int y, float t, AnimationType type) {
         if (x != mTargetX || y != mTargetY) {
-            mOvershoot = overshoot;
+            mAnimType = type;
 
             mInitialX = mWindowManagerParams.x;
             mInitialY = mWindowManagerParams.y;
@@ -284,9 +293,9 @@ public class DraggableHelper {
         if (targetInfo.mAction != Config.BubbleAction.None) {
             setTargetPos((int) (targetInfo.mTargetX - Config.mBubbleWidth * 0.5f),
                     (int) (targetInfo.mTargetY - Config.mBubbleHeight * 0.5f),
-                    0.3f, true);
+                    0.3f, AnimationType.LargeOvershoot);
         } else {
-            setTargetPos(targetX, targetY, 0.02f, false);
+            setTargetPos(targetX, targetY, 0.02f, AnimationType.Linear);
         }
 
         return targetInfo.mAction;
@@ -305,7 +314,7 @@ public class DraggableHelper {
     }
 
     public boolean isSnapping() {
-        return mOvershoot;
+        return mAnimType != AnimationType.Linear;
     }
 
     public boolean isAlive() { return mAlive; }
@@ -319,13 +328,23 @@ public class DraggableHelper {
             mAnimTime = Util.clamp(0.0f, mAnimTime + dt, mAnimPeriod);
 
             float tf = mAnimTime / mAnimPeriod;
-            float interpolatedFraction;
-            if (mOvershoot) {
-                interpolatedFraction = mOvershootInterpolator.getInterpolation(tf);
-                //Log.e("GT", "t = " + tf + ", f = " + interpolatedFraction);
-            } else {
-                interpolatedFraction = mLinearInterpolator.getInterpolation(tf);
-                Util.Assert(interpolatedFraction >= 0.0f && interpolatedFraction <= 1.0f);
+            float interpolatedFraction = 0.0f;
+            switch (mAnimType) {
+                case Linear:
+                    interpolatedFraction = mLinearInterpolator.getInterpolation(tf);
+                    break;
+                case SmallOvershoot:
+                    interpolatedFraction = mOvershootInterpolatorSmall.getInterpolation(tf);
+                    break;
+                case MediumOvershoot:
+                    interpolatedFraction = mOvershootInterpolatorMedium.getInterpolation(tf);
+                    break;
+                case LargeOvershoot:
+                    interpolatedFraction = mOvershootInterpolatorLarge.getInterpolation(tf);
+                    break;
+                default:
+                    Util.Assert(false);
+                    break;
             }
 
             int x = (int) (mInitialX + (mTargetX - mInitialX) * interpolatedFraction);
