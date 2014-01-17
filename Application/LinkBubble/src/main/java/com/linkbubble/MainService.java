@@ -70,7 +70,7 @@ public class MainService extends Service {
 
         WebIconDatabase.getInstance().open(getDir("icons", MODE_PRIVATE).getPath());
 
-        MainControllerNew.create(this, new MainController.EventHandler() {
+        MainController.create(this, new MainController.EventHandler() {
                 @Override
                 public void onDestroy() {
                     stopSelf();

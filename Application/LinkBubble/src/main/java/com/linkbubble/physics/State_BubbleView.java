@@ -4,8 +4,6 @@ import android.content.Context;
 import android.view.View;
 
 import com.linkbubble.MainApplication;
-import com.linkbubble.MainControllerNew;
-import com.linkbubble.ui.BadgeView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
