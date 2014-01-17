@@ -176,7 +176,7 @@ public class BubbleView extends FrameLayout  {
         } else {
             MainApplication mainApplication = (MainApplication) getContext().getApplicationContext();
             String faviconUrl = getDefaultFaviconUrl(mUrl);
-            if(mainApplication.mDatabaseHelper.faviconExists(faviconUrl) == false) {
+            if(mainApplication.mDatabaseHelper.faviconExists(faviconUrl, favicon) == false) {
                 mainApplication.mDatabaseHelper.addFaviconForUrl(faviconUrl, favicon, mUrl.toString());
             }
 
