@@ -74,8 +74,6 @@ public class HomeActivity extends Activity {
 
     }
 
-    boolean mExpanded = true;
-
     @Override
     public void onResume() {
         super.onResume();
