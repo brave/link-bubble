@@ -151,8 +151,6 @@ public abstract class State_Flick extends ControllerState {
 
     @Override
     public void onExitState() {
-        if (!isContentView())
-            MainController.get().setAllDraggablePositions(mDraggable);
         mDraggable = null;
     }
 

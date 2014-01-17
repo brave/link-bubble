@@ -48,19 +48,16 @@ public class State_AnimateToBubbleView extends ControllerState {
         mContentPeriod = mBubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
 
         MainController mainController = MainController.get();
-        int draggableCount = mainController.getDraggableCount();
-        for (int i=0 ; i < draggableCount ; ++i) {
-            DraggableInfo draggableInfo = new DraggableInfo();
-            Draggable draggable = mainController.getDraggable(i);
-            draggableInfo.mPosX = (float) draggable.getDraggableHelper().getXPos();
-            draggableInfo.mPosY = (float) draggable.getDraggableHelper().getYPos();
+        DraggableInfo draggableInfo = new DraggableInfo();
+        Draggable draggable = mainController.getBubbleDraggable();
+        draggableInfo.mPosX = (float) draggable.getDraggableHelper().getXPos();
+        draggableInfo.mPosY = (float) draggable.getDraggableHelper().getYPos();
 
-            draggableInfo.mTargetX = Config.BUBBLE_HOME_X;
-            draggableInfo.mTargetY = Config.BUBBLE_HOME_Y;
-            draggableInfo.mDistanceX = draggableInfo.mTargetX - draggableInfo.mPosX;
-            draggableInfo.mDistanceY = draggableInfo.mTargetY - draggableInfo.mPosY;
-            mDraggableInfo.add(draggableInfo);
-        }
+        draggableInfo.mTargetX = Config.BUBBLE_HOME_X;
+        draggableInfo.mTargetY = Config.BUBBLE_HOME_Y;
+        draggableInfo.mDistanceX = draggableInfo.mTargetX - draggableInfo.mPosX;
+        draggableInfo.mDistanceY = draggableInfo.mTargetY - draggableInfo.mPosY;
+        mDraggableInfo.add(draggableInfo);
 
         mCanvasView.setContentViewTranslation(0.0f);
 
@@ -74,21 +71,18 @@ public class State_AnimateToBubbleView extends ControllerState {
         mTime += dt;
 
         MainController mainController = MainController.get();
-        int draggableCount = mainController.getDraggableCount();
-        for (int i=0 ; i < draggableCount ; ++i) {
-            DraggableInfo draggableInfo = mDraggableInfo.get(i);
-            Draggable draggable = mainController.getDraggable(i);
+        DraggableInfo draggableInfo = mDraggableInfo.get(0);
+        Draggable draggable = mainController.getBubbleDraggable();
 
-            float x = draggableInfo.mPosX + draggableInfo.mDistanceX * f;
-            float y = draggableInfo.mPosY + draggableInfo.mDistanceY * f;
+        float x = draggableInfo.mPosX + draggableInfo.mDistanceX * f;
+        float y = draggableInfo.mPosY + draggableInfo.mDistanceY * f;
 
-            if (mTime >= mBubblePeriod) {
-                x = draggableInfo.mTargetX;
-                y = draggableInfo.mTargetY;
-            }
-
-            draggable.getDraggableHelper().setExactPos((int) x, (int) y);
+        if (mTime >= mBubblePeriod) {
+            x = draggableInfo.mTargetX;
+            y = draggableInfo.mTargetY;
         }
+
+        draggable.getDraggableHelper().setExactPos((int) x, (int) y);
 
         float t = Util.clamp(0.0f, mTime / mContentPeriod, 1.0f);
         mCanvasView.setContentViewTranslation(t * (Config.mScreenHeight - Config.mContentOffset));
