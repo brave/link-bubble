@@ -107,7 +107,7 @@ public class State_ContentView extends ControllerState {
                         mainController.switchState(mainController.STATE_AnimateToContentView);
                     }
                 } else {
-                    if (mainController.destroyDraggable(mDraggable, ti.mAction)) {
+                    if (mainController.destroyCurrentBubble()) {
                         mainController.switchState(mainController.STATE_AnimateToContentView);
                     } else {
                         mainController.switchState(mainController.STATE_BubbleView);
