@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -213,6 +214,54 @@ public class SettingsFragment extends PreferenceFragment {
         });
 
         configureDefaultAppsList();
+
+        Preference sayThanksPreference = findPreference("preference_say_thanks");
+        if (sayThanksPreference != null) {
+            sayThanksPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent intent = Config.getStoreIntent(getActivity(), Config.STORE_PRO_URL);
+                    if (intent != null) {
+                        startActivity(intent);
+                        return true;
+                    }
+                    return false;
+                }
+            });
+        }
+
+        Preference getProPreference = findPreference("preference_get_pro");
+        if (getProPreference != null) {
+            getProPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent intent = Config.getStoreIntent(getActivity(), Config.STORE_PRO_URL);
+                    if (intent != null) {
+                        startActivity(intent);
+                        return true;
+                    }
+                    return false;
+                }
+            });
+        }
+
+        Preference versionPreference = findPreference("preference_version");
+        try {
+            PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+            versionPreference.setTitle(getString(R.string.preference_version_title) + " " + packageInfo.versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+        versionPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                ChangeLogDialog changelogDialog = new ChangeLogDialog(getActivity());
+                changelogDialog.show();
+                //FAQDialog faqDialog = new FAQDialog(SettingsActivity.this);
+                //faqDialog.show();
+                return true;
+            }
+        });
     }
 
     @Override
