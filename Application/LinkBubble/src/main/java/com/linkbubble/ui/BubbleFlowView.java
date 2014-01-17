@@ -112,8 +112,7 @@ public class BubbleFlowView extends HorizontalScrollView {
                     mBubbleFlowListener.onCenterItemLongClicked(BubbleFlowView.this, mTouchView);
                 }
             }
-
-            return true;
+            return mViews.size() == 0 ? false : true;
         }
 
         return false;
