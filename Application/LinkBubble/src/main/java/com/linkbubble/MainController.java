@@ -429,7 +429,9 @@ public class MainController implements Choreographer.FrameCallback {
     public void onCloseSystemDialogs() {
         if (mCurrentState != null) {
             mCurrentState.onCloseDialog();
-            switchState(STATE_AnimateToBubbleView);
+            if (getBubbleCount() > 0) {
+                switchState(STATE_AnimateToBubbleView);
+            }
         }
     }
 
@@ -653,7 +655,9 @@ public class MainController implements Choreographer.FrameCallback {
         @Override
         public void onAppChanged() {
             if (mCurrentState != null && mCurrentState instanceof State_AnimateToBubbleView == false) {
-                switchState(STATE_AnimateToBubbleView);
+                if (getBubbleCount() > 0) {
+                    switchState(STATE_AnimateToBubbleView);
+                }
             }
         }
     };

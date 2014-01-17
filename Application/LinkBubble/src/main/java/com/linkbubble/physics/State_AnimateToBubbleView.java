@@ -36,6 +36,9 @@ public class State_AnimateToBubbleView extends ControllerState {
 
     @Override
     public void onEnterState() {
+        if (MainController.get().getBubbleCount() == 0) {
+            throw new RuntimeException("Should be at least 1 bubble active to enter the AnimateToBubbleView state");
+        }
         mCanvasView.fadeOutTargets();
         if (mCanvasView.getContentView() != null) {
             mCanvasView.getContentView().onAnimateOffscreen();
