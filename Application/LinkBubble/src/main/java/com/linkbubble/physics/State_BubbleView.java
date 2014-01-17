@@ -146,7 +146,7 @@ public class State_BubbleView extends ControllerState {
                         mainController.destroyAllBubbles();
                         mainController.switchState(mainController.STATE_BubbleView);
                     } else {
-                        if (mainController.destroyDraggable(mDraggable, ti.mAction)) {
+                        if (mainController.destroyCurrentBubble()) {
                             mainController.switchState(mainController.STATE_AnimateToBubbleView);
                         } else {
                             mainController.switchState(mainController.STATE_BubbleView);

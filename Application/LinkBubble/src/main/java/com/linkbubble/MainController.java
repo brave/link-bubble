@@ -599,7 +599,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    public boolean destroyDraggable(Draggable draggable, Config.BubbleAction action) {
+    public boolean destroyCurrentBubble() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         boolean debug = prefs.getBoolean("debug_flick", true);
 

@@ -67,7 +67,7 @@ public class State_KillBubble extends ControllerState {
     public void onExitState() {
         mCanvasView.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
         mCanvasView.setContentView(null);
-        MainController.get().destroyDraggable(mDraggable, Config.BubbleAction.Destroy);
+        MainController.get().destroyCurrentBubble();
         mDraggable = null;
     }
 

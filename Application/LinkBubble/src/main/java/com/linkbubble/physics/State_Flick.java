@@ -134,7 +134,7 @@ public abstract class State_Flick extends ControllerState {
         } else {
             if (mDraggable.getDraggableHelper().getXPos() == mTargetInfo.mTargetX
                     && mDraggable.getDraggableHelper().getYPos() == mTargetInfo.mTargetY) {
-                if (mainController.destroyDraggable(mDraggable, mTargetInfo.mAction)) {
+                if (mainController.destroyCurrentBubble()) {
                     if (isContentView()) {
                         mainController.switchState(mainController.STATE_AnimateToContentView);
                     } else {
