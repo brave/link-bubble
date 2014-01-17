@@ -45,6 +45,7 @@ public class BadgeView extends TextView {
 
     public void show() {
         if (getVisibility() != View.VISIBLE) {
+            animate().cancel();
             setAlpha(0f);
             setVisibility(View.VISIBLE);
             setScaleX(0.33f);
