@@ -324,13 +324,13 @@ public class BubbleFlowView extends HorizontalScrollView {
 
     private static final int DEFAULT_ANIM_TIME = 300;
 
-    public void expand() {
-        expand(DEFAULT_ANIM_TIME, null);
+    public boolean expand() {
+        return expand(DEFAULT_ANIM_TIME, null);
     }
 
-    public void expand(long time, final AnimationEventListener animationEventListener) {
+    public boolean expand(long time, final AnimationEventListener animationEventListener) {
         if (mIsExpanded) {
-            return;
+            return false;
         }
 
         int size = mViews.size();
@@ -378,6 +378,7 @@ public class BubbleFlowView extends HorizontalScrollView {
         mContent.removeView(centerView);
         mContent.addView(centerView);
         mIsExpanded = true;
+        return true;
     }
 
     public void collapse() {
