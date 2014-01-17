@@ -28,7 +28,6 @@ public class State_SnapToEdge extends ControllerState {
 
     @Override
     public void onEnterState() {
-        mCanvasView.fadeOutTargets();
         Util.Assert(mDraggable != null);
 
         mTime = 0.0f;
