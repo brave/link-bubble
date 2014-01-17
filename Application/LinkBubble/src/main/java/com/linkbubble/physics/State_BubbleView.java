@@ -27,8 +27,6 @@ public class State_BubbleView extends ControllerState {
     private int mTouchFrameCount;
 
     private MainController.EndCollapseTransitionEvent mEndCollapseTransitionEvent = new MainController.EndCollapseTransitionEvent();
-    private MainController.BeginBubbleDragEvent mBeginBubbleDragEvent = new MainController.BeginBubbleDragEvent();
-    private MainController.EndBubbleDragEvent mEndBubbleDragEvent = new MainController.EndBubbleDragEvent();
 
     public State_BubbleView(Context context, CanvasView canvasView) {
         mCanvasView = canvasView;
@@ -39,7 +37,6 @@ public class State_BubbleView extends ControllerState {
     public void onEnterState() {
         MainApplication.postEvent(mContext, mEndCollapseTransitionEvent);
 
-        mCanvasView.fadeOutTargets();
         mDidMove = false;
         mDraggable = null;
 
@@ -59,10 +56,6 @@ public class State_BubbleView extends ControllerState {
 
         if (mDraggable != null) {
             ++mTouchFrameCount;
-
-            if (mTouchFrameCount == 6) {
-                mCanvasView.fadeInTargets();
-            }
 
             mDraggable.getDraggableHelper().doSnap(mCanvasView, mTargetX, mTargetY);
             return true;
@@ -102,8 +95,6 @@ public class State_BubbleView extends ControllerState {
         mainController.scheduleUpdate();
         mainController.showBadge(false);
         mTouchFrameCount = 0;
-
-        MainApplication.postEvent(mContext, mBeginBubbleDragEvent);
     }
 
     @Override
@@ -117,7 +108,6 @@ public class State_BubbleView extends ControllerState {
 
             float d = (float) Math.sqrt( (e.dx * e.dx) + (e.dy * e.dy) );
             if (d >= Config.dpToPx(10.0f)) {
-                mCanvasView.fadeInTargets();
                 mDidMove = true;
             }
         }
@@ -126,7 +116,6 @@ public class State_BubbleView extends ControllerState {
     @Override
     public void onTouchActionRelease(Draggable sender, DraggableHelper.ReleaseEvent e) {
         if (mTouchDown) {
-            MainApplication.postEvent(mContext, mEndBubbleDragEvent);
             sender.getDraggableHelper().clearTargetPos();
 
             MainController mainController = MainController.get();

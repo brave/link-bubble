@@ -335,7 +335,6 @@ public class MainController implements Choreographer.FrameCallback {
 
     // TODO: think of a better name
     public void startDraggingFromContentView() {
-        mCanvasView.fadeInTargets();
         mCanvasView.hideContentView();
 
         // When we start dragging, configure the BubbleFlowView to pass all its input to our TouchInterceptor so we

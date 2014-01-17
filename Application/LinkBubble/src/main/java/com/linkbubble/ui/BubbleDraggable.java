@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import com.linkbubble.Config;
+import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.physics.Draggable;
@@ -23,6 +24,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     private EventHandler mEventHandler;
     private OnUpdateListener mOnUpdateListener;
     public BadgeView mBadgeView;
+
+    private MainController.BeginBubbleDragEvent mBeginBubbleDragEvent = new MainController.BeginBubbleDragEvent();
+    private MainController.EndBubbleDragEvent mEndBubbleDragEvent = new MainController.EndBubbleDragEvent();
 
     public interface EventHandler {
         public void onMotionEvent_Touch(BubbleDraggable sender, DraggableHelper.TouchEvent event);
@@ -76,6 +80,8 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             @Override
             public void onActionDown(DraggableHelper.TouchEvent event) {
                 //collapse();
+                MainApplication.postEvent(getContext(), mBeginBubbleDragEvent);
+
                 mEventHandler.onMotionEvent_Touch(BubbleDraggable.this, event);
             }
 
@@ -87,6 +93,8 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             @Override
             public void onActionUp(DraggableHelper.ReleaseEvent event) {
                 //expand();
+                MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
+
                 mEventHandler.onMotionEvent_Release(BubbleDraggable.this, event);
             }
         });

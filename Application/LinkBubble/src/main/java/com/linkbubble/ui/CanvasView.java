@@ -201,19 +201,11 @@ public class CanvasView extends RelativeLayout {
         MainController.get().scheduleUpdate();
     }
 
-    public void fadeInTargets() {
-        for (int i=0 ; i < mTargets.size() ; ++i) {
-            mTargets.get(i).fadeIn();
-        }
-    }
-
-    public void fadeOutTargets() {
-        for (int i=0 ; i < mTargets.size() ; ++i) {
-            mTargets.get(i).fadeOut();
-        }
-    }
-
     public void destroy() {
+        for (BubbleTargetView bt : mTargets) {
+            bt.destroy();
+        }
+
         MainApplication.unregisterForBus(mContext, this);
 
         mWindowManager.removeView(this);

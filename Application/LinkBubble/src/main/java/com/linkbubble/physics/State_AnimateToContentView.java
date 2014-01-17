@@ -45,7 +45,6 @@ public class State_AnimateToContentView extends ControllerState {
     public void onEnterState() {
         MainApplication.postEvent(mContext, mBeginExpandTransitionEvent);
 
-        mCanvasView.fadeOutTargets();
         if (mCanvasView.getContentView() != null) {
             mCanvasView.getContentView().onAnimateOnScreen();
         }

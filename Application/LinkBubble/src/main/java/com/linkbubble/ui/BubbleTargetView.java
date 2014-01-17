@@ -9,6 +9,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import com.linkbubble.Config;
+import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
@@ -16,6 +17,7 @@ import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.util.Util;
 import com.linkbubble.physics.Circle;
+import com.squareup.otto.Subscribe;
 
 /**
  * Created by gw on 21/11/13.
@@ -114,13 +116,14 @@ public class BubbleTargetView extends RelativeLayout {
     }
 
     private void Init(CanvasView canvasView, Context context, Drawable d, Config.BubbleAction action, float xFraction, float yFraction) {
-
         mCanvasView = canvasView;
         mEnableMove = false;
         mContext = context;
         mAction = action;
         mXFraction = xFraction;
         mYFraction = yFraction;
+
+        MainApplication.registerForBus(mContext, this);
 
         if (d instanceof BitmapDrawable) {
             Bitmap bm = ((BitmapDrawable)d).getBitmap();
@@ -185,14 +188,22 @@ public class BubbleTargetView extends RelativeLayout {
         setVisibility(GONE);
     }
 
-    public void fadeIn() {
+    public void destroy() {
+        MainApplication.unregisterForBus(mContext, this);
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onBeginBubbleDrag(MainController.BeginBubbleDragEvent e) {
         setVisibility(VISIBLE);
         mEnableMove = true;
         mTransitionTimeLeft = TRANSITION_TIME;
         MainController.get().scheduleUpdate();
     }
 
-    public void fadeOut() {
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEndBubbleDragEvent(MainController.EndBubbleDragEvent e) {
         mEnableMove = false;
         setTargetPos(mHomeX, mHomeY, TRANSITION_TIME);
     }

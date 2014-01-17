@@ -83,7 +83,6 @@ public class State_ContentView extends ControllerState {
             if (d >= Config.dpToPx(10.0f)) {
                 mDidMove = true;
                 mCanvasView.hideContentView();
-                mCanvasView.fadeInTargets();
             }
 
             MainController.get().scheduleUpdate();
@@ -122,7 +121,6 @@ public class State_ContentView extends ControllerState {
                 // to test if we hit this, and if so, work out what needs to be done.
                 Util.Assert(false);
 
-                //mCanvasView.fadeOutTargets();
                 //setActiveBubble(sender);
             } else {
                 mainController.getActiveDraggable().readd();
