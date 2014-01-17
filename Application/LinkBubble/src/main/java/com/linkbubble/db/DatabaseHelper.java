@@ -7,9 +7,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.util.Log;
-import com.linkbubble.Constant;
 import com.linkbubble.Settings;
 
 import java.io.ByteArrayOutputStream;
@@ -34,10 +32,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_TIME = "time";
     private static final String KEY_PAGE_URL = "pageUrl";
     private static final String KEY_DATA = "data";
+    private static final String KEY_IMAGE_SIZE = "imageSize";
 
     private static final String[] LINK_HISTORY_COLUMNS = {KEY_ID, KEY_TITLE, KEY_URL, KEY_HOST, KEY_TIME};
     private static final String[] FAVICON_COLUMNS = {KEY_ID, KEY_URL, KEY_PAGE_URL, KEY_DATA, KEY_TIME};
-    private static final String[] FAVICON_EXISTS_COLUMNS = {KEY_ID, KEY_TIME};
+    private static final String[] FAVICON_EXISTS_COLUMNS = {KEY_ID, KEY_IMAGE_SIZE, KEY_TIME};
     private static final String[] FAVICON_FETCH_COLUMNS = {KEY_ID, KEY_TIME, KEY_DATA};
 
     private static final int FAVICON_EXPIRE_TIME = 7 * 24 * 60 * 60 * 1000;
@@ -61,6 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 KEY_URL + " TEXT, " +
                 KEY_PAGE_URL + " TEXT, " +
+                KEY_IMAGE_SIZE + " INTEGER, " +
                 KEY_DATA + " BLOB, " +
                 KEY_TIME + " INTEGER" + " )";
 
@@ -249,7 +249,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return null;
     }
 
-    public boolean faviconExists(String faviconUrl) {
+    public boolean faviconExists(String faviconUrl, Bitmap favicon) {
 
         SQLiteDatabase db = getReadableDatabase();
 
@@ -269,9 +269,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.moveToFirst();
 
                 long id = cursor.getLong(0);
-                long createTime = cursor.getLong(1);
+                long imageSize = cursor.getInt(1);
+                long createTime = cursor.getLong(2);
                 long timeDelta = System.currentTimeMillis() - createTime;
-                if (timeDelta >= FAVICON_EXPIRE_TIME) {
+                if (favicon != null && favicon.getHeight() > imageSize) {
+                    idToDelete = id;
+                } else if (timeDelta >= FAVICON_EXPIRE_TIME) {
                     idToDelete = id;
                 } else {
                     result = true;
@@ -315,6 +318,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.w(TAG, "Favicon compression failed.");
         }
         values.put(KEY_DATA, data);
+        values.put(KEY_IMAGE_SIZE, favicon.getHeight());  // assume square
         values.put(KEY_TIME, System.currentTimeMillis());
 
         SQLiteDatabase db = getWritableDatabase();
