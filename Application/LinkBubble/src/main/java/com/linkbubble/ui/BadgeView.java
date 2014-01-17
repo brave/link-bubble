@@ -61,7 +61,7 @@ public class BadgeView extends TextView {
                 .setListener(mShowListener)
                 .start();
 
-        Draggable activeDraggable = MainController.get().getActiveDraggable();
+        Draggable activeDraggable = MainController.get().getBubbleDraggable();
         if (activeDraggable != null) {
             FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) getLayoutParams();
             int x = activeDraggable.getDraggableHelper().getXPos();

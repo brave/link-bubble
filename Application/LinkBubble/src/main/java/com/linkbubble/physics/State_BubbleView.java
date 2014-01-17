@@ -39,7 +39,7 @@ public class State_BubbleView extends ControllerState {
         for (int i=0 ; i < mainController.getDraggableCount() ; ++i) {
             Draggable draggable = mainController.getDraggable(i);
             int vis = View.VISIBLE;
-            if (draggable != mainController.getActiveDraggable())
+            if (draggable != mainController.getBubbleDraggable())
                 vis = View.GONE;
             draggable.getDraggableView().setVisibility(vis);
         }
