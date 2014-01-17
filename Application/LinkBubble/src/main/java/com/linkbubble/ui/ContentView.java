@@ -68,6 +68,8 @@ public class ContentView extends FrameLayout {
     private EventHandler mEventHandler;
     private Context mContext;
     private String mUrl;
+    private boolean mPageFinishedLoading;
+
     private List<AppForUrl> mAppsForUrl = new ArrayList<AppForUrl>();
     private List<ResolveInfo> mTempAppsForUrl = new ArrayList<ResolveInfo>();
     private URL mTempUrl;
@@ -388,6 +390,7 @@ public class ContentView extends FrameLayout {
         mContext = getContext();
         mEventHandler = eh;
         mUrl = url;
+        mPageFinishedLoading = false;
 
         WebSettings ws = mWebView.getSettings();
         ws.setJavaScriptEnabled(true);
@@ -439,7 +442,13 @@ public class ContentView extends FrameLayout {
             @Override
             public void onReceivedIcon(WebView webView, Bitmap bitmap) {
                 super.onReceivedIcon(webView, bitmap);
-                mEventHandler.onReceivedIcon(bitmap);
+
+                // Only pass this along if the page has finished loading (https://github.com/chrislacy/LinkBubble/issues/155).
+                // This is to prevent passing a stale icon along when a redirect has already occurred. This shouldn't cause
+                // too many ill-effects, because BitmapView attempts to load host/favicon.ico automatically anyway.
+                if (mPageFinishedLoading) {
+                    mEventHandler.onReceivedIcon(bitmap);
+                }
             }
 
             @Override
@@ -542,6 +551,7 @@ public class ContentView extends FrameLayout {
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favIcon) {
+                mPageFinishedLoading = false;
                 if (isValidUrl(url)) {
                     mLoadCount = Math.max(mLoadCount, 1);
                 }
@@ -554,6 +564,7 @@ public class ContentView extends FrameLayout {
             @Override
             public void onPageFinished(WebView webView, String urlAsString) {
                 super.onPageFinished(webView, urlAsString);
+                mPageFinishedLoading = true;
 
                 URL url = null;
                 try {
