@@ -252,7 +252,6 @@ public class BubbleView extends FrameLayout  {
         }
 
         mFavicon.setVisibility(VISIBLE);
-        showProgressBar(false, 0);
     }
 
     public void onProgressChanged(int progress) {

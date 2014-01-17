@@ -24,10 +24,8 @@ public class ProgressIndicator extends FrameLayout {
     private int mProgress;
     private URL mUrl;
 
-    private ImageView mIndicator;
-    private Animation mRotationAnimation;
-
-    ProgressArcView mProgressArcView;
+    private ProgressImageView mIndicatorImage;
+    private ProgressArcView mProgressArcView;
 
     public ProgressIndicator(Context context) {
         this(context, null);
@@ -46,22 +44,18 @@ public class ProgressIndicator extends FrameLayout {
         mMax = 100;
         mProgress = 0;
 
-        mRotationAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        mRotationAnimation.setInterpolator(new LinearInterpolator());
-        mRotationAnimation.setRepeatCount(Animation.INFINITE);
-        mRotationAnimation.setDuration(1000);
-
         mProgressArcView = new ProgressArcView(getContext());
         int bubbleProgressSize = getResources().getDimensionPixelSize(R.dimen.bubble_progress_size);
         FrameLayout.LayoutParams arcLP = new LayoutParams(bubbleProgressSize, bubbleProgressSize);
         arcLP.gravity = Gravity.CENTER;
         addView(mProgressArcView, arcLP);
 
-        mIndicator = new ImageView(getContext());
-        mIndicator.setImageResource(R.drawable.loading_dots);
+        mIndicatorImage = new ProgressImageView(getContext());
+        mIndicatorImage.setImageResource(R.drawable.loading_dots);
+
         FrameLayout.LayoutParams indicatorLP = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         indicatorLP.gravity = Gravity.CENTER;
-        addView(mIndicator, indicatorLP);
+        addView(mIndicatorImage, indicatorLP);
     }
 
     public int getMax() {
@@ -84,17 +78,9 @@ public class ProgressIndicator extends FrameLayout {
     public void setProgress(boolean show, int progress, URL url) {
 
         if (show && progress < 100) {
-            mIndicator.setVisibility(VISIBLE);
-            if (mIndicator.getAnimation() == null) {
-                mIndicator.setAnimation(mRotationAnimation);
-                mRotationAnimation.start();
-            }
+            mIndicatorImage.setVisibility(VISIBLE);
         } else {
-            mIndicator.setVisibility(GONE);
-            if (mIndicator.getAnimation() != null) {
-                mRotationAnimation.cancel();
-                mIndicator.setAnimation(null);
-            }
+            mIndicatorImage.setVisibility(GONE);
         }
 
         mUrl = url;
@@ -103,12 +89,44 @@ public class ProgressIndicator extends FrameLayout {
     }
 
     boolean isIndicatorShowing() {
-        return mIndicator.getVisibility() == VISIBLE;
+        return mIndicatorImage.getVisibility() == VISIBLE;
     }
 
-    @Override
-    public void setVisibility(int visibility) {
-        super.setVisibility(visibility);
+    private static class ProgressImageView extends ImageView {
+
+        private Animation mRotationAnimation;
+
+        public ProgressImageView(Context context) {
+            super(context);
+
+            mRotationAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            mRotationAnimation.setInterpolator(new LinearInterpolator());
+            mRotationAnimation.setRepeatCount(Animation.INFINITE);
+            mRotationAnimation.setDuration(1000);
+        }
+
+        @Override
+        protected void onAttachedToWindow() {
+            super.onAttachedToWindow();
+
+            if (getVisibility() == VISIBLE) {
+                startAnimation(mRotationAnimation);
+            }
+        }
+
+        @Override
+        public void setVisibility(int visibility) {
+            int oldVisibility = getVisibility();
+            if (visibility != oldVisibility) {
+                if (visibility == VISIBLE) {
+                    startAnimation(mRotationAnimation);
+                } else {
+                    mRotationAnimation.cancel();
+                }
+            }
+
+            super.setVisibility(visibility);
+        }
     }
 
     private static class ProgressArcView extends View {
