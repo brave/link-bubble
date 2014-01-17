@@ -156,6 +156,33 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         return mBubbles.size();
     }
 
+    @Override
+    public boolean expand() {
+        if (super.expand()) {
+            postExpand();
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean expand(long time, final AnimationEventListener animationEventListener) {
+        if (super.expand(time, animationEventListener)) {
+            postExpand();
+            return true;
+        }
+
+        return false;
+    }
+
+    private void postExpand() {
+        int centerIndex = getCenterIndex();
+        if (centerIndex > -1) {
+            setCurrentBubble((BubbleFlowItemView) mViews.get(centerIndex), true);
+        }
+    }
+
     public BubbleFlowItemView getCurrentBubble() {
         return mCurrentBubble;
     }
