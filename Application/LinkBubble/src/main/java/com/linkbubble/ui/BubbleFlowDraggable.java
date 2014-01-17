@@ -188,6 +188,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     private void setCurrentBubble(BubbleFlowItemView bubble, boolean showContentView) {
+        if (mCurrentBubble == bubble) {
+            return;
+        }
+        
         if (mCurrentBubble != null) {
             mCurrentBubble.setImitator(null);
         }
