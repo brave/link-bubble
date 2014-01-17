@@ -20,9 +20,10 @@
         android:layout_gravity="center"/>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/bubble_favicon_size"
+        android:layout_height="@dimen/bubble_favicon_size"
         android:id="@+id/favicon"
+        android:scaleType="centerInside"
         android:src="@drawable/fallback_favicon"
         android:layout_gravity="center"/>
 
