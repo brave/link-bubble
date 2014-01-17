@@ -41,6 +41,10 @@ public class ProgressIndicator extends FrameLayout {
     }
 
     private void init() {
+        if (isInEditMode()) {
+            return;
+        }
+
         mMax = 100;
         mProgress = 0;
 
