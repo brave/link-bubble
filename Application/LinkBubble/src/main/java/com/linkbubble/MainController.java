@@ -396,8 +396,8 @@ public class MainController implements Choreographer.FrameCallback {
 
         //mTextView.setText("S=" + mCurrentState.getName() + " F=" + mFrameNumber++);
 
-        if (mCurrentState == STATE_BubbleView && mDraggables.size() == 0 &&
-                mBubblesLoaded > 0 && !mUpdateScheduled) {
+        if ((mCurrentState == STATE_BubbleView || mCurrentState == STATE_ContentView)
+                && mDraggables.size() == 0 && mBubblesLoaded > 0 && !mUpdateScheduled) {
             mEventHandler.onDestroy();
         }
     }
