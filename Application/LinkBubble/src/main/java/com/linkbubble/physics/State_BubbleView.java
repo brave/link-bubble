@@ -25,8 +25,6 @@ public class State_BubbleView extends ControllerState {
     private Draggable mDraggable;
     private boolean mTouchDown;
 
-    private MainController.EndCollapseTransitionEvent mEndCollapseTransitionEvent = new MainController.EndCollapseTransitionEvent();
-
     public State_BubbleView(Context context, CanvasView canvasView) {
         mCanvasView = canvasView;
         mContext = context;
@@ -34,13 +32,10 @@ public class State_BubbleView extends ControllerState {
 
     @Override
     public void onEnterState() {
-        MainApplication.postEvent(mContext, mEndCollapseTransitionEvent);
-
         mDidMove = false;
         mDraggable = null;
 
         MainController mainController = MainController.get();
-        mainController.showBadge(true);
         for (int i=0 ; i < mainController.getDraggableCount() ; ++i) {
             Draggable draggable = mainController.getDraggable(i);
             int vis = View.VISIBLE;
@@ -70,7 +65,6 @@ public class State_BubbleView extends ControllerState {
     public void onPageLoaded() {
         if (Settings.get().getAutoContentDisplayLinkLoaded()) {
             MainController mainController = MainController.get();
-            mainController.showBadge(false);
             mainController.switchState(mainController.STATE_AnimateToContentView);
         }
     }
@@ -90,7 +84,6 @@ public class State_BubbleView extends ControllerState {
 
         MainController mainController = MainController.get();
         mainController.scheduleUpdate();
-        mainController.showBadge(false);
     }
 
     @Override
@@ -142,7 +135,6 @@ public class State_BubbleView extends ControllerState {
                     }
                 }
             } else {
-                mainController.showBadge(false);
                 mainController.switchState(mainController.STATE_AnimateToContentView);
             }
 
