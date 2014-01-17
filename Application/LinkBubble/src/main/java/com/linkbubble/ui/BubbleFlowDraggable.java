@@ -70,7 +70,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             @Override
             public void onCenterItemClicked(BubbleFlowView sender, View view) {
                 MainController mainController = MainController.get();
-                mainController.getActiveDraggable().readd();
                 mainController.switchState(mainController.STATE_AnimateToBubbleView);
             }
 
@@ -242,12 +241,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         updateScales(getScrollX());
 
         setExactPos(0, 0);
-    }
-
-    @Override
-    public void readd() {
-        mWindowManager.removeView(this);
-        mWindowManager.addView(this, mDraggableHelper.getWindowManagerParams());
     }
 
     public ContentView getContentView() {

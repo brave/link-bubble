@@ -119,7 +119,6 @@ public class State_ContentView extends ControllerState {
 
                 //setActiveBubble(sender);
             } else {
-                mainController.getActiveDraggable().readd();
                 mainController.switchState(mainController.STATE_AnimateToBubbleView);
             }
 
