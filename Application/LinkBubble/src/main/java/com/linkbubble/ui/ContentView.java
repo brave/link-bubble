@@ -76,9 +76,7 @@ public class ContentView extends FrameLayout {
     private PopupMenu mOverflowPopupMenu;
     private AlertDialog mLongPressAlertDialog;
     private long mStartTime;
-    private BubbleView mOwner;
     private int mHeaderHeight;
-    private int mMarkerX;
     private Path mTempPath = new Path();
     private int mLoadCount = 0;
     private String mCurrentLoadedUrl;
@@ -245,12 +243,7 @@ public class ContentView extends FrameLayout {
         alertDialog.show();
     }
 
-    public void setMarkerX(int x) {
-        mMarkerX = x;
-        invalidate();
-    }
-
-    void configure(BubbleView owner, String url, long startTime, EventHandler eh) {
+    void configure(String url, long startTime, EventHandler eh) {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setColor(getResources().getColor(R.color.content_toolbar_background));
 
@@ -394,7 +387,6 @@ public class ContentView extends FrameLayout {
 
         mContext = getContext();
         mEventHandler = eh;
-        mOwner = owner;
         mUrl = url;
 
         WebSettings ws = mWebView.getSettings();

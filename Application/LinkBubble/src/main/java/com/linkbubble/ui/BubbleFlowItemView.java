@@ -42,7 +42,7 @@ public class BubbleFlowItemView extends BubbleView {
 
         mListener = listener;
         mContentView = (ContentView)inflate(getContext(), R.layout.view_content, null);
-        mContentView.configure(this, mUrl.toString(), startTime, new ContentView.EventHandler() {
+        mContentView.configure(mUrl.toString(), startTime, new ContentView.EventHandler() {
 
             @Override
             public void onDestroyBubble() {
@@ -123,7 +123,6 @@ public class BubbleFlowItemView extends BubbleView {
                 BubbleFlowItemView.this.onReceivedIcon(favicon);
             }
         });
-        mContentView.setMarkerX(Config.mScreenCenterX);
 
         setOnClickListener(new OnClickListener() {
             @Override
