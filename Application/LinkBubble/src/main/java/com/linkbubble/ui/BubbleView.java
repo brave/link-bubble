@@ -2,21 +2,14 @@ package com.linkbubble.ui;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.view.Gravity;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
-import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.physics.DraggableHelper;
-import com.linkbubble.physics.Draggable;
 import com.squareup.picasso.Transformation;
 import org.mozilla.gecko.favicons.Favicons;
 import org.mozilla.gecko.favicons.LoadFaviconTask;
@@ -27,7 +20,6 @@ import java.net.URL;
 
 public class BubbleView extends FrameLayout  {
 
-    private BadgeView mBadgeView;
     private ImageView mFavicon;
     protected int mFaviconLoadId;
     private ProgressIndicator mProgressIndicator;
@@ -58,34 +50,8 @@ public class BubbleView extends FrameLayout  {
         configure();
     }
 
-    public void attachBadge(BadgeView badgeView) {
-        if (mBadgeView == null) {
-            mBadgeView = badgeView;
-
-            int badgeMargin = getResources().getDimensionPixelSize(R.dimen.badge_margin);
-            int badgeSize = getResources().getDimensionPixelSize(R.dimen.badge_size);
-            FrameLayout.LayoutParams lp = new LayoutParams(badgeSize, badgeSize);
-            lp.gravity = Gravity.TOP|Gravity.RIGHT;
-            lp.leftMargin = badgeMargin;
-            lp.rightMargin = badgeMargin;
-            lp.topMargin = badgeMargin;
-            addView(mBadgeView, lp);
-        }
-    }
-
-    public void detachBadge() {
-        if (mBadgeView != null) {
-            removeView(mBadgeView);
-            mBadgeView = null;
-        }
-    }
-
     public URL getUrl() {
         return mUrl;
-    }
-
-    protected ProgressIndicator getProgressIndicator() {
-        return mProgressIndicator;
     }
 
     public Drawable getFavicon() {
@@ -190,33 +156,6 @@ public class BubbleView extends FrameLayout  {
     }
 
     protected FaviconTransformation mFaviconTransformation = new FaviconTransformation();
-
-    void onPageLoading(String url) {
-        showProgressBar(true, 0);
-
-        boolean setDefaultFavicon = true;
-
-        try {
-            // TODO: remove this allocation
-            URL previousUrl = mUrl;
-            mUrl = new URL(url);
-
-            if (previousUrl != null && previousUrl.getHost().equals(mUrl.getHost()) && mFaviconLoadId == Favicons.LOADED) {
-                setDefaultFavicon = false;
-            } else {
-                loadFavicon();
-                if (mFaviconLoadId == Favicons.LOADED || mFaviconLoadId == Favicons.NOT_LOADING) {
-                    setDefaultFavicon = false;
-                }
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        if (setDefaultFavicon) {
-            onReceivedIcon(null);
-        }
-    }
 
     protected void onPageLoaded(ContentView.PageLoadInfo info) {
         showProgressBar(false, 0);
