@@ -83,6 +83,10 @@ public class MainController implements Choreographer.FrameCallback {
         public BubbleFlowItemView mBubble;
     }
 
+    public static class DraggableBubbleMovedEvent {
+        public int mX, mY;
+    }
+
     private OrientationChangedEvent mOrientationChangedEvent = new OrientationChangedEvent();
     private BeginExpandTransitionEvent mBeginExpandTransitionEvent = new BeginExpandTransitionEvent();
 
@@ -369,11 +373,7 @@ public class MainController implements Choreographer.FrameCallback {
 
         mBubbleDraggable.update(dt);
 
-        Draggable frontDraggable = null;
-        if (getBubbleCount() > 0) {
-            frontDraggable = mBubbleDraggable;
-        }
-        mCanvasView.update(dt, frontDraggable);
+        mCanvasView.update(dt);
 
         if (mCurrentState.onUpdate(dt)) {
             scheduleUpdate();

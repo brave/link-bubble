@@ -208,17 +208,18 @@ public class BubbleTargetView extends RelativeLayout {
         setTargetPos(mHomeX, mHomeY, TRANSITION_TIME);
     }
 
-    public void update(float dt, Draggable draggable) {
-        DraggableHelper draggableHelper = draggable != null ? draggable.getDraggableHelper() : null;
-        if (draggable != null && !draggableHelper.isSnapping() && mEnableMove) {
-            float xf = (draggableHelper.getXPos() + Config.mBubbleWidth * 0.5f) / Config.mScreenWidth;
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onDraggableBubbleMovedEvent(MainController.DraggableBubbleMovedEvent e) {
+        if (mEnableMove) {
+            float xf = (e.mX + Config.mBubbleWidth * 0.5f) / Config.mScreenWidth;
             xf = 2.0f * Util.clamp(0.0f, xf, 1.0f) - 1.0f;
             Util.Assert(xf >= -1.0f && xf <= 1.0f);
 
             mSnapCircle.mX = Config.mScreenWidth * mXFraction + xf * Config.mScreenWidth * 0.1f;
 
             if (mYFraction > 0.5f) {
-                int bubbleYC = (int) (draggableHelper.getYPos() + Config.mBubbleHeight * 0.5f);
+                int bubbleYC = (int) (e.mY + Config.mBubbleHeight * 0.5f);
                 int bubbleY0 = (int) (Config.mScreenHeight * 0.75f);
                 int bubbleY1 = (int) (Config.mScreenHeight * 0.90f);
 
@@ -234,7 +235,7 @@ public class BubbleTargetView extends RelativeLayout {
                     mSnapCircle.mY = bubbleYC;
                 }
             } else {
-                int bubbleYC = (int) (draggableHelper.getYPos() + Config.mBubbleHeight * 0.5f);
+                int bubbleYC = (int) (e.mY + Config.mBubbleHeight * 0.5f);
                 int bubbleY0 = (int) (Config.mScreenHeight * 0.25f);
                 int bubbleY1 = (int) (Config.mScreenHeight * 0.10f);
 
@@ -259,10 +260,13 @@ public class BubbleTargetView extends RelativeLayout {
             int x = (int) (0.5f + mDefaultCircle.mX - mDefaultCircle.mRadius);
             int y = (int) (0.5f + mDefaultCircle.mY - mDefaultCircle.mRadius);
             float remainingTime = Math.max(0.02f, mTransitionTimeLeft);
-            if (mTransitionTimeLeft > 0.0f) {
-                mTransitionTimeLeft -= dt;
-            }
             setTargetPos(x, y, remainingTime);
+        }
+    }
+
+    public void update(float dt) {
+        if (mTransitionTimeLeft > 0.0f) {
+            mTransitionTimeLeft -= dt;
         }
 
         if (mAnimTime < mAnimPeriod) {
