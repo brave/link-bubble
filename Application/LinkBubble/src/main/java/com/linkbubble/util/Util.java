@@ -142,4 +142,11 @@ public class Util {
         }
         return null;
     }
+
+    public static float distance(float x0, float y0, float x1, float y1) {
+        float xd = x1 - x0;
+        float yd = y1 - y0;
+        float d = (float) Math.sqrt(xd*xd + yd*yd);
+        return d;
+    }
 }

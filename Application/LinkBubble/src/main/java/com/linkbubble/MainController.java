@@ -5,16 +5,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
+import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Choreographer;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.linkbubble.physics.ControllerState;
@@ -112,7 +115,7 @@ public class MainController implements Choreographer.FrameCallback {
         Bus bus = app.getBus();
         bus.unregister(sInstance);
 
-        //mWindowManager.removeView(mTextView);
+        //sInstance.mWindowManager.removeView(sInstance.mTextView);
         sInstance.mCanvasView.destroy();
         sInstance.mChoreographer.removeFrameCallback(sInstance);
         sInstance.endAppPolling();
@@ -226,7 +229,8 @@ public class MainController implements Choreographer.FrameCallback {
         mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
         mWindowManagerParams.setTitle("LinkBubble: Debug Text");
-        mWindowManager.addView(mTextView, mWindowManagerParams);*/
+        mWindowManager.addView(mTextView, mWindowManagerParams);
+*/
 
         mUpdateScheduled = false;
         mChoreographer = Choreographer.getInstance();

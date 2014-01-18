@@ -6,6 +6,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 
 import com.linkbubble.MainApplication;
+import com.linkbubble.ui.BubbleDraggable;
 import com.linkbubble.ui.BubbleTargetView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
@@ -99,7 +100,27 @@ public abstract class State_Flick extends ControllerState {
 
         BubbleTargetView snapTarget = mainController.getBubbleDraggable().getCurrentSnapTarget();
         if (snapTarget != null) {
-            Log.e("GapTech", "SNAPPED!");
+            Circle c = snapTarget.GetDefaultCircle();
+            int x = (int) (c.mX - Config.mBubbleWidth);
+            int y = (int) (c.mY - Config.mBubbleHeight);
+
+            BubbleDraggable bd = mainController.getBubbleDraggable();
+            bd.setTargetPos(x, y, 0.3f, DraggableHelper.AnimationType.SmallOvershoot);
+
+            DraggableHelper dh = bd.getDraggableHelper();
+
+            float d = Util.distance(x, y, dh.getXPos() - Config.mBubbleWidth * 0.5f, dh.getYPos() - Config.mBubbleHeight * 0.5f);
+            if (d <= 1.0f) {
+                if (mainController.destroyCurrentBubble(snapTarget.getAction())) {
+                    if (isContentView()) {
+                        mainController.switchState(mainController.STATE_AnimateToContentView);
+                    } else {
+                        mainController.switchState(mainController.STATE_AnimateToBubbleView);
+                    }
+                } else {
+                    mainController.switchState(mainController.STATE_BubbleView);
+                }
+            }
         } else {
             float tf = mTime / mPeriod;
             float f = (mLinear ? mLinearInterpolator.getInterpolation(tf) : mOvershootInterpolator.getInterpolation(tf));
