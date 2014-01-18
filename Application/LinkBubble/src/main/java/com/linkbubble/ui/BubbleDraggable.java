@@ -27,6 +27,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
     private MainController.BeginBubbleDragEvent mBeginBubbleDragEvent = new MainController.BeginBubbleDragEvent();
     private MainController.EndBubbleDragEvent mEndBubbleDragEvent = new MainController.EndBubbleDragEvent();
+    private MainController.DraggableBubbleMovedEvent mDraggableBubbleMovedEvent = new MainController.DraggableBubbleMovedEvent();
 
     public interface EventHandler {
         public void onMotionEvent_Touch(BubbleDraggable sender, DraggableHelper.TouchEvent event);
@@ -133,6 +134,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     @Override
     public void update(float dt) {
         mDraggableHelper.update(dt);
+
+        mDraggableBubbleMovedEvent.mX = mDraggableHelper.getXPos();
+        mDraggableBubbleMovedEvent.mY = mDraggableHelper.getYPos();
+        MainApplication.postEvent(getContext(), mDraggableBubbleMovedEvent);
 
         if (mOnUpdateListener != null) {
             mOnUpdateListener.onUpdate(this, dt);

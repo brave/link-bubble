@@ -250,7 +250,7 @@ public class CanvasView extends RelativeLayout {
         mWindowManager.removeView(this);
     }
 
-    public void update(float dt, Draggable frontDraggable) {
+    public void update(float dt) {
 
         if (mAnimPeriod > 0.0f && mAnimTime <= mAnimPeriod) {
             float t = Util.clamp(0.0f, mAnimTime / mAnimPeriod, 1.0f);
@@ -280,7 +280,7 @@ public class CanvasView extends RelativeLayout {
         applyAlpha();
 
         for (int i=0 ; i < mTargets.size() ; ++i) {
-            mTargets.get(i).update(dt, frontDraggable);
+            mTargets.get(i).update(dt);
         }
     }
 
