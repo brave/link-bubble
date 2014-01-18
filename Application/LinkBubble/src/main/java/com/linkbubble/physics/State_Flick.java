@@ -1,7 +1,12 @@
 package com.linkbubble.physics;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
+
+import com.linkbubble.MainApplication;
+import com.linkbubble.ui.BubbleTargetView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
@@ -12,9 +17,7 @@ import com.linkbubble.util.Util;
  */
 public abstract class State_Flick extends ControllerState {
 
-    private CanvasView mCanvasView;
     private Draggable mDraggable;
-    private CanvasView.TargetInfo mTargetInfo;
 
     private OvershootInterpolator mOvershootInterpolator = new OvershootInterpolator(1.5f);
     private LinearInterpolator mLinearInterpolator = new LinearInterpolator();
@@ -25,15 +28,16 @@ public abstract class State_Flick extends ControllerState {
     private float mTargetX;
     private float mTargetY;
     private boolean mLinear;
+    private MainController.EndBubbleDragEvent mEndBubbleDragEvent = new MainController.EndBubbleDragEvent();
+    private Context mContext;
 
     public abstract boolean isContentView();
 
-    public State_Flick(CanvasView canvasView) {
-        mCanvasView = canvasView;
+    public State_Flick(Context c) {
+        mContext = c;
     }
 
     public void init(Draggable draggable, float vx, float vy) {
-        mTargetInfo = null;
         mDraggable = draggable;
 
         mInitialX = draggable.getDraggableHelper().getXPos();
@@ -92,7 +96,11 @@ public abstract class State_Flick extends ControllerState {
     @Override
     public boolean onUpdate(float dt) {
         MainController mainController = MainController.get();
-        if (mTargetInfo == null) {
+
+        BubbleTargetView snapTarget = mainController.getBubbleDraggable().getCurrentSnapTarget();
+        if (snapTarget != null) {
+            Log.e("GapTech", "SNAPPED!");
+        } else {
             float tf = mTime / mPeriod;
             float f = (mLinear ? mLinearInterpolator.getInterpolation(tf) : mOvershootInterpolator.getInterpolation(tf));
             mTime += dt;
@@ -100,50 +108,27 @@ public abstract class State_Flick extends ControllerState {
             float x = mInitialX + (mTargetX - mInitialX) * f;
             float y = mInitialY + (mTargetY - mInitialY) * f;
 
-            CanvasView.TargetInfo ti = mDraggable.getDraggableHelper().getTargetInfo(mCanvasView, (int) x, (int) y);
-            switch (ti.mAction) {
-                case Destroy:
-                case ConsumeRight:
-                case ConsumeLeft:
-                    ti.mTargetX = (int) (0.5f + ti.mTargetX - Config.mBubbleWidth * 0.5f);
-                    ti.mTargetY = (int) (0.5f + ti.mTargetY - Config.mBubbleHeight * 0.5f);
-                    mTargetInfo = ti;
-                    mDraggable.getDraggableHelper().setTargetPos(ti.mTargetX, ti.mTargetY, 0.2f, DraggableHelper.AnimationType.LargeOvershoot);
-                    break;
-                default:
-                    {
-                        Draggable draggable = mDraggable;
-                        if (mTime >= mPeriod) {
-                            x = mTargetX;
-                            y = mTargetY;
+            MainController.get().getBubbleDraggable().setTargetPos((int)x, (int)y, 0.0f, DraggableHelper.AnimationType.Linear);
 
-                            if (isContentView()) {
-                                mainController.switchState(mainController.STATE_AnimateToContentView);
-                            } else if (x == Config.mBubbleSnapLeftX || x == Config.mBubbleSnapRightX) {
-                                Config.BUBBLE_HOME_X = mDraggable.getDraggableHelper().getXPos();
-                                Config.BUBBLE_HOME_Y = mDraggable.getDraggableHelper().getYPos();
-                                mainController.switchState(mainController.STATE_BubbleView);
-                            } else {
-                                mainController.STATE_SnapToEdge.init(draggable);
-                                mainController.switchState(mainController.STATE_SnapToEdge);
-                            }
-                        }
-                        draggable.getDraggableHelper().setExactPos((int) x, (int) y);
-                    }
-            }
-        } else {
-            if (mDraggable.getDraggableHelper().getXPos() == mTargetInfo.mTargetX
-                    && mDraggable.getDraggableHelper().getYPos() == mTargetInfo.mTargetY) {
-                if (mainController.destroyCurrentBubble()) {
-                    if (isContentView()) {
-                        mainController.switchState(mainController.STATE_AnimateToContentView);
-                    } else {
-                        mainController.switchState(mainController.STATE_AnimateToBubbleView);
-                    }
-                } else {
+            Draggable draggable = mDraggable;
+            if (mTime >= mPeriod) {
+                x = mTargetX;
+                y = mTargetY;
+
+                if (isContentView()) {
+                    mainController.switchState(mainController.STATE_AnimateToContentView);
+                } else if (x == Config.mBubbleSnapLeftX || x == Config.mBubbleSnapRightX) {
+                    Config.BUBBLE_HOME_X = mDraggable.getDraggableHelper().getXPos();
+                    Config.BUBBLE_HOME_Y = mDraggable.getDraggableHelper().getYPos();
                     mainController.switchState(mainController.STATE_BubbleView);
+                } else {
+                    mainController.STATE_SnapToEdge.init(draggable);
+                    mainController.switchState(mainController.STATE_SnapToEdge);
                 }
+
+                MainApplication.postEvent(mContext, mEndBubbleDragEvent);
             }
+            draggable.getDraggableHelper().setExactPos((int) x, (int) y);
         }
 
         return true;

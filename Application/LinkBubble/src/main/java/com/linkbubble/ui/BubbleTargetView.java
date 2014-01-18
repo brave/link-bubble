@@ -51,6 +51,7 @@ public class BubbleTargetView extends RelativeLayout {
     private float mAnimPeriod;
     private float mAnimTime;
     private boolean mEnableMove;
+    private boolean mIsSnapping;
     private float mTransitionTimeLeft;
 
     private final float TRANSITION_TIME = 0.15f;
@@ -192,11 +193,28 @@ public class BubbleTargetView extends RelativeLayout {
         MainApplication.unregisterForBus(mContext, this);
     }
 
+    public void beginSnapping() {
+        mIsSnapping = true;
+        mAnimPeriod = 0.0f;
+        mAnimTime = 0.0f;
+    }
+
+    public void endSnapping() {
+        mIsSnapping = false;
+    }
+
+    public Config.BubbleAction getAction() {
+        return mAction;
+    }
+
     @SuppressWarnings("unused")
     @Subscribe
     public void onBeginBubbleDrag(MainController.BeginBubbleDragEvent e) {
         setVisibility(VISIBLE);
         mEnableMove = true;
+        mIsSnapping = false;
+        mAnimPeriod = 0.0f;
+        mAnimTime = 0.0f;
         mTransitionTimeLeft = TRANSITION_TIME;
         MainController.get().scheduleUpdate();
     }
@@ -205,13 +223,16 @@ public class BubbleTargetView extends RelativeLayout {
     @Subscribe
     public void onEndBubbleDragEvent(MainController.EndBubbleDragEvent e) {
         mEnableMove = false;
+        mIsSnapping = false;
+        mAnimPeriod = 0.0f;
+        mAnimTime = 0.0f;
         setTargetPos(mHomeX, mHomeY, TRANSITION_TIME);
     }
 
     @SuppressWarnings("unused")
     @Subscribe
     public void onDraggableBubbleMovedEvent(MainController.DraggableBubbleMovedEvent e) {
-        if (mEnableMove) {
+        if (mEnableMove && !mIsSnapping) {
             float xf = (e.mX + Config.mBubbleWidth * 0.5f) / Config.mScreenWidth;
             xf = 2.0f * Util.clamp(0.0f, xf, 1.0f) - 1.0f;
             Util.Assert(xf >= -1.0f && xf <= 1.0f);

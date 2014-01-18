@@ -11,8 +11,10 @@ import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
+import com.linkbubble.physics.Circle;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
+import com.linkbubble.util.Util;
 
 import java.net.MalformedURLException;
 
@@ -24,9 +26,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     private EventHandler mEventHandler;
     private OnUpdateListener mOnUpdateListener;
     public BadgeView mBadgeView;
+    private CanvasView mCanvasView;
+    private BubbleTargetView mCurrentSnapTarget;
 
     private MainController.BeginBubbleDragEvent mBeginBubbleDragEvent = new MainController.BeginBubbleDragEvent();
-    private MainController.EndBubbleDragEvent mEndBubbleDragEvent = new MainController.EndBubbleDragEvent();
     private MainController.DraggableBubbleMovedEvent mDraggableBubbleMovedEvent = new MainController.DraggableBubbleMovedEvent();
 
     public interface EventHandler {
@@ -47,7 +50,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         super(context, attrs, defStyle);
     }
 
-    public void configure(int x0, int y0, int targetX, int targetY, float targetTime, EventHandler eh)  {
+    public void configure(int x0, int y0, int targetX, int targetY, float targetTime, CanvasView cv, EventHandler eh)  {
 
         try {
             super.configure("http://blerg.com"); // the URL is not actually used...
@@ -57,6 +60,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
         //setBackgroundColor(0xff00ff00);
 
+        mCanvasView = cv;
         mBadgeView = (BadgeView) findViewById(R.id.badge_view);
         mBadgeView.hide();
         mBadgeView.setVisibility(View.GONE);
@@ -80,7 +84,8 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
             @Override
             public void onActionDown(DraggableHelper.TouchEvent event) {
-                //collapse();
+                mCurrentSnapTarget = null;
+
                 MainApplication.postEvent(getContext(), mBeginBubbleDragEvent);
 
                 mEventHandler.onMotionEvent_Touch(BubbleDraggable.this, event);
@@ -93,10 +98,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
             @Override
             public void onActionUp(DraggableHelper.ReleaseEvent event) {
-                //expand();
-                MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
-
                 mEventHandler.onMotionEvent_Release(BubbleDraggable.this, event);
+
+                mCurrentSnapTarget = null;
             }
         });
 
@@ -135,8 +139,11 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     public void update(float dt) {
         mDraggableHelper.update(dt);
 
-        mDraggableBubbleMovedEvent.mX = mDraggableHelper.getXPos();
-        mDraggableBubbleMovedEvent.mY = mDraggableHelper.getYPos();
+        int x = mDraggableHelper.getXPos();
+        int y = mDraggableHelper.getYPos();
+
+        mDraggableBubbleMovedEvent.mX = x;
+        mDraggableBubbleMovedEvent.mY = y;
         MainApplication.postEvent(getContext(), mDraggableBubbleMovedEvent);
 
         if (mOnUpdateListener != null) {
@@ -176,8 +183,42 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         mDraggableHelper.setExactPos(x, y);
     }
 
-    public void setTargetPos(int x, int y, float t, DraggableHelper.AnimationType type) {
-        mDraggableHelper.setTargetPos(x, y, t, type);
+    public BubbleTargetView getCurrentSnapTarget() {
+        return mCurrentSnapTarget;
+    }
+
+    public void setTargetPos(int xp, int yp, float t, DraggableHelper.AnimationType type) {
+
+        Circle bubbleCircle = new Circle(xp + Config.mBubbleWidth * 0.5f, yp + Config.mBubbleHeight * 0.5f, Config.mBubbleWidth * 0.5f);
+        BubbleTargetView tv = mCanvasView.getSnapTarget(bubbleCircle);
+
+        if (tv != null) {
+
+            if (tv != mCurrentSnapTarget) {
+                mCurrentSnapTarget = tv;
+                mCurrentSnapTarget.beginSnapping();
+            }
+
+            Circle c = tv.GetDefaultCircle();
+            int xt = (int) (c.mX - Config.mBubbleWidth * 0.5f);
+            int yt = (int) (c.mY - Config.mBubbleHeight * 0.5f);
+            mDraggableHelper.setTargetPos(xt, yt, 0.3f, DraggableHelper.AnimationType.LargeOvershoot);
+
+        } else {
+
+            if (mCurrentSnapTarget != null) {
+                mCurrentSnapTarget.endSnapping();
+                mCurrentSnapTarget = null;
+            }
+
+            if (t == 0.0f) {
+                mDraggableHelper.clearTargetPos();
+                mDraggableHelper.setExactPos(xp, yp);
+            } else {
+                mDraggableHelper.setTargetPos(xp, yp, t, type);
+            }
+
+        }
     }
 
 }

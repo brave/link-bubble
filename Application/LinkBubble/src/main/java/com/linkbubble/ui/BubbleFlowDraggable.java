@@ -339,10 +339,14 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         Settings.get().saveCurrentBubbles(mBubbles);
     }
 
-    public void destroyCurrentBubble(boolean animateRemove) {
+    public void destroyCurrentBubble(boolean animateRemove, Config.BubbleAction action) {
         BubbleFlowItemView currentBubble = getCurrentBubble();
+        String url = currentBubble.getUrl().toString();
         destroyBubble(currentBubble, animateRemove, true);
         postDestroyedBubble();
+        if (action != Config.BubbleAction.None) {
+            MainApplication.handleBubbleAction(getContext(), action, url);
+        }
     }
 
     public void destroyAllBubbles() {

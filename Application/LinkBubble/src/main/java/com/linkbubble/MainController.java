@@ -236,13 +236,13 @@ public class MainController implements Choreographer.FrameCallback {
         Bus bus = app.getBus();
         bus.register(this);
 
-        STATE_BubbleView = new State_BubbleView(mContext, mCanvasView);
+        STATE_BubbleView = new State_BubbleView(mContext);
         STATE_SnapToEdge = new State_SnapToEdge();
         STATE_AnimateToContentView = new State_AnimateToContentView();
-        STATE_ContentView = new State_ContentView(mCanvasView);
+        STATE_ContentView = new State_ContentView(mContext);
         STATE_AnimateToBubbleView = new State_AnimateToBubbleView(mContext);
-        STATE_Flick_ContentView = new State_Flick_ContentView(mCanvasView);
-        STATE_Flick_BubbleView = new State_Flick_BubbleView(mCanvasView);
+        STATE_Flick_ContentView = new State_Flick_ContentView(mContext);
+        STATE_Flick_BubbleView = new State_Flick_BubbleView(mContext);
         STATE_KillBubble = new State_KillBubble();
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
@@ -251,7 +251,7 @@ public class MainController implements Choreographer.FrameCallback {
 
         mBubbleDraggable = (BubbleDraggable) inflater.inflate(R.layout.view_bubble_draggable, null);
         mBubbleDraggable.configure((int) (Config.mBubbleSnapLeftX - Config.mBubbleWidth), Config.BUBBLE_HOME_Y,
-                Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y, 0.4f, new BubbleDraggable.EventHandler() {
+                Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y, 0.4f, mCanvasView, new BubbleDraggable.EventHandler() {
             @Override
             public void onMotionEvent_Touch(BubbleDraggable sender, DraggableHelper.TouchEvent event) {
                 mCurrentState.onTouchActionDown(sender, event);
@@ -526,28 +526,22 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    public ContentView getActiveContentView() {
-        return mBubbleFlowDraggable.getContentView();
-    }
-
-
-
     public void onDestroyCurrentBubble() {
-        mBubbleFlowDraggable.destroyCurrentBubble(true);
+        mBubbleFlowDraggable.destroyCurrentBubble(true, Config.BubbleAction.None);
         if (mBubbleFlowDraggable.getBubbleCount() == 0) {
             STATE_KillBubble.init(mBubbleDraggable);
             switchState(STATE_KillBubble);
         }
     }
 
-    public boolean destroyCurrentBubble() {
+    public boolean destroyCurrentBubble(Config.BubbleAction action) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         boolean debug = prefs.getBoolean("debug_flick", true);
 
         if (debug) {
             Toast.makeText(mContext, "HIT TARGET!", 400).show();
         } else {
-            mBubbleFlowDraggable.destroyCurrentBubble(false);
+            mBubbleFlowDraggable.destroyCurrentBubble(false, action);
             if (mBubbleFlowDraggable.getBubbleCount() == 0) {
                 removeBubbleDraggable();
 

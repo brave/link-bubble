@@ -51,7 +51,7 @@ public class State_KillBubble extends ControllerState {
 
     @Override
     public void onExitState() {
-        MainController.get().destroyCurrentBubble();
+        MainController.get().destroyCurrentBubble(Config.BubbleAction.None);
         mDraggable = null;
     }
 

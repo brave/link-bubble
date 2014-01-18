@@ -279,28 +279,6 @@ public class DraggableHelper {
         }
     }
 
-    public CanvasView.TargetInfo getTargetInfo(CanvasView canvasView, int x, int y) {
-        Circle bubbleCircle = new Circle(x + Config.mBubbleWidth * 0.5f,
-                y + Config.mBubbleHeight * 0.5f,
-                Config.mBubbleWidth * 0.5f);
-        CanvasView.TargetInfo targetInfo = canvasView.getBubbleAction(bubbleCircle);
-        return targetInfo;
-    }
-
-    public Config.BubbleAction doSnap(CanvasView canvasView, int targetX, int targetY) {
-        CanvasView.TargetInfo targetInfo = getTargetInfo(canvasView, targetX, targetY);
-
-        if (targetInfo.mAction != Config.BubbleAction.None) {
-            setTargetPos((int) (targetInfo.mTargetX - Config.mBubbleWidth * 0.5f),
-                    (int) (targetInfo.mTargetY - Config.mBubbleHeight * 0.5f),
-                    0.3f, AnimationType.LargeOvershoot);
-        } else {
-            setTargetPos(targetX, targetY, 0.02f, AnimationType.Linear);
-        }
-
-        return targetInfo.mAction;
-    }
-
     public int getXPos() {
         return mWindowManagerParams.x;
     }
