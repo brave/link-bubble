@@ -840,10 +840,6 @@ public class ContentView extends FrameLayout {
         }
     }
 
-    public String getCurrentUrl() {
-        return mWebView.getUrl();
-    }
-
     public void onAnimateOnScreen() {
         hidePopups();
         resetButtonPressedStates();

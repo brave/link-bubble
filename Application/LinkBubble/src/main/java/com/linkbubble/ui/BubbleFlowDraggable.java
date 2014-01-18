@@ -37,6 +37,8 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     private static Vector<BubbleFlowItemView> mBubbles = new Vector<BubbleFlowItemView>();
 
+    private MainController.CurrentBubbleChangedEvent mCurrentBubbleChangedEvent = new MainController.CurrentBubbleChangedEvent();
+
     public interface EventHandler {
         public void onMotionEvent_Touch(BubbleFlowDraggable sender, DraggableHelper.TouchEvent event);
         public void onMotionEvent_Move(BubbleFlowDraggable sender, DraggableHelper.MoveEvent event);
@@ -88,7 +90,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
             @Override
             public void onCenterItemChanged(BubbleFlowView sender, View view) {
-                setCurrentBubble((BubbleFlowItemView)view, true);
+                setCurrentBubble((BubbleFlowItemView)view);
             }
         });
 
@@ -178,7 +180,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     private void postExpand() {
         int centerIndex = getCenterIndex();
         if (centerIndex > -1) {
-            setCurrentBubble((BubbleFlowItemView) mViews.get(centerIndex), true);
+            setCurrentBubble((BubbleFlowItemView) mViews.get(centerIndex));
         }
     }
 
@@ -186,7 +188,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         return mCurrentBubble;
     }
 
-    private void setCurrentBubble(BubbleFlowItemView bubble, boolean showContentView) {
+    private void setCurrentBubble(BubbleFlowItemView bubble) {
         if (mCurrentBubble == bubble) {
             return;
         }
@@ -195,11 +197,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             mCurrentBubble.setImitator(null);
         }
         mCurrentBubble = bubble;
+        mCurrentBubbleChangedEvent.mBubble = bubble;
+        MainApplication.postEvent(getContext(), mCurrentBubbleChangedEvent);
         if (mCurrentBubble != null) {
             mCurrentBubble.setImitator(mBubbleDraggable);
-            if (showContentView) {
-                MainController.get().showContentView(mCurrentBubble.getContentView());
-            }
         }
     }
 
@@ -291,7 +292,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
 
         if (mCurrentBubble == null) {
-            setCurrentBubble(bubble, false);
+            setCurrentBubble(bubble);
         }
 
         mBubbles.add(bubble);
@@ -330,7 +331,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                     }
                 }
             }
-            setCurrentBubble(newCurrentBubble, animateRemove);
+            setCurrentBubble(newCurrentBubble);
         }
     }
 

@@ -66,6 +66,11 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public static class BeginExpandTransitionEvent {
+        public float mPeriod;
+    }
+
+    public static class BeginCollapseTransitionEvent {
+        public float mPeriod;
     }
 
     public static class EndCollapseTransitionEvent {
@@ -74,8 +79,11 @@ public class MainController implements Choreographer.FrameCallback {
     public static class OrientationChangedEvent {
     }
 
+    public static class CurrentBubbleChangedEvent {
+        public BubbleFlowItemView mBubble;
+    }
+
     private OrientationChangedEvent mOrientationChangedEvent = new OrientationChangedEvent();
-    private EndCollapseTransitionEvent mEndCollapseTransitionEvent = new EndCollapseTransitionEvent();
     private BeginExpandTransitionEvent mBeginExpandTransitionEvent = new BeginExpandTransitionEvent();
 
     // End of event bus classes
@@ -145,8 +153,6 @@ public class MainController implements Choreographer.FrameCallback {
 
         @Override
         public void onAnimationEnd(BubbleFlowView sender) {
-            MainApplication.postEvent(mContext, mEndCollapseTransitionEvent);
-
             mBubbleDraggable.setVisibility(View.VISIBLE);
             BubbleFlowItemView currentBubble = mBubbleFlowDraggable.getCurrentBubble();
             if (currentBubble != null) {
@@ -228,12 +234,12 @@ public class MainController implements Choreographer.FrameCallback {
 
         STATE_BubbleView = new State_BubbleView(mContext, mCanvasView);
         STATE_SnapToEdge = new State_SnapToEdge();
-        STATE_AnimateToContentView = new State_AnimateToContentView(mCanvasView);
+        STATE_AnimateToContentView = new State_AnimateToContentView();
         STATE_ContentView = new State_ContentView(mCanvasView);
-        STATE_AnimateToBubbleView = new State_AnimateToBubbleView(mCanvasView);
+        STATE_AnimateToBubbleView = new State_AnimateToBubbleView(mContext);
         STATE_Flick_ContentView = new State_Flick_ContentView(mCanvasView);
         STATE_Flick_BubbleView = new State_Flick_BubbleView(mCanvasView);
-        STATE_KillBubble = new State_KillBubble(mCanvasView);
+        STATE_KillBubble = new State_KillBubble();
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
@@ -336,20 +342,12 @@ public class MainController implements Choreographer.FrameCallback {
 
     // TODO: think of a better name
     public void startDraggingFromContentView() {
-        mCanvasView.hideContentView();
-
         // When we start dragging, configure the BubbleFlowView to pass all its input to our TouchInterceptor so we
         // can re-route it to the BubbleDraggable. This is a bit messy, but necessary so as to cleanly using the same
         // MotionEvent chain for the BubbleFlowDraggable and BubbleDraggable so the items visually sync up.
         mBubbleFlowDraggable.setTouchInterceptor(mBubbleFlowTouchInterceptor);
         mBubbleFlowDraggable.collapse(Constant.BUBBLE_ANIM_TIME, mOnBubbleFlowCollapseFinishedListener);
         mBubbleDraggable.setVisibility(View.VISIBLE);
-    }
-
-    public void showContentView(ContentView contentView) {
-        mCanvasView.setContentView(contentView);
-        mCanvasView.showContentView();
-        mCanvasView.setContentViewTranslation(0.0f);
     }
 
     public BubbleDraggable getBubbleDraggable() {
@@ -573,6 +571,7 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void expandBubbleFlow(long time) {
+        mBeginExpandTransitionEvent.mPeriod = time / 1000.0f;
         MainApplication.postEvent(mContext, mBeginExpandTransitionEvent);
 
         mBubbleFlowDraggable.setVisibility(View.VISIBLE);

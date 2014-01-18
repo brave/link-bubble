@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
-import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
 import com.linkbubble.util.Util;
@@ -26,24 +25,17 @@ public class State_AnimateToContentView extends ControllerState {
         public float mTargetY;
     }
 
-    private CanvasView mCanvasView;
     private OvershootInterpolator mInterpolator = new OvershootInterpolator(0.5f);
     private float mTime;
     private float mBubblePeriod;
     private float mContentPeriod;
     private Vector<DraggableInfo> mDraggableInfo = new Vector<DraggableInfo>();
 
-    public State_AnimateToContentView(CanvasView canvasView) {
-        mCanvasView = canvasView;
+    public State_AnimateToContentView() {
     }
 
     @Override
     public void onEnterState() {
-        if (mCanvasView.getContentView() != null) {
-            mCanvasView.getContentView().onAnimateOnScreen();
-        }
-        mCanvasView.setContentView(MainController.get().getActiveContentView());
-
         mDraggableInfo.clear();
         mTime = 0.0f;
         mBubblePeriod = (float)Constant.BUBBLE_ANIM_TIME / 1000.f;
@@ -62,9 +54,6 @@ public class State_AnimateToContentView extends ControllerState {
         draggableInfo.mDistanceX = draggableInfo.mTargetX - draggableInfo.mPosX;
         draggableInfo.mDistanceY = draggableInfo.mTargetY - draggableInfo.mPosY;
         mDraggableInfo.add(draggableInfo);
-
-        mCanvasView.showContentView();
-        mCanvasView.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
 
         mainController.beginAppPolling();
         mainController.expandBubbleFlow((long) (mContentPeriod * 1000));
@@ -91,10 +80,8 @@ public class State_AnimateToContentView extends ControllerState {
         draggable.getDraggableHelper().setExactPos((int) x, (int) y);
 
         float t = Util.clamp(0.0f, 1.0f - mTime / mContentPeriod, 1.0f);
-        mCanvasView.setContentViewTranslation(t * (Config.mScreenHeight - Config.mContentOffset));
 
         if (mTime >= mBubblePeriod && mTime >= mContentPeriod) {
-            //mainController.STATE_ContentView.init(mSelectedBubble);
             mainController.switchState(mainController.STATE_ContentView);
         }
 
@@ -103,7 +90,6 @@ public class State_AnimateToContentView extends ControllerState {
 
     @Override
     public void onExitState() {
-        mCanvasView.setContentViewTranslation(0.0f);
     }
 
     @Override
@@ -132,7 +118,6 @@ public class State_AnimateToContentView extends ControllerState {
     @Override
     public boolean onOrientationChanged() {
         MainController mainController = MainController.get();
-        //mainController.STATE_ContentView.init(mSelectedBubble);
         mainController.switchState(mainController.STATE_ContentView);
         return true;
     }

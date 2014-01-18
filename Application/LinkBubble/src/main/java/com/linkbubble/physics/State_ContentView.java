@@ -76,7 +76,6 @@ public class State_ContentView extends ControllerState {
             float d = (float) Math.sqrt( (e.dx * e.dx) + (e.dy * e.dy) );
             if (d >= Config.dpToPx(10.0f)) {
                 mDidMove = true;
-                mCanvasView.hideContentView();
             }
 
             MainController.get().scheduleUpdate();

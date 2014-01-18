@@ -1,7 +1,9 @@
 package com.linkbubble.physics;
 
+import android.content.Context;
 import android.view.animation.OvershootInterpolator;
 import com.linkbubble.Constant;
+import com.linkbubble.MainApplication;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
@@ -23,24 +25,24 @@ public class State_AnimateToBubbleView extends ControllerState {
         public float mTargetY;
     }
 
-    private CanvasView mCanvasView;
     private OvershootInterpolator mInterpolator = new OvershootInterpolator(0.5f);
     private float mTime;
     private float mBubblePeriod;
     private float mContentPeriod;
     private Vector<DraggableInfo> mDraggableInfo = new Vector<DraggableInfo>();
 
-    public State_AnimateToBubbleView(CanvasView canvasView) {
-        mCanvasView = canvasView;
+    private Context mContext;
+    private MainController.BeginCollapseTransitionEvent mBeginCollapseTransitionEvent = new MainController.BeginCollapseTransitionEvent();
+    private MainController.EndCollapseTransitionEvent mEndCollapseTransitionEvent = new MainController.EndCollapseTransitionEvent();
+
+    public State_AnimateToBubbleView(Context context) {
+        mContext = context;
     }
 
     @Override
     public void onEnterState() {
         if (MainController.get().getBubbleCount() == 0) {
             throw new RuntimeException("Should be at least 1 bubble active to enter the AnimateToBubbleView state");
-        }
-        if (mCanvasView.getContentView() != null) {
-            mCanvasView.getContentView().onAnimateOffscreen();
         }
         mDraggableInfo.clear();
         mTime = 0.0f;
@@ -59,10 +61,11 @@ public class State_AnimateToBubbleView extends ControllerState {
         draggableInfo.mDistanceY = draggableInfo.mTargetY - draggableInfo.mPosY;
         mDraggableInfo.add(draggableInfo);
 
-        mCanvasView.setContentViewTranslation(0.0f);
-
         mainController.endAppPolling();
         mainController.collapseBubbleFlow((long) (mContentPeriod * 1000));
+
+        mBeginCollapseTransitionEvent.mPeriod = mContentPeriod;
+        MainApplication.postEvent(mContext, mBeginCollapseTransitionEvent);
     }
 
     @Override
@@ -85,7 +88,6 @@ public class State_AnimateToBubbleView extends ControllerState {
         draggable.getDraggableHelper().setExactPos((int) x, (int) y);
 
         float t = Util.clamp(0.0f, mTime / mContentPeriod, 1.0f);
-        mCanvasView.setContentViewTranslation(t * (Config.mScreenHeight - Config.mContentOffset));
 
         if (mTime >= mBubblePeriod && mTime >= mContentPeriod) {
             mainController.switchState(mainController.STATE_BubbleView);
@@ -97,8 +99,7 @@ public class State_AnimateToBubbleView extends ControllerState {
 
     @Override
     public void onExitState() {
-        mCanvasView.setContentViewTranslation(Config.mScreenHeight - Config.mContentOffset);
-        mCanvasView.setContentView(null);
+        MainApplication.postEvent(mContext, mEndCollapseTransitionEvent);
     }
 
     @Override
