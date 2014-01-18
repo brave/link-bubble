@@ -284,23 +284,18 @@ public class CanvasView extends RelativeLayout {
         }
     }
 
-    public TargetInfo getBubbleAction(Circle bubbleCircle) {
-        TargetInfo ti = new TargetInfo();
+    public BubbleTargetView getSnapTarget(Circle bubbleCircle) {
 
         for (int i=0 ; i < mTargets.size() ; ++i) {
             BubbleTargetView bt = mTargets.get(i);
 
             Circle snapCircle = bt.GetSnapCircle();
-            Circle defaultCircle = bt.GetDefaultCircle();
 
             if (bubbleCircle.Intersects(snapCircle)) {
-                ti.mAction = bt.GetAction();
-                ti.mTargetX = (int) defaultCircle.mX;
-                ti.mTargetY = (int) defaultCircle.mY;
-                break;
+                return bt;
             }
         }
 
-        return ti;
+        return null;
     }
 }

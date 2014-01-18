@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.linkbubble.MainApplication;
+import com.linkbubble.ui.BubbleTargetView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
@@ -15,35 +16,26 @@ import com.linkbubble.util.Util;
  */
 public class State_BubbleView extends ControllerState {
 
-    private Context mContext;
-    private CanvasView mCanvasView;
     private boolean mDidMove;
     private int mInitialX;
     private int mInitialY;
     private int mTargetX;
     private int mTargetY;
-    private Draggable mDraggable;
     private boolean mTouchDown;
+    private Context mContext;
+    private MainController.EndBubbleDragEvent mEndBubbleDragEvent = new MainController.EndBubbleDragEvent();
 
-    public State_BubbleView(Context context, CanvasView canvasView) {
-        mCanvasView = canvasView;
-        mContext = context;
+    public State_BubbleView(Context c) {
+        mContext = c;
     }
 
     @Override
     public void onEnterState() {
         mDidMove = false;
-        mDraggable = null;
     }
 
     @Override
     public boolean onUpdate(float dt) {
-
-        if (mDraggable != null) {
-            mDraggable.getDraggableHelper().doSnap(mCanvasView, mTargetX, mTargetY);
-            return true;
-        }
-
         return false;
     }
 
@@ -65,7 +57,6 @@ public class State_BubbleView extends ControllerState {
             throw new RuntimeException("Must have valid sender");
         }
         mTouchDown = true;
-        mDraggable = sender;
         mInitialX = e.posX;
         mInitialY = e.posY;
         mTargetX = mInitialX;
@@ -89,6 +80,8 @@ public class State_BubbleView extends ControllerState {
             if (d >= Config.dpToPx(10.0f)) {
                 mDidMove = true;
             }
+
+            MainController.get().getBubbleDraggable().setTargetPos(mTargetX, mTargetY, 0.02f, DraggableHelper.AnimationType.Linear);
         }
     }
 
@@ -96,28 +89,30 @@ public class State_BubbleView extends ControllerState {
     public void onTouchActionRelease(Draggable sender, DraggableHelper.ReleaseEvent e) {
         if (mTouchDown) {
             sender.getDraggableHelper().clearTargetPos();
+            boolean endDragEvent = true;
 
             MainController mainController = MainController.get();
             if (mDidMove) {
-                CanvasView.TargetInfo ti = mDraggable.getDraggableHelper().getTargetInfo(mCanvasView,
-                        sender.getDraggableHelper().getXPos(), sender.getDraggableHelper().getYPos());
-                if (ti.mAction == Config.BubbleAction.None) {
+                BubbleTargetView snapTarget = mainController.getBubbleDraggable().getCurrentSnapTarget();
+
+                if (snapTarget == null) {
                     float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
                     float threshold = Config.dpToPx(900.0f);
                     if (v > threshold) {
                         mainController.STATE_Flick_BubbleView.init(sender, e.vx, e.vy);
                         mainController.switchState(mainController.STATE_Flick_BubbleView);
                         mainController.hideContentActivity();
+                        endDragEvent = false;
                     } else {
                         mainController.STATE_SnapToEdge.init(sender);
                         mainController.switchState(mainController.STATE_SnapToEdge);
                     }
                 } else {
-                    if (ti.mAction == Config.BubbleAction.Destroy) {
+                    if (snapTarget.getAction() == Config.BubbleAction.Destroy) {
                         mainController.destroyAllBubbles();
                         mainController.switchState(mainController.STATE_BubbleView);
                     } else {
-                        if (mainController.destroyCurrentBubble()) {
+                        if (mainController.destroyCurrentBubble(snapTarget.getAction())) {
                             mainController.switchState(mainController.STATE_AnimateToBubbleView);
                         } else {
                             mainController.switchState(mainController.STATE_BubbleView);
@@ -128,7 +123,10 @@ public class State_BubbleView extends ControllerState {
                 mainController.switchState(mainController.STATE_AnimateToContentView);
             }
 
-            mDraggable = null;
+            if (endDragEvent) {
+                MainApplication.postEvent(mContext, mEndBubbleDragEvent);
+            }
+
             mTouchDown = false;
         }
     }
@@ -145,7 +143,6 @@ public class State_BubbleView extends ControllerState {
     @Override
     public boolean onOrientationChanged() {
         mTouchDown = false;
-        mDraggable = null;
         return false;
     }
 

@@ -1,6 +1,10 @@
 package com.linkbubble.physics;
 
+import android.content.Context;
+
 import com.linkbubble.Constant;
+import com.linkbubble.MainApplication;
+import com.linkbubble.ui.BubbleTargetView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.Config;
 import com.linkbubble.MainController;
@@ -11,36 +15,28 @@ import com.linkbubble.util.Util;
  */
 public class State_ContentView extends ControllerState {
 
-    private CanvasView mCanvasView;
     private boolean mDidMove;
     private int mInitialX;
     private int mInitialY;
     private int mTargetX;
     private int mTargetY;
-    private Draggable mDraggable;
     private boolean mTouchDown;
+    private MainController.EndBubbleDragEvent mEndBubbleDragEvent = new MainController.EndBubbleDragEvent();
+    private Context mContext;
 
-    public State_ContentView(CanvasView canvasView) {
-        mCanvasView = canvasView;
+    public State_ContentView(Context c) {
+        mContext = c;
     }
 
     @Override
     public void onEnterState() {
         mDidMove = false;
-        mDraggable = null;
         MainController.get().beginAppPolling();
         //MainController.get().showBubblePager(true);
     }
 
     @Override
     public boolean onUpdate(float dt) {
-        if (mDraggable != null) {
-            if (mDidMove) {
-                mDraggable.getDraggableHelper().doSnap(mCanvasView, mTargetX, mTargetY);
-            }
-            return true;
-        }
-
         return false;
     }
 
@@ -55,7 +51,6 @@ public class State_ContentView extends ControllerState {
             throw new RuntimeException("Must have valid sender");
         }
         mTouchDown = true;
-        mDraggable = sender;
         mInitialX = e.posX;
         mInitialY = e.posY;
         mTargetX = mInitialX;
@@ -78,6 +73,8 @@ public class State_ContentView extends ControllerState {
                 mDidMove = true;
             }
 
+            MainController.get().getBubbleDraggable().setTargetPos(mTargetX, mTargetY, 0.02f, DraggableHelper.AnimationType.Linear);
+
             MainController.get().scheduleUpdate();
         }
     }
@@ -87,22 +84,24 @@ public class State_ContentView extends ControllerState {
         MainController mainController = MainController.get();
         if (mTouchDown) {
             sender.getDraggableHelper().clearTargetPos();
+            boolean endDragEvent = true;
 
             if (mDidMove) {
-                // NPE here with sender null: http://pastebin.com/GvQW57Dk
-                CanvasView.TargetInfo ti = mDraggable.getDraggableHelper().getTargetInfo(mCanvasView,
-                        sender.getDraggableHelper().getXPos(), sender.getDraggableHelper().getYPos());
-                if (ti.mAction == Config.BubbleAction.None) {
+
+                BubbleTargetView snapTarget = mainController.getBubbleDraggable().getCurrentSnapTarget();
+
+                if (snapTarget == null) {
                     float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
                     float threshold = Config.dpToPx(900.0f);
                     if (v > threshold) {
                         mainController.STATE_Flick_ContentView.init(sender, e.vx, e.vy);
                         mainController.switchState(mainController.STATE_Flick_ContentView);
+                        endDragEvent = false;
                     } else {
                         mainController.switchState(mainController.STATE_AnimateToContentView);
                     }
                 } else {
-                    if (mainController.destroyCurrentBubble()) {
+                    if (mainController.destroyCurrentBubble(snapTarget.getAction())) {
                         mainController.switchState(mainController.STATE_AnimateToContentView);
                     } else {
                         mainController.switchState(mainController.STATE_BubbleView);
@@ -112,8 +111,11 @@ public class State_ContentView extends ControllerState {
                 mainController.switchState(mainController.STATE_AnimateToBubbleView);
             }
 
-            mDraggable = null;
             mTouchDown = false;
+
+            if (endDragEvent) {
+                MainApplication.postEvent(mContext, mEndBubbleDragEvent);
+            }
         }
     }
 
@@ -129,7 +131,6 @@ public class State_ContentView extends ControllerState {
     @Override
     public boolean onOrientationChanged() {
         mTouchDown = false;
-        mDraggable = null;
         return true;
     }
 
