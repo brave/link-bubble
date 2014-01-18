@@ -2,6 +2,7 @@ package com.linkbubble.ui;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -35,6 +36,11 @@ public class CanvasView extends RelativeLayout {
 
     private float mCurrentAlphaContentView = 1.0f;
     private float mTargetAlphaContentView = 1.0f;
+
+    private float mAnimTime;
+    private float mAnimPeriod;
+    private float mInitialY;
+    private float mTargetY;
 
     private boolean mEnabled;
 
@@ -93,24 +99,6 @@ public class CanvasView extends RelativeLayout {
         mWindowManager.addView(this, mWindowManagerParams);
     }
 
-    public void setContentView(ContentView cv) {
-        if (mContentView != null) {
-            removeView(mContentView);
-            mContentView.setAlpha(1.0f);
-            mCurrentAlphaContentView = 1.0f;
-            mTargetAlphaContentView = 1.0f;
-            mContentView.onCurrentContentViewChanged(false);
-        }
-        mContentView = cv;
-        if (mContentView != null) {
-            RelativeLayout.LayoutParams p = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            p.topMargin = Config.mContentOffset;
-            addView(mContentView, p);
-            mContentView.onCurrentContentViewChanged(true);
-            mContentView.requestFocus();
-        }
-    }
-
     private void applyAlpha() {
         Util.Assert(mCurrentAlpha >= 0.0f && mCurrentAlpha <= 1.0f);
 
@@ -134,20 +122,39 @@ public class CanvasView extends RelativeLayout {
         }
     }
 
-    public void setContentViewTranslation(float ty) {
+    private void setContentView(ContentView cv) {
+        if (mContentView != null) {
+            removeView(mContentView);
+            mContentView.setAlpha(1.0f);
+            mCurrentAlphaContentView = 1.0f;
+            mTargetAlphaContentView = 1.0f;
+            mContentView.onCurrentContentViewChanged(false);
+        }
+        mContentView = cv;
+        if (mContentView != null) {
+            RelativeLayout.LayoutParams p = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            p.topMargin = Config.mContentOffset;
+            addView(mContentView, p);
+            mContentView.onCurrentContentViewChanged(true);
+            mContentView.requestFocus();
+        }
+    }
+
+    private void setContentViewTranslation(float ty) {
         if (mContentView != null) {
             mContentView.setTranslationY(ty);
         }
     }
 
-    public void showContentView() {
-        Util.Assert(mContentView != null);
-        mCurrentAlphaContentView = 1.0f;
-        mTargetAlphaContentView = 1.0f;
-        mContentView.setAlpha(1.0f);
+    private void showContentView() {
+        if (mContentView != null) {
+            mCurrentAlphaContentView = 1.0f;
+            mTargetAlphaContentView = 1.0f;
+            mContentView.setAlpha(1.0f);
+        }
     }
 
-    public void hideContentView() {
+    private void hideContentView() {
         //Util.Assert(mContentView != null);
         mCurrentAlphaContentView = mContentView != null ? mContentView.getAlpha() : 1.f;
         mTargetAlphaContentView = 0.0f;
@@ -156,20 +163,52 @@ public class CanvasView extends RelativeLayout {
 
     @SuppressWarnings("unused")
     @Subscribe
+    public void onCurrentBubbleChanged(MainController.CurrentBubbleChangedEvent e) {
+        ContentView cv = e.mBubble != null ? e.mBubble.getContentView() : null;
+        setContentView(cv);
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
     public void onBeginBubbleDrag(MainController.BeginBubbleDragEvent e) {
         fadeIn();
+        hideContentView();
     }
 
     @SuppressWarnings("unused")
     @Subscribe
     public void onEndBubbleDragEvent(MainController.EndBubbleDragEvent e) {
         fadeOut();
+        showContentView();
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onBeginCollapseTransition(MainController.BeginCollapseTransitionEvent e) {
+        if (mContentView != null) {
+            mContentView.onAnimateOffscreen();
+        }
+        mAnimPeriod = e.mPeriod;
+        mAnimTime = 0.0f;
+        mInitialY = 0.0f;
+        mTargetY = Config.mScreenHeight - Config.mContentOffset;
+        MainController.get().scheduleUpdate();
     }
 
     @SuppressWarnings("unused")
     @Subscribe
     public void onBeginExpandTransition(MainController.BeginExpandTransitionEvent e) {
         fadeIn();
+
+        if (mContentView != null) {
+            mContentView.onAnimateOnScreen();
+        }
+
+        mAnimPeriod = e.mPeriod;
+        mAnimTime = 0.0f;
+        mInitialY = Config.mScreenHeight - Config.mContentOffset;
+        mTargetY = 0.0f;
+        MainController.get().scheduleUpdate();
     }
 
     @SuppressWarnings("unused")
@@ -212,6 +251,16 @@ public class CanvasView extends RelativeLayout {
     }
 
     public void update(float dt, Draggable frontDraggable) {
+
+        if (mAnimPeriod > 0.0f && mAnimTime <= mAnimPeriod) {
+            float t = Util.clamp(0.0f, mAnimTime / mAnimPeriod, 1.0f);
+            float y = (mInitialY + (mTargetY - mInitialY) * t);
+            setContentViewTranslation(y);
+            mAnimTime += dt;
+            mAnimTime = Math.min(mAnimTime, mAnimPeriod);
+            MainController.get().scheduleUpdate();
+        }
+
         if (mCurrentAlpha < mTargetAlpha) {
             mCurrentAlpha = Util.clamp(0.0f, mCurrentAlpha + mAlphaDelta * dt, mMaxAlpha);
             MainController.get().scheduleUpdate();
