@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
@@ -165,8 +166,8 @@ public class BubbleTargetView extends RelativeLayout {
                 mHomeY = (int) -mSnapHeight;
                 break;
             case Destroy:
-                mHomeX = (int) Config.mScreenCenterX; //mSnapWidth;
-                mHomeY = (int) Config.mScreenHeight + (int) mSnapHeight;
+                mHomeX = Config.mScreenCenterX; //mSnapWidth;
+                mHomeY = Config.mScreenHeight + (int) mSnapHeight;
                 break;
         }
 
@@ -311,21 +312,34 @@ public class BubbleTargetView extends RelativeLayout {
     }
 
     public void OnOrientationChanged() {
+        mTransitionTimeLeft = 0.0f;
+        mAnimTime = 0.0f;
+        mAnimPeriod = 0.0f;
+
         mSnapCircle.mX = Config.mScreenWidth * mXFraction;
         mSnapCircle.mY = Config.mScreenHeight * mYFraction;
 
         mDefaultCircle.mX = Config.mScreenWidth * mXFraction;
         mDefaultCircle.mY = Config.mScreenHeight * mYFraction;
 
-        // Add main relative layout to canvas
-        RelativeLayout.LayoutParams targetLayoutLP = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        targetLayoutLP.leftMargin = (int) (0.5f + mDefaultCircle.mX - mDefaultCircle.mRadius);
-        targetLayoutLP.topMargin = (int) (0.5f + mDefaultCircle.mY - mDefaultCircle.mRadius);
-        mCanvasView.updateViewLayout(this, targetLayoutLP);
-    }
+        switch (mAction) {
+            case ConsumeLeft:
+                mHomeX = (int) -mSnapWidth;
+                mHomeY = (int) -mSnapHeight;
+                break;
+            case ConsumeRight:
+                mHomeX = Config.mScreenWidth + (int) mSnapWidth;
+                mHomeY = (int) -mSnapHeight;
+                break;
+            case Destroy:
+                mHomeX = (int) Config.mScreenCenterX; //mSnapWidth;
+                mHomeY = (int) Config.mScreenHeight + (int) mSnapHeight;
+                break;
+        }
 
-    public Config.BubbleAction GetAction() {
-        return mAction;
+        mCanvasLayoutParams.leftMargin = mHomeX;
+        mCanvasLayoutParams.topMargin = mHomeY;
+        mCanvasView.updateViewLayout(this, mCanvasLayoutParams);
     }
 
     public Circle GetSnapCircle() {
