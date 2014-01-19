@@ -98,6 +98,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         DraggableHelper.AnimationType animType = DraggableHelper.AnimationType.Linear;
         float period = 0.0f;
         mFlickActive = true;
+        mCurrentSnapTarget = null;
 
         int initialX = mDraggableHelper.getXPos();
         int initialY = mDraggableHelper.getYPos();
@@ -290,18 +291,43 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                     }
 
                     if (!mAnimActive) {
-                        setTargetPos(targetX, targetY, 0.02f, DraggableHelper.AnimationType.Linear, null);
-                    } else {
-                        Circle bubbleCircle = new Circle(targetX + Config.mBubbleWidth * 0.5f, targetY + Config.mBubbleHeight * 0.5f, Config.mBubbleWidth * 0.5f);
-                        BubbleTargetView tv = mCanvasView.getSnapTarget(bubbleCircle);
-                        if (tv == null) {
-                            setTargetPos(targetX, targetY, 0.2f, DraggableHelper.AnimationType.Linear, new DraggableHelper.AnimationEventListener() {
-                                @Override
-                                public void onAnimationComplete() {
-                                    mCurrentSnapTarget = null;
-                                    onAnimComplete();
-                                }
-                            });
+
+                        // c = null, t = null           wasn't snapping, no snap -> move
+                        // c = 1, t = null              was snapping, no snap -> anim out
+                        // c = null, t = 1              wasn't snapping, is snap -> anim in
+                        // c = 1, t = 1                 was snapping, is snapping -> NO move
+
+                        Circle c = new Circle(targetX + Config.mBubbleWidth * 0.5f, targetY + Config.mBubbleHeight * 0.5f, Config.mBubbleWidth * 0.5f);
+                        BubbleTargetView tv = mCanvasView.getSnapTarget(c);
+
+                        if (mCurrentSnapTarget == null) {
+                            if (tv == null) {
+                                setTargetPos(targetX, targetY, 0.02f, DraggableHelper.AnimationType.Linear, null);
+                            } else {
+                                tv.beginSnapping();
+                                mCurrentSnapTarget = tv;
+
+                                Circle dc = tv.GetDefaultCircle();
+                                int xt = (int) (dc.mX - Config.mBubbleWidth * 0.5f);
+                                int yt = (int) (dc.mY - Config.mBubbleHeight * 0.5f);
+                                setTargetPos(xt, yt, 0.3f, DraggableHelper.AnimationType.MediumOvershoot, new DraggableHelper.AnimationEventListener() {
+                                    @Override
+                                    public void onAnimationComplete() {
+                                        onAnimComplete();
+                                    }
+                                });
+                            }
+                        } else {
+                            if (tv == null) {
+                                setTargetPos(targetX, targetY, 0.02f, DraggableHelper.AnimationType.Linear, new DraggableHelper.AnimationEventListener() {
+                                    @Override
+                                    public void onAnimationComplete() {
+                                        mCurrentSnapTarget.endSnapping();
+                                        mCurrentSnapTarget = null;
+                                        onAnimComplete();
+                                    }
+                                });
+                            }
                         }
                     }
                 }
@@ -310,7 +336,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             @Override
             public void onActionUp(DraggableHelper.ReleaseEvent e) {
                 if (mTouchDown) {
-                    clearTargetPos();
+                    mDraggableHelper.forceClearAnim();
 
                     MainController mainController = MainController.get();
 
@@ -385,14 +411,15 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
     @Override
     public void update(float dt) {
-        int x = mDraggableHelper.getXPos();
-        int y = mDraggableHelper.getYPos();
 
-        Circle bubbleCircle = new Circle(x + Config.mBubbleWidth * 0.5f, y + Config.mBubbleHeight * 0.5f, Config.mBubbleWidth * 0.5f);
-        BubbleTargetView tv = mCanvasView.getSnapTarget(bubbleCircle);
+        if (mFlickActive && mCurrentSnapTarget == null) {
+            int x = mDraggableHelper.getXPos();
+            int y = mDraggableHelper.getYPos();
 
-        if (tv != null) {
-            if (tv != mCurrentSnapTarget) {
+            Circle bubbleCircle = new Circle(x + Config.mBubbleWidth * 0.5f, y + Config.mBubbleHeight * 0.5f, Config.mBubbleWidth * 0.5f);
+            BubbleTargetView tv = mCanvasView.getSnapTarget(bubbleCircle);
+
+            if (tv != null) {
                 mCurrentSnapTarget = tv;
                 mCurrentSnapTarget.beginSnapping();
 
@@ -400,46 +427,40 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                 int xt = (int) (c.mX - Config.mBubbleWidth * 0.5f);
                 int yt = (int) (c.mY - Config.mBubbleHeight * 0.5f);
 
-                // If anim active AND it is a flick (TODO), then cancel the anim and do the snap.
-                if (mFlickActive && mAnimActive) {
-                    mDraggableHelper.forceClearAnim();
-                    onAnimComplete();
-                }
+                mDraggableHelper.forceClearAnim();
+                onAnimComplete();
 
                 setTargetPos(xt, yt, 0.3f, DraggableHelper.AnimationType.LargeOvershoot, new DraggableHelper.AnimationEventListener() {
                     @Override
                     public void onAnimationComplete() {
-                        if (mFlickActive) {
-                            MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
+                        MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
 
-                            MainController mainController = MainController.get();
-                            if (mCurrentSnapTarget.getAction() == Config.BubbleAction.Destroy) {
-                                mainController.destroyAllBubbles();
-                                mMode = Mode.BubbleView;
+                        MainController mainController = MainController.get();
+                        if (mCurrentSnapTarget.getAction() == Config.BubbleAction.Destroy) {
+                            mainController.destroyAllBubbles();
+                            mMode = Mode.BubbleView;
+                        } else {
+                            if (mainController.destroyCurrentBubble(mCurrentSnapTarget.getAction())) {
+                                doAnimateToBubbleView();
                             } else {
-                                if (mainController.destroyCurrentBubble(mCurrentSnapTarget.getAction())) {
-                                    doAnimateToBubbleView();
-                                } else {
-                                    mMode = Mode.BubbleView;
-                                }
+                                mMode = Mode.BubbleView;
                             }
                         }
+
                         onAnimComplete();
                         mFlickActive = false;
-                    }
+
+                        mCurrentSnapTarget.endSnapping();
+                        mCurrentSnapTarget = null;
+                        }
                 });
-            }
-        } else {
-            if (mCurrentSnapTarget != null) {
-                mCurrentSnapTarget.endSnapping();
-                mCurrentSnapTarget = null;
             }
         }
 
         mDraggableHelper.update(dt);
 
-        x = mDraggableHelper.getXPos();
-        y = mDraggableHelper.getYPos();
+        int x = mDraggableHelper.getXPos();
+        int y = mDraggableHelper.getYPos();
 
         mDraggableBubbleMovedEvent.mX = x;
         mDraggableBubbleMovedEvent.mY = y;
