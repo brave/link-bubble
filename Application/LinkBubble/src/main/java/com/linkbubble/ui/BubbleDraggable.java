@@ -166,7 +166,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     private void doAnimateToBubbleView() {
-        if (mMode == Mode.BubbleView)
+        if (mMode == Mode.BubbleView && mAnimActive)
             return;
 
         mTouchDown = false;
@@ -436,22 +436,24 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                         MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
 
                         MainController mainController = MainController.get();
-                        if (mCurrentSnapTarget.getAction() == Config.BubbleAction.Destroy) {
+
+                        onAnimComplete();
+                        mFlickActive = false;
+
+                        Config.BubbleAction action = mCurrentSnapTarget.getAction();
+                        mCurrentSnapTarget.endSnapping();
+                        mCurrentSnapTarget = null;
+
+                        if (action == Config.BubbleAction.Destroy) {
                             mainController.destroyAllBubbles();
                             mMode = Mode.BubbleView;
                         } else {
-                            if (mainController.destroyCurrentBubble(mCurrentSnapTarget.getAction())) {
+                            if (mainController.destroyCurrentBubble(action)) {
                                 doAnimateToBubbleView();
                             } else {
                                 mMode = Mode.BubbleView;
                             }
                         }
-
-                        onAnimComplete();
-                        mFlickActive = false;
-
-                        mCurrentSnapTarget.endSnapping();
-                        mCurrentSnapTarget = null;
                         }
                 });
             }
