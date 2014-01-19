@@ -9,6 +9,8 @@ import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
+import com.linkbubble.util.Util;
+
 import org.mozilla.gecko.favicons.Favicons;
 
 import java.net.MalformedURLException;
@@ -127,8 +129,12 @@ public class BubbleFlowItemView extends BubbleView {
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainController mainController = MainController.get();
-                mainController.switchState(mainController.STATE_AnimateToBubbleView);
+
+                // TODO: How does this code path actually get hit?
+                // GW: Let me know if you hit this code path.
+                Util.Assert(false);
+                //MainController mainController = MainController.get();
+                //mainController.switchState(mainController.STATE_AnimateToBubbleView);
             }
         });
     }

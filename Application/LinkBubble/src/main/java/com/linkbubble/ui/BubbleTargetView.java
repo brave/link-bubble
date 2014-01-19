@@ -168,9 +168,6 @@ public class BubbleTargetView extends RelativeLayout {
                 mHomeX = (int) Config.mScreenCenterX; //mSnapWidth;
                 mHomeY = (int) Config.mScreenHeight + (int) mSnapHeight;
                 break;
-            default:
-                Util.Assert(false);
-                break;
         }
 
         addView(mCircleView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
