@@ -256,9 +256,10 @@ public class CanvasView extends RelativeLayout {
             float t = Util.clamp(0.0f, mAnimTime / mAnimPeriod, 1.0f);
             float y = (mInitialY + (mTargetY - mInitialY) * t);
             setContentViewTranslation(y);
+            if (mAnimTime < mAnimPeriod) {
+                MainController.get().scheduleUpdate();
+            }
             mAnimTime += dt;
-            mAnimTime = Math.min(mAnimTime, mAnimPeriod);
-            MainController.get().scheduleUpdate();
         }
 
         if (mCurrentAlpha < mTargetAlpha) {
