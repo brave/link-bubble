@@ -285,8 +285,8 @@ public class DraggableHelper {
 
             MainController.get().scheduleUpdate();
         } else if (listener != null) {
-            listener.onAnimationComplete();
             mAnimationListener = null;
+            listener.onAnimationComplete();
         }
     }
 
@@ -339,12 +339,13 @@ public class DraggableHelper {
             MainController.get().scheduleUpdate();
 
             if (mAnimTime >= mAnimPeriod) {
-                if (mAnimationListener != null) {
-                    mAnimationListener.onAnimationComplete();
-                    mAnimationListener = null;
-                }
                 mAnimTime = 0.0f;
                 mAnimPeriod = 0.0f;
+                if (mAnimationListener != null) {
+                    AnimationEventListener l = mAnimationListener;
+                    mAnimationListener = null;
+                    l.onAnimationComplete();
+                }
             }
 
             return true;
