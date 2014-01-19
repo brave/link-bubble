@@ -93,6 +93,74 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         doAnimateToContentView();
     }
 
+    private void doFlick(float vx, float vy) {
+        DraggableHelper.AnimationType animType = DraggableHelper.AnimationType.Linear;
+        float period = 0.0f;
+
+        int initialX = mDraggableHelper.getXPos();
+        int initialY = mDraggableHelper.getYPos();
+        int targetX, targetY;
+
+        if (Math.abs(vx) < 0.1f) {
+            targetX = initialX;
+
+            if (vy > 0.0f) {
+                targetY = Config.mBubbleMaxY;
+            } else {
+                targetY = Config.mBubbleMinY;
+            }
+        } else {
+
+            if (vx > 0.0f) {
+                targetX = Config.mBubbleSnapRightX;
+            } else {
+                targetX = Config.mBubbleSnapLeftX;
+            }
+
+            float m = vy / vx;
+
+            targetY = (int) (m * (targetX - initialX) + initialY);
+
+            if (targetY < Config.mBubbleMinY) {
+                targetY = Config.mBubbleMinY;
+                targetX = (int) (initialX + (targetY - initialY) / m);
+            } else if (targetY > Config.mBubbleMaxY) {
+                targetY = Config.mBubbleMaxY;
+                targetX = (int) (initialX + (targetY - initialY) / m);
+            } else {
+                animType = DraggableHelper.AnimationType.MediumOvershoot;
+                period += 0.15f;
+            }
+        }
+
+        float dx = targetX - initialX;
+        float dy = targetY - initialY;
+        float d = (float) Math.sqrt(dx*dx + dy*dy);
+
+        float v = (float) Math.sqrt(vx*vx + vy*vy);
+
+        period += d/v;
+        period = Util.clamp(0.05f, period, 0.5f);
+
+        setTargetPos(targetX, targetY, period, animType, new DraggableHelper.AnimationEventListener() {
+            @Override
+            public void onAnimationComplete() {
+                onAnimComplete();
+
+                MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
+
+                if (mMode == Mode.ContentView) {
+                    doAnimateToContentView();
+                } else {
+                    int x = mDraggableHelper.getXPos();
+                    if (x != Config.mBubbleSnapLeftX && x != Config.mBubbleSnapRightX) {
+                        doSnap();
+                    }
+                }
+            }
+        });
+    }
+
     private void doAnimateToBubbleView() {
         if (mMode == Mode.BubbleView)
             return;
@@ -227,17 +295,25 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
                     MainController mainController = MainController.get();
 
-                    MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
-
                     if (mHasMoved) {
 
                         if (mCurrentSnapTarget == null) {
                             if (mMode == Mode.ContentView) {
+                                MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
                                 doAnimateToContentView();
                             } else {
-                                doSnap();
+                                float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
+                                float threshold = Config.dpToPx(900.0f);
+                                if (v > threshold) {
+                                    doFlick(e.vx, e.vy);
+                                } else {
+                                    MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
+                                    doSnap();
+                                }
                             }
                         } else {
+                            MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
+
                             if (mCurrentSnapTarget.getAction() == Config.BubbleAction.Destroy) {
                                 mainController.destroyAllBubbles();
                                 mMode = Mode.BubbleView;
@@ -249,32 +325,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                                 }
                             }
                         }
-
-/*                        if (mCurrentSnapTarget == null) {
-                            float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
-                            float threshold = Config.dpToPx(900.0f);
-                            if (v > threshold) {
-                                mainController.STATE_Flick_BubbleView.init(sender, e.vx, e.vy);
-                                mainController.switchState(mainController.STATE_Flick_BubbleView);
-                                mainController.hideContentActivity();
-                                endDragEvent = false;
-                            } else {
-                                mainController.STATE_SnapToEdge.init(sender);
-                                mainController.switchState(mainController.STATE_SnapToEdge);
-                            }
-                        } else {
-                            if (mCurrentSnapTarget.getAction() == Config.BubbleAction.Destroy) {
-                                mainController.destroyAllBubbles();
-                                mainController.switchState(mainController.STATE_BubbleView);
-                            } else {
-                                if (mainController.destroyCurrentBubble(snapTarget.getAction())) {
-                                    mainController.switchState(mainController.STATE_AnimateToBubbleView);
-                                } else {
-                                    mainController.switchState(mainController.STATE_BubbleView);
-                                }
-                            }
-                        }*/
                     } else {
+                        MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
+
                         if (mMode == Mode.BubbleView) {
                             doAnimateToContentView();
                         } else {
