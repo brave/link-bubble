@@ -85,8 +85,13 @@ public class DraggableHelper {
     private float mStartTouchYRaw;
     private int mStartTouchX = -1;
     private int mStartTouchY = -1;
+    private AnimationEventListener mAnimationListener;
 
     private OnTouchActionEventListener mOnTouchActionEventListener;
+
+    public interface AnimationEventListener {
+        public void onAnimationComplete();
+    }
 
     public DraggableHelper(View view, WindowManager windowManager, WindowManager.LayoutParams windowManagerParams, boolean setOnTouchListener,
                            OnTouchActionEventListener onTouchEventListener) {
@@ -262,7 +267,10 @@ public class DraggableHelper {
         }
     }
 
-    public void setTargetPos(int x, int y, float t, AnimationType type) {
+    public void setTargetPos(int x, int y, float t, AnimationType type, AnimationEventListener listener) {
+        Util.Assert(mAnimationListener == null);
+        mAnimationListener = listener;
+
         if (x != mTargetX || y != mTargetY) {
             mAnimType = type;
 
@@ -276,6 +284,9 @@ public class DraggableHelper {
             mAnimTime = 0.0f;
 
             MainController.get().scheduleUpdate();
+        } else if (listener != null) {
+            listener.onAnimationComplete();
+            mAnimationListener = null;
         }
     }
 
@@ -289,10 +300,6 @@ public class DraggableHelper {
 
     public WindowManager.LayoutParams getWindowManagerParams() {
         return mWindowManagerParams;
-    }
-
-    public boolean isSnapping() {
-        return mAnimType != AnimationType.Linear;
     }
 
     public boolean isAlive() { return mAlive; }
@@ -320,9 +327,6 @@ public class DraggableHelper {
                 case LargeOvershoot:
                     interpolatedFraction = mOvershootInterpolatorLarge.getInterpolation(tf);
                     break;
-                default:
-                    Util.Assert(false);
-                    break;
             }
 
             int x = (int) (mInitialX + (mTargetX - mInitialX) * interpolatedFraction);
@@ -333,6 +337,15 @@ public class DraggableHelper {
             mWindowManager.updateViewLayout(mView, mWindowManagerParams);
 
             MainController.get().scheduleUpdate();
+
+            if (mAnimTime >= mAnimPeriod) {
+                if (mAnimationListener != null) {
+                    mAnimationListener.onAnimationComplete();
+                    mAnimationListener = null;
+                }
+                mAnimTime = 0.0f;
+                mAnimPeriod = 0.0f;
+            }
 
             return true;
         }

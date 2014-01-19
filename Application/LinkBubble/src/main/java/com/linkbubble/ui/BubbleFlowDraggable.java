@@ -16,7 +16,8 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
-import com.linkbubble.physics.State_AnimateToBubbleView;
+//import com.linkbubble.physics.State_AnimateToBubbleView;
+import com.linkbubble.util.Util;
 import com.linkbubble.util.VerticalGestureListener;
 
 import java.net.MalformedURLException;
@@ -71,8 +72,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         setBubbleFlowViewListener(new BubbleFlowView.Listener() {
             @Override
             public void onCenterItemClicked(BubbleFlowView sender, View view) {
-                MainController mainController = MainController.get();
-                mainController.switchState(mainController.STATE_AnimateToBubbleView);
+                MainController.get().switchToBubbleView();
             }
 
             @Override
@@ -214,11 +214,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     @Override
-    public View getDraggableView() {
-        return this;
-    }
-
-    @Override
     public void update(float dt) {
         mDraggableHelper.update(dt);
     }
@@ -233,7 +228,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     @Override
-    public void onOrientationChanged(boolean contentViewMode) {
+    public void onOrientationChanged() {
         clearTargetPos();
 
         mWindowManager.getDefaultDisplay().getSize(mTempSize);
@@ -271,9 +266,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
                         @Override
                         public void onMinimizeBubbles() {
-                            if (MainController.get().isStateActive(State_AnimateToBubbleView.class) == false) {
-                                MainController.get().switchState(MainController.get().STATE_AnimateToBubbleView);
-                            }
+                            MainController.get().switchToBubbleView();
                         }
 
                         @Override

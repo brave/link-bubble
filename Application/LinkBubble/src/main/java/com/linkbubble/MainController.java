@@ -20,17 +20,8 @@ import android.webkit.CookieSyncManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.linkbubble.physics.ControllerState;
 import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.physics.Draggable;
-import com.linkbubble.physics.State_AnimateToBubbleView;
-import com.linkbubble.physics.State_AnimateToContentView;
-import com.linkbubble.physics.State_BubbleView;
-import com.linkbubble.physics.State_ContentView;
-import com.linkbubble.physics.State_Flick_BubbleView;
-import com.linkbubble.physics.State_Flick_ContentView;
-import com.linkbubble.physics.State_KillBubble;
-import com.linkbubble.physics.State_SnapToEdge;
 import com.linkbubble.ui.BadgeView;
 import com.linkbubble.ui.BubbleDraggable;
 import com.linkbubble.ui.BubbleFlowDraggable;
@@ -126,16 +117,6 @@ public class MainController implements Choreographer.FrameCallback {
         public void onDestroy();
     }
 
-    public State_BubbleView STATE_BubbleView;
-    public State_SnapToEdge STATE_SnapToEdge;
-    public State_AnimateToContentView STATE_AnimateToContentView;
-    public State_ContentView STATE_ContentView;
-    public State_AnimateToBubbleView STATE_AnimateToBubbleView;
-    public State_Flick_ContentView STATE_Flick_ContentView;
-    public State_Flick_BubbleView STATE_Flick_BubbleView;
-    public State_KillBubble STATE_KillBubble;
-
-    protected ControllerState mCurrentState;
     protected EventHandler mEventHandler;
     protected int mBubblesLoaded;
     private AppPoller mAppPoller;
@@ -240,37 +221,13 @@ public class MainController implements Choreographer.FrameCallback {
         Bus bus = app.getBus();
         bus.register(this);
 
-        STATE_BubbleView = new State_BubbleView(mContext);
-        STATE_SnapToEdge = new State_SnapToEdge();
-        STATE_AnimateToContentView = new State_AnimateToContentView();
-        STATE_ContentView = new State_ContentView(mContext);
-        STATE_AnimateToBubbleView = new State_AnimateToBubbleView(mContext);
-        STATE_Flick_ContentView = new State_Flick_ContentView(mContext);
-        STATE_Flick_BubbleView = new State_Flick_BubbleView(mContext);
-        STATE_KillBubble = new State_KillBubble();
-
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
 
         mBubbleDraggable = (BubbleDraggable) inflater.inflate(R.layout.view_bubble_draggable, null);
         mBubbleDraggable.configure((int) (Config.mBubbleSnapLeftX - Config.mBubbleWidth), Config.BUBBLE_HOME_Y,
-                Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y, 0.4f, mCanvasView, new BubbleDraggable.EventHandler() {
-            @Override
-            public void onMotionEvent_Touch(BubbleDraggable sender, DraggableHelper.TouchEvent event) {
-                mCurrentState.onTouchActionDown(sender, event);
-            }
-
-            @Override
-            public void onMotionEvent_Move(BubbleDraggable sender, DraggableHelper.MoveEvent event) {
-                mCurrentState.onTouchActionMove(sender, event);
-            }
-
-            @Override
-            public void onMotionEvent_Release(BubbleDraggable sender, DraggableHelper.ReleaseEvent event) {
-                mCurrentState.onTouchActionRelease(sender, event);
-            }
-        });
+                Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y, 0.4f, mCanvasView);
 
         mBubbleDraggable.setOnUpdateListener(new BubbleDraggable.OnUpdateListener() {
             @Override
@@ -284,8 +241,6 @@ public class MainController implements Choreographer.FrameCallback {
         mBubbleFlowDraggable.collapse(0, null);
         mBubbleFlowDraggable.setBubbleDraggable(mBubbleDraggable);
         mBubbleFlowDraggable.setVisibility(View.GONE);
-
-        switchState(STATE_BubbleView);
     }
 
     //private TextView mTextView;
@@ -294,14 +249,9 @@ public class MainController implements Choreographer.FrameCallback {
     //private int mFrameNumber;
 
     public void onPageLoaded() {
-        mCurrentState.onPageLoaded();
-    }
-
-    public boolean isStateActive(Class<?> clazz) {
-        if (mCurrentState != null) {
-            return mCurrentState.getClass() == clazz;
+        if (Settings.get().getAutoContentDisplayLinkLoaded()) {
+            mBubbleDraggable.switchToExpandedView();
         }
-        return false;
     }
 
     public void updateIncognitoMode(boolean incognito) {
@@ -338,16 +288,6 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    public void switchState(ControllerState newState) {
-        //Util.Assert(newState != sMainController.mCurrentState);
-        if (mCurrentState != null) {
-            mCurrentState.onExitState();
-        }
-        mCurrentState = newState;
-        mCurrentState.onEnterState();
-        scheduleUpdate();
-    }
-
     // TODO: think of a better name
     public void startDraggingFromContentView() {
         // When we start dragging, configure the BubbleFlowView to pass all its input to our TouchInterceptor so we
@@ -379,14 +319,9 @@ public class MainController implements Choreographer.FrameCallback {
 
         mCanvasView.update(dt);
 
-        if (mCurrentState.onUpdate(dt)) {
-            scheduleUpdate();
-        }
-
         //mTextView.setText("S=" + mCurrentState.getName() + " F=" + mFrameNumber++);
 
-        if ((mCurrentState == STATE_BubbleView || mCurrentState == STATE_ContentView)
-                && getBubbleCount() == 0 && mBubblesLoaded > 0 && !mUpdateScheduled) {
+        if (getBubbleCount() == 0 && mBubblesLoaded > 0 && !mUpdateScheduled) {
             mEventHandler.onDestroy();
         }
     }
@@ -416,19 +351,12 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void onCloseSystemDialogs() {
-        if (mCurrentState != null) {
-            mCurrentState.onCloseDialog();
-            if (getBubbleCount() > 0) {
-                switchState(STATE_AnimateToBubbleView);
-            }
-        }
+        switchToBubbleView();
     }
 
     public void onOrientationChanged() {
         Config.init(mContext);
-        boolean contentView = mCurrentState.onOrientationChanged();
-        mBubbleDraggable.onOrientationChanged(contentView);
-        mBubbleFlowDraggable.onOrientationChanged(mCurrentState.onOrientationChanged());
+        mBubbleDraggable.onOrientationChanged();
         MainApplication.postEvent(mContext, mOrientationChangedEvent);
     }
 
@@ -533,8 +461,13 @@ public class MainController implements Choreographer.FrameCallback {
     public void onDestroyCurrentBubble() {
         mBubbleFlowDraggable.destroyCurrentBubble(true, Config.BubbleAction.None);
         if (mBubbleFlowDraggable.getBubbleCount() == 0) {
+
+            // TODO
+            //Util.Assert(false);
+
+            /*
             STATE_KillBubble.init(mBubbleDraggable);
-            switchState(STATE_KillBubble);
+            switchState(STATE_KillBubble);*/
         }
     }
 
@@ -552,8 +485,6 @@ public class MainController implements Choreographer.FrameCallback {
                 Config.BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
                 Config.BUBBLE_HOME_Y = (int) (Config.mScreenHeight * 0.4f);
             }
-
-            mCurrentState.onDestroyDraggable(null);
         }
 
         return getBubbleCount() > 0;
@@ -581,6 +512,14 @@ public class MainController implements Choreographer.FrameCallback {
         mBubbleFlowDraggable.collapse(time, mOnBubbleFlowCollapseFinishedListener);
     }
 
+    public void switchToBubbleView() {
+        mBubbleDraggable.switchToBubbleView();
+    }
+
+    public void switchToExpandedView() {
+        mBubbleDraggable.switchToExpandedView();
+    }
+
     public void beginAppPolling() {
         mAppPoller.beginAppPolling();
     }
@@ -592,11 +531,7 @@ public class MainController implements Choreographer.FrameCallback {
     AppPoller.AppPollerListener mAppPollerListener = new AppPoller.AppPollerListener() {
         @Override
         public void onAppChanged() {
-            if (mCurrentState != null && mCurrentState instanceof State_AnimateToBubbleView == false) {
-                if (getBubbleCount() > 0) {
-                    switchState(STATE_AnimateToBubbleView);
-                }
-            }
+            switchToBubbleView();
         }
     };
 
