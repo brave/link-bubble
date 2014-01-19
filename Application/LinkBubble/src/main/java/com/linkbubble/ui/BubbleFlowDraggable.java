@@ -239,10 +239,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         setExactPos(0, 0);
     }
 
-    public ContentView getContentView() {
-        return mBubbles != null && mBubbles.size() > 0 ? mBubbles.get(0).getContentView() : null;
-    }
-
     public void clearTargetPos() {
         mDraggableHelper.clearTargetPos();
     }

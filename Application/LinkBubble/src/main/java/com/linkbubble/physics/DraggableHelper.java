@@ -246,7 +246,23 @@ public class DraggableHelper {
         }
     };
 
+    public void forceClearAnim() {
+        mAnimationListener = null;
+
+        mInitialX = -1;
+        mInitialY = -1;
+
+        mTargetX = mWindowManagerParams.x;
+        mTargetY = mWindowManagerParams.y;
+
+        mAnimPeriod = 0.0f;
+        mAnimTime = 0.0f;
+    }
+
     public void clearTargetPos() {
+        // TODO: This probably fires. It can be disabled temporarily if a pain, but should be fixed.
+        Util.Assert(mAnimationListener == null);
+
         mInitialX = -1;
         mInitialY = -1;
 
