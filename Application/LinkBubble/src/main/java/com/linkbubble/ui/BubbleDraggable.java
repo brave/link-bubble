@@ -200,7 +200,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     private void doAnimateToContentView() {
-        if (mMode == Mode.ContentView)
+        if (mMode == Mode.ContentView && mAnimActive)
             return;
 
         mTouchDown = false;
