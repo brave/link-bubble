@@ -123,6 +123,7 @@ public class MainController implements Choreographer.FrameCallback {
 
     protected Context mContext;
     private Choreographer mChoreographer;
+    private boolean mAlive;
     protected boolean mUpdateScheduled;
     protected CanvasView mCanvasView;
 
@@ -192,6 +193,7 @@ public class MainController implements Choreographer.FrameCallback {
         sInstance = this;
         mContext = context;
         mEventHandler = eventHandler;
+        mAlive = true;
 
         mAppPoller = new AppPoller(context);
         mAppPoller.setListener(mAppPollerListener);
@@ -440,14 +442,18 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     protected void openUrlInBubble(String url, long startTime) {
-        if (getBubbleCount() == 0) {
-            mBubbleDraggable.setVisibility(View.VISIBLE);
-            mBubbleDraggable.setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
-        }
+        if (mAlive) {
+            if (getBubbleCount() == 0) {
+                mBubbleDraggable.setVisibility(View.VISIBLE);
+                mBubbleDraggable.setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
+            }
 
-        mBubbleFlowDraggable.openUrlInBubble(url, startTime);
-        showBadge(getBubbleCount() > 1 ? true : false);
-        ++mBubblesLoaded;
+            mBubbleFlowDraggable.openUrlInBubble(url, startTime);
+            showBadge(getBubbleCount() > 1 ? true : false);
+            ++mBubblesLoaded;
+        } else {
+            Log.e("LinkBubble", "Attempted to open '" + url + "' after destroying controller.");
+        }
     }
 
     public void showBadge(boolean show) {
@@ -501,6 +507,7 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     private void removeBubbleDraggable() {
+        mAlive = false;
         mBubbleDraggable.destroy();
     }
 
