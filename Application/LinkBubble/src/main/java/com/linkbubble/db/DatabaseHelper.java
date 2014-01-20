@@ -81,7 +81,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_TITLE, historyRecord.getTitle());
         values.put(KEY_URL, historyRecord.getUrl());
         values.put(KEY_HOST, historyRecord.getHost());
-        //values.put(KEY_TIME, historyRecord.getTime());
+        values.put(KEY_TIME, historyRecord.getTime());
         return values;
     }
 
