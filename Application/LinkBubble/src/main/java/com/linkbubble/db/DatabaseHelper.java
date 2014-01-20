@@ -34,7 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_DATA = "data";
     private static final String KEY_IMAGE_SIZE = "imageSize";
 
-    private static final String[] LINK_HISTORY_COLUMNS = {KEY_ID, KEY_TITLE, KEY_URL, KEY_HOST, KEY_TIME};
+    private static final String[] LINK_HISTORY_COLUMNS = {KEY_ID, KEY_TIME};
     private static final String[] FAVICON_COLUMNS = {KEY_ID, KEY_URL, KEY_PAGE_URL, KEY_DATA, KEY_TIME};
     private static final String[] FAVICON_EXISTS_COLUMNS = {KEY_ID, KEY_IMAGE_SIZE, KEY_TIME};
     private static final String[] FAVICON_FETCH_COLUMNS = {KEY_ID, KEY_TIME, KEY_DATA};
@@ -92,6 +92,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Log.d(TAG, "addHistoryRecord() - " + historyRecord.toString());
 
+        int existingId = getRecentHistoryRecordId(historyRecord.getUrl());
+        // If there is a history record from the last 12 hours, just update that item
+        if (existingId > -1) {
+            historyRecord.setId(existingId);
+            updateHistoryRecord(historyRecord);
+            return;
+        }
+
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_LINK_HISTORY, null, getContentValues(historyRecord));
         db.close();
@@ -120,31 +128,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public HistoryRecord getHistoryRecord(int id){
+    public int getRecentHistoryRecordId(String url){
 
         SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_LINK_HISTORY, // a. table
                                     LINK_HISTORY_COLUMNS, // b. column names
-                                    " id = ?", // c. selections
-                                    new String[] { String.valueOf(id) }, // d. selections args
+                                    " " + KEY_URL + " = ?", // c. selections
+                                    new String[] { String.valueOf(url) }, // d. selections args
                                     null, // e. group by
                                     null, // f. having
-                                    null, // g. order by
+                                    " " + KEY_TIME + " DESC", // g. order by
                                     null); // h. limit
 
-        if (cursor != null) {
+        if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
+
+            // If there is a history entry for this URL from the last 12 hours...
+            int id = Integer.parseInt(cursor.getString(0));
+            long time = cursor.getLong(1);
+            long timeDelta = System.currentTimeMillis() - time;
+            if (timeDelta < 12 * 60 * 60 * 1000) {
+                return id;
+            }
         }
 
-        HistoryRecord historyRecord = new HistoryRecord();
-        historyRecord.setId(Integer.parseInt(cursor.getString(0)));
-        historyRecord.setTitle(cursor.getString(1));
-        historyRecord.setUrl(cursor.getString(2));
-        historyRecord.setHost(cursor.getString(3));
-        historyRecord.setTime(cursor.getLong(4));
-
-        return historyRecord;
+        return -1;
     }
 
     public List<HistoryRecord> getAllHistoryRecords() {
