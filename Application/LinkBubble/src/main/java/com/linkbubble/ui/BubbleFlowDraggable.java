@@ -289,7 +289,9 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
         Settings.get().saveCurrentBubbles(mBubbles);
 
-        add(bubble, true);
+        // Only insert next to current Bubble when in ContentView mode. Ensures links opened when app is
+        // minimized are added to the end.
+        add(bubble, mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView);
     }
 
     private void destroyBubble(BubbleFlowItemView bubble, boolean animateRemove, boolean removeFromList) {

@@ -35,7 +35,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     private MainController.EndCollapseTransitionEvent mEndCollapseTransitionEvent = new MainController.EndCollapseTransitionEvent();
 
     // Physics state
-    private enum Mode {
+    public enum Mode {
         BubbleView,
         ContentView
     }
@@ -58,6 +58,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
     public BubbleDraggable(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+    }
+
+    public Mode getCurrentMode() {
+        return mMode;
     }
 
     private void onAnimComplete() {
