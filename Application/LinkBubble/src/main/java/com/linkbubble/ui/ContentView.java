@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
@@ -84,7 +85,8 @@ public class ContentView extends FrameLayout {
     private String mCurrentLoadedUrl;
     private boolean mLoadingPrev;
 
-    private Paint mPaint;
+    private static Paint sIndicatorPaint;
+    private static Paint sBorderPaint;
 
     private Stack<String> mUrlHistory = new Stack<String>();
 
@@ -162,14 +164,25 @@ public class ContentView extends FrameLayout {
     public void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
 
-        mTempPath.reset();
-        float centerX;
-        centerX = Config.mScreenCenterX;
-        mTempPath.moveTo(centerX - mHeaderHeight, mHeaderHeight + 1.0f);
-        mTempPath.lineTo(centerX, 0.0f);
-        mTempPath.lineTo(centerX + mHeaderHeight, mHeaderHeight + 1.0f);
+        if (isInEditMode()) {
+            return;
+        }
 
-        canvas.drawPath(mTempPath, mPaint);
+        float centerX = Config.mScreenCenterX;
+        float indicatorEndY = 2.f;
+        float indicatorStartX = centerX - mHeaderHeight + indicatorEndY;
+        float indicatorEndX = centerX + mHeaderHeight - indicatorEndY;
+
+        mTempPath.reset();
+        mTempPath.moveTo(indicatorStartX, mHeaderHeight);
+        mTempPath.lineTo(centerX, indicatorEndY);
+        mTempPath.lineTo(indicatorEndX, mHeaderHeight);
+        canvas.drawPath(mTempPath, sIndicatorPaint);
+
+        canvas.drawLine(indicatorEndY, mHeaderHeight, indicatorStartX, mHeaderHeight, sBorderPaint);
+        canvas.drawLine(indicatorStartX, mHeaderHeight, centerX, 0, sBorderPaint);
+        canvas.drawLine(centerX, indicatorEndY, indicatorEndX, mHeaderHeight, sBorderPaint);
+        canvas.drawLine(indicatorEndX, mHeaderHeight, Config.mScreenWidth, mHeaderHeight, sBorderPaint);
     }
 
     public void destroy() {
@@ -246,8 +259,15 @@ public class ContentView extends FrameLayout {
     }
 
     void configure(String url, long startTime, EventHandler eh) {
-        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setColor(getResources().getColor(R.color.content_toolbar_background));
+        if (sIndicatorPaint == null) {
+            sIndicatorPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            sIndicatorPaint.setColor(getResources().getColor(R.color.content_toolbar_background));
+        }
+
+        if (sBorderPaint == null) {
+            sBorderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            sBorderPaint.setColor(getResources().getColor(R.color.bubble_border));
+        }
 
         try {
             mTempUrl = new URL(url);
