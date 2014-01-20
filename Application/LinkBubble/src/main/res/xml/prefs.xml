@@ -126,10 +126,33 @@
         android:title="@string/preference_category_general"
         >
 
-        <Preference
+        <PreferenceScreen
             android:key="preference_screen_help"
             android:title="@string/preference_help_title"
-            />
+            >
+
+            <Preference
+                android:key="preference_faq"
+                android:title="@string/faq_title">
+            </Preference>
+
+            <Preference
+                android:key="preference_credits"
+                android:title="@string/preference_credits_title"/>
+
+            <Preference
+                android:key="preference_osl"
+                android:title="@string/preference_osl_title"/>
+
+            <Preference
+                android:key="preference_privacy_policy"
+                android:title="@string/preference_privacy_policy_title"/>
+
+            <Preference
+                android:key="preference_terms_of_service"
+                android:title="@string/preference_terms_of_service_title"/>
+
+        </PreferenceScreen>
 
         <!--
         <Preference
