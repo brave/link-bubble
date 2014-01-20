@@ -21,7 +21,6 @@ import java.util.Vector;
 
 public class CanvasView extends FrameLayout {
 
-    private Context mContext;
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
 
@@ -65,16 +64,15 @@ public class CanvasView extends FrameLayout {
 
         MainApplication.registerForBus(context, this);
 
-        mContext = context;
         mEnabled = true;
 
         applyAlpha();
 
         //setBackground(getResources().getDrawable(R.drawable.masked_background));
 
-        mTargets.add(new BubbleTargetView(this, mContext, R.drawable.close_indicator, Config.BubbleAction.Destroy, 0.5f, 0.85f));
-        mTargets.add(new BubbleTargetView(this, mContext, Config.BubbleAction.ConsumeLeft, 0.2f, 0.15f));
-        mTargets.add(new BubbleTargetView(this, mContext, Config.BubbleAction.ConsumeRight, 0.8f, 0.15f));
+        mTargets.add(new BubbleTargetView(this, context, R.drawable.close_indicator, Config.BubbleAction.Destroy, 0.5f, 0.85f));
+        mTargets.add(new BubbleTargetView(this, context, Config.BubbleAction.ConsumeLeft, 0.2f, 0.15f));
+        mTargets.add(new BubbleTargetView(this, context, Config.BubbleAction.ConsumeRight, 0.8f, 0.15f));
 
         Settings.setConsumeBubblesChangedEventHandler(new Settings.ConsumeBubblesChangedEventHandler() {
             @Override
@@ -245,7 +243,7 @@ public class CanvasView extends FrameLayout {
             bt.destroy();
         }
 
-        MainApplication.unregisterForBus(mContext, this);
+        MainApplication.unregisterForBus(getContext(), this);
 
         mWindowManager.removeView(this);
     }
