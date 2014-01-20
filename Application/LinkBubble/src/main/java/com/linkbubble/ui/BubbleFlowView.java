@@ -319,6 +319,14 @@ public class BubbleFlowView extends HorizontalScrollView {
     public void setCenterIndex(int index) {
         int scrollToX = mEdgeMargin + (index * mItemWidth) - (mWidth/2) + (mItemWidth/2);
         smoothScrollTo(scrollToX, 0);
+        startScrollFinishedCheckTask();
+    }
+
+    public void setCenterItem(View view) {
+        int index = mViews.indexOf(view);
+        if (index > -1) {
+            setCenterIndex(index);
+        }
     }
 
     private static final int DEFAULT_ANIM_TIME = 300;

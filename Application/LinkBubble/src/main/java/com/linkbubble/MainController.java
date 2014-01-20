@@ -252,6 +252,7 @@ public class MainController implements Choreographer.FrameCallback {
         if (Settings.get().getAutoContentDisplayLinkLoaded()) {
             switch (mBubbleDraggable.getCurrentMode()) {
                 case BubbleView:
+                    mBubbleFlowDraggable.setCenterItem(bubbleFlowItemView);
                     mBubbleDraggable.switchToExpandedView();
                     break;
             }
