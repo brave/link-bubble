@@ -240,8 +240,8 @@ public class BubbleTargetView extends RelativeLayout {
 
             if (mYFraction > 0.5f) {
                 int bubbleYC = (int) (e.mY + Config.mBubbleHeight * 0.5f);
-                int bubbleY0 = (int) (Config.mScreenHeight * 0.75f);
-                int bubbleY1 = (int) (Config.mScreenHeight * 0.90f);
+                int bubbleY0 = (int) (Config.mScreenHeight * mYFraction - 0.1f);
+                int bubbleY1 = (int) (Config.mScreenHeight * mYFraction + 0.05f);
 
                 int targetY0 = (int) (Config.mScreenHeight * mYFraction);
                 int targetY1 = (int) (Config.mScreenHeight * (mYFraction + 0.05f));
@@ -256,8 +256,8 @@ public class BubbleTargetView extends RelativeLayout {
                 }
             } else {
                 int bubbleYC = (int) (e.mY + Config.mBubbleHeight * 0.5f);
-                int bubbleY0 = (int) (Config.mScreenHeight * 0.25f);
-                int bubbleY1 = (int) (Config.mScreenHeight * 0.10f);
+                int bubbleY0 = (int) (Config.mScreenHeight * mYFraction + 0.1f);
+                int bubbleY1 = (int) (Config.mScreenHeight * mYFraction - 0.05f);
 
                 int targetY0 = (int) (Config.mScreenHeight * mYFraction);
                 int targetY1 = (int) (Config.mScreenHeight * (mYFraction + 0.05f));
