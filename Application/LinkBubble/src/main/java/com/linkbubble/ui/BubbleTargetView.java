@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import com.linkbubble.Config;
@@ -39,7 +40,7 @@ public class BubbleTargetView extends RelativeLayout {
     private Circle mDefaultCircle;
     private Config.BubbleAction mAction;
 
-    private RelativeLayout.LayoutParams mCanvasLayoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+    private FrameLayout.LayoutParams mCanvasLayoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
     private int mHomeX;
     private int mHomeY;

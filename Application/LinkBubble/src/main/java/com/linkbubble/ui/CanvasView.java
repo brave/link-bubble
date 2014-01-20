@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
@@ -19,7 +19,7 @@ import com.squareup.otto.Subscribe;
 
 import java.util.Vector;
 
-public class CanvasView extends RelativeLayout {
+public class CanvasView extends FrameLayout {
 
     private Context mContext;
     private WindowManager mWindowManager;
@@ -70,7 +70,7 @@ public class CanvasView extends RelativeLayout {
 
         applyAlpha();
 
-        setBackground(getResources().getDrawable(R.drawable.masked_background));
+        //setBackground(getResources().getDrawable(R.drawable.masked_background));
 
         mTargets.add(new BubbleTargetView(this, mContext, R.drawable.close_indicator, Config.BubbleAction.Destroy, 0.5f, 0.85f));
         mTargets.add(new BubbleTargetView(this, mContext, Config.BubbleAction.ConsumeLeft, 0.2f, 0.15f));
@@ -132,7 +132,7 @@ public class CanvasView extends RelativeLayout {
         }
         mContentView = cv;
         if (mContentView != null) {
-            RelativeLayout.LayoutParams p = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            FrameLayout.LayoutParams p = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             p.topMargin = Config.mContentOffset;
             addView(mContentView, p);
             mContentView.onCurrentContentViewChanged(true);
