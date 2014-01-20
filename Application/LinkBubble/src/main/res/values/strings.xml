@@ -4,6 +4,9 @@
     <string name="app_name">Link Bubble</string>
     <string name="home_activity_label">Link Bubble</string>
 
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+
     <string name="action_ok">OK</string>
     <string name="action_remove">Remove</string>
     <string name="action_cancel">Cancel</string>
@@ -83,6 +86,8 @@
     <string name="histroy_unread">Unread</string>
     <string name="histroy_all">All</string>
     <string name="history">History</string>
+    <string name="erase_all_history_title">Erase all?</string>
+    <string name="erase_all_history_message">Erase your entire Link Bubble browsing history?</string>
     <string name="link_loaded_with_app">Loaded with %1$s</string>
     <string name="link_redirected">Redirected to %1$s</string>
 
