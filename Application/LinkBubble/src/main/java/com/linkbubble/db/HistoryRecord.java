@@ -69,7 +69,7 @@ public class HistoryRecord {
         public ChangedEvent(HistoryRecord historyRecord) {
             mHistoryRecord = historyRecord;
         }
-        HistoryRecord mHistoryRecord;
+        public HistoryRecord mHistoryRecord;
     }
 
 

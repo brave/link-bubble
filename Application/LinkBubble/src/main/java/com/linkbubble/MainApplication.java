@@ -152,7 +152,6 @@ public class MainApplication extends Application {
 
         app.mDatabaseHelper.addHistoryRecord(historyRecord);
         app.getBus().post(new HistoryRecord.ChangedEvent(historyRecord));
-
     }
 
     public static void postEvent(Context context, Object event) {
