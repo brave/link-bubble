@@ -59,7 +59,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
     public void onStart() {
         super.onStart();
 
-        updateListViewData();
+        setupListView();
 
         ((MainApplication)getApplicationContext()).getBus().register(this);
     }
@@ -116,16 +116,6 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
         });
 
         mListView.setItemsCanFocus(true);
-    }
-
-    void updateListViewData() {
-        if (mHistoryRecords != null) {
-            synchronized (mHistoryRecords) {
-                setupListView();
-            }
-        } else {
-            setupListView();
-        }
     }
 
     @Override
@@ -321,6 +311,20 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
     @SuppressWarnings("unused")
     @Subscribe
     public void onHistoryRecordChangedEvent(HistoryRecord.ChangedEvent event) {
-        updateListViewData();
+        HistoryRecord historyRecord = event.mHistoryRecord;
+        // find out if the item exists on the list already. This will be true if a HistoryRecord for a URL was updated
+        boolean onList = false;
+        for (HistoryRecord existing : mHistoryRecords) {
+            if (existing.getId() == historyRecord.getId()) {
+                mHistoryRecords.remove(existing);
+                break;
+            }
+        }
+
+        // Add it at the top of the list. This assumes the item had it's date updated to 'now',
+        // which is the current behaviour.
+        mHistoryRecords.add(0, historyRecord);
+
+        mHistoryAdapter.notifyDataSetChanged();
     }
 }
