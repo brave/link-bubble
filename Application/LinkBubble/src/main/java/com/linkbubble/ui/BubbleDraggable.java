@@ -60,6 +60,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         super(context, attrs, defStyle);
     }
 
+    public boolean isDragging() {
+        return mTouchDown;
+    }
+
     public Mode getCurrentMode() {
         return mMode;
     }
