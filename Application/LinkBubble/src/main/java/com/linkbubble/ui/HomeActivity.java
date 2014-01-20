@@ -54,7 +54,9 @@ public class HomeActivity extends Activity {
         }
 
         Vector<String> urls = Settings.get().loadCurrentBubbles();
-        MainApplication.restoreLinks(this, urls.toArray(new String[urls.size()]));
+        if (urls.size() > 0) {
+            MainApplication.restoreLinks(this, urls.toArray(new String[urls.size()]));
+        }
 
         View historyButton = findViewById(R.id.history);
         historyButton.setOnClickListener(new View.OnClickListener() {
