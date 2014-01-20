@@ -56,6 +56,10 @@
     <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
 
     <string name="preference_help_title">Help</string>
+    <string name="preference_credits_title">Credits</string>
+    <string name="preference_osl_title">Open source licenses</string>
+    <string name="preference_privacy_policy_title">Privacy Policy</string>
+    <string name="preference_terms_of_service_title">Terms of Service</string>
     <string name="preference_say_thanks_title">Say thanks!</string>
     <string name="preference_say_thanks_summary">Enjoying Link Bubble? Please consider leaving a Play Store review.</string>
     <string name="preference_get_pro_title">Link Bubble Pro</string>
@@ -99,4 +103,16 @@
 
     <string name="title_changelog">Change log</string>
     <string name="changelog_close">Close</string>
+
+    <string name="faq_translations_question">When will you add foreign language translations? Can I help?</string>
+    <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Twitter
+            (@chrismlacy) for help with translations, so be sure to keep an eye on my feed.]]></string>
+
+    <string name="faq_roadmap_question">Do you publish a feature roadmap? Can I up-vote upcoming features?</string>
+    <string name="faq_roadmap_answer">For competitive reasons, the answer to both of these questions is \'no\' I\'m afraid.<br/><br/></string>
+
+    <string name="faq_title">FAQ/Request feature/Report bug</string>
+    <string name="faq_section_general">General</string>
+    <string name="faq_section_feature_requests">Feature requests</string>
+    <string name="faq_section_bugs">Bugs</string>
 </resources>

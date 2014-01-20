@@ -245,6 +245,16 @@ public class SettingsFragment extends PreferenceFragment {
             });
         }
 
+        Preference faqPreference = findPreference("preference_faq");
+        faqPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                FAQDialog dialog = new FAQDialog(getActivity());
+                dialog.show();
+                return true;
+            }
+        });
+
         Preference versionPreference = findPreference("preference_version");
         try {
             PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
