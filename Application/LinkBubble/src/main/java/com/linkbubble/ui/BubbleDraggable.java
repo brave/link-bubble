@@ -47,6 +47,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     private boolean mAnimActive;
     private Mode mMode;
     private boolean mFlickActive;
+    private float mTimeOnSnapTarget;
 
     public BubbleDraggable(Context context) {
         this(context, null);
@@ -100,6 +101,22 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
     public void switchToExpandedView() {
         doAnimateToContentView();
+    }
+
+    private void doSnapAction(Config.BubbleAction action) {
+        MainController mainController = MainController.get();
+
+        float snapTime = mTimeOnSnapTarget - Config.ANIMATE_TO_SNAP_TIME;
+        if (action == Config.BubbleAction.Destroy && snapTime >= Config.DESTROY_ALL_BUBBLES_DELAY) {
+            mainController.destroyAllBubbles();
+            mMode = Mode.BubbleView;
+        } else {
+            if (mainController.destroyCurrentBubble(action)) {
+                doAnimateToBubbleView();
+            } else {
+                mMode = Mode.BubbleView;
+            }
+        }
     }
 
     private void doFlick(float vx, float vy) {
@@ -314,11 +331,12 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                             } else {
                                 tv.beginSnapping();
                                 mCurrentSnapTarget = tv;
+                                mTimeOnSnapTarget = 0.0f;
 
                                 Circle dc = tv.GetDefaultCircle();
                                 int xt = (int) (dc.mX - Config.mBubbleWidth * 0.5f);
                                 int yt = (int) (dc.mY - Config.mBubbleHeight * 0.5f);
-                                setTargetPos(xt, yt, 0.3f, DraggableHelper.AnimationType.MediumOvershoot, new DraggableHelper.AnimationEventListener() {
+                                setTargetPos(xt, yt, Config.ANIMATE_TO_SNAP_TIME, DraggableHelper.AnimationType.MediumOvershoot, new DraggableHelper.AnimationEventListener() {
                                     @Override
                                     public void onAnimationComplete() {
                                         onAnimComplete();
@@ -366,17 +384,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                             }
                         } else {
                             MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
-
-                            if (mCurrentSnapTarget.getAction() == Config.BubbleAction.Destroy) {
-                                mainController.destroyAllBubbles();
-                                mMode = Mode.BubbleView;
-                            } else {
-                                if (mainController.destroyCurrentBubble(mCurrentSnapTarget.getAction())) {
-                                    doAnimateToBubbleView();
-                                } else {
-                                    mMode = Mode.BubbleView;
-                                }
-                            }
+                            doSnapAction(mCurrentSnapTarget.getAction());
                         }
                     } else {
                         MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
@@ -429,6 +437,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
             if (tv != null) {
                 mCurrentSnapTarget = tv;
+                mTimeOnSnapTarget = 0.0f;
                 mCurrentSnapTarget.beginSnapping();
 
                 Circle c = tv.GetDefaultCircle();
@@ -443,8 +452,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                     public void onAnimationComplete() {
                         MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
 
-                        MainController mainController = MainController.get();
-
                         onAnimComplete();
                         mFlickActive = false;
 
@@ -452,19 +459,17 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                         mCurrentSnapTarget.endSnapping();
                         mCurrentSnapTarget = null;
 
-                        if (action == Config.BubbleAction.Destroy) {
-                            mainController.destroyAllBubbles();
-                            mMode = Mode.BubbleView;
-                        } else {
-                            if (mainController.destroyCurrentBubble(action)) {
-                                doAnimateToBubbleView();
-                            } else {
-                                mMode = Mode.BubbleView;
-                            }
-                        }
+                        doSnapAction(action);
                         }
                 });
             }
+        }
+
+        if (mTouchDown) {
+            if (mCurrentSnapTarget != null) {
+                mTimeOnSnapTarget += dt;
+            }
+            MainController.get().scheduleUpdate();
         }
 
         mDraggableHelper.update(dt);
