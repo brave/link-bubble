@@ -175,7 +175,7 @@ public class FAQDialog {
 
         @Override
         public View getHeaderView(int position, View convertView, ViewGroup parent) {
-            convertView = mInflater.inflate(R.layout.view_faq_section_header, parent, false);
+            convertView = mInflater.inflate(R.layout.view_section_header, parent, false);
             TextView headerLabel = (TextView)convertView.findViewById(R.id.section_text);
 
             int stringId = R.string.faq_section_bugs;
