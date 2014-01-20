@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import com.linkbubble.Config;
-import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
@@ -17,7 +16,6 @@ import com.linkbubble.Settings;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
 //import com.linkbubble.physics.State_AnimateToBubbleView;
-import com.linkbubble.util.Util;
 import com.linkbubble.util.VerticalGestureListener;
 
 import java.net.MalformedURLException;
@@ -266,12 +264,12 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                         }
 
                         @Override
-                        public void onPageLoaded(ContentView.PageLoadInfo info) {
+                        public void onPageLoaded(ContentView.PageLoadInfo info, BubbleFlowItemView bubbleFlowItemView) {
                             if (info != null && info.url != null) {
                                 MainApplication.saveUrlInHistory(getContext(), null, info.url, info.mHost, info.title);
                             }
 
-                            MainController.get().onPageLoaded();
+                            MainController.get().onPageLoaded(bubbleFlowItemView);
                         }
 
                     });

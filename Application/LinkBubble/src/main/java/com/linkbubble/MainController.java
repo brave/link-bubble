@@ -248,9 +248,13 @@ public class MainController implements Choreographer.FrameCallback {
     //private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
     //private int mFrameNumber;
 
-    public void onPageLoaded() {
+    public void onPageLoaded(BubbleFlowItemView bubbleFlowItemView) {
         if (Settings.get().getAutoContentDisplayLinkLoaded()) {
-            mBubbleDraggable.switchToExpandedView();
+            switch (mBubbleDraggable.getCurrentMode()) {
+                case BubbleView:
+                    mBubbleDraggable.switchToExpandedView();
+                    break;
+            }
         }
     }
 
