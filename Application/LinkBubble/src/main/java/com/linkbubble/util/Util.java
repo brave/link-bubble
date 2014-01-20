@@ -69,9 +69,9 @@ public class Util {
             result = formatted.format(olderDate);
         } else if (diffInDays > 0) {
             if (diffInDays == 1) {
-                result = "1 day";
+                result = "1d";
             } else if (diffInDays < 8) {
-                result = diffInDays + " days";
+                result = diffInDays + "d";
             } else {
                 SimpleDateFormat formatted = new SimpleDateFormat("dd MMM");
                 result = formatted.format(olderDate);
@@ -80,18 +80,18 @@ public class Util {
             int diffInHours = (int) ((newerDate.getTime() - olderDate.getTime()) / (1000 * 60 * 60));
             if (diffInHours > 0) {
                 if (diffInHours == 1) {
-                    result = "1 hour ago";
+                    result = "1h";
                 } else {
-                    result = diffInHours + " hours ago";
+                    result = diffInHours + "h";
                 }
             } else {
                 int diffInMinutes = (int) ((newerDate.getTime() - olderDate
                         .getTime()) / (1000 * 60));
                 if (diffInMinutes > 0) {
                     if (diffInMinutes == 1) {
-                        result = "1 minute";
+                        result = "1m";
                     } else {
-                        result = diffInMinutes + " minutes ago";
+                        result = diffInMinutes + "m";
                     }
                 } else {
                     int diffInSeconds = (int) ((newerDate.getTime() - olderDate
@@ -99,7 +99,7 @@ public class Util {
                     if (diffInSeconds < 5) {
                         result = "now";
                     } else {
-                        result = diffInSeconds + " seconds ago";
+                        result = diffInSeconds + "s";
                     }
                 }
             }
