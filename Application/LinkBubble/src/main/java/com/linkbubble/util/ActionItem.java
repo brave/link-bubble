@@ -314,7 +314,7 @@ public class ActionItem {
         @Override
         public View getHeaderView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
-            convertView = inflater.inflate(R.layout.section_header, parent, false);
+            convertView = inflater.inflate(R.layout.view_section_header, parent, false);
             ActionItem actionItem = mData[position];
             TextView headerLabel = (TextView)convertView.findViewById(R.id.section_text);
             headerLabel.setText(actionItem.getCategory());
