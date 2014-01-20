@@ -34,7 +34,7 @@
     <dimen name="progress_bar_size">32dp</dimen>
     <dimen name="progress_inner_size">20dp</dimen>
     <dimen name="stat_height">200dp</dimen>
-
+    <dimen name="canvas_mask_height">80dp</dimen>
 
 
     <dimen name="favicon_size_small">16dp</dimen>

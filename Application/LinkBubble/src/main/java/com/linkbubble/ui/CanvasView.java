@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
@@ -25,6 +26,8 @@ public class CanvasView extends FrameLayout {
     private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
 
     private Vector<BubbleTargetView> mTargets = new Vector<BubbleTargetView>();
+    private ImageView mTopMaskView;
+    private ImageView mBottomMaskView;
 
     private final float mMaxAlpha = 1.0f;
     private final float mFadeTime = 0.3f;
@@ -68,8 +71,6 @@ public class CanvasView extends FrameLayout {
 
         applyAlpha();
 
-        //setBackground(getResources().getDrawable(R.drawable.masked_background));
-
         mTargets.add(new BubbleTargetView(this, context, R.drawable.close_indicator, Config.BubbleAction.Destroy, 0.5f, 0.85f));
         mTargets.add(new BubbleTargetView(this, context, Config.BubbleAction.ConsumeLeft, 0.2f, 0.15f));
         mTargets.add(new BubbleTargetView(this, context, Config.BubbleAction.ConsumeRight, 0.8f, 0.15f));
@@ -82,6 +83,25 @@ public class CanvasView extends FrameLayout {
                 }
             }
         });
+
+        int canvasMaskHeight = getResources().getDimensionPixelSize(R.dimen.canvas_mask_height);
+
+        mTopMaskView = new ImageView(context);
+        mTopMaskView.setImageResource(R.drawable.masked_background_half);
+        mTopMaskView.setScaleType(ImageView.ScaleType.FIT_XY);
+        FrameLayout.LayoutParams topMaskLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, canvasMaskHeight);
+        topMaskLP.gravity = Gravity.TOP;
+        mTopMaskView.setLayoutParams(topMaskLP);
+        addView(mTopMaskView);
+
+        mBottomMaskView = new ImageView(context);
+        mBottomMaskView.setImageResource(R.drawable.masked_background_half);
+        mBottomMaskView.setScaleType(ImageView.ScaleType.FIT_XY);
+        mBottomMaskView.setRotation(180);
+        FrameLayout.LayoutParams bottomMaskLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, canvasMaskHeight);
+        bottomMaskLP.gravity = Gravity.BOTTOM;
+        mBottomMaskView.setLayoutParams(bottomMaskLP);
+        addView(mBottomMaskView);
 
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 
