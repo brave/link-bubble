@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -30,6 +32,9 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Subscribe;
+import org.mozilla.gecko.favicons.Favicons;
+import org.mozilla.gecko.favicons.LoadFaviconTask;
+import org.mozilla.gecko.favicons.OnFaviconLoadedListener;
 
 import java.util.Date;
 import java.util.List;
@@ -165,16 +170,16 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (view.getTag() instanceof HistoryRecord) {
-            HistoryRecord historyRecord = (HistoryRecord)view.getTag();
-            MainApplication.openLink(this, historyRecord.getUrl());
+        if (view.getTag() instanceof HistoryItem) {
+            HistoryItem historyItem = (HistoryItem)view.getTag();
+            MainApplication.openLink(this, historyItem.mHistoryRecord.getUrl());
         }
     }
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        if (view.getTag() instanceof HistoryRecord) {
-            final HistoryRecord historyRecord = (HistoryRecord)view.getTag();
+        if (view.getTag() instanceof HistoryItem) {
+            final HistoryItem historyItem = (HistoryItem)view.getTag();
             Resources resources = getResources();
 
             PopupMenu popupMenu;
@@ -199,7 +204,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                     switch (item.getItemId()) {
                         case R.id.item_open_in_browser: {
                             Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.setData(Uri.parse(historyRecord.getUrl()));
+                            intent.setData(Uri.parse(historyItem.mHistoryRecord.getUrl()));
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             MainApplication.loadInBrowser(HistoryActivity.this, intent, true);
                             return true;
@@ -213,7 +218,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                                     intent.setType("text/plain");
                                     intent.setClassName(actionItem.mPackageName, actionItem.mActivityClassName);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    intent.putExtra(Intent.EXTRA_TEXT, historyRecord.getUrl());
+                                    intent.putExtra(Intent.EXTRA_TEXT, historyItem.mHistoryRecord.getUrl());
                                     startActivity(intent);
                                 }
                             });
@@ -232,12 +237,10 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
 
     private class HistoryAdapter extends BaseAdapter {
 
-        Context mContext;
-        Date mDate;
+        LayoutInflater mInflater;
 
         public HistoryAdapter(Context context) {
-            mContext = context;
-            mDate = new Date();
+            mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
@@ -258,27 +261,60 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            if (convertView == null) {
-                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = inflater.inflate(R.layout.history_item, parent, false);
-            }
-
+            HistoryItem historyItem;
             HistoryRecord historyRecord = mHistoryRecords.get(position);
 
-            TextView title = (TextView) convertView.findViewById(R.id.page_title);
-            title.setText(historyRecord.getTitle());
+            if (convertView == null) {
+                convertView = mInflater.inflate(R.layout.history_item, parent, false);
+                historyItem = new HistoryItem();
+                historyItem.mTitleTextView = (TextView) convertView.findViewById(R.id.page_title);
+                historyItem.mUrlTextView = (TextView) convertView.findViewById(R.id.page_url);
+                historyItem.mTimeTextView = (TextView) convertView.findViewById(R.id.page_date);
+                historyItem.mFaviconImageView = (ImageView) convertView.findViewById(R.id.favicon);
+            } else {
+                historyItem = (HistoryItem) convertView.getTag();
+            }
 
-            TextView url = (TextView) convertView.findViewById(R.id.page_url);
-            url.setText(historyRecord.getHost());
+            historyItem.mHistoryRecord = historyRecord;
+            historyItem.mDate.setTime(historyRecord.getTime());
+            historyItem.mFaviconSet = false;
 
-            TextView time = (TextView) convertView.findViewById(R.id.page_date);
-            mDate.setTime(historyRecord.getTime());
-            time.setText(Util.getPrettyDate(mDate));
+            historyItem.mTitleTextView.setText(historyRecord.getTitle());
+            historyItem.mUrlTextView.setText(historyRecord.getHost());
+            historyItem.mTimeTextView.setText(Util.getPrettyDate(historyItem.mDate));
 
-            convertView.setTag(historyRecord);
+            int flags = Settings.get().isIncognitoMode() ? 0 : LoadFaviconTask.FLAG_PERSIST;
+            String host = historyRecord.getHost();
+            String faviconUrl = "http://" + host + "/favicon.ico";
+
+            Favicons.getFaviconForSize(host, faviconUrl, Integer.MAX_VALUE, flags, historyItem.mOnFaviconLoadedListener);
+            if (historyItem.mFaviconSet == false) {
+                historyItem.mFaviconImageView.setImageResource(R.drawable.fallback_favicon);
+            }
+
+            convertView.setTag(historyItem);
 
             return convertView;
         }
+    }
+
+    private static class HistoryItem {
+        TextView mTitleTextView;
+        TextView mUrlTextView;
+        TextView mTimeTextView;
+        ImageView mFaviconImageView;
+        HistoryRecord mHistoryRecord;
+        Date mDate = new Date();
+        boolean mFaviconSet;
+        OnFaviconLoadedListener mOnFaviconLoadedListener = new OnFaviconLoadedListener() {
+            @Override
+            public void onFaviconLoaded(String url, String faviconURL, Bitmap favicon) {
+                if (favicon != null) {
+                    mFaviconSet = true;
+                    mFaviconImageView.setImageBitmap(favicon);
+                }
+            }
+        };
     }
 
     @SuppressWarnings("unused")
