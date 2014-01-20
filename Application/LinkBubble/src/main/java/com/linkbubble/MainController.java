@@ -251,7 +251,7 @@ public class MainController implements Choreographer.FrameCallback {
     //private int mFrameNumber;
 
     public void onPageLoaded(BubbleFlowItemView bubbleFlowItemView) {
-        if (Settings.get().getAutoContentDisplayLinkLoaded()) {
+        if (Settings.get().getAutoContentDisplayLinkLoaded() && !mBubbleDraggable.isDragging()) {
             switch (mBubbleDraggable.getCurrentMode()) {
                 case BubbleView:
                     mBubbleFlowDraggable.setCenterItem(bubbleFlowItemView);
