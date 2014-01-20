@@ -67,6 +67,9 @@ public class MainApplication extends Application {
     }
 
     public static void restoreLinks(Context context, String [] urls) {
+        if (urls == null || urls.length == 0) {
+            return;
+        }
         Intent serviceIntent = new Intent(context, MainService.class);
         serviceIntent.putExtra("cmd", "restore");
         serviceIntent.putExtra("urls", urls);
