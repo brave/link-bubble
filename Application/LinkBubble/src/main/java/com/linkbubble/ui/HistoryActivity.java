@@ -3,6 +3,7 @@ package com.linkbubble.ui;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -135,10 +136,26 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_clear_history: {
-                DatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
-                databaseHelper.deleteAllHistoryRecords();
-                mHistoryRecords = null;
-                mHistoryAdapter.notifyDataSetChanged();
+                final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                alertDialog.setTitle(R.string.erase_all_history_title);
+                alertDialog.setMessage(getString(R.string.erase_all_history_message));
+                alertDialog.setCancelable(true);
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
+                        databaseHelper.deleteAllHistoryRecords();
+                        mHistoryRecords = null;
+                        mHistoryAdapter.notifyDataSetChanged();
+                    }
+                });
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alertDialog.show();
                 break;
             }
         }
