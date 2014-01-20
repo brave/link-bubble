@@ -9,10 +9,19 @@
                 android:paddingTop="4dp"
                 android:paddingRight="8dp">
 
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/favicon"
+        android:scaleType="centerInside"
+        android:src="@drawable/fallback_favicon"
+        android:layout_gravity="center_vertical"/>
+
     <LinearLayout
                   android:orientation="vertical"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
+                  android:paddingLeft="8dp"
                   android:layout_weight="1">
         <com.linkbubble.ui.CondensedTextView
             android:layout_width="wrap_content"
