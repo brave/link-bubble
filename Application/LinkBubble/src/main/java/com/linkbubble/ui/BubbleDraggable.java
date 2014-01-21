@@ -95,7 +95,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             }
             @Override
             public void onCancel() {
-                // TODO
+                onAnimComplete();
             }
         });
     }
@@ -194,7 +194,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             }
             @Override
             public void onCancel() {
-                // TODO
+                onAnimComplete();
             }
         });
     }
@@ -231,7 +231,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             }
             @Override
             public void onCancel() {
-                // TODO
+                onAnimComplete();
             }
         });
 
@@ -243,8 +243,13 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     private void doAnimateToContentView() {
-        if (mMode == Mode.ContentView && mAnimActive)
-            return;
+        if (mAnimActive) {
+            if (mMode == Mode.ContentView) {
+                return;
+            } else {
+                mDraggableHelper.cancelAnimation();
+            }
+        }
 
         mTouchDown = false;
         mMode = Mode.ContentView;
@@ -367,7 +372,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                                     }
                                     @Override
                                     public void onCancel() {
-                                        // TODO
+                                        onAnimComplete();
                                     }
                                 });
                             }
@@ -382,7 +387,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                                     }
                                     @Override
                                     public void onCancel() {
-                                        // TODO
+                                        onAnimComplete();
                                     }
                                 });
                             }
@@ -394,7 +399,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             @Override
             public void onActionUp(DraggableHelper.ReleaseEvent e) {
                 if (mTouchDown) {
-                    mDraggableHelper.forceClearAnim();
+                    mDraggableHelper.cancelAnimation();
 
                     MainController mainController = MainController.get();
 
@@ -484,7 +489,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                 int xt = (int) (c.mX - Config.mBubbleWidth * 0.5f);
                 int yt = (int) (c.mY - Config.mBubbleHeight * 0.5f);
 
-                mDraggableHelper.forceClearAnim();
+                mDraggableHelper.cancelAnimation();
                 onAnimComplete();
 
                 setTargetPos(xt, yt, 0.3f, DraggableHelper.AnimationType.LargeOvershoot, new DraggableHelper.AnimationEventListener() {
@@ -503,7 +508,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                     }
                     @Override
                     public void onCancel() {
-                        // TODO
+                        onAnimComplete();
                     }
                 });
             }
