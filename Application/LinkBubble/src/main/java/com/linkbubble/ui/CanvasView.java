@@ -44,6 +44,8 @@ public class CanvasView extends FrameLayout {
     private float mInitialY;
     private float mTargetY;
 
+    private int mContentViewY;
+
     private boolean mEnabled;
 
     private ContentView mContentView;
@@ -68,6 +70,7 @@ public class CanvasView extends FrameLayout {
         MainApplication.registerForBus(context, this);
 
         mEnabled = true;
+        mContentViewY = Config.mScreenHeight - Config.mContentOffset;
 
         applyAlpha();
 
@@ -155,12 +158,7 @@ public class CanvasView extends FrameLayout {
             addView(mContentView, p);
             mContentView.onCurrentContentViewChanged(true);
             mContentView.requestFocus();
-        }
-    }
-
-    private void setContentViewTranslation(float ty) {
-        if (mContentView != null) {
-            mContentView.setTranslationY(ty);
+            mContentView.setTranslationY(mContentViewY);
         }
     }
 
@@ -207,12 +205,15 @@ public class CanvasView extends FrameLayout {
     public void onBeginCollapseTransition(MainController.BeginCollapseTransitionEvent e) {
         if (mContentView != null) {
             mContentView.onAnimateOffscreen();
+            mAnimPeriod = e.mPeriod;
+            mAnimTime = 0.0f;
+            mInitialY = mContentViewY;
+            mTargetY = Config.mScreenHeight - Config.mContentOffset;
+            MainController.get().scheduleUpdate();
+        } else {
+            mAnimPeriod = 0.0f;
+            mAnimTime = 0.0f;
         }
-        mAnimPeriod = e.mPeriod;
-        mAnimTime = 0.0f;
-        mInitialY = 0.0f;
-        mTargetY = Config.mScreenHeight - Config.mContentOffset;
-        MainController.get().scheduleUpdate();
     }
 
     @SuppressWarnings("unused")
@@ -222,13 +223,15 @@ public class CanvasView extends FrameLayout {
 
         if (mContentView != null) {
             mContentView.onAnimateOnScreen();
+            mAnimPeriod = e.mPeriod;
+            mAnimTime = 0.0f;
+            mInitialY = mContentViewY;
+            mTargetY = 0.0f;
+            MainController.get().scheduleUpdate();
+        } else {
+            mAnimPeriod = 0.0f;
+            mAnimTime = 0.0f;
         }
-
-        mAnimPeriod = e.mPeriod;
-        mAnimTime = 0.0f;
-        mInitialY = Config.mScreenHeight - Config.mContentOffset;
-        mTargetY = 0.0f;
-        MainController.get().scheduleUpdate();
     }
 
     @SuppressWarnings("unused")
@@ -274,8 +277,8 @@ public class CanvasView extends FrameLayout {
 
         if (mAnimPeriod > 0.0f && mAnimTime <= mAnimPeriod) {
             float t = Util.clamp(0.0f, mAnimTime / mAnimPeriod, 1.0f);
-            float y = (mInitialY + (mTargetY - mInitialY) * t);
-            setContentViewTranslation(y);
+            mContentViewY = (int) (mInitialY + (mTargetY - mInitialY) * t);
+            mContentView.setTranslationY(mContentViewY);
             if (mAnimTime < mAnimPeriod) {
                 MainController.get().scheduleUpdate();
             }
