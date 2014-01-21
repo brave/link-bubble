@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
@@ -34,7 +33,6 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.graphics.Canvas;
 import android.widget.Toast;
-import com.linkbubble.Constant;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
@@ -42,6 +40,7 @@ import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.YouTubeEmbedHelper;
+import org.mozilla.gecko.favicons.Favicons;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -68,7 +67,7 @@ public class ContentView extends FrameLayout {
     private LinearLayout mToolbarLayout;
     private EventHandler mEventHandler;
     private Context mContext;
-    private String mUrl;
+    private URL mUrl;
     private boolean mPageFinishedLoading;
 
     private List<AppForUrl> mAppsForUrl = new ArrayList<AppForUrl>();
@@ -258,7 +257,7 @@ public class ContentView extends FrameLayout {
         alertDialog.show();
     }
 
-    void configure(String url, long startTime, EventHandler eh) {
+    void configure(String url, long startTime, EventHandler eh) throws MalformedURLException {
         if (sIndicatorPaint == null) {
             sIndicatorPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
             sIndicatorPaint.setColor(getResources().getColor(R.color.content_toolbar_background));
@@ -269,11 +268,8 @@ public class ContentView extends FrameLayout {
             sBorderPaint.setColor(getResources().getColor(R.color.bubble_border));
         }
 
-        try {
-            mTempUrl = new URL(url);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        mUrl = new URL(url);
+        mTempUrl = new URL(url);
 
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_header);
 
@@ -297,7 +293,7 @@ public class ContentView extends FrameLayout {
         mShareButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                showSelectShareMethod(mUrl, true);
+                showSelectShareMethod(mUrl.toString(), true);
             }
         });
 
@@ -365,21 +361,22 @@ public class ContentView extends FrameLayout {
                                 if (mYouTubeEmbedHelper != null) {
                                     mYouTubeEmbedHelper.clear();
                                 }
-                                mEventHandler.onPageLoading(mUrl);
+                                mEventHandler.onPageLoading(mUrl.toString());
                                 mWebView.stopLoading();
                                 mWebView.reload();
-                                updateAppsForUrl(mUrl);
+                                String urlAsString = mUrl.toString();
+                                updateAppsForUrl(urlAsString);
                                 configureOpenInAppButton();
                                 configureOpenEmbedButton();
-                                Log.d(TAG, "reload url: " + mUrl);
+                                Log.d(TAG, "reload url: " + urlAsString);
                                 mStartTime = System.currentTimeMillis();
                                 mTitleTextView.setText(R.string.loading);
-                                mUrlTextView.setText(mUrl.replace("http://", ""));
+                                mUrlTextView.setText(urlAsString.replace("http://", ""));
                                 break;
                             }
 
                             case R.id.item_open_in_browser: {
-                                openInBrowser(mUrl);
+                                openInBrowser(mUrl.toString());
                                 break;
                             }
 
@@ -409,7 +406,6 @@ public class ContentView extends FrameLayout {
 
         mContext = getContext();
         mEventHandler = eh;
-        mUrl = url;
         mPageFinishedLoading = false;
 
         WebSettings ws = mWebView.getSettings();
@@ -602,8 +598,8 @@ public class ContentView extends FrameLayout {
 
                     if (--mLoadCount == 0) {
                         // Store final resolved url
-                        mUrl = urlAsString;
-                        mCurrentLoadedUrl = mUrl;
+                        mUrl = url;
+                        mCurrentLoadedUrl = mUrl.toString();
 
                         PageLoadInfo pageLoadInfo = new PageLoadInfo();
                         pageLoadInfo.bmp = webView.getFavicon();
