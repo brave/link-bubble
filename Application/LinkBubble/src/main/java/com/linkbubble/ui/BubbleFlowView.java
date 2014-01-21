@@ -508,8 +508,7 @@ public class BubbleFlowView extends HorizontalScrollView {
     };
 
     public void startScrollFinishedCheckTask(int targetXPosition){
-        int scrollX = getScrollX();
-        mScrollFinishedCheckerInitialXPosition = targetXPosition > -1 ? targetXPosition : getScrollX();
+        mScrollFinishedCheckerInitialXPosition = targetXPosition;
         postDelayed(mScrollFinishedChecker, SCROLL_FINISHED_CHECK_TIME);
     }
 
@@ -684,8 +683,6 @@ public class BubbleFlowView extends HorizontalScrollView {
                         if (DEBUG) {
                             Log.d(TAG, "No fling - back to middle!");
                         }
-                    } else {
-                        startScrollFinishedCheckTask(-1);
                     }
                     mIndexOnActionDown = -1;
                     mActiveTouchPointerId = INVALID_POINTER;
