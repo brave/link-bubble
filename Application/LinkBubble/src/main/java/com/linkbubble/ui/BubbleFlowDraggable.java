@@ -245,7 +245,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         mDraggableHelper.setExactPos(x, y);
     }
 
-    public void openUrlInBubble(String url, long startTime) {
+    public void openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble) {
         BubbleFlowItemView bubble;
         try {
             LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -256,7 +256,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             return;
         }
 
-        if (mCurrentBubble == null) {
+        if (mCurrentBubble == null || setAsCurrentBubble) {
             setCurrentBubble(bubble);
         }
 
