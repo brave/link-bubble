@@ -4,6 +4,7 @@ package com.linkbubble.ui;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
@@ -108,6 +109,22 @@ public class BubbleFlowItemView extends BubbleView {
                 Util.Assert(false);
                 //MainController mainController = MainController.get();
                 //mainController.switchState(mainController.STATE_AnimateToBubbleView);
+            }
+        });
+
+        setOnApplyFaviconListener(new OnApplyFaviconListener() {
+            @Override
+            public boolean applyFavicon(String faviconURL) {
+                URL currentUrl = mContentView.getUrl();
+                if (currentUrl != null) {
+                    String currentFaviconUrl = Util.getDefaultFaviconUrl(currentUrl);
+                    if (faviconURL.equals(currentFaviconUrl)) {
+                        return true;
+                    }
+                    //Log.d("blerg", "Ignoring favicon " + faviconURL + " in favor of " + currentFaviconUrl);
+                }
+
+                return false;
             }
         });
     }

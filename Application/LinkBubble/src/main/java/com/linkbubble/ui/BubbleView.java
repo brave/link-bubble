@@ -21,11 +21,16 @@ import java.net.URL;
 
 public class BubbleView extends FrameLayout  {
 
+    public interface OnApplyFaviconListener {
+        boolean applyFavicon(String faviconURL);
+    }
+
     private ImageView mFavicon;
     protected int mFaviconLoadId;
     private ProgressIndicator mProgressIndicator;
     protected URL mUrl;
     private BubbleView mImitator;       //
+    private OnApplyFaviconListener mOnApplyFaviconListener;
 
     public BubbleView(Context context) {
         this(context, null);
@@ -49,6 +54,10 @@ public class BubbleView extends FrameLayout  {
         mUrl = new URL(url);
 
         configure();
+    }
+
+    void setOnApplyFaviconListener(OnApplyFaviconListener onApplyFaviconListener) {
+        mOnApplyFaviconListener = onApplyFaviconListener;
     }
 
     public URL getUrl() {
@@ -103,6 +112,9 @@ public class BubbleView extends FrameLayout  {
         @Override
         public void onFaviconLoaded(String url, String faviconURL, Bitmap favicon) {
             if (favicon != null) {
+                if (mOnApplyFaviconListener != null && mOnApplyFaviconListener.applyFavicon(faviconURL) == false) {
+                    return;
+                }
                 // Note: don't upsize favicon because Favicons.getFaviconForSize() already does this
                 mFavicon.setImageBitmap(favicon);
                 setFaviconLoadId(Favicons.LOADED);
