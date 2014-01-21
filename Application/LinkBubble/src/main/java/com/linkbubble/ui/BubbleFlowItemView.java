@@ -19,14 +19,7 @@ import java.net.URL;
 
 public class BubbleFlowItemView extends BubbleView {
 
-    public interface BubbleFlowItemViewListener {
-        public void onDestroyBubble();
-        public void onMinimizeBubbles();
-        public void onPageLoaded(BubbleFlowItemView bubbleFlowItemView);
-    }
-
     protected ContentView mContentView;
-    private BubbleFlowItemViewListener mListener;
 
     public BubbleFlowItemView(Context context) {
         this(context, null);
@@ -40,23 +33,20 @@ public class BubbleFlowItemView extends BubbleView {
         super(context, attrs, defStyle);
     }
 
-    void configure(String url, long startTime, BubbleFlowItemViewListener listener) throws MalformedURLException {
+    void configure(String url, long startTime) throws MalformedURLException {
         super.configure(url);
 
-        mListener = listener;
         mContentView = (ContentView)inflate(getContext(), R.layout.view_content, null);
         mContentView.configure(mUrl.toString(), startTime, new ContentView.EventHandler() {
 
             @Override
             public void onDestroyBubble() {
-                mListener.onDestroyBubble();
-
+                MainController.get().onDestroyCurrentBubble();
             }
 
             @Override
             public void onMinimizeBubbles() {
-                mListener.onMinimizeBubbles();
-
+                MainController.get().switchToBubbleView();
             }
 
             @Override
@@ -90,8 +80,6 @@ public class BubbleFlowItemView extends BubbleView {
             @Override
             public void onPageLoaded() {
                 BubbleFlowItemView.this.onPageLoaded();
-
-                mListener.onPageLoaded(BubbleFlowItemView.this);
             }
 
             @Override
@@ -134,6 +122,12 @@ public class BubbleFlowItemView extends BubbleView {
         if (mContentView != null) {
             mContentView.destroy();
         }
+    }
+
+    @Override
+    protected void onPageLoaded() {
+        super.onPageLoaded();
+        MainController.get().onPageLoaded(this);
     }
 
     public ContentView getContentView() {
