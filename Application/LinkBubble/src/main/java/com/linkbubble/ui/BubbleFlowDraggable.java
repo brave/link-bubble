@@ -139,7 +139,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         super.configure(width, itemWidth, itemHeight);
 
         if (mDraggableHelper != null && mDraggableHelper.getWindowManagerParams() != null) {
-            mDraggableHelper.getWindowManagerParams().width = width;
+            WindowManager.LayoutParams windowManagerParams = mDraggableHelper.getWindowManagerParams();
+            windowManagerParams.width = width;
+            windowManagerParams.x = 0;
+            windowManagerParams.y = 0;
         }
     }
 
@@ -312,7 +315,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     public void destroyAllBubbles() {
         for (View view : mViews) {
-            destroyBubble(((BubbleFlowItemView)view), false, false);
+            destroyBubble(((BubbleFlowItemView) view), false, false);
         }
 
         postDestroyedBubble();
