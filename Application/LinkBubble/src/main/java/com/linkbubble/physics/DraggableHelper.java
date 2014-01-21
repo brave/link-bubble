@@ -62,6 +62,11 @@ public class DraggableHelper {
         public float mX, mY;
     }
 
+    // Reusable events
+    TouchEvent mTouchEvent = new TouchEvent();
+    MoveEvent mMoveEvent = new MoveEvent();
+    ReleaseEvent mReleaseEvent = new ReleaseEvent();
+
     private View mView;
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mWindowManagerParams;
@@ -80,6 +85,7 @@ public class DraggableHelper {
     private OvershootInterpolator mOvershootInterpolatorMedium = new OvershootInterpolator(1.5f);
     private OvershootInterpolator mOvershootInterpolatorLarge = new OvershootInterpolator(2.0f);
 
+    private Vector<InternalMoveEvent> mMoveEventPool = new Vector<InternalMoveEvent>();
     private Vector<InternalMoveEvent> mMoveEvents = new Vector<InternalMoveEvent>();
     private FlingTracker mFlingTracker = null;
     private float mStartTouchXRaw;
@@ -108,21 +114,38 @@ public class DraggableHelper {
         }
     }
 
+    private void addMoveEvent(float x, float y, long t) {
+        InternalMoveEvent me = null;
+
+        if (mMoveEventPool.size() > 0) {
+            me = mMoveEventPool.lastElement();
+            mMoveEventPool.removeElementAt(mMoveEventPool.size()-1);
+        }
+
+        if (me == null) {
+            me = new InternalMoveEvent(x, y, t);
+        }
+
+        mMoveEvents.add(me);
+    }
+
     public boolean onTouchActionDown(MotionEvent event) {
         mStartTouchXRaw = event.getRawX();
         mStartTouchYRaw = event.getRawY();
-        DraggableHelper.TouchEvent e = new DraggableHelper.TouchEvent();
-        e.posX = mWindowManagerParams.x;
-        e.posY = mWindowManagerParams.y;
-        e.rawX = mStartTouchXRaw;
-        e.rawY = mStartTouchYRaw;
+        mTouchEvent.posX = mWindowManagerParams.x;
+        mTouchEvent.posY = mWindowManagerParams.y;
+        mTouchEvent.rawX = mStartTouchXRaw;
+        mTouchEvent.rawY = mStartTouchYRaw;
 
+        for (InternalMoveEvent e : mMoveEvents) {
+            mMoveEventPool.add(e);
+        }
         mMoveEvents.clear();
-        InternalMoveEvent me = new InternalMoveEvent(mStartTouchXRaw, mStartTouchYRaw, event.getEventTime());
-        mMoveEvents.add(me);
+
+        addMoveEvent(mStartTouchXRaw, mStartTouchYRaw, event.getEventTime());
 
         if (mOnTouchActionEventListener != null) {
-            mOnTouchActionEventListener.onActionDown(e);
+            mOnTouchActionEventListener.onActionDown(mTouchEvent);
         }
 
         mStartTouchX = mWindowManagerParams.x;
@@ -145,14 +168,12 @@ public class DraggableHelper {
         int deltaX = (int) (touchXRaw - mStartTouchXRaw);
         int deltaY = (int) (touchYRaw - mStartTouchYRaw);
 
-        InternalMoveEvent me = new InternalMoveEvent(touchXRaw, touchYRaw, event.getEventTime());
-        mMoveEvents.add(me);
+        addMoveEvent(touchXRaw, touchYRaw, event.getEventTime());
 
-        DraggableHelper.MoveEvent e = new DraggableHelper.MoveEvent();
-        e.dx = deltaX;
-        e.dy = deltaY;
+        mMoveEvent.dx = deltaX;
+        mMoveEvent.dy = deltaY;
         if (mOnTouchActionEventListener != null) {
-            mOnTouchActionEventListener.onActionMove(e);
+            mOnTouchActionEventListener.onActionMove(mMoveEvent);
         }
 
         event.offsetLocation(mWindowManagerParams.x - mStartTouchX, mWindowManagerParams.y - mStartTouchY);
@@ -162,13 +183,12 @@ public class DraggableHelper {
     }
 
     public boolean onTouchActionUp(MotionEvent event) {
-        DraggableHelper.ReleaseEvent e = new DraggableHelper.ReleaseEvent();
-        e.posX = mWindowManagerParams.x;
-        e.posY = mWindowManagerParams.y;
-        e.vx = 0.0f;
-        e.vy = 0.0f;
-        e.rawX = event.getRawX();
-        e.rawY = event.getRawY();
+        mReleaseEvent.posX = mWindowManagerParams.x;
+        mReleaseEvent.posY = mWindowManagerParams.y;
+        mReleaseEvent.vx = 0.0f;
+        mReleaseEvent.vy = 0.0f;
+        mReleaseEvent.rawX = event.getRawX();
+        mReleaseEvent.rawY = event.getRawY();
 
         if (mMoveEvents.size() > 0) {
             float firstMs = mMoveEvents.get(0).mTime;
@@ -201,8 +221,8 @@ public class DraggableHelper {
             if (refME != null) {
                 Util.Assert(refME.mTime != lastME.mTime);
                 float touchTime = (lastME.mTime - refME.mTime) / 1000.0f;
-                e.vx = (lastME.mX - refME.mX) / touchTime;
-                e.vy = (lastME.mY - refME.mY) / touchTime;
+                mReleaseEvent.vx = (lastME.mX - refME.mX) / touchTime;
+                mReleaseEvent.vy = (lastME.mY - refME.mY) / touchTime;
             }
         }
 
@@ -210,13 +230,13 @@ public class DraggableHelper {
         float fvx = mFlingTracker.getXVelocity();
         float fvy = mFlingTracker.getYVelocity();
 
-        e.vx = fvx;
-        e.vy = fvy;
+        mReleaseEvent.vx = fvx;
+        mReleaseEvent.vy = fvy;
 
         mFlingTracker.recycle();
 
         if (mOnTouchActionEventListener != null) {
-            mOnTouchActionEventListener.onActionUp(e);
+            mOnTouchActionEventListener.onActionUp(mReleaseEvent);
         }
 
         mStartTouchX = -1;
