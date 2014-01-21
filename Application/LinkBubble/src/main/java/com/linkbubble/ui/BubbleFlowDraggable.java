@@ -264,7 +264,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             setCurrentBubble(bubble);
         }
 
-        //Settings.get().saveCurrentBubbles(mViews);
+        Settings.get().saveCurrentBubbles(mViews);
     }
 
     private void destroyBubble(BubbleFlowItemView bubble, boolean animateRemove, boolean removeFromList) {
@@ -297,7 +297,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     private void postDestroyedBubble() {
-        //Settings.get().saveCurrentBubbles(mViews);
+        Settings.get().saveCurrentBubbles(mViews);
     }
 
     public void destroyCurrentBubble(boolean animateRemove, Config.BubbleAction action) {
