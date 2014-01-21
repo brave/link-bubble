@@ -34,8 +34,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     private BubbleDraggable mBubbleDraggable;
     private Point mTempSize = new Point();
 
-    private static Vector<BubbleFlowItemView> mBubbles = new Vector<BubbleFlowItemView>();
-
     private MainController.CurrentBubbleChangedEvent mCurrentBubbleChangedEvent = new MainController.CurrentBubbleChangedEvent();
 
     public interface EventHandler {
@@ -152,7 +150,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     public int getBubbleCount() {
-        return mBubbles.size();
+        return getCount();
     }
 
     @Override
@@ -256,18 +254,17 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             return;
         }
 
-        mBubbles.add(bubble);
-        mBubbleDraggable.mBadgeView.setCount(mBubbles.size());
-
         // Only insert next to current Bubble when in ContentView mode. Ensures links opened when app is
         // minimized are added to the end.
         add(bubble, mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView);
+
+        mBubbleDraggable.mBadgeView.setCount(getBubbleCount());
 
         if (mCurrentBubble == null || setAsCurrentBubble) {
             setCurrentBubble(bubble);
         }
 
-        Settings.get().saveCurrentBubbles(mBubbles);
+        //Settings.get().saveCurrentBubbles(mViews);
     }
 
     private void destroyBubble(BubbleFlowItemView bubble, boolean animateRemove, boolean removeFromList) {
@@ -275,11 +272,8 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         if (index == -1) {
             return;
         }
-        remove(index, animateRemove);
+        remove(index, animateRemove, removeFromList);
 
-        if (removeFromList) {
-            mBubbles.remove(bubble);
-        }
         bubble.destroy();
 
         if (mCurrentBubble == bubble) {
@@ -303,7 +297,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     private void postDestroyedBubble() {
-        Settings.get().saveCurrentBubbles(mBubbles);
+        //Settings.get().saveCurrentBubbles(mViews);
     }
 
     public void destroyCurrentBubble(boolean animateRemove, Config.BubbleAction action) {
@@ -317,20 +311,16 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     public void destroyAllBubbles() {
-        Iterator<BubbleFlowItemView> iterator = mBubbles.iterator();
-        while (iterator.hasNext()) {
-            BubbleFlowItemView item = iterator.next();
-            destroyBubble(item, false, false);
-            iterator.remove();
+        for (View view : mViews) {
+            destroyBubble(((BubbleFlowItemView)view), false, false);
         }
 
-        mBubbles.clear();
         postDestroyedBubble();
     }
 
     public void updateIncognitoMode(boolean incognito) {
-        for (int i=0 ; i < mBubbles.size() ; ++i) {
-            mBubbles.get(i).updateIncognitoMode(incognito);
+        for (View view : mViews) {
+            ((BubbleFlowItemView)view).updateIncognitoMode(incognito);
         }
     }
 
