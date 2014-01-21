@@ -250,25 +250,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         try {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             bubble = (BubbleFlowItemView) inflater.inflate(R.layout.view_bubble_flow_item, null);
-            bubble.configure(url, startTime,
-                    new BubbleFlowItemView.BubbleFlowItemViewListener() {
-
-                        @Override
-                        public void onDestroyBubble() {
-                            MainController.get().onDestroyCurrentBubble();
-                        }
-
-                        @Override
-                        public void onMinimizeBubbles() {
-                            MainController.get().switchToBubbleView();
-                        }
-
-                        @Override
-                        public void onPageLoaded(BubbleFlowItemView bubbleFlowItemView) {
-                            MainController.get().onPageLoaded(bubbleFlowItemView);
-                        }
-
-                    });
+            bubble.configure(url, startTime);
         } catch (MalformedURLException e) {
             // TODO: Inform the user somehow?
             return;
