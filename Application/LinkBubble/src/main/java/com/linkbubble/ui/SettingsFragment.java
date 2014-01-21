@@ -17,6 +17,9 @@ import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 
+import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.linkbubble.util.ActionItem;
@@ -245,12 +248,37 @@ public class SettingsFragment extends PreferenceFragment {
             });
         }
 
-        Preference faqPreference = findPreference("preference_faq");
-        faqPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        findPreference("preference_faq").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 FAQDialog dialog = new FAQDialog(getActivity());
                 dialog.show();
+                return true;
+            }
+        });
+
+        findPreference("preference_osl").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                WebView webView = new WebView(getActivity());
+                webView.loadUrl("file:///android_asset/open_source_licenses.html");
+                webView.setWebViewClient(new WebViewClient() {
+                    public boolean shouldOverrideUrlLoading(WebView view, String url){
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(url));
+                        startActivity(i);
+                        return true;
+                    }
+                });
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setIcon(0);
+                builder.setNegativeButton(R.string.action_ok, null);
+                builder.setView(webView);
+                builder.setTitle(R.string.preference_osl_title);
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
                 return true;
             }
         });
