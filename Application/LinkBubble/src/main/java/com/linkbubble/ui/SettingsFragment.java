@@ -22,6 +22,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import com.linkbubble.Constant;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
@@ -279,6 +280,22 @@ public class SettingsFragment extends PreferenceFragment {
 
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
+                return true;
+            }
+        });
+
+        findPreference("preference_privacy_policy").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                MainApplication.openLink(getActivity(), Constant.PRIVACY_POLICY_URL);
+                return true;
+            }
+        });
+
+        findPreference("preference_terms_of_service").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                MainApplication.openLink(getActivity(), Constant.TERMS_OF_SERVICE_URL);
                 return true;
             }
         });
