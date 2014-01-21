@@ -149,4 +149,8 @@ public class Util {
         float d = (float) Math.sqrt(xd*xd + yd*yd);
         return d;
     }
+
+    public static String getDefaultFaviconUrl(URL url) {
+        return url.getProtocol() + "://" + url.getHost() + "/favicon.ico";
+    }
 }

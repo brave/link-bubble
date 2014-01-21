@@ -10,6 +10,7 @@ import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.util.Util;
 import com.squareup.picasso.Transformation;
 import org.mozilla.gecko.favicons.Favicons;
 import org.mozilla.gecko.favicons.LoadFaviconTask;
@@ -74,10 +75,6 @@ public class BubbleView extends FrameLayout  {
         return mFaviconLoadId;
     }
 
-    protected String getDefaultFaviconUrl(URL url) {
-        return url.getProtocol() + "://" + url.getHost() + "/favicon.ico";
-    }
-
     protected void loadFavicon() {
         maybeCancelFaviconLoad();
 
@@ -85,7 +82,7 @@ public class BubbleView extends FrameLayout  {
 
         //int flags = (tab.isPrivate() || tab.getErrorType() != Tab.ErrorType.NONE) ? 0 : LoadFaviconTask.FLAG_PERSIST;
         int flags = Settings.get().isIncognitoMode() ? 0 : LoadFaviconTask.FLAG_PERSIST;
-        String faviconUrl = getDefaultFaviconUrl(mUrl);
+        String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
         int faviconLoadIdBefore = mFaviconLoadId;
         int id = Favicons.getFaviconForSize(mUrl.toString(), faviconUrl, Integer.MAX_VALUE, flags, mOnFaviconLoadedListener);
 
@@ -175,7 +172,7 @@ public class BubbleView extends FrameLayout  {
             }
         } else {
             MainApplication mainApplication = (MainApplication) getContext().getApplicationContext();
-            String faviconUrl = getDefaultFaviconUrl(mUrl);
+            String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
             if(mainApplication.mDatabaseHelper.faviconExists(faviconUrl, favicon) == false) {
                 mainApplication.mDatabaseHelper.addFaviconForUrl(faviconUrl, favicon, mUrl.toString());
             }
