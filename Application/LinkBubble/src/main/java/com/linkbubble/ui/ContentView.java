@@ -73,7 +73,6 @@ public class ContentView extends FrameLayout {
 
     private List<AppForUrl> mAppsForUrl = new ArrayList<AppForUrl>();
     private List<ResolveInfo> mTempAppsForUrl = new ArrayList<ResolveInfo>();
-    private URL mTempUrl;
     private YouTubeEmbedHelper mYouTubeEmbedHelper;
     private int mCheckForEmbedsCount;
     private PopupMenu mOverflowPopupMenu;
@@ -154,7 +153,7 @@ public class ContentView extends FrameLayout {
     public interface EventHandler {
         public void onDestroyBubble();
         public void onMinimizeBubbles();
-        public void onPageLoading(String url);
+        public void onPageLoading(URL url);
         public void onProgressChanged(int progress);
         public void onPageLoaded(PageLoadInfo info);
         public void onReceivedIcon(Bitmap bitmap);
@@ -209,14 +208,6 @@ public class ContentView extends FrameLayout {
         }
     }
 
-    private boolean isValidUrl(String urlString) {
-        try {
-            return isValidUrl(new URL(urlString));
-        } catch (MalformedURLException e) {
-            return false;
-        }
-    }
-
     private boolean isValidUrl(URL url) {
         if (url == null) {
             return false;
@@ -238,7 +229,7 @@ public class ContentView extends FrameLayout {
         return isValid;
     }
 
-    private void showSelectShareMethod(final String url, final boolean closeBubbleOnShare) {
+    private void showSelectShareMethod(final String urlAsString, final boolean closeBubbleOnShare) {
 
         AlertDialog alertDialog = ActionItem.getShareAlert(mContext, new ActionItem.OnActionItemSelectedListener() {
             @Override
@@ -247,7 +238,7 @@ public class ContentView extends FrameLayout {
                 intent.setType("text/plain");
                 intent.setClassName(actionItem.mPackageName, actionItem.mActivityClassName);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra(Intent.EXTRA_TEXT, url);
+                intent.putExtra(Intent.EXTRA_TEXT, urlAsString);
                 mContext.startActivity(intent);
 
                 if (closeBubbleOnShare) {
@@ -258,7 +249,7 @@ public class ContentView extends FrameLayout {
         alertDialog.show();
     }
 
-    void configure(String url, long startTime, EventHandler eh) throws MalformedURLException {
+    void configure(String urlAsString, long startTime, EventHandler eh) throws MalformedURLException {
         if (sIndicatorPaint == null) {
             sIndicatorPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
             sIndicatorPaint.setColor(getResources().getColor(R.color.content_toolbar_background));
@@ -269,8 +260,7 @@ public class ContentView extends FrameLayout {
             sBorderPaint.setColor(getResources().getColor(R.color.bubble_border));
         }
 
-        mUrl = new URL(url);
-        mTempUrl = new URL(url);
+        mUrl = new URL(urlAsString);
 
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_header);
 
@@ -362,11 +352,11 @@ public class ContentView extends FrameLayout {
                                 if (mYouTubeEmbedHelper != null) {
                                     mYouTubeEmbedHelper.clear();
                                 }
-                                mEventHandler.onPageLoading(mUrl.toString());
+                                mEventHandler.onPageLoading(mUrl);
                                 mWebView.stopLoading();
                                 mWebView.reload();
                                 String urlAsString = mUrl.toString();
-                                updateAppsForUrl(urlAsString);
+                                updateAppsForUrl(mUrl);
                                 configureOpenInAppButton();
                                 configureOpenEmbedButton();
                                 Log.d(TAG, "reload url: " + urlAsString);
@@ -504,7 +494,7 @@ public class ContentView extends FrameLayout {
 
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
-            public boolean shouldOverrideUrlLoading(WebView wView, String url) {
+            public boolean shouldOverrideUrlLoading(WebView wView, String urlAsString) {
 
                 if (mLoadCount == 0) {
                     if (mCurrentLoadedUrl != null && !mLoadingPrev) {
@@ -514,20 +504,19 @@ public class ContentView extends FrameLayout {
                     mLoadingPrev = false;
                 }
 
-                if (isValidUrl(url)) {
-                    ++mLoadCount;
-                }
+                ++mLoadCount;
+                updateUrl(urlAsString);
 
                 if (mYouTubeEmbedHelper != null) {
                     mYouTubeEmbedHelper.clear();
                 }
 
-                List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
-                updateAppsForUrl(resolveInfos, url);
-                if (Settings.get().redirectUrlToBrowser(url)) {
-                    if (openInBrowser(url)) {
+                List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(urlAsString);
+                updateAppsForUrl(resolveInfos, mUrl);
+                if (Settings.get().redirectUrlToBrowser(urlAsString)) {
+                    if (openInBrowser(urlAsString)) {
                         String title = String.format(mContext.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
-                        MainApplication.saveUrlInHistory(mContext, null, url, title);
+                        MainApplication.saveUrlInHistory(mContext, null, urlAsString, title);
                         return false;
                     }
                 }
@@ -536,10 +525,10 @@ public class ContentView extends FrameLayout {
                     ResolveInfo resolveInfo = resolveInfos.get(0);
                     if (resolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo) {
                         // TODO: Fix to handle multiple apps
-                        if (MainApplication.loadResolveInfoIntent(mContext, resolveInfo, url, mStartTime)) {
+                        if (MainApplication.loadResolveInfoIntent(mContext, resolveInfo, urlAsString, mStartTime)) {
                             String title = String.format(mContext.getString(R.string.link_loaded_with_app),
                                                         resolveInfo.loadLabel(mContext.getPackageManager()));
-                            MainApplication.saveUrlInHistory(mContext, resolveInfo, url, title);
+                            MainApplication.saveUrlInHistory(mContext, resolveInfo, urlAsString, title);
 
                             mEventHandler.onDestroyBubble();
                             return false;
@@ -549,11 +538,11 @@ public class ContentView extends FrameLayout {
 
                 configureOpenInAppButton();
                 configureOpenEmbedButton();
-                Log.d(TAG, "redirect to url: " + url);
-                mWebView.loadUrl(url);
-                mEventHandler.onPageLoading(url);
+                Log.d(TAG, "redirect to url: " + urlAsString);
+                mWebView.loadUrl(urlAsString);
+                mEventHandler.onPageLoading(mUrl);
                 mTitleTextView.setText(R.string.loading);
-                mUrlTextView.setText(url.replace("http://", ""));
+                mUrlTextView.setText(urlAsString.replace("http://", ""));
                 return true;
             }
 
@@ -570,11 +559,11 @@ public class ContentView extends FrameLayout {
             }
 
             @Override
-            public void onPageStarted(WebView view, String url, Bitmap favIcon) {
+            public void onPageStarted(WebView view, String urlAsString, Bitmap favIcon) {
                 mPageFinishedLoading = false;
-                if (isValidUrl(url)) {
-                    mLoadCount = Math.max(mLoadCount, 1);
-                }
+
+                updateUrl(urlAsString);
+                mLoadCount = Math.max(mLoadCount, 1);
 
                 if (mShareButton.getVisibility() == GONE) {
                     mShareButton.setVisibility(VISIBLE);
@@ -585,15 +574,11 @@ public class ContentView extends FrameLayout {
             public void onPageFinished(WebView webView, String urlAsString) {
                 super.onPageFinished(webView, urlAsString);
                 mPageFinishedLoading = true;
-
-                URL url = null;
-                try {
-                    url = new URL(urlAsString);
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-                if (isValidUrl(url)) {
-                    updateAppsForUrl(urlAsString);
+                // NOTE: *don't* call updateUrl() here. Turns out, this function is called after a redirect has occurred.
+                // Eg, urlAsString "t.co/xyz" even after the next redirect is starting to load
+                if (mUrl != null)
+                {
+                    updateAppsForUrl(mUrl);
                     configureOpenInAppButton();
                     configureOpenEmbedButton();
 
@@ -601,14 +586,12 @@ public class ContentView extends FrameLayout {
                     mUrlTextView.setText(urlAsString.replace("http://", ""));
 
                     if (--mLoadCount == 0) {
-                        // Store final resolved url
-                        mUrl = url;
                         mCurrentLoadedUrl = mUrl.toString();
 
                         PageLoadInfo pageLoadInfo = new PageLoadInfo();
                         pageLoadInfo.bmp = webView.getFavicon();
                         pageLoadInfo.url = urlAsString;
-                        pageLoadInfo.mHost = url.getHost();
+                        pageLoadInfo.mHost = mUrl.getHost();
                         pageLoadInfo.title = webView.getTitle();
 
                         mEventHandler.onPageLoaded(pageLoadInfo);
@@ -646,7 +629,8 @@ public class ContentView extends FrameLayout {
                                 mLoadingPrev = true;
                                 webView.loadUrl(prevUrl);
 
-                                updateAppsForUrl(webView.getUrl());
+                                updateUrl(prevUrl);
+                                updateAppsForUrl(mUrl);
                                 if (mYouTubeEmbedHelper != null) {
                                     mYouTubeEmbedHelper.clear();
                                 }
@@ -666,10 +650,10 @@ public class ContentView extends FrameLayout {
 
         mWebView.setDownloadListener(new DownloadListener() {
             @Override
-            public void onDownloadStart(String url, String userAgent,
+            public void onDownloadStart(String urlAsString, String userAgent,
                                         String contentDisposition, String mimetype,
                                         long contentLength) {
-                openInBrowser(url);
+                openInBrowser(urlAsString);
                 mEventHandler.onDestroyBubble();
             }
         });
@@ -681,18 +665,18 @@ public class ContentView extends FrameLayout {
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
-        updateAppsForUrl(url);
+        updateAppsForUrl(mUrl);
         configureOpenInAppButton();
         configureOpenEmbedButton();
-        Log.d(TAG, "load url: " + url);
+        Log.d(TAG, "load url: " + urlAsString);
         mStartTime = startTime;
-        mWebView.loadUrl(url);
-        mEventHandler.onPageLoading(url);
+        mWebView.loadUrl(urlAsString);
+        mEventHandler.onPageLoading(mUrl);
         mTitleTextView.setText(R.string.loading);
-        mUrlTextView.setText(url.replace("http://", ""));
+        mUrlTextView.setText(urlAsString.replace("http://", ""));
     }
 
-    private void onUrlLongClick(final String url) {
+    private void onUrlLongClick(final String urlAsString) {
         Resources resources = mContext.getResources();
 
         final ArrayList<String> longClickSelections = new ArrayList<String>();
@@ -735,15 +719,15 @@ public class ContentView extends FrameLayout {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String string = longClickSelections.get(position);
                 if (string.equals(openInNewBubbleLabel)) {
-                    MainController.get().onOpenUrl(url, System.currentTimeMillis());
+                    MainController.get().onOpenUrl(urlAsString, System.currentTimeMillis());
                 } else if (openInBrowserLabel != null && string.equals(openInBrowserLabel)) {
-                    openInBrowser(url);
+                    openInBrowser(urlAsString);
                 } else if (string.equals(shareLabel)) {
-                    showSelectShareMethod(url, false);
+                    showSelectShareMethod(urlAsString, false);
                 } else if (leftConsumeBubbleLabel != null && string.equals(leftConsumeBubbleLabel)) {
-                    MainApplication.handleBubbleAction(mContext, Config.BubbleAction.ConsumeLeft, url);
+                    MainApplication.handleBubbleAction(mContext, Config.BubbleAction.ConsumeLeft, urlAsString);
                 } else if (rightConsumeBubbleLabel != null && string.equals(rightConsumeBubbleLabel)) {
-                    MainApplication.handleBubbleAction(mContext, Config.BubbleAction.ConsumeRight, url);
+                    MainApplication.handleBubbleAction(mContext, Config.BubbleAction.ConsumeRight, urlAsString);
                 }
 
                 if (mLongPressAlertDialog != null) {
@@ -774,21 +758,14 @@ public class ContentView extends FrameLayout {
         }
     }
 
-    private void updateAppsForUrl(String url) {
-        List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
+    private void updateAppsForUrl(URL url) {
+        List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url.toString());
         updateAppsForUrl(resolveInfos, url);
     }
 
-    private void updateAppsForUrl(List<ResolveInfo> resolveInfos, String url) {
+    private void updateAppsForUrl(List<ResolveInfo> resolveInfos, URL url) {
         if (resolveInfos != null && resolveInfos.size() > 0) {
             mTempAppsForUrl.clear();
-            if (mTempUrl.toString().equals(url) == false) {
-                try {
-                    mTempUrl = new URL(url);
-                } catch (MalformedURLException e) {
-                    return;
-                }
-            }
             for (ResolveInfo resolveInfoToAdd : resolveInfos) {
                 if (resolveInfoToAdd.activityInfo != null) {
                     boolean alreadyAdded = false;
@@ -798,8 +775,8 @@ public class ContentView extends FrameLayout {
                                 && existing.mResolveInfo.activityInfo.name.equals(resolveInfoToAdd.activityInfo.name)) {
                             alreadyAdded = true;
                             if (existing.mUrl.equals(url) == false) {
-                                if (mTempUrl.getHost().contains(existing.mUrl.getHost())
-                                        && mTempUrl.getHost().length() > existing.mUrl.getHost().length()) {
+                                if (url.getHost().contains(existing.mUrl.getHost())
+                                        && url.getHost().length() > existing.mUrl.getHost().length()) {
                                     // don't update the url in this case. This means prevents, as an example, saving a host like
                                     // "mobile.twitter.com" instead of using "twitter.com". This occurs when loading
                                     // "https://twitter.com/lokibartleby/status/412160702707539968" with Tweet Lanes
@@ -808,7 +785,7 @@ public class ContentView extends FrameLayout {
                                     try {
                                         existing.mUrl = new URL(url.toString());   // Update the Url
                                     } catch (MalformedURLException e) {
-                                        e.printStackTrace();
+                                        throw new RuntimeException("Malformed URL: " + url);
                                     }
                                 }
                             }
@@ -879,6 +856,21 @@ public class ContentView extends FrameLayout {
         invalidate();
     }
 
+    private void updateUrl(String urlAsString) {
+        if (urlAsString.equals(mUrl.toString()) == false) {
+            try {
+                Log.d(TAG, "change url from " + mUrl + " to " + urlAsString);
+                mUrl = new URL(urlAsString);
+            } catch (MalformedURLException e) {
+                throw new RuntimeException("Malformed URL: " + urlAsString);
+            }
+        }
+    }
+
+    URL getUrl() {
+        return mUrl;
+    }
+
     private void hidePopups() {
         if (mOverflowPopupMenu != null) {
             mOverflowPopupMenu.dismiss();
@@ -897,9 +889,9 @@ public class ContentView extends FrameLayout {
         mOverflowButton.setIsTouched(false);
     }
 
-    private boolean openInBrowser(String url) {
+    private boolean openInBrowser(String urlAsString) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
+        intent.setData(Uri.parse(urlAsString));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         if (MainApplication.loadInBrowser(mContext, intent, true)) {
             mEventHandler.onDestroyBubble();
