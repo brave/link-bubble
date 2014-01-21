@@ -27,7 +27,7 @@ import java.util.List;
 public class BubbleFlowView extends HorizontalScrollView {
 
     private static final String TAG = "BubbleFlowView";
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
     private static final int INVALID_POINTER = -1;
     private static final float MIN_SCALE = .7f;
 
@@ -71,7 +71,11 @@ public class BubbleFlowView extends HorizontalScrollView {
     private VerticalGestureListener mVerticalGestureListener = new VerticalGestureListener();
     private long mLastVerticalGestureTime;
 
-    private int mTouchFrameCount;
+    private int mStillTouchFrameCount;
+    private int mCenterViewTouchPointerId = INVALID_POINTER;
+    private float mCenterViewDownX;
+    private float mCenterViewDownY;
+    private static final int LONG_PRESS_FRAMES = 6;
     private View mTouchView;
 
     public BubbleFlowView(Context context) {
@@ -105,11 +109,16 @@ public class BubbleFlowView extends HorizontalScrollView {
 
     public boolean update() {
         if (mTouchView != null) {
-            ++mTouchFrameCount;
+            if (mStillTouchFrameCount > -1) {
+                ++mStillTouchFrameCount;
+                if (DEBUG) {
+                    Log.d(TAG, "[longpress] update(): mStillTouchFrameCount:" + mStillTouchFrameCount);
+                }
 
-            if (mTouchFrameCount == 6) {
-                if (mBubbleFlowListener != null) {
-                    mBubbleFlowListener.onCenterItemLongClicked(BubbleFlowView.this, mTouchView);
+                if (mStillTouchFrameCount == LONG_PRESS_FRAMES) {
+                    if (mBubbleFlowListener != null) {
+                        mBubbleFlowListener.onCenterItemLongClicked(BubbleFlowView.this, mTouchView);
+                    }
                 }
             }
             return mViews.size() == 0 ? false : true;
@@ -340,6 +349,11 @@ public class BubbleFlowView extends HorizontalScrollView {
             return false;
         }
 
+        mStillTouchFrameCount = -1;
+        if (DEBUG) {
+            //Log.d(TAG, "[longpress] expand(): mStillTouchFrameCount=" + mStillTouchFrameCount);
+        }
+
         int size = mViews.size();
         int centerIndex = getCenterIndex();
         View centerView = mViews.get(centerIndex);
@@ -396,6 +410,12 @@ public class BubbleFlowView extends HorizontalScrollView {
         if (mIsExpanded == false) {
             return;
         }
+
+        mStillTouchFrameCount = -1;
+        if (DEBUG) {
+            //Log.d(TAG, "[longpress] collapse(): mStillTouchFrameCount=" + mStillTouchFrameCount);
+        }
+
         int size = mViews.size();
         int centerIndex = getCenterIndex();
         if (centerIndex == -1) {
@@ -454,6 +474,11 @@ public class BubbleFlowView extends HorizontalScrollView {
     @Override
     protected void onScrollChanged(int x, int y, int oldX, int oldY) {
         super.onScrollChanged(x, y, oldX, oldY);
+
+        mStillTouchFrameCount = -1;
+        if (DEBUG) {
+            //Log.d(TAG, "[longpress] onScrollChanged(): mStillTouchFrameCount=" + mStillTouchFrameCount);
+        }
 
         updateScales(x);
     }
@@ -718,10 +743,50 @@ public class BubbleFlowView extends HorizontalScrollView {
                 int action = event.getAction();
                 if (action == MotionEvent.ACTION_DOWN) {
                     mTouchView = view;
-                    mTouchFrameCount = 0;
+                    mStillTouchFrameCount = 0;
+                    mCenterViewTouchPointerId = event.getPointerId(0);
+                    mCenterViewDownX = event.getX();
+                    mCenterViewDownY = event.getY();
+
+                    if (DEBUG) {
+                        Log.d(TAG, "[longpress] onTouch() DOWN: mStillTouchFrameCount=" + mStillTouchFrameCount);
+                    }
                     MainController.get().scheduleUpdate();
                 } else if (action == MotionEvent.ACTION_UP) {
                     mTouchView = null;
+                    mStillTouchFrameCount = -1;
+                    if (DEBUG) {
+                        Log.d(TAG, "[longpress] onTouch() UP: mStillTouchFrameCount=" + mStillTouchFrameCount);
+                    }
+                } else if (action == MotionEvent.ACTION_MOVE) {
+                    if (mStillTouchFrameCount >= 0) {
+                        if (mCenterViewTouchPointerId != INVALID_POINTER) {
+                            final int pointerIndex = event.findPointerIndex(mCenterViewTouchPointerId);
+                            if (pointerIndex != -1) {
+                                float x = event.getX(pointerIndex);
+                                float y = event.getY(pointerIndex);
+                                float absXDelta = Math.abs(mCenterViewDownX - x);
+                                float absYDelta = Math.abs(mCenterViewDownY - y);
+                                if (absYDelta > 8.f) {
+                                    mStillTouchFrameCount = LONG_PRESS_FRAMES-1;
+                                    if (DEBUG) {
+                                        Log.e(TAG, "[longpress] onTouch() MOVE: [FORCE], absYDelta:" + absYDelta);
+                                    }
+                                } else if (absXDelta > 3.f) {
+                                    mStillTouchFrameCount = -1;
+                                    if (DEBUG) {
+                                        Log.e(TAG, "[longpress] onTouch() MOVE: [CANCEL] mStillTouchFrameCount=" + mStillTouchFrameCount
+                                                + ", absXDelta:" + absXDelta + ", absYDelta:" + absYDelta);
+                                    }
+                                } else {
+                                    if (DEBUG) {
+                                        Log.d(TAG, "[longpress] onTouch() MOVE: absXDelta:" + absXDelta + ", absYDelta:" + absYDelta);
+                                    }
+                                }
+
+                            }
+                        }
+                    }
                 }
 
                 result = mVerticalGestureDetector.onTouchEvent(event);
