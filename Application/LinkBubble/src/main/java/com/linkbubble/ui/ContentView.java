@@ -122,6 +122,16 @@ public class ContentView extends FrameLayout {
 
     public ContentView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
+        if (sIndicatorPaint == null) {
+            sIndicatorPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            sIndicatorPaint.setColor(getResources().getColor(R.color.content_toolbar_background));
+        }
+
+        if (sBorderPaint == null) {
+            sBorderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            sBorderPaint.setColor(getResources().getColor(R.color.bubble_border));
+        }
     }
 
     static class AppForUrl {
@@ -243,19 +253,8 @@ public class ContentView extends FrameLayout {
         alertDialog.show();
     }
 
-    void configure(String urlAsString, long startTime, EventHandler eh) throws MalformedURLException {
-        if (sIndicatorPaint == null) {
-            sIndicatorPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            sIndicatorPaint.setColor(getResources().getColor(R.color.content_toolbar_background));
-        }
-
-        if (sBorderPaint == null) {
-            sBorderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            sBorderPaint.setColor(getResources().getColor(R.color.bubble_border));
-        }
-
+    void configure(String urlAsString, long startTime, EventHandler eventHandler) throws MalformedURLException {
         mUrl = new URL(urlAsString);
-
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_header);
 
         mWebView = (WebView) findViewById(R.id.webView);
@@ -263,387 +262,43 @@ public class ContentView extends FrameLayout {
         mTitleTextView = (CondensedTextView) findViewById(R.id.title_text);
         mUrlTextView = (CondensedTextView) findViewById(R.id.url_text);
 
-        View textContainer = findViewById(R.id.content_text_container);
-        textContainer.setOnTouchListener(new OnSwipeTouchListener() {
-            public void onSwipeRight() {
-                MainController.get().showPreviousBubble();
-            }
-            public void onSwipeLeft() {
-                MainController.get().showNextBubble();
-            }
-        });
+        findViewById(R.id.content_text_container).setOnTouchListener(mOnTextContainerTouchListener);
 
         mShareButton = (ContentViewButton)findViewById(R.id.share_button);
         mShareButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_share));
-        mShareButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSelectShareMethod(mUrl.toString(), true);
-            }
-        });
+        mShareButton.setOnClickListener(mOnShareButtonClickListener);
 
         mOpenInAppButton = (OpenInAppButton)findViewById(R.id.open_in_app_button);
-        mOpenInAppButton.setOnOpenInAppClickListener(new OpenInAppButton.OnOpenInAppClickListener() {
-
-            @Override
-            public void onAppOpened() {
-                mEventHandler.onDestroyBubble();
-            }
-
-        });
+        mOpenInAppButton.setOnOpenInAppClickListener(mOnOpenInAppButtonClickListener);
 
         mOpenEmbedButton = (OpenEmbedButton)findViewById(R.id.open_embed_button);
-        mOpenEmbedButton.setOnOpenEmbedClickListener(new OpenEmbedButton.OnOpenEmbedClickListener() {
-
-            @Override
-            public void onYouTubeEmbedOpened() {
-
-            }
-        });
+        mOpenEmbedButton.setOnOpenEmbedClickListener(mOnOpenEmbedButtonClickListener);
 
         mReloadButton = (ContentViewButton)findViewById(R.id.reload_button);
         mReloadButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_reload));
-        mReloadButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mReloadButton.setVisibility(GONE);
-                mWebView.reload();
-            }
-        });
+        mReloadButton.setOnClickListener(mOnReloadButtonClickListener);
 
         mOverflowButton = (ContentViewButton)mToolbarLayout.findViewById(R.id.overflow_button);
         mOverflowButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_overflow_round));
-        mOverflowButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mOverflowPopupMenu = new PopupMenu(mContext, mOverflowButton);
-                Resources resources = mContext.getResources();
-                mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_upgrade_to_pro, Menu.NONE,
-                        resources.getString(R.string.action_upgrade_to_pro));
-                mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_reload_page, Menu.NONE,
-                        resources.getString(R.string.action_reload_page));
-                String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
-                if (defaultBrowserLabel != null) {
-                    mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
-                            String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
-                }
-                mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_settings, Menu.NONE,
-                        resources.getString(R.string.action_settings));
-                mOverflowPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.item_upgrade_to_pro: {
-                                Intent intent = Config.getStoreIntent(mContext, Config.STORE_PRO_URL);
-                                if (intent != null) {
-                                    mContext.startActivity(intent);
-                                    mEventHandler.onMinimizeBubbles();
-                                }
-                                break;
-                            }
-
-                            case R.id.item_reload_page: {
-                                if (mYouTubeEmbedHelper != null) {
-                                    mYouTubeEmbedHelper.clear();
-                                }
-                                mEventHandler.onPageLoading(mUrl);
-                                mWebView.stopLoading();
-                                mWebView.reload();
-                                String urlAsString = mUrl.toString();
-                                updateAppsForUrl(mUrl);
-                                configureOpenInAppButton();
-                                configureOpenEmbedButton();
-                                Log.d(TAG, "reload url: " + urlAsString);
-                                mStartTime = System.currentTimeMillis();
-                                mTitleTextView.setText(R.string.loading);
-                                mUrlTextView.setText(urlAsString.replace("http://", ""));
-                                break;
-                            }
-
-                            case R.id.item_open_in_browser: {
-                                openInBrowser(mUrl.toString());
-                                break;
-                            }
-
-                            case R.id.item_settings: {
-                                Intent intent = new Intent(mContext, SettingsActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                mContext.startActivity(intent);
-                                mEventHandler.onMinimizeBubbles();
-                                break;
-                            }
-                        }
-                        mOverflowPopupMenu = null;
-                        return false;
-                    }
-                });
-                mOverflowPopupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
-                    @Override
-                    public void onDismiss(PopupMenu menu) {
-                        if (mOverflowPopupMenu == menu) {
-                            mOverflowPopupMenu = null;
-                        }
-                    }
-                });
-                mOverflowPopupMenu.show();
-            }
-        });
+        mOverflowButton.setOnClickListener(mOnOverflowButtonClickListener);
 
         mContext = getContext();
-        mEventHandler = eh;
+        mEventHandler = eventHandler;
         mPageFinishedLoading = false;
 
-        WebSettings ws = mWebView.getSettings();
-        ws.setJavaScriptEnabled(true);
-        ws.setSupportZoom(true);
-        ws.setBuiltInZoomControls(true);
-        ws.setLoadWithOverviewMode(true);
-        ws.setUseWideViewPort(true);
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setSupportZoom(true);
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setUseWideViewPort(true);
 
         mWebView.setLongClickable(true);
-        mWebView.setOnLongClickListener(new OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                WebView.HitTestResult hitTestResult = mWebView.getHitTestResult();
-                Log.d(TAG, "onLongClick type: " + hitTestResult.getType());
-                switch (hitTestResult.getType()) {
-                    case WebView.HitTestResult.SRC_ANCHOR_TYPE:
-                    case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: {
-                        final String url = hitTestResult.getExtra();
-                        if (url == null) {
-                            return false;
-                        }
-
-                        onUrlLongClick(url);
-                        return true;
-                    }
-
-                    case WebView.HitTestResult.UNKNOWN_TYPE:
-                    default:
-                        String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
-                        String message;
-                        if (defaultBrowserLabel != null) {
-                            message = String.format(getResources().getString(R.string.long_press_unsupported_default_browser), defaultBrowserLabel);
-                        } else {
-                            message = getResources().getString(R.string.long_press_unsupported_no_default_browser);
-                        }
-                        Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
-                        return false;
-                }
-            }
-        });
-
-        mWebView.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public void onReceivedTitle(WebView webView, String title) {
-                super.onReceivedTitle(webView, title);
-                mTitleTextView.setText(title);
-            }
-
-            @Override
-            public void onReceivedIcon(WebView webView, Bitmap bitmap) {
-                super.onReceivedIcon(webView, bitmap);
-
-                // Only pass this along if the page has finished loading (https://github.com/chrislacy/LinkBubble/issues/155).
-                // This is to prevent passing a stale icon along when a redirect has already occurred. This shouldn't cause
-                // too many ill-effects, because BitmapView attempts to load host/favicon.ico automatically anyway.
-                if (mPageFinishedLoading) {
-                    mEventHandler.onReceivedIcon(bitmap);
-
-                    String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
-                    Favicons.putFaviconInMemCache(faviconUrl, bitmap);
-                }
-            }
-
-            @Override
-            public void onProgressChanged(WebView webView, int progress) {
-                //Log.d(TAG, "onProgressChanged() - progress:" + progress);
-
-                mEventHandler.onProgressChanged(progress);
-
-                // At 60%, the page is more often largely viewable, but waiting for background shite to finish which can
-                // take many, many seconds, even on a strong connection. Thus, do a check for embeds now to prevent the button
-                // not being updated until 100% is reached, which feels too slow as a user.
-                if (progress >= 60) {
-                    if (mCheckForEmbedsCount == 0) {
-                        mCheckForEmbedsCount = 1;
-                        if (mYouTubeEmbedHelper != null) {
-                            mYouTubeEmbedHelper.clear();
-                        }
-
-                        if (Settings.get().checkForYouTubeEmbeds()) {
-                            Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                            webView.loadUrl(JS_EMBED);
-                        }
-                    } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
-                        mCheckForEmbedsCount = 2;
-                        if (Settings.get().checkForYouTubeEmbeds()) {
-                            Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                            webView.loadUrl(JS_EMBED);
-                        }
-                    }
-                }
-            }
-        });
-
-        mWebView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView wView, String urlAsString) {
-
-                if (mLoadCount == 0) {
-                    if (mCurrentLoadedUrl != null && !mLoadingPrev) {
-                        mUrlHistory.push(mCurrentLoadedUrl);
-                    }
-                    mCurrentLoadedUrl = null;
-                    mLoadingPrev = false;
-                }
-
-                ++mLoadCount;
-                updateUrl(urlAsString);
-
-                if (mYouTubeEmbedHelper != null) {
-                    mYouTubeEmbedHelper.clear();
-                }
-
-                List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(urlAsString);
-                updateAppsForUrl(resolveInfos, mUrl);
-                if (Settings.get().redirectUrlToBrowser(urlAsString)) {
-                    if (openInBrowser(urlAsString)) {
-                        String title = String.format(mContext.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
-                        MainApplication.saveUrlInHistory(mContext, null, urlAsString, title);
-                        return false;
-                    }
-                }
-
-                if (Settings.get().getAutoContentDisplayAppRedirect() && resolveInfos != null && resolveInfos.size() > 0) {
-                    ResolveInfo resolveInfo = resolveInfos.get(0);
-                    if (resolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo) {
-                        // TODO: Fix to handle multiple apps
-                        if (MainApplication.loadResolveInfoIntent(mContext, resolveInfo, urlAsString, mStartTime)) {
-                            String title = String.format(mContext.getString(R.string.link_loaded_with_app),
-                                                        resolveInfo.loadLabel(mContext.getPackageManager()));
-                            MainApplication.saveUrlInHistory(mContext, resolveInfo, urlAsString, title);
-
-                            mEventHandler.onDestroyBubble();
-                            return false;
-                        }
-                    }
-                }
-
-                configureOpenInAppButton();
-                configureOpenEmbedButton();
-                Log.d(TAG, "redirect to url: " + urlAsString);
-                mWebView.loadUrl(urlAsString);
-                mEventHandler.onPageLoading(mUrl);
-                mTitleTextView.setText(R.string.loading);
-                mUrlTextView.setText(urlAsString.replace("http://", ""));
-                return true;
-            }
-
-            @Override
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                mEventHandler.onPageLoaded();
-                mReloadButton.setVisibility(VISIBLE);
-                mShareButton.setVisibility(GONE);
-            }
-
-            @Override
-            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                handler.proceed();
-            }
-
-            @Override
-            public void onPageStarted(WebView view, String urlAsString, Bitmap favIcon) {
-                mPageFinishedLoading = false;
-
-                updateUrl(urlAsString);
-                mLoadCount = Math.max(mLoadCount, 1);
-
-                if (mShareButton.getVisibility() == GONE) {
-                    mShareButton.setVisibility(VISIBLE);
-                }
-            }
-
-            @Override
-            public void onPageFinished(WebView webView, String urlAsString) {
-                super.onPageFinished(webView, urlAsString);
-                mPageFinishedLoading = true;
-                // NOTE: *don't* call updateUrl() here. Turns out, this function is called after a redirect has occurred.
-                // Eg, urlAsString "t.co/xyz" even after the next redirect is starting to load
-                if (mUrl.toString().equals(urlAsString)) {
-                    updateAppsForUrl(mUrl);
-                    configureOpenInAppButton();
-                    configureOpenEmbedButton();
-
-                    if (--mLoadCount == 0) {
-                        mCurrentLoadedUrl = mUrl.toString();
-
-                        mEventHandler.onPageLoaded();
-                        Log.d(TAG, "onPageFinished() - url: " + urlAsString);
-                    }
-
-                    if (mStartTime > -1) {
-                        Log.d("LoadTime", "Saved " + ((System.currentTimeMillis() - mStartTime) / 1000) + " seconds.");
-                        mStartTime = -1;
-                    }
-
-                    String title = mTitleTextView.getText() != null ? mTitleTextView.getText().toString() : webView.getTitle();
-                    MainApplication.saveUrlInHistory(getContext(), null, mUrl.toString(), mUrl.getHost(), title);
-
-                    // Always check again at 100%
-                    if (Settings.get().checkForYouTubeEmbeds()) {
-                        webView.loadUrl(JS_EMBED);
-                        Log.d(TAG, "onPageFinished() - checkForYouTubeEmbeds()");
-                    }
-                }
-            }
-        });
-
-        mWebView.setOnKeyListener(new OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                    WebView webView = (WebView) v;
-                    switch (keyCode) {
-                        case KeyEvent.KEYCODE_BACK: {
-                            if (mUrlHistory.size() == 0) {
-                                mEventHandler.onDestroyBubble();
-                            } else {
-                                webView.stopLoading();
-                                String urlBefore = webView.getUrl();
-
-                                String prevUrl = mUrlHistory.pop();
-                                mLoadingPrev = true;
-                                webView.loadUrl(prevUrl);
-
-                                updateUrl(prevUrl);
-                                updateAppsForUrl(mUrl);
-                                if (mYouTubeEmbedHelper != null) {
-                                    mYouTubeEmbedHelper.clear();
-                                }
-                                Log.d(TAG, "Go back: " + urlBefore + " -> " + webView.getUrl());
-                                configureOpenInAppButton();
-                                configureOpenEmbedButton();
-                                return true;
-                            }
-                            break;
-                        }
-                    }
-                }
-
-                return false;
-            }
-        });
-
-        mWebView.setDownloadListener(new DownloadListener() {
-            @Override
-            public void onDownloadStart(String urlAsString, String userAgent,
-                                        String contentDisposition, String mimetype,
-                                        long contentLength) {
-                openInBrowser(urlAsString);
-                mEventHandler.onDestroyBubble();
-            }
-        });
+        mWebView.setOnLongClickListener(mOnWebViewLongClickListener);
+        mWebView.setWebChromeClient(mWebChromeClient);
+        mWebView.setOnKeyListener(mOnKeyListener);
+        mWebView.setWebViewClient(mWebViewClient);
+        mWebView.setDownloadListener(mDownloadListener);
 
         if (Settings.get().checkForYouTubeEmbeds()) {
             mJSEmbedHandler = new JSEmbedHandler();
@@ -662,6 +317,367 @@ public class ContentView extends FrameLayout {
         mTitleTextView.setText(R.string.loading);
         mUrlTextView.setText(urlAsString.replace("http://", ""));
     }
+
+    WebViewClient mWebViewClient = new WebViewClient() {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView wView, String urlAsString) {
+
+            if (mLoadCount == 0) {
+                if (mCurrentLoadedUrl != null && !mLoadingPrev) {
+                    mUrlHistory.push(mCurrentLoadedUrl);
+                }
+                mCurrentLoadedUrl = null;
+                mLoadingPrev = false;
+            }
+
+            ++mLoadCount;
+            updateUrl(urlAsString);
+
+            if (mYouTubeEmbedHelper != null) {
+                mYouTubeEmbedHelper.clear();
+            }
+
+            List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(urlAsString);
+            updateAppsForUrl(resolveInfos, mUrl);
+            if (Settings.get().redirectUrlToBrowser(urlAsString)) {
+                if (openInBrowser(urlAsString)) {
+                    String title = String.format(mContext.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
+                    MainApplication.saveUrlInHistory(mContext, null, urlAsString, title);
+                    return false;
+                }
+            }
+
+            if (Settings.get().getAutoContentDisplayAppRedirect() && resolveInfos != null && resolveInfos.size() > 0) {
+                ResolveInfo resolveInfo = resolveInfos.get(0);
+                if (resolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo) {
+                    // TODO: Fix to handle multiple apps
+                    if (MainApplication.loadResolveInfoIntent(mContext, resolveInfo, urlAsString, mStartTime)) {
+                        String title = String.format(mContext.getString(R.string.link_loaded_with_app),
+                                resolveInfo.loadLabel(mContext.getPackageManager()));
+                        MainApplication.saveUrlInHistory(mContext, resolveInfo, urlAsString, title);
+
+                        mEventHandler.onDestroyBubble();
+                        return false;
+                    }
+                }
+            }
+
+            configureOpenInAppButton();
+            configureOpenEmbedButton();
+            Log.d(TAG, "redirect to url: " + urlAsString);
+            mWebView.loadUrl(urlAsString);
+            mEventHandler.onPageLoading(mUrl);
+            mTitleTextView.setText(R.string.loading);
+            mUrlTextView.setText(urlAsString.replace("http://", ""));
+            return true;
+        }
+
+        @Override
+        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            mEventHandler.onPageLoaded();
+            mReloadButton.setVisibility(VISIBLE);
+            mShareButton.setVisibility(GONE);
+        }
+
+        @Override
+        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+            handler.proceed();
+        }
+
+        @Override
+        public void onPageStarted(WebView view, String urlAsString, Bitmap favIcon) {
+            mPageFinishedLoading = false;
+
+            updateUrl(urlAsString);
+            mLoadCount = Math.max(mLoadCount, 1);
+
+            if (mShareButton.getVisibility() == GONE) {
+                mShareButton.setVisibility(VISIBLE);
+            }
+        }
+
+        @Override
+        public void onPageFinished(WebView webView, String urlAsString) {
+            super.onPageFinished(webView, urlAsString);
+            mPageFinishedLoading = true;
+            // NOTE: *don't* call updateUrl() here. Turns out, this function is called after a redirect has occurred.
+            // Eg, urlAsString "t.co/xyz" even after the next redirect is starting to load
+            if (mUrl.toString().equals(urlAsString)) {
+                updateAppsForUrl(mUrl);
+                configureOpenInAppButton();
+                configureOpenEmbedButton();
+
+                if (--mLoadCount == 0) {
+                    mCurrentLoadedUrl = mUrl.toString();
+
+                    mEventHandler.onPageLoaded();
+                    Log.d(TAG, "onPageFinished() - url: " + urlAsString);
+                }
+
+                if (mStartTime > -1) {
+                    Log.d("LoadTime", "Saved " + ((System.currentTimeMillis() - mStartTime) / 1000) + " seconds.");
+                    mStartTime = -1;
+                }
+
+                String title = mTitleTextView.getText() != null ? mTitleTextView.getText().toString() : webView.getTitle();
+                MainApplication.saveUrlInHistory(getContext(), null, mUrl.toString(), mUrl.getHost(), title);
+
+                // Always check again at 100%
+                if (Settings.get().checkForYouTubeEmbeds()) {
+                    webView.loadUrl(JS_EMBED);
+                    Log.d(TAG, "onPageFinished() - checkForYouTubeEmbeds()");
+                }
+            }
+        }
+    };
+
+    OnKeyListener mOnKeyListener = new OnKeyListener() {
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
+            if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                WebView webView = (WebView) v;
+                switch (keyCode) {
+                    case KeyEvent.KEYCODE_BACK: {
+                        if (mUrlHistory.size() == 0) {
+                            mEventHandler.onDestroyBubble();
+                        } else {
+                            webView.stopLoading();
+                            String urlBefore = webView.getUrl();
+
+                            String prevUrl = mUrlHistory.pop();
+                            mLoadingPrev = true;
+                            webView.loadUrl(prevUrl);
+
+                            updateUrl(prevUrl);
+                            updateAppsForUrl(mUrl);
+                            if (mYouTubeEmbedHelper != null) {
+                                mYouTubeEmbedHelper.clear();
+                            }
+                            Log.d(TAG, "Go back: " + urlBefore + " -> " + webView.getUrl());
+                            configureOpenInAppButton();
+                            configureOpenEmbedButton();
+                            return true;
+                        }
+                        break;
+                    }
+                }
+            }
+
+            return false;
+        }
+    };
+
+    WebChromeClient mWebChromeClient = new WebChromeClient() {
+        @Override
+        public void onReceivedTitle(WebView webView, String title) {
+            super.onReceivedTitle(webView, title);
+            mTitleTextView.setText(title);
+        }
+
+        @Override
+        public void onReceivedIcon(WebView webView, Bitmap bitmap) {
+            super.onReceivedIcon(webView, bitmap);
+
+            // Only pass this along if the page has finished loading (https://github.com/chrislacy/LinkBubble/issues/155).
+            // This is to prevent passing a stale icon along when a redirect has already occurred. This shouldn't cause
+            // too many ill-effects, because BitmapView attempts to load host/favicon.ico automatically anyway.
+            if (mPageFinishedLoading) {
+                mEventHandler.onReceivedIcon(bitmap);
+
+                String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
+                Favicons.putFaviconInMemCache(faviconUrl, bitmap);
+            }
+        }
+
+        @Override
+        public void onProgressChanged(WebView webView, int progress) {
+            //Log.d(TAG, "onProgressChanged() - progress:" + progress);
+
+            mEventHandler.onProgressChanged(progress);
+
+            // At 60%, the page is more often largely viewable, but waiting for background shite to finish which can
+            // take many, many seconds, even on a strong connection. Thus, do a check for embeds now to prevent the button
+            // not being updated until 100% is reached, which feels too slow as a user.
+            if (progress >= 60) {
+                if (mCheckForEmbedsCount == 0) {
+                    mCheckForEmbedsCount = 1;
+                    if (mYouTubeEmbedHelper != null) {
+                        mYouTubeEmbedHelper.clear();
+                    }
+
+                    if (Settings.get().checkForYouTubeEmbeds()) {
+                        Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
+                        webView.loadUrl(JS_EMBED);
+                    }
+                } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
+                    mCheckForEmbedsCount = 2;
+                    if (Settings.get().checkForYouTubeEmbeds()) {
+                        Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
+                        webView.loadUrl(JS_EMBED);
+                    }
+                }
+            }
+        }
+    };
+
+    OnLongClickListener mOnWebViewLongClickListener = new OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            WebView.HitTestResult hitTestResult = mWebView.getHitTestResult();
+            Log.d(TAG, "onLongClick type: " + hitTestResult.getType());
+            switch (hitTestResult.getType()) {
+                case WebView.HitTestResult.SRC_ANCHOR_TYPE:
+                case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: {
+                    final String url = hitTestResult.getExtra();
+                    if (url == null) {
+                        return false;
+                    }
+
+                    onUrlLongClick(url);
+                    return true;
+                }
+
+                case WebView.HitTestResult.UNKNOWN_TYPE:
+                default:
+                    String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
+                    String message;
+                    if (defaultBrowserLabel != null) {
+                        message = String.format(getResources().getString(R.string.long_press_unsupported_default_browser), defaultBrowserLabel);
+                    } else {
+                        message = getResources().getString(R.string.long_press_unsupported_no_default_browser);
+                    }
+                    Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+                    return false;
+            }
+        }
+    };
+
+    DownloadListener mDownloadListener = new DownloadListener() {
+        @Override
+        public void onDownloadStart(String urlAsString, String userAgent,
+                String contentDisposition, String mimetype,
+        long contentLength) {
+            openInBrowser(urlAsString);
+            mEventHandler.onDestroyBubble();
+        }
+    };
+
+    OnClickListener mOnShareButtonClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            showSelectShareMethod(mUrl.toString(), true);
+        }
+    };
+
+    OpenInAppButton.OnOpenInAppClickListener mOnOpenInAppButtonClickListener = new OpenInAppButton.OnOpenInAppClickListener() {
+
+        @Override
+        public void onAppOpened() {
+            mEventHandler.onDestroyBubble();
+        }
+
+    };
+
+    OpenEmbedButton.OnOpenEmbedClickListener mOnOpenEmbedButtonClickListener = new OpenEmbedButton.OnOpenEmbedClickListener() {
+
+        @Override
+        public void onYouTubeEmbedOpened() {
+
+        }
+    };
+
+    OnClickListener mOnReloadButtonClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mReloadButton.setVisibility(GONE);
+            mWebView.reload();
+        }
+    };
+
+    OnClickListener mOnOverflowButtonClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mOverflowPopupMenu = new PopupMenu(mContext, mOverflowButton);
+            Resources resources = mContext.getResources();
+            mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_upgrade_to_pro, Menu.NONE,
+                    resources.getString(R.string.action_upgrade_to_pro));
+            mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_reload_page, Menu.NONE,
+                    resources.getString(R.string.action_reload_page));
+            String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
+            if (defaultBrowserLabel != null) {
+                mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
+                        String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
+            }
+            mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_settings, Menu.NONE,
+                    resources.getString(R.string.action_settings));
+            mOverflowPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.item_upgrade_to_pro: {
+                            Intent intent = Config.getStoreIntent(mContext, Config.STORE_PRO_URL);
+                            if (intent != null) {
+                                mContext.startActivity(intent);
+                                mEventHandler.onMinimizeBubbles();
+                            }
+                            break;
+                        }
+
+                        case R.id.item_reload_page: {
+                            if (mYouTubeEmbedHelper != null) {
+                                mYouTubeEmbedHelper.clear();
+                            }
+                            mEventHandler.onPageLoading(mUrl);
+                            mWebView.stopLoading();
+                            mWebView.reload();
+                            String urlAsString = mUrl.toString();
+                            updateAppsForUrl(mUrl);
+                            configureOpenInAppButton();
+                            configureOpenEmbedButton();
+                            Log.d(TAG, "reload url: " + urlAsString);
+                            mStartTime = System.currentTimeMillis();
+                            mTitleTextView.setText(R.string.loading);
+                            mUrlTextView.setText(urlAsString.replace("http://", ""));
+                            break;
+                        }
+
+                        case R.id.item_open_in_browser: {
+                            openInBrowser(mUrl.toString());
+                            break;
+                        }
+
+                        case R.id.item_settings: {
+                            Intent intent = new Intent(mContext, SettingsActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            mContext.startActivity(intent);
+                            mEventHandler.onMinimizeBubbles();
+                            break;
+                        }
+                    }
+                    mOverflowPopupMenu = null;
+                    return false;
+                }
+            });
+            mOverflowPopupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
+                @Override
+                public void onDismiss(PopupMenu menu) {
+                    if (mOverflowPopupMenu == menu) {
+                        mOverflowPopupMenu = null;
+                    }
+                }
+            });
+            mOverflowPopupMenu.show();
+        }
+    };
+
+    OnSwipeTouchListener mOnTextContainerTouchListener = new OnSwipeTouchListener() {
+        public void onSwipeRight() {
+            MainController.get().showPreviousBubble();
+        }
+        public void onSwipeLeft() {
+            MainController.get().showNextBubble();
+        }
+    };
 
     private void onUrlLongClick(final String urlAsString) {
         Resources resources = mContext.getResources();
