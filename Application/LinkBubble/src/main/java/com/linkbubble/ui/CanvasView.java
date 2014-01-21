@@ -243,7 +243,6 @@ public class CanvasView extends FrameLayout {
     @SuppressWarnings("unused")
     @Subscribe
     public void onOrientationChanged(MainController.OrientationChangedEvent e) {
-        fadeOut();
         for (int i=0 ; i < mTargets.size() ; ++i) {
             BubbleTargetView bt = mTargets.get(i);
             bt.OnOrientationChanged();

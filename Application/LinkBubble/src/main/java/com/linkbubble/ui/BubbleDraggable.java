@@ -536,7 +536,11 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
     @Override
     public void onOrientationChanged() {
-        switchToBubbleView();
+        if (mMode == Mode.BubbleView) {
+            switchToBubbleView();
+        } else {
+            switchToExpandedView();
+        }
     }
 
     public void clearTargetPos() {
