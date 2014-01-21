@@ -310,6 +310,10 @@ public class BubbleFlowView extends HorizontalScrollView {
         return mViews.size();
     }
 
+    public int getIndexOfView(View view) {
+        return mViews.indexOf(view);
+    }
+
     int getCenterIndex() {
         int centerX = (mWidth/2) + getScrollX();
         int closestXAbsDelta = Integer.MAX_VALUE;
@@ -328,7 +332,7 @@ public class BubbleFlowView extends HorizontalScrollView {
     public void setCenterIndex(int index) {
         int scrollToX = mEdgeMargin + (index * mItemWidth) - (mWidth/2) + (mItemWidth/2);
         smoothScrollTo(scrollToX, 0);
-        startScrollFinishedCheckTask();
+        startScrollFinishedCheckTask(scrollToX);
     }
 
     public void setCenterItem(View view) {
@@ -488,7 +492,8 @@ public class BubbleFlowView extends HorizontalScrollView {
     private Runnable mScrollFinishedChecker = new Runnable() {
 
         public void run() {
-            if(mScrollFinishedCheckerInitialXPosition - getScrollX() == 0){
+            int scrollX = getScrollX();
+            if(mScrollFinishedCheckerInitialXPosition - scrollX == 0){
                 if (mBubbleFlowListener != null) {
                     int currentCenterIndex = getCenterIndex();
                     if (currentCenterIndex > -1) {
@@ -496,14 +501,15 @@ public class BubbleFlowView extends HorizontalScrollView {
                     }
                 }
             }else{
-                mScrollFinishedCheckerInitialXPosition = getScrollX();
+                mScrollFinishedCheckerInitialXPosition = scrollX;
                 postDelayed(mScrollFinishedChecker, SCROLL_FINISHED_CHECK_TIME);
             }
         }
     };
 
-    public void startScrollFinishedCheckTask(){
-        mScrollFinishedCheckerInitialXPosition = getScrollX();
+    public void startScrollFinishedCheckTask(int targetXPosition){
+        int scrollX = getScrollX();
+        mScrollFinishedCheckerInitialXPosition = targetXPosition > -1 ? targetXPosition : getScrollX();
         postDelayed(mScrollFinishedChecker, SCROLL_FINISHED_CHECK_TIME);
     }
 
@@ -678,9 +684,10 @@ public class BubbleFlowView extends HorizontalScrollView {
                         if (DEBUG) {
                             Log.d(TAG, "No fling - back to middle!");
                         }
+                    } else {
+                        startScrollFinishedCheckTask(-1);
                     }
                     mIndexOnActionDown = -1;
-                    startScrollFinishedCheckTask();
                     mActiveTouchPointerId = INVALID_POINTER;
                     return true;
 
@@ -708,7 +715,6 @@ public class BubbleFlowView extends HorizontalScrollView {
                 int currentCenterIndex = getCenterIndex();
                 if (currentCenterIndex != index) {
                     setCenterIndex(index);
-                    startScrollFinishedCheckTask();
                 } else {
                     if (mBubbleFlowListener != null) {
                         mBubbleFlowListener.onCenterItemClicked(BubbleFlowView.this, v);
@@ -726,7 +732,6 @@ public class BubbleFlowView extends HorizontalScrollView {
                 int currentCenterIndex = getCenterIndex();
                 if (currentCenterIndex != index) {
                     setCenterIndex(index);
-                    startScrollFinishedCheckTask();
                     return true;
                 }
             }

@@ -256,18 +256,18 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             return;
         }
 
-        if (mCurrentBubble == null || setAsCurrentBubble) {
-            setCurrentBubble(bubble);
-        }
-
         mBubbles.add(bubble);
         mBubbleDraggable.mBadgeView.setCount(mBubbles.size());
-
-        Settings.get().saveCurrentBubbles(mBubbles);
 
         // Only insert next to current Bubble when in ContentView mode. Ensures links opened when app is
         // minimized are added to the end.
         add(bubble, mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView);
+
+        if (mCurrentBubble == null || setAsCurrentBubble) {
+            setCurrentBubble(bubble);
+        }
+
+        Settings.get().saveCurrentBubbles(mBubbles);
     }
 
     private void destroyBubble(BubbleFlowItemView bubble, boolean animateRemove, boolean removeFromList) {

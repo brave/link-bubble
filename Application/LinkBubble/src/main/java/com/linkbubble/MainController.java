@@ -315,6 +315,10 @@ public class MainController implements Choreographer.FrameCallback {
         return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getBubbleCount() : 0;
     }
 
+    public int getBubbleIndex(BubbleFlowItemView bubbleFlowItemView) {
+        return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getIndexOfView(bubbleFlowItemView) : -1;
+    }
+
     public void doFrame(long frameTimeNanos) {
         mUpdateScheduled = false;
 
@@ -369,7 +373,7 @@ public class MainController implements Choreographer.FrameCallback {
         MainApplication.postEvent(mContext, mOrientationChangedEvent);
     }
 
-    public void onOpenUrl(final String url, long startTime) {
+    public void onOpenUrl(final String url, long startTime, final boolean setAsCurrentBubble) {
         if (Settings.get().redirectUrlToBrowser(url)) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(url));
@@ -424,7 +428,7 @@ public class MainController implements Choreographer.FrameCallback {
                                 }
 
                                 if (loaded == false) {
-                                    openUrlInBubble(url, System.currentTimeMillis());
+                                    openUrlInBubble(url, System.currentTimeMillis(), setAsCurrentBubble);
                                 } else {
                                     if (getBubbleCount() == 0) {
                                         mEventHandler.onDestroy();
@@ -440,17 +444,17 @@ public class MainController implements Choreographer.FrameCallback {
             }
         }
 
-        openUrlInBubble(url, startTime);
+        openUrlInBubble(url, startTime, setAsCurrentBubble);
     }
 
-    protected void openUrlInBubble(String url, long startTime) {
+    protected void openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble) {
         if (mAlive) {
             if (getBubbleCount() == 0) {
                 mBubbleDraggable.setVisibility(View.VISIBLE);
                 mBubbleDraggable.setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
             }
 
-            boolean setAsCurrentBubble = mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView ? false : true;
+            //boolean setAsCurrentBubble = mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView ? false : true;
             mBubbleFlowDraggable.openUrlInBubble(url, startTime, setAsCurrentBubble);
             showBadge(getBubbleCount() > 1 ? true : false);
             ++mBubblesLoaded;
