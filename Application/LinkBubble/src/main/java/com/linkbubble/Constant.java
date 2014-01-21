@@ -7,6 +7,8 @@ public class Constant {
 
     public static final int BUBBLE_ANIM_TIME = 300;
 
+    public static final String PRIVACY_POLICY_URL = "http://www.actionlauncher.com/privacy";
+    public static final String TERMS_OF_SERVICE_URL = "http://www.actionlauncher.com/terms";
 
     public static String getOSFlavor() {
         int apiVersion = android.os.Build.VERSION.SDK_INT;
