@@ -39,6 +39,7 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
 import org.mozilla.gecko.favicons.Favicons;
 
@@ -464,6 +465,9 @@ public class ContentView extends FrameLayout {
                 // too many ill-effects, because BitmapView attempts to load host/favicon.ico automatically anyway.
                 if (mPageFinishedLoading) {
                     mEventHandler.onReceivedIcon(bitmap);
+
+                    String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
+                    Favicons.putFaviconInMemCache(faviconUrl, bitmap);
                 }
             }
 
