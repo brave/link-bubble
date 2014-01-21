@@ -71,7 +71,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     private void onAnimComplete() {
-        Util.Assert(mAnimActive == true);
+        Util.Assert(mAnimActive);
         mAnimActive = false;
     }
 
@@ -92,6 +92,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             @Override
             public void onAnimationComplete() {
                 onAnimComplete();
+            }
+            @Override
+            public void onCancel() {
+                // TODO
             }
         });
     }
@@ -188,12 +192,21 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                     }
                 }
             }
+            @Override
+            public void onCancel() {
+                // TODO
+            }
         });
     }
 
     private void doAnimateToBubbleView() {
-        if (mMode == Mode.BubbleView && mAnimActive)
-            return;
+        if (mAnimActive) {
+            if (mMode == Mode.BubbleView) {
+                return;
+            } else {
+                mDraggableHelper.cancelAnimation();
+            }
+        }
 
         mTouchDown = false;
         mMode = Mode.BubbleView;
@@ -216,6 +229,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                 MainApplication.postEvent(getContext(), mEndCollapseTransitionEvent);
                 onAnimComplete();
             }
+            @Override
+            public void onCancel() {
+                // TODO
+            }
         });
 
         mainController.endAppPolling();
@@ -232,10 +249,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         mTouchDown = false;
         mMode = Mode.ContentView;
 
-        float bubblePeriod = (float) Constant.BUBBLE_ANIM_TIME / 1000.f;
-        float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
+        final float bubblePeriod = (float) Constant.BUBBLE_ANIM_TIME / 1000.f;
+        final float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
 
-        MainController mainController = MainController.get();
+        final MainController mainController = MainController.get();
         setVisibility(View.VISIBLE);
 
         int xp = (int) Config.getContentViewX(0, 1);
@@ -245,6 +262,12 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             @Override
             public void onAnimationComplete() {
                 onAnimComplete();
+            }
+            @Override
+            public void onCancel() {
+                onAnimComplete();
+                mainController.endAppPolling();
+                mainController.collapseBubbleFlow((long) (contentPeriod * 1000));
             }
         });
         mainController.beginAppPolling();
@@ -342,6 +365,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                                     public void onAnimationComplete() {
                                         onAnimComplete();
                                     }
+                                    @Override
+                                    public void onCancel() {
+                                        // TODO
+                                    }
                                 });
                             }
                         } else {
@@ -352,6 +379,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                                         mCurrentSnapTarget.endSnapping();
                                         mCurrentSnapTarget = null;
                                         onAnimComplete();
+                                    }
+                                    @Override
+                                    public void onCancel() {
+                                        // TODO
                                     }
                                 });
                             }
@@ -469,7 +500,11 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                         mCurrentSnapTarget = null;
 
                         doSnapAction(action);
-                        }
+                    }
+                    @Override
+                    public void onCancel() {
+                        // TODO
+                    }
                 });
             }
         }

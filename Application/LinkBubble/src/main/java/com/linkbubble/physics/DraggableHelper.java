@@ -91,6 +91,7 @@ public class DraggableHelper {
 
     public interface AnimationEventListener {
         public void onAnimationComplete();
+        public void onCancel();
     }
 
     public DraggableHelper(View view, WindowManager windowManager, WindowManager.LayoutParams windowManagerParams, boolean setOnTouchListener,
@@ -257,6 +258,27 @@ public class DraggableHelper {
 
         mAnimPeriod = 0.0f;
         mAnimTime = 0.0f;
+    }
+
+    public void cancelAnimation() {
+        AnimationEventListener listener = mAnimationListener;
+        mAnimationListener = null;
+
+        clearTargetPos();
+
+        if (listener != null) {
+            listener.onCancel();
+        }
+    }
+
+    public float getAnimCompleteFraction() {
+        float f = 1.0f;
+
+        if (mAnimPeriod > 0.0f) {
+            f = Util.clamp(0.0f, mAnimTime / mAnimPeriod, 1.0f);
+        }
+
+        return f;
     }
 
     public void clearTargetPos() {
