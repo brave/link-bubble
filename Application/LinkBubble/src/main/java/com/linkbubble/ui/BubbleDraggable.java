@@ -490,7 +490,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                 int yt = (int) (c.mY - Config.mBubbleHeight * 0.5f);
 
                 mDraggableHelper.cancelAnimation();
-                onAnimComplete();
 
                 setTargetPos(xt, yt, 0.3f, DraggableHelper.AnimationType.LargeOvershoot, new DraggableHelper.AnimationEventListener() {
                     @Override
