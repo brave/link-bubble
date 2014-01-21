@@ -1,6 +1,7 @@
 package com.linkbubble.physics;
 
 
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -246,19 +247,6 @@ public class DraggableHelper {
             return false;
         }
     };
-
-    public void forceClearAnim() {
-        mAnimationListener = null;
-
-        mInitialX = -1;
-        mInitialY = -1;
-
-        mTargetX = mWindowManagerParams.x;
-        mTargetY = mWindowManagerParams.y;
-
-        mAnimPeriod = 0.0f;
-        mAnimTime = 0.0f;
-    }
 
     public void cancelAnimation() {
         AnimationEventListener listener = mAnimationListener;
