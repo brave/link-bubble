@@ -89,7 +89,7 @@ public class BubbleFlowItemView extends BubbleView {
 
             @Override
             public void onPageLoaded(ContentView.PageLoadInfo info) {
-                BubbleFlowItemView.this.onPageLoaded(info);
+                BubbleFlowItemView.this.onPageLoaded();
 
                 mListener.onPageLoaded(info, BubbleFlowItemView.this);
             }

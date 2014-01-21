@@ -144,7 +144,6 @@ public class ContentView extends FrameLayout {
     };
 
     public static class PageLoadInfo {
-        Bitmap bmp;
         String url;
         String mHost;
         String title;
@@ -589,7 +588,6 @@ public class ContentView extends FrameLayout {
                         mCurrentLoadedUrl = mUrl.toString();
 
                         PageLoadInfo pageLoadInfo = new PageLoadInfo();
-                        pageLoadInfo.bmp = webView.getFavicon();
                         pageLoadInfo.url = urlAsString;
                         pageLoadInfo.mHost = mUrl.getHost();
                         pageLoadInfo.title = webView.getTitle();
