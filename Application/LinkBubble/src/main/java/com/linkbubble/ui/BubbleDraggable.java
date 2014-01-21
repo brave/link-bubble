@@ -22,6 +22,8 @@ import java.net.MalformedURLException;
 
 public class BubbleDraggable extends BubbleView implements Draggable {
 
+    private static final String TAG = "BubbleDraggable";
+
     private DraggableHelper mDraggableHelper;
     private WindowManager mWindowManager;
     private OnUpdateListener mOnUpdateListener;
@@ -202,11 +204,20 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     private void doAnimateToBubbleView() {
         if (mAnimActive) {
             if (mMode == Mode.BubbleView) {
+                Log.e(TAG, "doAnimateToBubbleView() - early exit");
                 return;
             } else {
+                Log.e(TAG, "doAnimateToBubbleView() - cancelAnim");
                 mDraggableHelper.cancelAnimation();
             }
         }
+
+        StackTraceElement[] cause = Thread.currentThread().getStackTrace();
+        String log = "";
+        for (StackTraceElement i : cause) {
+            log += i.toString() + "\n";
+        }
+        Log.d(TAG, "doAnimateToBubbleView() - " + log);
 
         mTouchDown = false;
         mMode = Mode.BubbleView;
@@ -245,11 +256,20 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     private void doAnimateToContentView() {
         if (mAnimActive) {
             if (mMode == Mode.ContentView) {
+                Log.e(TAG, "doAnimateToContentView() - early exit");
                 return;
             } else {
+                Log.e(TAG, "doAnimateToContentView() - cancelAnim");
                 mDraggableHelper.cancelAnimation();
             }
         }
+
+        StackTraceElement[] cause = Thread.currentThread().getStackTrace();
+        String log = "";
+        for (StackTraceElement i : cause) {
+            log += i.toString() + "\n";
+        }
+        Log.d(TAG, "doAnimateToContentView() - " + log);
 
         mTouchDown = false;
         mMode = Mode.ContentView;
