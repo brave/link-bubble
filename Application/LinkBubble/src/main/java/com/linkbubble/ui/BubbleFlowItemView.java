@@ -59,48 +59,21 @@ public class BubbleFlowItemView extends BubbleView {
             }
 
             @Override
-            public void onPageLoading(String url) {
+            public void onPageLoading(URL url) {
                 showProgressBar(true, 0);
 
                 boolean setDefaultFavicon = true;
 
-                try {
-                    // TODO: remove this allocation
-                    URL previousUrl = mUrl;
-                    mUrl = new URL(url);
+                URL previousUrl = mUrl;
+                mUrl = url;
 
-                    if (previousUrl != null && previousUrl.getHost().equals(mUrl.getHost()) && mFaviconLoadId == Favicons.LOADED) {
+                if (previousUrl != null && previousUrl.getHost().equals(mUrl.getHost()) && mFaviconLoadId == Favicons.LOADED) {
+                    setDefaultFavicon = false;
+                } else {
+                    loadFavicon();
+                    if (mFaviconLoadId == Favicons.LOADED || mFaviconLoadId == Favicons.NOT_LOADING) {
                         setDefaultFavicon = false;
-                    } else {
-                        loadFavicon();
-                        if (mFaviconLoadId == Favicons.LOADED || mFaviconLoadId == Favicons.NOT_LOADING) {
-                            setDefaultFavicon = false;
-                        }
-                        /*
-                        String faviconUrl = "http://" + mUrl.getHost() + "/favicon.ico";
-                        //String faviconUrl = "http://1.gravatar.com/blavatar/f8748081423ce49bd3ecb267cd4effc7?s=16";
-                        Picasso.with(getContext()).cancelRequest(mFavicon);
-                        Picasso.with(getContext())
-                                .load(faviconUrl)
-                                .transform(mFaviconTransformation)
-                                .placeholder(R.drawable.fallback_favicon)
-                                .into(mFavicon, new Callback() {
-                                    @Override
-                                    public void onSuccess() {
-                                        if (mAdditionalFaviconView != null) {
-                                            mAdditionalFaviconView.setImageDrawable(mFavicon.getDrawable());
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onError() {
-                                        onReceivedIcon(null);
-                                    }
-                                });
-                        */
                     }
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
                 }
 
                 if (setDefaultFavicon) {
