@@ -450,7 +450,8 @@ public class MainController implements Choreographer.FrameCallback {
                 mBubbleDraggable.setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
             }
 
-            mBubbleFlowDraggable.openUrlInBubble(url, startTime);
+            boolean setAsCurrentBubble = mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView ? false : true;
+            mBubbleFlowDraggable.openUrlInBubble(url, startTime, setAsCurrentBubble);
             showBadge(getBubbleCount() > 1 ? true : false);
             ++mBubblesLoaded;
         } else {
