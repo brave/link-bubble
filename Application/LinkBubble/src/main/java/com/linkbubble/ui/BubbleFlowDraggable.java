@@ -264,11 +264,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                         }
 
                         @Override
-                        public void onPageLoaded(ContentView.PageLoadInfo info, BubbleFlowItemView bubbleFlowItemView) {
-                            if (info != null && info.url != null) {
-                                MainApplication.saveUrlInHistory(getContext(), null, info.url, info.mHost, info.title);
-                            }
-
+                        public void onPageLoaded(BubbleFlowItemView bubbleFlowItemView) {
                             MainController.get().onPageLoaded(bubbleFlowItemView);
                         }
 

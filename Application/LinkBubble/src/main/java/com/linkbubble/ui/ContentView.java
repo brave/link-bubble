@@ -11,6 +11,7 @@ import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.http.SslError;
+import android.preference.Preference;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -143,18 +144,12 @@ public class ContentView extends FrameLayout {
         }
     };
 
-    public static class PageLoadInfo {
-        String url;
-        String mHost;
-        String title;
-    }
-
     public interface EventHandler {
         public void onDestroyBubble();
         public void onMinimizeBubbles();
         public void onPageLoading(URL url);
         public void onProgressChanged(int progress);
-        public void onPageLoaded(PageLoadInfo info);
+        public void onPageLoaded();
         public void onReceivedIcon(Bitmap bitmap);
     }
 
@@ -547,7 +542,7 @@ public class ContentView extends FrameLayout {
 
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                mEventHandler.onPageLoaded(null);
+                mEventHandler.onPageLoaded();
                 mReloadButton.setVisibility(VISIBLE);
                 mShareButton.setVisibility(GONE);
             }
@@ -575,36 +570,30 @@ public class ContentView extends FrameLayout {
                 mPageFinishedLoading = true;
                 // NOTE: *don't* call updateUrl() here. Turns out, this function is called after a redirect has occurred.
                 // Eg, urlAsString "t.co/xyz" even after the next redirect is starting to load
-                if (mUrl != null)
-                {
+                if (mUrl.toString().equals(urlAsString)) {
                     updateAppsForUrl(mUrl);
                     configureOpenInAppButton();
                     configureOpenEmbedButton();
 
-                    mTitleTextView.setText(webView.getTitle());
-                    mUrlTextView.setText(urlAsString.replace("http://", ""));
-
                     if (--mLoadCount == 0) {
                         mCurrentLoadedUrl = mUrl.toString();
 
-                        PageLoadInfo pageLoadInfo = new PageLoadInfo();
-                        pageLoadInfo.url = urlAsString;
-                        pageLoadInfo.mHost = mUrl.getHost();
-                        pageLoadInfo.title = webView.getTitle();
-
-                        mEventHandler.onPageLoaded(pageLoadInfo);
+                        mEventHandler.onPageLoaded();
                         Log.d(TAG, "onPageFinished() - url: " + urlAsString);
+                    }
 
-                        if (mStartTime > -1) {
-                            Log.d("LoadTime", "Saved " + ((System.currentTimeMillis() - mStartTime) / 1000) + " seconds.");
-                            mStartTime = -1;
-                        }
+                    if (mStartTime > -1) {
+                        Log.d("LoadTime", "Saved " + ((System.currentTimeMillis() - mStartTime) / 1000) + " seconds.");
+                        mStartTime = -1;
+                    }
 
-                        // Always check again at 100%
-                        if (Settings.get().checkForYouTubeEmbeds()) {
-                            webView.loadUrl(JS_EMBED);
-                            Log.d(TAG, "onPageFinished() - checkForYouTubeEmbeds()");
-                        }
+                    String title = mTitleTextView.getText() != null ? mTitleTextView.getText().toString() : webView.getTitle();
+                    MainApplication.saveUrlInHistory(getContext(), null, mUrl.toString(), mUrl.getHost(), title);
+
+                    // Always check again at 100%
+                    if (Settings.get().checkForYouTubeEmbeds()) {
+                        webView.loadUrl(JS_EMBED);
+                        Log.d(TAG, "onPageFinished() - checkForYouTubeEmbeds()");
                     }
                 }
             }

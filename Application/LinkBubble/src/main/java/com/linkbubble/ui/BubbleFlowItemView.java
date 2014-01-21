@@ -22,7 +22,7 @@ public class BubbleFlowItemView extends BubbleView {
     public interface BubbleFlowItemViewListener {
         public void onDestroyBubble();
         public void onMinimizeBubbles();
-        public void onPageLoaded(ContentView.PageLoadInfo info, BubbleFlowItemView bubbleFlowItemView);
+        public void onPageLoaded(BubbleFlowItemView bubbleFlowItemView);
     }
 
     protected ContentView mContentView;
@@ -88,10 +88,10 @@ public class BubbleFlowItemView extends BubbleView {
             }
 
             @Override
-            public void onPageLoaded(ContentView.PageLoadInfo info) {
+            public void onPageLoaded() {
                 BubbleFlowItemView.this.onPageLoaded();
 
-                mListener.onPageLoaded(info, BubbleFlowItemView.this);
+                mListener.onPageLoaded(BubbleFlowItemView.this);
             }
 
             @Override
