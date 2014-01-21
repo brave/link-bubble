@@ -191,6 +191,7 @@ public class CanvasView extends FrameLayout {
     public void onBeginBubbleDrag(MainController.BeginBubbleDragEvent e) {
         fadeIn();
         hideContentView();
+        MainController.get().showBadge(false);
     }
 
     @SuppressWarnings("unused")
@@ -198,6 +199,7 @@ public class CanvasView extends FrameLayout {
     public void onEndBubbleDragEvent(MainController.EndBubbleDragEvent e) {
         fadeOut();
         showContentView();
+        MainController.get().showBadge(true);
     }
 
     @SuppressWarnings("unused")
