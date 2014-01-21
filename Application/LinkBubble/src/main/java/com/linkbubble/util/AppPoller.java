@@ -55,6 +55,19 @@ public class AppPoller {
         Log.d(TAG, "endAppPolling()");
     }
 
+    // ES FileExplorer seems to employ a nasty hack whereby they start a new Activity when an app is installed/updated.
+    // Add this equally nasty hack to ignore this one activity. Stops the Bubbles going into BubbleView mode without any input (see #179)
+    private static final String[] IGNORE_ACTIVITIES = {"com.estrongs.android.pop/.app.InstallMonitorActivity"};
+    private boolean shouldIgnoreActivity(String flatComponentName) {
+        for (String string : IGNORE_ACTIVITIES) {
+            if (string.equals(flatComponentName)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private final Handler mHandler = new Handler() {
 
         @Override
@@ -71,14 +84,19 @@ public class AppPoller {
                     ActivityManager am = (ActivityManager)mContext.getSystemService(Activity.ACTIVITY_SERVICE);
                     //Log.d(TAG, "Checking current tasks...");
                     ComponentName componentName = am.getRunningTasks(1).get(0).topActivity;
-                    String currentAppFlatComponentName = componentName.flattenToShortString();
-                    if (currentAppFlatComponentName != null
+                    String appFlatComponentName = componentName.flattenToShortString();
+                    if (appFlatComponentName != null
                             && mCurrentAppFlatComponentName != null
-                            && !currentAppFlatComponentName.equals(mCurrentAppFlatComponentName)) {
-                        Log.d(TAG, "current app changed from " + mCurrentAppFlatComponentName + " to " + currentAppFlatComponentName);
-                        mCurrentAppFlatComponentName = currentAppFlatComponentName;
+                            && !appFlatComponentName.equals(mCurrentAppFlatComponentName)) {
+                        Log.d(TAG, "current app changed from " + mCurrentAppFlatComponentName + " to " + appFlatComponentName);
+                        String oldFlatComponentName = mCurrentAppFlatComponentName;
+                        mCurrentAppFlatComponentName = appFlatComponentName;
                         if (mAppPollingListener != null) {
-                            mAppPollingListener.onAppChanged();
+                            if (shouldIgnoreActivity(oldFlatComponentName)) {
+                                Log.e(TAG, "Don't trigger onAppChanged() because ignoring " + oldFlatComponentName);
+                            } else {
+                                mAppPollingListener.onAppChanged();
+                            }
                         }
                     } else {
                         mHandler.sendEmptyMessageDelayed(ACTION_POLL_CURRENT_APP, LOOP_TIME);
