@@ -139,10 +139,16 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         super.configure(width, itemWidth, itemHeight);
 
         if (mDraggableHelper != null && mDraggableHelper.getWindowManagerParams() != null) {
+            //mWindowManager.removeView(this);
+
             WindowManager.LayoutParams windowManagerParams = mDraggableHelper.getWindowManagerParams();
             windowManagerParams.width = width;
             windowManagerParams.x = 0;
             windowManagerParams.y = 0;
+            windowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
+
+            //mWindowManager.addView(this, windowManagerParams);
+            setExactPos(0, 0);
         }
     }
 
