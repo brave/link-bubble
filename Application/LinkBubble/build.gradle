@@ -32,7 +32,6 @@ dependencies {
     compile 'se.emilsjolander:stickylistheaders:2.1.2'
     compile 'com.crashlytics.android:crashlytics:1.+'
     compile files('libs/otto-1.3.4.jar')
-    compile files('libs/rebound_1.1.jar')
     compile files('libs/picasso-2.1.1.jar')
     //compile project(':Libraries:ViewPagerIndicator:library')
 }
