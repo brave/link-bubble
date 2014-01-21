@@ -48,9 +48,9 @@ public class BubbleFlowActivity extends Activity {
                 int centerIndex = mBubbleFlowView.getCenterIndex();
                 int count = mBubbleFlowView.getCount();
                 if (centerIndex+1 < count) {
-                    mBubbleFlowView.remove(centerIndex + 1, true);
+                    mBubbleFlowView.remove(centerIndex + 1, true, true);
                 } else if (count > 2) {
-                    mBubbleFlowView.remove(centerIndex - 1, true);
+                    mBubbleFlowView.remove(centerIndex - 1, true, true);
                 }
             }
         });

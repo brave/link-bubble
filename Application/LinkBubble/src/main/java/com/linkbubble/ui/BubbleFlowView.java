@@ -189,10 +189,13 @@ public class BubbleFlowView extends HorizontalScrollView {
         mContent.setLayoutParams(contentLP);
     }
 
-    void remove(final int index, boolean animateOff) {
+    void remove(final int index, boolean animateOff, boolean removeFromList) {
         final View view = mViews.get(index);
 
         if (animateOff) {
+            if (removeFromList == false) {
+                throw new RuntimeException("removeFromList must be true if animating off");
+            }
             TranslateAnimation slideOffAnim = new TranslateAnimation(0, 0, 0, -mItemHeight);
             slideOffAnim.setDuration(Constant.BUBBLE_ANIM_TIME);
             slideOffAnim.setFillAfter(true);
@@ -259,11 +262,13 @@ public class BubbleFlowView extends HorizontalScrollView {
                 }
             }
         } else {
-            mViews.remove(view);
             mContent.removeView(view);
-            updatePositions();
-            updateScales(getScrollX());
-            mContent.invalidate();
+            if (removeFromList) {
+                mViews.remove(view);
+                updatePositions();
+                updateScales(getScrollX());
+                mContent.invalidate();
+            }
         }
     }
 
