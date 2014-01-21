@@ -370,6 +370,7 @@ public class MainController implements Choreographer.FrameCallback {
     public void onOrientationChanged() {
         Config.init(mContext);
         mBubbleDraggable.onOrientationChanged();
+        mBubbleFlowDraggable.onOrientationChanged();
         MainApplication.postEvent(mContext, mOrientationChangedEvent);
     }
 
