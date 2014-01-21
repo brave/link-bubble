@@ -3,7 +3,6 @@ package com.linkbubble.ui;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -204,20 +203,18 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     private void doAnimateToBubbleView() {
         if (mAnimActive) {
             if (mMode == Mode.BubbleView) {
-                Log.e(TAG, "doAnimateToBubbleView() - early exit");
                 return;
             } else {
-                Log.e(TAG, "doAnimateToBubbleView() - cancelAnim");
                 mDraggableHelper.cancelAnimation();
             }
         }
 
-        StackTraceElement[] cause = Thread.currentThread().getStackTrace();
-        String log = "";
-        for (StackTraceElement i : cause) {
-            log += i.toString() + "\n";
-        }
-        Log.d(TAG, "doAnimateToBubbleView() - " + log);
+        //StackTraceElement[] cause = Thread.currentThread().getStackTrace();
+        //String log = "";
+        //for (StackTraceElement i : cause) {
+        //    log += i.toString() + "\n";
+        //}
+        //Log.d(TAG, "doAnimateToBubbleView() - " + log);
 
         mTouchDown = false;
         mMode = Mode.BubbleView;
@@ -256,20 +253,11 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     private void doAnimateToContentView() {
         if (mAnimActive) {
             if (mMode == Mode.ContentView) {
-                Log.e(TAG, "doAnimateToContentView() - early exit");
                 return;
             } else {
-                Log.e(TAG, "doAnimateToContentView() - cancelAnim");
                 mDraggableHelper.cancelAnimation();
             }
         }
-
-        StackTraceElement[] cause = Thread.currentThread().getStackTrace();
-        String log = "";
-        for (StackTraceElement i : cause) {
-            log += i.toString() + "\n";
-        }
-        Log.d(TAG, "doAnimateToContentView() - " + log);
 
         mTouchDown = false;
         mMode = Mode.ContentView;
