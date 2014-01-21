@@ -243,6 +243,8 @@ public class MainController implements Choreographer.FrameCallback {
         mBubbleFlowDraggable.collapse(0, null);
         mBubbleFlowDraggable.setBubbleDraggable(mBubbleDraggable);
         mBubbleFlowDraggable.setVisibility(View.GONE);
+
+        mBubbleDraggable.setBubbleFlowDraggable(mBubbleFlowDraggable);
     }
 
     //private TextView mTextView;

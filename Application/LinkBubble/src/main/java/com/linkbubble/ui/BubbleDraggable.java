@@ -27,6 +27,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     private OnUpdateListener mOnUpdateListener;
     public BadgeView mBadgeView;
     private CanvasView mCanvasView;
+    private BubbleFlowDraggable mBubbleFlowDraggable;
 
     private MainController.BeginBubbleDragEvent mBeginBubbleDragEvent = new MainController.BeginBubbleDragEvent();
     private MainController.DraggableBubbleMovedEvent mDraggableBubbleMovedEvent = new MainController.DraggableBubbleMovedEvent();
@@ -392,7 +393,11 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                         if (mMode == Mode.BubbleView) {
                             doAnimateToContentView();
                         } else {
-                            doAnimateToBubbleView();
+                            if (mMode == Mode.ContentView && mBubbleFlowDraggable.isExpanded() == false) {
+                                doAnimateToContentView();
+                            } else {
+                                doAnimateToBubbleView();
+                            }
                         }
                     }
 
@@ -409,6 +414,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                 setTargetPos(targetX, targetY, targetTime, DraggableHelper.AnimationType.LargeOvershoot, null);
             }
         }
+    }
+
+    public void setBubbleFlowDraggable(BubbleFlowDraggable bubbleFlowDraggable) {
+        mBubbleFlowDraggable = bubbleFlowDraggable;
     }
 
     public void destroy() {
