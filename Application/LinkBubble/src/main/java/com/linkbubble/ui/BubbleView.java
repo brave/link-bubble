@@ -166,12 +166,8 @@ public class BubbleView extends FrameLayout  {
 
     protected FaviconTransformation mFaviconTransformation = new FaviconTransformation();
 
-    protected void onPageLoaded(ContentView.PageLoadInfo info) {
+    protected void onPageLoaded() {
         showProgressBar(false, 0);
-
-        if (info != null && info.bmp != null) {
-            onReceivedIcon(info.bmp);
-        }
     }
 
     protected void onReceivedIcon(Bitmap favicon) {
