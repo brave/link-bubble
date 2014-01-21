@@ -34,12 +34,12 @@ public class MainService extends Service {
 
         if (cmd.compareTo("open") == 0) {
             String url = intent.getStringExtra("url");
-            MainController.get().onOpenUrl(url, startTime);
+            MainController.get().onOpenUrl(url, startTime, true);
         } else if (cmd.compareTo("restore") == 0) {
             if (!mRestoreComplete) {
                 String [] urls = intent.getStringArrayExtra("urls");
-                for (String url : urls) {
-                    MainController.get().onOpenUrl(url, startTime);
+                for (int i = 0; i < urls.length; i++) {
+                    MainController.get().onOpenUrl(urls[i], startTime, i == urls.length-1);
                 }
                 mRestoreComplete = true;
             }

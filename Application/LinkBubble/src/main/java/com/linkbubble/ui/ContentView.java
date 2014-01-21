@@ -725,7 +725,7 @@ public class ContentView extends FrameLayout {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String string = longClickSelections.get(position);
                 if (string.equals(openInNewBubbleLabel)) {
-                    MainController.get().onOpenUrl(urlAsString, System.currentTimeMillis());
+                    MainController.get().onOpenUrl(urlAsString, System.currentTimeMillis(), false);
                 } else if (openInBrowserLabel != null && string.equals(openInBrowserLabel)) {
                     openInBrowser(urlAsString);
                 } else if (string.equals(shareLabel)) {

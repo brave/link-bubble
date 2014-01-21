@@ -143,7 +143,7 @@ public class CanvasView extends FrameLayout {
         }
     }
 
-    private void setContentView(ContentView cv) {
+    private void setContentView(BubbleFlowItemView bubble) {
         if (mContentView != null) {
             removeView(mContentView);
             mContentView.setAlpha(1.0f);
@@ -151,7 +151,14 @@ public class CanvasView extends FrameLayout {
             mTargetAlphaContentView = 1.0f;
             mContentView.onCurrentContentViewChanged(false);
         }
-        mContentView = cv;
+
+        ContentView contentView = bubble != null ? bubble.getContentView() : null;
+        //if (bubble != null) {
+        //    int bubbleIndex = MainController.get().getBubbleIndex(bubble);
+        //    Log.d("CanvasView", "setContentView() - index:" + bubbleIndex);
+        //}
+
+        mContentView = contentView;
         if (mContentView != null) {
             FrameLayout.LayoutParams p = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             p.topMargin = Config.mContentOffset;
@@ -180,8 +187,7 @@ public class CanvasView extends FrameLayout {
     @SuppressWarnings("unused")
     @Subscribe
     public void onCurrentBubbleChanged(MainController.CurrentBubbleChangedEvent e) {
-        ContentView cv = e.mBubble != null ? e.mBubble.getContentView() : null;
-        setContentView(cv);
+        setContentView(e.mBubble);
     }
 
     @SuppressWarnings("unused")
