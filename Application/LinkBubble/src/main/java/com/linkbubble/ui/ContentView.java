@@ -493,6 +493,9 @@ public class ContentView extends FrameLayout {
         public void onProgressChanged(WebView webView, int progress) {
             //Log.d(TAG, "onProgressChanged() - progress:" + progress);
 
+            // Note: annoyingly, onProgressChanged() can be called with values from a previous url.
+            // Eg, "http://t.co/fR9bzpvyLW" redirects to "http://on.recode.net/1eOqNVq" which redirects to
+            // "http://recode.net/2014/01/20/...", and after the "on.recode.net" redirect, progress is 100 for a moment.
             mEventHandler.onProgressChanged(progress);
 
             // At 60%, the page is more often largely viewable, but waiting for background shite to finish which can
