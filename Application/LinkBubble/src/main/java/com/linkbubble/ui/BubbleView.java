@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.linkbubble.Config;
@@ -20,6 +21,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BubbleView extends FrameLayout  {
+
+    private static final String TAG = "BubbleView";
+    private static final boolean DEBUG = false;
 
     public interface OnApplyFaviconListener {
         boolean applyFavicon(String faviconURL);
@@ -104,6 +108,9 @@ public class BubbleView extends FrameLayout  {
                 if (mImitator != null) {
                     mImitator.mFavicon.setImageResource(R.drawable.fallback_favicon);
                 }
+                if (DEBUG) {
+                    Log.d(TAG, "[favicon] loadFavicon: setImageBitmap() FALLBACK for " + faviconUrl);
+                }
             }
         }
     }
@@ -121,6 +128,9 @@ public class BubbleView extends FrameLayout  {
                 if (mImitator != null) {
                     mImitator.mFavicon.setImageBitmap(favicon);
                     mImitator.setFaviconLoadId(Favicons.LOADED);
+                }
+                if (DEBUG) {
+                    Log.d(TAG, "[favicon] mOnFaviconLoadedListener: setImageBitmap() size:" + favicon.getWidth() + " for " + faviconURL);
                 }
             }
         }
@@ -180,6 +190,9 @@ public class BubbleView extends FrameLayout  {
                     mImitator.mFaviconLoadId = Favicons.NOT_LOADING;
                     mImitator.mFavicon.setImageResource(R.drawable.fallback_favicon);
                 }
+                if (DEBUG) {
+                    Log.d(TAG, "[favicon] onReceivedIcon: setImageBitmap() FALLBACK on host " + mUrl.getHost());
+                }
             }
         } else {
             MainApplication mainApplication = (MainApplication) getContext().getApplicationContext();
@@ -195,6 +208,9 @@ public class BubbleView extends FrameLayout  {
             if (mImitator != null) {
                 mImitator.mFaviconLoadId = Favicons.LOADED;
                 mImitator.mFavicon.setImageBitmap(favicon);
+            }
+            if (DEBUG) {
+                Log.d(TAG, "[favicon] onReceivedIcon: setImageBitmap() size:" + favicon.getWidth() + " on host " + mUrl.getHost());
             }
         }
 
