@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="HomeContentContainer">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+</resources>
