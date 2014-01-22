@@ -321,9 +321,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     public void destroyAllBubbles() {
         for (View view : mViews) {
-            destroyBubble(((BubbleFlowItemView) view), false, true);
+            destroyBubble(((BubbleFlowItemView) view), false, false);
         }
 
+        mViews.clear();
         postDestroyedBubble();
     }
 
