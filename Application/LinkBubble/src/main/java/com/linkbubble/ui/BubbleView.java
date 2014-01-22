@@ -172,11 +172,14 @@ public class BubbleView extends FrameLayout  {
 
     protected void onReceivedIcon(Bitmap favicon) {
         if (favicon == null) {
-            mFaviconLoadId = Favicons.NOT_LOADING;
-            mFavicon.setImageResource(R.drawable.fallback_favicon);
-            if (mImitator != null) {
-                mImitator.mFaviconLoadId = Favicons.NOT_LOADING;
-                mImitator.mFavicon.setImageResource(R.drawable.fallback_favicon);
+            // Don't update if an image already exists. Optimization as the fallback favicon is already set via loadFavicon()
+            if (mFavicon.getDrawable() == null) {
+                mFaviconLoadId = Favicons.NOT_LOADING;
+                mFavicon.setImageResource(R.drawable.fallback_favicon);
+                if (mImitator != null) {
+                    mImitator.mFaviconLoadId = Favicons.NOT_LOADING;
+                    mImitator.mFavicon.setImageResource(R.drawable.fallback_favicon);
+                }
             }
         } else {
             MainApplication mainApplication = (MainApplication) getContext().getApplicationContext();
