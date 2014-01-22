@@ -551,7 +551,9 @@ public class MainController implements Choreographer.FrameCallback {
     AppPoller.AppPollerListener mAppPollerListener = new AppPoller.AppPollerListener() {
         @Override
         public void onAppChanged() {
-            switchToBubbleView();
+            if (MainController.get().getBubbleCount() > 0) {
+                switchToBubbleView();
+            }
         }
     };
 
