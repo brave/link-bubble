@@ -149,7 +149,6 @@ public class BubbleFlowView extends HorizontalScrollView {
         //view.setBackgroundColor(mViews.size() % 2 == 0 ? 0xff660066 : 0xff666600);
 
         view.setOnClickListener(mViewOnClickListener);
-        view.setOnLongClickListener(mViewOnLongClickListener);
         view.setOnTouchListener(mViewOnTouchListener);
 
         int centerIndex = getCenterIndex();
@@ -723,21 +722,6 @@ public class BubbleFlowView extends HorizontalScrollView {
                     }
                 }
             }
-        }
-    };
-
-    OnLongClickListener mViewOnLongClickListener = new OnLongClickListener() {
-        @Override
-        public boolean onLongClick(View v) {
-            int index = mViews.indexOf(v);
-            if (index > -1) {
-                int currentCenterIndex = getCenterIndex();
-                if (currentCenterIndex != index) {
-                    setCenterIndex(index);
-                    return true;
-                }
-            }
-            return false;
         }
     };
 
