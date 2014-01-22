@@ -481,18 +481,18 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    public boolean destroyCurrentBubble() {
-        return destroyCurrentBubble(Config.BubbleAction.Destroy);
+    public boolean destroyCurrentBubble(boolean animateOff) {
+        return destroyCurrentBubble(Config.BubbleAction.Destroy, animateOff);
     }
 
-    public boolean destroyCurrentBubble(Config.BubbleAction action) {
+    public boolean destroyCurrentBubble(Config.BubbleAction action, boolean animateOff) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         boolean debug = prefs.getBoolean("debug_flick", true);
 
         if (debug) {
             Toast.makeText(mContext, "HIT TARGET!", 400).show();
         } else {
-            mBubbleFlowDraggable.destroyCurrentBubble(false, action);
+            mBubbleFlowDraggable.destroyCurrentBubble(animateOff, action);
             if (mBubbleFlowDraggable.getBubbleCount() == 0) {
                 removeBubbleDraggable();
 
