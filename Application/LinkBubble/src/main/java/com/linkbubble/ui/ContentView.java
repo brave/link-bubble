@@ -155,8 +155,6 @@ public class ContentView extends FrameLayout {
     };
 
     public interface EventHandler {
-        public void onDestroyBubble();
-        public void onMinimizeBubbles();
         public void onPageLoading(URL url);
         public void onProgressChanged(int progress);
         public void onPageLoaded();
@@ -246,7 +244,7 @@ public class ContentView extends FrameLayout {
                 mContext.startActivity(intent);
 
                 if (closeBubbleOnShare) {
-                    mEventHandler.onDestroyBubble();
+                    MainController.get().destroyCurrentBubble(true);
                 }
             }
         });
@@ -356,7 +354,7 @@ public class ContentView extends FrameLayout {
                                 resolveInfo.loadLabel(mContext.getPackageManager()));
                         MainApplication.saveUrlInHistory(mContext, resolveInfo, urlAsString, title);
 
-                        mEventHandler.onDestroyBubble();
+                        MainController.get().destroyCurrentBubble(true);
                         return false;
                     }
                 }
@@ -439,7 +437,7 @@ public class ContentView extends FrameLayout {
                 switch (keyCode) {
                     case KeyEvent.KEYCODE_BACK: {
                         if (mUrlHistory.size() == 0) {
-                            mEventHandler.onDestroyBubble();
+                            MainController.get().destroyCurrentBubble(true);
                         } else {
                             webView.stopLoading();
                             String urlBefore = webView.getUrl();
@@ -561,7 +559,7 @@ public class ContentView extends FrameLayout {
                 String contentDisposition, String mimetype,
         long contentLength) {
             openInBrowser(urlAsString);
-            mEventHandler.onDestroyBubble();
+            MainController.get().destroyCurrentBubble(true);
         }
     };
 
@@ -576,7 +574,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onAppOpened() {
-            mEventHandler.onDestroyBubble();
+            MainController.get().destroyCurrentBubble(true);
         }
 
     };
@@ -621,7 +619,7 @@ public class ContentView extends FrameLayout {
                             Intent intent = Config.getStoreIntent(mContext, Config.STORE_PRO_URL);
                             if (intent != null) {
                                 mContext.startActivity(intent);
-                                mEventHandler.onMinimizeBubbles();
+                                MainController.get().switchToBubbleView();
                             }
                             break;
                         }
@@ -653,7 +651,7 @@ public class ContentView extends FrameLayout {
                             Intent intent = new Intent(mContext, SettingsActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             mContext.startActivity(intent);
-                            mEventHandler.onMinimizeBubbles();
+                            MainController.get().switchToBubbleView();
                             break;
                         }
                     }
@@ -900,7 +898,7 @@ public class ContentView extends FrameLayout {
         intent.setData(Uri.parse(urlAsString));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         if (MainApplication.loadInBrowser(mContext, intent, true)) {
-            mEventHandler.onDestroyBubble();
+            MainController.get().destroyCurrentBubble(true);
             return true;
         }
 

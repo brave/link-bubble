@@ -40,16 +40,6 @@ public class BubbleFlowItemView extends BubbleView {
         mContentView.configure(mUrl.toString(), startTime, new ContentView.EventHandler() {
 
             @Override
-            public void onDestroyBubble() {
-                MainController.get().destroyCurrentBubble();
-            }
-
-            @Override
-            public void onMinimizeBubbles() {
-                MainController.get().switchToBubbleView();
-            }
-
-            @Override
             public void onPageLoading(URL url) {
                 showProgressBar(true, 0);
 
