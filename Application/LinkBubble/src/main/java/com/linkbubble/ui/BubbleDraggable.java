@@ -118,7 +118,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             mMode = Mode.BubbleView;
         } else {
             if (mainController.destroyCurrentBubble(action)) {
-                doAnimateToBubbleView();
+                doAnimateToContentView();
             } else {
                 mMode = Mode.BubbleView;
             }
