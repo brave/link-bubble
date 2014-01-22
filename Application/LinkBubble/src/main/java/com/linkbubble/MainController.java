@@ -147,14 +147,18 @@ public class MainController implements Choreographer.FrameCallback {
             if (currentBubble != null) {
                 currentBubble.setImitator(mBubbleDraggable);
             }
+            mSetBubbleFlowGone = true;
             mBubbleFlowDraggable.postDelayed(mSetBubbleFlowGoneRunnable, 33);
         }
     };
 
+    private boolean mSetBubbleFlowGone = false;
     Runnable mSetBubbleFlowGoneRunnable = new Runnable() {
         @Override
         public void run() {
-            mBubbleFlowDraggable.setVisibility(View.GONE);
+            if (mSetBubbleFlowGone) {
+                mBubbleFlowDraggable.setVisibility(View.GONE);
+            }
         }
     };
 
@@ -515,6 +519,7 @@ public class MainController implements Choreographer.FrameCallback {
         MainApplication.postEvent(mContext, mBeginExpandTransitionEvent);
 
         mBubbleFlowDraggable.setVisibility(View.VISIBLE);
+        mSetBubbleFlowGone = false; // cancel any pending operation to set visibility to GONE (see #190)
         mBubbleFlowDraggable.expand(time, mOnBubbleFlowExpandFinishedListener);
         mBubbleDraggable.postDelayed(mSetBubbleGoneRunnable, 33);
     }
