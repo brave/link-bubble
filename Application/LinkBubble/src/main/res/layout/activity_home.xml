@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NoBoringActionBarActivity">
+    tools:context=".HomeActivity">
 
     <View
         android:id="@+id/background"
@@ -13,7 +13,6 @@
         android:background="@color/home_background"
         android:alpha="0"
         />
-
 
     <ImageView
         android:id="@+id/settings"
@@ -28,9 +27,9 @@
 
     <LinearLayout
         android:id="@+id/content"
+        style="@style/HomeContentContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_gravity="center"
         android:layout_centerInParent="true">
 
@@ -40,7 +39,8 @@
             android:layout_height="160dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/text_logo"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="@dimen/home_logo_margin_right"/>
 
         <com.linkbubble.ui.FlipView
             xmlns:fiv="http://schemas.android.com/apk/res-auto"

@@ -18,15 +18,15 @@
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <com.linkbubble.ui.CondensedTextView
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="@dimen/stat_bubble_size"
+        android:layout_height="@dimen/stat_bubble_size"
         android:layout_gravity="center_horizontal"
         android:text="3.1\nminutes"
         android:textColor="@android:color/white"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
-        android:textSize="28sp"
+        android:textSize="@dimen/stat_bubble_text_size"
         android:background="@drawable/circle_stat_per_day"/>
 
     <com.linkbubble.ui.CondensedTextView

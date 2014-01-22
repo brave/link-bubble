@@ -65,5 +65,8 @@
         <item name="android:background">@drawable/white_button</item>
     </style>
 
+    <style name="HomeContentContainer">
+        <item name="android:orientation">vertical</item>
+    </style>
 
 </resources>

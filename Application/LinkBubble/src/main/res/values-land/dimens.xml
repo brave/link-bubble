@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="stat_height">160dp</dimen>
+    <dimen name="stat_bubble_size">110dp</dimen>
+    <dimen name="stat_bubble_text_size">24sp</dimen>
+    <dimen name="home_logo_margin_right">24dp</dimen>
+</resources>

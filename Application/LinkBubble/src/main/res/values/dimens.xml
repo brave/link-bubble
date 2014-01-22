@@ -34,6 +34,9 @@
     <dimen name="progress_bar_size">32dp</dimen>
     <dimen name="progress_inner_size">20dp</dimen>
     <dimen name="stat_height">200dp</dimen>
+    <dimen name="stat_bubble_size">140dp</dimen>
+    <dimen name="stat_bubble_text_size">28sp</dimen>
+    <dimen name="home_logo_margin_right">0dp</dimen>
     <dimen name="canvas_mask_height">80dp</dimen>
 
 
