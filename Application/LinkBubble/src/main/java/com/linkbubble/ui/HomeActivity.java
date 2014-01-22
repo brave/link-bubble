@@ -5,13 +5,10 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
-import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 
@@ -25,6 +22,8 @@ public class HomeActivity extends Activity {
 
     View mContentView;
     View mBackgroundView;
+    View mHistoryButtonView;
+    View mSettingsButtonView;
 
     boolean mPlayedIntroAnimation;
 
@@ -38,6 +37,8 @@ public class HomeActivity extends Activity {
 
         mBackgroundView = findViewById(R.id.background);
         mContentView = findViewById(R.id.content);
+        mSettingsButtonView = findViewById(R.id.settings);
+        mHistoryButtonView = findViewById(R.id.history);
 
         if (savedInstanceState != null) {
             mPlayedIntroAnimation = savedInstanceState.getBoolean(PLAYED_INTRO_ANIM_KEY);
@@ -114,9 +115,13 @@ public class HomeActivity extends Activity {
                 .setInterpolator(new AnticipateOvershootInterpolator())
                 .start();
 
-        //tv.setAlpha(0f);
-        //tv.setVisibility(View.VISIBLE);
-        //tv.animate().alpha(1f).setDuration(1000).setStartDelay(1000).start();
+        mHistoryButtonView.setAlpha(0f);
+        mHistoryButtonView.setVisibility(View.VISIBLE);
+        mHistoryButtonView.animate().alpha(1f).setDuration(250).setStartDelay(750).start();
+
+        mSettingsButtonView.setAlpha(0f);
+        mSettingsButtonView.setVisibility(View.VISIBLE);
+        mSettingsButtonView.animate().alpha(1f).setDuration(250).setStartDelay(750).start();
     }
 
     void startActivity(Intent intent, View view) {

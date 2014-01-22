@@ -12,35 +12,27 @@
         android:layout_height="match_parent"
         android:background="@color/home_background"
         android:alpha="0"
-        >
+        />
 
-    </View>
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp"
+        android:src="@drawable/settings_button"
+        />
+
+
+    <LinearLayout
         android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_gravity="center"
-        android:visibility="invisible"
-        >
-
-        <ImageView
-            android:id="@+id/settings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:paddingRight="8dp"
-            android:paddingTop="8dp"
-            android:src="@drawable/settings_button"
-            />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerInParent="true">
+        android:layout_centerInParent="true">
 
         <ImageView
             android:id="@+id/header_logo"
@@ -60,18 +52,14 @@
             fiv:flipView="@layout/view_stat_time_per_link"
             fiv:isAnimated="true"/>
 
+    </LinearLayout>
 
-        </LinearLayout>
-
-        <Button
-            style="@style/HistoryButton"
-            android:id="@+id/history"
-            android:text="@string/history"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
-            />
-
-    </RelativeLayout>
+    <Button
+        style="@style/HistoryButton"
+        android:id="@+id/history"
+        android:text="@string/history"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="20dp"
+        />
 
 </FrameLayout>
