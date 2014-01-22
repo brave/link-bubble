@@ -41,7 +41,7 @@ public class BubbleFlowItemView extends BubbleView {
 
             @Override
             public void onDestroyBubble() {
-                MainController.get().onDestroyCurrentBubble();
+                MainController.get().destroyCurrentBubble();
             }
 
             @Override

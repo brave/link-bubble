@@ -477,17 +477,8 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    public void onDestroyCurrentBubble() {
-        mBubbleFlowDraggable.destroyCurrentBubble(true, Config.BubbleAction.None);
-        if (mBubbleFlowDraggable.getBubbleCount() == 0) {
-
-            // TODO
-            //Util.Assert(false);
-
-            /*
-            STATE_KillBubble.init(mBubbleDraggable);
-            switchState(STATE_KillBubble);*/
-        }
+    public boolean destroyCurrentBubble() {
+        return destroyCurrentBubble(Config.BubbleAction.Destroy);
     }
 
     public boolean destroyCurrentBubble(Config.BubbleAction action) {
