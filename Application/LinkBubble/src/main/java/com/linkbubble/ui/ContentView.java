@@ -40,6 +40,7 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
 import org.mozilla.gecko.favicons.Favicons;
@@ -74,7 +75,7 @@ public class ContentView extends FrameLayout {
 
     private List<AppForUrl> mAppsForUrl = new ArrayList<AppForUrl>();
     private List<ResolveInfo> mTempAppsForUrl = new ArrayList<ResolveInfo>();
-    private YouTubeEmbedHelper mYouTubeEmbedHelper;
+
     private int mCheckForEmbedsCount;
     private PopupMenu mOverflowPopupMenu;
     private AlertDialog mLongPressAlertDialog;
@@ -84,33 +85,13 @@ public class ContentView extends FrameLayout {
     private int mLoadCount = 0;
     private String mCurrentLoadedUrl;
     private boolean mLoadingPrev;
+    private PageInspector mPageInspector;
 
     private static Paint sIndicatorPaint;
     private static Paint sBorderPaint;
 
     private Stack<String> mUrlHistory = new Stack<String>();
 
-    private static final String JS_VARIABLE = "LinkBubble";
-    private static final String JS_EMBED = "javascript:(function() {\n" +
-            "    var elems = document.getElementsByTagName('*'), i;\n" +
-            "    var resultArray = null;\n" +
-            "    var resultCount = 0;\n" +
-            "    for (i in elems) {\n" +
-            "       var elem = elems[i];\n" +
-            "       if (elem.src != null && elem.src.indexOf(\"" + Config.YOUTUBE_EMBED_PREFIX + "\") != -1) {\n" +
-                //"           //console.log(\"found embed: \" + elem.src);\n" +
-            "           if (resultArray == null) {\n" +
-            "               resultArray = new Array();\n" +
-                //"           console.log(\"allocate array\");\n" +
-            "           }\n" +
-            "           resultArray[resultCount] = elem.src;\n" +
-            "           resultCount++;\n" +
-            "       }\n" +
-            "    }\n" +
-            "    if (resultCount > 0) {\n" +
-            "       " + JS_VARIABLE + ".onEmbeds(resultArray.toString());\n" +
-            "    }\n" +
-            "})();";
 
     public ContentView(Context context) {
         this(context, null);
@@ -298,10 +279,7 @@ public class ContentView extends FrameLayout {
         mWebView.setWebViewClient(mWebViewClient);
         mWebView.setDownloadListener(mDownloadListener);
 
-        if (Settings.get().checkForYouTubeEmbeds()) {
-            mJSEmbedHandler = new JSEmbedHandler();
-            mWebView.addJavascriptInterface(mJSEmbedHandler, JS_VARIABLE);
-        }
+        mPageInspector = new PageInspector(mContext, mWebView, mOnPageInspectorItemFoundListener);
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
@@ -331,9 +309,7 @@ public class ContentView extends FrameLayout {
             ++mLoadCount;
             updateUrl(urlAsString);
 
-            if (mYouTubeEmbedHelper != null) {
-                mYouTubeEmbedHelper.clear();
-            }
+            mPageInspector.reset();
 
             List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(urlAsString);
             updateAppsForUrl(resolveInfos, mUrl);
@@ -421,10 +397,7 @@ public class ContentView extends FrameLayout {
                 MainApplication.saveUrlInHistory(getContext(), null, mUrl.toString(), mUrl.getHost(), title);
 
                 // Always check again at 100%
-                if (Settings.get().checkForYouTubeEmbeds()) {
-                    webView.loadUrl(JS_EMBED);
-                    Log.d(TAG, "onPageFinished() - checkForYouTubeEmbeds()");
-                }
+                mPageInspector.run(webView);
             }
         }
     };
@@ -448,9 +421,7 @@ public class ContentView extends FrameLayout {
 
                             updateUrl(prevUrl);
                             updateAppsForUrl(mUrl);
-                            if (mYouTubeEmbedHelper != null) {
-                                mYouTubeEmbedHelper.clear();
-                            }
+                            mPageInspector.reset();
                             Log.d(TAG, "Go back: " + urlBefore + " -> " + webView.getUrl());
                             configureOpenInAppButton();
                             configureOpenEmbedButton();
@@ -509,20 +480,14 @@ public class ContentView extends FrameLayout {
             if (progress >= 60) {
                 if (mCheckForEmbedsCount == 0) {
                     mCheckForEmbedsCount = 1;
-                    if (mYouTubeEmbedHelper != null) {
-                        mYouTubeEmbedHelper.clear();
-                    }
+                    mPageInspector.reset();
 
-                    if (Settings.get().checkForYouTubeEmbeds()) {
-                        Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                        webView.loadUrl(JS_EMBED);
-                    }
+                    Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
+                    mPageInspector.run(webView);
                 } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
                     mCheckForEmbedsCount = 2;
-                    if (Settings.get().checkForYouTubeEmbeds()) {
-                        Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                        webView.loadUrl(JS_EMBED);
-                    }
+                    Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
+                    mPageInspector.run(webView);
                 }
             }
         }
@@ -632,9 +597,7 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_reload_page: {
-                            if (mYouTubeEmbedHelper != null) {
-                                mYouTubeEmbedHelper.clear();
-                            }
+                            mPageInspector.reset();
                             mEventHandler.onPageLoading(mUrl);
                             mWebView.stopLoading();
                             mWebView.reload();
@@ -684,6 +647,25 @@ public class ContentView extends FrameLayout {
         }
         public void onSwipeLeft() {
             MainController.get().showNextBubble();
+        }
+    };
+
+    PageInspector.OnItemFoundListener mOnPageInspectorItemFoundListener = new PageInspector.OnItemFoundListener() {
+
+        private Runnable mUpdateOpenInAppRunnable = null;
+
+        @Override
+        public void onYouTubeEmbeds() {
+            if (mUpdateOpenInAppRunnable == null) {
+                mUpdateOpenInAppRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        configureOpenEmbedButton();
+                    }
+                };
+            }
+
+            mOpenEmbedButton.post(mUpdateOpenInAppRunnable);
         }
     };
 
@@ -754,7 +736,7 @@ public class ContentView extends FrameLayout {
     }
 
     private void configureOpenEmbedButton() {
-        if (mOpenEmbedButton.configure(mYouTubeEmbedHelper)) {
+        if (mOpenEmbedButton.configure(mPageInspector.getYouTubeEmbedHelper())) {
             mOpenEmbedButton.invalidate();
         } else {
             mOpenEmbedButton.setVisibility(GONE);
@@ -914,41 +896,5 @@ public class ContentView extends FrameLayout {
 
         return false;
     }
-
-    // For security reasons, all callbacks should be in a self contained class
-    public class JSEmbedHandler {
-
-        private Runnable mUpdateOpenInAppRunnable = null;
-
-        @JavascriptInterface
-        public void onEmbeds(String string) {
-            Log.d(TAG, "onEmbeds() - " + string);
-
-            if (string == null || string.length() == 0) {
-                return;
-            }
-
-            if (mYouTubeEmbedHelper == null) {
-                mYouTubeEmbedHelper = new YouTubeEmbedHelper(mContext);
-            }
-
-            String[] strings = string.split(",");
-            if (mYouTubeEmbedHelper.onEmbeds(strings)) {
-                if (mUpdateOpenInAppRunnable == null) {
-                    mUpdateOpenInAppRunnable = new Runnable() {
-                        @Override
-                        public void run() {
-                            configureOpenEmbedButton();
-                        }
-                    };
-                }
-
-                mOpenEmbedButton.post(mUpdateOpenInAppRunnable);
-            }
-        }
-    };
-
-    private JSEmbedHandler mJSEmbedHandler;
-
 
 }
