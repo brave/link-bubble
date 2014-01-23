@@ -325,18 +325,8 @@ public class BubbleFlowView extends HorizontalScrollView {
         view.setScaleY(targetScale);
     }
 
-    // The number of items currently actively managed by the BubbleFlowView.
-    // Note: it's possible for getItemCount() to equal 0, but getVisibleItemCount() to be > 0.
     public int getItemCount() {
         return mViews.size();
-    }
-
-    // The number of items being drawn on the BubbleFlowView.
-    // Note: It's possible for getVisibleItemCount() to be greater than getItemCount() in the event an item is animating off.
-    // Eg, when Back is pressed to dismiss the last Bubble.
-    // This function does NOT return the number of items currently fitting on the current width of the screen.
-    public int getVisibleItemCount() {
-        return mContent.getChildCount();
     }
 
     public int getIndexOfView(View view) {

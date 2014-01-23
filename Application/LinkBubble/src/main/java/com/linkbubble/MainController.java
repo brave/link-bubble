@@ -306,11 +306,11 @@ public class MainController implements Choreographer.FrameCallback {
         return mBubbleDraggable;
     }
 
-    public int getBubbleCount() {
-        return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getItemCount() : 0;
+    public int getActiveTabCount() {
+        return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getActiveTabCount() : 0;
     }
 
-    public int getBubbleIndex(TabView tab) {
+    public int getTabIndex(TabView tab) {
         return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getIndexOfView(tab) : -1;
     }
 
@@ -329,11 +329,11 @@ public class MainController implements Choreographer.FrameCallback {
 
         //mTextView.setText("S=" + mCurrentState.getName() + " F=" + mFrameNumber++);
 
-        if (getBubbleCount() == 0 && mBubblesLoaded > 0 && !mUpdateScheduled) {
+        if (getActiveTabCount() == 0 && mBubblesLoaded > 0 && !mUpdateScheduled) {
             // Will be non-zero in the event a link has been dismissed by a user, but its TabView
             // instance is still animating off screen. In that case, keep triggering an update so that when the
             // item finishes, we are ready to call onDestroy().
-            if (mBubbleFlowDraggable.getVisibleItemCount() == 0) {
+            if (mBubbleFlowDraggable.getVisibleTabCount() == 0) {
                 mEventHandler.onDestroy();
             } else {
                 scheduleUpdate();
@@ -382,7 +382,7 @@ public class MainController implements Choreographer.FrameCallback {
             intent.setData(Uri.parse(url));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             if (MainApplication.loadInBrowser(mContext, intent, false)) {
-                if (getBubbleCount() == 0) {
+                if (getActiveTabCount() == 0) {
                     mEventHandler.onDestroy();
                 }
 
@@ -398,7 +398,7 @@ public class MainController implements Choreographer.FrameCallback {
                 ResolveInfo resolveInfo = resolveInfos.get(0);
                 if (resolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo
                     && MainApplication.loadResolveInfoIntent(mContext, resolveInfo, url, startTime)) {
-                    if (getBubbleCount() == 0) {
+                    if (getActiveTabCount() == 0) {
                         mEventHandler.onDestroy();
                     }
 
@@ -433,7 +433,7 @@ public class MainController implements Choreographer.FrameCallback {
                                 if (loaded == false) {
                                     openUrlInBubble(url, System.currentTimeMillis(), setAsCurrentBubble);
                                 } else {
-                                    if (getBubbleCount() == 0) {
+                                    if (getActiveTabCount() == 0) {
                                         mEventHandler.onDestroy();
                                     }
                                 }
@@ -451,23 +451,23 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     protected void openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble) {
-        if (getBubbleCount() == 0) {
+        if (getActiveTabCount() == 0) {
             mBubbleDraggable.setVisibility(View.VISIBLE);
             mBubbleDraggable.setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
         }
 
         //boolean setAsCurrentBubble = mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView ? false : true;
         mBubbleFlowDraggable.openUrlInBubble(url, startTime, setAsCurrentBubble);
-        showBadge(getBubbleCount() > 1 ? true : false);
+        showBadge(getActiveTabCount() > 1 ? true : false);
         ++mBubblesLoaded;
     }
 
     public void showBadge(boolean show) {
         if (mBubbleDraggable != null) {
-            int bubbleCount = mBubbleFlowDraggable.getItemCount();
-            mBubbleDraggable.mBadgeView.setCount(bubbleCount);
+            int tabCount = mBubbleFlowDraggable.getActiveTabCount();
+            mBubbleDraggable.mBadgeView.setCount(tabCount);
             if (show) {
-                if (bubbleCount > 1) {
+                if (tabCount > 1) {
                     mBubbleDraggable.mBadgeView.show();
                 }
             } else {
@@ -488,14 +488,14 @@ public class MainController implements Choreographer.FrameCallback {
             Toast.makeText(mContext, "HIT TARGET!", 400).show();
         } else {
             mBubbleFlowDraggable.destroyCurrentBubble(animateOff, action);
-            if (mBubbleFlowDraggable.getItemCount() == 0) {
+            if (mBubbleFlowDraggable.getActiveTabCount() == 0) {
                 hideBubbleDraggable();
                 Config.BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
                 Config.BUBBLE_HOME_Y = (int) (Config.mScreenHeight * 0.4f);
             }
         }
 
-        return getBubbleCount() > 0;
+        return getActiveTabCount() > 0;
     }
 
     public void destroyAllBubbles() {
@@ -540,7 +540,7 @@ public class MainController implements Choreographer.FrameCallback {
     AppPoller.AppPollerListener mAppPollerListener = new AppPoller.AppPollerListener() {
         @Override
         public void onAppChanged() {
-            if (MainController.get().getBubbleCount() > 0) {
+            if (MainController.get().getActiveTabCount() > 0) {
                 switchToBubbleView();
             }
         }
@@ -552,10 +552,10 @@ public class MainController implements Choreographer.FrameCallback {
             State_ContentView contentViewState = (State_ContentView)mCurrentState;
             BubbleView activeBubble = getActiveBubble();
             if (activeBubble != null) {
-                int index = activeBubble.getBubbleIndex();
+                int index = activeBubble.getTabIndex();
                 if (index > 0) {
                     for (BubbleView bubble : mBubbles) {
-                        if (index-1 == bubble.getBubbleIndex()) {
+                        if (index-1 == bubble.getTabIndex()) {
                             contentViewState.setActiveBubble(bubble);
                             return true;
                         }
@@ -572,9 +572,9 @@ public class MainController implements Choreographer.FrameCallback {
             State_ContentView contentViewState = (State_ContentView)mCurrentState;
             BubbleView activeBubble = getActiveBubble();
             if (activeBubble != null) {
-                int index = activeBubble.getBubbleIndex();
+                int index = activeBubble.getTabIndex();
                 for (BubbleView bubble : mBubbles) {
-                    if (index+1 == bubble.getBubbleIndex()) {
+                    if (index+1 == bubble.getTabIndex()) {
                         contentViewState.setActiveBubble(bubble);
                         return true;
                     }

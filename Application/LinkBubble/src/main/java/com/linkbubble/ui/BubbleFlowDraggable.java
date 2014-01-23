@@ -156,6 +156,20 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         mDraggableHelper.destroy();
     }
 
+    // The number of items currently actively managed by the BubbleFlowView.
+    // Note: it's possible for getActiveTabCount() to equal 0, but getVisibleTabCount() to be > 0.
+    public int getActiveTabCount() {
+        return mViews.size();
+    }
+
+    // The number of items being drawn on the BubbleFlowView.
+    // Note: It's possible for getVisibleTabCount() to be greater than getActiveTabCount() in the event an item is animating off.
+    // Eg, when Back is pressed to dismiss the last Bubble.
+    // This function does NOT return the number of items currently fitting on the current width of the screen.
+    public int getVisibleTabCount() {
+        return mContent.getChildCount();
+    }
+
     @Override
     public boolean expand(long time, final AnimationEventListener animationEventListener) {
 
@@ -258,7 +272,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         // minimized are added to the end.
         add(bubble, mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView);
 
-        mBubbleDraggable.mBadgeView.setCount(getItemCount());
+        mBubbleDraggable.mBadgeView.setCount(getActiveTabCount());
 
         if (setAsCurrentBubble) {
             setCurrentTab(bubble);

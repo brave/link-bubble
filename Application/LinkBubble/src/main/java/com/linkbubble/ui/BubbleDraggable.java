@@ -219,7 +219,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         mTouchDown = false;
         mMode = Mode.BubbleView;
 
-        if (MainController.get().getBubbleCount() == 0) {
+        if (MainController.get().getActiveTabCount() == 0) {
             throw new RuntimeException("Should be at least 1 bubble active to enter the AnimateToBubbleView state");
         }
         float bubblePeriod = (float)Constant.BUBBLE_ANIM_TIME / 1000.f;
