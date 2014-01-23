@@ -18,12 +18,15 @@ import org.mozilla.gecko.favicons.Favicons;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Vector;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class MainApplication extends Application {
 
     private Bus mBus;
     public DatabaseHelper mDatabaseHelper;
+
+    public ConcurrentHashMap<String, String> mTitleHashMap = new ConcurrentHashMap<String, String>(64);
 
     @Override
     public void onCreate() {
