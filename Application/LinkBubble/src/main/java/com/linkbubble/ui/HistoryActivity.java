@@ -278,6 +278,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
             String host = historyRecord.getHost();
             String faviconUrl = "http://" + host + "/favicon.ico";
 
+            historyItem.mFaviconUrl = faviconUrl;
             Favicons.getFaviconForSize(host, faviconUrl, Integer.MAX_VALUE, flags, historyItem.mOnFaviconLoadedListener);
             if (historyItem.mFaviconSet == false) {
                 historyItem.mFaviconImageView.setImageResource(R.drawable.fallback_favicon);
@@ -296,10 +297,16 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
         ImageView mFaviconImageView;
         HistoryRecord mHistoryRecord;
         Date mDate = new Date();
+        String mFaviconUrl;
         boolean mFaviconSet;
         OnFaviconLoadedListener mOnFaviconLoadedListener = new OnFaviconLoadedListener() {
             @Override
             public void onFaviconLoaded(String url, String faviconURL, Bitmap favicon) {
+                // Ensure the favicon passed in matches the one we want. This can be false as HistoryAdapter recycles
+                // Views and favicons are loaded in different orders to that which they are requested.
+                if (mFaviconUrl.equals(faviconURL) == false) {
+                    return;
+                }
                 if (favicon != null) {
                     mFaviconSet = true;
                     mFaviconImageView.setImageBitmap(favicon);
