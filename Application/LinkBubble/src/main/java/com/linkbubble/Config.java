@@ -52,8 +52,6 @@ public class Config {
 
     public static int mContentOffset;
 
-    public static int MAX_BUBBLES;
-
     public static int BUBBLE_HOME_X;
     public static int BUBBLE_HOME_Y;
 
@@ -71,13 +69,6 @@ public class Config {
         mScreenCenterX = (int) (mDm.widthPixels * 0.5f);
         mScreenHeight = mDm.heightPixels - getStatusBarHeight(context);
         mScreenWidth = mDm.widthPixels;
-
-        int maxBubbles1 = (int) ((mDm.widthPixels - mBubbleWidth - mBubbleWidth * 0.5f) / (Config.mBubbleWidth * 1.2f));
-        int maxBubbles2 = (int) ((mDm.heightPixels - mBubbleWidth - mBubbleWidth * 0.5f) / (Config.mBubbleWidth * 1.2f));
-        MAX_BUBBLES = Math.min(maxBubbles1, maxBubbles2);
-        if (MAX_BUBBLES < 5) {
-            MAX_BUBBLES = 5;
-        }
 
         mBubbleSnapLeftX = (int) (-mBubbleWidth * 0.2f);
         mBubbleSnapRightX = (int) (mDm.widthPixels - mBubbleWidth * 0.8f);
