@@ -798,6 +798,9 @@ public class ContentView extends FrameLayout {
                     }
 
                     if (alreadyAdded == false) {
+                        if (resolveInfoToAdd.activityInfo.packageName.equals(Settings.get().mLinkBubbleEntryActivityResolveInfo.activityInfo.packageName)) {
+                            continue;
+                        }
                         mTempAppsForUrl.add(resolveInfoToAdd);
                     }
                 }
