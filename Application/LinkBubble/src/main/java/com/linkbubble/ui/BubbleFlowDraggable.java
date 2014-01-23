@@ -282,8 +282,8 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     @Override
-    void remove(final int index, boolean animateOff, boolean removeFromList) {
-        super.remove(index, animateOff, removeFromList);
+    protected void remove(final int index, boolean animateOff, boolean removeFromList, OnRemovedListener onRemovedListener) {
+        super.remove(index, animateOff, removeFromList, onRemovedListener);
         if (animateOff && mSlideOffAnimationPlaying) {
             // Kick off an update so as to ensure BubbleFlowView.update() is always called when animating items off screen (see #189)
             MainController.get().scheduleUpdate();
@@ -293,16 +293,22 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     }
 
-    private void destroyBubble(TabView bubble, boolean animateRemove, boolean removeFromList) {
-        int index = mViews.indexOf(bubble);
+    private OnRemovedListener mOnTabRemovedListener = new OnRemovedListener() {
+
+        @Override
+        public void onRemoved(View view) {
+            ((TabView)view).destroy();
+        }
+    };
+
+    private void destroyBubble(TabView tab, boolean animateRemove, boolean removeFromList) {
+        int index = mViews.indexOf(tab);
         if (index == -1) {
             return;
         }
-        remove(index, animateRemove, removeFromList);
+        remove(index, animateRemove, removeFromList, mOnTabRemovedListener);
 
-        bubble.destroy();
-
-        if (mCurrentTab == bubble) {
+        if (mCurrentTab == tab) {
             TabView newCurrentBubble = null;
             int viewsCount = mViews.size();
             if (viewsCount > 0) {

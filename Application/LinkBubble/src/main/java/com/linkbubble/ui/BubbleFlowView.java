@@ -201,7 +201,17 @@ public class BubbleFlowView extends HorizontalScrollView {
         mContent.setLayoutParams(contentLP);
     }
 
+    // Called when the item has actually been removed. Will be instantly when no animation occurs,
+    // or if animating, at the completion of the animation.
+    protected interface OnRemovedListener {
+        void onRemoved(View view);
+    }
+
     void remove(final int index, boolean animateOff, boolean removeFromList) {
+        remove(index, animateOff, removeFromList, null);
+    }
+
+    protected void remove(final int index, boolean animateOff, boolean removeFromList, final OnRemovedListener onRemovedListener) {
         final View view = mViews.get(index);
 
         if (animateOff) {
@@ -233,6 +243,10 @@ public class BubbleFlowView extends HorizontalScrollView {
                     updatePositions();
                     updateScales(getScrollX());
                     mSlideOffAnimationPlaying = false;
+
+                    if (onRemovedListener != null) {
+                        onRemovedListener.onRemoved(view);
+                    }
                 }
 
                 @Override
@@ -282,6 +296,9 @@ public class BubbleFlowView extends HorizontalScrollView {
                 updatePositions();
                 updateScales(getScrollX());
                 mContent.invalidate();
+            }
+            if (onRemovedListener != null) {
+                onRemovedListener.onRemoved(view);
             }
         }
     }
