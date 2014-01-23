@@ -97,7 +97,7 @@ public class BubbleView extends FrameLayout  {
         int flags = Settings.get().isIncognitoMode() ? 0 : LoadFaviconTask.FLAG_PERSIST;
         String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
         int faviconLoadIdBefore = mFaviconLoadId;
-        int id = Favicons.getFaviconForSize(mUrl.toString(), faviconUrl, Integer.MAX_VALUE, flags, mOnFaviconLoadedListener);
+        int id = MainApplication.sFavicons.getFaviconForSize(mUrl.toString(), faviconUrl, Integer.MAX_VALUE, flags, mOnFaviconLoadedListener);
 
         // If the favicon is cached, mOnFaviconLoadedListener.onFaviconLoaded() will be called before this check is reached,
         // and this call will have already set mFaviconLoadId. Thus only act on the id return value if the value was not already changed
@@ -145,7 +145,7 @@ public class BubbleView extends FrameLayout  {
 
         // Cancel load task and reset favicon load state if it wasn't already
         // in NOT_LOADING state.
-        Favicons.cancelFaviconLoad(faviconLoadId);
+        MainApplication.sFavicons.cancelFaviconLoad(faviconLoadId);
         setFaviconLoadId(Favicons.NOT_LOADING);
     }
 

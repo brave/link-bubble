@@ -490,7 +490,7 @@ public class ContentView extends FrameLayout {
                 mEventHandler.onReceivedIcon(bitmap);
 
                 String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
-                Favicons.putFaviconInMemCache(faviconUrl, bitmap);
+                MainApplication.sFavicons.putFaviconInMemCache(faviconUrl, bitmap);
             }
         }
 

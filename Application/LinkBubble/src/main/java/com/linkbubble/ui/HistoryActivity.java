@@ -279,7 +279,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
             String faviconUrl = "http://" + host + "/favicon.ico";
 
             historyItem.mFaviconUrl = faviconUrl;
-            Favicons.getFaviconForSize(host, faviconUrl, Integer.MAX_VALUE, flags, historyItem.mOnFaviconLoadedListener);
+            MainApplication.sFavicons.getFaviconForSize(host, faviconUrl, Integer.MAX_VALUE, flags, historyItem.mOnFaviconLoadedListener);
             if (historyItem.mFaviconSet == false) {
                 historyItem.mFaviconImageView.setImageResource(R.drawable.fallback_favicon);
             }

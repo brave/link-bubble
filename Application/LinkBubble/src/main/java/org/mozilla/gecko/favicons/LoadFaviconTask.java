@@ -52,6 +52,7 @@ public class LoadFaviconTask extends UiAsyncTask<Void, Void, Bitmap> {
 
     // LB_CHANGE: change default so as to not conflict with Favicons.LOADED
     private static AtomicInteger mNextFaviconLoadId = new AtomicInteger(111);
+    private Favicons mFavicons;
     private int mId;
     private String mPageUrl;
     private String mFaviconUrl;
@@ -69,15 +70,16 @@ public class LoadFaviconTask extends UiAsyncTask<Void, Void, Bitmap> {
     static AndroidHttpClient sHttpClient = AndroidHttpClient.newInstance(System.getProperty("http.agent"));
 
     public LoadFaviconTask(Handler backgroundThreadHandler,
-                           String pageUrl, String faviconUrl, int flags,
+                           Favicons favicons, String pageUrl, String faviconUrl, int flags,
                            OnFaviconLoadedListener listener) {
-        this(backgroundThreadHandler, pageUrl, faviconUrl, flags, listener, -1, false);
+        this(backgroundThreadHandler, favicons, pageUrl, faviconUrl, flags, listener, -1, false);
     }
     public LoadFaviconTask(Handler backgroundThreadHandler,
-                           String pageUrl, String faviconUrl, int flags,
+                           Favicons favicons, String pageUrl, String faviconUrl, int flags,
                            OnFaviconLoadedListener aListener, int targetSize, boolean fromLocal) {
         super(backgroundThreadHandler);
 
+        mFavicons = favicons;
         mId = mNextFaviconLoadId.incrementAndGet();
 
         mPageUrl = pageUrl;
@@ -245,14 +247,14 @@ public class LoadFaviconTask extends UiAsyncTask<Void, Void, Bitmap> {
         // If favicon is empty, fall back to the stored one.
         if (TextUtils.isEmpty(mFaviconUrl)) {
             // Try to get the favicon URL from the memory cache.
-            storedFaviconUrl = Favicons.getFaviconURLForPageURLFromCache(mPageUrl);
+            storedFaviconUrl = mFavicons.getFaviconURLForPageURLFromCache(mPageUrl);
 
             // If that failed, try to get the URL from the database.
             if (storedFaviconUrl == null) {
-                storedFaviconUrl = Favicons.getFaviconUrlForPageUrl(mPageUrl);
+                storedFaviconUrl = mFavicons.getFaviconUrlForPageUrl(mPageUrl);
                 if (storedFaviconUrl != null) {
                     // If that succeeded, cache the URL loaded from the database in memory.
-                    Favicons.putFaviconURLForPageURLInCache(mPageUrl, storedFaviconUrl);
+                    mFavicons.putFaviconURLForPageURLInCache(mPageUrl, storedFaviconUrl);
                 }
             }
 
@@ -261,7 +263,7 @@ public class LoadFaviconTask extends UiAsyncTask<Void, Void, Bitmap> {
                 mFaviconUrl = storedFaviconUrl;
             } else {
                 // If we don't have a stored one, fall back to the default.
-                mFaviconUrl = Favicons.guessDefaultFaviconURL(mPageUrl);
+                mFaviconUrl = mFavicons.guessDefaultFaviconURL(mPageUrl);
 
                 if (TextUtils.isEmpty(mFaviconUrl)) {
                     return null;
@@ -272,7 +274,7 @@ public class LoadFaviconTask extends UiAsyncTask<Void, Void, Bitmap> {
 
         // Check if favicon has failed - if so, give up. We need this check because, sometimes, we
         // didn't know the real Favicon URL until we asked the database.
-        if (Favicons.isFailedFavicon(mFaviconUrl)) {
+        if (mFavicons.isFailedFavicon(mFaviconUrl)) {
             return null;
         }
 
@@ -335,14 +337,14 @@ public class LoadFaviconTask extends UiAsyncTask<Void, Void, Bitmap> {
         }
 
         if (isUsingDefaultURL) {
-            Favicons.putFaviconInFailedCache(mFaviconUrl);
+            mFavicons.putFaviconInFailedCache(mFaviconUrl);
             return null;
         }
 
         // If we're not already trying the default URL, try it now.
-        final String guessed = Favicons.guessDefaultFaviconURL(mPageUrl);
+        final String guessed = mFavicons.guessDefaultFaviconURL(mPageUrl);
         if (guessed == null) {
-            Favicons.putFaviconInFailedCache(mFaviconUrl);
+            mFavicons.putFaviconInFailedCache(mFaviconUrl);
             return null;
         }
 
@@ -380,7 +382,7 @@ public class LoadFaviconTask extends UiAsyncTask<Void, Void, Bitmap> {
         }
 
         // Put what we got in the memcache.
-        Favicons.putFaviconInMemCache(mFaviconUrl, image);
+        mFavicons.putFaviconInMemCache(mFaviconUrl, image);
 
         // Process the result, scale for the listener, etc.
         processResult(image);
@@ -408,21 +410,21 @@ public class LoadFaviconTask extends UiAsyncTask<Void, Void, Bitmap> {
     }
 
     private void processResult(Bitmap image) {
-        Favicons.removeLoadTask(mId);
+        mFavicons.removeLoadTask(mId);
 
         Bitmap scaled = image;
 
         // Notify listeners, scaling if required.
         if (mTargetWidth != -1 && image != null &&  image.getWidth() != mTargetWidth) {
-            scaled = Favicons.getSizedFaviconFromCache(mFaviconUrl, mTargetWidth);
+            scaled = mFavicons.getSizedFaviconFromCache(mFaviconUrl, mTargetWidth);
         }
 
-        Favicons.dispatchResult(mPageUrl, mFaviconUrl, scaled, mListener);
+        mFavicons.dispatchResult(mPageUrl, mFaviconUrl, scaled, mListener);
     }
 
     @Override
     protected void onCancelled() {
-        Favicons.removeLoadTask(mId);
+        mFavicons.removeLoadTask(mId);
 
         synchronized(loadsInFlight) {
             // Only remove from the hashmap if the task there is the one that's being canceled.
