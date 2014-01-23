@@ -152,7 +152,7 @@ public class CanvasView extends FrameLayout {
 
         ContentView contentView = bubble != null ? bubble.getContentView() : null;
         //if (bubble != null) {
-        //    int bubbleIndex = MainController.get().getBubbleIndex(bubble);
+        //    int bubbleIndex = MainController.get().getTabIndex(bubble);
         //    Log.d("CanvasView", "setContentView() - index:" + bubbleIndex);
         //}
 
