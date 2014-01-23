@@ -287,6 +287,9 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         if (animateOff && mSlideOffAnimationPlaying) {
             // Kick off an update so as to ensure BubbleFlowView.update() is always called when animating items off screen (see #189)
             MainController.get().scheduleUpdate();
+            if (getActiveTabCount() == 0 && getVisibleTabCount() > 0) {
+                MainApplication.postEvent(getContext(), new MainController.BeginAnimateFinalTabAwayEvent());
+            }
         }
     }
 

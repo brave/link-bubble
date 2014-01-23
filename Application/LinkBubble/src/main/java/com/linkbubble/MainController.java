@@ -50,6 +50,9 @@ public class MainController implements Choreographer.FrameCallback {
     public static class EndBubbleDragEvent {
     }
 
+    public static class BeginAnimateFinalTabAwayEvent {
+    }
+
     public static class BeginExpandTransitionEvent {
         public float mPeriod;
     }
