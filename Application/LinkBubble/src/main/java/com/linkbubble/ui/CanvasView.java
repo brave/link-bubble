@@ -2,7 +2,6 @@ package com.linkbubble.ui;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -13,7 +12,6 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.physics.Draggable;
 import com.linkbubble.util.Util;
 import com.linkbubble.physics.Circle;
 import com.squareup.otto.Subscribe;
@@ -143,7 +141,7 @@ public class CanvasView extends FrameLayout {
         }
     }
 
-    private void setContentView(BubbleFlowItemView bubble) {
+    private void setContentView(TabView bubble) {
         if (mContentView != null) {
             removeView(mContentView);
             mContentView.setAlpha(1.0f);
@@ -186,8 +184,8 @@ public class CanvasView extends FrameLayout {
 
     @SuppressWarnings("unused")
     @Subscribe
-    public void onCurrentBubbleChanged(MainController.CurrentBubbleChangedEvent e) {
-        setContentView(e.mBubble);
+    public void onCurrentBubbleChanged(MainController.CurrentTabChangedEvent e) {
+        setContentView(e.mTab);
     }
 
     @SuppressWarnings("unused")

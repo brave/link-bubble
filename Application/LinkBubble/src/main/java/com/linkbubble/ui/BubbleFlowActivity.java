@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
 import com.linkbubble.R;
 
 public class BubbleFlowActivity extends Activity {
@@ -30,14 +29,14 @@ public class BubbleFlowActivity extends Activity {
                 getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_width),
                 getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_height));
         for (int i = 0; i < 19; i++) {
-            BubbleFlowItemView bubble = (BubbleFlowItemView) inflater.inflate(R.layout.view_bubble_flow_item, null);
+            TabView bubble = (TabView) inflater.inflate(R.layout.view_tab, null);
             mBubbleFlowView.add(bubble, false);
         }
 
         findViewById(R.id.add_bubble_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BubbleFlowItemView bubble = (BubbleFlowItemView) inflater.inflate(R.layout.view_bubble_flow_item, null);
+                TabView bubble = (TabView) inflater.inflate(R.layout.view_tab, null);
                 mBubbleFlowView.add(bubble, false);
             }
         });
