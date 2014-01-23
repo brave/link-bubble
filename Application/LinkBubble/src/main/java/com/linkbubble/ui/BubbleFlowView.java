@@ -60,6 +60,7 @@ public class BubbleFlowView extends HorizontalScrollView {
     private int mEdgeMargin;
     private int mIndexOnActionDown;
     private boolean mFlingCalled;
+    protected boolean mSlideOffAnimationPlaying;
 
     private Listener mBubbleFlowListener;
     private TouchInterceptor mTouchInterceptor;
@@ -108,6 +109,12 @@ public class BubbleFlowView extends HorizontalScrollView {
     }
 
     public boolean update() {
+        boolean result = false;
+
+        if (mSlideOffAnimationPlaying) {
+            result = true;
+        }
+
         if (mTouchView != null) {
             if (mStillTouchFrameCount > -1) {
                 ++mStillTouchFrameCount;
@@ -121,7 +128,13 @@ public class BubbleFlowView extends HorizontalScrollView {
                     }
                 }
             }
-            return mViews.size() == 0 ? false : true;
+
+            // Check mContent rather than mViews, because it's possible for mViews to be empty yet mContent have a child
+            // (e.g, in the instance the final Bubble is animating off screen).
+            if (mContent.getChildCount() > 0) {
+                result = true;
+            }
+            return result;
         }
 
         return false;
@@ -219,6 +232,7 @@ public class BubbleFlowView extends HorizontalScrollView {
                     }
                     updatePositions();
                     updateScales(getScrollX());
+                    mSlideOffAnimationPlaying = false;
                 }
 
                 @Override
@@ -227,6 +241,7 @@ public class BubbleFlowView extends HorizontalScrollView {
                 }
             });
             view.startAnimation(slideOffAnim);
+            mSlideOffAnimationPlaying = true;
 
             mViews.remove(view);
 

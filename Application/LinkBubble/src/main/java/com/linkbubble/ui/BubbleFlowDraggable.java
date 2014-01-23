@@ -273,6 +273,15 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         Settings.get().saveCurrentBubbles(mViews);
     }
 
+    @Override
+    void remove(final int index, boolean animateOff, boolean removeFromList) {
+        super.remove(index, animateOff, removeFromList);
+        if (animateOff && mSlideOffAnimationPlaying) {
+            // Kick off an update so as to ensure BubbleFlowView.update() is always called when animating items off screen (see #189)
+            MainController.get().scheduleUpdate();
+        }
+    }
+
     private void destroyBubble(BubbleFlowItemView bubble, boolean animateRemove, boolean removeFromList) {
         int index = mViews.indexOf(bubble);
         if (index == -1) {
