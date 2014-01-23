@@ -259,12 +259,13 @@ public class CanvasView extends FrameLayout {
 
     @SuppressWarnings("unused")
     @Subscribe
-    public void onBeginAnimateFinalTabAway(MainController.BeginAnimateFinalTabAwayEvent e) {
+    public void onBeginAnimateFinalTabAway(MainController.BeginAnimateFinalTabAwayEvent event) {
         fadeOut();
         hideContentView();
-        //MainController.BeginCollapseTransitionEvent collapseTransitionEvent = new MainController.BeginCollapseTransitionEvent();
-        //collapseTransitionEvent.mPeriod = (Constant.BUBBLE_ANIM_TIME / 1000.f) * 0.666667f;
-        //onBeginCollapseTransition(collapseTransitionEvent);
+        setContentView(event.mTab);
+        MainController.BeginCollapseTransitionEvent collapseTransitionEvent = new MainController.BeginCollapseTransitionEvent();
+        collapseTransitionEvent.mPeriod = (Constant.BUBBLE_ANIM_TIME / 1000.f) * 0.666667f;
+        onBeginCollapseTransition(collapseTransitionEvent);
     }
 
     private void fadeIn() {

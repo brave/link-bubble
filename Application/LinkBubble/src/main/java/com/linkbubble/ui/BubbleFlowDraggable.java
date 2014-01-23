@@ -283,12 +283,17 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     @Override
     protected void remove(final int index, boolean animateOff, boolean removeFromList, OnRemovedListener onRemovedListener) {
+        TabView tab = (TabView) mViews.get(index);
         super.remove(index, animateOff, removeFromList, onRemovedListener);
         if (animateOff && mSlideOffAnimationPlaying) {
             // Kick off an update so as to ensure BubbleFlowView.update() is always called when animating items off screen (see #189)
             MainController.get().scheduleUpdate();
             if (getActiveTabCount() == 0 && getVisibleTabCount() > 0) {
-                MainApplication.postEvent(getContext(), new MainController.BeginAnimateFinalTabAwayEvent());
+                // Bit of a hack, but we need to ensure CanvasView has a valid mContentView, so use the one currently being killed.
+                // This is perfectly safe, because the view doesn't get destroyed until it has animated off screen.
+                MainController.BeginAnimateFinalTabAwayEvent event = new MainController.BeginAnimateFinalTabAwayEvent();
+                event.mTab = tab;
+                MainApplication.postEvent(getContext(), event);
             }
         }
     }
@@ -308,7 +313,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
         remove(index, animateRemove, removeFromList, mOnTabRemovedListener);
 
-        if (mCurrentTab == tab) {
+        // Don't do this if we're animating the final tab off, as the setCurrentTab() call messes with the
+        // CanvasView.mContentView, which has already been forcible set above in remove() via BeginAnimateFinalTabAwayEvent.
+        boolean animatingFinalTabOff = getActiveTabCount() == 0 && getVisibleTabCount() > 0 && mSlideOffAnimationPlaying;
+        if (mCurrentTab == tab && animatingFinalTabOff == false) {
             TabView newCurrentBubble = null;
             int viewsCount = mViews.size();
             if (viewsCount > 0) {

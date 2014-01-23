@@ -51,6 +51,7 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public static class BeginAnimateFinalTabAwayEvent {
+        public TabView mTab;
     }
 
     public static class BeginExpandTransitionEvent {
