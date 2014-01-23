@@ -92,7 +92,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * of concurrent reading and culling.
  */
 public class FaviconCache {
-    private static final String LOGTAG = "FaviconCache";
+    private String LOGTAG = "FaviconCache";
+    private static int sInstanceCount = 0;
 
     // The number of spaces to allocate for favicons in each node.
     private static final int NUM_FAVICON_SIZES = 4;
@@ -201,6 +202,9 @@ public class FaviconCache {
     public FaviconCache(int maxSize, int maxWidthToCache) {
         mMaxSizeBytes = maxSize;
         mMaxCachedWidth = maxWidthToCache;
+
+        LOGTAG += "[" + sInstanceCount + "]";
+        sInstanceCount++;
     }
 
     /**
