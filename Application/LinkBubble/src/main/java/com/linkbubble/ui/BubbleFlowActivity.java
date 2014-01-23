@@ -46,7 +46,7 @@ public class BubbleFlowActivity extends Activity {
             @Override
             public void onClick(View v) {
                 int centerIndex = mBubbleFlowView.getCenterIndex();
-                int count = mBubbleFlowView.getCount();
+                int count = mBubbleFlowView.getItemCount();
                 if (centerIndex+1 < count) {
                     mBubbleFlowView.remove(centerIndex + 1, true, true);
                 } else if (count > 2) {

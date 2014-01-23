@@ -107,6 +107,8 @@ public class MainController implements Choreographer.FrameCallback {
         bus.unregister(sInstance);
 
         //sInstance.mWindowManager.removeView(sInstance.mTextView);
+        sInstance.mBubbleDraggable.destroy();
+        sInstance.mBubbleFlowDraggable.destroy();
         sInstance.mCanvasView.destroy();
         sInstance.mChoreographer.removeFrameCallback(sInstance);
         sInstance.endAppPolling();
@@ -123,7 +125,6 @@ public class MainController implements Choreographer.FrameCallback {
 
     protected Context mContext;
     private Choreographer mChoreographer;
-    private boolean mAlive;
     protected boolean mUpdateScheduled;
     protected CanvasView mCanvasView;
 
@@ -197,7 +198,6 @@ public class MainController implements Choreographer.FrameCallback {
         sInstance = this;
         mContext = context;
         mEventHandler = eventHandler;
-        mAlive = true;
 
         mAppPoller = new AppPoller(context);
         mAppPoller.setListener(mAppPollerListener);
@@ -316,7 +316,7 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public int getBubbleCount() {
-        return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getBubbleCount() : 0;
+        return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getItemCount() : 0;
     }
 
     public int getBubbleIndex(BubbleFlowItemView bubbleFlowItemView) {
@@ -339,7 +339,14 @@ public class MainController implements Choreographer.FrameCallback {
         //mTextView.setText("S=" + mCurrentState.getName() + " F=" + mFrameNumber++);
 
         if (getBubbleCount() == 0 && mBubblesLoaded > 0 && !mUpdateScheduled) {
-            mEventHandler.onDestroy();
+            // Will be non-zero in the event a link has been dismissed by a user, but its BubbleFlowItemView
+            // instance is still animating off screen. In that case, keep triggering an update so that when the
+            // item finishes, we are ready to call onDestroy().
+            if (mBubbleFlowDraggable.getVisibleItemCount() == 0) {
+                mEventHandler.onDestroy();
+            } else {
+                scheduleUpdate();
+            }
         }
     }
 
@@ -453,26 +460,23 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     protected void openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble) {
-        if (mAlive) {
-            if (getBubbleCount() == 0) {
-                mBubbleDraggable.setVisibility(View.VISIBLE);
-                mBubbleDraggable.setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
-            }
-
-            //boolean setAsCurrentBubble = mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView ? false : true;
-            mBubbleFlowDraggable.openUrlInBubble(url, startTime, setAsCurrentBubble);
-            showBadge(getBubbleCount() > 1 ? true : false);
-            ++mBubblesLoaded;
-        } else {
-            Log.e("LinkBubble", "Attempted to open '" + url + "' after destroying controller.");
+        if (getBubbleCount() == 0) {
+            mBubbleDraggable.setVisibility(View.VISIBLE);
+            mBubbleDraggable.setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
         }
+
+        //boolean setAsCurrentBubble = mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView ? false : true;
+        mBubbleFlowDraggable.openUrlInBubble(url, startTime, setAsCurrentBubble);
+        showBadge(getBubbleCount() > 1 ? true : false);
+        ++mBubblesLoaded;
     }
 
     public void showBadge(boolean show) {
         if (mBubbleDraggable != null) {
-            mBubbleDraggable.mBadgeView.setCount(mBubbleFlowDraggable.getBubbleCount());
+            int bubbleCount = mBubbleFlowDraggable.getItemCount();
+            mBubbleDraggable.mBadgeView.setCount(bubbleCount);
             if (show) {
-                if (mBubbleFlowDraggable.getBubbleCount() > 1) {
+                if (bubbleCount > 1) {
                     mBubbleDraggable.mBadgeView.show();
                 }
             } else {
@@ -493,9 +497,8 @@ public class MainController implements Choreographer.FrameCallback {
             Toast.makeText(mContext, "HIT TARGET!", 400).show();
         } else {
             mBubbleFlowDraggable.destroyCurrentBubble(animateOff, action);
-            if (mBubbleFlowDraggable.getBubbleCount() == 0) {
-                removeBubbleDraggable();
-
+            if (mBubbleFlowDraggable.getItemCount() == 0) {
+                hideBubbleDraggable();
                 Config.BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
                 Config.BUBBLE_HOME_Y = (int) (Config.mScreenHeight * 0.4f);
             }
@@ -506,12 +509,11 @@ public class MainController implements Choreographer.FrameCallback {
 
     public void destroyAllBubbles() {
         mBubbleFlowDraggable.destroyAllBubbles();
-        removeBubbleDraggable();
+        hideBubbleDraggable();
     }
 
-    private void removeBubbleDraggable() {
-        mAlive = false;
-        mBubbleDraggable.destroy();
+    private void hideBubbleDraggable() {
+        mBubbleDraggable.setVisibility(View.GONE);
     }
 
     public void expandBubbleFlow(long time) {
