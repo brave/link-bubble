@@ -366,8 +366,12 @@ public class Favicons {
     }
 
     public Favicons() {
+        this(FAVICON_CACHE_SIZE_BYTES);
+    }
+
+    public Favicons(int cacheSize) {
         final Resources res = sContext.getResources();
-        sFaviconsCache = new FaviconCache(FAVICON_CACHE_SIZE_BYTES, res.getDimensionPixelSize(R.dimen.favicon_largest_interesting_size));
+        sFaviconsCache = new FaviconCache(cacheSize, res.getDimensionPixelSize(R.dimen.favicon_largest_interesting_size));
 
         // Initialize page mappings for each of our special pages.
         // LB_CHANGE:
