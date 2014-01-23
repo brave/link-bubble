@@ -14,6 +14,7 @@ import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.squareup.otto.Bus;
 import org.mozilla.gecko.favicons.Favicons;
+import org.mozilla.gecko.favicons.cache.FaviconCache;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -27,6 +28,8 @@ public class MainApplication extends Application {
     public DatabaseHelper mDatabaseHelper;
 
     public ConcurrentHashMap<String, String> mTitleHashMap = new ConcurrentHashMap<String, String>(64);
+    public static Favicons sFavicons;
+
 
     @Override
     public void onCreate() {
@@ -40,6 +43,7 @@ public class MainApplication extends Application {
 
         try {
             Favicons.attachToContext(this);
+            sFavicons = new Favicons();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,7 +60,8 @@ public class MainApplication extends Application {
     public void onTerminate() {
         Settings.deinitModule();
 
-        Favicons.close();
+        sFavicons.close();
+        sFavicons = null;
 
         super.onTerminate();
     }
