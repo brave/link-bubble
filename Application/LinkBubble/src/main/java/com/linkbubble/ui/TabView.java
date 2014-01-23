@@ -4,10 +4,7 @@ package com.linkbubble.ui;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import com.linkbubble.Config;
-import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.util.Util;
@@ -17,19 +14,19 @@ import org.mozilla.gecko.favicons.Favicons;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class BubbleFlowItemView extends BubbleView {
+public class TabView extends BubbleView {
 
     protected ContentView mContentView;
 
-    public BubbleFlowItemView(Context context) {
+    public TabView(Context context) {
         this(context, null);
     }
 
-    public BubbleFlowItemView(Context context, AttributeSet attrs) {
+    public TabView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public BubbleFlowItemView(Context context, AttributeSet attrs, int defStyle) {
+    public TabView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -69,12 +66,12 @@ public class BubbleFlowItemView extends BubbleView {
 
             @Override
             public void onPageLoaded() {
-                BubbleFlowItemView.this.onPageLoaded();
+                TabView.this.onPageLoaded();
             }
 
             @Override
             public void onReceivedIcon(Bitmap favicon) {
-                BubbleFlowItemView.this.onReceivedIcon(favicon);
+                TabView.this.onReceivedIcon(favicon);
             }
         });
 

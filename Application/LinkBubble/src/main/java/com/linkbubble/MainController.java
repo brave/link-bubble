@@ -5,32 +5,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
-import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Choreographer;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.physics.Draggable;
-import com.linkbubble.ui.BadgeView;
 import com.linkbubble.ui.BubbleDraggable;
 import com.linkbubble.ui.BubbleFlowDraggable;
-import com.linkbubble.ui.BubbleFlowItemView;
+import com.linkbubble.ui.TabView;
 import com.linkbubble.ui.BubbleFlowView;
-import com.linkbubble.ui.BubbleView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.ui.ContentActivity;
-import com.linkbubble.ui.ContentView;
 import com.linkbubble.ui.SettingsFragment;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.AppPoller;
@@ -38,9 +31,7 @@ import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
-import java.net.MalformedURLException;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * Created by gw on 2/10/13.
@@ -73,8 +64,8 @@ public class MainController implements Choreographer.FrameCallback {
     public static class OrientationChangedEvent {
     }
 
-    public static class CurrentBubbleChangedEvent {
-        public BubbleFlowItemView mBubble;
+    public static class CurrentTabChangedEvent {
+        public TabView mTab;
     }
 
     public static class DraggableBubbleMovedEvent {
@@ -144,9 +135,9 @@ public class MainController implements Choreographer.FrameCallback {
         @Override
         public void onAnimationEnd(BubbleFlowView sender) {
             mBubbleDraggable.setVisibility(View.VISIBLE);
-            BubbleFlowItemView currentBubble = mBubbleFlowDraggable.getCurrentBubble();
-            if (currentBubble != null) {
-                currentBubble.setImitator(mBubbleDraggable);
+            TabView tab = mBubbleFlowDraggable.getCurrentTab();
+            if (tab != null) {
+                tab.setImitator(mBubbleDraggable);
             }
             mSetBubbleFlowGone = true;
             mBubbleFlowDraggable.postDelayed(mSetBubbleFlowGoneRunnable, 33);
@@ -256,11 +247,11 @@ public class MainController implements Choreographer.FrameCallback {
     //private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
     //private int mFrameNumber;
 
-    public void onPageLoaded(BubbleFlowItemView bubbleFlowItemView) {
+    public void onPageLoaded(TabView tab) {
         if (Settings.get().getAutoContentDisplayLinkLoaded() && !mBubbleDraggable.isDragging()) {
             switch (mBubbleDraggable.getCurrentMode()) {
                 case BubbleView:
-                    mBubbleFlowDraggable.setCenterItem(bubbleFlowItemView);
+                    mBubbleFlowDraggable.setCenterItem(tab);
                     mBubbleDraggable.switchToExpandedView();
                     break;
             }
@@ -319,8 +310,8 @@ public class MainController implements Choreographer.FrameCallback {
         return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getItemCount() : 0;
     }
 
-    public int getBubbleIndex(BubbleFlowItemView bubbleFlowItemView) {
-        return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getIndexOfView(bubbleFlowItemView) : -1;
+    public int getBubbleIndex(TabView tab) {
+        return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getIndexOfView(tab) : -1;
     }
 
     public void doFrame(long frameTimeNanos) {
@@ -339,7 +330,7 @@ public class MainController implements Choreographer.FrameCallback {
         //mTextView.setText("S=" + mCurrentState.getName() + " F=" + mFrameNumber++);
 
         if (getBubbleCount() == 0 && mBubblesLoaded > 0 && !mUpdateScheduled) {
-            // Will be non-zero in the event a link has been dismissed by a user, but its BubbleFlowItemView
+            // Will be non-zero in the event a link has been dismissed by a user, but its TabView
             // instance is still animating off screen. In that case, keep triggering an update so that when the
             // item finishes, we are ready to call onDestroy().
             if (mBubbleFlowDraggable.getVisibleItemCount() == 0) {

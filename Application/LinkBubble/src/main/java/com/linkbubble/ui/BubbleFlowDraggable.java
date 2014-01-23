@@ -19,8 +19,6 @@ import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.util.VerticalGestureListener;
 
 import java.net.MalformedURLException;
-import java.util.Iterator;
-import java.util.Vector;
 
 
 public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
@@ -30,11 +28,11 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     private EventHandler mEventHandler;
     private int mBubbleFlowWidth;
     private int mBubbleFlowHeight;
-    private BubbleFlowItemView mCurrentBubble;
+    private TabView mCurrentTab;
     private BubbleDraggable mBubbleDraggable;
     private Point mTempSize = new Point();
 
-    private MainController.CurrentBubbleChangedEvent mCurrentBubbleChangedEvent = new MainController.CurrentBubbleChangedEvent();
+    private MainController.CurrentTabChangedEvent mCurrentTabChangedEvent = new MainController.CurrentTabChangedEvent();
 
     public interface EventHandler {
         public void onMotionEvent_Touch(BubbleFlowDraggable sender, DraggableHelper.TouchEvent event);
@@ -73,7 +71,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
             @Override
             public void onCenterItemLongClicked(BubbleFlowView sender, View view) {
-                if (view instanceof BubbleFlowItemView) {
+                if (view instanceof TabView) {
                     //shrink(Constant.BUBBLE_ANIM_TIME);
                     MainController.get().startDraggingFromContentView();
                 }
@@ -86,7 +84,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
             @Override
             public void onCenterItemChanged(BubbleFlowView sender, View view) {
-                setCurrentBubble((BubbleFlowItemView)view);
+                setCurrentTab((TabView) view);
             }
         });
 
@@ -161,10 +159,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     @Override
     public boolean expand(long time, final AnimationEventListener animationEventListener) {
 
-        if (isExpanded() == false && mCurrentBubble != null) {
+        if (isExpanded() == false && mCurrentTab != null) {
             // Ensure the centerIndex matches the current bubble. This should only *NOT* be the case when
             // restoring with N Bubbles from a previous session and the user clicks to expand the BubbleFlowView.
-            int currentBubbleIndex = getIndexOfView(mCurrentBubble);
+            int currentBubbleIndex = getIndexOfView(mCurrentTab);
             int centerIndex = getCenterIndex();
             if (centerIndex > -1 && currentBubbleIndex != centerIndex) {
                 setCenterIndex(currentBubbleIndex, false);
@@ -174,7 +172,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         if (super.expand(time, animationEventListener)) {
             int centerIndex = getCenterIndex();
             if (centerIndex > -1) {
-                setCurrentBubble((BubbleFlowItemView) mViews.get(centerIndex));
+                setCurrentTab((TabView) mViews.get(centerIndex));
             }
             return true;
         }
@@ -182,23 +180,23 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         return false;
     }
 
-    public BubbleFlowItemView getCurrentBubble() {
-        return mCurrentBubble;
+    public TabView getCurrentTab() {
+        return mCurrentTab;
     }
 
-    private void setCurrentBubble(BubbleFlowItemView bubble) {
-        if (mCurrentBubble == bubble) {
+    private void setCurrentTab(TabView tab) {
+        if (mCurrentTab == tab) {
             return;
         }
 
-        if (mCurrentBubble != null) {
-            mCurrentBubble.setImitator(null);
+        if (mCurrentTab != null) {
+            mCurrentTab.setImitator(null);
         }
-        mCurrentBubble = bubble;
-        mCurrentBubbleChangedEvent.mBubble = bubble;
-        MainApplication.postEvent(getContext(), mCurrentBubbleChangedEvent);
-        if (mCurrentBubble != null) {
-            mCurrentBubble.setImitator(mBubbleDraggable);
+        mCurrentTab = tab;
+        mCurrentTabChangedEvent.mTab = tab;
+        MainApplication.postEvent(getContext(), mCurrentTabChangedEvent);
+        if (mCurrentTab != null) {
+            mCurrentTab.setImitator(mBubbleDraggable);
         }
     }
 
@@ -246,10 +244,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     public void openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble) {
-        BubbleFlowItemView bubble;
+        TabView bubble;
         try {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            bubble = (BubbleFlowItemView) inflater.inflate(R.layout.view_bubble_flow_item, null);
+            bubble = (TabView) inflater.inflate(R.layout.view_tab, null);
             bubble.configure(url, startTime);
         } catch (MalformedURLException e) {
             // TODO: Inform the user somehow?
@@ -263,7 +261,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         mBubbleDraggable.mBadgeView.setCount(getItemCount());
 
         if (setAsCurrentBubble) {
-            setCurrentBubble(bubble);
+            setCurrentTab(bubble);
         }
 
         Settings.get().saveCurrentBubbles(mViews);
@@ -278,7 +276,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     }
 
-    private void destroyBubble(BubbleFlowItemView bubble, boolean animateRemove, boolean removeFromList) {
+    private void destroyBubble(TabView bubble, boolean animateRemove, boolean removeFromList) {
         int index = mViews.indexOf(bubble);
         if (index == -1) {
             return;
@@ -287,23 +285,23 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
         bubble.destroy();
 
-        if (mCurrentBubble == bubble) {
-            BubbleFlowItemView newCurrentBubble = null;
+        if (mCurrentTab == bubble) {
+            TabView newCurrentBubble = null;
             int viewsCount = mViews.size();
             if (viewsCount > 0) {
                 if (viewsCount == 1) {
-                    newCurrentBubble = (BubbleFlowItemView) mViews.get(0);
+                    newCurrentBubble = (TabView) mViews.get(0);
                 } else if (index < viewsCount) {
-                    newCurrentBubble = (BubbleFlowItemView) mViews.get(index);
+                    newCurrentBubble = (TabView) mViews.get(index);
                 } else {
                     if (index > 0) {
-                        newCurrentBubble = (BubbleFlowItemView) mViews.get(index-1);
+                        newCurrentBubble = (TabView) mViews.get(index-1);
                     } else {
-                        newCurrentBubble = (BubbleFlowItemView) mViews.get(0);
+                        newCurrentBubble = (TabView) mViews.get(0);
                     }
                 }
             }
-            setCurrentBubble(newCurrentBubble);
+            setCurrentTab(newCurrentBubble);
         }
     }
 
@@ -312,7 +310,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     public void destroyCurrentBubble(boolean animateRemove, Config.BubbleAction action) {
-        BubbleFlowItemView currentBubble = getCurrentBubble();
+        TabView currentBubble = getCurrentTab();
         String url = currentBubble.getUrl().toString();
         destroyBubble(currentBubble, animateRemove, true);
         postDestroyedBubble();
@@ -323,7 +321,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     public void destroyAllBubbles() {
         for (View view : mViews) {
-            destroyBubble(((BubbleFlowItemView) view), false, false);
+            destroyBubble(((TabView) view), false, false);
         }
 
         mViews.clear();
@@ -332,7 +330,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     public void updateIncognitoMode(boolean incognito) {
         for (View view : mViews) {
-            ((BubbleFlowItemView)view).updateIncognitoMode(incognito);
+            ((TabView)view).updateIncognitoMode(incognito);
         }
     }
 

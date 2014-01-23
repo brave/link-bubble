@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.linkbubble.ui.BubbleFlowItemView
+<com.linkbubble.ui.TabView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/bubble_pager_item_width"
     android:layout_height="@dimen/bubble_size"
@@ -38,4 +38,4 @@
         android:src="@drawable/fallback_favicon"
         android:layout_gravity="center"/>
 
-</com.linkbubble.ui.BubbleFlowItemView>
+</com.linkbubble.ui.TabView>

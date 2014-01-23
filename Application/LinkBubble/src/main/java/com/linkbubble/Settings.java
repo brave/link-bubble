@@ -15,8 +15,7 @@ import android.preference.PreferenceManager;
 
 import android.util.Log;
 import android.view.View;
-import com.linkbubble.ui.BubbleFlowItemView;
-import com.linkbubble.ui.BubbleView;
+import com.linkbubble.ui.TabView;
 import com.linkbubble.util.Util;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -546,7 +545,7 @@ public class Settings {
     public void saveCurrentBubbles(List<View> bubbles) {
         JSONArray jsonArray = new JSONArray();
         for (View view : bubbles) {
-            URL url = ((BubbleFlowItemView)view).getUrl();
+            URL url = ((TabView)view).getUrl();
             jsonArray.put(url.toString());
         }
 
