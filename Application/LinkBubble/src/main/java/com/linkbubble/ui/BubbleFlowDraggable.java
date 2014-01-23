@@ -158,10 +158,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         mDraggableHelper.destroy();
     }
 
-    public int getBubbleCount() {
-        return getCount();
-    }
-
     @Override
     public boolean expand(long time, final AnimationEventListener animationEventListener) {
 
@@ -264,7 +260,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         // minimized are added to the end.
         add(bubble, mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView);
 
-        mBubbleDraggable.mBadgeView.setCount(getBubbleCount());
+        mBubbleDraggable.mBadgeView.setCount(getItemCount());
 
         if (setAsCurrentBubble) {
             setCurrentBubble(bubble);
