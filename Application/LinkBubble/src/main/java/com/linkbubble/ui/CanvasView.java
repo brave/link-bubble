@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.linkbubble.Config;
+import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
@@ -254,6 +255,16 @@ public class CanvasView extends FrameLayout {
         if (mContentView != null) {
             mContentView.onOrientationChanged();
         }
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onBeginAnimateFinalTabAway(MainController.BeginAnimateFinalTabAwayEvent e) {
+        fadeOut();
+        hideContentView();
+        //MainController.BeginCollapseTransitionEvent collapseTransitionEvent = new MainController.BeginCollapseTransitionEvent();
+        //collapseTransitionEvent.mPeriod = (Constant.BUBBLE_ANIM_TIME / 1000.f) * 0.666667f;
+        //onBeginCollapseTransition(collapseTransitionEvent);
     }
 
     private void fadeIn() {
