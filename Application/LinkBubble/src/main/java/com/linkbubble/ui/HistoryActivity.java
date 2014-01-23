@@ -46,13 +46,32 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
     private HistoryAdapter mHistoryAdapter;
     private List<HistoryRecord> mHistoryRecords;
 
+    private static int sInstanceCount = 0;
+    private static Favicons sFavicons = null;
+    private static final int FAVICON_CACHE_SIZE = 4 * 1024 * 1024;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sInstanceCount++;
+        if (sInstanceCount == 1) {
+            sFavicons = new Favicons(FAVICON_CACHE_SIZE);
+        }
+
         setContentView(R.layout.activity_history);
 
         mListView = (ListView) findViewById(R.id.listview);
+    }
+
+    @Override
+    protected void onDestroy() {
+        sInstanceCount--;
+        if (sInstanceCount == 0) {
+            sFavicons = null;
+        }
+
+        super.onDestroy();
     }
 
     @Override
@@ -279,7 +298,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
             String faviconUrl = "http://" + host + "/favicon.ico";
 
             historyItem.mFaviconUrl = faviconUrl;
-            MainApplication.sFavicons.getFaviconForSize(host, faviconUrl, Integer.MAX_VALUE, flags, historyItem.mOnFaviconLoadedListener);
+            sFavicons.getFaviconForSize(host, faviconUrl, Integer.MAX_VALUE, flags, historyItem.mOnFaviconLoadedListener);
             if (historyItem.mFaviconSet == false) {
                 historyItem.mFaviconImageView.setImageResource(R.drawable.fallback_favicon);
             }
