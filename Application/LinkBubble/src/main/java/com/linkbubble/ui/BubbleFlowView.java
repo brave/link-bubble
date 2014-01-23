@@ -419,6 +419,7 @@ public class BubbleFlowView extends HorizontalScrollView {
             return;
         }
 
+        mIsExpanded = false;
         mStillTouchFrameCount = -1;
         if (DEBUG) {
             //Log.d(TAG, "[longpress] collapse(): mStillTouchFrameCount=" + mStillTouchFrameCount);
@@ -472,7 +473,6 @@ public class BubbleFlowView extends HorizontalScrollView {
         // Remove and re-add to ensure view is drawn last.
         mContent.removeView(centerView);
         mContent.addView(centerView);
-        mIsExpanded = false;
     }
 
     boolean isExpanded() {
