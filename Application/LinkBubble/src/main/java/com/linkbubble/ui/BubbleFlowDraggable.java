@@ -163,30 +163,27 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     @Override
-    public boolean expand() {
-        if (super.expand()) {
-            postExpand();
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
     public boolean expand(long time, final AnimationEventListener animationEventListener) {
+
+        if (isExpanded() == false && mCurrentBubble != null) {
+            // Ensure the centerIndex matches the current bubble. This should only *NOT* be the case when
+            // restoring with N Bubbles from a previous session and the user clicks to expand the BubbleFlowView.
+            int currentBubbleIndex = getIndexOfView(mCurrentBubble);
+            int centerIndex = getCenterIndex();
+            if (centerIndex > -1 && currentBubbleIndex != centerIndex) {
+                setCenterIndex(currentBubbleIndex, false);
+            }
+        }
+
         if (super.expand(time, animationEventListener)) {
-            postExpand();
+            int centerIndex = getCenterIndex();
+            if (centerIndex > -1) {
+                setCurrentBubble((BubbleFlowItemView) mViews.get(centerIndex));
+            }
             return true;
         }
 
         return false;
-    }
-
-    private void postExpand() {
-        int centerIndex = getCenterIndex();
-        if (centerIndex > -1) {
-            setCurrentBubble((BubbleFlowItemView) mViews.get(centerIndex));
-        }
     }
 
     public BubbleFlowItemView getCurrentBubble() {
@@ -197,7 +194,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         if (mCurrentBubble == bubble) {
             return;
         }
-        
+
         if (mCurrentBubble != null) {
             mCurrentBubble.setImitator(null);
         }
@@ -269,7 +266,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
         mBubbleDraggable.mBadgeView.setCount(getBubbleCount());
 
-        if (mCurrentBubble == null || setAsCurrentBubble) {
+        if (setAsCurrentBubble) {
             setCurrentBubble(bubble);
         }
 

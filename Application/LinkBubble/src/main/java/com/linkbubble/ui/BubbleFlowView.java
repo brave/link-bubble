@@ -334,9 +334,17 @@ public class BubbleFlowView extends HorizontalScrollView {
     }
 
     public void setCenterIndex(int index) {
+        setCenterIndex(index, true);
+    }
+
+    public void setCenterIndex(int index, boolean animate) {
         int scrollToX = mEdgeMargin + (index * mItemWidth) - (mWidth/2) + (mItemWidth/2);
-        smoothScrollTo(scrollToX, 0);
         startScrollFinishedCheckTask(scrollToX);
+        if (animate) {
+            smoothScrollTo(scrollToX, 0);
+        } else {
+            scrollTo(scrollToX, 0);
+        }
     }
 
     public void setCenterItem(View view) {
@@ -349,6 +357,7 @@ public class BubbleFlowView extends HorizontalScrollView {
     private static final int DEFAULT_ANIM_TIME = 300;
 
     public boolean expand() {
+        // Note: if this function changes to not pass default arguments along, be sure to update BubbleFlowDraggable's expand() override(s) accordingly.
         return expand(DEFAULT_ANIM_TIME, null);
     }
 
