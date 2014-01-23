@@ -454,6 +454,7 @@ public class ContentView extends FrameLayout {
                             Log.d(TAG, "Go back: " + urlBefore + " -> " + webView.getUrl());
                             configureOpenInAppButton();
                             configureOpenEmbedButton();
+                            mUrlTextView.setText(prevUrl.replace("http://", ""));
                             return true;
                         }
                         break;
