@@ -336,27 +336,29 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     }
 
-    private void postDestroyedBubble() {
-        Settings.get().saveCurrentBubbles(mViews);
+    private void postDestroyedBubble(boolean removeFromCurrentTabs) {
+        if (removeFromCurrentTabs) {
+            Settings.get().saveCurrentBubbles(mViews);
+        }
     }
 
     public void destroyCurrentBubble(boolean animateRemove, Config.BubbleAction action) {
         TabView currentBubble = getCurrentTab();
         String url = currentBubble.getUrl().toString();
         destroyBubble(currentBubble, animateRemove, true);
-        postDestroyedBubble();
+        postDestroyedBubble(true);
         if (action != Config.BubbleAction.None) {
             MainApplication.handleBubbleAction(getContext(), action, url);
         }
     }
 
-    public void destroyAllBubbles() {
+    public void destroyAllBubbles(boolean removeFromCurrentTabs) {
         for (View view : mViews) {
             destroyBubble(((TabView) view), false, false);
         }
 
         mViews.clear();
-        postDestroyedBubble();
+        postDestroyedBubble(removeFromCurrentTabs);
     }
 
     public void updateIncognitoMode(boolean incognito) {

@@ -63,7 +63,6 @@
     <string name="preference_clear_form_data">Form data</string>
     <string name="preference_clear_history">History</string>
     <string name="preference_clear_passwords">Passwords</string>
-    <string name="private_data_cleared">Private data cleared</string>
 
     <string name="preference_help_title">Help</string>
     <string name="preference_credits_title">Credits</string>
@@ -103,6 +102,8 @@
     <string name="erase_all_history_title">Erase all?</string>
     <string name="erase_all_history_message">Erase your entire Link Bubble browsing history?</string>
     <string name="history_already_empty">History already empty</string>
+    <string name="private_data_cleared">Private data cleared</string>
+    <string name="private_data_cleared_reloading_current">Private data cleared. Reloading current bubbles...</string>
     <string name="link_loaded_with_app">Loaded with %1$s</string>
     <string name="link_redirected">Redirected to %1$s</string>
 

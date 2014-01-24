@@ -503,7 +503,11 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void destroyAllBubbles() {
-        mBubbleFlowDraggable.destroyAllBubbles();
+        destroyAllBubbles(true);
+    }
+
+    public void destroyAllBubbles(boolean removeFromCurrentTabs) {
+        mBubbleFlowDraggable.destroyAllBubbles(removeFromCurrentTabs);
         hideBubbleDraggable();
     }
 

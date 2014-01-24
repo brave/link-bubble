@@ -544,9 +544,11 @@ public class Settings {
 
     public void saveCurrentBubbles(List<View> bubbles) {
         JSONArray jsonArray = new JSONArray();
-        for (View view : bubbles) {
-            URL url = ((TabView)view).getUrl();
-            jsonArray.put(url.toString());
+        if (bubbles != null) {
+            for (View view : bubbles) {
+                URL url = ((TabView)view).getUrl();
+                jsonArray.put(url.toString());
+            }
         }
 
         SharedPreferences.Editor editor = mSharedPreferences.edit();
