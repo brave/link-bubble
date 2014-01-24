@@ -486,7 +486,7 @@ public class MainController implements Choreographer.FrameCallback {
 
     public boolean destroyCurrentBubble(Config.BubbleAction action, boolean animateOff) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-        boolean debug = prefs.getBoolean("debug_flick", true);
+        boolean debug = prefs.getBoolean("debug_flick", false);
 
         if (debug) {
             Toast.makeText(mContext, "HIT TARGET!", 400).show();
