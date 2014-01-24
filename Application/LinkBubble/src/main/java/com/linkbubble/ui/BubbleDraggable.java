@@ -3,6 +3,7 @@ package com.linkbubble.ui;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -360,7 +361,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                         // c = 1, t = 1                 was snapping, is snapping -> NO move
 
                         Circle c = new Circle(targetX + Config.mBubbleWidth * 0.5f, targetY + Config.mBubbleHeight * 0.5f, Config.mBubbleWidth * 0.5f);
-                        BubbleTargetView tv = mCanvasView.getSnapTarget(c);
+                        BubbleTargetView tv = mCanvasView.getSnapTarget(c, 1.0f);
 
                         if (mCurrentSnapTarget == null) {
                             if (tv == null) {
@@ -386,7 +387,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                             }
                         } else {
                             if (tv == null) {
-                                setTargetPos(targetX, targetY, 0.02f, DraggableHelper.AnimationType.Linear, new DraggableHelper.AnimationEventListener() {
+                                setTargetPos(targetX, targetY, 0.05f, DraggableHelper.AnimationType.Linear, new DraggableHelper.AnimationEventListener() {
                                     @Override
                                     public void onAnimationComplete() {
                                         mCurrentSnapTarget.endSnapping();
@@ -486,7 +487,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             int y = mDraggableHelper.getYPos();
 
             Circle bubbleCircle = new Circle(x + Config.mBubbleWidth * 0.5f, y + Config.mBubbleHeight * 0.5f, Config.mBubbleWidth * 0.5f);
-            BubbleTargetView tv = mCanvasView.getSnapTarget(bubbleCircle);
+            BubbleTargetView tv = mCanvasView.getSnapTarget(bubbleCircle, 0.1f);
 
             if (tv != null) {
                 mCurrentSnapTarget = tv;
