@@ -279,6 +279,11 @@ public class BubbleTargetView extends RelativeLayout {
             float t = d / v;
 
             float remainingTime = Math.max(t, mTransitionTimeLeft);
+
+            if (mTransitionTimeLeft > 0.0f) {
+                remainingTime = mTransitionTimeLeft;
+            }
+
             setTargetPos(x, y, remainingTime);
         }
     }
