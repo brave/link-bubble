@@ -2,11 +2,15 @@ package com.linkbubble.util;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import com.linkbubble.Config;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
+import java.lang.ref.WeakReference;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -60,7 +64,7 @@ public class PageInspector {
             "      }\n" +
             "  }\n" +
             "  if (linksCount > 0) {" +
-            "  " + JS_VARIABLE + ".onFaviconLinks(linksArray.toString());\n" +
+            "  " + JS_VARIABLE + ".onTouchIconLinks(linksArray.toString());\n" +
             "  }\n" +
             "}";
 
@@ -75,13 +79,16 @@ public class PageInspector {
     private String mLastYouTubeEmbedResultString = null;
     private OnItemFoundListener mOnItemFoundListener;
 
+    private static final int TOUCH_ICON_MAX_SIZE = 256;
     private static final int MAX_FAVICON_ENTRIES = 4;
     private FaviconEntry[] mFaviconEntries = new FaviconEntry[MAX_FAVICON_ENTRIES];
     private int mFaviconEntryCount = 0;
     private String mLastFaviconResultString = null;
+    private TouchIconTransformation sTouchIconTransformation = null;
 
     public interface OnItemFoundListener {
         void onYouTubeEmbeds();
+        void onTouchIconLoaded(Bitmap bitmap);
     }
 
     public PageInspector(Context context, WebView webView, OnItemFoundListener listener) {
@@ -119,7 +126,7 @@ public class PageInspector {
     private class JSEmbedHandler {
 
         @JavascriptInterface
-        public void onFaviconLinks(String string) {
+        public void onTouchIconLinks(String string) {
             if (mLastFaviconResultString != null && mLastFaviconResultString.equals(string)) {
                 return;
             }
@@ -182,6 +189,17 @@ public class PageInspector {
                     }
                 }
             }
+
+            if (mFaviconEntryCount > 0) {
+                // pick the first one for now
+                FaviconEntry faviconEntry = mFaviconEntries[0];
+                if (sTouchIconTransformation == null) {
+                    sTouchIconTransformation = new TouchIconTransformation();
+                }
+                sTouchIconTransformation.setListener(mOnItemFoundListener);
+                Picasso.with(mContext).load(faviconEntry.mUrl.toString()).transform(sTouchIconTransformation).fetch();
+            }
+
         }
 
         @JavascriptInterface
@@ -210,5 +228,37 @@ public class PageInspector {
         }
     };
 
+    private static class TouchIconTransformation implements Transformation {
 
+        private WeakReference<OnItemFoundListener> mListener;
+
+        void setListener(OnItemFoundListener listener) {
+            if (mListener == null || mListener.get() != listener) {
+                mListener = new WeakReference<OnItemFoundListener>(listener);
+            }
+        }
+
+        @Override
+        public Bitmap transform(Bitmap source) {
+            int w = source.getWidth();
+
+            Bitmap result = source;
+            if (w > TOUCH_ICON_MAX_SIZE) {
+                result = Bitmap.createScaledBitmap(source, TOUCH_ICON_MAX_SIZE, TOUCH_ICON_MAX_SIZE, true);
+            }
+
+            if (result != null && mListener != null) {
+                OnItemFoundListener listener = mListener.get();
+                if (listener != null) {
+                    listener.onTouchIconLoaded(result);
+                }
+            }
+
+            // return null. No need for Picasso to cache this, as we're already doing so elsewhere
+            return null;
+        }
+
+        @Override
+        public String key() { return "faviconTransformation()"; }
+    }
 }

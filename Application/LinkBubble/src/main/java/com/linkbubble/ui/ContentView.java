@@ -667,6 +667,16 @@ public class ContentView extends FrameLayout {
 
             mOpenEmbedButton.post(mUpdateOpenInAppRunnable);
         }
+
+        @Override
+        public void onTouchIconLoaded(Bitmap bitmap) {
+            //if (mPageFinishedLoading) {
+                mEventHandler.onReceivedIcon(bitmap);
+
+                String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
+                MainApplication.sFavicons.putFaviconInMemCache(faviconUrl, bitmap);
+            //}
+        }
     };
 
     private void onUrlLongClick(final String urlAsString) {
