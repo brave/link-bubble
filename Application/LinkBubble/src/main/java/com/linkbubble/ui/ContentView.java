@@ -11,6 +11,7 @@ import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.http.SslError;
+import android.os.Handler;
 import android.preference.Preference;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -651,6 +652,7 @@ public class ContentView extends FrameLayout {
     PageInspector.OnItemFoundListener mOnPageInspectorItemFoundListener = new PageInspector.OnItemFoundListener() {
 
         private Runnable mUpdateOpenInAppRunnable = null;
+        private Handler mHandler = new Handler();
 
         @Override
         public void onYouTubeEmbeds() {
@@ -667,13 +669,23 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
-        public void onTouchIconLoaded(Bitmap bitmap, String pageUrl) {
-            if (bitmap != null && pageUrl != null && mUrl != null && mUrl.toString().equals(pageUrl)) {
-                mEventHandler.onReceivedIcon(bitmap);
+        public void onTouchIconLoaded(final Bitmap bitmap, final String pageUrl) {
 
-                String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
-                MainApplication.sFavicons.putFaviconInMemCache(faviconUrl, bitmap);
+            if (bitmap == null || pageUrl == null) {
+                return;
             }
+
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (mUrl != null && mUrl.toString().equals(pageUrl)) {
+                        mEventHandler.onReceivedIcon(bitmap);
+
+                        String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
+                        MainApplication.sFavicons.putFaviconInMemCache(faviconUrl, bitmap);
+                    }
+                }
+            });
         }
     };
 
