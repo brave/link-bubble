@@ -228,8 +228,8 @@ public class BubbleView extends FrameLayout  {
             }
 
             if (applyFavicon) {
-                if(mainApplication.mDatabaseHelper.faviconExists(faviconUrl, favicon) == false) {
-                    mainApplication.mDatabaseHelper.addFaviconForUrl(faviconUrl, favicon, mUrl.toString());
+                if(MainApplication.sDatabaseHelper.faviconExists(faviconUrl, favicon) == false) {
+                    MainApplication.sDatabaseHelper.addFaviconForUrl(faviconUrl, favicon, mUrl.toString());
                 }
 
                 favicon = mFaviconTransformation.transform(favicon);

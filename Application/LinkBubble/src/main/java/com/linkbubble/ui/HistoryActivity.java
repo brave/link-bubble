@@ -92,8 +92,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
     }
 
     private void setupListView() {
-        DatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
-        mHistoryRecords = databaseHelper.getAllHistoryRecords();
+        mHistoryRecords = MainApplication.sDatabaseHelper.getAllHistoryRecords();
         if (mHistoryRecords == null || mHistoryRecords.size() == 0) {
             return;
         }
@@ -113,7 +112,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                             }
 
                             public void onDismiss(ListView listView, int[] reverseSortedPositions) {
-                                DatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
+                                DatabaseHelper databaseHelper = MainApplication.sDatabaseHelper;
 
                                 for (int position : reverseSortedPositions) {
                                     Object item = listView.getItemAtPosition(position);
@@ -159,8 +158,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        DatabaseHelper databaseHelper = ((MainApplication)getApplication()).mDatabaseHelper;
-                        databaseHelper.deleteAllHistoryRecords();
+                        MainApplication.sDatabaseHelper.deleteAllHistoryRecords();
                         mHistoryRecords = null;
                         mHistoryAdapter.notifyDataSetChanged();
                     }
