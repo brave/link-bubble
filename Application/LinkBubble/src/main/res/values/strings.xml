@@ -92,6 +92,7 @@
     <string name="history">History</string>
     <string name="erase_all_history_title">Erase all?</string>
     <string name="erase_all_history_message">Erase your entire Link Bubble browsing history?</string>
+    <string name="history_already_empty">History already empty</string>
     <string name="link_loaded_with_app">Loaded with %1$s</string>
     <string name="link_redirected">Redirected to %1$s</string>
 
