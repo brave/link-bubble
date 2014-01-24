@@ -526,7 +526,9 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void switchToBubbleView() {
-        mBubbleDraggable.switchToBubbleView();
+        if (MainController.get().getActiveTabCount() > 0) {
+            mBubbleDraggable.switchToBubbleView();
+        }
     }
 
     public void switchToExpandedView() {
@@ -544,9 +546,7 @@ public class MainController implements Choreographer.FrameCallback {
     AppPoller.AppPollerListener mAppPollerListener = new AppPoller.AppPollerListener() {
         @Override
         public void onAppChanged() {
-            if (MainController.get().getActiveTabCount() > 0) {
-                switchToBubbleView();
-            }
+            switchToBubbleView();
         }
     };
 
