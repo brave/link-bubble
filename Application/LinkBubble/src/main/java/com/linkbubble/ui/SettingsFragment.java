@@ -16,12 +16,13 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
-
-import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.webkit.WebViewDatabase;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import com.linkbubble.Constant;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.Config;
@@ -30,7 +31,9 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
+import org.json.JSONArray;
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 
@@ -218,6 +221,98 @@ public class SettingsFragment extends PreferenceFragment {
         });
 
         configureDefaultAppsList();
+
+        findPreference("preference_clear_browser_cache").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+
+                final String clearCache = getString(R.string.preference_clear_cache);
+                final String clearCookies = getString(R.string.preference_clear_cookies);
+                final String clearFavicons = getString(R.string.preference_clear_favicons);
+                final String clearFormData = getString(R.string.preference_clear_form_data);
+                final String clearHistory = getString(R.string.preference_clear_history);
+                final String clearPasswords = getString(R.string.preference_clear_passwords);
+
+                final ArrayList<String> items = new ArrayList<String>();
+                items.add(clearCache);
+                items.add(clearCookies);
+                items.add(clearFavicons);
+                items.add(clearFormData);
+                items.add(clearHistory);
+                items.add(clearPasswords);
+
+                ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_multiple_choice, items);
+
+                final ListView listView = new ListView(getActivity());
+                listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+                listView.setAdapter(listAdapter);
+                for (int i = 0; i < items.size(); i++) {
+                    listView.setItemChecked(i, items.get(i).equals(clearFavicons) ? false : true);
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setView(listView);
+                builder.setIcon(0);
+                builder.setPositiveButton(R.string.action_clear_data, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        WebView webView = new WebView(getActivity());
+                        WebViewDatabase webViewDatabase = WebViewDatabase.getInstance(getActivity().getApplicationContext());
+                        boolean dataCleared = false;
+                        int count = listView.getCount();
+                        for (int i = 0; i < count; i++) {
+                            if (listView.isItemChecked(i)) {
+                                String item = items.get(i);
+                                if (item.equals(clearCache)) {
+                                    webView.clearCache(true);
+                                    dataCleared = true;
+                                } else if (item.equals(clearCookies)) {
+                                    CookieManager cookieManager = CookieManager.getInstance();
+                                    if (cookieManager != null && cookieManager.hasCookies()) {
+                                        cookieManager.removeAllCookie();
+                                    }
+                                    dataCleared = true;
+                                } else if (item.equals(clearFavicons)) {
+                                    MainApplication.sDatabaseHelper.deleteAllFavicons();
+                                    dataCleared = true;
+                                } else if (item.equals(clearFormData)) {
+                                    if (webViewDatabase != null) {
+                                        webViewDatabase.clearFormData();
+                                        dataCleared = true;
+                                    }
+                                } else if (item.equals(clearHistory)) {
+                                    webView.clearHistory();
+                                    MainApplication.sDatabaseHelper.deleteAllHistoryRecords();
+                                    dataCleared = true;
+                                } else if (item.equals(clearPasswords)) {
+                                    if (webViewDatabase != null) {
+                                        webViewDatabase.clearHttpAuthUsernamePassword();
+                                        webViewDatabase.clearUsernamePassword();
+                                        dataCleared = true;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (dataCleared) {
+                            Toast.makeText(getActivity(), R.string.private_data_cleared, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setTitle(R.string.preference_clear_browser_cache_title);
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+                return true;
+            }
+        });
 
         Preference sayThanksPreference = findPreference("preference_say_thanks");
         if (sayThanksPreference != null) {

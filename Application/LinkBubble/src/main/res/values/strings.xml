@@ -10,6 +10,7 @@
     <string name="action_ok">OK</string>
     <string name="action_remove">Remove</string>
     <string name="action_cancel">Cancel</string>
+    <string name="action_clear_data">Clear data</string>
     <string name="action_use_default">Use default</string>
     <string name="action_settings">Settings</string>
     <string name="action_help">Help</string>
@@ -54,6 +55,15 @@
     <string name="preference_more">More…</string>
     <string name="preference_scan_for_youtube_embeds_title">Check for YouTube embeds</string>
     <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
+
+    <string name="preference_clear_browser_cache_title">Clear private data</string>
+    <string name="preference_clear_cache">Cache</string>
+    <string name="preference_clear_cookies">Cookies</string>
+    <string name="preference_clear_favicons">Favicons</string>
+    <string name="preference_clear_form_data">Form data</string>
+    <string name="preference_clear_history">History</string>
+    <string name="preference_clear_passwords">Passwords</string>
+    <string name="private_data_cleared">Private data cleared</string>
 
     <string name="preference_help_title">Help</string>
     <string name="preference_credits_title">Credits</string>
