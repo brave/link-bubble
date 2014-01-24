@@ -45,7 +45,7 @@ public class PageInspector {
 
     // https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
     // https://developers.google.com/chrome/mobile/docs/installtohomescreen
-    private static final String JS_FAVICON_CHECK =
+    private static final String JS_TOUCH_ICON_CHECK =
             "{\n" +
             "  var links = document.head.getElementsByTagName('link');\n" +
             "  var linksArray = null;\n" +
@@ -69,7 +69,7 @@ public class PageInspector {
             "}";
 
     private static final String JS_EMBED = "javascript:(function() {\n" +
-            JS_FAVICON_CHECK +
+            JS_TOUCH_ICON_CHECK +
             JS_YOUTUBE_EMBED_CHECK +
             "})();";
 
@@ -81,9 +81,9 @@ public class PageInspector {
 
     private static final int TOUCH_ICON_MAX_SIZE = 256;
     private static final int MAX_FAVICON_ENTRIES = 4;
-    private FaviconEntry[] mFaviconEntries = new FaviconEntry[MAX_FAVICON_ENTRIES];
-    private int mFaviconEntryCount = 0;
-    private String mLastFaviconResultString = null;
+    private TouchIconEntry[] mTouchIconEntries = new TouchIconEntry[MAX_FAVICON_ENTRIES];
+    private int mTouchIconEntryCount = 0;
+    private String mLastTouchIconResultString = null;
     private TouchIconTransformation sTouchIconTransformation = null;
 
     public interface OnItemFoundListener {
@@ -112,7 +112,7 @@ public class PageInspector {
         return mYouTubeEmbedHelper;
     }
 
-    private static class FaviconEntry {
+    private static class TouchIconEntry {
         String mRel;
         URL mUrl;
         int mSize;
@@ -127,10 +127,10 @@ public class PageInspector {
 
         @JavascriptInterface
         public void onTouchIconLinks(String string) {
-            if (mLastFaviconResultString != null && mLastFaviconResultString.equals(string)) {
+            if (mLastTouchIconResultString != null && mLastTouchIconResultString.equals(string)) {
                 return;
             }
-            mLastFaviconResultString = string;
+            mLastTouchIconResultString = string;
 
             if (string == null || string.length() == 0) {
                 return;
@@ -138,11 +138,11 @@ public class PageInspector {
 
             Log.d(TAG, "onFaviconLinks() - " + string);
 
-            mFaviconEntryCount = 0;
+            mTouchIconEntryCount = 0;
 
             String[] items = string.split("@@@");
             for (String s : items) {
-                if (mFaviconEntryCount == MAX_FAVICON_ENTRIES) {
+                if (mTouchIconEntryCount == MAX_FAVICON_ENTRIES) {
                     break;
                 }
                 s = s.replace("###", "");
@@ -175,29 +175,29 @@ public class PageInspector {
                     }
 
                     try {
-                        FaviconEntry faviconEntry = mFaviconEntries[mFaviconEntryCount];
-                        if (faviconEntry == null) {
-                            faviconEntry = new FaviconEntry();
-                            mFaviconEntries[mFaviconEntryCount] = faviconEntry;
+                        TouchIconEntry touchIconEntry = mTouchIconEntries[mTouchIconEntryCount];
+                        if (touchIconEntry == null) {
+                            touchIconEntry = new TouchIconEntry();
+                            mTouchIconEntries[mTouchIconEntryCount] = touchIconEntry;
                         }
-                        faviconEntry.mRel = rel;
-                        faviconEntry.mUrl = new URL(href);
-                        faviconEntry.mSize = size;
-                        mFaviconEntryCount++;
+                        touchIconEntry.mRel = rel;
+                        touchIconEntry.mUrl = new URL(href);
+                        touchIconEntry.mSize = size;
+                        mTouchIconEntryCount++;
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
                 }
             }
 
-            if (mFaviconEntryCount > 0) {
+            if (mTouchIconEntryCount > 0) {
                 // pick the first one for now
-                FaviconEntry faviconEntry = mFaviconEntries[0];
+                TouchIconEntry touchIconEntry = mTouchIconEntries[0];
                 if (sTouchIconTransformation == null) {
                     sTouchIconTransformation = new TouchIconTransformation();
                 }
                 sTouchIconTransformation.setListener(mOnItemFoundListener);
-                Picasso.with(mContext).load(faviconEntry.mUrl.toString()).transform(sTouchIconTransformation).fetch();
+                Picasso.with(mContext).load(touchIconEntry.mUrl.toString()).transform(sTouchIconTransformation).fetch();
             }
 
         }
