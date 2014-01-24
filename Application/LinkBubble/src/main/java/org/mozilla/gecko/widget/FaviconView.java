@@ -83,7 +83,7 @@ public class FaviconView extends ImageView {
         mBackgroundRect = new RectF();
 
         if (sStrokeWidth == 0) {
-            sStrokeWidth = getResources().getDisplayMetrics().density;
+            sStrokeWidth = 1.f;//getResources().getDisplayMetrics().density;
             sStrokePaint.setStrokeWidth(sStrokeWidth);
         }
 
@@ -120,7 +120,7 @@ public class FaviconView extends ImageView {
         canvas.drawRect(mStrokeRect, sBackgroundPaint);
 
         sStrokePaint.setColor(mDominantColor);
-        canvas.drawRoundRect(mStrokeRect, sStrokeWidth, sStrokeWidth, sStrokePaint);
+        canvas.drawRect(mStrokeRect, sStrokePaint);
     }
 
     /**
