@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.db.HistoryRecord;
@@ -122,7 +123,9 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                                     }
                                 }
 
-                                mHistoryAdapter.notifyDataSetChanged();
+                                if (mHistoryAdapter != null) {
+                                    mHistoryAdapter.notifyDataSetChanged();
+                                }
                             }
                         });
         mListView.setOnItemClickListener(this);
@@ -151,6 +154,11 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_clear_history: {
+                if (mHistoryAdapter == null) {
+                    Toast.makeText(this, R.string.history_already_empty, Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+
                 final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
                 alertDialog.setTitle(R.string.erase_all_history_title);
                 alertDialog.setMessage(getString(R.string.erase_all_history_message));
@@ -160,7 +168,9 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                     public void onClick(DialogInterface dialog, int which) {
                         MainApplication.sDatabaseHelper.deleteAllHistoryRecords();
                         mHistoryRecords = null;
-                        mHistoryAdapter.notifyDataSetChanged();
+                        if (mHistoryAdapter != null) {
+                            mHistoryAdapter.notifyDataSetChanged();
+                        }
                     }
                 });
                 alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -170,7 +180,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                     }
                 });
                 alertDialog.show();
-                break;
+                return true;
             }
         }
 
