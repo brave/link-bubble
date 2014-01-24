@@ -2,6 +2,7 @@ package com.linkbubble.ui;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -72,10 +73,21 @@ public class BubbleView extends FrameLayout  {
         return mFavicon.getDrawable();
     }
 
+    private void setFavicon(Bitmap bitmap, String faviconUrl) {
+        mFavicon.setImageBitmap(bitmap);
+        mFavicon.setTag(faviconUrl);
+    }
+
+    private void setFallbackFavicon() {
+        mFavicon.setImageResource(R.drawable.fallback_favicon);
+        mFavicon.setTag(null);
+    }
+
     public void setImitator(BubbleView bubbleView) {
         mImitator = bubbleView;
         if (mImitator != null) {
             mImitator.mFavicon.setImageDrawable(mFavicon.getDrawable());
+            mImitator.mFavicon.setTag(mFavicon.getTag());
             mImitator.mProgressIndicator.setProgress(mProgressIndicator.isIndicatorShowing(), mProgressIndicator.getProgress(), mUrl);
         }
     }
@@ -104,9 +116,9 @@ public class BubbleView extends FrameLayout  {
         if (faviconLoadIdBefore == mFaviconLoadId) {
             setFaviconLoadId(id);
             if (id != Favicons.LOADED) {
-                mFavicon.setImageResource(R.drawable.fallback_favicon);
+                setFallbackFavicon();
                 if (mImitator != null) {
-                    mImitator.mFavicon.setImageResource(R.drawable.fallback_favicon);
+                    mImitator.setFallbackFavicon();
                 }
                 if (DEBUG) {
                     Log.d(TAG, "[favicon] loadFavicon: setImageBitmap() FALLBACK for " + faviconUrl);
@@ -123,10 +135,10 @@ public class BubbleView extends FrameLayout  {
                     return;
                 }
                 // Note: don't upsize favicon because Favicons.getFaviconForSize() already does this
-                mFavicon.setImageBitmap(favicon);
+                setFavicon(favicon, faviconURL);
                 setFaviconLoadId(Favicons.LOADED);
                 if (mImitator != null) {
-                    mImitator.mFavicon.setImageBitmap(favicon);
+                    mImitator.setFavicon(favicon, faviconURL);
                     mImitator.setFaviconLoadId(Favicons.LOADED);
                 }
                 if (DEBUG) {
@@ -185,10 +197,10 @@ public class BubbleView extends FrameLayout  {
             // Don't update if an image already exists. Optimization as the fallback favicon is already set via loadFavicon()
             if (mFavicon.getDrawable() == null) {
                 mFaviconLoadId = Favicons.NOT_LOADING;
-                mFavicon.setImageResource(R.drawable.fallback_favicon);
+                setFallbackFavicon();
                 if (mImitator != null) {
                     mImitator.mFaviconLoadId = Favicons.NOT_LOADING;
-                    mImitator.mFavicon.setImageResource(R.drawable.fallback_favicon);
+                    mImitator.setFallbackFavicon();
                 }
                 if (DEBUG) {
                     Log.d(TAG, "[favicon] onReceivedIcon: setImageBitmap() FALLBACK on host " + mUrl.getHost());
@@ -197,20 +209,38 @@ public class BubbleView extends FrameLayout  {
         } else {
             MainApplication mainApplication = (MainApplication) getContext().getApplicationContext();
             String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
-            if(mainApplication.mDatabaseHelper.faviconExists(faviconUrl, favicon) == false) {
-                mainApplication.mDatabaseHelper.addFaviconForUrl(faviconUrl, favicon, mUrl.toString());
+            String faviconTag = mFavicon.getTag() instanceof String ? (String)mFavicon.getTag() : null;
+
+            // We will ignore this if we are already using a larger icon which was retrieved as a TouchIcon specified
+            // in the page URL. Technically this is probably incorrect behaviour for a browser,
+            // but the larger icons look better, so I'm going with it.
+            boolean applyFavicon = true;
+            if (faviconTag != null && faviconTag.equals(faviconUrl)) {
+                Drawable currentFavicon = mFavicon.getDrawable();
+                if (currentFavicon != null && currentFavicon instanceof BitmapDrawable) {
+                    BitmapDrawable bitmapDrawable = (BitmapDrawable)currentFavicon;
+                    if (bitmapDrawable.getBitmap().getWidth() > favicon.getWidth()) {
+                        applyFavicon = false;
+                    }
+                }
             }
 
-            favicon = mFaviconTransformation.transform(favicon);
+            if (applyFavicon) {
+                if(mainApplication.mDatabaseHelper.faviconExists(faviconUrl, favicon) == false) {
+                    mainApplication.mDatabaseHelper.addFaviconForUrl(faviconUrl, favicon, mUrl.toString());
+                }
 
-            mFaviconLoadId = Favicons.LOADED;
-            mFavicon.setImageBitmap(favicon);
-            if (mImitator != null) {
-                mImitator.mFaviconLoadId = Favicons.LOADED;
-                mImitator.mFavicon.setImageBitmap(favicon);
-            }
-            if (DEBUG) {
-                Log.d(TAG, "[favicon] onReceivedIcon: setImageBitmap() size:" + favicon.getWidth() + " on host " + mUrl.getHost());
+                favicon = mFaviconTransformation.transform(favicon);
+
+                mFaviconLoadId = Favicons.LOADED;
+                setFavicon(favicon, faviconUrl);
+                if (mImitator != null) {
+                    mImitator.mFaviconLoadId = Favicons.LOADED;
+                    mImitator.setFavicon(favicon, faviconUrl);
+                }
+                if (DEBUG) {
+                    Log.d(TAG, "[favicon] onReceivedIcon: setImageBitmap() size:" + favicon.getWidth() + " on host " + mUrl.getHost());
+                }
             }
         }
 
