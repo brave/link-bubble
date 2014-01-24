@@ -283,6 +283,7 @@ public class SettingsFragment extends PreferenceFragment {
                                 } else if (item.equals(clearHistory)) {
                                     webView.clearHistory();
                                     MainApplication.sDatabaseHelper.deleteAllHistoryRecords();
+                                    Settings.get().saveCurrentBubbles(null);
                                     dataCleared = true;
                                 } else if (item.equals(clearPasswords)) {
                                     if (webViewDatabase != null) {
