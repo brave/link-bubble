@@ -39,6 +39,8 @@ public class PageInspector {
             "    }\n" +
             "}";
 
+    // https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
+    // https://developers.google.com/chrome/mobile/docs/installtohomescreen
     private static final String JS_FAVICON_CHECK =
             "{\n" +
             "  var links = document.head.getElementsByTagName('link');\n" +
@@ -179,10 +181,6 @@ public class PageInspector {
                         e.printStackTrace();
                     }
                 }
-            }
-
-            for (int i = 0; i < mFaviconEntryCount; i++) {
-                Log.d(TAG, "Favicon entry:" + mFaviconEntries[i].toString());
             }
         }
 
