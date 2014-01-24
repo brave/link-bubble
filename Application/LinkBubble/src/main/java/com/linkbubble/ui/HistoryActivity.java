@@ -35,6 +35,7 @@ import com.squareup.otto.Subscribe;
 import org.mozilla.gecko.favicons.Favicons;
 import org.mozilla.gecko.favicons.LoadFaviconTask;
 import org.mozilla.gecko.favicons.OnFaviconLoadedListener;
+import org.mozilla.gecko.widget.FaviconView;
 
 import java.util.Date;
 import java.util.List;
@@ -280,7 +281,8 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                 historyItem.mTitleTextView = (TextView) convertView.findViewById(R.id.page_title);
                 historyItem.mUrlTextView = (TextView) convertView.findViewById(R.id.page_url);
                 historyItem.mTimeTextView = (TextView) convertView.findViewById(R.id.page_date);
-                historyItem.mFaviconImageView = (ImageView) convertView.findViewById(R.id.favicon);
+                historyItem.mFaviconImageView = (FaviconView) convertView.findViewById(R.id.favicon);
+                historyItem.mFaviconImageView.mFavicons = sFavicons;
             } else {
                 historyItem = (HistoryItem) convertView.getTag();
             }
@@ -313,7 +315,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
         TextView mTitleTextView;
         TextView mUrlTextView;
         TextView mTimeTextView;
-        ImageView mFaviconImageView;
+        FaviconView mFaviconImageView;
         HistoryRecord mHistoryRecord;
         Date mDate = new Date();
         String mFaviconUrl;
@@ -328,7 +330,8 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                 }
                 if (favicon != null) {
                     mFaviconSet = true;
-                    mFaviconImageView.setImageBitmap(favicon);
+                    //mFaviconImageView.setImageBitmap(favicon);
+                    mFaviconImageView.updateImage(favicon, faviconURL);
                 }
             }
         };

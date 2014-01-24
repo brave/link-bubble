@@ -19,7 +19,7 @@
         android:id="@+id/progressIndicator"
         android:layout_gravity="center"/>
 
-    <ImageView
+    <org.mozilla.gecko.widget.FaviconView
         android:layout_width="@dimen/bubble_favicon_size"
         android:layout_height="@dimen/bubble_favicon_size"
         android:id="@+id/favicon"

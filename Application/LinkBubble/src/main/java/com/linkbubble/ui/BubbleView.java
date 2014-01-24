@@ -17,6 +17,7 @@ import com.squareup.picasso.Transformation;
 import org.mozilla.gecko.favicons.Favicons;
 import org.mozilla.gecko.favicons.LoadFaviconTask;
 import org.mozilla.gecko.favicons.OnFaviconLoadedListener;
+import org.mozilla.gecko.widget.FaviconView;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -30,7 +31,7 @@ public class BubbleView extends FrameLayout  {
         boolean applyFavicon(String faviconURL);
     }
 
-    private ImageView mFavicon;
+    private FaviconView mFavicon;
     protected int mFaviconLoadId;
     private ProgressIndicator mProgressIndicator;
     protected URL mUrl;
@@ -50,7 +51,8 @@ public class BubbleView extends FrameLayout  {
     }
 
     void configure() {
-        mFavicon = (ImageView) findViewById(R.id.favicon);
+        mFavicon = (FaviconView) findViewById(R.id.favicon);
+        mFavicon.mFavicons = MainApplication.sFavicons;
         mProgressIndicator = (ProgressIndicator) findViewById(R.id.progressIndicator);
         showProgressBar(true, 0);
     }
@@ -74,7 +76,7 @@ public class BubbleView extends FrameLayout  {
     }
 
     private void setFavicon(Bitmap bitmap, String faviconUrl) {
-        mFavicon.setImageBitmap(bitmap);
+        mFavicon.updateImage(bitmap, faviconUrl);
         mFavicon.setTag(faviconUrl);
     }
 

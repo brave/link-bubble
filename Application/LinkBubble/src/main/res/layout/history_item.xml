@@ -9,7 +9,7 @@
                 android:paddingTop="4dp"
                 android:paddingRight="8dp">
 
-    <ImageView
+    <org.mozilla.gecko.widget.FaviconView
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:id="@+id/favicon"
