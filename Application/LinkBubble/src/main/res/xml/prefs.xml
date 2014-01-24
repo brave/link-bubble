@@ -82,6 +82,10 @@
             android:dependency="preference_enabled"
             />
 
+        <Preference
+            android:key="preference_clear_browser_cache"
+            android:title="@string/preference_clear_browser_cache_title"/>
+
         <!--
         <PreferenceScreen
             android:key="preference_more"
