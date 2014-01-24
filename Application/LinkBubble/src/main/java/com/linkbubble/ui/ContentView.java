@@ -42,8 +42,6 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
-import com.linkbubble.util.YouTubeEmbedHelper;
-import org.mozilla.gecko.favicons.Favicons;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -397,7 +395,7 @@ public class ContentView extends FrameLayout {
                 MainApplication.saveUrlInHistory(getContext(), null, mUrl.toString(), mUrl.getHost(), title);
 
                 // Always check again at 100%
-                mPageInspector.run(webView);
+                mPageInspector.run();
             }
         }
     };
@@ -483,11 +481,11 @@ public class ContentView extends FrameLayout {
                     mPageInspector.reset();
 
                     Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                    mPageInspector.run(webView);
+                    mPageInspector.run();
                 } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
                     mCheckForEmbedsCount = 2;
                     Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                    mPageInspector.run(webView);
+                    mPageInspector.run();
                 }
             }
         }
@@ -669,13 +667,13 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
-        public void onTouchIconLoaded(Bitmap bitmap) {
-            //if (mPageFinishedLoading) {
+        public void onTouchIconLoaded(Bitmap bitmap, String pageUrl) {
+            if (bitmap != null && pageUrl != null && mUrl != null && mUrl.toString().equals(pageUrl)) {
                 mEventHandler.onReceivedIcon(bitmap);
 
                 String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
                 MainApplication.sFavicons.putFaviconInMemCache(faviconUrl, bitmap);
-            //}
+            }
         }
     };
 

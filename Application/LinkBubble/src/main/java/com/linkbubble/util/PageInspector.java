@@ -74,6 +74,7 @@ public class PageInspector {
             "})();";
 
     private Context mContext;
+    private WebView mWebView;
     private JSEmbedHandler mJSEmbedHandler;
     private YouTubeEmbedHelper mYouTubeEmbedHelper;
     private String mLastYouTubeEmbedResultString = null;
@@ -88,18 +89,19 @@ public class PageInspector {
 
     public interface OnItemFoundListener {
         void onYouTubeEmbeds();
-        void onTouchIconLoaded(Bitmap bitmap);
+        void onTouchIconLoaded(Bitmap bitmap, String pageUrl);
     }
 
     public PageInspector(Context context, WebView webView, OnItemFoundListener listener) {
         mContext = context;
+        mWebView = webView;
         mJSEmbedHandler = new JSEmbedHandler();
         mOnItemFoundListener = listener;
         webView.addJavascriptInterface(mJSEmbedHandler, JS_VARIABLE);
     }
 
-    public void run(WebView webView) {
-        webView.loadUrl(JS_EMBED);
+    public void run() {
+        mWebView.loadUrl(JS_EMBED);
     }
 
     public void reset() {
@@ -197,6 +199,7 @@ public class PageInspector {
                     sTouchIconTransformation = new TouchIconTransformation();
                 }
                 sTouchIconTransformation.setListener(mOnItemFoundListener);
+                sTouchIconTransformation.mTouchIconPageUrl = mWebView.getUrl();
                 Picasso.with(mContext).load(touchIconEntry.mUrl.toString()).transform(sTouchIconTransformation).fetch();
             }
 
@@ -231,6 +234,7 @@ public class PageInspector {
     private static class TouchIconTransformation implements Transformation {
 
         private WeakReference<OnItemFoundListener> mListener;
+        String mTouchIconPageUrl = null;
 
         void setListener(OnItemFoundListener listener) {
             if (mListener == null || mListener.get() != listener) {
@@ -250,7 +254,7 @@ public class PageInspector {
             if (result != null && mListener != null) {
                 OnItemFoundListener listener = mListener.get();
                 if (listener != null) {
-                    listener.onTouchIconLoaded(result);
+                    listener.onTouchIconLoaded(result, mTouchIconPageUrl);
                 }
             }
 
