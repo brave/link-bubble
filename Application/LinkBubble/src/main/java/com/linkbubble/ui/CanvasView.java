@@ -179,6 +179,7 @@ public class CanvasView extends FrameLayout {
     @Subscribe
     public void onBeginBubbleDrag(MainController.BeginBubbleDragEvent e) {
         fadeIn();
+        mContentViewY = Config.mScreenHeight - Config.mContentOffset;
         hideContentView();
         MainController.get().showBadge(false);
     }
@@ -187,7 +188,6 @@ public class CanvasView extends FrameLayout {
     @Subscribe
     public void onEndBubbleDragEvent(MainController.EndBubbleDragEvent e) {
         fadeOut();
-        showContentView();
         MainController.get().showBadge(true);
     }
 
@@ -213,6 +213,7 @@ public class CanvasView extends FrameLayout {
         fadeIn();
 
         if (mContentView != null) {
+            showContentView();
             mContentView.onAnimateOnScreen();
             mAnimPeriod = e.mPeriod;
             mAnimTime = 0.0f;
