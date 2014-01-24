@@ -302,7 +302,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
             historyItem.mFaviconUrl = faviconUrl;
             sFavicons.getFaviconForSize(host, faviconUrl, Integer.MAX_VALUE, flags, historyItem.mOnFaviconLoadedListener);
             if (historyItem.mFaviconSet == false) {
-                historyItem.mFaviconImageView.setImageResource(R.drawable.fallback_favicon);
+                historyItem.mFaviconImageView.showDefaultFavicon();
             }
 
             convertView.setTag(historyItem);
@@ -330,7 +330,6 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                 }
                 if (favicon != null) {
                     mFaviconSet = true;
-                    //mFaviconImageView.setImageBitmap(favicon);
                     mFaviconImageView.updateImage(favicon, faviconURL);
                 }
             }
