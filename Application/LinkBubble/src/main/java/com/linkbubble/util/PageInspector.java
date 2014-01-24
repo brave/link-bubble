@@ -70,6 +70,7 @@ public class PageInspector {
     private Context mContext;
     private JSEmbedHandler mJSEmbedHandler;
     private YouTubeEmbedHelper mYouTubeEmbedHelper;
+    private String mLastYouTubeEmbedResultString = null;
     private OnItemFoundListener mOnItemFoundListener;
 
     private static final int MAX_FAVICON_ENTRIES = 4;
@@ -187,11 +188,16 @@ public class PageInspector {
 
         @JavascriptInterface
         public void onYouTubeEmbeds(String string) {
-            Log.d(TAG, "onYouTubeEmbeds() - " + string);
+            if (mLastYouTubeEmbedResultString != null && mLastYouTubeEmbedResultString.equals(string)) {
+                return;
+            }
+            mLastYouTubeEmbedResultString = string;
 
             if (string == null || string.length() == 0) {
                 return;
             }
+
+            Log.d(TAG, "onYouTubeEmbeds() - " + string);
 
             if (mYouTubeEmbedHelper == null) {
                 mYouTubeEmbedHelper = new YouTubeEmbedHelper(mContext);
