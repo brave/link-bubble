@@ -392,7 +392,7 @@ public class ContentView extends FrameLayout {
                     mStartTime = -1;
                 }
 
-                String title = ((MainApplication)getContext().getApplicationContext()).mTitleHashMap.get(urlAsString);
+                String title = MainApplication.sTitleHashMap.get(urlAsString);
                 MainApplication.saveUrlInHistory(getContext(), null, mUrl.toString(), mUrl.getHost(), title);
 
                 // Always check again at 100%
@@ -425,7 +425,7 @@ public class ContentView extends FrameLayout {
                             configureOpenInAppButton();
                             configureOpenEmbedButton();
                             mUrlTextView.setText(prevUrl.replace("http://", ""));
-                            String title = ((MainApplication)getContext().getApplicationContext()).mTitleHashMap.get(prevUrl);
+                            String title = MainApplication.sTitleHashMap.get(prevUrl);
                             if (title == null) {
                                 title = getResources().getString(R.string.loading);
                             }
@@ -446,7 +446,7 @@ public class ContentView extends FrameLayout {
         public void onReceivedTitle(WebView webView, String title) {
             super.onReceivedTitle(webView, title);
             mTitleTextView.setText(title);
-            ((MainApplication)getContext().getApplicationContext()).mTitleHashMap.put(webView.getUrl(), title);
+            MainApplication.sTitleHashMap.put(webView.getUrl(), title);
         }
 
         @Override

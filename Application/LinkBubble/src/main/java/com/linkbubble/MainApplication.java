@@ -25,9 +25,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class MainApplication extends Application {
 
     private Bus mBus;
-    public DatabaseHelper mDatabaseHelper;
-
-    public ConcurrentHashMap<String, String> mTitleHashMap = new ConcurrentHashMap<String, String>(64);
+    public static DatabaseHelper sDatabaseHelper;
+    public static ConcurrentHashMap<String, String> sTitleHashMap = new ConcurrentHashMap<String, String>(64);
     public static Favicons sFavicons;
 
 
@@ -39,7 +38,7 @@ public class MainApplication extends Application {
 
         mBus = new Bus();
 
-        mDatabaseHelper = new DatabaseHelper(this);
+        sDatabaseHelper = new DatabaseHelper(this);
 
         try {
             Favicons.attachToContext(this);
@@ -157,8 +156,7 @@ public class MainApplication extends Application {
         HistoryRecord historyRecord = new HistoryRecord(title, url, host, System.currentTimeMillis());
 
         MainApplication app = (MainApplication) context.getApplicationContext();
-
-        app.mDatabaseHelper.addHistoryRecord(historyRecord);
+        sDatabaseHelper.addHistoryRecord(historyRecord);
         app.getBus().post(new HistoryRecord.ChangedEvent(historyRecord));
     }
 

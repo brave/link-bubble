@@ -94,8 +94,7 @@ public class LoadFaviconTask extends UiAsyncTask<Void, Void, Bitmap> {
     private Bitmap loadFaviconFromDb() {
 
         // LB_CHANGE:
-        MainApplication mainApplication = (MainApplication) sContext.getApplicationContext();
-        return mainApplication.mDatabaseHelper.getFavicon(mFaviconUrl);
+        return MainApplication.sDatabaseHelper.getFavicon(mFaviconUrl);
     }
 
     // Runs in background thread
@@ -105,8 +104,7 @@ public class LoadFaviconTask extends UiAsyncTask<Void, Void, Bitmap> {
         }
 
         // LB_CHANGE:
-        MainApplication mainApplication = (MainApplication) sContext.getApplicationContext();
-        mainApplication.mDatabaseHelper.addFaviconForUrl(mFaviconUrl, favicon, mPageUrl);
+        MainApplication.sDatabaseHelper.addFaviconForUrl(mFaviconUrl, favicon, mPageUrl);
     }
 
     /**
