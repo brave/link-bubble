@@ -24,6 +24,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.linkbubble.Constant;
+import com.linkbubble.MainController;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
@@ -35,6 +36,7 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
+import java.util.Vector;
 
 
 /**
@@ -296,7 +298,21 @@ public class SettingsFragment extends PreferenceFragment {
                         }
 
                         if (dataCleared) {
-                            Toast.makeText(getActivity(), R.string.private_data_cleared, Toast.LENGTH_SHORT).show();
+                            boolean reloaded = false;
+
+                            if (MainController.get() != null) {
+                                MainController.get().destroyAllBubbles(false);
+                                final Vector<String> urls = Settings.get().loadCurrentBubbles();
+                                if (urls.size() > 0) {
+                                    for (String url : urls) {
+                                        MainApplication.openLink(getActivity().getApplicationContext(), url);
+                                        reloaded = true;
+                                    }
+                                }
+                            }
+
+                            Toast.makeText(getActivity(), reloaded ? R.string.private_data_cleared_reloading_current : R.string.private_data_cleared,
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
