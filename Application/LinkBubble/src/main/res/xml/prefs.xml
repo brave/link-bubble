@@ -67,7 +67,7 @@
             android:title="@string/preference_google_account_redirect_title"
             android:summary="@string/preference_google_account_redirect_summary"
             android:defaultValue="true"
-            />
+            android:dependency="preference_enabled"/>
 
     </PreferenceCategory>
 
