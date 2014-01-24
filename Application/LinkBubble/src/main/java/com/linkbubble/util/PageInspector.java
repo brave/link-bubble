@@ -74,7 +74,7 @@ public class PageInspector {
             "})();";
 
     private Context mContext;
-    private WebView mWebView;
+    private String mWebViewUrl;
     private JSEmbedHandler mJSEmbedHandler;
     private YouTubeEmbedHelper mYouTubeEmbedHelper;
     private String mLastYouTubeEmbedResultString = null;
@@ -94,14 +94,14 @@ public class PageInspector {
 
     public PageInspector(Context context, WebView webView, OnItemFoundListener listener) {
         mContext = context;
-        mWebView = webView;
         mJSEmbedHandler = new JSEmbedHandler();
         mOnItemFoundListener = listener;
         webView.addJavascriptInterface(mJSEmbedHandler, JS_VARIABLE);
     }
 
-    public void run() {
-        mWebView.loadUrl(JS_EMBED);
+    public void run(WebView webView) {
+        mWebViewUrl = webView.getUrl();
+        webView.loadUrl(JS_EMBED);
     }
 
     public void reset() {
@@ -199,7 +199,7 @@ public class PageInspector {
                     sTouchIconTransformation = new TouchIconTransformation();
                 }
                 sTouchIconTransformation.setListener(mOnItemFoundListener);
-                sTouchIconTransformation.mTouchIconPageUrl = mWebView.getUrl();
+                sTouchIconTransformation.mTouchIconPageUrl = mWebViewUrl;
                 Picasso.with(mContext).load(touchIconEntry.mUrl.toString()).transform(sTouchIconTransformation).fetch();
             }
 

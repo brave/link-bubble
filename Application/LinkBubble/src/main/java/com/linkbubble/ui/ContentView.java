@@ -395,7 +395,7 @@ public class ContentView extends FrameLayout {
                 MainApplication.saveUrlInHistory(getContext(), null, mUrl.toString(), mUrl.getHost(), title);
 
                 // Always check again at 100%
-                mPageInspector.run();
+                mPageInspector.run(webView);
             }
         }
     };
@@ -481,11 +481,11 @@ public class ContentView extends FrameLayout {
                     mPageInspector.reset();
 
                     Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                    mPageInspector.run();
+                    mPageInspector.run(webView);
                 } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
                     mCheckForEmbedsCount = 2;
                     Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                    mPageInspector.run();
+                    mPageInspector.run(webView);
                 }
             }
         }
