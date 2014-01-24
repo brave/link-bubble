@@ -73,9 +73,9 @@ public class CanvasView extends FrameLayout {
 
         applyAlpha();
 
-        mTargets.add(new BubbleTargetView(this, context, R.drawable.close_indicator, Config.BubbleAction.Destroy, 0.5f, 0.9f));
-        mTargets.add(new BubbleTargetView(this, context, Config.BubbleAction.ConsumeLeft, 0.2f, 0.1f));
-        mTargets.add(new BubbleTargetView(this, context, Config.BubbleAction.ConsumeRight, 0.8f, 0.1f));
+        mTargets.add(new BubbleTargetView(this, context, R.drawable.close_indicator, Config.BubbleAction.Destroy, 0.3f, 0.85f, 0.7f, 1.0f));
+        mTargets.add(new BubbleTargetView(this, context, Config.BubbleAction.ConsumeLeft, 0.1f, 0.0f, 0.3f, 0.1f));
+        mTargets.add(new BubbleTargetView(this, context, Config.BubbleAction.ConsumeRight, 0.7f, 0.0f, 0.9f, 0.1f));
 
         Settings.setConsumeBubblesChangedEventHandler(new Settings.ConsumeBubblesChangedEventHandler() {
             @Override
@@ -323,14 +323,12 @@ public class CanvasView extends FrameLayout {
         }
     }
 
-    public BubbleTargetView getSnapTarget(Circle bubbleCircle) {
+    public BubbleTargetView getSnapTarget(Circle bubbleCircle, float radiusScaler) {
 
         for (int i=0 ; i < mTargets.size() ; ++i) {
             BubbleTargetView bt = mTargets.get(i);
 
-            Circle snapCircle = bt.GetSnapCircle();
-
-            if (bubbleCircle.Intersects(snapCircle)) {
+            if (bt.shouldSnap(bubbleCircle, radiusScaler)) {
                 return bt;
             }
         }
