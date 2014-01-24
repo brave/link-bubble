@@ -185,13 +185,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
                 MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
 
-                if (mMode == Mode.ContentView) {
-                    doAnimateToContentView();
-                } else {
-                    int x = mDraggableHelper.getXPos();
-                    if (x != Config.mBubbleSnapLeftX && x != Config.mBubbleSnapRightX) {
-                        doSnap();
-                    }
+                int x = mDraggableHelper.getXPos();
+                if (x != Config.mBubbleSnapLeftX && x != Config.mBubbleSnapRightX) {
+                    doSnap();
                 }
             }
             @Override
@@ -410,22 +406,25 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                 if (mTouchDown) {
                     mDraggableHelper.cancelAnimation();
 
-                    MainController mainController = MainController.get();
-
                     if (mHasMoved) {
-
                         if (mCurrentSnapTarget == null) {
-                            if (mMode == Mode.ContentView) {
-                                MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
-                                doAnimateToContentView();
+                            float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
+                            float threshold = Config.dpToPx(900.0f);
+                            if (v > threshold) {
+                                doFlick(e.vx, e.vy);
                             } else {
-                                float v = (float) Math.sqrt(e.vx*e.vx + e.vy*e.vy);
-                                float threshold = Config.dpToPx(900.0f);
-                                if (v > threshold) {
-                                    doFlick(e.vx, e.vy);
-                                } else {
-                                    MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
+                                MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
+
+                                boolean doBubbleView = mMode == Mode.BubbleView ||
+                                        e.posX < Config.mScreenWidth * 0.2f ||
+                                        e.posX > Config.mScreenWidth * 0.8f ||
+                                        e.posY > Config.mScreenHeight * 0.5f;
+
+                                if (doBubbleView) {
+                                    mMode = Mode.BubbleView;
                                     doSnap();
+                                } else {
+                                    doAnimateToContentView();
                                 }
                             }
                         } else {
