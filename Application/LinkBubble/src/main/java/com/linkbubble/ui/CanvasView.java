@@ -2,6 +2,7 @@ package com.linkbubble.ui;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -179,6 +180,7 @@ public class CanvasView extends FrameLayout {
     @Subscribe
     public void onBeginBubbleDrag(MainController.BeginBubbleDragEvent e) {
         fadeIn();
+        mBottomMaskView.setVisibility(VISIBLE);
         mContentViewY = Config.mScreenHeight - Config.mContentOffset;
         hideContentView();
         MainController.get().showBadge(false);
@@ -283,6 +285,8 @@ public class CanvasView extends FrameLayout {
             mContentView.setTranslationY(mContentViewY);
             if (mAnimTime < mAnimPeriod) {
                 MainController.get().scheduleUpdate();
+            } else if (mTargetY == 0.0f) {
+                mBottomMaskView.setVisibility(GONE);
             }
             mAnimTime += dt;
         }
