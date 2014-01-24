@@ -41,6 +41,9 @@ public class FaviconView extends ImageView {
     // Dominant color of the favicon.
     private int mDominantColor;
 
+    // If true, add a border around the image. If false, draw the bitmap as is.
+    private boolean mDrawOutline;
+
     // Stroke width for the border.
     private static float sStrokeWidth;
 
@@ -115,6 +118,10 @@ public class FaviconView extends ImageView {
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        if (mDrawOutline == false) {
+            return;
+        }
+
         // 27.5% transparent dominant color.
         sBackgroundPaint.setColor(mDominantColor & 0x46FFFFFF);
         canvas.drawRect(mStrokeRect, sBackgroundPaint);
@@ -129,7 +136,7 @@ public class FaviconView extends ImageView {
      * in this view with the coloured background.
      */
     private void formatImage() {
-        if (isInEditMode()) {
+        if (isInEditMode() || mDrawOutline == false) {
             return;
         }
 
@@ -168,6 +175,7 @@ public class FaviconView extends ImageView {
     private void scaleBitmap() {
         // If the Favicon can be resized to fill the view exactly without an enlargment of more than
         // a factor of two, do so.
+        /*
         int doubledSize = mIconBitmap.getWidth()*2;
         if (mActualWidth > doubledSize) {
             // If the view is more than twice the size of the image, just double the image size
@@ -176,7 +184,7 @@ public class FaviconView extends ImageView {
         } else {
             // Otherwise, scale the image to fill the view.
             mIconBitmap = Bitmap.createScaledBitmap(mIconBitmap, mActualWidth, mActualWidth, true);
-        }
+        }*/
     }
 
     /**
@@ -199,7 +207,7 @@ public class FaviconView extends ImageView {
         }
 
         // Reassigning the same bitmap? Don't bother.
-        if (mUnscaledBitmap == bitmap) {
+        if (mUnscaledBitmap == bitmap || mDrawOutline == false) {
             return;
         }
         mUnscaledBitmap = bitmap;
@@ -246,9 +254,10 @@ public class FaviconView extends ImageView {
      * @param bitmap The bitmap to display in this favicon view.
      * @param key The key to use into the dominant colours cache when selecting a background colour.
      */
+    /*
     public void updateAndScaleImage(Bitmap bitmap, String key) {
         updateImageInternal(bitmap, key, true);
-    }
+    }*/
 
     /**
      * Update the image displayed in the Favicon view without scaling. Images larger than the view
@@ -258,8 +267,26 @@ public class FaviconView extends ImageView {
      * @param bitmap The bitmap to display in this favicon view.
      * @param key The key to use into the dominant colours cache when selecting a background colour.
      */
+    /*
     public void updateImage(Bitmap bitmap, String key) {
         updateImageInternal(bitmap, key, false);
+    }*/
+
+    /**
+     *
+     * @param bitmap
+     * @param key
+     */
+    public void updateImage(Bitmap bitmap, String key) {
+        if (bitmap.getWidth() <= 96) {
+            mDrawOutline = true;
+            setScaleType(ImageView.ScaleType.CENTER);
+            updateImageInternal(bitmap, key, true);
+        } else {
+            mDrawOutline = false;
+            setScaleType(ScaleType.CENTER_INSIDE);
+            setImageBitmap(bitmap);
+        }
     }
 
     public Bitmap getBitmap() {
