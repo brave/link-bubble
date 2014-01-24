@@ -375,7 +375,24 @@ public class ContentView extends FrameLayout {
             mPageFinishedLoading = true;
             // NOTE: *don't* call updateUrl() here. Turns out, this function is called after a redirect has occurred.
             // Eg, urlAsString "t.co/xyz" even after the next redirect is starting to load
-            if (mUrl.toString().equals(urlAsString)) {
+
+            // Check exact equality first for common case to avoid an allocation.
+            boolean equalUrl = mUrl.toString().equals(urlAsString);
+
+            if (!equalUrl) {
+                try {
+                    URL url = new URL(urlAsString);
+
+                    if (url.getProtocol().equals(mUrl.getProtocol()) &&
+                        url.getHost().equals(mUrl.getHost()) &&
+                        url.getPath().equals(mUrl.getPath())) {
+                        equalUrl = true;
+                    }
+                } catch (MalformedURLException e) {
+                }
+            }
+
+            if (equalUrl) {
                 updateAppsForUrl(mUrl);
                 configureOpenInAppButton();
                 configureOpenEmbedButton();
