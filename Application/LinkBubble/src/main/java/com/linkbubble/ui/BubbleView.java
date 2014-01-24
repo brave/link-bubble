@@ -81,7 +81,7 @@ public class BubbleView extends FrameLayout  {
     }
 
     private void setFallbackFavicon() {
-        mFavicon.setImageResource(R.drawable.fallback_favicon);
+        mFavicon.showDefaultFavicon();
         mFavicon.setTag(null);
     }
 

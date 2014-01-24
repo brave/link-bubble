@@ -220,6 +220,8 @@ public class FaviconView extends ImageView {
     }
 
     public void showDefaultFavicon() {
+        mDrawOutline = false;
+        setScaleType(ScaleType.CENTER_INSIDE);
         setImageResource(R.drawable.fallback_favicon);
         mDominantColor = 0;
     }
