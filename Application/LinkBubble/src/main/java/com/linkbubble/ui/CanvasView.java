@@ -48,20 +48,6 @@ public class CanvasView extends FrameLayout {
     private boolean mEnabled;
 
     private ContentView mContentView;
-    public ContentView getContentView() { return mContentView; }
-
-    public class TargetInfo {
-
-        public TargetInfo() {
-            mAction = Config.BubbleAction.None;
-            mTargetX = -1;
-            mTargetY = -1;
-        }
-
-        public Config.BubbleAction mAction;
-        public int mTargetX;
-        public int mTargetY;
-    }
 
     public CanvasView(Context context) {
         super(context);
