@@ -271,7 +271,7 @@ public class BubbleTargetView extends RelativeLayout {
             } else if (mXFraction0 > 0.55f) {
                 xt = x0 + (int) ((x1 - x0) * ((e.mX - Config.mScreenWidth * 0.5f) / halfWidth));
             } else {
-                xt = Util.clamp(x0, e.mX, x1);
+                xt = x0 + (int) ((x1 - x0) * ((float)(e.mX) / (float)Config.mScreenWidth));
             }
 
             int targetX = Util.clamp(x0, xt, x1);
