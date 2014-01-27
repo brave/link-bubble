@@ -262,7 +262,19 @@ public class BubbleTargetView extends RelativeLayout {
         if (mEnableMove) {
             int x0 = (int) (mXFraction0 * Config.mScreenWidth - Config.mBubbleWidth * 0.5f);
             int x1 = (int) (mXFraction1 * Config.mScreenWidth - Config.mBubbleWidth * 0.5f);
-            int targetX = Util.clamp(x0, e.mX, x1);
+
+            int xt;
+            float halfWidth = Config.mScreenWidth * 0.5f;
+
+            if (mXFraction0 < 0.45f) {
+                xt = x0 + (int) ((x1 - x0) * ((float)e.mX / halfWidth));
+            } else if (mXFraction0 > 0.55f) {
+                xt = x0 + (int) ((x1 - x0) * ((e.mX - Config.mScreenWidth * 0.5f) / halfWidth));
+            } else {
+                xt = Util.clamp(x0, e.mX, x1);
+            }
+
+            int targetX = Util.clamp(x0, xt, x1);
             mSnapCircle.mX = targetX + Config.mBubbleWidth * 0.5f;
 
             int y0 = (int) (mYFraction0 * Config.mScreenHeight - Config.mBubbleHeight * 0.5f);

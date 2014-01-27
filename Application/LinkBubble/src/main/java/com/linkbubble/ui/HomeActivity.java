@@ -56,7 +56,8 @@ public class HomeActivity extends Activity {
 
         Vector<String> urls = Settings.get().loadCurrentBubbles();
         if (urls.size() > 0) {
-            MainApplication.restoreLinks(this, urls.toArray(new String[urls.size()]));
+            //MainApplication.restoreLinks(this, urls.toArray(new String[urls.size()]));
+            MainApplication.openLink(getApplicationContext(), "http://www.telegraph.co.uk/sport/football/teams/manchester-united/");
         }
 
         View historyButton = findViewById(R.id.history);
