@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -121,6 +122,7 @@ public class MainApplication extends Application {
 
     public static boolean handleBubbleAction(Context context, Config.BubbleAction action, String url) {
         Config.ActionType actionType = Settings.get().getConsumeBubbleActionType(action);
+        boolean result = false;
         if (actionType == Config.ActionType.Share) {
             // TODO: Retrieve the class name below from the app in case Twitter ever change it.
             Intent intent = new Intent(Intent.ACTION_SEND);
@@ -130,12 +132,22 @@ public class MainApplication extends Application {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra(Intent.EXTRA_TEXT, url);
             context.startActivity(intent);
-            return true;
+            result = true;
         } else if (actionType == Config.ActionType.View) {
-            return MainApplication.loadIntent(context, Settings.get().getConsumeBubblePackageName(action),
+            result = MainApplication.loadIntent(context, Settings.get().getConsumeBubblePackageName(action),
                     Settings.get().getConsumeBubbleActivityClassName(action), url, -1);
+        } else if (action == Config.BubbleAction.Destroy) {
+            result = true;
         }
-        return false;
+
+        if (result) {
+            Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+            if (vibrator.hasVibrator()) {
+                vibrator.vibrate(17);
+            }
+        }
+
+        return result;
     }
 
     public static void saveUrlInHistory(Context context, ResolveInfo resolveInfo, String url, String title) {
