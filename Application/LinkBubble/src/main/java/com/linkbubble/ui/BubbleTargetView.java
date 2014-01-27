@@ -31,10 +31,12 @@ public class BubbleTargetView extends RelativeLayout {
     private ImageView mImage;
     private CanvasView mCanvasView;
 
-    private float mXFraction0;
-    private float mXFraction1;
-    private float mYFraction0;
-    private float mYFraction1;
+    private HorizontalAnchor mHAnchor;
+    private VerticalAnchor mVAnchor;
+    private int mDefaultX;
+    private int mDefaultY;
+    private int mMaxOffsetX;
+    private int mMaxOffsetY;
     private float mButtonWidth;
     private float mButtonHeight;
     private float mSnapWidth;
@@ -47,6 +49,17 @@ public class BubbleTargetView extends RelativeLayout {
 
     private int mHomeX;
     private int mHomeY;
+
+    public enum HorizontalAnchor {
+        Left,
+        Center,
+        Right
+    }
+
+    public enum VerticalAnchor {
+        Top,
+        Bottom
+    }
 
     //private LinearInterpolator mLinearInterpolator = new LinearInterpolator();
     private OvershootInterpolator mOvershootInterpolator = new OvershootInterpolator(1.5f);
@@ -62,6 +75,32 @@ public class BubbleTargetView extends RelativeLayout {
     private float mTransitionTimeLeft;
 
     private final float TRANSITION_TIME = 0.15f;
+
+    private int getXPos() {
+        switch (mHAnchor) {
+            case Left:
+                return Config.dpToPx(mDefaultX);
+            case Right:
+                return Config.mScreenWidth - Config.dpToPx(mDefaultX);
+            case Center:
+                return (int) (Config.mScreenWidth * 0.5f + Config.dpToPx(mDefaultX));
+        }
+
+        Util.Assert(false);
+        return 0;
+    }
+
+    private int getYPos() {
+        switch (mVAnchor) {
+            case Top:
+                return Config.dpToPx(mDefaultY);
+            case Bottom:
+                return Config.mScreenHeight - Config.dpToPx(mDefaultY);
+        }
+
+        Util.Assert(false);
+        return 0;
+    }
 
     private void setTargetPos(int x, int y, float t) {
         if (x != mTargetX || y != mTargetY) {
@@ -81,15 +120,17 @@ public class BubbleTargetView extends RelativeLayout {
         }
     }
 
-    public BubbleTargetView(CanvasView canvasView, Context context, Config.BubbleAction action, float xf0, float yf0, float xf1, float yf1) {
+    public BubbleTargetView(CanvasView canvasView, Context context, Config.BubbleAction action, int defaultX, HorizontalAnchor hAnchor,
+                            int defaultY, VerticalAnchor vAnchor, int maxOffsetX, int maxOffsetY) {
         super(context);
-        Init(canvasView, context, Settings.get().getConsumeBubbleIcon(action), action, xf0, yf0, xf1, yf1);
+        init(canvasView, context, Settings.get().getConsumeBubbleIcon(action), action, defaultX, hAnchor, defaultY, vAnchor, maxOffsetX, maxOffsetY);
     }
 
-    public BubbleTargetView(CanvasView canvasView, Context context, int resId, Config.BubbleAction action, float xf0, float yf0, float xf1, float yf1) {
+    public BubbleTargetView(CanvasView canvasView, Context context, int resId, Config.BubbleAction action, int defaultX, HorizontalAnchor hAnchor,
+                            int defaultY, VerticalAnchor vAnchor, int maxOffsetX, int maxOffsetY) {
         super(context);
         Drawable d = context.getResources().getDrawable(resId);
-        Init(canvasView, context, d, action, xf0, yf0, xf1, yf1);
+        init(canvasView, context, d, action, defaultX, hAnchor, defaultY, vAnchor, maxOffsetX, maxOffsetY);
     }
 
     public void onConsumeBubblesChanged() {
@@ -126,18 +167,19 @@ public class BubbleTargetView extends RelativeLayout {
         }
     }
 
-    private void Init(CanvasView canvasView, Context context, Drawable d, Config.BubbleAction action, float xf0, float yf0, float xf1, float yf1) {
+    private void init(CanvasView canvasView, Context context, Drawable d, Config.BubbleAction action, int defaultX, HorizontalAnchor hAnchor,
+                      int defaultY, VerticalAnchor vAnchor, int maxOffsetX, int maxOffsetY) {
         mCanvasView = canvasView;
         mEnableMove = false;
         mContext = context;
         mAction = action;
-        mXFraction0 = xf0;
-        mYFraction0 = yf0;
-        mXFraction1 = xf1;
-        mYFraction1 = yf1;
 
-        float xFraction = (mXFraction0 + mXFraction1) * 0.5f;
-        float yFraction = (mYFraction0 + mYFraction1) * 0.5f;
+        mHAnchor = hAnchor;
+        mVAnchor = vAnchor;
+        mDefaultX = defaultX;
+        mDefaultY = defaultY;
+        mMaxOffsetX = maxOffsetX;
+        mMaxOffsetY = maxOffsetY;
 
         MainApplication.registerForBus(mContext, this);
 
@@ -162,13 +204,13 @@ public class BubbleTargetView extends RelativeLayout {
         mSnapWidth = snapDrawable.getIntrinsicWidth();
         mSnapHeight = snapDrawable.getIntrinsicHeight();
         Util.Assert(mSnapWidth > 0 && mSnapHeight > 0 && mSnapWidth == mSnapHeight);
-        mSnapCircle = new Circle(Config.mScreenWidth * xFraction, Config.mScreenHeight * yFraction, mSnapWidth * 0.5f);
+        mSnapCircle = new Circle(getXPos(), getYPos(), mSnapWidth * 0.5f);
 
         Drawable defaultDrawable = mContext.getResources().getDrawable(R.drawable.target_default);
         float defaultWidth = defaultDrawable.getIntrinsicWidth();
         float defaultHeight = defaultDrawable.getIntrinsicHeight();
         Util.Assert(defaultWidth > 0 && defaultHeight > 0 && defaultWidth == defaultHeight);
-        mDefaultCircle = new Circle(Config.mScreenWidth * xFraction, Config.mScreenHeight * yFraction, defaultWidth * 0.5f);
+        mDefaultCircle = new Circle(getXPos(), getYPos(), defaultWidth * 0.5f);
 
         switch (action) {
             case ConsumeLeft:
@@ -260,15 +302,16 @@ public class BubbleTargetView extends RelativeLayout {
     @Subscribe
     public void onDraggableBubbleMovedEvent(MainController.DraggableBubbleMovedEvent e) {
         if (mEnableMove) {
-            int x0 = (int) (mXFraction0 * Config.mScreenWidth - Config.mBubbleWidth * 0.5f);
-            int x1 = (int) (mXFraction1 * Config.mScreenWidth - Config.mBubbleWidth * 0.5f);
+            int x0 = (int) (getXPos() - Config.dpToPx(mMaxOffsetX) - Config.mBubbleWidth * 0.5f);
+            int x1 = (int) (getXPos() + Config.dpToPx(mMaxOffsetX) - Config.mBubbleWidth * 0.5f);
 
             int xt;
             float halfWidth = Config.mScreenWidth * 0.5f;
 
-            if (mXFraction0 < 0.45f) {
+            float xc = (x0 + x1) * 0.5f;
+            if (xc < 0.3f * Config.mScreenWidth) {
                 xt = x0 + (int) ((x1 - x0) * ((float)e.mX / halfWidth));
-            } else if (mXFraction0 > 0.55f) {
+            } else if (xc > 0.7f * Config.mScreenWidth) {
                 xt = x0 + (int) ((x1 - x0) * ((e.mX - Config.mScreenWidth * 0.5f) / halfWidth));
             } else {
                 xt = x0 + (int) ((x1 - x0) * ((float)(e.mX) / (float)Config.mScreenWidth));
@@ -277,8 +320,8 @@ public class BubbleTargetView extends RelativeLayout {
             int targetX = Util.clamp(x0, xt, x1);
             mSnapCircle.mX = targetX + Config.mBubbleWidth * 0.5f;
 
-            int y0 = (int) (mYFraction0 * Config.mScreenHeight - Config.mBubbleHeight * 0.5f);
-            int y1 = (int) (mYFraction1 * Config.mScreenHeight - Config.mBubbleHeight * 0.5f);
+            int y0 = (int) (getYPos() - Config.dpToPx(mMaxOffsetY) - Config.mBubbleWidth * 0.5f);
+            int y1 = (int) (getYPos() + Config.dpToPx(mMaxOffsetY) - Config.mBubbleWidth * 0.5f);
             int targetY = Util.clamp(y0, e.mY, y1);
             mSnapCircle.mY = targetY + Config.mBubbleHeight * 0.5f;
 
@@ -343,14 +386,11 @@ public class BubbleTargetView extends RelativeLayout {
         mAnimTime = 0.0f;
         mAnimPeriod = 0.0f;
 
-        float xf = (mXFraction0 + mXFraction1) * 0.5f;
-        float yf = (mYFraction0 + mYFraction1) * 0.5f;
+        mSnapCircle.mX = getXPos();
+        mSnapCircle.mY = getYPos();
 
-        mSnapCircle.mX = Config.mScreenWidth * xf;
-        mSnapCircle.mY = Config.mScreenHeight * xf;
-
-        mDefaultCircle.mX = Config.mScreenWidth * xf;
-        mDefaultCircle.mY = Config.mScreenHeight * yf;
+        mDefaultCircle.mX = mSnapCircle.mX;
+        mDefaultCircle.mY = mSnapCircle.mY;
 
         switch (mAction) {
             case ConsumeLeft:
@@ -362,7 +402,7 @@ public class BubbleTargetView extends RelativeLayout {
                 mHomeY = (int) -mSnapHeight;
                 break;
             case Destroy:
-                mHomeX = Config.mScreenCenterX;;
+                mHomeX = Config.mScreenCenterX;
                 mHomeY = Config.mScreenHeight + (int) mSnapHeight;
                 break;
         }
