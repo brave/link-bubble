@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -47,7 +48,8 @@ public class BubbleTargetView extends RelativeLayout {
     private int mHomeX;
     private int mHomeY;
 
-    private LinearInterpolator mLinearInterpolator = new LinearInterpolator();
+    //private LinearInterpolator mLinearInterpolator = new LinearInterpolator();
+    private OvershootInterpolator mOvershootInterpolator = new OvershootInterpolator(1.5f);
     private int mInitialX;
     private int mInitialY;
     private int mTargetX;
@@ -63,6 +65,9 @@ public class BubbleTargetView extends RelativeLayout {
 
     private void setTargetPos(int x, int y, float t) {
         if (x != mTargetX || y != mTargetY) {
+            // Add a bit of time for the overshoot testing.
+            t += 0.3f;
+
             mInitialX = mCanvasLayoutParams.leftMargin;
             mInitialY = mCanvasLayoutParams.topMargin;
 
@@ -304,8 +309,9 @@ public class BubbleTargetView extends RelativeLayout {
 
             float tf = mAnimTime / mAnimPeriod;
             float interpolatedFraction;
-            interpolatedFraction = mLinearInterpolator.getInterpolation(tf);
-            Util.Assert(interpolatedFraction >= 0.0f && interpolatedFraction <= 1.0f);
+            //interpolatedFraction = mLinearInterpolator.getInterpolation(tf);
+            interpolatedFraction = mOvershootInterpolator.getInterpolation(tf);
+            //Util.Assert(interpolatedFraction >= 0.0f && interpolatedFraction <= 1.0f);
 
             int x = (int) (mInitialX + (mTargetX - mInitialX) * interpolatedFraction);
             int y = (int) (mInitialY + (mTargetY - mInitialY) * interpolatedFraction);
