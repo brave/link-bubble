@@ -332,7 +332,7 @@ public class ContentView extends FrameLayout {
                                 resolveInfo.loadLabel(mContext.getPackageManager()));
                         MainApplication.saveUrlInHistory(mContext, resolveInfo, urlAsString, title);
 
-                        MainController.get().destroyCurrentBubble(true);
+                        MainController.get().destroyCurrentBubble(MainController.get().contentViewShowing());
                         return false;
                     }
                 }
