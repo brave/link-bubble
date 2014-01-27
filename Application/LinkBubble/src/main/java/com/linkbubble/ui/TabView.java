@@ -79,8 +79,8 @@ public class TabView extends BubbleView {
             }
 
             @Override
-            public void onReceivedIcon(Bitmap favicon) {
-                TabView.this.onReceivedIcon(favicon);
+            public boolean onReceivedIcon(Bitmap favicon) {
+                return TabView.this.onReceivedIcon(favicon);
             }
 
             @Override

@@ -138,7 +138,7 @@ public class ContentView extends FrameLayout {
         public void onPageLoading(URL url);
         public void onProgressChanged(int progress);
         public void onPageLoaded();
-        public void onReceivedIcon(Bitmap bitmap);
+        public boolean onReceivedIcon(Bitmap bitmap);
         public void onBackStackSizeChanged(int size);
     }
 
@@ -478,10 +478,10 @@ public class ContentView extends FrameLayout {
             // This is to prevent passing a stale icon along when a redirect has already occurred. This shouldn't cause
             // too many ill-effects, because BitmapView attempts to load host/favicon.ico automatically anyway.
             if (mPageFinishedLoading) {
-                mEventHandler.onReceivedIcon(bitmap);
-
-                String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
-                MainApplication.sFavicons.putFaviconInMemCache(faviconUrl, bitmap);
+                if (mEventHandler.onReceivedIcon(bitmap)) {
+                    String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
+                    MainApplication.sFavicons.putFaviconInMemCache(faviconUrl, bitmap);
+                }
             }
         }
 
