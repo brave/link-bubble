@@ -63,15 +63,15 @@ public class CanvasView extends FrameLayout {
         mTargets.add(new BubbleTargetView(this, context, R.drawable.close_indicator, Config.BubbleAction.Destroy,
                 0, BubbleTargetView.HorizontalAnchor.Center,
                 35, BubbleTargetView.VerticalAnchor.Bottom,
-                30, 35));
+                30, 35, 200, 35));
         mTargets.add(new BubbleTargetView(this, context, Config.BubbleAction.ConsumeLeft,
                 70, BubbleTargetView.HorizontalAnchor.Left,
                 33, BubbleTargetView.VerticalAnchor.Top,
-                15, 33));
+                15, 33, 150, 33));
         mTargets.add(new BubbleTargetView(this, context, Config.BubbleAction.ConsumeRight,
                 70, BubbleTargetView.HorizontalAnchor.Right,
                 33, BubbleTargetView.VerticalAnchor.Top,
-                15, 33));
+                15, 33, 150, 33));
 
         Settings.setConsumeBubblesChangedEventHandler(new Settings.ConsumeBubblesChangedEventHandler() {
             @Override

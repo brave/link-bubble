@@ -130,6 +130,8 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         DraggableHelper.AnimationType animType = DraggableHelper.AnimationType.Linear;
         float period = 0.0f;
         mFlickActive = true;
+        BubbleTargetView.enableTractor();
+
         mCurrentSnapTarget = null;
 
         int initialX = mDraggableHelper.getXPos();
@@ -181,6 +183,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             @Override
             public void onAnimationComplete() {
                 mFlickActive = false;
+                BubbleTargetView.disableTractor();
                 onAnimComplete();
 
                 MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
@@ -505,6 +508,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                         MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
 
                         onAnimComplete();
+                        BubbleTargetView.disableTractor();
                         mFlickActive = false;
 
                         Config.BubbleAction action = mCurrentSnapTarget.getAction();
@@ -549,10 +553,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         } else {
             switchToExpandedView();
         }
-    }
-
-    public void clearTargetPos() {
-        mDraggableHelper.clearTargetPos();
     }
 
     public void setExactPos(int x, int y) {
