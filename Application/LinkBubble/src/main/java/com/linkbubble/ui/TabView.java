@@ -5,8 +5,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
+import com.linkbubble.util.ScaleUpAnimHelper;
 import com.linkbubble.util.Util;
 
 import org.mozilla.gecko.favicons.Favicons;
@@ -16,7 +18,10 @@ import java.net.URL;
 
 public class TabView extends BubbleView {
 
-    protected ContentView mContentView;
+    private ContentView mContentView;
+    private ImageView mBackIndicatorView;
+    private ScaleUpAnimHelper mBackIndicatorAnimHelper;
+    private int mLastBackStackSize = -1;
 
     public TabView(Context context) {
         this(context, null);
@@ -32,6 +37,10 @@ public class TabView extends BubbleView {
 
     void configure(String url, long startTime) throws MalformedURLException {
         super.configure(url);
+
+        mBackIndicatorView = (ImageView) findViewById(R.id.back_indicator);
+        mBackIndicatorAnimHelper = new ScaleUpAnimHelper(mBackIndicatorView);
+        mBackIndicatorAnimHelper.hide();
 
         mContentView = (ContentView)inflate(getContext(), R.layout.view_content, null);
         mContentView.configure(mUrl.toString(), startTime, new ContentView.EventHandler() {
@@ -72,6 +81,16 @@ public class TabView extends BubbleView {
             @Override
             public void onReceivedIcon(Bitmap favicon) {
                 TabView.this.onReceivedIcon(favicon);
+            }
+
+            @Override
+            public void onBackStackSizeChanged(int size) {
+                if (size == 0 && mLastBackStackSize > 0) {
+                    mBackIndicatorAnimHelper.hide();
+                } else if (size > 0 && mLastBackStackSize == 0) {
+                    mBackIndicatorAnimHelper.show();
+                }
+                mLastBackStackSize = size;
             }
         });
 

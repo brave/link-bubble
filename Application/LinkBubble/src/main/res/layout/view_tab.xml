@@ -38,4 +38,15 @@
         android:src="@drawable/fallback_favicon"
         android:layout_gravity="center"/>
 
+    <ImageView
+        android:id="@+id/back_indicator"
+        android:layout_width="@dimen/back_indicator_size"
+        android:layout_height="@dimen/back_indicator_size"
+        android:background="@drawable/badge_shape"
+        android:layout_marginLeft="@dimen/badge_margin"
+        android:layout_marginRight="@dimen/badge_margin"
+        android:layout_marginTop="@dimen/badge_margin"
+        android:src="@drawable/ic_action_arrow_left"
+        android:layout_gravity="top|left"/>
+
 </com.linkbubble.ui.TabView>
