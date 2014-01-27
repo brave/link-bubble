@@ -126,6 +126,9 @@ public class MainController implements Choreographer.FrameCallback {
     private BubbleFlowDraggable mBubbleFlowDraggable;
     private BubbleDraggable mBubbleDraggable;
 
+    // false if the user has forcibilty minimized the Bubbles from ContentView. Set back to true once a new link is loaded.
+    private boolean mCanAutoDisplayLink;
+
     BubbleFlowView.AnimationEventListener mOnBubbleFlowExpandFinishedListener = new BubbleFlowView.AnimationEventListener() {
 
         @Override
@@ -197,6 +200,8 @@ public class MainController implements Choreographer.FrameCallback {
         mAppPoller = new AppPoller(context);
         mAppPoller.setListener(mAppPollerListener);
 
+        mCanAutoDisplayLink = true;
+
         /*
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         mTextView = new TextView(mContext);
@@ -252,7 +257,7 @@ public class MainController implements Choreographer.FrameCallback {
     //private int mFrameNumber;
 
     public void onPageLoaded(TabView tab) {
-        if (Settings.get().getAutoContentDisplayLinkLoaded() && !mBubbleDraggable.isDragging()) {
+        if (Settings.get().getAutoContentDisplayLinkLoaded() && !mBubbleDraggable.isDragging() && mCanAutoDisplayLink) {
             switch (mBubbleDraggable.getCurrentMode()) {
                 case BubbleView:
                     mBubbleFlowDraggable.setCenterItem(tab);
@@ -451,6 +456,7 @@ public class MainController implements Choreographer.FrameCallback {
             }
         }
 
+        mCanAutoDisplayLink = true;
         openUrlInBubble(url, startTime, setAsCurrentBubble);
     }
 
@@ -536,6 +542,7 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void switchToBubbleView() {
+        mCanAutoDisplayLink = false;
         if (MainController.get().getActiveTabCount() > 0) {
             mBubbleDraggable.switchToBubbleView();
         }
