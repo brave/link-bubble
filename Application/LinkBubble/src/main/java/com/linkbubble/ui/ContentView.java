@@ -139,6 +139,7 @@ public class ContentView extends FrameLayout {
         public void onProgressChanged(int progress);
         public void onPageLoaded();
         public void onReceivedIcon(Bitmap bitmap);
+        public void onBackStackSizeChanged(int size);
     }
 
     @Override
@@ -262,6 +263,7 @@ public class ContentView extends FrameLayout {
 
         mContext = getContext();
         mEventHandler = eventHandler;
+        mEventHandler.onBackStackSizeChanged(mUrlHistory.size());
         mPageFinishedLoading = false;
 
         WebSettings webSettings = mWebView.getSettings();
@@ -300,6 +302,7 @@ public class ContentView extends FrameLayout {
             if (mLoadCount == 0) {
                 if (mCurrentLoadedUrl != null && !mLoadingPrev) {
                     mUrlHistory.push(mCurrentLoadedUrl);
+                    mEventHandler.onBackStackSizeChanged(mUrlHistory.size());
                 }
                 mCurrentLoadedUrl = null;
                 mLoadingPrev = false;
@@ -432,6 +435,7 @@ public class ContentView extends FrameLayout {
                             String urlBefore = webView.getUrl();
 
                             String prevUrl = mUrlHistory.pop();
+                            mEventHandler.onBackStackSizeChanged(mUrlHistory.size());
                             mLoadingPrev = true;
                             webView.loadUrl(prevUrl);
 
