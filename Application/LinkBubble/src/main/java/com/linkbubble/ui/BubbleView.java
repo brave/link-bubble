@@ -89,8 +89,9 @@ public class BubbleView extends FrameLayout  {
         mImitator = bubbleView;
         if (mImitator != null) {
             String tag = (String)mFavicon.getTag();
-            if (tag != null) {
-                mImitator.setFavicon(((BitmapDrawable)mFavicon.getDrawable()).getBitmap(), tag);
+            Drawable drawable = mFavicon.getDrawable();
+            if (tag != null && drawable != null) {
+                mImitator.setFavicon(((BitmapDrawable)drawable).getBitmap(), tag);
             } else {
                 setFallbackFavicon();
             }
