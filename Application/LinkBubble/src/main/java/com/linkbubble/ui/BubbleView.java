@@ -88,8 +88,12 @@ public class BubbleView extends FrameLayout  {
     public void setImitator(BubbleView bubbleView) {
         mImitator = bubbleView;
         if (mImitator != null) {
-            mImitator.mFavicon.setImageDrawable(mFavicon.getDrawable());
-            mImitator.mFavicon.setTag(mFavicon.getTag());
+            String tag = (String)mFavicon.getTag();
+            if (tag != null) {
+                mImitator.setFavicon(((BitmapDrawable)mFavicon.getDrawable()).getBitmap(), tag);
+            } else {
+                setFallbackFavicon();
+            }
             mImitator.mProgressIndicator.setProgress(mProgressIndicator.isIndicatorShowing(), mProgressIndicator.getProgress(), mUrl);
         }
     }
