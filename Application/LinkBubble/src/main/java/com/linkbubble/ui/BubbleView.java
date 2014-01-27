@@ -198,7 +198,8 @@ public class BubbleView extends FrameLayout  {
         showProgressBar(false, 0);
     }
 
-    protected void onReceivedIcon(Bitmap favicon) {
+    protected boolean onReceivedIcon(Bitmap favicon) {
+        boolean appliedFavicon = false;
         if (favicon == null) {
             // Don't update if an image already exists. Optimization as the fallback favicon is already set via loadFavicon()
             if (mFavicon.getDrawable() == null) {
@@ -247,10 +248,12 @@ public class BubbleView extends FrameLayout  {
                 if (DEBUG) {
                     Log.d(TAG, "[favicon] onReceivedIcon: setImageBitmap() size:" + favicon.getWidth() + " on host " + mUrl.getHost());
                 }
+                appliedFavicon = true;
             }
         }
 
         mFavicon.setVisibility(VISIBLE);
+        return appliedFavicon;
     }
 
     public void onProgressChanged(int progress) {
