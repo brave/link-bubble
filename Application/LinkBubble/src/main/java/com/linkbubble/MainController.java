@@ -480,6 +480,10 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
+    public boolean contentViewShowing() {
+        return mBubbleDraggable != null && mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView;
+    }
+
     public boolean destroyCurrentBubble(boolean animateOff) {
         return destroyCurrentBubble(Config.BubbleAction.Destroy, animateOff);
     }
@@ -492,7 +496,9 @@ public class MainController implements Choreographer.FrameCallback {
             Toast.makeText(mContext, "HIT TARGET!", 400).show();
         } else {
             mBubbleFlowDraggable.destroyCurrentBubble(animateOff, action);
-            if (mBubbleFlowDraggable.getActiveTabCount() == 0) {
+            int activeTabCount = getActiveTabCount();
+            showBadge(activeTabCount > 1 ? true : false);
+            if (activeTabCount == 0) {
                 hideBubbleDraggable();
                 Config.BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
                 Config.BUBBLE_HOME_Y = (int) (Config.mScreenHeight * 0.4f);
