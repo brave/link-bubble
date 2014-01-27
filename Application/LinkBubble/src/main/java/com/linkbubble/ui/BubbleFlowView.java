@@ -14,6 +14,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
+import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
@@ -804,8 +805,11 @@ public class BubbleFlowView extends HorizontalScrollView {
                             // If there's only 1 view, we don't need to worry about not consuming the input that should go towards
                             // making the BubbleFlow scroll between its items, so just start working towards making this a long press.
                             if (viewsSize == 1) {
-                                // Fast distance check
-                                if (absXDelta*absXDelta + absYDelta*absYDelta < 8*8) {
+                                int distance = Config.dpToPx(6);
+                                if (absXDelta*absXDelta + absYDelta*absYDelta > distance*distance) {    // save a squareroot call
+                                    if (DEBUG) {
+                                        Log.d(TAG, "[longpress] onTouch() MOVE: delta:" + Util.distance(0, 0, absXDelta, absYDelta) + " > " + distance);
+                                    }
                                     mStillTouchFrameCount = LONG_PRESS_FRAMES-1;
                                 } else {
                                     mStillTouchFrameCount++;
