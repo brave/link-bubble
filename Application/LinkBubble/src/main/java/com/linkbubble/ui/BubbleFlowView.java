@@ -18,6 +18,7 @@ import com.linkbubble.Constant;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.util.TranslateAnimationEx;
+import com.linkbubble.util.Util;
 import com.linkbubble.util.VerticalGestureListener;
 
 import java.util.ArrayList;
@@ -791,31 +792,44 @@ public class BubbleFlowView extends HorizontalScrollView {
                         Log.d(TAG, "[longpress] onTouch() UP: mStillTouchFrameCount=" + mStillTouchFrameCount);
                     }
                 } else if (action == MotionEvent.ACTION_MOVE) {
-                    if (mStillTouchFrameCount >= 0) {
-                        if (mCenterViewTouchPointerId != INVALID_POINTER) {
-                            final int pointerIndex = event.findPointerIndex(mCenterViewTouchPointerId);
-                            if (pointerIndex != -1) {
-                                float x = event.getX(pointerIndex);
-                                float y = event.getY(pointerIndex);
-                                float absXDelta = Math.abs(mCenterViewDownX - x);
-                                float absYDelta = Math.abs(mCenterViewDownY - y);
-                                if (absYDelta > 8.f) {
-                                    mStillTouchFrameCount = LONG_PRESS_FRAMES-1;
-                                    if (DEBUG) {
-                                        Log.e(TAG, "[longpress] onTouch() MOVE: [FORCE], absYDelta:" + absYDelta);
-                                    }
-                                } else if (absXDelta > 3.f) {
-                                    mStillTouchFrameCount = -1;
-                                    if (DEBUG) {
-                                        Log.e(TAG, "[longpress] onTouch() MOVE: [CANCEL] mStillTouchFrameCount=" + mStillTouchFrameCount
-                                                + ", absXDelta:" + absXDelta + ", absYDelta:" + absYDelta);
-                                    }
-                                } else {
-                                    if (DEBUG) {
-                                        Log.d(TAG, "[longpress] onTouch() MOVE: absXDelta:" + absXDelta + ", absYDelta:" + absYDelta);
-                                    }
-                                }
+                    if (mCenterViewTouchPointerId != INVALID_POINTER) {
+                        final int pointerIndex = event.findPointerIndex(mCenterViewTouchPointerId);
+                        if (pointerIndex != -1) {
+                            float x = event.getX(pointerIndex);
+                            float y = event.getY(pointerIndex);
+                            float absXDelta = Math.abs(mCenterViewDownX - x);
+                            float absYDelta = Math.abs(mCenterViewDownY - y);
 
+                            int viewsSize = mViews.size();
+                            // If there's only 1 view, we don't need to worry about not consuming the input that should go towards
+                            // making the BubbleFlow scroll between its items, so just start working towards making this a long press.
+                            if (viewsSize == 1) {
+                                // Fast distance check
+                                if (absXDelta*absXDelta + absYDelta*absYDelta < 8*8) {
+                                    mStillTouchFrameCount = LONG_PRESS_FRAMES-1;
+                                } else {
+                                    mStillTouchFrameCount++;
+                                }
+                            } else if (viewsSize > 1) {
+                                if (mStillTouchFrameCount >= 0) {
+                                    if (absYDelta > 8.f) {
+                                        mStillTouchFrameCount = LONG_PRESS_FRAMES-1;
+                                        if (DEBUG) {
+                                            Log.e(TAG, "[longpress] onTouch() MOVE: [FORCE], absYDelta:" + absYDelta);
+                                        }
+                                    } else if (absXDelta > 3.f) {
+                                        mStillTouchFrameCount = -1;
+                                        if (DEBUG) {
+                                            Log.e(TAG, "[longpress] onTouch() MOVE: [CANCEL] mStillTouchFrameCount=" + mStillTouchFrameCount
+                                                    + ", absXDelta:" + absXDelta + ", absYDelta:" + absYDelta);
+                                        }
+                                    } else {
+                                        if (DEBUG) {
+                                            Log.d(TAG, "[longpress] onTouch() MOVE: absXDelta:" + absXDelta + ", absYDelta:" + absYDelta);
+                                        }
+                                    }
+
+                                }
                             }
                         }
                     }
