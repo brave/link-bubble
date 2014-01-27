@@ -1,17 +1,14 @@
 package com.linkbubble.ui;
 
-import android.animation.Animator;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.view.View;
-import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.linkbubble.Config;
-import com.linkbubble.Constant;
 import com.linkbubble.MainController;
 import com.linkbubble.physics.Draggable;
+import com.linkbubble.util.ScaleUpAnimHelper;
 
 /**
  * Created by gw on 12/10/13.
@@ -19,14 +16,7 @@ import com.linkbubble.physics.Draggable;
 public class BadgeView extends TextView {
 
     int mCount;
-
-    enum AnimState {
-        None,
-        Hiding,
-        Showing,
-    }
-
-    AnimState mAnimState;
+    ScaleUpAnimHelper mAnimHelper;
 
     public BadgeView(Context context) {
         this(context, null);
@@ -39,27 +29,12 @@ public class BadgeView extends TextView {
     public BadgeView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        mAnimState = AnimState.None;
         mCount = 0;
+        mAnimHelper = new ScaleUpAnimHelper(this);
     }
 
     public void show() {
-        if (getVisibility() != View.VISIBLE) {
-            animate().cancel();
-            setAlpha(0f);
-            setVisibility(View.VISIBLE);
-            setScaleX(0.33f);
-            setScaleY(0.33f);
-        } else if (mAnimState == AnimState.Hiding) {
-            animate().cancel();
-            setVisibility(View.VISIBLE);
-        }
-
-        animate().alpha(1f).scaleX(1f).scaleY(1f)
-                .setDuration(667)
-                .setInterpolator(new AnticipateOvershootInterpolator())
-                .setListener(mShowListener)
-                .start();
+        mAnimHelper.show();
 
         Draggable activeDraggable = MainController.get().getBubbleDraggable();
         if (activeDraggable != null) {
@@ -74,58 +49,8 @@ public class BadgeView extends TextView {
     }
 
     public void hide() {
-        animate().alpha(0.f).scaleX(0.33f).scaleY(0.33f)
-                .setDuration(500)
-                .setInterpolator(new AnticipateOvershootInterpolator())
-                .setListener(mHideListener)
-                .start();
+        mAnimHelper.hide();
     }
-
-    // Empty listener is set so that the mHideListener is not still used, potentially setting the view visibilty as GONE
-    private Animator.AnimatorListener mShowListener = new Animator.AnimatorListener() {
-        @Override
-        public void onAnimationStart(Animator animation) {
-            mAnimState = AnimState.Showing;
-        }
-
-        @Override
-        public void onAnimationEnd(Animator animation) {
-            mAnimState = AnimState.None;
-        }
-
-        @Override
-        public void onAnimationCancel(Animator animation) {
-
-        }
-
-        @Override
-        public void onAnimationRepeat(Animator animation) {
-
-        }
-    };
-
-    private Animator.AnimatorListener mHideListener = new Animator.AnimatorListener() {
-        @Override
-        public void onAnimationStart(Animator animation) {
-            mAnimState = AnimState.Hiding;
-        }
-
-        @Override
-        public void onAnimationEnd(Animator animation) {
-            setVisibility(View.GONE);
-            mAnimState = AnimState.None;
-        }
-
-        @Override
-        public void onAnimationCancel(Animator animation) {
-
-        }
-
-        @Override
-        public void onAnimationRepeat(Animator animation) {
-
-        }
-    };
 
     public void setCount(int count) {
         mCount = count;
