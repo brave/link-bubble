@@ -37,6 +37,8 @@ public class BubbleTargetView extends RelativeLayout {
     private int mDefaultY;
     private int mMaxOffsetX;
     private int mMaxOffsetY;
+    private int mTractorOffsetX;
+    private int mTractorOffsetY;
     private float mButtonWidth;
     private float mButtonHeight;
     private float mSnapWidth;
@@ -71,6 +73,7 @@ public class BubbleTargetView extends RelativeLayout {
     private float mAnimTime;
     private boolean mEnableMove;
     private boolean mIsSnapping;
+    private static boolean sEnableTractor;
     private float mTimeSinceSnapping;
     private float mTransitionTimeLeft;
 
@@ -121,16 +124,17 @@ public class BubbleTargetView extends RelativeLayout {
     }
 
     public BubbleTargetView(CanvasView canvasView, Context context, Config.BubbleAction action, int defaultX, HorizontalAnchor hAnchor,
-                            int defaultY, VerticalAnchor vAnchor, int maxOffsetX, int maxOffsetY) {
+                            int defaultY, VerticalAnchor vAnchor, int maxOffsetX, int maxOffsetY, int tractorOffsetX, int tractorOffsetY) {
         super(context);
-        init(canvasView, context, Settings.get().getConsumeBubbleIcon(action), action, defaultX, hAnchor, defaultY, vAnchor, maxOffsetX, maxOffsetY);
+        init(canvasView, context, Settings.get().getConsumeBubbleIcon(action), action, defaultX, hAnchor,
+                defaultY, vAnchor, maxOffsetX, maxOffsetY, tractorOffsetX, tractorOffsetY);
     }
 
     public BubbleTargetView(CanvasView canvasView, Context context, int resId, Config.BubbleAction action, int defaultX, HorizontalAnchor hAnchor,
-                            int defaultY, VerticalAnchor vAnchor, int maxOffsetX, int maxOffsetY) {
+                            int defaultY, VerticalAnchor vAnchor, int maxOffsetX, int maxOffsetY, int tractorOffsetX, int tractorOffsetY) {
         super(context);
         Drawable d = context.getResources().getDrawable(resId);
-        init(canvasView, context, d, action, defaultX, hAnchor, defaultY, vAnchor, maxOffsetX, maxOffsetY);
+        init(canvasView, context, d, action, defaultX, hAnchor, defaultY, vAnchor, maxOffsetX, maxOffsetY, tractorOffsetX, tractorOffsetY);
     }
 
     public void onConsumeBubblesChanged() {
@@ -168,7 +172,8 @@ public class BubbleTargetView extends RelativeLayout {
     }
 
     private void init(CanvasView canvasView, Context context, Drawable d, Config.BubbleAction action, int defaultX, HorizontalAnchor hAnchor,
-                      int defaultY, VerticalAnchor vAnchor, int maxOffsetX, int maxOffsetY) {
+                      int defaultY, VerticalAnchor vAnchor, int maxOffsetX, int maxOffsetY,
+                      int tractorOffsetX, int tractorOffsetY) {
         mCanvasView = canvasView;
         mEnableMove = false;
         mContext = context;
@@ -180,6 +185,8 @@ public class BubbleTargetView extends RelativeLayout {
         mDefaultY = defaultY;
         mMaxOffsetX = maxOffsetX;
         mMaxOffsetY = maxOffsetY;
+        mTractorOffsetX = tractorOffsetX;
+        mTractorOffsetY = tractorOffsetY;
 
         MainApplication.registerForBus(mContext, this);
 
@@ -259,6 +266,14 @@ public class BubbleTargetView extends RelativeLayout {
         return false;
     }
 
+    public static void enableTractor() {
+        sEnableTractor = true;
+    }
+
+    public static void disableTractor() {
+        sEnableTractor = false;
+    }
+
     public void beginSnapping() {
         mIsSnapping = true;
         mAnimPeriod = 0.0f;
@@ -302,26 +317,39 @@ public class BubbleTargetView extends RelativeLayout {
     @Subscribe
     public void onDraggableBubbleMovedEvent(MainController.DraggableBubbleMovedEvent e) {
         if (mEnableMove) {
-            int x0 = (int) (getXPos() - Config.dpToPx(mMaxOffsetX) - Config.mBubbleWidth * 0.5f);
-            int x1 = (int) (getXPos() + Config.dpToPx(mMaxOffsetX) - Config.mBubbleWidth * 0.5f);
+
+            int xMaxOffset = mMaxOffsetX;
+            int yMaxOffset = mMaxOffsetY;
+
+            if (sEnableTractor) {
+                xMaxOffset = mTractorOffsetX;
+                yMaxOffset = mTractorOffsetY;
+            }
+
+            int x0 = (int) (getXPos() - Config.dpToPx(xMaxOffset) - Config.mBubbleWidth * 0.5f);
+            int x1 = (int) (getXPos() + Config.dpToPx(xMaxOffset) - Config.mBubbleWidth * 0.5f);
 
             int xt;
-            float halfWidth = Config.mScreenWidth * 0.5f;
-
-            float xc = (x0 + x1) * 0.5f;
-            if (xc < 0.3f * Config.mScreenWidth) {
-                xt = x0 + (int) ((x1 - x0) * ((float)e.mX / halfWidth));
-            } else if (xc > 0.7f * Config.mScreenWidth) {
-                xt = x0 + (int) ((x1 - x0) * ((e.mX - Config.mScreenWidth * 0.5f) / halfWidth));
+            if (sEnableTractor) {
+                xt = Util.clamp(x0, e.mX, x1);
             } else {
-                xt = x0 + (int) ((x1 - x0) * ((float)(e.mX) / (float)Config.mScreenWidth));
+                float halfWidth = Config.mScreenWidth * 0.5f;
+
+                float xc = (x0 + x1) * 0.5f;
+                if (xc < 0.3f * Config.mScreenWidth) {
+                    xt = x0 + (int) ((x1 - x0) * ((float)e.mX / halfWidth));
+                } else if (xc > 0.7f * Config.mScreenWidth) {
+                    xt = x0 + (int) ((x1 - x0) * ((e.mX - Config.mScreenWidth * 0.5f) / halfWidth));
+                } else {
+                    xt = x0 + (int) ((x1 - x0) * ((float)(e.mX) / (float)Config.mScreenWidth));
+                }
             }
 
             int targetX = Util.clamp(x0, xt, x1);
             mSnapCircle.mX = targetX + Config.mBubbleWidth * 0.5f;
 
-            int y0 = (int) (getYPos() - Config.dpToPx(mMaxOffsetY) - Config.mBubbleWidth * 0.5f);
-            int y1 = (int) (getYPos() + Config.dpToPx(mMaxOffsetY) - Config.mBubbleWidth * 0.5f);
+            int y0 = (int) (getYPos() - Config.dpToPx(yMaxOffset) - Config.mBubbleWidth * 0.5f);
+            int y1 = (int) (getYPos() + Config.dpToPx(yMaxOffset) - Config.mBubbleWidth * 0.5f);
             int targetY = Util.clamp(y0, e.mY, y1);
             mSnapCircle.mY = targetY + Config.mBubbleHeight * 0.5f;
 
