@@ -10,6 +10,8 @@ public class Constant {
     public static final String PRIVACY_POLICY_URL = "http://www.actionlauncher.com/privacy";
     public static final String TERMS_OF_SERVICE_URL = "http://www.actionlauncher.com/terms";
 
+    public static final boolean DEBUG_SHOW_TARGET_REGIONS = false;
+
     public static String getOSFlavor() {
         int apiVersion = android.os.Build.VERSION.SDK_INT;
         String flavor = "";
