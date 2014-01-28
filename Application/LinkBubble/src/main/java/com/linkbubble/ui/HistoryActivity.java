@@ -40,6 +40,7 @@ import org.mozilla.gecko.favicons.LoadFaviconTask;
 import org.mozilla.gecko.favicons.OnFaviconLoadedListener;
 import org.mozilla.gecko.widget.FaviconView;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -384,6 +385,12 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
     @SuppressWarnings("unused")
     @Subscribe
     public void onHistoryRecordChangedEvent(HistoryRecord.ChangedEvent event) {
+        boolean setupList = false;
+        if (mHistoryRecords == null) {
+            mHistoryRecords = new ArrayList<HistoryRecord>();
+            setupList = true;
+        }
+
         HistoryRecord historyRecord = event.mHistoryRecord;
         // find out if the item exists on the list already. This will be true if a HistoryRecord for a URL was updated
         boolean onList = false;
@@ -398,6 +405,10 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
         // which is the current behaviour.
         mHistoryRecords.add(0, historyRecord);
 
-        mHistoryAdapter.notifyDataSetChanged();
+        if (setupList) {
+            setupListView();
+        } else {
+            mHistoryAdapter.notifyDataSetChanged();
+        }
     }
 }
