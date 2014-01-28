@@ -284,11 +284,16 @@ public class ContentView extends FrameLayout {
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
+        mStartTime = startTime;
+        loadUrl(urlAsString);
+    }
+
+    private void loadUrl(String urlAsString) {
+        updateUrl(urlAsString);
         updateAppsForUrl(mUrl);
         configureOpenInAppButton();
         configureOpenEmbedButton();
         Log.d(TAG, "load url: " + urlAsString);
-        mStartTime = startTime;
         mWebView.loadUrl(urlAsString);
         mEventHandler.onPageLoading(mUrl);
         mTitleTextView.setText(R.string.loading);
@@ -297,7 +302,7 @@ public class ContentView extends FrameLayout {
 
     WebViewClient mWebViewClient = new WebViewClient() {
         @Override
-        public boolean shouldOverrideUrlLoading(WebView wView, String urlAsString) {
+        public boolean shouldOverrideUrlLoading(WebView wView, final String urlAsString) {
 
             if (mLoadCount == 0) {
                 if (mCurrentLoadedUrl != null && !mLoadingPrev) {
@@ -313,8 +318,7 @@ public class ContentView extends FrameLayout {
 
             mPageInspector.reset();
 
-            List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(urlAsString);
-            updateAppsForUrl(resolveInfos, mUrl);
+            updateAppsForUrl(Settings.get().getAppsThatHandleUrl(urlAsString), mUrl);
             if (Settings.get().redirectUrlToBrowser(urlAsString)) {
                 if (openInBrowser(urlAsString)) {
                     String title = String.format(mContext.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
@@ -323,18 +327,59 @@ public class ContentView extends FrameLayout {
                 }
             }
 
-            if (Settings.get().getAutoContentDisplayAppRedirect() && resolveInfos != null && resolveInfos.size() > 0) {
-                ResolveInfo resolveInfo = resolveInfos.get(0);
-                if (resolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo) {
-                    // TODO: Fix to handle multiple apps
-                    if (MainApplication.loadResolveInfoIntent(mContext, resolveInfo, urlAsString, mStartTime)) {
-                        String title = String.format(mContext.getString(R.string.link_loaded_with_app),
-                                resolveInfo.loadLabel(mContext.getPackageManager()));
-                        MainApplication.saveUrlInHistory(mContext, resolveInfo, urlAsString, title);
+            if (Settings.get().getAutoContentDisplayAppRedirect() && mAppsForUrl != null && mAppsForUrl.size() > 0) {
+                if (mAppsForUrl.size() == 1) {
+                    AppForUrl appForUrl = mAppsForUrl.get(0);
+                    if (appForUrl.mResolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo) {
+                        // TODO: Fix to handle multiple apps
+                        if (MainApplication.loadResolveInfoIntent(mContext, appForUrl.mResolveInfo, urlAsString, mStartTime)) {
+                            String title = String.format(mContext.getString(R.string.link_loaded_with_app),
+                                    appForUrl.mResolveInfo.loadLabel(mContext.getPackageManager()));
+                            MainApplication.saveUrlInHistory(mContext, appForUrl.mResolveInfo, urlAsString, title);
 
-                        MainController.get().destroyCurrentBubble(MainController.get().contentViewShowing());
-                        return false;
+                            MainController.get().destroyCurrentBubble(MainController.get().contentViewShowing());
+                            return false;
+                        }
                     }
+                } else {
+                    final ArrayList<ResolveInfo> resolveInfos = new ArrayList<ResolveInfo>();
+                    for (AppForUrl appForUrl : mAppsForUrl) {
+                        resolveInfos.add(appForUrl.mResolveInfo);
+                    }
+                    AlertDialog dialog = ActionItem.getActionItemPickerAlert(mContext, resolveInfos, R.string.pick_default_app,
+                            new ActionItem.OnActionItemSelectedListener() {
+                                @Override
+                                public void onSelected(ActionItem actionItem) {
+                                    boolean loaded = false;
+                                    String appPackageName = mContext.getPackageName();
+                                    for (ResolveInfo resolveInfo : resolveInfos) {
+                                        if (resolveInfo.activityInfo.packageName.equals(actionItem.mPackageName)
+                                                && resolveInfo.activityInfo.name.equals(actionItem.mActivityClassName)) {
+                                            Settings.get().setDefaultApp(urlAsString, resolveInfo);
+
+                                            // Jump out of the loop and load directly via a BubbleView below
+                                            if (resolveInfo.activityInfo.packageName.equals(appPackageName)) {
+                                                break;
+                                            }
+
+                                            loaded = MainApplication.loadIntent(mContext, actionItem.mPackageName,
+                                                    actionItem.mActivityClassName, urlAsString, -1);
+                                            break;
+                                        }
+                                    }
+
+                                    if (loaded) {
+                                        MainController.get().destroyCurrentBubble(MainController.get().contentViewShowing());
+                                    } else {
+                                        loadUrl(urlAsString);
+                                    }
+                                }
+                            });
+                    dialog.setCancelable(false);
+                    dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                    dialog.show();
+
+                    return false;
                 }
             }
 
