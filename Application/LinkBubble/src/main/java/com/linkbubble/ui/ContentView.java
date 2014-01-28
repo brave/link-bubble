@@ -2,6 +2,7 @@ package com.linkbubble.ui;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
@@ -71,6 +72,7 @@ public class ContentView extends FrameLayout {
     private Context mContext;
     private URL mUrl;
     private boolean mPageFinishedLoading;
+    private boolean mShowingDefaultAppPicker = false;
 
     private List<AppForUrl> mAppsForUrl = new ArrayList<AppForUrl>();
     private List<ResolveInfo> mTempAppsForUrl = new ArrayList<ResolveInfo>();
@@ -342,44 +344,54 @@ public class ContentView extends FrameLayout {
                         }
                     }
                 } else {
-                    final ArrayList<ResolveInfo> resolveInfos = new ArrayList<ResolveInfo>();
-                    for (AppForUrl appForUrl : mAppsForUrl) {
-                        resolveInfos.add(appForUrl.mResolveInfo);
-                    }
-                    AlertDialog dialog = ActionItem.getActionItemPickerAlert(mContext, resolveInfos, R.string.pick_default_app,
-                            new ActionItem.OnActionItemSelectedListener() {
-                                @Override
-                                public void onSelected(ActionItem actionItem) {
-                                    boolean loaded = false;
-                                    String appPackageName = mContext.getPackageName();
-                                    for (ResolveInfo resolveInfo : resolveInfos) {
-                                        if (resolveInfo.activityInfo.packageName.equals(actionItem.mPackageName)
-                                                && resolveInfo.activityInfo.name.equals(actionItem.mActivityClassName)) {
-                                            Settings.get().setDefaultApp(urlAsString, resolveInfo);
+                    if (mShowingDefaultAppPicker == false) {
+                        final ArrayList<ResolveInfo> resolveInfos = new ArrayList<ResolveInfo>();
+                        for (AppForUrl appForUrl : mAppsForUrl) {
+                            resolveInfos.add(appForUrl.mResolveInfo);
+                        }
+                        AlertDialog dialog = ActionItem.getActionItemPickerAlert(mContext, resolveInfos, R.string.pick_default_app,
+                                new ActionItem.OnActionItemDefaultSelectedListener() {
+                                    @Override
+                                    public void onSelected(ActionItem actionItem, boolean always) {
+                                        boolean loaded = false;
+                                        String appPackageName = mContext.getPackageName();
+                                        for (ResolveInfo resolveInfo : resolveInfos) {
+                                            if (resolveInfo.activityInfo.packageName.equals(actionItem.mPackageName)
+                                                    && resolveInfo.activityInfo.name.equals(actionItem.mActivityClassName)) {
+                                                if (always) {
+                                                    Settings.get().setDefaultApp(urlAsString, resolveInfo);
+                                                }
 
-                                            // Jump out of the loop and load directly via a BubbleView below
-                                            if (resolveInfo.activityInfo.packageName.equals(appPackageName)) {
+                                                // Jump out of the loop and load directly via a BubbleView below
+                                                if (resolveInfo.activityInfo.packageName.equals(appPackageName)) {
+                                                    break;
+                                                }
+
+                                                loaded = MainApplication.loadIntent(mContext, actionItem.mPackageName,
+                                                        actionItem.mActivityClassName, urlAsString, -1);
                                                 break;
                                             }
+                                        }
 
-                                            loaded = MainApplication.loadIntent(mContext, actionItem.mPackageName,
-                                                    actionItem.mActivityClassName, urlAsString, -1);
-                                            break;
+                                        if (loaded) {
+                                            MainController.get().destroyCurrentBubble(MainController.get().contentViewShowing());
+                                        } else {
+                                            loadUrl(urlAsString);
                                         }
                                     }
+                                });
 
-                                    if (loaded) {
-                                        MainController.get().destroyCurrentBubble(MainController.get().contentViewShowing());
-                                    } else {
-                                        loadUrl(urlAsString);
-                                    }
-                                }
-                            });
-                    dialog.setCancelable(false);
-                    dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                    dialog.show();
+                        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                mShowingDefaultAppPicker = false;
+                            }
+                        });
 
-                    return false;
+                        dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                        dialog.show();
+                        mShowingDefaultAppPicker = true;
+                    }
                 }
             }
 

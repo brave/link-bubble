@@ -18,5 +18,7 @@
 
     <color name="bubble_border">#666666</color>
 
+    <color name="action_picker_selected_color">#E2E2E2</color>
+
 </resources>
 

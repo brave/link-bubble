@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
+import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -62,6 +63,10 @@ public class ActionItem {
 
     public interface OnActionItemSelectedListener {
         public void onSelected(ActionItem actionItem);
+    }
+
+    public interface OnActionItemDefaultSelectedListener {
+        public void onSelected(ActionItem actionItem, boolean always);
     }
 
     private static ArrayList<ActionItem> getActionItems(Context context, boolean viewItems, boolean sendItems) {
@@ -124,12 +129,39 @@ public class ActionItem {
 
     public static AlertDialog getDefaultBrowserAlert(Context context, final OnActionItemSelectedListener onActionItemSelectedListener) {
         ArrayList<ActionItem> actionItems = getActionItems(context, true, false);
-        return getActionItemPickerAlert(context, actionItems, R.string.preference_default_browser, onActionItemSelectedListener);
+
+        ListView listView = new ListView(context);
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setTitle(R.string.preference_default_browser);
+        alertDialog.setView(listView);
+
+        ActionItemAdapter adapter = new ActionItemAdapter(context,
+                R.layout.action_picker_item,
+                actionItems.toArray(new ActionItem[0]));
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object tag = view.getTag();
+                if (tag instanceof ActionItem) {
+                    if (onActionItemSelectedListener != null) {
+                        onActionItemSelectedListener.onSelected((ActionItem) tag);
+                    }
+                    //Settings.get().setConsumeBubble(bubble, actionItem.mType, actionItem.getLabel(),
+                    //        actionItem.mPackageName, actionItem.mActivityClassName);
+                    //preference.setSummary(Settings.get().getConsumeBubbleLabel(bubble));
+                    alertDialog.dismiss();
+                }
+            }
+        });
+
+        return alertDialog;
     }
 
     public static AlertDialog getActionItemPickerAlert(Context context, final List<ResolveInfo> resolveInfos,
-                                                       int titleString, final OnActionItemSelectedListener onActionItemSelectedListener) {
-        ArrayList<ActionItem> actionItems = new ArrayList<ActionItem>();
+                                                       int titleString, final OnActionItemDefaultSelectedListener onActionItemDefaultSelectedListener) {
+        final ArrayList<ActionItem> actionItems = new ArrayList<ActionItem>();
         Resources resources = context.getResources();
         PackageManager packageManager = context.getPackageManager();
 
@@ -158,41 +190,98 @@ public class ActionItem {
             }
         });
 
-        return getActionItemPickerAlert(context, actionItems, titleString, onActionItemSelectedListener);
-    }
+        class ActionItemListView extends ListView {
 
-    public static AlertDialog getActionItemPickerAlert(Context context, final ArrayList<ActionItem> actionItems,
-                                                       int titleString, final OnActionItemSelectedListener onActionItemSelectedListener) {
-        ListView listView = new ListView(context);
+            boolean mDefaultSet = false;
+
+            public ActionItemListView(Context context) {
+                super(context);
+            }
+
+            @Override
+            public void draw(Canvas canvas) {
+                if (mDefaultSet == false) {
+                    Object tag = getTag();
+                    if (tag != null && tag instanceof Integer) {
+                        int selectedIndex = (Integer)tag;
+                        if (getChildCount() > selectedIndex) {
+                            View child = getChildAt(selectedIndex);
+                            if (child != null) {
+                                child.setBackgroundResource(R.color.action_picker_selected_color);
+                                mDefaultSet = true;
+                            }
+                        }
+                    }
+                }
+                super.draw(canvas);
+            }
+        };
+
+        final ListView listView = new ActionItemListView(context);
+
+        for (int i = 0; i < actionItems.size(); i++) {
+            ActionItem actionItem = actionItems.get(i);
+            if (actionItem.mPackageName.equals(context.getPackageName())) {
+                continue;
+            }
+            // Set the first non-LinkBubble item as the current selection
+            listView.setTag(i);
+            break;
+        }
 
         final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
         alertDialog.setTitle(titleString);
         alertDialog.setView(listView);
 
-        ActionItemAdapter adapter = new ActionItemAdapter(context,
+        final ActionItemAdapter adapter = new ActionItemAdapter(context,
                 R.layout.action_picker_item,
                 actionItems.toArray(new ActionItem[0]));
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                int viewChildCount = listView.getChildCount();
+                for (int i = 0; i < viewChildCount; i++) {
+                    View child = listView.getChildAt(i);
+                    child.setBackgroundResource(android.R.color.white);
+                }
+                view.setBackgroundResource(R.color.action_picker_selected_color);
+                listView.setTag(position);
+
+                /*
                 Object tag = view.getTag();
                 if (tag instanceof ActionItem) {
-                    if (onActionItemSelectedListener != null) {
-                        onActionItemSelectedListener.onSelected((ActionItem) tag);
+                    if (onActionItemDefaultSelectedListener != null) {
+                        onActionItemDefaultSelectedListener.onSelected((ActionItem) tag);
                     }
                     //Settings.get().setConsumeBubble(bubble, actionItem.mType, actionItem.getLabel(),
                     //        actionItem.mPackageName, actionItem.mActivityClassName);
                     //preference.setSummary(Settings.get().getConsumeBubbleLabel(bubble));
                     alertDialog.dismiss();
+                }*/
+            }
+        });
+
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, resources.getString(R.string.activity_resolver_use_once), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int selectedItem = (Integer)listView.getTag();
+                ActionItem actionItem = actionItems.get(selectedItem);
+                if (onActionItemDefaultSelectedListener != null) {
+                    onActionItemDefaultSelectedListener.onSelected(actionItem, false);
                 }
             }
         });
 
-        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, resources.getString(R.string.activity_resolver_use_always), new DialogInterface.OnClickListener() {
             @Override
-            public void onCancel(DialogInterface dialog) {
+            public void onClick(DialogInterface dialog, int which) {
+                int selectedItem = (Integer)listView.getTag();
+                ActionItem actionItem = actionItems.get(selectedItem);
+                if (onActionItemDefaultSelectedListener != null) {
+                    onActionItemDefaultSelectedListener.onSelected(actionItem, true);
+                }
             }
         });
 

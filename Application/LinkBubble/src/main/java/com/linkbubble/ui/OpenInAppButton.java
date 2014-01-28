@@ -233,12 +233,14 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
                     resolveInfos.add(item.mResolveInfo);
                 }
                 AlertDialog dialog = ActionItem.getActionItemPickerAlert(getContext(), resolveInfos, R.string.pick_default_app,
-                        new ActionItem.OnActionItemSelectedListener() {
+                        new ActionItem.OnActionItemDefaultSelectedListener() {
                             @Override
-                            public void onSelected(ActionItem actionItem) {
+                            public void onSelected(ActionItem actionItem, boolean always) {
                                 ContentView.AppForUrl appForUrl = getAppForUrl(actionItem.mPackageName, actionItem.mActivityClassName);
                                 if (appForUrl != null) {
-                                    Settings.get().setDefaultApp(appForUrl.mUrl.toString(), appForUrl.mResolveInfo);
+                                    if (always) {
+                                        Settings.get().setDefaultApp(appForUrl.mUrl.toString(), appForUrl.mResolveInfo);
+                                    }
                                     MainApplication.loadIntent(getContext(), appForUrl.mResolveInfo.activityInfo.packageName,
                                             appForUrl.mResolveInfo.activityInfo.name, appForUrl.mUrl.toString(), -1);
                                 }

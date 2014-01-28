@@ -426,15 +426,17 @@ public class MainController implements Choreographer.FrameCallback {
                 }
             } else {
                 AlertDialog dialog = ActionItem.getActionItemPickerAlert(mContext, resolveInfos, R.string.pick_default_app,
-                        new ActionItem.OnActionItemSelectedListener() {
+                        new ActionItem.OnActionItemDefaultSelectedListener() {
                             @Override
-                            public void onSelected(ActionItem actionItem) {
+                            public void onSelected(ActionItem actionItem, boolean always) {
                                 boolean loaded = false;
                                 String appPackageName = mContext.getPackageName();
                                 for (ResolveInfo resolveInfo : resolveInfos) {
                                     if (resolveInfo.activityInfo.packageName.equals(actionItem.mPackageName)
                                             && resolveInfo.activityInfo.name.equals(actionItem.mActivityClassName)) {
-                                        Settings.get().setDefaultApp(url, resolveInfo);
+                                        if (always) {
+                                            Settings.get().setDefaultApp(url, resolveInfo);
+                                        }
 
                                         // Jump out of the loop and load directly via a BubbleView below
                                         if (resolveInfo.activityInfo.packageName.equals(appPackageName)) {
