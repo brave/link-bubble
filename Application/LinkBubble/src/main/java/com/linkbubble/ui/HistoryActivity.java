@@ -46,6 +46,7 @@ import java.util.List;
 
 public class HistoryActivity extends Activity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
+    private TextView mMessageView;
     private ListView mListView;
     private HistoryAdapter mHistoryAdapter;
     private List<HistoryRecord> mHistoryRecords;
@@ -65,6 +66,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
 
         setContentView(R.layout.activity_history);
 
+        mMessageView = (TextView) findViewById(R.id.message_view);
         mListView = (ListView) findViewById(R.id.listview);
     }
 
@@ -82,6 +84,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
     public void onStart() {
         super.onStart();
 
+        mHistoryRecords = MainApplication.sDatabaseHelper.getAllHistoryRecords();
         setupListView();
 
         ((MainApplication)getApplicationContext()).getBus().register(this);
@@ -95,11 +98,12 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
     }
 
     private void setupListView() {
-        mHistoryRecords = MainApplication.sDatabaseHelper.getAllHistoryRecords();
         if (mHistoryRecords == null || mHistoryRecords.size() == 0) {
+            showNoHistoryView();
             return;
         }
 
+        mMessageView.setVisibility(View.GONE);
         mHistoryAdapter = new HistoryAdapter(this);
 
         mListView.setAdapter(mHistoryAdapter);
@@ -257,6 +261,11 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
         }
 
         return false;
+    }
+
+    void showNoHistoryView() {
+        mMessageView.setVisibility(View.VISIBLE);
+        mMessageView.setText(R.string.empty);
     }
 
     private class HistoryAdapter extends BaseAdapter {
