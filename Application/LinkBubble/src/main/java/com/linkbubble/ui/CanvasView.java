@@ -1,7 +1,10 @@
 package com.linkbubble.ui;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.PixelFormat;
+import android.graphics.Rect;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -113,6 +116,22 @@ public class CanvasView extends FrameLayout {
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
         mWindowManagerParams.setTitle("LinkBubble: CanvasView");
         mWindowManager.addView(this, mWindowManagerParams);
+    }
+
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+
+        if (Constant.DEBUG_SHOW_TARGET_REGIONS) {
+            Paint p = new Paint();
+            p.setColor(0x80000080);
+
+            Rect r = new Rect();
+            for (BubbleTargetView bt : mTargets) {
+                bt.getDebugRegion(r);
+                canvas.drawRect(r, p);
+            }
+        }
     }
 
     private void applyAlpha() {

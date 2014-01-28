@@ -2,6 +2,7 @@ package com.linkbubble.ui;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
@@ -250,6 +251,27 @@ public class BubbleTargetView extends RelativeLayout {
         setVisibility(GONE);
     }
 
+    public void getDebugRegion(Rect r) {
+        int xMaxOffset = mMaxOffsetX;
+        int yMaxOffset = mMaxOffsetY;
+
+        if (sEnableTractor) {
+            xMaxOffset = mTractorOffsetX;
+            yMaxOffset = mTractorOffsetY;
+        }
+
+        int x0 = (int) (getXPos() - Config.dpToPx(xMaxOffset) - Config.mBubbleWidth * 0.5f);
+        int x1 = (int) (getXPos() + Config.dpToPx(xMaxOffset) + Config.mBubbleWidth * 0.5f);
+
+        int y0 = (int) (getYPos() - Config.dpToPx(yMaxOffset) - Config.mBubbleHeight * 0.5f);
+        int y1 = (int) (getYPos() + Config.dpToPx(yMaxOffset) + Config.mBubbleHeight * 0.5f);
+
+        r.left = x0;
+        r.right = x1;
+        r.top = y0;
+        r.bottom = y1;
+    }
+
     public void destroy() {
         MainApplication.unregisterForBus(mContext, this);
     }
@@ -348,8 +370,8 @@ public class BubbleTargetView extends RelativeLayout {
             int targetX = Util.clamp(x0, xt, x1);
             mSnapCircle.mX = targetX + Config.mBubbleWidth * 0.5f;
 
-            int y0 = (int) (getYPos() - Config.dpToPx(yMaxOffset) - Config.mBubbleWidth * 0.5f);
-            int y1 = (int) (getYPos() + Config.dpToPx(yMaxOffset) - Config.mBubbleWidth * 0.5f);
+            int y0 = (int) (getYPos() - Config.dpToPx(yMaxOffset) - Config.mBubbleHeight * 0.5f);
+            int y1 = (int) (getYPos() + Config.dpToPx(yMaxOffset) - Config.mBubbleHeight * 0.5f);
             int targetY = Util.clamp(y0, e.mY, y1);
             mSnapCircle.mY = targetY + Config.mBubbleHeight * 0.5f;
 
