@@ -101,6 +101,7 @@
     <string name="history">History</string>
     <string name="erase_all_history_title">Erase all?</string>
     <string name="erase_all_history_message">Erase your entire Link Bubble browsing history?</string>
+    <string name="empty">Empty</string>
     <string name="history_already_empty">History already empty</string>
     <string name="private_data_cleared">Private data cleared</string>
     <string name="private_data_cleared_reloading_current">Private data cleared. Reloading current bubbles...</string>

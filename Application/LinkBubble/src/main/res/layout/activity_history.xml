@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ListView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/listview"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/message_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="#ffffff"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="gone"
+        />
+
+</FrameLayout>
