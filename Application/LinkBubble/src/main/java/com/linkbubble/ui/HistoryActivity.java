@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -25,6 +26,7 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.linkbubble.Config;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.db.HistoryRecord;
@@ -109,7 +111,10 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                         mListView,
                         new SwipeDismissListViewTouchListener.DismissCallbacks() {
                             public boolean canDismiss(int position) {
-                                return true;
+                                if (mHistoryRecords != null && position < mHistoryRecords.size()) {
+                                    return true;
+                                }
+                                return false;
                             }
 
                             public void onDismiss(ListView listView, int[] reverseSortedPositions) {
@@ -264,7 +269,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
 
         @Override
         public int getCount() {
-            return mHistoryRecords != null ? mHistoryRecords.size() : 0;
+            return mHistoryRecords != null ? mHistoryRecords.size() + 1 : 0;
         }
 
         @Override
@@ -278,7 +283,30 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
         }
 
         @Override
+        public int getViewTypeCount() {
+            return 2;
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            return position == mHistoryRecords.size() ? 1 : 0;
+        }
+
+        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+
+            if (position == mHistoryRecords.size()) {
+                TextView noMoreView;
+                if (convertView == null || convertView instanceof TextView == false) {
+                    noMoreView = new TextView(HistoryActivity.this);
+                    noMoreView.setGravity(Gravity.CENTER);
+                    noMoreView.setText("○");
+                    noMoreView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Config.dpToPx(40)));
+                } else {
+                    noMoreView = (TextView)convertView;
+                }
+                return noMoreView;
+            }
 
             HistoryItem historyItem;
             HistoryRecord historyRecord = mHistoryRecords.get(position);
