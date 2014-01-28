@@ -11,6 +11,7 @@ import android.util.Log;
 import com.linkbubble.Settings;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -157,7 +158,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<HistoryRecord> getAllHistoryRecords() {
-        List<HistoryRecord> records = new LinkedList<HistoryRecord>();
+        List<HistoryRecord> records = new ArrayList<HistoryRecord>();
 
         String query = "SELECT * FROM " + TABLE_LINK_HISTORY + " ORDER BY " + KEY_TIME + " DESC;";
 
