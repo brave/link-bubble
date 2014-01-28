@@ -128,4 +128,7 @@
     <string name="faq_section_general">General</string>
     <string name="faq_section_feature_requests">Feature requests</string>
     <string name="faq_section_bugs">Bugs</string>
+
+    <string name="activity_resolver_use_always">Always</string>
+    <string name="activity_resolver_use_once">Just once</string>
 </resources>
