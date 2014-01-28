@@ -134,6 +134,8 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     @Override
     void configure(int width, int itemWidth, int itemHeight) {
+        mBubbleFlowWidth = Config.mScreenWidth;
+
         super.configure(width, itemWidth, itemHeight);
 
         if (mDraggableHelper != null && mDraggableHelper.getWindowManagerParams() != null) {
