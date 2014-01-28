@@ -67,12 +67,14 @@ public class MainService extends Service {
         startForeground(1, mBuilder.build());
 
         Config.init(this);
+        Settings.get().onOrientationChange();
 
         WebIconDatabase.getInstance().open(getDir("icons", MODE_PRIVATE).getPath());
 
         MainController.create(this, new MainController.EventHandler() {
                 @Override
                 public void onDestroy() {
+                    Settings.get().saveBubbleRestingPoint();
                     stopSelf();
                 }
             });

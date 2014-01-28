@@ -2,6 +2,7 @@ package com.linkbubble.ui;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.graphics.Point;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -12,6 +13,7 @@ import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
+import com.linkbubble.Settings;
 import com.linkbubble.physics.Circle;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
@@ -87,14 +89,13 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             xp = Config.mBubbleSnapRightX;
         }
 
-        Config.BUBBLE_HOME_X = xp;
-        Config.BUBBLE_HOME_Y = yp;
-
         setTargetPos(xp, yp, 0.5f, DraggableHelper.AnimationType.MediumOvershoot, new DraggableHelper.AnimationEventListener() {
             @Override
             public void onAnimationComplete() {
                 onAnimComplete();
+                Settings.get().setBubbleRestingPoint(mDraggableHelper.getXPos(), mDraggableHelper.getYPos());
             }
+
             @Override
             public void onCancel() {
                 onAnimComplete();
@@ -193,6 +194,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                     doSnap();
                 }
             }
+
             @Override
             public void onCancel() {
                 onAnimComplete();
@@ -228,10 +230,8 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         MainController mainController = MainController.get();
         setVisibility(View.VISIBLE);
 
-        int xp = Config.BUBBLE_HOME_X;
-        int yp = Config.BUBBLE_HOME_Y;
-
-        setTargetPos(xp, yp, bubblePeriod, DraggableHelper.AnimationType.SmallOvershoot, new DraggableHelper.AnimationEventListener() {
+        Point bubbleRestingPoint = Settings.get().getBubbleRestingPoint();
+        setTargetPos(bubbleRestingPoint.x, bubbleRestingPoint.y, bubblePeriod, DraggableHelper.AnimationType.SmallOvershoot, new DraggableHelper.AnimationEventListener() {
             @Override
             public void onAnimationComplete() {
                 MainApplication.postEvent(getContext(), mEndCollapseTransitionEvent);
@@ -257,6 +257,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             } else {
                 mDraggableHelper.cancelAnimation();
             }
+        }
+
+        if (mMode != Mode.ContentView) {
+            Settings.get().setBubbleRestingPoint(mDraggableHelper.getXPos(), mDraggableHelper.getYPos());
         }
 
         mTouchDown = false;

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
+import android.graphics.Point;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -232,8 +233,14 @@ public class MainController implements Choreographer.FrameCallback {
         LayoutInflater inflater = LayoutInflater.from(mContext);
 
         mBubbleDraggable = (BubbleDraggable) inflater.inflate(R.layout.view_bubble_draggable, null);
-        mBubbleDraggable.configure((int) (Config.mBubbleSnapLeftX - Config.mBubbleWidth), Config.BUBBLE_HOME_Y,
-                Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y, 0.4f, mCanvasView);
+        Point bubbleRestingPoint = Settings.get().getBubbleRestingPoint();
+        float fromX;
+        if (bubbleRestingPoint.x > Config.mScreenCenterX) {
+            fromX = Config.mBubbleSnapRightX + Config.mBubbleWidth;
+        } else {
+            fromX = Config.mBubbleSnapLeftX - Config.mBubbleWidth;
+        }
+        mBubbleDraggable.configure((int)fromX, bubbleRestingPoint.y, bubbleRestingPoint.x, bubbleRestingPoint.y, 0.4f, mCanvasView);
 
         mBubbleDraggable.setOnUpdateListener(new BubbleDraggable.OnUpdateListener() {
             @Override
@@ -380,6 +387,7 @@ public class MainController implements Choreographer.FrameCallback {
 
     public void onOrientationChanged() {
         Config.init(mContext);
+        Settings.get().onOrientationChange();
         mBubbleDraggable.onOrientationChanged();
         mBubbleFlowDraggable.onOrientationChanged();
         MainApplication.postEvent(mContext, mOrientationChangedEvent);
@@ -463,7 +471,6 @@ public class MainController implements Choreographer.FrameCallback {
     protected void openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble) {
         if (getActiveTabCount() == 0) {
             mBubbleDraggable.setVisibility(View.VISIBLE);
-            mBubbleDraggable.setExactPos(Config.BUBBLE_HOME_X, Config.BUBBLE_HOME_Y);
         }
 
         //boolean setAsCurrentBubble = mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView ? false : true;
@@ -506,8 +513,6 @@ public class MainController implements Choreographer.FrameCallback {
             showBadge(activeTabCount > 1 ? true : false);
             if (activeTabCount == 0) {
                 hideBubbleDraggable();
-                Config.BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
-                Config.BUBBLE_HOME_Y = (int) (Config.mScreenHeight * 0.4f);
             }
         }
 

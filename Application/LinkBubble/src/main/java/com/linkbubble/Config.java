@@ -52,9 +52,6 @@ public class Config {
 
     public static int mContentOffset;
 
-    public static int BUBBLE_HOME_X;
-    public static int BUBBLE_HOME_Y;
-
     public static int sDensityDpi;
 
     public static float ANIMATE_TO_SNAP_TIME = 0.3f;
@@ -79,9 +76,6 @@ public class Config {
         mContentViewBubbleY = context.getResources().getDimensionPixelSize(R.dimen.content_bubble_y_offset);
 
         mContentOffset = context.getResources().getDimensionPixelSize(R.dimen.content_offset);
-
-        BUBBLE_HOME_X = Config.mBubbleSnapLeftX;
-        BUBBLE_HOME_Y = (int) (Config.mScreenHeight * 0.4f);
 
         sDensityDpi = mDm.densityDpi;
     }
