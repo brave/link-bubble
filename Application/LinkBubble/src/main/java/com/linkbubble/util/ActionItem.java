@@ -193,6 +193,7 @@ public class ActionItem {
         class ActionItemListView extends ListView {
 
             boolean mDefaultSet = false;
+            long mLastItemClickTime = -1;
 
             public ActionItemListView(Context context) {
                 super(context);
@@ -217,7 +218,7 @@ public class ActionItem {
             }
         };
 
-        final ListView listView = new ActionItemListView(context);
+        final ActionItemListView listView = new ActionItemListView(context);
 
         for (int i = 0; i < actionItems.size(); i++) {
             ActionItem actionItem = actionItems.get(i);
@@ -240,6 +241,23 @@ public class ActionItem {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                long currentTime = System.currentTimeMillis();
+                long clickDelta = currentTime - listView.mLastItemClickTime;
+                // Check for a double-tap to emulate the behavior of the AOSP default app picker
+                if (clickDelta < 300) {
+                    int selected = (Integer)listView.getTag();
+                    if (selected == position) {
+                        ActionItem actionItem = actionItems.get(position);
+                        if (onActionItemDefaultSelectedListener != null) {
+                            onActionItemDefaultSelectedListener.onSelected(actionItem, false);
+                        }
+                        alertDialog.dismiss();
+                        return;
+                    }
+                }
+
+                listView.mLastItemClickTime = currentTime;
 
                 int viewChildCount = listView.getChildCount();
                 for (int i = 0; i < viewChildCount; i++) {
