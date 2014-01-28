@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.webkit.DownloadListener;
 import android.webkit.JavascriptInterface;
@@ -60,6 +61,7 @@ public class ContentView extends FrameLayout {
     private static final String TAG = "UrlLoad";
 
     private WebView mWebView;
+    private View mTouchInterceptorView;
     private CondensedTextView mTitleTextView;
     private CondensedTextView mUrlTextView;
     private ContentViewButton mShareButton;
@@ -71,6 +73,7 @@ public class ContentView extends FrameLayout {
     private EventHandler mEventHandler;
     private Context mContext;
     private URL mUrl;
+    private boolean mIsTouchingWebView;
     private boolean mPageFinishedLoading;
     private boolean mShowingDefaultAppPicker = false;
 
@@ -239,6 +242,9 @@ public class ContentView extends FrameLayout {
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_header);
 
         mWebView = (WebView) findViewById(R.id.webView);
+        mTouchInterceptorView = findViewById(R.id.touch_interceptor);
+        mTouchInterceptorView.setWillNotDraw(true);
+        mTouchInterceptorView.setOnTouchListener(mWebViewOnTouchListener);
         mToolbarLayout = (LinearLayout) findViewById(R.id.content_toolbar);
         mTitleTextView = (CondensedTextView) findViewById(R.id.title_text);
         mUrlTextView = (CondensedTextView) findViewById(R.id.url_text);
@@ -301,6 +307,27 @@ public class ContentView extends FrameLayout {
         mTitleTextView.setText(R.string.loading);
         mUrlTextView.setText(urlAsString.replace("http://", ""));
     }
+
+    private OnTouchListener mWebViewOnTouchListener = new OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            final int action = event.getAction() & MotionEvent.ACTION_MASK;
+            switch (action) {
+                case MotionEvent.ACTION_DOWN:
+                    mIsTouchingWebView = true;
+                    //Log.d("blergy", "WebView - MotionEvent.ACTION_DOWN");
+                    break;
+
+                case MotionEvent.ACTION_UP:
+                    mIsTouchingWebView = false;
+                    //Log.d("blergy", "WebView - MotionEvent.ACTION_UP");
+                    break;
+            }
+            // Forcibly pass along to the WebView. This ensures we receive the ACTION_UP event above.
+            mWebView.onTouchEvent(event);
+            return true;
+        }
+    };
 
     WebViewClient mWebViewClient = new WebViewClient() {
         @Override
