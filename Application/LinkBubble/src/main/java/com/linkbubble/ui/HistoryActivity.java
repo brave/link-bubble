@@ -133,8 +133,12 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                                     }
                                 }
 
-                                if (mHistoryAdapter != null) {
-                                    mHistoryAdapter.notifyDataSetChanged();
+                                if (mHistoryRecords.size() == 0) {
+                                    showNoHistoryView();
+                                } else {
+                                    if (mHistoryAdapter != null) {
+                                        mHistoryAdapter.notifyDataSetChanged();
+                                    }
                                 }
                             }
                         });
@@ -408,6 +412,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
         if (setupList) {
             setupListView();
         } else {
+            mMessageView.setVisibility(View.GONE);
             mHistoryAdapter.notifyDataSetChanged();
         }
     }
