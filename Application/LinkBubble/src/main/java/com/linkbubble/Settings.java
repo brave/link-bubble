@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.preference.PreferenceManager;
@@ -62,6 +63,8 @@ public class Settings {
     private static final String DEFAULT_APPS_MAP_KEY_HOST = "host";
     private static final String DEFAULT_APPS_MAP_KEY_COMPONENT = "component";
 
+    private static final String BUBBLE_RESTING_X = "bubble_resting_x";
+    private static final String BUBBLE_RESTING_Y = "bubble_resting_y";
 
     public interface ConsumeBubblesChangedEventHandler {
         public void onConsumeBubblesChanged();
@@ -103,6 +106,10 @@ public class Settings {
     public ResolveInfo mLinkBubbleEntryActivityResolveInfo;
     private boolean mCheckedForYouTubeResolveInfo = false;
     private ConsumeBubblesChangedEventHandler mConsumeBubblesChangedEventHandler;
+    // The point to save
+    private Point mBubbleRestingPoint = new Point();
+    // The point used as the return value. Required so we don't overwrite the desired point in landscape mode
+    private Point mTempBubbleRestingPoint = new Point();
 
     Settings(Context context) {
         mContext = context;
@@ -113,6 +120,32 @@ public class Settings {
         setDefaultLeftConsumeBubble();
 
         configureDefaultApps(mSharedPreferences.getString(PREFERENCE_DEFAULT_APPS, null));
+        mBubbleRestingPoint.set(-1, -1);
+    }
+
+    public void onOrientationChange() {
+        int bubbleRestingX = mBubbleRestingPoint.x;
+        if (bubbleRestingX == -1) {
+            bubbleRestingX = mSharedPreferences.getInt(BUBBLE_RESTING_X, -1);
+            if (bubbleRestingX == -1) {
+                bubbleRestingX = Config.mBubbleSnapLeftX;
+            }
+        }
+        if (bubbleRestingX < Config.mScreenCenterX) {
+            bubbleRestingX = Config.mBubbleSnapLeftX;
+        } else {
+            bubbleRestingX = Config.mBubbleSnapRightX;
+        }
+
+        int bubbleRestingY = mBubbleRestingPoint.y;
+        if (bubbleRestingY == -1) {
+            bubbleRestingY = mSharedPreferences.getInt(BUBBLE_RESTING_Y, -1);
+            if (bubbleRestingY == -1) {
+                bubbleRestingY = (int) (Config.mScreenHeight * 0.35f);
+            }
+        }
+
+        mBubbleRestingPoint.set(bubbleRestingX, bubbleRestingY);
     }
 
     void updateBrowsers() {
@@ -609,6 +642,33 @@ public class Settings {
         }
 
         return null;
+    }
+
+    public Point getBubbleRestingPoint() {
+        mTempBubbleRestingPoint.x = mBubbleRestingPoint.x;
+        if (mTempBubbleRestingPoint.x > Config.mScreenCenterX) {
+            mTempBubbleRestingPoint.x = Config.mBubbleSnapRightX;
+        } else {
+            mTempBubbleRestingPoint.x = Config.mBubbleSnapLeftX;
+        }
+
+        mTempBubbleRestingPoint.y = mBubbleRestingPoint.y;
+        int minYPosition = (int) (Config.mScreenHeight * .8f);
+        if (mTempBubbleRestingPoint.y > minYPosition) {
+            mTempBubbleRestingPoint.y = minYPosition;
+        }
+        return mTempBubbleRestingPoint;
+    }
+
+    public void setBubbleRestingPoint(int x, int y) {
+        mBubbleRestingPoint.set(x, y);
+    }
+
+    public void saveBubbleRestingPoint() {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putInt(BUBBLE_RESTING_X, mBubbleRestingPoint.x);
+        editor.putInt(BUBBLE_RESTING_Y, mBubbleRestingPoint.y);
+        editor.commit();
     }
 
     public boolean debugAutoLoadUrl() {
