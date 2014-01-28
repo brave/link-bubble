@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,13 +19,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.linkbubble.Config;
+import com.linkbubble.MainController;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.db.HistoryRecord;
@@ -41,6 +40,7 @@ import org.mozilla.gecko.favicons.OnFaviconLoadedListener;
 import org.mozilla.gecko.widget.FaviconView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -215,53 +215,87 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
             final HistoryItem historyItem = (HistoryItem)view.getTag();
             Resources resources = getResources();
 
-            PopupMenu popupMenu;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                popupMenu = new PopupMenu(this, view, Gravity.RIGHT);
-            } else {
-                popupMenu = new PopupMenu(this, view);
-            }
+            final ArrayList<String> longClickSelections = new ArrayList<String>();
+
+            final String shareLabel = resources.getString(R.string.action_share);
+            longClickSelections.add(shareLabel);
 
             String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
-            if (defaultBrowserLabel != null) {
-                popupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
-                        String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
+
+            final String leftConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeLeft);
+            if (leftConsumeBubbleLabel != null) {
+                if (defaultBrowserLabel == null || defaultBrowserLabel.equals(leftConsumeBubbleLabel) == false) {
+                    longClickSelections.add(leftConsumeBubbleLabel);
+                }
             }
 
-            popupMenu.getMenu().add(Menu.NONE, R.id.item_share, Menu.NONE,
-                    resources.getString(R.string.action_share));
+            final String rightConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeRight);
+            if (rightConsumeBubbleLabel != null) {
+                if (defaultBrowserLabel == null || defaultBrowserLabel.equals(rightConsumeBubbleLabel) == false) {
+                    longClickSelections.add(rightConsumeBubbleLabel);
+                }
+            }
 
-            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            Collections.sort(longClickSelections);
+
+            final String openInNewBubbleLabel = resources.getString(R.string.action_open_in_new_bubble);
+            longClickSelections.add(0, openInNewBubbleLabel);
+
+            final String openInBrowserLabel = defaultBrowserLabel != null ?
+                    String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel) : null;
+            if (openInBrowserLabel != null) {
+                longClickSelections.add(1, openInBrowserLabel);
+            }
+
+            final AlertDialog longPressAlertDialog = new AlertDialog.Builder(this).create();
+
+            ListView listView = new ListView(this);
+            listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+                    longClickSelections.toArray(new String[0])));
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    switch (item.getItemId()) {
-                        case R.id.item_open_in_browser: {
-                            Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.setData(Uri.parse(historyItem.mHistoryRecord.getUrl()));
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            MainApplication.loadInBrowser(HistoryActivity.this, intent, true);
-                            return true;
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    String string = longClickSelections.get(position);
+                    String urlAsString = historyItem.mHistoryRecord.getUrl();
+                    if (string.equals(openInNewBubbleLabel)) {
+                        if (MainController.get() != null) {
+                            MainController.get().onOpenUrl(urlAsString, System.currentTimeMillis(), false);
+                        } else {
+                            MainApplication.openLink(getApplicationContext(), urlAsString);
                         }
-
-                        case R.id.item_share: {
-                            AlertDialog alertDialog = ActionItem.getShareAlert(HistoryActivity.this, new ActionItem.OnActionItemSelectedListener() {
-                                @Override
-                                public void onSelected(ActionItem actionItem) {
-                                    Intent intent = new Intent(Intent.ACTION_SEND);
-                                    intent.setType("text/plain");
-                                    intent.setClassName(actionItem.mPackageName, actionItem.mActivityClassName);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    intent.putExtra(Intent.EXTRA_TEXT, historyItem.mHistoryRecord.getUrl());
-                                    startActivity(intent);
-                                }
-                            });
-                            alertDialog.show();
-                        }
+                    } else if (openInBrowserLabel != null && string.equals(openInBrowserLabel)) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(urlAsString));
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        MainApplication.loadInBrowser(HistoryActivity.this, intent, true);
+                    } else if (string.equals(shareLabel)) {
+                        AlertDialog alertDialog = ActionItem.getShareAlert(HistoryActivity.this, new ActionItem.OnActionItemSelectedListener() {
+                            @Override
+                            public void onSelected(ActionItem actionItem) {
+                                Intent intent = new Intent(Intent.ACTION_SEND);
+                                intent.setType("text/plain");
+                                intent.setClassName(actionItem.mPackageName, actionItem.mActivityClassName);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.putExtra(Intent.EXTRA_TEXT, historyItem.mHistoryRecord.getUrl());
+                                startActivity(intent);
+                            }
+                        });
+                        alertDialog.show();
+                    } else if (leftConsumeBubbleLabel != null && string.equals(leftConsumeBubbleLabel)) {
+                        MainApplication.handleBubbleAction(HistoryActivity.this, Config.BubbleAction.ConsumeLeft, urlAsString);
+                    } else if (rightConsumeBubbleLabel != null && string.equals(rightConsumeBubbleLabel)) {
+                        MainApplication.handleBubbleAction(HistoryActivity.this, Config.BubbleAction.ConsumeRight, urlAsString);
                     }
-                    return false;
+
+                    if (longPressAlertDialog != null) {
+                        longPressAlertDialog.dismiss();
+                    }
                 }
             });
-            popupMenu.show();
+
+            longPressAlertDialog.setView(listView);
+            longPressAlertDialog.show();
+
             return true;
         }
 
