@@ -73,7 +73,6 @@ public class ContentView extends FrameLayout {
     private EventHandler mEventHandler;
     private Context mContext;
     private URL mUrl;
-    private boolean mIsTouchingWebView;
     private long mLastWebViewTouchUpTime = -1;
     private boolean mPageFinishedLoading;
     private boolean mShowingDefaultAppPicker = false;
@@ -310,13 +309,11 @@ public class ContentView extends FrameLayout {
             final int action = event.getAction() & MotionEvent.ACTION_MASK;
             switch (action) {
                 case MotionEvent.ACTION_DOWN:
-                    mIsTouchingWebView = true;
                     //Log.d(TAG, "WebView - MotionEvent.ACTION_DOWN");
                     break;
 
                 case MotionEvent.ACTION_UP:
                     mLastWebViewTouchUpTime = System.currentTimeMillis();
-                    mIsTouchingWebView = false;
                     Log.d(TAG, "[urlstack] WebView - MotionEvent.ACTION_UP");
                     break;
             }
