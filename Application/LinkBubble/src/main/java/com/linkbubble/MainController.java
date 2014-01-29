@@ -2,6 +2,7 @@ package com.linkbubble;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
@@ -458,7 +459,14 @@ public class MainController implements Choreographer.FrameCallback {
                                 }
                             }
                         });
-                dialog.setCancelable(false);
+
+                dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        openUrlInBubble(url, System.currentTimeMillis(), setAsCurrentBubble);
+                    }
+                });
+
                 dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
                 dialog.show();
 
