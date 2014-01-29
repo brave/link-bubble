@@ -451,7 +451,7 @@ public class MainController implements Choreographer.FrameCallback {
                                 }
 
                                 if (loaded == false) {
-                                    openUrlInBubble(url, System.currentTimeMillis(), setAsCurrentBubble);
+                                    openUrlInBubble(url, System.currentTimeMillis(), setAsCurrentBubble, true);
                                 } else {
                                     if (getActiveTabCount() == 0) {
                                         mEventHandler.onDestroy();
@@ -463,7 +463,7 @@ public class MainController implements Choreographer.FrameCallback {
                 dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
-                        openUrlInBubble(url, System.currentTimeMillis(), setAsCurrentBubble);
+                        openUrlInBubble(url, System.currentTimeMillis(), setAsCurrentBubble, true);
                     }
                 });
 
@@ -475,16 +475,16 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         mCanAutoDisplayLink = true;
-        openUrlInBubble(url, startTime, setAsCurrentBubble);
+        openUrlInBubble(url, startTime, setAsCurrentBubble, false);
     }
 
-    protected void openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble) {
+    protected void openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble, boolean hasShownAppPicker) {
         if (getActiveTabCount() == 0) {
             mBubbleDraggable.setVisibility(View.VISIBLE);
         }
 
         //boolean setAsCurrentBubble = mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView ? false : true;
-        mBubbleFlowDraggable.openUrlInBubble(url, startTime, setAsCurrentBubble);
+        mBubbleFlowDraggable.openUrlInBubble(url, startTime, setAsCurrentBubble, hasShownAppPicker);
         showBadge(getActiveTabCount() > 1 ? true : false);
         ++mBubblesLoaded;
     }

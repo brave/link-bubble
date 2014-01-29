@@ -35,7 +35,7 @@ public class TabView extends BubbleView {
         super(context, attrs, defStyle);
     }
 
-    void configure(String url, long startTime) throws MalformedURLException {
+    void configure(String url, long startTime, boolean hasShownAppPicker) throws MalformedURLException {
         super.configure(url);
 
         mBackIndicatorView = (ImageView) findViewById(R.id.back_indicator);
@@ -43,7 +43,7 @@ public class TabView extends BubbleView {
         mBackIndicatorAnimHelper.hide();
 
         mContentView = (ContentView)inflate(getContext(), R.layout.view_content, null);
-        mContentView.configure(mUrl.toString(), startTime, new ContentView.EventHandler() {
+        mContentView.configure(mUrl.toString(), startTime, hasShownAppPicker, new ContentView.EventHandler() {
 
             @Override
             public void onPageLoading(URL url) {
