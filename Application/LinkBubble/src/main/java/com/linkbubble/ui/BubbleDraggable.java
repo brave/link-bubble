@@ -229,6 +229,12 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
         MainController mainController = MainController.get();
         setVisibility(View.VISIBLE);
+        TabView currentTab = mBubbleFlowDraggable.getCurrentTab();
+        if (currentTab != null) {
+            // ensure imitator image is up to date, fixes #228
+            mFavicon.clearImage();
+            currentTab.setImitator(this);
+        }
 
         Point bubbleRestingPoint = Settings.get().getBubbleRestingPoint();
         setTargetPos(bubbleRestingPoint.x, bubbleRestingPoint.y, bubblePeriod, DraggableHelper.AnimationType.SmallOvershoot, new DraggableHelper.AnimationEventListener() {

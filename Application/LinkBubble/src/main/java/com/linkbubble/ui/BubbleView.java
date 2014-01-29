@@ -31,7 +31,7 @@ public class BubbleView extends FrameLayout  {
         boolean applyFavicon(String faviconURL);
     }
 
-    private FaviconView mFavicon;
+    protected FaviconView mFavicon;
     protected int mFaviconLoadId;
     private ProgressIndicator mProgressIndicator;
     protected URL mUrl;
