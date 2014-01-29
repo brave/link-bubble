@@ -83,11 +83,11 @@ public class BubbleTargetView extends RelativeLayout {
     private int getXPos() {
         switch (mHAnchor) {
             case Left:
-                return Config.dpToPx(mDefaultX);
+                return mDefaultX;
             case Right:
-                return Config.mScreenWidth - Config.dpToPx(mDefaultX);
+                return Config.mScreenWidth - mDefaultX;
             case Center:
-                return (int) (Config.mScreenWidth * 0.5f + Config.dpToPx(mDefaultX));
+                return (int) (Config.mScreenWidth * 0.5f + mDefaultX);
         }
 
         Util.Assert(false);
@@ -97,9 +97,9 @@ public class BubbleTargetView extends RelativeLayout {
     private int getYPos() {
         switch (mVAnchor) {
             case Top:
-                return Config.dpToPx(mDefaultY);
+                return mDefaultY;
             case Bottom:
-                return Config.mScreenHeight - Config.dpToPx(mDefaultY);
+                return Config.mScreenHeight - mDefaultY;
         }
 
         Util.Assert(false);
@@ -260,11 +260,11 @@ public class BubbleTargetView extends RelativeLayout {
             yMaxOffset = mTractorOffsetY;
         }
 
-        int x0 = (int) (getXPos() - Config.dpToPx(xMaxOffset) - Config.mBubbleWidth * 0.5f);
-        int x1 = (int) (getXPos() + Config.dpToPx(xMaxOffset) + Config.mBubbleWidth * 0.5f);
+        int x0 = (int) (getXPos() - xMaxOffset - Config.mBubbleWidth * 0.5f);
+        int x1 = (int) (getXPos() + xMaxOffset + Config.mBubbleWidth * 0.5f);
 
-        int y0 = (int) (getYPos() - Config.dpToPx(yMaxOffset) - Config.mBubbleHeight * 0.5f);
-        int y1 = (int) (getYPos() + Config.dpToPx(yMaxOffset) + Config.mBubbleHeight * 0.5f);
+        int y0 = (int) (getYPos() - yMaxOffset - Config.mBubbleHeight * 0.5f);
+        int y1 = (int) (getYPos() + yMaxOffset + Config.mBubbleHeight * 0.5f);
 
         r.left = x0;
         r.right = x1;
@@ -348,8 +348,8 @@ public class BubbleTargetView extends RelativeLayout {
                 yMaxOffset = mTractorOffsetY;
             }
 
-            int x0 = (int) (getXPos() - Config.dpToPx(xMaxOffset) - Config.mBubbleWidth * 0.5f);
-            int x1 = (int) (getXPos() + Config.dpToPx(xMaxOffset) - Config.mBubbleWidth * 0.5f);
+            int x0 = (int) (getXPos() - xMaxOffset - Config.mBubbleWidth * 0.5f);
+            int x1 = (int) (getXPos() + xMaxOffset - Config.mBubbleWidth * 0.5f);
 
             int xt;
             if (sEnableTractor) {
@@ -370,8 +370,8 @@ public class BubbleTargetView extends RelativeLayout {
             int targetX = Util.clamp(x0, xt, x1);
             mSnapCircle.mX = targetX + Config.mBubbleWidth * 0.5f;
 
-            int y0 = (int) (getYPos() - Config.dpToPx(yMaxOffset) - Config.mBubbleHeight * 0.5f);
-            int y1 = (int) (getYPos() + Config.dpToPx(yMaxOffset) - Config.mBubbleHeight * 0.5f);
+            int y0 = (int) (getYPos() - yMaxOffset - Config.mBubbleHeight * 0.5f);
+            int y1 = (int) (getYPos() + yMaxOffset - Config.mBubbleHeight * 0.5f);
             int targetY = Util.clamp(y0, e.mY, y1);
             mSnapCircle.mY = targetY + Config.mBubbleHeight * 0.5f;
 
