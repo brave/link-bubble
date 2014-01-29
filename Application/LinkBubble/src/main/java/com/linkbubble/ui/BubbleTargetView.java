@@ -208,9 +208,9 @@ public class BubbleTargetView extends RelativeLayout {
         mCircleView = new ImageView(mContext);
         mCircleView.setImageResource(R.drawable.target_default);
 
-        Drawable snapDrawable = mContext.getResources().getDrawable(R.drawable.target_snap);
-        mSnapWidth = snapDrawable.getIntrinsicWidth();
-        mSnapHeight = snapDrawable.getIntrinsicHeight();
+        int bubbleIconSize = getResources().getDimensionPixelSize(R.dimen.bubble_icon_size);
+        mSnapWidth = bubbleIconSize;
+        mSnapHeight = bubbleIconSize;
         Util.Assert(mSnapWidth > 0 && mSnapHeight > 0 && mSnapWidth == mSnapHeight);
         mSnapCircle = new Circle(getXPos(), getYPos(), mSnapWidth * 0.5f);
 
