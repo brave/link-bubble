@@ -319,6 +319,7 @@ public class ContentView extends FrameLayout {
                         mUrlStack.push(mUrl);
                         mEventHandler.onBackStackSizeChanged(mUrlStack.size());
                         Log.d(TAG, "[urlstack] push:" + mUrl.toString() + ", urlStack.size():" + mUrlStack.size() + ", delta:" + touchUpTimeDelta);
+                        mHandledAppPickerForCurrentUrl = false;
                     } else {
                         Log.d(TAG, "[urlstack] DON'T ADD " + mUrl.toString() + " because of redirect");
                     }
@@ -472,7 +473,6 @@ public class ContentView extends FrameLayout {
                 configureOpenInAppButton();
                 configureOpenEmbedButton();
 
-                mHandledAppPickerForCurrentUrl = false;
                 mEventHandler.onPageLoaded();
                 Log.d(TAG, "onPageFinished() - url: " + urlAsString);
 
