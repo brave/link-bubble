@@ -74,6 +74,7 @@ public class ContentView extends FrameLayout {
     private Context mContext;
     private URL mUrl;
     private long mLastWebViewTouchUpTime = -1;
+    private String mLastWebViewTouchDownUrl;
     private boolean mPageFinishedLoading;
     private boolean mShowingDefaultAppPicker = false;
 
@@ -309,7 +310,8 @@ public class ContentView extends FrameLayout {
             final int action = event.getAction() & MotionEvent.ACTION_MASK;
             switch (action) {
                 case MotionEvent.ACTION_DOWN:
-                    //Log.d(TAG, "WebView - MotionEvent.ACTION_DOWN");
+                    mLastWebViewTouchDownUrl = mUrl.toString();
+                    //Log.d(TAG, "[urlstack] WebView - MotionEvent.ACTION_DOWN");
                     break;
 
                 case MotionEvent.ACTION_UP:
@@ -329,11 +331,19 @@ public class ContentView extends FrameLayout {
 
             if (mLastWebViewTouchUpTime > -1) {
                 long touchUpTimeDelta = System.currentTimeMillis() - mLastWebViewTouchUpTime;
+                // this value needs to be largish
                 if (touchUpTimeDelta < 1500) {
-                    mUrlStack.push(mUrl);
-                    mEventHandler.onBackStackSizeChanged(mUrlStack.size());
-                    Log.d(TAG, "[urlstack] push:" + mUrl.toString() + ", urlStack.size():" + mUrlStack.size() + ", delta:" + touchUpTimeDelta);
+                    // If the url has changed since the use pressed their finger down, a redirect has likely occurred,
+                    // in which case we don't update the Url Stack
+                    if (mLastWebViewTouchDownUrl.equals(mUrl.toString())) {
+                        mUrlStack.push(mUrl);
+                        mEventHandler.onBackStackSizeChanged(mUrlStack.size());
+                        Log.d(TAG, "[urlstack] push:" + mUrl.toString() + ", urlStack.size():" + mUrlStack.size() + ", delta:" + touchUpTimeDelta);
+                    } else {
+                        Log.d(TAG, "[urlstack] DON'T ADD " + mUrl.toString() + " because of redirect");
+                    }
                     mLastWebViewTouchUpTime = -1;
+
                 } else {
                     Log.d(TAG, "[urlstack] IGNORED because of delta:" + touchUpTimeDelta);
                 }
