@@ -392,9 +392,9 @@ public class ContentView extends FrameLayout {
 
                                         if (loaded) {
                                             MainController.get().destroyCurrentBubble(MainController.get().contentViewShowing());
-                                        } else {
-                                            loadUrl(urlAsString);
                                         }
+                                        // NOTE: no need to call loadUrl(urlAsString) or anything in the event the link is to be handled by
+                                        // Link Bubble. The flow already assumes that will happen by continuing the load when the Dialog displays.
                                     }
                                 });
 
