@@ -74,7 +74,7 @@ public class ContentView extends FrameLayout {
     private Context mContext;
     private URL mUrl;
     private boolean mIsTouchingWebView;
-    private long mLastWebViewTouchUpTime;
+    private long mLastWebViewTouchUpTime = -1;
     private boolean mPageFinishedLoading;
     private boolean mShowingDefaultAppPicker = false;
 
