@@ -272,11 +272,11 @@ public class BubbleTargetView extends RelativeLayout {
             yMaxOffset = mTractorOffsetY;
         }
 
-        int x0 = (int) (getXPos() - xMaxOffset - Config.mBubbleWidth * 0.5f);
-        int x1 = (int) (getXPos() + xMaxOffset + Config.mBubbleWidth * 0.5f);
+        int x0 = (int) (0.5f + getXPos() - xMaxOffset - Config.mBubbleWidth * 0.5f);
+        int x1 = (int) (0.5f + getXPos() + xMaxOffset + Config.mBubbleWidth * 0.5f);
 
-        int y0 = (int) (getYPos() - yMaxOffset - Config.mBubbleHeight * 0.5f);
-        int y1 = (int) (getYPos() + yMaxOffset + Config.mBubbleHeight * 0.5f);
+        int y0 = (int) (0.5f + getYPos() - yMaxOffset - Config.mBubbleHeight * 0.5f);
+        int y1 = (int) (0.5f + getYPos() + yMaxOffset + Config.mBubbleHeight * 0.5f);
 
         r.left = x0;
         r.right = x1;
@@ -352,7 +352,6 @@ public class BubbleTargetView extends RelativeLayout {
     @Subscribe
     public void onDraggableBubbleMovedEvent(MainController.DraggableBubbleMovedEvent e) {
         if (mEnableMove) {
-
             int xMaxOffset = mMaxOffsetX;
             int yMaxOffset = mMaxOffsetY;
 
@@ -361,30 +360,32 @@ public class BubbleTargetView extends RelativeLayout {
                 yMaxOffset = mTractorOffsetY;
             }
 
-            int x0 = (int) (getXPos() - xMaxOffset - Config.mBubbleWidth * 0.5f);
-            int x1 = (int) (getXPos() + xMaxOffset - Config.mBubbleWidth * 0.5f);
+            int x0 = (int) (0.5f + getXPos() - xMaxOffset - Config.mBubbleWidth * 0.5f);
+            int x1 = (int) (0.5f + getXPos() + xMaxOffset - Config.mBubbleWidth * 0.5f);
 
             int xt;
             if (sEnableTractor) {
                 xt = Util.clamp(x0, e.mX, x1);
             } else {
-                float halfWidth = Config.mScreenWidth * 0.5f;
-
                 float xc = (x0 + x1) * 0.5f;
+                float xf;
+
                 if (xc < 0.3f * Config.mScreenWidth) {
-                    xt = x0 + (int) ((x1 - x0) * ((float)e.mX / halfWidth));
+                    xf = 2.0f * Util.clamp(0.0f, (float)e.mX / (Config.mScreenWidth - Config.mBubbleWidth), 0.5f);
                 } else if (xc > 0.7f * Config.mScreenWidth) {
-                    xt = x0 + (int) ((x1 - x0) * ((e.mX - Config.mScreenWidth * 0.5f) / halfWidth));
+                    xf = 2.0f * Util.clamp(0.0f, -0.5f + (float)e.mX / (Config.mScreenWidth - Config.mBubbleWidth), 0.5f);
                 } else {
-                    xt = x0 + (int) ((x1 - x0) * ((float)(e.mX) / (float)Config.mScreenWidth));
+                    xf = Util.clamp(0.0f, e.mX / (Config.mScreenWidth - Config.mBubbleWidth), 1.0f);
                 }
+
+                xt = x0 + (int) (0.5f + (x1 - x0) * xf);
             }
 
             int targetX = Util.clamp(x0, xt, x1);
             mSnapCircle.mX = targetX + Config.mBubbleWidth * 0.5f;
 
-            int y0 = (int) (getYPos() - yMaxOffset - Config.mBubbleHeight * 0.5f);
-            int y1 = (int) (getYPos() + yMaxOffset - Config.mBubbleHeight * 0.5f);
+            int y0 = (int) (0.5f + getYPos() - yMaxOffset - Config.mBubbleHeight * 0.5f);
+            int y1 = (int) (0.5f + getYPos() + yMaxOffset - Config.mBubbleHeight * 0.5f);
             int targetY = Util.clamp(y0, e.mY, y1);
             mSnapCircle.mY = targetY + Config.mBubbleHeight * 0.5f;
 
