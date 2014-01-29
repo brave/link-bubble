@@ -32,6 +32,11 @@ public class BubbleTargetView extends RelativeLayout {
     private ImageView mImage;
     private CanvasView mCanvasView;
 
+    public enum Interpolator {
+        Linear,
+        Overshoot
+    }
+
     private HorizontalAnchor mHAnchor;
     private VerticalAnchor mVAnchor;
     private int mDefaultX;
@@ -64,7 +69,8 @@ public class BubbleTargetView extends RelativeLayout {
         Bottom
     }
 
-    //private LinearInterpolator mLinearInterpolator = new LinearInterpolator();
+    private Interpolator mInterpolator;
+    private LinearInterpolator mLinearInterpolator = new LinearInterpolator();
     private OvershootInterpolator mOvershootInterpolator = new OvershootInterpolator(1.5f);
     private int mInitialX;
     private int mInitialY;
@@ -106,10 +112,15 @@ public class BubbleTargetView extends RelativeLayout {
         return 0;
     }
 
-    private void setTargetPos(int x, int y, float t) {
+    private void setTargetPos(int x, int y, float t, Interpolator interpolator) {
         if (x != mTargetX || y != mTargetY) {
+
             // Add a bit of time for the overshoot testing.
-            t += 0.3f;
+            if (t > 0.0f && interpolator == Interpolator.Overshoot) {
+                t += 0.3f;
+            }
+
+            mInterpolator = interpolator;
 
             mInitialX = mCanvasLayoutParams.leftMargin;
             mInitialY = mCanvasLayoutParams.topMargin;
@@ -179,6 +190,7 @@ public class BubbleTargetView extends RelativeLayout {
         mEnableMove = false;
         mContext = context;
         mAction = action;
+        mInterpolator = Interpolator.Linear;
 
         mHAnchor = hAnchor;
         mVAnchor = vAnchor;
@@ -305,7 +317,7 @@ public class BubbleTargetView extends RelativeLayout {
     public void endSnapping() {
         mIsSnapping = false;
         mTimeSinceSnapping = 0.0f;
-        setTargetPos(mCanvasLayoutParams.leftMargin, mCanvasLayoutParams.topMargin, 0.0f);
+        setTargetPos(mCanvasLayoutParams.leftMargin, mCanvasLayoutParams.topMargin, 0.0f, Interpolator.Linear);
     }
 
     public Config.BubbleAction getAction() {
@@ -322,6 +334,7 @@ public class BubbleTargetView extends RelativeLayout {
         mAnimTime = 0.0f;
         mTransitionTimeLeft = TRANSITION_TIME;
         mTimeSinceSnapping = 1000.0f;
+        mInterpolator = Interpolator.Linear;
         MainController.get().scheduleUpdate();
     }
 
@@ -332,7 +345,7 @@ public class BubbleTargetView extends RelativeLayout {
         mIsSnapping = false;
         mAnimPeriod = 0.0f;
         mAnimTime = 0.0f;
-        setTargetPos(mHomeX, mHomeY, TRANSITION_TIME);
+        setTargetPos(mHomeX, mHomeY, TRANSITION_TIME, Interpolator.Linear);
     }
 
     @SuppressWarnings("unused")
@@ -390,11 +403,13 @@ public class BubbleTargetView extends RelativeLayout {
 
             float remainingTime = Math.max(t, mTransitionTimeLeft);
 
+            Interpolator in = Interpolator.Overshoot;
             if (mTransitionTimeLeft > 0.0f) {
                 remainingTime = mTransitionTimeLeft;
+                in = Interpolator.Linear;
             }
 
-            setTargetPos(x, y, remainingTime);
+            setTargetPos(x, y, remainingTime, in);
         }
     }
 
@@ -414,8 +429,12 @@ public class BubbleTargetView extends RelativeLayout {
 
             float tf = mAnimTime / mAnimPeriod;
             float interpolatedFraction;
-            //interpolatedFraction = mLinearInterpolator.getInterpolation(tf);
-            interpolatedFraction = mOvershootInterpolator.getInterpolation(tf);
+
+            if (mInterpolator == Interpolator.Linear) {
+                interpolatedFraction = mLinearInterpolator.getInterpolation(tf);
+            } else {
+                interpolatedFraction = mOvershootInterpolator.getInterpolation(tf);
+            }
             //Util.Assert(interpolatedFraction >= 0.0f && interpolatedFraction <= 1.0f);
 
             int x = (int) (mInitialX + (mTargetX - mInitialX) * interpolatedFraction);
