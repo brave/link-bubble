@@ -1,6 +1,7 @@
 package com.linkbubble.ui;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
@@ -63,16 +64,18 @@ public class CanvasView extends FrameLayout {
 
         applyAlpha();
 
-        int targetY = 24;
+        Resources resources = getResources();
 
+        int targetY = resources.getDimensionPixelSize(R.dimen.bubble_target_y);
+        int destroyXOffset = resources.getDimensionPixelSize(R.dimen.destroy_bubble_target_x_offset);
         mTargets.add(new BubbleTargetView(this, context, R.drawable.close_indicator, Config.BubbleAction.Destroy,
                 0, BubbleTargetView.HorizontalAnchor.Center,
                 targetY, BubbleTargetView.VerticalAnchor.Bottom,
-                30, targetY, 200, targetY));
+                destroyXOffset, targetY, resources.getDimensionPixelSize(R.dimen.destroy_bubble_target_tractor_offset_x), targetY));
 
-        int consumeDefaultX = 45;
-        int consumeXOffset = 15;
-        int consumeTractorBeamX = 80;
+        int consumeDefaultX = resources.getDimensionPixelSize(R.dimen.consume_bubble_target_default_x);
+        int consumeXOffset = resources.getDimensionPixelSize(R.dimen.consume_bubble_target_x_offset);
+        int consumeTractorBeamX = resources.getDimensionPixelSize(R.dimen.consume_bubble_target_tractor_beam_x);
         mTargets.add(new BubbleTargetView(this, context, Config.BubbleAction.ConsumeLeft,
                 consumeDefaultX, BubbleTargetView.HorizontalAnchor.Left,
                 targetY, BubbleTargetView.VerticalAnchor.Top,
