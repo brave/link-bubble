@@ -153,7 +153,12 @@ public class LoadFaviconTask extends UiAsyncTask<Void, Void, Bitmap> {
                 }
 
                 visited.add(newURI);
-                return tryDownloadRecurse(new URI(newURI), visited);
+
+                // Sometimes newURI is a value like "/fb/images/favicon.ico" (with no host). In which case, ignore... See #231
+                URI uri = new URI(newURI);
+                if (uri.getHost() != null) {
+                    return tryDownloadRecurse(uri, visited);
+                }
             }
 
             if (status >= 400) {
