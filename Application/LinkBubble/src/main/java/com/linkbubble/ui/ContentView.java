@@ -87,17 +87,11 @@ public class ContentView extends FrameLayout {
     private long mStartTime;
     private int mHeaderHeight;
     private Path mTempPath = new Path();
-    private int mLoadCount = 0;
-    private String mCurrentLoadedUrl;
-    private boolean mLoadingPrev;
     private PageInspector mPageInspector;
+    private Stack<URL> mUrlStack = new Stack<URL>();
 
     private static Paint sIndicatorPaint;
     private static Paint sBorderPaint;
-
-    //private Stack<String> mUrlHistory = new Stack<String>();
-    private Stack<URL> mUrlStack = new Stack<URL>();
-
 
     public ContentView(Context context) {
         this(context, null);
@@ -348,16 +342,6 @@ public class ContentView extends FrameLayout {
                 }
             }
 
-            if (mLoadCount == 0) {
-                if (mCurrentLoadedUrl != null && !mLoadingPrev) {
-                    //mUrlHistory.push(mCurrentLoadedUrl);
-                    //mEventHandler.onBackStackSizeChanged(mUrlHistory.size());
-                }
-                mCurrentLoadedUrl = null;
-                mLoadingPrev = false;
-            }
-
-            ++mLoadCount;
             updateUrl(urlAsString);
 
             mPageInspector.reset();
@@ -464,7 +448,6 @@ public class ContentView extends FrameLayout {
             mPageFinishedLoading = false;
 
             updateUrl(urlAsString);
-            mLoadCount = Math.max(mLoadCount, 1);
 
             if (mShareButton.getVisibility() == GONE) {
                 mShareButton.setVisibility(VISIBLE);
@@ -499,12 +482,8 @@ public class ContentView extends FrameLayout {
                 configureOpenInAppButton();
                 configureOpenEmbedButton();
 
-                if (--mLoadCount == 0) {
-                    mCurrentLoadedUrl = mUrl.toString();
-
-                    mEventHandler.onPageLoaded();
-                    Log.d(TAG, "onPageFinished() - url: " + urlAsString);
-                }
+                mEventHandler.onPageLoaded();
+                Log.d(TAG, "onPageFinished() - url: " + urlAsString);
 
                 if (mStartTime > -1) {
                     Log.d("LoadTime", "Saved " + ((System.currentTimeMillis() - mStartTime) / 1000) + " seconds.");
@@ -536,7 +515,6 @@ public class ContentView extends FrameLayout {
                             URL previousUrl = mUrlStack.pop();
                             String previousUrlAsString = previousUrl.toString();
                             mEventHandler.onBackStackSizeChanged(mUrlStack.size());
-                            mLoadingPrev = true;
                             webView.loadUrl(previousUrlAsString);
 
                             updateUrl(previousUrlAsString);
