@@ -12,10 +12,12 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceScreen;
 import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -45,6 +47,7 @@ import java.util.Vector;
 public class SettingsFragment extends PreferenceFragment {
 
     private Preference mAutoContentDisplayPreference;
+    private Handler mHandler = new Handler();
 
     public static class IncognitoModeChangedEvent {
         public IncognitoModeChangedEvent(boolean value) {
@@ -125,6 +128,8 @@ public class SettingsFragment extends PreferenceFragment {
 
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.prefs);
+
+        PreferenceCategory generalCategory = (PreferenceCategory) findPreference("preference_category_general");
 
         mAutoContentDisplayPreference = findPreference(Settings.PREFERENCE_AUTO_CONTENT_DISPLAY_TYPE);
         mAutoContentDisplayPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -339,6 +344,7 @@ public class SettingsFragment extends PreferenceFragment {
                     Intent intent = Config.getStoreIntent(getActivity(), Config.STORE_PRO_URL);
                     if (intent != null) {
                         startActivity(intent);
+                        Settings.get().setSayThanksClicked(true);
                         return true;
                     }
                     return false;
@@ -359,6 +365,17 @@ public class SettingsFragment extends PreferenceFragment {
                     return false;
                 }
             });
+        }
+
+        if (Constant.IS_LICENSED) {
+            generalCategory.removePreference(getProPreference);
+            if (Settings.get().getSayThanksClicked()) {
+                generalCategory.removePreference(sayThanksPreference);
+                PreferenceScreen helpScreen = (PreferenceScreen) getPreferenceScreen().findPreference("preference_screen_help");
+                helpScreen.addPreference(sayThanksPreference);
+            }
+        } else {
+            generalCategory.removePreference(sayThanksPreference);
         }
 
         findPreference("preference_faq").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
