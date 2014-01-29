@@ -384,6 +384,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
             String faviconUrl = "http://" + host + "/favicon.ico";
 
             historyItem.mFaviconUrl = faviconUrl;
+            historyItem.mFaviconImageView.clearImage();
             sFavicons.getFaviconForSize(host, faviconUrl, Integer.MAX_VALUE, flags, historyItem.mOnFaviconLoadedListener);
             if (historyItem.mFaviconSet == false) {
                 historyItem.mFaviconImageView.showDefaultFavicon();
