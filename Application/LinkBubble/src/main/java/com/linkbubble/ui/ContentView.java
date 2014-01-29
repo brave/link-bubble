@@ -74,6 +74,7 @@ public class ContentView extends FrameLayout {
     private Context mContext;
     private URL mUrl;
     private boolean mIsTouchingWebView;
+    private long mLastWebViewTouchUpTime;
     private boolean mPageFinishedLoading;
     private boolean mShowingDefaultAppPicker = false;
 
@@ -94,7 +95,8 @@ public class ContentView extends FrameLayout {
     private static Paint sIndicatorPaint;
     private static Paint sBorderPaint;
 
-    private Stack<String> mUrlHistory = new Stack<String>();
+    //private Stack<String> mUrlHistory = new Stack<String>();
+    private Stack<URL> mUrlStack = new Stack<URL>();
 
 
     public ContentView(Context context) {
@@ -271,7 +273,7 @@ public class ContentView extends FrameLayout {
 
         mContext = getContext();
         mEventHandler = eventHandler;
-        mEventHandler.onBackStackSizeChanged(mUrlHistory.size());
+        mEventHandler.onBackStackSizeChanged(mUrlStack.size());
         mPageFinishedLoading = false;
 
         WebSettings webSettings = mWebView.getSettings();
@@ -315,12 +317,13 @@ public class ContentView extends FrameLayout {
             switch (action) {
                 case MotionEvent.ACTION_DOWN:
                     mIsTouchingWebView = true;
-                    //Log.d("blergy", "WebView - MotionEvent.ACTION_DOWN");
+                    //Log.d(TAG, "WebView - MotionEvent.ACTION_DOWN");
                     break;
 
                 case MotionEvent.ACTION_UP:
+                    mLastWebViewTouchUpTime = System.currentTimeMillis();
                     mIsTouchingWebView = false;
-                    //Log.d("blergy", "WebView - MotionEvent.ACTION_UP");
+                    Log.d(TAG, "[urlstack] WebView - MotionEvent.ACTION_UP");
                     break;
             }
             // Forcibly pass along to the WebView. This ensures we receive the ACTION_UP event above.
@@ -333,10 +336,22 @@ public class ContentView extends FrameLayout {
         @Override
         public boolean shouldOverrideUrlLoading(WebView wView, final String urlAsString) {
 
+            if (mLastWebViewTouchUpTime > -1) {
+                long touchUpTimeDelta = System.currentTimeMillis() - mLastWebViewTouchUpTime;
+                if (touchUpTimeDelta < 1500) {
+                    mUrlStack.push(mUrl);
+                    mEventHandler.onBackStackSizeChanged(mUrlStack.size());
+                    Log.d(TAG, "[urlstack] push:" + mUrl.toString() + ", urlStack.size():" + mUrlStack.size() + ", delta:" + touchUpTimeDelta);
+                    mLastWebViewTouchUpTime = -1;
+                } else {
+                    Log.d(TAG, "[urlstack] IGNORED because of delta:" + touchUpTimeDelta);
+                }
+            }
+
             if (mLoadCount == 0) {
                 if (mCurrentLoadedUrl != null && !mLoadingPrev) {
-                    mUrlHistory.push(mCurrentLoadedUrl);
-                    mEventHandler.onBackStackSizeChanged(mUrlHistory.size());
+                    //mUrlHistory.push(mCurrentLoadedUrl);
+                    //mEventHandler.onBackStackSizeChanged(mUrlHistory.size());
                 }
                 mCurrentLoadedUrl = null;
                 mLoadingPrev = false;
@@ -512,25 +527,26 @@ public class ContentView extends FrameLayout {
                 WebView webView = (WebView) v;
                 switch (keyCode) {
                     case KeyEvent.KEYCODE_BACK: {
-                        if (mUrlHistory.size() == 0) {
+                        if (mUrlStack.size() == 0) {
                             MainController.get().destroyCurrentBubble(true);
                         } else {
                             webView.stopLoading();
                             String urlBefore = webView.getUrl();
 
-                            String prevUrl = mUrlHistory.pop();
-                            mEventHandler.onBackStackSizeChanged(mUrlHistory.size());
+                            URL previousUrl = mUrlStack.pop();
+                            String previousUrlAsString = previousUrl.toString();
+                            mEventHandler.onBackStackSizeChanged(mUrlStack.size());
                             mLoadingPrev = true;
-                            webView.loadUrl(prevUrl);
+                            webView.loadUrl(previousUrlAsString);
 
-                            updateUrl(prevUrl);
+                            updateUrl(previousUrlAsString);
                             updateAppsForUrl(mUrl);
                             mPageInspector.reset();
-                            Log.d(TAG, "Go back: " + urlBefore + " -> " + webView.getUrl());
+                            Log.d(TAG, "[urlstack] Go back: " + urlBefore + " -> " + webView.getUrl() + ", urlStack.size():" + mUrlStack.size());
                             configureOpenInAppButton();
                             configureOpenEmbedButton();
-                            mUrlTextView.setText(prevUrl.replace("http://", ""));
-                            String title = MainApplication.sTitleHashMap.get(prevUrl);
+                            mUrlTextView.setText(previousUrlAsString.replace("http://", ""));
+                            String title = MainApplication.sTitleHashMap.get(previousUrlAsString);
                             if (title == null) {
                                 title = getResources().getString(R.string.loading);
                             }
