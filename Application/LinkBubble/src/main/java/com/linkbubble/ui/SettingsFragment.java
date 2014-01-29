@@ -1,5 +1,6 @@
 package com.linkbubble.ui;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
@@ -18,12 +19,16 @@ import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
+import android.text.method.LinkMovementMethod;
+import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.WebViewDatabase;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.linkbubble.Constant;
 import com.linkbubble.MainController;
@@ -378,6 +383,16 @@ public class SettingsFragment extends PreferenceFragment {
             generalCategory.removePreference(sayThanksPreference);
         }
 
+        findPreference("preference_credits").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                getCreditDialog().show();
+                return true;
+            }
+        });
+        
+
         findPreference("preference_faq").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -548,5 +563,18 @@ public class SettingsFragment extends PreferenceFragment {
         } else {
             mAutoContentDisplayPreference.setSummary(R.string.preference_auto_content_display_never);
         }
+    }
+
+    AlertDialog getCreditDialog() {
+        final View layout = View.inflate(getActivity(), R.layout.view_credits, null);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setIcon(0);
+        builder.setNegativeButton(R.string.action_ok, null);
+        builder.setView(layout);
+        builder.setTitle(R.string.credits_title);
+
+        AlertDialog alertDialog = builder.create();
+        return alertDialog;
     }
 }

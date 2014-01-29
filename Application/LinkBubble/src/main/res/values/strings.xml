@@ -131,4 +131,11 @@
 
     <string name="activity_resolver_use_always">Always</string>
     <string name="activity_resolver_use_once">Just once</string>
+
+    <string name="credits_title">Link Bubble Credits</string>
+    <string name="credits_lacy_name">Chris Lacy</string>
+    <string name="credits_lacy_credit">Concept, design and programming</string>
+    <string name="credits_watson_name">Glenn Watson</string>
+    <string name="credits_watson_credit">Programming</string>
+    <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
 </resources>
