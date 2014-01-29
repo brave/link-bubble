@@ -60,6 +60,8 @@ public class Settings {
     public static final String PREFERENCE_DEFAULT_APPS = "preference_default_apps";
     public static final String PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT = "preference_google_accounts_redirect";
 
+    private static final String SAY_THANKS_CLICKED = "say_thanks_clicked";
+
     private static final String DEFAULT_APPS_MAP_KEY_HOST = "host";
     private static final String DEFAULT_APPS_MAP_KEY_COMPONENT = "component";
 
@@ -435,6 +437,16 @@ public class Settings {
 
     public boolean checkForYouTubeEmbeds() {
         return mSharedPreferences.getBoolean(PREFERENCE_CHECK_FOR_YOUTUBE_EMBEDS, false);
+    }
+
+    public boolean getSayThanksClicked() {
+        return mSharedPreferences.getBoolean(SAY_THANKS_CLICKED, false);
+    }
+
+    public void setSayThanksClicked(boolean value) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putBoolean(SAY_THANKS_CLICKED, value);
+        editor.commit();
     }
 
     public boolean redirectUrlToBrowser(String url) {

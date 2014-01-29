@@ -130,7 +130,18 @@
 
     <PreferenceCategory
         android:title="@string/preference_category_general"
+        android:key="preference_category_general"
         >
+
+        <Preference
+            android:key="preference_say_thanks"
+            android:title="@string/preference_say_thanks_title"
+            android:summary="@string/preference_say_thanks_summary" />
+
+        <Preference
+            android:key="preference_get_pro"
+            android:title="@string/preference_get_pro_title"
+            android:summary="@string/preference_get_pro_summary" />
 
         <PreferenceScreen
             android:key="preference_screen_help"
@@ -159,17 +170,6 @@
                 android:title="@string/preference_terms_of_service_title"/>
 
         </PreferenceScreen>
-
-        <!--
-        <Preference
-            android:key="preference_say_thanks"
-            android:title="@string/preference_say_thanks_title"
-            android:summary="@string/preference_say_thanks_summary" />
-
-        <Preference
-            android:key="preference_get_pro"
-            android:title="@string/preference_get_pro_title"
-            android:summary="@string/preference_get_pro_summary" />-->
 
         <Preference
             android:key="preference_version"
