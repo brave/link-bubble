@@ -192,27 +192,6 @@ public class ContentView extends FrameLayout {
         }
     }
 
-    private boolean isValidUrl(URL url) {
-        if (url == null) {
-            return false;
-        }
-
-        boolean isValid = true;
-
-        String [] urlBlacklist = { "t.co", "goo.gl", "bit.ly" };
-
-        String hostName = url.getHost();
-
-        for (int i=0 ; i < urlBlacklist.length ; ++i) {
-            if (hostName.equalsIgnoreCase(urlBlacklist[i])) {
-                isValid = false;
-                break;
-            }
-        }
-
-        return isValid;
-    }
-
     private void showSelectShareMethod(final String urlAsString, final boolean closeBubbleOnShare) {
 
         AlertDialog alertDialog = ActionItem.getShareAlert(mContext, new ActionItem.OnActionItemSelectedListener() {
@@ -366,7 +345,6 @@ public class ContentView extends FrameLayout {
                 if (mAppsForUrl.size() == 1) {
                     AppForUrl appForUrl = mAppsForUrl.get(0);
                     if (appForUrl.mResolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo) {
-                        // TODO: Fix to handle multiple apps
                         if (MainApplication.loadResolveInfoIntent(mContext, appForUrl.mResolveInfo, urlAsString, mStartTime)) {
                             String title = String.format(mContext.getString(R.string.link_loaded_with_app),
                                     appForUrl.mResolveInfo.loadLabel(mContext.getPackageManager()));
