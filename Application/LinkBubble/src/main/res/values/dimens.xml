@@ -56,4 +56,11 @@
     <dimen name="browser_toolbar_icon_width">48dp</dimen>
     <dimen name="browser_toolbar_favicon_size">25.33dip</dimen>
 
+    <dimen name="bubble_target_y">24dp</dimen>
+    <dimen name="destroy_bubble_target_x_offset">30dp</dimen>
+    <dimen name="destroy_bubble_target_tractor_offset_x">200dp</dimen>
+    <dimen name="consume_bubble_target_default_x">45dp</dimen>
+    <dimen name="consume_bubble_target_x_offset">15dp</dimen>
+    <dimen name="consume_bubble_target_tractor_beam_x">80dp</dimen>
+
 </resources>
