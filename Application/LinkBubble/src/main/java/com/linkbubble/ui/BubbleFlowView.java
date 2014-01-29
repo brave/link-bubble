@@ -214,6 +214,9 @@ public class BubbleFlowView extends HorizontalScrollView {
     }
 
     protected void remove(final int index, boolean animateOff, boolean removeFromList, final OnRemovedListener onRemovedListener) {
+        if (index < 0 || index >= mViews.size()) {
+            return;
+        }
         final View view = mViews.get(index);
 
         if (animateOff) {

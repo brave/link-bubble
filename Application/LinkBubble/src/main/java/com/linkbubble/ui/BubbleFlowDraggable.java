@@ -285,6 +285,9 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     @Override
     protected void remove(final int index, boolean animateOff, boolean removeFromList, OnRemovedListener onRemovedListener) {
+        if (index < 0 || index >= mViews.size()) {
+            return;
+        }
         TabView tab = (TabView) mViews.get(index);
         super.remove(index, animateOff, removeFromList, onRemovedListener);
         if (animateOff && mSlideOffAnimationPlaying) {
