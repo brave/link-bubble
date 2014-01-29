@@ -280,7 +280,7 @@ public class FaviconView extends ImageView {
      * @param key
      */
     public void updateImage(Bitmap bitmap, String key) {
-        if (bitmap.getWidth() <= 96) {
+        if (bitmap.getWidth() < 96) {
             mDrawOutline = true;
             setScaleType(ImageView.ScaleType.CENTER);
             updateImageInternal(bitmap, key, true);
