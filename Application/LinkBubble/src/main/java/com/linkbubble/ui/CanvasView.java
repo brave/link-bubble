@@ -63,18 +63,24 @@ public class CanvasView extends FrameLayout {
 
         applyAlpha();
 
+        int targetY = 24;
+
         mTargets.add(new BubbleTargetView(this, context, R.drawable.close_indicator, Config.BubbleAction.Destroy,
                 0, BubbleTargetView.HorizontalAnchor.Center,
-                35, BubbleTargetView.VerticalAnchor.Bottom,
-                30, 35, 200, 35));
+                targetY, BubbleTargetView.VerticalAnchor.Bottom,
+                30, targetY, 200, targetY));
+
+        int consumeDefaultX = 45;
+        int consumeXOffset = 15;
+        int consumeTractorBeamX = 80;
         mTargets.add(new BubbleTargetView(this, context, Config.BubbleAction.ConsumeLeft,
-                70, BubbleTargetView.HorizontalAnchor.Left,
-                33, BubbleTargetView.VerticalAnchor.Top,
-                15, 33, 150, 33));
+                consumeDefaultX, BubbleTargetView.HorizontalAnchor.Left,
+                targetY, BubbleTargetView.VerticalAnchor.Top,
+                consumeXOffset, targetY, consumeTractorBeamX, targetY));
         mTargets.add(new BubbleTargetView(this, context, Config.BubbleAction.ConsumeRight,
-                70, BubbleTargetView.HorizontalAnchor.Right,
-                33, BubbleTargetView.VerticalAnchor.Top,
-                15, 33, 150, 33));
+                consumeDefaultX, BubbleTargetView.HorizontalAnchor.Right,
+                targetY, BubbleTargetView.VerticalAnchor.Top,
+                consumeXOffset, targetY, consumeTractorBeamX, targetY));
 
         Settings.setConsumeBubblesChangedEventHandler(new Settings.ConsumeBubblesChangedEventHandler() {
             @Override
