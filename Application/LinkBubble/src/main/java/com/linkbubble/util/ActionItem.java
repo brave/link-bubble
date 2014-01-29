@@ -245,7 +245,7 @@ public class ActionItem {
                 long currentTime = System.currentTimeMillis();
                 long clickDelta = currentTime - listView.mLastItemClickTime;
                 // Check for a double-tap to emulate the behavior of the AOSP default app picker
-                if (clickDelta < 300) {
+                if (clickDelta < 350) {
                     int selected = (Integer)listView.getTag();
                     if (selected == position) {
                         ActionItem actionItem = actionItems.get(position);
