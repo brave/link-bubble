@@ -13,7 +13,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Handler;
-import android.preference.Preference;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -22,7 +21,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.webkit.DownloadListener;
-import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -89,6 +87,8 @@ public class ContentView extends FrameLayout {
     private Path mTempPath = new Path();
     private PageInspector mPageInspector;
     private Stack<URL> mUrlStack = new Stack<URL>();
+    // We only want to handle this once per link. This prevents 3+ dialogs appearing for some links, which is a bad experience. #224
+    private boolean mHandledAppPickerForCurrentUrl = false;
 
     private static Paint sIndicatorPaint;
     private static Paint sBorderPaint;
@@ -212,9 +212,10 @@ public class ContentView extends FrameLayout {
         alertDialog.show();
     }
 
-    void configure(String urlAsString, long startTime, EventHandler eventHandler) throws MalformedURLException {
+    void configure(String urlAsString, long startTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
         mUrl = new URL(urlAsString);
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_header);
+        mHandledAppPickerForCurrentUrl = hasShownAppPicker;
 
         mWebView = (WebView) findViewById(R.id.webView);
         mTouchInterceptorView = findViewById(R.id.touch_interceptor);
@@ -341,7 +342,11 @@ public class ContentView extends FrameLayout {
                 }
             }
 
-            if (Settings.get().getAutoContentDisplayAppRedirect() && mAppsForUrl != null && mAppsForUrl.size() > 0) {
+            if (Settings.get().getAutoContentDisplayAppRedirect()
+                    && mHandledAppPickerForCurrentUrl == false
+                    && mAppsForUrl != null
+                    && mAppsForUrl.size() > 0) {
+                mHandledAppPickerForCurrentUrl = true;
                 if (mAppsForUrl.size() == 1) {
                     AppForUrl appForUrl = mAppsForUrl.get(0);
                     if (appForUrl.mResolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo) {
@@ -467,6 +472,7 @@ public class ContentView extends FrameLayout {
                 configureOpenInAppButton();
                 configureOpenEmbedButton();
 
+                mHandledAppPickerForCurrentUrl = false;
                 mEventHandler.onPageLoaded();
                 Log.d(TAG, "onPageFinished() - url: " + urlAsString);
 
@@ -500,6 +506,7 @@ public class ContentView extends FrameLayout {
                             URL previousUrl = mUrlStack.pop();
                             String previousUrlAsString = previousUrl.toString();
                             mEventHandler.onBackStackSizeChanged(mUrlStack.size());
+                            mHandledAppPickerForCurrentUrl = false;
                             webView.loadUrl(previousUrlAsString);
 
                             updateUrl(previousUrlAsString);
