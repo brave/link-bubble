@@ -263,7 +263,7 @@ public class BubbleTargetView extends RelativeLayout {
         setVisibility(GONE);
     }
 
-    public void getDebugRegion(Rect r) {
+    public void getOffsetDebugRegion(Rect r) {
         int xMaxOffset = mMaxOffsetX;
         int yMaxOffset = mMaxOffsetY;
 
@@ -271,6 +271,22 @@ public class BubbleTargetView extends RelativeLayout {
             xMaxOffset = mTractorOffsetX;
             yMaxOffset = mTractorOffsetY;
         }
+
+        int x0 = (int) (0.5f + getXPos() - xMaxOffset - Config.mBubbleWidth * 0.5f);
+        int x1 = (int) (0.5f + getXPos() + xMaxOffset + Config.mBubbleWidth * 0.5f);
+
+        int y0 = (int) (0.5f + getYPos() - yMaxOffset - Config.mBubbleHeight * 0.5f);
+        int y1 = (int) (0.5f + getYPos() + yMaxOffset + Config.mBubbleHeight * 0.5f);
+
+        r.left = x0;
+        r.right = x1;
+        r.top = y0;
+        r.bottom = y1;
+    }
+
+    public void getTractorDebugRegion(Rect r) {
+        int xMaxOffset = mTractorOffsetX;
+        int yMaxOffset = mTractorOffsetY;
 
         int x0 = (int) (0.5f + getXPos() - xMaxOffset - Config.mBubbleWidth * 0.5f);
         int x1 = (int) (0.5f + getXPos() + xMaxOffset + Config.mBubbleWidth * 0.5f);

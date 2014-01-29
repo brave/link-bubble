@@ -54,6 +54,10 @@ public class CanvasView extends FrameLayout {
 
     private ContentView mContentView;
 
+    private Paint mTargetOffsetDebugPaint;
+    private Paint mTargetTractorDebugPaint;
+    private Rect mTargetDebugRect;
+
     public CanvasView(Context context) {
         super(context);
 
@@ -125,6 +129,16 @@ public class CanvasView extends FrameLayout {
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
         mWindowManagerParams.setTitle("LinkBubble: CanvasView");
         mWindowManager.addView(this, mWindowManagerParams);
+
+        if (Constant.DEBUG_SHOW_TARGET_REGIONS) {
+            mTargetDebugRect = new Rect();
+
+            mTargetOffsetDebugPaint = new Paint();
+            mTargetOffsetDebugPaint.setColor(0x80800000);
+
+            mTargetTractorDebugPaint = new Paint();
+            mTargetTractorDebugPaint.setColor(0x80008000);
+        }
     }
 
     @Override
@@ -132,13 +146,12 @@ public class CanvasView extends FrameLayout {
         super.dispatchDraw(canvas);
 
         if (Constant.DEBUG_SHOW_TARGET_REGIONS) {
-            Paint p = new Paint();
-            p.setColor(0x80000080);
+            for (BubbleTargetView bubbleTargetView : mTargets) {
+                bubbleTargetView.getTractorDebugRegion(mTargetDebugRect);
+                canvas.drawRect(mTargetDebugRect, mTargetTractorDebugPaint);
 
-            Rect r = new Rect();
-            for (BubbleTargetView bt : mTargets) {
-                bt.getDebugRegion(r);
-                canvas.drawRect(r, p);
+                bubbleTargetView.getOffsetDebugRegion(mTargetDebugRect);
+                canvas.drawRect(mTargetDebugRect, mTargetOffsetDebugPaint);
             }
         }
     }
