@@ -45,7 +45,9 @@ public class BubbleFlowActivity extends Activity {
             @Override
             public void onClick(View v) {
                 int centerIndex = mBubbleFlowView.getCenterIndex();
-                mBubbleFlowView.remove(centerIndex, true, true);
+                if (centerIndex > -1) {
+                    mBubbleFlowView.remove(centerIndex, false, true);
+                }
             }
         });
 
