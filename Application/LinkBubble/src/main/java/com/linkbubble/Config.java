@@ -143,7 +143,7 @@ public class Config {
 
     public static final String YOUTUBE_WATCH_PREFIX = "http://www.youtube.com/watch?v=";
     public static final String YOUTUBE_EMBED_PATH_SUFFIX = "embed/";
-    public static final String YOUTUBE_EMBED_PREFIX = "://www.youtube.com/" + YOUTUBE_EMBED_PATH_SUFFIX;
+    public static final String YOUTUBE_EMBED_PREFIX = "//www.youtube.com/" + YOUTUBE_EMBED_PATH_SUFFIX;
 
     public static final String YOUTUBE_API_KEY = "AIzaSyChiS6yef7AIe5p0JvJGnHrHmmimehIuDs";
     public static final String YOUTUBE_API_THUMBNAILS_LOW_QUALITY = "thumbnails(default)";
