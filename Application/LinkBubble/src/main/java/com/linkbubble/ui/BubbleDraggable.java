@@ -32,6 +32,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     public BadgeView mBadgeView;
     private CanvasView mCanvasView;
     private BubbleFlowDraggable mBubbleFlowDraggable;
+    private Util.Point mTractorBeamIntersectionPoint = new Util.Point();
 
     private MainController.BeginBubbleDragEvent mBeginBubbleDragEvent = new MainController.BeginBubbleDragEvent();
     private MainController.DraggableBubbleMovedEvent mDraggableBubbleMovedEvent = new MainController.DraggableBubbleMovedEvent();
@@ -51,7 +52,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     private int mTouchInitialY;
     private boolean mAnimActive;
     private Mode mMode;
-    private boolean mFlickActive;
     private float mTimeOnSnapTarget;
 
     public BubbleDraggable(Context context) {
@@ -129,8 +129,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
     private void doFlick(float vx, float vy) {
         DraggableHelper.AnimationType animType = DraggableHelper.AnimationType.Linear;
-        float period = 0.0f;
-        mFlickActive = true;
         BubbleTargetView.enableTractor();
 
         mCurrentSnapTarget = null;
@@ -167,31 +165,62 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                 targetX = (int) (initialX + (targetY - initialY) / m);
             } else {
                 animType = DraggableHelper.AnimationType.MediumOvershoot;
-                period += 0.15f;
             }
         }
 
-        float dx = targetX - initialX;
-        float dy = targetY - initialY;
-        float d = (float) Math.sqrt(dx*dx + dy*dy);
+        float flickDistance = Util.distance(initialX, initialY, targetX, targetY);
+        float flickVelocity = (float) Math.sqrt(vx*vx + vy*vy);
+        float flickAnimPeriod = flickDistance / flickVelocity;
+        flickAnimPeriod = Util.clamp(0.05f, flickAnimPeriod, 0.5f);
 
-        float v = (float) Math.sqrt(vx*vx + vy*vy);
+        // Check for tractor beam intercept
 
-        period += d/v;
-        period = Util.clamp(0.05f, period, 0.5f);
+        // Get center line of flick
+        float x0 = initialX + Config.mBubbleWidth * 0.5f;
+        float y0 = initialY + Config.mBubbleHeight * 0.5f;
+        float x1 = targetX + Config.mBubbleWidth * 0.5f;
+        float y1 = targetY + Config.mBubbleHeight * 0.5f;
 
-        setTargetPos(targetX, targetY, period, animType, new DraggableHelper.AnimationEventListener() {
+        // Get the closest (if any) snap target that will be able to grab the bubble.
+        final BubbleTargetView tv = mCanvasView.getSnapTarget(x0, y0, x1, y1, mTractorBeamIntersectionPoint);
+        if (tv != null) {
+            float intBubbleX = mTractorBeamIntersectionPoint.x - Config.mBubbleWidth * 0.5f;
+            float intBubbleY = mTractorBeamIntersectionPoint.y - Config.mBubbleHeight * 0.5f;
+
+            float intersectionDistance = Util.distance(initialX, initialY, intBubbleX, intBubbleY);
+            float intFraction = intersectionDistance / flickDistance;
+            Util.Assert(intFraction >= 0.0f && intFraction <= 1.0f);
+            float intTime = flickAnimPeriod * intFraction;
+
+            animType = DraggableHelper.AnimationType.Linear;
+            flickAnimPeriod = intTime;
+            targetX = (int) intBubbleX;
+            targetY = (int) intBubbleY;
+
+            tv.setTargetCenter(mTractorBeamIntersectionPoint.x, mTractorBeamIntersectionPoint.y, intTime * 0.8f, BubbleTargetView.Interpolator.Linear);
+
+        } else {
+            if (animType != DraggableHelper.AnimationType.Linear) {
+                flickAnimPeriod += 0.15f;
+            }
+        }
+
+        setTargetPos(targetX, targetY, flickAnimPeriod, animType, new DraggableHelper.AnimationEventListener() {
             @Override
             public void onAnimationComplete() {
-                mFlickActive = false;
                 BubbleTargetView.disableTractor();
                 onAnimComplete();
 
                 MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
 
-                int x = mDraggableHelper.getXPos();
-                if (x != Config.mBubbleSnapLeftX && x != Config.mBubbleSnapRightX) {
-                    doSnap();
+                if (tv == null) {
+                    int x = mDraggableHelper.getXPos();
+                    if (x != Config.mBubbleSnapLeftX && x != Config.mBubbleSnapRightX) {
+                        doSnap();
+                    }
+                } else {
+                    Config.BubbleAction action = tv.getAction();
+                    doSnapAction(action);
                 }
             }
 
@@ -493,48 +522,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
     @Override
     public void update(float dt) {
-
-        if (mFlickActive && mCurrentSnapTarget == null) {
-            int x = mDraggableHelper.getXPos();
-            int y = mDraggableHelper.getYPos();
-
-            Circle bubbleCircle = new Circle(x + Config.mBubbleWidth * 0.5f, y + Config.mBubbleHeight * 0.5f, Config.mBubbleWidth * 0.5f);
-            BubbleTargetView tv = mCanvasView.getSnapTarget(bubbleCircle, 0.1f);
-
-            if (tv != null) {
-                mCurrentSnapTarget = tv;
-                mTimeOnSnapTarget = 0.0f;
-                mCurrentSnapTarget.beginSnapping();
-
-                Circle c = tv.GetDefaultCircle();
-                int xt = (int) (c.mX - Config.mBubbleWidth * 0.5f);
-                int yt = (int) (c.mY - Config.mBubbleHeight * 0.5f);
-
-                mDraggableHelper.cancelAnimation();
-
-                setTargetPos(xt, yt, 0.3f, DraggableHelper.AnimationType.LargeOvershoot, new DraggableHelper.AnimationEventListener() {
-                    @Override
-                    public void onAnimationComplete() {
-                        MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
-
-                        onAnimComplete();
-                        BubbleTargetView.disableTractor();
-                        mFlickActive = false;
-
-                        Config.BubbleAction action = mCurrentSnapTarget.getAction();
-                        mCurrentSnapTarget.endSnapping();
-                        mCurrentSnapTarget = null;
-
-                        doSnapAction(action);
-                    }
-                    @Override
-                    public void onCancel() {
-                        onAnimComplete();
-                    }
-                });
-            }
-        }
-
         if (mTouchDown) {
             if (mCurrentSnapTarget != null) {
                 mTimeOnSnapTarget += dt;

@@ -8,6 +8,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -57,6 +58,10 @@ public class CanvasView extends FrameLayout {
     private Paint mTargetOffsetDebugPaint;
     private Paint mTargetTractorDebugPaint;
     private Rect mTargetDebugRect;
+
+    private Util.ClipResult mClipResult = new Util.ClipResult();
+    private Util.Point mClosestPoint = new Util.Point();
+    private Rect mTractorRegion = new Rect();
 
     public CanvasView(Context context) {
         super(context);
@@ -362,6 +367,31 @@ public class CanvasView extends FrameLayout {
         for (int i=0 ; i < mTargets.size() ; ++i) {
             mTargets.get(i).update(dt);
         }
+    }
+
+    public BubbleTargetView getSnapTarget(float x0, float y0, float x1, float y1, Util.Point p) {
+
+        BubbleTargetView closestTargetView = null;
+        float closestDistance = 9e9f;
+
+        for (BubbleTargetView tv : mTargets) {
+
+            tv.getTractorDebugRegion(mTractorRegion);
+            Circle targetCircle = tv.GetDefaultCircle();
+
+            if (Util.clipLineSegmentToRectangle(x0, y0, x1, y1, mTractorRegion.left, mTractorRegion.top, mTractorRegion.right, mTractorRegion.bottom, mClipResult)) {
+                Util.closestPointToLineSegment(mClipResult.x0, mClipResult.y0, mClipResult.x1, mClipResult.y1, targetCircle.mX, targetCircle.mY, mClosestPoint);
+
+                float d = Util.distance(x0, y0, mClosestPoint.x, mClosestPoint.y);
+                if (d < closestDistance) {
+                    p.x = mClosestPoint.x;
+                    p.y = mClosestPoint.y;
+                    closestTargetView = tv;
+                }
+            }
+        }
+
+        return closestTargetView;
     }
 
     public BubbleTargetView getSnapTarget(Circle bubbleCircle, float radiusScaler) {
