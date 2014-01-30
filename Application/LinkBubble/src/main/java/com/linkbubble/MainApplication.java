@@ -41,11 +41,7 @@ public class MainApplication extends Application {
 
         sDatabaseHelper = new DatabaseHelper(this);
 
-        try {
-            Favicons.attachToContext(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Favicons.attachToContext(this);
         recreateFaviconCache();
     }
 

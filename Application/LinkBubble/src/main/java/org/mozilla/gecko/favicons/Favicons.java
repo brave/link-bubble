@@ -350,15 +350,12 @@ public class Favicons {
      *
      * @param context A reference to the GeckoApp instance.
      */
-    public static void attachToContext(Context context) throws Exception {
+    public static void attachToContext(Context context) {
         final Resources res = context.getResources();
         sContext = context;
 
         // Decode the default Favicon ready for use.
         sDefaultFavicon = BitmapFactory.decodeResource(res, R.drawable.fallback_favicon);
-        if (sDefaultFavicon == null) {
-            throw new Exception("Null default favicon was returned from the resources system!");
-        }
 
         sDefaultFaviconSize = res.getDimensionPixelSize(R.dimen.favicon_bg);
     }
