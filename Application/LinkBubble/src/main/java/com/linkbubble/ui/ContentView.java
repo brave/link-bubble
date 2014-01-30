@@ -140,6 +140,7 @@ public class ContentView extends FrameLayout {
         public void onProgressChanged(int progress);
         public void onPageLoaded();
         public boolean onReceivedIcon(Bitmap bitmap);
+        public void setDefaultFavicon();
         public void onBackStackSizeChanged(int size);
     }
 
@@ -531,7 +532,11 @@ public class ContentView extends FrameLayout {
 
                             String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
                             Bitmap faviconBitmap = MainApplication.sFavicons.getSizedFaviconFromCache(faviconUrl, Integer.MAX_VALUE);
-                            mEventHandler.onReceivedIcon(faviconBitmap);
+                            if (faviconBitmap != null) {
+                                mEventHandler.onReceivedIcon(faviconBitmap);
+                            } else {
+                                mEventHandler.setDefaultFavicon();
+                            }
 
                             return true;
                         }

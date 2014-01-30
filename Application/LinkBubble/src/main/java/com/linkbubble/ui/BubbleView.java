@@ -199,11 +199,11 @@ public class BubbleView extends FrameLayout  {
         showProgressBar(false, 0);
     }
 
-    protected boolean onReceivedIcon(Bitmap favicon) {
+    protected boolean onReceivedIcon(Bitmap favicon, boolean forceSet) {
         boolean appliedFavicon = false;
         if (favicon == null) {
             // Don't update if an image already exists. Optimization as the fallback favicon is already set via loadFavicon()
-            if (mFavicon.getDrawable() == null) {
+            if (mFavicon.getDrawable() == null || forceSet) {
                 mFaviconLoadId = Favicons.NOT_LOADING;
                 setFallbackFavicon();
                 if (mImitator != null) {
@@ -233,7 +233,7 @@ public class BubbleView extends FrameLayout  {
                 }
             }
 
-            if (applyFavicon) {
+            if (applyFavicon || forceSet) {
                 if(MainApplication.sDatabaseHelper.faviconExists(faviconUrl, favicon) == false) {
                     MainApplication.sDatabaseHelper.addFaviconForUrl(faviconUrl, favicon, mUrl.toString());
                 }
