@@ -154,7 +154,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     public void destroy() {
         //setOnTouchListener(null);
-        mWindowManager.removeView(this);
+        //mWindowManager.removeView(this);
         mDraggableHelper.destroy();
     }
 
