@@ -529,6 +529,7 @@ public class SettingsFragment extends PreferenceFragment {
                             dataCleared = true;
                         } else if (item.equals(clearFavicons)) {
                             MainApplication.sDatabaseHelper.deleteAllFavicons();
+                            MainApplication.recreateFaviconCache();
                             dataCleared = true;
                         } else if (item.equals(clearFormData)) {
                             if (webViewDatabase != null) {
