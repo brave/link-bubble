@@ -265,6 +265,11 @@ public class MainController implements Choreographer.FrameCallback {
     //private int mFrameNumber;
 
     public void onPageLoaded(TabView tab) {
+        // Ensure this is not an edge case where the Tab has already been destroyed, re #254
+        if (getActiveTabCount() == 0 || isTabActive(tab) == false) {
+            return;
+        }
+
         if (Settings.get().getAutoContentDisplayLinkLoaded() && !mBubbleDraggable.isDragging() && mCanAutoDisplayLink) {
             switch (mBubbleDraggable.getCurrentMode()) {
                 case BubbleView:
@@ -329,6 +334,14 @@ public class MainController implements Choreographer.FrameCallback {
 
     public int getTabIndex(TabView tab) {
         return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getIndexOfView(tab) : -1;
+    }
+
+    public boolean isTabActive(TabView tab) {
+        int index = getTabIndex(tab);
+        if (index > -1) {
+            return true;
+        }
+        return false;
     }
 
     public void doFrame(long frameTimeNanos) {
