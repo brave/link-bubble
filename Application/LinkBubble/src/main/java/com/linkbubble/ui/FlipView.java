@@ -87,6 +87,10 @@ public class FlipView extends FrameLayout implements View.OnClickListener,
     }
 
     private void init(Context context, AttributeSet attrs, int defStyle) {
+        if (isInEditMode()) {
+            return;
+        }
+
         sDefaultDuration = context.getResources().getInteger(R.integer.default_fiv_duration);
         sDefaultRotations = context.getResources().getInteger(R.integer.default_fiv_rotations);
         sDefaultAnimated = context.getResources().getBoolean(R.bool.default_fiv_isAnimated);
