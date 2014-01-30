@@ -7,6 +7,7 @@ import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import com.linkbubble.Config;
+import com.linkbubble.MainApplication;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -68,11 +69,6 @@ public class PageInspector {
             "  }\n" +
             "}";
 
-    private static final String JS_EMBED = "javascript:(function() {\n" +
-            JS_TOUCH_ICON_CHECK +
-            JS_YOUTUBE_EMBED_CHECK +
-            "})();";
-
     private Context mContext;
     private String mWebViewUrl;
     private JSEmbedHandler mJSEmbedHandler;
@@ -99,9 +95,19 @@ public class PageInspector {
         webView.addJavascriptInterface(mJSEmbedHandler, JS_VARIABLE);
     }
 
-    public void run(WebView webView) {
+    public void run(WebView webView, boolean checkForTouchIcon) {
         mWebViewUrl = webView.getUrl();
-        webView.loadUrl(JS_EMBED);
+
+        String jsEmbed = "javascript:(function() {\n";
+
+        if (checkForTouchIcon) {
+            jsEmbed += JS_TOUCH_ICON_CHECK;
+        }
+
+        jsEmbed += JS_YOUTUBE_EMBED_CHECK;
+        jsEmbed += "})();";
+
+        webView.loadUrl(jsEmbed);
     }
 
     public void reset() {

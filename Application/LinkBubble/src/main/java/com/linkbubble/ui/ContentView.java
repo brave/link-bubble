@@ -142,6 +142,7 @@ public class ContentView extends FrameLayout {
         public boolean onReceivedIcon(Bitmap bitmap);
         public void setDefaultFavicon();
         public void onBackStackSizeChanged(int size);
+        public boolean hasHighQualityFavicon();
     }
 
     @Override
@@ -493,7 +494,7 @@ public class ContentView extends FrameLayout {
                 MainApplication.saveUrlInHistory(getContext(), null, mUrl.toString(), mUrl.getHost(), title);
 
                 // Always check again at 100%
-                mPageInspector.run(webView);
+                mPageInspector.run(webView, mEventHandler.hasHighQualityFavicon() ? false : true);
             }
         }
     };
@@ -585,11 +586,11 @@ public class ContentView extends FrameLayout {
                     mPageInspector.reset();
 
                     Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                    mPageInspector.run(webView);
+                    mPageInspector.run(webView, mEventHandler.hasHighQualityFavicon() ? false : true);
                 } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
                     mCheckForEmbedsCount = 2;
                     Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                    mPageInspector.run(webView);
+                    mPageInspector.run(webView, mEventHandler.hasHighQualityFavicon() ? false : true);
                 }
             }
         }
