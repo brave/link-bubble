@@ -287,6 +287,8 @@ public class FaviconView extends ImageView {
             updateImageInternal(bitmap, key, true);
         } else {
             mDrawOutline = false;
+            mDominantColor = 0;
+            mIconKey = null;
             setScaleType(ScaleType.CENTER_INSIDE);
             setImageBitmap(bitmap);
         }
