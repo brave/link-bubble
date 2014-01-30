@@ -6,6 +6,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
@@ -173,11 +174,6 @@ public class BubbleTargetView extends FrameLayout {
             Util.Assert(mButtonHeight > 0);
 
             mImage.setImageDrawable(d);
-
-            FrameLayout.LayoutParams imageLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            imageLP.leftMargin = (int) (0.5f + mDefaultCircle.mRadius - mButtonWidth * 0.5f);
-            imageLP.topMargin = (int) (0.5f + mDefaultCircle.mRadius - mButtonHeight * 0.5f);
-            updateViewLayout(mImage, imageLP);
         }
     }
 
@@ -212,6 +208,7 @@ public class BubbleTargetView extends FrameLayout {
         Util.Assert(mButtonHeight > 0);
 
         mImage = new ImageView(context);
+        mImage.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         mImage.setImageDrawable(d);
 
         mCircleView = new ImageView(context);
@@ -246,9 +243,8 @@ public class BubbleTargetView extends FrameLayout {
 
         addView(mCircleView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        FrameLayout.LayoutParams imageLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        imageLP.leftMargin = (int) (0.5f + mDefaultCircle.mRadius - mButtonWidth * 0.5f);
-        imageLP.topMargin = (int) (0.5f + mDefaultCircle.mRadius - mButtonHeight * 0.5f);
+        int imageSize = getResources().getDimensionPixelSize(R.dimen.bubble_target_icon_size);
+        FrameLayout.LayoutParams imageLP = new LayoutParams(imageSize, imageSize, Gravity.CENTER);
         addView(mImage, imageLP);
 
         // Add main relative layout to canvasView
