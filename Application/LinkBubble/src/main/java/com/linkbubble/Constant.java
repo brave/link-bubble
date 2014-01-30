@@ -9,6 +9,8 @@ public class Constant {
 
     public static final int BUBBLE_ANIM_TIME = 300;
 
+    public static final int DESIRED_FAVICON_SIZE = 96;
+
     public static final String PRIVACY_POLICY_URL = "http://www.actionlauncher.com/privacy";
     public static final String TERMS_OF_SERVICE_URL = "http://www.actionlauncher.com/terms";
 

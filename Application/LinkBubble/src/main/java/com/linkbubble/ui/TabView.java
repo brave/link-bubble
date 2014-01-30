@@ -3,9 +3,12 @@ package com.linkbubble.ui;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
+import com.linkbubble.Constant;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.util.ScaleUpAnimHelper;
@@ -96,6 +99,19 @@ public class TabView extends BubbleView {
                     mBackIndicatorAnimHelper.show();
                 }
                 mLastBackStackSize = size;
+            }
+
+            @Override
+            public boolean hasHighQualityFavicon() {
+                String tag = (String)mFavicon.getTag();
+                Drawable drawable = mFavicon.getDrawable();
+                if (tag != null && drawable != null && drawable instanceof BitmapDrawable) {
+                    Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+                    if (bitmap != null && bitmap.getWidth() >= Constant.DESIRED_FAVICON_SIZE) {
+                        return true;
+                    }
+                }
+                return false;
             }
         });
 
