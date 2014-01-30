@@ -4,7 +4,6 @@
     android:id="@+id/stat_container"
     android:layout_width="wrap_content"
     android:layout_height="@dimen/stat_height"
-    android:layout_below="@id/header_logo"
     android:layout_gravity="center"
     android:orientation="vertical"
     android:layout_marginBottom="40dp">
