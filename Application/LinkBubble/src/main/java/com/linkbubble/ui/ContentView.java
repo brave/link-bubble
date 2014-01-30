@@ -520,6 +520,11 @@ public class ContentView extends FrameLayout {
                                 title = getResources().getString(R.string.loading);
                             }
                             mTitleTextView.setText(title);
+
+                            String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
+                            Bitmap faviconBitmap = MainApplication.sFavicons.getSizedFaviconFromCache(faviconUrl, Integer.MAX_VALUE);
+                            mEventHandler.onReceivedIcon(faviconBitmap);
+
                             return true;
                         }
                         break;
