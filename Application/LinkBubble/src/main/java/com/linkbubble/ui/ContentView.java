@@ -394,7 +394,7 @@ public class ContentView extends FrameLayout {
                                             MainController.get().destroyCurrentBubble(MainController.get().contentViewShowing());
                                         }
                                         // NOTE: no need to call loadUrl(urlAsString) or anything in the event the link is to be handled by
-                                        // Link Bubble. The flow already assumes that will happen by continuing the load when the Dialog displays.
+                                        // Link Bubble. The flow already assumes that will happen by continuing the load when the Dialog displays. #244
                                     }
                                 });
 
