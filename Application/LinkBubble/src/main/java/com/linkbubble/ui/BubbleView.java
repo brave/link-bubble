@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.linkbubble.Config;
+import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
@@ -175,8 +176,8 @@ public class BubbleView extends FrameLayout  {
             int w = source.getWidth();
             int h = source.getHeight();
 
-            int reqW = Math.min((int) (Config.mBubbleWidth * 0.5f), w*2);
-            int reqH = Math.min((int) (Config.mBubbleHeight * 0.5f), h*2);
+            int reqW = Math.min(Constant.DESIRED_FAVICON_SIZE, w*2);
+            int reqH = Math.min(Constant.DESIRED_FAVICON_SIZE, h*2);
 
             if (w != reqW || h != reqH) {
                 w = reqW;
