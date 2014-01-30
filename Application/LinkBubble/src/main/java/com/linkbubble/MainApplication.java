@@ -43,10 +43,10 @@ public class MainApplication extends Application {
 
         try {
             Favicons.attachToContext(this);
-            sFavicons = new Favicons();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        recreateFaviconCache();
     }
 
     public Bus getBus() {
@@ -64,6 +64,14 @@ public class MainApplication extends Application {
         sFavicons = null;
 
         super.onTerminate();
+    }
+
+    public static void recreateFaviconCache() {
+        if (sFavicons != null) {
+            sFavicons.close();
+        }
+
+        sFavicons = new Favicons();
     }
 
     public static void openLink(Context context, String url) {
