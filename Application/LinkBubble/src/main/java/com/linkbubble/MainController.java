@@ -523,6 +523,8 @@ public class MainController implements Choreographer.FrameCallback {
             showBadge(activeTabCount > 1 ? true : false);
             if (activeTabCount == 0) {
                 hideBubbleDraggable();
+                // Ensure BubbleFlowDraggable gets at least 1 update in the event items are animating off screen. See #237.
+                scheduleUpdate();
             }
         }
 
