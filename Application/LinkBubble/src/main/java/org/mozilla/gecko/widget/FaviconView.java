@@ -5,6 +5,7 @@
 
 package org.mozilla.gecko.widget;
 
+import com.linkbubble.Constant;
 import com.linkbubble.R;
 import org.mozilla.gecko.favicons.Favicons;
 
@@ -280,7 +281,7 @@ public class FaviconView extends ImageView {
      * @param key
      */
     public void updateImage(Bitmap bitmap, String key) {
-        if (bitmap.getWidth() < 96) {
+        if (bitmap.getWidth() < Constant.DESIRED_FAVICON_SIZE) {
             mDrawOutline = true;
             setScaleType(ImageView.ScaleType.CENTER);
             updateImageInternal(bitmap, key, true);
