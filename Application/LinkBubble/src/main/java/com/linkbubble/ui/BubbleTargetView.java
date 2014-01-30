@@ -26,7 +26,6 @@ import com.squareup.otto.Subscribe;
  * Created by gw on 21/11/13.
  */
 public class BubbleTargetView extends FrameLayout {
-    private Context mContext;
     private ImageView mCircleView;
     private ImageView mImage;
     private CanvasView mCanvasView;
@@ -187,7 +186,6 @@ public class BubbleTargetView extends FrameLayout {
                       int tractorOffsetX, int tractorOffsetY) {
         mCanvasView = canvasView;
         mEnableMove = false;
-        mContext = context;
         mAction = action;
         mInterpolator = Interpolator.Linear;
 
@@ -200,7 +198,7 @@ public class BubbleTargetView extends FrameLayout {
         mTractorOffsetX = tractorOffsetX;
         mTractorOffsetY = tractorOffsetY;
 
-        MainApplication.registerForBus(mContext, this);
+        MainApplication.registerForBus(context, this);
 
         if (d instanceof BitmapDrawable) {
             Bitmap bm = ((BitmapDrawable)d).getBitmap();
@@ -213,10 +211,10 @@ public class BubbleTargetView extends FrameLayout {
         Util.Assert(mButtonWidth > 0);
         Util.Assert(mButtonHeight > 0);
 
-        mImage = new ImageView(mContext);
+        mImage = new ImageView(context);
         mImage.setImageDrawable(d);
 
-        mCircleView = new ImageView(mContext);
+        mCircleView = new ImageView(context);
         mCircleView.setImageResource(R.drawable.target_default);
 
         int bubbleIconSize = getResources().getDimensionPixelSize(R.dimen.bubble_icon_size);
@@ -225,7 +223,7 @@ public class BubbleTargetView extends FrameLayout {
         Util.Assert(mSnapWidth > 0 && mSnapHeight > 0 && mSnapWidth == mSnapHeight);
         mSnapCircle = new Circle(getXPos(), getYPos(), mSnapWidth * 0.5f);
 
-        Drawable defaultDrawable = mContext.getResources().getDrawable(R.drawable.target_default);
+        Drawable defaultDrawable = context.getResources().getDrawable(R.drawable.target_default);
         float defaultWidth = defaultDrawable.getIntrinsicWidth();
         float defaultHeight = defaultDrawable.getIntrinsicHeight();
         Util.Assert(defaultWidth > 0 && defaultHeight > 0 && defaultWidth == defaultHeight);
@@ -300,7 +298,7 @@ public class BubbleTargetView extends FrameLayout {
     }
 
     public void destroy() {
-        MainApplication.unregisterForBus(mContext, this);
+        MainApplication.unregisterForBus(getContext(), this);
     }
 
     public boolean shouldSnap(Circle bubbleCircle, float radiusScaler) {

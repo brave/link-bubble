@@ -69,7 +69,6 @@ public class ContentView extends FrameLayout {
     private ContentViewButton mOverflowButton;
     private LinearLayout mToolbarLayout;
     private EventHandler mEventHandler;
-    private Context mContext;
     private URL mUrl;
     private long mLastWebViewTouchUpTime = -1;
     private String mLastWebViewTouchDownUrl;
@@ -194,7 +193,7 @@ public class ContentView extends FrameLayout {
 
     private void showSelectShareMethod(final String urlAsString, final boolean closeBubbleOnShare) {
 
-        AlertDialog alertDialog = ActionItem.getShareAlert(mContext, new ActionItem.OnActionItemSelectedListener() {
+        AlertDialog alertDialog = ActionItem.getShareAlert(getContext(), new ActionItem.OnActionItemSelectedListener() {
             @Override
             public void onSelected(ActionItem actionItem) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
@@ -202,7 +201,7 @@ public class ContentView extends FrameLayout {
                 intent.setClassName(actionItem.mPackageName, actionItem.mActivityClassName);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(Intent.EXTRA_TEXT, urlAsString);
-                mContext.startActivity(intent);
+                getContext().startActivity(intent);
 
                 if (closeBubbleOnShare) {
                     MainController.get().destroyCurrentBubble(true);
@@ -245,7 +244,6 @@ public class ContentView extends FrameLayout {
         mOverflowButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_overflow_round));
         mOverflowButton.setOnClickListener(mOnOverflowButtonClickListener);
 
-        mContext = getContext();
         mEventHandler = eventHandler;
         mEventHandler.onBackStackSizeChanged(mUrlStack.size());
         mPageFinishedLoading = false;
@@ -264,7 +262,7 @@ public class ContentView extends FrameLayout {
         mWebView.setWebViewClient(mWebViewClient);
         mWebView.setDownloadListener(mDownloadListener);
 
-        mPageInspector = new PageInspector(mContext, mWebView, mOnPageInspectorItemFoundListener);
+        mPageInspector = new PageInspector(getContext(), mWebView, mOnPageInspectorItemFoundListener);
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
@@ -333,12 +331,13 @@ public class ContentView extends FrameLayout {
             updateUrl(urlAsString);
 
             mPageInspector.reset();
+            final Context context = getContext();
 
             updateAppsForUrl(Settings.get().getAppsThatHandleUrl(urlAsString), mUrl);
             if (Settings.get().redirectUrlToBrowser(urlAsString)) {
                 if (openInBrowser(urlAsString)) {
-                    String title = String.format(mContext.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
-                    MainApplication.saveUrlInHistory(mContext, null, urlAsString, title);
+                    String title = String.format(context.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
+                    MainApplication.saveUrlInHistory(context, null, urlAsString, title);
                     return false;
                 }
             }
@@ -351,10 +350,10 @@ public class ContentView extends FrameLayout {
                 if (mAppsForUrl.size() == 1) {
                     AppForUrl appForUrl = mAppsForUrl.get(0);
                     if (appForUrl.mResolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo) {
-                        if (MainApplication.loadResolveInfoIntent(mContext, appForUrl.mResolveInfo, urlAsString, mStartTime)) {
-                            String title = String.format(mContext.getString(R.string.link_loaded_with_app),
-                                    appForUrl.mResolveInfo.loadLabel(mContext.getPackageManager()));
-                            MainApplication.saveUrlInHistory(mContext, appForUrl.mResolveInfo, urlAsString, title);
+                        if (MainApplication.loadResolveInfoIntent(context, appForUrl.mResolveInfo, urlAsString, mStartTime)) {
+                            String title = String.format(context.getString(R.string.link_loaded_with_app),
+                                    appForUrl.mResolveInfo.loadLabel(context.getPackageManager()));
+                            MainApplication.saveUrlInHistory(context, appForUrl.mResolveInfo, urlAsString, title);
 
                             MainController.get().destroyCurrentBubble(MainController.get().contentViewShowing());
                             return false;
@@ -366,12 +365,12 @@ public class ContentView extends FrameLayout {
                         for (AppForUrl appForUrl : mAppsForUrl) {
                             resolveInfos.add(appForUrl.mResolveInfo);
                         }
-                        AlertDialog dialog = ActionItem.getActionItemPickerAlert(mContext, resolveInfos, R.string.pick_default_app,
+                        AlertDialog dialog = ActionItem.getActionItemPickerAlert(context, resolveInfos, R.string.pick_default_app,
                                 new ActionItem.OnActionItemDefaultSelectedListener() {
                                     @Override
                                     public void onSelected(ActionItem actionItem, boolean always) {
                                         boolean loaded = false;
-                                        String appPackageName = mContext.getPackageName();
+                                        String appPackageName = context.getPackageName();
                                         for (ResolveInfo resolveInfo : resolveInfos) {
                                             if (resolveInfo.activityInfo.packageName.equals(actionItem.mPackageName)
                                                     && resolveInfo.activityInfo.name.equals(actionItem.mActivityClassName)) {
@@ -384,7 +383,7 @@ public class ContentView extends FrameLayout {
                                                     break;
                                                 }
 
-                                                loaded = MainApplication.loadIntent(mContext, actionItem.mPackageName,
+                                                loaded = MainApplication.loadIntent(context, actionItem.mPackageName,
                                                         actionItem.mActivityClassName, urlAsString, -1);
                                                 break;
                                             }
@@ -609,7 +608,7 @@ public class ContentView extends FrameLayout {
                     } else {
                         message = getResources().getString(R.string.long_press_unsupported_no_default_browser);
                     }
-                    Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
                     return false;
             }
         }
@@ -660,8 +659,9 @@ public class ContentView extends FrameLayout {
     OnClickListener mOnOverflowButtonClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            mOverflowPopupMenu = new PopupMenu(mContext, mOverflowButton);
-            Resources resources = mContext.getResources();
+            final Context context = getContext();
+            mOverflowPopupMenu = new PopupMenu(context, mOverflowButton);
+            Resources resources = context.getResources();
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_upgrade_to_pro, Menu.NONE,
                     resources.getString(R.string.action_upgrade_to_pro));
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_reload_page, Menu.NONE,
@@ -678,9 +678,9 @@ public class ContentView extends FrameLayout {
                 public boolean onMenuItemClick(MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.item_upgrade_to_pro: {
-                            Intent intent = Config.getStoreIntent(mContext, Config.STORE_PRO_URL);
+                            Intent intent = Config.getStoreIntent(context, Config.STORE_PRO_URL);
                             if (intent != null) {
-                                mContext.startActivity(intent);
+                                context.startActivity(intent);
                                 MainController.get().switchToBubbleView();
                             }
                             break;
@@ -708,9 +708,9 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_settings: {
-                            Intent intent = new Intent(mContext, SettingsActivity.class);
+                            Intent intent = new Intent(context, SettingsActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            mContext.startActivity(intent);
+                            context.startActivity(intent);
                             MainController.get().switchToBubbleView();
                             break;
                         }
@@ -781,7 +781,7 @@ public class ContentView extends FrameLayout {
     };
 
     private void onUrlLongClick(final String urlAsString) {
-        Resources resources = mContext.getResources();
+        Resources resources = getResources();
 
         final ArrayList<String> longClickSelections = new ArrayList<String>();
 
@@ -829,9 +829,9 @@ public class ContentView extends FrameLayout {
                 } else if (string.equals(shareLabel)) {
                     showSelectShareMethod(urlAsString, false);
                 } else if (leftConsumeBubbleLabel != null && string.equals(leftConsumeBubbleLabel)) {
-                    MainApplication.handleBubbleAction(mContext, Config.BubbleAction.ConsumeLeft, urlAsString);
+                    MainApplication.handleBubbleAction(getContext(), Config.BubbleAction.ConsumeLeft, urlAsString);
                 } else if (rightConsumeBubbleLabel != null && string.equals(rightConsumeBubbleLabel)) {
-                    MainApplication.handleBubbleAction(mContext, Config.BubbleAction.ConsumeRight, urlAsString);
+                    MainApplication.handleBubbleAction(getContext(), Config.BubbleAction.ConsumeRight, urlAsString);
                 }
 
                 if (mLongPressAlertDialog != null) {
@@ -1000,7 +1000,7 @@ public class ContentView extends FrameLayout {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(urlAsString));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        if (MainApplication.loadInBrowser(mContext, intent, true)) {
+        if (MainApplication.loadInBrowser(getContext(), intent, true)) {
             MainController.get().destroyCurrentBubble(true);
             return true;
         }
