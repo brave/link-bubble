@@ -64,7 +64,7 @@ public class TabView extends BubbleView {
                 }
 
                 if (setDefaultFavicon) {
-                    onReceivedIcon(null);
+                    setDefaultFavicon();
                 }
             }
 
@@ -80,7 +80,12 @@ public class TabView extends BubbleView {
 
             @Override
             public boolean onReceivedIcon(Bitmap favicon) {
-                return TabView.this.onReceivedIcon(favicon);
+                return TabView.this.onReceivedIcon(favicon, false);
+            }
+
+            @Override
+            public void setDefaultFavicon() {
+                TabView.this.onReceivedIcon(null, true);
             }
 
             @Override
