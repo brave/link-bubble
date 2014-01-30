@@ -530,14 +530,7 @@ public class ContentView extends FrameLayout {
                             }
                             mTitleTextView.setText(title);
 
-                            String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
-                            Bitmap faviconBitmap = MainApplication.sFavicons.getSizedFaviconFromCache(faviconUrl, Integer.MAX_VALUE);
-                            if (faviconBitmap != null) {
-                                mEventHandler.onReceivedIcon(faviconBitmap);
-                            } else {
-                                mEventHandler.setDefaultFavicon();
-                            }
-
+                            mEventHandler.onPageLoading(mUrl);
                             return true;
                         }
                         break;
