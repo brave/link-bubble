@@ -70,6 +70,7 @@ public class ContentView extends FrameLayout {
     private LinearLayout mToolbarLayout;
     private EventHandler mEventHandler;
     private URL mUrl;
+    private int mCurrentProgress = 0;
     private long mLastWebViewTouchUpTime = -1;
     private String mLastWebViewTouchDownUrl;
     private boolean mPageFinishedLoading;
@@ -447,6 +448,13 @@ public class ContentView extends FrameLayout {
         @Override
         public void onPageFinished(WebView webView, String urlAsString) {
             super.onPageFinished(webView, urlAsString);
+
+            // This should not be necessary, but unfortunately is.
+            // Often when pressing Back, onPageFinished() is mistakenly called when progress is 0.
+            if (mCurrentProgress != 100) {
+                return;
+            }
+
             mPageFinishedLoading = true;
             // NOTE: *don't* call updateUrl() here. Turns out, this function is called after a redirect has occurred.
             // Eg, urlAsString "t.co/xyz" even after the next redirect is starting to load
@@ -561,7 +569,9 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onProgressChanged(WebView webView, int progress) {
-            //Log.d(TAG, "onProgressChanged() - progress:" + progress);
+            Log.d(TAG, "onProgressChanged() - progress:" + progress);
+
+            mCurrentProgress = progress;
 
             // Note: annoyingly, onProgressChanged() can be called with values from a previous url.
             // Eg, "http://t.co/fR9bzpvyLW" redirects to "http://on.recode.net/1eOqNVq" which redirects to
