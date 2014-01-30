@@ -111,7 +111,11 @@ public class BubbleTargetView extends FrameLayout {
         return 0;
     }
 
-    private void setTargetPos(int x, int y, float t, Interpolator interpolator) {
+    public void setTargetCenter(int x, int y, float t, Interpolator interpolator) {
+        setTargetPos((int) (x - mSnapWidth * 0.5f), (int) (y - mSnapHeight * 0.5f), t, interpolator);
+    }
+
+    public void setTargetPos(int x, int y, float t, Interpolator interpolator) {
         if (x != mTargetX || y != mTargetY) {
 
             // Add a bit of time for the overshoot testing.
@@ -361,21 +365,15 @@ public class BubbleTargetView extends FrameLayout {
     @Subscribe
     public void onDraggableBubbleMovedEvent(MainController.DraggableBubbleMovedEvent e) {
         if (mEnableMove) {
-            int xMaxOffset = mMaxOffsetX;
-            int yMaxOffset = mMaxOffsetY;
 
-            if (sEnableTractor) {
-                xMaxOffset = mTractorOffsetX;
-                yMaxOffset = mTractorOffsetY;
-            }
+            if (!sEnableTractor) {
+                int xMaxOffset = mMaxOffsetX;
+                int yMaxOffset = mMaxOffsetY;
 
-            int x0 = (int) (0.5f + getXPos() - xMaxOffset - Config.mBubbleWidth * 0.5f);
-            int x1 = (int) (0.5f + getXPos() + xMaxOffset - Config.mBubbleWidth * 0.5f);
+                int x0 = (int) (0.5f + getXPos() - xMaxOffset - Config.mBubbleWidth * 0.5f);
+                int x1 = (int) (0.5f + getXPos() + xMaxOffset - Config.mBubbleWidth * 0.5f);
 
-            int xt;
-            if (sEnableTractor) {
-                xt = Util.clamp(x0, e.mX, x1);
-            } else {
+                int xt;
                 float xc = (x0 + x1) * 0.5f;
                 float xf;
 
@@ -388,38 +386,38 @@ public class BubbleTargetView extends FrameLayout {
                 }
 
                 xt = x0 + (int) (0.5f + (x1 - x0) * xf);
+
+                int targetX = Util.clamp(x0, xt, x1);
+                mSnapCircle.mX = targetX + Config.mBubbleWidth * 0.5f;
+
+                int y0 = (int) (0.5f + getYPos() - yMaxOffset - Config.mBubbleHeight * 0.5f);
+                int y1 = (int) (0.5f + getYPos() + yMaxOffset - Config.mBubbleHeight * 0.5f);
+                int targetY = Util.clamp(y0, e.mY, y1);
+                mSnapCircle.mY = targetY + Config.mBubbleHeight * 0.5f;
+
+                mSnapCircle.mY = Util.clamp(0, mSnapCircle.mY, Config.mScreenHeight - mDefaultCircle.mRadius);
+
+                mDefaultCircle.mX = mSnapCircle.mX;
+                mDefaultCircle.mY = mSnapCircle.mY;
+
+                int x = (int) (0.5f + mDefaultCircle.mX - mDefaultCircle.mRadius);
+                int y = (int) (0.5f + mDefaultCircle.mY - mDefaultCircle.mRadius);
+
+                float d = Util.distance(x, y, mCanvasLayoutParams.leftMargin, mCanvasLayoutParams.topMargin);
+
+                float v = Config.mScreenWidth;      // Move 'screenWidth' pixels / second
+                float t = d / v;
+
+                float remainingTime = Math.max(t, mTransitionTimeLeft);
+
+                Interpolator in = Interpolator.Overshoot;
+                if (mTransitionTimeLeft > 0.0f) {
+                    remainingTime = mTransitionTimeLeft;
+                    in = Interpolator.Linear;
+                }
+
+                setTargetPos(x, y, remainingTime, in);
             }
-
-            int targetX = Util.clamp(x0, xt, x1);
-            mSnapCircle.mX = targetX + Config.mBubbleWidth * 0.5f;
-
-            int y0 = (int) (0.5f + getYPos() - yMaxOffset - Config.mBubbleHeight * 0.5f);
-            int y1 = (int) (0.5f + getYPos() + yMaxOffset - Config.mBubbleHeight * 0.5f);
-            int targetY = Util.clamp(y0, e.mY, y1);
-            mSnapCircle.mY = targetY + Config.mBubbleHeight * 0.5f;
-
-            mSnapCircle.mY = Util.clamp(0, mSnapCircle.mY, Config.mScreenHeight - mDefaultCircle.mRadius);
-
-            mDefaultCircle.mX = mSnapCircle.mX;
-            mDefaultCircle.mY = mSnapCircle.mY;
-
-            int x = (int) (0.5f + mDefaultCircle.mX - mDefaultCircle.mRadius);
-            int y = (int) (0.5f + mDefaultCircle.mY - mDefaultCircle.mRadius);
-
-            float d = Util.distance(x, y, mCanvasLayoutParams.leftMargin, mCanvasLayoutParams.topMargin);
-
-            float v = Config.mScreenWidth;      // Move 'screenWidth' pixels / second
-            float t = d / v;
-
-            float remainingTime = Math.max(t, mTransitionTimeLeft);
-
-            Interpolator in = Interpolator.Overshoot;
-            if (mTransitionTimeLeft > 0.0f) {
-                remainingTime = mTransitionTimeLeft;
-                in = Interpolator.Linear;
-            }
-
-            setTargetPos(x, y, remainingTime, in);
         }
     }
 

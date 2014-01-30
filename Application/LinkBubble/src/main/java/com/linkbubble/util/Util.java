@@ -3,6 +3,7 @@ package com.linkbubble.util;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Point;
 import android.net.Uri;
 
 import java.io.BufferedReader;
@@ -152,5 +153,121 @@ public class Util {
 
     public static String getDefaultFaviconUrl(URL url) {
         return url.getProtocol() + "://" + url.getHost() + "/favicon.ico";
+    }
+
+    private static final int OUTCODE_INSIDE = 0;
+    private static final int OUTCODE_LEFT = 1;
+    private static final int OUTCODE_RIGHT = 2;
+    private static final int OUTCODE_BOTTOM = 4;
+    private static final int OUTCODE_TOP = 8;
+
+    public static class ClipResult {
+        public int x0, y0, x1, y1;
+    }
+
+    public static class Point {
+        public int x, y;
+    }
+
+    private static int computeOutCode(float x, float y, float xmin, float ymin, float xmax, float ymax)
+    {
+        int code = OUTCODE_INSIDE;
+
+        if (x < xmin)           // to the left of clip window
+            code |= OUTCODE_LEFT;
+        else if (x > xmax)      // to the right of clip window
+            code |= OUTCODE_RIGHT;
+        if (y < ymin)           // below the clip window
+            code |= OUTCODE_BOTTOM;
+        else if (y > ymax)      // above the clip window
+            code |= OUTCODE_TOP;
+
+        return code;
+    }
+
+    // Naive Java port of Cohen Sutherland clipping algorithm.
+    // See: http://en.wikipedia.org/wiki/Cohen%E2%80%93Sutherland_algorithm
+
+    public static boolean clipLineSegmentToRectangle(float x0, float y0, float x1, float y1,
+                                                     float xmin, float ymin, float xmax, float ymax,
+                                                     ClipResult clipResult) {
+
+        // compute outcodes for P0, P1, and whatever point lies outside the clip rectangle
+        int outcode0 = computeOutCode(x0, y0, xmin, ymin, xmax, ymax);
+        int outcode1 = computeOutCode(x1, y1, xmin, ymin, xmax, ymax);
+        boolean accept = false;
+
+        while (true) {
+            if ((outcode0 | outcode1) == 0) { // Bitwise OR is 0. Trivially accept and get out of loop
+                accept = true;
+                break;
+            } else if ((outcode0 & outcode1) != 0) { // Bitwise AND is not 0. Trivially reject and get out of loop
+                break;
+            } else {
+                // failed both tests, so calculate the line segment to clip
+                // from an outside point to an intersection with clip edge
+                float x, y;
+
+                // At least one endpoint is outside the clip rectangle; pick it.
+                int outcodeOut = (outcode0 != 0) ? outcode0 : outcode1;
+
+                // Now find the intersection point;
+                // use formulas y = y0 + slope * (x - x0), x = x0 + (1 / slope) * (y - y0)
+                if ((outcodeOut & OUTCODE_TOP) != 0) {           // point is above the clip rectangle
+                    x = x0 + (x1 - x0) * (ymax - y0) / (y1 - y0);
+                    y = ymax;
+                } else if ((outcodeOut & OUTCODE_BOTTOM) != 0) { // point is below the clip rectangle
+                    x = x0 + (x1 - x0) * (ymin - y0) / (y1 - y0);
+                    y = ymin;
+                } else if ((outcodeOut & OUTCODE_RIGHT) != 0) {  // point is to the right of clip rectangle
+                    y = y0 + (y1 - y0) * (xmax - x0) / (x1 - x0);
+                    x = xmax;
+                } else {   // point is to the left of clip rectangle
+                    Util.Assert((outcodeOut & OUTCODE_LEFT) != 0);
+                    y = y0 + (y1 - y0) * (xmin - x0) / (x1 - x0);
+                    x = xmin;
+                }
+
+                // Now we move outside point to intersection point to clip
+                // and get ready for next pass.
+                if (outcodeOut == outcode0) {
+                    x0 = x;
+                    y0 = y;
+                    outcode0 = computeOutCode(x0, y0, xmin, ymin, xmax, ymax);
+                } else {
+                    x1 = x;
+                    y1 = y;
+                    outcode1 = computeOutCode(x1, y1, xmin, ymin, xmax, ymax);
+                }
+            }
+        }
+
+        if (accept) {
+            // Following functions are left for implementation by user based on
+            // their platform (OpenGL/graphics.h etc.)
+            clipResult.x0 = (int) (x0 + 0.5f);
+            clipResult.y0 = (int) (y0 + 0.5f);
+            clipResult.x1 = (int) (x1 + 0.5f);
+            clipResult.y1 = (int) (y1 + 0.5f);
+        }
+
+        return accept;
+    }
+
+    public static void closestPointToLineSegment(float ax, float ay, float bx, float by, float px, float py, Point p) {
+        float apX = px - ax;
+        float apY = py - ay;
+
+        float abX = bx - ax;
+        float abY = by - ay;
+
+        float abSq = abX * abX + abY * abY;
+        float dot = apX * abX + apY * abY;
+        float t = dot / abSq;
+
+        t = Util.clamp(0.0f, t, 1.0f);
+
+        p.x = (int) (0.5f + ax + abX * t);
+        p.y = (int) (0.5f + ay + abY * t);
     }
 }
