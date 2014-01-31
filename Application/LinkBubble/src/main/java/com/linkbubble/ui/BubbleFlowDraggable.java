@@ -180,7 +180,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             // restoring with N Bubbles from a previous session and the user clicks to expand the BubbleFlowView.
             int currentBubbleIndex = getIndexOfView(mCurrentTab);
             int centerIndex = getCenterIndex();
-            if (centerIndex > -1 && currentBubbleIndex != centerIndex) {
+            if (centerIndex > -1 && currentBubbleIndex != centerIndex && isAnimatingToCenterIndex() == false) {
                 setCenterIndex(currentBubbleIndex, false);
             }
         }
