@@ -21,7 +21,9 @@ public class ScaleUpAnimHelper {
     }
 
     public void show() {
+        int duration = 667;
         if (mView.getVisibility() != View.VISIBLE) {
+            duration = 500;
             mView.animate().cancel();
             mView.setAlpha(0f);
             mView.setVisibility(View.VISIBLE);
@@ -33,7 +35,7 @@ public class ScaleUpAnimHelper {
         }
 
         mView.animate().alpha(1f).scaleX(1f).scaleY(1f)
-                .setDuration(667)
+                .setDuration(duration)
                 .setInterpolator(new AnticipateOvershootInterpolator())
                 .setListener(mShowListener)
                 .start();
