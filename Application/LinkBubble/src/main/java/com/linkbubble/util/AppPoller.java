@@ -18,12 +18,16 @@ public class AppPoller {
         void onAppChanged();
     }
 
+    private static int VERIFY_TIME = 150;
+
     private static final int ACTION_POLL_CURRENT_APP = 1;
     private static final int LOOP_TIME = 50;
 
     private Context mContext;
     private AppPollerListener mAppPollingListener;
     private String mCurrentAppFlatComponentName;
+    private String mNextAppFlatComponentName;
+    private long mNextAppFirstRunningTime = -1;
     private boolean mPolling = false;
 
     public AppPoller(Context context) {
@@ -41,6 +45,9 @@ public class AppPoller {
             mCurrentAppFlatComponentName = componentName.flattenToShortString();
             Log.d(TAG, "beginAppPolling() - current app:" + mCurrentAppFlatComponentName);
         }
+
+        mNextAppFirstRunningTime = -1;
+        mNextAppFlatComponentName = null;
 
         if (mPolling == false) {
             mHandler.sendEmptyMessageDelayed(ACTION_POLL_CURRENT_APP, LOOP_TIME);
@@ -62,6 +69,7 @@ public class AppPoller {
     private boolean shouldIgnoreActivity(String flatComponentName) {
         for (String string : IGNORE_ACTIVITIES) {
             if (string.equals(flatComponentName)) {
+                Log.d(TAG, "ignore " + flatComponentName);
                 return true;
             }
         }
@@ -89,17 +97,31 @@ public class AppPoller {
                     if (appFlatComponentName != null
                             && mCurrentAppFlatComponentName != null
                             && !appFlatComponentName.equals(mCurrentAppFlatComponentName)) {
-                        Log.d(TAG, "current app changed from " + mCurrentAppFlatComponentName + " to " + appFlatComponentName);
-                        String oldFlatComponentName = mCurrentAppFlatComponentName;
-                        mCurrentAppFlatComponentName = appFlatComponentName;
-                        if (mAppPollingListener != null) {
-                            if (shouldIgnoreActivity(oldFlatComponentName)) {
-                                Log.e(TAG, "Don't trigger onAppChanged() because ignoring " + oldFlatComponentName);
-                            } else {
+
+                        long currentTime = System.currentTimeMillis();
+                        if (mNextAppFirstRunningTime == -1
+                                || (mNextAppFlatComponentName != null && mNextAppFlatComponentName.equals(appFlatComponentName) == false)) {
+                            mNextAppFirstRunningTime = currentTime;
+                            mNextAppFlatComponentName = appFlatComponentName;
+                            Log.d(TAG, "next app to maybe be changed from " + mCurrentAppFlatComponentName + " to " + appFlatComponentName);
+                        }
+
+                        long timeDelta = currentTime - mNextAppFirstRunningTime;
+                        if (shouldIgnoreActivity(appFlatComponentName) == false && mNextAppFlatComponentName.equals(appFlatComponentName) && timeDelta >= VERIFY_TIME) {
+                            Log.d(TAG, "current app changed from " + mCurrentAppFlatComponentName + " to " + appFlatComponentName);
+                            mCurrentAppFlatComponentName = appFlatComponentName;
+                            if (mAppPollingListener != null) {
                                 mAppPollingListener.onAppChanged();
                             }
+                        } else {
+                            mHandler.sendEmptyMessageDelayed(ACTION_POLL_CURRENT_APP, LOOP_TIME);
                         }
                     } else {
+                        if (mNextAppFlatComponentName != null) {
+                            Log.d(TAG, "*** successfully ignored setting current app to " + mNextAppFlatComponentName);
+                        }
+                        mNextAppFirstRunningTime = -1;
+                        mNextAppFlatComponentName = null;
                         mHandler.sendEmptyMessageDelayed(ACTION_POLL_CURRENT_APP, LOOP_TIME);
                     }
                     break;
