@@ -493,6 +493,9 @@ public class ContentView extends FrameLayout {
 
                 String title = MainApplication.sTitleHashMap.get(urlAsString);
                 MainApplication.saveUrlInHistory(getContext(), null, mUrl.toString(), mUrl.getHost(), title);
+                if (title == null) {    // if no title is set, display nothing rather than "Loading..." #265
+                    mTitleTextView.setText(null);
+                }
 
                 // Always check again at 100%
                 mPageInspector.run(webView, mEventHandler.hasHighQualityFavicon() ? false : true);
