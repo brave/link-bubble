@@ -538,12 +538,13 @@ public class BubbleFlowView extends HorizontalScrollView {
     }
 
     private static final int SCROLL_FINISHED_CHECK_TIME = 33;
-    private int mScrollFinishedCheckerInitialXPosition;
+    private int mScrollFinishedCheckerInitialXPosition = -1;
     private Runnable mScrollFinishedChecker = new Runnable() {
 
         public void run() {
             int scrollX = getScrollX();
             if(mScrollFinishedCheckerInitialXPosition - scrollX == 0){
+                mScrollFinishedCheckerInitialXPosition = -1;
                 if (mBubbleFlowListener != null) {
                     int currentCenterIndex = getCenterIndex();
                     if (currentCenterIndex > -1) {
@@ -560,6 +561,10 @@ public class BubbleFlowView extends HorizontalScrollView {
     public void startScrollFinishedCheckTask(int targetXPosition){
         mScrollFinishedCheckerInitialXPosition = targetXPosition;
         postDelayed(mScrollFinishedChecker, SCROLL_FINISHED_CHECK_TIME);
+    }
+
+    public boolean isAnimatingToCenterIndex() {
+        return mScrollFinishedCheckerInitialXPosition > -1 ? true : false;
     }
 
     /*
