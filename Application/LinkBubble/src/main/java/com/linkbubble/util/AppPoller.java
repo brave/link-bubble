@@ -107,7 +107,9 @@ public class AppPoller {
                         }
 
                         long timeDelta = currentTime - mNextAppFirstRunningTime;
-                        if (shouldIgnoreActivity(appFlatComponentName) == false && mNextAppFlatComponentName.equals(appFlatComponentName) && timeDelta >= VERIFY_TIME) {
+                        if (shouldIgnoreActivity(appFlatComponentName) == false
+                                && mNextAppFlatComponentName.equals(appFlatComponentName) && timeDelta >= VERIFY_TIME
+                                && mCurrentAppFlatComponentName.equals(appFlatComponentName) == false) {
                             String oldApp = mCurrentAppFlatComponentName;
                             mCurrentAppFlatComponentName = appFlatComponentName;
                             // It's possible the current app has been set to an app we should ignore (like Pocket or ES File Explorer)
