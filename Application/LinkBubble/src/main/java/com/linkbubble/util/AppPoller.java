@@ -108,10 +108,19 @@ public class AppPoller {
 
                         long timeDelta = currentTime - mNextAppFirstRunningTime;
                         if (shouldIgnoreActivity(appFlatComponentName) == false && mNextAppFlatComponentName.equals(appFlatComponentName) && timeDelta >= VERIFY_TIME) {
-                            Log.d(TAG, "current app changed from " + mCurrentAppFlatComponentName + " to " + appFlatComponentName);
+                            String oldApp = mCurrentAppFlatComponentName;
                             mCurrentAppFlatComponentName = appFlatComponentName;
-                            if (mAppPollingListener != null) {
-                                mAppPollingListener.onAppChanged();
+                            // It's possible the current app has been set to an app we should ignore (like Pocket or ES File Explorer)
+                            // in beginAppPolling(). In that case, change mCurrentAppFlatComponentName, but don't inform the app about the
+                            // change as it involved an app we should be ignoring.
+                            if (shouldIgnoreActivity(oldApp)) {
+                                mHandler.sendEmptyMessageDelayed(ACTION_POLL_CURRENT_APP, LOOP_TIME);
+                                Log.d(TAG, "ignore app changing from " + mCurrentAppFlatComponentName + " to " + appFlatComponentName);
+                            } else {
+                                Log.d(TAG, "current app changed from " + mCurrentAppFlatComponentName + " to " + appFlatComponentName + ", triggering onAppChanged()...");
+                                if (mAppPollingListener != null) {
+                                    mAppPollingListener.onAppChanged();
+                                }
                             }
                         } else {
                             mHandler.sendEmptyMessageDelayed(ACTION_POLL_CURRENT_APP, LOOP_TIME);
