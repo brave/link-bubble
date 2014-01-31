@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.linkbubble.ui.CloseTabTargetView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/bubble_icon_size"
+    android:layout_height="@dimen/bubble_icon_size"
+    android:background="@drawable/target_default">
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="@dimen/bubble_target_icon_size"
+        android:layout_height="@dimen/bubble_target_icon_size"
+        android:layout_gravity="center"
+        android:scaleType="centerInside"/>
+
+</com.linkbubble.ui.CloseTabTargetView>

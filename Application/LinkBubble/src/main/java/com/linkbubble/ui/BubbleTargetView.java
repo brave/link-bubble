@@ -203,7 +203,7 @@ public class BubbleTargetView extends FrameLayout {
         mTractorOffsetX = tractorOffsetX;
         mTractorOffsetY = tractorOffsetY;
 
-        MainApplication.registerForBus(context, this);
+        registerForBus();
 
         if (d instanceof BitmapDrawable) {
             Bitmap bm = ((BitmapDrawable)d).getBitmap();
@@ -292,6 +292,14 @@ public class BubbleTargetView extends FrameLayout {
     }
 
     public void destroy() {
+        unregisterForBus();
+    }
+
+    protected void registerForBus() {
+        MainApplication.registerForBus(getContext(), this);
+    }
+
+    protected void unregisterForBus() {
         MainApplication.unregisterForBus(getContext(), this);
     }
 

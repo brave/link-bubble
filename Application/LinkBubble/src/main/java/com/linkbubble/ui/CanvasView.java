@@ -80,13 +80,13 @@ public class CanvasView extends FrameLayout {
 
         int targetY = resources.getDimensionPixelSize(R.dimen.bubble_target_y);
         int destroyXOffset = resources.getDimensionPixelSize(R.dimen.destroy_bubble_target_x_offset);
-        BubbleTargetView closeTargetView = (BubbleTargetView) inflater.inflate(R.layout.view_consume_bubble_target, null);
+        CloseTabTargetView closeTabTargetView = (CloseTabTargetView) inflater.inflate(R.layout.view_close_tab_target, null);
         Drawable closeDrawable = resources.getDrawable(R.drawable.close_indicator);
-        closeTargetView.configure(this, context, closeDrawable, Config.BubbleAction.Destroy,
+        closeTabTargetView.configure(this, context, closeDrawable, Config.BubbleAction.Destroy,
                 0, BubbleTargetView.HorizontalAnchor.Center,
                 targetY, BubbleTargetView.VerticalAnchor.Bottom,
                 destroyXOffset, targetY, resources.getDimensionPixelSize(R.dimen.destroy_bubble_target_tractor_offset_x), targetY);
-        mTargets.add(closeTargetView);
+        mTargets.add(closeTabTargetView);
 
         int consumeDefaultX = resources.getDimensionPixelSize(R.dimen.consume_bubble_target_default_x);
         int consumeXOffset = resources.getDimensionPixelSize(R.dimen.consume_bubble_target_x_offset);
