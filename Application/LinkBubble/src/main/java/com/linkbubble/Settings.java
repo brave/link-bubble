@@ -588,6 +588,10 @@ public class Settings {
     }
 
     public void saveCurrentBubbles(List<View> bubbles) {
+        if (Constant.SAVE_CURRENT_BUBBLES == false) {
+            return;
+        }
+
         JSONArray jsonArray = new JSONArray();
         if (bubbles != null) {
             for (View view : bubbles) {
