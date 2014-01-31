@@ -35,6 +35,7 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.graphics.Canvas;
 import android.widget.Toast;
+import com.linkbubble.Constant;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
@@ -676,8 +677,10 @@ public class ContentView extends FrameLayout {
             final Context context = getContext();
             mOverflowPopupMenu = new PopupMenu(context, mOverflowButton);
             Resources resources = context.getResources();
-            mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_upgrade_to_pro, Menu.NONE,
-                    resources.getString(R.string.action_upgrade_to_pro));
+            if (Constant.IS_LICENSED == false) {
+                mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_upgrade_to_pro, Menu.NONE,
+                        resources.getString(R.string.action_upgrade_to_pro));
+            }
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_reload_page, Menu.NONE,
                     resources.getString(R.string.action_reload_page));
             String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
