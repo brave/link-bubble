@@ -258,6 +258,7 @@ public class CanvasView extends FrameLayout {
             mInitialY = mContentViewY;
             mTargetY = Config.mScreenHeight - Config.mContentOffset;
             MainController.get().scheduleUpdate();
+            fadeOut();
         } else {
             mAnimPeriod = 0.0f;
             mAnimTime = 0.0f;
