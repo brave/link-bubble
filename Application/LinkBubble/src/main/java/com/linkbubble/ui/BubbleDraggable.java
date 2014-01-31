@@ -120,7 +120,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             mMode = Mode.BubbleView;
         } else {
             if (mainController.destroyCurrentBubble(action, false)) {
-                doAnimateToContentView();
+                doAnimateToContentView(false);
             } else {
                 mMode = Mode.BubbleView;
             }
@@ -286,6 +286,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     private void doAnimateToContentView() {
+        doAnimateToContentView(true);
+    }
+
+    private void doAnimateToContentView(boolean saveBubbleRestingPoint) {
         if (mAnimActive) {
             if (mMode == Mode.ContentView) {
                 return;
@@ -294,7 +298,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             }
         }
 
-        if (mMode != Mode.ContentView) {
+        if (mMode != Mode.ContentView && saveBubbleRestingPoint) {
             Settings.get().setBubbleRestingPoint(mDraggableHelper.getXPos(), mDraggableHelper.getYPos());
         }
 
