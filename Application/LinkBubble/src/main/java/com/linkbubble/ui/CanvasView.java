@@ -239,6 +239,9 @@ public class CanvasView extends FrameLayout {
         mContentViewY = Config.mScreenHeight - Config.mContentOffset;
         hideContentView();
         MainController.get().showBadge(false);
+        if (mContentView != null) {
+            mContentView.onBeginBubbleDrag();
+        }
     }
 
     @SuppressWarnings("unused")

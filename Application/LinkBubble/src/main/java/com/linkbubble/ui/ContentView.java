@@ -971,6 +971,11 @@ public class ContentView extends FrameLayout {
         resetButtonPressedStates();
     }
 
+    public void onBeginBubbleDrag() {
+        hidePopups();
+        resetButtonPressedStates();
+    }
+
     void onCurrentContentViewChanged(boolean isCurrent) {
         hidePopups();
         resetButtonPressedStates();
