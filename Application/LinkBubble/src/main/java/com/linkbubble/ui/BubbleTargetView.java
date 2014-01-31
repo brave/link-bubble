@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -27,7 +28,6 @@ import com.squareup.otto.Subscribe;
  * Created by gw on 21/11/13.
  */
 public class BubbleTargetView extends FrameLayout {
-    private ImageView mCircleView;
     private ImageView mImage;
     private CanvasView mCanvasView;
 
@@ -85,6 +85,25 @@ public class BubbleTargetView extends FrameLayout {
 
     private final float TRANSITION_TIME = 0.15f;
 
+    public BubbleTargetView(Context context) {
+        this(context, null);
+    }
+
+    public BubbleTargetView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public BubbleTargetView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
+
+    @Override
+    public void onFinishInflate() {
+        super.onFinishInflate();
+
+        mImage = (ImageView) findViewById(R.id.image_view);
+    }
+
     private int getXPos() {
         switch (mHAnchor) {
             case Left:
@@ -138,20 +157,6 @@ public class BubbleTargetView extends FrameLayout {
         }
     }
 
-    public BubbleTargetView(CanvasView canvasView, Context context, Config.BubbleAction action, int defaultX, HorizontalAnchor hAnchor,
-                            int defaultY, VerticalAnchor vAnchor, int maxOffsetX, int maxOffsetY, int tractorOffsetX, int tractorOffsetY) {
-        super(context);
-        init(canvasView, context, Settings.get().getConsumeBubbleIcon(action), action, defaultX, hAnchor,
-                defaultY, vAnchor, maxOffsetX, maxOffsetY, tractorOffsetX, tractorOffsetY);
-    }
-
-    public BubbleTargetView(CanvasView canvasView, Context context, int resId, Config.BubbleAction action, int defaultX, HorizontalAnchor hAnchor,
-                            int defaultY, VerticalAnchor vAnchor, int maxOffsetX, int maxOffsetY, int tractorOffsetX, int tractorOffsetY) {
-        super(context);
-        Drawable d = context.getResources().getDrawable(resId);
-        init(canvasView, context, d, action, defaultX, hAnchor, defaultY, vAnchor, maxOffsetX, maxOffsetY, tractorOffsetX, tractorOffsetY);
-    }
-
     public void onConsumeBubblesChanged() {
         Drawable d = null;
 
@@ -181,7 +186,7 @@ public class BubbleTargetView extends FrameLayout {
         }
     }
 
-    private void init(CanvasView canvasView, Context context, Drawable d, Config.BubbleAction action, int defaultX, HorizontalAnchor hAnchor,
+    public void configure(CanvasView canvasView, Context context, Drawable d, Config.BubbleAction action, int defaultX, HorizontalAnchor hAnchor,
                       int defaultY, VerticalAnchor vAnchor, int maxOffsetX, int maxOffsetY,
                       int tractorOffsetX, int tractorOffsetY) {
         mCanvasView = canvasView;
@@ -211,12 +216,7 @@ public class BubbleTargetView extends FrameLayout {
         Util.Assert(mButtonWidth > 0);
         Util.Assert(mButtonHeight > 0);
 
-        mImage = new ImageView(context);
-        mImage.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         mImage.setImageDrawable(d);
-
-        mCircleView = new ImageView(context);
-        mCircleView.setImageResource(R.drawable.target_default);
 
         int bubbleIconSize = getResources().getDimensionPixelSize(R.dimen.bubble_icon_size);
         mSnapWidth = bubbleIconSize;
@@ -244,12 +244,6 @@ public class BubbleTargetView extends FrameLayout {
                 mHomeY = Config.mScreenHeight + (int) mSnapHeight;
                 break;
         }
-
-        addView(mCircleView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        int imageSize = getResources().getDimensionPixelSize(R.dimen.bubble_target_icon_size);
-        FrameLayout.LayoutParams imageLP = new LayoutParams(imageSize, imageSize, Gravity.CENTER);
-        addView(mImage, imageLP);
 
         // Add main relative layout to canvasView
         mCanvasLayoutParams.leftMargin = mHomeX;
