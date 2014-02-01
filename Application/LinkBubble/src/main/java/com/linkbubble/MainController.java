@@ -407,7 +407,7 @@ public class MainController implements Choreographer.FrameCallback {
         MainApplication.postEvent(mContext, mOrientationChangedEvent);
     }
 
-    public void onOpenUrl(final String url, long startTime, final boolean setAsCurrentBubble) {
+    public TabView onOpenUrl(final String url, long startTime, final boolean setAsCurrentBubble) {
         if (Settings.get().redirectUrlToBrowser(url)) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(url));
@@ -419,7 +419,7 @@ public class MainController implements Choreographer.FrameCallback {
 
                 String title = String.format(mContext.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
                 MainApplication.saveUrlInHistory(mContext, null, url, title);
-                return;
+                return null;
             }
         }
 
@@ -436,7 +436,7 @@ public class MainController implements Choreographer.FrameCallback {
                     String title = String.format(mContext.getString(R.string.link_loaded_with_app),
                                                  resolveInfo.loadLabel(mContext.getPackageManager()));
                     MainApplication.saveUrlInHistory(mContext, resolveInfo, url, title);
-                    return;
+                    return null;
                 }
             } else {
                 AlertDialog dialog = ActionItem.getActionItemPickerAlert(mContext, resolveInfos, R.string.pick_default_app,
@@ -482,24 +482,23 @@ public class MainController implements Choreographer.FrameCallback {
 
                 dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
                 dialog.show();
-
-                return;
             }
         }
 
         mCanAutoDisplayLink = true;
-        openUrlInBubble(url, startTime, setAsCurrentBubble, false);
+        return openUrlInBubble(url, startTime, setAsCurrentBubble, false);
     }
 
-    protected void openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble, boolean hasShownAppPicker) {
+    protected TabView openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble, boolean hasShownAppPicker) {
         if (getActiveTabCount() == 0) {
             mBubbleDraggable.setVisibility(View.VISIBLE);
         }
 
         //boolean setAsCurrentBubble = mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView ? false : true;
-        mBubbleFlowDraggable.openUrlInBubble(url, startTime, setAsCurrentBubble, hasShownAppPicker);
+        TabView result = mBubbleFlowDraggable.openUrlInBubble(url, startTime, setAsCurrentBubble, hasShownAppPicker);
         showBadge(getActiveTabCount() > 1 ? true : false);
         ++mBubblesLoaded;
+        return result;
     }
 
     public void showBadge(boolean show) {

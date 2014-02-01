@@ -259,7 +259,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         mDraggableHelper.setExactPos(x, y);
     }
 
-    public void openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble, boolean hasShownAppPicker) {
+    public TabView openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble, boolean hasShownAppPicker) {
         TabView bubble;
         try {
             LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -267,7 +267,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             bubble.configure(url, startTime, hasShownAppPicker);
         } catch (MalformedURLException e) {
             // TODO: Inform the user somehow?
-            return;
+            return null;
         }
 
         // Only insert next to current Bubble when in ContentView mode. Ensures links opened when app is
@@ -281,6 +281,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
 
         Settings.get().saveCurrentBubbles(mViews);
+        return bubble;
     }
 
     @Override
