@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -263,6 +264,7 @@ public class ContentView extends FrameLayout {
         webSettings.setBuiltInZoomControls(true);
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setUseWideViewPort(true);
+        webSettings.setSupportMultipleWindows(true);
 
         mWebView.setLongClickable(true);
         mWebView.setOnLongClickListener(mOnWebViewLongClickListener);
@@ -626,6 +628,20 @@ public class ContentView extends FrameLayout {
             });
             mJsAlertDialog.show();
             return true;
+        }
+
+        @Override
+        public boolean onCreateWindow(WebView view, boolean dialog, boolean userGesture, Message resultMsg)
+        {
+            TabView tabView = MainController.get().onOpenUrl("http://yahoo.com", System.currentTimeMillis(), false);
+            if (tabView != null) {
+                WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
+                transport.setWebView(tabView.getContentView().mWebView);
+                resultMsg.sendToTarget();
+                return true;
+            }
+
+            return false;
         }
     };
 
