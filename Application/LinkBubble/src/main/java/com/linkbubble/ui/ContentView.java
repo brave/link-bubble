@@ -207,7 +207,10 @@ public class ContentView extends FrameLayout {
                 intent.putExtra(Intent.EXTRA_TEXT, urlAsString);
                 getContext().startActivity(intent);
 
-                if (closeBubbleOnShare) {
+                boolean isCopyToClipboardAction = actionItem.mPackageName.equals("com.google.android.apps.docs")
+                        && actionItem.mActivityClassName.equals("com.google.android.apps.docs.app.SendTextToClipboardActivity");
+
+                if (closeBubbleOnShare && isCopyToClipboardAction == false) {
                     MainController.get().destroyCurrentBubble(true);
                 }
             }
