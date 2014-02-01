@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.webkit.DownloadListener;
+import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -83,6 +84,7 @@ public class ContentView extends FrameLayout {
     private int mCheckForEmbedsCount;
     private PopupMenu mOverflowPopupMenu;
     private AlertDialog mLongPressAlertDialog;
+    private AlertDialog mJsAlertDialog;
     private long mStartTime;
     private int mHeaderHeight;
     private Path mTempPath = new Path();
@@ -601,6 +603,30 @@ public class ContentView extends FrameLayout {
                 }
             }
         }
+
+        @Override
+        public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+            mJsAlertDialog = new AlertDialog.Builder(getContext()).create();
+            mJsAlertDialog.setMessage(message);
+            mJsAlertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            mJsAlertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getResources().getString(R.string.action_ok),
+                    new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+
+                    });
+            mJsAlertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    mJsAlertDialog = null;
+                }
+            });
+            mJsAlertDialog.show();
+            return true;
+        }
     };
 
     OnLongClickListener mOnWebViewLongClickListener = new OnLongClickListener() {
@@ -1014,6 +1040,10 @@ public class ContentView extends FrameLayout {
         if (mLongPressAlertDialog != null) {
             mLongPressAlertDialog.dismiss();
             mLongPressAlertDialog = null;
+        }
+        if (mJsAlertDialog != null) {
+            mJsAlertDialog.dismiss();
+            mJsAlertDialog = null;
         }
     }
 
