@@ -112,7 +112,8 @@
     <string name="link_loaded_with_app">Loaded with %1$s</string>
     <string name="link_redirected">Redirected to %1$s</string>
 
-    <string name="link_copied_to_clipboard">Bubble link copied to clipboard</string>
+    <string name="bubble_link_copied_to_clipboard">Bubble link copied to clipboard.</string>
+    <string name="link_copied_to_clipboard">Link copied to clipboard.</string>
 
     <string name="stat_time_saved">saves you</string>
     <string name="stat_per_day">per day</string>
