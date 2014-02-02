@@ -793,12 +793,7 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_copy_link: {
-                            ClipboardManager clipboardManager = (android.content.ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                            if (clipboardManager != null) {
-                                ClipData clipData = ClipData.newPlainText("url", mUrl.toString());
-                                clipboardManager.setPrimaryClip(clipData);
-                                Toast.makeText(getContext(), R.string.link_copied_to_clipboard, Toast.LENGTH_SHORT).show();
-                            }
+                            MainApplication.copyLinkToClipboard(getContext(), mUrl.toString(), R.string.bubble_link_copied_to_clipboard);
                             break;
                         }
 
@@ -899,6 +894,10 @@ public class ContentView extends FrameLayout {
             }
         }
 
+        // Long pressing for a link doesn't work reliably, re #279
+        //final String copyLinkLabel = resources.getString(R.string.action_copy_to_clipboard);
+        //longClickSelections.add(copyLinkLabel);
+
         Collections.sort(longClickSelections);
 
         final String openInNewBubbleLabel = resources.getString(R.string.action_open_in_new_bubble);
@@ -927,6 +926,8 @@ public class ContentView extends FrameLayout {
                     MainApplication.handleBubbleAction(getContext(), Config.BubbleAction.ConsumeLeft, urlAsString);
                 } else if (rightConsumeBubbleLabel != null && string.equals(rightConsumeBubbleLabel)) {
                     MainApplication.handleBubbleAction(getContext(), Config.BubbleAction.ConsumeRight, urlAsString);
+                //} else if (string.equals(copyLinkLabel)) {
+                //    MainApplication.copyLinkToClipboard(getContext(), urlAsString, R.string.link_copied_to_clipboard);
                 }
 
                 if (mLongPressAlertDialog != null) {
