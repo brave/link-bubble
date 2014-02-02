@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Point;
@@ -183,20 +184,26 @@ public class Settings {
 
         String defaultBrowserPackage = mSharedPreferences.getString(PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME, null);
         String rightConsumeBubblePackageName = mSharedPreferences.getString(PREFERENCE_RIGHT_CONSUME_BUBBLE_PACKAGE_NAME, null);
-        if (fallbackDefaultBrowserPackageName != null
-                && (defaultBrowserPackage == null || rightConsumeBubblePackageName == null)) {
+        String leftConsumeBubblePackageName = mSharedPreferences.getString(PREFERENCE_LEFT_CONSUME_BUBBLE_PACKAGE_NAME, null);
+
+        if (fallbackDefaultBrowserPackageName != null) {
             try {
                 ApplicationInfo applicationInfo = packageManager.getApplicationInfo(fallbackDefaultBrowserPackageName, 0);
                 String defaultBrowserLabel = packageManager.getApplicationLabel(applicationInfo).toString();
 
-                if (defaultBrowserPackage == null) {
+                if (defaultBrowserPackage == null || !doesPackageExist(packageManager, defaultBrowserPackage)) {
                     SharedPreferences.Editor editor = mSharedPreferences.edit();
                     editor.putString(PREFERENCE_DEFAULT_BROWSER_LABEL, defaultBrowserLabel);
                     editor.putString(PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME, fallbackDefaultBrowserPackageName);
                     editor.commit();
                 }
-                if (rightConsumeBubblePackageName == null) {
+                if (rightConsumeBubblePackageName == null || !doesPackageExist(packageManager, rightConsumeBubblePackageName)) {
                     setConsumeBubble(Config.BubbleAction.ConsumeRight, Config.ActionType.View,
+                            defaultBrowserLabel,
+                            fallbackDefaultBrowserPackageName, fallbackDefaultBrowserActivityClassName);
+                }
+                if (leftConsumeBubblePackageName == null || !doesPackageExist(packageManager, leftConsumeBubblePackageName)) {
+                    setConsumeBubble(Config.BubbleAction.ConsumeLeft, Config.ActionType.View,
                             defaultBrowserLabel,
                             fallbackDefaultBrowserPackageName, fallbackDefaultBrowserActivityClassName);
                 }
@@ -205,6 +212,15 @@ public class Settings {
                 e.printStackTrace();
             }
         }
+    }
+
+    private boolean doesPackageExist(PackageManager pm, String targetPackage) {
+        try {
+            PackageInfo info = pm.getPackageInfo(targetPackage, PackageManager.GET_META_DATA);
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+        return true;
     }
 
     private ResolveInfo findResolveInfoForPackageName(List<ResolveInfo> resolveInfos, String packageName) {
