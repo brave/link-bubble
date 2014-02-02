@@ -1,6 +1,8 @@
 package com.linkbubble.ui;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -753,6 +755,7 @@ public class ContentView extends FrameLayout {
                 mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
                         String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
             }
+            mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_copy_link, Menu.NONE, resources.getString(R.string.action_copy_to_clipboard));
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_settings, Menu.NONE,
                     resources.getString(R.string.action_settings));
             mOverflowPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -786,6 +789,16 @@ public class ContentView extends FrameLayout {
 
                         case R.id.item_open_in_browser: {
                             openInBrowser(mUrl.toString());
+                            break;
+                        }
+
+                        case R.id.item_copy_link: {
+                            ClipboardManager clipboardManager = (android.content.ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                            if (clipboardManager != null) {
+                                ClipData clipData = ClipData.newPlainText("url", mUrl.toString());
+                                clipboardManager.setPrimaryClip(clipData);
+                                Toast.makeText(getContext(), R.string.link_copied_to_clipboard, Toast.LENGTH_SHORT).show();
+                            }
                             break;
                         }
 
