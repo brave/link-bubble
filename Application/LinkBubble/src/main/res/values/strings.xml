@@ -18,6 +18,7 @@
     <string name="action_open_in_browser">Open in %1$s</string>
     <string name="action_open_in_new_bubble">Open in new bubble</string>
     <string name="action_upgrade_to_pro">★Upgrade to Pro★</string>
+    <string name="action_copy_to_clipboard">Copy link</string>
     <string name="action_share">Share</string>
     <string name="share_via">Share via...</string>
 
@@ -110,6 +111,8 @@
     <string name="private_data_cleared_reloading_current">Private data cleared. Reloading current bubbles...</string>
     <string name="link_loaded_with_app">Loaded with %1$s</string>
     <string name="link_redirected">Redirected to %1$s</string>
+
+    <string name="link_copied_to_clipboard">Bubble link copied to clipboard</string>
 
     <string name="stat_time_saved">saves you</string>
     <string name="stat_per_day">per day</string>

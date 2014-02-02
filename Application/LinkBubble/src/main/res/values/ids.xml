@@ -6,5 +6,6 @@
     <item name="item_reload_page" type="id"/>
     <item name="item_share" type="id"/>
     <item name="item_open_in_bubble" type="id"/>
+    <item name="item_copy_link" type="id"/>
 
 </resources>
