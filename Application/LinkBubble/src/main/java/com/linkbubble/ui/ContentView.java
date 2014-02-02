@@ -278,10 +278,7 @@ public class ContentView extends FrameLayout {
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
         mStartTime = startTime;
-        loadUrl(urlAsString);
-    }
 
-    private void loadUrl(String urlAsString) {
         updateUrl(urlAsString);
         updateAppsForUrl(mUrl);
         configureOpenInAppButton();
@@ -318,6 +315,23 @@ public class ContentView extends FrameLayout {
         @Override
         public boolean shouldOverrideUrlLoading(WebView wView, final String urlAsString) {
 
+            URL updatedUrl = getUpdatedUrl(urlAsString);
+            if (updatedUrl == null) {
+                String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
+                String message;
+                Drawable drawable;
+                if (defaultBrowserLabel != null) {
+                    message = String.format(getResources().getString(R.string.unsupported_scheme_default_browser), defaultBrowserLabel);
+                    drawable = Settings.get().getDefaultBrowserIcon(getContext());
+                } else {
+                    message = getResources().getString(R.string.unsupported_scheme_no_default_browser);
+                    drawable = null;
+                }
+                Prompt.show(getContext(), message, drawable, Prompt.LENGTH_LONG, null);
+                Log.d(TAG, "ignore unsupported URI scheme: " + urlAsString);
+                return true;        // true because we've handled the link ourselves
+            }
+
             if (mLastWebViewTouchUpTime > -1) {
                 long touchUpTimeDelta = System.currentTimeMillis() - mLastWebViewTouchUpTime;
                 // this value needs to be largish
@@ -339,7 +353,7 @@ public class ContentView extends FrameLayout {
                 }
             }
 
-            updateUrl(urlAsString);
+            mUrl = updatedUrl;
 
             mPageInspector.reset();
             final Context context = getContext();
@@ -1045,6 +1059,18 @@ public class ContentView extends FrameLayout {
                 throw new RuntimeException("Malformed URL: " + urlAsString);
             }
         }
+    }
+
+    private URL getUpdatedUrl(String urlAsString) {
+        if (urlAsString.equals(mUrl.toString()) == false) {
+            try {
+                //Log.d(TAG, "change url from " + mUrl + " to " + urlAsString);
+                return new URL(urlAsString);
+            } catch (MalformedURLException e) {
+                return null;
+            }
+        }
+        return mUrl;
     }
 
     URL getUrl() {

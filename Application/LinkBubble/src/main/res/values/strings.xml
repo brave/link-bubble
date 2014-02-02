@@ -83,6 +83,8 @@
                     Open the link in %1$s to select items.</string>
     <string name="long_press_unsupported_no_default_browser">Android system limitations prevent Link Bubble from selecting this item.
                     Open the link in a browser to select items.</string>
+    <string name="unsupported_scheme_default_browser">Link type currently not supported. Open webpage in %1$s?</string>
+    <string name="unsupported_scheme_no_default_browser">Link type currently not supported. Open the link a browser.</string>
 
     <string name="consume_category_view">View link</string>
     <string name="consume_category_share">Send/share link</string>
