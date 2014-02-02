@@ -33,6 +33,7 @@ import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
@@ -409,6 +410,16 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public TabView onOpenUrl(final String urlAsString, long startTime, final boolean setAsCurrentBubble) {
+        try {
+            new URL(urlAsString);
+        } catch (MalformedURLException e) { // If this is not a valid scheme, back out. #271
+            Toast.makeText(mContext, mContext.getString(R.string.unsupported_scheme), Toast.LENGTH_SHORT).show();
+            if (getActiveTabCount() == 0) {
+                mEventHandler.onDestroy();
+            }
+            return null;
+        }
+
         if (Settings.get().redirectUrlToBrowser(urlAsString)) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(urlAsString));
