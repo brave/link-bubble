@@ -236,6 +236,9 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                 }
             }
 
+            final String copyLinkLabel = resources.getString(R.string.action_copy_to_clipboard);
+            longClickSelections.add(copyLinkLabel);
+
             Collections.sort(longClickSelections);
 
             final String openInNewBubbleLabel = resources.getString(R.string.action_open_in_new_bubble);
@@ -285,6 +288,8 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                         MainApplication.handleBubbleAction(HistoryActivity.this, Config.BubbleAction.ConsumeLeft, urlAsString);
                     } else if (rightConsumeBubbleLabel != null && string.equals(rightConsumeBubbleLabel)) {
                         MainApplication.handleBubbleAction(HistoryActivity.this, Config.BubbleAction.ConsumeRight, urlAsString);
+                    } else if (string.equals(copyLinkLabel)) {
+                        MainApplication.copyLinkToClipboard(HistoryActivity.this, urlAsString, R.string.link_copied_to_clipboard);
                     }
 
                     if (longPressAlertDialog != null) {
