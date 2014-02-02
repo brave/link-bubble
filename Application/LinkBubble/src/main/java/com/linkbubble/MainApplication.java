@@ -1,6 +1,8 @@
 package com.linkbubble;
 
 import android.app.Application;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -189,5 +191,14 @@ public class MainApplication extends Application {
     public static void unregisterForBus(Context context, Object object) {
         MainApplication app = (MainApplication) context.getApplicationContext();
         app.getBus().unregister(object);
+    }
+
+    public static void copyLinkToClipboard(Context context, String urlAsString, int string) {
+        ClipboardManager clipboardManager = (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        if (clipboardManager != null) {
+            ClipData clipData = ClipData.newPlainText("url", urlAsString);
+            clipboardManager.setPrimaryClip(clipData);
+            Toast.makeText(context, string, Toast.LENGTH_SHORT).show();
+        }
     }
 }
