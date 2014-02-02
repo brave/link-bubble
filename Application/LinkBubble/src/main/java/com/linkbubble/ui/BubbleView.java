@@ -183,7 +183,13 @@ public class BubbleView extends FrameLayout  {
                 w = reqW;
                 h = reqH;
 
-                Bitmap result = Bitmap.createScaledBitmap(source, w, h, true);
+                Bitmap result = source;
+                try {
+                    result = Bitmap.createScaledBitmap(source, w, h, true);
+                } catch (OutOfMemoryError e) {
+
+                }
+
                 return result;
             }
 

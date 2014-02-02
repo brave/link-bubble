@@ -381,24 +381,30 @@ public class FaviconCache {
             Bitmap largestElementBitmap = cacheElement.mFaviconPayload;
             int largestSize = cacheElement.mImageSize;
 
-            if (largestSize >= targetSize) {
-                // The largest we have is larger than the target - downsize to target.
-                newBitmap = Bitmap.createScaledBitmap(largestElementBitmap, targetSize, targetSize, true);
-            } else {
-                // Our largest primary is smaller than the desired size. Upscale by a maximum of 2x.
-                // largestSize now reflects the maximum size we can upscale to.
-                largestSize *= 2;
-
+            Bitmap scaledBitmap = null;
+            try {
                 if (largestSize >= targetSize) {
-                    // Perfect! We can upscale by less than 2x and reach the needed size. Do it.
-                    newBitmap = Bitmap.createScaledBitmap(largestElementBitmap, targetSize, targetSize, true);
+                    // The largest we have is larger than the target - downsize to target.
+                    scaledBitmap = Bitmap.createScaledBitmap(largestElementBitmap, targetSize, targetSize, true);
                 } else {
-                    // We don't have enough information to make the target size look nonterrible. Best effort:
-                    newBitmap = Bitmap.createScaledBitmap(largestElementBitmap, largestSize, largestSize, true);
+                    // Our largest primary is smaller than the desired size. Upscale by a maximum of 2x.
+                    // largestSize now reflects the maximum size we can upscale to.
+                    largestSize *= 2;
 
-                    shouldComputeColour = true;
+                    if (largestSize >= targetSize) {
+                        // Perfect! We can upscale by less than 2x and reach the needed size. Do it.
+                        scaledBitmap = Bitmap.createScaledBitmap(largestElementBitmap, targetSize, targetSize, true);
+                    } else {
+                        shouldComputeColour = true;
+
+                        // We don't have enough information to make the target size look nonterrible. Best effort:
+                        scaledBitmap = Bitmap.createScaledBitmap(largestElementBitmap, largestSize, largestSize, true);
+                    }
                 }
+            } catch (OutOfMemoryError e) {
+                scaledBitmap = largestElementBitmap;
             }
+            newBitmap = scaledBitmap;
         } catch (Exception unhandled) {
             isAborting = true;
 
@@ -502,7 +508,11 @@ public class FaviconCache {
         // While we want to cache nice big icons, we apply a limit based on screen density for the
         // sake of space.
         if (favicon.getWidth() > mMaxCachedWidth) {
-            return Bitmap.createScaledBitmap(favicon, mMaxCachedWidth, mMaxCachedWidth, true);
+            try {
+                return Bitmap.createScaledBitmap(favicon, mMaxCachedWidth, mMaxCachedWidth, true);
+            } catch (OutOfMemoryError e) {
+                // Fall through
+            }
         }
         return favicon;
     }
