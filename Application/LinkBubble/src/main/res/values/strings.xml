@@ -79,9 +79,9 @@
     <string name="remove_default_title">Remove default?</string>
     <string name="remove_default_message">Remove %1$s as the default app to load %2$s links with?\n\nNote: you can set a new default app to use next
                                             time you load a %2$s link.</string>
-    <string name="long_press_unsupported_default_browser">Android system limitiations prevent Link Bubble from selecting this item.
+    <string name="long_press_unsupported_default_browser">Android system limitations prevent Link Bubble from selecting this item.
                     Open the link in %1$s to select items.</string>
-    <string name="long_press_unsupported_no_default_browser">Android system limitiations prevent Link Bubble from selecting this item.
+    <string name="long_press_unsupported_no_default_browser">Android system limitations prevent Link Bubble from selecting this item.
                     Open the link in a browser to select items.</string>
 
     <string name="consume_category_view">View link</string>
