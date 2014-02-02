@@ -94,6 +94,12 @@ public class MainService extends Service {
         registerReceiver(mBroadcastReceiver, filter);
 
         registerReceiver(mDialogReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+
+        filter = new IntentFilter(Intent.ACTION_PACKAGE_ADDED);
+        filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+        filter.addDataScheme("package");
+        registerReceiver(mPackageBroadcastReceiver, filter);
+
     }
 
     @Override
@@ -117,6 +123,19 @@ public class MainService extends Service {
         public void onReceive(Context context, Intent myIntent) {
             if ( myIntent.getAction().equals( BCAST_CONFIGCHANGED ) ) {
                 MainController.get().onOrientationChanged();
+            }
+        }
+    };
+
+    private static BroadcastReceiver mPackageBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+            if (Intent.ACTION_PACKAGE_REMOVED.equals(action)) {
+                Settings.get().updateBrowsers();
+                // Add checks such that in the event getDefaultBrowserPackageName() no longer exists, we use a default.
+            } else if (Intent.ACTION_PACKAGE_ADDED.equals(action)) {
+                Settings.get().updateBrowsers();
             }
         }
     };
