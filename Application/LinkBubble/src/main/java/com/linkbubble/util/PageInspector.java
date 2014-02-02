@@ -254,7 +254,11 @@ public class PageInspector {
 
             Bitmap result = source;
             if (w > TOUCH_ICON_MAX_SIZE) {
-                result = Bitmap.createScaledBitmap(source, TOUCH_ICON_MAX_SIZE, TOUCH_ICON_MAX_SIZE, true);
+                try {
+                    result = Bitmap.createScaledBitmap(source, TOUCH_ICON_MAX_SIZE, TOUCH_ICON_MAX_SIZE, true);
+                } catch (OutOfMemoryError e) {
+                    
+                }
             }
 
             if (result != null && mListener != null) {
