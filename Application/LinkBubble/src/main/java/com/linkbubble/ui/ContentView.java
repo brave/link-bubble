@@ -666,12 +666,15 @@ public class ContentView extends FrameLayout {
                 default:
                     String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
                     String message;
+                    Drawable drawable;
                     if (defaultBrowserLabel != null) {
                         message = String.format(getResources().getString(R.string.long_press_unsupported_default_browser), defaultBrowserLabel);
+                        drawable = Settings.get().getDefaultBrowserIcon(getContext());
                     } else {
                         message = getResources().getString(R.string.long_press_unsupported_no_default_browser);
+                        drawable = null;
                     }
-                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                    Prompt.show(getContext(), message, drawable, Prompt.LENGTH_LONG, null);
                     return false;
             }
         }
