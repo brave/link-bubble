@@ -33,6 +33,7 @@ import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -407,10 +408,10 @@ public class MainController implements Choreographer.FrameCallback {
         MainApplication.postEvent(mContext, mOrientationChangedEvent);
     }
 
-    public TabView onOpenUrl(final String url, long startTime, final boolean setAsCurrentBubble) {
-        if (Settings.get().redirectUrlToBrowser(url)) {
+    public TabView onOpenUrl(final String urlAsString, long startTime, final boolean setAsCurrentBubble) {
+        if (Settings.get().redirectUrlToBrowser(urlAsString)) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(url));
+            intent.setData(Uri.parse(urlAsString));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             if (MainApplication.loadInBrowser(mContext, intent, false)) {
                 if (getActiveTabCount() == 0) {
@@ -418,24 +419,24 @@ public class MainController implements Choreographer.FrameCallback {
                 }
 
                 String title = String.format(mContext.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
-                MainApplication.saveUrlInHistory(mContext, null, url, title);
+                MainApplication.saveUrlInHistory(mContext, null, urlAsString, title);
                 return null;
             }
         }
 
-        final List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
+        final List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(urlAsString);
         if (resolveInfos != null && resolveInfos.size() > 0 && Settings.get().getAutoContentDisplayAppRedirect()) {
             if (resolveInfos.size() == 1) {
                 ResolveInfo resolveInfo = resolveInfos.get(0);
                 if (resolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo
-                    && MainApplication.loadResolveInfoIntent(mContext, resolveInfo, url, startTime)) {
+                    && MainApplication.loadResolveInfoIntent(mContext, resolveInfo, urlAsString, startTime)) {
                     if (getActiveTabCount() == 0) {
                         mEventHandler.onDestroy();
                     }
 
                     String title = String.format(mContext.getString(R.string.link_loaded_with_app),
                                                  resolveInfo.loadLabel(mContext.getPackageManager()));
-                    MainApplication.saveUrlInHistory(mContext, resolveInfo, url, title);
+                    MainApplication.saveUrlInHistory(mContext, resolveInfo, urlAsString, title);
                     return null;
                 }
             } else {
@@ -449,7 +450,7 @@ public class MainController implements Choreographer.FrameCallback {
                                     if (resolveInfo.activityInfo.packageName.equals(actionItem.mPackageName)
                                             && resolveInfo.activityInfo.name.equals(actionItem.mActivityClassName)) {
                                         if (always) {
-                                            Settings.get().setDefaultApp(url, resolveInfo);
+                                            Settings.get().setDefaultApp(urlAsString, resolveInfo);
                                         }
 
                                         // Jump out of the loop and load directly via a BubbleView below
@@ -458,13 +459,13 @@ public class MainController implements Choreographer.FrameCallback {
                                         }
 
                                         loaded = MainApplication.loadIntent(mContext, actionItem.mPackageName,
-                                                actionItem.mActivityClassName, url, -1);
+                                                actionItem.mActivityClassName, urlAsString, -1);
                                         break;
                                     }
                                 }
 
                                 if (loaded == false) {
-                                    openUrlInBubble(url, System.currentTimeMillis(), setAsCurrentBubble, true);
+                                    openUrlInBubble(urlAsString, System.currentTimeMillis(), setAsCurrentBubble, true);
                                 } else {
                                     if (getActiveTabCount() == 0) {
                                         mEventHandler.onDestroy();
@@ -476,7 +477,7 @@ public class MainController implements Choreographer.FrameCallback {
                 dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
-                        openUrlInBubble(url, System.currentTimeMillis(), setAsCurrentBubble, true);
+                        openUrlInBubble(urlAsString, System.currentTimeMillis(), setAsCurrentBubble, true);
                     }
                 });
 
@@ -486,7 +487,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         mCanAutoDisplayLink = true;
-        return openUrlInBubble(url, startTime, setAsCurrentBubble, false);
+        return openUrlInBubble(urlAsString, startTime, setAsCurrentBubble, false);
     }
 
     protected TabView openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble, boolean hasShownAppPicker) {
