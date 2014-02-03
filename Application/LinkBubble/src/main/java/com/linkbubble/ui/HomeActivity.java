@@ -50,7 +50,7 @@ public class HomeActivity extends Activity {
         }
 
         if (Settings.get().debugAutoLoadUrl()) {
-            MainApplication.openLink(this, "http://abc.net.au");
+            MainApplication.openLink(this, "https://s3.amazonaws.com/actionlauncher/test.html");
             //MainApplication.openLink(getActivity(), "https://twitter.com/lokibartleby/status/412160702707539968", false);
         }
 
