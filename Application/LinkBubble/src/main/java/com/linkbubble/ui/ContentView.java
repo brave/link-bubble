@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.WindowManager;
+import android.webkit.ConsoleMessage;
 import android.webkit.DownloadListener;
 import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
@@ -669,6 +670,16 @@ public class ContentView extends FrameLayout {
             return true;
         }
 
+        @Override
+        public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+            // Call the old version of this function for backwards compatability.
+            //onConsoleMessage(consoleMessage.message(), consoleMessage.lineNumber(),
+            //        consoleMessage.sourceId());
+            Log.d("Console", consoleMessage.message());
+            return false;
+        }
+
+        @Override
         public boolean onCreateWindow(WebView view, boolean dialog, boolean userGesture, Message resultMsg)
         {
             TabView tabView = MainController.get().onOpenUrl("http://yahoo.com", System.currentTimeMillis(), false);
