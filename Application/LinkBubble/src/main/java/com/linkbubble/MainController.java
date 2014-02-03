@@ -25,7 +25,6 @@ import com.linkbubble.ui.BubbleFlowDraggable;
 import com.linkbubble.ui.TabView;
 import com.linkbubble.ui.BubbleFlowView;
 import com.linkbubble.ui.CanvasView;
-import com.linkbubble.ui.ContentActivity;
 import com.linkbubble.ui.SettingsFragment;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.AppPoller;
@@ -45,7 +44,6 @@ public class MainController implements Choreographer.FrameCallback {
     private static final String TAG = "MainController";
 
     protected static MainController sInstance;
-    private static ContentActivity sContentActivity;
 
     // Simple event classes used for the event bus
     public static class BeginBubbleDragEvent {
@@ -373,30 +371,6 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    public void updateBackgroundColor(int color) {
-        if (sContentActivity != null) {
-            sContentActivity.updateBackgroundColor(color);
-        }
-    }
-
-    private void showContentActivity() {
-        if (sContentActivity == null && Config.USE_CONTENT_ACTIVITY) {
-            Intent intent = new Intent(mContext, ContentActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            mContext.startActivity(intent);
-        }
-    }
-
-    public void hideContentActivity() {
-        if (sContentActivity != null) {
-            long startTime = System.currentTimeMillis();
-            sContentActivity.finish();
-            long endTime = System.currentTimeMillis();
-            Log.d(TAG, "sContentActivity.finish() time=" + (endTime - startTime));
-            sContentActivity = null;
-        }
-    }
-
     public void onCloseSystemDialogs() {
         switchToBubbleView();
     }
@@ -646,15 +620,4 @@ public class MainController implements Choreographer.FrameCallback {
         return false;
     }
 
-    @SuppressWarnings("unused")
-    @Subscribe
-    public void onContentActivityResumed(ContentActivity.ContentActivityResumedEvent event) {
-        sContentActivity = event.mActivity;
-    }
-
-    @SuppressWarnings("unused")
-    @Subscribe
-    public void onContentActivityPaused(ContentActivity.ContentActivityPausedEvent event) {
-        sContentActivity = null;
-    }
 }

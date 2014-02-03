@@ -178,13 +178,7 @@ public class CanvasView extends FrameLayout {
     private void applyAlpha() {
         Util.Assert(mCurrentAlpha >= 0.0f && mCurrentAlpha <= 1.0f);
 
-        int color = ((int)(180 * mCurrentAlpha) << 24);
-        if (Config.USE_CONTENT_ACTIVITY) {
-            MainController.get().updateBackgroundColor(color);
-        } else {
-            setAlpha(mCurrentAlpha);
-            //setBackgroundColor(color);
-        }
+        setAlpha(mCurrentAlpha);
 
         if (!mEnabled || mCurrentAlpha == 0.0f) {
             setVisibility(GONE);
