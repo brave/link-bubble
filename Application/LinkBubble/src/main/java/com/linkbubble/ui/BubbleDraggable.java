@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -119,7 +118,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             mainController.destroyAllBubbles();
             mMode = Mode.BubbleView;
         } else {
-            if (mainController.destroyCurrentBubble(action, false)) {
+            if (mainController.destroyCurrentTab(action, false)) {
                 doAnimateToBubbleView();
             } else {
                 mMode = Mode.BubbleView;

@@ -348,10 +348,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     }
 
-    public void destroyCurrentBubble(boolean animateRemove, Config.BubbleAction action) {
-        TabView currentBubble = getCurrentTab();
-        String url = currentBubble.getUrl().toString();
-        destroyBubble(currentBubble, animateRemove, true);
+    public void destroyCurrentTab(boolean animateRemove, Config.BubbleAction action) {
+        TabView currentTab = getCurrentTab();
+        String url = currentTab.getUrl().toString();
+        destroyBubble(currentTab, animateRemove, true);
         postDestroyedBubble(true);
         if (action != Config.BubbleAction.None) {
             MainApplication.handleBubbleAction(getContext(), action, url);
