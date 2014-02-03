@@ -942,6 +942,10 @@ public class ContentView extends FrameLayout {
                 }
             });
         }
+
+        @Override
+        public void onDropDownFound() {
+        }
     };
 
     private void onUrlLongClick(final String urlAsString) {
