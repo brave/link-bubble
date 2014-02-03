@@ -13,6 +13,10 @@ public class Constant {
 
     public static final int DESIRED_FAVICON_SIZE = 96;
 
+    // When opening a link in a new tab, there is no reliable way to get the link to be loaded. Use this guy
+    // so we can determine when this is occurring, and not pollute the history. #280
+    public static final String NEW_TAB_URL = "http://ishouldbeusedbutneverseen55675.com";
+
     public static final String PRIVACY_POLICY_URL = "http://www.actionlauncher.com/privacy";
     public static final String TERMS_OF_SERVICE_URL = "http://www.actionlauncher.com/terms";
 
