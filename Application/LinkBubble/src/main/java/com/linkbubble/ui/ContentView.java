@@ -333,7 +333,7 @@ public class ContentView extends FrameLayout {
                     message = getResources().getString(R.string.unsupported_scheme_no_default_browser);
                     drawable = null;
                 }
-                Prompt.show(getContext(), message, drawable, Prompt.LENGTH_LONG, null);
+                Prompt.show(message, drawable, Prompt.LENGTH_LONG, null);
                 Log.d(TAG, "ignore unsupported URI scheme: " + urlAsString);
                 return true;        // true because we've handled the link ourselves
             }
@@ -764,7 +764,7 @@ public class ContentView extends FrameLayout {
                         message = getResources().getString(R.string.long_press_unsupported_no_default_browser);
                         drawable = null;
                     }
-                    Prompt.show(getContext(), message, drawable, Prompt.LENGTH_LONG, null);
+                    Prompt.show(message, drawable, Prompt.LENGTH_LONG, null);
                     return false;
             }
         }
