@@ -19,18 +19,21 @@ import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.webkit.ConsoleMessage;
 import android.webkit.DownloadListener;
+import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.view.View;
 import android.webkit.WebView;
@@ -39,6 +42,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.graphics.Canvas;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.linkbubble.Constant;
 import com.linkbubble.util.ActionItem;
@@ -90,6 +94,7 @@ public class ContentView extends FrameLayout {
     private AlertDialog mLongPressAlertDialog;
     private AlertDialog mJsAlertDialog;
     private AlertDialog mJsConfirmDialog;
+    private AlertDialog mJsPromptDialog;
     private long mStartTime;
     private int mHeaderHeight;
     private Path mTempPath = new Path();
@@ -667,6 +672,39 @@ public class ContentView extends FrameLayout {
                 }
             });
             mJsConfirmDialog.show();
+            return true;
+        }
+
+        @Override
+        public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, final JsPromptResult result) {
+            final View v = LayoutInflater.from(getContext()).inflate(R.layout.view_javascript_prompt, null);
+
+            ((TextView)v.findViewById(R.id.prompt_message_text)).setText(message);
+            ((EditText)v.findViewById(R.id.prompt_input_field)).setText(defaultValue);
+
+            mJsPromptDialog = new AlertDialog.Builder(getContext()).create();
+            mJsPromptDialog.setView(v);
+            mJsPromptDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            mJsPromptDialog.setButton(AlertDialog.BUTTON_POSITIVE, getResources().getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String value = ((EditText)v.findViewById(R.id.prompt_input_field)).getText().toString();
+                    result.confirm(value);
+                }
+            });
+            mJsPromptDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getResources().getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    result.cancel();
+                }
+            });
+            mJsPromptDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                public void onCancel(DialogInterface dialog) {
+                    result.cancel();
+                }
+            });
+            mJsPromptDialog.show();
+
             return true;
         }
 
