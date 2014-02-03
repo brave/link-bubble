@@ -22,6 +22,24 @@ public class PageInspector {
     private static final String JS_VARIABLE = "LinkBubble";
     private static final String UNKNOWN_TAG = "unknown";        // the tag Chrome/WebView uses for unknown elements
 
+    private static final String JS_DROP_DOWN_ITEM_CHECK =
+            "{\n" +
+            "    var elems = document.getElementsByTagName('select'), i;\n" +
+            "    var disabledCount = 0;\n" +
+            "    for (i in elems) {\n" +
+            "      var elem = elems[i];\n" +
+            "      if (elem.disabled == false) {\n" +
+            "        elem.disabled = true;\n" +
+            "        disabledCount++;\n" +
+            "      }\n" +
+            "    }\n" +
+            "\n" +
+            "    if (disabledCount > 0) {\n" +
+            "      " + JS_VARIABLE + ".onDropDownFound();\n" +
+            "    }\n" +
+            "\n" +
+            "}";
+
     private static final String JS_YOUTUBE_EMBED_CHECK =
             "{\n" +
             "    var elems = document.getElementsByTagName('*'), i;\n" +
@@ -86,6 +104,7 @@ public class PageInspector {
     public interface OnItemFoundListener {
         void onYouTubeEmbeds();
         void onTouchIconLoaded(Bitmap bitmap, String pageUrl);
+        void onDropDownFound();
     }
 
     public PageInspector(Context context, WebView webView, OnItemFoundListener listener) {
@@ -99,6 +118,8 @@ public class PageInspector {
         mWebViewUrl = webView.getUrl();
 
         String jsEmbed = "javascript:(function() {\n";
+
+        jsEmbed += JS_DROP_DOWN_ITEM_CHECK;
 
         if (checkForTouchIcon) {
             jsEmbed += JS_TOUCH_ICON_CHECK;
@@ -233,6 +254,13 @@ public class PageInspector {
                 if (mOnItemFoundListener != null) {
                     mOnItemFoundListener.onYouTubeEmbeds();
                 }
+            }
+        }
+
+        @JavascriptInterface
+        public void onDropDownFound() {
+            if (mOnItemFoundListener != null) {
+                mOnItemFoundListener.onDropDownFound();
             }
         }
     };
