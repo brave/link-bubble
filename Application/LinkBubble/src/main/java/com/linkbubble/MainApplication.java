@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
+import com.linkbubble.ui.Prompt;
 import com.squareup.otto.Bus;
 import org.mozilla.gecko.favicons.Favicons;
 import org.mozilla.gecko.favicons.cache.FaviconCache;
@@ -38,6 +39,7 @@ public class MainApplication extends Application {
         super.onCreate();
 
         Settings.initModule(this);
+        Prompt.initModule(this);
 
         mBus = new Bus();
 
@@ -56,6 +58,7 @@ public class MainApplication extends Application {
      */
     @Override
     public void onTerminate() {
+        Prompt.deinitModule();
         Settings.deinitModule();
 
         sFavicons.close();
