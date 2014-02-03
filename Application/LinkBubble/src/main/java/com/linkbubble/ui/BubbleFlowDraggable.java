@@ -280,7 +280,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             setCurrentTab(bubble);
         }
 
-        Settings.get().saveCurrentBubbles(mViews);
+        saveCurrentBubbles();
         return bubble;
     }
 
@@ -344,7 +344,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     private void postDestroyedBubble(boolean removeFromCurrentTabs) {
         if (removeFromCurrentTabs) {
-            Settings.get().saveCurrentBubbles(mViews);
+            saveCurrentBubbles();
         }
     }
 
@@ -373,4 +373,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     }
 
+    public void saveCurrentBubbles() {
+        Settings.get().saveCurrentBubbles(mViews);
+    }
 }

@@ -278,6 +278,10 @@ public class MainController implements Choreographer.FrameCallback {
                     break;
             }
         }
+
+        if (mBubbleFlowDraggable != null) {
+            mBubbleFlowDraggable.saveCurrentBubbles();
+        }
     }
 
     public void updateIncognitoMode(boolean incognito) {
