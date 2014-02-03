@@ -119,6 +119,8 @@
     <string name="stat_per_day">per day</string>
     <string name="stat_per_link">per link</string>
 
+    <string name="confirm_title">Confirm</string>
+
     <string name="no_default_browser">No default browser found on the system.</string>
 
     <string name="title_changelog">Change log</string>

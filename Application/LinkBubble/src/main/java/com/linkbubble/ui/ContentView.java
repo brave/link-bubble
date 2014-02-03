@@ -88,6 +88,7 @@ public class ContentView extends FrameLayout {
     private PopupMenu mOverflowPopupMenu;
     private AlertDialog mLongPressAlertDialog;
     private AlertDialog mJsAlertDialog;
+    private AlertDialog mJsConfirmDialog;
     private long mStartTime;
     private int mHeaderHeight;
     private Path mTempPath = new Path();
@@ -647,6 +648,27 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
+        public boolean onJsConfirm(WebView view, String url, String message, final JsResult result) {
+            mJsConfirmDialog = new AlertDialog.Builder(getContext()).create();
+            mJsConfirmDialog.setTitle(R.string.confirm_title);
+            mJsConfirmDialog.setMessage(message);
+            mJsConfirmDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            mJsConfirmDialog.setButton(AlertDialog.BUTTON_POSITIVE, getResources().getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    result.confirm();
+                }
+            });
+            mJsConfirmDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getResources().getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    result.cancel();
+                }
+            });
+            mJsConfirmDialog.show();
+            return true;
+        }
+
         public boolean onCreateWindow(WebView view, boolean dialog, boolean userGesture, Message resultMsg)
         {
             TabView tabView = MainController.get().onOpenUrl("http://yahoo.com", System.currentTimeMillis(), false);
@@ -1103,6 +1125,10 @@ public class ContentView extends FrameLayout {
         if (mJsAlertDialog != null) {
             mJsAlertDialog.dismiss();
             mJsAlertDialog = null;
+        }
+        if (mJsConfirmDialog != null) {
+            mJsConfirmDialog.dismiss();
+            mJsConfirmDialog = null;
         }
     }
 
