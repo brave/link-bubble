@@ -612,7 +612,9 @@ public class Settings {
         if (bubbles != null) {
             for (View view : bubbles) {
                 URL url = ((TabView)view).getUrl();
-                jsonArray.put(url.toString());
+                if (url.toString().equals(Constant.NEW_TAB_URL) == false) {
+                    jsonArray.put(url.toString());
+                }
             }
         }
 

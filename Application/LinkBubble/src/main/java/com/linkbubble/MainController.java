@@ -279,6 +279,10 @@ public class MainController implements Choreographer.FrameCallback {
             }
         }
 
+        saveCurrentBubbles();
+    }
+
+    public void saveCurrentBubbles() {
         if (mBubbleFlowDraggable != null) {
             mBubbleFlowDraggable.saveCurrentBubbles();
         }

@@ -468,7 +468,13 @@ public class ContentView extends FrameLayout {
         public void onPageStarted(WebView view, String urlAsString, Bitmap favIcon) {
             mPageFinishedLoading = false;
 
+            String oldUrl = mUrl.toString();
+
             updateUrl(urlAsString);
+
+            if (oldUrl.equals(Constant.NEW_TAB_URL)) {
+                MainController.get().saveCurrentBubbles();
+            }
 
             if (mShareButton.getVisibility() == GONE) {
                 mShareButton.setVisibility(VISIBLE);
@@ -717,7 +723,7 @@ public class ContentView extends FrameLayout {
         @Override
         public boolean onCreateWindow(WebView view, boolean dialog, boolean userGesture, Message resultMsg)
         {
-            TabView tabView = MainController.get().onOpenUrl("http://yahoo.com", System.currentTimeMillis(), false);
+            TabView tabView = MainController.get().onOpenUrl(Constant.NEW_TAB_URL, System.currentTimeMillis(), false);
             if (tabView != null) {
                 WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
                 transport.setWebView(tabView.getContentView().mWebView);
