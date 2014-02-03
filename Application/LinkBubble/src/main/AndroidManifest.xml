@@ -74,11 +74,6 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".ui.ContentActivity"
-                  android:theme="@style/ContentTheme"
-                  android:launchMode="singleInstance">
-        </activity>
-
         <activity android:name=".ui.SettingsActivity"
                   android:label="@string/app_name"
                   android:theme="@android:style/Theme.Holo.Light"
