@@ -508,31 +508,11 @@ public class Settings {
         }
 
         if (results != null && results.size() > 0) {
-            /*
-            ResolveInfo defaultApp = getDefaultAppForUrl(url, results);
-            if (defaultApp != null) {
-                results.clear();
-                results.add(defaultApp);
-            }*/
             return results;
         }
 
         return null;
     }
-
-    /*
-    ResolveInfo getAppThatHandlesUrl(String url) {
-        List<ResolveInfo> results = getAppsThatHandleUrl(url);
-        if (results != null && results.size() > 0) {
-            return results.get(0);
-        }
-        return null;
-    }*/
-
-    /*
-    private String getDefaultAppKey(String urlHost) {
-        return PREFERENCE_DEFAULT_APP_PREFIX + urlHost;
-    }*/
 
     public ResolveInfo getDefaultAppForUrl(URL url, List<ResolveInfo> resolveInfos) {
         if (resolveInfos == null || resolveInfos.size() == 0) {
