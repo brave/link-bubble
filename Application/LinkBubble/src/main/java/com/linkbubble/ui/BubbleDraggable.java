@@ -114,11 +114,11 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         MainController mainController = MainController.get();
 
         float snapTime = mTimeOnSnapTarget - Config.ANIMATE_TO_SNAP_TIME;
-        if (action == Config.BubbleAction.Destroy && snapTime >= Config.DESTROY_ALL_BUBBLES_DELAY) {
-            mainController.destroyAllBubbles();
+        if (action == Config.BubbleAction.Close && snapTime >= Config.CLOSE_ALL_BUBBLES_DELAY) {
+            mainController.closeAllBubbles();
             mMode = Mode.BubbleView;
         } else {
-            if (mainController.destroyCurrentTab(action, false)) {
+            if (mainController.closeCurrentTab(action, false)) {
                 doAnimateToBubbleView();
             } else {
                 mMode = Mode.BubbleView;
@@ -531,7 +531,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             if (mCurrentSnapTarget != null) {
                 mTimeOnSnapTarget += dt;
                 float snapTime = mTimeOnSnapTarget - Config.ANIMATE_TO_SNAP_TIME;
-                if (mCurrentSnapTarget.isLongHovering() == false && snapTime >= Config.DESTROY_ALL_BUBBLES_DELAY) {
+                if (mCurrentSnapTarget.isLongHovering() == false && snapTime >= Config.CLOSE_ALL_BUBBLES_DELAY) {
                     mCurrentSnapTarget.beginLongHovering();
                 }
             }

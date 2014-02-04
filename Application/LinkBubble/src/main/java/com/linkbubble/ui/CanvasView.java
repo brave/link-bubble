@@ -7,10 +7,8 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -79,14 +77,13 @@ public class CanvasView extends FrameLayout {
         LayoutInflater inflater = LayoutInflater.from(context);
 
         int closeBubbleTargetY = getResources().getDimensionPixelSize(R.dimen.close_bubble_target_y);
-        int destroyXOffset = resources.getDimensionPixelSize(R.dimen.destroy_bubble_target_x_offset);
         CloseTabTargetView closeTabTargetView = (CloseTabTargetView) inflater.inflate(R.layout.view_close_tab_target, null);
         Drawable closeDrawable = resources.getDrawable(R.drawable.close_indicator);
-        closeTabTargetView.configure(this, context, closeDrawable, Config.BubbleAction.Destroy,
+        closeTabTargetView.configure(this, context, closeDrawable, Config.BubbleAction.Close,
                 0, BubbleTargetView.HorizontalAnchor.Center,
                 closeBubbleTargetY, BubbleTargetView.VerticalAnchor.Bottom,
-                destroyXOffset, closeBubbleTargetY,
-                resources.getDimensionPixelSize(R.dimen.destroy_bubble_target_tractor_offset_x), closeBubbleTargetY);
+                resources.getDimensionPixelSize(R.dimen.close_bubble_target_x_offset), closeBubbleTargetY,
+                resources.getDimensionPixelSize(R.dimen.close_bubble_target_tractor_offset_x), closeBubbleTargetY);
         mTargets.add(closeTabTargetView);
 
         int consumeTargetY = resources.getDimensionPixelSize(R.dimen.bubble_target_y);
