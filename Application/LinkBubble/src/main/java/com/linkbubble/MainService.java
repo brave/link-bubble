@@ -104,6 +104,7 @@ public class MainService extends Service {
 
     @Override
     public void onDestroy() {
+        unregisterReceiver(mPackageBroadcastReceiver);
         unregisterReceiver(mDialogReceiver);
         unregisterReceiver(mBroadcastReceiver);
         MainController.destroy();
