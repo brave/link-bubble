@@ -107,7 +107,6 @@ public class MainService extends Service {
         unregisterReceiver(mPackageBroadcastReceiver);
         unregisterReceiver(mDialogReceiver);
         unregisterReceiver(mBroadcastReceiver);
-        unregisterReceiver(mPackageBroadcastReceiver);
         MainController.destroy();
     }
 
