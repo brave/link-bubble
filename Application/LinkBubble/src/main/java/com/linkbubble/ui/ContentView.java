@@ -385,7 +385,7 @@ public class ContentView extends FrameLayout {
 
                 AppForUrl defaultAppForUrl = getDefaultAppForUrl();
                 if (defaultAppForUrl != null) {
-                    if (defaultAppForUrl.mResolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo) {
+                    if (Util.isLinkBubbleResolveInfo(defaultAppForUrl.mResolveInfo) == false) {
                         if (MainApplication.loadResolveInfoIntent(context, defaultAppForUrl.mResolveInfo, urlAsString, mStartTime)) {
                             String title = String.format(context.getString(R.string.link_loaded_with_app),
                                     defaultAppForUrl.mResolveInfo.loadLabel(context.getPackageManager()));
@@ -396,7 +396,8 @@ public class ContentView extends FrameLayout {
                         }
                     }
                 } else {
-                    if (mShowingDefaultAppPicker == false) {
+                    boolean isOnlyLinkBubble = mAppsForUrl.size() == 1 ? Util.isLinkBubbleResolveInfo(mAppsForUrl.get(0).mResolveInfo) : false;
+                    if (isOnlyLinkBubble == false && mShowingDefaultAppPicker == false) {
                         final ArrayList<ResolveInfo> resolveInfos = new ArrayList<ResolveInfo>();
                         for (AppForUrl appForUrl : mAppsForUrl) {
                             resolveInfos.add(appForUrl.mResolveInfo);
