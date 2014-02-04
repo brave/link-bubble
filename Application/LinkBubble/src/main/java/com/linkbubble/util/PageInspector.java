@@ -43,7 +43,7 @@ public class PageInspector {
             "          wrapper.appendChild(elem);\n"+
             "\n"+
             "          var newImage = document.createElement('img');\n"+
-            "          newImage.src = \"http://www.w3schools.com/images/compatible_chrome.gif\";\n"+
+            "          newImage.src = \"https://s3.amazonaws.com/linkbubble/img/lb_warning_48.png\";\n"+
             "          newImage.onclick = function() {\n"+
             "             " + JS_VARIABLE + ".onDropDownWarningClick();\n"+
             "          };\n"+
