@@ -58,6 +58,7 @@
 
     <dimen name="bubble_target_icon_size">44dp</dimen>
     <dimen name="bubble_target_y">24dp</dimen>
+    <dimen name="close_bubble_target_y">31dp</dimen>
     <dimen name="close_tab_text_circle_size">66dp</dimen>
     <dimen name="close_tab_target_size">92dp</dimen>
     <dimen name="destroy_bubble_target_x_offset">20dp</dimen>

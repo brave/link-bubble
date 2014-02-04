@@ -78,16 +78,18 @@ public class CanvasView extends FrameLayout {
         Resources resources = getResources();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        int targetY = resources.getDimensionPixelSize(R.dimen.bubble_target_y);
+        int closeBubbleTargetY = getResources().getDimensionPixelSize(R.dimen.close_bubble_target_y);
         int destroyXOffset = resources.getDimensionPixelSize(R.dimen.destroy_bubble_target_x_offset);
         CloseTabTargetView closeTabTargetView = (CloseTabTargetView) inflater.inflate(R.layout.view_close_tab_target, null);
         Drawable closeDrawable = resources.getDrawable(R.drawable.close_indicator);
         closeTabTargetView.configure(this, context, closeDrawable, Config.BubbleAction.Destroy,
                 0, BubbleTargetView.HorizontalAnchor.Center,
-                targetY, BubbleTargetView.VerticalAnchor.Bottom,
-                destroyXOffset, targetY, resources.getDimensionPixelSize(R.dimen.destroy_bubble_target_tractor_offset_x), targetY);
+                closeBubbleTargetY, BubbleTargetView.VerticalAnchor.Bottom,
+                destroyXOffset, closeBubbleTargetY,
+                resources.getDimensionPixelSize(R.dimen.destroy_bubble_target_tractor_offset_x), closeBubbleTargetY);
         mTargets.add(closeTabTargetView);
 
+        int consumeTargetY = resources.getDimensionPixelSize(R.dimen.bubble_target_y);
         int consumeDefaultX = resources.getDimensionPixelSize(R.dimen.consume_bubble_target_default_x);
         int consumeXOffset = resources.getDimensionPixelSize(R.dimen.consume_bubble_target_x_offset);
         int consumeTractorBeamX = resources.getDimensionPixelSize(R.dimen.consume_bubble_target_tractor_beam_x);
@@ -96,16 +98,16 @@ public class CanvasView extends FrameLayout {
         Drawable leftConsumeDrawable = Settings.get().getConsumeBubbleIcon(Config.BubbleAction.ConsumeLeft);
         leftConsumeTarget.configure(this, context, leftConsumeDrawable, Config.BubbleAction.ConsumeLeft,
                 consumeDefaultX, BubbleTargetView.HorizontalAnchor.Left,
-                targetY, BubbleTargetView.VerticalAnchor.Top,
-                consumeXOffset, targetY, consumeTractorBeamX, targetY);
+                consumeTargetY, BubbleTargetView.VerticalAnchor.Top,
+                consumeXOffset, consumeTargetY, consumeTractorBeamX, consumeTargetY);
         mTargets.add(leftConsumeTarget);
 
         BubbleTargetView rightConsumeTarget = (BubbleTargetView) inflater.inflate(R.layout.view_consume_bubble_target, null);
         Drawable rightConsumeDrawable = Settings.get().getConsumeBubbleIcon(Config.BubbleAction.ConsumeRight);
         rightConsumeTarget.configure(this, context, rightConsumeDrawable, Config.BubbleAction.ConsumeRight,
                 consumeDefaultX, BubbleTargetView.HorizontalAnchor.Right,
-                targetY, BubbleTargetView.VerticalAnchor.Top,
-                consumeXOffset, targetY, consumeTractorBeamX, targetY);
+                consumeTargetY, BubbleTargetView.VerticalAnchor.Top,
+                consumeXOffset, consumeTargetY, consumeTractorBeamX, consumeTargetY);
         mTargets.add(rightConsumeTarget);
 
         Settings.setConsumeBubblesChangedEventHandler(new Settings.ConsumeBubblesChangedEventHandler() {
