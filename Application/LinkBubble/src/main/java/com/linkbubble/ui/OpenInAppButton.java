@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.WindowManager;
+import com.linkbubble.Constant;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
@@ -26,7 +27,7 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
     private OnOpenInAppClickListener mOnOpenInAppClickListener;
 
     private static final int NUM_ITEMS_IN_PREVIEW = 2;
-    private List<ContentView.AppForUrl> mAppsForUrl;
+    private List<ContentView.AppForUrl> mAppsForUrl = new ArrayList<ContentView.AppForUrl>();
     private PreviewItemDrawingParams mParams = new PreviewItemDrawingParams(0, 0, 0, 0);
     private int mAppStackPadding;
     private int mAppStackPreviewSize;
@@ -75,8 +76,16 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
     }
 
     boolean configure(List<ContentView.AppForUrl> appsForUrl) {
-        mAppsForUrl = appsForUrl;
-        int appsForUrlSize = appsForUrl != null ? appsForUrl.size() : 0;
+        mAppsForUrl.clear();
+        for (ContentView.AppForUrl appForUrl : appsForUrl) {
+            if ((appForUrl.mResolveInfo != null
+                    && appForUrl.mResolveInfo.activityInfo != null
+                    && appForUrl.mResolveInfo.activityInfo.packageName.equals(Constant.PACKAGE_NAME)) == false) {
+                mAppsForUrl.add(appForUrl);
+            }
+        }
+
+        int appsForUrlSize = mAppsForUrl.size();
         if (appsForUrlSize == 1) {
             ContentView.AppForUrl appForUrl = appsForUrl.get(0);
             Drawable d = appForUrl.getIcon(getContext());
