@@ -57,7 +57,7 @@ public class Prompt {
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 
         LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mRootView = li.inflate(R.layout.prompt, null);
+        mRootView = li.inflate(R.layout.view_prompt, null);
 
         mLayoutParams = new WindowManager.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,
