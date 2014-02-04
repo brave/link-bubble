@@ -489,7 +489,7 @@ public class Settings {
             if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
 
                 // Check if this item is a browser, and if so, ignore it
-                boolean packageOk = !info.activityInfo.packageName.equals(mContext.getPackageName());
+                boolean packageOk = true;
                 for (Intent browser : browsers) {
                     if (info.activityInfo.packageName.equals(browser.getComponent().getPackageName())) {
                         packageOk = false;

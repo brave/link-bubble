@@ -120,6 +120,7 @@ public class MainController implements Choreographer.FrameCallback {
     private AppPoller mAppPoller;
 
     protected Context mContext;
+    private String mAppPackageName;
     private Choreographer mChoreographer;
     protected boolean mUpdateScheduled;
     protected CanvasView mCanvasView;
@@ -196,6 +197,7 @@ public class MainController implements Choreographer.FrameCallback {
         Util.Assert(sInstance == null);
         sInstance = this;
         mContext = context;
+        mAppPackageName = mContext.getPackageName();
         mEventHandler = eventHandler;
 
         mAppPoller = new AppPoller(context);
@@ -420,8 +422,8 @@ public class MainController implements Choreographer.FrameCallback {
         if (resolveInfos != null && resolveInfos.size() > 0 && Settings.get().getAutoContentDisplayAppRedirect()) {
             if (resolveInfos.size() == 1) {
                 ResolveInfo resolveInfo = resolveInfos.get(0);
-                if (resolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo
-                    && MainApplication.loadResolveInfoIntent(mContext, resolveInfo, urlAsString, startTime)) {
+                boolean isLinkBubble = resolveInfo.activityInfo != null && resolveInfo.activityInfo.packageName.equals(mAppPackageName);
+                if (isLinkBubble == false && MainApplication.loadResolveInfoIntent(mContext, resolveInfo, urlAsString, startTime)) {
                     if (getActiveTabCount() == 0) {
                         mEventHandler.onDestroy();
                     }
@@ -437,7 +439,6 @@ public class MainController implements Choreographer.FrameCallback {
                             @Override
                             public void onSelected(ActionItem actionItem, boolean always) {
                                 boolean loaded = false;
-                                String appPackageName = mContext.getPackageName();
                                 for (ResolveInfo resolveInfo : resolveInfos) {
                                     if (resolveInfo.activityInfo.packageName.equals(actionItem.mPackageName)
                                             && resolveInfo.activityInfo.name.equals(actionItem.mActivityClassName)) {
@@ -446,7 +447,7 @@ public class MainController implements Choreographer.FrameCallback {
                                         }
 
                                         // Jump out of the loop and load directly via a BubbleView below
-                                        if (resolveInfo.activityInfo.packageName.equals(appPackageName)) {
+                                        if (resolveInfo.activityInfo.packageName.equals(mAppPackageName)) {
                                             break;
                                         }
 
@@ -456,22 +457,11 @@ public class MainController implements Choreographer.FrameCallback {
                                     }
                                 }
 
-                                if (loaded == false) {
-                                    openUrlInBubble(urlAsString, System.currentTimeMillis(), setAsCurrentBubble, true);
-                                } else {
-                                    if (getActiveTabCount() == 0) {
-                                        mEventHandler.onDestroy();
-                                    }
+                                if (loaded && getActiveTabCount() == 0) {
+                                    mEventHandler.onDestroy();
                                 }
                             }
                         });
-
-                dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        openUrlInBubble(urlAsString, System.currentTimeMillis(), setAsCurrentBubble, true);
-                    }
-                });
 
                 dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
                 dialog.show();
