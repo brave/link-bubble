@@ -16,6 +16,7 @@ import com.linkbubble.util.ActionItem;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,9 +79,7 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
     boolean configure(List<ContentView.AppForUrl> appsForUrl) {
         mAppsForUrl.clear();
         for (ContentView.AppForUrl appForUrl : appsForUrl) {
-            if ((appForUrl.mResolveInfo != null
-                    && appForUrl.mResolveInfo.activityInfo != null
-                    && appForUrl.mResolveInfo.activityInfo.packageName.equals(Constant.PACKAGE_NAME)) == false) {
+            if (Util.isLinkBubbleResolveInfo(appForUrl.mResolveInfo) == false) {
                 mAppsForUrl.add(appForUrl);
             }
         }
