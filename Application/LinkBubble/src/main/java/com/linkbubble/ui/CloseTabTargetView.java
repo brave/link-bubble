@@ -1,5 +1,6 @@
 package com.linkbubble.ui;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -10,6 +11,8 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.LinearInterpolator;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
@@ -19,7 +22,8 @@ import com.squareup.otto.Subscribe;
 
 public class CloseTabTargetView extends BubbleTargetView {
 
-    CloseAllView mCloseAllView;
+    private CloseAllView mCloseAllView;
+    private LinearInterpolator mInterpolator = new LinearInterpolator();
 
     public CloseTabTargetView(Context context) {
         this(context, null);
@@ -38,7 +42,64 @@ public class CloseTabTargetView extends BubbleTargetView {
         super.onFinishInflate();
 
         mCloseAllView = (CloseAllView) findViewById(R.id.close_all_view);
+        mCloseAllView.setVisibility(View.INVISIBLE);
     }
+
+    private static final int ANIM_DURATION = 100;
+    private static final float MIN_SCALE = .7f;
+
+    @Override
+    public void beginLongHovering() {
+        super.beginLongHovering();
+
+        mCloseAllView.setAlpha(0f);
+        mCloseAllView.setVisibility(View.VISIBLE);
+        mCloseAllView.setScaleX(MIN_SCALE);
+        mCloseAllView.setScaleY(MIN_SCALE);
+        mCloseAllView.animate()
+                    .alpha(1f)
+                    .scaleX(1f)
+                    .scaleY(1f)
+                    .setDuration(ANIM_DURATION)
+                    .setInterpolator(mInterpolator)
+                    .setListener(null)
+                    .start();
+    }
+
+    @Override
+    public void endLongHovering() {
+        mCloseAllView.animate()
+                .alpha(0.f)
+                .scaleX(MIN_SCALE)
+                .scaleY(MIN_SCALE)
+                .setDuration(ANIM_DURATION)
+                .setInterpolator(mInterpolator)
+                .setListener(mHideCloseAllViewListener)
+                .start();
+
+        super.endLongHovering();
+    }
+
+    private Animator.AnimatorListener mHideCloseAllViewListener = new Animator.AnimatorListener() {
+        @Override
+        public void onAnimationStart(Animator animation) {
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animation) {
+            mCloseAllView.setVisibility(View.INVISIBLE);
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animation) {
+
+        }
+
+        @Override
+        public void onAnimationRepeat(Animator animation) {
+
+        }
+    };
 
     @Override
     protected void registerForBus() {
