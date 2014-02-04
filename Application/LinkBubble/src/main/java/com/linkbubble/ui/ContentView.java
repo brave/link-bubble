@@ -373,7 +373,7 @@ public class ContentView extends FrameLayout {
                 if (openInBrowser(urlAsString)) {
                     String title = String.format(context.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
                     MainApplication.saveUrlInHistory(context, null, urlAsString, title);
-                    return false;
+                    return true;
                 }
             }
 
@@ -392,7 +392,7 @@ public class ContentView extends FrameLayout {
                             MainApplication.saveUrlInHistory(context, defaultAppForUrl.mResolveInfo, urlAsString, title);
 
                             MainController.get().closeCurrentTab(MainController.get().contentViewShowing());
-                            return false;
+                            return true;
                         }
                     }
                 } else {
