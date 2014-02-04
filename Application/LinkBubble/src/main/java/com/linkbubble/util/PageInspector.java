@@ -29,16 +29,31 @@ public class PageInspector {
 
     private static final String JS_DROP_DOWN_ITEM_CHECK =
             "{\n" +
-            "    var elems = document.getElementsByTagName('select'), i;\n" +
-            "    var disabledCount = 0;\n" +
-            "    for (i in elems) {\n" +
-            "      var elem = elems[i];\n" +
-            "      if (elem.disabled == false) {\n" +
-            "        elem.disabled = true;\n" +
-            "        disabledCount++;\n" +
-            "      }\n" +
-            "    }\n" +
-            "\n" +
+            "    var elems = document.getElementsByTagName('select'), i;\n"+
+            "    var disabledCount = 0;\n"+
+            "    for (i in elems) {\n"+
+            "      var elem = elems[i];\n"+
+            "      if (elem.disabled == false) {\n"+
+            "        elem.disabled = true;\n"+
+            "\n"+
+            "        var parent = elem.parentNode;\n"+
+            "        if (parent != null) {\n"+
+            "          var wrapper = document.createElement('div');\n"+
+            "          parent.replaceChild(wrapper, elem);\n"+
+            "          wrapper.appendChild(elem);\n"+
+            "\n"+
+            "          var newImage = document.createElement('img');\n"+
+            "          newImage.src = \"http://www.w3schools.com/images/compatible_chrome.gif\";\n"+
+            "          newImage.onclick = function() {\n"+
+            "             " + JS_VARIABLE + ".onDropDownWarningClick();\n"+
+            "          };\n"+
+            "          wrapper.appendChild(newImage)\n"+
+            "        }\n"+
+            "\n"+
+            "        disabledCount++;\n"+
+            "      }\n"+
+            "    }\n"+
+            "\n"+
             "    if (disabledCount > 0) {\n" +
             "      " + JS_VARIABLE + ".onDropDownFound();\n" +
             "    }\n" +
@@ -110,6 +125,7 @@ public class PageInspector {
         void onYouTubeEmbeds();
         void onTouchIconLoaded(Bitmap bitmap, String pageUrl);
         void onDropDownFound();
+        void onDropDownWarningClick();
     }
 
     public PageInspector(Context context, WebView webView, OnItemFoundListener listener) {
@@ -271,6 +287,13 @@ public class PageInspector {
         public void onDropDownFound() {
             if (mOnItemFoundListener != null) {
                 mOnItemFoundListener.onDropDownFound();
+            }
+        }
+
+        @JavascriptInterface
+        public void onDropDownWarningClick() {
+            if (mOnItemFoundListener != null) {
+                mOnItemFoundListener.onDropDownWarningClick();
             }
         }
     };
