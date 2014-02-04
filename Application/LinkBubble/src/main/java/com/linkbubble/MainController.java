@@ -419,18 +419,19 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         final List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(urlAsString);
+        ResolveInfo defaultAppResolveInfo = Settings.get().getDefaultAppForUrl(urlAsString, resolveInfos);
         if (resolveInfos != null && resolveInfos.size() > 0 && Settings.get().getAutoContentDisplayAppRedirect()) {
-            if (resolveInfos.size() == 1) {
-                ResolveInfo resolveInfo = resolveInfos.get(0);
-                boolean isLinkBubble = resolveInfo.activityInfo != null && resolveInfo.activityInfo.packageName.equals(mAppPackageName);
-                if (isLinkBubble == false && MainApplication.loadResolveInfoIntent(mContext, resolveInfo, urlAsString, startTime)) {
+            if (defaultAppResolveInfo != null) {
+                boolean isLinkBubble = defaultAppResolveInfo.activityInfo != null
+                        && defaultAppResolveInfo.activityInfo.packageName.equals(mAppPackageName);
+                if (isLinkBubble == false && MainApplication.loadResolveInfoIntent(mContext, defaultAppResolveInfo, urlAsString, startTime)) {
                     if (getActiveTabCount() == 0) {
                         mEventHandler.onDestroy();
                     }
 
                     String title = String.format(mContext.getString(R.string.link_loaded_with_app),
-                                                 resolveInfo.loadLabel(mContext.getPackageManager()));
-                    MainApplication.saveUrlInHistory(mContext, resolveInfo, urlAsString, title);
+                                        defaultAppResolveInfo.loadLabel(mContext.getPackageManager()));
+                    MainApplication.saveUrlInHistory(mContext, defaultAppResolveInfo, urlAsString, title);
                     return null;
                 }
             } else {
