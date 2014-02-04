@@ -965,6 +965,21 @@ public class ContentView extends FrameLayout {
         public void onDropDownFound() {
             mDoDropDownCheck = false;
         }
+
+        @Override
+        public void onDropDownWarningClick() {
+            String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
+            String message;
+            Drawable drawable;
+            if (defaultBrowserLabel != null) {
+                message = String.format(getResources().getString(R.string.unsupported_drop_down_default_browser), defaultBrowserLabel);
+                drawable = Settings.get().getDefaultBrowserIcon(getContext());
+            } else {
+                message = getResources().getString(R.string.unsupported_drop_down_no_default_browser);
+                drawable = null;
+            }
+            Prompt.show(message, drawable, Prompt.LENGTH_LONG, null);
+        }
     };
 
     int getPageInspectFlags() {

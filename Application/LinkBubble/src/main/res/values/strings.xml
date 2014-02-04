@@ -87,6 +87,8 @@
     <string name="unsupported_scheme_default_browser">Link type currently not supported. Open webpage in %1$s?</string>
     <string name="unsupported_scheme_no_default_browser">Link type currently not supported. Open the link a browser.</string>
     <string name="unsupported_scheme">Link type currently not supported.</string>
+    <string name="unsupported_drop_down_default_browser">Android system limitations prevent drop down elements from working in Link Bubble.\nOpen in %1$s?</string>
+    <string name="unsupported_drop_down_no_default_browser">Android system limitations prevent drop down elements from working in Link Bubble.\nOpen the link in a browser.</string>
 
     <string name="consume_category_view">View link</string>
     <string name="consume_category_share">Send/share link</string>
