@@ -432,7 +432,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                                     @Override
                                     public void onAnimationComplete() {
                                         mCurrentSnapTarget.endSnapping();
+                                        mCurrentSnapTarget.endLongHovering();
                                         mCurrentSnapTarget = null;
+                                        mTimeOnSnapTarget = 0.f;
                                         onAnimComplete();
                                     }
                                     @Override
@@ -528,6 +530,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         if (mTouchDown) {
             if (mCurrentSnapTarget != null) {
                 mTimeOnSnapTarget += dt;
+                float snapTime = mTimeOnSnapTarget - Config.ANIMATE_TO_SNAP_TIME;
+                if (mCurrentSnapTarget.isLongHovering() == false && snapTime >= Config.DESTROY_ALL_BUBBLES_DELAY) {
+                    mCurrentSnapTarget.beginLongHovering();
+                }
             }
             MainController.get().scheduleUpdate();
         }
