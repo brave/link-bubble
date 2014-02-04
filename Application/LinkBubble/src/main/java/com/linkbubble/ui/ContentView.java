@@ -364,8 +364,37 @@ public class ContentView extends FrameLayout {
             }
 
             mUrl = updatedUrl;
+            mWebView.loadUrl(urlAsString);
+            return true;
+        }
+
+        @Override
+        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            mEventHandler.onPageLoaded();
+            mReloadButton.setVisibility(VISIBLE);
+            mShareButton.setVisibility(GONE);
+        }
+
+        @Override
+        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+            handler.proceed();
+        }
+
+        @Override
+        public void onPageStarted(WebView view, final String urlAsString, Bitmap favIcon) {
+            Log.d(TAG, "onPageStarted() - " + urlAsString);
+            mPageFinishedLoading = false;
+
+            String oldUrl = mUrl.toString();
+
+            updateUrl(urlAsString);
+
+            if (oldUrl.equals(Constant.NEW_TAB_URL)) {
+                MainController.get().saveCurrentBubbles();
+            }
 
             mPageInspector.reset();
+
             final Context context = getContext();
 
             updateAppsForUrl(Settings.get().getAppsThatHandleUrl(mUrl), mUrl);
@@ -373,7 +402,7 @@ public class ContentView extends FrameLayout {
                 if (openInBrowser(urlAsString)) {
                     String title = String.format(context.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
                     MainApplication.saveUrlInHistory(context, null, urlAsString, title);
-                    return true;
+                    return;
                 }
             }
 
@@ -392,7 +421,7 @@ public class ContentView extends FrameLayout {
                             MainApplication.saveUrlInHistory(context, defaultAppForUrl.mResolveInfo, urlAsString, title);
 
                             MainController.get().closeCurrentTab(MainController.get().contentViewShowing());
-                            return true;
+                            return;
                         }
                     }
                 } else {
@@ -451,42 +480,13 @@ public class ContentView extends FrameLayout {
             configureOpenInAppButton();
             configureOpenEmbedButton();
             Log.d(TAG, "redirect to url: " + urlAsString);
-            mWebView.loadUrl(urlAsString);
             mEventHandler.onPageLoading(mUrl);
             mTitleTextView.setText(R.string.loading);
             mUrlTextView.setText(urlAsString.replace("http://", ""));
-            return true;
-        }
-
-        @Override
-        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-            mEventHandler.onPageLoaded();
-            mReloadButton.setVisibility(VISIBLE);
-            mShareButton.setVisibility(GONE);
-        }
-
-        @Override
-        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-            handler.proceed();
-        }
-
-        @Override
-        public void onPageStarted(WebView view, String urlAsString, Bitmap favIcon) {
-            mPageFinishedLoading = false;
-
-            String oldUrl = mUrl.toString();
-
-            updateUrl(urlAsString);
-
-            if (oldUrl.equals(Constant.NEW_TAB_URL)) {
-                MainController.get().saveCurrentBubbles();
-            }
 
             if (mShareButton.getVisibility() == GONE) {
                 mShareButton.setVisibility(VISIBLE);
             }
-
-            mUrlTextView.setText(urlAsString.replace("http://", ""));
         }
 
         @Override
