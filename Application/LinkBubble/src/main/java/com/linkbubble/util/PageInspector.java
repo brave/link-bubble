@@ -19,6 +19,11 @@ public class PageInspector {
 
     private static final String TAG = "PageInspector";
 
+    public static final int INSPECT_DROP_DOWN = 1;
+    public static final int INSPECT_YOUTUBE = 2;
+    public static final int INSPECT_TOUCH_ICON = 4;
+    public static final int INSPECT_ALL = INSPECT_DROP_DOWN | INSPECT_YOUTUBE | INSPECT_TOUCH_ICON;
+
     private static final String JS_VARIABLE = "LinkBubble";
     private static final String UNKNOWN_TAG = "unknown";        // the tag Chrome/WebView uses for unknown elements
 
@@ -114,18 +119,23 @@ public class PageInspector {
         webView.addJavascriptInterface(mJSEmbedHandler, JS_VARIABLE);
     }
 
-    public void run(WebView webView, boolean checkForTouchIcon) {
+    public void run(WebView webView, int inspectFlags) {
         mWebViewUrl = webView.getUrl();
 
         String jsEmbed = "javascript:(function() {\n";
 
-        jsEmbed += JS_DROP_DOWN_ITEM_CHECK;
+        if ((inspectFlags & INSPECT_DROP_DOWN) != 0) {
+            jsEmbed += JS_DROP_DOWN_ITEM_CHECK;
+        }
 
-        if (checkForTouchIcon) {
+        if ((inspectFlags & INSPECT_TOUCH_ICON) != 0) {
             jsEmbed += JS_TOUCH_ICON_CHECK;
         }
 
-        jsEmbed += JS_YOUTUBE_EMBED_CHECK;
+        if ((inspectFlags & INSPECT_YOUTUBE) != 0) {
+            jsEmbed += JS_YOUTUBE_EMBED_CHECK;
+        }
+
         jsEmbed += "})();";
 
         webView.loadUrl(jsEmbed);

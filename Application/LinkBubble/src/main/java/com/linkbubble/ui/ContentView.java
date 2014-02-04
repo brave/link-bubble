@@ -531,7 +531,7 @@ public class ContentView extends FrameLayout {
                 }
 
                 // Always check again at 100%
-                mPageInspector.run(webView, mEventHandler.hasHighQualityFavicon() ? false : true);
+                mPageInspector.run(webView, getPageInspectFlags());
             }
         }
     };
@@ -623,11 +623,11 @@ public class ContentView extends FrameLayout {
                     mPageInspector.reset();
 
                     Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                    mPageInspector.run(webView, mEventHandler.hasHighQualityFavicon() ? false : true);
+                    mPageInspector.run(webView, getPageInspectFlags());
                 } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
                     mCheckForEmbedsCount = 2;
                     Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                    mPageInspector.run(webView, mEventHandler.hasHighQualityFavicon() ? false : true);
+                    mPageInspector.run(webView, getPageInspectFlags());
                 }
             }
         }
@@ -947,6 +947,14 @@ public class ContentView extends FrameLayout {
         public void onDropDownFound() {
         }
     };
+
+    int getPageInspectFlags() {
+        int flags = PageInspector.INSPECT_DROP_DOWN | PageInspector.INSPECT_YOUTUBE;
+        if (mEventHandler.hasHighQualityFavicon() == false) {
+            flags |= PageInspector.INSPECT_TOUCH_ICON;
+        }
+        return flags;
+    }
 
     private void onUrlLongClick(final String urlAsString) {
         Resources resources = getResources();
