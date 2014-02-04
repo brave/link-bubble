@@ -968,17 +968,29 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onDropDownWarningClick() {
-            String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
-            String message;
-            Drawable drawable;
-            if (defaultBrowserLabel != null) {
-                message = String.format(getResources().getString(R.string.unsupported_drop_down_default_browser), defaultBrowserLabel);
-                drawable = Settings.get().getDefaultBrowserIcon(getContext());
-            } else {
-                message = getResources().getString(R.string.unsupported_drop_down_no_default_browser);
-                drawable = null;
-            }
-            Prompt.show(message, drawable, Prompt.LENGTH_LONG, null);
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
+                    String message;
+                    Drawable drawable = null;
+                    Prompt.OnPromptClickListener listener = null;
+                    if (defaultBrowserLabel != null) {
+                        message = String.format(getResources().getString(R.string.unsupported_drop_down_default_browser), defaultBrowserLabel);
+                        drawable = Settings.get().getDefaultBrowserIcon(getContext());
+                        final String urlToLoad = mUrl.toString();
+                        listener = new Prompt.OnPromptClickListener() {
+                            @Override
+                            public void onClick() {
+                                openInBrowser(urlToLoad);
+                            }
+                        };
+                    } else {
+                        message = getResources().getString(R.string.unsupported_drop_down_no_default_browser);
+                    }
+                    Prompt.show(message, drawable, Prompt.LENGTH_LONG, listener);
+                }
+            });
         }
     };
 
