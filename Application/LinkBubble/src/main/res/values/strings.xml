@@ -45,9 +45,9 @@
     <string name="preference_category_fallback_browser">Default fallback browser</string>
     <string name="preference_category_other_apps">Other apps</string>
     <string name="preference_default_apps_title">Default apps</string>
-    <string name="preference_default_apps_notice_summary">In the event more than one non-browser app on your system can handle a URL,
-                the following apps are used.\n\nTap to remove a default.</string>
-    <string name="preference_default_apps_notice_no_defaults_summary">In the event more than one non-browser app on your device can handle a URL,
+    <string name="preference_default_apps_notice_summary">Used when one or more non-browser apps on your system can handle a
+                    URL.\n\nTap to remove a default.</string>
+    <string name="preference_default_apps_notice_no_defaults_summary">Used when one or more more non-browser apps on your device can handle a URL,
                 you can configure the default app to load such links with.\n\nThe default app to use in this case is configured as
                 you load links with Link Bubble.</string>
     <string name="preference_google_account_redirect_title">Google Account redirect</string>
