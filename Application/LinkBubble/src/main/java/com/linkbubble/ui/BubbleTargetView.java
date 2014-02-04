@@ -236,7 +236,7 @@ public class BubbleTargetView extends FrameLayout {
                 mHomeX = Config.mScreenWidth + (int) mSnapWidth;
                 mHomeY = (int) -mSnapHeight;
                 break;
-            case Destroy:
+            case Close:
                 mHomeX = Config.mScreenCenterX; //mSnapWidth;
                 mHomeY = Config.mScreenHeight + (int) mSnapHeight;
                 break;
@@ -489,7 +489,7 @@ public class BubbleTargetView extends FrameLayout {
                 mHomeX = Config.mScreenWidth + (int) mSnapWidth;
                 mHomeY = (int) -mSnapHeight;
                 break;
-            case Destroy:
+            case Close:
                 mHomeX = Config.mScreenCenterX;
                 mHomeY = Config.mScreenHeight + (int) mSnapHeight;
                 break;

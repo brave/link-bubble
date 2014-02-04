@@ -358,7 +358,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     }
 
-    public void destroyAllBubbles(boolean removeFromCurrentTabs) {
+    public void closeAllBubbles(boolean removeFromCurrentTabs) {
         for (View view : mViews) {
             destroyBubble(((TabView) view), false, false);
         }

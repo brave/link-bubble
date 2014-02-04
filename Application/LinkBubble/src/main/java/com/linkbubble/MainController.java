@@ -9,7 +9,6 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Point;
 import android.net.Uri;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Choreographer;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -513,11 +512,11 @@ public class MainController implements Choreographer.FrameCallback {
         return mBubbleDraggable != null && mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView;
     }
 
-    public boolean destroyCurrentTab(boolean animateOff) {
-        return destroyCurrentTab(Config.BubbleAction.Destroy, animateOff);
+    public boolean closeCurrentTab(boolean animateOff) {
+        return closeCurrentTab(Config.BubbleAction.Close, animateOff);
     }
 
-    public boolean destroyCurrentTab(Config.BubbleAction action, boolean animateOff) {
+    public boolean closeCurrentTab(Config.BubbleAction action, boolean animateOff) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         boolean debug = prefs.getBoolean("debug_flick", false);
 
@@ -537,12 +536,12 @@ public class MainController implements Choreographer.FrameCallback {
         return getActiveTabCount() > 0;
     }
 
-    public void destroyAllBubbles() {
-        destroyAllBubbles(true);
+    public void closeAllBubbles() {
+        closeAllBubbles(true);
     }
 
-    public void destroyAllBubbles(boolean removeFromCurrentTabs) {
-        mBubbleFlowDraggable.destroyAllBubbles(removeFromCurrentTabs);
+    public void closeAllBubbles(boolean removeFromCurrentTabs) {
+        mBubbleFlowDraggable.closeAllBubbles(removeFromCurrentTabs);
         hideBubbleDraggable();
     }
 

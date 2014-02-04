@@ -1,6 +1,5 @@
 package com.linkbubble.ui;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
@@ -19,16 +18,13 @@ import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.WebViewDatabase;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.linkbubble.Constant;
 import com.linkbubble.MainController;
@@ -39,7 +35,6 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
-import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -555,7 +550,7 @@ public class SettingsFragment extends PreferenceFragment {
                     boolean reloaded = false;
 
                     if (MainController.get() != null) {
-                        MainController.get().destroyAllBubbles(false);
+                        MainController.get().closeAllBubbles(false);
                         final Vector<String> urls = Settings.get().loadCurrentBubbles();
                         if (urls.size() > 0) {
                             for (String url : urls) {

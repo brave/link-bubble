@@ -222,7 +222,7 @@ public class ContentView extends FrameLayout {
                         && actionItem.mActivityClassName.equals("com.google.android.apps.docs.app.SendTextToClipboardActivity");
 
                 if (closeBubbleOnShare && isCopyToClipboardAction == false) {
-                    MainController.get().destroyCurrentTab(true);
+                    MainController.get().closeCurrentTab(true);
                 }
             }
         });
@@ -390,7 +390,7 @@ public class ContentView extends FrameLayout {
                                     appForUrl.mResolveInfo.loadLabel(context.getPackageManager()));
                             MainApplication.saveUrlInHistory(context, appForUrl.mResolveInfo, urlAsString, title);
 
-                            MainController.get().destroyCurrentTab(MainController.get().contentViewShowing());
+                            MainController.get().closeCurrentTab(MainController.get().contentViewShowing());
                             return false;
                         }
                     }
@@ -425,7 +425,7 @@ public class ContentView extends FrameLayout {
                                         }
 
                                         if (loaded) {
-                                            MainController.get().destroyCurrentTab(MainController.get().contentViewShowing());
+                                            MainController.get().closeCurrentTab(MainController.get().contentViewShowing());
                                         }
                                         // NOTE: no need to call loadUrl(urlAsString) or anything in the event the link is to be handled by
                                         // Link Bubble. The flow already assumes that will happen by continuing the load when the Dialog displays. #244
@@ -550,7 +550,7 @@ public class ContentView extends FrameLayout {
                 switch (keyCode) {
                     case KeyEvent.KEYCODE_BACK: {
                         if (mUrlStack.size() == 0) {
-                            MainController.get().destroyCurrentTab(true);
+                            MainController.get().closeCurrentTab(true);
                         } else {
                             webView.stopLoading();
                             String urlBefore = webView.getUrl();
@@ -782,7 +782,7 @@ public class ContentView extends FrameLayout {
                 String contentDisposition, String mimetype,
         long contentLength) {
             openInBrowser(urlAsString);
-            MainController.get().destroyCurrentTab(true);
+            MainController.get().closeCurrentTab(true);
         }
     };
 
@@ -797,7 +797,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onAppOpened() {
-            MainController.get().destroyCurrentTab(true);
+            MainController.get().closeCurrentTab(true);
         }
 
     };
@@ -1254,7 +1254,7 @@ public class ContentView extends FrameLayout {
         intent.setData(Uri.parse(urlAsString));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         if (MainApplication.loadInBrowser(getContext(), intent, true)) {
-            MainController.get().destroyCurrentTab(true);
+            MainController.get().closeCurrentTab(true);
             return true;
         }
 

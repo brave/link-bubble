@@ -61,8 +61,8 @@
     <dimen name="close_bubble_target_y">31dp</dimen>
     <dimen name="close_tab_text_circle_size">66dp</dimen>
     <dimen name="close_tab_target_size">92dp</dimen>
-    <dimen name="destroy_bubble_target_x_offset">20dp</dimen>
-    <dimen name="destroy_bubble_target_tractor_offset_x">200dp</dimen>
+    <dimen name="close_bubble_target_x_offset">20dp</dimen>
+    <dimen name="close_bubble_target_tractor_offset_x">200dp</dimen>
     <dimen name="consume_bubble_target_default_x">50dp</dimen>
     <dimen name="consume_bubble_target_x_offset">5dp</dimen>
     <dimen name="consume_bubble_target_tractor_beam_x">80dp</dimen>

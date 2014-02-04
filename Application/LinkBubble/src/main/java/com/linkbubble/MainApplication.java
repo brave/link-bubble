@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Toast;
@@ -18,11 +17,9 @@ import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
 import com.squareup.otto.Bus;
 import org.mozilla.gecko.favicons.Favicons;
-import org.mozilla.gecko.favicons.cache.FaviconCache;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -145,7 +142,7 @@ public class MainApplication extends Application {
         } else if (actionType == Config.ActionType.View) {
             result = MainApplication.loadIntent(context, Settings.get().getConsumeBubblePackageName(action),
                     Settings.get().getConsumeBubbleActivityClassName(action), url, -1);
-        } else if (action == Config.BubbleAction.Destroy) {
+        } else if (action == Config.BubbleAction.Close) {
             result = true;
         }
 
