@@ -410,7 +410,6 @@ public class ContentView extends FrameLayout {
                     && mHandledAppPickerForCurrentUrl == false
                     && mAppsForUrl != null
                     && mAppsForUrl.size() > 0) {
-                mHandledAppPickerForCurrentUrl = true;
 
                 AppForUrl defaultAppForUrl = getDefaultAppForUrl();
                 if (defaultAppForUrl != null) {
@@ -473,6 +472,7 @@ public class ContentView extends FrameLayout {
                         dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
                         dialog.show();
                         mShowingDefaultAppPicker = true;
+                        mHandledAppPickerForCurrentUrl = true;
                     }
                 }
             }

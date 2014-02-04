@@ -410,6 +410,7 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public TabView onOpenUrl(final String urlAsString, long startTime, final boolean setAsCurrentBubble) {
+        boolean hasShowAppPicker = false;
         URL url;
         try {
             url = new URL(urlAsString);
@@ -479,11 +480,12 @@ public class MainController implements Choreographer.FrameCallback {
 
                 dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
                 dialog.show();
+                hasShowAppPicker = true;
             }
         }
 
         mCanAutoDisplayLink = true;
-        return openUrlInBubble(urlAsString, startTime, setAsCurrentBubble, false);
+        return openUrlInBubble(urlAsString, startTime, setAsCurrentBubble, hasShowAppPicker);
     }
 
     protected TabView openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble, boolean hasShownAppPicker) {
