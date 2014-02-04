@@ -131,9 +131,22 @@
     <string name="faq_translations_question">When will you add foreign language translations? Can I help?</string>
     <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Twitter
             (@chrismlacy) for help with translations, so be sure to keep an eye on my feed.]]></string>
-
     <string name="faq_roadmap_question">Do you publish a feature roadmap? Can I up-vote upcoming features?</string>
     <string name="faq_roadmap_answer">For competitive reasons, the answer to both of these questions is \'no\' I\'m afraid.<br/><br/></string>
+    <string name="faq_cant_type_url_question">Why can\'t I type the name of the URL I want to visit?</string>
+    <string name="faq_cant_type_url_answer">TODO: By design. Try Google Now.</string>
+    <string name="faq_drop_down_items_question">Why don\'t drop down menus work?</string>
+    <string name="faq_drop_down_items_answer">TODO: Android system limitations.</string>
+    <string name="faq_copy_text_question">Why can\'t I copy text from a web page?</string>
+    <string name="faq_copy_text_answer">TODO: Android system limitations.</string>
+    <string name="faq_translucent_status_bar_question">Why doesn\'t the app draw over the translucent status bar?</string>
+    <string name="faq_translucent_status_bar_answer">TODO: Android system limitations.</string>
+    <string name="faq_beta_programme_question">Is there a beta programme? How can I join?</string>
+    <string name="faq_beta_programme_answer">TODO:</string>
+    <string name="faq_next_update_eta_question">When is the next update coming?</string>
+    <string name="faq_next_update_eta_answer">TODO: When it\'s ready.</string>
+    <string name="faq_feature_request_question">Can I make a feature request?</string>
+    <string name="faq_feature_request_answer">TODO: No!</string>
 
     <string name="faq_title">FAQ/Request feature/Report bug</string>
     <string name="faq_section_general">General</string>

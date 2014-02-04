@@ -35,13 +35,19 @@ public class FAQDialog {
     static int sFAQSize = 0;
 
     static String[] sFAQEntry = {
+        "faq_cant_type_url",
+        "faq_drop_down_items",
+        "faq_copy_text",
+        "faq_translucent_status_bar",
+        "faq_next_update_eta",
+        "faq_beta_programme",
         "faq_translations",
-
         "faq_roadmap",
+        "faq_feature_request",
     };
 
-    static int sFeatureRequestsIndex = 2;
-    static int sBugsIndex = 7;
+    //static int sFeatureRequestsIndex = 2;
+    //static int sBugsIndex = 7;
 
 	public FAQDialog(Activity context) {
         if (sQuestionStringIds == null) {
@@ -80,6 +86,7 @@ public class FAQDialog {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                /*
                 if (position == 0) {
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse("http://s3.amazonaws.com/actionlauncher/action_launcher_beta.html"));
@@ -96,10 +103,10 @@ public class FAQDialog {
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
                     emailIntent.putExtra(Intent.EXTRA_TEXT, "My bug is ...\n\nHow often does the problem occur?\n\nAre you running a ROM and/or a modified framework/kernel? ");
                     mActivity.startActivity(Intent.createChooser(emailIntent, "Send bug report email..."));
-                } else {
+                } else {*/
                     FAQAdapter adapter = (FAQAdapter)view.getTag();
                     adapter.toggle(position);
-                }
+                //}
             }
         });
         listView.setAdapter(new FAQAdapter(mActivity));
@@ -179,11 +186,11 @@ public class FAQDialog {
             TextView headerLabel = (TextView)convertView.findViewById(R.id.section_text);
 
             int stringId = R.string.faq_section_bugs;
-            if (position < sFeatureRequestsIndex) {
+            //if (position < sFeatureRequestsIndex) {
                 stringId = R.string.faq_section_general;
-            } else if (position < sBugsIndex) {
-                stringId = R.string.faq_section_feature_requests;
-            }
+            //} else if (position < sBugsIndex) {
+            //    stringId = R.string.faq_section_feature_requests;
+            //}
 
             headerLabel.setText(stringId);
             return convertView;
@@ -191,13 +198,13 @@ public class FAQDialog {
 
         @Override
         public long getHeaderId(int position) {
-            if (position < sFeatureRequestsIndex) {
+            //if (position < sFeatureRequestsIndex) {
                 return 0;
-            } else if (position < sBugsIndex) {
-                return 1;
-            }
+            //} else if (position < sBugsIndex) {
+            //    return 1;
+            //}
 
-            return 2;
+            //return 2;
         }
     }
 }
