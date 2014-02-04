@@ -382,13 +382,14 @@ public class ContentView extends FrameLayout {
                     && mAppsForUrl != null
                     && mAppsForUrl.size() > 0) {
                 mHandledAppPickerForCurrentUrl = true;
-                if (mAppsForUrl.size() == 1) {
-                    AppForUrl appForUrl = mAppsForUrl.get(0);
-                    if (appForUrl.mResolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo) {
-                        if (MainApplication.loadResolveInfoIntent(context, appForUrl.mResolveInfo, urlAsString, mStartTime)) {
+
+                AppForUrl defaultAppForUrl = getDefaultAppForUrl();
+                if (defaultAppForUrl != null) {
+                    if (defaultAppForUrl.mResolveInfo != Settings.get().mLinkBubbleEntryActivityResolveInfo) {
+                        if (MainApplication.loadResolveInfoIntent(context, defaultAppForUrl.mResolveInfo, urlAsString, mStartTime)) {
                             String title = String.format(context.getString(R.string.link_loaded_with_app),
-                                    appForUrl.mResolveInfo.loadLabel(context.getPackageManager()));
-                            MainApplication.saveUrlInHistory(context, appForUrl.mResolveInfo, urlAsString, title);
+                                    defaultAppForUrl.mResolveInfo.loadLabel(context.getPackageManager()));
+                            MainApplication.saveUrlInHistory(context, defaultAppForUrl.mResolveInfo, urlAsString, title);
 
                             MainController.get().closeCurrentTab(MainController.get().contentViewShowing());
                             return false;
@@ -1170,6 +1171,27 @@ public class ContentView extends FrameLayout {
         } else {
             mAppsForUrl.clear();
         }
+    }
+
+    AppForUrl getDefaultAppForUrl() {
+        if (mAppsForUrl != null && mAppsForUrl.size() > 0) {
+            mTempAppsForUrl.clear();
+            for (AppForUrl appForUrl : mAppsForUrl) {
+                mTempAppsForUrl.add(appForUrl.mResolveInfo);
+            }
+            if (mTempAppsForUrl.size() > 0) {
+                ResolveInfo defaultApp = Settings.get().getDefaultAppForUrl(mUrl.toString(), mTempAppsForUrl);
+                if (defaultApp != null) {
+                    for (AppForUrl appForUrl : mAppsForUrl) {
+                        if (appForUrl.mResolveInfo == defaultApp) {
+                            return appForUrl;
+                        }
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 
     public void onAnimateOnScreen() {

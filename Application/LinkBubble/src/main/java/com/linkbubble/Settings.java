@@ -508,11 +508,12 @@ public class Settings {
         }
 
         if (results != null && results.size() > 0) {
-            ResolveInfo defaultApp = getDefaultApp(url, results);
+            /*
+            ResolveInfo defaultApp = getDefaultAppForUrl(url, results);
             if (defaultApp != null) {
                 results.clear();
                 results.add(defaultApp);
-            }
+            }*/
             return results;
         }
 
@@ -533,7 +534,11 @@ public class Settings {
         return PREFERENCE_DEFAULT_APP_PREFIX + urlHost;
     }*/
 
-    private ResolveInfo getDefaultApp(String urlAsString, List<ResolveInfo> resolveInfos) {
+    public ResolveInfo getDefaultAppForUrl(String urlAsString, List<ResolveInfo> resolveInfos) {
+        if (resolveInfos == null || resolveInfos.size() == 0) {
+            return null;
+        }
+
         try {
             URL url = new URL(urlAsString);
             String host = url.getHost();
