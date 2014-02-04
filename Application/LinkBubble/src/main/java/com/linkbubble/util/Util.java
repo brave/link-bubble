@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Point;
 import android.net.Uri;
+import com.linkbubble.Constant;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -269,5 +270,15 @@ public class Util {
 
         p.x = (int) (0.5f + ax + abX * t);
         p.y = (int) (0.5f + ay + abY * t);
+    }
+
+    public static boolean isLinkBubbleResolveInfo(ResolveInfo resolveInfo) {
+        if (resolveInfo != null
+            && resolveInfo.activityInfo != null
+                && resolveInfo.activityInfo.packageName.equals(Constant.PACKAGE_NAME)) {
+            return true;
+        }
+
+        return false;
     }
 }
