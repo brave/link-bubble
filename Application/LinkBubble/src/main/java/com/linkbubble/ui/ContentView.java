@@ -484,6 +484,8 @@ public class ContentView extends FrameLayout {
             if (mShareButton.getVisibility() == GONE) {
                 mShareButton.setVisibility(VISIBLE);
             }
+
+            mUrlTextView.setText(urlAsString.replace("http://", ""));
         }
 
         @Override
