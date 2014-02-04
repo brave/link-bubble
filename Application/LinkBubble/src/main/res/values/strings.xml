@@ -20,6 +20,7 @@
     <string name="action_upgrade_to_pro">★Upgrade to Pro★</string>
     <string name="action_copy_to_clipboard">Copy link</string>
     <string name="action_share">Share</string>
+    <string name="action_close_all">Close all</string>
     <string name="share_via">Share via...</string>
 
     <string name="pick_default_app">Select default app</string>
