@@ -393,8 +393,9 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public TabView onOpenUrl(final String urlAsString, long startTime, final boolean setAsCurrentBubble) {
+        URL url;
         try {
-            new URL(urlAsString);
+            url = new URL(urlAsString);
         } catch (MalformedURLException e) { // If this is not a valid scheme, back out. #271
             Toast.makeText(mContext, mContext.getString(R.string.unsupported_scheme), Toast.LENGTH_SHORT).show();
             if (getActiveTabCount() == 0) {
@@ -418,8 +419,8 @@ public class MainController implements Choreographer.FrameCallback {
             }
         }
 
-        final List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(urlAsString);
-        ResolveInfo defaultAppResolveInfo = Settings.get().getDefaultAppForUrl(urlAsString, resolveInfos);
+        final List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
+        ResolveInfo defaultAppResolveInfo = Settings.get().getDefaultAppForUrl(url, resolveInfos);
         if (resolveInfos != null && resolveInfos.size() > 0 && Settings.get().getAutoContentDisplayAppRedirect()) {
             if (defaultAppResolveInfo != null) {
                 boolean isLinkBubble = defaultAppResolveInfo.activityInfo != null
