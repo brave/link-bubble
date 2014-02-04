@@ -6,8 +6,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
@@ -18,8 +16,6 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.physics.Draggable;
-import com.linkbubble.physics.DraggableHelper;
 import com.linkbubble.util.Util;
 import com.linkbubble.physics.Circle;
 import com.squareup.otto.Subscribe;
@@ -79,6 +75,7 @@ public class BubbleTargetView extends FrameLayout {
     private float mAnimTime;
     private boolean mEnableMove;
     private boolean mIsSnapping;
+    private boolean mIsLongHovering;
     private static boolean sEnableTractor;
     private float mTimeSinceSnapping;
     private float mTransitionTimeLeft;
@@ -333,6 +330,18 @@ public class BubbleTargetView extends FrameLayout {
         mIsSnapping = false;
         mTimeSinceSnapping = 0.0f;
         setTargetPos(mCanvasLayoutParams.leftMargin, mCanvasLayoutParams.topMargin, 0.0f, Interpolator.Linear);
+    }
+
+    public void beginLongHovering() {
+        mIsLongHovering = true;
+    }
+
+    public void endLongHovering() {
+        mIsLongHovering = false;
+    }
+
+    public boolean isLongHovering() {
+        return mIsLongHovering;
     }
 
     public Config.BubbleAction getAction() {
