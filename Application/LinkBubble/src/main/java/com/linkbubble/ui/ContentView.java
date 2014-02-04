@@ -368,7 +368,7 @@ public class ContentView extends FrameLayout {
             mPageInspector.reset();
             final Context context = getContext();
 
-            updateAppsForUrl(Settings.get().getAppsThatHandleUrl(urlAsString), mUrl);
+            updateAppsForUrl(Settings.get().getAppsThatHandleUrl(mUrl), mUrl);
             if (Settings.get().redirectUrlToBrowser(urlAsString)) {
                 if (openInBrowser(urlAsString)) {
                     String title = String.format(context.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
@@ -1092,7 +1092,7 @@ public class ContentView extends FrameLayout {
     }
 
     private void updateAppsForUrl(URL url) {
-        List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url.toString());
+        List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
         updateAppsForUrl(resolveInfos, url);
     }
 
@@ -1180,7 +1180,7 @@ public class ContentView extends FrameLayout {
                 mTempAppsForUrl.add(appForUrl.mResolveInfo);
             }
             if (mTempAppsForUrl.size() > 0) {
-                ResolveInfo defaultApp = Settings.get().getDefaultAppForUrl(mUrl.toString(), mTempAppsForUrl);
+                ResolveInfo defaultApp = Settings.get().getDefaultAppForUrl(mUrl, mTempAppsForUrl);
                 if (defaultApp != null) {
                     for (AppForUrl appForUrl : mAppsForUrl) {
                         if (appForUrl.mResolveInfo == defaultApp) {

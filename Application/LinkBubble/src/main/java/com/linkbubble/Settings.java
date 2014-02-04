@@ -472,14 +472,14 @@ public class Settings {
         return false;
     }
 
-    public List<ResolveInfo> getAppsThatHandleUrl(String url) {
+    public List<ResolveInfo> getAppsThatHandleUrl(URL url) {
 
         List<Intent> browsers = getBrowsers();
 
         PackageManager manager = mContext.getPackageManager();
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
+        intent.setData(Uri.parse(url.toString()));
         List<ResolveInfo> infos = manager.queryIntentActivities(intent, PackageManager.GET_RESOLVED_FILTER);
 
         ArrayList<ResolveInfo> results = null;
@@ -534,34 +534,29 @@ public class Settings {
         return PREFERENCE_DEFAULT_APP_PREFIX + urlHost;
     }*/
 
-    public ResolveInfo getDefaultAppForUrl(String urlAsString, List<ResolveInfo> resolveInfos) {
+    public ResolveInfo getDefaultAppForUrl(URL url, List<ResolveInfo> resolveInfos) {
         if (resolveInfos == null || resolveInfos.size() == 0) {
             return null;
         }
 
-        try {
-            URL url = new URL(urlAsString);
-            String host = url.getHost();
-            if (host.length() > 1) {
-                String flattenedComponentName = mDefaultAppsMap.get(host);
-                if (flattenedComponentName != null) {
-                    ComponentName componentName = ComponentName.unflattenFromString(flattenedComponentName);
-                    if (componentName != null) {
-                        for (ResolveInfo resolveInfo : resolveInfos) {
-                            if (resolveInfo.activityInfo.packageName.equals(componentName.getPackageName())
-                                    && resolveInfo.activityInfo.name.equals(componentName.getClassName())) {
-                                return resolveInfo;
-                            }
+        String host = url.getHost();
+        if (host.length() > 1) {
+            String flattenedComponentName = mDefaultAppsMap.get(host);
+            if (flattenedComponentName != null) {
+                ComponentName componentName = ComponentName.unflattenFromString(flattenedComponentName);
+                if (componentName != null) {
+                    for (ResolveInfo resolveInfo : resolveInfos) {
+                        if (resolveInfo.activityInfo.packageName.equals(componentName.getPackageName())
+                                && resolveInfo.activityInfo.name.equals(componentName.getClassName())) {
+                            return resolveInfo;
                         }
+                    }
 
-                        if (componentName.getPackageName().equals(mContext.getPackageName())) {
-                            return mLinkBubbleEntryActivityResolveInfo;
-                        }
+                    if (componentName.getPackageName().equals(mContext.getPackageName())) {
+                        return mLinkBubbleEntryActivityResolveInfo;
                     }
                 }
             }
-
-        } catch (MalformedURLException e) {
         }
 
         return null;
