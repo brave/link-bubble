@@ -82,6 +82,7 @@ public class ContentView extends FrameLayout {
     private String mLastWebViewTouchDownUrl;
     private boolean mPageFinishedLoading;
     private boolean mShowingDefaultAppPicker = false;
+    private Boolean mIsDestroyed = false;
 
     private List<AppForUrl> mAppsForUrl = new ArrayList<AppForUrl>();
     private List<ResolveInfo> mTempAppsForUrl = new ArrayList<ResolveInfo>();
@@ -181,6 +182,7 @@ public class ContentView extends FrameLayout {
     }
 
     public void destroy() {
+        mIsDestroyed = true;
         removeView(mWebView);
         mWebView.destroy();
     }
@@ -229,6 +231,7 @@ public class ContentView extends FrameLayout {
 
     void configure(String urlAsString, long startTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
         mUrl = new URL(urlAsString);
+        mDoDropDownCheck = true;
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_header);
         mHandledAppPickerForCurrentUrl = hasShownAppPicker;
 
@@ -346,6 +349,7 @@ public class ContentView extends FrameLayout {
                     // in which case we don't update the Url Stack
                     if (mLastWebViewTouchDownUrl.equals(mUrl.toString())) {
                         mUrlStack.push(mUrl);
+                        mDoDropDownCheck = true;
                         mEventHandler.onBackStackSizeChanged(mUrlStack.size());
                         Log.d(TAG, "[urlstack] push:" + mUrl.toString() + ", urlStack.size():" + mUrlStack.size() + ", delta:" + touchUpTimeDelta);
                         mHandledAppPickerForCurrentUrl = false;
@@ -532,6 +536,8 @@ public class ContentView extends FrameLayout {
 
                 // Always check again at 100%
                 mPageInspector.run(webView, getPageInspectFlags());
+
+                postDelayed(mDropDownCheckRunnable, Constant.DROP_DOWN_CHECK_TIME);
             }
         }
     };
@@ -904,6 +910,18 @@ public class ContentView extends FrameLayout {
         }
     };
 
+    private boolean mDoDropDownCheck;
+    private Runnable mDropDownCheckRunnable = new Runnable() {
+        @Override
+        public void run() {
+            synchronized (mIsDestroyed) {
+                if (mIsDestroyed == false && mDoDropDownCheck) {
+                    mPageInspector.run(mWebView, PageInspector.INSPECT_DROP_DOWN);
+                }
+            }
+        }
+    };
+
     PageInspector.OnItemFoundListener mOnPageInspectorItemFoundListener = new PageInspector.OnItemFoundListener() {
 
         private Runnable mUpdateOpenInAppRunnable = null;
@@ -945,6 +963,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onDropDownFound() {
+            mDoDropDownCheck = false;
         }
     };
 
