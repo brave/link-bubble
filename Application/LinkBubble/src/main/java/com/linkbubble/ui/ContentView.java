@@ -426,7 +426,7 @@ public class ContentView extends FrameLayout {
                     }
                 } else {
                     boolean isOnlyLinkBubble = mAppsForUrl.size() == 1 ? Util.isLinkBubbleResolveInfo(mAppsForUrl.get(0).mResolveInfo) : false;
-                    if (isOnlyLinkBubble == false && mShowingDefaultAppPicker == false) {
+                    if (isOnlyLinkBubble == false && mShowingDefaultAppPicker == false && mHandledAppPickerForCurrentUrl == false) {
                         final ArrayList<ResolveInfo> resolveInfos = new ArrayList<ResolveInfo>();
                         for (AppForUrl appForUrl : mAppsForUrl) {
                             resolveInfos.add(appForUrl.mResolveInfo);
