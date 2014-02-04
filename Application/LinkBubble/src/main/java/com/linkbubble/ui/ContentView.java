@@ -1129,9 +1129,9 @@ public class ContentView extends FrameLayout {
                     }
 
                     if (alreadyAdded == false) {
-                        if (resolveInfoToAdd.activityInfo.packageName.equals(Settings.get().mLinkBubbleEntryActivityResolveInfo.activityInfo.packageName)) {
-                            continue;
-                        }
+                        //if (resolveInfoToAdd.activityInfo.packageName.equals(Settings.get().mLinkBubbleEntryActivityResolveInfo.activityInfo.packageName)) {
+                        //    continue;
+                        //}
                         mTempAppsForUrl.add(resolveInfoToAdd);
                     }
                 }
@@ -1172,6 +1172,20 @@ public class ContentView extends FrameLayout {
 
         } else {
             mAppsForUrl.clear();
+        }
+
+        boolean containsLinkBubble = false;
+        for (AppForUrl appForUrl : mAppsForUrl) {
+            if (appForUrl.mResolveInfo != null
+                    && appForUrl.mResolveInfo.activityInfo != null
+                    && appForUrl.mResolveInfo.activityInfo.packageName.equals(Constant.PACKAGE_NAME)) {
+                containsLinkBubble = true;
+                break;
+            }
+        }
+
+        if (containsLinkBubble == false) {
+            mAppsForUrl.add(new AppForUrl(Settings.get().mLinkBubbleEntryActivityResolveInfo, url));
         }
     }
 
