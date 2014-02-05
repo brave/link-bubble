@@ -94,7 +94,7 @@ public class ContentView extends FrameLayout {
     private AlertDialog mJsAlertDialog;
     private AlertDialog mJsConfirmDialog;
     private AlertDialog mJsPromptDialog;
-    private long mInitialUrlStartLoadTime;
+    private long mInitialUrlLoadStartTime;
     private int mHeaderHeight;
     private Path mTempPath = new Path();
     private PageInspector mPageInspector;
@@ -230,7 +230,7 @@ public class ContentView extends FrameLayout {
         alertDialog.show();
     }
 
-    void configure(String urlAsString, TabView ownerTabView, long startTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
+    void configure(String urlAsString, TabView ownerTabView, long urlLoadStartTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
         mUrl = new URL(urlAsString);
         mOwnerTabView = ownerTabView;
         mDoDropDownCheck = true;
@@ -288,7 +288,7 @@ public class ContentView extends FrameLayout {
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
-        mInitialUrlStartLoadTime = startTime;
+        mInitialUrlLoadStartTime = urlLoadStartTime;
 
         updateUrl(urlAsString);
         updateAppsForUrl(mUrl);
@@ -414,16 +414,13 @@ public class ContentView extends FrameLayout {
                 AppForUrl defaultAppForUrl = getDefaultAppForUrl();
                 if (defaultAppForUrl != null) {
                     if (Util.isLinkBubbleResolveInfo(defaultAppForUrl.mResolveInfo) == false) {
-                        if (MainApplication.loadResolveInfoIntent(context, defaultAppForUrl.mResolveInfo, urlAsString, mInitialUrlStartLoadTime)) {
+                        if (MainApplication.loadResolveInfoIntent(context, defaultAppForUrl.mResolveInfo, urlAsString, mInitialUrlLoadStartTime)) {
                             String title = String.format(context.getString(R.string.link_loaded_with_app),
                                     defaultAppForUrl.mResolveInfo.loadLabel(context.getPackageManager()));
                             MainApplication.saveUrlInHistory(context, defaultAppForUrl.mResolveInfo, urlAsString, title);
 
                             MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing());
                             Settings.get().addRedirectToApp(urlAsString);
-                            if (mInitialUrlStartLoadTime > -1) {
-                                Settings.get().trackLinkLoadTime(System.currentTimeMillis() - mInitialUrlStartLoadTime, Settings.LinkLoadResult.AppRedirectBrowser, urlAsString);
-                            }
                             return;
                         }
                     }
@@ -453,7 +450,7 @@ public class ContentView extends FrameLayout {
                                                 }
 
                                                 loaded = MainApplication.loadIntent(context, actionItem.mPackageName,
-                                                        actionItem.mActivityClassName, urlAsString, -1);
+                                                        actionItem.mActivityClassName, urlAsString, mInitialUrlLoadStartTime);
                                                 break;
                                             }
                                         }
@@ -532,9 +529,9 @@ public class ContentView extends FrameLayout {
                 mEventHandler.onPageLoaded();
                 Log.d(TAG, "onPageFinished() - url: " + urlAsString);
 
-                if (mInitialUrlStartLoadTime > -1) {
-                    Settings.get().trackLinkLoadTime(System.currentTimeMillis() - mInitialUrlStartLoadTime, Settings.LinkLoadResult.PageLoad, mUrl.toString());
-                    mInitialUrlStartLoadTime = -1;
+                if (mInitialUrlLoadStartTime > -1) {
+                    Settings.get().trackLinkLoadTime(System.currentTimeMillis() - mInitialUrlLoadStartTime, Settings.LinkLoadResult.PageLoad, mUrl.toString());
+                    mInitialUrlLoadStartTime = -1;
                 }
 
                 String title = MainApplication.sTitleHashMap.get(urlAsString);
@@ -873,7 +870,7 @@ public class ContentView extends FrameLayout {
                             configureOpenInAppButton();
                             configureOpenEmbedButton();
                             Log.d(TAG, "reload url: " + urlAsString);
-                            mInitialUrlStartLoadTime = System.currentTimeMillis();
+                            mInitialUrlLoadStartTime = System.currentTimeMillis();
                             mTitleTextView.setText(R.string.loading);
                             mUrlTextView.setText(urlAsString.replace("http://", ""));
                             break;

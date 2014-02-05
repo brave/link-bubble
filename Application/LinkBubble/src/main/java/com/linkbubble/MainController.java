@@ -393,14 +393,14 @@ public class MainController implements Choreographer.FrameCallback {
         MainApplication.postEvent(mContext, mOrientationChangedEvent);
     }
 
-    private boolean handleResolveInfo(ResolveInfo resolveInfo, String urlAsString, long startTime) {
+    private boolean handleResolveInfo(ResolveInfo resolveInfo, String urlAsString, long urlLoadStartTime) {
         if (Settings.get().didRecentlyRedirectToApp(urlAsString)) {
             return false;
         }
 
         boolean isLinkBubble = resolveInfo.activityInfo != null
                 && resolveInfo.activityInfo.packageName.equals(mAppPackageName);
-        if (isLinkBubble == false && MainApplication.loadResolveInfoIntent(mContext, resolveInfo, urlAsString, startTime)) {
+        if (isLinkBubble == false && MainApplication.loadResolveInfoIntent(mContext, resolveInfo, urlAsString, -1)) {
             if (getActiveTabCount() == 0) {
                 mEventHandler.onDestroy();
             }
@@ -409,13 +409,14 @@ public class MainController implements Choreographer.FrameCallback {
                     resolveInfo.loadLabel(mContext.getPackageManager()));
             MainApplication.saveUrlInHistory(mContext, resolveInfo, urlAsString, title);
             Settings.get().addRedirectToApp(urlAsString);
+            Settings.get().trackLinkLoadTime(System.currentTimeMillis() - urlLoadStartTime, Settings.LinkLoadResult.AppRedirectInstant, urlAsString);
             return true;
         }
 
         return false;
     }
 
-    public TabView openUrl(final String urlAsString, long startTime, final boolean setAsCurrentBubble) {
+    public TabView openUrl(final String urlAsString, long urlLoadStartTime, final boolean setAsCurrentBubble) {
         URL url;
         try {
             url = new URL(urlAsString);
@@ -448,13 +449,11 @@ public class MainController implements Choreographer.FrameCallback {
         ResolveInfo defaultAppResolveInfo = Settings.get().getDefaultAppForUrl(url, resolveInfos);
         if (resolveInfos != null && resolveInfos.size() > 0 && Settings.get().getAutoContentDisplayAppRedirect()) {
             if (defaultAppResolveInfo != null) {
-                if (handleResolveInfo(defaultAppResolveInfo, urlAsString, startTime)) {
-                    Settings.get().trackLinkLoadTime(System.currentTimeMillis() - startTime, Settings.LinkLoadResult.AppRedirectInstant, urlAsString);
+                if (handleResolveInfo(defaultAppResolveInfo, urlAsString, urlLoadStartTime)) {
                     return null;
                 }
             } else if (resolveInfos.size() == 1) {
-                if (handleResolveInfo(resolveInfos.get(0), urlAsString, startTime)) {
-                    Settings.get().trackLinkLoadTime(System.currentTimeMillis() - startTime, Settings.LinkLoadResult.AppRedirectInstant, urlAsString);
+                if (handleResolveInfo(resolveInfos.get(0), urlAsString, urlLoadStartTime)) {
                     return null;
                 }
             } else {
@@ -463,7 +462,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         mCanAutoDisplayLink = true;
-        final TabView result = openUrlInTab(urlAsString, startTime, setAsCurrentBubble, showAppPicker);
+        final TabView result = openUrlInTab(urlAsString, urlLoadStartTime, setAsCurrentBubble, showAppPicker);
 
         // Show app picker after creating the tab to load so that we have the instance to close if redirecting to an app, re #292.
         if (showAppPicker) {
@@ -507,13 +506,13 @@ public class MainController implements Choreographer.FrameCallback {
         return result;
     }
 
-    protected TabView openUrlInTab(String url, long startTime, boolean setAsCurrentBubble, boolean hasShownAppPicker) {
+    protected TabView openUrlInTab(String url, long urlLoadStartTime, boolean setAsCurrentBubble, boolean hasShownAppPicker) {
         if (getActiveTabCount() == 0) {
             mBubbleDraggable.setVisibility(View.VISIBLE);
         }
 
         //boolean setAsCurrentBubble = mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView ? false : true;
-        TabView result = mBubbleFlowDraggable.openUrlInBubble(url, startTime, setAsCurrentBubble, hasShownAppPicker);
+        TabView result = mBubbleFlowDraggable.openUrlInBubble(url, urlLoadStartTime, setAsCurrentBubble, hasShownAppPicker);
         showBadge(getActiveTabCount() > 1 ? true : false);
         ++mBubblesLoaded;
         return result;

@@ -259,12 +259,12 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         mDraggableHelper.setExactPos(x, y);
     }
 
-    public TabView openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble, boolean hasShownAppPicker) {
+    public TabView openUrlInBubble(String url, long urlLoadStartTime, boolean setAsCurrentBubble, boolean hasShownAppPicker) {
         TabView bubble;
         try {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             bubble = (TabView) inflater.inflate(R.layout.view_tab, null);
-            bubble.configure(url, startTime, hasShownAppPicker);
+            bubble.configure(url, urlLoadStartTime, hasShownAppPicker);
         } catch (MalformedURLException e) {
             // TODO: Inform the user somehow?
             return null;
