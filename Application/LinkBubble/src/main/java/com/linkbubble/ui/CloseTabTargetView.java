@@ -45,6 +45,12 @@ public class CloseTabTargetView extends BubbleTargetView {
         mCloseAllView.setVisibility(View.INVISIBLE);
     }
 
+    @Override
+    protected float getRadius() {
+        int closeTabSize = getResources().getDimensionPixelSize(R.dimen.close_tab_target_size);
+        return closeTabSize * 0.5f;
+    }
+
     private static final int ANIM_DURATION = 100;
     private static final float MIN_SCALE = .7f;
 

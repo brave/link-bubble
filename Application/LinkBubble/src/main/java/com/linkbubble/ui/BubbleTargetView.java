@@ -101,6 +101,11 @@ public class BubbleTargetView extends FrameLayout {
         mImage = (ImageView) findViewById(R.id.image_view);
     }
 
+    protected float getRadius() {
+        Drawable defaultDrawable = getContext().getResources().getDrawable(R.drawable.target_default);
+        return defaultDrawable.getIntrinsicWidth() * 0.5f;
+    }
+
     private int getXPos() {
         switch (mHAnchor) {
             case Left:
@@ -221,11 +226,9 @@ public class BubbleTargetView extends FrameLayout {
         Util.Assert(mSnapWidth > 0 && mSnapHeight > 0 && mSnapWidth == mSnapHeight);
         mSnapCircle = new Circle(getXPos(), getYPos(), mSnapWidth * 0.5f);
 
-        Drawable defaultDrawable = context.getResources().getDrawable(R.drawable.target_default);
-        float defaultWidth = defaultDrawable.getIntrinsicWidth();
-        float defaultHeight = defaultDrawable.getIntrinsicHeight();
-        Util.Assert(defaultWidth > 0 && defaultHeight > 0 && defaultWidth == defaultHeight);
-        mDefaultCircle = new Circle(getXPos(), getYPos(), defaultWidth * 0.5f);
+        float r = getRadius();
+        Util.Assert(r > 0.0f);
+        mDefaultCircle = new Circle(getXPos(), getYPos(), r);
 
         switch (action) {
             case ConsumeLeft:
