@@ -348,12 +348,12 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     }
 
-    public void closeTab(TabView tabView, boolean animateRemove, Config.BubbleAction action) {
+    public void closeTab(TabView tabView, boolean animateRemove, Config.BubbleAction action, long urlLoadStartTime) {
         String url = tabView.getUrl().toString();
         closeTab(tabView, animateRemove, true);
         postClosedTab(true);
         if (action != Config.BubbleAction.None) {
-            MainApplication.handleBubbleAction(getContext(), action, url);
+            MainApplication.handleBubbleAction(getContext(), action, url, urlLoadStartTime);
         }
     }
 

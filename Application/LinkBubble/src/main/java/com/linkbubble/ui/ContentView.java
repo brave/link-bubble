@@ -127,6 +127,13 @@ public class ContentView extends FrameLayout {
         }
     }
 
+    public long getTotalTrackedLoadTime() {
+        if (mInitialUrlLoadStartTime > -1) {
+            return System.currentTimeMillis() - mInitialUrlLoadStartTime;
+        }
+        return -1;
+    }
+
     static class AppForUrl {
         ResolveInfo mResolveInfo;
         URL mUrl;
@@ -1064,9 +1071,9 @@ public class ContentView extends FrameLayout {
                 } else if (string.equals(shareLabel)) {
                     showSelectShareMethod(urlAsString, false);
                 } else if (leftConsumeBubbleLabel != null && string.equals(leftConsumeBubbleLabel)) {
-                    MainApplication.handleBubbleAction(getContext(), Config.BubbleAction.ConsumeLeft, urlAsString);
+                    MainApplication.handleBubbleAction(getContext(), Config.BubbleAction.ConsumeLeft, urlAsString, -1);
                 } else if (rightConsumeBubbleLabel != null && string.equals(rightConsumeBubbleLabel)) {
-                    MainApplication.handleBubbleAction(getContext(), Config.BubbleAction.ConsumeRight, urlAsString);
+                    MainApplication.handleBubbleAction(getContext(), Config.BubbleAction.ConsumeRight, urlAsString, -1);
                 //} else if (string.equals(copyLinkLabel)) {
                 //    MainApplication.copyLinkToClipboard(getContext(), urlAsString, R.string.link_copied_to_clipboard);
                 }

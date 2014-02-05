@@ -705,9 +705,11 @@ public class Settings {
     public static final String LOAD_TIME_TAG = "LoadTime";
 
     public enum LinkLoadResult {
-        AppRedirectInstant,
-        AppRedirectBrowser,
-        PageLoad,
+        PageLoad,                   // The page was loaded.
+        AppRedirectInstant,         // Redirect via MainController (before a ContentView instance is created for this link).
+        AppRedirectBrowser,         // Redirect via ContentView.
+        ShareToOtherApp,            // Adding to Pocket or sending to Twitter.
+        OpenInOtherApp,             // Opening in Chrome.
     }
 
     long mTotalTimeSaved;

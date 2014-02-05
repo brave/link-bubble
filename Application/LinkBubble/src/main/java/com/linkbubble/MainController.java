@@ -551,7 +551,7 @@ public class MainController implements Choreographer.FrameCallback {
         if (debug) {
             Toast.makeText(mContext, "HIT TARGET!", 400).show();
         } else {
-            mBubbleFlowDraggable.closeTab(tabView, animateOff, action);
+            mBubbleFlowDraggable.closeTab(tabView, animateOff, action, tabView.getTotalTrackedLoadTime());
             int activeTabCount = getActiveTabCount();
             showBadge(activeTabCount > 1 ? true : false);
             if (activeTabCount == 0) {
