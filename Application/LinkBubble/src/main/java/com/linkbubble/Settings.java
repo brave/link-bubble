@@ -125,10 +125,12 @@ public class Settings {
         configureDefaultApps(mSharedPreferences.getString(PREFERENCE_DEFAULT_APPS, null));
         mBubbleRestingPoint.set(-1, -1);
 
+        loadLinkLoadStats();
         loadRecentAppRedirects();
     }
 
     public void saveData() {
+        saveLinkLoadStats();
         saveRecentAppRedirects();
     }
 
@@ -694,6 +696,56 @@ public class Settings {
     public boolean debugAutoLoadUrl() {
         return mSharedPreferences.getBoolean("auto_load_url", false);
     }
+
+    private static final int APP_CHANGE_ANIM_TIME = 250;
+
+    private static final String TOTAL_TIME_SAVED_KEY = "total_time_saved";
+    private static final String TOTAL_LINKS_LOADED_KEY = "total_links_loaded";
+
+    private static final String LOAD_TIME_TAG = "LoadTime";
+
+    public enum LinkLoadResult {
+        AppRedirectInstant,
+        AppRedirectBrowser,
+        PageLoad,
+    }
+
+    long mTotalTimeSaved;
+    int mTotalLinksLoaded;
+
+    public void trackLinkLoadTime(long timeSaved, LinkLoadResult linkLoadResult, String url) {
+        switch (linkLoadResult) {
+            case AppRedirectInstant:
+                // Add some time for the time taken to animate to the new app
+                timeSaved += APP_CHANGE_ANIM_TIME;
+                break;
+
+            case AppRedirectBrowser:
+                // Add some time for the time taken to load the browser initially
+                timeSaved += APP_CHANGE_ANIM_TIME;
+                // Add some time for the time taken to animate to the new app
+                timeSaved += APP_CHANGE_ANIM_TIME;
+                break;
+        }
+
+        mTotalTimeSaved += timeSaved;
+        mTotalLinksLoaded++;
+
+        Log.d(LOAD_TIME_TAG, "trackLinkLoadTime() - timeSaved:" + ((float)timeSaved / 1000.f) + " seconds, " + linkLoadResult + ", " + url);
+    }
+
+    public void saveLinkLoadStats() {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putLong(TOTAL_TIME_SAVED_KEY, mTotalTimeSaved);
+        editor.putInt(TOTAL_LINKS_LOADED_KEY, mTotalLinksLoaded);
+        editor.commit();
+    }
+
+    private void loadLinkLoadStats() {
+        mTotalTimeSaved = mSharedPreferences.getLong(TOTAL_TIME_SAVED_KEY, 0);
+        mTotalLinksLoaded = mSharedPreferences.getInt(TOTAL_LINKS_LOADED_KEY, 0);
+    }
+
 
     private static final int RECENT_REDIRECT_TIME_DELTA = 10 * 1000;
 
