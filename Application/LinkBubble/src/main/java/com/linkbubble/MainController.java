@@ -2,7 +2,6 @@ package com.linkbubble;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
@@ -97,6 +96,8 @@ public class MainController implements Choreographer.FrameCallback {
         if (sInstance == null) {
             new RuntimeException("No instance to destroy");
         }
+
+        Settings.get().saveRecentAppRedirects();
 
         MainApplication app = (MainApplication) sInstance.mContext.getApplicationContext();
         Bus bus = app.getBus();
@@ -393,6 +394,10 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     private boolean handleResolveInfo(ResolveInfo resolveInfo, String urlAsString, long startTime) {
+        if (Settings.get().didRecentlyRedirectToApp(urlAsString)) {
+            return false;
+        }
+
         boolean isLinkBubble = resolveInfo.activityInfo != null
                 && resolveInfo.activityInfo.packageName.equals(mAppPackageName);
         if (isLinkBubble == false && MainApplication.loadResolveInfoIntent(mContext, resolveInfo, urlAsString, startTime)) {
@@ -403,6 +408,7 @@ public class MainController implements Choreographer.FrameCallback {
             String title = String.format(mContext.getString(R.string.link_loaded_with_app),
                     resolveInfo.loadLabel(mContext.getPackageManager()));
             MainApplication.saveUrlInHistory(mContext, resolveInfo, urlAsString, title);
+            Settings.get().addRedirectToApp(urlAsString);
             return true;
         }
 
@@ -472,8 +478,11 @@ public class MainController implements Choreographer.FrameCallback {
                                     }
                                 }
 
-                                if (loaded && getActiveTabCount() == 0) {
-                                    mEventHandler.onDestroy();
+                                if (loaded) {
+                                    Settings.get().addRedirectToApp(urlAsString);
+                                    if (getActiveTabCount() == 0) {
+                                        mEventHandler.onDestroy();
+                                    }
                                 }
                             }
                         });

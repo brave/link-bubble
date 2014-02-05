@@ -409,7 +409,8 @@ public class ContentView extends FrameLayout {
             if (Settings.get().getAutoContentDisplayAppRedirect()
                     && mHandledAppPickerForCurrentUrl == false
                     && mAppsForUrl != null
-                    && mAppsForUrl.size() > 0) {
+                    && mAppsForUrl.size() > 0
+                    && Settings.get().didRecentlyRedirectToApp(urlAsString) == false) {
 
                 AppForUrl defaultAppForUrl = getDefaultAppForUrl();
                 if (defaultAppForUrl != null) {
@@ -420,6 +421,7 @@ public class ContentView extends FrameLayout {
                             MainApplication.saveUrlInHistory(context, defaultAppForUrl.mResolveInfo, urlAsString, title);
 
                             MainController.get().closeCurrentTab(MainController.get().contentViewShowing());
+                            Settings.get().addRedirectToApp(urlAsString);
                             return;
                         }
                     }
@@ -456,6 +458,7 @@ public class ContentView extends FrameLayout {
 
                                         if (loaded) {
                                             MainController.get().closeCurrentTab(MainController.get().contentViewShowing());
+                                            Settings.get().addRedirectToApp(urlAsString);
                                         }
                                         // NOTE: no need to call loadUrl(urlAsString) or anything in the event the link is to be handled by
                                         // Link Bubble. The flow already assumes that will happen by continuing the load when the Dialog displays. #244
