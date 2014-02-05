@@ -1,5 +1,6 @@
 package com.linkbubble.ui;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
@@ -348,10 +349,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     }
 
-    public void destroyCurrentTab(boolean animateRemove, Config.BubbleAction action) {
-        TabView currentTab = getCurrentTab();
-        String url = currentTab.getUrl().toString();
-        destroyBubble(currentTab, animateRemove, true);
+    public void destroyTab(TabView tabView, boolean animateRemove, Config.BubbleAction action) {
+        //TabView currentTab = getCurrentTab();
+        String url = tabView.getUrl().toString();
+        destroyBubble(tabView, animateRemove, true);
         postDestroyedBubble(true);
         if (action != Config.BubbleAction.None) {
             MainApplication.handleBubbleAction(getContext(), action, url);
