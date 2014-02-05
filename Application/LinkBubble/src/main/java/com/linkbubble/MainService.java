@@ -27,16 +27,16 @@ public class MainService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         String cmd = intent.getStringExtra("cmd");
-        long startTime = intent.getLongExtra("start_time", System.currentTimeMillis());
+        long urlLoadStartTime = intent.getLongExtra("start_time", System.currentTimeMillis());
 
         if (cmd.compareTo("open") == 0) {
             String url = intent.getStringExtra("url");
-            MainController.get().openUrl(url, startTime, true);
+            MainController.get().openUrl(url, urlLoadStartTime, true);
         } else if (cmd.compareTo("restore") == 0) {
             if (!mRestoreComplete) {
                 String [] urls = intent.getStringArrayExtra("urls");
                 for (int i = 0; i < urls.length; i++) {
-                    MainController.get().openUrl(urls[i], startTime, i == urls.length - 1);
+                    MainController.get().openUrl(urls[i], urlLoadStartTime, i == urls.length - 1);
                 }
                 mRestoreComplete = true;
             }

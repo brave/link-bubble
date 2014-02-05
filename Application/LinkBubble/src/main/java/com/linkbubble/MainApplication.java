@@ -106,22 +106,22 @@ public class MainApplication extends Application {
         return activityStarted;
     }
 
-    public static boolean loadResolveInfoIntent(Context context, ResolveInfo resolveInfo, String url, long startTime) {
+    public static boolean loadResolveInfoIntent(Context context, ResolveInfo resolveInfo, String url, long urlLoadStartTime) {
         if (resolveInfo.activityInfo != null) {
-            return loadIntent(context, resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name, url, startTime);
+            return loadIntent(context, resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name, url, urlLoadStartTime);
         }
         return false;
     }
 
-    public static boolean loadIntent(Context context, String packageName, String className, String url, long startTime) {
+    public static boolean loadIntent(Context context, String packageName, String className, String urlAsString, long urlLoadStartTime) {
         Intent openIntent = new Intent(Intent.ACTION_VIEW);
         openIntent.setClassName(packageName, className);
         openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        openIntent.setData(Uri.parse(url));
+        openIntent.setData(Uri.parse(urlAsString));
         context.startActivity(openIntent);
         //Log.d(TAG, "redirect to app: " + resolveInfo.loadLabel(context.getPackageManager()) + ", url:" + url);
-        if (startTime > -1) {
-            Log.d("LoadTime", "Saved " + ((System.currentTimeMillis()-startTime)/1000) + " seconds.");
+        if (urlLoadStartTime > -1) {
+            Settings.get().trackLinkLoadTime(System.currentTimeMillis() - urlLoadStartTime, Settings.LinkLoadResult.AppRedirectBrowser, urlAsString);
         }
         return true;
     }
