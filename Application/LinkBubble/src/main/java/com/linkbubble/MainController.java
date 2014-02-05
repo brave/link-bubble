@@ -527,18 +527,22 @@ public class MainController implements Choreographer.FrameCallback {
         return mBubbleDraggable != null && mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView;
     }
 
-    public boolean closeCurrentTab(boolean animateOff) {
-        return closeCurrentTab(Config.BubbleAction.Close, animateOff);
+    public boolean closeCurrentTab(Config.BubbleAction action, boolean animateOff) {
+        return closeTab(mBubbleFlowDraggable.getCurrentTab(), action, animateOff);
     }
 
-    public boolean closeCurrentTab(Config.BubbleAction action, boolean animateOff) {
+    public boolean closeTab(TabView tabView, boolean animateOff) {
+        return closeTab(tabView, Config.BubbleAction.Close, animateOff);
+    }
+
+    public boolean closeTab(TabView tabView, Config.BubbleAction action, boolean animateOff) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         boolean debug = prefs.getBoolean("debug_flick", false);
 
         if (debug) {
             Toast.makeText(mContext, "HIT TARGET!", 400).show();
         } else {
-            mBubbleFlowDraggable.destroyCurrentTab(animateOff, action);
+            mBubbleFlowDraggable.destroyTab(tabView, animateOff, action);
             int activeTabCount = getActiveTabCount();
             showBadge(activeTabCount > 1 ? true : false);
             if (activeTabCount == 0) {

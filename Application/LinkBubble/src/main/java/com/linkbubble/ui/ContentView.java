@@ -65,6 +65,7 @@ public class ContentView extends FrameLayout {
 
     private static final String TAG = "UrlLoad";
 
+    private TabView mOwnerTabView;
     private WebView mWebView;
     private View mTouchInterceptorView;
     private CondensedTextView mTitleTextView;
@@ -222,15 +223,16 @@ public class ContentView extends FrameLayout {
                         && actionItem.mActivityClassName.equals("com.google.android.apps.docs.app.SendTextToClipboardActivity");
 
                 if (closeBubbleOnShare && isCopyToClipboardAction == false) {
-                    MainController.get().closeCurrentTab(true);
+                    MainController.get().closeTab(mOwnerTabView, true);
                 }
             }
         });
         alertDialog.show();
     }
 
-    void configure(String urlAsString, long startTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
+    void configure(String urlAsString, TabView ownerTabView, long startTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
         mUrl = new URL(urlAsString);
+        mOwnerTabView = ownerTabView;
         mDoDropDownCheck = true;
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_header);
         mHandledAppPickerForCurrentUrl = hasShownAppPicker;
@@ -417,7 +419,7 @@ public class ContentView extends FrameLayout {
                                     defaultAppForUrl.mResolveInfo.loadLabel(context.getPackageManager()));
                             MainApplication.saveUrlInHistory(context, defaultAppForUrl.mResolveInfo, urlAsString, title);
 
-                            MainController.get().closeCurrentTab(MainController.get().contentViewShowing());
+                            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing());
                             Settings.get().addRedirectToApp(urlAsString);
                             return;
                         }
@@ -454,7 +456,7 @@ public class ContentView extends FrameLayout {
                                         }
 
                                         if (loaded) {
-                                            MainController.get().closeCurrentTab(MainController.get().contentViewShowing());
+                                            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing());
                                             Settings.get().addRedirectToApp(urlAsString);
                                         }
                                         // NOTE: no need to call loadUrl(urlAsString) or anything in the event the link is to be handled by
@@ -554,7 +556,7 @@ public class ContentView extends FrameLayout {
                 switch (keyCode) {
                     case KeyEvent.KEYCODE_BACK: {
                         if (mUrlStack.size() == 0) {
-                            MainController.get().closeCurrentTab(true);
+                            MainController.get().closeTab(mOwnerTabView, true);
                         } else {
                             webView.stopLoading();
                             String urlBefore = webView.getUrl();
@@ -789,7 +791,7 @@ public class ContentView extends FrameLayout {
                 String contentDisposition, String mimetype,
         long contentLength) {
             openInBrowser(urlAsString);
-            MainController.get().closeCurrentTab(true);
+            MainController.get().closeTab(mOwnerTabView, true);
         }
     };
 
@@ -804,7 +806,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onAppOpened() {
-            MainController.get().closeCurrentTab(true);
+            MainController.get().closeTab(mOwnerTabView, true);
         }
 
     };
@@ -1296,7 +1298,7 @@ public class ContentView extends FrameLayout {
         intent.setData(Uri.parse(urlAsString));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         if (MainApplication.loadInBrowser(getContext(), intent, true)) {
-            MainController.get().closeCurrentTab(true);
+            MainController.get().closeTab(mOwnerTabView, true);
             return true;
         }
 
