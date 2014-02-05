@@ -130,7 +130,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int getRecentHistoryRecordId(String url){
-
+        int result = -1;
         SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_LINK_HISTORY, // a. table
@@ -150,11 +150,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             long time = cursor.getLong(1);
             long timeDelta = System.currentTimeMillis() - time;
             if (timeDelta < 12 * 60 * 60 * 1000) {
-                return id;
+                result = id;
             }
         }
 
-        return -1;
+        db.close();
+        return result;
     }
 
     public List<HistoryRecord> getAllHistoryRecords() {
@@ -162,7 +163,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String query = "SELECT * FROM " + TABLE_LINK_HISTORY + " ORDER BY " + KEY_TIME + " DESC;";
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToFirst()) {
@@ -178,6 +179,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
+        db.close();
         return records;
     }
 
@@ -224,7 +226,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return faviconRecord;
     }*/
     public Bitmap getFavicon(String faviconUrl) {
-
+        Bitmap result = null;
         SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_FAVICON_CACHE, // a. table
@@ -237,7 +239,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null); // h. limit
 
         if (cursor != null) {
-            Bitmap result = null;
             long idToDelete = -1;
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -258,15 +259,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (idToDelete > -1) {
                 deleteFavicon(idToDelete);
             }
-
-            return result;
         }
 
-        return null;
+        db.close();
+        return result;
     }
 
     public boolean faviconExists(String faviconUrl, Bitmap favicon) {
-
+        boolean result = false;
         SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_FAVICON_CACHE, // a. table
@@ -279,7 +279,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null); // h. limit
 
         if (cursor != null) {
-            boolean result = false;
             long idToDelete = -1;
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -301,11 +300,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (idToDelete > -1) {
                 deleteFavicon(idToDelete);
             }
-
-            return result;
         }
 
-        return false;
+        db.close();
+        return result;
     }
 
     private void deleteFavicon(long id) {
