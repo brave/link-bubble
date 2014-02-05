@@ -48,8 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/stat_height"
             android:src="@drawable/ic_launcher"
-            fiv:defaultView="@layout/view_stat_time_per_day"
-            fiv:flipView="@layout/view_stat_time_per_link"
+            fiv:defaultView="@layout/view_stat_time_per_link"
+            fiv:flipView="@layout/view_stat_time_per_day"
             fiv:isAnimated="true"/>
 
     </LinearLayout>
