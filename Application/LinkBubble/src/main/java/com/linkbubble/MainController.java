@@ -97,7 +97,7 @@ public class MainController implements Choreographer.FrameCallback {
             new RuntimeException("No instance to destroy");
         }
 
-        Settings.get().saveRecentAppRedirects();
+        Settings.get().saveData();
 
         MainApplication app = (MainApplication) sInstance.mContext.getApplicationContext();
         Bus bus = app.getBus();
