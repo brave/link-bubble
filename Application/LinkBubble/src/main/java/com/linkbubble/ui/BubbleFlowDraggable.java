@@ -1,6 +1,5 @@
 package com.linkbubble.ui;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
@@ -313,7 +312,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     };
 
-    private void destroyBubble(TabView tab, boolean animateRemove, boolean removeFromList) {
+    private void closeTab(TabView tab, boolean animateRemove, boolean removeFromList) {
         int index = mViews.indexOf(tab);
         if (index == -1) {
             return;
@@ -343,17 +342,16 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     }
 
-    private void postDestroyedBubble(boolean removeFromCurrentTabs) {
+    private void postClosedTab(boolean removeFromCurrentTabs) {
         if (removeFromCurrentTabs) {
             saveCurrentBubbles();
         }
     }
 
-    public void destroyTab(TabView tabView, boolean animateRemove, Config.BubbleAction action) {
-        //TabView currentTab = getCurrentTab();
+    public void closeTab(TabView tabView, boolean animateRemove, Config.BubbleAction action) {
         String url = tabView.getUrl().toString();
-        destroyBubble(tabView, animateRemove, true);
-        postDestroyedBubble(true);
+        closeTab(tabView, animateRemove, true);
+        postClosedTab(true);
         if (action != Config.BubbleAction.None) {
             MainApplication.handleBubbleAction(getContext(), action, url);
         }
@@ -361,11 +359,11 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     public void closeAllBubbles(boolean removeFromCurrentTabs) {
         for (View view : mViews) {
-            destroyBubble(((TabView) view), false, false);
+            closeTab(((TabView) view), false, false);
         }
 
         mViews.clear();
-        postDestroyedBubble(removeFromCurrentTabs);
+        postClosedTab(removeFromCurrentTabs);
     }
 
     public void updateIncognitoMode(boolean incognito) {

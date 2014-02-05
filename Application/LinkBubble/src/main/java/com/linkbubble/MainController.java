@@ -542,7 +542,7 @@ public class MainController implements Choreographer.FrameCallback {
         if (debug) {
             Toast.makeText(mContext, "HIT TARGET!", 400).show();
         } else {
-            mBubbleFlowDraggable.destroyTab(tabView, animateOff, action);
+            mBubbleFlowDraggable.closeTab(tabView, animateOff, action);
             int activeTabCount = getActiveTabCount();
             showBadge(activeTabCount > 1 ? true : false);
             if (activeTabCount == 0) {
