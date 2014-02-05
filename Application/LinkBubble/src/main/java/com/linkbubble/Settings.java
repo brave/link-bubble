@@ -724,7 +724,7 @@ public class Settings {
 
         // try and find a current record with this url
         for (LastAppRedirect i : mLastAppRedirects) {
-            if (record.mUrl.equals(url)) {
+            if (i.mUrl.equals(url)) {
                 record = i;
                 break;
             }
