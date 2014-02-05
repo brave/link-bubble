@@ -126,7 +126,7 @@ public class MainApplication extends Application {
         return true;
     }
 
-    public static boolean handleBubbleAction(Context context, Config.BubbleAction action, String url) {
+    public static boolean handleBubbleAction(Context context, Config.BubbleAction action, String url, long totalLoadTime) {
         Config.ActionType actionType = Settings.get().getConsumeBubbleActionType(action);
         boolean result = false;
         if (actionType == Config.ActionType.Share) {
@@ -138,6 +138,9 @@ public class MainApplication extends Application {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra(Intent.EXTRA_TEXT, url);
             context.startActivity(intent);
+            if (totalLoadTime > -1) {
+                Settings.get().trackLinkLoadTime(totalLoadTime, Settings.LinkLoadResult.ShareToOtherApp, url);
+            }
             result = true;
         } else if (actionType == Config.ActionType.View) {
             result = MainApplication.loadIntent(context, Settings.get().getConsumeBubblePackageName(action),

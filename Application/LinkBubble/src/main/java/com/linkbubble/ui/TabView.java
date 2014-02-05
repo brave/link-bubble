@@ -161,6 +161,10 @@ public class TabView extends BubbleView {
         return mContentView;
     }
 
+    public long getTotalTrackedLoadTime() {
+        return mContentView.getTotalTrackedLoadTime();
+    }
+
     public void updateIncognitoMode(boolean incognito) {
         mContentView.updateIncognitoMode(incognito);
     }

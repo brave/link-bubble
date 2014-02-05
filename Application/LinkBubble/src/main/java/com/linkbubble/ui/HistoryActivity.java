@@ -285,9 +285,9 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                         });
                         alertDialog.show();
                     } else if (leftConsumeBubbleLabel != null && string.equals(leftConsumeBubbleLabel)) {
-                        MainApplication.handleBubbleAction(HistoryActivity.this, Config.BubbleAction.ConsumeLeft, urlAsString);
+                        MainApplication.handleBubbleAction(HistoryActivity.this, Config.BubbleAction.ConsumeLeft, urlAsString, -1);
                     } else if (rightConsumeBubbleLabel != null && string.equals(rightConsumeBubbleLabel)) {
-                        MainApplication.handleBubbleAction(HistoryActivity.this, Config.BubbleAction.ConsumeRight, urlAsString);
+                        MainApplication.handleBubbleAction(HistoryActivity.this, Config.BubbleAction.ConsumeRight, urlAsString, -1);
                     } else if (string.equals(copyLinkLabel)) {
                         MainApplication.copyLinkToClipboard(HistoryActivity.this, urlAsString, R.string.link_copied_to_clipboard);
                     }
