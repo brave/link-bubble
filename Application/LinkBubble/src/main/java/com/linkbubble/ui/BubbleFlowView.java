@@ -259,6 +259,7 @@ public class BubbleFlowView extends HorizontalScrollView {
 
                 }
             });
+            invalidate();       // This fixes #284 - it's a hack, but it will do for now.
             view.startAnimation(slideOffAnim);
             mSlideOffAnimationPlaying = true;
 
