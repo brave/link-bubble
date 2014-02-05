@@ -9,7 +9,7 @@ public class Constant {
 
     public static final String PACKAGE_NAME = "com.linkbubble";
 
-    public static boolean SAVE_CURRENT_BUBBLES = true;
+    public static boolean SAVE_CURRENT_TABS = true;
 
     public static final int BUBBLE_ANIM_TIME = 300;
 
