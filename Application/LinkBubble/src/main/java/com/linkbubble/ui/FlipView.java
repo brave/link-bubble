@@ -134,10 +134,18 @@ public class FlipView extends FrameLayout implements View.OnClickListener,
         addView(mFlippedView);
     }
 
+    public View getFlippedView() {
+        return mFlippedView;
+    }
+
     public void setDefaultView(View view){
         mDefaultView = view;
         removeAllViews();
         addView(mDefaultView);
+    }
+
+    public View getDefaultView() {
+        return mDefaultView;
     }
 
     public boolean isRotationXEnabled() {

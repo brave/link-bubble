@@ -43,14 +43,14 @@
             android:layout_marginRight="@dimen/home_logo_margin_right"/>
 
         <com.linkbubble.ui.FlipView
-            xmlns:fiv="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/imageview"
+            xmlns:flipview="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/stats_flip_view"
             android:layout_width="match_parent"
             android:layout_height="@dimen/stat_height"
             android:src="@drawable/ic_launcher"
-            fiv:defaultView="@layout/view_stat_time_per_link"
-            fiv:flipView="@layout/view_stat_time_per_day"
-            fiv:isAnimated="true"/>
+            flipview:defaultView="@layout/view_stat_time_per_link"
+            flipview:flipView="@layout/view_stat_time_per_day"
+            flipview:isAnimated="true"/>
 
     </LinearLayout>
 
