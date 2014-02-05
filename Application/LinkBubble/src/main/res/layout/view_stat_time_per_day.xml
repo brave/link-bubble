@@ -17,6 +17,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <com.linkbubble.ui.CondensedTextView
+        android:id="@+id/time_total"
         android:layout_width="@dimen/stat_bubble_size"
         android:layout_height="@dimen/stat_bubble_size"
         android:layout_gravity="center_horizontal"

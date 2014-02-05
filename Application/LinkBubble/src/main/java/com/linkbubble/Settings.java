@@ -702,7 +702,7 @@ public class Settings {
     private static final String TOTAL_TIME_SAVED_KEY = "total_time_saved";
     private static final String TOTAL_LINKS_LOADED_KEY = "total_links_loaded";
 
-    private static final String LOAD_TIME_TAG = "LoadTime";
+    public static final String LOAD_TIME_TAG = "LoadTime";
 
     public enum LinkLoadResult {
         AppRedirectInstant,
@@ -732,6 +732,17 @@ public class Settings {
         mTotalLinksLoaded++;
 
         Log.d(LOAD_TIME_TAG, "trackLinkLoadTime() - timeSaved:" + ((float)timeSaved / 1000.f) + " seconds, " + linkLoadResult + ", " + url);
+    }
+
+    public long getTotalTimeSaved() {
+        return mTotalTimeSaved;
+    }
+
+    public long getTimeSavedPerLink() {
+        if (mTotalLinksLoaded > 0) {
+            return mTotalTimeSaved / mTotalLinksLoaded;
+        }
+        return -1;
     }
 
     public void saveLinkLoadStats() {
