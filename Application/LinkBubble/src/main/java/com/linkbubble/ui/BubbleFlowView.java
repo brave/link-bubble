@@ -346,6 +346,7 @@ public class BubbleFlowView extends HorizontalScrollView {
         }
         view.setScaleX(targetScale);
         view.setScaleY(targetScale);
+        view.invalidate();
     }
 
     public int getItemCount() {
