@@ -344,9 +344,12 @@ public class BubbleFlowView extends HorizontalScrollView {
             float ratio = 1.f - ((xDelta - mFullScaleX) / (mMinScaleX - mFullScaleX));
             targetScale = MIN_SCALE + (ratio * (1.f- MIN_SCALE));
         }
+        float scaleDelta = Math.abs(getScaleX() - targetScale);
         view.setScaleX(targetScale);
         view.setScaleY(targetScale);
-        view.invalidate();
+        if (scaleDelta > .001f) {
+            view.invalidate();
+        }
     }
 
     public int getItemCount() {
