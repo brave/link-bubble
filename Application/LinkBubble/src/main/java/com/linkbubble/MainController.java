@@ -416,7 +416,6 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public TabView onOpenUrl(final String urlAsString, long startTime, final boolean setAsCurrentBubble) {
-        boolean hasShowAppPicker = false;
         URL url;
         try {
             url = new URL(urlAsString);
@@ -443,6 +442,8 @@ public class MainController implements Choreographer.FrameCallback {
             }
         }
 
+        boolean showAppPicker = false;
+
         final List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
         ResolveInfo defaultAppResolveInfo = Settings.get().getDefaultAppForUrl(url, resolveInfos);
         if (resolveInfos != null && resolveInfos.size() > 0 && Settings.get().getAutoContentDisplayAppRedirect()) {
@@ -455,46 +456,53 @@ public class MainController implements Choreographer.FrameCallback {
                     return null;
                 }
             } else {
-                AlertDialog dialog = ActionItem.getActionItemPickerAlert(mContext, resolveInfos, R.string.pick_default_app,
-                        new ActionItem.OnActionItemDefaultSelectedListener() {
-                            @Override
-                            public void onSelected(ActionItem actionItem, boolean always) {
-                                boolean loaded = false;
-                                for (ResolveInfo resolveInfo : resolveInfos) {
-                                    if (resolveInfo.activityInfo.packageName.equals(actionItem.mPackageName)
-                                            && resolveInfo.activityInfo.name.equals(actionItem.mActivityClassName)) {
-                                        if (always) {
-                                            Settings.get().setDefaultApp(urlAsString, resolveInfo);
-                                        }
-
-                                        // Jump out of the loop and load directly via a BubbleView below
-                                        if (resolveInfo.activityInfo.packageName.equals(mAppPackageName)) {
-                                            break;
-                                        }
-
-                                        loaded = MainApplication.loadIntent(mContext, actionItem.mPackageName,
-                                                actionItem.mActivityClassName, urlAsString, -1);
-                                        break;
-                                    }
-                                }
-
-                                if (loaded) {
-                                    Settings.get().addRedirectToApp(urlAsString);
-                                    if (getActiveTabCount() == 0) {
-                                        mEventHandler.onDestroy();
-                                    }
-                                }
-                            }
-                        });
-
-                dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                dialog.show();
-                hasShowAppPicker = true;
+                showAppPicker = true;
             }
         }
 
         mCanAutoDisplayLink = true;
-        return openUrlInBubble(urlAsString, startTime, setAsCurrentBubble, hasShowAppPicker);
+        final TabView result = openUrlInBubble(urlAsString, startTime, setAsCurrentBubble, showAppPicker);
+
+        // Show app picker after creating the tab to load so that we have the instance to close if redirecting to an app, re #292.
+        if (showAppPicker) {
+            AlertDialog dialog = ActionItem.getActionItemPickerAlert(mContext, resolveInfos, R.string.pick_default_app,
+                    new ActionItem.OnActionItemDefaultSelectedListener() {
+                        @Override
+                        public void onSelected(ActionItem actionItem, boolean always) {
+                            boolean loaded = false;
+                            for (ResolveInfo resolveInfo : resolveInfos) {
+                                if (resolveInfo.activityInfo.packageName.equals(actionItem.mPackageName)
+                                        && resolveInfo.activityInfo.name.equals(actionItem.mActivityClassName)) {
+                                    if (always) {
+                                        Settings.get().setDefaultApp(urlAsString, resolveInfo);
+                                    }
+
+                                    // Jump out of the loop and load directly via a BubbleView below
+                                    if (resolveInfo.activityInfo.packageName.equals(mAppPackageName)) {
+                                        break;
+                                    }
+
+                                    loaded = MainApplication.loadIntent(mContext, actionItem.mPackageName,
+                                            actionItem.mActivityClassName, urlAsString, -1);
+                                    break;
+                                }
+                            }
+
+                            if (loaded) {
+                                Settings.get().addRedirectToApp(urlAsString);
+                                closeTab(result, contentViewShowing());
+                                if (getActiveTabCount() == 0) {
+                                    mEventHandler.onDestroy();
+                                }
+                            }
+                        }
+                    });
+
+            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            dialog.show();
+        }
+
+        return result;
     }
 
     protected TabView openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble, boolean hasShownAppPicker) {
