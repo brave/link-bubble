@@ -122,7 +122,9 @@
     <string name="stat_has_saved_you">has saved you</string>
     <string name="stat_so_far">so far</string>
     <string name="stat_per_link">per link</string>
-    <string name="stat_saved_per_link">%1$s\nseconds</string>
+    <string name="time_seconds">seconds</string>
+    <string name="time_minutes">minutes</string>
+    <string name="time_hours">hours</string>
 
     <string name="confirm_title">Confirm</string>
 

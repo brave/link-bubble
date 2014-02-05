@@ -3,9 +3,11 @@ package com.linkbubble.util;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.graphics.Point;
 import android.net.Uri;
 import com.linkbubble.Constant;
+import com.linkbubble.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -110,6 +112,16 @@ public class Util {
         return result;
     }
 
+    public static String getPrettyTimeElapsed(Resources resources, long time, String separator) {
+        float timeAsSeconds = (float)time / 1000.f;
+        if (timeAsSeconds < 60) {
+            return String.format("%.1f", timeAsSeconds) + separator + resources.getString(R.string.time_seconds);
+        } else if (timeAsSeconds < 60 * 60) {
+            return String.format("%.1f", timeAsSeconds / 60.f) + separator + resources.getString(R.string.time_minutes);
+        } else {
+            return String.format("%.1f", timeAsSeconds / 60.f / 60.f) + separator + resources.getString(R.string.time_hours);
+        }
+    }
 
     public static String downloadJSONAsString(String url, int timeout) {
         try {
