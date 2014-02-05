@@ -537,7 +537,7 @@ public class ContentView extends FrameLayout {
                 Log.d(TAG, "onPageFinished() - url: " + urlAsString);
 
                 if (mInitialUrlLoadStartTime > -1) {
-                    Settings.get().trackLinkLoadTime(System.currentTimeMillis() - mInitialUrlLoadStartTime, Settings.LinkLoadResult.PageLoad, mUrl.toString());
+                    Settings.get().trackLinkLoadTime(System.currentTimeMillis() - mInitialUrlLoadStartTime, Settings.LinkLoadType.PageLoad, mUrl.toString());
                     mInitialUrlLoadStartTime = -1;
                 }
 

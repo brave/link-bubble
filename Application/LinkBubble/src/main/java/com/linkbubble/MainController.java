@@ -409,7 +409,7 @@ public class MainController implements Choreographer.FrameCallback {
                     resolveInfo.loadLabel(mContext.getPackageManager()));
             MainApplication.saveUrlInHistory(mContext, resolveInfo, urlAsString, title);
             Settings.get().addRedirectToApp(urlAsString);
-            Settings.get().trackLinkLoadTime(System.currentTimeMillis() - urlLoadStartTime, Settings.LinkLoadResult.AppRedirectInstant, urlAsString);
+            Settings.get().trackLinkLoadTime(System.currentTimeMillis() - urlLoadStartTime, Settings.LinkLoadType.AppRedirectInstant, urlAsString);
             return true;
         }
 
