@@ -449,10 +449,12 @@ public class MainController implements Choreographer.FrameCallback {
         if (resolveInfos != null && resolveInfos.size() > 0 && Settings.get().getAutoContentDisplayAppRedirect()) {
             if (defaultAppResolveInfo != null) {
                 if (handleResolveInfo(defaultAppResolveInfo, urlAsString, startTime)) {
+                    Settings.get().trackLinkLoadTime(System.currentTimeMillis() - startTime, Settings.LinkLoadResult.AppRedirectInstant, urlAsString);
                     return null;
                 }
             } else if (resolveInfos.size() == 1) {
                 if (handleResolveInfo(resolveInfos.get(0), urlAsString, startTime)) {
+                    Settings.get().trackLinkLoadTime(System.currentTimeMillis() - startTime, Settings.LinkLoadResult.AppRedirectInstant, urlAsString);
                     return null;
                 }
             } else {
