@@ -47,7 +47,9 @@ public class HomeActivity extends Activity {
         mHistoryButtonView = findViewById(R.id.history);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
         mTimeSavedPerLinkTextView = (CondensedTextView) mStatsFlipView.getDefaultView().findViewById(R.id.time_per_link);
+        mTimeSavedPerLinkTextView.setText("");
         mTimeSavedTotalTextView = (CondensedTextView) mStatsFlipView.getFlippedView().findViewById(R.id.time_total);
+        mTimeSavedTotalTextView.setText("");
 
         if (savedInstanceState != null) {
             mPlayedIntroAnimation = savedInstanceState.getBoolean(PLAYED_INTRO_ANIM_KEY);
