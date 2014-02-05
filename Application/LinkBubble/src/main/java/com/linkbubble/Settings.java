@@ -606,9 +606,14 @@ public class Settings {
             }
         }
 
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putString(PREFERENCE_CURRENT_TABS, jsonArray.toString());
-        editor.commit();
+        String currentTabsString = mSharedPreferences.getString(PREFERENCE_CURRENT_TABS, "");
+        String newTabsString = jsonArray.toString();
+
+        if (!currentTabsString.equals(newTabsString)) {
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            editor.putString(PREFERENCE_CURRENT_TABS, newTabsString);
+            editor.commit();
+        }
     }
 
     private void saveDefaultApps() {
