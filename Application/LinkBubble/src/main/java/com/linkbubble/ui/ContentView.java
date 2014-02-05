@@ -290,11 +290,8 @@ public class ContentView extends FrameLayout {
 
         updateUrl(urlAsString);
         updateAppsForUrl(mUrl);
-        configureOpenInAppButton();
-        configureOpenEmbedButton();
         Log.d(TAG, "load url: " + urlAsString);
         mWebView.loadUrl(urlAsString);
-        mEventHandler.onPageLoading(mUrl);
         mTitleTextView.setText(R.string.loading);
         mUrlTextView.setText(urlAsString.replace("http://", ""));
     }
@@ -569,11 +566,7 @@ public class ContentView extends FrameLayout {
                             webView.loadUrl(previousUrlAsString);
 
                             updateUrl(previousUrlAsString);
-                            updateAppsForUrl(mUrl);
-                            mPageInspector.reset();
                             Log.d(TAG, "[urlstack] Go back: " + urlBefore + " -> " + webView.getUrl() + ", urlStack.size():" + mUrlStack.size());
-                            configureOpenInAppButton();
-                            configureOpenEmbedButton();
                             mUrlTextView.setText(previousUrlAsString.replace("http://", ""));
                             String title = MainApplication.sTitleHashMap.get(previousUrlAsString);
                             if (title == null) {
@@ -582,6 +575,13 @@ public class ContentView extends FrameLayout {
                             mTitleTextView.setText(title);
 
                             mEventHandler.onPageLoading(mUrl);
+
+                            updateAppsForUrl(null, previousUrl);
+                            configureOpenInAppButton();
+
+                            mPageInspector.reset();
+                            configureOpenEmbedButton();
+
                             return true;
                         }
                         break;
