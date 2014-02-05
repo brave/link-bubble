@@ -534,7 +534,7 @@ public class SettingsFragment extends PreferenceFragment {
                         } else if (item.equals(clearHistory)) {
                             webView.clearHistory();
                             MainApplication.sDatabaseHelper.deleteAllHistoryRecords();
-                            Settings.get().saveCurrentBubbles(null);
+                            Settings.get().saveCurrentTabs(null);
                             dataCleared = true;
                         } else if (item.equals(clearPasswords)) {
                             if (webViewDatabase != null) {
@@ -551,7 +551,7 @@ public class SettingsFragment extends PreferenceFragment {
 
                     if (MainController.get() != null) {
                         MainController.get().closeAllBubbles(false);
-                        final Vector<String> urls = Settings.get().loadCurrentBubbles();
+                        final Vector<String> urls = Settings.get().loadCurrentTabs();
                         if (urls.size() > 0) {
                             for (String url : urls) {
                                 MainApplication.openLink(getActivity().getApplicationContext(), url);

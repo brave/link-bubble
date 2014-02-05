@@ -396,7 +396,7 @@ public class ContentView extends FrameLayout {
             updateUrl(urlAsString);
 
             if (oldUrl.equals(Constant.NEW_TAB_URL)) {
-                MainController.get().saveCurrentBubbles();
+                MainController.get().saveCurrentTabs();
             }
 
             mPageInspector.reset();

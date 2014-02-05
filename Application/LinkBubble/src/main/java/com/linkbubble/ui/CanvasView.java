@@ -234,7 +234,7 @@ public class CanvasView extends FrameLayout {
 
     @SuppressWarnings("unused")
     @Subscribe
-    public void onCurrentBubbleChanged(MainController.CurrentTabChangedEvent e) {
+    public void onCurrentTabChanged(MainController.CurrentTabChangedEvent e) {
         setContentView(e.mTab);
     }
 

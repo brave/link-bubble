@@ -178,10 +178,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         if (isExpanded() == false && mCurrentTab != null) {
             // Ensure the centerIndex matches the current bubble. This should only *NOT* be the case when
             // restoring with N Bubbles from a previous session and the user clicks to expand the BubbleFlowView.
-            int currentBubbleIndex = getIndexOfView(mCurrentTab);
+            int currentTabeIndex = getIndexOfView(mCurrentTab);
             int centerIndex = getCenterIndex();
-            if (centerIndex > -1 && currentBubbleIndex != centerIndex && isAnimatingToCenterIndex() == false) {
-                setCenterIndex(currentBubbleIndex, false);
+            if (centerIndex > -1 && currentTabeIndex != centerIndex && isAnimatingToCenterIndex() == false) {
+                setCenterIndex(currentTabeIndex, false);
             }
         }
 
@@ -259,12 +259,12 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         mDraggableHelper.setExactPos(x, y);
     }
 
-    public TabView openUrlInBubble(String url, long urlLoadStartTime, boolean setAsCurrentBubble, boolean hasShownAppPicker) {
-        TabView bubble;
+    public TabView openUrlInTab(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker) {
+        TabView tabView;
         try {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            bubble = (TabView) inflater.inflate(R.layout.view_tab, null);
-            bubble.configure(url, urlLoadStartTime, hasShownAppPicker);
+            tabView = (TabView) inflater.inflate(R.layout.view_tab, null);
+            tabView.configure(url, urlLoadStartTime, hasShownAppPicker);
         } catch (MalformedURLException e) {
             // TODO: Inform the user somehow?
             return null;
@@ -272,16 +272,16 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
         // Only insert next to current Bubble when in ContentView mode. Ensures links opened when app is
         // minimized are added to the end.
-        add(bubble, mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView);
+        add(tabView, mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView);
 
         mBubbleDraggable.mBadgeView.setCount(getActiveTabCount());
 
-        if (setAsCurrentBubble) {
-            setCurrentTab(bubble);
+        if (setAsCurrentTab) {
+            setCurrentTab(tabView);
         }
 
-        saveCurrentBubbles();
-        return bubble;
+        saveCurrentTabs();
+        return tabView;
     }
 
     @Override
@@ -323,28 +323,28 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         // CanvasView.mContentView, which has already been forcible set above in remove() via BeginAnimateFinalTabAwayEvent.
         boolean animatingFinalTabOff = getActiveTabCount() == 0 && getVisibleTabCount() > 0 && mSlideOffAnimationPlaying;
         if (mCurrentTab == tab && animatingFinalTabOff == false) {
-            TabView newCurrentBubble = null;
+            TabView newCurrentTab = null;
             int viewsCount = mViews.size();
             if (viewsCount > 0) {
                 if (viewsCount == 1) {
-                    newCurrentBubble = (TabView) mViews.get(0);
+                    newCurrentTab = (TabView) mViews.get(0);
                 } else if (index < viewsCount) {
-                    newCurrentBubble = (TabView) mViews.get(index);
+                    newCurrentTab = (TabView) mViews.get(index);
                 } else {
                     if (index > 0) {
-                        newCurrentBubble = (TabView) mViews.get(index-1);
+                        newCurrentTab = (TabView) mViews.get(index-1);
                     } else {
-                        newCurrentBubble = (TabView) mViews.get(0);
+                        newCurrentTab = (TabView) mViews.get(0);
                     }
                 }
             }
-            setCurrentTab(newCurrentBubble);
+            setCurrentTab(newCurrentTab);
         }
     }
 
     private void postClosedTab(boolean removeFromCurrentTabs) {
         if (removeFromCurrentTabs) {
-            saveCurrentBubbles();
+            saveCurrentTabs();
         }
     }
 
@@ -372,7 +372,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     }
 
-    public void saveCurrentBubbles() {
-        Settings.get().saveCurrentBubbles(mViews);
+    public void saveCurrentTabs() {
+        Settings.get().saveCurrentTabs(mViews);
     }
 }
