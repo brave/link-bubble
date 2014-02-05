@@ -738,7 +738,7 @@ public class ContentView extends FrameLayout {
         @Override
         public boolean onCreateWindow(WebView view, boolean dialog, boolean userGesture, Message resultMsg)
         {
-            TabView tabView = MainController.get().onOpenUrl(Constant.NEW_TAB_URL, System.currentTimeMillis(), false);
+            TabView tabView = MainController.get().openUrl(Constant.NEW_TAB_URL, System.currentTimeMillis(), false);
             if (tabView != null) {
                 WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
                 transport.setWebView(tabView.getContentView().mWebView);
@@ -1058,7 +1058,7 @@ public class ContentView extends FrameLayout {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String string = longClickSelections.get(position);
                 if (string.equals(openInNewBubbleLabel)) {
-                    MainController.get().onOpenUrl(urlAsString, System.currentTimeMillis(), false);
+                    MainController.get().openUrl(urlAsString, System.currentTimeMillis(), false);
                 } else if (openInBrowserLabel != null && string.equals(openInBrowserLabel)) {
                     openInBrowser(urlAsString);
                 } else if (string.equals(shareLabel)) {
@@ -1297,7 +1297,7 @@ public class ContentView extends FrameLayout {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(urlAsString));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        if (MainApplication.loadInBrowser(getContext(), intent, true)) {
+        if (MainApplication.openInBrowser(getContext(), intent, true)) {
             MainController.get().closeTab(mOwnerTabView, true);
             return true;
         }
