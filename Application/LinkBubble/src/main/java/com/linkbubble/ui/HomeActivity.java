@@ -12,6 +12,7 @@ import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.squareup.otto.Subscribe;
 
 import java.util.Vector;
 
@@ -82,28 +83,20 @@ public class HomeActivity extends Activity {
             }
         });
 
+        MainApplication.registerForBus(this, this);
+    }
+
+    @Override
+    public void onDestroy() {
+        MainApplication.unregisterForBus(this, this);
+        super.onDestroy();
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        long timeSavedPerLink = Settings.get().getTimeSavedPerLink();
-        if (timeSavedPerLink > -1) {
-            String timeSaved = String.format("%.1f", (float)timeSavedPerLink / 1000.f);
-            String text = String.format(getString(R.string.stat_saved_per_link), timeSaved);
-            mTimeSavedPerLinkTextView.setText(text);
-            Log.d(Settings.LOAD_TIME_TAG, "*** " + text);
-        }
-
-        long totalTimeSaved = Settings.get().getTotalTimeSaved();
-        if (totalTimeSaved > -1) {
-            float secondsSaved = (float)totalTimeSaved / 1000.f;
-            String timeSaved = String.format("%.1f", secondsSaved);
-            String text = String.format(getString(R.string.stat_saved_per_link), timeSaved);
-            mTimeSavedTotalTextView.setText(text);
-            Log.d(Settings.LOAD_TIME_TAG, "*** " + text);
-        }
+        updateLinkLoadTimeStats();
 
         if (mPlayedIntroAnimation == false) {
             animateOn();
@@ -148,6 +141,26 @@ public class HomeActivity extends Activity {
         mSettingsButtonView.animate().alpha(1f).setDuration(250).setStartDelay(750).start();
     }
 
+    private void updateLinkLoadTimeStats() {
+        long timeSavedPerLink = Settings.get().getTimeSavedPerLink();
+        if (timeSavedPerLink > -1) {
+            String timeSaved = String.format("%.1f", (float)timeSavedPerLink / 1000.f);
+            String text = String.format(getString(R.string.stat_saved_per_link), timeSaved);
+            mTimeSavedPerLinkTextView.setText(text);
+            Log.d(Settings.LOAD_TIME_TAG, "*** " + timeSaved + " seconds");
+        }
+
+        long totalTimeSaved = Settings.get().getTotalTimeSaved();
+        if (totalTimeSaved > -1) {
+            float secondsSaved = (float)totalTimeSaved / 1000.f;
+            String timeSaved = String.format("%.1f", secondsSaved);
+            String text = String.format(getString(R.string.stat_saved_per_link), timeSaved);
+            mTimeSavedTotalTextView.setText(text);
+            Log.d(Settings.LOAD_TIME_TAG, "*** " + timeSaved + " seconds");
+        }
+
+    }
+
     void startActivity(Intent intent, View view) {
         boolean useLaunchAnimation = (view != null) &&
                 !intent.hasExtra(Constant.INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION);
@@ -162,4 +175,9 @@ public class HomeActivity extends Activity {
         }
     }
 
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onLinkLoadTimeStatsUpdatedEvent(Settings.LinkLoadTimeStatsUpdatedEvent event) {
+        updateLinkLoadTimeStats();
+    }
 }
