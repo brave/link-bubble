@@ -49,7 +49,7 @@
             android:layout_height="@dimen/stat_height"
             android:src="@drawable/ic_launcher"
             flipview:defaultView="@layout/view_stat_time_per_link"
-            flipview:flipView="@layout/view_stat_time_per_day"
+            flipview:flipView="@layout/view_stat_total_time"
             flipview:isAnimated="true"/>
 
     </LinearLayout>

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="@string/stat_has_saved_you"
         android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/holo_orange_dark"
+        android:textColor="@android:color/holo_purple"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <com.linkbubble.ui.CondensedTextView
@@ -27,14 +27,14 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
         android:textSize="@dimen/stat_bubble_text_size"
-        android:background="@drawable/circle_stat_per_day"/>
+        android:background="@drawable/circle_stat_total_time"/>
 
     <com.linkbubble.ui.CondensedTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/stat_so_far"
         android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/holo_orange_dark"
+        android:textColor="@android:color/holo_purple"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
 </LinearLayout>
