@@ -124,6 +124,8 @@ public class Settings {
 
         configureDefaultApps(mSharedPreferences.getString(PREFERENCE_DEFAULT_APPS, null));
         mBubbleRestingPoint.set(-1, -1);
+
+        loadRecentAppRedirects();
     }
 
     public void onOrientationChange() {
@@ -687,5 +689,103 @@ public class Settings {
 
     public boolean debugAutoLoadUrl() {
         return mSharedPreferences.getBoolean("auto_load_url", false);
+    }
+
+    private static final int RECENT_REDIRECT_TIME_DELTA = 10 * 1000;
+
+    private static final String LAST_APP_REDIRECTS = "last_app_redirects";
+    private static final String LAST_APP_REDIRECT_KEY_TIME = "time";
+    private static final String LAST_APP_REDIRECT_KEY_URL = "url";
+    private static final int MAX_LAST_APP_REDIRECT_COUNT = 3;
+
+    private static class LastAppRedirect {
+        String mUrl;
+        long mTime;
+    };
+
+    private List<LastAppRedirect> mLastAppRedirects = new ArrayList<LastAppRedirect>(MAX_LAST_APP_REDIRECT_COUNT);
+
+    // Did we *just* redirect to this URL? We need to store this to fix #276
+    public boolean didRecentlyRedirectToApp(String url) {
+        long currentTime = System.currentTimeMillis();
+        for (LastAppRedirect lastAppRedirect : mLastAppRedirects) {
+            long timeDelta = currentTime - lastAppRedirect.mTime;
+            if (timeDelta < RECENT_REDIRECT_TIME_DELTA && lastAppRedirect.mUrl.equals(url)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void addRedirectToApp(String url) {
+
+        LastAppRedirect record = null;
+
+        // try and find a current record with this url
+        for (LastAppRedirect i : mLastAppRedirects) {
+            if (record.mUrl.equals(url)) {
+                record = i;
+                break;
+            }
+        }
+
+        if (record == null && mLastAppRedirects.size() == MAX_LAST_APP_REDIRECT_COUNT) {
+            // Get the oldest record in the list
+            for (LastAppRedirect i : mLastAppRedirects) {
+                if (record == null) {
+                    record = i;
+                } else if (i.mTime < record.mTime) {
+                    record = i;
+                }
+            }
+        }
+
+        if (record == null) {
+            record = new LastAppRedirect();
+            mLastAppRedirects.add(record);
+        }
+
+        record.mUrl = url;
+        record.mTime = System.currentTimeMillis();
+    }
+
+    public void saveRecentAppRedirects() {
+        JSONArray jsonArray = new JSONArray();
+        for (LastAppRedirect lastAppRedirect : mLastAppRedirects) {
+            JSONObject object = new JSONObject();
+            try {
+                object.put(LAST_APP_REDIRECT_KEY_URL, lastAppRedirect.mUrl);
+                object.put(LAST_APP_REDIRECT_KEY_TIME, lastAppRedirect.mTime);
+                jsonArray.put(object);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(LAST_APP_REDIRECTS, jsonArray.toString());
+        editor.commit();
+    }
+
+    private void loadRecentAppRedirects() {
+        mLastAppRedirects.clear();
+        String json = mSharedPreferences.getString(LAST_APP_REDIRECTS, "[]");
+        try {
+            JSONArray jsonArray = new JSONArray(json);
+            for (int i=0 ; i < jsonArray.length() ; ++i) {
+                try {
+                    JSONObject object = jsonArray.getJSONObject(i);
+                    LastAppRedirect lastAppRedirect = new LastAppRedirect();
+                    lastAppRedirect.mUrl = object.getString(LAST_APP_REDIRECT_KEY_URL);
+                    lastAppRedirect.mTime = object.getLong(LAST_APP_REDIRECT_KEY_TIME);
+                    mLastAppRedirects.add(lastAppRedirect);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
