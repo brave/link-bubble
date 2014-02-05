@@ -262,7 +262,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                     String urlAsString = historyItem.mHistoryRecord.getUrl();
                     if (string.equals(openInNewBubbleLabel)) {
                         if (MainController.get() != null) {
-                            MainController.get().onOpenUrl(urlAsString, System.currentTimeMillis(), false);
+                            MainController.get().openUrl(urlAsString, System.currentTimeMillis(), false);
                         } else {
                             MainApplication.openLink(getApplicationContext(), urlAsString);
                         }
@@ -270,7 +270,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                         Intent intent = new Intent(Intent.ACTION_VIEW);
                         intent.setData(Uri.parse(urlAsString));
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        MainApplication.loadInBrowser(HistoryActivity.this, intent, true);
+                        MainApplication.openInBrowser(HistoryActivity.this, intent, true);
                     } else if (string.equals(shareLabel)) {
                         AlertDialog alertDialog = ActionItem.getShareAlert(HistoryActivity.this, new ActionItem.OnActionItemSelectedListener() {
                             @Override

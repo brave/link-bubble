@@ -91,7 +91,7 @@ public class MainApplication extends Application {
         context.startService(serviceIntent);
     }
 
-    public static boolean loadInBrowser(Context context, Intent intent, boolean showToastIfNoBrowser) {
+    public static boolean openInBrowser(Context context, Intent intent, boolean showToastIfNoBrowser) {
         boolean activityStarted = false;
         ComponentName defaultBrowserComponentName = Settings.get().getDefaultBrowserComponentName(context);
         if (defaultBrowserComponentName != null) {

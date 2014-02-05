@@ -415,7 +415,7 @@ public class MainController implements Choreographer.FrameCallback {
         return false;
     }
 
-    public TabView onOpenUrl(final String urlAsString, long startTime, final boolean setAsCurrentBubble) {
+    public TabView openUrl(final String urlAsString, long startTime, final boolean setAsCurrentBubble) {
         URL url;
         try {
             url = new URL(urlAsString);
@@ -431,7 +431,7 @@ public class MainController implements Choreographer.FrameCallback {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(urlAsString));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            if (MainApplication.loadInBrowser(mContext, intent, false)) {
+            if (MainApplication.openInBrowser(mContext, intent, false)) {
                 if (getActiveTabCount() == 0) {
                     mEventHandler.onDestroy();
                 }
@@ -461,7 +461,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         mCanAutoDisplayLink = true;
-        final TabView result = openUrlInBubble(urlAsString, startTime, setAsCurrentBubble, showAppPicker);
+        final TabView result = openUrlInTab(urlAsString, startTime, setAsCurrentBubble, showAppPicker);
 
         // Show app picker after creating the tab to load so that we have the instance to close if redirecting to an app, re #292.
         if (showAppPicker) {
@@ -505,7 +505,7 @@ public class MainController implements Choreographer.FrameCallback {
         return result;
     }
 
-    protected TabView openUrlInBubble(String url, long startTime, boolean setAsCurrentBubble, boolean hasShownAppPicker) {
+    protected TabView openUrlInTab(String url, long startTime, boolean setAsCurrentBubble, boolean hasShownAppPicker) {
         if (getActiveTabCount() == 0) {
             mBubbleDraggable.setVisibility(View.VISIBLE);
         }

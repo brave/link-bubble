@@ -6,12 +6,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Bundle;
 import android.os.IBinder;
 import android.webkit.WebIconDatabase;
 import com.crashlytics.android.Crashlytics;
-
-import java.util.Vector;
 
 /**
  * Created by gw on 28/08/13.
@@ -34,12 +31,12 @@ public class MainService extends Service {
 
         if (cmd.compareTo("open") == 0) {
             String url = intent.getStringExtra("url");
-            MainController.get().onOpenUrl(url, startTime, true);
+            MainController.get().openUrl(url, startTime, true);
         } else if (cmd.compareTo("restore") == 0) {
             if (!mRestoreComplete) {
                 String [] urls = intent.getStringArrayExtra("urls");
                 for (int i = 0; i < urls.length; i++) {
-                    MainController.get().onOpenUrl(urls[i], startTime, i == urls.length-1);
+                    MainController.get().openUrl(urls[i], startTime, i == urls.length - 1);
                 }
                 mRestoreComplete = true;
             }
