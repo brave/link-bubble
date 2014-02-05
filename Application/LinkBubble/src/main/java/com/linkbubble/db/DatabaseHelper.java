@@ -240,19 +240,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor != null) {
             long idToDelete = -1;
-            if (cursor.getCount() > 0) {
-                cursor.moveToFirst();
+            try {
+                if (cursor.getCount() > 0) {
+                    cursor.moveToFirst();
 
-                long id = cursor.getLong(0);
-                long createTime = cursor.getLong(1);
-                long timeDelta = System.currentTimeMillis() - createTime;
-                if (timeDelta < FAVICON_EXPIRE_TIME) {
-                    byte[] byteArray = cursor.getBlob(2);
-                    result = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-                    Log.d(TAG, "getFavicon() - fetched favicon for " + faviconUrl);
-                } else {
-                    idToDelete = id;
+                    long id = cursor.getLong(0);
+                    long createTime = cursor.getLong(1);
+                    long timeDelta = System.currentTimeMillis() - createTime;
+                    if (timeDelta < FAVICON_EXPIRE_TIME) {
+                        byte[] byteArray = cursor.getBlob(2);
+                        result = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                        Log.d(TAG, "getFavicon() - fetched favicon for " + faviconUrl);
+                    } else {
+                        idToDelete = id;
+                    }
                 }
+            } catch (IllegalStateException ex) {    // #302
             }
             cursor.close();
 
