@@ -128,6 +128,10 @@ public class Settings {
         loadRecentAppRedirects();
     }
 
+    public void saveData() {
+        saveRecentAppRedirects();
+    }
+
     public void onOrientationChange() {
         int bubbleRestingX = mBubbleRestingPoint.x;
         if (bubbleRestingX == -1) {
@@ -750,7 +754,7 @@ public class Settings {
         record.mTime = System.currentTimeMillis();
     }
 
-    public void saveRecentAppRedirects() {
+    private void saveRecentAppRedirects() {
         JSONArray jsonArray = new JSONArray();
         for (LastAppRedirect lastAppRedirect : mLastAppRedirects) {
             JSONObject object = new JSONObject();
