@@ -713,6 +713,12 @@ public class Settings {
     long mTotalTimeSaved;
     int mTotalLinksLoaded;
 
+    public static class LinkLoadTimeStatsUpdatedEvent {
+
+    }
+
+    private LinkLoadTimeStatsUpdatedEvent mLinkLoadTimeStatsUpdatedEvent = new LinkLoadTimeStatsUpdatedEvent();
+
     public void trackLinkLoadTime(long timeSaved, LinkLoadResult linkLoadResult, String url) {
         switch (linkLoadResult) {
             case AppRedirectInstant:
@@ -732,6 +738,8 @@ public class Settings {
         mTotalLinksLoaded++;
 
         Log.d(LOAD_TIME_TAG, "trackLinkLoadTime() - timeSaved:" + ((float)timeSaved / 1000.f) + " seconds, " + linkLoadResult + ", " + url);
+
+        MainApplication.postEvent(mContext, mLinkLoadTimeStatsUpdatedEvent);
     }
 
     public long getTotalTimeSaved() {
