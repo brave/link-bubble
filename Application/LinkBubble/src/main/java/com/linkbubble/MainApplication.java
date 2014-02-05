@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Vibrator;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.linkbubble.db.DatabaseHelper;
@@ -121,7 +120,7 @@ public class MainApplication extends Application {
         context.startActivity(openIntent);
         //Log.d(TAG, "redirect to app: " + resolveInfo.loadLabel(context.getPackageManager()) + ", url:" + url);
         if (urlLoadStartTime > -1) {
-            Settings.get().trackLinkLoadTime(System.currentTimeMillis() - urlLoadStartTime, Settings.LinkLoadResult.AppRedirectBrowser, urlAsString);
+            Settings.get().trackLinkLoadTime(System.currentTimeMillis() - urlLoadStartTime, Settings.LinkLoadType.AppRedirectBrowser, urlAsString);
         }
         return true;
     }
@@ -139,7 +138,7 @@ public class MainApplication extends Application {
             intent.putExtra(Intent.EXTRA_TEXT, url);
             context.startActivity(intent);
             if (totalLoadTime > -1) {
-                Settings.get().trackLinkLoadTime(totalLoadTime, Settings.LinkLoadResult.ShareToOtherApp, url);
+                Settings.get().trackLinkLoadTime(totalLoadTime, Settings.LinkLoadType.ShareToOtherApp, url);
             }
             result = true;
         } else if (actionType == Config.ActionType.View) {

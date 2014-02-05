@@ -704,7 +704,7 @@ public class Settings {
 
     public static final String LOAD_TIME_TAG = "LoadTime";
 
-    public enum LinkLoadResult {
+    public enum LinkLoadType {
         PageLoad,                   // The page was loaded.
         AppRedirectInstant,         // Redirect via MainController (before a ContentView instance is created for this link).
         AppRedirectBrowser,         // Redirect via ContentView.
@@ -716,13 +716,12 @@ public class Settings {
     int mTotalLinksLoaded;
 
     public static class LinkLoadTimeStatsUpdatedEvent {
-
     }
 
     private LinkLoadTimeStatsUpdatedEvent mLinkLoadTimeStatsUpdatedEvent = new LinkLoadTimeStatsUpdatedEvent();
 
-    public void trackLinkLoadTime(long timeSaved, LinkLoadResult linkLoadResult, String url) {
-        switch (linkLoadResult) {
+    public void trackLinkLoadTime(long timeSaved, LinkLoadType linkLoadType, String url) {
+        switch (linkLoadType) {
             case AppRedirectInstant:
                 // Add some time for the time taken to animate to the new app
                 timeSaved += APP_CHANGE_ANIM_TIME;
@@ -739,7 +738,7 @@ public class Settings {
         mTotalTimeSaved += timeSaved;
         mTotalLinksLoaded++;
 
-        Log.d(LOAD_TIME_TAG, "trackLinkLoadTime() - timeSaved:" + ((float)timeSaved / 1000.f) + " seconds, " + linkLoadResult + ", " + url);
+        Log.d(LOAD_TIME_TAG, "trackLinkLoadTime() - timeSaved:" + ((float)timeSaved / 1000.f) + " seconds, " + linkLoadType + ", " + url);
 
         MainApplication.postEvent(mContext, mLinkLoadTimeStatsUpdatedEvent);
     }
