@@ -656,12 +656,8 @@ public class MainController implements Choreographer.FrameCallback {
         return false;
     }
 
-    public void onStateChange(boolean value) {
-        if (value) {
-            // TODO: Ensure all remnants of free version are hidden from user
-        }
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onStateChangedEvent(DRM.StateChangedEvent event) {
     }
-
-
-
 }
