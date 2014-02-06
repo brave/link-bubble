@@ -42,6 +42,7 @@ import android.widget.PopupMenu;
 import android.graphics.Canvas;
 import android.widget.TextView;
 import com.linkbubble.Constant;
+import com.linkbubble.DRM;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
@@ -776,7 +777,7 @@ public class ContentView extends FrameLayout {
             final Context context = getContext();
             mOverflowPopupMenu = new PopupMenu(context, mOverflowButton);
             Resources resources = context.getResources();
-            if (Constant.IS_LICENSED == false) {
+            if (DRM.isLicensed() == false) {
                 mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_upgrade_to_pro, Menu.NONE,
                         resources.getString(R.string.action_upgrade_to_pro));
             }
