@@ -618,42 +618,12 @@ public class MainController implements Choreographer.FrameCallback {
         }
     };
 
-    public boolean showPreviousBubble() {
-        /*
-        if (mCurrentState instanceof State_ContentView) {
-            State_ContentView contentViewState = (State_ContentView)mCurrentState;
-            BubbleView activeBubble = getActiveBubble();
-            if (activeBubble != null) {
-                int index = activeBubble.getTabIndex();
-                if (index > 0) {
-                    for (BubbleView bubble : mBubbles) {
-                        if (index-1 == bubble.getTabIndex()) {
-                            contentViewState.setActiveBubble(bubble);
-                            return true;
-                        }
-                    }
-                }
-            }
-        }*/
-        return false;
+    public void showPreviousBubble() {
+        mBubbleFlowDraggable.previousTab();
     }
 
-    public boolean showNextBubble() {
-        /*
-        if (mCurrentState instanceof State_ContentView) {
-            State_ContentView contentViewState = (State_ContentView)mCurrentState;
-            BubbleView activeBubble = getActiveBubble();
-            if (activeBubble != null) {
-                int index = activeBubble.getTabIndex();
-                for (BubbleView bubble : mBubbles) {
-                    if (index+1 == bubble.getTabIndex()) {
-                        contentViewState.setActiveBubble(bubble);
-                        return true;
-                    }
-                }
-            }
-        }*/
-        return false;
+    public void showNextBubble() {
+        mBubbleFlowDraggable.nextTab();
     }
 
     @SuppressWarnings("unused")
