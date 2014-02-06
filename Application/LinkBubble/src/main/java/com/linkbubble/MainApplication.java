@@ -72,6 +72,9 @@ public class MainApplication extends Application {
         sFavicons.close();
         sFavicons = null;
 
+        sDrm.onDestroy();
+        sDrm = null;
+
         super.onTerminate();
     }
 
