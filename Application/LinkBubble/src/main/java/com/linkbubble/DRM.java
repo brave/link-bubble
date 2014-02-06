@@ -47,19 +47,6 @@ public class DRM {
     private long mFirstInstallTime = 0;
     private SharedPreferences mSharedPreferences;
 
-    public interface Listener {
-        void onDrmInvalid();
-    };
-
-    public static class SetLicenseStateEvent {
-        public int mState;
-
-        public SetLicenseStateEvent(int state) {
-            mState = state;
-        }
-    }
-
-    Listener mListener;
     Context mContext;
 
     DRM(Context context) {
@@ -71,31 +58,23 @@ public class DRM {
             sLicenseState = serviceInfo != null ? decryptSharedPreferencesInt(mSharedPreferences, LICENSE_KEY, LICENSE_UNKNOWN) : LICENSE_INVALID;
         }
         MainApplication.registerForBus(context, this);
-    }
 
-    void initialize(Application application, Listener listener) {
-        mListener = listener;
+        boolean serviceBound = bindProService(context);
+        sLicenseState = serviceBound ? decryptSharedPreferencesInt(mSharedPreferences, LICENSE_KEY, LICENSE_UNKNOWN) : LICENSE_INVALID;
+        mFirstInstallTime = decryptSharedPreferencesLong(mSharedPreferences, FIRST_INSTALL_TIME_KEY, 0);
+        mUsageTimeLeft = decryptSharedPreferencesLong(mSharedPreferences, USAGE_TIME_LEFT_KEY, 0);
 
-        if (mProServiceBound == false) {
-            boolean serviceBound = bindProService(application);
-
-            // First time only
-            sLicenseState = serviceBound ? decryptSharedPreferencesInt(mSharedPreferences, LICENSE_KEY, LICENSE_UNKNOWN) : LICENSE_INVALID;
-            mFirstInstallTime = decryptSharedPreferencesLong(mSharedPreferences, FIRST_INSTALL_TIME_KEY, 0);
-            mUsageTimeLeft = decryptSharedPreferencesLong(mSharedPreferences, USAGE_TIME_LEFT_KEY, 0);
-
-            // DRM: Save the time the app was first installed
-            if (mFirstInstallTime == 0) {
-                mFirstInstallTime = System.currentTimeMillis();
-                final String encryptedFirstInstallTime = encryptLong(mFirstInstallTime);
-                new Thread("setLicenseState") {
-                    public void run() {
-                        mSharedPreferences.edit()
-                                .putString(FIRST_INSTALL_TIME_KEY, encryptedFirstInstallTime)
-                                .commit();
-                    }
-                }.start();
-            }
+        // DRM: Save the time the app was first installed
+        if (mFirstInstallTime == 0) {
+            mFirstInstallTime = System.currentTimeMillis();
+            final String encryptedFirstInstallTime = encryptLong(mFirstInstallTime);
+            new Thread("setLicenseState") {
+                public void run() {
+                    mSharedPreferences.edit()
+                            .putString(FIRST_INSTALL_TIME_KEY, encryptedFirstInstallTime)
+                            .commit();
+                }
+            }.start();
         }
     }
 
@@ -159,10 +138,6 @@ public class DRM {
         return Encrypt.encryptIt(getValuePrefix() + value);
     }
 
-    void setListener(Listener listener) {
-        mListener = listener;
-    }
-
     void onDestroy() {
         MainApplication.unregisterForBus(mContext, this);
     }
@@ -189,13 +164,6 @@ public class DRM {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-    }
-
-    @SuppressWarnings("unused")
-    @Subscribe
-    public void onSetLicenseState(SetLicenseStateEvent event) {
-        Log.d(TAG, "onSetLicenseState CALLED!!!");
-        setLicenseState(event.mState);
     }
 
     private void setLicenseState(int licenseState) {
@@ -237,13 +205,6 @@ public class DRM {
                 Log.d(TAG, "call SetStateThread() - licenseState:" + licenseState);
             }
         }
-
-        if (licenseState == LICENSE_INVALID) {
-            Log.d(TAG, "LICENSE_INVALID");
-            if (mListener != null) {
-                mListener.onDrmInvalid();
-            }
-        }
     }
 
     static final class SetStateThread extends Thread {
@@ -270,93 +231,6 @@ public class DRM {
         }
     }
 
-    /*
-    private static class MyLicenseCheckerCallback implements LicenseCheckerCallback {
-
-        public MyLicenseCheckerCallback() {
-        }
-
-        public void allow(int policyReason) {
-
-            //if (mApplication.mLauncher == null) {
-            //    return;
-            //}
-
-            //if (mApplication.mLauncher.isFinishing()) {
-                // Don't update UI if Activity is finishing.
-            //    return;
-            //}
-
-            // Should allow user access.
-            //displayResult(getString(R.string.allow));
-            //mApplication.mLauncher.setLicenseState(LICENSE_VALID, LICENSE_REASON_NONE);
-            if (DEBUG) {
-                Log.d(TAG, "MyLicenseCheckerCallback.allow()");
-            }
-            LauncherBusProvider.getInstance().post(new ALEventSetLicenseState(LICENSE_VALID, LICENSE_REASON_NONE));
-        }
-
-        public void dontAllow(int policyReason) {
-            //if (mApplication.mLauncher == null) {
-            //    return;
-            //}
-
-            //if (mApplication.mLauncher.isFinishing()) {
-                // Don't update UI if Activity is finishing.
-            //    return;
-            //}
-            //displayResult(getString(R.string.dont_allow));
-            // Should not allow access. In most cases, the app should assume
-            // the user has access unless it encounters this. If it does,
-            // the app should inform the user of their unlicensed ways
-            // and then either shut down the app or limit the user to a
-            // restricted set of features.
-            // In this example, we show a dialog that takes the user to Market.
-            // If the reason for the lack of license is that the service is
-            // unavailable or there is another problem, we display a
-            // retry button on the dialog and a different message.
-            //displayDialog();
-            //mApplication.mLauncher.setLicenseState(LICENSE_INVALID, policyReason == Policy.RETRY ? LICENSE_REASON_RETRY : LICENSE_REASON_NONE);
-
-            boolean ignoreError = false;
-            switch (policyReason) {
-
-                case Policy.RETRY:
-                    ignoreError = true;
-                    break;
-
-                //case LicenseValidator.ERROR_CONTACTING_SERVER:
-                //case LicenseValidator.ERROR_SERVER_FAILURE:
-                //case LicenseValidator.ERROR_OVER_QUOTA:
-                //    ignoreError = true;
-                //    break;
-            }
-
-            if (ignoreError) {
-                LauncherBusProvider.getInstance().post(new ALEventSetLicenseState(LICENSE_IGNORE_ERROR, LICENSE_REASON_NONE));
-            } else {
-                if (DEBUG) {
-                    Log.d(TAG, "MyLicenseCheckerCallback.dontAllow()");
-                }
-                LauncherBusProvider.getInstance().post(new ALEventSetLicenseState(LICENSE_INVALID,
-                        policyReason == Policy.RETRY ? LICENSE_REASON_RETRY : LICENSE_REASON_NONE));
-            }
-        }
-
-        public void applicationError(int errorCode) {
-            //if (mApplication.mLauncher == null) {
-            //    return;
-            //}
-            if (DEBUG) {
-                Log.d(TAG, "MyLicenseCheckerCallback.applicationError()");
-            }
-            LauncherBusProvider.getInstance().post(new ALEventSetLicenseState(LICENSE_INVALID, LICENSE_REASON_NONE));
-            //mApplication.mLauncher.setLicenseState(LICENSE_INVALID, LICENSE_REASON_NONE);
-
-        }
-    }*/
-
-
     /**
      * Handler of incoming messages from service.
      */
@@ -369,7 +243,7 @@ public class DRM {
                         case LICENSE_INVALID:
                         case LICENSE_UNKNOWN:
                         case LICENSE_VALID:
-                            MainApplication.postEvent(mContext, new SetLicenseStateEvent(msg.arg1));
+                            setLicenseState(msg.arg1);
                             break;
                     }
                     break;
