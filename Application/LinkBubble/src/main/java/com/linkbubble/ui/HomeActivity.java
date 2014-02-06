@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
+import android.widget.Button;
+import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
@@ -27,7 +29,7 @@ public class HomeActivity extends Activity {
     View mContentView;
     View mBackgroundView;
     View mTopButtonsContainerView;
-    View mHistoryButtonView;
+    Button mActionButtonView;
     View mHistoryCircleButtonView;
     View mSettingsCircleButtonView;
     FlipView mStatsFlipView;
@@ -44,12 +46,14 @@ public class HomeActivity extends Activity {
 
         setContentView(R.layout.activity_home);
 
+        boolean isLicensed = DRM.isLicensed();
+
         mBackgroundView = findViewById(R.id.background);
         mContentView = findViewById(R.id.content);
         mTopButtonsContainerView = findViewById(R.id.top_buttons_container);
         mHistoryCircleButtonView = findViewById(R.id.history_circle);
         mSettingsCircleButtonView = findViewById(R.id.settings_circle);
-        mHistoryButtonView = findViewById(R.id.history);
+        mActionButtonView = (Button)findViewById(R.id.big_white_button);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
         mTimeSavedPerLinkTextView = (CondensedTextView) mStatsFlipView.getDefaultView().findViewById(R.id.time_per_link);
         mTimeSavedPerLinkTextView.setText("");
@@ -75,10 +79,24 @@ public class HomeActivity extends Activity {
             MainApplication.restoreLinks(this, urls.toArray(new String[urls.size()]));
         }
 
-        mHistoryButtonView.setOnClickListener(new View.OnClickListener() {
+        if (isLicensed) {
+            mActionButtonView.setText(R.string.history);
+            mHistoryCircleButtonView.setVisibility(View.GONE);
+        } else {
+            mActionButtonView.setText(R.string.action_upgrade_to_pro);
+        }
+
+        mActionButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v);
+                if (DRM.isLicensed()) {
+                    startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v);
+                } else {
+                    Intent intent = Config.getStoreIntent(HomeActivity.this, Config.STORE_PRO_URL);
+                    if (intent != null) {
+                        startActivity(intent);
+                    }
+                }
             }
         });
 
@@ -147,9 +165,9 @@ public class HomeActivity extends Activity {
                 .setInterpolator(new AnticipateOvershootInterpolator())
                 .start();
 
-        mHistoryButtonView.setAlpha(0f);
-        mHistoryButtonView.setVisibility(View.VISIBLE);
-        mHistoryButtonView.animate().alpha(1f).setDuration(250).setStartDelay(750).start();
+        mActionButtonView.setAlpha(0f);
+        mActionButtonView.setVisibility(View.VISIBLE);
+        mActionButtonView.animate().alpha(1f).setDuration(250).setStartDelay(750).start();
 
         mTopButtonsContainerView.setAlpha(0f);
         mTopButtonsContainerView.setVisibility(View.VISIBLE);
