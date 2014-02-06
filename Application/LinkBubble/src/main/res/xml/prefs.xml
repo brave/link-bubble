@@ -2,7 +2,8 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <PreferenceCategory
-        android:title="@string/preference_category_configuration">
+        android:title="@string/preference_category_configuration"
+        android:key="preference_category_configuration">
 
         <SwitchPreference
             android:key="preference_enabled"
