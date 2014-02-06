@@ -67,7 +67,6 @@ public class ContentView extends FrameLayout {
 
     private TabView mOwnerTabView;
     private WebView mWebView;
-    private View mTouchInterceptorView;
     private CondensedTextView mTitleTextView;
     private CondensedTextView mUrlTextView;
     private ContentViewButton mShareButton;
@@ -79,7 +78,6 @@ public class ContentView extends FrameLayout {
     private EventHandler mEventHandler;
     private URL mUrl;
     private int mCurrentProgress = 0;
-    private long mLastWebViewTouchUpTime = -1;
     private String mLastWebViewTouchDownUrl;
     private boolean mPageFinishedLoading;
     private boolean mShowingDefaultAppPicker = false;
@@ -98,7 +96,6 @@ public class ContentView extends FrameLayout {
     private int mHeaderHeight;
     private Path mTempPath = new Path();
     private PageInspector mPageInspector;
-    private Stack<URL> mUrlStack = new Stack<URL>();
     // We only want to handle this once per link. This prevents 3+ dialogs appearing for some links, which is a bad experience. #224
     private boolean mHandledAppPickerForCurrentUrl = false;
 
@@ -160,7 +157,7 @@ public class ContentView extends FrameLayout {
         public void onPageLoaded();
         public boolean onReceivedIcon(Bitmap bitmap);
         public void setDefaultFavicon();
-        public void onBackStackSizeChanged(int size);
+        public void onCanGoBackChanged(boolean canGoBack);
         public boolean hasHighQualityFavicon();
     }
 
@@ -245,9 +242,6 @@ public class ContentView extends FrameLayout {
         mHandledAppPickerForCurrentUrl = hasShownAppPicker;
 
         mWebView = (WebView) findViewById(R.id.webView);
-        mTouchInterceptorView = findViewById(R.id.touch_interceptor);
-        mTouchInterceptorView.setWillNotDraw(true);
-        mTouchInterceptorView.setOnTouchListener(mWebViewOnTouchListener);
         mToolbarLayout = (LinearLayout) findViewById(R.id.content_toolbar);
         mTitleTextView = (CondensedTextView) findViewById(R.id.title_text);
         mUrlTextView = (CondensedTextView) findViewById(R.id.url_text);
@@ -273,7 +267,7 @@ public class ContentView extends FrameLayout {
         mOverflowButton.setOnClickListener(mOnOverflowButtonClickListener);
 
         mEventHandler = eventHandler;
-        mEventHandler.onBackStackSizeChanged(mUrlStack.size());
+        mEventHandler.onCanGoBackChanged(mWebView.canGoBack());
         mPageFinishedLoading = false;
 
         WebSettings webSettings = mWebView.getSettings();
@@ -305,27 +299,6 @@ public class ContentView extends FrameLayout {
         mUrlTextView.setText(urlAsString.replace("http://", ""));
     }
 
-    private OnTouchListener mWebViewOnTouchListener = new OnTouchListener() {
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            final int action = event.getAction() & MotionEvent.ACTION_MASK;
-            switch (action) {
-                case MotionEvent.ACTION_DOWN:
-                    mLastWebViewTouchDownUrl = mUrl.toString();
-                    //Log.d(TAG, "[urlstack] WebView - MotionEvent.ACTION_DOWN");
-                    break;
-
-                case MotionEvent.ACTION_UP:
-                    mLastWebViewTouchUpTime = System.currentTimeMillis();
-                    Log.d(TAG, "[urlstack] WebView - MotionEvent.ACTION_UP");
-                    break;
-            }
-            // Forcibly pass along to the WebView. This ensures we receive the ACTION_UP event above.
-            mWebView.onTouchEvent(event);
-            return true;
-        }
-    };
-
     WebViewClient mWebViewClient = new WebViewClient() {
         @Override
         public boolean shouldOverrideUrlLoading(WebView wView, final String urlAsString) {
@@ -338,31 +311,7 @@ public class ContentView extends FrameLayout {
                 return true;        // true because we've handled the link ourselves
             }
 
-            if (mLastWebViewTouchUpTime > -1) {
-                long touchUpTimeDelta = System.currentTimeMillis() - mLastWebViewTouchUpTime;
-                // this value needs to be largish
-                if (touchUpTimeDelta < 1500) {
-                    // If the url has changed since the use pressed their finger down, a redirect has likely occurred,
-                    // in which case we don't update the Url Stack
-                    if (mLastWebViewTouchDownUrl.equals(mUrl.toString())) {
-                        mUrlStack.push(mUrl);
-                        mDoDropDownCheck = true;
-                        mEventHandler.onBackStackSizeChanged(mUrlStack.size());
-                        Log.d(TAG, "[urlstack] push:" + mUrl.toString() + ", urlStack.size():" + mUrlStack.size() + ", delta:" + touchUpTimeDelta);
-                        mHandledAppPickerForCurrentUrl = false;
-                    } else {
-                        Log.d(TAG, "[urlstack] DON'T ADD " + mUrl.toString() + " because of redirect");
-                    }
-                    mLastWebViewTouchUpTime = -1;
-
-                } else {
-                    Log.d(TAG, "[urlstack] IGNORED because of delta:" + touchUpTimeDelta);
-                }
-            }
-
-            mUrl = updatedUrl;
-            mWebView.loadUrl(urlAsString);
-            return true;
+            return false;
         }
 
         @Override
@@ -385,6 +334,8 @@ public class ContentView extends FrameLayout {
             String oldUrl = mUrl.toString();
 
             updateUrl(urlAsString);
+
+            mEventHandler.onCanGoBackChanged(mWebView.canGoBack());
 
             if (oldUrl.equals(Constant.NEW_TAB_URL)) {
                 MainController.get().saveCurrentTabs();
@@ -494,6 +445,8 @@ public class ContentView extends FrameLayout {
         public void onPageFinished(WebView webView, String urlAsString) {
             super.onPageFinished(webView, urlAsString);
 
+            mEventHandler.onCanGoBackChanged(mWebView.canGoBack());
+
             // This should not be necessary, but unfortunately is.
             // Often when pressing Back, onPageFinished() is mistakenly called when progress is 0.
             if (mCurrentProgress != 100) {
@@ -554,22 +507,20 @@ public class ContentView extends FrameLayout {
                 WebView webView = (WebView) v;
                 switch (keyCode) {
                     case KeyEvent.KEYCODE_BACK: {
-                        if (mUrlStack.size() == 0) {
-                            MainController.get().closeTab(mOwnerTabView, true);
-                        } else {
-                            webView.stopLoading();
+                        if (webView.canGoBack()) {
+
                             String urlBefore = webView.getUrl();
+                            webView.goBack();
+                            String urlAfter = webView.getUrl();
 
-                            URL previousUrl = mUrlStack.pop();
-                            String previousUrlAsString = previousUrl.toString();
-                            mEventHandler.onBackStackSizeChanged(mUrlStack.size());
                             mHandledAppPickerForCurrentUrl = false;
-                            webView.loadUrl(previousUrlAsString);
+                            mEventHandler.onCanGoBackChanged(true);
 
-                            updateUrl(previousUrlAsString);
-                            Log.d(TAG, "[urlstack] Go back: " + urlBefore + " -> " + webView.getUrl() + ", urlStack.size():" + mUrlStack.size());
-                            mUrlTextView.setText(previousUrlAsString.replace("http://", ""));
-                            String title = MainApplication.sTitleHashMap.get(previousUrlAsString);
+                            updateUrl(urlAfter);
+                            Log.d(TAG, "[urlstack] Go back: " + urlBefore + " -> " + urlAfter);
+
+                            mUrlTextView.setText(urlAfter.replace("http://", ""));
+                            String title = MainApplication.sTitleHashMap.get(urlAfter);
                             if (title == null) {
                                 title = getResources().getString(R.string.loading);
                             }
@@ -577,13 +528,16 @@ public class ContentView extends FrameLayout {
 
                             mEventHandler.onPageLoading(mUrl);
 
-                            updateAppsForUrl(null, previousUrl);
+                            updateAppsForUrl(null, mUrl);
                             configureOpenInAppButton();
 
                             mPageInspector.reset();
                             configureOpenEmbedButton();
 
                             return true;
+                        } else {
+                            mEventHandler.onCanGoBackChanged(false);
+                            MainController.get().closeTab(mOwnerTabView, true);
                         }
                         break;
                     }

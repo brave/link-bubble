@@ -24,7 +24,6 @@ public class TabView extends BubbleView {
     private ContentView mContentView;
     private ImageView mBackIndicatorView;
     private ScaleUpAnimHelper mBackIndicatorAnimHelper;
-    private int mLastBackStackSize = -1;
 
     public TabView(Context context) {
         this(context, null);
@@ -92,13 +91,12 @@ public class TabView extends BubbleView {
             }
 
             @Override
-            public void onBackStackSizeChanged(int size) {
-                if (size == 0 && mLastBackStackSize > 0) {
-                    mBackIndicatorAnimHelper.hide();
-                } else if (size > 0 && mLastBackStackSize == 0) {
+            public void onCanGoBackChanged(boolean canGoBack) {
+                if (canGoBack) {
                     mBackIndicatorAnimHelper.show();
+                } else {
+                    mBackIndicatorAnimHelper.hide();
                 }
-                mLastBackStackSize = size;
             }
 
             @Override
