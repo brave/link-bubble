@@ -44,9 +44,9 @@ public class DRM {
         public int mOldState;
     }
 
-    private static String LICENSE_KEY = "alp_licenseKey2";
-    private static String FIRST_INSTALL_TIME_KEY = "alp_firstInstallTime2";
-    private static String USAGE_TIME_LEFT_KEY = "alp_usageTimeLeft2";
+    private static String LICENSE_KEY = "lb_licenseKey";
+    private static String FIRST_INSTALL_TIME_KEY = "lb_firstInstallTime";
+    private static String USAGE_TIME_LEFT_KEY = "lb_usageTimeLeft";
 
     private long mUsageTimeLeft = 0;
     private long mFirstInstallTime = 0;
