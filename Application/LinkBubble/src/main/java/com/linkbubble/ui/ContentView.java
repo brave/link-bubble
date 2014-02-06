@@ -332,18 +332,9 @@ public class ContentView extends FrameLayout {
 
             URL updatedUrl = getUpdatedUrl(urlAsString);
             if (updatedUrl == null) {
-                String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
-                String message;
-                Drawable drawable;
-                if (defaultBrowserLabel != null) {
-                    message = String.format(getResources().getString(R.string.unsupported_scheme_default_browser), defaultBrowserLabel);
-                    drawable = Settings.get().getDefaultBrowserIcon(getContext());
-                } else {
-                    message = getResources().getString(R.string.unsupported_scheme_no_default_browser);
-                    drawable = null;
-                }
-                Prompt.show(message, drawable, Prompt.LENGTH_LONG, null);
                 Log.d(TAG, "ignore unsupported URI scheme: " + urlAsString);
+                showOpenInBrowserPrompt(R.string.unsupported_scheme_default_browser,
+                        R.string.unsupported_scheme_no_default_browser, mUrl.toString());
                 return true;        // true because we've handled the link ourselves
             }
 
@@ -777,17 +768,7 @@ public class ContentView extends FrameLayout {
 
                 case WebView.HitTestResult.UNKNOWN_TYPE:
                 default:
-                    String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
-                    String message;
-                    Drawable drawable;
-                    if (defaultBrowserLabel != null) {
-                        message = String.format(getResources().getString(R.string.long_press_unsupported_default_browser), defaultBrowserLabel);
-                        drawable = Settings.get().getDefaultBrowserIcon(getContext());
-                    } else {
-                        message = getResources().getString(R.string.long_press_unsupported_no_default_browser);
-                        drawable = null;
-                    }
-                    Prompt.show(message, drawable, Prompt.LENGTH_LONG, null);
+                    showOpenInBrowserPrompt(R.string.long_press_unsupported_default_browser,                            R.string.long_press_unsupported_no_default_browser, mUrl.toString());
                     return false;
             }
         }
@@ -988,24 +969,8 @@ public class ContentView extends FrameLayout {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
-                    String message;
-                    Drawable drawable = null;
-                    Prompt.OnPromptClickListener listener = null;
-                    if (defaultBrowserLabel != null) {
-                        message = String.format(getResources().getString(R.string.unsupported_drop_down_default_browser), defaultBrowserLabel);
-                        drawable = Settings.get().getDefaultBrowserIcon(getContext());
-                        final String urlToLoad = mUrl.toString();
-                        listener = new Prompt.OnPromptClickListener() {
-                            @Override
-                            public void onClick() {
-                                openInBrowser(urlToLoad);
-                            }
-                        };
-                    } else {
-                        message = getResources().getString(R.string.unsupported_drop_down_no_default_browser);
-                    }
-                    Prompt.show(message, drawable, Prompt.LENGTH_LONG, listener);
+                    showOpenInBrowserPrompt(R.string.unsupported_drop_down_default_browser,
+                            R.string.unsupported_drop_down_no_default_browser, mUrl.toString());
                 }
             });
         }
@@ -1313,4 +1278,22 @@ public class ContentView extends FrameLayout {
         return false;
     }
 
+    private void showOpenInBrowserPrompt(int hasBrowserStringId, int noBrowserStringId, final String urlAsString) {
+        String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
+        String message;
+        Drawable drawable;
+        if (defaultBrowserLabel != null) {
+            message = String.format(getResources().getString(hasBrowserStringId), defaultBrowserLabel);
+            drawable = Settings.get().getDefaultBrowserIcon(getContext());
+        } else {
+            message = getResources().getString(noBrowserStringId);
+            drawable = null;
+        }
+        Prompt.show(message, drawable, Prompt.LENGTH_LONG, new Prompt.OnPromptClickListener() {
+            @Override
+            public void onClick() {
+                openInBrowser(urlAsString);
+            }
+        });
+    }
 }
