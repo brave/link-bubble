@@ -35,6 +35,8 @@ public class Settings {
     public static final String PREFERENCE_ENABLED = "preference_enabled";
     public static final String PREFERENCE_AUTO_CONTENT_DISPLAY_TYPE = "preference_auto_content_display";
     public static final String PREFERENCE_CHECK_FOR_YOUTUBE_EMBEDS = "preference_scan_for_youtube_embeds";
+    public static final String PREFERENCE_INTERCEPT_LINKS_FROM = "preference_intercept_links_from";
+    public static final String PREFERENCE_INTERCEPT_LINKS_FROM_APP_NAME = "preference_intercept_links_from_app_name";
 
     public static final String PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT = "preference_auto_content_display_app_redirect";
     public static final boolean PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT_DEFAULT = true;
@@ -429,6 +431,21 @@ public class Settings {
         } catch (PackageManager.NameNotFoundException e) {
         }
         return mContext.getResources().getDrawable(R.drawable.ic_launcher);
+    }
+
+    public String getInterceptLinksFromPackageName() {
+        return mSharedPreferences.getString(PREFERENCE_INTERCEPT_LINKS_FROM, "com.google.android.apps.plus");
+    }
+
+    public String getInterceptLinksFromAppName() {
+        return mSharedPreferences.getString(PREFERENCE_INTERCEPT_LINKS_FROM_APP_NAME, "Google+");
+    }
+
+    public void setInterceptLinksFrom(String packageName, String appName) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(PREFERENCE_INTERCEPT_LINKS_FROM, packageName);
+        editor.putString(PREFERENCE_INTERCEPT_LINKS_FROM_APP_NAME, appName);
+        editor.commit();
     }
 
     public boolean getAutoContentDisplayAppRedirect() {

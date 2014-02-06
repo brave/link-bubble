@@ -55,6 +55,9 @@
     <string name="preference_set_default_browser_title">Set default browser</string>
     <string name="preference_set_default_browser_summary">Link Bubble is not the default browser. Let\'s make it the default shall we?</string>
     <string name="preference_more">More…</string>
+    <string name="preference_intercept_links_from_title">Intercept links from</string>
+    <string name="preference_intercept_links_from_note">Note: The restriction of intercepting links from just one app only exists with the
+        free version of Link Bubble. Upgrade to Pro?</string>
     <string name="preference_scan_for_youtube_embeds_title">Check for YouTube embeds</string>
     <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
 
