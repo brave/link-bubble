@@ -259,6 +259,8 @@ public class MainController implements Choreographer.FrameCallback {
         mBubbleFlowDraggable.setVisibility(View.GONE);
 
         mBubbleDraggable.setBubbleFlowDraggable(mBubbleFlowDraggable);
+
+        MainApplication.sDrm.requestLicenseStatus();
     }
 
     //private TextView mTextView;
@@ -653,5 +655,13 @@ public class MainController implements Choreographer.FrameCallback {
         }*/
         return false;
     }
+
+    public void onStateChange(boolean value) {
+        if (value) {
+            // TODO: Ensure all remnants of free version are hidden from user
+        }
+    }
+
+
 
 }

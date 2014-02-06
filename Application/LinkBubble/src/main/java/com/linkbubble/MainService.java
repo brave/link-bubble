@@ -131,9 +131,11 @@ public class MainService extends Service {
             final String action = intent.getAction();
             if (Intent.ACTION_PACKAGE_REMOVED.equals(action)) {
                 Settings.get().updateBrowsers();
+                MainApplication.checkForProVersion(context);
                 // Add checks such that in the event getDefaultBrowserPackageName() no longer exists, we use a default.
             } else if (Intent.ACTION_PACKAGE_ADDED.equals(action)) {
                 Settings.get().updateBrowsers();
+                MainApplication.checkForProVersion(context);
             }
         }
     };
