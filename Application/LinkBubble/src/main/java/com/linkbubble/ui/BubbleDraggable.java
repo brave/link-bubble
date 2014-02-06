@@ -119,7 +119,11 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             mMode = Mode.BubbleView;
         } else {
             if (mainController.closeCurrentTab(action, false)) {
-                doAnimateToBubbleView();
+                if (mMode == Mode.ContentView && action == Config.BubbleAction.Close) {
+                    doAnimateToContentView();
+                } else {
+                    doAnimateToBubbleView();
+                }
             } else {
                 mMode = Mode.BubbleView;
             }
