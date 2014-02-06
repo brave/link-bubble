@@ -2,12 +2,14 @@ package com.linkbubble.ui;
 
 import android.app.AlertDialog;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -35,8 +37,13 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
+import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
 import java.util.TreeMap;
 import java.util.Vector;
 
@@ -47,6 +54,7 @@ import java.util.Vector;
 public class SettingsFragment extends PreferenceFragment {
 
     private Preference mAutoContentDisplayPreference;
+    private Preference mInterceptLinksFromPreference;
     private Handler mHandler = new Handler();
 
     public static class IncognitoModeChangedEvent {
@@ -141,6 +149,16 @@ public class SettingsFragment extends PreferenceFragment {
             }
         });
         updateAutoContentDisplayPreference();
+
+        mInterceptLinksFromPreference = findPreference(Settings.PREFERENCE_INTERCEPT_LINKS_FROM);
+        mInterceptLinksFromPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                getInterceptLinksFromDialog(getActivity()).show();
+                return true;
+            }
+        });
+        updateInterceptLinksFromPreference();
 
         Preference incognitoButton = findPreference("preference_incognito");
         if (incognitoButton != null) {
@@ -461,6 +479,10 @@ public class SettingsFragment extends PreferenceFragment {
         }
     }
 
+    void updateInterceptLinksFromPreference() {
+        mInterceptLinksFromPreference.setSummary(Settings.get().getInterceptLinksFromAppName());
+    }
+
     AlertDialog getCreditDialog() {
         final View layout = View.inflate(getActivity(), R.layout.view_credits, null);
 
@@ -577,5 +599,99 @@ public class SettingsFragment extends PreferenceFragment {
         alertDialog.show();
 
         return true;
+    }
+
+    static class AppInfo {
+        String mActivityName;
+        String mPackageName;
+        String mDisplayName;
+        String mSortName;
+
+        AppInfo(String activityName, String packageName, String displayName) {
+            mActivityName = activityName;
+            mPackageName = packageName;
+            mDisplayName = displayName;
+            mSortName = displayName.toLowerCase(Locale.getDefault());
+        }
+    };
+
+    public static class AppInfoComparator implements Comparator<AppInfo> {
+        @Override
+        public int compare(AppInfo lhs, AppInfo rhs) {
+            return lhs.mSortName.compareTo(rhs.mSortName);
+        }
+    }
+
+    public AlertDialog getInterceptLinksFromDialog(final Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        String packageName = context.getPackageName();
+        final View layout = View.inflate(context, R.layout.view_intercept_links_from_app_list, null);
+
+        layout.findViewById(R.id.upgrade_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = Config.getStoreIntent(context, Config.STORE_PRO_URL);
+                if (intent != null) {
+                    context.startActivity(intent);
+                }
+            }
+        });
+
+        final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        List<ResolveInfo> allResolveInfo = packageManager.queryIntentActivities(mainIntent, 0);
+
+        final ArrayList<AppInfo> allApps = new ArrayList<AppInfo>();
+        for (ResolveInfo info : allResolveInfo) {
+            if (info.activityInfo.packageName != null
+                    && info.activityInfo.packageName.equals(packageName) == false) {
+                allApps.add(new AppInfo(info.activityInfo.name, info.activityInfo.packageName, info.loadLabel(packageManager).toString()));
+            }
+        }
+        Collections.sort(allApps, new AppInfoComparator());
+
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_single_choice);
+        for (AppInfo appInfo : allApps) {
+            listAdapter.add(appInfo.mDisplayName);
+        }
+        final ListView listView = (ListView) layout.findViewById(R.id.apps_list);
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        listView.setAdapter(listAdapter);
+        String interceptFromPackageName = Settings.get().getInterceptLinksFromPackageName();
+        for (int i = 0; i < allApps.size(); i++) {
+            AppInfo app = allApps.get(i);
+            if (app.mPackageName.equals(interceptFromPackageName)) {
+                listView.setItemChecked(i, true);
+                break;
+            }
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setView(layout);
+        builder.setIcon(0);
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                int position = listView.getCheckedItemPosition();
+                if (position < allApps.size()) {
+                    AppInfo app = allApps.get(position);
+                    Settings.get().setInterceptLinksFrom(app.mPackageName, app.mDisplayName);
+                }
+                updateInterceptLinksFromPreference();
+                /*
+                JSONArray array = new JSONArray();
+
+                int count = listView.getCount();
+                for (int i = 0; i < count; i++) {
+                    if (listView.isItemChecked(i)) {
+                        AppInfo app = allApps.get(i);
+                        array.put(LauncherPreferences.getHiddenAppFormatString(app.mPackageName, app.mActivityName));
+                    }
+                }
+                */
+            }
+        });
+        builder.setTitle(R.string.preference_intercept_links_from_title);
+
+        return builder.create();
     }
 }

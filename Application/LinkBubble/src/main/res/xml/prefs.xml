@@ -22,6 +22,12 @@
             />
 
         <Preference
+            android:key="preference_intercept_links_from"
+            android:title="@string/preference_intercept_links_from_title"
+            android:dependency="preference_enabled"
+            />
+
+        <Preference
             android:key="preference_left_consume_bubble"
             android:title="@string/preference_left_consume_bubble_title"
             android:dependency="preference_enabled"
