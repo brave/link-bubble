@@ -29,6 +29,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.linkbubble.Constant;
+import com.linkbubble.DRM;
 import com.linkbubble.MainController;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.Config;
@@ -138,6 +139,7 @@ public class SettingsFragment extends PreferenceFragment {
         addPreferencesFromResource(R.xml.prefs);
 
         PreferenceCategory generalCategory = (PreferenceCategory) findPreference("preference_category_general");
+        PreferenceCategory configurationCategory = (PreferenceCategory) findPreference("preference_category_configuration");
 
         mAutoContentDisplayPreference = findPreference(Settings.PREFERENCE_AUTO_CONTENT_DISPLAY_TYPE);
         mAutoContentDisplayPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -150,15 +152,20 @@ public class SettingsFragment extends PreferenceFragment {
         });
         updateAutoContentDisplayPreference();
 
-        mInterceptLinksFromPreference = findPreference(Settings.PREFERENCE_INTERCEPT_LINKS_FROM);
-        mInterceptLinksFromPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                getInterceptLinksFromDialog(getActivity()).show();
-                return true;
-            }
-        });
-        updateInterceptLinksFromPreference();
+        Preference interceptLinksFromPreference = findPreference(Settings.PREFERENCE_INTERCEPT_LINKS_FROM);
+        if (DRM.isLicensed()) {
+            configurationCategory.removePreference(interceptLinksFromPreference);
+        } else {
+            mInterceptLinksFromPreference = interceptLinksFromPreference;
+            mInterceptLinksFromPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    getInterceptLinksFromDialog(getActivity()).show();
+                    return true;
+                }
+            });
+            updateInterceptLinksFromPreference();
+        }
 
         Preference incognitoButton = findPreference("preference_incognito");
         if (incognitoButton != null) {
@@ -286,7 +293,7 @@ public class SettingsFragment extends PreferenceFragment {
             });
         }
 
-        if (Constant.IS_LICENSED) {
+        if (DRM.isLicensed()) {
             generalCategory.removePreference(getProPreference);
             if (Settings.get().getSayThanksClicked()) {
                 generalCategory.removePreference(sayThanksPreference);
@@ -480,7 +487,9 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     void updateInterceptLinksFromPreference() {
-        mInterceptLinksFromPreference.setSummary(Settings.get().getInterceptLinksFromAppName());
+        if (mInterceptLinksFromPreference != null) {
+            mInterceptLinksFromPreference.setSummary(Settings.get().getInterceptLinksFromAppName());
+        }
     }
 
     AlertDialog getCreditDialog() {
