@@ -1,5 +1,6 @@
 package com.linkbubble;
 
+import android.content.Context;
 
 public class Constant {
 
@@ -40,4 +41,25 @@ public class Constant {
         }
         return flavor;
     }
+
+    public static final String DRM_SHARED_PREFERENCES_KEY = "com.linkbubble.license";
+
+    public static String DEVICE_ID = "<unset>";
+    public static String getValidDeviceId() {
+        if (DEVICE_ID.equals("<unset>") || DEVICE_ID == null || DEVICE_ID.length() < 4) {
+            return null;
+        }
+        return DEVICE_ID;
+    }
+
+    private static String sSecureAndroidId = null;
+    public static String getSecureAndroidId(Context context) {
+        if (sSecureAndroidId == null) {
+            sSecureAndroidId = android.provider.Settings.Secure.getString(context.getApplicationContext().getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+        }
+        return sSecureAndroidId;
+    }
+
+    public static final String  PRO_LAUNCHER_PACKAGE_NAME = "com.linkbubble.pro.playstore";
+    public static final String  PRO_DRM_SERVICE_ACTION = "linkbubble.prokey.PRO_SERVICE";
 }

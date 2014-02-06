@@ -105,6 +105,8 @@ public class HomeActivity extends Activity {
             animateOn();
             mPlayedIntroAnimation = true;
         }
+
+        MainApplication.checkForProVersion(getApplicationContext());
     }
 
     @Override

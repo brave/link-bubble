@@ -28,7 +28,7 @@ public class MainApplication extends Application {
     public static DatabaseHelper sDatabaseHelper;
     public static ConcurrentHashMap<String, String> sTitleHashMap = new ConcurrentHashMap<String, String>(64);
     public static Favicons sFavicons;
-
+    public static DRM sDrm;
 
     @Override
     public void onCreate() {
@@ -43,6 +43,18 @@ public class MainApplication extends Application {
 
         Favicons.attachToContext(this);
         recreateFaviconCache();
+
+        sDrm = new DRM(this);
+    }
+
+    public static void checkForProVersion(Context context) {
+        if (DRM.isLicensed() == false) {
+            if (sDrm != null && sDrm.mProServiceBound == false) {
+                if (sDrm.bindProService(context)) {
+                    sDrm.requestLicenseStatus();
+                }
+            }
+        }
     }
 
     public Bus getBus() {
