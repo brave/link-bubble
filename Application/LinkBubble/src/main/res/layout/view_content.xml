@@ -91,12 +91,6 @@
         android:layout_height="fill_parent"
         android:layout_marginTop="@dimen/webview_margin_top"/>
 
-    <View
-        android:id="@+id/touch_interceptor"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="@dimen/webview_margin_top"/>
-
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="8dp"
