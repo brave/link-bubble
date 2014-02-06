@@ -19,6 +19,7 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
 import android.provider.Settings.Secure;
+import com.linkbubble.util.Tamper;
 
 public class ProMessengerService extends Service {
     /** Command to the service to display a message */
@@ -126,10 +127,9 @@ public class ProMessengerService extends Service {
 	private static final int MAX_RETRY_COUNT = 5;
 	
 	void setLicenseState(int licenseState, Integer reason) {
-        //int check = dexguard.util.TamperDetection.checkApk(this);
-        //if (check != 0) {
-        //    licenseState = LICENSE_INVALID;
-        //}
+        if (Tamper.isTweaked(this)) {
+            licenseState = LICENSE_INVALID;
+        }
 
 		mLicenseState = licenseState;
 		mRetryCount = 0;

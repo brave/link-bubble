@@ -18,6 +18,7 @@ import com.google.android.vending.licensing.AESObfuscator;
 import com.google.android.vending.licensing.LicenseChecker;
 import com.google.android.vending.licensing.LicenseCheckerCallback;
 import com.google.android.vending.licensing.ServerManagedPolicy;
+import com.linkbubble.util.Tamper;
 
 import java.util.List;
 
@@ -119,10 +120,9 @@ public class MainActivity extends Activity {
      */
     void setLicenseState(int licenseState) {
 
-        //int check = dexguard.util.TamperDetection.checkApk(this);
-        //if (check != 0) {
-        //    licenseState = ProMessengerService.LICENSE_INVALID;
-        //}
+        if (Tamper.isTweaked(this)) {
+            licenseState = ProMessengerService.LICENSE_INVALID;
+        }
     	
     	mLicenseState = licenseState;
     	
