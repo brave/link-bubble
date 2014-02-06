@@ -39,6 +39,11 @@ public class DRM {
         return sLicenseState == DRM.LICENSE_VALID;
     }
 
+    public static class StateChangedEvent {
+        public int mState;
+        public int mOldState;
+    }
+
     private static String LICENSE_KEY = "alp_licenseKey2";
     private static String FIRST_INSTALL_TIME_KEY = "alp_firstInstallTime2";
     private static String USAGE_TIME_LEFT_KEY = "alp_usageTimeLeft2";
@@ -47,7 +52,8 @@ public class DRM {
     private long mFirstInstallTime = 0;
     private SharedPreferences mSharedPreferences;
 
-    Context mContext;
+    private Context mContext;
+    private StateChangedEvent mStateChangedEvent = new StateChangedEvent();
 
     DRM(Context context) {
         mContext = context;
@@ -193,9 +199,9 @@ public class DRM {
         }
 
         if (sLicenseState != licenseState || usageTimeLeft != mUsageTimeLeft) {
-            if (sLicenseState != licenseState && MainController.get() != null) {
-                MainController.get().onStateChange(licenseState == LICENSE_VALID);
-            }
+
+            mStateChangedEvent.mState = licenseState;
+            mStateChangedEvent.mOldState = sLicenseState;
 
             sLicenseState = licenseState;
             mUsageTimeLeft = usageTimeLeft;
@@ -204,6 +210,8 @@ public class DRM {
                 new SetStateThread(mSharedPreferences, encryptInt(licenseState), encryptLong(usageTimeLeft)).start();
                 Log.d(TAG, "call SetStateThread() - licenseState:" + licenseState);
             }
+
+            MainApplication.postEvent(mContext, mStateChangedEvent);
         }
     }
 

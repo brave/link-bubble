@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import com.linkbubble.Constant;
+import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
@@ -180,5 +181,13 @@ public class HomeActivity extends Activity {
     @Subscribe
     public void onLinkLoadTimeStatsUpdatedEvent(Settings.LinkLoadTimeStatsUpdatedEvent event) {
         updateLinkLoadTimeStats();
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onStateChangedEvent(DRM.StateChangedEvent event) {
+        //android.os.Process.killProcess(android.os.Process.myPid());
+        //finish();
+        //startActivity(getIntent());
     }
 }
