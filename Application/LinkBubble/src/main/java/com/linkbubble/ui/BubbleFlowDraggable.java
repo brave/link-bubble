@@ -158,6 +158,32 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         mDraggableHelper.destroy();
     }
 
+    public void nextTab() {
+        int tabCount = getActiveTabCount();
+        TabView currentTab = getCurrentTab();
+        if (currentTab != null) {
+            int tabIndex = getIndexOfView(currentTab);
+            int nextTabIndex = tabIndex + 1;
+
+            if (nextTabIndex < tabCount) {
+                setCenterIndex(nextTabIndex);
+            }
+        }
+    }
+
+    public void previousTab() {
+        int tabCount = getActiveTabCount();
+        TabView currentTab = getCurrentTab();
+        if (currentTab != null) {
+            int tabIndex = getIndexOfView(currentTab);
+            int nextTabIndex = tabIndex - 1;
+
+            if (nextTabIndex >= 0) {
+                setCenterIndex(nextTabIndex);
+            }
+        }
+    }
+
     // The number of items currently actively managed by the BubbleFlowView.
     // Note: it's possible for getActiveTabCount() to equal 0, but getVisibleTabCount() to be > 0.
     public int getActiveTabCount() {
