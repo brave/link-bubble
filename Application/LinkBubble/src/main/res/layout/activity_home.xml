@@ -14,16 +14,32 @@
         android:alpha="0"
         />
 
-    <ImageView
-        android:id="@+id/settings"
+    <LinearLayout
+        android:id="@+id/top_buttons_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|right"
-        android:paddingRight="8dp"
-        android:paddingTop="8dp"
-        android:src="@drawable/settings_circle_button"
-        />
+        android:orientation="horizontal">
 
+        <ImageView
+            android:id="@+id/history_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:src="@drawable/history_circle_button"
+            />
+
+        <ImageView
+            android:id="@+id/settings_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:src="@drawable/settings_circle_button"
+            />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/content"

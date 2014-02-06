@@ -26,8 +26,10 @@ public class HomeActivity extends Activity {
 
     View mContentView;
     View mBackgroundView;
+    View mTopButtonsContainerView;
     View mHistoryButtonView;
-    View mSettingsButtonView;
+    View mHistoryCircleButtonView;
+    View mSettingsCircleButtonView;
     FlipView mStatsFlipView;
     CondensedTextView mTimeSavedPerLinkTextView;
     CondensedTextView mTimeSavedTotalTextView;
@@ -44,7 +46,9 @@ public class HomeActivity extends Activity {
 
         mBackgroundView = findViewById(R.id.background);
         mContentView = findViewById(R.id.content);
-        mSettingsButtonView = findViewById(R.id.settings);
+        mTopButtonsContainerView = findViewById(R.id.top_buttons_container);
+        mHistoryCircleButtonView = findViewById(R.id.history_circle);
+        mSettingsCircleButtonView = findViewById(R.id.settings_circle);
         mHistoryButtonView = findViewById(R.id.history);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
         mTimeSavedPerLinkTextView = (CondensedTextView) mStatsFlipView.getDefaultView().findViewById(R.id.time_per_link);
@@ -71,16 +75,21 @@ public class HomeActivity extends Activity {
             MainApplication.restoreLinks(this, urls.toArray(new String[urls.size()]));
         }
 
-        View historyButton = findViewById(R.id.history);
-        historyButton.setOnClickListener(new View.OnClickListener() {
+        mHistoryButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v);
             }
         });
 
-        View settingsButton = findViewById(R.id.settings);
-        settingsButton.setOnClickListener(new View.OnClickListener() {
+        mHistoryCircleButtonView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v);
+            }
+        });
+
+        mSettingsCircleButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomeActivity.this, SettingsActivity.class), v);
@@ -142,9 +151,9 @@ public class HomeActivity extends Activity {
         mHistoryButtonView.setVisibility(View.VISIBLE);
         mHistoryButtonView.animate().alpha(1f).setDuration(250).setStartDelay(750).start();
 
-        mSettingsButtonView.setAlpha(0f);
-        mSettingsButtonView.setVisibility(View.VISIBLE);
-        mSettingsButtonView.animate().alpha(1f).setDuration(250).setStartDelay(750).start();
+        mTopButtonsContainerView.setAlpha(0f);
+        mTopButtonsContainerView.setVisibility(View.VISIBLE);
+        mTopButtonsContainerView.animate().alpha(1f).setDuration(250).setStartDelay(750).start();
     }
 
     private void updateLinkLoadTimeStats() {
