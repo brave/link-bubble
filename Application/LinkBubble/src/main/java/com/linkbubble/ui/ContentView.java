@@ -331,6 +331,7 @@ public class ContentView extends FrameLayout {
         public void onPageStarted(WebView view, final String urlAsString, Bitmap favIcon) {
             Log.d(TAG, "onPageStarted() - " + urlAsString);
             mPageFinishedLoading = false;
+            mDoDropDownCheck = true;
 
             String oldUrl = mUrl.toString();
 
