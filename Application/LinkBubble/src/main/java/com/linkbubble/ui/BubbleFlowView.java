@@ -682,6 +682,11 @@ public class BubbleFlowView extends HorizontalScrollView {
 
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
+                if (!mInterceptingTouch) {
+                    final float bubblePeriod = (float) Constant.BUBBLE_ANIM_TIME / 1000.f;
+                    final float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
+                    MainController.get().expandBubbleFlow((long) (contentPeriod * 1000));
+                }
                 mActiveTouchPointerId = INVALID_POINTER;
                 mInterceptingTouch = false;
                 break;
