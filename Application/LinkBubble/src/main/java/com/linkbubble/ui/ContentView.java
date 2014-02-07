@@ -56,7 +56,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Stack;
 
 /**
@@ -83,6 +85,7 @@ public class ContentView extends FrameLayout {
     private boolean mPageFinishedLoading;
     private boolean mShowingDefaultAppPicker = false;
     private Boolean mIsDestroyed = false;
+    private Set<String> mAppPickersUrls = new HashSet<String>();
 
     private List<AppForUrl> mAppsForUrl = new ArrayList<AppForUrl>();
     private List<ResolveInfo> mTempAppsForUrl = new ArrayList<ResolveInfo>();
@@ -242,6 +245,10 @@ public class ContentView extends FrameLayout {
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_header);
         mHandledAppPickerForCurrentUrl = hasShownAppPicker;
 
+        if (hasShownAppPicker) {
+            mAppPickersUrls.add(urlAsString);
+        }
+
         mWebView = (WebView) findViewById(R.id.webView);
         mToolbarLayout = (LinearLayout) findViewById(R.id.content_toolbar);
         mTitleTextView = (CondensedTextView) findViewById(R.id.title_text);
@@ -377,7 +384,8 @@ public class ContentView extends FrameLayout {
                     }
                 } else {
                     boolean isOnlyLinkBubble = mAppsForUrl.size() == 1 ? Util.isLinkBubbleResolveInfo(mAppsForUrl.get(0).mResolveInfo) : false;
-                    if (isOnlyLinkBubble == false && mShowingDefaultAppPicker == false && mHandledAppPickerForCurrentUrl == false) {
+                    if (isOnlyLinkBubble == false && mShowingDefaultAppPicker == false &&
+                        mHandledAppPickerForCurrentUrl == false && mAppPickersUrls.contains(urlAsString) == false) {
                         final ArrayList<ResolveInfo> resolveInfos = new ArrayList<ResolveInfo>();
                         for (AppForUrl appForUrl : mAppsForUrl) {
                             resolveInfos.add(appForUrl.mResolveInfo);
@@ -427,6 +435,7 @@ public class ContentView extends FrameLayout {
                         dialog.show();
                         mShowingDefaultAppPicker = true;
                         mHandledAppPickerForCurrentUrl = true;
+                        mAppPickersUrls.add(urlAsString);
                     }
                 }
             }
