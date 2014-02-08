@@ -90,7 +90,7 @@ public class HomeActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if (DRM.isLicensed()) {
-                    startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v);
+                    startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v, false);
                 } else {
                     Intent intent = Config.getStoreIntent(HomeActivity.this, Config.STORE_PRO_URL);
                     if (intent != null) {
@@ -103,14 +103,14 @@ public class HomeActivity extends Activity {
         mHistoryCircleButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v);
+                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v, true);
             }
         });
 
         mSettingsCircleButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, SettingsActivity.class), v);
+                startActivity(new Intent(HomeActivity.this, SettingsActivity.class), v, true);
             }
         });
 
@@ -190,7 +190,26 @@ public class HomeActivity extends Activity {
         }
     }
 
-    void startActivity(Intent intent, View view) {
+    void startActivity(Intent intent, View view, boolean tamperCheck) {
+
+        if (tamperCheck) {
+            boolean tampered = Util.showTamperPrompt(this, new Prompt.OnPromptEventListener() {
+                @Override
+                public void onClick() {
+                    Config.openAppStore(HomeActivity.this);
+                }
+
+                @Override
+                public void onClose() {
+
+                }
+            });
+
+            if (tampered) {
+                return;
+            }
+        }
+
         boolean useLaunchAnimation = (view != null) &&
                 !intent.hasExtra(Constant.INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION);
 

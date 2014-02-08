@@ -15,6 +15,7 @@ import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.util.Util;
 
 import java.util.List;
 
@@ -35,8 +36,18 @@ public class EntryActivity extends Activity {
         super.onCreate(savedInstanceState);
         Crashlytics.start(this);
 
-
         PreferenceManager.setDefaultValues(this, R.xml.prefs, true);
+
+        boolean showingTamperPrompt = Util.showTamperPrompt(this, new Prompt.OnPromptEventListener() {
+            @Override
+            public void onClick() {
+                Config.openAppStore(EntryActivity.this);
+            }
+            @Override
+            public void onClose() {
+                finish();
+            }
+        });
 
         List<Intent> browsers = Settings.get().getBrowsers();
 
@@ -74,16 +85,20 @@ public class EntryActivity extends Activity {
                 }
             }
 
-            if (openLink) {
+            if (openLink && !showingTamperPrompt) {
                 MainApplication.openLink(this, url);
             } else {
                 MainApplication.openInBrowser(this, intent, true);
             }
         } else {
-            startActivityForResult(new Intent(this, SettingsActivity.class), 0);
+            if (!showingTamperPrompt) {
+                startActivityForResult(new Intent(this, SettingsActivity.class), 0);
+            }
         }
 
-        finish();
+        if (!showingTamperPrompt) {
+            finish();
+        }
     }
 
     @Override

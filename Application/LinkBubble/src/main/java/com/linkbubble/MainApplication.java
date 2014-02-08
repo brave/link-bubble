@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
+import com.linkbubble.util.Tamper;
+import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
 import org.mozilla.gecko.favicons.Favicons;
 
@@ -95,7 +97,7 @@ public class MainApplication extends Application {
     }
 
     public static void restoreLinks(Context context, String [] urls) {
-        if (urls == null || urls.length == 0) {
+        if (urls == null || urls.length == 0 || Tamper.isTweaked(context)) {
             return;
         }
         Intent serviceIntent = new Intent(context, MainService.class);

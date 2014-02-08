@@ -23,8 +23,9 @@ import com.linkbubble.util.Util;
 
 public class Prompt {
 
-    public interface OnPromptClickListener {
+    public interface OnPromptEventListener {
         public void onClick();
+        public void onClose();
     }
 
     public static final int LENGTH_LONG = 5000;
@@ -38,7 +39,7 @@ public class Prompt {
     private ImageButton mButton;
     private ViewPropertyAnimator mBarAnimator;
     private Handler mHideHandler = new Handler();
-    private OnPromptClickListener mListener;
+    private OnPromptEventListener mListener;
 
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mLayoutParams;
@@ -76,17 +77,17 @@ public class Prompt {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                hidePrompt(false);
                 if (mListener != null) {
                     mListener.onClick();
                 }
+                hidePrompt(false);
             }
         });
 
         hidePrompt(true);
     }
 
-    private void showPrompt(CharSequence text, Drawable icon, int duration, OnPromptClickListener listener) {
+    private void showPrompt(CharSequence text, Drawable icon, int duration, OnPromptEventListener listener) {
         mMessageView.setText(text);
         mListener = listener;
         mButton.setImageDrawable(icon);
@@ -115,6 +116,10 @@ public class Prompt {
                 mWindowManager.removeViewImmediate(mRootView);
                 mVisible = false;
             }
+            if (mListener != null) {
+                mListener.onClose();
+                mListener = null;
+            }
         } else {
             mBarAnimator.alpha(0)
                         .setDuration(mBarView.getResources().getInteger(android.R.integer.config_shortAnimTime))
@@ -125,6 +130,10 @@ public class Prompt {
                                 if (mVisible) {
                                     mWindowManager.removeViewImmediate(mRootView);
                                     mVisible = false;
+                                }
+                                if (mListener != null) {
+                                    mListener.onClose();
+                                    mListener = null;
                                 }
                             }
                         });
@@ -138,7 +147,7 @@ public class Prompt {
         }
     };
 
-    public static void show(CharSequence text, Drawable icon, int duration, OnPromptClickListener listener) {
+    public static void show(CharSequence text, Drawable icon, int duration, OnPromptEventListener listener) {
         Util.Assert(sPrompt != null);
         if (sPrompt != null) {
             sPrompt.hidePrompt(true);

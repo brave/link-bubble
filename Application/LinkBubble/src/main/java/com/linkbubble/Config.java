@@ -137,6 +137,23 @@ public class Config {
         return null;
     }
 
+    public static void openAppStore(Context context) {
+        PackageManager manager = context.getPackageManager();
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(STORE_PRO_URL));
+        List<ResolveInfo> infos = manager.queryIntentActivities (intent, PackageManager.GET_RESOLVED_FILTER);
+        for (ResolveInfo info : infos) {
+            IntentFilter filter = info.filter;
+            if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
+                if (info.activityInfo.packageName.equals(STORE_PACKAGE)) {
+                    MainApplication.loadIntent(context, info.activityInfo.packageName, info.activityInfo.name, STORE_PRO_URL, -1);
+                    return;
+                }
+            }
+        }
+    }
+
     public static final String SET_DEFAULT_BROSWER_URL = "http://linkbubble.com/configure";
 
     public static final String YOUTUBE_WATCH_PREFIX = "http://www.youtube.com/watch?v=";
