@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -399,7 +400,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                     }
 
                     if (!mAnimActive) {
-
                         // c = null, t = null           wasn't snapping, no snap -> move
                         // c = 1, t = null              was snapping, no snap -> anim out
                         // c = null, t = 1              wasn't snapping, is snap -> anim in
@@ -417,9 +417,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                                 mTimeOnSnapTarget = 0.0f;
 
                                 Circle dc = tv.GetDefaultCircle();
-                                int xt = (int) (dc.mX - Config.mBubbleWidth * 0.5f);
-                                int yt = (int) (dc.mY - Config.mBubbleHeight * 0.5f);
-                                setTargetPos(xt, yt, Config.ANIMATE_TO_SNAP_TIME, DraggableHelper.AnimationType.MediumOvershoot, new DraggableHelper.AnimationEventListener() {
+                                int xt = (int) (0.5f + dc.mX - Config.mBubbleWidth * 0.5f);
+                                int yt = (int) (0.5f + dc.mY - Config.mBubbleHeight * 0.5f);
+                                setTargetPos(xt, yt, Config.ANIMATE_TO_SNAP_TIME, DraggableHelper.AnimationType.Linear, new DraggableHelper.AnimationEventListener() {
                                     @Override
                                     public void onAnimationComplete() {
                                         onAnimComplete();
@@ -537,6 +537,12 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                 float snapTime = mTimeOnSnapTarget - Config.ANIMATE_TO_SNAP_TIME;
                 if (mCurrentSnapTarget.isLongHovering() == false && snapTime >= Config.CLOSE_ALL_BUBBLES_DELAY) {
                     mCurrentSnapTarget.beginLongHovering();
+                }
+                if (!mAnimActive) {
+                    Circle dc = mCurrentSnapTarget.GetDefaultCircle();
+                    int xt = (int) (0.5f + dc.mX - Config.mBubbleWidth * 0.5f);
+                    int yt = (int) (0.5f + dc.mY - Config.mBubbleHeight * 0.5f);
+                    mDraggableHelper.setTargetPos(xt, yt, 0.02f, DraggableHelper.AnimationType.Linear, null);
                 }
             }
             MainController.get().scheduleUpdate();
