@@ -52,7 +52,7 @@ public class Config {
 
     public static int sDensityDpi;
 
-    public static float ANIMATE_TO_SNAP_TIME = 0.3f;
+    public static float ANIMATE_TO_SNAP_TIME = 0.1f;
     public static float CLOSE_ALL_BUBBLES_DELAY = 0.1f;
 
     public static void init(Context context) {
