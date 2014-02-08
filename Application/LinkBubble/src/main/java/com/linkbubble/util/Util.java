@@ -1,13 +1,16 @@
 package com.linkbubble.util;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import com.linkbubble.Constant;
 import com.linkbubble.R;
+import com.linkbubble.ui.Prompt;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -288,6 +291,17 @@ public class Util {
         if (resolveInfo != null
             && resolveInfo.activityInfo != null
                 && resolveInfo.activityInfo.packageName.equals(Constant.PACKAGE_NAME)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static boolean showTamperPrompt(Context context, Prompt.OnPromptEventListener listener) {
+        if (Tamper.isTweaked(context)) {
+            Drawable icon = context.getResources().getDrawable(android.R.drawable.sym_def_app_icon);
+            String text = context.getResources().getString(R.string.tampered_apk);
+            Prompt.show(text, icon, Prompt.LENGTH_LONG, listener);
             return true;
         }
 
