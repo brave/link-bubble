@@ -10,11 +10,11 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 
 import android.widget.Toast;
-import com.crashlytics.android.Crashlytics;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class EntryActivity extends Activity {
         boolean isActionView = intent.getAction().equals(Intent.ACTION_VIEW);
 
         super.onCreate(savedInstanceState);
-        Crashlytics.start(this);
+        CrashTracking.init(this);
 
         PreferenceManager.setDefaultValues(this, R.xml.prefs, true);
 

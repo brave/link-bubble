@@ -9,13 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.Button;
-import com.crashlytics.android.Crashlytics;
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Subscribe;
 
@@ -44,7 +44,7 @@ public class HomeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Crashlytics.start(this);
+        CrashTracking.init(this);
 
         setContentView(R.layout.activity_home);
 

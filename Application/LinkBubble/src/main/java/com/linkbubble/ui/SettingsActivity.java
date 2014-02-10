@@ -2,8 +2,8 @@ package com.linkbubble.ui;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import com.crashlytics.android.Crashlytics;
 import com.linkbubble.R;
+import com.linkbubble.util.CrashTracking;
 
 
 public class SettingsActivity extends PreferenceActivity {
@@ -12,7 +12,7 @@ public class SettingsActivity extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        Crashlytics.start(this);
+        CrashTracking.init(this);
 
         setContentView(R.layout.activity_settings);
         setTitle(R.string.title_settings);

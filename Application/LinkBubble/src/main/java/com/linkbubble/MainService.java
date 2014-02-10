@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 import android.webkit.WebIconDatabase;
-import com.crashlytics.android.Crashlytics;
+import com.linkbubble.util.CrashTracking;
 
 /**
  * Created by gw on 28/08/13.
@@ -53,8 +53,7 @@ public class MainService extends Service {
         setTheme(android.R.style.Theme_Holo_Light);
 
         super.onCreate();
-
-        Crashlytics.start(this);
+        CrashTracking.init(this);
 
         Notification.Builder mBuilder = new Notification.Builder(this)
                         .setSmallIcon(R.drawable.ic_launcher)
