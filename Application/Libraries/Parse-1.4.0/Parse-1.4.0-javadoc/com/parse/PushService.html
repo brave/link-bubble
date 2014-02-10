@@ -1,0 +1,660 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<TITLE>
+PushService
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../style.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="PushService";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../com/parse/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/PushService.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../com/parse/ProgressCallback.html" title="class in com.parse"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../com/parse/RefreshCallback.html" title="class in com.parse"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../index.html?com/parse/PushService.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="PushService.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_android.content.Context">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+com.parse</FONT>
+<BR>
+Class PushService</H2>
+<PRE>
+<A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A>
+  <IMG SRC="../../resources/inherit.gif" ALT="extended by "><A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">android.content.Context</A>
+      <IMG SRC="../../resources/inherit.gif" ALT="extended by "><A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true" title="class or interface in android.content">android.content.ContextWrapper</A>
+          <IMG SRC="../../resources/inherit.gif" ALT="extended by "><A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true" title="class or interface in android.app">android.app.Service</A>
+              <IMG SRC="../../resources/inherit.gif" ALT="extended by "><B>com.parse.PushService</B>
+</PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD><A target="_top" HREF="http://developer.android.com/reference/android/content/ComponentCallbacks.html?is-external=true" title="class or interface in android.content">ComponentCallbacks</A></DD>
+</DL>
+<HR>
+<DL>
+<DT><PRE>public final class <B>PushService</B><DT>extends <A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true" title="class or interface in android.app">Service</A></DL>
+</PRE>
+
+<P>
+A service to listen for push notifications. This operates in the same process as the parent
+ application.
+ 
+ The PushService can listen to pushes from two different sources: Google Cloud Messaging (GCM) or
+ the Parse Push Notification Service (PPNS). Parse will inspect your application's manifest at
+ runtime and determine which service to use for push. We recommend using GCM for push on devices
+ that have Google Play Store support. PPNS support is provided for apps that want to avoid a
+ dependency on the Google Play Store, and for devices (like Kindles) which do not have Play Store
+ support.
+ 
+ To configure the PushService for GCM, ensure these permission declarations are present in your 
+ AndroidManifest.xml as children of the <code>&lt;manifest&gt;</code> element:
+ 
+ <pre>
+ &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+ &lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
+ &lt;uses-permission android:name="android.permission.VIBRATE" /&gt;
+ &lt;uses-permission android:name="android.permission.WAKE_LOCK" /&gt;
+ &lt;uses-permission android:name="android.permission.GET_ACCOUNTS" /&gt;
+ &lt;uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" /&gt;
+ &lt;permission android:name="YOUR_PACKAGE_NAME.permission.C2D_MESSAGE"
+   android:protectionLevel="signature" /&gt;
+ &lt;uses-permission android:name="YOUR_PACKAGE_NAME.permission.C2D_MESSAGE" /&gt;
+ <pre>
+ 
+ Replace YOUR_PACKAGE_NAME in the declarations above with your application's package name. Also,
+ make sure that com.parse.GcmBroadcastReceiver and com.parse.PushService are declared as children
+ of the <code>&lt;application&gt;</code> element:
+ 
+ <pre>
+ &lt;service android:name="com.parse.PushService" /&gt;
+ &lt;receiver android:name="com.parse.GcmBroadcastReceiver"
+  android:permission="com.google.android.c2dm.permission.SEND"&gt;
+   &lt;intent-filter&gt;
+     &lt;action android:name="com.google.android.c2dm.intent.RECEIVE" /&gt;
+     &lt;action android:name="com.google.android.c2dm.intent.REGISTRATION" /&gt;
+     &lt;category android:name="YOUR_PACKAGE_NAME" /&gt;
+   &lt;/intent-filter&gt;
+ &lt;/receiver&gt;
+ </pre>
+ 
+ Again, replace YOUR_PACKAGE_NAME with your application's package name.
+ 
+ To configure the PushService for PPNS, ensure these permission declarations are present in your
+ AndroidManifest.xml as children of the <code>&lt;manifest&gt;</code> element:
+ 
+ <pre>
+ &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+ &lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
+ &lt;uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /&gt;
+ &lt;uses-permission android:name="android.permission.VIBRATE" /&gt;
+ &lt;uses-permission android:name="android.permission.WAKE_LOCK" /&gt;
+ </pre>
+ 
+ Also, make sure that com.parse.ParseBroadcastReceiver and com.parse.PushService are declared as
+ children of the <code>&lt;application&gt;</code> element:
+ 
+ &lt;service android:name="com.parse.PushService" /&gt;
+ &lt;receiver android:name="com.parse.ParseBroadcastReceiver"&gt;
+   &lt;intent-filter&gt;
+     &lt;action android:name="android.intent.action.BOOT_COMPLETED" /&gt;
+     &lt;action android:name="android.intent.action.USER_PRESENT" /&gt;
+   &lt;/intent-filter&gt;
+ &lt;/receiver&gt;
+ 
+ Note that you can configure the push service for both GCM and PPNS by adding all the declarations
+ above to your application's manifest. In this case, Parse will use GCM on devices with Play
+ Store support and fall back to using PPNS on devices without Play Store support.
+ 
+ Once push notifications are configured in the manifest, you can subscribe to a push channel by
+ calling:
+ 
+ <pre>
+ PushService.subscribe(context, &quot;the_channel_name&quot;, YourActivity.class);
+ </pre>
+ 
+ When the client receives a push message, a notification will appear in the system tray. When the
+ user taps the notification, they will enter the application through a new instance of
+ YourActivity.
+<P>
+
+<P>
+<HR>
+
+<P>
+<!-- =========== FIELD SUMMARY =========== -->
+
+<A NAME="field_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Field Summary</B></FONT></TH>
+</TR>
+</TABLE>
+&nbsp;<A NAME="fields_inherited_from_class_android.content.Context"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Fields inherited from class android.content.<A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#ACTIVITY_SERVICE" title="class or interface in android.content">ACTIVITY_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#ALARM_SERVICE" title="class or interface in android.content">ALARM_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#AUDIO_SERVICE" title="class or interface in android.content">AUDIO_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#BIND_AUTO_CREATE" title="class or interface in android.content">BIND_AUTO_CREATE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#BIND_DEBUG_UNBIND" title="class or interface in android.content">BIND_DEBUG_UNBIND</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#CLIPBOARD_SERVICE" title="class or interface in android.content">CLIPBOARD_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#CONNECTIVITY_SERVICE" title="class or interface in android.content">CONNECTIVITY_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#CONTEXT_IGNORE_SECURITY" title="class or interface in android.content">CONTEXT_IGNORE_SECURITY</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#CONTEXT_INCLUDE_CODE" title="class or interface in android.content">CONTEXT_INCLUDE_CODE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#INPUT_METHOD_SERVICE" title="class or interface in android.content">INPUT_METHOD_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#KEYGUARD_SERVICE" title="class or interface in android.content">KEYGUARD_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#LAYOUT_INFLATER_SERVICE" title="class or interface in android.content">LAYOUT_INFLATER_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#LOCATION_SERVICE" title="class or interface in android.content">LOCATION_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#MODE_APPEND" title="class or interface in android.content">MODE_APPEND</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#MODE_PRIVATE" title="class or interface in android.content">MODE_PRIVATE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#MODE_WORLD_READABLE" title="class or interface in android.content">MODE_WORLD_READABLE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#MODE_WORLD_WRITEABLE" title="class or interface in android.content">MODE_WORLD_WRITEABLE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#NOTIFICATION_SERVICE" title="class or interface in android.content">NOTIFICATION_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#POWER_SERVICE" title="class or interface in android.content">POWER_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#SEARCH_SERVICE" title="class or interface in android.content">SEARCH_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#SENSOR_SERVICE" title="class or interface in android.content">SENSOR_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#TELEPHONY_SERVICE" title="class or interface in android.content">TELEPHONY_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#VIBRATOR_SERVICE" title="class or interface in android.content">VIBRATOR_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#WALLPAPER_SERVICE" title="class or interface in android.content">WALLPAPER_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#WIFI_SERVICE" title="class or interface in android.content">WIFI_SERVICE</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#WINDOW_SERVICE" title="class or interface in android.content">WINDOW_SERVICE</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+<A NAME="constructor_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Constructor Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../com/parse/PushService.html#PushService()">PushService</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client code should not construct a PushService directly.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A target="_top" HREF="http://developer.android.com/reference/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</A>&lt;<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/PushService.html#getSubscriptions(android.content.Context)">getSubscriptions</A></B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accesses the current set of channels for which the current installation is subscribed.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A target="_top" HREF="http://developer.android.com/reference/android/os/IBinder.html?is-external=true" title="class or interface in android.os">IBinder</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/PushService.html#onBind(android.content.Intent)">onBind</A></B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Intent.html?is-external=true" title="class or interface in android.content">Intent</A>&nbsp;intent)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onBind should not be called directly.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/PushService.html#onCreate()">onCreate</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client code should not call onCreate directly.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/PushService.html#onDestroy()">onDestroy</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client code should not call onDestroy directly.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/PushService.html#onStartCommand(android.content.Intent, int, int)">onStartCommand</A></B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Intent.html?is-external=true" title="class or interface in android.content">Intent</A>&nbsp;intent,
+               int&nbsp;flags,
+               int&nbsp;startId)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/PushService.html#setDefaultPushCallback(android.content.Context, java.lang.Class)">setDefaultPushCallback</A></B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context,
+                       <A target="_top" HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;? extends <A target="_top" HREF="http://developer.android.com/reference/android/app/Activity.html?is-external=true" title="class or interface in android.app">Activity</A>&gt;&nbsp;cls)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Provides a default Activity class to handle pushes.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/PushService.html#setDefaultPushCallback(android.content.Context, java.lang.Class, int)">setDefaultPushCallback</A></B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context,
+                       <A target="_top" HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;? extends <A target="_top" HREF="http://developer.android.com/reference/android/app/Activity.html?is-external=true" title="class or interface in android.app">Activity</A>&gt;&nbsp;cls,
+                       int&nbsp;icon)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Provides a default Activity class to handle pushes.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/PushService.html#startServiceIfRequired(android.content.Context)">startServiceIfRequired</A></B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/PushService.html#subscribe(android.content.Context, java.lang.String, java.lang.Class)">subscribe</A></B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context,
+          <A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;channel,
+          <A target="_top" HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;? extends <A target="_top" HREF="http://developer.android.com/reference/android/app/Activity.html?is-external=true" title="class or interface in android.app">Activity</A>&gt;&nbsp;cls)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Helper function to subscribe to push notifications with the default application icon.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/PushService.html#subscribe(android.content.Context, java.lang.String, java.lang.Class, int)">subscribe</A></B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context,
+          <A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;channel,
+          <A target="_top" HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;? extends <A target="_top" HREF="http://developer.android.com/reference/android/app/Activity.html?is-external=true" title="class or interface in android.app">Activity</A>&gt;&nbsp;cls,
+          int&nbsp;icon)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Call this function when the user should be subscribed to a new push channel.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/PushService.html#unsubscribe(android.content.Context, java.lang.String)">unsubscribe</A></B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context,
+            <A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;channel)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cancels a previous call to subscribe.</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_android.app.Service"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class android.app.<A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true" title="class or interface in android.app">Service</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true#dump(java.io.FileDescriptor, java.io.PrintWriter, java.lang.String[])" title="class or interface in android.app">dump</A>, <A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true#finalize()" title="class or interface in android.app">finalize</A>, <A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true#getApplication()" title="class or interface in android.app">getApplication</A>, <A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true#onConfigurationChanged(android.content.res.Configuration)" title="class or interface in android.app">onConfigurationChanged</A>, <A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true#onLowMemory()" title="class or interface in android.app">onLowMemory</A>, <A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true#onRebind(android.content.Intent)" title="class or interface in android.app">onRebind</A>, <A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true#onStart(android.content.Intent, int)" title="class or interface in android.app">onStart</A>, <A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true#onUnbind(android.content.Intent)" title="class or interface in android.app">onUnbind</A>, <A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true#setForeground(boolean)" title="class or interface in android.app">setForeground</A>, <A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true#stopSelf()" title="class or interface in android.app">stopSelf</A>, <A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true#stopSelf(int)" title="class or interface in android.app">stopSelf</A>, <A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true#stopSelfResult(int)" title="class or interface in android.app">stopSelfResult</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_android.content.ContextWrapper"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class android.content.<A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true" title="class or interface in android.content">ContextWrapper</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#attachBaseContext(android.content.Context)" title="class or interface in android.content">attachBaseContext</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#bindService(android.content.Intent, android.content.ServiceConnection, int)" title="class or interface in android.content">bindService</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#checkCallingOrSelfPermission(java.lang.String)" title="class or interface in android.content">checkCallingOrSelfPermission</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#checkCallingOrSelfUriPermission(android.net.Uri, int)" title="class or interface in android.content">checkCallingOrSelfUriPermission</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#checkCallingPermission(java.lang.String)" title="class or interface in android.content">checkCallingPermission</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#checkCallingUriPermission(android.net.Uri, int)" title="class or interface in android.content">checkCallingUriPermission</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#checkPermission(java.lang.String, int, int)" title="class or interface in android.content">checkPermission</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#checkUriPermission(android.net.Uri, int, int, int)" title="class or interface in android.content">checkUriPermission</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#checkUriPermission(android.net.Uri, java.lang.String, java.lang.String, int, int, int)" title="class or interface in android.content">checkUriPermission</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#clearWallpaper()" title="class or interface in android.content">clearWallpaper</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#createPackageContext(java.lang.String, int)" title="class or interface in android.content">createPackageContext</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#databaseList()" title="class or interface in android.content">databaseList</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#deleteDatabase(java.lang.String)" title="class or interface in android.content">deleteDatabase</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#deleteFile(java.lang.String)" title="class or interface in android.content">deleteFile</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#enforceCallingOrSelfPermission(java.lang.String, java.lang.String)" title="class or interface in android.content">enforceCallingOrSelfPermission</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#enforceCallingOrSelfUriPermission(android.net.Uri, int, java.lang.String)" title="class or interface in android.content">enforceCallingOrSelfUriPermission</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#enforceCallingPermission(java.lang.String, java.lang.String)" title="class or interface in android.content">enforceCallingPermission</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#enforceCallingUriPermission(android.net.Uri, int, java.lang.String)" title="class or interface in android.content">enforceCallingUriPermission</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#enforcePermission(java.lang.String, int, int, java.lang.String)" title="class or interface in android.content">enforcePermission</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#enforceUriPermission(android.net.Uri, int, int, int, java.lang.String)" title="class or interface in android.content">enforceUriPermission</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#enforceUriPermission(android.net.Uri, java.lang.String, java.lang.String, int, int, int, java.lang.String)" title="class or interface in android.content">enforceUriPermission</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#fileList()" title="class or interface in android.content">fileList</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getApplicationContext()" title="class or interface in android.content">getApplicationContext</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getAssets()" title="class or interface in android.content">getAssets</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getBaseContext()" title="class or interface in android.content">getBaseContext</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getCacheDir()" title="class or interface in android.content">getCacheDir</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getClassLoader()" title="class or interface in android.content">getClassLoader</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getContentResolver()" title="class or interface in android.content">getContentResolver</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getDatabasePath(java.lang.String)" title="class or interface in android.content">getDatabasePath</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getDir(java.lang.String, int)" title="class or interface in android.content">getDir</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getFilesDir()" title="class or interface in android.content">getFilesDir</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getFileStreamPath(java.lang.String)" title="class or interface in android.content">getFileStreamPath</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getMainLooper()" title="class or interface in android.content">getMainLooper</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getPackageCodePath()" title="class or interface in android.content">getPackageCodePath</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getPackageManager()" title="class or interface in android.content">getPackageManager</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getPackageName()" title="class or interface in android.content">getPackageName</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getPackageResourcePath()" title="class or interface in android.content">getPackageResourcePath</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getResources()" title="class or interface in android.content">getResources</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getSharedPreferences(java.lang.String, int)" title="class or interface in android.content">getSharedPreferences</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getSystemService(java.lang.String)" title="class or interface in android.content">getSystemService</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getTheme()" title="class or interface in android.content">getTheme</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getWallpaper()" title="class or interface in android.content">getWallpaper</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getWallpaperDesiredMinimumHeight()" title="class or interface in android.content">getWallpaperDesiredMinimumHeight</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#getWallpaperDesiredMinimumWidth()" title="class or interface in android.content">getWallpaperDesiredMinimumWidth</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#grantUriPermission(java.lang.String, android.net.Uri, int)" title="class or interface in android.content">grantUriPermission</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#openFileInput(java.lang.String)" title="class or interface in android.content">openFileInput</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#openFileOutput(java.lang.String, int)" title="class or interface in android.content">openFileOutput</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#openOrCreateDatabase(java.lang.String, int, android.database.sqlite.SQLiteDatabase.CursorFactory)" title="class or interface in android.content">openOrCreateDatabase</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#peekWallpaper()" title="class or interface in android.content">peekWallpaper</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#registerReceiver(android.content.BroadcastReceiver, android.content.IntentFilter)" title="class or interface in android.content">registerReceiver</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#registerReceiver(android.content.BroadcastReceiver, android.content.IntentFilter, java.lang.String, android.os.Handler)" title="class or interface in android.content">registerReceiver</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#removeStickyBroadcast(android.content.Intent)" title="class or interface in android.content">removeStickyBroadcast</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#revokeUriPermission(android.net.Uri, int)" title="class or interface in android.content">revokeUriPermission</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#sendBroadcast(android.content.Intent)" title="class or interface in android.content">sendBroadcast</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#sendBroadcast(android.content.Intent, java.lang.String)" title="class or interface in android.content">sendBroadcast</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#sendOrderedBroadcast(android.content.Intent, java.lang.String)" title="class or interface in android.content">sendOrderedBroadcast</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#sendOrderedBroadcast(android.content.Intent, java.lang.String, android.content.BroadcastReceiver, android.os.Handler, int, java.lang.String, android.os.Bundle)" title="class or interface in android.content">sendOrderedBroadcast</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#sendStickyBroadcast(android.content.Intent)" title="class or interface in android.content">sendStickyBroadcast</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#setTheme(int)" title="class or interface in android.content">setTheme</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#setWallpaper(android.graphics.Bitmap)" title="class or interface in android.content">setWallpaper</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#setWallpaper(java.io.InputStream)" title="class or interface in android.content">setWallpaper</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#startActivity(android.content.Intent)" title="class or interface in android.content">startActivity</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#startInstrumentation(android.content.ComponentName, java.lang.String, android.os.Bundle)" title="class or interface in android.content">startInstrumentation</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#startService(android.content.Intent)" title="class or interface in android.content">startService</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#stopService(android.content.Intent)" title="class or interface in android.content">stopService</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#unbindService(android.content.ServiceConnection)" title="class or interface in android.content">unbindService</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/ContextWrapper.html?is-external=true#unregisterReceiver(android.content.BroadcastReceiver)" title="class or interface in android.content">unregisterReceiver</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_android.content.Context"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class android.content.<A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#getString(int)" title="class or interface in android.content">getString</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#getString(int, java.lang.Object...)" title="class or interface in android.content">getString</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#getText(int)" title="class or interface in android.content">getText</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#obtainStyledAttributes(android.util.AttributeSet, int[])" title="class or interface in android.content">obtainStyledAttributes</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#obtainStyledAttributes(android.util.AttributeSet, int[], int, int)" title="class or interface in android.content">obtainStyledAttributes</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#obtainStyledAttributes(int[])" title="class or interface in android.content">obtainStyledAttributes</A>, <A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true#obtainStyledAttributes(int, int[])" title="class or interface in android.content">obtainStyledAttributes</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_Object"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+<A NAME="constructor_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Constructor Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="PushService()"><!-- --></A><H3>
+PushService</H3>
+<PRE>
+public <B>PushService</B>()</PRE>
+<DL>
+<DD>Client code should not construct a PushService directly.
+<P>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="startServiceIfRequired(android.content.Context)"><!-- --></A><H3>
+startServiceIfRequired</H3>
+<PRE>
+public static void <B>startServiceIfRequired</B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="subscribe(android.content.Context, java.lang.String, java.lang.Class)"><!-- --></A><H3>
+subscribe</H3>
+<PRE>
+public static void <B>subscribe</B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context,
+                             <A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;channel,
+                             <A target="_top" HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;? extends <A target="_top" HREF="http://developer.android.com/reference/android/app/Activity.html?is-external=true" title="class or interface in android.app">Activity</A>&gt;&nbsp;cls)</PRE>
+<DL>
+<DD>Helper function to subscribe to push notifications with the default application icon.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>context</CODE> - This is used to access local storage to cache the subscription, so it must currently
+          be a viable context.<DD><CODE>channel</CODE> - A string identifier that determines which messages will cause a push notification to
+          be sent to this client. The channel name must start with a letter and contain only
+          letters, numbers, dashes, and underscores.<DD><CODE>cls</CODE> - This should be a subclass of Activity. An instance of this Activity is started when
+          the user responds to this push notification. If you are not sure what to use here,
+          just use your application's main Activity subclass.
+<DT><B>Throws:</B>
+<DD><CODE><A target="_top" HREF="http://developer.android.com/reference/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</A></CODE> - if the channel name is not valid.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="subscribe(android.content.Context, java.lang.String, java.lang.Class, int)"><!-- --></A><H3>
+subscribe</H3>
+<PRE>
+public static void <B>subscribe</B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context,
+                             <A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;channel,
+                             <A target="_top" HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;? extends <A target="_top" HREF="http://developer.android.com/reference/android/app/Activity.html?is-external=true" title="class or interface in android.app">Activity</A>&gt;&nbsp;cls,
+                             int&nbsp;icon)</PRE>
+<DL>
+<DD>Call this function when the user should be subscribed to a new push channel. When push
+ notifications are sent out on this channel subsequently, this device will display a "toast"
+ notification in the system tray. This function returns immediately, even when there is no
+ internet access. In that case the subscription is cached and when internet access is next
+ available the client will inform the server of its subscription. This starts a PushService
+ running in the background that will not permanently terminate as long as the user is subscribed
+ to some channel, unless the application is uninstalled.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>context</CODE> - This is used to access local storage to cache the subscription, so it must currently
+          be a viable context.<DD><CODE>channel</CODE> - A string identifier that determines which messages will cause a push notification to
+          be sent to this client. The channel name must start with a letter and contain only
+          letters, numbers, dashes, and underscores.<DD><CODE>cls</CODE> - This should be a subclass of Activity. An instance of this Activity is started when
+          the user responds to this push notification. If you are not sure what to use here,
+          just use your application's main Activity subclass.<DD><CODE>icon</CODE> - The icon to show for the notification.
+<DT><B>Throws:</B>
+<DD><CODE><A target="_top" HREF="http://developer.android.com/reference/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</A></CODE> - if the channel name is not valid.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="unsubscribe(android.content.Context, java.lang.String)"><!-- --></A><H3>
+unsubscribe</H3>
+<PRE>
+public static void <B>unsubscribe</B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context,
+                               <A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;channel)</PRE>
+<DL>
+<DD>Cancels a previous call to subscribe. If the user is not subscribed to this channel, this is a
+ no-op. This call does not require internet access. It returns without blocking.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>context</CODE> - A currently viable Context.<DD><CODE>channel</CODE> - The string defining the channel to unsubscribe from.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setDefaultPushCallback(android.content.Context, java.lang.Class)"><!-- --></A><H3>
+setDefaultPushCallback</H3>
+<PRE>
+public static void <B>setDefaultPushCallback</B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context,
+                                          <A target="_top" HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;? extends <A target="_top" HREF="http://developer.android.com/reference/android/app/Activity.html?is-external=true" title="class or interface in android.app">Activity</A>&gt;&nbsp;cls)</PRE>
+<DL>
+<DD>Provides a default Activity class to handle pushes. Setting a default allows your program to
+ handle pushes that aren't registered with a subscribe call. This can happen when your
+ application changes its subscriptions directly through the ParseInstallation or via
+ push-to-query.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>context</CODE> - This is used to access local storage to cache the subscription, so it must currently
+          be a viable context.<DD><CODE>cls</CODE> - This should be a subclass of Activity. An instance of this Activity is started when
+          the user responds to this push notification. If you are not sure what to use here,
+          just use your application's main Activity subclass.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setDefaultPushCallback(android.content.Context, java.lang.Class, int)"><!-- --></A><H3>
+setDefaultPushCallback</H3>
+<PRE>
+public static void <B>setDefaultPushCallback</B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context,
+                                          <A target="_top" HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;? extends <A target="_top" HREF="http://developer.android.com/reference/android/app/Activity.html?is-external=true" title="class or interface in android.app">Activity</A>&gt;&nbsp;cls,
+                                          int&nbsp;icon)</PRE>
+<DL>
+<DD>Provides a default Activity class to handle pushes. Setting a default allows your program to
+ handle pushes that aren't registered with a subscribe call. This can happen when your
+ application changes its subscriptions directly through the ParseInstallation or via
+ push-to-query.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>context</CODE> - This is used to access local storage to cache the subscription, so it must currently
+          be a viable context.<DD><CODE>cls</CODE> - This should be a subclass of Activity. An instance of this Activity is started when
+          the user responds to this push notification. If you are not sure what to use here,
+          just use your application's main Activity subclass.<DD><CODE>icon</CODE> - The icon to show for the notification.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getSubscriptions(android.content.Context)"><!-- --></A><H3>
+getSubscriptions</H3>
+<PRE>
+public static <A target="_top" HREF="http://developer.android.com/reference/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</A>&lt;<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&gt; <B>getSubscriptions</B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context)</PRE>
+<DL>
+<DD>Accesses the current set of channels for which the current installation is subscribed. It is
+ important to remember that the device may receive pushes by means other than channels. This
+ method returns the local cache, so it returns without blocking on network IO. In rare
+ circumstances this may be stale, but only after the installation was edited via the REST API
+ using the master key.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>context</CODE> - A currently viable Context.
+<DT><B>Returns:</B><DD>A set containing all of the channels this application is currently subscribed to.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="onCreate()"><!-- --></A><H3>
+onCreate</H3>
+<PRE>
+public void <B>onCreate</B>()</PRE>
+<DL>
+<DD>Client code should not call onCreate directly.
+<P>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE><A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true#onCreate()" title="class or interface in android.app">onCreate</A></CODE> in class <CODE><A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true" title="class or interface in android.app">Service</A></CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="onStartCommand(android.content.Intent, int, int)"><!-- --></A><H3>
+onStartCommand</H3>
+<PRE>
+public int <B>onStartCommand</B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Intent.html?is-external=true" title="class or interface in android.content">Intent</A>&nbsp;intent,
+                          int&nbsp;flags,
+                          int&nbsp;startId)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="onBind(android.content.Intent)"><!-- --></A><H3>
+onBind</H3>
+<PRE>
+public <A target="_top" HREF="http://developer.android.com/reference/android/os/IBinder.html?is-external=true" title="class or interface in android.os">IBinder</A> <B>onBind</B>(<A target="_top" HREF="http://developer.android.com/reference/android/content/Intent.html?is-external=true" title="class or interface in android.content">Intent</A>&nbsp;intent)</PRE>
+<DL>
+<DD>onBind should not be called directly.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true#onBind(android.content.Intent)" title="class or interface in android.app">onBind</A></CODE> in class <CODE><A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true" title="class or interface in android.app">Service</A></CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="onDestroy()"><!-- --></A><H3>
+onDestroy</H3>
+<PRE>
+public void <B>onDestroy</B>()</PRE>
+<DL>
+<DD>Client code should not call onDestroy directly.
+<P>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE><A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true#onDestroy()" title="class or interface in android.app">onDestroy</A></CODE> in class <CODE><A target="_top" HREF="http://developer.android.com/reference/android/app/Service.html?is-external=true" title="class or interface in android.app">Service</A></CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../com/parse/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/PushService.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../com/parse/ProgressCallback.html" title="class in com.parse"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../com/parse/RefreshCallback.html" title="class in com.parse"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../index.html?com/parse/PushService.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="PushService.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_android.content.Context">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<TITLE>
+com.parse
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../style.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="com.parse";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../com/parse/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <FONT CLASS="NavBarFont1">Class</FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-use.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;PREV PACKAGE&nbsp;
+&nbsp;NEXT PACKAGE</FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../index.html?com/parse/package-summary.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="package-summary.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<H2>
+Package com.parse
+</H2>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Interface Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseQueryAdapter.OnQueryLoadListener.html" title="interface in com.parse">ParseQueryAdapter.OnQueryLoadListener&lt;T extends ParseObject&gt;</A></B></TD>
+<TD>Implement with logic that is called before and after objects are fetched from Parse by the
+ adapter.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseQueryAdapter.QueryFactory.html" title="interface in com.parse">ParseQueryAdapter.QueryFactory&lt;T extends ParseObject&gt;</A></B></TD>
+<TD>Implement to construct your own custom <A HREF="../../com/parse/ParseQuery.html" title="class in com.parse"><CODE>ParseQuery</CODE></A> for fetching objects.</TD>
+</TR>
+</TABLE>
+&nbsp;
+
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Class Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/CountCallback.html" title="class in com.parse">CountCallback</A></B></TD>
+<TD>A CountCallback is used to run code after a <A HREF="../../com/parse/ParseQuery.html" title="class in com.parse"><CODE>ParseQuery</CODE></A> is used to count objects matching
+ a query in a background thread.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/DeleteCallback.html" title="class in com.parse">DeleteCallback</A></B></TD>
+<TD>A DeleteCallback is used to run code after saving a <A HREF="../../com/parse/ParseObject.html" title="class in com.parse"><CODE>ParseObject</CODE></A> in a background thread.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/FindCallback.html" title="class in com.parse">FindCallback&lt;T extends ParseObject&gt;</A></B></TD>
+<TD>A FindCallback is used to run code after a <A HREF="../../com/parse/ParseQuery.html" title="class in com.parse"><CODE>ParseQuery</CODE></A> is used to fetch a list of
+ <A HREF="../../com/parse/ParseObject.html" title="class in com.parse"><CODE>ParseObject</CODE></A>s in a background thread.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/FunctionCallback.html" title="class in com.parse">FunctionCallback&lt;T&gt;</A></B></TD>
+<TD>A FunctionCallback is used to run code after <A HREF="../../com/parse/ParseCloud.html#callFunction(java.lang.String, java.util.Map)"><CODE>ParseCloud.callFunction(java.lang.String, java.util.Map<java.lang.String, ?>)</CODE></A> is used to run a
+ Cloud Function in a background thread.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/GetCallback.html" title="class in com.parse">GetCallback&lt;T extends ParseObject&gt;</A></B></TD>
+<TD>A GetCallback is used to run code after a <A HREF="../../com/parse/ParseQuery.html" title="class in com.parse"><CODE>ParseQuery</CODE></A> is used to fetch a
+ <A HREF="../../com/parse/ParseObject.html" title="class in com.parse"><CODE>ParseObject</CODE></A> in a background thread.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/GetDataCallback.html" title="class in com.parse">GetDataCallback</A></B></TD>
+<TD>A GetDataCallback is used to run code after a <A HREF="../../com/parse/ParseFile.html" title="class in com.parse"><CODE>ParseFile</CODE></A> fetches its data on a background
+ thread.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/LocationCallback.html" title="class in com.parse">LocationCallback</A></B></TD>
+<TD>A LocationCallback is used to run code after a Location has been fetched by some
+ LocationProvider.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/LogInCallback.html" title="class in com.parse">LogInCallback</A></B></TD>
+<TD>A LogInCallback is used to run code after logging in a user.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/Parse.html" title="class in com.parse">Parse</A></B></TD>
+<TD>The Parse class contains static functions that handle global configuration for the Parse library.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseACL.html" title="class in com.parse">ParseACL</A></B></TD>
+<TD>A ParseACL is used to control which users can access or modify a particular object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseAnalytics.html" title="class in com.parse">ParseAnalytics</A></B></TD>
+<TD>The ParseAnalytics class provides an interface to Parse's logging and analytics backend.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseAnonymousUtils.html" title="class in com.parse">ParseAnonymousUtils</A></B></TD>
+<TD>Provides utility functions for working with Anonymously logged-in users.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseCloud.html" title="class in com.parse">ParseCloud</A></B></TD>
+<TD>The ParseCloud class defines provides methods for interacting with Parse Cloud Functions.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseFacebookUtils.html" title="class in com.parse">ParseFacebookUtils</A></B></TD>
+<TD>Provides a set of utilities for using Parse with Facebook.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseFile.html" title="class in com.parse">ParseFile</A></B></TD>
+<TD>ParseFile is a local representation of a file that is saved to the Parse cloud.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseGeoPoint.html" title="class in com.parse">ParseGeoPoint</A></B></TD>
+<TD>ParseGeoPoint represents a latitude / longitude point that may be associated with a key in a
+ ParseObject or used as a reference point for geo queries.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseImageView.html" title="class in com.parse">ParseImageView</A></B></TD>
+<TD>A specialized <code>ImageView</code> that downloads and displays remote images stored on Parse's
+ servers.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseInstallation.html" title="class in com.parse">ParseInstallation</A></B></TD>
+<TD>&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseObject.html" title="class in com.parse">ParseObject</A></B></TD>
+<TD>The ParseObject is a local representation of data that can be saved and retrieved from the Parse
+ cloud.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParsePush.html" title="class in com.parse">ParsePush</A></B></TD>
+<TD>The ParsePush is a local representation of data that can be sent as a push notification.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseQuery.html" title="class in com.parse">ParseQuery&lt;T extends ParseObject&gt;</A></B></TD>
+<TD>The ParseQuery class defines a query that is used to fetch ParseObjects.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseQueryAdapter.html" title="class in com.parse">ParseQueryAdapter&lt;T extends ParseObject&gt;</A></B></TD>
+<TD>A ParseQueryAdapter handles the fetching of objects by page, and displaying objects as views in a
+ ListView.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseRelation.html" title="class in com.parse">ParseRelation&lt;T extends ParseObject&gt;</A></B></TD>
+<TD>A class that is used to access all of the children of a many-to-many relationship.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseRole.html" title="class in com.parse">ParseRole</A></B></TD>
+<TD>Represents a Role on the Parse server.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseTwitterUtils.html" title="class in com.parse">ParseTwitterUtils</A></B></TD>
+<TD>&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseUser.html" title="class in com.parse">ParseUser</A></B></TD>
+<TD>&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ProgressCallback.html" title="class in com.parse">ProgressCallback</A></B></TD>
+<TD>A ProgressCallback is used to get progress of an operation.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/PushService.html" title="class in com.parse">PushService</A></B></TD>
+<TD>A service to listen for push notifications.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/RefreshCallback.html" title="class in com.parse">RefreshCallback</A></B></TD>
+<TD>A RefreshCallback is used to run code after refresh is used to update a <A HREF="../../com/parse/ParseObject.html" title="class in com.parse"><CODE>ParseObject</CODE></A> in a
+ background thread.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/RequestPasswordResetCallback.html" title="class in com.parse">RequestPasswordResetCallback</A></B></TD>
+<TD>A RequestPasswordResetCallback is used to run code requesting a password reset for a user.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/SaveCallback.html" title="class in com.parse">SaveCallback</A></B></TD>
+<TD>A SaveCallback is used to run code after saving a <A HREF="../../com/parse/ParseObject.html" title="class in com.parse"><CODE>ParseObject</CODE></A> in a background thread.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/SendCallback.html" title="class in com.parse">SendCallback</A></B></TD>
+<TD>A SendCallback is used to run code after sending a <A HREF="../../com/parse/ParsePush.html" title="class in com.parse"><CODE>ParsePush</CODE></A> in a background thread.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/SignUpCallback.html" title="class in com.parse">SignUpCallback</A></B></TD>
+<TD>A SignUpCallback is used to run code after signing up a <A HREF="../../com/parse/ParseUser.html" title="class in com.parse"><CODE>ParseUser</CODE></A> in a background thread.</TD>
+</TR>
+</TABLE>
+&nbsp;
+
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Enum Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseQuery.CachePolicy.html" title="enum in com.parse">ParseQuery.CachePolicy</A></B></TD>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;
+
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Exception Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseException.html" title="class in com.parse">ParseException</A></B></TD>
+<TD>A ParseException gets raised whenever a <A HREF="../../com/parse/ParseObject.html" title="class in com.parse"><CODE>ParseObject</CODE></A> issues an invalid request, such as
+ deleting or editing an object that no longer exists on the server, or when there is a network
+ failure preventing communication with the Parse server.</TD>
+</TR>
+</TABLE>
+&nbsp;
+
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Annotation Types Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../com/parse/ParseClassName.html" title="annotation in com.parse">ParseClassName</A></B></TD>
+<TD>Associates a class name for a subclass of ParseObject.</TD>
+</TR>
+</TABLE>
+&nbsp;
+
+<P>
+<DL>
+</DL>
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../com/parse/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <FONT CLASS="NavBarFont1">Class</FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-use.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;PREV PACKAGE&nbsp;
+&nbsp;NEXT PACKAGE</FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../index.html?com/parse/package-summary.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="package-summary.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+
+</BODY>
+</HTML>

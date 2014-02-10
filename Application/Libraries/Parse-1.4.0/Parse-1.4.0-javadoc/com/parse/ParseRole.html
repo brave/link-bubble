@@ -1,0 +1,446 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<TITLE>
+ParseRole
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../style.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="ParseRole";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../com/parse/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ParseRole.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../com/parse/ParseRelation.html" title="class in com.parse"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../com/parse/ParseTwitterUtils.html" title="class in com.parse"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../index.html?com/parse/ParseRole.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="ParseRole.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+com.parse</FONT>
+<BR>
+Class ParseRole</H2>
+<PRE>
+<A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A>
+  <IMG SRC="../../resources/inherit.gif" ALT="extended by "><A HREF="../../com/parse/ParseObject.html" title="class in com.parse">com.parse.ParseObject</A>
+      <IMG SRC="../../resources/inherit.gif" ALT="extended by "><B>com.parse.ParseRole</B>
+</PRE>
+<HR>
+<DL>
+<DT><PRE>public class <B>ParseRole</B><DT>extends <A HREF="../../com/parse/ParseObject.html" title="class in com.parse">ParseObject</A></DL>
+</PRE>
+
+<P>
+Represents a Role on the Parse server. <code>ParseRole</code>s represent groupings of
+ <code>ParseUsers</code> for the purposes of granting permissions (e.g. specifying a <A HREF="../../com/parse/ParseACL.html" title="class in com.parse"><CODE>ParseACL</CODE></A>
+ for a <A HREF="../../com/parse/ParseObject.html" title="class in com.parse"><CODE>ParseObject</CODE></A>). Roles are specified by their sets of child users and child roles, all
+ of which are granted any permissions that the parent role has.<br />
+ <br />
+ Roles must have a name (which cannot be changed after creation of the role), and must specify an
+ ACL.
+<P>
+
+<P>
+<HR>
+
+<P>
+
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+<A NAME="constructor_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Constructor Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../com/parse/ParseRole.html#ParseRole(java.lang.String)">ParseRole</A></B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;name)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructs a new ParseRole with the given name.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../com/parse/ParseRole.html#ParseRole(java.lang.String, com.parse.ParseACL)">ParseRole</A></B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;name,
+          <A HREF="../../com/parse/ParseACL.html" title="class in com.parse">ParseACL</A>&nbsp;acl)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructs a new ParseRole with the given name.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseRole.html#getName()">getName</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the name of the role.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../com/parse/ParseQuery.html" title="class in com.parse">ParseQuery</A>&lt;<A HREF="../../com/parse/ParseRole.html" title="class in com.parse">ParseRole</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseRole.html#getQuery()">getQuery</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a <A HREF="../../com/parse/ParseQuery.html" title="class in com.parse"><CODE>ParseQuery</CODE></A> over the Role collection.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../com/parse/ParseRelation.html" title="class in com.parse">ParseRelation</A>&lt;<A HREF="../../com/parse/ParseRole.html" title="class in com.parse">ParseRole</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseRole.html#getRoles()">getRoles</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the <A HREF="../../com/parse/ParseRelation.html" title="class in com.parse"><CODE>ParseRelation</CODE></A> for the <A HREF="../../com/parse/ParseRole.html" title="class in com.parse"><CODE>ParseRole</CODE></A>s that are direct children of this
+ role.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../com/parse/ParseRelation.html" title="class in com.parse">ParseRelation</A>&lt;<A HREF="../../com/parse/ParseUser.html" title="class in com.parse">ParseUser</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseRole.html#getUsers()">getUsers</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the <A HREF="../../com/parse/ParseRelation.html" title="class in com.parse"><CODE>ParseRelation</CODE></A> for the <A HREF="../../com/parse/ParseUser.html" title="class in com.parse"><CODE>ParseUser</CODE></A>s that are direct children of this
+ role.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseRole.html#put(java.lang.String, java.lang.Object)">put</A></B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;key,
+    <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A>&nbsp;value)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add a key-value pair to this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseRole.html#setName(java.lang.String)">setName</A></B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;name)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the name for a role.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseRole.html#validateSave()">validateSave</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.parse.ParseObject"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class com.parse.<A HREF="../../com/parse/ParseObject.html" title="class in com.parse">ParseObject</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../com/parse/ParseObject.html#add(java.lang.String, java.lang.Object)">add</A>, <A HREF="../../com/parse/ParseObject.html#addAll(java.lang.String, java.util.Collection)">addAll</A>, <A HREF="../../com/parse/ParseObject.html#addAllUnique(java.lang.String, java.util.Collection)">addAllUnique</A>, <A HREF="../../com/parse/ParseObject.html#addUnique(java.lang.String, java.lang.Object)">addUnique</A>, <A HREF="../../com/parse/ParseObject.html#containsKey(java.lang.String)">containsKey</A>, <A HREF="../../com/parse/ParseObject.html#create(java.lang.Class)">create</A>, <A HREF="../../com/parse/ParseObject.html#create(java.lang.String)">create</A>, <A HREF="../../com/parse/ParseObject.html#createWithoutData(java.lang.Class, java.lang.String)">createWithoutData</A>, <A HREF="../../com/parse/ParseObject.html#createWithoutData(java.lang.String, java.lang.String)">createWithoutData</A>, <A HREF="../../com/parse/ParseObject.html#delete()">delete</A>, <A HREF="../../com/parse/ParseObject.html#deleteAll(java.util.List)">deleteAll</A>, <A HREF="../../com/parse/ParseObject.html#deleteAllInBackground(java.util.List, com.parse.DeleteCallback)">deleteAllInBackground</A>, <A HREF="../../com/parse/ParseObject.html#deleteEventually()">deleteEventually</A>, <A HREF="../../com/parse/ParseObject.html#deleteEventually(com.parse.DeleteCallback)">deleteEventually</A>, <A HREF="../../com/parse/ParseObject.html#deleteInBackground()">deleteInBackground</A>, <A HREF="../../com/parse/ParseObject.html#deleteInBackground(com.parse.DeleteCallback)">deleteInBackground</A>, <A HREF="../../com/parse/ParseObject.html#fetch()">fetch</A>, <A HREF="../../com/parse/ParseObject.html#fetchAll(java.util.List)">fetchAll</A>, <A HREF="../../com/parse/ParseObject.html#fetchAllIfNeeded(java.util.List)">fetchAllIfNeeded</A>, <A HREF="../../com/parse/ParseObject.html#fetchAllIfNeededInBackground(java.util.List, com.parse.FindCallback)">fetchAllIfNeededInBackground</A>, <A HREF="../../com/parse/ParseObject.html#fetchAllInBackground(java.util.List, com.parse.FindCallback)">fetchAllInBackground</A>, <A HREF="../../com/parse/ParseObject.html#fetchIfNeeded()">fetchIfNeeded</A>, <A HREF="../../com/parse/ParseObject.html#fetchIfNeededInBackground(com.parse.GetCallback)">fetchIfNeededInBackground</A>, <A HREF="../../com/parse/ParseObject.html#fetchInBackground(com.parse.GetCallback)">fetchInBackground</A>, <A HREF="../../com/parse/ParseObject.html#get(java.lang.String)">get</A>, <A HREF="../../com/parse/ParseObject.html#getACL()">getACL</A>, <A HREF="../../com/parse/ParseObject.html#getBoolean(java.lang.String)">getBoolean</A>, <A HREF="../../com/parse/ParseObject.html#getBytes(java.lang.String)">getBytes</A>, <A HREF="../../com/parse/ParseObject.html#getClassName()">getClassName</A>, <A HREF="../../com/parse/ParseObject.html#getCreatedAt()">getCreatedAt</A>, <A HREF="../../com/parse/ParseObject.html#getDate(java.lang.String)">getDate</A>, <A HREF="../../com/parse/ParseObject.html#getDouble(java.lang.String)">getDouble</A>, <A HREF="../../com/parse/ParseObject.html#getInt(java.lang.String)">getInt</A>, <A HREF="../../com/parse/ParseObject.html#getJSONArray(java.lang.String)">getJSONArray</A>, <A HREF="../../com/parse/ParseObject.html#getJSONObject(java.lang.String)">getJSONObject</A>, <A HREF="../../com/parse/ParseObject.html#getList(java.lang.String)">getList</A>, <A HREF="../../com/parse/ParseObject.html#getLong(java.lang.String)">getLong</A>, <A HREF="../../com/parse/ParseObject.html#getMap(java.lang.String)">getMap</A>, <A HREF="../../com/parse/ParseObject.html#getNumber(java.lang.String)">getNumber</A>, <A HREF="../../com/parse/ParseObject.html#getObjectId()">getObjectId</A>, <A HREF="../../com/parse/ParseObject.html#getParseFile(java.lang.String)">getParseFile</A>, <A HREF="../../com/parse/ParseObject.html#getParseGeoPoint(java.lang.String)">getParseGeoPoint</A>, <A HREF="../../com/parse/ParseObject.html#getParseObject(java.lang.String)">getParseObject</A>, <A HREF="../../com/parse/ParseObject.html#getParseUser(java.lang.String)">getParseUser</A>, <A HREF="../../com/parse/ParseObject.html#getRelation(java.lang.String)">getRelation</A>, <A HREF="../../com/parse/ParseObject.html#getString(java.lang.String)">getString</A>, <A HREF="../../com/parse/ParseObject.html#getUpdatedAt()">getUpdatedAt</A>, <A HREF="../../com/parse/ParseObject.html#has(java.lang.String)">has</A>, <A HREF="../../com/parse/ParseObject.html#hasSameId(com.parse.ParseObject)">hasSameId</A>, <A HREF="../../com/parse/ParseObject.html#increment(java.lang.String)">increment</A>, <A HREF="../../com/parse/ParseObject.html#increment(java.lang.String, java.lang.Number)">increment</A>, <A HREF="../../com/parse/ParseObject.html#isDataAvailable()">isDataAvailable</A>, <A HREF="../../com/parse/ParseObject.html#isDirty()">isDirty</A>, <A HREF="../../com/parse/ParseObject.html#isDirty(java.lang.String)">isDirty</A>, <A HREF="../../com/parse/ParseObject.html#keySet()">keySet</A>, <A HREF="../../com/parse/ParseObject.html#refresh()">refresh</A>, <A HREF="../../com/parse/ParseObject.html#refreshInBackground(com.parse.RefreshCallback)">refreshInBackground</A>, <A HREF="../../com/parse/ParseObject.html#registerSubclass(java.lang.Class)">registerSubclass</A>, <A HREF="../../com/parse/ParseObject.html#remove(java.lang.String)">remove</A>, <A HREF="../../com/parse/ParseObject.html#removeAll(java.lang.String, java.util.Collection)">removeAll</A>, <A HREF="../../com/parse/ParseObject.html#save()">save</A>, <A HREF="../../com/parse/ParseObject.html#saveAll(java.util.List)">saveAll</A>, <A HREF="../../com/parse/ParseObject.html#saveAllInBackground(java.util.List)">saveAllInBackground</A>, <A HREF="../../com/parse/ParseObject.html#saveAllInBackground(java.util.List, com.parse.SaveCallback)">saveAllInBackground</A>, <A HREF="../../com/parse/ParseObject.html#saveEventually()">saveEventually</A>, <A HREF="../../com/parse/ParseObject.html#saveEventually(com.parse.SaveCallback)">saveEventually</A>, <A HREF="../../com/parse/ParseObject.html#saveInBackground()">saveInBackground</A>, <A HREF="../../com/parse/ParseObject.html#saveInBackground(com.parse.SaveCallback)">saveInBackground</A>, <A HREF="../../com/parse/ParseObject.html#setACL(com.parse.ParseACL)">setACL</A>, <A HREF="../../com/parse/ParseObject.html#setObjectId(java.lang.String)">setObjectId</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_Object"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+<A NAME="constructor_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Constructor Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="ParseRole(java.lang.String)"><!-- --></A><H3>
+ParseRole</H3>
+<PRE>
+public <B>ParseRole</B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;name)</PRE>
+<DL>
+<DD>Constructs a new ParseRole with the given name. If no default ACL has been specified, you must
+ provide an ACL for the role.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>name</CODE> - The name of the Role to create.</DL>
+</DL>
+<HR>
+
+<A NAME="ParseRole(java.lang.String, com.parse.ParseACL)"><!-- --></A><H3>
+ParseRole</H3>
+<PRE>
+public <B>ParseRole</B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;name,
+                 <A HREF="../../com/parse/ParseACL.html" title="class in com.parse">ParseACL</A>&nbsp;acl)</PRE>
+<DL>
+<DD>Constructs a new ParseRole with the given name.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>name</CODE> - The name of the Role to create.<DD><CODE>acl</CODE> - The ACL for this role. Roles must have an ACL.</DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="setName(java.lang.String)"><!-- --></A><H3>
+setName</H3>
+<PRE>
+public void <B>setName</B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;name)</PRE>
+<DL>
+<DD>Sets the name for a role. This value must be set before the role has been saved to the server,
+ and cannot be set once the role has been saved.<br />
+ <br />
+ A role's name can only contain alphanumeric characters, _, -, and spaces.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>name</CODE> - The name of the role.
+<DT><B>Throws:</B>
+<DD><CODE><A target="_top" HREF="http://developer.android.com/reference/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</A></CODE> - if the object has already been saved to the server.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getName()"><!-- --></A><H3>
+getName</H3>
+<PRE>
+public <A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <B>getName</B>()</PRE>
+<DL>
+<DD>Gets the name of the role.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the name of the role.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getUsers()"><!-- --></A><H3>
+getUsers</H3>
+<PRE>
+public <A HREF="../../com/parse/ParseRelation.html" title="class in com.parse">ParseRelation</A>&lt;<A HREF="../../com/parse/ParseUser.html" title="class in com.parse">ParseUser</A>&gt; <B>getUsers</B>()</PRE>
+<DL>
+<DD>Gets the <A HREF="../../com/parse/ParseRelation.html" title="class in com.parse"><CODE>ParseRelation</CODE></A> for the <A HREF="../../com/parse/ParseUser.html" title="class in com.parse"><CODE>ParseUser</CODE></A>s that are direct children of this
+ role. These users are granted any privileges that this role has been granted (e.g. read or
+ write access through ACLs). You can add or remove users from the role through this relation.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the relation for the users belonging to this role.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRoles()"><!-- --></A><H3>
+getRoles</H3>
+<PRE>
+public <A HREF="../../com/parse/ParseRelation.html" title="class in com.parse">ParseRelation</A>&lt;<A HREF="../../com/parse/ParseRole.html" title="class in com.parse">ParseRole</A>&gt; <B>getRoles</B>()</PRE>
+<DL>
+<DD>Gets the <A HREF="../../com/parse/ParseRelation.html" title="class in com.parse"><CODE>ParseRelation</CODE></A> for the <A HREF="../../com/parse/ParseRole.html" title="class in com.parse"><CODE>ParseRole</CODE></A>s that are direct children of this
+ role. These roles' users are granted any privileges that this role has been granted (e.g. read
+ or write access through ACLs). You can add or remove child roles from this role through this
+ relation.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the relation for the roles belonging to this role.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="validateSave()"><!-- --></A><H3>
+validateSave</H3>
+<PRE>
+protected void <B>validateSave</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="put(java.lang.String, java.lang.Object)"><!-- --></A><H3>
+put</H3>
+<PRE>
+public void <B>put</B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;key,
+                <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A>&nbsp;value)</PRE>
+<DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../com/parse/ParseObject.html#put(java.lang.String, java.lang.Object)">ParseObject</A></CODE></B></DD>
+<DD>Add a key-value pair to this object. It is recommended to name keys in
+ partialCamelCaseLikeThis.
+<P>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE><A HREF="../../com/parse/ParseObject.html#put(java.lang.String, java.lang.Object)">put</A></CODE> in class <CODE><A HREF="../../com/parse/ParseObject.html" title="class in com.parse">ParseObject</A></CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>key</CODE> - Keys must be alphanumerical plus underscore, and start with a letter.<DD><CODE>value</CODE> - Values may be numerical, String, JSONObject, JSONArray, JSONObject.NULL, or other
+          ParseObjects. value may not be <code>null</code>.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getQuery()"><!-- --></A><H3>
+getQuery</H3>
+<PRE>
+public static <A HREF="../../com/parse/ParseQuery.html" title="class in com.parse">ParseQuery</A>&lt;<A HREF="../../com/parse/ParseRole.html" title="class in com.parse">ParseRole</A>&gt; <B>getQuery</B>()</PRE>
+<DL>
+<DD>Gets a <A HREF="../../com/parse/ParseQuery.html" title="class in com.parse"><CODE>ParseQuery</CODE></A> over the Role collection.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>A new query over the Role collection.</DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../com/parse/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ParseRole.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../com/parse/ParseRelation.html" title="class in com.parse"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../com/parse/ParseTwitterUtils.html" title="class in com.parse"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../index.html?com/parse/ParseRole.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="ParseRole.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+
+</BODY>
+</HTML>
