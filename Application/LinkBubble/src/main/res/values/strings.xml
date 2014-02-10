@@ -117,6 +117,7 @@
     <string name="link_redirected">Redirected to %1$s</string>
 
     <string name="tampered_apk">Link Bubble will not work because the APK has been illegally modified.\nDownload again from the Play Store.</string>
+    <string name="unlicensed">Link Bubble demo version can only load one active bubble.\nUpgrade at the Play Store.</string>
 
     <string name="bubble_link_copied_to_clipboard">Bubble link copied to clipboard.</string>
     <string name="link_copied_to_clipboard">Link copied to clipboard.</string>
