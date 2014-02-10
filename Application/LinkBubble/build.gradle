@@ -1,15 +1,18 @@
 buildscript {
     repositories {
         mavenCentral()
+        //flatDir { dirs '/Users/chrislacy/Dropbox/Android/DexGuard/DexGuard5.4.21/lib' }
         maven { url 'http://download.crashlytics.com/maven' }
     }
     dependencies {
+        //classpath ':dexguard:'
         classpath 'com.android.tools.build:gradle:0.7.+'
         classpath 'com.crashlytics.tools.gradle:crashlytics-gradle:1.+'
-
     }
 }
+
 apply plugin: 'android'
+//apply plugin: 'dexguard'
 apply plugin: 'crashlytics'
 
 repositories {
@@ -27,6 +30,28 @@ android {
         versionCode 1
         versionName "1.0 (dev)"
         packageName "com.linkbubble.playstore"
+    }
+
+    signingConfigs {
+        release {
+            // (via http://stackoverflow.com/a/19350401/328679)
+            storeFile file(System.getenv("KEYSTORE_LOCATION"))
+            keyAlias System.getenv("ACTION_LAUNCHER_KEY_ALIAS")
+
+            // These two lines make gradle believe that the signingConfigs
+            // section is complete. Without them, tasks like installRelease
+            // will not be available!
+            storePassword "notYourRealPassword"
+            keyPassword "notYourRealPassword"
+        }
+    }
+
+    buildTypes {
+        release {
+            //proguardFile plugin.getDefaultDexGuardFile('dexguard-release.pro')
+            //proguardFile 'dexguard-project.txt'
+            //signingConfig signingConfigs.release
+        }
     }
 }
 
