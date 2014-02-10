@@ -1,0 +1,752 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<TITLE>
+ParseACL
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../style.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="ParseACL";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../com/parse/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ParseACL.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../com/parse/Parse.html" title="class in com.parse"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../com/parse/ParseAnalytics.html" title="class in com.parse"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../index.html?com/parse/ParseACL.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="ParseACL.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+com.parse</FONT>
+<BR>
+Class ParseACL</H2>
+<PRE>
+<A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A>
+  <IMG SRC="../../resources/inherit.gif" ALT="extended by "><B>com.parse.ParseACL</B>
+</PRE>
+<HR>
+<DL>
+<DT><PRE>public class <B>ParseACL</B><DT>extends <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></DL>
+</PRE>
+
+<P>
+A ParseACL is used to control which users can access or modify a particular object. Each
+ <A HREF="../../com/parse/ParseObject.html" title="class in com.parse"><CODE>ParseObject</CODE></A> can have its own ParseACL. You can grant read and write permissions
+ separately to specific users, to groups of users that belong to roles, or you can grant
+ permissions to "the public" so that, for example, any user could read a particular object but
+ only a particular set of users could write to that object.
+<P>
+
+<P>
+<HR>
+
+<P>
+
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+<A NAME="constructor_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Constructor Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#ParseACL()">ParseACL</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates an ACL with no permissions granted.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#ParseACL(com.parse.ParseUser)">ParseACL</A></B>(<A HREF="../../com/parse/ParseUser.html" title="class in com.parse">ParseUser</A>&nbsp;owner)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates an ACL where only the provided user has access.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#getPublicReadAccess()">getPublicReadAccess</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get whether the public is allowed to read this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#getPublicWriteAccess()">getPublicWriteAccess</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set whether the public is allowed to write this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#getReadAccess(com.parse.ParseUser)">getReadAccess</A></B>(<A HREF="../../com/parse/ParseUser.html" title="class in com.parse">ParseUser</A>&nbsp;user)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get whether the given user id is *explicitly* allowed to read this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#getReadAccess(java.lang.String)">getReadAccess</A></B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;userId)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get whether the given user id is *explicitly* allowed to read this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#getRoleReadAccess(com.parse.ParseRole)">getRoleReadAccess</A></B>(<A HREF="../../com/parse/ParseRole.html" title="class in com.parse">ParseRole</A>&nbsp;role)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get whether users belonging to the given role are allowed to read this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#getRoleReadAccess(java.lang.String)">getRoleReadAccess</A></B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;roleName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get whether users belonging to the role with the given roleName are allowed to read this
+ object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#getRoleWriteAccess(com.parse.ParseRole)">getRoleWriteAccess</A></B>(<A HREF="../../com/parse/ParseRole.html" title="class in com.parse">ParseRole</A>&nbsp;role)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get whether users belonging to the given role are allowed to write this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#getRoleWriteAccess(java.lang.String)">getRoleWriteAccess</A></B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;roleName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get whether users belonging to the role with the given roleName are allowed to write this
+ object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#getWriteAccess(com.parse.ParseUser)">getWriteAccess</A></B>(<A HREF="../../com/parse/ParseUser.html" title="class in com.parse">ParseUser</A>&nbsp;user)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get whether the given user id is *explicitly* allowed to write this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#getWriteAccess(java.lang.String)">getWriteAccess</A></B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;userId)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get whether the given user id is *explicitly* allowed to write this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#setDefaultACL(com.parse.ParseACL, boolean)">setDefaultACL</A></B>(<A HREF="../../com/parse/ParseACL.html" title="class in com.parse">ParseACL</A>&nbsp;acl,
+              boolean&nbsp;withAccessForCurrentUser)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets a default ACL that will be applied to all <A HREF="../../com/parse/ParseObject.html" title="class in com.parse"><CODE>ParseObject</CODE></A>s when they are created.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#setPublicReadAccess(boolean)">setPublicReadAccess</A></B>(boolean&nbsp;allowed)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set whether the public is allowed to read this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#setPublicWriteAccess(boolean)">setPublicWriteAccess</A></B>(boolean&nbsp;allowed)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set whether the public is allowed to write this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#setReadAccess(com.parse.ParseUser, boolean)">setReadAccess</A></B>(<A HREF="../../com/parse/ParseUser.html" title="class in com.parse">ParseUser</A>&nbsp;user,
+              boolean&nbsp;allowed)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set whether the given user is allowed to read this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#setReadAccess(java.lang.String, boolean)">setReadAccess</A></B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;userId,
+              boolean&nbsp;allowed)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set whether the given user id is allowed to read this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#setRoleReadAccess(com.parse.ParseRole, boolean)">setRoleReadAccess</A></B>(<A HREF="../../com/parse/ParseRole.html" title="class in com.parse">ParseRole</A>&nbsp;role,
+                  boolean&nbsp;allowed)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set whether users belonging to the given role are allowed to read this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#setRoleReadAccess(java.lang.String, boolean)">setRoleReadAccess</A></B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;roleName,
+                  boolean&nbsp;allowed)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set whether users belonging to the role with the given roleName are allowed to read this
+ object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#setRoleWriteAccess(com.parse.ParseRole, boolean)">setRoleWriteAccess</A></B>(<A HREF="../../com/parse/ParseRole.html" title="class in com.parse">ParseRole</A>&nbsp;role,
+                   boolean&nbsp;allowed)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set whether users belonging to the given role are allowed to write this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#setRoleWriteAccess(java.lang.String, boolean)">setRoleWriteAccess</A></B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;roleName,
+                   boolean&nbsp;allowed)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set whether users belonging to the role with the given roleName are allowed to write this
+ object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#setWriteAccess(com.parse.ParseUser, boolean)">setWriteAccess</A></B>(<A HREF="../../com/parse/ParseUser.html" title="class in com.parse">ParseUser</A>&nbsp;user,
+               boolean&nbsp;allowed)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set whether the given user is allowed to write this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseACL.html#setWriteAccess(java.lang.String, boolean)">setWriteAccess</A></B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;userId,
+               boolean&nbsp;allowed)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set whether the given user id is allowed to write this object.</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_Object"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+<A NAME="constructor_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Constructor Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="ParseACL()"><!-- --></A><H3>
+ParseACL</H3>
+<PRE>
+public <B>ParseACL</B>()</PRE>
+<DL>
+<DD>Creates an ACL with no permissions granted.
+<P>
+</DL>
+<HR>
+
+<A NAME="ParseACL(com.parse.ParseUser)"><!-- --></A><H3>
+ParseACL</H3>
+<PRE>
+public <B>ParseACL</B>(<A HREF="../../com/parse/ParseUser.html" title="class in com.parse">ParseUser</A>&nbsp;owner)</PRE>
+<DL>
+<DD>Creates an ACL where only the provided user has access.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>owner</CODE> - The only user that can read or write objects governed by this ACL.</DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="setPublicReadAccess(boolean)"><!-- --></A><H3>
+setPublicReadAccess</H3>
+<PRE>
+public void <B>setPublicReadAccess</B>(boolean&nbsp;allowed)</PRE>
+<DL>
+<DD>Set whether the public is allowed to read this object.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getPublicReadAccess()"><!-- --></A><H3>
+getPublicReadAccess</H3>
+<PRE>
+public boolean <B>getPublicReadAccess</B>()</PRE>
+<DL>
+<DD>Get whether the public is allowed to read this object.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setPublicWriteAccess(boolean)"><!-- --></A><H3>
+setPublicWriteAccess</H3>
+<PRE>
+public void <B>setPublicWriteAccess</B>(boolean&nbsp;allowed)</PRE>
+<DL>
+<DD>Set whether the public is allowed to write this object.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getPublicWriteAccess()"><!-- --></A><H3>
+getPublicWriteAccess</H3>
+<PRE>
+public boolean <B>getPublicWriteAccess</B>()</PRE>
+<DL>
+<DD>Set whether the public is allowed to write this object.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setReadAccess(java.lang.String, boolean)"><!-- --></A><H3>
+setReadAccess</H3>
+<PRE>
+public void <B>setReadAccess</B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;userId,
+                          boolean&nbsp;allowed)</PRE>
+<DL>
+<DD>Set whether the given user id is allowed to read this object.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getReadAccess(java.lang.String)"><!-- --></A><H3>
+getReadAccess</H3>
+<PRE>
+public boolean <B>getReadAccess</B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;userId)</PRE>
+<DL>
+<DD>Get whether the given user id is *explicitly* allowed to read this object. Even if this returns
+ false, the user may still be able to access it if getPublicReadAccess returns true or a role
+ that the user belongs to has read access.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setWriteAccess(java.lang.String, boolean)"><!-- --></A><H3>
+setWriteAccess</H3>
+<PRE>
+public void <B>setWriteAccess</B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;userId,
+                           boolean&nbsp;allowed)</PRE>
+<DL>
+<DD>Set whether the given user id is allowed to write this object.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getWriteAccess(java.lang.String)"><!-- --></A><H3>
+getWriteAccess</H3>
+<PRE>
+public boolean <B>getWriteAccess</B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;userId)</PRE>
+<DL>
+<DD>Get whether the given user id is *explicitly* allowed to write this object. Even if this
+ returns false, the user may still be able to write it if getPublicWriteAccess returns true or a
+ role that the user belongs to has write access.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setReadAccess(com.parse.ParseUser, boolean)"><!-- --></A><H3>
+setReadAccess</H3>
+<PRE>
+public void <B>setReadAccess</B>(<A HREF="../../com/parse/ParseUser.html" title="class in com.parse">ParseUser</A>&nbsp;user,
+                          boolean&nbsp;allowed)</PRE>
+<DL>
+<DD>Set whether the given user is allowed to read this object.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getReadAccess(com.parse.ParseUser)"><!-- --></A><H3>
+getReadAccess</H3>
+<PRE>
+public boolean <B>getReadAccess</B>(<A HREF="../../com/parse/ParseUser.html" title="class in com.parse">ParseUser</A>&nbsp;user)</PRE>
+<DL>
+<DD>Get whether the given user id is *explicitly* allowed to read this object. Even if this returns
+ false, the user may still be able to access it if getPublicReadAccess returns true or a role
+ that the user belongs to has read access.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setWriteAccess(com.parse.ParseUser, boolean)"><!-- --></A><H3>
+setWriteAccess</H3>
+<PRE>
+public void <B>setWriteAccess</B>(<A HREF="../../com/parse/ParseUser.html" title="class in com.parse">ParseUser</A>&nbsp;user,
+                           boolean&nbsp;allowed)</PRE>
+<DL>
+<DD>Set whether the given user is allowed to write this object.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getWriteAccess(com.parse.ParseUser)"><!-- --></A><H3>
+getWriteAccess</H3>
+<PRE>
+public boolean <B>getWriteAccess</B>(<A HREF="../../com/parse/ParseUser.html" title="class in com.parse">ParseUser</A>&nbsp;user)</PRE>
+<DL>
+<DD>Get whether the given user id is *explicitly* allowed to write this object. Even if this
+ returns false, the user may still be able to write it if getPublicWriteAccess returns true or a
+ role that the user belongs to has write access.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRoleReadAccess(java.lang.String)"><!-- --></A><H3>
+getRoleReadAccess</H3>
+<PRE>
+public boolean <B>getRoleReadAccess</B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;roleName)</PRE>
+<DL>
+<DD>Get whether users belonging to the role with the given roleName are allowed to read this
+ object. Even if this returns <code>false</code>, the role may still be able to read it if a parent
+ role has read access.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>roleName</CODE> - The name of the role.
+<DT><B>Returns:</B><DD><code>true</code> if the role has read access. <code>false</code> otherwise.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setRoleReadAccess(java.lang.String, boolean)"><!-- --></A><H3>
+setRoleReadAccess</H3>
+<PRE>
+public void <B>setRoleReadAccess</B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;roleName,
+                              boolean&nbsp;allowed)</PRE>
+<DL>
+<DD>Set whether users belonging to the role with the given roleName are allowed to read this
+ object.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>roleName</CODE> - The name of the role.<DD><CODE>allowed</CODE> - Whether the given role can read this object.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRoleWriteAccess(java.lang.String)"><!-- --></A><H3>
+getRoleWriteAccess</H3>
+<PRE>
+public boolean <B>getRoleWriteAccess</B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;roleName)</PRE>
+<DL>
+<DD>Get whether users belonging to the role with the given roleName are allowed to write this
+ object. Even if this returns <code>false</code>, the role may still be able to write it if a parent
+ role has write access.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>roleName</CODE> - The name of the role.
+<DT><B>Returns:</B><DD><code>true</code> if the role has write access. <code>false</code> otherwise.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setRoleWriteAccess(java.lang.String, boolean)"><!-- --></A><H3>
+setRoleWriteAccess</H3>
+<PRE>
+public void <B>setRoleWriteAccess</B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;roleName,
+                               boolean&nbsp;allowed)</PRE>
+<DL>
+<DD>Set whether users belonging to the role with the given roleName are allowed to write this
+ object.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>roleName</CODE> - The name of the role.<DD><CODE>allowed</CODE> - Whether the given role can write this object.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRoleReadAccess(com.parse.ParseRole)"><!-- --></A><H3>
+getRoleReadAccess</H3>
+<PRE>
+public boolean <B>getRoleReadAccess</B>(<A HREF="../../com/parse/ParseRole.html" title="class in com.parse">ParseRole</A>&nbsp;role)</PRE>
+<DL>
+<DD>Get whether users belonging to the given role are allowed to read this object. Even if this
+ returns <code>false</code>, the role may still be able to read it if a parent role has read access.
+ The role must already be saved on the server and its data must have been fetched in order to
+ use this method.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>role</CODE> - The role to check for access.
+<DT><B>Returns:</B><DD><code>true</code> if the role has read access. <code>false</code> otherwise.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setRoleReadAccess(com.parse.ParseRole, boolean)"><!-- --></A><H3>
+setRoleReadAccess</H3>
+<PRE>
+public void <B>setRoleReadAccess</B>(<A HREF="../../com/parse/ParseRole.html" title="class in com.parse">ParseRole</A>&nbsp;role,
+                              boolean&nbsp;allowed)</PRE>
+<DL>
+<DD>Set whether users belonging to the given role are allowed to read this object. The role must
+ already be saved on the server and its data must have been fetched in order to use this method.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>role</CODE> - The role to assign access.<DD><CODE>allowed</CODE> - Whether the given role can read this object.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRoleWriteAccess(com.parse.ParseRole)"><!-- --></A><H3>
+getRoleWriteAccess</H3>
+<PRE>
+public boolean <B>getRoleWriteAccess</B>(<A HREF="../../com/parse/ParseRole.html" title="class in com.parse">ParseRole</A>&nbsp;role)</PRE>
+<DL>
+<DD>Get whether users belonging to the given role are allowed to write this object. Even if this
+ returns <code>false</code>, the role may still be able to write it if a parent role has write
+ access. The role must already be saved on the server and its data must have been fetched in
+ order to use this method.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>role</CODE> - The role to check for access.
+<DT><B>Returns:</B><DD><code>true</code> if the role has write access. <code>false</code> otherwise.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setRoleWriteAccess(com.parse.ParseRole, boolean)"><!-- --></A><H3>
+setRoleWriteAccess</H3>
+<PRE>
+public void <B>setRoleWriteAccess</B>(<A HREF="../../com/parse/ParseRole.html" title="class in com.parse">ParseRole</A>&nbsp;role,
+                               boolean&nbsp;allowed)</PRE>
+<DL>
+<DD>Set whether users belonging to the given role are allowed to write this object. The role must
+ already be saved on the server and its data must have been fetched in order to use this method.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>role</CODE> - The role to assign access.<DD><CODE>allowed</CODE> - Whether the given role can write this object.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setDefaultACL(com.parse.ParseACL, boolean)"><!-- --></A><H3>
+setDefaultACL</H3>
+<PRE>
+public static void <B>setDefaultACL</B>(<A HREF="../../com/parse/ParseACL.html" title="class in com.parse">ParseACL</A>&nbsp;acl,
+                                 boolean&nbsp;withAccessForCurrentUser)</PRE>
+<DL>
+<DD>Sets a default ACL that will be applied to all <A HREF="../../com/parse/ParseObject.html" title="class in com.parse"><CODE>ParseObject</CODE></A>s when they are created.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>acl</CODE> - The ACL to use as a template for all <A HREF="../../com/parse/ParseObject.html" title="class in com.parse"><CODE>ParseObject</CODE></A>s created after setDefaultACL
+          has been called. This value will be copied and used as a template for the creation of
+          new ACLs, so changes to the instance after setDefaultACL() has been called will not be
+          reflected in new <A HREF="../../com/parse/ParseObject.html" title="class in com.parse"><CODE>ParseObject</CODE></A>s.<DD><CODE>withAccessForCurrentUser</CODE> - If true, the ParseACL that is applied to newly-created <A HREF="../../com/parse/ParseObject.html" title="class in com.parse"><CODE>ParseObject</CODE></A>s will
+          provide read and write access to the <A HREF="../../com/parse/ParseUser.html#getCurrentUser()"><CODE>ParseUser.getCurrentUser()</CODE></A> at the time of
+          creation. If false, the provided ACL will be used without modification. If acl is
+          null, this value is ignored.</DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../com/parse/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ParseACL.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../com/parse/Parse.html" title="class in com.parse"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../com/parse/ParseAnalytics.html" title="class in com.parse"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../index.html?com/parse/ParseACL.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="ParseACL.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+
+</BODY>
+</HTML>

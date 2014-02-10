@@ -1,0 +1,1168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<TITLE>
+ParseException
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../style.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="ParseException";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../com/parse/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ParseException.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../com/parse/ParseCloud.html" title="class in com.parse"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../com/parse/ParseFacebookUtils.html" title="class in com.parse"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../index.html?com/parse/ParseException.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="ParseException.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+com.parse</FONT>
+<BR>
+Class ParseException</H2>
+<PRE>
+<A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A>
+  <IMG SRC="../../resources/inherit.gif" ALT="extended by "><A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</A>
+      <IMG SRC="../../resources/inherit.gif" ALT="extended by "><A target="_top" HREF="http://developer.android.com/reference/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A>
+          <IMG SRC="../../resources/inherit.gif" ALT="extended by "><B>com.parse.ParseException</B>
+</PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD><A target="_top" HREF="http://developer.android.com/reference/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</A></DD>
+</DL>
+<HR>
+<DL>
+<DT><PRE>public class <B>ParseException</B><DT>extends <A target="_top" HREF="http://developer.android.com/reference/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></DL>
+</PRE>
+
+<P>
+A ParseException gets raised whenever a <A HREF="../../com/parse/ParseObject.html" title="class in com.parse"><CODE>ParseObject</CODE></A> issues an invalid request, such as
+ deleting or editing an object that no longer exists on the server, or when there is a network
+ failure preventing communication with the Parse server.
+<P>
+
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../serialized-form.html#com.parse.ParseException">Serialized Form</A></DL>
+<HR>
+
+<P>
+<!-- =========== FIELD SUMMARY =========== -->
+
+<A NAME="field_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Field Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#ACCOUNT_ALREADY_LINKED">ACCOUNT_ALREADY_LINKED</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that an an account being linked is already linked to another user.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#CACHE_MISS">CACHE_MISS</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating the result was not found in the cache.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#COMMAND_UNAVAILABLE">COMMAND_UNAVAILABLE</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that the feature you tried to access is only available internally for
+ testing purposes.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#CONNECTION_FAILED">CONNECTION_FAILED</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating the connection to the Parse servers failed.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#DUPLICATE_VALUE">DUPLICATE_VALUE</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that a unique field was given a value that is already taken.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#EMAIL_MISSING">EMAIL_MISSING</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that the email is missing, but must be specified.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#EMAIL_NOT_FOUND">EMAIL_NOT_FOUND</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that a user with the specified email was not found.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#EMAIL_TAKEN">EMAIL_TAKEN</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that the email has already been taken.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#EXCEEDED_QUOTA">EXCEEDED_QUOTA</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that an application quota was exceeded.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#FILE_DELETE_ERROR">FILE_DELETE_ERROR</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that deleting a file failed.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#INCORRECT_TYPE">INCORRECT_TYPE</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that a field was set to an inconsistent type.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#INTERNAL_SERVER_ERROR">INTERNAL_SERVER_ERROR</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that something has gone wrong with the server.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#INVALID_ACL">INVALID_ACL</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating an invalid ACL was provided.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#INVALID_CHANNEL_NAME">INVALID_CHANNEL_NAME</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating an invalid channel name.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#INVALID_CLASS_NAME">INVALID_CLASS_NAME</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating a missing or invalid classname.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#INVALID_EMAIL_ADDRESS">INVALID_EMAIL_ADDRESS</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that the email address was invalid.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#INVALID_FILE_NAME">INVALID_FILE_NAME</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that an invalid filename was used for ParseFile.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#INVALID_JSON">INVALID_JSON</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that badly formed JSON was received upstream.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#INVALID_KEY_NAME">INVALID_KEY_NAME</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating an invalid key name.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#INVALID_LINKED_SESSION">INVALID_LINKED_SESSION</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that a user with a linked (e.g.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#INVALID_NESTED_KEY">INVALID_NESTED_KEY</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that an invalid key was used in a nested JSONObject.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#INVALID_POINTER">INVALID_POINTER</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating a malformed pointer.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#INVALID_QUERY">INVALID_QUERY</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating you tried to query with a datatype that doesn't support it, like exact
+ matching an array or object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#INVALID_ROLE_NAME">INVALID_ROLE_NAME</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that a role's name is invalid.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#LINKED_ID_MISSING">LINKED_ID_MISSING</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that a user cannot be linked to an account because that account's id
+ could not be found.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#MISSING_OBJECT_ID">MISSING_OBJECT_ID</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating an unspecified object id.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#MUST_CREATE_USER_THROUGH_SIGNUP">MUST_CREATE_USER_THROUGH_SIGNUP</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that a user can only be created through signup.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#NOT_INITIALIZED">NOT_INITIALIZED</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You must call Parse.initialize before using the Parse library.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#OBJECT_NOT_FOUND">OBJECT_NOT_FOUND</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating the specified object doesn't exist.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#OBJECT_TOO_LARGE">OBJECT_TOO_LARGE</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that the object is too large.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#OPERATION_FORBIDDEN">OPERATION_FORBIDDEN</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that the operation isn't allowed for clients.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#OTHER_CAUSE">OTHER_CAUSE</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#PASSWORD_MISSING">PASSWORD_MISSING</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that the password is missing or empty.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#PUSH_MISCONFIGURED">PUSH_MISCONFIGURED</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that push is misconfigured.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#SCRIPT_ERROR">SCRIPT_ERROR</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that a Cloud Code script failed.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#SESSION_MISSING">SESSION_MISSING</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that a user object without a valid session could not be altered.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#TIMEOUT">TIMEOUT</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that the request timed out on the server.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#UNSUPPORTED_SERVICE">UNSUPPORTED_SERVICE</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that a service being linked (e.g.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#USERNAME_MISSING">USERNAME_MISSING</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that the username is missing or empty.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#USERNAME_TAKEN">USERNAME_TAKEN</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that the username has already been taken.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#VALIDATION_ERROR">VALIDATION_ERROR</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error code indicating that cloud code validation failed.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+<A NAME="constructor_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Constructor Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#ParseException(int, java.lang.String)">ParseException</A></B>(int&nbsp;theCode,
+               <A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;theMessage)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Construct a new ParseException with a particular error code.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#ParseException(java.lang.String, java.lang.Throwable)">ParseException</A></B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;message,
+               <A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</A>&nbsp;cause)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Construct a new ParseException with an external cause.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#ParseException(java.lang.Throwable)">ParseException</A></B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</A>&nbsp;cause)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Construct a new ParseException with an external cause.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../com/parse/ParseException.html#getCode()">getCode</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Access the code for this error.</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_Throwable"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class <A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true#fillInStackTrace()" title="class or interface in java.lang">fillInStackTrace</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true#getCause()" title="class or interface in java.lang">getCause</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true#getLocalizedMessage()" title="class or interface in java.lang">getLocalizedMessage</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true#getMessage()" title="class or interface in java.lang">getMessage</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true#getStackTrace()" title="class or interface in java.lang">getStackTrace</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true#initCause(java.lang.Throwable)" title="class or interface in java.lang">initCause</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true#printStackTrace()" title="class or interface in java.lang">printStackTrace</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true#printStackTrace(java.io.PrintStream)" title="class or interface in java.lang">printStackTrace</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true#printStackTrace(java.io.PrintWriter)" title="class or interface in java.lang">printStackTrace</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true#setStackTrace(java.lang.StackTraceElement[])" title="class or interface in java.lang">setStackTrace</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true#toString()" title="class or interface in java.lang">toString</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_Object"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</A>, <A target="_top" HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ============ FIELD DETAIL =========== -->
+
+<A NAME="field_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Field Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="OTHER_CAUSE"><!-- --></A><H3>
+OTHER_CAUSE</H3>
+<PRE>
+public static final int <B>OTHER_CAUSE</B></PRE>
+<DL>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.OTHER_CAUSE">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="INTERNAL_SERVER_ERROR"><!-- --></A><H3>
+INTERNAL_SERVER_ERROR</H3>
+<PRE>
+public static final int <B>INTERNAL_SERVER_ERROR</B></PRE>
+<DL>
+<DD>Error code indicating that something has gone wrong with the server. If you get this error
+ code, it is Parse's fault. Contact us at https://parse.com/help
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.INTERNAL_SERVER_ERROR">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="CONNECTION_FAILED"><!-- --></A><H3>
+CONNECTION_FAILED</H3>
+<PRE>
+public static final int <B>CONNECTION_FAILED</B></PRE>
+<DL>
+<DD>Error code indicating the connection to the Parse servers failed.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.CONNECTION_FAILED">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="OBJECT_NOT_FOUND"><!-- --></A><H3>
+OBJECT_NOT_FOUND</H3>
+<PRE>
+public static final int <B>OBJECT_NOT_FOUND</B></PRE>
+<DL>
+<DD>Error code indicating the specified object doesn't exist.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.OBJECT_NOT_FOUND">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="INVALID_QUERY"><!-- --></A><H3>
+INVALID_QUERY</H3>
+<PRE>
+public static final int <B>INVALID_QUERY</B></PRE>
+<DL>
+<DD>Error code indicating you tried to query with a datatype that doesn't support it, like exact
+ matching an array or object.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.INVALID_QUERY">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="INVALID_CLASS_NAME"><!-- --></A><H3>
+INVALID_CLASS_NAME</H3>
+<PRE>
+public static final int <B>INVALID_CLASS_NAME</B></PRE>
+<DL>
+<DD>Error code indicating a missing or invalid classname. Classnames are case-sensitive. They must
+ start with a letter, and a-zA-Z0-9_ are the only valid characters.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.INVALID_CLASS_NAME">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="MISSING_OBJECT_ID"><!-- --></A><H3>
+MISSING_OBJECT_ID</H3>
+<PRE>
+public static final int <B>MISSING_OBJECT_ID</B></PRE>
+<DL>
+<DD>Error code indicating an unspecified object id.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.MISSING_OBJECT_ID">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="INVALID_KEY_NAME"><!-- --></A><H3>
+INVALID_KEY_NAME</H3>
+<PRE>
+public static final int <B>INVALID_KEY_NAME</B></PRE>
+<DL>
+<DD>Error code indicating an invalid key name. Keys are case-sensitive. They must start with a
+ letter, and a-zA-Z0-9_ are the only valid characters.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.INVALID_KEY_NAME">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="INVALID_POINTER"><!-- --></A><H3>
+INVALID_POINTER</H3>
+<PRE>
+public static final int <B>INVALID_POINTER</B></PRE>
+<DL>
+<DD>Error code indicating a malformed pointer. You should not see this unless you have been mucking
+ about changing internal Parse code.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.INVALID_POINTER">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="INVALID_JSON"><!-- --></A><H3>
+INVALID_JSON</H3>
+<PRE>
+public static final int <B>INVALID_JSON</B></PRE>
+<DL>
+<DD>Error code indicating that badly formed JSON was received upstream. This either indicates you
+ have done something unusual with modifying how things encode to JSON, or the network is failing
+ badly.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.INVALID_JSON">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="COMMAND_UNAVAILABLE"><!-- --></A><H3>
+COMMAND_UNAVAILABLE</H3>
+<PRE>
+public static final int <B>COMMAND_UNAVAILABLE</B></PRE>
+<DL>
+<DD>Error code indicating that the feature you tried to access is only available internally for
+ testing purposes.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.COMMAND_UNAVAILABLE">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="NOT_INITIALIZED"><!-- --></A><H3>
+NOT_INITIALIZED</H3>
+<PRE>
+public static final int <B>NOT_INITIALIZED</B></PRE>
+<DL>
+<DD>You must call Parse.initialize before using the Parse library.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.NOT_INITIALIZED">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="INCORRECT_TYPE"><!-- --></A><H3>
+INCORRECT_TYPE</H3>
+<PRE>
+public static final int <B>INCORRECT_TYPE</B></PRE>
+<DL>
+<DD>Error code indicating that a field was set to an inconsistent type.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.INCORRECT_TYPE">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="INVALID_CHANNEL_NAME"><!-- --></A><H3>
+INVALID_CHANNEL_NAME</H3>
+<PRE>
+public static final int <B>INVALID_CHANNEL_NAME</B></PRE>
+<DL>
+<DD>Error code indicating an invalid channel name. A channel name is either an empty string (the
+ broadcast channel) or contains only a-zA-Z0-9_ characters and starts with a letter.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.INVALID_CHANNEL_NAME">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="PUSH_MISCONFIGURED"><!-- --></A><H3>
+PUSH_MISCONFIGURED</H3>
+<PRE>
+public static final int <B>PUSH_MISCONFIGURED</B></PRE>
+<DL>
+<DD>Error code indicating that push is misconfigured.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.PUSH_MISCONFIGURED">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="OBJECT_TOO_LARGE"><!-- --></A><H3>
+OBJECT_TOO_LARGE</H3>
+<PRE>
+public static final int <B>OBJECT_TOO_LARGE</B></PRE>
+<DL>
+<DD>Error code indicating that the object is too large.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.OBJECT_TOO_LARGE">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="OPERATION_FORBIDDEN"><!-- --></A><H3>
+OPERATION_FORBIDDEN</H3>
+<PRE>
+public static final int <B>OPERATION_FORBIDDEN</B></PRE>
+<DL>
+<DD>Error code indicating that the operation isn't allowed for clients.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.OPERATION_FORBIDDEN">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="CACHE_MISS"><!-- --></A><H3>
+CACHE_MISS</H3>
+<PRE>
+public static final int <B>CACHE_MISS</B></PRE>
+<DL>
+<DD>Error code indicating the result was not found in the cache.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.CACHE_MISS">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="INVALID_NESTED_KEY"><!-- --></A><H3>
+INVALID_NESTED_KEY</H3>
+<PRE>
+public static final int <B>INVALID_NESTED_KEY</B></PRE>
+<DL>
+<DD>Error code indicating that an invalid key was used in a nested JSONObject.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.INVALID_NESTED_KEY">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="INVALID_FILE_NAME"><!-- --></A><H3>
+INVALID_FILE_NAME</H3>
+<PRE>
+public static final int <B>INVALID_FILE_NAME</B></PRE>
+<DL>
+<DD>Error code indicating that an invalid filename was used for ParseFile. A valid file name
+ contains only a-zA-Z0-9_. characters and is between 1 and 128 characters.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.INVALID_FILE_NAME">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="INVALID_ACL"><!-- --></A><H3>
+INVALID_ACL</H3>
+<PRE>
+public static final int <B>INVALID_ACL</B></PRE>
+<DL>
+<DD>Error code indicating an invalid ACL was provided.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.INVALID_ACL">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="TIMEOUT"><!-- --></A><H3>
+TIMEOUT</H3>
+<PRE>
+public static final int <B>TIMEOUT</B></PRE>
+<DL>
+<DD>Error code indicating that the request timed out on the server. Typically this indicates that
+ the request is too expensive to run.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.TIMEOUT">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="INVALID_EMAIL_ADDRESS"><!-- --></A><H3>
+INVALID_EMAIL_ADDRESS</H3>
+<PRE>
+public static final int <B>INVALID_EMAIL_ADDRESS</B></PRE>
+<DL>
+<DD>Error code indicating that the email address was invalid.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.INVALID_EMAIL_ADDRESS">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="DUPLICATE_VALUE"><!-- --></A><H3>
+DUPLICATE_VALUE</H3>
+<PRE>
+public static final int <B>DUPLICATE_VALUE</B></PRE>
+<DL>
+<DD>Error code indicating that a unique field was given a value that is already taken.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.DUPLICATE_VALUE">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="INVALID_ROLE_NAME"><!-- --></A><H3>
+INVALID_ROLE_NAME</H3>
+<PRE>
+public static final int <B>INVALID_ROLE_NAME</B></PRE>
+<DL>
+<DD>Error code indicating that a role's name is invalid.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.INVALID_ROLE_NAME">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="EXCEEDED_QUOTA"><!-- --></A><H3>
+EXCEEDED_QUOTA</H3>
+<PRE>
+public static final int <B>EXCEEDED_QUOTA</B></PRE>
+<DL>
+<DD>Error code indicating that an application quota was exceeded. Upgrade to resolve.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.EXCEEDED_QUOTA">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="SCRIPT_ERROR"><!-- --></A><H3>
+SCRIPT_ERROR</H3>
+<PRE>
+public static final int <B>SCRIPT_ERROR</B></PRE>
+<DL>
+<DD>Error code indicating that a Cloud Code script failed.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.SCRIPT_ERROR">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="VALIDATION_ERROR"><!-- --></A><H3>
+VALIDATION_ERROR</H3>
+<PRE>
+public static final int <B>VALIDATION_ERROR</B></PRE>
+<DL>
+<DD>Error code indicating that cloud code validation failed.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.VALIDATION_ERROR">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="FILE_DELETE_ERROR"><!-- --></A><H3>
+FILE_DELETE_ERROR</H3>
+<PRE>
+public static final int <B>FILE_DELETE_ERROR</B></PRE>
+<DL>
+<DD>Error code indicating that deleting a file failed.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.FILE_DELETE_ERROR">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="USERNAME_MISSING"><!-- --></A><H3>
+USERNAME_MISSING</H3>
+<PRE>
+public static final int <B>USERNAME_MISSING</B></PRE>
+<DL>
+<DD>Error code indicating that the username is missing or empty.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.USERNAME_MISSING">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="PASSWORD_MISSING"><!-- --></A><H3>
+PASSWORD_MISSING</H3>
+<PRE>
+public static final int <B>PASSWORD_MISSING</B></PRE>
+<DL>
+<DD>Error code indicating that the password is missing or empty.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.PASSWORD_MISSING">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="USERNAME_TAKEN"><!-- --></A><H3>
+USERNAME_TAKEN</H3>
+<PRE>
+public static final int <B>USERNAME_TAKEN</B></PRE>
+<DL>
+<DD>Error code indicating that the username has already been taken.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.USERNAME_TAKEN">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="EMAIL_TAKEN"><!-- --></A><H3>
+EMAIL_TAKEN</H3>
+<PRE>
+public static final int <B>EMAIL_TAKEN</B></PRE>
+<DL>
+<DD>Error code indicating that the email has already been taken.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.EMAIL_TAKEN">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="EMAIL_MISSING"><!-- --></A><H3>
+EMAIL_MISSING</H3>
+<PRE>
+public static final int <B>EMAIL_MISSING</B></PRE>
+<DL>
+<DD>Error code indicating that the email is missing, but must be specified.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.EMAIL_MISSING">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="EMAIL_NOT_FOUND"><!-- --></A><H3>
+EMAIL_NOT_FOUND</H3>
+<PRE>
+public static final int <B>EMAIL_NOT_FOUND</B></PRE>
+<DL>
+<DD>Error code indicating that a user with the specified email was not found.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.EMAIL_NOT_FOUND">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="SESSION_MISSING"><!-- --></A><H3>
+SESSION_MISSING</H3>
+<PRE>
+public static final int <B>SESSION_MISSING</B></PRE>
+<DL>
+<DD>Error code indicating that a user object without a valid session could not be altered.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.SESSION_MISSING">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="MUST_CREATE_USER_THROUGH_SIGNUP"><!-- --></A><H3>
+MUST_CREATE_USER_THROUGH_SIGNUP</H3>
+<PRE>
+public static final int <B>MUST_CREATE_USER_THROUGH_SIGNUP</B></PRE>
+<DL>
+<DD>Error code indicating that a user can only be created through signup.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.MUST_CREATE_USER_THROUGH_SIGNUP">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="ACCOUNT_ALREADY_LINKED"><!-- --></A><H3>
+ACCOUNT_ALREADY_LINKED</H3>
+<PRE>
+public static final int <B>ACCOUNT_ALREADY_LINKED</B></PRE>
+<DL>
+<DD>Error code indicating that an an account being linked is already linked to another user.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.ACCOUNT_ALREADY_LINKED">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="LINKED_ID_MISSING"><!-- --></A><H3>
+LINKED_ID_MISSING</H3>
+<PRE>
+public static final int <B>LINKED_ID_MISSING</B></PRE>
+<DL>
+<DD>Error code indicating that a user cannot be linked to an account because that account's id
+ could not be found.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.LINKED_ID_MISSING">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="INVALID_LINKED_SESSION"><!-- --></A><H3>
+INVALID_LINKED_SESSION</H3>
+<PRE>
+public static final int <B>INVALID_LINKED_SESSION</B></PRE>
+<DL>
+<DD>Error code indicating that a user with a linked (e.g. Facebook) account has an invalid session.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.INVALID_LINKED_SESSION">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="UNSUPPORTED_SERVICE"><!-- --></A><H3>
+UNSUPPORTED_SERVICE</H3>
+<PRE>
+public static final int <B>UNSUPPORTED_SERVICE</B></PRE>
+<DL>
+<DD>Error code indicating that a service being linked (e.g. Facebook or Twitter) is unsupported.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../constant-values.html#com.parse.ParseException.UNSUPPORTED_SERVICE">Constant Field Values</A></DL>
+</DL>
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+<A NAME="constructor_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Constructor Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="ParseException(int, java.lang.String)"><!-- --></A><H3>
+ParseException</H3>
+<PRE>
+public <B>ParseException</B>(int&nbsp;theCode,
+                      <A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;theMessage)</PRE>
+<DL>
+<DD>Construct a new ParseException with a particular error code.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>theCode</CODE> - The error code to identify the type of exception.<DD><CODE>theMessage</CODE> - A message describing the error in more detail.</DL>
+</DL>
+<HR>
+
+<A NAME="ParseException(java.lang.String, java.lang.Throwable)"><!-- --></A><H3>
+ParseException</H3>
+<PRE>
+public <B>ParseException</B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;message,
+                      <A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</A>&nbsp;cause)</PRE>
+<DL>
+<DD>Construct a new ParseException with an external cause.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>message</CODE> - A message describing the error in more detail.<DD><CODE>cause</CODE> - The cause of the error.</DL>
+</DL>
+<HR>
+
+<A NAME="ParseException(java.lang.Throwable)"><!-- --></A><H3>
+ParseException</H3>
+<PRE>
+public <B>ParseException</B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</A>&nbsp;cause)</PRE>
+<DL>
+<DD>Construct a new ParseException with an external cause.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>cause</CODE> - The cause of the error.</DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="getCode()"><!-- --></A><H3>
+getCode</H3>
+<PRE>
+public int <B>getCode</B>()</PRE>
+<DL>
+<DD>Access the code for this error.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The numerical code for this error.</DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../com/parse/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ParseException.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../com/parse/ParseCloud.html" title="class in com.parse"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../com/parse/ParseFacebookUtils.html" title="class in com.parse"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../index.html?com/parse/ParseException.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="ParseException.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+
+</BODY>
+</HTML>
