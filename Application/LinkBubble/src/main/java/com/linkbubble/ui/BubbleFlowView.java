@@ -80,6 +80,7 @@ public class BubbleFlowView extends HorizontalScrollView {
     private float mCenterViewDownY;
     private static final int LONG_PRESS_FRAMES = 6;
     private View mTouchView;
+    private boolean mLongPress;
 
     public BubbleFlowView(Context context) {
         this(context, null);
@@ -126,6 +127,7 @@ public class BubbleFlowView extends HorizontalScrollView {
 
                 if (mStillTouchFrameCount == LONG_PRESS_FRAMES) {
                     if (mBubbleFlowListener != null) {
+                        mLongPress = true;
                         mBubbleFlowListener.onCenterItemLongClicked(BubbleFlowView.this, mTouchView);
                     }
                 }
@@ -682,7 +684,7 @@ public class BubbleFlowView extends HorizontalScrollView {
 
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
-                if (!mInterceptingTouch) {
+                if (!mInterceptingTouch && mLongPress) {
                     final float bubblePeriod = (float) Constant.BUBBLE_ANIM_TIME / 1000.f;
                     final float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
                     MainController.get().expandBubbleFlow((long) (contentPeriod * 1000));
@@ -795,6 +797,7 @@ public class BubbleFlowView extends HorizontalScrollView {
                 int action = event.getAction();
                 if (action == MotionEvent.ACTION_DOWN) {
                     mTouchView = view;
+                    mLongPress = false;
                     mStillTouchFrameCount = 0;
                     mCenterViewTouchPointerId = event.getPointerId(0);
                     mCenterViewDownX = event.getX();
@@ -806,6 +809,7 @@ public class BubbleFlowView extends HorizontalScrollView {
                     MainController.get().scheduleUpdate();
                 } else if (action == MotionEvent.ACTION_UP) {
                     mTouchView = null;
+                    mLongPress = false;
                     mStillTouchFrameCount = -1;
                     if (DEBUG) {
                         Log.d(TAG, "[longpress] onTouch() UP: mStillTouchFrameCount=" + mStillTouchFrameCount);
