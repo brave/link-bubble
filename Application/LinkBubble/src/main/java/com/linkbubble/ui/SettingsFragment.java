@@ -1,5 +1,6 @@
 package com.linkbubble.ui;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -92,6 +93,7 @@ public class SettingsFragment extends PreferenceFragment {
                     preference.setIcon(info.loadIcon(packageManager));
                     preference.setSummary(key);
                     preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                        @SuppressLint("StringFormatMatches")        // Lint incorrectly flags this because 2 items are the same.
                         @Override
                         public boolean onPreferenceClick(Preference preference) {
                             Resources resources = getActivity().getResources();
