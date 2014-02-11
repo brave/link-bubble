@@ -23,13 +23,18 @@ repositories {
 android {
     compileSdkVersion 19
     buildToolsVersion '19.0.0'
-
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 19
         versionCode 1
         versionName "1.0 (dev)"
-        packageName "com.linkbubble.playstore"
+    }
+
+    productFlavors {
+        playstore {
+            packageName='com.linkbubble.playstore'
+            //buildConfigField "String", "PACKAGE_NAME", "com.linkbubble.playstore"
+        }
     }
 
     signingConfigs {
@@ -45,7 +50,6 @@ android {
             keyPassword "notYourRealPassword"
         }
     }
-
     buildTypes {
         release {
             //proguardFile plugin.getDefaultDexGuardFile('dexguard-release.pro')

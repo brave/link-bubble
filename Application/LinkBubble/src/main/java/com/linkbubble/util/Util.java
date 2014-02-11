@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
 import com.linkbubble.R;
 import com.linkbubble.ui.Prompt;
@@ -290,7 +291,7 @@ public class Util {
     public static boolean isLinkBubbleResolveInfo(ResolveInfo resolveInfo) {
         if (resolveInfo != null
             && resolveInfo.activityInfo != null
-                && resolveInfo.activityInfo.packageName.equals(Constant.PACKAGE_NAME)) {
+                && resolveInfo.activityInfo.packageName.equals(BuildConfig.PACKAGE_NAME)) {
             return true;
         }
 
