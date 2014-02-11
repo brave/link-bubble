@@ -94,7 +94,8 @@
             </intent-filter>
         </activity>
 
-        <service android:name="com.linkbubble.MainService" >
+        <service android:name="com.linkbubble.MainService"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.CONFIGURATION_CHANGED"/>
             </intent-filter>
