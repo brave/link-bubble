@@ -41,6 +41,7 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.graphics.Canvas;
 import android.widget.TextView;
+import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
 import com.linkbubble.util.ActionItem;
@@ -1122,7 +1123,7 @@ public class ContentView extends FrameLayout {
         for (AppForUrl appForUrl : mAppsForUrl) {
             if (appForUrl.mResolveInfo != null
                     && appForUrl.mResolveInfo.activityInfo != null
-                    && appForUrl.mResolveInfo.activityInfo.packageName.equals(Constant.PACKAGE_NAME)) {
+                    && appForUrl.mResolveInfo.activityInfo.packageName.equals(BuildConfig.PACKAGE_NAME)) {
                 containsLinkBubble = true;
                 break;
             }
