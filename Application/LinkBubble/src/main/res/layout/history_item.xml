@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -31,7 +32,7 @@
             android:id="@+id/page_title"
             android:text="Web page title goes here"
             android:singleLine="true"
-            />
+            tools:ignore="HardcodedText"/>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -46,7 +47,8 @@
                 android:id="@+id/page_url"
                 android:text="http://www.google.com"
                 android:singleLine="true"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                tools:ignore="HardcodedText"/>
 
             <com.linkbubble.ui.CondensedTextView
                 android:layout_width="wrap_content"
@@ -54,7 +56,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/page_date"
                 android:text="11am"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                tools:ignore="HardcodedText"/>
 
         </LinearLayout>
 
