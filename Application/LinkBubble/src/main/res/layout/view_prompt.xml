@@ -8,6 +8,9 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:id="@+id/prompt" style="@style/Prompt">
         <TextView android:id="@+id/prompt_message" style="@style/PromptMessage" />
-        <ImageButton android:id="@+id/prompt_button" style="@style/PromptButton" />
+        <ImageButton
+            android:id="@+id/prompt_button"
+            style="@style/PromptButton"
+            android:contentDescription="@string/content_description_button"/>
     </LinearLayout>
 </FrameLayout>
