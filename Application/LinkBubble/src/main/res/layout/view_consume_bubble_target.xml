@@ -11,6 +11,7 @@
         android:layout_width="@dimen/bubble_target_icon_size"
         android:layout_height="@dimen/bubble_target_icon_size"
         android:layout_gravity="center"
-        android:scaleType="centerInside"/>
+        android:scaleType="centerInside"
+        android:contentDescription="@string/content_description_target_icon"/>
 
 </com.linkbubble.ui.BubbleTargetView>

@@ -2,6 +2,7 @@
 
 <com.linkbubble.ui.ContentView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
@@ -57,7 +58,8 @@
                 android:layout_height="24dp"
                 android:paddingBottom="6dp"
                 android:src="@drawable/embed"
-                android:layout_gravity="bottom|right"/>
+                android:layout_gravity="bottom|right"
+                tools:ignore="ContentDescription"/>
 
         </com.linkbubble.ui.OpenEmbedButton>
 
@@ -96,6 +98,6 @@
         android:layout_height="8dp"
         android:background="@drawable/action_bar_shadow"
         android:layout_marginTop="@dimen/webview_margin_top"
-        />
+        tools:ignore="ContentDescription"/>
 
 </com.linkbubble.ui.ContentView>

@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/background"
         android:background="@drawable/bubble_light"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        tools:ignore="ContentDescription"/>
 
     <com.linkbubble.ui.ProgressIndicator
         android:layout_width="fill_parent"

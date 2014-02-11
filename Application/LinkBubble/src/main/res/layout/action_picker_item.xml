@@ -11,6 +11,7 @@
         android:id="@+id/icon"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:contentDescription="@string/content_description_app_icon"
         />
 
     <TextView

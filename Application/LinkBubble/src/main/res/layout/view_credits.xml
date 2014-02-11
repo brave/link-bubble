@@ -20,7 +20,8 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:padding="0dp"
-            android:src="@drawable/profile_thumb_lacy" />
+            android:src="@drawable/profile_thumb_lacy"
+            android:contentDescription="@string/content_description_lacy_profile_image"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,7 +58,8 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:padding="0dp"
-            android:src="@drawable/profile_thumb_watson" />
+            android:src="@drawable/profile_thumb_watson"
+            android:contentDescription="@string/content_description_watson_profile_image"/>
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/youtube_emebed_item_height"
         android:scaleType="fitXY"
+        android:contentDescription="@string/content_description_youtube_video_thumbnail"
         />
 
     <TextView

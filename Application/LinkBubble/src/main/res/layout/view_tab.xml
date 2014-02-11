@@ -2,6 +2,7 @@
 
 <com.linkbubble.ui.TabView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/bubble_pager_item_width"
     android:layout_height="@dimen/bubble_size"
     >
@@ -11,7 +12,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/background"
         android:background="@drawable/bubble_light"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        tools:ignore="ContentDescription"/>
 
     <!--
     <com.linkbubble.ui.ProgressIndicator
@@ -47,6 +49,7 @@
         android:layout_marginRight="@dimen/badge_margin"
         android:layout_marginTop="@dimen/badge_margin"
         android:src="@drawable/ic_action_arrow_left"
-        android:layout_gravity="top|left"/>
+        android:layout_gravity="top|left"
+        android:contentDescription="@string/content_description_can_go_back"/>
 
 </com.linkbubble.ui.TabView>
