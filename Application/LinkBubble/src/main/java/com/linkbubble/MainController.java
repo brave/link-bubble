@@ -550,7 +550,7 @@ public class MainController implements Choreographer.FrameCallback {
         boolean debug = prefs.getBoolean("debug_flick", false);
 
         if (debug) {
-            Toast.makeText(mContext, "HIT TARGET!", 400).show();
+            Toast.makeText(mContext, "HIT TARGET!", Toast.LENGTH_SHORT).show();
         } else {
             mBubbleFlowDraggable.closeTab(tabView, animateOff, action, tabView.getTotalTrackedLoadTime());
             int activeTabCount = getActiveTabCount();
