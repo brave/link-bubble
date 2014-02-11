@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/stat_container"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/stat_container"
     android:layout_width="wrap_content"
     android:layout_height="@dimen/stat_height"
     android:layout_gravity="center"
@@ -27,7 +28,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
         android:textSize="@dimen/stat_bubble_text_size"
-        android:background="@drawable/circle_stat_total_time"/>
+        android:background="@drawable/circle_stat_total_time"
+        tools:ignore="HardcodedText"/>
 
     <com.linkbubble.ui.CondensedTextView
         android:layout_width="wrap_content"
