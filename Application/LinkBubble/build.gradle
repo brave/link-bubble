@@ -68,3 +68,9 @@ dependencies {
     compile files('libs/dexguard_util.jar')
     //compile project(':Libraries:ViewPagerIndicator:library')
 }
+
+task showVersion << {
+    println buildscript.configurations.classpath.resolvedConfiguration.firstLevelModuleDependencies.moduleVersion
+}
+
+clean.dependsOn showVersion
