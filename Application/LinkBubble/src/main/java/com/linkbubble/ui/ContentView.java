@@ -1,5 +1,6 @@
 package com.linkbubble.ui;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -239,6 +240,7 @@ public class ContentView extends FrameLayout {
         alertDialog.show();
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     void configure(String urlAsString, TabView ownerTabView, long urlLoadStartTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
         mUrl = new URL(urlAsString);
         mOwnerTabView = ownerTabView;
