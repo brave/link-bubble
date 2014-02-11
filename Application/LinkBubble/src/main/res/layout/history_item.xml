@@ -19,7 +19,7 @@
 
     <LinearLayout
                   android:orientation="vertical"
-                  android:layout_width="match_parent"
+                  android:layout_width="0dip"
                   android:layout_height="wrap_content"
                   android:paddingLeft="8dp"
                   android:layout_weight="1">
@@ -40,7 +40,7 @@
             >
 
             <com.linkbubble.ui.CondensedTextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/page_url"
