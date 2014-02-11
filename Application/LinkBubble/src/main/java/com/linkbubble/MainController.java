@@ -35,6 +35,7 @@ import com.squareup.otto.Subscribe;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * Created by gw on 2/10/13.
@@ -639,5 +640,12 @@ public class MainController implements Choreographer.FrameCallback {
     @SuppressWarnings("unused")
     @Subscribe
     public void onStateChangedEvent(DRM.StateChangedEvent event) {
+        closeAllBubbles(false);
+        final Vector<String> urls = Settings.get().loadCurrentTabs();
+        if (urls.size() > 0) {
+            for (String url : urls) {
+                MainApplication.openLink(mContext, url);
+            }
+        }
     }
 }
