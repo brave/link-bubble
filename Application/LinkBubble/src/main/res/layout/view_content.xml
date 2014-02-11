@@ -21,7 +21,7 @@
         <LinearLayout
             android:id="@+id/content_text_container"
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:paddingLeft="8dp"
