@@ -21,7 +21,7 @@
     <string name="action_copy_to_clipboard">Copy link</string>
     <string name="action_share">Share</string>
     <string name="action_close_all">Close all</string>
-    <string name="share_via">Share via...</string>
+    <string name="share_via">Share via…</string>
 
     <string name="pick_default_app">Select default app</string>
     <string name="default_browser_set">Link Bubble has been set as the default browser.</string>
@@ -112,7 +112,7 @@
     <string name="empty">Empty</string>
     <string name="history_already_empty">History already empty</string>
     <string name="private_data_cleared">Private data cleared</string>
-    <string name="private_data_cleared_reloading_current">Private data cleared. Reloading current bubbles...</string>
+    <string name="private_data_cleared_reloading_current">Private data cleared. Reloading current bubbles…</string>
     <string name="link_loaded_with_app">Loaded with %1$s</string>
     <string name="link_redirected">Redirected to %1$s</string>
 
