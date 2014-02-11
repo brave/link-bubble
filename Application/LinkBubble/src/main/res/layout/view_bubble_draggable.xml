@@ -2,6 +2,7 @@
 
 <com.linkbubble.ui.BubbleDraggable
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/bubble_size"
     android:layout_height="@dimen/bubble_size"
     >
@@ -39,6 +40,7 @@
         android:layout_marginRight="@dimen/badge_margin"
         android:layout_marginTop="@dimen/badge_margin"
         android:layout_gravity="right|top"
-        android:gravity="center"/>
+        android:gravity="center"
+        tools:ignore="HardcodedText"/>
 
 </com.linkbubble.ui.BubbleDraggable>

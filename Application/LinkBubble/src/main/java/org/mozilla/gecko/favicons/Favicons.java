@@ -5,6 +5,7 @@
 
 package org.mozilla.gecko.favicons;
 
+import android.annotation.SuppressLint;
 import com.linkbubble.R;
 import org.mozilla.gecko.favicons.cache.FaviconCache;
 import org.mozilla.gecko.util.NonEvictingLruCache;
@@ -50,6 +51,7 @@ public class Favicons {
     // The density-adjusted default Favicon dimensions.
     public static int sDefaultFaviconSize;
 
+    @SuppressLint("UseSparseArrays")
     private final Map<Integer, LoadFaviconTask> mLoadTasks = Collections.synchronizedMap(new HashMap<Integer, LoadFaviconTask>());
 
     // Cache to hold mappings between page URLs and Favicon URLs. Used to avoid going to the DB when

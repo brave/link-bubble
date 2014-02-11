@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp" >
+    android:padding="8dp"
+    tools:ignore="UseCompoundDrawables">
 
     <ImageView
         android:id="@+id/icon"
@@ -15,7 +17,6 @@
         android:id="@+id/label"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Wool Omnibus Edition"
         android:layout_gravity="center_vertical"
         android:paddingLeft="8dp"
         android:textSize="20sp" />
