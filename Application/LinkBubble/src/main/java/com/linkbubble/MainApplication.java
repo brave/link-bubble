@@ -123,6 +123,13 @@ public class MainApplication extends Application {
         return activityStarted;
     }
 
+    public static boolean openInBrowser(Context context, String urlAsString, boolean showToastIfNoBrowser) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(urlAsString));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        return MainApplication.openInBrowser(context, intent, showToastIfNoBrowser);
+    }
+
     public static boolean loadResolveInfoIntent(Context context, ResolveInfo resolveInfo, String url, long urlLoadStartTime) {
         if (resolveInfo.activityInfo != null) {
             return loadIntent(context, resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name, url, urlLoadStartTime);

@@ -424,6 +424,7 @@ public class MainController implements Choreographer.FrameCallback {
 
         if (!DRM.isLicensed() && getActiveTabCount() > 0) {
             MainApplication.showUpgradePrompt(mContext, R.string.upgrade_incentive_one_link);
+            MainApplication.openInBrowser(mContext, urlAsString, true);
             return null;
         }
 
