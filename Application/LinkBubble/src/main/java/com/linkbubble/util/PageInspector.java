@@ -175,7 +175,7 @@ public class PageInspector {
         public String toString() {
             return "rel:" + mRel + ", url:" + mUrl.toString() + ", size:" + mSize;
         }
-    };
+    }
 
     // For security reasons, all callbacks should be in a self contained class
     private class JSEmbedHandler {
@@ -296,7 +296,7 @@ public class PageInspector {
                 mOnItemFoundListener.onDropDownWarningClick();
             }
         }
-    };
+    }
 
     private static class TouchIconTransformation implements Transformation {
 

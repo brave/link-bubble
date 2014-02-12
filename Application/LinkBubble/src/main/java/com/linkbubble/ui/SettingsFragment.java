@@ -624,7 +624,7 @@ public class SettingsFragment extends PreferenceFragment {
             mDisplayName = displayName;
             mSortName = displayName.toLowerCase(Locale.getDefault());
         }
-    };
+    }
 
     public static class AppInfoComparator implements Comparator<AppInfo> {
         @Override

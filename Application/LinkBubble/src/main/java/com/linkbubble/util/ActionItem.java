@@ -212,7 +212,7 @@ public class ActionItem {
                 }
                 super.draw(canvas);
             }
-        };
+        }
 
         final ActionItemListView listView = new ActionItemListView(context);
 
@@ -433,6 +433,6 @@ public class ActionItem {
                 return 1;
             }
         }
-    };
+    }
 
 }
