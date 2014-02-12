@@ -423,9 +423,7 @@ public class MainController implements Choreographer.FrameCallback {
     public TabView openUrl(final String urlAsString, long urlLoadStartTime, final boolean setAsCurrentTab) {
 
         if (!DRM.isLicensed() && getActiveTabCount() > 0) {
-            String text = mContext.getResources().getString(R.string.unlicensed);
-            Drawable icon = mContext.getResources().getDrawable(android.R.drawable.sym_def_app_icon);
-            Prompt.show(text, icon, Prompt.LENGTH_LONG, null);
+            MainApplication.showUpgradePrompt(mContext, R.string.upgrade_incentive_one_link);
             return null;
         }
 
