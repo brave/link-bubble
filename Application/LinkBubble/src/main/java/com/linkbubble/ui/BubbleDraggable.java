@@ -79,7 +79,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     private void doSnap() {
-        int xp = mDraggableHelper.getXPos();
+        int xp = (int) (0.5f + mDraggableHelper.getXPos() + Config.mBubbleWidth * 0.5f);
         int yp = mDraggableHelper.getYPos();
 
         if (xp < Config.mScreenCenterX) {
