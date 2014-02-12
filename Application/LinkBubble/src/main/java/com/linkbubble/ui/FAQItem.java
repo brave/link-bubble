@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.linkbubble.R;
 
 
-class FAQItem extends LinearLayout {
+public class FAQItem extends LinearLayout {
     private TextView mQuestionTextView;
     private TextView mAnswerTextView;
 
