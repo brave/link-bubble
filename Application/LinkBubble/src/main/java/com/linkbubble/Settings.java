@@ -799,7 +799,7 @@ public class Settings {
     private static class LastAppRedirect {
         String mUrl;
         long mTime;
-    };
+    }
 
     private List<LastAppRedirect> mLastAppRedirects = new ArrayList<LastAppRedirect>(MAX_LAST_APP_REDIRECT_COUNT);
 

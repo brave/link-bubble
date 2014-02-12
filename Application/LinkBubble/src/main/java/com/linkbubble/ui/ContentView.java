@@ -155,7 +155,7 @@ public class ContentView extends FrameLayout {
 
             return mIcon;
         }
-    };
+    }
 
     public interface EventHandler {
         public void onPageLoading(URL url);
