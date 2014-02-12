@@ -13,7 +13,6 @@ import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.util.ScaleUpAnimHelper;
 import com.linkbubble.util.Util;
-
 import org.mozilla.gecko.favicons.Favicons;
 
 import java.net.MalformedURLException;

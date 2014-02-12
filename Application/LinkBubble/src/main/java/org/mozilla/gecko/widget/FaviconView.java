@@ -5,10 +5,6 @@
 
 package org.mozilla.gecko.widget;
 
-import com.linkbubble.Constant;
-import com.linkbubble.R;
-import org.mozilla.gecko.favicons.Favicons;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -16,6 +12,9 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+import com.linkbubble.Constant;
+import com.linkbubble.R;
+import org.mozilla.gecko.favicons.Favicons;
 /**
  * Special version of ImageView for favicons.
  * Displays solid colour background around Favicon to fill space not occupied by the icon. Colour

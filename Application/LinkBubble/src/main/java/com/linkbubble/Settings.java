@@ -14,7 +14,6 @@ import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.preference.PreferenceManager;
-
 import android.util.Log;
 import android.view.View;
 import com.linkbubble.ui.TabView;

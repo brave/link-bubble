@@ -1,7 +1,5 @@
 package com.linkbubble.physics;
 
-import android.view.View;
-
 public interface Draggable {
     public DraggableHelper getDraggableHelper();
     public void update(float dt);
