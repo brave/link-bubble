@@ -211,7 +211,7 @@ public class Settings {
                             defaultBrowserLabel,
                             fallbackDefaultBrowserPackageName, fallbackDefaultBrowserActivityClassName);
                 }
-                if (leftConsumeBubblePackageName == null || !doesPackageExist(packageManager, leftConsumeBubblePackageName)) {
+                if (leftConsumeBubblePackageName != null && !doesPackageExist(packageManager, leftConsumeBubblePackageName)) {
                     setConsumeBubble(Config.BubbleAction.ConsumeLeft, Config.ActionType.View,
                             defaultBrowserLabel,
                             fallbackDefaultBrowserPackageName, fallbackDefaultBrowserActivityClassName);
