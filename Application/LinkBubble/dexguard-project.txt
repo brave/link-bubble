@@ -147,10 +147,10 @@
     public void onBeginExpandTransition(com.linkbubble.MainController$BeginExpandTransitionEvent);
     public void onEndCollapseTransition(com.linkbubble.MainController$EndCollapseTransitionEvent);
     public void onIncognitoModeChanged(com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent);
-    public void onStateChangedEvent(com.linkbubble.DRM$StateChangedEvent);
+    public void onStateChangedEvent(com.linkbubble.MainApplication$StateChangedEvent);
 }
 
--keep class com.linkbubble.DRM$StateChangedEvent
+-keep class com.linkbubble.MainApplication$StateChangedEvent
 -keep class com.linkbubble.MainController$BeginAnimateFinalTabAwayEvent
 -keep class com.linkbubble.MainController$BeginBubbleDragEvent
 -keep class com.linkbubble.MainController$BeginCollapseTransitionEvent
@@ -198,7 +198,7 @@
 -keepclassmembers class com.linkbubble.ui.HomeActivity {
     # ensure event handler functions are not stripped
     public void onLinkLoadTimeStatsUpdatedEvent(com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent);
-    public void onStateChangedEvent(com.linkbubble.DRM$StateChangedEvent);
+    public void onStateChangedEvent(com.linkbubble.MainApplication$StateChangedEvent);
 }
 
 -keep public interface com.android.vending.licensing.ILicensingService

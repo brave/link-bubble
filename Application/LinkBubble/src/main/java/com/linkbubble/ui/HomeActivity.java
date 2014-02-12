@@ -233,7 +233,7 @@ public class HomeActivity extends Activity {
 
     @SuppressWarnings("unused")
     @Subscribe
-    public void onStateChangedEvent(DRM.StateChangedEvent event) {
+    public void onStateChangedEvent(MainApplication.StateChangedEvent event) {
         //android.os.Process.killProcess(android.os.Process.myPid());
         //finish();
         //startActivity(getIntent());
