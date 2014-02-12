@@ -87,14 +87,14 @@ public class MainController implements Choreographer.FrameCallback {
 
     public static void create(Context context, EventHandler eventHandler) {
         if (sInstance != null) {
-            new RuntimeException("Only one instance of MainController allowed at any one time");
+            throw new RuntimeException("Only one instance of MainController allowed at any one time");
         }
         sInstance = new MainController(context, eventHandler);
     }
 
     public static void destroy() {
         if (sInstance == null) {
-            new RuntimeException("No instance to destroy");
+            throw new RuntimeException("No instance to destroy");
         }
 
         Settings.get().saveData();
