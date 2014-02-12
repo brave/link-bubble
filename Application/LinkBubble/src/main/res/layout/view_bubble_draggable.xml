@@ -36,7 +36,7 @@
         android:text="3"
         android:background="@drawable/badge_shape"
         android:textColor="@color/badge_text"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:layout_marginLeft="@dimen/badge_margin"
         android:layout_marginRight="@dimen/badge_margin"
         android:layout_marginTop="@dimen/badge_margin"
