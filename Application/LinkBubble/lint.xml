@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- NOTE: Turn these 3 issues off occasionally to check everything is OK -->
+    <issue id="IconDensities" severity="ignore"/>
+    <issue id="TrulyRandom" severity="ignore"/>
+    <issue id="HandlerLeak">
+        <ignore path="src/main/java/com/linkbubble/util/AppPoller.java" />
+        <ignore path="src/main/java/com/linkbubble/DRM.java" />
+    </issue>
+
+
+
+    <!-- Ignore unused resources here -->
+    <issue id="UnusedResources">
+        <ignore path="src/main/res/values/strings.xml" />
+        <ignore path="src/main/res/xml/changelog.xml" />
+    </issue>
+
+    <!-- Ignore the warning about the notificaion icon color. Icon is close enough. -->
+    <issue id="IconColors">
+        <ignore path="src/main/res/drawable-xxhdpi/ic_launcher.png" />
+    </issue>
+
+</lint>
