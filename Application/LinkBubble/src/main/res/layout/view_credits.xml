@@ -34,14 +34,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/credits_lacy_name"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/credits_lacy_credit"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="17dp"/>
+                android:textSize="17sp"/>
 
         </LinearLayout>
 
@@ -72,14 +72,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/credits_watson_name"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/credits_watson_credit"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="17dp"/>
+                android:textSize="17sp"/>
 
         </LinearLayout>
 
@@ -101,7 +101,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="14dp"
         android:text="@string/credits_app_copyright"
-        android:textSize="17dp"
+        android:textSize="17sp"
         android:textAppearance="?android:attr/textAppearanceSmall" />
      <!-- 
      <TextView
