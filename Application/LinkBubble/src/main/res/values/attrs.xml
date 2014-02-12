@@ -42,7 +42,7 @@
             <flag name="y" value="2" />
             <flag name="z" value="4" />
         </attr>
-        <attr name="reverseRotation" format="boolean"></attr>
+        <attr name="reverseRotation" format="boolean"/>
     </declare-styleable>
 
 
