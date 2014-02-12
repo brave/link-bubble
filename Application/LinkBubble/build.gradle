@@ -57,6 +57,10 @@ android {
             //signingConfig signingConfigs.release
         }
     }
+
+    lintOptions {
+        lintConfig file("lint.xml")
+    }
 }
 
 dependencies {
