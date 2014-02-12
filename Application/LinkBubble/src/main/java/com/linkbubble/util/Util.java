@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
-import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import com.linkbubble.BuildConfig;
-import com.linkbubble.Constant;
 import com.linkbubble.R;
 import com.linkbubble.ui.Prompt;
 

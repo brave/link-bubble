@@ -16,14 +16,13 @@ import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.widget.Toast;
-
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.ui.BubbleDraggable;
 import com.linkbubble.ui.BubbleFlowDraggable;
-import com.linkbubble.ui.TabView;
 import com.linkbubble.ui.BubbleFlowView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.ui.SettingsFragment;
+import com.linkbubble.ui.TabView;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.AppPoller;
 import com.linkbubble.util.Util;

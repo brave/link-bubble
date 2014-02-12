@@ -1,6 +1,5 @@
 package com.linkbubble;
 
-import android.app.Application;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +14,6 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 import com.linkbubble.util.Encrypt;
-import com.squareup.otto.Subscribe;
 
 import java.util.List;
 
