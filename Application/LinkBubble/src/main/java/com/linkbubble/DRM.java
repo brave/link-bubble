@@ -37,11 +37,6 @@ public class DRM {
         return sLicenseState == DRM.LICENSE_VALID;
     }
 
-    public static class StateChangedEvent {
-        public int mState;
-        public int mOldState;
-    }
-
     private static String LICENSE_KEY = "lb_licenseKey";
     private static String FIRST_INSTALL_TIME_KEY = "lb_firstInstallTime";
     private static String USAGE_TIME_LEFT_KEY = "lb_usageTimeLeft";
@@ -51,7 +46,7 @@ public class DRM {
     private SharedPreferences mSharedPreferences;
 
     private Context mContext;
-    private StateChangedEvent mStateChangedEvent = new StateChangedEvent();
+    private MainApplication.StateChangedEvent mStateChangedEvent = new MainApplication.StateChangedEvent();
 
     DRM(Context context) {
         mContext = context;
