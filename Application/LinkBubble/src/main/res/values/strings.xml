@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">Link Bubble</string>
-    <string name="home_activity_label">Link Bubble</string>
 
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>

@@ -7,14 +7,7 @@
 
     <color name="home_background">#ffe5e5e5</color>
     <color name="content_toolbar_background">#ffefefef</color>
-    <color name="badge_background">#cccccc</color>
     <color name="badge_text">@color/bubble_border</color>
-    <!--<color name="badge_highlight">#aaaaaa</color>-->
-    <color name="badge_highlight">@color/badge_text</color>
-
-    <color name="actionbar_title_color">@android:color/black</color>
-
-    <color name="highlight_color">@color/content_toolbar_background</color>
 
     <color name="bubble_border">#666666</color>
 
