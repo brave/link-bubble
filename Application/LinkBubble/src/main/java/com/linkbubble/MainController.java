@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.view.Choreographer;
@@ -21,6 +22,7 @@ import com.linkbubble.ui.BubbleDraggable;
 import com.linkbubble.ui.BubbleFlowDraggable;
 import com.linkbubble.ui.BubbleFlowView;
 import com.linkbubble.ui.CanvasView;
+import com.linkbubble.ui.Prompt;
 import com.linkbubble.ui.SettingsFragment;
 import com.linkbubble.ui.TabView;
 import com.linkbubble.util.ActionItem;
@@ -32,6 +34,7 @@ import com.squareup.otto.Subscribe;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * Created by gw on 2/10/13.
@@ -418,6 +421,14 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public TabView openUrl(final String urlAsString, long urlLoadStartTime, final boolean setAsCurrentTab) {
+
+        if (!DRM.isLicensed() && getActiveTabCount() > 0) {
+            String text = mContext.getResources().getString(R.string.unlicensed);
+            Drawable icon = mContext.getResources().getDrawable(android.R.drawable.sym_def_app_icon);
+            Prompt.show(text, icon, Prompt.LENGTH_LONG, null);
+            return null;
+        }
+
         URL url;
         try {
             url = new URL(urlAsString);
@@ -628,5 +639,12 @@ public class MainController implements Choreographer.FrameCallback {
     @SuppressWarnings("unused")
     @Subscribe
     public void onStateChangedEvent(DRM.StateChangedEvent event) {
+        closeAllBubbles(false);
+        final Vector<String> urls = Settings.get().loadCurrentTabs();
+        if (urls.size() > 0) {
+            for (String url : urls) {
+                MainApplication.openLink(mContext, url);
+            }
+        }
     }
 }
