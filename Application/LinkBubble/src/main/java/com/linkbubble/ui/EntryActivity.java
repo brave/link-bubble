@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
+import com.linkbubble.BuildConfig;
 import com.linkbubble.Config;
+import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
@@ -61,30 +63,42 @@ public class EntryActivity extends Activity {
                 return;
             }
 
+            boolean canLoadFromThisApp = true;
             if (Settings.get().isEnabled()) {
                 final ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
                 List<ActivityManager.RecentTaskInfo> recentTasks = activityManager.getRecentTasks(16, ActivityManager.RECENT_WITH_EXCLUDED);
 
                 if (recentTasks.size() > 0) {
-                    ActivityManager.RecentTaskInfo rt = recentTasks.get(0);
-                    Intent baseIntent = rt.baseIntent;
-                    ComponentName cn = baseIntent.getComponent();
+                    ActivityManager.RecentTaskInfo recentTaskInfo = getPreviousTaskInfo(recentTasks);
+                    ComponentName componentName = recentTaskInfo.baseIntent.getComponent();
 
                     boolean isBlacklisted = false;
                     for (Intent browser : browsers) {
-                        if (cn.getPackageName().equals(browser.getPackage())) {
+                        if (componentName.getPackageName().equals(browser.getPackage())) {
                             isBlacklisted = true;
                             break;
                         }
                     }
 
-                    if (!isBlacklisted) {
+                    if (DRM.isLicensed() == false) {
+                        String interceptFromPackageName = Settings.get().getInterceptLinksFromPackageName();
+                        if (interceptFromPackageName != null && interceptFromPackageName.equals(componentName.getPackageName())) {
+                            canLoadFromThisApp = true;
+                        } else {
+                            canLoadFromThisApp = false;
+                        }
+                    }
+
+                    if (!isBlacklisted && canLoadFromThisApp) {
                         openLink = true;
                     }
                 }
             }
 
-            if (openLink && !showingTamperPrompt) {
+            if (canLoadFromThisApp == false) {
+                MainApplication.showUpgradePrompt(this, R.string.upgrade_incentive_one_app);
+                MainApplication.openInBrowser(this, intent, true);
+            } else if (openLink && !showingTamperPrompt) {
                 MainApplication.openLink(this, url);
             } else {
                 MainApplication.openInBrowser(this, intent, true);
@@ -98,6 +112,22 @@ public class EntryActivity extends Activity {
         if (!showingTamperPrompt) {
             finish();
         }
+    }
+
+    /*
+     * Get the most recent RecentTaskInfo, but ensure the result is not Link Bubble.
+     */
+    ActivityManager.RecentTaskInfo getPreviousTaskInfo(List<ActivityManager.RecentTaskInfo> recentTasks) {
+        for (int i = 0; i < recentTasks.size(); i++) {
+            ActivityManager.RecentTaskInfo recentTaskInfo = recentTasks.get(i);
+            if (recentTaskInfo.baseIntent != null
+                    && recentTaskInfo.baseIntent.getComponent() != null
+                    && recentTaskInfo.baseIntent.getComponent().getPackageName().equals(BuildConfig.PACKAGE_NAME) == false) {
+                return recentTaskInfo;
+            }
+        }
+
+        return null;
     }
 
     @Override
