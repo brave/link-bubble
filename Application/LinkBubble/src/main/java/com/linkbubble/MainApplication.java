@@ -218,4 +218,10 @@ public class MainApplication extends Application {
             Toast.makeText(context, string, Toast.LENGTH_SHORT).show();
         }
     }
+
+    // DRM state
+    public static class StateChangedEvent {
+        public int mState;
+        public int mOldState;
+    }
 }

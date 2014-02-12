@@ -638,7 +638,7 @@ public class MainController implements Choreographer.FrameCallback {
 
     @SuppressWarnings("unused")
     @Subscribe
-    public void onStateChangedEvent(DRM.StateChangedEvent event) {
+    public void onStateChangedEvent(MainApplication.StateChangedEvent event) {
         closeAllBubbles(false);
         final Vector<String> urls = Settings.get().loadCurrentTabs();
         if (urls.size() > 0) {
