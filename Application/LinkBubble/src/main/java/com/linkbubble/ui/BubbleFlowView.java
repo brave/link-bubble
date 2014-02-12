@@ -665,7 +665,7 @@ public class BubbleFlowView extends HorizontalScrollView {
                 }
 
                 final int y = (int) event.getY(pointerIndex);
-                final int yDiff = (int) Math.abs(y - mLastMotionY);
+                final int yDiff = Math.abs(y - mLastMotionY);
                 if (yDiff > 0) {
                     mLastMotionY = y;
                     // Here is the crux of it all...
