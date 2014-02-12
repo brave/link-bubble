@@ -7,7 +7,6 @@ import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import com.linkbubble.Config;
-import com.linkbubble.MainApplication;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 

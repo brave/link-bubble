@@ -1,28 +1,20 @@
 package com.linkbubble.ui;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
-
 import android.widget.TextView;
-
-import android.app.Activity;
-import android.app.AlertDialog;
-import com.linkbubble.Constant;
 import com.linkbubble.R;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 
 public class FAQDialog {

@@ -5,13 +5,11 @@
 package org.mozilla.gecko.favicons;
 
 
-import android.content.ContentResolver;
 import android.graphics.Bitmap;
 import android.net.http.AndroidHttpClient;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
-import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -21,7 +19,6 @@ import org.apache.http.entity.BufferedHttpEntity;
 import org.mozilla.gecko.gfx.BitmapUtils;
 import org.mozilla.gecko.util.ThreadUtils;
 import org.mozilla.gecko.util.UiAsyncTask;
-import static org.mozilla.gecko.favicons.Favicons.sContext;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,7 +28,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Class representing the asynchronous task to load a Favicon which is not currently in the in-memory

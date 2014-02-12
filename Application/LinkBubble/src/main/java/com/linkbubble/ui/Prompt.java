@@ -12,11 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.linkbubble.Config;
 import com.linkbubble.R;
 import com.linkbubble.util.Util;

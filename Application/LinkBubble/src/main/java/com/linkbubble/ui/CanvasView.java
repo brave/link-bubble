@@ -19,8 +19,8 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.util.Util;
 import com.linkbubble.physics.Circle;
+import com.linkbubble.util.Util;
 import com.squareup.otto.Subscribe;
 
 import java.util.Vector;

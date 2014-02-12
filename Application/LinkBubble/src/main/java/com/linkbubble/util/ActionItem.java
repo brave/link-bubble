@@ -23,7 +23,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.linkbubble.Config;
 import com.linkbubble.R;
-import com.linkbubble.Settings;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 

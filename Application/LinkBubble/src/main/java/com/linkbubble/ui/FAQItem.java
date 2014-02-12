@@ -2,14 +2,9 @@ package com.linkbubble.ui;
 
 import android.content.Context;
 import android.text.Html;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.ViewParent;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import com.linkbubble.R;
 
