@@ -1,11 +1,11 @@
 buildscript {
     repositories {
         mavenCentral()
-        //flatDir { dirs '/Users/chrislacy/Dropbox/Android/DexGuard/DexGuard5.4.21/lib' }
+        flatDir { dirs '../../DexGuard/lib' }
         maven { url 'http://download.crashlytics.com/maven' }
     }
     dependencies {
-        //classpath ':dexguard:'
+        classpath ':dexguard:'
         classpath 'com.android.tools.build:gradle:0.8.0'
         classpath 'com.crashlytics.tools.gradle:crashlytics-gradle:1.+'
     }
