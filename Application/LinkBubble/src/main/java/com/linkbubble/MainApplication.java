@@ -6,7 +6,9 @@ import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Vibrator;
 import android.widget.Toast;
@@ -19,6 +21,7 @@ import org.mozilla.gecko.favicons.Favicons;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -217,6 +220,48 @@ public class MainApplication extends Application {
             clipboardManager.setPrimaryClip(clipData);
             Toast.makeText(context, string, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private static ResolveInfo getPlayStoreViewResolveInfo(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        Intent queryIntent = new Intent();
+        queryIntent.setAction(Intent.ACTION_VIEW);
+        queryIntent.setData(Uri.parse(Config.STORE_PRO_URL));
+        List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(queryIntent, PackageManager.GET_RESOLVED_FILTER);
+        for (ResolveInfo resolveInfo : resolveInfos) {
+            if (resolveInfo.activityInfo != null && resolveInfo.activityInfo.packageName.contains(Config.STORE_PACKAGE)) {
+                return resolveInfo;
+            }
+        }
+
+        return null;
+    }
+
+    public static void showUpgradePrompt(final Context context, int stringId) {
+        String text = context.getResources().getString(stringId);
+        Drawable icon = null;
+        final ResolveInfo playStoreResolveInfo = getPlayStoreViewResolveInfo(context);
+        if (playStoreResolveInfo != null) {
+            icon = playStoreResolveInfo.loadIcon(context.getPackageManager());
+        }
+
+        Prompt.show(text, icon, Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
+            @Override
+            public void onClick() {
+                if (playStoreResolveInfo != null) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(Config.STORE_PRO_URL));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.setClassName(playStoreResolveInfo.activityInfo.packageName, playStoreResolveInfo.activityInfo.name);
+                    context.startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onClose() {
+
+            }
+        });
     }
 
     // DRM state
