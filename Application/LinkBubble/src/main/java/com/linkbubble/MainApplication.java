@@ -10,12 +10,10 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Vibrator;
 import android.widget.Toast;
-
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
 import com.linkbubble.util.Tamper;
-import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
 import org.mozilla.gecko.favicons.Favicons;
 

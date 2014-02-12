@@ -15,10 +15,11 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
-//import com.linkbubble.physics.State_AnimateToBubbleView;
 import com.linkbubble.util.VerticalGestureListener;
 
 import java.net.MalformedURLException;
+
+//import com.linkbubble.physics.State_AnimateToBubbleView;
 
 
 public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {

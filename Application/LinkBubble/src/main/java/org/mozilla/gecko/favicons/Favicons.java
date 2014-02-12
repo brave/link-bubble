@@ -6,17 +6,16 @@
 package org.mozilla.gecko.favicons;
 
 import android.annotation.SuppressLint;
-import com.linkbubble.R;
-import org.mozilla.gecko.favicons.cache.FaviconCache;
-import org.mozilla.gecko.util.NonEvictingLruCache;
-import org.mozilla.gecko.util.ThreadUtils;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.util.Log;
+import com.linkbubble.R;
+import org.mozilla.gecko.favicons.cache.FaviconCache;
+import org.mozilla.gecko.util.NonEvictingLruCache;
+import org.mozilla.gecko.util.ThreadUtils;
 
 import java.net.URI;
 import java.net.URISyntaxException;

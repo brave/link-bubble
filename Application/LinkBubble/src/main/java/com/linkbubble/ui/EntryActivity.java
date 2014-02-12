@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-
 import android.widget.Toast;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
