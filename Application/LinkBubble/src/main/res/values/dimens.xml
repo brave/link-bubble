@@ -1,8 +1,4 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-
     <!--  (bubble_size - bubble_icon_size) / 2 -->
     <dimen name="content_bubble_y_offset">-2dp</dimen>
     <dimen name="toolbar_header">8dp</dimen>
@@ -15,7 +11,6 @@
     <dimen name="app_stack_y_offset">3dp</dimen>
 
     <dimen name="header_height">320dp</dimen>
-    <dimen name="header_logo_size">100dp</dimen>
 
     <dimen name="youtube_emebed_item_height">160dp</dimen>
 
@@ -32,8 +27,6 @@
     <dimen name="bubble_progress_size">52dp</dimen>
     <dimen name="bubble_progress_stroke">1px</dimen>
     <dimen name="content_offset">60dp</dimen>
-    <dimen name="progress_bar_size">32dp</dimen>
-    <dimen name="progress_inner_size">20dp</dimen>
     <dimen name="stat_height">200dp</dimen>
     <dimen name="stat_bubble_size">140dp</dimen>
     <dimen name="stat_bubble_text_size">28sp</dimen>
@@ -41,10 +34,7 @@
     <dimen name="canvas_mask_height">80dp</dimen>
 
 
-    <dimen name="favicon_size_small">16dp</dimen>
-    <dimen name="favicon_size_large">32dp</dimen>
     <dimen name="favicon_bg">32dp</dimen>
-    <dimen name="favicon_bg_radius">1dp</dimen>
     <!-- Set the upper limit on the size of favicon that will be processed. Favicons larger than
          this will be downscaled to this value. If you need to use larger Favicons (Due to a UI
          redesign sometime after this is written) you should increase this value to the largest
@@ -53,7 +43,6 @@
          value.-->
     <dimen name="favicon_largest_interesting_size">32dp</dimen>
 
-    <dimen name="browser_toolbar_icon_width">48dp</dimen>
     <dimen name="browser_toolbar_favicon_size">25.33dip</dimen>
 
     <dimen name="bubble_target_icon_size">44dp</dimen>
