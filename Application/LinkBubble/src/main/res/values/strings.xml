@@ -116,7 +116,8 @@
     <string name="link_redirected">Redirected to %1$s</string>
 
     <string name="tampered_apk">Link Bubble will not work because the APK has been illegally modified.\nDownload again from the Play Store.</string>
-    <string name="upgrade_incentive_one_link">Pro version is required to load more than one bubble at a time.\nUpgrade to Pro?</string>
+    <string name="upgrade_incentive_one_link">Link Bubble Pro is required to load more than one bubble at a time. Upgrade to Pro?</string>
+    <string name="upgrade_incentive_one_app">Link Bubble Pro is required to load links from more than one app. Upgrade to Pro?</string>
 
     <string name="bubble_link_copied_to_clipboard">Bubble link copied to clipboard.</string>
     <string name="link_copied_to_clipboard">Link copied to clipboard.</string>
