@@ -229,7 +229,7 @@ public class YouTubeEmbedHelper {
                     }
                     alertDialog.dismiss();
                 }
-            });;
+            });
 
             return alertDialog;
         } else {
@@ -364,7 +364,7 @@ public class YouTubeEmbedHelper {
                 getEmbedResultsDialog().show();
             }
         }
-    };
+    }
 
     private class EmbedItemAdapter extends BaseAdapter {
 

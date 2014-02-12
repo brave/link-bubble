@@ -13,7 +13,7 @@ public class ScaleUpAnimHelper {
         Showing,
     }
 
-    AnimState mAnimState = AnimState.None;;
+    AnimState mAnimState = AnimState.None;
     View mView;
 
     public ScaleUpAnimHelper(View view) {
