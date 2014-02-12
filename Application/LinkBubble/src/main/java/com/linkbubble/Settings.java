@@ -506,7 +506,7 @@ public class Settings {
         intent.setData(Uri.parse(url.toString()));
         List<ResolveInfo> infos = manager.queryIntentActivities(intent, PackageManager.GET_RESOLVED_FILTER);
 
-        ArrayList<ResolveInfo> results = null;
+        ArrayList<ResolveInfo> results = new ArrayList<ResolveInfo>();
 
         for (ResolveInfo info : infos) {
             IntentFilter filter = info.filter;
@@ -522,16 +522,13 @@ public class Settings {
                 }
 
                 if (packageOk) {
-                    if (results == null) {
-                        results = new ArrayList<ResolveInfo>();
-                    }
                     results.add(info);
                     Log.d("appHandles", info.loadLabel(manager) + " for url:" + url);
                 }
             }
         }
 
-        if (results != null && results.size() > 0) {
+        if (results.size() > 0) {
             return results;
         }
 
