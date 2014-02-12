@@ -19,6 +19,8 @@ import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.squareup.otto.Subscribe;
 
+import java.util.Locale;
+
 
 public class CloseTabTargetView extends BubbleTargetView {
 
@@ -169,7 +171,7 @@ public class CloseTabTargetView extends BubbleTargetView {
             mPath = new Path();
             mPath.addArc(circle, 180, 180);
 
-            mText = getResources().getString(R.string.action_close_all).toUpperCase();
+            mText = getResources().getString(R.string.action_close_all).toUpperCase(Locale.getDefault());
         }
 
         @Override
