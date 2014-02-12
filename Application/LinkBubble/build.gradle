@@ -54,7 +54,8 @@ android {
         release {
             //proguardFile plugin.getDefaultDexGuardFile('dexguard-release.pro')
             //proguardFile 'dexguard-project.txt'
-            //signingConfig signingConfigs.release
+            proguardFile 'proguard-project.txt'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -71,6 +72,22 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.+'
     compile files('libs/dexguard_util.jar')
     //compile project(':Libraries:ViewPagerIndicator:library')
+}
+
+task askForPasswords << {
+    // Must create String because System.readPassword() returns char[]
+    // (and assigning that below fails silently)
+    def storePw = new String(System.console().readPassword("Keystore password: "))
+    def keyPw  = new String(System.console().readPassword("Key password: "))
+
+    android.signingConfigs.release.storePassword = storePw
+    android.signingConfigs.release.keyPassword = keyPw
+}
+
+tasks.whenTaskAdded { theTask ->
+    if (theTask.name.equals("packagePlaystoreRelease")) {
+        theTask.dependsOn "askForPasswords"
+    }
 }
 
 task showVersion << {
