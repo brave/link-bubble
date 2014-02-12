@@ -42,7 +42,7 @@
 #-injars      bin/resources.ap_
 -injars      libs
 #-outjars     bin/application.apk
--libraryjars /usr/local/android-sdk/platforms/android-16/android.jar
+-libraryjars  /Users/chrislacy/android-sdk-macosx/platforms/android-16/android.jar
 
 -dalvik
 -repackageclasses ''
@@ -53,6 +53,7 @@
     manifest/installLocation,
     manifest/versionCode,
     manifest/application/*/intent-filter/*/name
+-dontwarn com.squareup.okhttp.**
 
 # -printmapping proguard/actionlauncher.map
 # -renamesourcefileattribute Launcher
@@ -110,9 +111,9 @@
     com.google.android.vending.licensing.ServerManagedPolicy
 
 # Encrypt license-related strings from the sample application.
--encryptstrings class com.example.android.market.licensing.MainActivity {
-    private static final java.lang.String BASE64_PUBLIC_KEY;
-}
+#-encryptstrings class com.example.android.market.licensing.MainActivity {
+#    private static final java.lang.String BASE64_PUBLIC_KEY;
+#}
 
 -encryptstrings
     "http://market.android.com/details?id=",
@@ -136,8 +137,8 @@
     "getPackageManager"
 
 -encryptclasses com.linkbubble.DRM, com.linkbubble.DRM$*
--keepclassmembers class com.linkbubble.DRM {
-}
+#-keepclassmembers class com.linkbubble.DRM {
+#}
 
 -encryptclasses com.chrislacy.util.Encrypt, com.chrislacy.util.Encrypt$*
 -encryptstrings class com.chrislacy.util.Encrypt.**
@@ -149,6 +150,20 @@
     public void onIncognitoModeChanged(com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent);
     public void onStateChangedEvent(com.linkbubble.DRM$StateChangedEvent);
 }
+
+-keep class com.linkbubble.DRM$StateChangedEvent
+-keep class com.linkbubble.MainController$BeginAnimateFinalTabAwayEvent
+-keep class com.linkbubble.MainController$BeginBubbleDragEvent
+-keep class com.linkbubble.MainController$BeginCollapseTransitionEvent
+-keep class com.linkbubble.MainController$BeginExpandTransitionEvent
+-keep class com.linkbubble.MainController$CurrentTabChangedEvent
+-keep class com.linkbubble.MainController$DraggableBubbleMovedEvent
+-keep class com.linkbubble.MainController$EndBubbleDragEvent
+-keep class com.linkbubble.MainController$EndCollapseTransitionEvent
+-keep class com.linkbubble.MainController$OrientationChangedEvent
+-keep class com.linkbubble.db.HistoryRecord$ChangedEvent
+-keep class com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent
+-keep class com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent
 
 -keepclassmembers class com.linkbubble.ui.BubbleTargetView {
     # ensure event handler functions are not stripped
@@ -166,11 +181,11 @@
     public void onCurrentTabChanged(com.linkbubble.MainController$CurrentTabChangedEvent);
     public void onEndBubbleDragEvent(com.linkbubble.MainController$EndBubbleDragEvent);
     public void onEndCollapseTransition(com.linkbubble.MainController$EndCollapseTransitionEvent);
-    public void onOrientationChanged(com.linkbubble.MainController$MainController.OrientationChangedEvent);
+    public void onOrientationChanged(com.linkbubble.MainController$OrientationChangedEvent);
 }
 
 -keepclassmembers class com.linkbubble.ui.CloseTabTargetView {
-
+    # ensure event handler functions are not stripped
     public void onBeginBubbleDrag(com.linkbubble.MainController$BeginBubbleDragEvent);
     public void onDraggableBubbleMovedEvent(com.linkbubble.MainController$DraggableBubbleMovedEvent);
     public void onEndBubbleDragEvent(com.linkbubble.MainController$EndBubbleDragEvent);
@@ -178,7 +193,7 @@
 
 -keepclassmembers class com.linkbubble.ui.HistoryActivity {
     # ensure event handler functions are not stripped
-    public void onHistoryRecordChangedEvent(com.linkbubble.HistoryRecord$ChangedEvent);
+    public void onHistoryRecordChangedEvent(com.linkbubble.db.HistoryRecord$ChangedEvent);
 }
 
 -keepclassmembers class com.linkbubble.ui.HomeActivity {
@@ -259,9 +274,10 @@
 
 # Uncomment and adapt the following lines to properly handle Javascript
 # interface classes for WebView.
-#-keepclassmembers class mypackage.MyWebViewInterfaceClass {
-#    public <methods>;
-#}
+-keep class com.linkbubble.util.PageInspector$JSEmbedHandler
+-keepclassmembers class com.linkbubble.util.PageInspector$JSEmbedHandler {
+    public <methods>;
+}
 
 -keepclassmembers enum * {
     public static **[] values();
