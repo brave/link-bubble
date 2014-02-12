@@ -21,6 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by gw on 2/10/13.
@@ -73,7 +74,7 @@ public class Util {
 
         int diffInDays = (int) ((newerDate.getTime() - olderDate.getTime()) / (1000 * 60 * 60 * 24));
         if (diffInDays > 365) {
-            SimpleDateFormat formatted = new SimpleDateFormat("dd MMM yy");
+            SimpleDateFormat formatted = new SimpleDateFormat("dd MMM yy", Locale.US);
             result = formatted.format(olderDate);
         } else if (diffInDays > 0) {
             if (diffInDays == 1) {
@@ -81,7 +82,7 @@ public class Util {
             } else if (diffInDays < 8) {
                 result = diffInDays + "d";
             } else {
-                SimpleDateFormat formatted = new SimpleDateFormat("dd MMM");
+                SimpleDateFormat formatted = new SimpleDateFormat("dd MMM", Locale.US);
                 result = formatted.format(olderDate);
             }
         } else {
