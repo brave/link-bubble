@@ -40,9 +40,8 @@
 
 #-injars      bin/classes
 #-injars      bin/resources.ap_
--injars      libs
+#-injars      libs
 #-outjars     bin/application.apk
--libraryjars  /Users/chrislacy/android-sdk-macosx/platforms/android-16/android.jar
 
 -dalvik
 -repackageclasses ''
