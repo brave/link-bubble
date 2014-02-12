@@ -301,4 +301,4 @@
 # (see manual). Debug builds already disable these steps by default.
 #-dontshrink
 #-dontoptimize
--dontobfuscate
+#-dontobfuscate
