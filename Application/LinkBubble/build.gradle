@@ -33,7 +33,11 @@ android {
     productFlavors {
         playstore {
             packageName='com.linkbubble.playstore'
-            //buildConfigField "String", "PACKAGE_NAME", "com.linkbubble.playstore"
+
+            buildConfigField "String", "STORE_PACKAGE", "\"com.android.vending\""
+            buildConfigField "String", "STORE_URL_PREFIX", "\"http://play.google.com/store/apps/details?id=\""
+            buildConfigField "String", "STORE_FREE_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.playstore\""
+            buildConfigField "String", "STORE_PRO_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.pro.playstore\""
         }
     }
 

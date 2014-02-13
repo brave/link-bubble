@@ -29,6 +29,7 @@ import android.webkit.WebViewDatabase;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import com.linkbubble.BuildConfig;
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
@@ -268,7 +269,7 @@ public class SettingsFragment extends PreferenceFragment {
             sayThanksPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    Intent intent = Config.getStoreIntent(getActivity(), Config.STORE_PRO_URL);
+                    Intent intent = Config.getStoreIntent(getActivity(), BuildConfig.STORE_PRO_URL);
                     if (intent != null) {
                         startActivity(intent);
                         Settings.get().setSayThanksClicked(true);
@@ -284,7 +285,7 @@ public class SettingsFragment extends PreferenceFragment {
             getProPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    Intent intent = Config.getStoreIntent(getActivity(), Config.STORE_PRO_URL);
+                    Intent intent = Config.getStoreIntent(getActivity(), BuildConfig.STORE_PRO_URL);
                     if (intent != null) {
                         startActivity(intent);
                         return true;
@@ -640,7 +641,7 @@ public class SettingsFragment extends PreferenceFragment {
         layout.findViewById(R.id.upgrade_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = Config.getStoreIntent(context, Config.STORE_PRO_URL);
+                Intent intent = Config.getStoreIntent(context, BuildConfig.STORE_PRO_URL);
                 if (intent != null) {
                     context.startActivity(intent);
                 }
