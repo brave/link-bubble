@@ -28,7 +28,7 @@ public class DRM {
 
     static final int LICENSE_INVALID = -1;
     static final int LICENSE_UNKNOWN = 0;
-    static final int LICENSE_VALID = 1;
+    public static final int LICENSE_VALID = 1;
     static final int LICENSE_IGNORE_ERROR = 99;
 
     static private int sLicenseState = DRM.LICENSE_UNKNOWN;
