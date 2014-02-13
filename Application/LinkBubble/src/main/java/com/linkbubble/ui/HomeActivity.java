@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.Button;
+import android.widget.Toast;
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
@@ -48,8 +49,6 @@ public class HomeActivity extends Activity {
 
         setContentView(R.layout.activity_home);
 
-        boolean isLicensed = DRM.isLicensed();
-
         mBackgroundView = findViewById(R.id.background);
         mContentView = findViewById(R.id.content);
         mTopButtonsContainerView = findViewById(R.id.top_buttons_container);
@@ -81,12 +80,7 @@ public class HomeActivity extends Activity {
             MainApplication.restoreLinks(this, urls.toArray(new String[urls.size()]));
         }
 
-        if (isLicensed) {
-            mActionButtonView.setText(R.string.history);
-            mHistoryCircleButtonView.setVisibility(View.GONE);
-        } else {
-            mActionButtonView.setText(R.string.action_upgrade_to_pro);
-        }
+        configureForDrmState();
 
         mActionButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +113,15 @@ public class HomeActivity extends Activity {
         MainApplication.registerForBus(this, this);
     }
 
+    private void configureForDrmState() {
+        if (DRM.isLicensed()) {
+            mActionButtonView.setText(R.string.history);
+            mHistoryCircleButtonView.setVisibility(View.GONE);
+        } else {
+            mActionButtonView.setText(R.string.action_upgrade_to_pro);
+        }
+    }
+
     @Override
     public void onDestroy() {
         MainApplication.unregisterForBus(this, this);
@@ -135,6 +138,8 @@ public class HomeActivity extends Activity {
             animateOn();
             mPlayedIntroAnimation = true;
         }
+
+        configureForDrmState();
 
         MainApplication.checkForProVersion(getApplicationContext());
         Util.checkForTamper(this, mTamperPromptEventListener);
@@ -235,8 +240,9 @@ public class HomeActivity extends Activity {
     @SuppressWarnings("unused")
     @Subscribe
     public void onStateChangedEvent(MainApplication.StateChangedEvent event) {
-        //android.os.Process.killProcess(android.os.Process.myPid());
-        //finish();
-        //startActivity(getIntent());
+        configureForDrmState();
+        if (event.mOldState != DRM.LICENSE_VALID && event.mState == DRM.LICENSE_VALID) {
+            Toast.makeText(this, R.string.valid_license_detected, Toast.LENGTH_LONG).show();
+        }
     }
 }
