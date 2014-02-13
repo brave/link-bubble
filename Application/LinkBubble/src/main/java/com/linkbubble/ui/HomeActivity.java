@@ -89,7 +89,7 @@ public class HomeActivity extends Activity {
                 if (DRM.isLicensed()) {
                     startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v, false);
                 } else {
-                    Intent intent = Config.getStoreIntent(HomeActivity.this, BuildConfig.STORE_PRO_URL);
+                    Intent intent = MainApplication.getStoreIntent(HomeActivity.this, BuildConfig.STORE_PRO_URL);
                     if (intent != null) {
                         startActivity(intent);
                     }
@@ -202,7 +202,7 @@ public class HomeActivity extends Activity {
     Prompt.OnPromptEventListener mTamperPromptEventListener = new Prompt.OnPromptEventListener() {
         @Override
         public void onClick() {
-            Config.openAppStore(HomeActivity.this, BuildConfig.STORE_FREE_URL);
+            MainApplication.openAppStore(HomeActivity.this, BuildConfig.STORE_FREE_URL);
         }
 
         @Override
