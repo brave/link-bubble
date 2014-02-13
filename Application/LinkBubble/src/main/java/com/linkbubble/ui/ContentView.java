@@ -313,7 +313,7 @@ public class ContentView extends FrameLayout {
         Log.d(TAG, "load url: " + urlAsString);
         mWebView.loadUrl(urlAsString);
         mTitleTextView.setText(R.string.loading);
-        mUrlTextView.setText(urlAsString.replace("http://", ""));
+        updateUrlTextView(urlAsString);
     }
 
     private OnTouchListener mWebViewOnTouchListener = new OnTouchListener() {
@@ -497,7 +497,7 @@ public class ContentView extends FrameLayout {
             Log.d(TAG, "redirect to url: " + urlAsString);
             mEventHandler.onPageLoading(mUrl);
             mTitleTextView.setText(R.string.loading);
-            mUrlTextView.setText(urlAsString.replace("http://", ""));
+            updateUrlTextView(urlAsString);
 
             if (mShareButton.getVisibility() == GONE) {
                 mShareButton.setVisibility(VISIBLE);
@@ -582,7 +582,7 @@ public class ContentView extends FrameLayout {
 
                             updateUrl(previousUrlAsString);
                             Log.d(TAG, "[urlstack] Go back: " + urlBefore + " -> " + webView.getUrl() + ", urlStack.size():" + mUrlStack.size());
-                            mUrlTextView.setText(previousUrlAsString.replace("http://", ""));
+                            updateUrlTextView(previousUrlAsString);
                             String title = MainApplication.sTitleHashMap.get(previousUrlAsString);
                             if (title == null) {
                                 title = getResources().getString(R.string.loading);
@@ -875,7 +875,7 @@ public class ContentView extends FrameLayout {
                             Log.d(TAG, "reload url: " + urlAsString);
                             mInitialUrlLoadStartTime = System.currentTimeMillis();
                             mTitleTextView.setText(R.string.loading);
-                            mUrlTextView.setText(urlAsString.replace("http://", ""));
+                            updateUrlTextView(urlAsString);
                             break;
                         }
 
@@ -1312,5 +1312,14 @@ public class ContentView extends FrameLayout {
             public void onClose() {
             }
         });
+    }
+
+    void updateUrlTextView(String urlAsString) {
+        if (urlAsString.equals(Constant.NEW_TAB_URL)) {
+            mUrlTextView.setText(null);
+        } else {
+            mUrlTextView.setText(urlAsString.replace("http://", ""));
+        }
+
     }
 }
