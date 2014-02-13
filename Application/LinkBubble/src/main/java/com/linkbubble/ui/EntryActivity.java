@@ -42,7 +42,7 @@ public class EntryActivity extends Activity {
         boolean showingTamperPrompt = Util.checkForTamper(this, new Prompt.OnPromptEventListener() {
             @Override
             public void onClick() {
-                Config.openAppStore(EntryActivity.this, Config.STORE_FREE_URL);
+                Config.openAppStore(EntryActivity.this, BuildConfig.STORE_FREE_URL);
             }
 
             @Override
