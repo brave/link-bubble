@@ -807,7 +807,7 @@ public class ContentView extends FrameLayout {
                 public boolean onMenuItemClick(MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.item_upgrade_to_pro: {
-                            Intent intent = Config.getStoreIntent(context, Config.STORE_PRO_URL);
+                            Intent intent = Config.getStoreIntent(context, BuildConfig.STORE_PRO_URL);
                             if (intent != null) {
                                 context.startActivity(intent);
                                 MainController.get().switchToBubbleView();

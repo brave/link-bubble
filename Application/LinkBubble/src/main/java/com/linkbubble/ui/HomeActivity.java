@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.Button;
 import android.widget.Toast;
+import com.linkbubble.BuildConfig;
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
@@ -88,7 +89,7 @@ public class HomeActivity extends Activity {
                 if (DRM.isLicensed()) {
                     startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v, false);
                 } else {
-                    Intent intent = Config.getStoreIntent(HomeActivity.this, Config.STORE_PRO_URL);
+                    Intent intent = Config.getStoreIntent(HomeActivity.this, BuildConfig.STORE_PRO_URL);
                     if (intent != null) {
                         startActivity(intent);
                     }
@@ -201,7 +202,7 @@ public class HomeActivity extends Activity {
     Prompt.OnPromptEventListener mTamperPromptEventListener = new Prompt.OnPromptEventListener() {
         @Override
         public void onClick() {
-            Config.openAppStore(HomeActivity.this, Config.STORE_FREE_URL);
+            Config.openAppStore(HomeActivity.this, BuildConfig.STORE_FREE_URL);
         }
 
         @Override
