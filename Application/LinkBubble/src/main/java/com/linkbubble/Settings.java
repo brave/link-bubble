@@ -70,6 +70,8 @@ public class Settings {
     private static final String BUBBLE_RESTING_X = "bubble_resting_x";
     private static final String BUBBLE_RESTING_Y = "bubble_resting_y";
 
+    private static final String WELCOME_MESSAGE_DISPLAYED = "welcome_message_displayed";
+
     public interface ConsumeBubblesChangedEventHandler {
         public void onConsumeBubblesChanged();
     }
@@ -709,6 +711,16 @@ public class Settings {
         editor.putInt(BUBBLE_RESTING_X, mBubbleRestingPoint.x);
         editor.putInt(BUBBLE_RESTING_Y, mBubbleRestingPoint.y);
         editor.commit();
+    }
+
+    public void setWelcomeMessageDisplayed(boolean displayed) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putBoolean(WELCOME_MESSAGE_DISPLAYED, displayed);
+        editor.commit();
+    }
+
+    public boolean getWelcomeMessageDisplayed() {
+        return mSharedPreferences.getBoolean(WELCOME_MESSAGE_DISPLAYED, false);
     }
 
     public boolean debugAutoLoadUrl() {

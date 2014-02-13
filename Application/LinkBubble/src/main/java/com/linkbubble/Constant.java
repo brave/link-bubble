@@ -12,6 +12,9 @@ public class Constant {
 
     public static final int DESIRED_FAVICON_SIZE = 96;
 
+    public static final String WELCOME_MESSAGE_URL = "http://s3.amazonaws.com/linkbubble/welcome.html";
+    public static final String WELCOME_MESSAGE_DISPLAY_URL = "linkbubble.com/welcome";
+
     // When opening a link in a new tab, there is no reliable way to get the link to be loaded. Use this guy
     // so we can determine when this is occurring, and not pollute the history. #280
     public static final String NEW_TAB_URL = "http://ishouldbeusedbutneverseen55675.com";
