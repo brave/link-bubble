@@ -95,7 +95,7 @@ public class EntryActivity extends Activity {
                 }
             }
 
-            if (canLoadFromThisApp == false) {
+            if (canLoadFromThisApp == false && !showingTamperPrompt) {
                 MainApplication.showUpgradePrompt(this, R.string.upgrade_incentive_one_app);
                 MainApplication.openInBrowser(this, intent, true);
             } else if (openLink && !showingTamperPrompt) {
