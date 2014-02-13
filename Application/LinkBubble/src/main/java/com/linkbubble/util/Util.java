@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import com.linkbubble.BuildConfig;
+import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.ui.Prompt;
 
@@ -299,8 +300,12 @@ public class Util {
 
     public static boolean showTamperPrompt(Context context, Prompt.OnPromptEventListener listener) {
         if (Tamper.isTweaked(context)) {
-            Drawable icon = context.getResources().getDrawable(android.R.drawable.sym_def_app_icon);
             String text = context.getResources().getString(R.string.tampered_apk);
+            Drawable icon = null;
+            final ResolveInfo storeResolveInfo = MainApplication.getStoreViewResolveInfo(context);
+            if (storeResolveInfo != null) {
+                icon = storeResolveInfo.loadIcon(context.getPackageManager());
+            }
             Prompt.show(text, icon, Prompt.LENGTH_LONG, listener);
             return true;
         }
