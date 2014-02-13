@@ -502,6 +502,10 @@ public class ContentView extends FrameLayout {
             if (mShareButton.getVisibility() == GONE) {
                 mShareButton.setVisibility(VISIBLE);
             }
+
+            if (urlAsString.equals(Constant.WELCOME_MESSAGE_URL)) {
+                MainController.get().displayTab(mOwnerTabView);
+            }
         }
 
         @Override
@@ -1317,6 +1321,8 @@ public class ContentView extends FrameLayout {
     void updateUrlTextView(String urlAsString) {
         if (urlAsString.equals(Constant.NEW_TAB_URL)) {
             mUrlTextView.setText(null);
+        } else if (urlAsString.equals(Constant.WELCOME_MESSAGE_URL)) {
+            mUrlTextView.setText(Constant.WELCOME_MESSAGE_DISPLAY_URL);
         } else {
             mUrlTextView.setText(urlAsString.replace("http://", ""));
         }

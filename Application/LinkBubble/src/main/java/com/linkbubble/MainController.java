@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
 import android.graphics.Point;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.view.Choreographer;
@@ -22,7 +21,6 @@ import com.linkbubble.ui.BubbleDraggable;
 import com.linkbubble.ui.BubbleFlowDraggable;
 import com.linkbubble.ui.BubbleFlowView;
 import com.linkbubble.ui.CanvasView;
-import com.linkbubble.ui.Prompt;
 import com.linkbubble.ui.SettingsFragment;
 import com.linkbubble.ui.TabView;
 import com.linkbubble.util.ActionItem;
@@ -276,16 +274,24 @@ public class MainController implements Choreographer.FrameCallback {
             return;
         }
 
-        if (Settings.get().getAutoContentDisplayLinkLoaded() && !mBubbleDraggable.isDragging() && mCanAutoDisplayLink) {
+        if (Settings.get().getAutoContentDisplayLinkLoaded()) {
+            displayTab(tab);
+        }
+
+        saveCurrentTabs();
+    }
+
+    public boolean displayTab(TabView tab) {
+        if (!mBubbleDraggable.isDragging() && mCanAutoDisplayLink) {
             switch (mBubbleDraggable.getCurrentMode()) {
                 case BubbleView:
                     mBubbleFlowDraggable.setCenterItem(tab);
                     mBubbleDraggable.switchToExpandedView();
-                    break;
+                    return true;
             }
         }
 
-        saveCurrentTabs();
+        return false;
     }
 
     public void saveCurrentTabs() {
