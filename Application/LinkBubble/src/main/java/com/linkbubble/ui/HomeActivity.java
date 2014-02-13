@@ -137,6 +137,7 @@ public class HomeActivity extends Activity {
         }
 
         MainApplication.checkForProVersion(getApplicationContext());
+        Util.checkForTamper(this, mTamperPromptEventListener);
     }
 
     @Override
