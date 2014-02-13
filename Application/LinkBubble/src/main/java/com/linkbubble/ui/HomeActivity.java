@@ -11,7 +11,6 @@ import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.Button;
 import android.widget.Toast;
 import com.linkbubble.BuildConfig;
-import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
@@ -69,6 +68,10 @@ public class HomeActivity extends Activity {
         if (mPlayedIntroAnimation) {
             mBackgroundView.setAlpha(1.f);
             mContentView.setVisibility(View.VISIBLE);
+        }
+
+        if (Settings.get().getWelcomeMessageDisplayed() == false) {
+            MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL);
         }
 
         if (Settings.get().debugAutoLoadUrl()) {

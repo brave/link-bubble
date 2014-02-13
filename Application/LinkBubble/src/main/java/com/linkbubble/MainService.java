@@ -36,7 +36,10 @@ public class MainService extends Service {
             if (!mRestoreComplete) {
                 String [] urls = intent.getStringArrayExtra("urls");
                 for (int i = 0; i < urls.length; i++) {
-                    MainController.get().openUrl(urls[i], urlLoadStartTime, i == urls.length - 1);
+                    String urlAsString = urls[i];
+                    if (urlAsString.equals(Constant.WELCOME_MESSAGE_URL) == false) {
+                        MainController.get().openUrl(urlAsString, urlLoadStartTime, i == urls.length - 1);
+                    }
                 }
                 mRestoreComplete = true;
             }

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import com.linkbubble.Config;
+import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
@@ -344,6 +345,11 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         if (index == -1) {
             return;
         }
+
+        if (tab.getUrl().equals(Constant.WELCOME_MESSAGE_URL)) {
+            Settings.get().setWelcomeMessageDisplayed(true);
+        }
+
         remove(index, animateRemove, removeFromList, mOnTabRemovedListener);
 
         // Don't do this if we're animating the final tab off, as the setCurrentTab() call messes with the
