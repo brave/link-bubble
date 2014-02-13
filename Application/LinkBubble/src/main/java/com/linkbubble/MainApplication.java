@@ -233,10 +233,10 @@ public class MainApplication extends Application {
         PackageManager packageManager = context.getPackageManager();
         Intent queryIntent = new Intent();
         queryIntent.setAction(Intent.ACTION_VIEW);
-        queryIntent.setData(Uri.parse(Config.STORE_PRO_URL));
+        queryIntent.setData(Uri.parse(BuildConfig.STORE_PRO_URL));
         List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(queryIntent, PackageManager.GET_RESOLVED_FILTER);
         for (ResolveInfo resolveInfo : resolveInfos) {
-            if (resolveInfo.activityInfo != null && resolveInfo.activityInfo.packageName.contains(Config.STORE_PACKAGE)) {
+            if (resolveInfo.activityInfo != null && resolveInfo.activityInfo.packageName.contains(BuildConfig.STORE_PACKAGE)) {
                 return resolveInfo;
             }
         }
@@ -257,7 +257,7 @@ public class MainApplication extends Application {
             public void onClick() {
                 if (storeResolveInfo != null) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(Config.STORE_PRO_URL));
+                    intent.setData(Uri.parse(BuildConfig.STORE_PRO_URL));
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.setClassName(storeResolveInfo.activityInfo.packageName, storeResolveInfo.activityInfo.name);
                     context.startActivity(intent);

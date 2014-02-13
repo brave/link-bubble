@@ -107,15 +107,7 @@ public class Config {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, mDm);
     }
 
-    private static final String GOOGLE_PLAY_STORE_URL_PREFIX = "http://play.google.com/store/apps/details?id=";
-    private static final String GOOGLE_PLAY_STORE_PACKAGE = "com.android.vending";
-    private static final String GOOGLE_PLAY_STORE_FREE_URL = GOOGLE_PLAY_STORE_URL_PREFIX + "com.actionlauncher.playstore";
-    public static final String GOOGLE_PLAY_STORE_PRO_URL = GOOGLE_PLAY_STORE_URL_PREFIX + "com.chrislacy.actionlauncher.pro";
 
-    public static final String STORE_URL_PREFIX = GOOGLE_PLAY_STORE_URL_PREFIX;
-    public static final String STORE_PACKAGE = GOOGLE_PLAY_STORE_PACKAGE;
-    public static final String STORE_FREE_URL = GOOGLE_PLAY_STORE_FREE_URL;
-    public static final String STORE_PRO_URL = GOOGLE_PLAY_STORE_PRO_URL;
 
     public static Intent getStoreIntent(Context context, String storeProUrl) {
         PackageManager manager = context.getPackageManager();
@@ -126,7 +118,7 @@ public class Config {
         for (ResolveInfo info : infos) {
             IntentFilter filter = info.filter;
             if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
-                if (info.activityInfo.packageName.equals(STORE_PACKAGE)) {
+                if (info.activityInfo.packageName.equals(BuildConfig.STORE_PACKAGE)) {
                     Intent result = new Intent(Intent.ACTION_VIEW);
                     result.setClassName(info.activityInfo.packageName, info.activityInfo.name);
                     result.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -148,8 +140,8 @@ public class Config {
         for (ResolveInfo info : infos) {
             IntentFilter filter = info.filter;
             if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
-                if (info.activityInfo.packageName.equals(STORE_PACKAGE)) {
-                    MainApplication.loadIntent(context, info.activityInfo.packageName, info.activityInfo.name, STORE_PRO_URL, -1);
+                if (info.activityInfo.packageName.equals(BuildConfig.STORE_PACKAGE)) {
+                    MainApplication.loadIntent(context, info.activityInfo.packageName, info.activityInfo.name, BuildConfig.STORE_PRO_URL, -1);
                     return;
                 }
             }
