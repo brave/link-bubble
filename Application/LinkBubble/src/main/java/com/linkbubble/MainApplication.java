@@ -229,7 +229,7 @@ public class MainApplication extends Application {
         }
     }
 
-    private static ResolveInfo getPlayStoreViewResolveInfo(Context context) {
+    public static ResolveInfo getStoreViewResolveInfo(Context context) {
         PackageManager packageManager = context.getPackageManager();
         Intent queryIntent = new Intent();
         queryIntent.setAction(Intent.ACTION_VIEW);
@@ -247,19 +247,19 @@ public class MainApplication extends Application {
     public static void showUpgradePrompt(final Context context, int stringId) {
         String text = context.getResources().getString(stringId);
         Drawable icon = null;
-        final ResolveInfo playStoreResolveInfo = getPlayStoreViewResolveInfo(context);
-        if (playStoreResolveInfo != null) {
-            icon = playStoreResolveInfo.loadIcon(context.getPackageManager());
+        final ResolveInfo storeResolveInfo = getStoreViewResolveInfo(context);
+        if (storeResolveInfo != null) {
+            icon = storeResolveInfo.loadIcon(context.getPackageManager());
         }
 
         Prompt.show(text, icon, Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
             @Override
             public void onClick() {
-                if (playStoreResolveInfo != null) {
+                if (storeResolveInfo != null) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse(Config.STORE_PRO_URL));
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.setClassName(playStoreResolveInfo.activityInfo.packageName, playStoreResolveInfo.activityInfo.name);
+                    intent.setClassName(storeResolveInfo.activityInfo.packageName, storeResolveInfo.activityInfo.name);
                     context.startActivity(intent);
                 }
             }
