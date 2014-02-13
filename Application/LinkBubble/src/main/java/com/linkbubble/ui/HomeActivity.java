@@ -192,22 +192,22 @@ public class HomeActivity extends Activity {
         }
     }
 
+    Prompt.OnPromptEventListener mTamperPromptEventListener = new Prompt.OnPromptEventListener() {
+        @Override
+        public void onClick() {
+            Config.openAppStore(HomeActivity.this, Config.STORE_FREE_URL);
+        }
+
+        @Override
+        public void onClose() {
+
+        }
+    };
+
     void startActivity(Intent intent, View view, boolean tamperCheck) {
 
         if (tamperCheck) {
-            boolean tampered = Util.showTamperPrompt(this, new Prompt.OnPromptEventListener() {
-                @Override
-                public void onClick() {
-                    Config.openAppStore(HomeActivity.this, Config.STORE_FREE_URL);
-                }
-
-                @Override
-                public void onClose() {
-
-                }
-            });
-
-            if (tampered) {
+            if (Util.checkForTamper(this, mTamperPromptEventListener)) {
                 return;
             }
         }

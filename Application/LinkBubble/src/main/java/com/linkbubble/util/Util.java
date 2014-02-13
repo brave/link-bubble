@@ -298,7 +298,7 @@ public class Util {
         return false;
     }
 
-    public static boolean showTamperPrompt(Context context, Prompt.OnPromptEventListener listener) {
+    public static boolean checkForTamper(Context context, Prompt.OnPromptEventListener listener) {
         if (Tamper.isTweaked(context)) {
             String text = context.getResources().getString(R.string.tampered_apk);
             Drawable icon = null;
