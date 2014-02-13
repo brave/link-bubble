@@ -115,7 +115,7 @@
     <string name="link_loaded_with_app">Loaded with %1$s</string>
     <string name="link_redirected">Redirected to %1$s</string>
 
-    <string name="tampered_apk">Link Bubble will not work because the APK has been illegally modified. Reinstall from the Play Store.</string>
+    <string name="tampered_apk">Your copy of Link Bubble has been illegally modified and thus will not work reliably. Please reinstall from the Play Store.</string>
     <string name="upgrade_incentive_one_link">Link Bubble Pro is required to load more than one bubble at a time. Upgrade to Pro?</string>
     <string name="upgrade_incentive_one_app">Link Bubble Pro is required to load links from more than one app. Upgrade to Pro?</string>
 
