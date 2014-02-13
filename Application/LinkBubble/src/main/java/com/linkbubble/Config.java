@@ -107,47 +107,6 @@ public class Config {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, mDm);
     }
 
-
-
-    public static Intent getStoreIntent(Context context, String storeProUrl) {
-        PackageManager manager = context.getPackageManager();
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(storeProUrl));
-        List<ResolveInfo> infos = manager.queryIntentActivities (intent, PackageManager.GET_RESOLVED_FILTER);
-        for (ResolveInfo info : infos) {
-            IntentFilter filter = info.filter;
-            if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
-                if (info.activityInfo.packageName.equals(BuildConfig.STORE_PACKAGE)) {
-                    Intent result = new Intent(Intent.ACTION_VIEW);
-                    result.setClassName(info.activityInfo.packageName, info.activityInfo.name);
-                    result.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    result.setData(Uri.parse(storeProUrl));
-                    return result;
-                }
-            }
-        }
-
-        return null;
-    }
-
-    public static void openAppStore(Context context, String url) {
-        PackageManager manager = context.getPackageManager();
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
-        List<ResolveInfo> infos = manager.queryIntentActivities (intent, PackageManager.GET_RESOLVED_FILTER);
-        for (ResolveInfo info : infos) {
-            IntentFilter filter = info.filter;
-            if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
-                if (info.activityInfo.packageName.equals(BuildConfig.STORE_PACKAGE)) {
-                    MainApplication.loadIntent(context, info.activityInfo.packageName, info.activityInfo.name, BuildConfig.STORE_PRO_URL, -1);
-                    return;
-                }
-            }
-        }
-    }
-
     public static final String SET_DEFAULT_BROSWER_URL = "http://linkbubble.com/configure";
 
     public static final String YOUTUBE_WATCH_PREFIX = "http://www.youtube.com/watch?v=";
