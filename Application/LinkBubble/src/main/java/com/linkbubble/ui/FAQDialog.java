@@ -28,6 +28,9 @@ public class FAQDialog {
 
     static String[] sFAQEntry = {
         "faq_cant_type_url",
+        "faq_future_features",
+        "faq_crap_webview",
+        "faq_ongoing_notificaion",
         "faq_drop_down_items",
         "faq_copy_text",
         "faq_translucent_status_bar",
@@ -35,7 +38,7 @@ public class FAQDialog {
         "faq_beta_programme",
         "faq_translations",
         "faq_roadmap",
-        "faq_feature_request",
+        //"faq_feature_request",
     };
 
     //static int sFeatureRequestsIndex = 2;
