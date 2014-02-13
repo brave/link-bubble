@@ -27,6 +27,7 @@
 
         </activity>
 
+        <!--
         <activity
             android:name=".ui.BubbleFlowActivity"
             android:theme="@android:style/Theme.Holo.Light"
@@ -38,7 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-        </activity>
+        </activity>-->
 
         <activity
             android:name=".ui.HistoryActivity"
