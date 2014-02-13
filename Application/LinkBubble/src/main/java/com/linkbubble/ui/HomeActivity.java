@@ -198,7 +198,7 @@ public class HomeActivity extends Activity {
             boolean tampered = Util.showTamperPrompt(this, new Prompt.OnPromptEventListener() {
                 @Override
                 public void onClick() {
-                    Config.openAppStore(HomeActivity.this);
+                    Config.openAppStore(HomeActivity.this, Config.STORE_FREE_URL);
                 }
 
                 @Override

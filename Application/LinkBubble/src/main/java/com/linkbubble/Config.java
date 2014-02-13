@@ -107,12 +107,14 @@ public class Config {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, mDm);
     }
 
-    public static final String GOOGLE_PLAY_STORE_URL_PREFIX = "http://play.google.com/store/apps/details?id=";
-    public static final String GOOGLE_PLAY_STORE_PACKAGE = "com.android.vending";
+    private static final String GOOGLE_PLAY_STORE_URL_PREFIX = "http://play.google.com/store/apps/details?id=";
+    private static final String GOOGLE_PLAY_STORE_PACKAGE = "com.android.vending";
+    private static final String GOOGLE_PLAY_STORE_FREE_URL = GOOGLE_PLAY_STORE_URL_PREFIX + "com.actionlauncher.playstore";
     public static final String GOOGLE_PLAY_STORE_PRO_URL = GOOGLE_PLAY_STORE_URL_PREFIX + "com.chrislacy.actionlauncher.pro";
 
     public static final String STORE_URL_PREFIX = GOOGLE_PLAY_STORE_URL_PREFIX;
     public static final String STORE_PACKAGE = GOOGLE_PLAY_STORE_PACKAGE;
+    public static final String STORE_FREE_URL = GOOGLE_PLAY_STORE_FREE_URL;
     public static final String STORE_PRO_URL = GOOGLE_PLAY_STORE_PRO_URL;
 
     public static Intent getStoreIntent(Context context, String storeProUrl) {
@@ -137,11 +139,11 @@ public class Config {
         return null;
     }
 
-    public static void openAppStore(Context context) {
+    public static void openAppStore(Context context, String url) {
         PackageManager manager = context.getPackageManager();
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(STORE_PRO_URL));
+        intent.setData(Uri.parse(url));
         List<ResolveInfo> infos = manager.queryIntentActivities (intent, PackageManager.GET_RESOLVED_FILTER);
         for (ResolveInfo info : infos) {
             IntentFilter filter = info.filter;
