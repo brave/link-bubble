@@ -269,7 +269,7 @@ public class SettingsFragment extends PreferenceFragment {
             sayThanksPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    Intent intent = Config.getStoreIntent(getActivity(), BuildConfig.STORE_PRO_URL);
+                    Intent intent = MainApplication.getStoreIntent(getActivity(), BuildConfig.STORE_PRO_URL);
                     if (intent != null) {
                         startActivity(intent);
                         Settings.get().setSayThanksClicked(true);
@@ -285,7 +285,7 @@ public class SettingsFragment extends PreferenceFragment {
             getProPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    Intent intent = Config.getStoreIntent(getActivity(), BuildConfig.STORE_PRO_URL);
+                    Intent intent = MainApplication.getStoreIntent(getActivity(), BuildConfig.STORE_PRO_URL);
                     if (intent != null) {
                         startActivity(intent);
                         return true;
@@ -641,7 +641,7 @@ public class SettingsFragment extends PreferenceFragment {
         layout.findViewById(R.id.upgrade_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = Config.getStoreIntent(context, BuildConfig.STORE_PRO_URL);
+                Intent intent = MainApplication.getStoreIntent(context, BuildConfig.STORE_PRO_URL);
                 if (intent != null) {
                     context.startActivity(intent);
                 }
