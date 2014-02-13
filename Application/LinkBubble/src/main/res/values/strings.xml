@@ -138,27 +138,45 @@
     <string name="title_changelog">Change log</string>
     <string name="changelog_close">Close</string>
 
+    <string name="faq_future_features_question">Will you add support for bookmarks, favorites, extensions, etc.?</string>
+    <string name="faq_future_features_answer">Never say never, but for now Link Bubble is focused solely on being the best possible way of loading
+            and consuming links loaded from other apps.</string>
     <string name="faq_translations_question">When will you add foreign language translations? Can I help?</string>
     <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Twitter
             (@chrismlacy) for help with translations, so be sure to keep an eye on my feed.]]></string>
     <string name="faq_roadmap_question">Do you publish a feature roadmap? Can I up-vote upcoming features?</string>
     <string name="faq_roadmap_answer">For competitive reasons, the answer to both of these questions is \'no\' I\'m afraid.<br/><br/></string>
-    <string name="faq_cant_type_url_question">Why can\'t I type the name of the URL I want to visit?</string>
-    <string name="faq_cant_type_url_answer">TODO: By design. Try Google Now.</string>
+    <string name="faq_cant_type_url_question">Why can\'t I type the name of the link I want to visit?</string>
+    <string name="faq_cant_type_url_answer"><![CDATA[This is as intended. Link Bubble is designed not to be a complete replacement for your browser, but to instead be used to
+            load and display links from other apps as elegantly, helpfully and as quickly as possible.<br/><br/>If you want to load a new url in Link Bubble,
+            searching for a page via Google Now and loading the result with Link Bubble is a great way of doing so.]]></string>
     <string name="faq_drop_down_items_question">Why don\'t drop down menus work?</string>
-    <string name="faq_drop_down_items_answer">TODO: Android system limitations.</string>
+    <string name="faq_drop_down_items_answer"><![CDATA[Unfortunately Android system limitations prevent this from working.<br/><br/>Technical answer:
+            Android\'s WebView hardcodes &lt;select&gt; elements to display via a Dialog, which cannot be launched from a Service. WebView does not provide a means of
+            overriding this behavior. Thus a hack has been added to simply disable drop down items from all pages in Link Bubble.
+            This is far from ideal, but it is certainly better than having the app crash, which is what happens otherwise :\\]]></string>
     <string name="faq_copy_text_question">Why can\'t I copy text from a web page?</string>
-    <string name="faq_copy_text_answer">TODO: Android system limitations.</string>
+    <string name="faq_copy_text_answer"><![CDATA[Unfortunately Android system limitations prevent this from working.<br/><br/>Technical answer:
+            Copy functionality works when using Android\'s WebView from an Activity, but not from a Service (which Link Bubble does).]]></string>
     <string name="faq_translucent_status_bar_question">Why doesn\'t the app draw over the translucent status bar?</string>
-    <string name="faq_translucent_status_bar_answer">TODO: Android system limitations.</string>
+    <string name="faq_translucent_status_bar_answer">Unfortunately Android system limitations prevent this.</string>
     <string name="faq_beta_programme_question">Is there a beta programme? How can I join?</string>
-    <string name="faq_beta_programme_answer">TODO:</string>
+    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Chris Lacy) feed for announcements.</string>
+    <string name="faq_crap_webview_question">Sometimes links doesn\'t display correctly or videos don\'t play!</string>
+    <string name="faq_crap_webview_answer"><![CDATA[LinkBubble uses the standard Android WebView, but unfortunately it is sometimes unreliable.
+            Alternative web rendering methods such as FireFox will likely be investigated going forward.<br/><br/>In the event a web page
+            doesn\'t display correctly for you in Link Bubble, the easiest thing to do is just to load a traditional browser for that link.]]></string>
+    <string name="faq_ongoing_notificaion_question">Why does the ongoing notification always display when Link Bubble is running?</string>
+    <string name="faq_ongoing_notificaion_answer"><![CDATA[Unfortunately this ongoing notification is necessary to encourage the Android OS not to terminate
+            Link Bubble.]]></string>
     <string name="faq_next_update_eta_question">When is the next update coming?</string>
-    <string name="faq_next_update_eta_answer">TODO: When it\'s ready.</string>
-    <string name="faq_feature_request_question">Can I make a feature request?</string>
-    <string name="faq_feature_request_answer">TODO: No!</string>
+    <string name="faq_next_update_eta_answer"><![CDATA[When it\'s ready!<br/><br/>It\'s not feasible to be any more specific than that unfortunately
+            (even to provide a ballpark estimate).<br/><br/>The reality is, when estimates are given people often end up taking them as a
+            commitment, and can get upset if/when a release slips for whatever reason.]]></string>
+    <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
+    <string name="faq_feature_request_answer">I have a lot of </string> -->
 
-    <string name="faq_title">FAQ/Request feature/Report bug</string>
+    <string name="faq_title">FAQ</string>
     <string name="faq_section_general">General</string>
     <string name="faq_section_feature_requests">Feature requests</string>
     <string name="faq_section_bugs">Bugs</string>
