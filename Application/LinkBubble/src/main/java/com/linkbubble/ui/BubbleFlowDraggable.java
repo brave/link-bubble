@@ -346,7 +346,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             return;
         }
 
-        if (tab.getUrl().equals(Constant.WELCOME_MESSAGE_URL)) {
+        if (removeFromList == true && tab.getUrl().toString().equals(Constant.WELCOME_MESSAGE_URL)) {
             Settings.get().setWelcomeMessageDisplayed(true);
         }
 
