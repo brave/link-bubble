@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.view.animation.Transformation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.linkbubble.R;
@@ -96,14 +97,34 @@ public class ProgressIndicator extends FrameLayout {
         return mIndicatorImage.getVisibility() == VISIBLE;
     }
 
+    private class RotateAnim extends RotateAnimation {
+
+        private float mCurrentTime;
+
+        public void resume() {
+            setStartOffset((long) (0.5f + mCurrentTime * getDuration()));
+        }
+
+        public RotateAnim(float fromDegrees, float toDegrees, int pivotXType, float pivotXValue,
+                          int pivotYType, float pivotYValue) {
+            super(fromDegrees, toDegrees, pivotXType, pivotXValue, pivotYType, pivotYValue);
+        }
+
+        @Override
+        protected void applyTransformation(float interpolatedTime, Transformation t) {
+            mCurrentTime = interpolatedTime;
+            super.applyTransformation(interpolatedTime, t);
+        }
+    }
+
     private class ProgressImageView extends ImageView {
 
-        private Animation mRotationAnimation;
+        private RotateAnim mRotationAnimation;
 
         public ProgressImageView(Context context) {
             super(context);
 
-            mRotationAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            mRotationAnimation = new RotateAnim(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             mRotationAnimation.setInterpolator(new LinearInterpolator());
             mRotationAnimation.setRepeatCount(Animation.INFINITE);
             mRotationAnimation.setDuration(1000);
@@ -114,6 +135,7 @@ public class ProgressIndicator extends FrameLayout {
             super.onAttachedToWindow();
 
             if (getVisibility() == VISIBLE && mProgress < 100) {
+                mRotationAnimation.resume();
                 startAnimation(mRotationAnimation);
             }
         }
@@ -123,6 +145,7 @@ public class ProgressIndicator extends FrameLayout {
             int oldVisibility = getVisibility();
             if (visibility != oldVisibility) {
                 if (visibility == VISIBLE) {
+                    mRotationAnimation.resume();
                     startAnimation(mRotationAnimation);
                 } else {
                     mRotationAnimation.cancel();
