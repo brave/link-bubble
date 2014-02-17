@@ -36,6 +36,7 @@ public class HomeActivity extends Activity {
     View mHistoryCircleButtonView;
     View mSettingsCircleButtonView;
     FlipView mStatsFlipView;
+    View mTimeSavedPerLinkContainerView;
     CondensedTextView mTimeSavedPerLinkTextView;
     CondensedTextView mTimeSavedTotalTextView;
 
@@ -57,7 +58,8 @@ public class HomeActivity extends Activity {
         mSettingsCircleButtonView = findViewById(R.id.settings_circle);
         mActionButtonView = (Button)findViewById(R.id.big_white_button);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
-        mTimeSavedPerLinkTextView = (CondensedTextView) mStatsFlipView.getDefaultView().findViewById(R.id.time_per_link);
+        mTimeSavedPerLinkContainerView = mStatsFlipView.getDefaultView();
+        mTimeSavedPerLinkTextView = (CondensedTextView) mTimeSavedPerLinkContainerView.findViewById(R.id.time_per_link);
         mTimeSavedPerLinkTextView.setText("");
         mTimeSavedTotalTextView = (CondensedTextView) mStatsFlipView.getFlippedView().findViewById(R.id.time_total);
         mTimeSavedTotalTextView.setText("");
@@ -199,6 +201,11 @@ public class HomeActivity extends Activity {
             String prettyTimeElapsed = Util.getPrettyTimeElapsed(getResources(), timeSavedPerLink, "\n");
             mTimeSavedPerLinkTextView.setText(prettyTimeElapsed);
             Log.d(Settings.LOAD_TIME_TAG, "*** " + (prettyTimeElapsed.replace("\n", " ")));
+        } else {
+            // The "time saved so far == 0" link is a better one to display when there's no data yet
+            if (mStatsFlipView.getDefaultView() == mTimeSavedPerLinkContainerView) {
+                mStatsFlipView.toggleFlip(false);
+            }
         }
 
         long totalTimeSaved = Settings.get().getTotalTimeSaved();
