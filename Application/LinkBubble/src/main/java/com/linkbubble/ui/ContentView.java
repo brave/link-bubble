@@ -342,6 +342,10 @@ public class ContentView extends FrameLayout {
         @Override
         public boolean shouldOverrideUrlLoading(WebView wView, final String urlAsString) {
 
+            if (mIsDestroyed) {
+                return true;
+            }
+
             URL updatedUrl = getUpdatedUrl(urlAsString);
             if (updatedUrl == null) {
                 Log.d(TAG, "ignore unsupported URI scheme: " + urlAsString);
@@ -392,6 +396,11 @@ public class ContentView extends FrameLayout {
         @Override
         public void onPageStarted(WebView view, final String urlAsString, Bitmap favIcon) {
             Log.d(TAG, "onPageStarted() - " + urlAsString);
+
+            if (mIsDestroyed) {
+                return;
+            }
+
             mPageFinishedLoading = false;
             mDoDropDownCheck = true;
 
@@ -513,6 +522,10 @@ public class ContentView extends FrameLayout {
         public void onPageFinished(WebView webView, String urlAsString) {
             super.onPageFinished(webView, urlAsString);
 
+            if (mIsDestroyed) {
+                return;
+            }
+
             // This should not be necessary, but unfortunately is.
             // Often when pressing Back, onPageFinished() is mistakenly called when progress is 0.
             if (mCurrentProgress != 100) {
@@ -569,7 +582,7 @@ public class ContentView extends FrameLayout {
     OnKeyListener mOnKeyListener = new OnKeyListener() {
         @Override
         public boolean onKey(View v, int keyCode, KeyEvent event) {
-            if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (event.getAction() == KeyEvent.ACTION_DOWN && mIsDestroyed == false) {
                 WebView webView = (WebView) v;
                 switch (keyCode) {
                     case KeyEvent.KEYCODE_BACK: {
