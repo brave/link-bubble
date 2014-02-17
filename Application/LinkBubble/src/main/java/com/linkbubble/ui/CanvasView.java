@@ -79,7 +79,7 @@ public class CanvasView extends FrameLayout {
         int closeBubbleTargetY = getResources().getDimensionPixelSize(R.dimen.close_bubble_target_y);
         CloseTabTargetView closeTabTargetView = (CloseTabTargetView) inflater.inflate(R.layout.view_close_tab_target, null);
         Drawable closeDrawable = resources.getDrawable(R.drawable.close_indicator);
-        closeTabTargetView.configure(this, context, closeDrawable, Config.BubbleAction.Close,
+        closeTabTargetView.configure(this, context, closeDrawable, Constant.BubbleAction.Close,
                 0, BubbleTargetView.HorizontalAnchor.Center,
                 closeBubbleTargetY, BubbleTargetView.VerticalAnchor.Bottom,
                 resources.getDimensionPixelSize(R.dimen.close_bubble_target_x_offset), closeBubbleTargetY,
@@ -92,16 +92,16 @@ public class CanvasView extends FrameLayout {
         int consumeTractorBeamX = resources.getDimensionPixelSize(R.dimen.consume_bubble_target_tractor_beam_x);
 
         BubbleTargetView leftConsumeTarget = (BubbleTargetView) inflater.inflate(R.layout.view_consume_bubble_target, null);
-        Drawable leftConsumeDrawable = Settings.get().getConsumeBubbleIcon(Config.BubbleAction.ConsumeLeft);
-        leftConsumeTarget.configure(this, context, leftConsumeDrawable, Config.BubbleAction.ConsumeLeft,
+        Drawable leftConsumeDrawable = Settings.get().getConsumeBubbleIcon(Constant.BubbleAction.ConsumeLeft);
+        leftConsumeTarget.configure(this, context, leftConsumeDrawable, Constant.BubbleAction.ConsumeLeft,
                 consumeDefaultX, BubbleTargetView.HorizontalAnchor.Left,
                 consumeTargetY, BubbleTargetView.VerticalAnchor.Top,
                 consumeXOffset, consumeTargetY, consumeTractorBeamX, consumeTargetY);
         mTargets.add(leftConsumeTarget);
 
         BubbleTargetView rightConsumeTarget = (BubbleTargetView) inflater.inflate(R.layout.view_consume_bubble_target, null);
-        Drawable rightConsumeDrawable = Settings.get().getConsumeBubbleIcon(Config.BubbleAction.ConsumeRight);
-        rightConsumeTarget.configure(this, context, rightConsumeDrawable, Config.BubbleAction.ConsumeRight,
+        Drawable rightConsumeDrawable = Settings.get().getConsumeBubbleIcon(Constant.BubbleAction.ConsumeRight);
+        rightConsumeTarget.configure(this, context, rightConsumeDrawable, Constant.BubbleAction.ConsumeRight,
                 consumeDefaultX, BubbleTargetView.HorizontalAnchor.Right,
                 consumeTargetY, BubbleTargetView.VerticalAnchor.Top,
                 consumeXOffset, consumeTargetY, consumeTractorBeamX, consumeTargetY);
