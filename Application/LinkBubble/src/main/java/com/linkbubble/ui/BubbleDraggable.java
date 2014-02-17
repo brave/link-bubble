@@ -113,16 +113,16 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         doAnimateToContentView();
     }
 
-    private void doSnapAction(Config.BubbleAction action) {
+    private void doSnapAction(Constant.BubbleAction action) {
         MainController mainController = MainController.get();
 
         float snapTime = mTimeOnSnapTarget - Config.ANIMATE_TO_SNAP_TIME;
-        if (action == Config.BubbleAction.Close && snapTime >= Config.CLOSE_ALL_BUBBLES_DELAY) {
+        if (action == Constant.BubbleAction.Close && snapTime >= Config.CLOSE_ALL_BUBBLES_DELAY) {
             mainController.closeAllBubbles();
             mMode = Mode.BubbleView;
         } else {
             if (mainController.closeCurrentTab(action, false)) {
-                if (mMode == Mode.ContentView && action == Config.BubbleAction.Close) {
+                if (mMode == Mode.ContentView && action == Constant.BubbleAction.Close) {
                     doAnimateToContentView();
                 } else {
                     doAnimateToBubbleView();
@@ -228,7 +228,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                         doSnap();
                     }
                 } else {
-                    Config.BubbleAction action = tv.getAction();
+                    Constant.BubbleAction action = tv.getAction();
                     doSnapAction(action);
                 }
             }

@@ -569,15 +569,15 @@ public class MainController implements Choreographer.FrameCallback {
         return mBubbleDraggable != null && mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView;
     }
 
-    public boolean closeCurrentTab(Config.BubbleAction action, boolean animateOff) {
+    public boolean closeCurrentTab(Constant.BubbleAction action, boolean animateOff) {
         return closeTab(mBubbleFlowDraggable.getCurrentTab(), action, animateOff);
     }
 
     public boolean closeTab(TabView tabView, boolean animateOff) {
-        return closeTab(tabView, Config.BubbleAction.Close, animateOff);
+        return closeTab(tabView, Constant.BubbleAction.Close, animateOff);
     }
 
-    public boolean closeTab(TabView tabView, Config.BubbleAction action, boolean animateOff) {
+    public boolean closeTab(TabView tabView, Constant.BubbleAction action, boolean animateOff) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         boolean debug = prefs.getBoolean("debug_flick", false);
 

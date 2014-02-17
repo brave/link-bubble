@@ -25,6 +25,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.linkbubble.Config;
+import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
@@ -222,14 +223,14 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
 
             String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
 
-            final String leftConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeLeft);
+            final String leftConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeLeft);
             if (leftConsumeBubbleLabel != null) {
                 if (defaultBrowserLabel == null || defaultBrowserLabel.equals(leftConsumeBubbleLabel) == false) {
                     longClickSelections.add(leftConsumeBubbleLabel);
                 }
             }
 
-            final String rightConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeRight);
+            final String rightConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeRight);
             if (rightConsumeBubbleLabel != null) {
                 if (defaultBrowserLabel == null || defaultBrowserLabel.equals(rightConsumeBubbleLabel) == false) {
                     longClickSelections.add(rightConsumeBubbleLabel);
@@ -285,9 +286,9 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                         });
                         alertDialog.show();
                     } else if (leftConsumeBubbleLabel != null && string.equals(leftConsumeBubbleLabel)) {
-                        MainApplication.handleBubbleAction(HistoryActivity.this, Config.BubbleAction.ConsumeLeft, urlAsString, -1);
+                        MainApplication.handleBubbleAction(HistoryActivity.this, Constant.BubbleAction.ConsumeLeft, urlAsString, -1);
                     } else if (rightConsumeBubbleLabel != null && string.equals(rightConsumeBubbleLabel)) {
-                        MainApplication.handleBubbleAction(HistoryActivity.this, Config.BubbleAction.ConsumeRight, urlAsString, -1);
+                        MainApplication.handleBubbleAction(HistoryActivity.this, Constant.BubbleAction.ConsumeRight, urlAsString, -1);
                     } else if (string.equals(copyLinkLabel)) {
                         MainApplication.copyLinkToClipboard(HistoryActivity.this, urlAsString, R.string.link_copied_to_clipboard);
                     }

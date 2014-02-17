@@ -4,6 +4,19 @@ import android.content.Context;
 
 public class Constant {
 
+    public enum BubbleAction {
+        None,
+        Close,
+        ConsumeRight,
+        ConsumeLeft
+    }
+
+    public enum ActionType {
+        Unknown,
+        View,
+        Share,
+    }
+
     public static final String INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION = "com.android.launcher.intent.extra.shortcut.INGORE_LAUNCH_ANIMATION";
 
     public static boolean SAVE_CURRENT_TABS = true;

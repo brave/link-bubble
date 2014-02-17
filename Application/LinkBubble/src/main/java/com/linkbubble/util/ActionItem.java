@@ -21,7 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.linkbubble.Config;
+import com.linkbubble.Constant;
 import com.linkbubble.R;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
@@ -37,16 +37,16 @@ import java.util.List;
 public class ActionItem {
 
     String mLabel;
-    public Config.ActionType mType;
+    public Constant.ActionType mType;
     String mCategory;
     public String mPackageName;
     public String mActivityClassName;
     private Drawable mIcon;
 
-    public ActionItem(Config.ActionType type, Resources resources, String label, Drawable icon, String packageName, String activityClassName) {
+    public ActionItem(Constant.ActionType type, Resources resources, String label, Drawable icon, String packageName, String activityClassName) {
         mType = type;
         mLabel = label;
-        mCategory = resources.getString(type == Config.ActionType.View ? R.string.consume_category_view : R.string.consume_category_share);
+        mCategory = resources.getString(type == Constant.ActionType.View ? R.string.consume_category_view : R.string.consume_category_share);
         mIcon = icon;
         mPackageName = packageName;
         mActivityClassName = activityClassName;
@@ -85,7 +85,7 @@ public class ActionItem {
                 if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
                     // Ignore LinkBubble from this list
                     if (resolveInfo.activityInfo.packageName.equals(packageName) == false) {
-                        actionItems.add(new ActionItem(Config.ActionType.View,
+                        actionItems.add(new ActionItem(Constant.ActionType.View,
                                 resources,
                                 resolveInfo.loadLabel(packageManager).toString(),
                                 resolveInfo.loadIcon(packageManager),
@@ -102,7 +102,7 @@ public class ActionItem {
             intent.setType("text/plain");
             List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, 0);
             for (ResolveInfo resolveInfo : resolveInfos) {
-                actionItems.add(new ActionItem(Config.ActionType.Share,
+                actionItems.add(new ActionItem(Constant.ActionType.Share,
                         resources,
                         resolveInfo.loadLabel(packageManager).toString(),
                         resolveInfo.loadIcon(packageManager),
@@ -165,7 +165,7 @@ public class ActionItem {
         PackageManager packageManager = context.getPackageManager();
 
         for (ResolveInfo resolveInfo : resolveInfos) {
-            actionItems.add(new ActionItem(Config.ActionType.View,
+            actionItems.add(new ActionItem(Constant.ActionType.View,
                     resources,
                     resolveInfo.loadLabel(packageManager).toString(),
                     resolveInfo.loadIcon(packageManager),
@@ -426,7 +426,7 @@ public class ActionItem {
         @Override
         public long getHeaderId(int position) {
             ActionItem actionItem = mData[position];
-            if (actionItem.mType == Config.ActionType.View) {
+            if (actionItem.mType == Constant.ActionType.View) {
                 return 0;
             } else {
                 return 1;
