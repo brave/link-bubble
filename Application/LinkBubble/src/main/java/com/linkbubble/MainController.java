@@ -1,6 +1,7 @@
 package com.linkbubble;
 
 import android.app.AlertDialog;
+import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Point;
 import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Choreographer;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -206,6 +208,8 @@ public class MainController implements Choreographer.FrameCallback {
 
         mCanAutoDisplayLink = true;
 
+        mCanDisplay = true;
+
         /*
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         mTextView = new TextView(mContext);
@@ -389,6 +393,8 @@ public class MainController implements Choreographer.FrameCallback {
                 scheduleUpdate();
             }
         }
+
+        updateKeyguardLocked();
     }
 
     public void onCloseSystemDialogs() {
@@ -650,6 +656,44 @@ public class MainController implements Choreographer.FrameCallback {
             for (String url : urls) {
                 MainApplication.openLink(mContext, url);
             }
+        }
+    }
+
+    private boolean mCanDisplay;
+    private static final String SCREEN_LOCK_TAG = "screenlock";
+
+    private void setCanDisplay(boolean canDisplay) {
+        if (canDisplay == mCanDisplay) {
+            return;
+        }
+        Log.d(SCREEN_LOCK_TAG, "*** setCanDisplay() - old:" + mCanDisplay + ", new:" + canDisplay);
+        mCanDisplay = canDisplay;
+        if (canDisplay) {
+            // add items to window
+        } else {
+            // remove items from window
+        }
+
+        // TODO: Add remove items from the window for the change
+    }
+
+    private void updateKeyguardLocked() {
+        KeyguardManager keyguardManager = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
+        if (keyguardManager != null) {
+            boolean isLocked = keyguardManager.isKeyguardLocked();
+            Log.d(SCREEN_LOCK_TAG, "keyguardManager.isKeyguardLocked():" + mCanDisplay);
+            setCanDisplay(!isLocked);
+        }
+    }
+
+    void updateScreenState(String action) {
+        Log.d(SCREEN_LOCK_TAG, "---" + action);
+
+        if (action.equals(Intent.ACTION_SCREEN_OFF)) {
+            setCanDisplay(false);
+        } else if (action.equals(Intent.ACTION_SCREEN_ON)) {
+        } else if (action.equals(Intent.ACTION_USER_PRESENT)) {
+            setCanDisplay(true);
         }
     }
 }
