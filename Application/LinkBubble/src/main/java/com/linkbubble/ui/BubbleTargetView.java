@@ -12,6 +12,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.linkbubble.Config;
+import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
@@ -46,7 +47,7 @@ public class BubbleTargetView extends FrameLayout {
     private float mSnapHeight;
     private Circle mSnapCircle;
     private Circle mDefaultCircle;
-    private Config.BubbleAction mAction;
+    private Constant.BubbleAction mAction;
 
     private FrameLayout.LayoutParams mCanvasLayoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -188,7 +189,7 @@ public class BubbleTargetView extends FrameLayout {
         }
     }
 
-    public void configure(CanvasView canvasView, Context context, Drawable d, Config.BubbleAction action, int defaultX, HorizontalAnchor hAnchor,
+    public void configure(CanvasView canvasView, Context context, Drawable d, Constant.BubbleAction action, int defaultX, HorizontalAnchor hAnchor,
                       int defaultY, VerticalAnchor vAnchor, int maxOffsetX, int maxOffsetY,
                       int tractorOffsetX, int tractorOffsetY) {
         mCanvasView = canvasView;
@@ -347,7 +348,7 @@ public class BubbleTargetView extends FrameLayout {
         return mIsLongHovering;
     }
 
-    public Config.BubbleAction getAction() {
+    public Constant.BubbleAction getAction() {
         return mAction;
     }
 

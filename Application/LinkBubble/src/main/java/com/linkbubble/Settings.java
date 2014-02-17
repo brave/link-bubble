@@ -214,12 +214,12 @@ public class Settings {
                     editor.commit();
                 }
                 if (rightConsumeBubblePackageName == null || !doesPackageExist(packageManager, rightConsumeBubblePackageName)) {
-                    setConsumeBubble(Config.BubbleAction.ConsumeRight, Config.ActionType.View,
+                    setConsumeBubble(Constant.BubbleAction.ConsumeRight, Constant.ActionType.View,
                             defaultBrowserLabel,
                             fallbackDefaultBrowserPackageName, fallbackDefaultBrowserActivityClassName);
                 }
                 if (leftConsumeBubblePackageName != null && !doesPackageExist(packageManager, leftConsumeBubblePackageName)) {
-                    setConsumeBubble(Config.BubbleAction.ConsumeLeft, Config.ActionType.View,
+                    setConsumeBubble(Constant.BubbleAction.ConsumeLeft, Constant.ActionType.View,
                             defaultBrowserLabel,
                             fallbackDefaultBrowserPackageName, fallbackDefaultBrowserActivityClassName);
                 }
@@ -295,7 +295,7 @@ public class Settings {
 
     private boolean setDefaultLeftConsumeBubble(ResolveInfo resolveInfo, PackageManager packageManager) {
         if (resolveInfo != null) {
-            setConsumeBubble(Config.BubbleAction.ConsumeLeft, Config.ActionType.Share,
+            setConsumeBubble(Constant.BubbleAction.ConsumeLeft, Constant.ActionType.Share,
                     resolveInfo.loadLabel(packageManager).toString(),
                     resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
             return true;
@@ -346,7 +346,7 @@ public class Settings {
         return null;
     }
 
-    public void setConsumeBubble(Config.BubbleAction action, Config.ActionType type, String label, String packageName, String activityClassName) {
+    public void setConsumeBubble(Constant.BubbleAction action, Constant.ActionType type, String label, String packageName, String activityClassName) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         switch (action) {
             case ConsumeLeft:
@@ -370,7 +370,7 @@ public class Settings {
         }
     }
 
-    public String getConsumeBubbleLabel(Config.BubbleAction action) {
+    public String getConsumeBubbleLabel(Constant.BubbleAction action) {
         switch (action) {
             case ConsumeLeft:
                 return mSharedPreferences.getString(PREFERENCE_LEFT_CONSUME_BUBBLE_LABEL, null);
@@ -381,7 +381,7 @@ public class Settings {
         return null;
     }
 
-    String getConsumeBubblePackageName(Config.BubbleAction action) {
+    String getConsumeBubblePackageName(Constant.BubbleAction action) {
         switch (action) {
             case ConsumeLeft:
                 return mSharedPreferences.getString(PREFERENCE_LEFT_CONSUME_BUBBLE_PACKAGE_NAME, null);
@@ -392,7 +392,7 @@ public class Settings {
         return null;
     }
 
-    String getConsumeBubbleActivityClassName(Config.BubbleAction action) {
+    String getConsumeBubbleActivityClassName(Constant.BubbleAction action) {
         switch (action) {
             case ConsumeLeft:
                 return mSharedPreferences.getString(PREFERENCE_LEFT_CONSUME_BUBBLE_ACTIVITY_CLASS_NAME, null);
@@ -403,7 +403,7 @@ public class Settings {
         return null;
     }
 
-    Config.ActionType getConsumeBubbleActionType(Config.BubbleAction action) {
+    Constant.ActionType getConsumeBubbleActionType(Constant.BubbleAction action) {
         String actionTypeAsString = null;
         switch (action) {
             case ConsumeLeft:
@@ -416,17 +416,17 @@ public class Settings {
         }
 
         if (actionTypeAsString != null) {
-            if (actionTypeAsString.equals(Config.ActionType.Share.name())) {
-                return Config.ActionType.Share;
-            } else if (actionTypeAsString.equals(Config.ActionType.View.name())) {
-                return Config.ActionType.View;
+            if (actionTypeAsString.equals(Constant.ActionType.Share.name())) {
+                return Constant.ActionType.Share;
+            } else if (actionTypeAsString.equals(Constant.ActionType.View.name())) {
+                return Constant.ActionType.View;
             }
         }
 
-        return Config.ActionType.Unknown;
+        return Constant.ActionType.Unknown;
     }
 
-    public Drawable getConsumeBubbleIcon(Config.BubbleAction action) {
+    public Drawable getConsumeBubbleIcon(Constant.BubbleAction action) {
         PackageManager packageManager = mContext.getPackageManager();
         try {
             String packageName = getConsumeBubblePackageName(action);

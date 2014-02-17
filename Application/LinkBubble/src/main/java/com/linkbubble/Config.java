@@ -1,35 +1,15 @@
 package com.linkbubble;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.net.Uri;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.WindowManager;
 
-import java.util.List;
-
 /**
  * Created by gw on 2/10/13.
  */
 public class Config {
-
-    public enum BubbleAction {
-        None,
-        Close,
-        ConsumeRight,
-        ConsumeLeft
-    }
-
-    public enum ActionType {
-        Unknown,
-        View,
-        Share,
-    }
 
     public static DisplayMetrics mDm = new DisplayMetrics();
 
