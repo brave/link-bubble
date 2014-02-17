@@ -15,9 +15,11 @@ public class ScaleUpAnimHelper {
 
     AnimState mAnimState = AnimState.None;
     View mView;
+    private float mAlpha;
 
-    public ScaleUpAnimHelper(View view) {
+    public ScaleUpAnimHelper(View view, float alpha) {
         mView = view;
+        mAlpha = alpha;
     }
 
     public void show() {
@@ -34,7 +36,7 @@ public class ScaleUpAnimHelper {
             mView.setVisibility(View.VISIBLE);
         }
 
-        mView.animate().alpha(1f).scaleX(1f).scaleY(1f)
+        mView.animate().alpha(mAlpha).scaleX(1f).scaleY(1f)
                 .setDuration(duration)
                 .setInterpolator(new AnticipateOvershootInterpolator())
                 .setListener(mShowListener)
