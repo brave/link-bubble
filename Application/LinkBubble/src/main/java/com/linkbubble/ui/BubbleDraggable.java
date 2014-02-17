@@ -88,6 +88,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             xp = Config.mBubbleSnapRightX;
         }
 
+        animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(Constant.BUBBLE_ANIM_TIME);
+        mBadgeView.animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(Constant.BUBBLE_ANIM_TIME);
+
         setTargetPos(xp, yp, 0.5f, DraggableHelper.AnimationType.MediumOvershoot, new DraggableHelper.AnimationEventListener() {
             @Override
             public void onAnimationComplete() {
@@ -256,6 +259,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         if (MainController.get().getActiveTabCount() == 0) {
             return;
         }
+
+        animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(Constant.BUBBLE_ANIM_TIME);
+        mBadgeView.animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(Constant.BUBBLE_ANIM_TIME);
+
         float bubblePeriod = (float)Constant.BUBBLE_ANIM_TIME / 1000.f;
         float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
 
@@ -313,6 +320,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
         final MainController mainController = MainController.get();
         setVisibility(View.VISIBLE);
+
+        animate().alpha(1.0f).setDuration(Constant.BUBBLE_ANIM_TIME);
+        mBadgeView.animate().alpha(1.0f).setDuration(Constant.BUBBLE_ANIM_TIME);
 
         int xp = (int) Config.getContentViewX(0, 1);
         int yp = Config.mContentViewBubbleY;

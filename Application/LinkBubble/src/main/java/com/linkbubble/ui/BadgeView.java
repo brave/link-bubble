@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.linkbubble.Config;
+import com.linkbubble.Constant;
 import com.linkbubble.MainController;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.util.ScaleUpAnimHelper;
@@ -30,7 +31,7 @@ public class BadgeView extends TextView {
         super(context, attrs, defStyle);
 
         mCount = 0;
-        mAnimHelper = new ScaleUpAnimHelper(this);
+        mAnimHelper = new ScaleUpAnimHelper(this, Constant.BUBBLE_MODE_ALPHA);
     }
 
     public void show() {
