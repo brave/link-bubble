@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:padding="16dp">
+
+        <TextView
+            android:id="@+id/seekbar_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"  />
+
+        <SeekBar
+            android:id="@+id/seekbar_text_zoom"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/preference_webview_text_zoom_note"
+            android:paddingTop="10dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"  />
+
+    </LinearLayout>
+</ScrollView>

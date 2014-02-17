@@ -62,6 +62,11 @@ public class Settings {
     public static final String PREFERENCE_DEFAULT_APPS = "preference_default_apps";
     public static final String PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT = "preference_google_accounts_redirect";
 
+    public static final String PREFERENCE_WEBVIEW_TEXT_ZOOM = "preference_webview_text_zoom";
+    public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN = 50;
+    public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_DEFAULT = 175;
+    public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_MAX = 250;
+
     private static final String SAY_THANKS_CLICKED = "say_thanks_clicked";
 
     private static final String DEFAULT_APPS_MAP_KEY_HOST = "host";
@@ -496,6 +501,16 @@ public class Settings {
             return true;
         }
         return false;
+    }
+
+    public int getWebViewTextZoom() {
+        return mSharedPreferences.getInt(PREFERENCE_WEBVIEW_TEXT_ZOOM, PREFERENCE_WEBVIEW_TEXT_ZOOM_DEFAULT);
+    }
+
+    public void setWebViewTextZoom(int zoom) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putInt(PREFERENCE_WEBVIEW_TEXT_ZOOM, zoom);
+        editor.commit();
     }
 
     public List<ResolveInfo> getAppsThatHandleUrl(URL url) {
