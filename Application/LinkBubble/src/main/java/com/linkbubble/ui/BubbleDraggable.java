@@ -254,7 +254,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         mMode = Mode.BubbleView;
 
         if (MainController.get().getActiveTabCount() == 0) {
-            throw new RuntimeException("Should be at least 1 bubble active to enter the AnimateToBubbleView state");
+            return;
         }
         float bubblePeriod = (float)Constant.BUBBLE_ANIM_TIME / 1000.f;
         float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
