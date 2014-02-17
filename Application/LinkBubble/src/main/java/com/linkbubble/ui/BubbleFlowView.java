@@ -415,6 +415,9 @@ public class BubbleFlowView extends HorizontalScrollView {
 
         int size = mViews.size();
         int centerIndex = getCenterIndex();
+        if (centerIndex == -1) {    // fixes #343
+            return false;
+        }
         View centerView = mViews.get(centerIndex);
         boolean addedAnimationListener = false;
         for (int i = 0; i < size; i++) {
