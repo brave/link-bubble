@@ -192,6 +192,17 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         return mViews.size();
     }
 
+    public boolean isUrlActive(String urlAsString) {
+        for (View v : mViews) {
+            TabView tabView = (TabView)v;
+            if (tabView.getUrl().toString().equals(urlAsString)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     // The number of items being drawn on the BubbleFlowView.
     // Note: It's possible for getVisibleTabCount() to be greater than getActiveTabCount() in the event an item is animating off.
     // Eg, when Back is pressed to dismiss the last Bubble.

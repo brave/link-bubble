@@ -356,6 +356,10 @@ public class MainController implements Choreographer.FrameCallback {
         return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getActiveTabCount() : 0;
     }
 
+    public boolean isUrlActive(String urlAsString) {
+        return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.isUrlActive(urlAsString) : false;
+    }
+
     public int getTabIndex(TabView tab) {
         return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getIndexOfView(tab) : -1;
     }
