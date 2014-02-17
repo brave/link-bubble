@@ -60,6 +60,9 @@
     <string name="preference_scan_for_youtube_embeds_title">Check for YouTube embeds</string>
     <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
 
+    <string name="preference_webview_text_zoom_title">Text zoom</string>
+    <string name="preference_webview_text_zoom_note">Note: Current bubbles will be reloaded with the new text zoom applied after selecting \"OK\".</string>
+    <string name="preference_webview_text_zoom_reloading_current">New text zoom level applied. Reloading current bubbles…</string>
     <string name="preference_clear_browser_cache_title">Clear private data</string>
     <string name="preference_clear_cache">Cache</string>
     <string name="preference_clear_cookies">Cookies</string>
