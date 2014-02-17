@@ -68,6 +68,11 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.HideAllBubblesActivity"
+                  android:excludeFromRecents="true"
+                  android:launchMode="singleInstance"
+                  android:theme="@style/TransparentTheme"/>
         
         <activity android:name=".ui.SettingsActivity"
                   android:label="@string/app_name"

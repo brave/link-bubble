@@ -2,6 +2,8 @@
 <resources>
 
     <string name="app_name">Link Bubble</string>
+    <string name="notification_title">Link Bubble</string>
+    <string name="notification_summary">Touch to hide all open bubbles</string>
 
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
