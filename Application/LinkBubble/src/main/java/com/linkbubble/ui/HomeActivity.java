@@ -14,6 +14,7 @@ import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
+import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.CrashTracking;
@@ -71,7 +72,13 @@ public class HomeActivity extends Activity {
         }
 
         if (Settings.get().getWelcomeMessageDisplayed() == false) {
-            MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL);
+            boolean showWelcomeUrl = true;
+            if (MainController.get() != null && MainController.get().isUrlActive(Constant.WELCOME_MESSAGE_URL)) {
+                showWelcomeUrl = false;
+            }
+            if (showWelcomeUrl) {
+                MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL);
+            }
         }
 
         if (Settings.get().debugAutoLoadUrl()) {
