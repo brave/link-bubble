@@ -267,6 +267,13 @@ public class MainController implements Choreographer.FrameCallback {
         MainApplication.sDrm.requestLicenseStatus();
     }
 
+    /*
+     * Begin the destruction process.
+     */
+    public void finish() {
+        mEventHandler.onDestroy();
+    }
+
     //private TextView mTextView;
     //private WindowManager mWindowManager;
     //private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
@@ -392,7 +399,7 @@ public class MainController implements Choreographer.FrameCallback {
             // instance is still animating off screen. In that case, keep triggering an update so that when the
             // item finishes, we are ready to call onDestroy().
             if (mBubbleFlowDraggable.getVisibleTabCount() == 0) {
-                mEventHandler.onDestroy();
+                finish();
             } else {
                 scheduleUpdate();
             }
@@ -422,7 +429,7 @@ public class MainController implements Choreographer.FrameCallback {
                 && resolveInfo.activityInfo.packageName.equals(mAppPackageName);
         if (isLinkBubble == false && MainApplication.loadResolveInfoIntent(mContext, resolveInfo, urlAsString, -1)) {
             if (getActiveTabCount() == 0) {
-                mEventHandler.onDestroy();
+                finish();
             }
 
             String title = String.format(mContext.getString(R.string.link_loaded_with_app),
@@ -450,7 +457,7 @@ public class MainController implements Choreographer.FrameCallback {
         } catch (MalformedURLException e) { // If this is not a valid scheme, back out. #271
             Toast.makeText(mContext, mContext.getString(R.string.unsupported_scheme), Toast.LENGTH_SHORT).show();
             if (getActiveTabCount() == 0) {
-                mEventHandler.onDestroy();
+                finish();
             }
             return null;
         }
@@ -461,7 +468,7 @@ public class MainController implements Choreographer.FrameCallback {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             if (MainApplication.openInBrowser(mContext, intent, false)) {
                 if (getActiveTabCount() == 0) {
-                    mEventHandler.onDestroy();
+                    finish();
                 }
 
                 String title = String.format(mContext.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
@@ -520,7 +527,7 @@ public class MainController implements Choreographer.FrameCallback {
                                 Settings.get().addRedirectToApp(urlAsString);
                                 closeTab(result, contentViewShowing());
                                 if (getActiveTabCount() == 0) {
-                                    mEventHandler.onDestroy();
+                                    finish();
                                 }
                             }
                         }
