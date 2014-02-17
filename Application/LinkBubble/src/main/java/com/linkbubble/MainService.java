@@ -99,10 +99,15 @@ public class MainService extends Service {
         filter.addDataScheme("package");
         registerReceiver(mPackageBroadcastReceiver, filter);
 
+        filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        filter.addAction(Intent.ACTION_USER_PRESENT);
+        registerReceiver(mScreenReceiver, filter);
     }
 
     @Override
     public void onDestroy() {
+        unregisterReceiver(mScreenReceiver);
         unregisterReceiver(mPackageBroadcastReceiver);
         unregisterReceiver(mDialogReceiver);
         unregisterReceiver(mBroadcastReceiver);
@@ -139,6 +144,13 @@ public class MainService extends Service {
                 Settings.get().updateBrowsers();
                 MainApplication.checkForProVersion(context);
             }
+        }
+    };
+
+    private static BroadcastReceiver mScreenReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            MainController.get().updateScreenState(intent.getAction());
         }
     };
 }
