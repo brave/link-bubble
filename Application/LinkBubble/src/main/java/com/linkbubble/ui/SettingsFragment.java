@@ -15,7 +15,6 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
@@ -28,6 +27,8 @@ import android.webkit.WebViewClient;
 import android.webkit.WebViewDatabase;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Config;
@@ -57,7 +58,7 @@ public class SettingsFragment extends PreferenceFragment {
 
     private Preference mAutoContentDisplayPreference;
     private Preference mInterceptLinksFromPreference;
-    private Handler mHandler = new Handler();
+    private Preference mWebViewTextZoomPreference;
 
     public static class IncognitoModeChangedEvent {
         public IncognitoModeChangedEvent(boolean value) {
@@ -263,6 +264,16 @@ public class SettingsFragment extends PreferenceFragment {
                 return onClearBrowserCachePreferenceClick();
             }
         });
+
+        mWebViewTextZoomPreference = findPreference(Settings.PREFERENCE_WEBVIEW_TEXT_ZOOM);
+        mWebViewTextZoomPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                getTextZoomDialog().show();
+                return true;
+            }
+        });
+        mWebViewTextZoomPreference.setSummary(Settings.get().getWebViewTextZoom() + "%");
 
         Preference sayThanksPreference = findPreference("preference_say_thanks");
         if (sayThanksPreference != null) {
@@ -492,6 +503,80 @@ public class SettingsFragment extends PreferenceFragment {
         if (mInterceptLinksFromPreference != null) {
             mInterceptLinksFromPreference.setSummary(Settings.get().getInterceptLinksFromAppName());
         }
+    }
+
+    AlertDialog getTextZoomDialog() {
+        final View layout = View.inflate(getActivity(), R.layout.view_preference_text_zoom, null);
+
+        final int initialZoom = Settings.get().getWebViewTextZoom();
+        final TextView textView = (TextView) layout.findViewById(R.id.seekbar_title);
+        final SeekBar seekBar = (SeekBar) layout.findViewById(R.id.seekbar_text_zoom);
+        textView.setText((initialZoom + Settings.PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN) + "%");
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (progress < 0) {
+                    progress = 0;
+                } else {
+                    final int stepSize = 5;
+                    progress = (Math.round(progress/stepSize))*stepSize;
+                }
+                seekBar.setProgress(progress);
+
+                textView.setText((progress + Settings.PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN) + "%");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        seekBar.setMax(Settings.PREFERENCE_WEBVIEW_TEXT_ZOOM_MAX - Settings.PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN);
+        seekBar.setProgress(initialZoom - Settings.PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setIcon(0);
+        builder.setView(layout);
+        builder.setTitle(R.string.preference_webview_text_zoom_title);
+
+        AlertDialog alertDialog = builder.create();
+
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Settings.get().setWebViewTextZoom(seekBar.getProgress() + Settings.PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN);
+                int currentZoom = Settings.get().getWebViewTextZoom();
+                mWebViewTextZoomPreference.setSummary(currentZoom + "%");
+                if (currentZoom != initialZoom && MainController.get() != null) {
+                    if (MainController.get().reloadAllTabs(getActivity())) {
+                        Toast.makeText(getActivity(), R.string.preference_webview_text_zoom_reloading_current, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getString(R.string.action_use_default), new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Settings.get().setWebViewTextZoom(Settings.PREFERENCE_WEBVIEW_TEXT_ZOOM_DEFAULT);
+                int currentZoom = Settings.get().getWebViewTextZoom();
+                mWebViewTextZoomPreference.setSummary(currentZoom + "%");
+                if (currentZoom != initialZoom && MainController.get() != null) {
+                    if (MainController.get().reloadAllTabs(getActivity())) {
+                        Toast.makeText(getActivity(), R.string.preference_webview_text_zoom_reloading_current, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
+        return alertDialog;
     }
 
     AlertDialog getCreditDialog() {

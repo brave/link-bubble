@@ -290,7 +290,7 @@ public class ContentView extends FrameLayout {
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setSupportZoom(true);
-        webSettings.setTextZoom(175);
+        webSettings.setTextZoom(Settings.get().getWebViewTextZoom());
         webSettings.setBuiltInZoomControls(true);
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setUseWideViewPort(true);

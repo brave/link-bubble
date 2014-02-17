@@ -81,6 +81,11 @@
     <PreferenceCategory
         android:title="@string/preference_category_browser">
 
+        <Preference
+            android:title="@string/preference_webview_text_zoom_title"
+            android:key="preference_webview_text_zoom">
+        </Preference>
+
         <CheckBoxPreference
             android:key="preference_incognito"
             android:title="Incognito Mode"
