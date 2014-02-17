@@ -40,7 +40,7 @@ public class TabView extends BubbleView {
         super.configure(url);
 
         mBackIndicatorView = (ImageView) findViewById(R.id.back_indicator);
-        mBackIndicatorAnimHelper = new ScaleUpAnimHelper(mBackIndicatorView);
+        mBackIndicatorAnimHelper = new ScaleUpAnimHelper(mBackIndicatorView, 1.0f);
         mBackIndicatorAnimHelper.hide();
 
         mContentView = (ContentView)inflate(getContext(), R.layout.view_content, null);

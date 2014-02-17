@@ -10,6 +10,8 @@ public class Constant {
 
     public static final int BUBBLE_ANIM_TIME = 300;
 
+    public static final float BUBBLE_MODE_ALPHA = 0.75f;
+
     public static final int DESIRED_FAVICON_SIZE = 96;
 
     public static final String WELCOME_MESSAGE_URL = "http://s3.amazonaws.com/linkbubble/welcome.html";
