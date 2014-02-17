@@ -583,14 +583,7 @@ public class SettingsFragment extends PreferenceFragment {
                     boolean reloaded = false;
 
                     if (MainController.get() != null) {
-                        MainController.get().closeAllBubbles(false);
-                        final Vector<String> urls = Settings.get().loadCurrentTabs();
-                        if (urls.size() > 0) {
-                            for (String url : urls) {
-                                MainApplication.openLink(getActivity().getApplicationContext(), url);
-                                reloaded = true;
-                            }
-                        }
+                        reloaded = MainController.get().reloadAllTabs(getActivity());
                     }
 
                     Toast.makeText(getActivity(), reloaded ? R.string.private_data_cleared_reloading_current : R.string.private_data_cleared,
