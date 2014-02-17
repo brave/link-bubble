@@ -211,6 +211,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             }
         }
 
+        animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(Constant.BUBBLE_ANIM_TIME);
+        mBadgeView.animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(Constant.BUBBLE_ANIM_TIME);
+
         setTargetPos(targetX, targetY, flickAnimPeriod, animType, new DraggableHelper.AnimationEventListener() {
             @Override
             public void onAnimationComplete() {
@@ -386,6 +389,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                     mTouchDown = true;
                     mTouchInitialX = e.posX;
                     mTouchInitialY = e.posY;
+
+                    animate().alpha(1.0f).setDuration(Constant.BUBBLE_ANIM_TIME);
+                    mBadgeView.animate().alpha(1.0f).setDuration(Constant.BUBBLE_ANIM_TIME);
 
                     MainController mainController = MainController.get();
                     mainController.scheduleUpdate();
