@@ -665,6 +665,11 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
+        public void onCloseWindow(WebView window) {
+            MainController.get().closeTab(mOwnerTabView, true);
+        }
+
+        @Override
         public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
             mJsAlertDialog = new AlertDialog.Builder(getContext()).create();
             mJsAlertDialog.setMessage(message);
