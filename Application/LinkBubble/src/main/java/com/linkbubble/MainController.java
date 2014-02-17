@@ -663,6 +663,20 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
+    public boolean reloadAllTabs(Context context) {
+        boolean reloaded = false;
+        closeAllBubbles(false);
+        final Vector<String> urls = Settings.get().loadCurrentTabs();
+        if (urls.size() > 0) {
+            for (String url : urls) {
+                MainApplication.openLink(context.getApplicationContext(), url);
+                reloaded = true;
+            }
+        }
+
+        return reloaded;
+    }
+
     private boolean mCanDisplay;
     private static final String SCREEN_LOCK_TAG = "screenlock";
 
