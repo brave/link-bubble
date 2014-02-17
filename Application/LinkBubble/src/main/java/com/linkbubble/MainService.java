@@ -1,6 +1,7 @@
 package com.linkbubble;
 
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 import android.webkit.WebIconDatabase;
+import com.linkbubble.ui.HideAllBubblesActivity;
 import com.linkbubble.util.CrashTracking;
 
 /**
@@ -58,12 +60,16 @@ public class MainService extends Service {
         super.onCreate();
         CrashTracking.init(this);
 
-        Notification.Builder mBuilder = new Notification.Builder(this)
+        Intent resultIntent = new Intent(this, HideAllBubblesActivity.class);
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Notification.Builder notificationBuilder = new Notification.Builder(this)
                         .setSmallIcon(R.drawable.ic_launcher)
-                        .setContentTitle("LinkBubble")
                         .setPriority(Notification.PRIORITY_MIN)
-                        .setContentText("");
-        startForeground(1, mBuilder.build());
+                        .setContentTitle(getString(R.string.app_name))
+                        .setContentText(getString(R.string.notification_summary))
+                        .setContentIntent(resultPendingIntent);
+        startForeground(1, notificationBuilder.build());
 
         Config.init(this);
         Settings.get().onOrientationChange();
