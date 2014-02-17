@@ -1031,14 +1031,14 @@ public class ContentView extends FrameLayout {
 
         String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
 
-        final String leftConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeLeft);
+        final String leftConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeLeft);
         if (leftConsumeBubbleLabel != null) {
             if (defaultBrowserLabel == null || defaultBrowserLabel.equals(leftConsumeBubbleLabel) == false) {
                 longClickSelections.add(leftConsumeBubbleLabel);
             }
         }
 
-        final String rightConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(Config.BubbleAction.ConsumeRight);
+        final String rightConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeRight);
         if (rightConsumeBubbleLabel != null) {
             if (defaultBrowserLabel == null || defaultBrowserLabel.equals(rightConsumeBubbleLabel) == false) {
                 longClickSelections.add(rightConsumeBubbleLabel);
@@ -1074,9 +1074,9 @@ public class ContentView extends FrameLayout {
                 } else if (string.equals(shareLabel)) {
                     showSelectShareMethod(urlAsString, false);
                 } else if (leftConsumeBubbleLabel != null && string.equals(leftConsumeBubbleLabel)) {
-                    MainApplication.handleBubbleAction(getContext(), Config.BubbleAction.ConsumeLeft, urlAsString, -1);
+                    MainApplication.handleBubbleAction(getContext(), Constant.BubbleAction.ConsumeLeft, urlAsString, -1);
                 } else if (rightConsumeBubbleLabel != null && string.equals(rightConsumeBubbleLabel)) {
-                    MainApplication.handleBubbleAction(getContext(), Config.BubbleAction.ConsumeRight, urlAsString, -1);
+                    MainApplication.handleBubbleAction(getContext(), Constant.BubbleAction.ConsumeRight, urlAsString, -1);
                 //} else if (string.equals(copyLinkLabel)) {
                 //    MainApplication.copyLinkToClipboard(getContext(), urlAsString, R.string.link_copied_to_clipboard);
                 }

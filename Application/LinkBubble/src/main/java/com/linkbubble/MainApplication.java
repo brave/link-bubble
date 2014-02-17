@@ -151,10 +151,10 @@ public class MainApplication extends Application {
         return true;
     }
 
-    public static boolean handleBubbleAction(Context context, Config.BubbleAction action, String url, long totalLoadTime) {
-        Config.ActionType actionType = Settings.get().getConsumeBubbleActionType(action);
+    public static boolean handleBubbleAction(Context context, Constant.BubbleAction action, String url, long totalLoadTime) {
+        Constant.ActionType actionType = Settings.get().getConsumeBubbleActionType(action);
         boolean result = false;
-        if (actionType == Config.ActionType.Share) {
+        if (actionType == Constant.ActionType.Share) {
             // TODO: Retrieve the class name below from the app in case Twitter ever change it.
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
@@ -167,10 +167,10 @@ public class MainApplication extends Application {
                 Settings.get().trackLinkLoadTime(totalLoadTime, Settings.LinkLoadType.ShareToOtherApp, url);
             }
             result = true;
-        } else if (actionType == Config.ActionType.View) {
+        } else if (actionType == Constant.ActionType.View) {
             result = MainApplication.loadIntent(context, Settings.get().getConsumeBubblePackageName(action),
                     Settings.get().getConsumeBubbleActivityClassName(action), url, -1);
-        } else if (action == Config.BubbleAction.Close) {
+        } else if (action == Constant.BubbleAction.Close) {
             result = true;
         }
 
