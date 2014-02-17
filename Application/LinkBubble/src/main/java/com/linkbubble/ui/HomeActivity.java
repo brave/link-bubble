@@ -202,6 +202,8 @@ public class HomeActivity extends Activity {
             mTimeSavedPerLinkTextView.setText(prettyTimeElapsed);
             Log.d(Settings.LOAD_TIME_TAG, "*** " + (prettyTimeElapsed.replace("\n", " ")));
         } else {
+            String prettyTimeElapsed = Util.getPrettyTimeElapsed(getResources(), 0, "\n");
+            mTimeSavedPerLinkTextView.setText(prettyTimeElapsed);
             // The "time saved so far == 0" link is a better one to display when there's no data yet
             if (mStatsFlipView.getDefaultView() == mTimeSavedPerLinkContainerView) {
                 mStatsFlipView.toggleFlip(false);
