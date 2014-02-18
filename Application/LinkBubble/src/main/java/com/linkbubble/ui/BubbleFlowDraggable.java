@@ -26,7 +26,6 @@ import java.net.MalformedURLException;
 public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     private DraggableHelper mDraggableHelper;
-    private WindowManager mWindowManager;
     private EventHandler mEventHandler;
     private int mBubbleFlowWidth;
     private int mBubbleFlowHeight;
@@ -55,9 +54,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     public void configure(EventHandler eventHandler)  {
-
-        mWindowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-
         mBubbleFlowWidth = Config.mScreenWidth;
         mBubbleFlowHeight = getResources().getDimensionPixelSize(R.dimen.bubble_pager_height);
 
@@ -101,7 +97,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         windowManagerParams.format = PixelFormat.TRANSPARENT;
         windowManagerParams.setTitle("LinkBubble: BubbleFlowView");
 
-        mDraggableHelper = new DraggableHelper(this, mWindowManager, windowManagerParams, false, new DraggableHelper.OnTouchActionEventListener() {
+        mDraggableHelper = new DraggableHelper(this, windowManagerParams, false, new DraggableHelper.OnTouchActionEventListener() {
 
             @Override
             public void onActionDown(DraggableHelper.TouchEvent event) {
@@ -128,7 +124,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         mEventHandler = eventHandler;
 
         if (mDraggableHelper.isAlive()) {
-            mWindowManager.addView(this, windowManagerParams);
+            MainController.addRootWindow(this, windowManagerParams);
 
             setExactPos(0, 0);
         }
@@ -141,22 +137,18 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         super.configure(width, itemWidth, itemHeight);
 
         if (mDraggableHelper != null && mDraggableHelper.getWindowManagerParams() != null) {
-            //mWindowManager.removeView(this);
-
             WindowManager.LayoutParams windowManagerParams = mDraggableHelper.getWindowManagerParams();
             windowManagerParams.width = width;
             windowManagerParams.x = 0;
             windowManagerParams.y = 0;
             windowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
 
-            //mWindowManager.addView(this, windowManagerParams);
             setExactPos(0, 0);
         }
     }
 
     public void destroy() {
         //setOnTouchListener(null);
-        //mWindowManager.removeView(this);
         mDraggableHelper.destroy();
     }
 
@@ -282,7 +274,8 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     public void onOrientationChanged() {
         clearTargetPos();
 
-        mWindowManager.getDefaultDisplay().getSize(mTempSize);
+        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getSize(mTempSize);
         configure(mTempSize.x, mItemWidth, mItemHeight);
         updatePositions();
         updateScales(getScrollX());

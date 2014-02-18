@@ -26,7 +26,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     private static final String TAG = "BubbleDraggable";
 
     private DraggableHelper mDraggableHelper;
-    private WindowManager mWindowManager;
     private OnUpdateListener mOnUpdateListener;
     public BadgeView mBadgeView;
     private CanvasView mCanvasView;
@@ -364,8 +363,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         mBadgeView.hide();
         mBadgeView.setVisibility(View.GONE);
 
-        mWindowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-
         int bubbleSize = getResources().getDimensionPixelSize(R.dimen.bubble_size);
 
         WindowManager.LayoutParams windowManagerParams = new WindowManager.LayoutParams();
@@ -379,7 +376,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         windowManagerParams.format = PixelFormat.TRANSPARENT;
         windowManagerParams.setTitle("LinkBubble: BubbleDraggable");
 
-        mDraggableHelper = new DraggableHelper(this, mWindowManager, windowManagerParams, true, new DraggableHelper.OnTouchActionEventListener() {
+        mDraggableHelper = new DraggableHelper(this, windowManagerParams, true, new DraggableHelper.OnTouchActionEventListener() {
 
             @Override
             public void onActionDown(DraggableHelper.TouchEvent e) {
@@ -517,7 +514,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         });
 
         if (mDraggableHelper.isAlive()) {
-            mWindowManager.addView(this, windowManagerParams);
+            MainController.addRootWindow(this, windowManagerParams);
 
             setExactPos(x0, y0);
             if (targetX != x0 || targetY != y0) {
