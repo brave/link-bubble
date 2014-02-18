@@ -23,7 +23,7 @@ public class Constant {
 
     public static final int BUBBLE_ANIM_TIME = 300;
 
-    public static final float BUBBLE_MODE_ALPHA = 0.75f;
+    public static final float BUBBLE_MODE_ALPHA = 1.f;
 
     public static final int DESIRED_FAVICON_SIZE = 96;
 
