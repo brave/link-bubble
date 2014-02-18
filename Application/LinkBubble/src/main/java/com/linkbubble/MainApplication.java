@@ -17,6 +17,7 @@ import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
 import com.linkbubble.util.Tamper;
+import com.parse.Parse;
 import com.squareup.otto.Bus;
 import org.mozilla.gecko.favicons.Favicons;
 
@@ -63,6 +64,14 @@ public class MainApplication extends Application {
 
     public Bus getBus() {
         return mBus;
+    }
+
+    boolean mParseInitialized = false;
+    public void initParse() {
+        if (mParseInitialized == false) {
+            Parse.initialize(this, "S0yKk7mPfPOlNnzCwQRorwiwYZvVlNgOu4Pp1Uu3", "t1O0d847aJbZf7dg1GjqJ7sAFgdShvGMhRiuoy87");
+            mParseInitialized = true;
+        }
     }
 
     /**
