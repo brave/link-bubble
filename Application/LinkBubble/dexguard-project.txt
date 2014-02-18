@@ -53,6 +53,7 @@
     manifest/versionCode,
     manifest/application/*/intent-filter/*/name
 -dontwarn com.squareup.okhttp.**
+-dontwarn com.facebook.**
 
 # -printmapping proguard/actionlauncher.map
 # -renamesourcefileattribute Launcher
@@ -78,6 +79,7 @@
 }
 
 -keep public class com.parse.**
+-keep class com.parse.** { *; }
 
 -keepclassmembers public class com.parse.* {
     *;
@@ -141,6 +143,11 @@
 
 -encryptclasses com.linkbubble.util.Encrypt, com.linkbubble.util.Encrypt$*
 -encryptstrings class com.linkbubble.util.Encrypt.**
+
+-encryptstrings public class com.linkbubble.Constant {
+    public static final java.lang.String TWITTER_ACCOUNT_TYPE;
+    public static final java.lang.String YAHOO_ACCOUNT_TYPE;
+}
 
 -keepclassmembers class com.linkbubble.MainController {
     # ensure event handler functions are not stripped

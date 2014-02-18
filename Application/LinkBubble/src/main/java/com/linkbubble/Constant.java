@@ -76,4 +76,14 @@ public class Constant {
 
     public static final String  PRO_LAUNCHER_PACKAGE_NAME = "com.linkbubble.pro.playstore";
     public static final String  PRO_DRM_SERVICE_ACTION = "linkbubble.prokey.PRO_SERVICE";
+
+    public static final String DATA_USER_ENTRY = "UserEntry";
+    public static final String DATA_DEVICE_ID_KEY = "deviceId";
+    public static final String DATA_USER_EMAIL_KEY_PREFIX = "email_";
+    public static final String DATA_USER_TWITTER_KEY_PREFIX = "twitter_";
+    public static final String DATA_USER_YAHOO_KEY_PREFIX = "yahoo_";
+    public static final int    DATA_USER_MAX_EMAILS = 5;
+
+    public static final String TWITTER_ACCOUNT_TYPE = "com.twitter.android.auth.login";
+    public static final String YAHOO_ACCOUNT_TYPE = "com.yahoo.mobile.client.share.account";
 }
