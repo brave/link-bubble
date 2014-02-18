@@ -78,6 +78,55 @@ public class MainController implements Choreographer.FrameCallback {
         public int mX, mY;
     }
 
+    public static void addRootWindow(View v, WindowManager.LayoutParams lp) {
+        MainController mc = get();
+        if (!mc.mRootViews.contains(v)) {
+            mc.mRootViews.add(v);
+            if (mc.mRootWindowsVisible) {
+                mc.mWindowManager.addView(v, lp);
+            }
+        }
+    }
+
+    public static void removeRootWindow(View v) {
+        MainController mc = get();
+        if (mc.mRootViews.contains(v)) {
+            mc.mRootViews.remove(v);
+            if (mc.mRootWindowsVisible) {
+                mc.mWindowManager.removeView(v);
+            }
+        }
+    }
+
+    public static void updateRootWindowLayout(View v, WindowManager.LayoutParams lp) {
+        MainController mc = get();
+        if (mc.mRootWindowsVisible && mc.mRootViews.contains(v)) {
+            mc.mWindowManager.updateViewLayout(v, lp);
+        }
+    }
+
+    private void enableRootWindows() {
+        if (!mRootWindowsVisible) {
+            for (View v : mRootViews) {
+                mWindowManager.addView(v, v.getLayoutParams());
+            }
+            mRootWindowsVisible = true;
+        }
+    }
+
+    private void disableRootWindows() {
+        if (mRootWindowsVisible) {
+            for (View v : mRootViews) {
+                mWindowManager.removeView(v);
+            }
+            mRootWindowsVisible = false;
+        }
+    }
+
+    private Vector<View> mRootViews = new Vector<View>();
+    private boolean mRootWindowsVisible = true;
+    private WindowManager mWindowManager;
+
     private OrientationChangedEvent mOrientationChangedEvent = new OrientationChangedEvent();
     private BeginExpandTransitionEvent mBeginExpandTransitionEvent = new BeginExpandTransitionEvent();
 
@@ -209,6 +258,8 @@ public class MainController implements Choreographer.FrameCallback {
         mCanAutoDisplayLink = true;
 
         mCanDisplay = true;
+
+        mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 
         /*
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -694,12 +745,10 @@ public class MainController implements Choreographer.FrameCallback {
         Log.d(SCREEN_LOCK_TAG, "*** setCanDisplay() - old:" + mCanDisplay + ", new:" + canDisplay);
         mCanDisplay = canDisplay;
         if (canDisplay) {
-            // add items to window
+            enableRootWindows();
         } else {
-            // remove items from window
+            disableRootWindows();
         }
-
-        // TODO: Add remove items from the window for the change
     }
 
     private void updateKeyguardLocked() {
