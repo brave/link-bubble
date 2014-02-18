@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="@string/stat_has_saved_you"
         android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/holo_purple"
+        android:textColor="@color/highlight_color"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <com.linkbubble.ui.CondensedTextView
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:text="@string/stat_so_far"
         android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/holo_purple"
+        android:textColor="@color/highlight_color"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
 </LinearLayout>
