@@ -98,6 +98,10 @@ public class HomeActivity extends Activity {
         mActionButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (Util.checkForTamper(HomeActivity.this, mTamperPromptEventListener)) {
+                    return;
+                }
+
                 if (DRM.isLicensed()) {
                     startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v, false);
                 } else {
