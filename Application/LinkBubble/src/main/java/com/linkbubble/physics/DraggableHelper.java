@@ -1,6 +1,7 @@
 package com.linkbubble.physics;
 
 
+import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -65,7 +66,6 @@ public class DraggableHelper {
     ReleaseEvent mReleaseEvent = new ReleaseEvent();
 
     private View mView;
-    private WindowManager mWindowManager;
     private WindowManager.LayoutParams mWindowManagerParams;
     private boolean mAlive;
 
@@ -98,11 +98,10 @@ public class DraggableHelper {
         public void onCancel();
     }
 
-    public DraggableHelper(View view, WindowManager windowManager, WindowManager.LayoutParams windowManagerParams, boolean setOnTouchListener,
+    public DraggableHelper(View view, WindowManager.LayoutParams windowManagerParams, boolean setOnTouchListener,
                            OnTouchActionEventListener onTouchEventListener) {
         mView = view;
         mAlive = true;
-        mWindowManager = windowManager;
         mWindowManagerParams = windowManagerParams;
         mOnTouchActionEventListener = onTouchEventListener;
 
@@ -306,7 +305,7 @@ public class DraggableHelper {
         mTargetX = x;
         mTargetY = y;
         if (mAlive) {
-            mWindowManager.updateViewLayout(mView, mWindowManagerParams);
+            MainController.updateRootWindowLayout(mView, mWindowManagerParams);
         }
     }
 
@@ -377,7 +376,7 @@ public class DraggableHelper {
 
             mWindowManagerParams.x = x;
             mWindowManagerParams.y = y;
-            mWindowManager.updateViewLayout(mView, mWindowManagerParams);
+            MainController.updateRootWindowLayout(mView, mWindowManagerParams);
 
             MainController.get().scheduleUpdate();
 
@@ -398,7 +397,7 @@ public class DraggableHelper {
     }
 
     public void destroy() {
-        mWindowManager.removeView(mView);
+        MainController.removeRootWindow(mView);
         mAlive = false;
     }
 }
