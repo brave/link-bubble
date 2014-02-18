@@ -351,7 +351,7 @@ public class ActionItem {
         // Build the list of send applications
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.share_via);
-        builder.setIcon(android.R.drawable.sym_def_app_icon);
+        builder.setIcon(R.drawable.ic_launcher);
 
         final AlertDialog alertDialog = builder.create();
         alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
