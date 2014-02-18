@@ -292,6 +292,7 @@ public class ContentView extends FrameLayout {
         webSettings.setSupportZoom(true);
         webSettings.setTextZoom(Settings.get().getWebViewTextZoom());
         webSettings.setBuiltInZoomControls(true);
+        webSettings.setDisplayZoomControls(false);
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setSupportMultipleWindows(true);
