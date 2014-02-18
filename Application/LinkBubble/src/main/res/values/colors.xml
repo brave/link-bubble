@@ -13,5 +13,7 @@
 
     <color name="action_picker_selected_color">#E2E2E2</color>
 
+    <color name="highlight_color">#663399</color>
+
 </resources>
 
