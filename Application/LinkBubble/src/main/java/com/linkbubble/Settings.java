@@ -64,7 +64,7 @@ public class Settings {
 
     public static final String PREFERENCE_WEBVIEW_TEXT_ZOOM = "preference_webview_text_zoom";
     public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN = 50;
-    public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_DEFAULT = 175;
+    public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_DEFAULT = 120;
     public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_MAX = 250;
 
     private static final String SAY_THANKS_CLICKED = "say_thanks_clicked";
