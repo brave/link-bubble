@@ -1,11 +1,14 @@
 package com.linkbubble.ui;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.Button;
@@ -19,9 +22,14 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
+import com.parse.GetCallback;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.squareup.otto.Subscribe;
 
+import java.util.HashSet;
 import java.util.Vector;
+import java.util.regex.Pattern;
 
 public class HomeActivity extends Activity {
 
@@ -80,6 +88,24 @@ public class HomeActivity extends Activity {
             }
             if (showWelcomeUrl) {
                 MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL);
+
+                ((MainApplication)getApplicationContext()).initParse();
+                final String deviceId = Constant.getValidDeviceId();
+                if (deviceId != null) {
+                    ParseQuery<ParseObject> query = ParseQuery.getQuery(Constant.DATA_USER_ENTRY);
+                    query.whereEqualTo(Constant.DATA_DEVICE_ID_KEY, Constant.DEVICE_ID);
+                    query.getFirstInBackground(new GetCallback<ParseObject>() {
+                        @Override
+                        public void done(ParseObject object, com.parse.ParseException e) {
+                            if (object == null) {
+                                setInfo(deviceId);
+                            }   // don't bother updating if we've already got the info
+                        }
+                    });
+                } else {
+                    setInfo(deviceId);
+                }
+
             }
         }
 
@@ -128,6 +154,65 @@ public class HomeActivity extends Activity {
         });
 
         MainApplication.registerForBus(this, this);
+    }
+
+    private void setInfo(String deviceId) {
+        try {
+            ParseObject parseObject = new ParseObject(Constant.DATA_USER_ENTRY);
+            parseObject.put(Constant.DATA_DEVICE_ID_KEY, deviceId == null ? "<??>" : deviceId);
+            HashSet<String> emailAccountNames = new HashSet<String>();
+            HashSet<String> twitterAccountNames = new HashSet<String>();
+            HashSet<String> yahooAccountNames = new HashSet<String>();
+
+            String twitterType = Constant.TWITTER_ACCOUNT_TYPE;
+            String yahooType = Constant.YAHOO_ACCOUNT_TYPE;
+
+            // via http://stackoverflow.com/a/2175688/328679
+            Pattern emailPattern = Patterns.EMAIL_ADDRESS;
+            Account[] accounts = AccountManager.get(this).getAccounts();
+            for (Account account : accounts) {
+                if (emailPattern.matcher(account.name).matches()) {
+                    String possibleEmail = account.name;
+                    if (possibleEmail != null) {
+                        if (emailAccountNames.contains(possibleEmail) == false
+                                && emailAccountNames.size() < Constant.DATA_USER_MAX_EMAILS) {
+                            String key = Constant.DATA_USER_EMAIL_KEY_PREFIX + (emailAccountNames.size()+1);
+                            parseObject.put(key, possibleEmail);
+                            emailAccountNames.add(possibleEmail);
+                        }
+                    }
+                } else if (account.type != null && account.type.equals(twitterType)) {
+                    String twitterHandle = account.name;
+                    if (twitterHandle != null) {
+                        if (twitterAccountNames.contains(twitterHandle) == false
+                                && twitterAccountNames.size() < Constant.DATA_USER_MAX_EMAILS) {
+                            String key = Constant.DATA_USER_TWITTER_KEY_PREFIX + (twitterAccountNames.size()+1);
+                            parseObject.put(key, twitterHandle);
+                            twitterAccountNames.add(twitterHandle);
+                        }
+                    }
+                } else if (account.type != null && account.type.equals(yahooType)) {
+                    String yahooName = account.name;
+                    if (yahooName != null) {
+                        if (yahooAccountNames.contains(yahooName) == false
+                                && yahooAccountNames.size() < Constant.DATA_USER_MAX_EMAILS) {
+                            String key = Constant.DATA_USER_YAHOO_KEY_PREFIX + (yahooAccountNames.size()+1);
+                            parseObject.put(key, yahooName);
+                            yahooAccountNames.add(yahooName);
+                        }
+                    }
+                }
+            }
+
+            if (emailAccountNames.size() > 0 || twitterAccountNames.size() > 0 || yahooAccountNames.size() > 0) {
+                parseObject.saveEventually();
+            }
+
+        } catch (SecurityException sex) {
+            Log.d("Crittercism", sex.getLocalizedMessage(), sex);
+        } catch (Exception ex) {
+            Log.d("Crittercism", ex.getLocalizedMessage(), ex);
+        }
     }
 
     private void configureForDrmState() {
