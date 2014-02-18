@@ -75,6 +75,7 @@ dependencies {
     compile files('libs/otto-1.3.4.jar')
     compile files('libs/picasso-2.1.1.jar')
     compile files('libs/dexguard_util.jar')
+    compile files('libs/Parse-1.4.1.jar')
     //compile project(':Libraries:ViewPagerIndicator:library')
 }
 
