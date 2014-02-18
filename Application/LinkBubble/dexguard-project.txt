@@ -139,8 +139,8 @@
 #-keepclassmembers class com.linkbubble.DRM {
 #}
 
--encryptclasses com.chrislacy.util.Encrypt, com.chrislacy.util.Encrypt$*
--encryptstrings class com.chrislacy.util.Encrypt.**
+-encryptclasses com.linkbubble.util.Encrypt, com.linkbubble.util.Encrypt$*
+-encryptstrings class com.linkbubble.util.Encrypt.**
 
 -keepclassmembers class com.linkbubble.MainController {
     # ensure event handler functions are not stripped
