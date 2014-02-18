@@ -27,7 +27,6 @@ import java.util.Vector;
 
 public class CanvasView extends FrameLayout {
 
-    private WindowManager mWindowManager;
     private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
 
     private Vector<BubbleTargetView> mTargets = new Vector<BubbleTargetView>();
@@ -135,8 +134,6 @@ public class CanvasView extends FrameLayout {
         mBottomMaskView.setLayoutParams(bottomMaskLP);
         addView(mBottomMaskView);
 
-        mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-
         mWindowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
         mWindowManagerParams.x = 0;
         mWindowManagerParams.y = 0;
@@ -146,7 +143,7 @@ public class CanvasView extends FrameLayout {
         mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
         mWindowManagerParams.setTitle("LinkBubble: CanvasView");
-        mWindowManager.addView(this, mWindowManagerParams);
+        MainController.addRootWindow(this, mWindowManagerParams);
 
         if (Constant.DEBUG_SHOW_TARGET_REGIONS) {
             mTargetDebugRect = new Rect();
@@ -340,7 +337,7 @@ public class CanvasView extends FrameLayout {
 
         MainApplication.unregisterForBus(getContext(), this);
 
-        mWindowManager.removeView(this);
+        MainController.removeRootWindow(this);
     }
 
     public void update(float dt) {
