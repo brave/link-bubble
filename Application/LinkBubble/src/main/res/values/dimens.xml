@@ -43,7 +43,7 @@
 
     <dimen name="browser_toolbar_favicon_size">25.33dip</dimen>
 
-    <dimen name="bubble_target_icon_size">44dp</dimen>
+    <dimen name="bubble_target_icon_size">40dp</dimen>
     <dimen name="bubble_target_y">24dp</dimen>
     <dimen name="close_bubble_target_y">31dp</dimen>
     <dimen name="close_tab_text_circle_size">66dp</dimen>
