@@ -127,11 +127,26 @@ ParseFile is a local representation of a file that is saved to the Parse cloud.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new file from a byte array.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../com/parse/ParseFile.html#ParseFile(byte[], java.lang.String)">ParseFile</A></B>(byte[]&nbsp;data,
+          <A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;contentType)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new file from a byte array, and content type.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><B><A HREF="../../com/parse/ParseFile.html#ParseFile(java.lang.String, byte[])">ParseFile</A></B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;name,
           byte[]&nbsp;data)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new file from a byte array and a name.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../com/parse/ParseFile.html#ParseFile(java.lang.String, byte[], java.lang.String)">ParseFile</A></B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;name,
+          byte[]&nbsp;data,
+          <A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;contentType)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new file from a byte array, file name, and content type.</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -265,6 +280,23 @@ ParseFile is a local representation of a file that is saved to the Parse cloud.
 </TR>
 </TABLE>
 
+<A NAME="ParseFile(java.lang.String, byte[], java.lang.String)"><!-- --></A><H3>
+ParseFile</H3>
+<PRE>
+public <B>ParseFile</B>(<A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;name,
+                 byte[]&nbsp;data,
+                 <A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;contentType)</PRE>
+<DL>
+<DD>Creates a new file from a byte array, file name, and content type. Content type will be used
+ instead of auto-detection by file extension.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>name</CODE> - The file's name, ideally with extension. The file name must begin with an alphanumeric
+          character, and consist of alphanumeric characters, periods, spaces, underscores, or
+          dashes.<DD><CODE>data</CODE> - The file's data.<DD><CODE>contentType</CODE> - The file's content type.</DL>
+</DL>
+<HR>
+
 <A NAME="ParseFile(byte[])"><!-- --></A><H3>
 ParseFile</H3>
 <PRE>
@@ -291,6 +323,20 @@ public <B>ParseFile</B>(<A target="_top" HREF="http://developer.android.com/refe
 <DT><B>Parameters:</B><DD><CODE>name</CODE> - The file's name, ideally with extension. The file name must begin with an alphanumeric
           character, and consist of alphanumeric characters, periods, spaces, underscores, or
           dashes.<DD><CODE>data</CODE> - The file's data.</DL>
+</DL>
+<HR>
+
+<A NAME="ParseFile(byte[], java.lang.String)"><!-- --></A><H3>
+ParseFile</H3>
+<PRE>
+public <B>ParseFile</B>(byte[]&nbsp;data,
+                 <A target="_top" HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;contentType)</PRE>
+<DL>
+<DD>Creates a new file from a byte array, and content type. Content type will be used instead of
+ auto-detection by file extension.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>data</CODE> - The file's data.<DD><CODE>contentType</CODE> - The file's content type.</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
