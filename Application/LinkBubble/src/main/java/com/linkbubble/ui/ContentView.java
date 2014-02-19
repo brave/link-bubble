@@ -528,7 +528,7 @@ public class ContentView extends FrameLayout {
             }
 
             // This should not be necessary, but unfortunately is.
-            // Often when pressing Back, onPageFinished() is mistakenly called when progress is 0.
+            // Often when pressing Back, onPageFinished() is mistakenly called when progress is 0. #245
             if (mCurrentProgress != 100) {
                 return;
             }
