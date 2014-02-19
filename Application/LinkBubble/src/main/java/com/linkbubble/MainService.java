@@ -33,7 +33,8 @@ public class MainService extends Service {
 
         if (cmd.compareTo("open") == 0) {
             String url = intent.getStringExtra("url");
-            MainController.get().openUrl(url, urlLoadStartTime, true);
+            boolean doLicenseCheck = intent.getBooleanExtra("doLicenseCheck", true);
+            MainController.get().openUrl(url, urlLoadStartTime, true, doLicenseCheck);
         } else if (cmd.compareTo("restore") == 0) {
             if (!mRestoreComplete) {
                 String [] urls = intent.getStringArrayExtra("urls");

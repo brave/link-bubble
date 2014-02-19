@@ -100,9 +100,14 @@ public class MainApplication extends Application {
     }
 
     public static void openLink(Context context, String url) {
+        openLink(context, url, true);
+    }
+
+    public static void openLink(Context context, String url, boolean doLicenseCheck) {
         Intent serviceIntent = new Intent(context, MainService.class);
         serviceIntent.putExtra("cmd", "open");
         serviceIntent.putExtra("url", url);
+        serviceIntent.putExtra("doLicenseCheck", doLicenseCheck);
         serviceIntent.putExtra("start_time", System.currentTimeMillis());
         context.startService(serviceIntent);
     }
