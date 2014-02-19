@@ -338,7 +338,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_TIME, System.currentTimeMillis());
 
         SQLiteDatabase db = getWritableDatabase();
-        db.insert(TABLE_FAVICON_CACHE, null, values);
+        try {
+            db.insert(TABLE_FAVICON_CACHE, null, values);
+        } catch (IllegalStateException ex) {
+        }
         db.close();
 
         Log.d(TAG, "addFaviconForUrl() - " + faviconUrl);
