@@ -101,17 +101,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         SQLiteDatabase db = getWritableDatabase();
-        db.insert(TABLE_LINK_HISTORY, null, getContentValues(historyRecord));
+        try {
+            db.insert(TABLE_LINK_HISTORY, null, getContentValues(historyRecord));
+        } catch (IllegalStateException ex) {
+        }
         db.close();
     }
 
-    public int updateHistoryRecord(HistoryRecord historyRecord) {
+    public void updateHistoryRecord(HistoryRecord historyRecord) {
         SQLiteDatabase db = getWritableDatabase();
-        ContentValues values = getContentValues(historyRecord);
-        int i = db.update(TABLE_LINK_HISTORY, values,
-                            KEY_ID + " = ?", new String[] { String.valueOf(historyRecord.getId()) });
+        try {
+            ContentValues values = getContentValues(historyRecord);
+            db.update(TABLE_LINK_HISTORY, values,
+                                KEY_ID + " = ?", new String[] { String.valueOf(historyRecord.getId()) });
+        } catch (IllegalStateException ex) {
+        }
         db.close();
-        return i;
     }
 
     public void deleteHistoryRecord(HistoryRecord historyRecord) {
