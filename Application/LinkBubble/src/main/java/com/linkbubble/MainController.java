@@ -736,13 +736,13 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     private boolean mCanDisplay;
-    private static final String SCREEN_LOCK_TAG = "screenlock";
+    //private static final String SCREEN_LOCK_TAG = "screenlock";
 
     private void setCanDisplay(boolean canDisplay) {
         if (canDisplay == mCanDisplay) {
             return;
         }
-        Log.d(SCREEN_LOCK_TAG, "*** setCanDisplay() - old:" + mCanDisplay + ", new:" + canDisplay);
+        //Log.d(SCREEN_LOCK_TAG, "*** setCanDisplay() - old:" + mCanDisplay + ", new:" + canDisplay);
         mCanDisplay = canDisplay;
         if (canDisplay) {
             enableRootWindows();
@@ -755,13 +755,13 @@ public class MainController implements Choreographer.FrameCallback {
         KeyguardManager keyguardManager = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
         if (keyguardManager != null) {
             boolean isLocked = keyguardManager.isKeyguardLocked();
-            Log.d(SCREEN_LOCK_TAG, "keyguardManager.isKeyguardLocked():" + mCanDisplay);
+            //Log.d(SCREEN_LOCK_TAG, "keyguardManager.isKeyguardLocked():" + mCanDisplay);
             setCanDisplay(!isLocked);
         }
     }
 
     void updateScreenState(String action) {
-        Log.d(SCREEN_LOCK_TAG, "---" + action);
+        //Log.d(SCREEN_LOCK_TAG, "---" + action);
 
         if (action.equals(Intent.ACTION_SCREEN_OFF)) {
             setCanDisplay(false);
