@@ -335,6 +335,14 @@ public class SettingsFragment extends PreferenceFragment {
             }
         });
 
+        findPreference("preference_show_welcome_message").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                MainApplication.openLink(getActivity(), Constant.WELCOME_MESSAGE_URL);
+                return true;
+            }
+        });
+
         findPreference("preference_osl").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
