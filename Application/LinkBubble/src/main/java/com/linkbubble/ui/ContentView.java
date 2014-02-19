@@ -530,55 +530,65 @@ public class ContentView extends FrameLayout {
             // This should not be necessary, but unfortunately is.
             // Often when pressing Back, onPageFinished() is mistakenly called when progress is 0. #245
             if (mCurrentProgress != 100) {
+                mPageFinishedIgnoredUrl = urlAsString;
                 return;
             }
 
-            mPageFinishedLoading = true;
-            // NOTE: *don't* call updateUrl() here. Turns out, this function is called after a redirect has occurred.
-            // Eg, urlAsString "t.co/xyz" even after the next redirect is starting to load
-
-            // Check exact equality first for common case to avoid an allocation.
-            boolean equalUrl = mUrl.toString().equals(urlAsString);
-
-            if (!equalUrl) {
-                try {
-                    URL url = new URL(urlAsString);
-
-                    if (url.getProtocol().equals(mUrl.getProtocol()) &&
-                        url.getHost().equals(mUrl.getHost()) &&
-                        url.getPath().equals(mUrl.getPath())) {
-                        equalUrl = true;
-                    }
-                } catch (MalformedURLException e) {
-                }
-            }
-
-            if (equalUrl) {
-                updateAppsForUrl(mUrl);
-                configureOpenInAppButton();
-                configureOpenEmbedButton();
-
-                mEventHandler.onPageLoaded();
-                Log.d(TAG, "onPageFinished() - url: " + urlAsString);
-
-                if (mInitialUrlLoadStartTime > -1) {
-                    Settings.get().trackLinkLoadTime(System.currentTimeMillis() - mInitialUrlLoadStartTime, Settings.LinkLoadType.PageLoad, mUrl.toString());
-                    mInitialUrlLoadStartTime = -1;
-                }
-
-                String title = MainApplication.sTitleHashMap.get(urlAsString);
-                MainApplication.saveUrlInHistory(getContext(), null, mUrl.toString(), mUrl.getHost(), title);
-                if (title == null) {    // if no title is set, display nothing rather than "Loading..." #265
-                    mTitleTextView.setText(null);
-                }
-
-                // Always check again at 100%
-                mPageInspector.run(webView, getPageInspectFlags());
-
-                postDelayed(mDropDownCheckRunnable, Constant.DROP_DOWN_CHECK_TIME);
-            }
+            onPageLoadComplete(urlAsString);
         }
     };
+
+    private String mPageFinishedIgnoredUrl;
+
+    void onPageLoadComplete(String urlAsString) {
+
+        mPageFinishedLoading = true;
+        // NOTE: *don't* call updateUrl() here. Turns out, this function is called after a redirect has occurred.
+        // Eg, urlAsString "t.co/xyz" even after the next redirect is starting to load
+
+        // Check exact equality first for common case to avoid an allocation.
+        boolean equalUrl = mUrl.toString().equals(urlAsString);
+
+        if (!equalUrl) {
+            try {
+                URL url = new URL(urlAsString);
+
+                if (url.getProtocol().equals(mUrl.getProtocol()) &&
+                        url.getHost().equals(mUrl.getHost()) &&
+                        url.getPath().equals(mUrl.getPath())) {
+                    equalUrl = true;
+                }
+            } catch (MalformedURLException e) {
+            }
+        }
+
+        if (equalUrl) {
+            updateAppsForUrl(mUrl);
+            configureOpenInAppButton();
+            configureOpenEmbedButton();
+
+            mEventHandler.onPageLoaded();
+            Log.d(TAG, "onPageFinished() - url: " + urlAsString);
+
+            if (mInitialUrlLoadStartTime > -1) {
+                Settings.get().trackLinkLoadTime(System.currentTimeMillis() - mInitialUrlLoadStartTime, Settings.LinkLoadType.PageLoad, mUrl.toString());
+                mInitialUrlLoadStartTime = -1;
+            }
+
+            String title = MainApplication.sTitleHashMap.get(urlAsString);
+            MainApplication.saveUrlInHistory(getContext(), null, mUrl.toString(), mUrl.getHost(), title);
+            if (title == null) {    // if no title is set, display nothing rather than "Loading..." #265
+                mTitleTextView.setText(null);
+            }
+
+            // Always check again at 100%
+            mPageInspector.run(mWebView, getPageInspectFlags());
+
+            postDelayed(mDropDownCheckRunnable, Constant.DROP_DOWN_CHECK_TIME);
+        }
+
+        mPageFinishedIgnoredUrl = null;
+    }
 
     OnKeyListener mOnKeyListener = new OnKeyListener() {
         @Override
@@ -675,6 +685,10 @@ public class ContentView extends FrameLayout {
                     mCheckForEmbedsCount = 2;
                     Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
                     mPageInspector.run(webView, getPageInspectFlags());
+                }
+
+                if (progress == 100 && mPageFinishedIgnoredUrl != null && mPageFinishedIgnoredUrl.equals(webView.getUrl())) {
+                    onPageLoadComplete(webView.getUrl());
                 }
             }
         }
