@@ -11,8 +11,10 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Config;
+import com.linkbubble.Constant;
 import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
+import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.CrashTracking;
@@ -100,7 +102,15 @@ public class EntryActivity extends Activity {
                 MainApplication.showUpgradePrompt(this, R.string.upgrade_incentive_one_app);
                 MainApplication.openInBrowser(this, intent, true);
             } else if (openLink && !showingTamperPrompt) {
-                MainApplication.openLink(this, url);
+                boolean showedWelcomeUrl = false;
+                if (Settings.get().getWelcomeMessageDisplayed() == false) {
+                    if (!(MainController.get() != null && MainController.get().isUrlActive(Constant.WELCOME_MESSAGE_URL))) {
+                        MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL);
+                        showedWelcomeUrl = true;
+                    }
+                }
+
+                MainApplication.openLink(this, url, showedWelcomeUrl ? false : true);
             } else {
                 MainApplication.openInBrowser(this, intent, true);
             }
