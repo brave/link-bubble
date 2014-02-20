@@ -5,6 +5,8 @@ import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -85,10 +87,28 @@ public class EntryActivity extends Activity {
 
                     if (DRM.isLicensed() == false) {
                         String interceptFromPackageName = Settings.get().getInterceptLinksFromPackageName();
-                        if (interceptFromPackageName != null && interceptFromPackageName.equals(componentName.getPackageName())) {
+                        if (interceptFromPackageName == null) {
                             canLoadFromThisApp = true;
+
+                            PackageManager packageManager = getPackageManager();
+                            if (packageManager != null && recentTaskInfo.baseIntent != null) {
+                                final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+                                mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+                                List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(recentTaskInfo.baseIntent, 0);
+                                if (resolveInfos != null && resolveInfos.size() > 0) {
+                                    CharSequence label = resolveInfos.get(0).loadLabel(packageManager);
+                                    if (label != null) {
+                                        Settings.get().setInterceptLinksFrom(componentName.getPackageName(), label.toString());
+                                        MainApplication.showUpgradePrompt(this, String.format(getString(R.string.intercept_links_from_default_set_message), label));
+                                    }
+                                }
+                            }
                         } else {
-                            canLoadFromThisApp = false;
+                            if (interceptFromPackageName.equals(componentName.getPackageName())) {
+                                canLoadFromThisApp = true;
+                            } else {
+                                canLoadFromThisApp = false;
+                            }
                         }
                     }
 

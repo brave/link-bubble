@@ -25,7 +25,7 @@ public class Prompt {
         public void onClose();
     }
 
-    public static final int LENGTH_LONG = 5000;
+    public static final int LENGTH_LONG = 6000;
 
     private static Prompt sPrompt;
 
