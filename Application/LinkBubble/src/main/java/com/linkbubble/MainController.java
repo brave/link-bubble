@@ -5,6 +5,7 @@ import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Point;
 import android.net.Uri;
@@ -517,7 +518,8 @@ public class MainController implements Choreographer.FrameCallback {
             return null;
         }
 
-        if (Settings.get().redirectUrlToBrowser(urlAsString)) {
+        PackageManager packageManager = mContext.getPackageManager();
+        if (Settings.get().redirectUrlToBrowser(urlAsString, packageManager)) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(urlAsString));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -534,7 +536,7 @@ public class MainController implements Choreographer.FrameCallback {
 
         boolean showAppPicker = false;
 
-        final List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
+        final List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url, packageManager);
         ResolveInfo defaultAppResolveInfo = Settings.get().getDefaultAppForUrl(url, resolveInfos);
         if (resolveInfos != null && resolveInfos.size() > 0 && Settings.get().getAutoContentDisplayAppRedirect()) {
             if (defaultAppResolveInfo != null) {

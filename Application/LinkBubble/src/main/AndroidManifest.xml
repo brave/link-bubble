@@ -105,6 +105,91 @@
         </service>
         <meta-data android:name="com.crashlytics.ApiKey" android:value="4e9c9e46c19e2b4f495274103c0af23bdf9227f1"/>
 
+        <activity
+            android:name=".ui.DownloadHandlerActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/TransparentTheme"
+            android:label="@string/download_activity_label"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:scheme="ftp"/>
+                <data android:scheme="sftp"/>
+                <data android:host="*"/>
+                <data android:pathPattern=".*\.apk"/>
+                <data android:pathPattern=".*\.apk.*"/>
+                <data android:pathPattern=".*\..*\.apk.*"/>
+                <data android:pathPattern=".*\..*\..*\.apk.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\.apk.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\.apk.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\.apk.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.apk.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\.apk.*"/>
+                <data android:pathPattern=".*\.mp3"/>
+                <data android:pathPattern=".*\.mp3.*"/>
+                <data android:pathPattern=".*\..*\.mp3.*"/>
+                <data android:pathPattern=".*\..*\..*\.mp3.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\.mp3.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\.mp3.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\.mp3.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.mp3.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\.mp3.*"/>
+                <data android:pathPattern=".*\.ape"/>
+                <data android:pathPattern=".*\.mp4"/>
+                <data android:pathPattern=".*\.avi"/>
+                <data android:pathPattern=".*\.wmv"/>
+                <data android:pathPattern=".*\.wav"/>
+                <data android:pathPattern=".*\.asf"/>
+                <data android:pathPattern=".*\.mpg"/>
+                <data android:pathPattern=".*\.3gp"/>
+                <data android:pathPattern=".*\.3gpp"/>
+                <data android:pathPattern=".*\.amr"/>
+                <data android:pathPattern=".*\.rm"/>
+                <data android:pathPattern=".*\.rmvb"/>
+                <data android:pathPattern=".*\.ogg"/>
+                <data android:pathPattern=".*\.oga"/>
+                <data android:pathPattern=".*\.ogv"/>
+                <data android:pathPattern=".*\.wma"/>
+                <data android:pathPattern=".*\.doc"/>
+                <data android:pathPattern=".*\.docx"/>
+                <data android:pathPattern=".*\.ppt"/>
+                <data android:pathPattern=".*\.pps"/>
+                <data android:pathPattern=".*\.ppx"/>
+                <data android:pathPattern=".*\.pptx"/>
+                <data android:pathPattern=".*\.xls"/>
+                <data android:pathPattern=".*\.xlsx"/>
+                <data android:pathPattern=".*\.chm"/>
+                <data android:pathPattern=".*\.txt"/>
+                <data android:pathPattern=".*\.zip"/>
+                <data android:pathPattern=".*\.zip.*"/>
+                <data android:pathPattern=".*\..*\.zip.*"/>
+                <data android:pathPattern=".*\..*\..*\.zip.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\.zip.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\.zip.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\.zip.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.zip.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\.zip.*"/>
+                <data android:pathPattern=".*\.rar"/>
+                <data android:pathPattern=".*\.rar.*"/>
+                <data android:pathPattern=".*\..*\.rar.*"/>
+                <data android:pathPattern=".*\..*\..*\.rar.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\.rar.*"/>
+                <data android:pathPattern=".*\.pdf"/>
+                <data android:pathPattern=".*\.torrent"/>
+                <data android:pathPattern=".*\.mkv"/>
+                <data android:pathPattern=".*\.swf"/>
+                <data android:pathPattern=".*\.flv"/>
+                <data android:pathPattern=".*\.aiff"/>
+                <data android:pathPattern=".*\.pcs"/>
+                <data android:pathPattern=".*\.mov"/>
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
