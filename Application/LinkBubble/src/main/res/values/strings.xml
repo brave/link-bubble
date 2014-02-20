@@ -3,6 +3,7 @@
 
     <string name="app_name">Link Bubble</string>
     <string name="download_activity_label">Downloader</string>
+    <string name="share_picker_activity">Share URL with Link Bubble</string>
     <string name="notification_title">Link Bubble</string>
     <string name="notification_summary">Touch to hide all open bubbles</string>
 
@@ -24,6 +25,8 @@
     <string name="action_share">Share</string>
     <string name="action_close_all">Close all</string>
     <string name="share_via">Share via…</string>
+
+    <string name="share_invalid_data">Link Bubble us unable to share this item as it is not a valid URL.</string>
 
     <string name="pick_default_app">Select default app</string>
     <string name="default_browser_set">Link Bubble has been set as the default browser.</string>
