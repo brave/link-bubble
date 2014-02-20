@@ -42,6 +42,8 @@ public class Constant {
 
     public static final boolean DEBUG_SHOW_TARGET_REGIONS = false;
 
+    public static final String SHARE_PICKER_NAME = "com.linkbubble.SharePicker";
+
     public static String getOSFlavor() {
         int apiVersion = android.os.Build.VERSION.SDK_INT;
         String flavor = "";

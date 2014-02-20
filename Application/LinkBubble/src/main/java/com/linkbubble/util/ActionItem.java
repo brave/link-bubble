@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
 import com.linkbubble.R;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
@@ -68,7 +69,7 @@ public class ActionItem {
         public void onSelected(ActionItem actionItem, boolean always);
     }
 
-    private static ArrayList<ActionItem> getActionItems(Context context, boolean viewItems, boolean sendItems) {
+    private static ArrayList<ActionItem> getActionItems(Context context, boolean viewItems, boolean sendItems, boolean sharePicker) {
         final ArrayList<ActionItem> actionItems = new ArrayList<ActionItem>();
 
         String packageName = context.getPackageName();
@@ -111,6 +112,17 @@ public class ActionItem {
             }
         }
 
+        if (sharePicker) {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            actionItems.add(new ActionItem(Constant.ActionType.Share,
+                    resources,
+                    context.getString(R.string.share_picker_label),
+                    context.getResources().getDrawable(R.drawable.ic_action_share),
+                    BuildConfig.PACKAGE_NAME,
+                    Constant.SHARE_PICKER_NAME));
+        }
+
         Collections.sort(actionItems, new Comparator<ActionItem>() {
 
             @Override
@@ -127,7 +139,7 @@ public class ActionItem {
     }
 
     public static AlertDialog getDefaultBrowserAlert(Context context, final OnActionItemSelectedListener onActionItemSelectedListener) {
-        ArrayList<ActionItem> actionItems = getActionItems(context, true, false);
+        ArrayList<ActionItem> actionItems = getActionItems(context, true, false, false);
 
         ListView listView = new ListView(context);
 
@@ -303,7 +315,7 @@ public class ActionItem {
 
     public static AlertDialog getConfigureBubbleAlert(Context context, final OnActionItemSelectedListener onActionItemSelectedListener) {
 
-        final ArrayList<ActionItem> actionItems = getActionItems(context, true, true);
+        final ArrayList<ActionItem> actionItems = getActionItems(context, true, true, true);
 
         StickyListHeadersListView listView = new StickyListHeadersListView(context);
 
@@ -346,7 +358,7 @@ public class ActionItem {
         return alertDialog;
     }
 
-    public static AlertDialog getShareAlert(Context context, final OnActionItemSelectedListener onActionItemSelectedListener) {
+    public static AlertDialog getShareAlert(Context context, boolean showSharePicker, final OnActionItemSelectedListener onActionItemSelectedListener) {
 
         // Build the list of send applications
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -356,7 +368,7 @@ public class ActionItem {
         final AlertDialog alertDialog = builder.create();
         alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
 
-        ArrayList<ActionItem> actionItems = getActionItems(context, false, true);
+        ArrayList<ActionItem> actionItems = getActionItems(context, false, true, showSharePicker);
         ActionItemAdapter adapter = new ActionItemAdapter(context,
                 R.layout.action_picker_item,
                 actionItems.toArray(new ActionItem[0]));
