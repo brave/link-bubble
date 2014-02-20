@@ -581,10 +581,7 @@ public class ContentView extends FrameLayout {
             mEventHandler.onPageLoaded();
             Log.d(TAG, "onPageFinished() - url: " + urlAsString);
 
-            if (mInitialUrlLoadStartTime > -1) {
-                Settings.get().trackLinkLoadTime(System.currentTimeMillis() - mInitialUrlLoadStartTime, Settings.LinkLoadType.PageLoad, mUrl.toString());
-                mInitialUrlLoadStartTime = -1;
-            }
+            saveLoadTime();
 
             String title = MainApplication.sTitleHashMap.get(urlAsString);
             MainApplication.saveUrlInHistory(getContext(), null, mUrl.toString(), mUrl.getHost(), title);
@@ -1270,6 +1267,17 @@ public class ContentView extends FrameLayout {
     void onCurrentContentViewChanged(boolean isCurrent) {
         hidePopups();
         resetButtonPressedStates();
+
+        if (isCurrent && MainController.get().contentViewShowing()) {
+            saveLoadTime();
+        }
+    }
+
+    public void saveLoadTime() {
+        if (mInitialUrlLoadStartTime > -1) {
+            Settings.get().trackLinkLoadTime(System.currentTimeMillis() - mInitialUrlLoadStartTime, Settings.LinkLoadType.PageLoad, mUrl.toString());
+            mInitialUrlLoadStartTime = -1;
+        }
     }
 
     void onOrientationChanged() {
