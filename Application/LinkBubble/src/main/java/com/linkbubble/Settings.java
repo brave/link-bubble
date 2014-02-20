@@ -531,7 +531,7 @@ public class Settings {
 
         for (ResolveInfo info : infos) {
             IntentFilter filter = info.filter;
-            if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
+            if (filter != null && filter.hasAction(Intent.ACTION_VIEW)) {
 
                 // Check if this item is a browser, and if so, ignore it
                 boolean packageOk = true;
