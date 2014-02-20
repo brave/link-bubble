@@ -500,7 +500,7 @@ public class MainController implements Choreographer.FrameCallback {
 
     public TabView openUrl(final String urlAsString, long urlLoadStartTime, final boolean setAsCurrentTab, boolean doLicenseCheck) {
 
-        if (doLicenseCheck && !DRM.isLicensed() && getActiveTabCount() > 0) {
+        if (doLicenseCheck && !DRM.isLicensed() && getActiveTabCount() > 0 && urlAsString.equals(Constant.NEW_TAB_URL) == false) {
             MainApplication.showUpgradePrompt(mContext, R.string.upgrade_incentive_one_link);
             MainApplication.openInBrowser(mContext, urlAsString, true);
             return null;
