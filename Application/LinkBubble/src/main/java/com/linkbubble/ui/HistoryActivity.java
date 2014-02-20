@@ -273,7 +273,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         MainApplication.openInBrowser(HistoryActivity.this, intent, true);
                     } else if (string.equals(shareLabel)) {
-                        AlertDialog alertDialog = ActionItem.getShareAlert(HistoryActivity.this, new ActionItem.OnActionItemSelectedListener() {
+                        AlertDialog alertDialog = ActionItem.getShareAlert(HistoryActivity.this, false, new ActionItem.OnActionItemSelectedListener() {
                             @Override
                             public void onSelected(ActionItem actionItem) {
                                 Intent intent = new Intent(Intent.ACTION_SEND);

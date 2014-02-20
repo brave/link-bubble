@@ -224,7 +224,7 @@ public class ContentView extends FrameLayout {
 
     private void showSelectShareMethod(final String urlAsString, final boolean closeBubbleOnShare) {
 
-        AlertDialog alertDialog = ActionItem.getShareAlert(getContext(), new ActionItem.OnActionItemSelectedListener() {
+        AlertDialog alertDialog = ActionItem.getShareAlert(getContext(), false, new ActionItem.OnActionItemSelectedListener() {
             @Override
             public void onSelected(ActionItem actionItem) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
