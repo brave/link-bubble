@@ -104,22 +104,6 @@
             </intent-filter>
         </service>
         <meta-data android:name="com.crashlytics.ApiKey" android:value="4e9c9e46c19e2b4f495274103c0af23bdf9227f1"/>
-
-        <activity
-            android:name=".ui.SharePickerActivity"
-            android:excludeFromRecents="true"
-            android:launchMode="singleInstance"
-            android:theme="@style/TransparentTheme"
-            android:label="@string/share_picker_activity"
-            android:icon="@drawable/ic_action_share">
-
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="text/plain" />
-            </intent-filter>
-
-        </activity>
         
         <activity
             android:name=".ui.DownloadHandlerActivity"
