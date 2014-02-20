@@ -168,7 +168,7 @@ public class MainApplication extends Application {
         return true;
     }
 
-    public static boolean handleBubbleAction(final Context context, Constant.BubbleAction action, final String urlAsString, long totalLoadTime) {
+    public static boolean handleBubbleAction(final Context context, Constant.BubbleAction action, final String urlAsString, long totalTrackedLoadTime) {
         Constant.ActionType actionType = Settings.get().getConsumeBubbleActionType(action);
         boolean result = false;
         if (actionType == Constant.ActionType.Share) {
@@ -199,8 +199,8 @@ public class MainApplication extends Application {
             intent.putExtra(Intent.EXTRA_TEXT, urlAsString);
             try {
                 context.startActivity(intent);
-                if (totalLoadTime > -1) {
-                    Settings.get().trackLinkLoadTime(totalLoadTime, Settings.LinkLoadType.ShareToOtherApp, urlAsString);
+                if (totalTrackedLoadTime > -1) {
+                    Settings.get().trackLinkLoadTime(totalTrackedLoadTime, Settings.LinkLoadType.ShareToOtherApp, urlAsString);
                 }
                 result = true;
             } catch (ActivityNotFoundException ex) {
