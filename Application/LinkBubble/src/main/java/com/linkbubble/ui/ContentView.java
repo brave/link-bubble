@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -425,9 +426,10 @@ public class ContentView extends FrameLayout {
             mPageInspector.reset();
 
             final Context context = getContext();
+            PackageManager packageManager = context.getPackageManager();
 
-            updateAppsForUrl(Settings.get().getAppsThatHandleUrl(mUrl), mUrl);
-            if (Settings.get().redirectUrlToBrowser(urlAsString)) {
+            updateAppsForUrl(Settings.get().getAppsThatHandleUrl(mUrl, packageManager), mUrl);
+            if (Settings.get().redirectUrlToBrowser(urlAsString, packageManager)) {
                 if (openInBrowser(urlAsString)) {
                     String title = String.format(context.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
                     MainApplication.saveUrlInHistory(context, null, urlAsString, title);
@@ -1134,7 +1136,7 @@ public class ContentView extends FrameLayout {
     }
 
     private void updateAppsForUrl(URL url) {
-        List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url);
+        List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url, getContext().getPackageManager());
         updateAppsForUrl(resolveInfos, url);
     }
 
