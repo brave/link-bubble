@@ -436,6 +436,9 @@ public class Settings {
             String packageName = getConsumeBubblePackageName(action);
             String name = getConsumeBubbleActivityClassName(action);
             if (packageName != null && name != null) {
+                if (name.equals(Constant.SHARE_PICKER_NAME)) {
+                    return mContext.getResources().getDrawable(R.drawable.ic_action_share_white);
+                }
                 ComponentName componentName = new ComponentName(packageName, name);
                 return packageManager.getActivityIcon(componentName);
             }

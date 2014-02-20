@@ -1,5 +1,6 @@
 package com.linkbubble;
 
+import android.app.AlertDialog;
 import android.app.Application;
 import android.content.ActivityNotFoundException;
 import android.content.ClipData;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
+import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Tamper;
 import com.parse.Parse;
 import com.squareup.otto.Bus;
@@ -166,21 +168,39 @@ public class MainApplication extends Application {
         return true;
     }
 
-    public static boolean handleBubbleAction(Context context, Constant.BubbleAction action, String url, long totalLoadTime) {
+    public static boolean handleBubbleAction(final Context context, Constant.BubbleAction action, final String urlAsString, long totalLoadTime) {
         Constant.ActionType actionType = Settings.get().getConsumeBubbleActionType(action);
         boolean result = false;
         if (actionType == Constant.ActionType.Share) {
+            String consumePackageName = Settings.get().getConsumeBubblePackageName(action);
+            String consumeName = Settings.get().getConsumeBubbleActivityClassName(action);
+
+            if (consumePackageName.equals(BuildConfig.PACKAGE_NAME) && consumeName.equals(Constant.SHARE_PICKER_NAME)) {
+                AlertDialog alertDialog = ActionItem.getShareAlert(context, false, new ActionItem.OnActionItemSelectedListener() {
+                    @Override
+                    public void onSelected(ActionItem actionItem) {
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("text/plain");
+                        intent.setClassName(actionItem.mPackageName, actionItem.mActivityClassName);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra(Intent.EXTRA_TEXT, urlAsString);
+                        context.startActivity(intent);
+                    }
+                });
+                alertDialog.show();
+                return true;
+            }
+
             // TODO: Retrieve the class name below from the app in case Twitter ever change it.
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            intent.setClassName(Settings.get().getConsumeBubblePackageName(action),
-                    Settings.get().getConsumeBubbleActivityClassName(action));
+            intent.setClassName(consumePackageName, consumeName);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(Intent.EXTRA_TEXT, url);
+            intent.putExtra(Intent.EXTRA_TEXT, urlAsString);
             try {
                 context.startActivity(intent);
                 if (totalLoadTime > -1) {
-                    Settings.get().trackLinkLoadTime(totalLoadTime, Settings.LinkLoadType.ShareToOtherApp, url);
+                    Settings.get().trackLinkLoadTime(totalLoadTime, Settings.LinkLoadType.ShareToOtherApp, urlAsString);
                 }
                 result = true;
             } catch (ActivityNotFoundException ex) {
@@ -188,7 +208,7 @@ public class MainApplication extends Application {
             }
         } else if (actionType == Constant.ActionType.View) {
             result = MainApplication.loadIntent(context, Settings.get().getConsumeBubblePackageName(action),
-                    Settings.get().getConsumeBubbleActivityClassName(action), url, -1);
+                    Settings.get().getConsumeBubbleActivityClassName(action), urlAsString, -1);
         } else if (action == Constant.BubbleAction.Close) {
             result = true;
         }
