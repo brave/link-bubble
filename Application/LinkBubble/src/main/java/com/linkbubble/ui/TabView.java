@@ -48,12 +48,12 @@ public class TabView extends BubbleView {
 
             @Override
             public void onPageLoading(URL url) {
-                showProgressBar(true, 0);
-
                 boolean setDefaultFavicon = true;
 
                 URL previousUrl = mUrl;
                 mUrl = url;
+
+                showProgressBar(true, 0);
 
                 if (previousUrl != null && previousUrl.getHost().equals(mUrl.getHost()) && mFaviconLoadId == Favicons.LOADED) {
                     setDefaultFavicon = false;
