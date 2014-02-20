@@ -132,6 +132,7 @@ public class Settings {
 
         mBrowsers = new Vector<Intent>();
         updateBrowsers();
+        setDefaultRightConsumeBubble();
         setDefaultLeftConsumeBubble();
 
         configureDefaultApps(mSharedPreferences.getString(PREFERENCE_DEFAULT_APPS, null));
@@ -217,11 +218,6 @@ public class Settings {
                     editor.putString(PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME, fallbackDefaultBrowserPackageName);
                     editor.commit();
                 }
-                if (rightConsumeBubblePackageName == null || !doesPackageExist(packageManager, rightConsumeBubblePackageName)) {
-                    setConsumeBubble(Constant.BubbleAction.ConsumeRight, Constant.ActionType.View,
-                            defaultBrowserLabel,
-                            fallbackDefaultBrowserPackageName, fallbackDefaultBrowserActivityClassName);
-                }
                 if (leftConsumeBubblePackageName != null && !doesPackageExist(packageManager, leftConsumeBubblePackageName)) {
                     setConsumeBubble(Constant.BubbleAction.ConsumeLeft, Constant.ActionType.View,
                             defaultBrowserLabel,
@@ -270,6 +266,19 @@ public class Settings {
         }
 
         return mYouTubeViewResolveInfo;
+    }
+
+    private void setDefaultRightConsumeBubble() {
+        PackageManager packageManager = mContext.getPackageManager();
+        String rightConsumeBubblePackageName = mSharedPreferences.getString(PREFERENCE_RIGHT_CONSUME_BUBBLE_PACKAGE_NAME, null);
+        if (rightConsumeBubblePackageName == null
+                || (rightConsumeBubblePackageName != null
+                    && !rightConsumeBubblePackageName.equals(BuildConfig.PACKAGE_NAME)
+                    && !doesPackageExist(packageManager, rightConsumeBubblePackageName))) {
+            setConsumeBubble(Constant.BubbleAction.ConsumeRight, Constant.ActionType.Share,
+                    mContext.getResources().getString(R.string.share_picker_label),
+                    BuildConfig.PACKAGE_NAME, Constant.SHARE_PICKER_NAME);
+        }
     }
 
     private void setDefaultLeftConsumeBubble() {
