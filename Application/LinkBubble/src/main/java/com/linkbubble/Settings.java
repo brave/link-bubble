@@ -434,8 +434,10 @@ public class Settings {
         PackageManager packageManager = mContext.getPackageManager();
         try {
             String packageName = getConsumeBubblePackageName(action);
-            if (packageName != null) {
-                return packageManager.getApplicationIcon(packageName);
+            String name = getConsumeBubbleActivityClassName(action);
+            if (packageName != null && name != null) {
+                ComponentName componentName = new ComponentName(packageName, name);
+                return packageManager.getActivityIcon(componentName);
             }
         } catch (OutOfMemoryError ex) {
         } catch (PackageManager.NameNotFoundException e) {
