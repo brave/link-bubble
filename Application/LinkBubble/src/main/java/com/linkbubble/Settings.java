@@ -816,7 +816,7 @@ public class Settings {
     }
 
 
-    private static final int RECENT_REDIRECT_TIME_DELTA = 10 * 1000;
+    private static final int RECENT_REDIRECT_TIME_DELTA = (int)(2.5f * 1000);
 
     private static final String LAST_APP_REDIRECTS = "last_app_redirects";
     private static final String LAST_APP_REDIRECT_KEY_TIME = "time";
