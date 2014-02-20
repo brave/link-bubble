@@ -27,6 +27,7 @@
     <string name="share_via">Share via…</string>
 
     <string name="share_invalid_data">Link Bubble us unable to share this item as it is not a valid URL.</string>
+    <string name="consume_activity_not_found">Unable to find application. Consider changing bubble action via Settings.</string>
 
     <string name="pick_default_app">Select default app</string>
     <string name="default_browser_set">Link Bubble has been set as the default browser.</string>
