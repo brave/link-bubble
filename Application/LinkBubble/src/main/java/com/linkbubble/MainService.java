@@ -66,7 +66,7 @@ public class MainService extends Service {
         PendingIntent resultPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Notification.Builder notificationBuilder = new Notification.Builder(this)
-                        .setSmallIcon(R.drawable.ic_notification_small)
+                        .setSmallIcon(R.drawable.ic_stat)
                         .setPriority(Notification.PRIORITY_MIN)
                         .setContentTitle(getString(R.string.app_name))
                         .setContentText(getString(R.string.notification_summary))
