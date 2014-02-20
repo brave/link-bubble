@@ -101,6 +101,7 @@ public class ContentView extends FrameLayout {
     private AlertDialog mJsConfirmDialog;
     private AlertDialog mJsPromptDialog;
     private long mInitialUrlLoadStartTime;
+    private String mInitialUrlAsString;
     private int mHeaderHeight;
     private Path mTempPath = new Path();
     private PageInspector mPageInspector;
@@ -309,6 +310,7 @@ public class ContentView extends FrameLayout {
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
         mInitialUrlLoadStartTime = urlLoadStartTime;
+        mInitialUrlAsString = urlAsString;
 
         updateUrl(urlAsString);
         updateAppsForUrl(mUrl);
@@ -397,6 +399,13 @@ public class ContentView extends FrameLayout {
         @Override
         public void onPageStarted(WebView view, final String urlAsString, Bitmap favIcon) {
             Log.d(TAG, "onPageStarted() - " + urlAsString);
+
+            // Ensure that items opened in new tabs are redirected to a browser when not licensed, re #371, re #360
+            if (mInitialUrlAsString.equals(Constant.NEW_TAB_URL) && DRM.isLicensed() == false) {
+                MainApplication.showUpgradePrompt(getContext(), R.string.upgrade_incentive_one_link);
+                openInBrowser(urlAsString);
+                return;
+            }
 
             if (mIsDestroyed) {
                 return;
