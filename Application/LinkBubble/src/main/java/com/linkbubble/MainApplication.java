@@ -1,6 +1,7 @@
 package com.linkbubble;
 
 import android.app.Application;
+import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ComponentName;
@@ -176,11 +177,15 @@ public class MainApplication extends Application {
                     Settings.get().getConsumeBubbleActivityClassName(action));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra(Intent.EXTRA_TEXT, url);
-            context.startActivity(intent);
-            if (totalLoadTime > -1) {
-                Settings.get().trackLinkLoadTime(totalLoadTime, Settings.LinkLoadType.ShareToOtherApp, url);
+            try {
+                context.startActivity(intent);
+                if (totalLoadTime > -1) {
+                    Settings.get().trackLinkLoadTime(totalLoadTime, Settings.LinkLoadType.ShareToOtherApp, url);
+                }
+                result = true;
+            } catch (ActivityNotFoundException ex) {
+                Toast.makeText(context, R.string.consume_activity_not_found, Toast.LENGTH_LONG).show();
             }
-            result = true;
         } else if (actionType == Constant.ActionType.View) {
             result = MainApplication.loadIntent(context, Settings.get().getConsumeBubblePackageName(action),
                     Settings.get().getConsumeBubbleActivityClassName(action), url, -1);
