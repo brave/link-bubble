@@ -188,7 +188,10 @@ public class MainController implements Choreographer.FrameCallback {
 
         @Override
         public void onAnimationEnd(BubbleFlowView sender) {
-
+            TabView currentTab = ((BubbleFlowDraggable)sender).getCurrentTab();
+            if (currentTab != null && currentTab.getContentView() != null) {
+                currentTab.getContentView().saveLoadTime();
+            }
         }
     };
 
