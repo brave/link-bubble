@@ -23,6 +23,7 @@ import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
 
 import java.util.List;
+import java.util.Vector;
 
 public class EntryActivity extends Activity {
 
@@ -122,6 +123,12 @@ public class EntryActivity extends Activity {
                 MainApplication.showUpgradePrompt(this, R.string.upgrade_incentive_one_app);
                 MainApplication.openInBrowser(this, intent, true);
             } else if (openLink && !showingTamperPrompt) {
+                // Restore open tabs
+                Vector<String> urls = Settings.get().loadCurrentTabs();
+                if (urls.size() > 0 && DRM.isLicensed()) {
+                    MainApplication.restoreLinks(this, urls.toArray(new String[urls.size()]));
+                }
+
                 boolean showedWelcomeUrl = false;
                 if (Settings.get().getWelcomeMessageDisplayed() == false) {
                     if (!(MainController.get() != null && MainController.get().isUrlActive(Constant.WELCOME_MESSAGE_URL))) {
