@@ -754,11 +754,13 @@ public class SettingsFragment extends PreferenceFragment {
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         listView.setAdapter(listAdapter);
         String interceptFromPackageName = Settings.get().getInterceptLinksFromPackageName();
-        for (int i = 0; i < allApps.size(); i++) {
-            AppInfo app = allApps.get(i);
-            if (app.mPackageName.equals(interceptFromPackageName)) {
-                listView.setItemChecked(i, true);
-                break;
+        if (interceptFromPackageName != null) {
+            for (int i = 0; i < allApps.size(); i++) {
+                AppInfo app = allApps.get(i);
+                if (app.mPackageName.equals(interceptFromPackageName)) {
+                    listView.setItemChecked(i, true);
+                    break;
+                }
             }
         }
 

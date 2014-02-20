@@ -299,14 +299,17 @@ public class MainApplication extends Application {
     }
 
     public static void showUpgradePrompt(final Context context, int stringId) {
-        String text = context.getResources().getString(stringId);
+        showUpgradePrompt(context, context.getResources().getString(stringId));
+    }
+
+    public static void showUpgradePrompt(final Context context, String string) {
         Drawable icon = null;
         final ResolveInfo storeResolveInfo = getStoreViewResolveInfo(context);
         if (storeResolveInfo != null) {
             icon = storeResolveInfo.loadIcon(context.getPackageManager());
         }
 
-        Prompt.show(text, icon, Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
+        Prompt.show(string, icon, Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
             @Override
             public void onClick() {
                 if (storeResolveInfo != null) {

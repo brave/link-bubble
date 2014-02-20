@@ -440,11 +440,15 @@ public class Settings {
     }
 
     public String getInterceptLinksFromPackageName() {
-        return mSharedPreferences.getString(PREFERENCE_INTERCEPT_LINKS_FROM, "com.google.android.apps.plus");
+        return mSharedPreferences.getString(PREFERENCE_INTERCEPT_LINKS_FROM, null);
     }
 
     public String getInterceptLinksFromAppName() {
-        return mSharedPreferences.getString(PREFERENCE_INTERCEPT_LINKS_FROM_APP_NAME, "Google+");
+        String name = mSharedPreferences.getString(PREFERENCE_INTERCEPT_LINKS_FROM_APP_NAME, null);
+        if (name == null) {
+            name = mContext.getString(R.string.intercept_links_from_default_label);
+        }
+        return name;
     }
 
     public void setInterceptLinksFrom(String packageName, String appName) {
