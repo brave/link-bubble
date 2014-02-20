@@ -62,7 +62,8 @@ public class MainService extends Service {
         CrashTracking.init(this);
 
         Intent resultIntent = new Intent(this, HideAllBubblesActivity.class);
-        PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 1, resultIntent, 0);
+        resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Notification.Builder notificationBuilder = new Notification.Builder(this)
                         .setSmallIcon(R.drawable.ic_notification_small)
