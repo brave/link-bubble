@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import com.linkbubble.ui.DownloadHandlerActivity;
 import com.linkbubble.ui.TabView;
 import com.linkbubble.util.Util;
 import org.json.JSONArray;
@@ -113,6 +114,8 @@ public class Settings {
     private Context mContext;
     private TreeMap<String, String> mDefaultAppsMap = new TreeMap<String, String>();
     private List<Intent> mBrowsers;
+    private ComponentName mDownloadHandlerComponentName;
+    private Intent mDownloadQueryIntent = new Intent();
     private ResolveInfo mYouTubeViewResolveInfo;
     public ResolveInfo mLinkBubbleEntryActivityResolveInfo;
     private boolean mCheckedForYouTubeResolveInfo = false;
@@ -125,6 +128,7 @@ public class Settings {
     Settings(Context context) {
         mContext = context;
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        mDownloadHandlerComponentName = new ComponentName(mContext, DownloadHandlerActivity.class);
 
         mBrowsers = new Vector<Intent>();
         updateBrowsers();
@@ -500,11 +504,36 @@ public class Settings {
         editor.commit();
     }
 
-    public boolean redirectUrlToBrowser(String url) {
+    public boolean redirectUrlToBrowser(String url, PackageManager packageManager) {
         if (url.contains("accounts.google.com") && mSharedPreferences.getBoolean(PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT, true)) {
             return true;
         }
-        return false;
+
+        boolean result = false;
+
+        /*
+         * Temporarily enable DownloadHandlerActivity to see if it might be used to handle this URL. If so, redirect the
+         * URL to the default browser rather than allowing an app like ES File Explorer be set as a default app for a host. #338
+         */
+
+        packageManager.setComponentEnabledSetting(mDownloadHandlerComponentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+
+        mDownloadQueryIntent.setAction(Intent.ACTION_VIEW);
+        mDownloadQueryIntent.setData(Uri.parse(url));
+        List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(mDownloadQueryIntent, PackageManager.GET_RESOLVED_FILTER);
+        if (resolveInfos != null && resolveInfos.size() > 0) {
+            String className = DownloadHandlerActivity.class.getName();
+            for (ResolveInfo resolveInfo : resolveInfos) {
+                if (resolveInfo.activityInfo != null && resolveInfo.activityInfo.name.equals(className)) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+
+        packageManager.setComponentEnabledSetting(mDownloadHandlerComponentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+
+        return result;
     }
 
     public int getWebViewTextZoom() {
@@ -517,15 +546,14 @@ public class Settings {
         editor.commit();
     }
 
-    public List<ResolveInfo> getAppsThatHandleUrl(URL url) {
+    public List<ResolveInfo> getAppsThatHandleUrl(URL url, PackageManager packageManager) {
 
         List<Intent> browsers = getBrowsers();
 
-        PackageManager manager = mContext.getPackageManager();
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url.toString()));
-        List<ResolveInfo> infos = manager.queryIntentActivities(intent, PackageManager.GET_RESOLVED_FILTER);
+        List<ResolveInfo> infos = packageManager.queryIntentActivities(intent, PackageManager.GET_RESOLVED_FILTER);
 
         ArrayList<ResolveInfo> results = new ArrayList<ResolveInfo>();
 
@@ -544,7 +572,7 @@ public class Settings {
 
                 if (packageOk) {
                     results.add(info);
-                    Log.d("appHandles", info.loadLabel(manager) + " for url:" + url);
+                    Log.d("appHandles", info.loadLabel(packageManager) + " for url:" + url);
                 }
             }
         }
