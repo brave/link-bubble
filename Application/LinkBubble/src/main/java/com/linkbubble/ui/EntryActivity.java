@@ -152,9 +152,11 @@ public class EntryActivity extends Activity {
         for (int i = 0; i < recentTasks.size(); i++) {
             ActivityManager.RecentTaskInfo recentTaskInfo = recentTasks.get(i);
             if (recentTaskInfo.baseIntent != null
-                    && recentTaskInfo.baseIntent.getComponent() != null
-                    && recentTaskInfo.baseIntent.getComponent().getPackageName().equals(BuildConfig.PACKAGE_NAME) == false) {
-                return recentTaskInfo;
+                    && recentTaskInfo.baseIntent.getComponent() != null) {
+                String packageName = recentTaskInfo.baseIntent.getComponent().getPackageName();
+                if (packageName.equals("android") == false && packageName.equals(BuildConfig.PACKAGE_NAME) == false) {
+                    return recentTaskInfo;
+                }
             }
         }
 
