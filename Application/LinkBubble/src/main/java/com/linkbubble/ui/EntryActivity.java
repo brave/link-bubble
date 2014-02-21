@@ -69,6 +69,7 @@ public class EntryActivity extends Activity {
                 return;
             }
 
+            String openedFromAppName = null;
             boolean canLoadFromThisApp = true;
             if (Settings.get().isEnabled()) {
                 final ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
@@ -77,6 +78,7 @@ public class EntryActivity extends Activity {
                 if (recentTasks.size() > 0) {
                     ActivityManager.RecentTaskInfo recentTaskInfo = getPreviousTaskInfo(recentTasks);
                     ComponentName componentName = recentTaskInfo.baseIntent.getComponent();
+                    openedFromAppName = componentName.getPackageName();
 
                     boolean isBlacklisted = false;
                     for (Intent browser : browsers) {
@@ -132,12 +134,12 @@ public class EntryActivity extends Activity {
                 boolean showedWelcomeUrl = false;
                 if (Settings.get().getWelcomeMessageDisplayed() == false) {
                     if (!(MainController.get() != null && MainController.get().isUrlActive(Constant.WELCOME_MESSAGE_URL))) {
-                        MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL);
+                        MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL, null);
                         showedWelcomeUrl = true;
                     }
                 }
 
-                MainApplication.openLink(this, url, showedWelcomeUrl ? false : true);
+                MainApplication.openLink(this, url, showedWelcomeUrl ? false : true, openedFromAppName);
             } else {
                 MainApplication.openInBrowser(this, intent, true);
             }

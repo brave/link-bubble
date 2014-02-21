@@ -39,6 +39,7 @@ import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.ActionItem;
+import com.linkbubble.util.Analytics;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
 
@@ -338,7 +339,7 @@ public class SettingsFragment extends PreferenceFragment {
         findPreference("preference_show_welcome_message").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                MainApplication.openLink(getActivity(), Constant.WELCOME_MESSAGE_URL);
+                MainApplication.openLink(getActivity(), Constant.WELCOME_MESSAGE_URL, Analytics.OPENED_URL_FROM_SETTINGS);
                 return true;
             }
         });
@@ -372,7 +373,7 @@ public class SettingsFragment extends PreferenceFragment {
         findPreference("preference_privacy_policy").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                MainApplication.openLink(getActivity(), Constant.PRIVACY_POLICY_URL);
+                MainApplication.openLink(getActivity(), Constant.PRIVACY_POLICY_URL, Analytics.OPENED_URL_FROM_SETTINGS);
                 return true;
             }
         });
@@ -380,7 +381,7 @@ public class SettingsFragment extends PreferenceFragment {
         findPreference("preference_terms_of_service").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                MainApplication.openLink(getActivity(), Constant.TERMS_OF_SERVICE_URL);
+                MainApplication.openLink(getActivity(), Constant.TERMS_OF_SERVICE_URL, Analytics.OPENED_URL_FROM_SETTINGS);
                 return true;
             }
         });
