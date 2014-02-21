@@ -55,7 +55,7 @@
             android:id="@+id/header_logo"
             android:layout_width="240dp"
             android:layout_height="160dp"
-            android:src="@drawable/text_logo"
+            android:src="@drawable/homeactivity_logo"
             android:layout_marginBottom="20dp"
             android:layout_marginRight="@dimen/home_logo_margin_right"
             android:contentDescription="@string/content_description_link_bubble_logo"/>
