@@ -87,7 +87,7 @@ public class HomeActivity extends Activity {
                 showWelcomeUrl = false;
             }
             if (showWelcomeUrl) {
-                MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL);
+                MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL, null);
 
                 ((MainApplication)getApplicationContext()).initParse();
                 final String deviceId = Constant.getValidDeviceId();
@@ -110,7 +110,7 @@ public class HomeActivity extends Activity {
         }
 
         if (Settings.get().debugAutoLoadUrl()) {
-            MainApplication.openLink(this, "https://s3.amazonaws.com/linkbubble/test.html");
+            MainApplication.openLink(this, "https://s3.amazonaws.com/linkbubble/test.html", null);
             //MainApplication.openLink(getActivity(), "https://twitter.com/lokibartleby/status/412160702707539968", false);
         }
 

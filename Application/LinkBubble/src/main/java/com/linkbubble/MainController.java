@@ -27,6 +27,7 @@ import com.linkbubble.ui.CanvasView;
 import com.linkbubble.ui.SettingsFragment;
 import com.linkbubble.ui.TabView;
 import com.linkbubble.util.ActionItem;
+import com.linkbubble.util.Analytics;
 import com.linkbubble.util.AppPoller;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
@@ -498,11 +499,14 @@ public class MainController implements Choreographer.FrameCallback {
         return false;
     }
 
-    public TabView openUrl(final String urlAsString, long urlLoadStartTime, final boolean setAsCurrentTab) {
-        return openUrl(urlAsString, urlLoadStartTime, setAsCurrentTab, true);
+    public TabView openUrl(final String urlAsString, long urlLoadStartTime, final boolean setAsCurrentTab, String openedFromAppName) {
+        return openUrl(urlAsString, urlLoadStartTime, setAsCurrentTab, openedFromAppName, true);
     }
 
-    public TabView openUrl(final String urlAsString, long urlLoadStartTime, final boolean setAsCurrentTab, boolean doLicenseCheck) {
+    public TabView openUrl(final String urlAsString, long urlLoadStartTime, final boolean setAsCurrentTab,
+                           String openedFromAppName, boolean doLicenseCheck) {
+
+        Analytics.trackOpenUrl(openedFromAppName);
 
         if (doLicenseCheck && !DRM.isLicensed() && getActiveTabCount() > 0 && urlAsString.equals(Constant.NEW_TAB_URL) == false) {
             MainApplication.showUpgradePrompt(mContext, R.string.upgrade_incentive_one_link);
@@ -725,7 +729,7 @@ public class MainController implements Choreographer.FrameCallback {
         final Vector<String> urls = Settings.get().loadCurrentTabs();
         if (urls.size() > 0) {
             for (String url : urls) {
-                MainApplication.openLink(mContext, url);
+                MainApplication.openLink(mContext, url, null);
             }
         }
     }
@@ -736,7 +740,7 @@ public class MainController implements Choreographer.FrameCallback {
         final Vector<String> urls = Settings.get().loadCurrentTabs();
         if (urls.size() > 0) {
             for (String url : urls) {
-                MainApplication.openLink(context.getApplicationContext(), url);
+                MainApplication.openLink(context.getApplicationContext(), url, null);
                 reloaded = true;
             }
         }

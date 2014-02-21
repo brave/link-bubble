@@ -33,6 +33,7 @@ import com.linkbubble.Settings;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.util.ActionItem;
+import com.linkbubble.util.Analytics;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Subscribe;
 import org.mozilla.gecko.favicons.Favicons;
@@ -206,7 +207,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (view.getTag() instanceof HistoryItem) {
             HistoryItem historyItem = (HistoryItem)view.getTag();
-            MainApplication.openLink(this, historyItem.mHistoryRecord.getUrl());
+            MainApplication.openLink(this, historyItem.mHistoryRecord.getUrl(), Analytics.OPENED_URL_FROM_HISTORY);
         }
     }
 
@@ -263,9 +264,9 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                     String urlAsString = historyItem.mHistoryRecord.getUrl();
                     if (string.equals(openInNewBubbleLabel)) {
                         if (MainController.get() != null) {
-                            MainController.get().openUrl(urlAsString, System.currentTimeMillis(), false);
+                            MainController.get().openUrl(urlAsString, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_HISTORY);
                         } else {
-                            MainApplication.openLink(getApplicationContext(), urlAsString);
+                            MainApplication.openLink(getApplicationContext(), urlAsString, Analytics.OPENED_URL_FROM_HISTORY);
                         }
                     } else if (openInBrowserLabel != null && string.equals(openInBrowserLabel)) {
                         Intent intent = new Intent(Intent.ACTION_VIEW);

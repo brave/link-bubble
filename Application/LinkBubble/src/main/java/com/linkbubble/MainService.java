@@ -10,6 +10,7 @@ import android.content.IntentFilter;
 import android.os.IBinder;
 import android.webkit.WebIconDatabase;
 import com.linkbubble.ui.HideAllBubblesActivity;
+import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 
 /**
@@ -34,14 +35,15 @@ public class MainService extends Service {
         if (cmd.compareTo("open") == 0) {
             String url = intent.getStringExtra("url");
             boolean doLicenseCheck = intent.getBooleanExtra("doLicenseCheck", true);
-            MainController.get().openUrl(url, urlLoadStartTime, true, doLicenseCheck);
+            String openedFromAppName = intent.getStringExtra("openedFromAppName");
+            MainController.get().openUrl(url, urlLoadStartTime, true, openedFromAppName, doLicenseCheck);
         } else if (cmd.compareTo("restore") == 0) {
             if (!mRestoreComplete) {
                 String [] urls = intent.getStringArrayExtra("urls");
                 for (int i = 0; i < urls.length; i++) {
                     String urlAsString = urls[i];
                     if (urlAsString.equals(Constant.WELCOME_MESSAGE_URL) == false) {
-                        MainController.get().openUrl(urlAsString, urlLoadStartTime, i == urls.length - 1);
+                        MainController.get().openUrl(urlAsString, urlLoadStartTime, i == urls.length - 1, Analytics.OPENED_URL_FROM_RESTORE);
                     }
                 }
                 mRestoreComplete = true;
