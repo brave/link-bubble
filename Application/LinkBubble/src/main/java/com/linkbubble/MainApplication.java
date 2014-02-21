@@ -102,16 +102,17 @@ public class MainApplication extends Application {
         sFavicons = new Favicons();
     }
 
-    public static void openLink(Context context, String url) {
-        openLink(context, url, true);
+    public static void openLink(Context context, String url, String openedFromAppName) {
+        openLink(context, url, true, openedFromAppName);
     }
 
-    public static void openLink(Context context, String url, boolean doLicenseCheck) {
+    public static void openLink(Context context, String url, boolean doLicenseCheck, String openedFromAppName) {
         Intent serviceIntent = new Intent(context, MainService.class);
         serviceIntent.putExtra("cmd", "open");
         serviceIntent.putExtra("url", url);
         serviceIntent.putExtra("doLicenseCheck", doLicenseCheck);
         serviceIntent.putExtra("start_time", System.currentTimeMillis());
+        serviceIntent.putExtra("openedFromAppName", openedFromAppName);
         context.startService(serviceIntent);
     }
 
