@@ -110,6 +110,7 @@ public class ContentView extends FrameLayout {
     private Stack<URL> mUrlStack = new Stack<URL>();
     // We only want to handle this once per link. This prevents 3+ dialogs appearing for some links, which is a bad experience. #224
     private boolean mHandledAppPickerForCurrentUrl = false;
+    private boolean mUsingLinkBubbleAsDefaultForCurrentUrl = false;
 
     private static Paint sIndicatorPaint;
     private static Paint sBorderPaint;
@@ -253,6 +254,7 @@ public class ContentView extends FrameLayout {
         mDoDropDownCheck = true;
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_header);
         mHandledAppPickerForCurrentUrl = hasShownAppPicker;
+        mUsingLinkBubbleAsDefaultForCurrentUrl = false;
 
         if (hasShownAppPicker) {
             mAppPickersUrls.add(urlAsString);
@@ -371,6 +373,7 @@ public class ContentView extends FrameLayout {
                         mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
                         Log.d(TAG, "[urlstack] push:" + mUrl.toString() + ", urlStack.size():" + mUrlStack.size() + ", delta:" + touchUpTimeDelta);
                         mHandledAppPickerForCurrentUrl = false;
+                        mUsingLinkBubbleAsDefaultForCurrentUrl = false;
                     } else {
                         Log.d(TAG, "[urlstack] DON'T ADD " + mUrl.toString() + " because of redirect");
                     }
@@ -440,13 +443,16 @@ public class ContentView extends FrameLayout {
 
             if (Settings.get().getAutoContentDisplayAppRedirect()
                     && mHandledAppPickerForCurrentUrl == false
+                    && mUsingLinkBubbleAsDefaultForCurrentUrl == false
                     && mAppsForUrl != null
                     && mAppsForUrl.size() > 0
                     && Settings.get().didRecentlyRedirectToApp(urlAsString) == false) {
 
                 AppForUrl defaultAppForUrl = getDefaultAppForUrl();
                 if (defaultAppForUrl != null) {
-                    if (Util.isLinkBubbleResolveInfo(defaultAppForUrl.mResolveInfo) == false) {
+                    if (Util.isLinkBubbleResolveInfo(defaultAppForUrl.mResolveInfo)) {
+                        mUsingLinkBubbleAsDefaultForCurrentUrl = true;
+                    } else {
                         if (MainApplication.loadResolveInfoIntent(context, defaultAppForUrl.mResolveInfo, urlAsString, mInitialUrlLoadStartTime)) {
                             String title = String.format(context.getString(R.string.link_loaded_with_app),
                                     defaultAppForUrl.mResolveInfo.loadLabel(context.getPackageManager()));
@@ -616,6 +622,7 @@ public class ContentView extends FrameLayout {
                             String previousUrlAsString = previousUrl.toString();
                             mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
                             mHandledAppPickerForCurrentUrl = false;
+                            mUsingLinkBubbleAsDefaultForCurrentUrl = false;
                             webView.loadUrl(previousUrlAsString);
 
                             updateUrl(previousUrlAsString);
@@ -671,7 +678,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onProgressChanged(WebView webView, int progress) {
-            Log.d(TAG, "onProgressChanged() - progress:" + progress);
+            //Log.d(TAG, "onProgressChanged() - progress:" + progress);
 
             mCurrentProgress = progress;
 
