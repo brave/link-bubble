@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import com.linkbubble.ui.DownloadHandlerActivity;
 import com.linkbubble.ui.TabView;
+import com.linkbubble.util.Analytics;
 import com.linkbubble.util.Util;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -832,6 +833,8 @@ public class Settings {
         Log.d(LOAD_TIME_TAG, "trackLinkLoadTime() - timeSaved:" + ((float)timeSaved / 1000.f) + " seconds, " + linkLoadType + ", " + url);
 
         MainApplication.postEvent(mContext, mLinkLoadTimeStatsUpdatedEvent);
+
+        Analytics.trackTimeSaved(timeSaved);
     }
 
     public long getTotalTimeSaved() {
