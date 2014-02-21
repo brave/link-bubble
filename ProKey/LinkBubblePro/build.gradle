@@ -2,20 +2,21 @@ apply plugin: 'android'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.1"
-
+    buildToolsVersion '19.0.0'
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 19
         versionCode 1
-        versionName "1.0"
-        packageName "com.linkbubble.pro.playstore"
+        versionName "1.0 (dev)"
     }
 
-    buildTypes {
-        release {
-            runProguard false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+    productFlavors {
+        playstore {
+            packageName='com.linkbubble.pro.playstore'
+
+            buildConfigField "String", "FREE_PACKAGE_NAME", "\"com.linkbubble.playstore\""
+            buildConfigField "String", "STORE_FREE_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.playstore\""
+            buildConfigField "String", "STORE_PRO_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.pro.playstore\""
         }
     }
 }
