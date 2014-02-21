@@ -198,7 +198,7 @@ public class ProgressIndicator extends FrameLayout {
 
             // If the url is the same, and currently we're at 100%, and this progress is < 100%,
             // don't change the visual arc as it just looks messy.
-            if (mProgress >= .999f && progressN < .999f && mUrl.equals(urlAsString)) {
+            if (progress != 0 && mProgress >= .999f && progressN < .999f && mUrl.equals(urlAsString)) {
                 return;
             }
             mUrl = urlAsString;
