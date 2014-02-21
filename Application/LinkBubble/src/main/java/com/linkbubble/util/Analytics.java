@@ -1,8 +1,5 @@
 package com.linkbubble.util;
 
-/**
- * Created by chrislacy on 5/1/2013.
- */
 public class Analytics {
 
     public static final String OPENED_URL_FROM_SETTINGS = "LinkBubble-Settings";
@@ -13,7 +10,14 @@ public class Analytics {
 
     public static void trackOpenUrl(String openedFromAppName) {
         if (openedFromAppName != null) {
-            StatHat.ezPostValue("opened_from~" + openedFromAppName, 1.0);
+            StatHat.get().ezPostCount("opened_from~" + openedFromAppName, 1);
+            StatHat.get().ezPostCount("tab_opened", 1);
+        }
+    }
+
+    public static void trackTimeSaved(long time) {
+        if (time > -1) {
+            StatHat.get().ezPostValue("time_saved", (double)(time) / 1000.f);
         }
     }
 
