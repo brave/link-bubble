@@ -11,6 +11,7 @@
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/application_name"
+        android:theme="@android:style/Theme.Holo.Light"
         >
         <activity
             android:name="com.linkbubble.prokey.MainActivity"
