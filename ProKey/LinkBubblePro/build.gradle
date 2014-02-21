@@ -19,8 +19,52 @@ android {
             buildConfigField "String", "STORE_PRO_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.pro.playstore\""
         }
     }
+
+    signingConfigs {
+        release {
+            // (via http://stackoverflow.com/a/19350401/328679)
+            storeFile file(System.getenv("KEYSTORE_LOCATION"))
+            keyAlias System.getenv("ACTION_LAUNCHER_KEY_ALIAS")
+
+            // These two lines make gradle believe that the signingConfigs
+            // section is complete. Without them, tasks like installRelease
+            // will not be available!
+            storePassword "notYourRealPassword"
+            keyPassword "notYourRealPassword"
+        }
+    }
+    buildTypes {
+        release {
+            //proguardFile plugin.getDefaultDexGuardFile('dexguard-release.pro')
+            //proguardFile 'dexguard-project.txt'
+            proguardFile 'proguard-project.txt'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    lintOptions {
+        lintConfig file("lint.xml")
+    }
 }
 
 dependencies {
     compile files('libs/dexguard_util.jar')
 }
+
+
+task askForPasswords << {
+    // Must create String because System.readPassword() returns char[]
+    // (and assigning that below fails silently)
+    def storePw = new String(System.console().readPassword("Keystore password: "))
+    def keyPw  = new String(System.console().readPassword("Key password: "))
+
+    android.signingConfigs.release.storePassword = storePw
+    android.signingConfigs.release.keyPassword = keyPw
+}
+
+tasks.whenTaskAdded { theTask ->
+    if (theTask.name.equals("packagePlaystoreRelease")) {
+        theTask.dependsOn "askForPasswords"
+    }
+}
+
