@@ -1,56 +1,91 @@
 package com.linkbubble.util;
 
+import android.util.Log;
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+import retrofit.http.GET;
+import retrofit.http.POST;
+import retrofit.http.Path;
+
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.BufferedReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.SortedMap;
 
 class StatHat {
 
     private static final String KEY = "ws7pLkHbVaQdOH8x";
 
-    private static void httpPost(String path, String data) {
-        try {
-            URL url = new URL(path);
-            URLConnection conn = url.openConnection();
-            conn.setDoOutput(true);
-            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-            wr.write(data);
-            wr.flush();
+    private static StatHat sInstance = null;
 
-            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String line;
-            while ((line = rd.readLine()) != null) {
-                    System.out.println(line);
-            }
-            wr.close();
-            rd.close();
+    public static StatHat get() {
+        if (sInstance == null) {
+            sInstance = new StatHat();
         }
-        catch (Exception e) {
-            System.err.println(e);
-        }
+
+        return sInstance;
     }
 
-    public static void ezPostValue(String statName, Double value) {
+    StatHat() {
+        RestAdapter restAdapter = new RestAdapter.Builder()
+                .setEndpoint("https://api.stathat.com/")
+                .setLog(new RestAdapter.Log() {
+                    @Override
+                    public void log(String s) {
+                        Log.d("stathat", "log() - " + s);
+                    }
+                })
+                .setLogLevel(RestAdapter.LogLevel.FULL)
+                .build();
+
+        mStatHatService = restAdapter.create(StatHatService.class);
+    }
+
+    private StatHatService mStatHatService;
+
+    void ezPostValue(String statName, Double value) {
         try {
-            String data = URLEncoder.encode("ezkey", "UTF-8") + "=" + URLEncoder.encode(KEY, "UTF-8");
-            data += "&" + URLEncoder.encode("stat", "UTF-8") + "=" + URLEncoder.encode(statName, "UTF-8");
-            data += "&" + URLEncoder.encode("value", "UTF-8") + "=" + URLEncoder.encode(value.toString(), "UTF-8");
-            httpPost("http://api.stathat.com/ez", data);
+            mStatHatService.ezValue(KEY, statName, URLEncoder.encode(value.toString(), "UTF-8"), new Callback<StatHatService.Result>() {
+
+                @Override
+                public void success(StatHatService.Result result, Response response) {
+
+                }
+
+                @Override
+                public void failure(RetrofitError retrofitError) {
+
+                }
+            });
         }
         catch (Exception e) {
             System.err.println("ezPostValue exception:  " + e);
         }
     }
 
-    public static void ezPostCount(String statName, Double count) {
+    void ezPostCount(String statName, Integer count) {
         try {
-            String data = URLEncoder.encode("ezkey", "UTF-8") + "=" + URLEncoder.encode(KEY, "UTF-8");
-            data += "&" + URLEncoder.encode("stat", "UTF-8") + "=" + URLEncoder.encode(statName, "UTF-8");
-            data += "&" + URLEncoder.encode("count", "UTF-8") + "=" + URLEncoder.encode(count.toString(), "UTF-8");
-            httpPost("http://api.stathat.com/ez", data);
+            mStatHatService.ezCount(KEY, statName, URLEncoder.encode(count.toString(), "UTF-8"), new Callback<StatHatService.Result>() {
+
+                @Override
+                public void success(StatHatService.Result result, Response response) {
+                }
+
+                @Override
+                public void failure(RetrofitError retrofitError) {
+                }
+            });
         }
         catch (Exception e) {
             System.err.println("ezPostCount exception:  " + e);
