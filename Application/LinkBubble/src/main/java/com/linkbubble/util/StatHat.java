@@ -46,7 +46,7 @@ class StatHat {
                         Log.d("stathat", "log() - " + s);
                     }
                 })
-                .setLogLevel(RestAdapter.LogLevel.FULL)
+                .setLogLevel(RestAdapter.LogLevel.BASIC)
                 .build();
 
         mStatHatService = restAdapter.create(StatHatService.class);
