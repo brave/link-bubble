@@ -91,6 +91,8 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
         setupListView();
 
         ((MainApplication)getApplicationContext()).getBus().register(this);
+
+        MainApplication.checkRestoreCurrentTabs(this);
     }
 
     @Override
