@@ -19,6 +19,7 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
 
@@ -102,7 +103,9 @@ public class EntryActivity extends Activity {
                                     CharSequence label = resolveInfos.get(0).loadLabel(packageManager);
                                     if (label != null) {
                                         Settings.get().setInterceptLinksFrom(componentName.getPackageName(), label.toString());
-                                        MainApplication.showUpgradePrompt(this, String.format(getString(R.string.intercept_links_from_default_set_message), label));
+                                        MainApplication.showUpgradePrompt(this,
+                                                String.format(getString(R.string.intercept_links_from_default_set_message), label),
+                                                Analytics.UPGRADE_PROMPT_SINGLE_APP_SET);
                                     }
                                 }
                             }
@@ -122,7 +125,7 @@ public class EntryActivity extends Activity {
             }
 
             if (canLoadFromThisApp == false && !showingTamperPrompt) {
-                MainApplication.showUpgradePrompt(this, R.string.upgrade_incentive_one_app);
+                MainApplication.showUpgradePrompt(this, R.string.upgrade_incentive_one_app, Analytics.UPGRADE_PROMPT_SINGLE_APP);
                 MainApplication.openInBrowser(this, intent, true);
             } else if (openLink && !showingTamperPrompt) {
                 // Restore open tabs

@@ -513,7 +513,7 @@ public class MainController implements Choreographer.FrameCallback {
         Analytics.trackOpenUrl(openedFromAppName);
 
         if (doLicenseCheck && !DRM.isLicensed() && getActiveTabCount() > 0 && urlAsString.equals(Constant.NEW_TAB_URL) == false) {
-            MainApplication.showUpgradePrompt(mContext, R.string.upgrade_incentive_one_link);
+            MainApplication.showUpgradePrompt(mContext, R.string.upgrade_incentive_one_link, Analytics.UPGRADE_PROMPT_SINGLE_TAB_OPEN_URL);
             MainApplication.openInBrowser(mContext, urlAsString, true);
             return null;
         }
