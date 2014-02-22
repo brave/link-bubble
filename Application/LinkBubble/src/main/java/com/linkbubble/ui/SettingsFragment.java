@@ -411,7 +411,7 @@ public class SettingsFragment extends PreferenceFragment {
     public void onResume() {
         super.onResume();
 
-        checkDefaultBrowser();
+        //checkDefaultBrowser();
         configureDefaultAppsList();
     }
 
