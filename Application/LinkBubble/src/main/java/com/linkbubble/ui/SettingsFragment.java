@@ -99,6 +99,7 @@ public class SettingsFragment extends PreferenceFragment {
                         public boolean onPreferenceClick(Preference preference) {
                             Resources resources = getActivity().getResources();
                             AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+                            alertDialog.setIcon(R.drawable.ic_alert_icon);
                             alertDialog.setTitle(R.string.remove_default_title);
                             alertDialog.setMessage(String.format(resources.getString(R.string.remove_default_message), label, host, host));
                             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, resources.getString(R.string.action_remove),
@@ -359,7 +360,7 @@ public class SettingsFragment extends PreferenceFragment {
                 });
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setIcon(0);
+                builder.setIcon(R.drawable.ic_alert_icon);
                 builder.setNegativeButton(R.string.action_ok, null);
                 builder.setView(webView);
                 builder.setTitle(R.string.preference_osl_title);
@@ -479,6 +480,7 @@ public class SettingsFragment extends PreferenceFragment {
         listView.setItemChecked(1, Settings.get().getAutoContentDisplayLinkLoaded());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setIcon(R.drawable.ic_alert_icon);
         builder.setView(listView);
         builder.setIcon(0);
         builder.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener() {
@@ -548,7 +550,7 @@ public class SettingsFragment extends PreferenceFragment {
         seekBar.setProgress(initialZoom - Settings.PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setIcon(0);
+        builder.setIcon(R.drawable.ic_alert_icon);
         builder.setView(layout);
         builder.setTitle(R.string.preference_webview_text_zoom_title);
 
@@ -591,7 +593,7 @@ public class SettingsFragment extends PreferenceFragment {
         final View layout = View.inflate(getActivity(), R.layout.view_credits, null);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setIcon(0);
+        builder.setIcon(R.drawable.ic_alert_icon);
         builder.setNegativeButton(R.string.action_ok, null);
         builder.setView(layout);
         builder.setTitle(R.string.credits_title);
@@ -628,7 +630,7 @@ public class SettingsFragment extends PreferenceFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(listView);
-        builder.setIcon(0);
+        builder.setIcon(R.drawable.ic_alert_icon);
         builder.setPositiveButton(R.string.action_clear_data, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
@@ -767,7 +769,7 @@ public class SettingsFragment extends PreferenceFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setView(layout);
-        builder.setIcon(0);
+        builder.setIcon(R.drawable.ic_alert_icon);
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 int position = listView.getCheckedItemPosition();
