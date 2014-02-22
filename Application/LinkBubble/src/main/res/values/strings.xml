@@ -175,10 +175,10 @@
     <string name="faq_translucent_status_bar_answer">Unfortunately Android system limitations prevent this.</string>
     <string name="faq_beta_programme_question">Is there a beta programme? How can I join?</string>
     <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Chris Lacy) feed for announcements.</string>
-    <string name="faq_crap_webview_question">Sometimes links doesn\'t display correctly or videos don\'t play!</string>
+    <string name="faq_crap_webview_question">Sometimes links doesn\'t display correctly or videos don\'t play.</string>
     <string name="faq_crap_webview_answer"><![CDATA[LinkBubble uses the standard Android WebView, but unfortunately it is sometimes unreliable.
-            Alternative web rendering methods such as FireFox will likely be investigated going forward.<br/><br/>In the event a web page
-            doesn\'t display correctly for you in Link Bubble, the easiest thing to do is just to load a traditional browser for that link.]]></string>
+            Alternative web rendering methods such as FireFox\'s GeckoView and Chromium will likely be investigated going
+            forward.<br/><br/>In the event a web page doesn\'t display correctly in Link Bubble, the easiest thing to do is just to load a traditional browser for that link.]]></string>
     <string name="faq_ongoing_notificaion_question">Why does the ongoing notification always display when Link Bubble is running?</string>
     <string name="faq_ongoing_notificaion_answer"><![CDATA[Unfortunately this ongoing notification is necessary to encourage the Android OS not to terminate
             Link Bubble.]]></string>
