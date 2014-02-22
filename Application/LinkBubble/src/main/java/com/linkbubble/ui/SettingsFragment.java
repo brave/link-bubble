@@ -232,7 +232,7 @@ public class SettingsFragment extends PreferenceFragment {
         rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeRight));
 
         Preference defaultBrowserPreference = findPreference(Settings.PREFERENCE_DEFAULT_BROWSER);
-        defaultBrowserPreference.setTitle(Settings.get().getDefaultBrowserLabel());
+        defaultBrowserPreference.setSummary(Settings.get().getDefaultBrowserLabel());
         Drawable defaultBrowserIcon = Settings.get().getDefaultBrowserIcon(getActivity());
         if (defaultBrowserIcon != null) {
             defaultBrowserPreference.setIcon(defaultBrowserIcon);
@@ -244,7 +244,7 @@ public class SettingsFragment extends PreferenceFragment {
                     @Override
                     public void onSelected(ActionItem actionItem) {
                         Settings.get().setDefaultBrowser(actionItem.getLabel(), actionItem.mPackageName);
-                        preference.setTitle(Settings.get().getDefaultBrowserLabel());
+                        preference.setSummary(Settings.get().getDefaultBrowserLabel());
                         Drawable defaultBrowserIcon = Settings.get().getDefaultBrowserIcon(getActivity());
                         if (defaultBrowserIcon != null) {
                             preference.setIcon(defaultBrowserIcon);
