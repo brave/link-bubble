@@ -107,6 +107,7 @@ public class FAQDialog {
         listView.setAdapter(new FAQAdapter(mActivity));
 
         AlertDialog alertDialog = new AlertDialog.Builder(mActivity).create();
+        alertDialog.setIcon(R.drawable.ic_alert_icon);
         alertDialog.setTitle(R.string.faq_title);
         alertDialog.setView(layout);
 

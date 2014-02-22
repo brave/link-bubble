@@ -144,6 +144,7 @@ public class ActionItem {
         ListView listView = new ListView(context);
 
         final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setIcon(R.drawable.ic_alert_icon);
         alertDialog.setTitle(R.string.preference_default_browser);
         alertDialog.setView(listView);
 
@@ -238,6 +239,7 @@ public class ActionItem {
         }
 
         final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setIcon(R.drawable.ic_alert_icon);
         alertDialog.setTitle(titleString);
         alertDialog.setView(listView);
 
@@ -320,6 +322,7 @@ public class ActionItem {
         StickyListHeadersListView listView = new StickyListHeadersListView(context);
 
         final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setIcon(R.drawable.ic_alert_icon);
         alertDialog.setTitle(R.string.preference_configure_bubble_title);
         alertDialog.setView(listView);
 
@@ -362,6 +365,7 @@ public class ActionItem {
 
         // Build the list of send applications
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setIcon(R.drawable.ic_alert_icon);
         builder.setTitle(R.string.share_via);
         builder.setIcon(R.drawable.ic_launcher);
 
