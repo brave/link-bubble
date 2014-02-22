@@ -19,6 +19,7 @@ import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
 import com.linkbubble.util.ActionItem;
+import com.linkbubble.util.Analytics;
 import com.linkbubble.util.Tamper;
 import com.parse.Parse;
 import com.squareup.otto.Bus;
@@ -324,11 +325,11 @@ public class MainApplication extends Application {
         }
     }
 
-    public static void showUpgradePrompt(final Context context, int stringId) {
-        showUpgradePrompt(context, context.getResources().getString(stringId));
+    public static void showUpgradePrompt(final Context context, int stringId, String prompt) {
+        showUpgradePrompt(context, context.getResources().getString(stringId), prompt);
     }
 
-    public static void showUpgradePrompt(final Context context, String string) {
+    public static void showUpgradePrompt(final Context context, String string, final String prompt) {
         Drawable icon = null;
         final ResolveInfo storeResolveInfo = getStoreViewResolveInfo(context);
         if (storeResolveInfo != null) {
@@ -344,6 +345,7 @@ public class MainApplication extends Application {
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.setClassName(storeResolveInfo.activityInfo.packageName, storeResolveInfo.activityInfo.name);
                     context.startActivity(intent);
+                    Analytics.trackUpgradePromptClicked(prompt);
                 }
             }
 
@@ -352,6 +354,7 @@ public class MainApplication extends Application {
 
             }
         });
+        Analytics.trackUpgradePromptDisplayed(prompt);
     }
 
     // DRM state
