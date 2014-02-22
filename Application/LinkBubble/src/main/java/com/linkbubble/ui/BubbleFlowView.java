@@ -457,11 +457,16 @@ public class BubbleFlowView extends HorizontalScrollView {
             }
         }
 
-        // Remove and re-add to ensure view is drawn last.
-        mContent.removeView(centerView);
-        mContent.addView(centerView);
+        bringTabViewToFront(centerView);
         mIsExpanded = true;
         return true;
+    }
+
+    private void bringTabViewToFront(View tabView) {
+        tabView.clearAnimation();
+        tabView.bringToFront();
+        mContent.requestLayout();
+        mContent.invalidate();
     }
 
     public void collapse() {
@@ -524,9 +529,7 @@ public class BubbleFlowView extends HorizontalScrollView {
             }
         }
 
-        // Remove and re-add to ensure view is drawn last.
-        mContent.removeView(centerView);
-        mContent.addView(centerView);
+        bringTabViewToFront(centerView);
     }
 
     boolean isExpanded() {
