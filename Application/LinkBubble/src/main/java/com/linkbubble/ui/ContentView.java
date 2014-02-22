@@ -407,7 +407,7 @@ public class ContentView extends FrameLayout {
 
             // Ensure that items opened in new tabs are redirected to a browser when not licensed, re #371, re #360
             if (mInitialUrlAsString.equals(Constant.NEW_TAB_URL) && DRM.isLicensed() == false) {
-                MainApplication.showUpgradePrompt(getContext(), R.string.upgrade_incentive_one_link);
+                MainApplication.showUpgradePrompt(getContext(), R.string.upgrade_incentive_one_link, Analytics.UPGRADE_PROMPT_SINGLE_TAB_REDIRECT);
                 openInBrowser(urlAsString);
                 return;
             }
