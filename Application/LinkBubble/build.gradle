@@ -59,7 +59,7 @@ android {
         release {
             // (via http://stackoverflow.com/a/19350401/328679)
             storeFile file(System.getenv("KEYSTORE_LOCATION"))
-            keyAlias System.getenv("ACTION_LAUNCHER_KEY_ALIAS")
+            keyAlias System.getenv("LINK_BUBBLE_KEY_ALIAS")
 
             // These two lines make gradle believe that the signingConfigs
             // section is complete. Without them, tasks like installRelease
