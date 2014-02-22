@@ -46,15 +46,17 @@
             android:title="@string/preference_default_apps_title"
              >
 
-            <PreferenceCategory
-                android:key="preference_category_fallback_browser"
-                android:title="@string/preference_category_fallback_browser" >
+            <Preference
+                android:title="@string/preference_category_fallback_browser"
+                android:key="preference_default_browser"
+                />
 
-                <Preference
-                    android:key="preference_default_browser"
-                    />
-
-            </PreferenceCategory>
+            <CheckBoxPreference
+                android:key="preference_google_accounts_redirect"
+                android:title="@string/preference_google_account_redirect_title"
+                android:summary="@string/preference_google_account_redirect_summary"
+                android:defaultValue="true"
+                android:icon="@drawable/ic_google_account"/>
 
             <PreferenceCategory
                 android:key="preference_category_other_apps"
@@ -68,13 +70,6 @@
             </PreferenceCategory>
 
         </PreferenceScreen>
-
-        <CheckBoxPreference
-            android:key="preference_google_accounts_redirect"
-            android:title="@string/preference_google_account_redirect_title"
-            android:summary="@string/preference_google_account_redirect_summary"
-            android:defaultValue="true"
-            android:dependency="preference_enabled"/>
 
     </PreferenceCategory>
 
