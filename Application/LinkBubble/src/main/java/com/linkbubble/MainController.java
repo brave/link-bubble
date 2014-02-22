@@ -110,7 +110,9 @@ public class MainController implements Choreographer.FrameCallback {
     private void enableRootWindows() {
         if (!mRootWindowsVisible) {
             for (View v : mRootViews) {
-                mWindowManager.addView(v, v.getLayoutParams());
+                WindowManager.LayoutParams lp = (WindowManager.LayoutParams) v.getLayoutParams();
+                lp.alpha = 1.0f;
+                mWindowManager.updateViewLayout(v, lp);
             }
             mRootWindowsVisible = true;
         }
@@ -119,7 +121,9 @@ public class MainController implements Choreographer.FrameCallback {
     private void disableRootWindows() {
         if (mRootWindowsVisible) {
             for (View v : mRootViews) {
-                mWindowManager.removeView(v);
+                WindowManager.LayoutParams lp = (WindowManager.LayoutParams) v.getLayoutParams();
+                lp.alpha = 0.0f;
+                mWindowManager.updateViewLayout(v, lp);
             }
             mRootWindowsVisible = false;
         }
