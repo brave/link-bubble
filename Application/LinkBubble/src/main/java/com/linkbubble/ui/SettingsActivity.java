@@ -2,6 +2,7 @@ package com.linkbubble.ui;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.util.CrashTracking;
 
@@ -16,6 +17,12 @@ public class SettingsActivity extends PreferenceActivity {
 
         setContentView(R.layout.activity_settings);
         setTitle(R.string.title_settings);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        MainApplication.checkRestoreCurrentTabs(this);
     }
 
     @Override
