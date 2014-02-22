@@ -114,11 +114,6 @@ public class HomeActivity extends Activity {
             //MainApplication.openLink(getActivity(), "https://twitter.com/lokibartleby/status/412160702707539968", false);
         }
 
-        Vector<String> urls = Settings.get().loadCurrentTabs();
-        if (urls.size() > 0) {
-            MainApplication.restoreLinks(this, urls.toArray(new String[urls.size()]));
-        }
-
         configureForDrmState();
 
         mActionButtonView.setOnClickListener(new View.OnClickListener() {
@@ -245,6 +240,13 @@ public class HomeActivity extends Activity {
 
         MainApplication.checkForProVersion(getApplicationContext());
         Util.checkForTamper(this, mTamperPromptEventListener);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        MainApplication.checkRestoreCurrentTabs(this);
     }
 
     @Override

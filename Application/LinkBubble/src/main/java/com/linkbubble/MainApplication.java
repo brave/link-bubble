@@ -28,6 +28,7 @@ import org.mozilla.gecko.favicons.Favicons;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -115,6 +116,13 @@ public class MainApplication extends Application {
         serviceIntent.putExtra("start_time", System.currentTimeMillis());
         serviceIntent.putExtra("openedFromAppName", openedFromAppName);
         context.startService(serviceIntent);
+    }
+
+    public static void checkRestoreCurrentTabs(Context context) {
+        Vector<String> urls = Settings.get().loadCurrentTabs();
+        if (urls.size() > 0) {
+            MainApplication.restoreLinks(context, urls.toArray(new String[urls.size()]));
+        }
     }
 
     public static void restoreLinks(Context context, String [] urls) {
