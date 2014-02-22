@@ -393,6 +393,7 @@ public class SettingsFragment extends PreferenceFragment {
             versionPreference.setTitle(getString(R.string.preference_version_title) + " " + packageInfo.versionName);
         } catch (PackageManager.NameNotFoundException e) {
         }
+        /* turn off for version 1
         versionPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 
             @Override
@@ -403,7 +404,7 @@ public class SettingsFragment extends PreferenceFragment {
                 //faqDialog.show();
                 return true;
             }
-        });
+        });*/
     }
 
     @Override
