@@ -105,7 +105,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     public void switchToBubbleView() {
-        doAnimateToBubbleView();
+        doAnimateToBubbleView(0);
     }
 
     public void switchToExpandedView() {
@@ -124,7 +124,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                 if (mMode == Mode.ContentView && action == Constant.BubbleAction.Close) {
                     doAnimateToContentView();
                 } else {
-                    doAnimateToBubbleView();
+                    doAnimateToBubbleView(0);
                 }
             } else {
                 mMode = Mode.BubbleView;
@@ -239,7 +239,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         });
     }
 
-    private void doAnimateToBubbleView() {
+    private void doAnimateToBubbleView(int animTimeMs) {
         if (mAnimActive) {
             if (mMode == Mode.BubbleView) {
                 return;
@@ -262,10 +262,14 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             return;
         }
 
-        animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(Constant.BUBBLE_ANIM_TIME);
-        mBadgeView.animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(Constant.BUBBLE_ANIM_TIME);
+        if (animTimeMs == 0) {
+            animTimeMs = Constant.BUBBLE_ANIM_TIME;
+        }
 
-        float bubblePeriod = (float)Constant.BUBBLE_ANIM_TIME / 1000.f;
+        animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(animTimeMs);
+        mBadgeView.animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(animTimeMs);
+
+        float bubblePeriod = (float)animTimeMs / 1000.f;
         float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
 
         MainController mainController = MainController.get();
@@ -503,7 +507,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                             if (mMode == Mode.ContentView && mBubbleFlowDraggable.isExpanded() == false) {
                                 doAnimateToContentView();
                             } else {
-                                doAnimateToBubbleView();
+                                doAnimateToBubbleView(0);
                             }
                         }
                     }
@@ -577,7 +581,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     @Override
     public void onOrientationChanged() {
         if (mMode == Mode.BubbleView) {
-            switchToBubbleView();
+            doAnimateToBubbleView(1);
         } else {
             switchToExpandedView();
         }
