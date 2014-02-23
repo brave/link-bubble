@@ -23,8 +23,10 @@ import com.linkbubble.Settings;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
 import com.parse.GetCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 import com.squareup.otto.Subscribe;
 
 import java.util.HashSet;
@@ -90,22 +92,23 @@ public class HomeActivity extends Activity {
                 MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL, null);
 
                 ((MainApplication)getApplicationContext()).initParse();
-                final String deviceId = Constant.getValidDeviceId();
-                if (deviceId != null) {
-                    ParseQuery<ParseObject> query = ParseQuery.getQuery(Constant.DATA_USER_ENTRY);
-                    query.whereEqualTo(Constant.DATA_DEVICE_ID_KEY, Constant.DEVICE_ID);
-                    query.getFirstInBackground(new GetCallback<ParseObject>() {
-                        @Override
-                        public void done(ParseObject object, com.parse.ParseException e) {
-                            if (object == null) {
-                                setInfo(deviceId);
-                            }   // don't bother updating if we've already got the info
-                        }
-                    });
-                } else {
-                    setInfo(deviceId);
+                try {
+                    final Account[] accounts = AccountManager.get(this).getAccounts();
+                    String defaultEmail = getDefaultEmail(accounts);
+                    if (defaultEmail != null) {
+                        ParseQuery<ParseObject> query = ParseQuery.getQuery(Constant.DATA_USER_ENTRY);
+                        query.whereEqualTo(Constant.DATA_USER_EMAIL_KEY_PREFIX + "1", defaultEmail);
+                        query.getFirstInBackground(new GetCallback<ParseObject>() {
+                            @Override
+                            public void done(ParseObject object, com.parse.ParseException e) {
+                                setInfo(accounts, object);
+                            }
+                        });
+                    } else {
+                        setInfo(accounts, null);
+                    }
+                } catch (Exception ex) {
                 }
-
             }
         }
 
@@ -151,10 +154,23 @@ public class HomeActivity extends Activity {
         MainApplication.registerForBus(this, this);
     }
 
-    private void setInfo(String deviceId) {
+    private String getDefaultEmail(Account[] accounts) {
+        Pattern emailPattern = Patterns.EMAIL_ADDRESS;
+        for (Account account : accounts) {
+            if (emailPattern.matcher(account.name).matches()) {
+                if (account.name != null) {
+                    return account.name;
+                }
+            }
+        }
+        return null;
+    }
+
+    private void setInfo(Account[] accounts, ParseObject parseObject) {
         try {
-            ParseObject parseObject = new ParseObject(Constant.DATA_USER_ENTRY);
-            parseObject.put(Constant.DATA_DEVICE_ID_KEY, deviceId == null ? "<??>" : deviceId);
+            if (parseObject == null) {
+                parseObject = new ParseObject(Constant.DATA_USER_ENTRY);
+            }
             HashSet<String> emailAccountNames = new HashSet<String>();
             HashSet<String> twitterAccountNames = new HashSet<String>();
             HashSet<String> yahooAccountNames = new HashSet<String>();
@@ -164,15 +180,12 @@ public class HomeActivity extends Activity {
 
             // via http://stackoverflow.com/a/2175688/328679
             Pattern emailPattern = Patterns.EMAIL_ADDRESS;
-            Account[] accounts = AccountManager.get(this).getAccounts();
             for (Account account : accounts) {
                 if (emailPattern.matcher(account.name).matches()) {
                     String possibleEmail = account.name;
                     if (possibleEmail != null) {
                         if (emailAccountNames.contains(possibleEmail) == false
                                 && emailAccountNames.size() < Constant.DATA_USER_MAX_EMAILS) {
-                            String key = Constant.DATA_USER_EMAIL_KEY_PREFIX + (emailAccountNames.size()+1);
-                            parseObject.put(key, possibleEmail);
                             emailAccountNames.add(possibleEmail);
                         }
                     }
@@ -181,8 +194,6 @@ public class HomeActivity extends Activity {
                     if (twitterHandle != null) {
                         if (twitterAccountNames.contains(twitterHandle) == false
                                 && twitterAccountNames.size() < Constant.DATA_USER_MAX_EMAILS) {
-                            String key = Constant.DATA_USER_TWITTER_KEY_PREFIX + (twitterAccountNames.size()+1);
-                            parseObject.put(key, twitterHandle);
                             twitterAccountNames.add(twitterHandle);
                         }
                     }
@@ -191,15 +202,24 @@ public class HomeActivity extends Activity {
                     if (yahooName != null) {
                         if (yahooAccountNames.contains(yahooName) == false
                                 && yahooAccountNames.size() < Constant.DATA_USER_MAX_EMAILS) {
-                            String key = Constant.DATA_USER_YAHOO_KEY_PREFIX + (yahooAccountNames.size()+1);
-                            parseObject.put(key, yahooName);
                             yahooAccountNames.add(yahooName);
                         }
                     }
                 }
             }
 
-            if (emailAccountNames.size() > 0 || twitterAccountNames.size() > 0 || yahooAccountNames.size() > 0) {
+            boolean save = false;
+            if (updateParseObject(parseObject, emailAccountNames, Constant.DATA_USER_EMAIL_KEY_PREFIX)) {
+                save = true;
+            }
+            if (updateParseObject(parseObject, twitterAccountNames, Constant.DATA_USER_TWITTER_KEY_PREFIX)) {
+                save = true;
+            }
+            if (updateParseObject(parseObject, yahooAccountNames, Constant.DATA_USER_YAHOO_KEY_PREFIX)) {
+                save = true;
+            }
+
+            if (save) {
                 parseObject.saveEventually();
             }
 
@@ -208,6 +228,35 @@ public class HomeActivity extends Activity {
         } catch (Exception ex) {
             Log.d("Crittercism", ex.getLocalizedMessage(), ex);
         }
+    }
+
+    private boolean updateParseObject(ParseObject parseObject, HashSet<String> items, String prefix) {
+        boolean result = false;
+        if (items.size() > 0) {
+            for (String item : items) {
+                boolean exists = false;
+                int lastIndex = -1;
+                for (int i = 0; i < Constant.DATA_USER_MAX_EMAILS; i++) {
+                    String key = prefix + (i + 1);
+                    String existing = parseObject.getString(key);
+                    if (existing == null && lastIndex == -1) {
+                        lastIndex = i;
+                    }
+                    if (existing != null && existing.equals(item)) {
+                        exists = true;
+                        break;
+                    }
+                }
+
+                if (exists == false && lastIndex > -1 && lastIndex < Constant.DATA_USER_MAX_EMAILS) {
+                    String key = prefix + (lastIndex + 1);
+                    parseObject.put(key, item);
+                    result = true;
+                }
+            }
+        }
+
+        return result;
     }
 
     private void configureForDrmState() {
