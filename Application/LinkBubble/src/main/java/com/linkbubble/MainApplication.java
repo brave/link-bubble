@@ -39,6 +39,7 @@ public class MainApplication extends Application {
     public static ConcurrentHashMap<String, String> sTitleHashMap = new ConcurrentHashMap<String, String>(64);
     public static Favicons sFavicons;
     public static DRM sDrm;
+    public static boolean sShowingAppPickerDialog = false;
 
     @Override
     public void onCreate() {
