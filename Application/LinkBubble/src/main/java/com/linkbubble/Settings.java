@@ -136,11 +136,44 @@ public class Settings {
         setDefaultRightConsumeBubble();
         setDefaultLeftConsumeBubble();
 
+        if (mSharedPreferences.getBoolean("first_run", true)) {
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            editor.putBoolean("first_run", true);
+            editor.commit();
+
+            PackageManager packageManager = mContext.getPackageManager();
+
+            configureDefaultApp(packageManager, "https://www.youtube.com/watch?v=_Aj-PRdU7xA", "com.google.android.youtube");
+            configureDefaultApp(packageManager, "https://plus.google.com/+ChrisLacy/posts/RdMoBbbjPUi", "com.google.android.apps.plus");
+            configureDefaultApp(packageManager, "https://play.google.com/store/apps/details?id=com.chrislacy.actionlauncher.pro&hl=en", "com.android.vending");
+            configureDefaultApp(packageManager, "https://maps.google.com/maps/ms?msid=212078515518849153944.000434d59f7fc56a57668", "com.google.android.apps.maps");
+            saveDefaultApps();
+        }
+
         configureDefaultApps(mSharedPreferences.getString(PREFERENCE_DEFAULT_APPS, null));
         mBubbleRestingPoint.set(-1, -1);
 
         loadLinkLoadStats();
         loadRecentAppRedirects();
+    }
+
+    private void configureDefaultApp(PackageManager packageManager, String urlAsString, String desiredPackageName) {
+        try {
+            URL url = new URL(urlAsString);
+            final List<ResolveInfo> resolveInfos = getAppsThatHandleUrl(url, packageManager);
+
+            for (ResolveInfo resolveInfo : resolveInfos) {
+                if (resolveInfo.activityInfo != null) {
+                    String packageName = resolveInfo.activityInfo.packageName;
+                    if (packageName.equals(BuildConfig.PACKAGE_NAME) == false && packageName.contains(desiredPackageName)) {
+                        setDefaultApp(url.toString(), resolveInfo, false);
+                        return;
+                    }
+                }
+            }
+        } catch (MalformedURLException ex) {
+
+        }
     }
 
     public void saveData() {
@@ -628,23 +661,29 @@ public class Settings {
     }
 
     public void setDefaultApp(String urlAsString, ResolveInfo resolveInfo) {
+        setDefaultApp(urlAsString, resolveInfo, true);
+    }
+
+    public void setDefaultApp(String urlAsString, ResolveInfo resolveInfo, boolean save) {
         try {
             URL url = new URL(urlAsString);
             String host = url.getHost();
             if (host.length() > 1) {
                 ComponentName componentName = new ComponentName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
-                addDefaultApp(host, componentName);
+                addDefaultApp(host, componentName, save);
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
     }
 
-    private void addDefaultApp(String host, ComponentName componentName) {
+    private void addDefaultApp(String host, ComponentName componentName, boolean save) {
 
         mDefaultAppsMap.put(host, componentName.flattenToString());
 
-        saveDefaultApps();
+        if (save) {
+            saveDefaultApps();
+        }
     }
 
     public void removeDefaultApp(String host) {
