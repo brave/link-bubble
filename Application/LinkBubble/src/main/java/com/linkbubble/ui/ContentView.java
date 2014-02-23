@@ -89,7 +89,6 @@ public class ContentView extends FrameLayout {
     private long mLastWebViewTouchUpTime = -1;
     private String mLastWebViewTouchDownUrl;
     private boolean mPageFinishedLoading;
-    private boolean mShowingDefaultAppPicker = false;
     private Boolean mIsDestroyed = false;
     private Set<String> mAppPickersUrls = new HashSet<String>();
 
@@ -465,7 +464,7 @@ public class ContentView extends FrameLayout {
                     }
                 } else {
                     boolean isOnlyLinkBubble = mAppsForUrl.size() == 1 ? Util.isLinkBubbleResolveInfo(mAppsForUrl.get(0).mResolveInfo) : false;
-                    if (isOnlyLinkBubble == false && mShowingDefaultAppPicker == false &&
+                    if (isOnlyLinkBubble == false && MainApplication.sShowingAppPickerDialog == false &&
                         mHandledAppPickerForCurrentUrl == false && mAppPickersUrls.contains(urlAsString) == false) {
                         final ArrayList<ResolveInfo> resolveInfos = new ArrayList<ResolveInfo>();
                         for (AppForUrl appForUrl : mAppsForUrl) {
@@ -508,13 +507,13 @@ public class ContentView extends FrameLayout {
                         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
                             public void onDismiss(DialogInterface dialog) {
-                                mShowingDefaultAppPicker = false;
+                                MainApplication.sShowingAppPickerDialog = false;
                             }
                         });
 
                         dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
                         dialog.show();
-                        mShowingDefaultAppPicker = true;
+                        MainApplication.sShowingAppPickerDialog = true;
                         mHandledAppPickerForCurrentUrl = true;
                         mAppPickersUrls.add(urlAsString);
                     }

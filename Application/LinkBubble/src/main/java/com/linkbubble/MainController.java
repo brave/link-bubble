@@ -3,6 +3,7 @@ package com.linkbubble;
 import android.app.AlertDialog;
 import android.app.KeyguardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -567,7 +568,7 @@ public class MainController implements Choreographer.FrameCallback {
         final TabView result = openUrlInTab(urlAsString, urlLoadStartTime, setAsCurrentTab, showAppPicker);
 
         // Show app picker after creating the tab to load so that we have the instance to close if redirecting to an app, re #292.
-        if (showAppPicker) {
+        if (showAppPicker && MainApplication.sShowingAppPickerDialog == false) {
             AlertDialog dialog = ActionItem.getActionItemPickerAlert(mContext, resolveInfos, R.string.pick_default_app,
                     new ActionItem.OnActionItemDefaultSelectedListener() {
                         @Override
@@ -601,8 +602,16 @@ public class MainController implements Choreographer.FrameCallback {
                         }
                     });
 
+            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    MainApplication.sShowingAppPickerDialog = false;
+                }
+            });
+
             dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
             dialog.show();
+            MainApplication.sShowingAppPickerDialog = true;
         }
 
         return result;
