@@ -128,10 +128,13 @@ public class EntryActivity extends Activity {
                 MainApplication.showUpgradePrompt(this, R.string.upgrade_incentive_one_app, Analytics.UPGRADE_PROMPT_SINGLE_APP);
                 MainApplication.openInBrowser(this, intent, true);
             } else if (openLink && !showingTamperPrompt) {
-                // Restore open tabs
-                Vector<String> urls = Settings.get().loadCurrentTabs();
-                if (urls.size() > 0 && DRM.isLicensed()) {
-                    MainApplication.restoreLinks(this, urls.toArray(new String[urls.size()]));
+                // Don't restore tabs if we've already got tabs open, #389
+                if (MainController.get() == null) {
+                    // Restore open tabs
+                    Vector<String> urls = Settings.get().loadCurrentTabs();
+                    if (urls.size() > 0 && DRM.isLicensed()) {
+                        MainApplication.restoreLinks(this, urls.toArray(new String[urls.size()]));
+                    }
                 }
 
                 boolean showedWelcomeUrl = false;
