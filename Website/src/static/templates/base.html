@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{% block title %}  {{ title }} {% endblock %} </title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+    <link rel="stylesheet" href="http://developer.android.com/assets/css/default.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://malsup.github.com/jquery.cycle.all.js"></script>
+    <script>var SITE_ROOT = '/design';</script>
+    
+<script type="text/javascript">
+window.___gcfg = {lang: 'en'};
+(function() 
+{var po = document.createElement("script");
+po.type = "text/javascript"; po.async = true;po.src = "https://apis.google.com/js/plusone.js";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(po, s);
+})();</script>
+
+
+  {% block head_include %}
+  {{ head_include }}
+  {% endblock %}
+
+
+  </head>
+  <body itemscope itemtype="http://schema.org/Article">
+
+  {% block maincontent %}
+  {{ maincontent }}
+  {% endblock %}
+
+    <div class="footerColumn">
+      
+      <div id="page-footer" class="pageFooter" style="margin-left:0px">
+
+<!--
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="ZAF7VT96UL8XE">
+<span>Like Tweet Lanes? Help support further development:</span> <input type="image" src="https://s3.amazonaws.com/tweetlanes/piggy_bank_s.png" width="32" height="27" style="vertical-align:middle;position: relative;top: -4px;left: 4px;" border="0" name="submit" alt="PayPal — The safer, easier way to pay online.">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
+</form>
+-->
+        <p style="padding-top: 8px;">
+          <a href="/">Home</a> &ndash;
+          <a href="/contact">Contact</a> &ndash;
+          <a href="https://s3.amazonaws.com/actionlauncher/donate.html">Donate</a> &ndash;
+          <a href="https://play.google.com/store/apps/details?id=com.chrislacy.actionlauncher.pro">Google Play</a> &ndash;
+          <a href="/privacy">Privacy</a> &ndash;
+          <a href="/terms">Terms</a>
+          <br>
+        </p>
+        <br>
+
+        <p id="copyright">Designed and written by <a href="https://twitter.com/chrismlacy" target="_blank">@chrismlacy</a>. Copyright 2013, Chris Lacy.</p>
+
+    </div>  
+    </div>
+
+  </body>
+
+{% block post_body_block %}
+  {{ post_body_block }}
+  {% endblock %}
+
+
+</html>
