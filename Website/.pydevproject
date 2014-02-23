@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse-pydev version="1.0"?>
+
+<pydev_project>
+<pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7</pydev_property>
+<pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python 2.7</pydev_property>
+<pydev_variables_property name="org.python.pydev.PROJECT_VARIABLE_SUBSTITUTION">
+<key>GOOGLE_APP_ENGINE</key>
+<value>/usr/local/google_appengine</value>
+</pydev_variables_property>
+<pydev_pathproperty name="org.python.pydev.PROJECT_SOURCE_PATH">
+<path>/TweetLanesSite/src</path>
+</pydev_pathproperty>
+<pydev_pathproperty name="org.python.pydev.PROJECT_EXTERNAL_SOURCE_PATH">
+<path>${GOOGLE_APP_ENGINE}</path>
+<path>${GOOGLE_APP_ENGINE}/lib/antlr3</path>
+<path>${GOOGLE_APP_ENGINE}/lib/django_1_3</path>
+<path>${GOOGLE_APP_ENGINE}/lib/enum</path>
+<path>${GOOGLE_APP_ENGINE}/lib/fancy_urllib</path>
+<path>${GOOGLE_APP_ENGINE}/lib/google-api-python-client</path>
+<path>${GOOGLE_APP_ENGINE}/lib/graphy</path>
+<path>${GOOGLE_APP_ENGINE}/lib/grizzled</path>
+<path>${GOOGLE_APP_ENGINE}/lib/httplib2</path>
+<path>${GOOGLE_APP_ENGINE}/lib/ipaddr</path>
+<path>${GOOGLE_APP_ENGINE}/lib/jinja2</path>
+<path>${GOOGLE_APP_ENGINE}/lib/markupsafe</path>
+<path>${GOOGLE_APP_ENGINE}/lib/oauth2</path>
+<path>${GOOGLE_APP_ENGINE}/lib/prettytable</path>
+<path>${GOOGLE_APP_ENGINE}/lib/protorpc</path>
+<path>${GOOGLE_APP_ENGINE}/lib/python-gflags/tests</path>
+<path>${GOOGLE_APP_ENGINE}/lib/simplejson</path>
+<path>${GOOGLE_APP_ENGINE}/lib/sqlcmd</path>
+<path>${GOOGLE_APP_ENGINE}/lib/webapp2</path>
+<path>${GOOGLE_APP_ENGINE}/lib/webob_1_1_1</path>
+<path>${GOOGLE_APP_ENGINE}/lib/yaml/lib</path>
+</pydev_pathproperty>
+</pydev_project>

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta content="en" name="language">
+	<meta name="description" content="Free Online Icons Converter - Convert PNG to ICO and ICO to PNG files : Win 7 & Windows Vista compatible icons">
+	<meta name="keywords" content="convert, png, ico, free, freeware, vista, icons, ico">
+	<meta content="follow, index, all" name="robots">
+    
+    
+    <!-- TITLE -->
+    <title>ConvertICO.com - Convert .PNG format files to .ICO or .ICO format files to .PNG : Windows 7 compatible icons</title>
+
+    <!-- CSS -->
+    <link href="styles/base.css" rel="stylesheet" type="text/css" >
+    <!--[if IE 7]> <link href="styles/ie7.css" rel="stylesheet" type="text/css" > <![endif]-->
+    <!--[if IE 8]> <link href="styles/ie8.css" rel="stylesheet" type="text/css" > <![endif]-->
+    <!--[if IE 9]> <link href="styles/ie9.css" rel="stylesheet" type="text/css" > <![endif]-->
+    
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" >
+    
+    <!-- TYPEKIT -->
+    <script type="text/javascript" src="http://use.typekit.com/jws7edv.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    
+    <!-- JS -->
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="scripts/jquery.imagesloaded.js"></script>
+    <script type="text/javascript" src="scripts/jquery.form.js"></script>
+    <script type="text/javascript" src="scripts/spin.min.js"></script>
+    <script type="text/javascript" src="scripts/modernizr.js"></script>
+    <script type="text/javascript" src="scripts/ba-debug.min.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+    <!--[if IE]> <style type="text/css">img { behavior: url(scripts/iepngfix.htc) }</style> <![endif]-->
+    
+</head>
+
+<body>   
+<!-- BuySellAds.com Ad Code -->
+<script type="text/javascript">
+(function(){
+  var bsa = document.createElement('script');
+     bsa.type = 'text/javascript';
+     bsa.async = true;
+     bsa.src = 'http://s3.buysellads.com/ac/bsa.js';
+  (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+})();
+</script>
+    
+<div id="top">
+	<div class="container">
+    	<ul id="network">
+        	<li class="parent">proIcons Network</li>
+            <li><a href="http://www.proicons.com">proIcons.com</a></li>
+            <li><a href="http://www.windowsico.com">WindowsICO.com</a></li>
+            <li class="selected"><a href="http://www.convertico.com">ConvertICO.com</a></li>
+            <li><a href="http://www.favico.com">FavICO.com</a></li>
+        </ul><!-- #network -->
+        
+        <div id="counter">
+        	<p><span class="total">3,977,434</span> Icons Converted
+        	<span class="hour">935</span> In The Last Hour</p>
+        </div><!-- #counter -->
+    </div><!-- .container -->
+</div><!-- #top -->
+
+<div id="main">
+	<div class="container">
+    	<div class="lcol">
+        
+        	<div id="intro">
+                <h2><a href="" id="logo">CI</a> ConvertIco</h2>
+                <h3>PNG to ICO / ICO to PNG Conversion</h3>
+                <p><strong>ConvertICO</strong> is a <strong>Free Online ICO/PNG File Converter</strong>.
+    It is fast, free and easy to use. It is used to convert Desktop Icons, App Icons as well as the much needed favicons for websites. Go ahead and give it a try, you will be pleased. <a class="expand" href="#instructions">Click Here for Instructions</a></p>
+    			<div class="how">
+                <p>How to Convert Files:</p>
+                <ol>
+                	<li>To convert a file located on a webserver: just enter the URL<br> For example: http://google.com/filename.png and click the GO button.</li>
+                    <li>To convert a file located on your computer: click Browse, locate the file on your computer and then click the GO button.</li>
+                </ol>
+                </div><!-- .how -->
+            </div><!-- #intro -->
+            <script type="text/javascript"><!--
+google_ad_client = "ca-pub-7595495923317249";
+/* ConvertICO 468x60 */
+google_ad_slot = "1090461791";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+            <div id="convert">
+        	<form name="myform" id="fConvert" action="appleJax.php" method="post" enctype="multipart/form-data">
+                <div class="col1-2">
+                    <div class="url">
+	                    <label>Select File From URL</label>
+	                    <input name="remoteimgfile" type="text" class="text" value="http://">
+                    </div><!-- .url -->
+                    
+                    <div class="file">
+	                    <label>Select File From Your Computer</label>
+	                    <input name="imgfile" class="file" type="file" size="59">
+	                    <input class="fakefile" name="" type="text" value="">
+	                    <div class="browse">Browse</div>
+                    </div>
+                    <!-- .file -->
+                </div><!-- .col1-2 -->
+                
+                <div class="col2-2">
+                    <div id="subContain" class="action">
+                    	<input class="submit" name="" type="submit" value="GO">
+                    </div>
+                    <!-- .action -->
+                </div><!-- .col2-2 -->
+            	<input id="selected" name="selected" type="hidden">
+            </form>
+            
+            <div id="recent">
+            	<h4>Recently Converted</h4>
+            	<div id="recentView">
+	            	<ul class="iconslist">
+	                    <li><img src="/images/1334146546.38/_previmg.png" alt='The latest Converted Icons'/></li><li><img src="/images/1334146543.02/_previmg.png" alt='The latest Converted Icons'/></li><li><img src="/images/1334146540.56/_previmg.png" alt='The latest Converted Icons'/></li><li><img src="/images/1334146535.99/_previmg.png" alt='The latest Converted Icons'/></li><li><img src="/images/1334146535.9/_previmg.png" alt='The latest Converted Icons'/></li><li><img src="/images/1334146531.24/_previmg.png" alt='The latest Converted Icons'/></li><li><img src="/images/1334146520.17/_previmg.png" alt='The latest Converted Icons'/></li><li><img src="/images/1334146518.68/_previmg.png" alt='The latest Converted Icons'/></li>	                </ul>
+	        	</div>
+            </div><!-- #recent -->
+        </div><!-- #convert -->
+            
+        </div><!-- .lcol -->
+        
+        <div class="rcol">
+        	<div id="ads">
+                <div class="wrap">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7595495923317249";
+/* 336x280, created 4/6/11 */
+google_ad_slot = "9617101975";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+                </div><!-- .wrap -->
+            </div><!-- #ads -->
+            
+            <div id="results">
+        
+                <div id="noicons">
+                    <h5>Start Converting Icons Now</h5>
+                    <p>Icons will appear here once you convert them</p>
+                </div><!-- #noicons -->
+            
+            <!-- BuySellAds.com Zone Code -->
+            <div id="bsap_1270400" class="bsarocks bsap_3efb91f3af086a588acca7a4eff4e700"></div>
+            <!-- End BuySellAds.com Zone Code -->
+            </div><!-- #results -->
+        
+        </div><!-- .rcol -->
+                
+    </div><!-- .container -->
+</div><!-- #main -->
+
+
+<div id="footer">
+	<div class="container">
+        <div class="col3">
+        	<h4>About</h4>
+            <p>ConvertICO was created by the proIcons.com team to help designers around the world have an easier time converting their icons from <b>png to ico</b> and viceversa. Stay tuned for updates and new features!</p>
+        </div><!-- .col3 -->
+        <div class="col3 mid">
+        	<h4>Privacy Statement</h4>
+            <p>This website does not gather any personal info, computer specs or IP. However, your icons are stored publicly. If you do not wish your items to be stored publicly, do not use this website.</p>
+        </div><!-- .col3 -->
+        <div class="col3">
+        	<h4>Terms of Use</h4>
+            <p>By using this website to convert your icons, you acknowledge that we are in no way responsible for data error, losses or discrepancies in the conversion. You use the software at your own risk.</p>
+        </div><!-- .col3 -->
+        <div id="copy">
+        	<p class="feedback">For <strong>Feedback</strong>, <strong>Suggestions</strong> and <strong>Errors</strong>, write to <em>info at proicons dot com</em></p>
+            <p>&copy; 2008-2012 ConvertICO.COM, a creation and property of the proIcons.com network. All rights reserved.</p>
+        </div><!-- #copy -->
+        
+    </div><!-- .container -->
+</div><!-- #footer -->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-320719-8']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
+
