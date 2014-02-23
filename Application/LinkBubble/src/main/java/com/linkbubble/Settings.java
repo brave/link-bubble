@@ -138,7 +138,7 @@ public class Settings {
 
         if (mSharedPreferences.getBoolean("first_run", true)) {
             SharedPreferences.Editor editor = mSharedPreferences.edit();
-            editor.putBoolean("first_run", true);
+            editor.putBoolean("first_run", false);
             editor.commit();
 
             PackageManager packageManager = mContext.getPackageManager();
