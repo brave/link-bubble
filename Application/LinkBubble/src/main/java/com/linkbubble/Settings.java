@@ -78,6 +78,7 @@ public class Settings {
     private static final String BUBBLE_RESTING_Y = "bubble_resting_y";
 
     private static final String WELCOME_MESSAGE_DISPLAYED = "welcome_message_displayed";
+    private static final String TERMS_ACCEPTED = "terms_accepted";
 
     public interface ConsumeBubblesChangedEventHandler {
         public void onConsumeBubblesChanged();
@@ -824,6 +825,16 @@ public class Settings {
 
     public boolean getWelcomeMessageDisplayed() {
         return mSharedPreferences.getBoolean(WELCOME_MESSAGE_DISPLAYED, false);
+    }
+
+    public void setTermsAccepted(boolean accepted) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putBoolean(TERMS_ACCEPTED, accepted);
+        editor.commit();
+    }
+
+    public boolean getTermsAccepted() {
+        return mSharedPreferences.getBoolean(TERMS_ACCEPTED, false);
     }
 
     public boolean debugAutoLoadUrl() {
