@@ -7,11 +7,17 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
@@ -28,6 +34,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 import com.squareup.otto.Subscribe;
+import org.w3c.dom.Text;
 
 import java.util.HashSet;
 import java.util.Vector;
@@ -73,6 +80,30 @@ public class HomeActivity extends Activity {
         mTimeSavedPerLinkTextView.setText("");
         mTimeSavedTotalTextView = (CondensedTextView) mStatsFlipView.getFlippedView().findViewById(R.id.time_total);
         mTimeSavedTotalTextView.setText("");
+
+        if (Settings.get().getTermsAccepted() == false) {
+            final View acceptTermsView = getLayoutInflater().inflate(R.layout.view_accept_terms, null);
+            TextView acceptTermsTextView = (TextView)acceptTermsView.findViewById(R.id.accept_terms_and_privacy_text);
+            acceptTermsTextView.setText(Html.fromHtml(getString(R.string.accept_terms_and_privacy)));
+            acceptTermsTextView.setMovementMethod(LinkMovementMethod.getInstance());
+            Button acceptTermsButton = (Button)acceptTermsView.findViewById(R.id.accept_terms_and_privacy_button);
+            acceptTermsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Settings.get().setTermsAccepted(true);
+                    acceptTermsView.setVisibility(View.GONE);
+                }
+            });
+            acceptTermsView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // do nothing, but prevent clicks from flowing to item underneath
+                }
+            });
+
+            FrameLayout rootView = (FrameLayout)findViewById(android.R.id.content);
+            rootView.addView(acceptTermsView);
+        }
 
         if (savedInstanceState != null) {
             mPlayedIntroAnimation = savedInstanceState.getBoolean(PLAYED_INTRO_ANIM_KEY);

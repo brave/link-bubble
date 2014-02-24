@@ -106,4 +106,8 @@
         <item name="android:padding">8dp</item>
     </style>
 
+    <style name="AcceptTermsText">
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
 </resources>
