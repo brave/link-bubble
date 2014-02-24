@@ -9,6 +9,7 @@ import android.os.Message;
 import android.util.Log;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.MainController;
+import com.linkbubble.ui.EntryActivity;
 import com.linkbubble.ui.HideAllBubblesActivity;
 
 
@@ -68,7 +69,8 @@ public class AppPoller {
     // Add this equally nasty hack to ignore this one activity. Stops the Bubbles going into BubbleView mode without any input (see #179)
     private static final String[] IGNORE_ACTIVITIES = {"com.estrongs.android.pop/.app.InstallMonitorActivity",
             "com.ideashower.readitlater.pro/com.ideashower.readitlater.activity.AddActivity",
-            BuildConfig.PACKAGE_NAME + "/" + HideAllBubblesActivity.class.getName()};
+            BuildConfig.PACKAGE_NAME + "/" + HideAllBubblesActivity.class.getName(),
+            BuildConfig.PACKAGE_NAME + "/" + EntryActivity.class.getName()};
     private boolean shouldIgnoreActivity(String flatComponentName) {
         for (String string : IGNORE_ACTIVITIES) {
             if (string.equals(flatComponentName)) {
