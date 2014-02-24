@@ -281,6 +281,13 @@ public class BubbleView extends FrameLayout  {
         }
     };*/
 
+    void showProgressSpinner(boolean show) {
+        mProgressIndicator.showProgressSpinner(show);
+        if (mImitator != null) {
+            mImitator.mProgressIndicator.showProgressSpinner(show);
+        }
+    }
+
     void showProgressBar(boolean show, int progress) {
         mProgressIndicator.setProgress(show, progress, mUrl);
         if (mImitator != null) {

@@ -48,6 +48,7 @@ public class TabView extends BubbleView {
 
             @Override
             public void onPageLoading(URL url) {
+                TabView.this.showProgressSpinner(true);
                 boolean setDefaultFavicon = true;
 
                 URL previousUrl = mUrl;
@@ -76,6 +77,7 @@ public class TabView extends BubbleView {
 
             @Override
             public void onPageLoaded() {
+                TabView.this.showProgressSpinner(false);
                 TabView.this.onPageLoaded();
             }
 
