@@ -6,45 +6,35 @@ import appdef
 class PrivacyHandler(BaseHandler):
     
     def get(self):
-        self.write_template(appdef.TEMPLATE_ROOT_PATH + 'privacy_policy.html', None)
+        allow = self.request.get("yes_let_me_in_20")
+        if allow == "whynot10":
+            self.write_template(appdef.TEMPLATE_ROOT_PATH + 'privacy_policy.html', None)
+        else:
+            self.write_template(appdef.TEMPLATE_ROOT_PATH + 'soon.html', None)
 
-#==============================================================================
-class ContactHandler(BaseHandler):
-    
-    def get(self):
-        self.write_template(appdef.TEMPLATE_ROOT_PATH + 'contact.html', None)
-        
 #==============================================================================
 class TermsHandler(BaseHandler):
     
     def get(self):
-        self.write_template(appdef.TEMPLATE_ROOT_PATH + 'terms.html', None)
-
-#==============================================================================
-class BuyLicenseHandler(BaseHandler):
-    
-    def get(self):
-        self.write_template(appdef.TEMPLATE_ROOT_PATH + 'buy_license.html', None)
-
-#==============================================================================
-class DonateHandler(BaseHandler):
-    
-    def get(self):
-        self.write_template(appdef.TEMPLATE_ROOT_PATH + 'donate.html', None)
-
+        allow = self.request.get("yes_let_me_in_20")
+        if allow == "whynot10":
+            self.write_template(appdef.TEMPLATE_ROOT_PATH + 'terms.html', None)
+        else:
+            self.write_template(appdef.TEMPLATE_ROOT_PATH + 'soon.html', None)
 
 #==============================================================================
 class MainPage(BaseHandler):
     
     def get(self):
-        self.write_template(appdef.TEMPLATE_ROOT_PATH + 'home.html', None)
+        allow = self.request.get("yes_let_me_in_20")
+        if allow == "whynot10":
+            self.write_template(appdef.TEMPLATE_ROOT_PATH + 'home.html', None)
+        else:
+            self.write_template(appdef.TEMPLATE_ROOT_PATH + 'soon.html', None)
 
 
 #==============================================================================
-application = webapp2.WSGIApplication([('/contact', ContactHandler),
-                                       ('/privacy', PrivacyHandler),
+application = webapp2.WSGIApplication([('/privacy', PrivacyHandler),
                                        ('/terms', TermsHandler),
-                                       ('/donate', DonateHandler),
-									   ('/buy_source_license', BuyLicenseHandler),
                                        ('/.*', MainPage)], 
                                       debug=True)
