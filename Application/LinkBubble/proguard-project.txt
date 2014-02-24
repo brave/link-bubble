@@ -21,3 +21,4 @@
 
 
 -dontwarn com.squareup.okhttp.**
+-dontwarn rx.**
