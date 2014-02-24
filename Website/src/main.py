@@ -23,6 +23,17 @@ class TermsHandler(BaseHandler):
             self.write_template(appdef.TEMPLATE_ROOT_PATH + 'soon.html', None)
 
 #==============================================================================
+class WelcomeHandler(BaseHandler):
+    
+    def get(self):
+        allow = self.request.get("yes_let_me_in_20")
+        if allow == "whynot10":
+            self.redirect("https://s3.amazonaws.com/linkbubble/welcome.html")
+        else:
+            self.write_template(appdef.TEMPLATE_ROOT_PATH + 'soon.html', None)
+
+
+#==============================================================================
 class MainPage(BaseHandler):
     
     def get(self):
@@ -36,5 +47,6 @@ class MainPage(BaseHandler):
 #==============================================================================
 application = webapp2.WSGIApplication([('/privacy', PrivacyHandler),
                                        ('/terms', TermsHandler),
+                                       ('/welcome', WelcomeHandler),
                                        ('/.*', MainPage)], 
                                       debug=True)
