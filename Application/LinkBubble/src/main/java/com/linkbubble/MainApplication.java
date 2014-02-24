@@ -120,9 +120,11 @@ public class MainApplication extends Application {
     }
 
     public static void checkRestoreCurrentTabs(Context context) {
-        Vector<String> urls = Settings.get().loadCurrentTabs();
-        if (urls.size() > 0) {
-            MainApplication.restoreLinks(context, urls.toArray(new String[urls.size()]));
+        if (MainController.get() == null) {
+            Vector<String> urls = Settings.get().loadCurrentTabs();
+            if (urls.size() > 0) {
+                MainApplication.restoreLinks(context, urls.toArray(new String[urls.size()]));
+            }
         }
     }
 
