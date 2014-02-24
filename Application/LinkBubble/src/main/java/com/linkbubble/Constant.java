@@ -37,8 +37,8 @@ public class Constant {
     // Check the page every 1 seconds for the presence of drop down items. #270
     public static final int DROP_DOWN_CHECK_TIME = 1000;
 
-    public static final String PRIVACY_POLICY_URL = "http://www.actionlauncher.com/privacy";
-    public static final String TERMS_OF_SERVICE_URL = "http://www.actionlauncher.com/terms";
+    public static final String PRIVACY_POLICY_URL = "http://www.linkbubble.com/privacy";
+    public static final String TERMS_OF_SERVICE_URL = "http://www.linkbubble.com/terms";
 
     public static final boolean DEBUG_SHOW_TARGET_REGIONS = false;
 
