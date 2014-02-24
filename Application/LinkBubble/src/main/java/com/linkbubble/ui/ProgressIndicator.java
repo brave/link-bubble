@@ -63,6 +63,10 @@ public class ProgressIndicator extends FrameLayout {
         addView(mIndicatorImage, indicatorLP);
     }
 
+    void showProgressSpinner(boolean show) {
+        mIndicatorImage.setVisibility(show ? VISIBLE : GONE);
+    }
+
     public int getMax() {
         return mMax;
     }
@@ -82,11 +86,11 @@ public class ProgressIndicator extends FrameLayout {
 
     public void setProgress(boolean show, int progress, URL url) {
 
-        if (show && progress < 100) {
-            mIndicatorImage.setVisibility(VISIBLE);
-        } else {
-            mIndicatorImage.setVisibility(GONE);
-        }
+        //if (show && progress < 100) {
+        //    mIndicatorImage.setVisibility(VISIBLE);
+        //} else {
+        //    mIndicatorImage.setVisibility(GONE);
+        //}
 
         mUrl = url;
         mProgress = progress;
@@ -134,7 +138,7 @@ public class ProgressIndicator extends FrameLayout {
         protected void onAttachedToWindow() {
             super.onAttachedToWindow();
 
-            if (getVisibility() == VISIBLE && mProgress < 100) {
+            if (getVisibility() == VISIBLE) {
                 mRotationAnimation.resume();
                 startAnimation(mRotationAnimation);
             }
