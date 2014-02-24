@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+Link Bubble - mobile browsing done right
+{% endblock %}
+
+{% block maincontent %}
+    
+    <div class="centerColumn">
+      
+
+        <div class="rightColumn">
+
+<div style="display:block;height: 120px;background-position: top right;">
+
+
+  <!--
+ <img src="https://s3.amazonaws.com/tweetlanes/tweet_lanes_logo_512.png" width="512" height="512">
+-->
+Soon.
+
+</div>
+
+<!--
+<img src="https://s3.amazonaws.com/actionlauncher/action_launcher_logo.png" style="float:right" width="144" height="144">-->
+
+
+        </div>
+
+    <div style="clear:both;"></div>
+
+{% endblock %}
+
+
+{% block post_body_block %}
+<script async src='https://adnwidgets.herokuapp.com/alpha.js'></script>
+<script type="text/javascript"> 
+
+    $(document).ready(function() {
+
+      $('#fade').cycle();
+    });
+</script>
+
+{% endblock %}
+
+
+</html>
