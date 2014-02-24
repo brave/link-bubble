@@ -4,4 +4,8 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="AcceptTermsText">
+        <item name="android:layout_width">400dp</item>
+    </style>
+
 </resources>

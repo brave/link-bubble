@@ -89,7 +89,9 @@ public class EntryActivity extends Activity {
                         }
                     }
 
-                    if (DRM.isLicensed() == false) {
+                    if (url.equals(Constant.TERMS_OF_SERVICE_URL) || url.equals(Constant.PRIVACY_POLICY_URL)) {
+                        canLoadFromThisApp = true;
+                    } else if (DRM.isLicensed() == false) {
                         String interceptFromPackageName = Settings.get().getInterceptLinksFromPackageName();
                         if (interceptFromPackageName == null) {
                             canLoadFromThisApp = true;
