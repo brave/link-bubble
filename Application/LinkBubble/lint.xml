@@ -16,9 +16,4 @@
         <ignore path="src/main/res/xml/changelog.xml" />
     </issue>
 
-    <!-- Ignore the warning about the notificaion icon color. Icon is close enough. -->
-    <issue id="IconColors">
-        <ignore path="src/main/res/drawable-xxhdpi/ic_launcher.png" />
-    </issue>
-
 </lint>
