@@ -98,6 +98,10 @@ public class MainActivity extends Activity {
             this, new ServerManagedPolicy(this,
                 new AESObfuscator(SALT, getPackageName(), deviceId)),
             BASE64_PUBLIC_KEY);
+
+        if (getActionBar() != null) {
+            getActionBar().setTitle(getString(R.string.application_name) + " (" + BuildConfig.VERSION_NAME + ")");
+        }
     }
 
     @Override
