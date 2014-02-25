@@ -76,8 +76,7 @@ public class Constant {
         return sSecureAndroidId;
     }
 
-    public static final String  PRO_LAUNCHER_PACKAGE_NAME = "com.linkbubble.pro.playstore";
-    public static final String  PRO_DRM_SERVICE_ACTION = "linkbubble.prokey.PRO_SERVICE";
+    public static final String  PRO_DRM_SERVICE_ACTION = "linkbubble.license.PRO_SERVICE";
 
     public static final String DATA_USER_ENTRY = "User";
     public static final String DATA_USER_EMAIL_KEY_PREFIX = "email_";
