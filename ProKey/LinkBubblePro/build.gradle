@@ -42,11 +42,11 @@ android {
 
     productFlavors {
         playstore {
-            packageName='com.linkbubble.pro.playstore'
+            packageName='com.linkbubble.license.playstore'
 
             buildConfigField "String", "FREE_PACKAGE_NAME", "\"com.linkbubble.playstore\""
             buildConfigField "String", "STORE_FREE_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.playstore\""
-            buildConfigField "String", "STORE_PRO_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.pro.playstore\""
+            buildConfigField "String", "STORE_PRO_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.license.playstore\""
         }
     }
 
@@ -54,7 +54,7 @@ android {
         release {
             // (via http://stackoverflow.com/a/19350401/328679)
             storeFile file(System.getenv("KEYSTORE_LOCATION"))
-            keyAlias System.getenv("ACTION_LAUNCHER_KEY_ALIAS")
+            keyAlias System.getenv("LINK_BUBBLE_KEY_ALIAS")
 
             // These two lines make gradle believe that the signingConfigs
             // section is complete. Without them, tasks like installRelease
