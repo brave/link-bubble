@@ -13,5 +13,6 @@
     <string name="action_load_app">Load Link Bubble</string>
     <string name="action_install_app">Install Link Bubble</string>
     <string name="action_buy">Buy App</string>
+    <string name="action_retry">Retry</string>
 
 </resources>
