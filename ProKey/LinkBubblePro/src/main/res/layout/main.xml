@@ -55,11 +55,30 @@
         android:textSize="14dp"
         />
 
+    <TextView
+        android:id="@+id/reason_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:padding="12dp"
+        android:textSize="12dp"
+        />
+
     <Button
-        android:id="@+id/check_license_button"
+        android:id="@+id/retry"
+        android:text="@string/action_retry"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         />
+
+    <Button
+        android:id="@+id/license_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        />
+
 </LinearLayout>
 
