@@ -79,7 +79,7 @@ public class DRM {
 
     private ServiceInfo getProServiceInfo(Context context) {
         final Intent mainIntent = new Intent(Constant.PRO_DRM_SERVICE_ACTION, null);
-        mainIntent.setPackage(Constant.PRO_LAUNCHER_PACKAGE_NAME);
+        mainIntent.setPackage(BuildConfig.PRO_LAUNCHER_PACKAGE_NAME);
         List<ResolveInfo> services = context.getPackageManager().queryIntentServices(mainIntent, 0);
         if (services != null && services.size() > 0) {
             return services.get(0).serviceInfo;

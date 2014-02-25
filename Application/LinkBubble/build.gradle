@@ -51,7 +51,8 @@ android {
             buildConfigField "String", "STORE_PACKAGE", "\"com.android.vending\""
             buildConfigField "String", "STORE_URL_PREFIX", "\"http://play.google.com/store/apps/details?id=\""
             buildConfigField "String", "STORE_FREE_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.playstore\""
-            buildConfigField "String", "STORE_PRO_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.pro.playstore\""
+            buildConfigField "String", "STORE_PRO_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.license.playstore\""
+            buildConfigField "String", "PRO_LAUNCHER_PACKAGE_NAME", "\"com.linkbubble.license.playstore\""
         }
     }
 
