@@ -27,12 +27,14 @@ public class MainActivity extends Activity {
 
     // Generate your own 20 random bytes, and put them here.
     private static final byte[] SALT = new byte[] {
-    	-47, -25, -90, 71, -124, -69, -111, -108, -34, 43, -24, 99, 54, -3, 77, -47, 15, -23, -128, 98
+        -95, -45, 77, -117, -64, 89, -36, -113, -11, 32, -57, 30, -128, -46, 65, -103, 51, 88, 74, -64,
     };
 
     private TextView mStatusText;
     private TextView mKeepInstalledText;
-    private Button mButton;
+    private TextView mErrorText;
+    private Button mLicenseButton;
+    private Button mRetryButton;
     private ImageView mImage;
 
     private LicenseCheckerCallback mLicenseCheckerCallback;
@@ -52,28 +54,37 @@ public class MainActivity extends Activity {
 
         mStatusText = (TextView) findViewById(R.id.status_text);
         mKeepInstalledText = (TextView)findViewById(R.id.keep_installed_text);
-        mButton = (Button) findViewById(R.id.check_license_button);
+        mErrorText = (TextView)findViewById(R.id.reason_text);
+        mLicenseButton = (Button) findViewById(R.id.license_button);
         mImage = (ImageView) findViewById(R.id.thanks_image);
-        mButton.setOnClickListener(new View.OnClickListener() {
+        mLicenseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-            	if (mLicenseState == ProMessengerService.LICENSE_VALID) {
-            		if (mLinkBubbleApp != null) {
-            			Intent intent = new Intent();
+                if (mLicenseState == ProMessengerService.LICENSE_VALID) {
+                    if (mLinkBubbleApp != null) {
+                        Intent intent = new Intent();
                         intent.setComponent(new ComponentName(mLinkBubbleApp.packageName, mLinkBubbleApp.name));
-                    	startActivity(intent);
-            		} else {
+                        startActivity(intent);
+                    } else {
                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.STORE_FREE_URL));
                         startActivity(intent);
-            		}
-            		mButton.setVisibility(View.VISIBLE);
-            	} else if (mLicenseState == ProMessengerService.LICENSE_INVALID) {
-            		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.STORE_PRO_URL));
-                	startActivity(intent);
-            	}
-            	
+                    }
+                    mLicenseButton.setVisibility(View.VISIBLE);
+                } else if (mLicenseState == ProMessengerService.LICENSE_INVALID) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.STORE_PRO_URL));
+                    startActivity(intent);
+                }
+
             }
         });
-        mButton.setVisibility(View.INVISIBLE);
+        mLicenseButton.setVisibility(View.INVISIBLE);
+
+        mRetryButton = (Button)findViewById(R.id.retry);
+        mRetryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doCheck();
+            }
+        });
 
         mHandler = new Handler();
 
@@ -105,20 +116,20 @@ public class MainActivity extends Activity {
             mLinkBubbleApp = apps.get(0).activityInfo;
         }
         
-        setLicenseState(mLicenseState);
+        setLicenseState(mLicenseState, "initial");
     }
 
     /*
      * 
      */
-    void setLicenseState(int licenseState) {
+    void setLicenseState(int licenseState, final String reason) {
 
         if (Tamper.isTweaked(this)) {
             licenseState = ProMessengerService.LICENSE_INVALID;
         }
     	
     	mLicenseState = licenseState;
-    	
+
     	if (isFinishing() == false) {
 	    	mHandler.post(new Runnable() {
 	            public void run() {
@@ -128,19 +139,24 @@ public class MainActivity extends Activity {
                         mKeepInstalledText.setVisibility(View.VISIBLE);
                         mStatusText.setText(R.string.status_verified);
 	            		if (mLinkBubbleApp != null) {
-	            			mButton.setText(R.string.action_load_app);
+	            			mLicenseButton.setText(R.string.action_load_app);
 	            		} else {
-	            			mButton.setText(R.string.action_install_app);
+	            			mLicenseButton.setText(R.string.action_install_app);
 	            		}
-	            		mButton.setVisibility(View.VISIBLE);
-	            		mButton.setEnabled(true);
+	            		mLicenseButton.setVisibility(View.VISIBLE);
+	            		mLicenseButton.setEnabled(true);
+                        mErrorText.setVisibility(View.GONE);
 	            	} else if (mLicenseState == ProMessengerService.LICENSE_INVALID) {
 	            		mStatusText.setText(R.string.status_buy);
-	            		mButton.setText(R.string.action_buy);
-	            		mButton.setVisibility(View.VISIBLE);
-	            		mButton.setEnabled(true);
+	            		mLicenseButton.setText(R.string.action_buy);
+	            		mLicenseButton.setVisibility(View.VISIBLE);
+	            		mLicenseButton.setEnabled(true);
+                        mRetryButton.setVisibility(View.VISIBLE);
+                        mErrorText.setVisibility(View.VISIBLE);
+                        mErrorText.setText(reason);
 	            	} else {
-	            		mButton.setVisibility(View.INVISIBLE);
+	            		mLicenseButton.setVisibility(View.INVISIBLE);
+                        mErrorText.setVisibility(View.GONE);
 	            	}
 	            }
 	        });
@@ -148,7 +164,8 @@ public class MainActivity extends Activity {
     }
 
     private void doCheck() {
-        mButton.setEnabled(false);
+        mRetryButton.setVisibility(View.GONE);
+        mLicenseButton.setEnabled(false);
         setProgressBarIndeterminateVisibility(true);
         mStatusText.setText(R.string.status_checking_license);
         mChecker.checkAccess(mLicenseCheckerCallback);
@@ -162,7 +179,7 @@ public class MainActivity extends Activity {
             }
             // Should allow user access.
             //displayResult(getString(R.string.allow));
-            setLicenseState(ProMessengerService.LICENSE_VALID);
+            setLicenseState(ProMessengerService.LICENSE_VALID, "policyReason: " + policyReason);
         }
 
         public void dontAllow(int policyReason) {
@@ -180,11 +197,11 @@ public class MainActivity extends Activity {
             // If the reason for the lack of license is that the service is
             // unavailable or there is another problem, we display a
             // retry button on the dialog and a different message.
-            setLicenseState(ProMessengerService.LICENSE_INVALID);
+            setLicenseState(ProMessengerService.LICENSE_INVALID, "policyReason: " + policyReason);
         }
 
         public void applicationError(int errorCode) {
-        	setLicenseState(ProMessengerService.LICENSE_INVALID);
+        	setLicenseState(ProMessengerService.LICENSE_INVALID, "app error:" + errorCode);
         }
     }
 
