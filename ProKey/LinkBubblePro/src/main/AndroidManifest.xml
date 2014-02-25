@@ -28,7 +28,7 @@
                  android:exported="true">
 
             <intent-filter android:label="@string/application_name">
-                <action android:name="linkbubble.prokey.PRO_SERVICE" />
+                <action android:name="linkbubble.license.PRO_SERVICE" />
             </intent-filter>
 
         </service>
