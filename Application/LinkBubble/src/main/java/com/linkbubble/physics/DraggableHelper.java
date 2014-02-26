@@ -222,14 +222,17 @@ public class DraggableHelper {
             }
         }
 
-        mFlingTracker.computeCurrentVelocity(1000);
-        float fvx = mFlingTracker.getXVelocity();
-        float fvy = mFlingTracker.getYVelocity();
+        // *Should* always be true, but under certain circumstances, is not. #384
+        if (mFlingTracker != null) {
+            mFlingTracker.computeCurrentVelocity(1000);
+            float fvx = mFlingTracker.getXVelocity();
+            float fvy = mFlingTracker.getYVelocity();
 
-        mReleaseEvent.vx = fvx;
-        mReleaseEvent.vy = fvy;
+            mReleaseEvent.vx = fvx;
+            mReleaseEvent.vy = fvy;
 
-        mFlingTracker.recycle();
+            mFlingTracker.recycle();
+        }
 
         if (mOnTouchActionEventListener != null) {
             mOnTouchActionEventListener.onActionUp(mReleaseEvent);
