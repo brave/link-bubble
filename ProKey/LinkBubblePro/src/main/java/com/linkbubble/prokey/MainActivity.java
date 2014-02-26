@@ -24,12 +24,6 @@ import com.linkbubble.util.Tamper;
 import java.util.List;
 
 public class MainActivity extends Activity {
-    private static final String BASE64_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtnueRL4Kmisinw9S+HKjyY9m28tTSu8nYGbGH5JXQtD1U34YeHUvhgLPmoUD9kah75f2/T0UzABmNqatXCArMl5XZg0wLNaOi0kHKOuCElIkrlGgVI+ZRYH+ihLXXp2K8wbOYo4huie+6CDpYdvQXKf0KxvemWSirRhIrm3r5tJyDviEVX1MD8bxlgOg1O00P+JKJrl8CTIH2MWcTpgxho86aXudxZY/Rmfic5EUhaWbitQO+8Da/9abSQb5Ai9BUo+2rqUG44TAeg8p9Mp4/++WaODRdMUt8rreRDKxmKeFfY042n5P+7GoOAH8fkhprgGRE1vo8dKnPsgVe+uBqwIDAQAB";
-
-    // Generate your own 20 random bytes, and put them here.
-    private static final byte[] SALT = new byte[] {
-        -95, -45, 77, -117, -64, 89, -36, -113, -11, 32, -57, 30, -128, -46, 65, -103, 51, 88, 74, -64,
-    };
 
     private TextView mStatusText;
     private TextView mKeepInstalledText;
@@ -95,10 +89,9 @@ public class MainActivity extends Activity {
         // Library calls this when it's done.
         mLicenseCheckerCallback = new MyLicenseCheckerCallback();
         // Construct the LicenseChecker with a policy.
-        mChecker = new LicenseChecker(
-            this, new ServerManagedPolicy(this,
-                new AESObfuscator(SALT, getPackageName(), deviceId)),
-            BASE64_PUBLIC_KEY);
+        ServerManagedPolicy serverManagedPolicy = new ServerManagedPolicy(this,
+                new AESObfuscator(Constant.SALT, getPackageName(), deviceId));
+        mChecker = new LicenseChecker(this, serverManagedPolicy, Constant.BASE64_PUBLIC_KEY);
 
         if (getActionBar() != null) {
             getActionBar().setTitle(getString(R.string.application_name) + " (" + BuildConfig.VERSION_NAME + ")");
