@@ -37,6 +37,7 @@ public interface Policy {
      * that indicated that the user definitively is not licensed
      */
     public static final int NOT_LICENSED = 0x0231;
+    public static final int SIG_FAIL = 0x0232;
     /**
      * RETRY means that the license response was unable to be determined ---
      * perhaps as a result of faulty networking
