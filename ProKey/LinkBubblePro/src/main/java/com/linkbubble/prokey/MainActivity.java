@@ -203,7 +203,7 @@ public class MainActivity extends Activity {
             // If the reason for the lack of license is that the service is
             // unavailable or there is another problem, we display a
             // retry button on the dialog and a different message.
-            setLicenseState(ProMessengerService.LICENSE_INVALID, "policyReason: " + policyReason, policyReason);
+            setLicenseState(ProMessengerService.LICENSE_INVALID, "policyReason: 0x" + Integer.toHexString(policyReason), policyReason);
         }
 
         public void applicationError(int errorCode) {
