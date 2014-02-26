@@ -128,7 +128,7 @@ public class ProgressIndicator extends FrameLayout {
         public ProgressImageView(Context context) {
             super(context);
 
-            mRotationAnimation = new RotateAnim(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            mRotationAnimation = new RotateAnim(0, 359, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             mRotationAnimation.setInterpolator(new LinearInterpolator());
             mRotationAnimation.setRepeatCount(Animation.INFINITE);
             mRotationAnimation.setDuration(1000);
