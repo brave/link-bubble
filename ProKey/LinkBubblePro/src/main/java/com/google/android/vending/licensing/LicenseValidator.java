@@ -104,8 +104,8 @@ public class LicenseValidator {
 
                 if (!sig.verify(Base64.decode(signature))) {
                     Log.e(TAG, "Signature verification failed.");
-                    handleInvalidResponse(Policy.SIG_FAIL);
-                    return;
+                    //handleInvalidResponse(Policy.SIG_FAIL);
+                    //return;
                 }
             //} catch (NoSuchAlgorithmException e) {
             //    // This can't happen on an Android compatible device.
