@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">Link Bubble</string>
+    <string name="service_name">Link Bubble Renderer</string>
     <string name="download_activity_label">Downloader</string>
     <string name="notification_title">Link Bubble</string>
     <string name="notification_summary">Touch to hide all open bubbles</string>
