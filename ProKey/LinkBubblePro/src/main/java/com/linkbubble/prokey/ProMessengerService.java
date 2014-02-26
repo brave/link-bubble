@@ -32,13 +32,6 @@ public class ProMessengerService extends Service {
     static final int LICENSE_VALID = 1;
     
     static final int LICENSE_REASON_RETRY = -100;
-    
-	private static final String BASE64_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxiI5A6L3PPblvMPmnAZwDhtZxEHKLd9ZnR/alpAL+bhv/EFXC9xUPBXMbddFq4D9L8VuutyTpNbUH0TC2jrNtvOqrFmxsosNfwH5DteuWhudoZLwpqnBZcip4tIq/vY3e40XXu9NInw5eK4X9jm55FhrKKoN0g/qAadIvP2PwBBtQ3ujLTVhb/NwRi3p+x2bG6ZHWAUY3bmwYo9j1xNeXvAf1DCc+9+P5whNmXtj5v9rBnDWbxD9c4NZmh544DBx8SCsN9jzmuOW6RIkatKOwSr3ocY1358Lqd58kjTnUOJAKJR06COp6utje1286qdvjKDjR9794fpS1SASSvLv0QIDAQAB";
-
-    // Generate your own 20 random bytes, and put them here.
-    private static final byte[] SALT = new byte[] {
-        -47, 15, -23, -128, -108, -34, 43, -24, 99, 54, -25, -90, 71, -124, -69, -111, -33, 77, -47, 98
-    };
 
     private LicenseCheckerCallback mLicenseCheckerCallback;
     private LicenseChecker mChecker;
@@ -102,8 +95,9 @@ public class ProMessengerService extends Service {
         // Library calls this when it's done.
         mLicenseCheckerCallback = new MyLicenseCheckerCallback();
         // Construct the LicenseChecker with a policy.
-        ServerManagedPolicy serverManagedPolicy = new ServerManagedPolicy(this, new AESObfuscator(SALT, getPackageName(), deviceId));
-        mChecker = new LicenseChecker(this, serverManagedPolicy, BASE64_PUBLIC_KEY);
+        ServerManagedPolicy serverManagedPolicy = new ServerManagedPolicy(this,
+                            new AESObfuscator(Constant.SALT, getPackageName(), deviceId));
+        mChecker = new LicenseChecker(this, serverManagedPolicy, Constant.BASE64_PUBLIC_KEY);
         startLicenseCheck();
     	
         return mMessenger.getBinder();
