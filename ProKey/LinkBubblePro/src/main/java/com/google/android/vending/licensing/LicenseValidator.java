@@ -104,7 +104,7 @@ public class LicenseValidator {
 
                 if (!sig.verify(Base64.decode(signature))) {
                     Log.e(TAG, "Signature verification failed.");
-                    handleInvalidResponse();
+                    handleInvalidResponse(Policy.SIG_FAIL);
                     return;
                 }
             //} catch (NoSuchAlgorithmException e) {
@@ -226,5 +226,9 @@ public class LicenseValidator {
 
     private void handleInvalidResponse() {
         mCallback.dontAllow(Policy.NOT_LICENSED);
+    }
+
+    private void handleInvalidResponse(int policyCode) {
+        mCallback.dontAllow(policyCode);
     }
 }
