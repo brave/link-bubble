@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.google.android.vending.licensing.AESObfuscator;
 import com.google.android.vending.licensing.LicenseChecker;
 import com.google.android.vending.licensing.LicenseCheckerCallback;
+import com.google.android.vending.licensing.Policy;
 import com.google.android.vending.licensing.ServerManagedPolicy;
 import com.linkbubble.util.Tamper;
 
@@ -127,6 +128,9 @@ public class MainActivity extends Activity {
      * 
      */
     void setLicenseState(int licenseState, final String reason) {
+        setLicenseState(licenseState, reason, -1);
+    }
+    void setLicenseState(int licenseState, final String reasonAsString, final int policyReason) {
 
         if (Tamper.isTweaked(this)) {
             licenseState = ProMessengerService.LICENSE_INVALID;
@@ -151,13 +155,18 @@ public class MainActivity extends Activity {
 	            		mLicenseButton.setEnabled(true);
                         mErrorText.setVisibility(View.GONE);
 	            	} else if (mLicenseState == ProMessengerService.LICENSE_INVALID) {
-	            		mStatusText.setText(R.string.status_buy);
-	            		mLicenseButton.setText(R.string.action_buy);
+                        if (policyReason == Policy.NOT_LICENSED) {
+                            mStatusText.setText(R.string.status_unlicensed);
+                            mLicenseButton.setText(R.string.action_store);
+                        } else {
+                            mStatusText.setText(R.string.status_buy);
+                            mLicenseButton.setText(R.string.action_buy);
+                        }
 	            		mLicenseButton.setVisibility(View.VISIBLE);
 	            		mLicenseButton.setEnabled(true);
                         mRetryButton.setVisibility(View.VISIBLE);
                         mErrorText.setVisibility(View.VISIBLE);
-                        mErrorText.setText(reason);
+                        mErrorText.setText(reasonAsString);
 	            	} else {
 	            		mLicenseButton.setVisibility(View.INVISIBLE);
                         mErrorText.setVisibility(View.GONE);
@@ -201,7 +210,7 @@ public class MainActivity extends Activity {
             // If the reason for the lack of license is that the service is
             // unavailable or there is another problem, we display a
             // retry button on the dialog and a different message.
-            setLicenseState(ProMessengerService.LICENSE_INVALID, "policyReason: " + policyReason);
+            setLicenseState(ProMessengerService.LICENSE_INVALID, "policyReason: " + policyReason, policyReason);
         }
 
         public void applicationError(int errorCode) {
