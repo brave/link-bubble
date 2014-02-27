@@ -95,6 +95,7 @@ public class BubbleView extends FrameLayout  {
                 mImitator.setFallbackFavicon();
             }
             mImitator.mProgressIndicator.setProgress(mProgressIndicator.isIndicatorShowing(), mProgressIndicator.getProgress(), mUrl);
+            mImitator.mProgressIndicator.showProgressSpinner(mProgressIndicator.isProgressSpinnerShowing());
         }
     }
 
