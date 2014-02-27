@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">Link Bubble</string>
     <string name="service_name">Link Bubble Renderer</string>
@@ -221,4 +221,10 @@
 
     <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
     <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
+
+    <plurals name="force_crash_countdown">
+        <item quantity="one">You are now <xliff:g id="step_count">%1$d</xliff:g> step away from FORCING A CRASH.</item>
+        <item quantity="other">You are now <xliff:g id="step_count">%1$d</xliff:g> steps away from FORCING A CRASH.</item>
+    </plurals>
+
 </resources>
