@@ -1,11 +1,15 @@
 package com.linkbubble.ui;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +20,7 @@ import android.view.animation.Transformation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.linkbubble.R;
+import com.linkbubble.util.Util;
 
 import java.net.URL;
 
@@ -67,6 +72,10 @@ public class ProgressIndicator extends FrameLayout {
         mIndicatorImage.setVisibility(show ? VISIBLE : GONE);
     }
 
+    boolean isProgressSpinnerShowing() {
+        return mIndicatorImage.getVisibility() == VISIBLE;
+    }
+
     public int getMax() {
         return mMax;
     }
@@ -101,47 +110,17 @@ public class ProgressIndicator extends FrameLayout {
         return mIndicatorImage.getVisibility() == VISIBLE;
     }
 
-    private class RotateAnim extends RotateAnimation {
-
-        private float mCurrentTime;
-
-        public void resume() {
-            setStartOffset((long) (0.5f + mCurrentTime * getDuration()));
-        }
-
-        public RotateAnim(float fromDegrees, float toDegrees, int pivotXType, float pivotXValue,
-                          int pivotYType, float pivotYValue) {
-            super(fromDegrees, toDegrees, pivotXType, pivotXValue, pivotYType, pivotYValue);
-        }
-
-        @Override
-        protected void applyTransformation(float interpolatedTime, Transformation t) {
-            mCurrentTime = interpolatedTime;
-            super.applyTransformation(interpolatedTime, t);
-        }
-    }
-
     private class ProgressImageView extends ImageView {
 
-        private RotateAnim mRotationAnimation;
+        private ObjectAnimator mAnimator = ObjectAnimator.ofFloat(this, "rotation", 0.0f, 359.0f);
 
         public ProgressImageView(Context context) {
             super(context);
 
-            mRotationAnimation = new RotateAnim(0, 359, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-            mRotationAnimation.setInterpolator(new LinearInterpolator());
-            mRotationAnimation.setRepeatCount(Animation.INFINITE);
-            mRotationAnimation.setDuration(1000);
-        }
-
-        @Override
-        protected void onAttachedToWindow() {
-            super.onAttachedToWindow();
-
-            if (getVisibility() == VISIBLE) {
-                mRotationAnimation.resume();
-                startAnimation(mRotationAnimation);
-            }
+            mAnimator.setInterpolator(new LinearInterpolator());
+            mAnimator.setRepeatCount(Animation.INFINITE);
+            mAnimator.setDuration(1000);
+            mAnimator.start();
         }
 
         @Override
@@ -149,11 +128,9 @@ public class ProgressIndicator extends FrameLayout {
             int oldVisibility = getVisibility();
             if (visibility != oldVisibility) {
                 if (visibility == VISIBLE) {
-                    mRotationAnimation.resume();
-                    startAnimation(mRotationAnimation);
+                    mAnimator.start();
                 } else {
-                    mRotationAnimation.cancel();
-                    setAnimation(null);
+                    mAnimator.cancel();
                 }
             }
 
