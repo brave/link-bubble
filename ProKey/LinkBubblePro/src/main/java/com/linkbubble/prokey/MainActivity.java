@@ -147,6 +147,7 @@ public class MainActivity extends Activity {
 	            		mLicenseButton.setVisibility(View.VISIBLE);
 	            		mLicenseButton.setEnabled(true);
                         mErrorText.setVisibility(View.GONE);
+                        mRetryButton.setVisibility(View.GONE);
 	            	} else if (mLicenseState == ProMessengerService.LICENSE_INVALID) {
                         if (policyReason == Policy.NOT_LICENSED) {
                             mStatusText.setText(R.string.status_unlicensed);
