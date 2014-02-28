@@ -299,7 +299,7 @@ public class ContentView extends FrameLayout {
         webSettings.setDisplayZoomControls(false);
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setUseWideViewPort(true);
-        webSettings.setSupportMultipleWindows(true);
+        webSettings.setSupportMultipleWindows(DRM.isLicensed() ? true : false);
 
         mWebView.setLongClickable(true);
         mWebView.setOnLongClickListener(mOnWebViewLongClickListener);
