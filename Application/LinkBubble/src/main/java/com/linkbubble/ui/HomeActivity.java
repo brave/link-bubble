@@ -82,6 +82,8 @@ public class HomeActivity extends Activity {
         mTimeSavedTotalTextView.setText("");
 
         if (Settings.get().getTermsAccepted() == false) {
+            final FrameLayout rootView = (FrameLayout)findViewById(android.R.id.content);
+
             final View acceptTermsView = getLayoutInflater().inflate(R.layout.view_accept_terms, null);
             TextView acceptTermsTextView = (TextView)acceptTermsView.findViewById(R.id.accept_terms_and_privacy_text);
             acceptTermsTextView.setText(Html.fromHtml(getString(R.string.accept_terms_and_privacy)));
@@ -91,7 +93,9 @@ public class HomeActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     Settings.get().setTermsAccepted(true);
-                    acceptTermsView.setVisibility(View.GONE);
+                    if (rootView != null) {
+                        rootView.removeView(acceptTermsView);
+                    }
                 }
             });
             acceptTermsView.setOnClickListener(new View.OnClickListener() {
@@ -101,8 +105,9 @@ public class HomeActivity extends Activity {
                 }
             });
 
-            FrameLayout rootView = (FrameLayout)findViewById(android.R.id.content);
-            rootView.addView(acceptTermsView);
+            if (rootView != null) {
+                rootView.addView(acceptTermsView);
+            }
         }
 
         if (savedInstanceState != null) {
