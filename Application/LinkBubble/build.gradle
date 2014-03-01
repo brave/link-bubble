@@ -120,4 +120,6 @@ task showVersion << {
     println buildscript.configurations.classpath.resolvedConfiguration.firstLevelModuleDependencies.moduleVersion
 }
 
+crashlytics.verboseGradlePlugin = true
+
 clean.dependsOn showVersion
