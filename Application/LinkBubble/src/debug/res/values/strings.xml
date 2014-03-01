@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Link Bubble (dev)</string>
+    <string name="service_name">Link Bubble Renderer (dev)</string>
+    <string name="notification_title">Link Bubble (dev)</string>
+
+</resources>
