@@ -691,14 +691,17 @@ public class MainController implements Choreographer.FrameCallback {
         mBubbleDraggable.setVisibility(View.GONE);
     }
 
-    public void expandBubbleFlow(long time) {
+    public void expandBubbleFlow(long time, boolean hideDraggable) {
         mBeginExpandTransitionEvent.mPeriod = time / 1000.0f;
         MainApplication.postEvent(mContext, mBeginExpandTransitionEvent);
 
         mBubbleFlowDraggable.setVisibility(View.VISIBLE);
         mSetBubbleFlowGone = false; // cancel any pending operation to set visibility to GONE (see #190)
         mBubbleFlowDraggable.expand(time, mOnBubbleFlowExpandFinishedListener);
-        mBubbleDraggable.postDelayed(mSetBubbleGoneRunnable, 33);
+
+        if (hideDraggable) {
+            mBubbleDraggable.postDelayed(mSetBubbleGoneRunnable, 33);
+        }
     }
 
     public void collapseBubbleFlow(long time) {

@@ -346,7 +346,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             }
         });
         mainController.beginAppPolling();
-        mainController.expandBubbleFlow((long) (contentPeriod * 1000));
+        mainController.expandBubbleFlow((long) (contentPeriod * 1000), true);
     }
 
     public void configure(int x0, int y0, int targetX, int targetY, float targetTime, CanvasView cv)  {
