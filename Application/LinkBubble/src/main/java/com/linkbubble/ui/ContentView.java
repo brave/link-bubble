@@ -421,7 +421,11 @@ public class ContentView extends FrameLayout {
             String oldUrl = mUrl.toString();
 
             if (updateUrl(urlAsString) == false) {
-                openInBrowser(urlAsString);
+                List<ResolveInfo> apps = Settings.get().getAppsThatHandleUrl(urlAsString, getContext().getPackageManager());
+                boolean openedInApp = apps != null && apps.size() > 0 ? openInApp(apps.get(0), urlAsString) : false;
+                if (openedInApp == false) {
+                    openInBrowser(urlAsString);
+                }
                 return;
             }
 
@@ -434,7 +438,7 @@ public class ContentView extends FrameLayout {
             final Context context = getContext();
             PackageManager packageManager = context.getPackageManager();
 
-            updateAppsForUrl(Settings.get().getAppsThatHandleUrl(mUrl, packageManager), mUrl);
+            updateAppsForUrl(Settings.get().getAppsThatHandleUrl(mUrl.toString(), packageManager), mUrl);
             if (Settings.get().redirectUrlToBrowser(urlAsString, packageManager)) {
                 if (openInBrowser(urlAsString)) {
                     String title = String.format(context.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
@@ -455,13 +459,7 @@ public class ContentView extends FrameLayout {
                     if (Util.isLinkBubbleResolveInfo(defaultAppForUrl.mResolveInfo)) {
                         mUsingLinkBubbleAsDefaultForCurrentUrl = true;
                     } else {
-                        if (MainApplication.loadResolveInfoIntent(context, defaultAppForUrl.mResolveInfo, urlAsString, mInitialUrlLoadStartTime)) {
-                            String title = String.format(context.getString(R.string.link_loaded_with_app),
-                                    defaultAppForUrl.mResolveInfo.loadLabel(context.getPackageManager()));
-                            MainApplication.saveUrlInHistory(context, defaultAppForUrl.mResolveInfo, urlAsString, title);
-
-                            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing());
-                            Settings.get().addRedirectToApp(urlAsString);
+                        if (openInApp(defaultAppForUrl.mResolveInfo, urlAsString)) {
                             return;
                         }
                     }
@@ -1143,7 +1141,7 @@ public class ContentView extends FrameLayout {
     }
 
     private void updateAppsForUrl(URL url) {
-        List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url, getContext().getPackageManager());
+        List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url.toString(), getContext().getPackageManager());
         updateAppsForUrl(resolveInfos, url);
     }
 
@@ -1355,6 +1353,21 @@ public class ContentView extends FrameLayout {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         if (MainApplication.openInBrowser(getContext(), intent, true)) {
             MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing());
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean openInApp(ResolveInfo resolveInfo, String urlAsString) {
+        Context context = getContext();
+        if (MainApplication.loadResolveInfoIntent(getContext(), resolveInfo, urlAsString, mInitialUrlLoadStartTime)) {
+            String title = String.format(context.getString(R.string.link_loaded_with_app),
+                    resolveInfo.loadLabel(context.getPackageManager()));
+            MainApplication.saveUrlInHistory(context, resolveInfo, urlAsString, title);
+
+            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing());
+            Settings.get().addRedirectToApp(urlAsString);
             return true;
         }
 
