@@ -420,7 +420,10 @@ public class ContentView extends FrameLayout {
 
             String oldUrl = mUrl.toString();
 
-            updateUrl(urlAsString);
+            if (updateUrl(urlAsString) == false) {
+                openInBrowser(urlAsString);
+                return;
+            }
 
             if (oldUrl.equals(Constant.NEW_TAB_URL)) {
                 MainController.get().saveCurrentTabs();
@@ -1291,15 +1294,17 @@ public class ContentView extends FrameLayout {
         invalidate();
     }
 
-    private void updateUrl(String urlAsString) {
+    private boolean updateUrl(String urlAsString) {
         if (urlAsString.equals(mUrl.toString()) == false) {
             try {
                 Log.d(TAG, "change url from " + mUrl + " to " + urlAsString);
                 mUrl = new URL(urlAsString);
             } catch (MalformedURLException e) {
-                throw new RuntimeException("Malformed URL: " + urlAsString);
+                return false;
             }
         }
+
+        return true;
     }
 
     private URL getUpdatedUrl(String urlAsString) {
