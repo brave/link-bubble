@@ -1349,7 +1349,7 @@ public class ContentView extends FrameLayout {
         intent.setData(Uri.parse(urlAsString));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         if (MainApplication.openInBrowser(getContext(), intent, true)) {
-            MainController.get().closeTab(mOwnerTabView, true);
+            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing());
             return true;
         }
 
