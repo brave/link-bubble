@@ -161,7 +161,7 @@ public class Settings {
     private void configureDefaultApp(PackageManager packageManager, String urlAsString, String desiredPackageName) {
         try {
             URL url = new URL(urlAsString);
-            final List<ResolveInfo> resolveInfos = getAppsThatHandleUrl(url, packageManager);
+            final List<ResolveInfo> resolveInfos = getAppsThatHandleUrl(url.toString(), packageManager);
 
             for (ResolveInfo resolveInfo : resolveInfos) {
                 if (resolveInfo.activityInfo != null) {
@@ -597,13 +597,13 @@ public class Settings {
         editor.commit();
     }
 
-    public List<ResolveInfo> getAppsThatHandleUrl(URL url, PackageManager packageManager) {
+    public List<ResolveInfo> getAppsThatHandleUrl(String urlAsString, PackageManager packageManager) {
 
         List<Intent> browsers = getBrowsers();
 
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url.toString()));
+        intent.setData(Uri.parse(urlAsString));
         List<ResolveInfo> infos = packageManager.queryIntentActivities(intent, PackageManager.GET_RESOLVED_FILTER);
 
         ArrayList<ResolveInfo> results = new ArrayList<ResolveInfo>();
@@ -623,7 +623,7 @@ public class Settings {
 
                 if (packageOk) {
                     results.add(info);
-                    Log.d("appHandles", info.loadLabel(packageManager) + " for url:" + url);
+                    Log.d("appHandles", info.loadLabel(packageManager) + " for url:" + urlAsString);
                 }
             }
         }
