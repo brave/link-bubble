@@ -552,7 +552,7 @@ public class MainController implements Choreographer.FrameCallback {
 
         boolean showAppPicker = false;
 
-        final List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url, packageManager);
+        final List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url.toString(), packageManager);
         ResolveInfo defaultAppResolveInfo = Settings.get().getDefaultAppForUrl(url, resolveInfos);
         if (resolveInfos != null && resolveInfos.size() > 0 && Settings.get().getAutoContentDisplayAppRedirect()) {
             if (defaultAppResolveInfo != null) {
