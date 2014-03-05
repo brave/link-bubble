@@ -29,20 +29,22 @@ public class FAQDialog {
     static String[] sFAQEntry = {
         "faq_cant_type_url",
         "faq_future_features",
-        "faq_crap_webview",
         "faq_ongoing_notificaion",
-        "faq_drop_down_items",
-        "faq_copy_text",
-        "faq_translucent_status_bar",
         "faq_next_update_eta",
         "faq_beta_programme",
         "faq_translations",
         "faq_roadmap",
+        "faq_alternate_payment",
+
+        "faq_crap_webview",
+        "faq_drop_down_items",
+        "faq_copy_text",
+        "faq_translucent_status_bar",
+
         //"faq_feature_request",
     };
 
-    //static int sFeatureRequestsIndex = 2;
-    //static int sBugsIndex = 7;
+    static int sIssuesIndex = 8;
 
 	public FAQDialog(Activity context) {
         if (sQuestionStringIds == null) {
@@ -181,12 +183,10 @@ public class FAQDialog {
             convertView = mInflater.inflate(R.layout.view_section_header, parent, false);
             TextView headerLabel = (TextView)convertView.findViewById(R.id.section_text);
 
-            int stringId = R.string.faq_section_bugs;
-            //if (position < sFeatureRequestsIndex) {
+            int stringId = R.string.faq_section_issues;
+            if (position < sIssuesIndex) {
                 stringId = R.string.faq_section_general;
-            //} else if (position < sBugsIndex) {
-            //    stringId = R.string.faq_section_feature_requests;
-            //}
+            }
 
             headerLabel.setText(stringId);
             return convertView;
@@ -194,13 +194,11 @@ public class FAQDialog {
 
         @Override
         public long getHeaderId(int position) {
-            //if (position < sFeatureRequestsIndex) {
+            if (position < sIssuesIndex) {
                 return 0;
-            //} else if (position < sBugsIndex) {
-            //    return 1;
-            //}
+            }
 
-            //return 2;
+            return 1;
         }
     }
 }
