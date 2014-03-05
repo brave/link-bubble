@@ -201,7 +201,7 @@ public class BubbleView extends FrameLayout  {
 
     protected FaviconTransformation mFaviconTransformation = new FaviconTransformation();
 
-    protected void onPageLoaded() {
+    protected void onPageLoaded(boolean withError) {
         showProgressBar(false, 0);
     }
 
