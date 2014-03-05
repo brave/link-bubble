@@ -15,7 +15,7 @@ buildscript {
 def versionMajor = 0
 def versionMinor = 9
 def versionPatch = 0
-def versionBuild = 4 // bump for dogfood builds, public betas, etc.
+def versionBuild = 5 // bump for dogfood builds, public betas, etc.
 
 apply plugin: 'android'
 //apply plugin: 'dexguard'
