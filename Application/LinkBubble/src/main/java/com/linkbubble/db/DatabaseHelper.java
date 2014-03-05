@@ -146,16 +146,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                                     " " + KEY_TIME + " DESC", // g. order by
                                     null); // h. limit
 
-        if (cursor != null && cursor.getCount() > 0) {
-            cursor.moveToFirst();
+        try {
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
 
-            // If there is a history entry for this URL from the last 12 hours...
-            int id = Integer.parseInt(cursor.getString(0));
-            long time = cursor.getLong(1);
-            long timeDelta = System.currentTimeMillis() - time;
-            if (timeDelta < 12 * 60 * 60 * 1000) {
-                result = id;
+                // If there is a history entry for this URL from the last 12 hours...
+                int id = Integer.parseInt(cursor.getString(0));
+                long time = cursor.getLong(1);
+                long timeDelta = System.currentTimeMillis() - time;
+                if (timeDelta < 12 * 60 * 60 * 1000) {
+                    result = id;
+                }
             }
+        } catch (IllegalStateException ex) {
         }
 
         db.close();
@@ -287,25 +290,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor != null) {
             long idToDelete = -1;
-            if (cursor.getCount() > 0) {
-                cursor.moveToFirst();
+            try {
+                if (cursor.getCount() > 0) {
+                    cursor.moveToFirst();
 
-                long id = cursor.getLong(0);
-                long imageSize = cursor.getInt(1);
-                long createTime = cursor.getLong(2);
-                long timeDelta = System.currentTimeMillis() - createTime;
-                if (favicon != null && favicon.getHeight() > imageSize) {
-                    idToDelete = id;
-                } else if (timeDelta >= FAVICON_EXPIRE_TIME) {
-                    idToDelete = id;
-                } else {
-                    result = true;
+                    long id = cursor.getLong(0);
+                    long imageSize = cursor.getInt(1);
+                    long createTime = cursor.getLong(2);
+                    long timeDelta = System.currentTimeMillis() - createTime;
+                    if (favicon != null && favicon.getHeight() > imageSize) {
+                        idToDelete = id;
+                    } else if (timeDelta >= FAVICON_EXPIRE_TIME) {
+                        idToDelete = id;
+                    } else {
+                        result = true;
+                    }
                 }
-            }
-            cursor.close();
+                cursor.close();
 
-            if (idToDelete > -1) {
-                deleteFavicon(idToDelete);
+                if (idToDelete > -1) {
+                    deleteFavicon(idToDelete);
+                }
+            } catch (IllegalStateException ex) {
             }
         }
 
