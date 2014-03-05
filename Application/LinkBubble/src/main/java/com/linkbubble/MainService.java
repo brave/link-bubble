@@ -30,23 +30,29 @@ public class MainService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         String cmd = intent.getStringExtra("cmd");
-        long urlLoadStartTime = intent.getLongExtra("start_time", System.currentTimeMillis());
+        if (cmd != null) {
+            long urlLoadStartTime = intent.getLongExtra("start_time", System.currentTimeMillis());
 
-        if (cmd.compareTo("open") == 0) {
-            String url = intent.getStringExtra("url");
-            boolean doLicenseCheck = intent.getBooleanExtra("doLicenseCheck", true);
-            String openedFromAppName = intent.getStringExtra("openedFromAppName");
-            MainController.get().openUrl(url, urlLoadStartTime, true, openedFromAppName, doLicenseCheck);
-        } else if (cmd.compareTo("restore") == 0) {
-            if (!mRestoreComplete) {
-                String [] urls = intent.getStringArrayExtra("urls");
-                for (int i = 0; i < urls.length; i++) {
-                    String urlAsString = urls[i];
-                    if (urlAsString.equals(Constant.WELCOME_MESSAGE_URL) == false) {
-                        MainController.get().openUrl(urlAsString, urlLoadStartTime, i == urls.length - 1, Analytics.OPENED_URL_FROM_RESTORE);
-                    }
+            if (cmd.compareTo("open") == 0) {
+                String url = intent.getStringExtra("url");
+                if (url != null) {
+                    boolean doLicenseCheck = intent.getBooleanExtra("doLicenseCheck", true);
+                    String openedFromAppName = intent.getStringExtra("openedFromAppName");
+                    MainController.get().openUrl(url, urlLoadStartTime, true, openedFromAppName, doLicenseCheck);
                 }
-                mRestoreComplete = true;
+            } else if (cmd.compareTo("restore") == 0) {
+                if (!mRestoreComplete) {
+                    String [] urls = intent.getStringArrayExtra("urls");
+                    if (urls != null) {
+                        for (int i = 0; i < urls.length; i++) {
+                            String urlAsString = urls[i];
+                            if (urlAsString != null && !urlAsString.equals(Constant.WELCOME_MESSAGE_URL)) {
+                                MainController.get().openUrl(urlAsString, urlLoadStartTime, i == urls.length - 1, Analytics.OPENED_URL_FROM_RESTORE);
+                            }
+                        }
+                    }
+                    mRestoreComplete = true;
+                }
             }
         }
 
