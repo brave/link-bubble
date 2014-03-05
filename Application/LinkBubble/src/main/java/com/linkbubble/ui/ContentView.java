@@ -70,7 +70,7 @@ import java.util.Stack;
  */
 public class ContentView extends FrameLayout {
 
-    private static final String TAG = "UrlLoad";
+    public static final String TAG = "UrlLoad";
 
     private TabView mOwnerTabView;
     private WebView mWebView;
@@ -166,7 +166,7 @@ public class ContentView extends FrameLayout {
     public interface EventHandler {
         public void onPageLoading(URL url);
         public void onProgressChanged(int progress);
-        public void onPageLoaded();
+        public void onPageLoaded(boolean withError);
         public boolean onReceivedIcon(Bitmap bitmap);
         public void setDefaultFavicon();
         public void onCanGoBackChanged(boolean canGoBack);
@@ -390,7 +390,8 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-            mEventHandler.onPageLoaded();
+            Log.d(TAG, "onReceivedError()");
+            mEventHandler.onPageLoaded(true);
             mReloadButton.setVisibility(VISIBLE);
             mShareButton.setVisibility(GONE);
         }
@@ -585,7 +586,7 @@ public class ContentView extends FrameLayout {
             configureOpenInAppButton();
             configureOpenEmbedButton();
 
-            mEventHandler.onPageLoaded();
+            mEventHandler.onPageLoaded(false);
             Log.d(TAG, "onPageFinished() - url: " + urlAsString);
 
             saveLoadTime();
