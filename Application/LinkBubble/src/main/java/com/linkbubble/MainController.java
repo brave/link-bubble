@@ -799,6 +799,7 @@ public class MainController implements Choreographer.FrameCallback {
         if (action.equals(Intent.ACTION_SCREEN_OFF)) {
             setCanDisplay(false);
         } else if (action.equals(Intent.ACTION_SCREEN_ON)) {
+            updateKeyguardLocked();
         } else if (action.equals(Intent.ACTION_USER_PRESENT)) {
             setCanDisplay(true);
         }
