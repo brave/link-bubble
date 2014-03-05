@@ -76,9 +76,9 @@ public class TabView extends BubbleView {
             }
 
             @Override
-            public void onPageLoaded() {
+            public void onPageLoaded(boolean withError) {
                 TabView.this.showProgressSpinner(false);
-                TabView.this.onPageLoaded();
+                TabView.this.onPageLoaded(withError);
             }
 
             @Override
@@ -151,9 +151,9 @@ public class TabView extends BubbleView {
     }
 
     @Override
-    protected void onPageLoaded() {
-        super.onPageLoaded();
-        MainController.get().onPageLoaded(this);
+    protected void onPageLoaded(boolean withError) {
+        super.onPageLoaded(withError);
+        MainController.get().onPageLoaded(this, withError);
     }
 
     public ContentView getContentView() {

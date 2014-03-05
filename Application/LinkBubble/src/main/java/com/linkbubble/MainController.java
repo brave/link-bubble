@@ -340,13 +340,13 @@ public class MainController implements Choreographer.FrameCallback {
     //private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
     //private int mFrameNumber;
 
-    public void onPageLoaded(TabView tab) {
+    public void onPageLoaded(TabView tab, boolean withError) {
         // Ensure this is not an edge case where the Tab has already been destroyed, re #254
         if (getActiveTabCount() == 0 || isTabActive(tab) == false) {
             return;
         }
 
-        if (Settings.get().getAutoContentDisplayLinkLoaded()) {
+        if (withError == false && Settings.get().getAutoContentDisplayLinkLoaded()) {
             displayTab(tab);
         }
 
