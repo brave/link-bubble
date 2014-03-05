@@ -3,18 +3,23 @@ package com.linkbubble.ui;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import com.linkbubble.BuildConfig;
+import com.linkbubble.Constant;
 import com.linkbubble.R;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class FAQDialog {
@@ -41,7 +46,7 @@ public class FAQDialog {
         "faq_copy_text",
         "faq_translucent_status_bar",
 
-        //"faq_feature_request",
+        "faq_report_bug",
     };
 
     static int sIssuesIndex = 8;
@@ -88,22 +93,20 @@ public class FAQDialog {
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse("http://s3.amazonaws.com/actionlauncher/action_launcher_beta.html"));
                     mActivity.startActivity(i);
-                } else if (position == sFAQSize-1) {
+                } else */
+                if (position == sFAQSize-1) {
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO,
-                                                    Uri.fromParts("mailto","support@actionlauncher.com", null));
-                    String appVersion = "";
-                    try {
-                        appVersion = mActivity.getPackageManager().getPackageInfo(mActivity.getPackageName(), 0).versionName;
-                    } catch (PackageManager.NameNotFoundException e) {}
+                                                    Uri.fromParts("mailto", "support@linkbubble.com", null));
+                    String appVersion = BuildConfig.VERSION_NAME;
                     String subject = "Report a bug (v" + appVersion + ", Android " + Constant.getOSFlavor()
                             + ", " + android.os.Build.MODEL + ", " + Locale.getDefault().getLanguage() + ")";
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
                     emailIntent.putExtra(Intent.EXTRA_TEXT, "My bug is ...\n\nHow often does the problem occur?\n\nAre you running a ROM and/or a modified framework/kernel? ");
                     mActivity.startActivity(Intent.createChooser(emailIntent, "Send bug report email..."));
-                } else {*/
+                } else {
                     FAQAdapter adapter = (FAQAdapter)view.getTag();
                     adapter.toggle(position);
-                //}
+                }
             }
         });
         listView.setAdapter(new FAQAdapter(mActivity));
