@@ -565,7 +565,6 @@ public class Settings {
          * URL to the default browser rather than allowing an app like ES File Explorer be set as a default app for a host. #338
          */
 
-        /*
         packageManager.setComponentEnabledSetting(mDownloadHandlerComponentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
 
         mDownloadQueryIntent.setAction(Intent.ACTION_VIEW);
@@ -582,7 +581,6 @@ public class Settings {
         }
 
         packageManager.setComponentEnabledSetting(mDownloadHandlerComponentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
-        */
 
         return result;
     }
