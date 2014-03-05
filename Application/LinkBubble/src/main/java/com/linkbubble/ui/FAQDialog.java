@@ -41,6 +41,7 @@ public class FAQDialog {
         "faq_roadmap",
         "faq_alternate_payment",
 
+        "faq_close_quickly",
         "faq_crap_webview",
         "faq_drop_down_items",
         "faq_copy_text",
