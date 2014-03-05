@@ -188,6 +188,8 @@
     <string name="faq_next_update_eta_answer"><![CDATA[When it\'s ready!<br/><br/>It\'s not feasible to be any more specific than that unfortunately
             (even to provide a ballpark estimate).<br/><br/>The reality is, when estimates are given people often end up taking them as a
             commitment, and can get upset if/when a release slips for whatever reason.]]></string>
+    <string name="faq_report_bug_question">Report a bug</string>
+    <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
     <string name="faq_feature_request_answer">I have a lot of </string> -->
 
