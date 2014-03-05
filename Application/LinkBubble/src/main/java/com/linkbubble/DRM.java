@@ -21,7 +21,7 @@ import java.util.List;
 public class DRM {
 
     static private String TAG = "LinkBubbleDRM";
-    static private boolean DEBUG = false;
+    static private boolean DEBUG = true;
 
     static final int MSG_LICENSE_RESULT = 12346;
     static final int MSG_CHECK_LICENSE = 12345;
@@ -49,6 +49,7 @@ public class DRM {
     private MainApplication.StateChangedEvent mStateChangedEvent = new MainApplication.StateChangedEvent();
 
     DRM(Context context) {
+        Log.d(TAG, "DRM() init");
         mContext = context;
         Constant.DEVICE_ID = Constant.getSecureAndroidId(context);
         mSharedPreferences = context.getSharedPreferences(Constant.DRM_SHARED_PREFERENCES_KEY, Context.MODE_PRIVATE);
@@ -82,8 +83,10 @@ public class DRM {
         mainIntent.setPackage(BuildConfig.PRO_LAUNCHER_PACKAGE_NAME);
         List<ResolveInfo> services = context.getPackageManager().queryIntentServices(mainIntent, 0);
         if (services != null && services.size() > 0) {
+            Log.d(TAG, "getProServiceInfo() - " + services.get(0).serviceInfo.name);
             return services.get(0).serviceInfo;
         }
+        Log.d(TAG, "getProServiceInfo() - return null");
         return null;
     }
 
@@ -138,6 +141,7 @@ public class DRM {
     }
 
     void onDestroy() {
+        Log.d(TAG, "onDestroy()");
         MainApplication.unregisterForBus(mContext, this);
     }
 
@@ -148,7 +152,9 @@ public class DRM {
             Intent intent = new Intent();
             intent.setClassName(serviceInfo.packageName, serviceInfo.name);
             serviceBound = context.bindService(intent, mProConnection, Context.BIND_AUTO_CREATE);
+            Log.d(TAG, "bindProService() - " + "try bind: serviceBound=" + serviceBound);
         }
+        Log.d(TAG, "bindProService() - serviceBound:" + serviceBound);
         return serviceBound;
     }
 
@@ -156,12 +162,13 @@ public class DRM {
         if (!mProServiceBound)
             return;
 
+        Log.d(TAG, "requestLicenseStatus()");
         Message msg = Message.obtain(null, MSG_CHECK_LICENSE);
         msg.replyTo = mProMessenger;
         try {
             mProService.send(msg);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            Log.d(TAG, "requestLicenseStatus()", e);
         }
     }
 
@@ -270,6 +277,7 @@ public class DRM {
      */
     private ServiceConnection mProConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className, IBinder service) {
+            Log.d(TAG, "onServiceConnected()");
             // This is called when the connection with the service has been
             // established, giving us the object we can use to
             // interact with the service.  We are communicating with the
@@ -281,6 +289,7 @@ public class DRM {
         }
 
         public void onServiceDisconnected(ComponentName className) {
+            Log.d(TAG, "onServiceDisconnected()");
             // This is called when the connection with the service has been
             // unexpectedly disconnected -- that is, its process crashed.
             mProService = null;
