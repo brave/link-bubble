@@ -25,6 +25,7 @@ import com.linkbubble.ui.BubbleDraggable;
 import com.linkbubble.ui.BubbleFlowDraggable;
 import com.linkbubble.ui.BubbleFlowView;
 import com.linkbubble.ui.CanvasView;
+import com.linkbubble.ui.ContentView;
 import com.linkbubble.ui.SettingsFragment;
 import com.linkbubble.ui.TabView;
 import com.linkbubble.util.ActionItem;
@@ -347,6 +348,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         if (withError == false && Settings.get().getAutoContentDisplayLinkLoaded()) {
+            Log.d(ContentView.TAG, "*** getAutoContentDisplayLinkLoaded() true, displaying tab");
             displayTab(tab);
         }
 
