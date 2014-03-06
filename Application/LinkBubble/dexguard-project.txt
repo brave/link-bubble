@@ -55,6 +55,7 @@
 -dontwarn com.squareup.okhttp.**
 -dontwarn com.facebook.**
 
+# -printusage unused.txt
 # -printmapping proguard/actionlauncher.map
 # -renamesourcefileattribute Launcher
 # -keepattributes SourceFile,LineNumberTable
