@@ -1575,6 +1575,7 @@ com.linkbubble.Constant:
     public static final java.lang.String WELCOME_MESSAGE_DISPLAY_URL
     public static final java.lang.String NEW_TAB_URL
     public static final int DROP_DOWN_CHECK_TIME
+    public static final int AUTO_CONTENT_DISPLAY_DELAY
     public static final java.lang.String PRIVACY_POLICY_URL
     public static final java.lang.String TERMS_OF_SERVICE_URL
     public static final boolean DEBUG_SHOW_TARGET_REGIONS
@@ -1588,7 +1589,7 @@ com.linkbubble.Constant:
     public static final int DATA_USER_MAX_EMAILS
     public static final java.lang.String TWITTER_ACCOUNT_TYPE
     public static final java.lang.String YAHOO_ACCOUNT_TYPE
-    65:68:public static java.lang.String getValidDeviceId()
+    67:70:public static java.lang.String getValidDeviceId()
 com.linkbubble.DRM:
     static final int MSG_LICENSE_RESULT
     static final int MSG_CHECK_LICENSE
@@ -1598,7 +1599,7 @@ com.linkbubble.DRM:
     static final int LICENSE_IGNORE_ERROR
 com.linkbubble.MainController:
     private static final java.lang.String TAG
-    721:722:public void switchToExpandedView()
+    726:727:public void switchToExpandedView()
 com.linkbubble.MainService:
     private static final java.lang.String BCAST_CONFIGCHANGED
 com.linkbubble.R$anim
@@ -1716,7 +1717,7 @@ com.linkbubble.ui.CloseTabTargetView:
     private static final int ANIM_DURATION
     private static final float MIN_SCALE
 com.linkbubble.ui.ContentView:
-    public static final java.lang.String TAG
+    private static final java.lang.String TAG
 com.linkbubble.ui.ContentView$EventHandler:
     public abstract void setDefaultFavicon()
 com.linkbubble.ui.ContentViewButton:
