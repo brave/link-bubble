@@ -54,7 +54,7 @@ com.google.android.vending.licensing.LicenseChecker -> ˋ:
     288:295:void handleServiceConnectionError(com.google.android.vending.licensing.LicenseValidator) -> ˊ
     299:309:void cleanupService() -> ˋ
     320:322:void onDestroy() -> ･
-    338:342:java.lang.String getVersionCode(android.content.Context,java.lang.String) -> ･
+    338:341:java.lang.String getVersionCode(android.content.Context,java.lang.String) -> ･
     54:54:void access$100(com.google.android.vending.licensing.LicenseChecker,com.google.android.vending.licensing.LicenseValidator) -> ･
     54:54:void access$200(com.google.android.vending.licensing.LicenseChecker,com.google.android.vending.licensing.LicenseValidator) -> ˊ
     54:54:java.util.HashSet access$300$128ef11c(com.google.android.vending.licensing.LicenseChecker) -> ･
@@ -65,39 +65,31 @@ com.google.android.vending.licensing.LicenseChecker$ResultListener -> ˋ$･:
     com.google.android.vending.licensing.LicenseValidator mValidator -> ˊ
     com.google.android.vending.licensing.LicenseChecker$ResultListener$1 mOnTimeout$453f5682 -> ˋ
     com.google.android.vending.licensing.LicenseChecker this$0 -> ･
-    byte[] $ -> ˎ
-    int $$ -> ˏ
     216:257:void verifyLicense(int,java.lang.String,java.lang.String) -> ･
     192:192:com.google.android.vending.licensing.LicenseValidator access$000(com.google.android.vending.licensing.LicenseChecker$ResultListener) -> ･
     192:192:void access$400(com.google.android.vending.licensing.LicenseChecker$ResultListener) -> ˊ
-    java.lang.String $(int,int,int) -> ･
 com.google.android.vending.licensing.LicenseChecker$ResultListener$1 -> iF:
     com.google.android.vending.licensing.LicenseChecker val$this$0 -> ･
     com.google.android.vending.licensing.LicenseChecker$ResultListener this$1 -> ˊ
-    byte[] $ -> ˋ
     200:203:void run() -> run
-    java.lang.String $(int,int,int) -> ･
 com.google.android.vending.licensing.LicenseChecker$ResultListener$2 -> ˎ:
     int val$responseCode -> ･
     java.lang.String val$signedData -> ˊ
     java.lang.String val$signature -> ˋ
     com.google.android.vending.licensing.LicenseChecker$ResultListener this$1 -> ˎ
-    byte[] $ -> ˏ
     218:255:void run() -> run
-    java.lang.String $(int,int,int) -> ･
 com.google.android.vending.licensing.LicenseCheckerCallback -> IF:
     void allow(int) -> ･
     void dontAllow(int) -> ˊ
     void applicationError(int) -> ˋ
 com.google.android.vending.licensing.LicenseValidator -> ˏ:
-    com.google.android.vending.licensing.ServerManagedPolicy mPolicy$62321a76 -> ʻ
+    com.google.android.vending.licensing.ServerManagedPolicy mPolicy$62321a76 -> ᐝ
     com.google.android.vending.licensing.LicenseCheckerCallback mCallback -> ･
     int mNonce -> ˊ
     java.lang.String mPackageName -> ˋ
     java.lang.String mVersionCode -> ˎ
-    com.google.android.vending.licensing.DeviceLimiter mDeviceLimiter -> ʼ
+    com.google.android.vending.licensing.DeviceLimiter mDeviceLimiter -> ʻ
     byte[] $ -> ˏ
-    int $$ -> ᐝ
     212:221:void handleResponse(int,com.google.android.vending.licensing.ResponseData) -> ･
     java.lang.String $(int,int,int) -> ･
 com.google.android.vending.licensing.Obfuscator -> aux:
@@ -110,10 +102,8 @@ com.google.android.vending.licensing.PreferenceObfuscator -> Aux:
     android.content.SharedPreferences mPreferences -> ˊ
     com.google.android.vending.licensing.Obfuscator mObfuscator -> ˋ
     android.content.SharedPreferences$Editor mEditor -> ･
-    byte[] $ -> ˎ
     47:52:void putString(java.lang.String,java.lang.String) -> ･
     56:69:java.lang.String getString(java.lang.String,java.lang.String) -> ˊ
-    java.lang.String $(int,int,int) -> ･
 com.google.android.vending.licensing.ResponseData -> ʻ:
     int responseCode -> ･
     int nonce -> ˊ
@@ -137,7 +127,7 @@ com.google.android.vending.licensing.ServerManagedPolicy -> aUx:
     194:204:void setRetryUntil(java.lang.String) -> ˊ
     220:230:void setMaxRetries(java.lang.String) -> ˋ
     247:260:boolean allowAccess() -> ･
-    264:274:java.util.HashMap decodeExtras$694ad9f4(java.lang.String) -> ˎ
+    264:273:java.util.HashMap decodeExtras$694ad9f4(java.lang.String) -> ˎ
     java.lang.String $(int,int,int) -> ･
 com.google.android.vending.licensing.ValidationException -> com.google.android.vending.licensing.ValidationException:
     long serialVersionUID -> serialVersionUID
