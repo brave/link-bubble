@@ -15,9 +15,13 @@ def versionMinor = 9
 def versionPatch = 1
 def versionBuild = 5 // bump for dogfood builds, public betas, etc.
 
-apply plugin: 'android'
-//apply plugin: 'dexguard'
-
+if(buildMode == "dexguard") {
+    apply plugin:'dexguard'
+    println "*** Apply plugin -> DEXGUARD"
+} else {
+    apply plugin:'android'
+    println "*** Apply plugin -> ANDROID"
+}
 repositories {
     mavenCentral()
 }
@@ -52,21 +56,20 @@ android {
 
     signingConfigs {
         release {
-            // (via http://stackoverflow.com/a/19350401/328679)
-            storeFile file(System.getenv("KEYSTORE_LOCATION"))
-            keyAlias System.getenv("LINK_BUBBLE_KEY_ALIAS")
-
-            // These two lines make gradle believe that the signingConfigs
-            // section is complete. Without them, tasks like installRelease
-            // will not be available!
-            storePassword "notYourRealPassword"
-            keyPassword "notYourRealPassword"
+            if(buildMode == "dexguard") {
+                storeFile file(System.getenv("KEYSTORE_LOCATION"))
+                keyAlias System.getenv("LINK_BUBBLE_KEY_ALIAS")
+                storePassword System.getenv("KEYSTORE_PASSWORD")
+                keyPassword System.getenv("LINK_BUBBLE_KEY_PASSWORD")
+            }
         }
     }
     buildTypes {
         release {
-            //proguardFile plugin.getDefaultDexGuardFile('dexguard-release.pro')
-            //proguardFile 'dexguard-project.txt'
+            if(buildMode == "dexguard") {
+                proguardFile plugin.getDefaultDexGuardFile('dexguard-release.pro')
+                proguardFile 'dexguard-project.txt'
+            }
             signingConfig signingConfigs.release
         }
     }
