@@ -199,6 +199,7 @@ public class ContentView extends FrameLayout {
     }
 
     public void destroy() {
+        Log.d(TAG, "*** destroy() - url" + (mUrl != null ? mUrl.toString() : "<null>"));
         mIsDestroyed = true;
         removeView(mWebView);
         mWebView.destroy();
@@ -360,6 +361,7 @@ public class ContentView extends FrameLayout {
                 return true;        // true because we've handled the link ourselves
             }
 
+            Log.d(TAG, "shouldOverrideUrlLoading() - url:" + urlAsString);
             if (mLastWebViewTouchUpTime > -1) {
                 long touchUpTimeDelta = System.currentTimeMillis() - mLastWebViewTouchUpTime;
                 // this value needs to be largish
@@ -1309,7 +1311,7 @@ public class ContentView extends FrameLayout {
     private URL getUpdatedUrl(String urlAsString) {
         if (urlAsString.equals(mUrl.toString()) == false) {
             try {
-                //Log.d(TAG, "change url from " + mUrl + " to " + urlAsString);
+                Log.d(TAG, "getUpdatedUrl(): change url from " + mUrl + " to " + urlAsString);
                 return new URL(urlAsString);
             } catch (MalformedURLException e) {
                 return null;
