@@ -536,7 +536,8 @@ public class Settings {
     }
 
     public boolean isEnabled() {
-        return mSharedPreferences.getBoolean(PREFERENCE_ENABLED, false);
+        //return mSharedPreferences.getBoolean(PREFERENCE_ENABLED, false);
+        return true;
     }
 
     public boolean checkForYouTubeEmbeds() {
