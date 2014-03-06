@@ -65,13 +65,8 @@ android {
     signingConfigs {
         release {
             if(buildMode == "dexguard") {
-                // (via http://stackoverflow.com/a/19350401/328679)
                 storeFile file(System.getenv("KEYSTORE_LOCATION"))
                 keyAlias System.getenv("LINK_BUBBLE_KEY_ALIAS")
-
-                // These two lines make gradle believe that the signingConfigs
-                // section is complete. Without them, tasks like installRelease
-                // will not be available!
                 storePassword System.getenv("KEYSTORE_PASSWORD")
                 keyPassword System.getenv("LINK_BUBBLE_KEY_PASSWORD")
             }
@@ -108,22 +103,6 @@ dependencies {
     compile files('libs/dexguard_util.jar')
     compile files('libs/Parse-1.4.1.jar')
     //compile project(':Libraries:ViewPagerIndicator:library')
-}
-
-task askForPasswords << {
-    // Must create String because System.readPassword() returns char[]
-    // (and assigning that below fails silently)
-    def storePw = new String(System.console().readPassword("Keystore password: "))
-    def keyPw  = new String(System.console().readPassword("Key password: "))
-
-    android.signingConfigs.release.storePassword = storePw
-    android.signingConfigs.release.keyPassword = keyPw
-}
-
-tasks.whenTaskAdded { theTask ->
-    if (theTask.name.equals("packagePlaystoreRelease")) {
-        theTask.dependsOn "askForPasswords"
-    }
 }
 
 task showVersion << {
