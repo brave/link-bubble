@@ -68,10 +68,6 @@ public class SettingsFragment extends PreferenceFragment {
         public boolean mIncognito;
     }
 
-    public interface IncognitoModeChangedEventHandler {
-        public void onIncognitoModeChanged(boolean incognito);
-    }
-
     private void configureDefaultAppsList() {
         PreferenceCategory preferenceCategory = (PreferenceCategory)findPreference("preference_category_other_apps");
         preferenceCategory.removeAll();
