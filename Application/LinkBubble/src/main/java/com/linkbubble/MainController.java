@@ -25,7 +25,6 @@ import com.linkbubble.ui.BubbleDraggable;
 import com.linkbubble.ui.BubbleFlowDraggable;
 import com.linkbubble.ui.BubbleFlowView;
 import com.linkbubble.ui.CanvasView;
-import com.linkbubble.ui.ContentView;
 import com.linkbubble.ui.SettingsFragment;
 import com.linkbubble.ui.TabView;
 import com.linkbubble.util.ActionItem;
@@ -347,12 +346,18 @@ public class MainController implements Choreographer.FrameCallback {
             return;
         }
 
-        if (withError == false && Settings.get().getAutoContentDisplayLinkLoaded()) {
-            Log.d(ContentView.TAG, "*** getAutoContentDisplayLinkLoaded() true, displaying tab");
-            displayTab(tab);
+        saveCurrentTabs();
+    }
+
+    public void autoContentDisplayLinkLoaded(TabView tab) {
+        // Ensure this is not an edge case where the Tab has already been destroyed, re #254
+        if (getActiveTabCount() == 0 || isTabActive(tab) == false) {
+            return;
         }
 
-        saveCurrentTabs();
+        if (Settings.get().getAutoContentDisplayLinkLoaded()) {
+            displayTab(tab);
+        }
     }
 
     public boolean displayTab(TabView tab) {

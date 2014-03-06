@@ -70,7 +70,7 @@ import java.util.Stack;
  */
 public class ContentView extends FrameLayout {
 
-    public static final String TAG = "UrlLoad";
+    private static final String TAG = "UrlLoad";
 
     private TabView mOwnerTabView;
     private WebView mWebView;
@@ -203,6 +203,11 @@ public class ContentView extends FrameLayout {
         mIsDestroyed = true;
         removeView(mWebView);
         mWebView.destroy();
+        //if (mDelayedAutoContentDisplayLinkLoadedScheduled) {
+        //    mDelayedAutoContentDisplayLinkLoadedScheduled = false;
+        //    Log.e(TAG, "*** set mDelayedAutoContentDisplayLinkLoadedScheduled=" + mDelayedAutoContentDisplayLinkLoadedScheduled);
+        //}
+        removeCallbacks(mDelayedAutoContentDisplayLinkLoadedRunnable);
     }
 
     public void updateIncognitoMode(boolean incognito) {
@@ -384,6 +389,12 @@ public class ContentView extends FrameLayout {
                     Log.d(TAG, "[urlstack] IGNORED because of delta:" + touchUpTimeDelta);
                 }
             }
+
+            //if (mDelayedAutoContentDisplayLinkLoadedScheduled) {
+            //    mDelayedAutoContentDisplayLinkLoadedScheduled = false;
+            //    Log.e(TAG, "*** set mDelayedAutoContentDisplayLinkLoadedScheduled=" + mDelayedAutoContentDisplayLinkLoadedScheduled);
+            //}
+            removeCallbacks(mDelayedAutoContentDisplayLinkLoadedRunnable);
 
             mUrl = updatedUrl;
             mWebView.loadUrl(urlAsString);
@@ -603,10 +614,26 @@ public class ContentView extends FrameLayout {
             mPageInspector.run(mWebView, getPageInspectFlags());
 
             postDelayed(mDropDownCheckRunnable, Constant.DROP_DOWN_CHECK_TIME);
+            //mDelayedAutoContentDisplayLinkLoadedScheduled = true;
+            //Log.d(TAG, "set mDelayedAutoContentDisplayLinkLoadedScheduled=" + mDelayedAutoContentDisplayLinkLoadedScheduled);
+            postDelayed(mDelayedAutoContentDisplayLinkLoadedRunnable, Constant.AUTO_CONTENT_DISPLAY_DELAY);
         }
 
         mPageFinishedIgnoredUrl = null;
     }
+
+    //boolean mDelayedAutoContentDisplayLinkLoadedScheduled = false;
+
+    // Call autoContentDisplayLinkLoaded() via a delay so as to fix #412
+    Runnable mDelayedAutoContentDisplayLinkLoadedRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mIsDestroyed == false && MainController.get() != null) {
+                //Log.e(TAG, "*** set mDelayedAutoContentDisplayLinkLoadedScheduled=" + mDelayedAutoContentDisplayLinkLoadedScheduled);
+                MainController.get().autoContentDisplayLinkLoaded(mOwnerTabView);
+            }
+        }
+    };
 
     OnKeyListener mOnKeyListener = new OnKeyListener() {
         @Override
