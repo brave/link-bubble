@@ -32,7 +32,7 @@
     <string name="clear_history">Clear history</string>
 
     <string name="preference_category_general">General</string>
-    <string name="preference_category_configuration">Configuration</string>
+    <string name="preference_category_configuration">App Controls</string>
     <string name="preference_category_browser">Browser</string>
     <string name="preference_enabled_title">Enabled</string>
     <string name="preference_auto_content_display_title">Auto content display</string>
