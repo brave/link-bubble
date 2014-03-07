@@ -15,7 +15,7 @@ buildscript {
 def versionMajor = 0
 def versionMinor = 9
 def versionPatch = 0
-def versionBuild = 6 // bump for dogfood builds, public betas, etc.
+def versionBuild = 7 // bump for dogfood builds, public betas, etc.
 
 if(buildMode == "dexguard") {
     apply plugin:'dexguard'
