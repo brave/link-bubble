@@ -12,6 +12,7 @@
     <item>
         <shape android:shape="rectangle" >
             <stroke android:width="@dimen/bubble_icon_stroke_size" android:color="@color/bubble_border" />
+            <solid android:color="@android:color/transparent" />
         </shape>
     </item>
 
