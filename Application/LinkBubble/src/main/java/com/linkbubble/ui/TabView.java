@@ -153,7 +153,9 @@ public class TabView extends BubbleView {
     @Override
     protected void onPageLoaded(boolean withError) {
         super.onPageLoaded(withError);
-        MainController.get().onPageLoaded(this, withError);
+        if (MainController.get() != null) {
+            MainController.get().onPageLoaded(this, withError);
+        }
     }
 
     public ContentView getContentView() {
