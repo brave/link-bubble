@@ -3269,6 +3269,8 @@ com.linkbubble.R$string: int faq_beta_programme_answer
 com.linkbubble.R$string: int faq_beta_programme_question
 com.linkbubble.R$string: int faq_cant_type_url_answer
 com.linkbubble.R$string: int faq_cant_type_url_question
+com.linkbubble.R$string: int faq_change_default_browser_answer
+com.linkbubble.R$string: int faq_change_default_browser_question
 com.linkbubble.R$string: int faq_close_quickly_answer
 com.linkbubble.R$string: int faq_close_quickly_question
 com.linkbubble.R$string: int faq_copy_text_answer
@@ -3279,6 +3281,8 @@ com.linkbubble.R$string: int faq_drop_down_items_answer
 com.linkbubble.R$string: int faq_drop_down_items_question
 com.linkbubble.R$string: int faq_future_features_answer
 com.linkbubble.R$string: int faq_future_features_question
+com.linkbubble.R$string: int faq_low_spec_performance_answer
+com.linkbubble.R$string: int faq_low_spec_performance_question
 com.linkbubble.R$string: int faq_next_update_eta_answer
 com.linkbubble.R$string: int faq_next_update_eta_question
 com.linkbubble.R$string: int faq_ongoing_notificaion_answer
