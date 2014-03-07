@@ -178,6 +178,14 @@
     <string name="faq_translucent_status_bar_answer">Unfortunately Android system limitations prevent this.</string>
     <string name="faq_beta_programme_question">Is there a beta programme? How can I join?</string>
     <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Chris Lacy) feed for announcements.</string>
+    <string name="faq_low_spec_performance_question">Why does Link Bubble run slowly on my Nexus S / Galaxy S1 / Moto G class device?</string>
+    <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble is a very resource intensive app, and consequently devices with lower specs
+            can struggle to run the app as well as more powerful devices. Future updates will aim to improve Link Bubble\'s
+            performance, but there is only so much that can realistically be done here.<br/><br/>Technical answer: At the bare minimum, Link Bubble requires the
+            use of a Service and a WebView in order to function. Often multiple WebViews and even multiple Activities are also present.
+            Naturally, allocating these items (especially the WebViews) consumes a <i>lot</i> of memory/resources. Lower spec devices generally
+            have less memory available than Link Bubble requires, and thus performance suffers as garbage collections are frequently triggered.
+            As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on the Nexus 5.]]></string>
     <string name="faq_crap_webview_question">Sometimes webpages don\'t display correctly or videos don\'t play.</string>
     <string name="faq_crap_webview_answer"><![CDATA[LinkBubble uses the standard Android WebView, but unfortunately it is sometimes unreliable.
             Alternative web rendering methods such as FireFox\'s GeckoView and Chromium will likely be investigated going
