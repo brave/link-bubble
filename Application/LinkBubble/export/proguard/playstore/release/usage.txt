@@ -1662,7 +1662,7 @@ com.linkbubble.Settings:
     private static final java.lang.String LAST_APP_REDIRECT_KEY_TIME
     private static final java.lang.String LAST_APP_REDIRECT_KEY_URL
     private static final int MAX_LAST_APP_REDIRECT_COUNT
-    543:543:public boolean checkForYouTubeEmbeds()
+    544:544:public boolean checkForYouTubeEmbeds()
 com.linkbubble.db.DatabaseHelper:
     private static final java.lang.String TAG
     private static final int DATABASE_VERSION
@@ -1758,10 +1758,9 @@ com.linkbubble.ui.ProgressIndicator$ProgressArcView:
 com.linkbubble.ui.Prompt:
     public static final int LENGTH_LONG
 com.linkbubble.ui.SettingsFragment:
-    430:438:public void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)
-    442:470:void checkDefaultBrowser()
+    426:434:public void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)
+    438:466:void checkDefaultBrowser()
 com.linkbubble.ui.SettingsFragment$19
-com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEventHandler
 com.linkbubble.util.Analytics:
     public static final java.lang.String OPENED_URL_FROM_SETTINGS
     public static final java.lang.String OPENED_URL_FROM_NEW_TAB
