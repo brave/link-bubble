@@ -4783,16 +4783,16 @@ com.linkbubble.ui.FAQDialog -> Ꮮ:
     25:25:boolean[] access$100(com.linkbubble.ui.FAQDialog) -> ˊ
 com.linkbubble.ui.FAQDialog$1 -> ᒣ:
     com.linkbubble.ui.FAQDialog this$0 -> ･
-    98:111:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    100:113:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.linkbubble.ui.FAQDialog$FAQAdapter -> Ꮮ$･:
     android.view.LayoutInflater mInflater -> ˊ
     com.linkbubble.ui.FAQDialog this$0 -> ･
-    157:157:int getCount() -> getCount
-    161:161:java.lang.Object getItem(int) -> getItem
-    165:165:long getItemId(int) -> getItemId
-    170:177:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-    187:196:android.view.View getHeaderView(int,android.view.View,android.view.ViewGroup) -> ･
-    201:205:long getHeaderId(int) -> ･
+    159:159:int getCount() -> getCount
+    163:163:java.lang.Object getItem(int) -> getItem
+    167:167:long getItemId(int) -> getItemId
+    172:179:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    189:198:android.view.View getHeaderView(int,android.view.View,android.view.ViewGroup) -> ･
+    203:207:long getHeaderId(int) -> ･
 com.linkbubble.ui.FAQItem -> com.linkbubble.ui.FAQItem:
     android.widget.TextView mQuestionTextView -> ･
     android.widget.TextView mAnswerTextView -> ˊ
@@ -5302,7 +5302,7 @@ com.linkbubble.ui.TabView -> com.linkbubble.ui.TabView:
     android.widget.ImageView mBackIndicatorView -> ˊ
     com.linkbubble.util.ScaleUpAnimHelper mBackIndicatorAnimHelper -> ˋ
     40:144:void configure(java.lang.String,long,boolean) -> ･
-    155:157:void onPageLoaded(boolean) -> ･
+    155:159:void onPageLoaded(boolean) -> ･
     21:21:com.linkbubble.util.ScaleUpAnimHelper access$000(com.linkbubble.ui.TabView) -> ･
     21:21:com.linkbubble.ui.ContentView access$100(com.linkbubble.ui.TabView) -> ˊ
 com.linkbubble.ui.TabView$2 -> Ꮣ:
