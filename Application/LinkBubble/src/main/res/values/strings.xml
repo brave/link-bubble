@@ -159,7 +159,8 @@
     <string name="faq_roadmap_question">Do you publish a feature roadmap? Can I up-vote upcoming features?</string>
     <string name="faq_roadmap_answer">For competitive reasons, the answer to both of these questions is \'no\' I\'m afraid.<br/><br/></string>
     <string name="faq_alternate_payment_question">I don\'t have a credit card and/or I can\'t purchase from Google Play. How do I buy Pro?</string>
-    <string name="faq_alternate_payment_answer">Link Bubble only supports purchases via Google Play at this time.<br/><br/></string>
+    <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble only supports purchases via Google Play at this time.<br/><br/>Additional
+            payment methods will hopefully be added in the future (assuming they do not violate the Google Play Developer Program Policies).]]></string>
     <string name="faq_cant_type_url_question">Why can\'t I type the name of the link I want to visit?</string>
     <string name="faq_cant_type_url_answer"><![CDATA[This is entirely as intended. Link Bubble is designed not to be a complete replacement for your browser, but to instead be used to
             load and display links from other apps as elegantly, helpfully and as quickly as possible.<br/><br/>If you want to load a new url in Link Bubble,
@@ -189,6 +190,8 @@
             (even to provide a ballpark estimate).<br/><br/>The reality is, when estimates are given people often end up taking them as a
             commitment, and can get upset if/when a release slips for whatever reason.]]></string>
     <string name="faq_close_quickly_question">How can I quickly stop Link Bubble from running?</string>
+    <string name="faq_change_default_browser_question">How can I remove Link Bubble as the default browser?</string>
+    <string name="faq_change_default_browser_answer">System Settings -> Apps -> Downloaded -> Link Bubble -> Clear defaults.</string>
     <string name="faq_close_quickly_answer">Swipe from the top of the screen to open the notifications pane and click the \"Link Bubble\" notification.</string>
     <string name="faq_report_bug_question">Report a bug</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
