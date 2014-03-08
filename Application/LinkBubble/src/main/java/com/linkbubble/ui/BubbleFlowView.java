@@ -49,6 +49,7 @@ public class BubbleFlowView extends HorizontalScrollView {
         boolean onTouchActionUp(MotionEvent event);
     }
 
+    private boolean mDoingCollapse;
     protected List<View> mViews;
     protected FrameLayout mContent;
     private boolean mIsExpanded;
@@ -408,6 +409,8 @@ public class BubbleFlowView extends HorizontalScrollView {
             return false;
         }
 
+        mDoingCollapse = false;
+
         mStillTouchFrameCount = -1;
         if (DEBUG) {
             //Log.d(TAG, "[longpress] expand(): mStillTouchFrameCount=" + mStillTouchFrameCount);
@@ -478,6 +481,7 @@ public class BubbleFlowView extends HorizontalScrollView {
             return;
         }
 
+        mDoingCollapse = true;
         mIsExpanded = false;
         mStillTouchFrameCount = -1;
         if (DEBUG) {
@@ -507,9 +511,10 @@ public class BubbleFlowView extends HorizontalScrollView {
 
                         @Override
                         public void onAnimationEnd(Animation animation) {
-                            if (animationEventListener != null) {
+                            if (animationEventListener != null && mDoingCollapse) {
                                 animationEventListener.onAnimationEnd(BubbleFlowView.this);
                             }
+                            mDoingCollapse = false;
                         }
 
                         @Override
