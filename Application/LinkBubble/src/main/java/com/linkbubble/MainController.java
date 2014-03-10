@@ -759,6 +759,11 @@ public class MainController implements Choreographer.FrameCallback {
                 MainApplication.openLink(mContext, url, null);
             }
         }
+
+        if (event.mOldState != DRM.LICENSE_VALID && event.mState == DRM.LICENSE_VALID && event.mDisplayedToast == false) {
+            Toast.makeText(mContext, R.string.valid_license_detected, Toast.LENGTH_LONG).show();
+            event.mDisplayedToast = true;
+        }
     }
 
     public boolean reloadAllTabs(Context context) {
