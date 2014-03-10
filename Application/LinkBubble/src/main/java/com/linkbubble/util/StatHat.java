@@ -26,6 +26,7 @@ import java.util.SortedMap;
 class StatHat {
 
     private static final String KEY = "ws7pLkHbVaQdOH8x";
+    private static final String TAG = "StatHat";
 
     private static StatHat sInstance = null;
 
@@ -43,7 +44,7 @@ class StatHat {
                 .setLog(new RestAdapter.Log() {
                     @Override
                     public void log(String s) {
-                        Log.d("stathat", "log() - " + s);
+                        Log.d(TAG, "log() - " + s);
                     }
                 })
                 .setLogLevel(RestAdapter.LogLevel.BASIC)
@@ -54,41 +55,43 @@ class StatHat {
 
     private StatHatService mStatHatService;
 
-    void ezPostValue(String statName, Double value) {
+    void ezPostValue(final String statName, Double value) {
         try {
             mStatHatService.ezValue(KEY, statName, URLEncoder.encode(value.toString(), "UTF-8"), new Callback<StatHatService.Result>() {
 
                 @Override
                 public void success(StatHatService.Result result, Response response) {
-
+                    Log.d(TAG, "ezPostValue() - success for " + statName + ", " + result.msg);
                 }
 
                 @Override
                 public void failure(RetrofitError retrofitError) {
-
+                    Log.d(TAG, "ezPostValue() - failure for " + statName);
                 }
             });
         }
         catch (Exception e) {
-            System.err.println("ezPostValue exception:  " + e);
+            Log.e(TAG, "ezPostCount exception:  " + e.getLocalizedMessage(), e);
         }
     }
 
-    void ezPostCount(String statName, Integer count) {
+    void ezPostCount(final String statName, Integer count) {
         try {
             mStatHatService.ezCount(KEY, statName, URLEncoder.encode(count.toString(), "UTF-8"), new Callback<StatHatService.Result>() {
 
                 @Override
                 public void success(StatHatService.Result result, Response response) {
+                    Log.d(TAG, "ezPostCount() - success for " + statName + ", " + result.msg);
                 }
 
                 @Override
                 public void failure(RetrofitError retrofitError) {
+                    Log.d(TAG, "ezPostCount() - failure for " + statName);
                 }
             });
         }
         catch (Exception e) {
-            System.err.println("ezPostCount exception:  " + e);
+            Log.e(TAG, "ezPostCount exception:  " + e.getLocalizedMessage(), e);
         }
     }
 }
