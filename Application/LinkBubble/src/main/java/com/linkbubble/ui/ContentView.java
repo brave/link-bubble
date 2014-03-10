@@ -602,8 +602,6 @@ public class ContentView extends FrameLayout {
             mEventHandler.onPageLoaded(false);
             Log.d(TAG, "onPageFinished() - url: " + urlAsString);
 
-            saveLoadTime();
-
             String title = MainApplication.sTitleHashMap.get(urlAsString);
             MainApplication.saveUrlInHistory(getContext(), null, mUrl.toString(), mUrl.getHost(), title);
             if (title == null) {    // if no title is set, display nothing rather than "Loading..." #265
@@ -631,6 +629,7 @@ public class ContentView extends FrameLayout {
             if (mIsDestroyed == false && MainController.get() != null) {
                 //Log.e(TAG, "*** set mDelayedAutoContentDisplayLinkLoadedScheduled=" + mDelayedAutoContentDisplayLinkLoadedScheduled);
                 MainController.get().autoContentDisplayLinkLoaded(mOwnerTabView);
+                saveLoadTime();
             }
         }
     };
