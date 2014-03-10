@@ -116,7 +116,6 @@ public class MainService extends Service {
         filter = new IntentFilter(Intent.ACTION_PACKAGE_ADDED);
         filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
         filter.addDataScheme("package");
-        registerReceiver(mPackageBroadcastReceiver, filter);
 
         filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
@@ -127,7 +126,6 @@ public class MainService extends Service {
     @Override
     public void onDestroy() {
         unregisterReceiver(mScreenReceiver);
-        unregisterReceiver(mPackageBroadcastReceiver);
         unregisterReceiver(mDialogReceiver);
         unregisterReceiver(mBroadcastReceiver);
         MainController.destroy();
@@ -147,21 +145,6 @@ public class MainService extends Service {
         public void onReceive(Context context, Intent myIntent) {
             if ( myIntent.getAction().equals( BCAST_CONFIGCHANGED ) ) {
                 MainController.get().onOrientationChanged();
-            }
-        }
-    };
-
-    private static BroadcastReceiver mPackageBroadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            final String action = intent.getAction();
-            if (Intent.ACTION_PACKAGE_REMOVED.equals(action)) {
-                Settings.get().updateBrowsers();
-                MainApplication.checkForProVersion(context);
-                // Add checks such that in the event getDefaultBrowserPackageName() no longer exists, we use a default.
-            } else if (Intent.ACTION_PACKAGE_ADDED.equals(action)) {
-                Settings.get().updateBrowsers();
-                MainApplication.checkForProVersion(context);
             }
         }
     };

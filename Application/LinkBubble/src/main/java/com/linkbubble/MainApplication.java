@@ -372,5 +372,6 @@ public class MainApplication extends Application {
     public static class StateChangedEvent {
         public int mState;
         public int mOldState;
+        public boolean mDisplayedToast;
     }
 }
