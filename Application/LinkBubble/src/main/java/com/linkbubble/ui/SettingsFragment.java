@@ -453,7 +453,7 @@ public class SettingsFragment extends PreferenceFragment {
                         packageManager.setComponentEnabledSetting(dummyComponentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
 
                         Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse(Config.SET_DEFAULT_BROSWER_URL));
+                        intent.setData(Uri.parse(Config.SET_DEFAULT_BROWSER_URL));
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         getActivity().startActivity(intent);
 
