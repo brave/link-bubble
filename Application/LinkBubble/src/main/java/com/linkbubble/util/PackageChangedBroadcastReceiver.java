@@ -20,7 +20,7 @@ public class PackageChangedBroadcastReceiver extends BroadcastReceiver {
             }
 
             String data = intent.getData() != null ? intent.getData().toString() : null;
-            if (data != null && data.contains(BuildConfig.PRO_LAUNCHER_PACKAGE_NAME) && MainApplication.sDrm != null) {
+            if (data != null && data.contains(BuildConfig.PRO_PACKAGE_NAME) && MainApplication.sDrm != null) {
                 MainApplication.checkForProVersion(context.getApplicationContext());
                 Log.d(DRM.TAG, "checkForProVersion() finished");
             }
