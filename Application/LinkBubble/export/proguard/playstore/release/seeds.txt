@@ -2978,7 +2978,6 @@ com.linkbubble.MainService: MainService()
 com.linkbubble.MainService$2: MainService$2()
 com.linkbubble.MainService$3: MainService$3()
 com.linkbubble.MainService$4: MainService$4()
-com.linkbubble.MainService$5: MainService$5()
 com.linkbubble.R: R()
 com.linkbubble.R$anim: int activity_close_enter
 com.linkbubble.R$anim: int activity_close_exit
@@ -3624,6 +3623,8 @@ com.linkbubble.util.Analytics: Analytics()
 com.linkbubble.util.CrashTracking: CrashTracking()
 com.linkbubble.util.Encrypt: Encrypt()
 com.linkbubble.util.NetworkConnectivity: NetworkConnectivity()
+com.linkbubble.util.PackageChangedBroadcastReceiver
+com.linkbubble.util.PackageChangedBroadcastReceiver: PackageChangedBroadcastReceiver()
 com.linkbubble.util.PageInspector$JSEmbedHandler
 com.linkbubble.util.PageInspector$JSEmbedHandler: void onTouchIconLinks(java.lang.String)
 com.linkbubble.util.PageInspector$JSEmbedHandler: void onYouTubeEmbeds(java.lang.String)
