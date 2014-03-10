@@ -20,7 +20,7 @@ import java.util.List;
 
 public class DRM {
 
-    static private String TAG = "LinkBubbleDRM";
+    static public String TAG = "LinkBubbleDRM";
     static private boolean DEBUG = true;
 
     static final int MSG_LICENSE_RESULT = 12346;

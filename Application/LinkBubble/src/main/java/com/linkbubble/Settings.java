@@ -207,7 +207,7 @@ public class Settings {
         mBubbleRestingPoint.set(bubbleRestingX, bubbleRestingY);
     }
 
-    void updateBrowsers() {
+    public void updateBrowsers() {
         mBrowsers.clear();
         String packageName = mContext.getPackageName();
         PackageManager packageManager = mContext.getPackageManager();
