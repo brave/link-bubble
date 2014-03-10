@@ -1559,7 +1559,7 @@ com.google.gson.stream.MalformedJsonException:
     39:43:public MalformedJsonException(java.lang.Throwable)
 com.linkbubble.BuildConfig
 com.linkbubble.Config:
-    public static final java.lang.String SET_DEFAULT_BROSWER_URL
+    public static final java.lang.String SET_DEFAULT_BROWSER_URL
     public static final java.lang.String YOUTUBE_WATCH_PREFIX
     public static final java.lang.String YOUTUBE_EMBED_PATH_SUFFIX
     public static final java.lang.String YOUTUBE_EMBED_PREFIX
@@ -1699,7 +1699,7 @@ com.linkbubble.ui.BubbleFlowView:
     private static final int LONG_PRESS_FRAMES
     private static final int DEFAULT_ANIM_TIME
     private static final int SCROLL_FINISHED_CHECK_TIME
-    356:356:public int getItemCount()
+    357:357:public int getItemCount()
 com.linkbubble.ui.BubbleTargetView:
     259:277:public void getOffsetDebugRegion(android.graphics.Rect)
 com.linkbubble.ui.BubbleView:
@@ -1794,9 +1794,9 @@ com.linkbubble.util.PageInspector:
     private static final int MAX_FAVICON_ENTRIES
 com.linkbubble.util.StatHat:
     private static final java.lang.String KEY
+    private static final java.lang.String TAG
 com.linkbubble.util.StatHatService$Result:
     int status
-    java.lang.String msg
 com.linkbubble.util.Util:
     private static final int OUTCODE_INSIDE
     private static final int OUTCODE_LEFT
