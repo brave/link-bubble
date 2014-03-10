@@ -278,7 +278,7 @@ public class SettingsFragment extends PreferenceFragment {
             sayThanksPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    Intent intent = MainApplication.getStoreIntent(getActivity(), BuildConfig.STORE_PRO_URL);
+                    Intent intent = MainApplication.getStoreIntent(getActivity(), BuildConfig.STORE_FREE_URL);
                     if (intent != null) {
                         startActivity(intent);
                         Settings.get().setSayThanksClicked(true);
