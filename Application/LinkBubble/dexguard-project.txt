@@ -296,13 +296,13 @@
 # Uncomment the following lines to remove Android logging code
 # (although you may want to keep error-level messages).
 -assumenosideeffects class android.util.Log {
-    #public static boolean isLoggable(java.lang.String, int);
-    #public static int v(...);
-    #public static int i(...);
-    #public static int w(...);
-    #public static int d(...);
-    #public static int e(...);
-    #public static java.lang.String getStackTraceString(java.lang.Throwable);
+    public static boolean isLoggable(java.lang.String, int);
+    public static int v(...);
+    public static int i(...);
+    public static int w(...);
+    public static int d(...);
+    public static int e(...);
+    public static java.lang.String getStackTraceString(java.lang.Throwable);
 }
 
 # If your application seems to fail due to the optimization or obfuscation
