@@ -64,7 +64,7 @@ public class EntryActivity extends Activity {
 
             String url = intent.getDataString();
             // Special case code for the setting the default browser. If this URL is received, do nothing.
-            if (url.equals(Config.SET_DEFAULT_BROSWER_URL)) {
+            if (url.equals(Config.SET_DEFAULT_BROWSER_URL)) {
                 Toast.makeText(this, R.string.default_browser_set, Toast.LENGTH_SHORT).show();
                 finish();
                 return;
