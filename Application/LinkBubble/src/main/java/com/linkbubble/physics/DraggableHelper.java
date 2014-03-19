@@ -215,7 +215,7 @@ public class DraggableHelper {
             }
 
             if (refME != null) {
-                Util.Assert(refME.mTime != lastME.mTime);
+                Util.Assert(refME.mTime != lastME.mTime, "refME.mTime:" + refME.mTime + ", lastME.mTime:" + lastME.mTime);
                 float touchTime = (lastME.mTime - refME.mTime) / 1000.0f;
                 mReleaseEvent.vx = (lastME.mX - refME.mX) / touchTime;
                 mReleaseEvent.vy = (lastME.mY - refME.mY) / touchTime;
@@ -290,7 +290,7 @@ public class DraggableHelper {
 
     public void clearTargetPos() {
         // TODO: This probably fires. It can be disabled temporarily if a pain, but should be fixed.
-        Util.Assert(mAnimationListener == null);
+        Util.Assert(mAnimationListener == null, "non-null mAnimationListener");
 
         mInitialX = -1;
         mInitialY = -1;
@@ -313,7 +313,7 @@ public class DraggableHelper {
     }
 
     public void setTargetPos(int x, int y, float t, AnimationType type, AnimationEventListener listener) {
-        Util.Assert(mAnimationListener == null);
+        Util.Assert(mAnimationListener == null, "non-null mAnimationListener");
         mAnimationListener = listener;
 
         if (x != mTargetX || y != mTargetY) {
@@ -353,7 +353,7 @@ public class DraggableHelper {
 
     public boolean update(float dt) {
         if (mAnimTime < mAnimPeriod) {
-            Util.Assert(mAnimPeriod > 0.0f);
+            Util.Assert(mAnimPeriod > 0.0f, "mAnimPeriod:" + mAnimPeriod);
 
             mAnimTime = Util.clamp(0.0f, mAnimTime + dt, mAnimPeriod);
 

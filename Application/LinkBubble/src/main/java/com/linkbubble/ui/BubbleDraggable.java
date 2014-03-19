@@ -73,7 +73,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     private void onAnimComplete() {
-        Util.Assert(mAnimActive);
+        Util.Assert(mAnimActive, "mAnimActive=" + mAnimActive);
         mAnimActive = false;
     }
 
@@ -194,7 +194,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
             float intersectionDistance = Util.distance(initialX, initialY, intBubbleX, intBubbleY);
             float intFraction = intersectionDistance / flickDistance;
-            Util.Assert(intFraction >= 0.0f && intFraction <= 1.05f);
+            Util.Assert(intFraction >= 0.0f && intFraction <= 1.05f, "intFraction:" + intFraction);
             float intTime = flickAnimPeriod * intFraction;
 
             animType = DraggableHelper.AnimationType.Linear;
@@ -592,8 +592,8 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     public void setTargetPos(int xp, int yp, float t, DraggableHelper.AnimationType type, DraggableHelper.AnimationEventListener listener) {
-        Util.Assert(!mAnimActive);
-        Util.Assert(t > 0.0f);      // Don't think this happens anymore - just to catch if it does happen and investigate why.
+        Util.Assert(!mAnimActive, "mAnimActive:" + mAnimActive);
+        Util.Assert(t > 0.0f, "t:" + t);      // Don't think this happens anymore - just to catch if it does happen and investigate why.
         mAnimActive = listener != null;
         mDraggableHelper.setTargetPos(xp, yp, t, type, listener);
     }

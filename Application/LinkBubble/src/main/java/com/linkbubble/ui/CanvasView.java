@@ -172,7 +172,7 @@ public class CanvasView extends FrameLayout {
     }
 
     private void applyAlpha() {
-        Util.Assert(mCurrentAlpha >= 0.0f && mCurrentAlpha <= 1.0f);
+        Util.Assert(mCurrentAlpha >= 0.0f && mCurrentAlpha <= 1.0f, "alpha out of range: " + mCurrentAlpha);
 
         setAlpha(mCurrentAlpha);
 
@@ -183,7 +183,7 @@ public class CanvasView extends FrameLayout {
         }
 
         if (mContentView != null) {
-            Util.Assert(mCurrentAlphaContentView >= 0.0f && mCurrentAlphaContentView <= 1.0f);
+            Util.Assert(mCurrentAlphaContentView >= 0.0f && mCurrentAlphaContentView <= 1.0f, "mCurrentAlphaContentView out of range:" + mCurrentAlphaContentView);
             mContentView.setAlpha(mCurrentAlphaContentView);
         }
     }
