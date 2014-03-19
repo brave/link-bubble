@@ -658,7 +658,11 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public boolean closeCurrentTab(Constant.BubbleAction action, boolean animateOff) {
-        return closeTab(mBubbleFlowDraggable.getCurrentTab(), action, animateOff);
+        if (mBubbleFlowDraggable != null) {
+            return closeTab(mBubbleFlowDraggable.getCurrentTab(), action, animateOff);
+        }
+
+        return false;
     }
 
     public boolean closeTab(TabView tabView, boolean animateOff) {
@@ -672,7 +676,9 @@ public class MainController implements Choreographer.FrameCallback {
         if (debug) {
             Toast.makeText(mContext, "HIT TARGET!", Toast.LENGTH_SHORT).show();
         } else {
-            mBubbleFlowDraggable.closeTab(tabView, animateOff, action, tabView.getTotalTrackedLoadTime());
+            if (mBubbleFlowDraggable != null) {
+                mBubbleFlowDraggable.closeTab(tabView, animateOff, action, tabView.getTotalTrackedLoadTime());
+            }
             int activeTabCount = getActiveTabCount();
             showBadge(activeTabCount > 1 ? true : false);
             if (activeTabCount == 0) {
