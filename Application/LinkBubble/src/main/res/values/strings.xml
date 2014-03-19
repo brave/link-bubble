@@ -6,6 +6,7 @@
     <string name="share_picker_label">Share picker</string>
 
     <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string name="cancel">Cancel</string>
 
     <string name="action_ok">OK</string>
@@ -232,6 +233,8 @@
     <string name="content_description_settings">Settings</string>
     <string name="content_description_can_go_back">Can go back</string>
     <string name="content_description_upgrade_to_pro">Upgrade to Pro</string>
+
+    <string name="requesting_location_message">%1$s is requesting your location. Allow?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
     <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>

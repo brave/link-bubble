@@ -31,6 +31,7 @@
     <dimen name="home_logo_margin_right">0dp</dimen>
     <dimen name="canvas_mask_height">80dp</dimen>
 
+    <dimen name="requesting_location_box_height">60dp</dimen>
 
     <dimen name="favicon_bg">32dp</dimen>
     <!-- Set the upper limit on the size of favicon that will be processed. Favicons larger than
