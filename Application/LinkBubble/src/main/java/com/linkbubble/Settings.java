@@ -99,7 +99,7 @@ public class Settings {
     }
 
     public static void setConsumeBubblesChangedEventHandler(ConsumeBubblesChangedEventHandler eh) {
-        Util.Assert(mInstance != null);
+        Util.Assert(mInstance != null, "null instance");
         mInstance.mConsumeBubblesChangedEventHandler = eh;
     }
 

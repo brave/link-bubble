@@ -42,12 +42,12 @@ public class Prompt {
     private WindowManager.LayoutParams mLayoutParams;
 
     public static void initModule(Context context) {
-        Util.Assert(sPrompt == null);
+        Util.Assert(sPrompt == null, "non-null instance");
         sPrompt = new Prompt(context);
     }
 
     public static void deinitModule() {
-        Util.Assert(sPrompt != null);
+        Util.Assert(sPrompt != null, "null instance");
         sPrompt = null;
     }
 
@@ -145,7 +145,7 @@ public class Prompt {
     };
 
     public static void show(CharSequence text, Drawable icon, int duration, OnPromptEventListener listener) {
-        Util.Assert(sPrompt != null);
+        Util.Assert(sPrompt != null, "null instance");
         if (sPrompt != null) {
             sPrompt.hidePrompt(true);
             sPrompt.showPrompt(text, icon, duration, listener);

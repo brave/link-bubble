@@ -256,7 +256,7 @@ public class MainController implements Choreographer.FrameCallback {
     };
 
     protected MainController(Context context, EventHandler eventHandler) {
-        Util.Assert(sInstance == null);
+        Util.Assert(sInstance == null, "non-null instance");
         sInstance = this;
         mContext = context;
         mAppPackageName = mContext.getPackageName();
