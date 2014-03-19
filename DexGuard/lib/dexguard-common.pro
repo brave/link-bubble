@@ -106,6 +106,7 @@
 -keep !abstract !interface * implements com.google.ads.mediation.customevent.CustomEvent
 
 # Guava.
+-dontnote sun.misc.Unsafe
 -dontnote com.google.common.primitives.UnsignedBytes$LexicographicalComparatorHolder$UnsafeComparator
 -keepclassmembers class com.google.common.primitives.UnsignedBytes$LexicographicalComparatorHolder$UnsafeComparator {
     sun.misc.Unsafe theUnsafe;
@@ -191,6 +192,59 @@
     <init>(android.content.Context);
 }
 
+# Couchbase Lite.
+-adaptresourcefilecontents META-INF/services/com.couchbase.lite.*
+
+-dontnote com.couchbase.**
+-keep class com.couchbase.lite.storage.SQLiteStorageEngine
+-keep,allowobfuscation class * implements com.couchbase.lite.storage.SQLiteStorageEngine
+
+-keep,allowobfuscation class * implements com.couchbase.lite.util.Logger
+
+-keep class com.couchbase.touchdb.TDCollateJSON {
+    int compareStringsUnicode(java.lang.String, java.lang.String);
+}
+
+-keep class com.couchbase.lite.router.Router {
+    com.couchbase.lite.Status *(com.couchbase.lite.Database, java.lang.String, java.lang.String);
+}
+
+# Ektorp.
+-keep class org.ektorp.** implements java.io.Serializable {
+    <fields>;
+    <init>(...);
+    void set*(***);
+    *** get*();
+    boolean is*();
+}
+
+-dontnote org.ektorp.support.CouchDbDocument
+-keep class * extends org.ektorp.support.CouchDbDocument {
+    <fields>;
+    <init>(...);
+    void set*(***);
+    *** get*();
+    boolean is*();
+}
+
+# Jackson.
+-dontwarn org.codehaus.jackson.map.ext.**
+-dontnote org.codehaus.jackson.**
+
+-keep,allowobfuscation @interface org.codehaus.jackson.annotate.*
+-keep,allowobfuscation @interface org.codehaus.jackson.map.annotate.*
+
+-dontnote org.codehaus.jackson.annotate.JsonAutoDetect
+-keepclassmembers @org.codehaus.jackson.annotate.JsonAutoDetect class * {
+    void set*(***);
+    *** get*();
+    boolean is*();
+}
+
+-keepclassmembers class * {
+    @org.codehaus.jackson.annotate.* <methods>;
+}
+
 # Apache logging.
 -adaptclassstrings org.apache.commons.logging.LogFactory
 
@@ -237,6 +291,24 @@
 
 -dontnote com.phonegap.api.Plugin
 -keep public class * extends com.phonegap.api.Plugin
+
+# Nuance Vocalizer.
+-dontnote com.nuance.android.vocalizer.**
+-keep class com.nuance.android.vocalizer.VocalizerEngine {
+  <fields>;
+  *** speechMarksReceived(...);
+  *** audioSamplesReceived(...);
+  *** openAssetFile(...);
+  *** closeAssetFile(...);
+  *** stop(...);
+}
+
+-keep class com.nuance.android.vocalizer.VocalizerSpeechMark { <fields>; }
+-keep class com.nuance.android.vocalizer.VocalizerVersion    { <fields>; }
+-keep class com.nuance.android.vocalizer.VocalizerVoice      { <fields>; }
+-keep class com.nuance.android.vocalizer.internal.VocalizerFileInfo     { <fields>; }
+-keep class com.nuance.android.vocalizer.internal.VocalizerResourceInfo { <fields>; }
+-keep class com.nuance.android.vocalizer.internal.VocalizerStatusInfo   { <fields>; }
 
 # Enumerations.
 -keepclassmembers enum * {
