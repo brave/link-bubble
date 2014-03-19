@@ -358,7 +358,15 @@ public class ContentView extends FrameLayout {
                 return true;
             }
 
-            URL updatedUrl = getUpdatedUrl(urlAsString);
+            if (urlAsString.startsWith("tel:")) {
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(urlAsString));
+                if (MainApplication.loadIntent(getContext(), intent, urlAsString, mInitialUrlLoadStartTime)) {
+                    MainController.get().switchToBubbleView();
+                }
+                return true;
+            }
+
+                URL updatedUrl = getUpdatedUrl(urlAsString);
             if (updatedUrl == null) {
                 Log.d(TAG, "ignore unsupported URI scheme: " + urlAsString);
                 showOpenInBrowserPrompt(R.string.unsupported_scheme_default_browser,
