@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.saikoa.dexguard.maven</groupId>
     <artifactId>dexguard-maven-plugin</artifactId>
-    <version>5.4.36</version>
+    <version>5.5.00</version>
     <packaging>maven-plugin</packaging>
     <name>DexGuard Maven Plugin</name>
     <description>Maven Plugin for DexGuard, the specialized optimizer and obfuscator for Android.</description>

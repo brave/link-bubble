@@ -6,7 +6,7 @@ buildscript {
     }
     dependencies {
         classpath ':dexguard:'
-        classpath 'com.android.tools.build:gradle:0.8.0'
+        classpath 'com.android.tools.build:gradle:0.9.0'
         classpath 'com.crashlytics.tools.gradle:crashlytics-gradle:1.+'
     }
 }
@@ -37,7 +37,7 @@ def buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone(
 
 android {
     compileSdkVersion 19
-    buildToolsVersion '19.0.0'
+    buildToolsVersion '19.0.3'
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 19
