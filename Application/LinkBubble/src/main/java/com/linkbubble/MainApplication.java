@@ -181,6 +181,16 @@ public class MainApplication extends Application {
         return true;
     }
 
+    public static boolean loadIntent(Context context, Intent intent, String urlAsString, long urlLoadStartTime) {
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        context.startActivity(intent);
+        //Log.d(TAG, "redirect to app: " + resolveInfo.loadLabel(context.getPackageManager()) + ", url:" + url);
+        if (urlLoadStartTime > -1) {
+            Settings.get().trackLinkLoadTime(System.currentTimeMillis() - urlLoadStartTime, Settings.LinkLoadType.AppRedirectBrowser, urlAsString);
+        }
+        return true;
+    }
+
     public static boolean handleBubbleAction(final Context context, Constant.BubbleAction action, final String urlAsString, long totalTrackedLoadTime) {
         Constant.ActionType actionType = Settings.get().getConsumeBubbleActionType(action);
         boolean result = false;
