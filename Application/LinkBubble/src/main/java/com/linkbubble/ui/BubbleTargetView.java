@@ -117,7 +117,7 @@ public class BubbleTargetView extends FrameLayout {
                 return (int) (Config.mScreenWidth * 0.5f + mDefaultX);
         }
 
-        Util.Assert(false);
+        Util.Assert(false, "Anchor not handled - " + mHAnchor);
         return 0;
     }
 
@@ -129,7 +129,7 @@ public class BubbleTargetView extends FrameLayout {
                 return Config.mScreenHeight - mDefaultY;
         }
 
-        Util.Assert(false);
+        Util.Assert(false, "Anchor not handled - " + mVAnchor);
         return 0;
     }
 
@@ -182,8 +182,8 @@ public class BubbleTargetView extends FrameLayout {
                 mButtonWidth = d.getIntrinsicWidth();
                 mButtonHeight = d.getIntrinsicHeight();
             }
-            Util.Assert(mButtonWidth > 0);
-            Util.Assert(mButtonHeight > 0);
+            Util.Assert(mButtonWidth > 0, "mButtonWidth:" + mButtonWidth);
+            Util.Assert(mButtonHeight > 0, "mButtonHeight:" + mButtonHeight);
 
             mImage.setImageDrawable(d);
         }
@@ -216,19 +216,19 @@ public class BubbleTargetView extends FrameLayout {
             mButtonWidth = d.getIntrinsicWidth();
             mButtonHeight = d.getIntrinsicHeight();
         }
-        Util.Assert(mButtonWidth > 0);
-        Util.Assert(mButtonHeight > 0);
+        Util.Assert(mButtonWidth > 0, "mButtonWidth:" + mButtonWidth);
+        Util.Assert(mButtonHeight > 0, "mButtonHeight:" + mButtonHeight);
 
         mImage.setImageDrawable(d);
 
         int bubbleIconSize = getResources().getDimensionPixelSize(R.dimen.bubble_icon_size);
         mSnapWidth = bubbleIconSize;
         mSnapHeight = bubbleIconSize;
-        Util.Assert(mSnapWidth > 0 && mSnapHeight > 0 && mSnapWidth == mSnapHeight);
+        Util.Assert(mSnapWidth > 0 && mSnapHeight > 0 && mSnapWidth == mSnapHeight, "mSnapWidth:" + mSnapWidth + ", mSnapHeight:" + mSnapHeight);
         mSnapCircle = new Circle(getXPos(), getYPos(), mSnapWidth * 0.5f);
 
         float r = getRadius();
-        Util.Assert(r > 0.0f);
+        Util.Assert(r > 0.0f, "r:" + r);
         mDefaultCircle = new Circle(getXPos(), getYPos(), r);
 
         switch (action) {
@@ -446,7 +446,7 @@ public class BubbleTargetView extends FrameLayout {
         }
 
         if (mAnimTime < mAnimPeriod) {
-            Util.Assert(mAnimPeriod > 0.0f);
+            Util.Assert(mAnimPeriod > 0.0f, "mAnimPeriod:" + mAnimPeriod);
 
             mAnimTime = Util.clamp(0.0f, mAnimTime + dt, mAnimPeriod);
 

@@ -120,7 +120,7 @@ public class TabView extends BubbleView {
 
                 // TODO: How does this code path actually get hit?
                 // GW: Let me know if you hit this code path.
-                Util.Assert(false);
+                //Util.Assert(false);
                 //MainController mainController = MainController.get();
                 //mainController.switchState(mainController.STATE_AnimateToBubbleView);
             }

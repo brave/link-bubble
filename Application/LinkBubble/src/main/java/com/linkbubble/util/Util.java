@@ -26,10 +26,6 @@ import java.util.Locale;
  * Created by gw on 2/10/13.
  */
 public class Util {
-    public static void Assert(boolean condition) {
-        Assert(condition, "Unknown Error");
-    }
-
     public static void Assert(boolean condition, String message) {
         if (!condition) {
             throw new AssertionError(message);
@@ -240,7 +236,7 @@ public class Util {
                     y = y0 + (y1 - y0) * (xmax - x0) / (x1 - x0);
                     x = xmax;
                 } else {   // point is to the left of clip rectangle
-                    Util.Assert((outcodeOut & OUTCODE_LEFT) != 0);
+                    Util.Assert((outcodeOut & OUTCODE_LEFT) != 0, "outcodeOut:" + outcodeOut);
                     y = y0 + (y1 - y0) * (xmin - x0) / (x1 - x0);
                     x = xmin;
                 }
