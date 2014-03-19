@@ -604,6 +604,10 @@ public class ContentView extends FrameLayout {
     void onPageLoadComplete(String urlAsString) {
 
         mPageFinishedLoading = true;
+
+        // Always check again at 100%
+        mPageInspector.run(mWebView, getPageInspectFlags());
+
         // NOTE: *don't* call updateUrl() here. Turns out, this function is called after a redirect has occurred.
         // Eg, urlAsString "t.co/xyz" even after the next redirect is starting to load
 
@@ -636,9 +640,6 @@ public class ContentView extends FrameLayout {
             if (title == null) {    // if no title is set, display nothing rather than "Loading..." #265
                 mTitleTextView.setText(null);
             }
-
-            // Always check again at 100%
-            mPageInspector.run(mWebView, getPageInspectFlags());
 
             postDelayed(mDropDownCheckRunnable, Constant.DROP_DOWN_CHECK_TIME);
             //mDelayedAutoContentDisplayLinkLoadedScheduled = true;
