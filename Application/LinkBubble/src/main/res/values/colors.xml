@@ -14,6 +14,7 @@
     <color name="action_picker_selected_color">#E2E2E2</color>
 
     <color name="highlight_color">#663399</color>
+    <color name="request_location_box_color">#ffefe4c6</color>
 
 </resources>
 

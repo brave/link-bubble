@@ -38,6 +38,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -83,6 +84,10 @@ public class ContentView extends FrameLayout {
     private OpenInAppButton mOpenInAppButton;
     private OpenEmbedButton mOpenEmbedButton;
     private ContentViewButton mOverflowButton;
+    private View mRequestLocationShadow;
+    private View mRequestLocationContainer;
+    private CondensedTextView mRequestLocationTextView;
+    private Button mRequestLocationYesButton;
     private LinearLayout mToolbarLayout;
     private EventHandler mEventHandler;
     private URL mUrl;
@@ -294,6 +299,17 @@ public class ContentView extends FrameLayout {
         mOverflowButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_overflow_round));
         mOverflowButton.setOnClickListener(mOnOverflowButtonClickListener);
 
+        mRequestLocationShadow = findViewById(R.id.request_location_shadow);
+        mRequestLocationContainer = findViewById(R.id.request_location_container);
+        mRequestLocationTextView = (CondensedTextView) findViewById(R.id.requesting_location_text_view);
+        mRequestLocationYesButton = (Button) findViewById(R.id.access_location_yes);
+        findViewById(R.id.access_location_no).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideAllowLocationDialog();
+            }
+        });
+
         mEventHandler = eventHandler;
         mEventHandler.onCanGoBackChanged(false);
         mPageFinishedLoading = false;
@@ -439,6 +455,8 @@ public class ContentView extends FrameLayout {
             if (mIsDestroyed) {
                 return;
             }
+
+            hideAllowLocationDialog();
 
             mPageFinishedLoading = false;
             mDoDropDownCheck = true;
@@ -858,7 +876,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
-            callback.invoke(origin, true, false);
+            showAllowLocationDialog(origin, callback);
         }
     };
 
@@ -1449,6 +1467,26 @@ public class ContentView extends FrameLayout {
         } else {
             mUrlTextView.setText(urlAsString.replace("http://", ""));
         }
+    }
 
+    void showAllowLocationDialog(final String origin, final GeolocationPermissions.Callback callback) {
+        String originCopy = origin;
+        originCopy.replace("http://", "").replace("https://", "");
+        String messageText = String.format(getResources().getString(R.string.requesting_location_message), originCopy);
+        mRequestLocationTextView.setText(messageText);
+        mRequestLocationContainer.setVisibility(View.VISIBLE);
+        mRequestLocationShadow.setVisibility(View.VISIBLE);
+        mRequestLocationYesButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callback.invoke(origin, true, false);
+                hideAllowLocationDialog();
+            }
+        });
+    }
+
+    void hideAllowLocationDialog() {
+        mRequestLocationContainer.setVisibility(View.GONE);
+        mRequestLocationShadow.setVisibility(View.GONE);
     }
 }

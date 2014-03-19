@@ -99,6 +99,52 @@
         android:layout_height="fill_parent"
         android:layout_marginTop="@dimen/webview_margin_top"/>
 
+    <LinearLayout
+        android:id="@+id/request_location_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/requesting_location_box_height"
+        android:layout_gravity="bottom"
+        android:background="@color/request_location_box_color"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:visibility="gone">
+
+        <com.linkbubble.ui.CondensedTextView
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#555555"
+            android:id="@+id/requesting_location_text_view"
+            android:text="@string/requesting_location_message"/>
+
+        <Button
+            android:id="@+id/access_location_no"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/no"/>
+
+        <Button
+            android:id="@+id/access_location_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/yes"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/request_location_shadow"
+        android:layout_width="fill_parent"
+        android:layout_height="8dp"
+        android:background="@drawable/action_bar_shadow"
+        android:layout_gravity="bottom"
+        android:rotation="180"
+        android:layout_marginBottom="@dimen/requesting_location_box_height"
+        tools:ignore="ContentDescription"
+        android:visibility="gone"/>
+
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="8dp"
