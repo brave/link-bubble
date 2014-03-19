@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.webkit.ConsoleMessage;
 import android.webkit.DownloadListener;
+import android.webkit.GeolocationPermissions;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
@@ -299,6 +300,7 @@ public class ContentView extends FrameLayout {
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setGeolocationEnabled(true);
         webSettings.setSupportZoom(true);
         webSettings.setTextZoom(Settings.get().getWebViewTextZoom());
         webSettings.setBuiltInZoomControls(true);
@@ -306,6 +308,7 @@ public class ContentView extends FrameLayout {
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setSupportMultipleWindows(DRM.isLicensed() ? true : false);
+        webSettings.setGeolocationDatabasePath(Constant.WEBVIEW_DATABASE_LOCATION);
 
         mWebView.setLongClickable(true);
         mWebView.setOnLongClickListener(mOnWebViewLongClickListener);
@@ -851,6 +854,11 @@ public class ContentView extends FrameLayout {
             }
 
             return false;
+        }
+
+        @Override
+        public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
+            callback.invoke(origin, true, false);
         }
     };
 
