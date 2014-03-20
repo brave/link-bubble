@@ -3003,6 +3003,7 @@ com.linkbubble.R$color: int bubble_border
 com.linkbubble.R$color: int content_toolbar_background
 com.linkbubble.R$color: int highlight_color
 com.linkbubble.R$color: int home_background
+com.linkbubble.R$color: int request_location_box_color
 com.linkbubble.R$color: int white_button_normal
 com.linkbubble.R$color: int white_button_pressed
 com.linkbubble.R$color: R$color()
@@ -3039,6 +3040,7 @@ com.linkbubble.R$dimen: int content_view_button_max_height
 com.linkbubble.R$dimen: int favicon_bg
 com.linkbubble.R$dimen: int favicon_largest_interesting_size
 com.linkbubble.R$dimen: int home_logo_margin_right
+com.linkbubble.R$dimen: int requesting_location_box_height
 com.linkbubble.R$dimen: int stat_bubble_size
 com.linkbubble.R$dimen: int stat_bubble_text_size
 com.linkbubble.R$dimen: int stat_height
@@ -3104,6 +3106,8 @@ com.linkbubble.R$drawable: int white_button_pressed
 com.linkbubble.R$drawable: R$drawable()
 com.linkbubble.R$id: int accept_terms_and_privacy_button
 com.linkbubble.R$id: int accept_terms_and_privacy_text
+com.linkbubble.R$id: int access_location_no
+com.linkbubble.R$id: int access_location_yes
 com.linkbubble.R$id: int action_clear_history
 com.linkbubble.R$id: int add_bubble_button
 com.linkbubble.R$id: int animate_bubble_button
@@ -3156,6 +3160,9 @@ com.linkbubble.R$id: int question_text_view
 com.linkbubble.R$id: int relLayout1
 com.linkbubble.R$id: int reload_button
 com.linkbubble.R$id: int remove_bubble_button
+com.linkbubble.R$id: int request_location_container
+com.linkbubble.R$id: int request_location_shadow
+com.linkbubble.R$id: int requesting_location_text_view
 com.linkbubble.R$id: int root_layout
 com.linkbubble.R$id: int section_text
 com.linkbubble.R$id: int seekbar_text_zoom
@@ -3310,6 +3317,7 @@ com.linkbubble.R$string: int loading
 com.linkbubble.R$string: int loading_youtube_embed_info
 com.linkbubble.R$string: int long_press_unsupported_default_browser
 com.linkbubble.R$string: int long_press_unsupported_no_default_browser
+com.linkbubble.R$string: int no
 com.linkbubble.R$string: int no_default_browser
 com.linkbubble.R$string: int notification_summary
 com.linkbubble.R$string: int notification_title
@@ -3369,6 +3377,7 @@ com.linkbubble.R$string: int private_data_cleared
 com.linkbubble.R$string: int private_data_cleared_reloading_current
 com.linkbubble.R$string: int remove_default_message
 com.linkbubble.R$string: int remove_default_title
+com.linkbubble.R$string: int requesting_location_message
 com.linkbubble.R$string: int service_name
 com.linkbubble.R$string: int share_invalid_data
 com.linkbubble.R$string: int share_picker_label
