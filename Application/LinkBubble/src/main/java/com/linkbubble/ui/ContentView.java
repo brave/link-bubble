@@ -13,6 +13,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Handler;
@@ -1471,8 +1472,15 @@ public class ContentView extends FrameLayout {
     }
 
     void showAllowLocationDialog(final String origin, final GeolocationPermissions.Callback callback) {
-        String originCopy = origin;
-        originCopy.replace("http://", "").replace("https://", "");
+
+        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+        if (locationManager == null
+                || locationManager.getAllProviders() == null
+                || locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER) == false) {
+            return;
+        }
+
+        String originCopy = origin.replace("http://", "").replace("https://", "");
         String messageText = String.format(getResources().getString(R.string.requesting_location_message), originCopy);
         mRequestLocationTextView.setText(messageText);
         mRequestLocationContainer.setVisibility(View.VISIBLE);
