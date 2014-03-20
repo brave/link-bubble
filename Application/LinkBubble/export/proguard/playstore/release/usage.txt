@@ -1589,6 +1589,7 @@ com.linkbubble.Constant:
     public static final int DATA_USER_MAX_EMAILS
     public static final java.lang.String TWITTER_ACCOUNT_TYPE
     public static final java.lang.String YAHOO_ACCOUNT_TYPE
+    public static final java.lang.String WEBVIEW_DATABASE_LOCATION
     67:70:public static java.lang.String getValidDeviceId()
 com.linkbubble.DRM:
     static final int MSG_LICENSE_RESULT
@@ -1599,7 +1600,7 @@ com.linkbubble.DRM:
     static final int LICENSE_IGNORE_ERROR
 com.linkbubble.MainController:
     private static final java.lang.String TAG
-    726:727:public void switchToExpandedView()
+    732:733:public void switchToExpandedView()
 com.linkbubble.MainService:
     private static final java.lang.String BCAST_CONFIGCHANGED
 com.linkbubble.R$anim
@@ -1803,7 +1804,7 @@ com.linkbubble.util.Util:
     private static final int OUTCODE_RIGHT
     private static final int OUTCODE_BOTTOM
     private static final int OUTCODE_TOP
-    49:56:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
+    45:52:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
 com.squareup.otto.AnnotatedHandlerFinder:
     154:156:private AnnotatedHandlerFinder()
 com.squareup.otto.Bus:
