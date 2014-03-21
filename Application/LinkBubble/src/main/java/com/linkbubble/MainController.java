@@ -670,22 +670,15 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public boolean closeTab(TabView tabView, Constant.BubbleAction action, boolean animateOff) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-        boolean debug = prefs.getBoolean("debug_flick", false);
-
-        if (debug) {
-            Toast.makeText(mContext, "HIT TARGET!", Toast.LENGTH_SHORT).show();
-        } else {
-            if (mBubbleFlowDraggable != null) {
-                mBubbleFlowDraggable.closeTab(tabView, animateOff, action, tabView.getTotalTrackedLoadTime());
-            }
-            int activeTabCount = getActiveTabCount();
-            showBadge(activeTabCount > 1 ? true : false);
-            if (activeTabCount == 0) {
-                hideBubbleDraggable();
-                // Ensure BubbleFlowDraggable gets at least 1 update in the event items are animating off screen. See #237.
-                scheduleUpdate();
-            }
+        if (mBubbleFlowDraggable != null) {
+            mBubbleFlowDraggable.closeTab(tabView, animateOff, action, tabView != null ? tabView.getTotalTrackedLoadTime() : -1);
+        }
+        int activeTabCount = getActiveTabCount();
+        showBadge(activeTabCount > 1 ? true : false);
+        if (activeTabCount == 0) {
+            hideBubbleDraggable();
+            // Ensure BubbleFlowDraggable gets at least 1 update in the event items are animating off screen. See #237.
+            scheduleUpdate();
         }
 
         return getActiveTabCount() > 0;
