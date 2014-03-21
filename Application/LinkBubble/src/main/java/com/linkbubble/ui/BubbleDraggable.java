@@ -210,6 +210,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             }
         }
 
+        // #431 - Ensure there is always >0 time to animate the flick.
+        flickAnimPeriod = Math.max(0.01f, flickAnimPeriod);
+
         animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(Constant.BUBBLE_ANIM_TIME);
         mBadgeView.animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(Constant.BUBBLE_ANIM_TIME);
 
