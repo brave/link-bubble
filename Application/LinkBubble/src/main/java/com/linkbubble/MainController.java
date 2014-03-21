@@ -726,11 +726,15 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void beginAppPolling() {
-        mAppPoller.beginAppPolling();
+        if (mAppPoller != null) {
+            mAppPoller.beginAppPolling();
+        }
     }
 
     public void endAppPolling() {
-        mAppPoller.endAppPolling();
+        if (mAppPoller != null) {
+            mAppPoller.endAppPolling();
+        }
     }
 
     AppPoller.AppPollerListener mAppPollerListener = new AppPoller.AppPollerListener() {
