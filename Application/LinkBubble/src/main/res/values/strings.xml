@@ -36,11 +36,8 @@
     <string name="preference_category_configuration">App Controls</string>
     <string name="preference_category_browser">Browser</string>
     <string name="preference_enabled_title">Enabled</string>
-    <string name="preference_auto_content_display_title">Auto content display</string>
-    <string name="preference_auto_content_display_app_redirect">App redirect</string>
-    <string name="preference_auto_content_display_link_loaded">Link loaded</string>
-    <string name="preference_auto_content_display_always">Always</string>
-    <string name="preference_auto_content_display_never">Never</string>
+    <string name="preference_auto_content_display_link_loaded_title">Auto expand</string>
+    <string name="preference_auto_content_display_link_loaded_summary">When any bubble has finished loading</string>
 
     <string name="preference_left_consume_bubble_title">Left bubble</string>
     <string name="preference_right_consume_bubble_title">Right bubble</string>
