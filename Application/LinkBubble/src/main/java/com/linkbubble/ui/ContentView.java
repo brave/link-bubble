@@ -577,7 +577,7 @@ public class ContentView extends FrameLayout {
                 mShareButton.setVisibility(VISIBLE);
             }
 
-            if (urlAsString.equals(Constant.WELCOME_MESSAGE_URL)) {
+            if (urlAsString.equals(Constant.WELCOME_MESSAGE_URL) && MainController.get() != null) {
                 MainController.get().displayTab(mOwnerTabView);
             }
         }
