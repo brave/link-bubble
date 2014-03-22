@@ -6,6 +6,7 @@ package org.mozilla.gecko.favicons.cache;
 
 import android.graphics.Bitmap;
 import android.util.Log;
+import com.linkbubble.util.CrashTracking;
 import org.mozilla.gecko.gfx.BitmapUtils;
 
 import java.util.ArrayList;
@@ -141,8 +142,13 @@ public class FaviconsForURL {
             // Find a payload, any payload, that is not invalidated.
             for (FaviconCacheElement element : mFavicons) {
                 if (!element.mInvalidated) {
-                    mDominantColor = BitmapUtils.getDominantColor(element.mFaviconPayload);
-                    return mDominantColor;
+                    try {
+                        mDominantColor = BitmapUtils.getDominantColor(element.mFaviconPayload);
+                        return mDominantColor;
+                    } catch (IllegalStateException ex) {
+                        // https://crashlytics.com/digital-ashes/android/apps/com.linkbubble.playstore/issues/532b555ffabb27481b16d958
+                        CrashTracking.logException(ex);
+                    }
                 }
             }
             mDominantColor = 0xFFFFFF;
