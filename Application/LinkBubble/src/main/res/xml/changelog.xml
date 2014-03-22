@@ -3,14 +3,18 @@
 
     <release version="1.0.2" versioncode="10200">
         <change>NEW: Clicking the version number in the settings displays the full change log.</change>
-        <change>CHANGE: Add a new 'Auto expand' checkbox to the settings. This replaces the previous 'Auto content display' setting.</change>
-        <change>CHANGE: By default, links no longer expand when they have finished loading.</change>
+        <change>CHANGE: Add a new 'Auto expand' checkbox to the settings. Replaces the previous (and confusing) 'Auto content display' setting.</change>
+        <change>CHANGE: By default, links no longer automatically expand when they have finished loading.</change>
         <change>CHANGE: Free version no longer displays the notice about Link Bubble only handling links from a single app each time a link is
-                loaded from a non-designated app. This prompt now only displays very rarely.</change>
+                loaded from the non-designated app. This prompt now only displays very rarely.</change>
         <change>BUG FIX: Many stability fixes.</change>
     </release>
 
     <release version="1.0.1" versioncode="10101">
+        <change>Fix GPS usage for pages that request location (Note: Link Bubble itself never accesses your location).</change>
+    </release>
+
+    <release version="1.0.0" versioncode="10100">
         <change>Initial release.</change>
     </release>      
     
