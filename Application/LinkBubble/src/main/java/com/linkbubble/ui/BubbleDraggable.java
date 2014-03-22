@@ -193,8 +193,11 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             float intBubbleY = mTractorBeamIntersectionPoint.y - Config.mBubbleHeight * 0.5f;
 
             float intersectionDistance = Util.distance(initialX, initialY, intBubbleX, intBubbleY);
-            float intFraction = intersectionDistance / flickDistance;
-            Util.Assert(intFraction >= 0.0f && intFraction <= 1.05f, "intFraction:" + intFraction);
+            float intFraction = 0.0f;
+            if (flickDistance > 0.0001f) {
+                intFraction = intersectionDistance / flickDistance;
+            }
+            Util.Assert(intFraction >= 0.0f && intFraction <= 1.05f, "intFraction:" + intFraction + ", flickDistance:" + flickDistance);
             float intTime = flickAnimPeriod * intFraction;
 
             animType = DraggableHelper.AnimationType.Linear;
