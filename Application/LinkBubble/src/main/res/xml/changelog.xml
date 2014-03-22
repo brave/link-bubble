@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="1.0.0" versioncode="1">
+    <release version="1.0.2" versioncode="10200">
+        <change>CHANGE: Add a new 'Auto expand' checkbox to the settings. This replaces the previous 'Auto content display' setting.</change>
+        <change>CHANGE: By default, links no longer expand when they have finished loading.</change>
+        <change>Many stability fixes.</change>
+    </release>
+
+    <release version="1.0.1" versioncode="10101">
         <change>Initial release.</change>
     </release>      
     
