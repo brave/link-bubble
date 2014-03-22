@@ -39,7 +39,6 @@ android.support.v4.app.BackStackRecord$Op -> ･$･:
     145:148:com.squareup.picasso.Downloader createDefaultDownloader(android.content.Context) -> ･
     161:172:long calculateDiskCacheSize(java.io.File) -> ･
     147:149:android.graphics.Bitmap decodeStream(java.io.InputStream) -> ･
-    212:212:int getDominantColor(android.graphics.Bitmap) -> ˊ
     73:90:retrofit.client.Response readBodyToBytesIfNecessary(retrofit.client.Response) -> ･
 android.support.v4.app.BackStackState -> if:
     int[] mOps -> ･
@@ -1890,7 +1889,9 @@ com.crashlytics.android.Crashlytics -> ᒡ:
     byte[] $ -> ᐧ
     118:119:void start$faab20d(android.content.ContextWrapper) -> ･
     144:144:com.crashlytics.android.Crashlytics getInstance() -> ･
-    183:185:void b(java.lang.String) -> ･
+    156:169:void logException$786b7c60(java.lang.IllegalStateException) -> ･
+    175:177:void a(java.lang.String) -> ･
+    183:185:void b(java.lang.String) -> ˊ
     497:512:void c() -> ˊ
     516:516:java.lang.String getVersion() -> ˋ
     520:520:java.lang.String d() -> ˎ
@@ -1925,7 +1926,7 @@ com.crashlytics.android.F -> ᵌ:
     java.lang.String a -> ･
     1886:1886:boolean accept(java.io.File,java.lang.String) -> accept
 com.crashlytics.android.G -> ᵓ:
-    com.crashlytics.android.E a$453f5682 -> ･
+    java.lang.Runnable a -> ･
     1962:1966:void run() -> run
 com.crashlytics.android.H -> ᵙ:
     132:132:int compare(java.lang.Object,java.lang.Object) -> compare
@@ -1951,41 +1952,47 @@ com.crashlytics.android.N -> ﹾ:
 com.crashlytics.android.O -> ɩ:
     com.crashlytics.android.v a -> ･
     338:338:java.lang.Object call() -> call
-com.crashlytics.android.Q -> ʵ:
+com.crashlytics.android.P -> ʵ:
+    java.util.Date a -> ･
+    java.lang.Thread b -> ˊ
+    java.lang.IllegalStateException c$7af31c5 -> ˋ
+    com.crashlytics.android.v d -> ˎ
+    362:365:void run() -> run
+com.crashlytics.android.Q -> ʸ:
     117:117:boolean accept(java.io.File,java.lang.String) -> accept
-com.crashlytics.android.R -> ʸ:
+com.crashlytics.android.R -> ˀ:
     java.lang.String a -> ･
     81:81:boolean accept(java.io.File,java.lang.String) -> accept
-com.crashlytics.android.S -> ˀ:
+com.crashlytics.android.S -> ˁ:
     java.lang.String a -> ･
     100:103:boolean accept(java.io.File,java.lang.String) -> accept
-com.crashlytics.android.T -> ˁ:
-com.crashlytics.android.U -> ˢ:
+com.crashlytics.android.T -> ˢ:
+com.crashlytics.android.U -> ˤ:
     java.lang.String a -> ･
     com.crashlytics.android.Z b -> ˊ
-com.crashlytics.android.V -> ˤ:
+com.crashlytics.android.V -> ι:
     boolean a(com.crashlytics.android.U) -> ･
-com.crashlytics.android.W -> ι:
+com.crashlytics.android.W -> ৲:
     53:64:boolean a(com.crashlytics.android.U) -> ･
-com.crashlytics.android.X -> ৲:
+com.crashlytics.android.X -> ᐢ:
     android.app.Activity a$48463d4e -> ˊ
     com.crashlytics.android.internal.aN b -> ･
     92:92:java.lang.String a(java.lang.String,java.lang.String) -> ･
     18:21:void trackTimeSaved(long) -> ･
     29:30:void trackUpgradePromptDisplayed(java.lang.String) -> ･
-com.crashlytics.android.Y -> ᐢ:
+com.crashlytics.android.Y -> ᒻ:
     java.lang.String a -> ･
     int b -> ˊ
     int c -> ˋ
     int d -> ˎ
     33:56:com.crashlytics.android.Y a(android.content.Context,java.lang.String) -> ･
-com.crashlytics.android.Z -> ᒻ:
+com.crashlytics.android.Z -> ᔅ:
     java.io.File a -> ･
     java.util.HashMap b$5a983bf5 -> ˊ
-com.crashlytics.android.a -> ᔅ:
+com.crashlytics.android.a -> ᔉ:
     48:64:boolean a(com.crashlytics.android.b) -> ･
     76:105:com.crashlytics.android.internal.aw a(com.crashlytics.android.internal.aw,com.crashlytics.android.b) -> ･
-com.crashlytics.android.aa -> ᔉ:
+com.crashlytics.android.aa -> ᔊ:
     com.crashlytics.android.ab b$7044bc0c -> ˊ
     java.util.Map a -> ･
     short[] c -> ˋ
@@ -1997,14 +2004,14 @@ com.crashlytics.android.aa -> ᔉ:
     100:117:java.util.LinkedList a$5679c1ce() -> ･
     23:23:java.lang.Thread a$410eb3d6(com.crashlytics.android.aa) -> ･
     23:23:short[] b() -> ˊ
-com.crashlytics.android.ab -> ᔊ:
+com.crashlytics.android.ab -> ᔋ:
     28:28:boolean accept(java.io.File,java.lang.String) -> accept
-com.crashlytics.android.ac -> ᔋ:
+com.crashlytics.android.ac -> ᕁ:
     float a -> ･
     com.crashlytics.android.aa b -> ˊ
     130:135:void a() -> ･
-com.crashlytics.android.ad -> ᕁ:
-com.crashlytics.android.b -> ᕑ:
+com.crashlytics.android.ad -> ᕑ:
+com.crashlytics.android.b -> ᕽ:
     java.lang.String a -> ･
     java.lang.String b -> ˊ
     java.lang.String c -> ˋ
@@ -2016,29 +2023,29 @@ com.crashlytics.android.b -> ᕑ:
     java.lang.String i -> ʽ
     com.crashlytics.android.Y j -> ͺ
     18:32:void a$246de11c(java.io.File,java.io.FilenameFilter,int,com.crashlytics.android.J) -> ･
-com.crashlytics.android.c -> ᕽ:
+com.crashlytics.android.c -> ᘁ:
     java.lang.String a -> ･
     boolean b -> ˊ
-com.crashlytics.android.d -> ᘁ:
+com.crashlytics.android.d -> ᵄ:
     byte[] a -> ･
     int b -> ˊ
     136:138:com.crashlytics.android.d a(java.lang.String) -> ･
     253:275:boolean equals(java.lang.Object) -> equals
     282:299:int hashCode() -> hashCode
-com.crashlytics.android.e -> ᵄ:
+com.crashlytics.android.e -> ᵞ:
     java.util.concurrent.atomic.AtomicLong a -> ･
     java.lang.String b -> ˊ
     94:94:java.lang.String toString() -> toString
-com.crashlytics.android.f -> ᵞ:
+com.crashlytics.android.f -> ᵧ:
     java.lang.String b -> ˊ
     java.io.File c -> ˋ
     boolean d -> ˎ
     com.crashlytics.android.g a$7044bc0c -> ･
     47:66:void close() -> close
     78:84:void a() -> ･
-com.crashlytics.android.g -> ᵧ:
+com.crashlytics.android.g -> וּ:
     102:102:boolean accept(java.io.File,java.lang.String) -> accept
-com.crashlytics.android.h -> וּ:
+com.crashlytics.android.h -> וֹ:
     byte[] a -> ･
     int b -> ˊ
     int c -> ˋ
@@ -2061,7 +2068,7 @@ com.crashlytics.android.h -> וּ:
     868:873:void a(long) -> ･
 com.crashlytics.android.i -> com.crashlytics.android.i:
     long serialVersionUID -> serialVersionUID
-com.crashlytics.android.internal.B -> וֹ:
+com.crashlytics.android.internal.B -> ﹲ:
     java.lang.String a -> ˊ
     java.lang.String b -> ˋ
     java.lang.String c -> ˏ
@@ -2074,14 +2081,14 @@ com.crashlytics.android.internal.B -> וֹ:
     53:77:void c() -> ˊ
     26:26:void a(com.crashlytics.android.internal.B) -> ･
     java.lang.String $(int,int,int) -> ･
-com.crashlytics.android.internal.C -> ﹲ:
+com.crashlytics.android.internal.C -> ﹷ:
     com.crashlytics.android.internal.B a -> ･
     71:75:void a() -> ･
-com.crashlytics.android.internal.D -> ﹷ:
+com.crashlytics.android.internal.D -> ﹻ:
     android.app.Application b -> ι
     com.crashlytics.android.internal.E c$100d5646 -> ʾ
     82:86:void a() -> ･
-com.crashlytics.android.internal.E -> ﹻ:
+com.crashlytics.android.internal.E -> ﹼ:
     com.crashlytics.android.internal.D a -> ･
     23:24:void onActivityCreated(android.app.Activity,android.os.Bundle) -> onActivityCreated
     28:29:void onActivityDestroyed(android.app.Activity) -> onActivityDestroyed
@@ -2090,15 +2097,15 @@ com.crashlytics.android.internal.E -> ﹻ:
     43:44:void onActivitySaveInstanceState(android.app.Activity,android.os.Bundle) -> onActivitySaveInstanceState
     48:49:void onActivityStarted(android.app.Activity) -> onActivityStarted
     53:54:void onActivityStopped(android.app.Activity) -> onActivityStopped
-com.crashlytics.android.internal.F -> ﹼ:
+com.crashlytics.android.internal.F -> ﺑ:
     42:50:boolean a$1b7460f4(java.lang.String,java.util.ArrayList) -> ･
-com.crashlytics.android.internal.G -> ﺑ:
+com.crashlytics.android.internal.G -> ﻧ:
     15:15:void a() -> ･
     20:20:void a(com.crashlytics.android.internal.aH,java.lang.String) -> ･
     25:25:void b() -> ˊ
     30:30:void a(com.crashlytics.android.internal.T) -> ･
     35:35:void c() -> ˋ
-com.crashlytics.android.internal.H -> ﻧ:
+com.crashlytics.android.internal.H -> ʺ:
     java.util.concurrent.ScheduledExecutorService a -> ･
     com.crashlytics.android.internal.I b -> ˊ
     com.crashlytics.android.internal.at c -> ˋ
@@ -2111,7 +2118,7 @@ com.crashlytics.android.internal.H -> ﻧ:
     126:133:void a(com.crashlytics.android.internal.aH,java.lang.String) -> ･
     137:138:void b() -> ˊ
     142:149:void a(com.crashlytics.android.internal.T) -> ･
-com.crashlytics.android.internal.I -> ʺ:
+com.crashlytics.android.internal.I -> Ι:
     com.crashlytics.android.internal.V a -> ˎ
     com.crashlytics.android.internal.af b -> ˏ
     com.crashlytics.android.internal.aH c -> ･
@@ -2121,14 +2128,14 @@ com.crashlytics.android.internal.I -> ʺ:
     88:105:boolean a() -> ･
     153:160:void a$552c4e01() -> ˊ
     209:216:long b(java.lang.String) -> ･
-com.crashlytics.android.internal.J -> Ι:
+com.crashlytics.android.internal.J -> І:
     186:186:int compare(java.lang.Object,java.lang.Object) -> compare
-com.crashlytics.android.internal.K -> І:
+com.crashlytics.android.internal.K -> і:
     java.io.File a -> ･
     long b -> ˊ
-com.crashlytics.android.internal.L -> і:
+com.crashlytics.android.internal.L -> ї:
     boolean a$1b7460f4(java.lang.String,java.util.ArrayList) -> ･
-com.crashlytics.android.internal.M -> ї:
+com.crashlytics.android.internal.M -> Ӏ:
     java.lang.String b -> ･
     java.lang.String c -> ˊ
     java.lang.String d -> ˋ
@@ -2142,32 +2149,32 @@ com.crashlytics.android.internal.M -> ї:
     123:126:void a(com.crashlytics.android.internal.U,android.app.Activity) -> ･
     160:171:void b() -> ˊ
     174:186:void a() -> ･
-com.crashlytics.android.internal.N -> Ӏ:
+com.crashlytics.android.internal.N -> ײ:
     java.lang.String a -> ･
     com.crashlytics.android.internal.M b -> ˊ
     79:85:void run() -> run
-com.crashlytics.android.internal.O -> ײ:
+com.crashlytics.android.internal.O -> ᑉ:
     com.crashlytics.android.internal.T a -> ･
     com.crashlytics.android.internal.M b -> ˊ
     133:138:void run() -> run
-com.crashlytics.android.internal.P -> ᑉ:
+com.crashlytics.android.internal.P -> ᑋ:
     com.crashlytics.android.internal.aH a -> ･
     java.lang.String b -> ˊ
     com.crashlytics.android.internal.M c -> ˋ
     148:154:void run() -> run
-com.crashlytics.android.internal.Q -> ᑋ:
+com.crashlytics.android.internal.Q -> ᑦ:
     com.crashlytics.android.internal.M a -> ･
     164:169:void run() -> run
-com.crashlytics.android.internal.R -> ᑦ:
+com.crashlytics.android.internal.R -> ᒾ:
     com.crashlytics.android.internal.M a -> ･
     178:184:void run() -> run
-com.crashlytics.android.internal.S -> ᒾ:
+com.crashlytics.android.internal.S -> ᓪ:
     void a() -> ･
     void a(com.crashlytics.android.internal.aH,java.lang.String) -> ･
     void b() -> ˊ
     void a(com.crashlytics.android.internal.T) -> ･
     void c() -> ˋ
-com.crashlytics.android.internal.T -> ᓪ:
+com.crashlytics.android.internal.T -> ᓫ:
     java.lang.String a -> ･
     java.lang.String b -> ˊ
     java.lang.String c -> ˋ
@@ -2189,19 +2196,19 @@ com.crashlytics.android.internal.U -> com.crashlytics.android.internal.U:
     com.crashlytics.android.internal.U e -> ˏ
     com.crashlytics.android.internal.U f -> ᐝ
     com.crashlytics.android.internal.U g -> ʻ
-    com.crashlytics.android.internal.U h -> ʽ
-    com.crashlytics.android.internal.U i -> ʼ
+    com.crashlytics.android.internal.U h -> ʼ
+    com.crashlytics.android.internal.U i -> ʽ
     com.crashlytics.android.internal.U[] j -> ͺ
     13:13:com.crashlytics.android.internal.U[] values() -> values
     13:13:com.crashlytics.android.internal.U valueOf(java.lang.String) -> valueOf
-com.crashlytics.android.internal.V -> ᓫ:
+com.crashlytics.android.internal.V -> ᔾ:
     27:42:byte[] a(com.crashlytics.android.internal.T) -> ･
     47:53:org.json.JSONObject a(java.util.Map) -> ･
-com.crashlytics.android.internal.W -> ᔾ:
+com.crashlytics.android.internal.W -> ᕐ:
     com.crashlytics.android.internal.I a -> ･
     com.crashlytics.android.internal.H b$339a6ea -> ˊ
     19:30:void run() -> run
-com.crashlytics.android.internal.X -> ᕐ:
+com.crashlytics.android.internal.X -> ᕝ:
     java.lang.String a -> ･
     java.util.regex.Pattern b -> ˊ
     java.lang.String c -> ˋ
@@ -2210,10 +2217,10 @@ com.crashlytics.android.internal.X -> ᕐ:
     java.lang.String f -> ᐝ
     99:99:com.crashlytics.android.internal.aw b() -> ･
     119:120:com.crashlytics.android.internal.aw a(java.util.Map) -> ･
-com.crashlytics.android.internal.Y -> ᕝ:
+com.crashlytics.android.internal.Y -> ᵒ:
     12:14:void run() -> run
     void a() -> ･
-com.crashlytics.android.internal.Z -> ᵒ:
+com.crashlytics.android.internal.Z -> ᵘ:
     java.lang.Boolean b -> ˊ
     char[] c -> ˋ
     long d -> ˎ
@@ -2252,47 +2259,48 @@ com.crashlytics.android.internal.Z -> ᵒ:
     716:723:void a$57742620(java.io.Closeable) -> ･
     726:733:void a$3ec4e94$64202c0e(com.crashlytics.android.h) -> ･
     737:737:boolean e(java.lang.String) -> ˏ
+    748:753:java.lang.String a(int) -> ･
     795:798:void a$40f0be77(java.io.FileInputStream,java.util.zip.GZIPOutputStream,byte[]) -> ･
     824:836:java.lang.String g(android.content.Context) -> ᐝ
     840:840:int h(android.content.Context) -> ʻ
     847:856:java.lang.String i(android.content.Context) -> ʼ
     java.lang.String $$24d420ae() -> ʽ
-com.crashlytics.android.internal.a -> ᵘ:
+com.crashlytics.android.internal.a -> ᵤ:
     java.util.HashMap a$5a983bf5 -> ･
     java.util.HashMap b$5a983bf5 -> ˊ
     49:111:void a(java.lang.Class) -> ･
     115:129:java.util.HashMap a$131b677a$40902b34(com.crashlytics.android.internal.p) -> ･
     134:151:java.util.HashMap b$131b677a$40902b34(com.crashlytics.android.internal.p) -> ˊ
-com.crashlytics.android.internal.aA -> ᵤ:
+com.crashlytics.android.internal.aA -> ⁿ:
     351:351:java.net.HttpURLConnection a(java.net.URL) -> ･
 com.crashlytics.android.internal.aB -> com.crashlytics.android.internal.aB:
     long serialVersionUID -> serialVersionUID
     578:578:java.lang.Throwable getCause() -> getCause
-com.crashlytics.android.internal.aC -> ⁿ:
+com.crashlytics.android.internal.aC -> Ⅰ:
     com.crashlytics.android.internal.aw a$7ef3cba3() -> ･
     void b() -> ˊ
     624:639:java.lang.Object call() -> call
-com.crashlytics.android.internal.aD -> Ⅰ:
+com.crashlytics.android.internal.aD -> ⅰ:
     java.nio.charset.CharsetEncoder a -> ･
     733:737:com.crashlytics.android.internal.aD a(java.lang.String) -> ･
-com.crashlytics.android.internal.aH -> ⅰ:
+com.crashlytics.android.internal.aH -> 丶:
     java.lang.String a -> ･
     int b -> ˊ
     int c -> ˋ
-com.crashlytics.android.internal.aJ -> 丶:
+com.crashlytics.android.internal.aJ -> ﭔ:
     java.lang.String a -> ･
     java.lang.String b -> ˊ
     java.lang.String c -> ˋ
     boolean d -> ˎ
-com.crashlytics.android.internal.aK -> ﭔ:
+com.crashlytics.android.internal.aK -> ﭠ:
     21:43:org.json.JSONObject a() -> ･
-com.crashlytics.android.internal.aL -> ﭠ:
+com.crashlytics.android.internal.aL -> ﯦ:
     52:72:org.json.JSONObject a(com.crashlytics.android.internal.aW) -> ･
-com.crashlytics.android.internal.aM -> ﯦ:
+com.crashlytics.android.internal.aM -> ﯩ:
     boolean a -> ･
     boolean b -> ˊ
     boolean c -> ˋ
-com.crashlytics.android.internal.aN -> ﯩ:
+com.crashlytics.android.internal.aN -> ﯾ:
     java.lang.String a -> ･
     java.lang.String b -> ˊ
     java.lang.String c -> ˋ
@@ -2300,9 +2308,9 @@ com.crashlytics.android.internal.aN -> ﯩ:
     java.lang.String e -> ˏ
     boolean f -> ᐝ
     java.lang.String g -> ʻ
-com.crashlytics.android.internal.aO -> ﯾ:
+com.crashlytics.android.internal.aO -> ﹰ:
     int a -> ･
-com.crashlytics.android.internal.aP -> ﹰ:
+com.crashlytics.android.internal.aP -> ﺗ:
     java.util.concurrent.atomic.AtomicReference a -> ･
     com.crashlytics.android.internal.aT b -> ˊ
     boolean c -> ˋ
@@ -2313,10 +2321,10 @@ com.crashlytics.android.internal.aP -> ﹰ:
     135:142:boolean d() -> ˋ
     158:210:java.lang.String a(java.lang.String,java.lang.String,android.content.Context) -> ･
     java.lang.String $(int,int,int) -> ･
-com.crashlytics.android.internal.aQ -> ﺗ:
+com.crashlytics.android.internal.aQ -> ﻳ:
     com.crashlytics.android.internal.aP a -> ･
     33:33:com.crashlytics.android.internal.aP a() -> ･
-com.crashlytics.android.internal.aR -> ﻳ:
+com.crashlytics.android.internal.aR -> ＿:
     java.lang.Object a(com.crashlytics.android.internal.aU) -> ･
 com.crashlytics.android.internal.aS -> com.crashlytics.android.internal.aS:
     com.crashlytics.android.internal.aS a -> ･
@@ -2325,7 +2333,7 @@ com.crashlytics.android.internal.aS -> com.crashlytics.android.internal.aS:
     com.crashlytics.android.internal.aS[] d -> ˎ
     8:8:com.crashlytics.android.internal.aS[] values() -> values
     8:8:com.crashlytics.android.internal.aS valueOf(java.lang.String) -> valueOf
-com.crashlytics.android.internal.aT -> ＿:
+com.crashlytics.android.internal.aT -> ﾆ:
     com.crashlytics.android.internal.aW a -> ･
     com.crashlytics.android.internal.aV b -> ˊ
     com.crashlytics.android.internal.af c -> ˋ
@@ -2333,17 +2341,17 @@ com.crashlytics.android.internal.aT -> ＿:
     com.crashlytics.android.internal.aL e$63fb6ea2 -> ˏ
     40:64:com.crashlytics.android.internal.aU a(com.crashlytics.android.internal.aS) -> ･
     68:99:com.crashlytics.android.internal.aU b(com.crashlytics.android.internal.aS) -> ˊ
-com.crashlytics.android.internal.aU -> ﾆ:
+com.crashlytics.android.internal.aU -> İ:
     com.crashlytics.android.internal.aJ a -> ･
     com.crashlytics.android.internal.aO b -> ˊ
     com.crashlytics.android.internal.aN c -> ˋ
     com.crashlytics.android.internal.aM d -> ˎ
     com.crashlytics.android.internal.aH e -> ˏ
     long f -> ᐝ
-com.crashlytics.android.internal.aV -> İ:
+com.crashlytics.android.internal.aV -> Ɩ:
     18:29:com.crashlytics.android.internal.aU a$54490654(org.json.JSONObject) -> ･
     46:49:org.json.JSONObject a(org.json.JSONObject) -> ˊ
-com.crashlytics.android.internal.aW -> Ɩ:
+com.crashlytics.android.internal.aW -> ɹ:
     java.lang.String a -> ･
     java.lang.String b -> ˊ
     java.lang.String c -> ˋ
@@ -2351,9 +2359,9 @@ com.crashlytics.android.internal.aW -> Ɩ:
     java.lang.String e -> ˏ
     int f -> ᐝ
     java.lang.String g -> ʻ
-com.crashlytics.android.internal.aX -> ɹ:
+com.crashlytics.android.internal.aX -> ʶ:
     org.json.JSONObject a(com.crashlytics.android.internal.aW) -> ･
-com.crashlytics.android.internal.aa -> ʶ:
+com.crashlytics.android.internal.aa -> ϊ:
     682:682:int compare(java.lang.Object,java.lang.Object) -> compare
 com.crashlytics.android.internal.ab -> com.crashlytics.android.internal.ab:
     com.crashlytics.android.internal.ab a -> ･
@@ -2371,10 +2379,11 @@ com.crashlytics.android.internal.ab -> com.crashlytics.android.internal.ab:
     147:147:com.crashlytics.android.internal.ab[] values() -> values
     147:147:com.crashlytics.android.internal.ab valueOf(java.lang.String) -> valueOf
     171:183:com.crashlytics.android.internal.ab a() -> ･
-com.crashlytics.android.internal.ac -> ϊ:
+com.crashlytics.android.internal.ac -> ג:
     java.lang.String a -> ･
-com.crashlytics.android.internal.ad -> ג:
-com.crashlytics.android.internal.af -> ז:
+com.crashlytics.android.internal.ad -> ז:
+com.crashlytics.android.internal.ae -> ן:
+com.crashlytics.android.internal.af -> נ:
     54:55:void a(java.lang.String,java.util.concurrent.ExecutorService) -> ･
 com.crashlytics.android.internal.ag -> com.crashlytics.android.internal.ag:
     com.crashlytics.android.internal.ag a -> ･
@@ -2387,7 +2396,7 @@ com.crashlytics.android.internal.ag -> com.crashlytics.android.internal.ag:
     8:8:com.crashlytics.android.internal.ag valueOf(java.lang.String) -> valueOf
     23:23:java.lang.String toString() -> toString
     33:36:com.crashlytics.android.internal.ag a(java.lang.String) -> ･
-com.crashlytics.android.internal.ah -> ן:
+com.crashlytics.android.internal.ah -> ר:
     java.io.File a -> ˎ
     java.lang.String b -> ˏ
     com.crashlytics.android.internal.ao c -> ･
@@ -2396,22 +2405,22 @@ com.crashlytics.android.internal.ah -> ן:
     60:65:void a(java.lang.String) -> ･
     104:112:java.util.ArrayList a$22f3aa59$3d1b4708() -> ･
     117:121:void a(java.util.List) -> ･
-com.crashlytics.android.internal.ai -> נ:
+com.crashlytics.android.internal.ai -> د:
     void b() -> ˊ
-com.crashlytics.android.internal.aj -> ר:
+com.crashlytics.android.internal.aj -> ہ:
     java.lang.String a -> ･
     java.util.concurrent.atomic.AtomicLong b -> ˊ
     41:48:java.lang.Thread newThread(java.lang.Runnable) -> newThread
-com.crashlytics.android.internal.ak -> د:
+com.crashlytics.android.internal.ak -> ܝ:
     java.lang.Runnable a -> ･
     44:45:void a() -> ･
-com.crashlytics.android.internal.al -> ہ:
+com.crashlytics.android.internal.al -> า:
     java.lang.String a -> ･
     java.util.concurrent.ExecutorService b -> ˊ
     long c -> ˋ
     java.util.concurrent.TimeUnit d -> ˎ
     63:76:void a() -> ･
-com.crashlytics.android.internal.am -> ܝ:
+com.crashlytics.android.internal.am -> ᐥ:
     java.util.regex.Pattern a -> ˊ
     java.lang.String b -> ˋ
     java.util.concurrent.locks.ReentrantLock c -> ˎ
@@ -2437,7 +2446,7 @@ com.crashlytics.android.internal.an -> com.crashlytics.android.internal.an:
     com.crashlytics.android.internal.an[] g -> ᐝ
     60:60:com.crashlytics.android.internal.an[] values() -> values
     60:60:com.crashlytics.android.internal.an valueOf(java.lang.String) -> valueOf
-com.crashlytics.android.internal.ao -> า:
+com.crashlytics.android.internal.ao -> ᒃ:
     java.util.logging.Logger a -> ･
     java.io.RandomAccessFile b -> ˊ
     int c -> ˋ
@@ -2462,27 +2471,27 @@ com.crashlytics.android.internal.ao -> า:
     56:56:java.lang.Object a(java.lang.Object,java.lang.String) -> ･
     56:56:void a(com.crashlytics.android.internal.ao,int,byte[],int,int) -> ･
     56:56:java.io.RandomAccessFile a(com.crashlytics.android.internal.ao) -> ･
-com.crashlytics.android.internal.ap -> ᐥ:
+com.crashlytics.android.internal.ap -> ᓒ:
     boolean a -> ･
     java.lang.StringBuilder b -> ˊ
     550:556:void a$4cd69f7b(com.crashlytics.android.internal.ar,int) -> ･
-com.crashlytics.android.internal.aq -> ᒃ:
+com.crashlytics.android.internal.aq -> ᕪ:
     com.crashlytics.android.internal.aq a -> ･
     int b -> ˊ
     int c -> ˋ
     593:593:java.lang.String toString() -> toString
-com.crashlytics.android.internal.ar -> ᓒ:
+com.crashlytics.android.internal.ar -> ᙆ:
     int a -> ･
     int b -> ˊ
     com.crashlytics.android.internal.ao c -> ˋ
     454:467:int read(byte[],int,int) -> read
     473:480:int read() -> read
-com.crashlytics.android.internal.as -> ᕪ:
+com.crashlytics.android.internal.as -> ᴊ:
     void a$4cd69f7b(com.crashlytics.android.internal.ar,int) -> ･
-com.crashlytics.android.internal.at -> ᙆ:
+com.crashlytics.android.internal.at -> ᴷ:
     com.crashlytics.android.internal.t a -> ･
     67:89:com.crashlytics.android.internal.aw a(com.crashlytics.android.internal.av,java.lang.String,java.util.Map) -> ･
-com.crashlytics.android.internal.au -> ᴊ:
+com.crashlytics.android.internal.au -> ᵏ:
     int[] a -> ･
 com.crashlytics.android.internal.av -> com.crashlytics.android.internal.av:
     com.crashlytics.android.internal.av a -> ･
@@ -2492,7 +2501,7 @@ com.crashlytics.android.internal.av -> com.crashlytics.android.internal.av:
     com.crashlytics.android.internal.av[] e -> ˏ
     3:3:com.crashlytics.android.internal.av[] values() -> values
     3:3:com.crashlytics.android.internal.av valueOf(java.lang.String) -> valueOf
-com.crashlytics.android.internal.aw -> ᴷ:
+com.crashlytics.android.internal.aw -> ⅼ:
     com.crashlytics.android.internal.aA a$63fb72c0 -> ˊ
     java.net.HttpURLConnection b -> ･
     java.net.URL c -> ˋ
@@ -2525,19 +2534,19 @@ com.crashlytics.android.internal.aw -> ᴷ:
     2796:2801:com.crashlytics.android.internal.aw d$200bc25a(java.lang.String) -> ᐝ
     94:94:java.lang.String b(java.lang.String) -> ˎ
     94:94:int a(com.crashlytics.android.internal.aw) -> ･
-com.crashlytics.android.internal.ax -> ᵏ:
+com.crashlytics.android.internal.ax -> ﭘ:
     java.io.InputStream a -> ･
     java.io.OutputStream b -> ˊ
     com.crashlytics.android.internal.aw c -> ˋ
     2401:2401:com.crashlytics.android.internal.aw a$7ef3cba3() -> ･
-com.crashlytics.android.internal.ay -> ⅼ:
+com.crashlytics.android.internal.ay -> ﺒ:
     java.io.InputStream a$3c8700f -> ･
     boolean b -> ˊ
     668:678:void b() -> ˊ
-com.crashlytics.android.internal.az -> ﭘ:
+com.crashlytics.android.internal.az -> ﺛ:
     com.crashlytics.android.internal.aA a$63fb72c0 -> ･
     java.net.HttpURLConnection a(java.net.URL) -> ･
-com.crashlytics.android.internal.b -> ﺒ:
+com.crashlytics.android.internal.b -> ﺩ:
     java.util.concurrent.ConcurrentHashMap b$4bde89de -> ･
     java.util.concurrent.ConcurrentHashMap c$4bde89de -> ˊ
     java.lang.String d -> ˋ
@@ -2550,11 +2559,11 @@ com.crashlytics.android.internal.b -> ﺒ:
     185:236:void a$5d527811(com.crashlytics.android.internal.p) -> ･
     239:249:void a(com.crashlytics.android.internal.g,com.crashlytics.android.internal.h) -> ･
     372:376:void a(java.lang.Object,com.crashlytics.android.internal.g) -> ･
-com.crashlytics.android.internal.c -> ﺛ:
+com.crashlytics.android.internal.c -> ﻨ:
     110:110:java.lang.Object initialValue() -> initialValue
-com.crashlytics.android.internal.d -> ﺩ:
+com.crashlytics.android.internal.d -> ｨ:
     117:117:java.lang.Object initialValue() -> initialValue
-com.crashlytics.android.internal.g -> ﻨ:
+com.crashlytics.android.internal.g -> Ȉ:
     com.crashlytics.android.internal.p a$5f790d9c -> ˊ
     java.lang.reflect.Method b -> ˋ
     int c -> ˎ
@@ -2563,7 +2572,7 @@ com.crashlytics.android.internal.g -> ﻨ:
     101:101:java.lang.String toString() -> toString
     105:105:int hashCode() -> hashCode
     109:123:boolean equals(java.lang.Object) -> equals
-com.crashlytics.android.internal.h -> ｨ:
+com.crashlytics.android.internal.h -> ȋ:
     com.crashlytics.android.internal.p a$5f790d9c -> ･
     java.lang.reflect.Method b -> ˋ
     int c -> ˎ
@@ -2572,33 +2581,32 @@ com.crashlytics.android.internal.h -> ｨ:
     96:96:java.lang.String toString() -> toString
     100:100:int hashCode() -> hashCode
     104:118:boolean equals(java.lang.Object) -> equals
-com.crashlytics.android.internal.i -> Ȉ:
+com.crashlytics.android.internal.i -> ɨ:
     com.crashlytics.android.internal.j a$339a994 -> ･
     java.util.HashMap a$131b677a(com.crashlytics.android.internal.p) -> ･
     java.util.HashMap b$131b677a(com.crashlytics.android.internal.p) -> ˊ
-com.crashlytics.android.internal.j -> ȋ:
+com.crashlytics.android.internal.j -> ɪ:
     33:33:java.util.HashMap a$131b677a(com.crashlytics.android.internal.p) -> ･
     38:38:java.util.HashMap b$131b677a(com.crashlytics.android.internal.p) -> ˊ
-com.crashlytics.android.internal.k -> ɨ:
-com.crashlytics.android.internal.l -> ɪ:
-com.crashlytics.android.internal.m -> ɾ:
+com.crashlytics.android.internal.k -> ɾ:
+com.crashlytics.android.internal.l -> ɿ:
+com.crashlytics.android.internal.m -> ʟ:
     com.crashlytics.android.internal.n a$339aa10 -> ･
     com.crashlytics.android.internal.o b$339aa10 -> ˊ
     void a(com.crashlytics.android.internal.b) -> ･
-com.crashlytics.android.internal.n -> ɿ:
+com.crashlytics.android.internal.n -> ʰ:
     40:40:void a(com.crashlytics.android.internal.b) -> ･
-com.crashlytics.android.internal.o -> ʟ:
+com.crashlytics.android.internal.o -> Ϊ:
     46:49:void a(com.crashlytics.android.internal.b) -> ･
-com.crashlytics.android.internal.p -> ʰ:
+com.crashlytics.android.internal.p -> Ї:
     android.content.Context a -> ˎ
     boolean b -> ･
     void c() -> ˊ
     com.crashlytics.android.internal.b t() -> ˉ
     39:51:void a(android.content.Context) -> ･
     65:65:boolean u() -> ˌ
-com.crashlytics.android.internal.q -> Ϊ:
+com.crashlytics.android.internal.q -> г:
     byte[] $ -> ･
-    int $$ -> ˊ
     42:43:void a$1765c98c$6a33be3() -> ･
     49:50:void a$16da05f7() -> ˊ
     59:60:void b$16da05f7() -> ˋ
@@ -2610,16 +2618,16 @@ com.crashlytics.android.internal.q -> Ϊ:
     19:52:java.lang.String a$5e799b7f(android.content.Context) -> ･
     26:36:int a(int) -> ･
     java.lang.String $(int,int,int) -> ･
-com.crashlytics.android.internal.t -> Ї:
+com.crashlytics.android.internal.t -> ذ:
     void a$1765c98c$6a33be3() -> ･
     void a$16da05f7() -> ˊ
     void b$16da05f7() -> ˋ
     void c$16da05f7() -> ˎ
     void d$16da05f7() -> ˏ
     void a$6ef37c42(java.lang.String,java.lang.String) -> ･
-com.crashlytics.android.internal.u -> г:
+com.crashlytics.android.internal.u -> ڊ:
     21:21:com.crashlytics.android.internal.b t() -> ˉ
-com.crashlytics.android.internal.v -> ذ:
+com.crashlytics.android.internal.v -> ܙ:
     com.crashlytics.android.internal.z a$339a8bb -> ʻ
     java.util.concurrent.atomic.AtomicReference b -> ･
     java.io.File d -> ˊ
@@ -2633,7 +2641,7 @@ com.crashlytics.android.internal.v -> ذ:
     162:187:void c() -> ˊ
     199:199:com.crashlytics.android.internal.b t() -> ˉ
     203:223:com.crashlytics.android.internal.v a(java.lang.Class[]) -> ･
-com.crashlytics.android.internal.w -> ڊ:
+com.crashlytics.android.internal.w -> ง:
     com.crashlytics.android.internal.v a -> ･
     266:267:void onActivityCreated(android.app.Activity,android.os.Bundle) -> onActivityCreated
     271:272:void onActivityStarted(android.app.Activity) -> onActivityStarted
@@ -2642,50 +2650,50 @@ com.crashlytics.android.internal.w -> ڊ:
     287:287:void onActivityStopped(android.app.Activity) -> onActivityStopped
     292:292:void onActivitySaveInstanceState(android.app.Activity,android.os.Bundle) -> onActivitySaveInstanceState
     297:297:void onActivityDestroyed(android.app.Activity) -> onActivityDestroyed
-com.crashlytics.android.internal.x -> ܙ:
+com.crashlytics.android.internal.x -> ว:
     com.crashlytics.android.internal.v a -> ･
     53:53:com.crashlytics.android.internal.v a() -> ･
-com.crashlytics.android.internal.y -> ง:
+com.crashlytics.android.internal.y -> ᐦ:
     33:33:void a$1765c98c$6a33be3() -> ･
     38:38:void a$16da05f7() -> ˊ
     48:48:void b$16da05f7() -> ˋ
     53:53:void c$16da05f7() -> ˎ
     58:58:void d$16da05f7() -> ˏ
     63:63:void a$6ef37c42(java.lang.String,java.lang.String) -> ･
-com.crashlytics.android.internal.z -> ว:
+com.crashlytics.android.internal.z -> ᒄ:
     android.os.Handler b -> ･
-com.crashlytics.android.l -> ᐦ:
+com.crashlytics.android.l -> ᒼ:
     com.crashlytics.android.Crashlytics a -> ･
     554:554:java.lang.Object a(com.crashlytics.android.internal.aU) -> ･
-com.crashlytics.android.m -> ᒄ:
+com.crashlytics.android.m -> ᓑ:
     com.crashlytics.android.Crashlytics a -> ･
     591:591:java.lang.Object a(com.crashlytics.android.internal.aU) -> ･
-com.crashlytics.android.p -> ᒼ:
+com.crashlytics.android.p -> ᔆ:
     android.app.Activity c -> ˊ
     com.crashlytics.android.u a -> ･
     com.crashlytics.android.X d -> ˋ
     com.crashlytics.android.internal.aN e -> ˎ
     com.crashlytics.android.Crashlytics b -> ˏ
     646:703:void run() -> run
-com.crashlytics.android.q -> ᓑ:
+com.crashlytics.android.q -> ᴖ:
     com.crashlytics.android.p a -> ･
     651:653:void onClick(android.content.DialogInterface,int) -> onClick
-com.crashlytics.android.r -> ᔆ:
+com.crashlytics.android.r -> ᴬ:
     com.crashlytics.android.p a -> ･
     683:685:void onClick(android.content.DialogInterface,int) -> onClick
-com.crashlytics.android.s -> ᴖ:
+com.crashlytics.android.s -> ᴱ:
     com.crashlytics.android.p a -> ･
     694:697:void onClick(android.content.DialogInterface,int) -> onClick
-com.crashlytics.android.t -> ᴬ:
+com.crashlytics.android.t -> ᴲ:
     android.content.Context a -> ･
     float b -> ˊ
     java.util.concurrent.CountDownLatch c -> ˋ
     com.crashlytics.android.Crashlytics d -> ˎ
     813:822:void a() -> ･
-com.crashlytics.android.u -> ᴱ:
+com.crashlytics.android.u -> ᴾ:
     boolean a -> ･
     java.util.concurrent.CountDownLatch b -> ˊ
-com.crashlytics.android.v -> ᴲ:
+com.crashlytics.android.v -> ᵁ:
     com.crashlytics.android.w a$7044bc0c -> ･
     com.crashlytics.android.H b$3706e907 -> ˎ
     com.crashlytics.android.J c$3706e907 -> ˏ
@@ -2725,7 +2733,8 @@ com.crashlytics.android.v -> ᴲ:
     1218:1279:void c(java.lang.String) -> ˊ
     1292:1312:int a$140f39d0(int,com.crashlytics.android.d,com.crashlytics.android.d,int,long,long,java.util.Map,int,com.crashlytics.android.d,com.crashlytics.android.d) -> ･
     1319:1343:void a(com.crashlytics.android.h,java.io.File) -> ･
-    1406:1466:void a$3f8bc74d(java.util.Date,com.crashlytics.android.h,java.lang.Thread,java.lang.Throwable,java.lang.String) -> ･
+    1355:1357:void a(java.lang.String,int) -> ･
+    1406:1466:void a(java.util.Date,com.crashlytics.android.h,java.lang.Thread,java.lang.Throwable,java.lang.String,boolean) -> ･
     1491:1520:void a(com.crashlytics.android.h,java.lang.Thread,java.lang.Throwable) -> ･
     1525:1533:void a(com.crashlytics.android.h,java.util.Map) -> ･
     1536:1545:int r() -> ʻ
@@ -2738,7 +2747,7 @@ com.crashlytics.android.v -> ᴲ:
     1775:1784:int a$45a61cda(int,int,long,long) -> ･
     1793:1830:int a(java.lang.Throwable,int) -> ･
     1936:1942:java.lang.Object a(java.util.concurrent.Callable) -> ･
-    1958:1970:java.util.concurrent.Future a$38f97e89(com.crashlytics.android.E) -> ･
+    1958:1970:java.util.concurrent.Future a(java.lang.Runnable) -> ･
     1986:1999:java.util.concurrent.Future b(java.util.concurrent.Callable) -> ˊ
     66:66:java.util.regex.Pattern i() -> ･
     66:66:boolean a(com.crashlytics.android.v,boolean) -> ･
@@ -2746,15 +2755,16 @@ com.crashlytics.android.v -> ᴲ:
     66:66:java.util.concurrent.atomic.AtomicBoolean a(com.crashlytics.android.v) -> ･
     66:66:void b(com.crashlytics.android.v) -> ˊ
     66:66:void c(com.crashlytics.android.v) -> ˋ
+    66:66:void b$bdca1c9(com.crashlytics.android.v,java.util.Date,java.lang.Thread,java.lang.IllegalStateException) -> ･
     66:66:java.io.File f(com.crashlytics.android.v) -> ˎ
     66:66:java.util.Map j() -> ˊ
     66:66:java.io.File[] a$262ff48a(com.crashlytics.android.v,com.crashlytics.android.g) -> ･
-com.crashlytics.android.w -> ᴾ:
+com.crashlytics.android.w -> ᵃ:
     127:127:boolean accept(java.io.File,java.lang.String) -> accept
-com.crashlytics.android.z -> ᵁ:
+com.crashlytics.android.z -> ᵅ:
     com.crashlytics.android.v a -> ･
     436:436:java.lang.Object call() -> call
-com.google.gson.FieldAttributes -> ᵃ:
+com.google.gson.FieldAttributes -> ᵉ:
     java.lang.reflect.Field field -> ･
 com.google.gson.FieldNamingPolicy -> com.google.gson.FieldNamingPolicy:
     com.google.gson.FieldNamingPolicy$1 IDENTITY$658f7f6f -> ･
@@ -2777,9 +2787,9 @@ com.google.gson.FieldNamingPolicy$4 -> com.google.gson.FieldNamingPolicy$4:
     91:91:java.lang.String translateName(java.lang.reflect.Field) -> ･
 com.google.gson.FieldNamingPolicy$5 -> com.google.gson.FieldNamingPolicy$5:
     114:114:java.lang.String translateName(java.lang.reflect.Field) -> ･
-com.google.gson.FieldNamingStrategy -> ᵅ:
+com.google.gson.FieldNamingStrategy -> ᵊ:
     java.lang.String translateName(java.lang.reflect.Field) -> ･
-com.google.gson.Gson -> ᵉ:
+com.google.gson.Gson -> ᵡ:
     java.lang.ThreadLocal calls -> ･
     java.util.Map typeTokenCache -> ˊ
     java.util.List factories -> ˋ
@@ -2798,50 +2808,50 @@ com.google.gson.Gson -> ᵉ:
     795:820:java.lang.Object fromJson(com.google.gson.stream.JsonReader,java.lang.reflect.Type) -> ･
     898:898:java.lang.String toString() -> toString
     97:97:void access$000$6417f241(double) -> ･
-com.google.gson.Gson$1 -> ᵊ:
+com.google.gson.Gson$1 -> ᵪ:
     com.google.gson.Gson this$0 -> ･
-com.google.gson.Gson$2 -> ᵡ:
+com.google.gson.Gson$2 -> ḯ:
     com.google.gson.Gson this$0 -> ･
-com.google.gson.Gson$3 -> ᵪ:
+com.google.gson.Gson$3 -> Ị:
     com.google.gson.Gson this$0 -> ･
     250:250:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     250:250:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.Gson$4 -> ḯ:
+com.google.gson.Gson$4 -> ị:
     com.google.gson.Gson this$0 -> ･
     274:274:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     274:274:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.Gson$5 -> Ị:
+com.google.gson.Gson$5 -> ゝ:
     com.google.gson.Gson this$0 -> ･
     306:306:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     306:306:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.Gson$FutureTypeAdapter -> ᵉ$･:
+com.google.gson.Gson$FutureTypeAdapter -> ᵡ$･:
     com.google.gson.TypeAdapter delegate -> ･
     882:885:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     889:893:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.JsonArray -> ị:
+com.google.gson.JsonArray -> ー:
     java.util.ArrayList elements$7865b31 -> ･
     89:89:java.util.Iterator iterator() -> iterator
     114:117:java.lang.Number getAsNumber() -> ･
     130:133:java.lang.String getAsString() -> ˊ
     284:284:boolean equals(java.lang.Object) -> equals
     289:289:int hashCode() -> hashCode
-com.google.gson.JsonElement -> ゝ:
+com.google.gson.JsonElement -> ヽ:
     178:178:java.lang.Number getAsNumber() -> ･
     191:191:java.lang.String getAsString() -> ˊ
     321:327:java.lang.String toString() -> toString
 com.google.gson.JsonIOException -> com.google.gson.JsonIOException:
     long serialVersionUID -> serialVersionUID
-com.google.gson.JsonNull -> ー:
+com.google.gson.JsonNull -> 一:
     com.google.gson.JsonNull INSTANCE -> ･
     53:53:int hashCode() -> hashCode
     61:61:boolean equals(java.lang.Object) -> equals
-com.google.gson.JsonObject -> ヽ:
+com.google.gson.JsonObject -> גּ:
     com.google.gson.internal.LinkedTreeMap members -> ･
     187:187:boolean equals(java.lang.Object) -> equals
     193:193:int hashCode() -> hashCode
 com.google.gson.JsonParseException -> com.google.gson.JsonParseException:
     long serialVersionUID -> serialVersionUID
-com.google.gson.JsonPrimitive -> 一:
+com.google.gson.JsonPrimitive -> זּ:
     java.lang.Class[] PRIMITIVE_TYPES -> ˊ
     java.io.Serializable value$5f790d9c -> ･
     94:104:void setValue$5d527811(java.io.Serializable) -> ･
@@ -2861,16 +2871,16 @@ com.google.gson.LongSerializationPolicy -> com.google.gson.LongSerializationPoli
     27:27:com.google.gson.LongSerializationPolicy valueOf(java.lang.String) -> valueOf
 com.google.gson.LongSerializationPolicy$1 -> com.google.gson.LongSerializationPolicy$1:
 com.google.gson.LongSerializationPolicy$2 -> com.google.gson.LongSerializationPolicy$2:
-com.google.gson.TypeAdapter -> גּ:
+com.google.gson.TypeAdapter -> נּ:
     void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
     java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
-com.google.gson.TypeAdapterFactory -> זּ:
+com.google.gson.TypeAdapterFactory -> רּ:
     com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> ･
-com.google.gson.annotations.SerializedName -> נּ:
+com.google.gson.annotations.SerializedName -> ﭕ:
     java.lang.String value() -> ･
-com.google.gson.annotations.Since -> רּ:
+com.google.gson.annotations.Since -> ﭜ:
     double value() -> ･
-com.google.gson.annotations.Until -> ﭕ:
+com.google.gson.annotations.Until -> ﭡ:
     double value() -> ･
 com.google.gson.internal.$Gson$Types -> com.google.gson.internal.$Gson$Types:
     java.lang.reflect.Type[] EMPTY_TYPE_ARRAY -> ･
@@ -2914,57 +2924,57 @@ com.google.gson.internal.$Gson$Types$WildcardTypeImpl -> com.google.gson.interna
     562:562:boolean equals(java.lang.Object) -> equals
     568:568:int hashCode() -> hashCode
     573:578:java.lang.String toString() -> toString
-com.google.gson.internal.ConstructorConstructor -> ﭜ:
+com.google.gson.internal.ConstructorConstructor -> ﭤ:
     java.util.Map instanceCreators -> ･
     52:90:com.google.gson.internal.ObjectConstructor get(com.google.gson.reflect.TypeToken) -> ･
     95:119:com.google.gson.internal.ConstructorConstructor$3 newDefaultConstructor$15f438(java.lang.Class) -> ･
     218:218:java.lang.String toString() -> toString
-com.google.gson.internal.ConstructorConstructor$1 -> ﭡ:
+com.google.gson.internal.ConstructorConstructor$1 -> ﯧ:
     android.support.v4.app.FragmentManager$OnBackStackChangedListener val$typeCreator$51b95dec -> ･
     java.lang.reflect.Type val$type -> ˊ
     com.google.gson.internal.ConstructorConstructor this$0 -> ˋ
     62:62:java.lang.Object construct() -> ･
-com.google.gson.internal.ConstructorConstructor$10 -> ﭤ:
+com.google.gson.internal.ConstructorConstructor$10 -> ﯿ:
     com.google.gson.internal.ConstructorConstructor this$0 -> ･
     185:185:java.lang.Object construct() -> ･
-com.google.gson.internal.ConstructorConstructor$11 -> ﯧ:
+com.google.gson.internal.ConstructorConstructor$11 -> ﹹ:
     com.google.gson.internal.ConstructorConstructor this$0 -> ･
     191:191:java.lang.Object construct() -> ･
-com.google.gson.internal.ConstructorConstructor$12 -> ﯿ:
+com.google.gson.internal.ConstructorConstructor$12 -> ﹿ:
     com.google.gson.internal.UnsafeAllocator unsafeAllocator -> ･
     java.lang.Class val$rawType -> ˊ
     java.lang.reflect.Type val$type -> ˋ
     com.google.gson.internal.ConstructorConstructor this$0 -> ˎ
     207:210:java.lang.Object construct() -> ･
-com.google.gson.internal.ConstructorConstructor$2 -> ﹹ:
+com.google.gson.internal.ConstructorConstructor$2 -> ﺘ:
     android.support.v4.app.FragmentManager$OnBackStackChangedListener val$rawTypeCreator$51b95dec -> ･
     java.lang.reflect.Type val$type -> ˊ
     com.google.gson.internal.ConstructorConstructor this$0 -> ˋ
     74:74:java.lang.Object construct() -> ･
-com.google.gson.internal.ConstructorConstructor$3 -> ﹿ:
+com.google.gson.internal.ConstructorConstructor$3 -> ﺫ:
     java.lang.reflect.Constructor val$constructor -> ･
     com.google.gson.internal.ConstructorConstructor this$0 -> ˊ
     103:114:java.lang.Object construct() -> ･
-com.google.gson.internal.ConstructorConstructor$4 -> ﺘ:
+com.google.gson.internal.ConstructorConstructor$4 -> ﻴ:
     com.google.gson.internal.ConstructorConstructor this$0 -> ･
     134:134:java.lang.Object construct() -> ･
-com.google.gson.internal.ConstructorConstructor$5 -> ﺫ:
+com.google.gson.internal.ConstructorConstructor$5 -> ī:
     java.lang.reflect.Type val$type -> ･
     com.google.gson.internal.ConstructorConstructor this$0 -> ˊ
     141:149:java.lang.Object construct() -> ･
-com.google.gson.internal.ConstructorConstructor$6 -> ﻴ:
+com.google.gson.internal.ConstructorConstructor$6 -> ĭ:
     com.google.gson.internal.ConstructorConstructor this$0 -> ･
     156:156:java.lang.Object construct() -> ･
-com.google.gson.internal.ConstructorConstructor$7 -> ī:
+com.google.gson.internal.ConstructorConstructor$7 -> ĺ:
     com.google.gson.internal.ConstructorConstructor this$0 -> ･
     162:162:java.lang.Object construct() -> ･
-com.google.gson.internal.ConstructorConstructor$8 -> ĭ:
+com.google.gson.internal.ConstructorConstructor$8 -> ļ:
     com.google.gson.internal.ConstructorConstructor this$0 -> ･
     168:168:java.lang.Object construct() -> ･
-com.google.gson.internal.ConstructorConstructor$9 -> ĺ:
+com.google.gson.internal.ConstructorConstructor$9 -> ŀ:
     com.google.gson.internal.ConstructorConstructor this$0 -> ･
     178:178:java.lang.Object construct() -> ･
-com.google.gson.internal.Excluder -> ļ:
+com.google.gson.internal.Excluder -> ł:
     com.google.gson.internal.Excluder DEFAULT -> ･
     double version -> ˊ
     int modifiers -> ˋ
@@ -2977,7 +2987,7 @@ com.google.gson.internal.Excluder -> ļ:
     216:216:boolean isAnonymousOrLocal(java.lang.Class) -> ･
     221:221:boolean isInnerClass(java.lang.Class) -> ˊ
     50:50:java.lang.Object clone() -> clone
-com.google.gson.internal.Excluder$1 -> ŀ:
+com.google.gson.internal.Excluder$1 -> ŗ:
     com.google.gson.TypeAdapter delegate -> ･
     boolean val$skipDeserialize -> ˊ
     boolean val$skipSerialize -> ˋ
@@ -2986,7 +2996,7 @@ com.google.gson.internal.Excluder$1 -> ŀ:
     com.google.gson.internal.Excluder this$0 -> ᐝ
     125:129:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     133:138:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.JsonReaderInternalAccess -> ł:
+com.google.gson.internal.JsonReaderInternalAccess -> ſ:
     com.google.gson.stream.JsonReader$1 INSTANCE$5725c425 -> ･
     void promoteNameToValue(com.google.gson.stream.JsonReader) -> ･
 com.google.gson.internal.LazilyParsedNumber -> com.google.gson.internal.LazilyParsedNumber:
@@ -3024,7 +3034,7 @@ com.google.gson.internal.LinkedTreeMap -> com.google.gson.internal.LinkedTreeMap
     430:431:java.util.Set entrySet() -> entrySet
     435:436:java.util.Set keySet() -> keySet
     625:625:java.lang.Object writeReplace() -> writeReplace
-com.google.gson.internal.LinkedTreeMap$1 -> ŗ:
+com.google.gson.internal.LinkedTreeMap$1 -> Ɨ:
     40:40:int compare(java.lang.Object,java.lang.Object) -> compare
 com.google.gson.internal.LinkedTreeMap$EntrySet -> com.google.gson.internal.LinkedTreeMap$･:
     com.google.gson.internal.LinkedTreeMap this$0 -> ･
@@ -3033,7 +3043,7 @@ com.google.gson.internal.LinkedTreeMap$EntrySet -> com.google.gson.internal.Link
     571:571:boolean contains(java.lang.Object) -> contains
     575:584:boolean remove(java.lang.Object) -> remove
     588:589:void clear() -> clear
-com.google.gson.internal.LinkedTreeMap$EntrySet$1 -> ſ:
+com.google.gson.internal.LinkedTreeMap$EntrySet$1 -> ƚ:
     com.google.gson.internal.LinkedTreeMap$EntrySet this$1 -> ･
     563:563:java.lang.Object next() -> next
 com.google.gson.internal.LinkedTreeMap$KeySet -> com.google.gson.internal.LinkedTreeMap$if:
@@ -3043,7 +3053,7 @@ com.google.gson.internal.LinkedTreeMap$KeySet -> com.google.gson.internal.Linked
     606:606:boolean contains(java.lang.Object) -> contains
     610:610:boolean remove(java.lang.Object) -> remove
     614:615:void clear() -> clear
-com.google.gson.internal.LinkedTreeMap$KeySet$1 -> Ɨ:
+com.google.gson.internal.LinkedTreeMap$KeySet$1 -> Ǐ:
     com.google.gson.internal.LinkedTreeMap$KeySet this$1 -> ･
     600:600:java.lang.Object next() -> next
 com.google.gson.internal.LinkedTreeMap$LinkedTreeMapIterator -> com.google.gson.internal.LinkedTreeMap$ˊ:
@@ -3069,56 +3079,56 @@ com.google.gson.internal.LinkedTreeMap$Node -> com.google.gson.internal.LinkedTr
     482:487:boolean equals(java.lang.Object) -> equals
     491:491:int hashCode() -> hashCode
     496:496:java.lang.String toString() -> toString
-com.google.gson.internal.ObjectConstructor -> ƚ:
+com.google.gson.internal.ObjectConstructor -> ǐ:
     java.lang.Object construct() -> ･
-com.google.gson.internal.Primitives -> Ǐ:
+com.google.gson.internal.Primitives -> Ȋ:
     java.util.Map PRIMITIVE_TO_WRAPPER_TYPE -> ･
     70:70:boolean isPrimitive$3fbe5ee8(java.lang.Class) -> ･
-com.google.gson.internal.Streams$AppendableWriter -> ǐ:
+com.google.gson.internal.Streams$AppendableWriter -> ʅ:
     java.io.StringWriter appendable$67456ff9 -> ･
     com.google.gson.internal.Streams$AppendableWriter$CurrentWrite currentWrite -> ˊ
     88:90:void write(char[],int,int) -> write
     93:94:void write(int) -> write
     96:96:void flush() -> flush
     97:97:void close() -> close
-com.google.gson.internal.Streams$AppendableWriter$CurrentWrite -> ǐ$･:
+com.google.gson.internal.Streams$AppendableWriter$CurrentWrite -> ʅ$･:
     char[] chars -> ･
     105:105:int length() -> length
     108:108:char charAt(int) -> charAt
     111:111:java.lang.CharSequence subSequence(int,int) -> subSequence
-com.google.gson.internal.UnsafeAllocator -> Ȋ:
+com.google.gson.internal.UnsafeAllocator -> ί:
     java.lang.Object newInstance(java.lang.Class) -> ･
     39:97:com.google.gson.internal.UnsafeAllocator create() -> ･
-com.google.gson.internal.UnsafeAllocator$1 -> ʅ:
+com.google.gson.internal.UnsafeAllocator$1 -> ד:
     java.lang.reflect.Method val$allocateInstance -> ･
     java.lang.Object val$unsafe -> ˊ
     48:48:java.lang.Object newInstance(java.lang.Class) -> ･
-com.google.gson.internal.UnsafeAllocator$2 -> ί:
+com.google.gson.internal.UnsafeAllocator$2 -> ױ:
     java.lang.reflect.Method val$newInstance -> ･
     67:67:java.lang.Object newInstance(java.lang.Class) -> ･
-com.google.gson.internal.UnsafeAllocator$3 -> ד:
+com.google.gson.internal.UnsafeAllocator$3 -> ڌ:
     java.lang.reflect.Method val$newInstance -> ･
     int val$constructorId -> ˊ
     90:90:java.lang.Object newInstance(java.lang.Class) -> ･
-com.google.gson.internal.UnsafeAllocator$4 -> ױ:
+com.google.gson.internal.UnsafeAllocator$4 -> ڍ:
     100:100:java.lang.Object newInstance(java.lang.Class) -> ･
-com.google.gson.internal.bind.ArrayTypeAdapter -> ڌ:
+com.google.gson.internal.bind.ArrayTypeAdapter -> ۃ:
     com.google.gson.internal.bind.ArrayTypeAdapter$1 FACTORY$7baa9f62 -> ･
     java.lang.Class componentType -> ˊ
     com.google.gson.internal.bind.TypeAdapterRuntimeTypeWrapper componentTypeAdapter$38124732 -> ˋ
     64:80:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     85:96:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.ArrayTypeAdapter$1 -> ڍ:
+com.google.gson.internal.bind.ArrayTypeAdapter$1 -> ৳:
     42:49:com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> ･
-com.google.gson.internal.bind.CollectionTypeAdapterFactory -> ۃ:
+com.google.gson.internal.bind.CollectionTypeAdapterFactory -> ฯ:
     com.google.gson.internal.ConstructorConstructor constructorConstructor -> ･
     44:57:com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> ･
-com.google.gson.internal.bind.CollectionTypeAdapterFactory$Adapter -> ۃ$･:
+com.google.gson.internal.bind.CollectionTypeAdapterFactory$Adapter -> ฯ$･:
     com.google.gson.internal.bind.TypeAdapterRuntimeTypeWrapper elementTypeAdapter$38124732 -> ･
     com.google.gson.internal.ObjectConstructor constructor -> ˊ
     60:60:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     60:60:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.DateTypeAdapter -> ৳:
+com.google.gson.internal.bind.DateTypeAdapter -> ๅ:
     com.google.gson.internal.bind.DateTypeAdapter$1 FACTORY$7baa9f62 -> ･
     java.text.DateFormat enUsFormat -> ˊ
     java.text.DateFormat localFormat -> ˋ
@@ -3127,9 +3137,9 @@ com.google.gson.internal.bind.DateTypeAdapter -> ৳:
     86:92:void write(com.google.gson.stream.JsonWriter,java.util.Date) -> ･
     41:41:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     41:41:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.DateTypeAdapter$1 -> ฯ:
+com.google.gson.internal.bind.DateTypeAdapter$1 -> ᐞ:
     45:45:com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> ･
-com.google.gson.internal.bind.JsonTreeReader -> ๅ:
+com.google.gson.internal.bind.JsonTreeReader -> ᓐ:
     java.lang.Object SENTINEL_CLOSED -> ˋ
     java.util.List stack -> ･
     58:61:void beginArray() -> ･
@@ -3149,37 +3159,37 @@ com.google.gson.internal.bind.JsonTreeReader -> ๅ:
     203:205:void close() -> close
     208:213:void skipValue() -> ˈ
     216:216:java.lang.String toString() -> toString
-com.google.gson.internal.bind.JsonTreeReader$1 -> ᐞ:
+com.google.gson.internal.bind.JsonTreeReader$1 -> ᓭ:
     42:42:int read(char[],int,int) -> read
     45:45:void close() -> close
-com.google.gson.internal.bind.MapTypeAdapterFactory -> ᓐ:
+com.google.gson.internal.bind.MapTypeAdapterFactory -> ᓯ:
     com.google.gson.internal.ConstructorConstructor constructorConstructor -> ･
     boolean complexMapKeySerialization -> ˊ
     116:133:com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> ･
-com.google.gson.internal.bind.MapTypeAdapterFactory$Adapter -> ᓐ$･:
+com.google.gson.internal.bind.MapTypeAdapterFactory$Adapter -> ᓯ$･:
     com.google.gson.internal.bind.TypeAdapterRuntimeTypeWrapper keyTypeAdapter$38124732 -> ･
     com.google.gson.internal.bind.TypeAdapterRuntimeTypeWrapper valueTypeAdapter$38124732 -> ˊ
     com.google.gson.internal.ObjectConstructor constructor -> ˋ
     com.google.gson.internal.bind.MapTypeAdapterFactory this$0 -> ˎ
     145:145:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     145:145:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.ObjectTypeAdapter -> ᓭ:
+com.google.gson.internal.bind.ObjectTypeAdapter -> ᓱ:
     com.google.gson.internal.bind.ObjectTypeAdapter$1 FACTORY$7baa9f62 -> ･
     com.google.gson.Gson gson -> ˊ
     55:89:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     95:108:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.ObjectTypeAdapter$1 -> ᓯ:
+com.google.gson.internal.bind.ObjectTypeAdapter$1 -> ᓴ:
     41:44:com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> ･
-com.google.gson.internal.bind.ObjectTypeAdapter$2 -> ᓭ$1:
+com.google.gson.internal.bind.ObjectTypeAdapter$2 -> ᓱ$1:
     int[] $SwitchMap$com$google$gson$stream$JsonToken -> ･
-com.google.gson.internal.bind.ReflectiveTypeAdapterFactory -> ᓱ:
+com.google.gson.internal.bind.ReflectiveTypeAdapterFactory -> ᔥ:
     com.google.gson.internal.ConstructorConstructor constructorConstructor -> ･
     com.google.gson.FieldNamingPolicy$1 fieldNamingPolicy$348657ce$658f7f6f -> ˊ
     com.google.gson.internal.Excluder excluder -> ˋ
     56:56:boolean excludeField(java.lang.reflect.Field,boolean) -> ･
     65:72:com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> ･
     102:129:java.util.LinkedHashMap getBoundFields$4bbc5fa1(com.google.gson.Gson,com.google.gson.reflect.TypeToken,java.lang.Class) -> ･
-com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$1 -> ᓴ:
+com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$1 -> ᖦ:
     com.google.gson.TypeAdapter typeAdapter -> ˎ
     com.google.gson.Gson val$context -> ˏ
     com.google.gson.reflect.TypeToken val$fieldType -> ᐝ
@@ -3188,42 +3198,42 @@ com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$1 -> ᓴ:
     com.google.gson.internal.bind.ReflectiveTypeAdapterFactory this$0 -> ʽ
     86:90:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
     93:97:void read(com.google.gson.stream.JsonReader,java.lang.Object) -> ･
-com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter -> ᓱ$･:
+com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter -> ᔥ$･:
     com.google.gson.internal.ObjectConstructor constructor -> ･
     java.util.LinkedHashMap boundFields$5a983bf5 -> ˊ
     157:181:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     185:202:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$BoundField -> ᓱ$if:
+com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$BoundField -> ᔥ$if:
     java.lang.String name -> ･
     boolean serialized -> ˊ
     boolean deserialized -> ˋ
     void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
     void read(com.google.gson.stream.JsonReader,java.lang.Object) -> ･
-com.google.gson.internal.bind.SqlDateTypeAdapter -> ᔥ:
+com.google.gson.internal.bind.SqlDateTypeAdapter -> ᴗ:
     com.google.gson.internal.bind.SqlDateTypeAdapter$1 FACTORY$7baa9f62 -> ･
     java.text.SimpleDateFormat format$74c4faeb -> ˊ
     51:59:java.sql.Date read(com.google.gson.stream.JsonReader) -> ˊ
     65:66:void write(com.google.gson.stream.JsonWriter,java.sql.Date) -> ･
     38:38:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     38:38:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.SqlDateTypeAdapter$1 -> ᖦ:
+com.google.gson.internal.bind.SqlDateTypeAdapter$1 -> ᴴ:
     42:42:com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> ･
-com.google.gson.internal.bind.TimeTypeAdapter -> ᴗ:
+com.google.gson.internal.bind.TimeTypeAdapter -> ᴿ:
     com.google.gson.internal.bind.TimeTypeAdapter$1 FACTORY$7baa9f62 -> ･
     java.text.SimpleDateFormat format$74c4faeb -> ˊ
     51:59:java.sql.Time read(com.google.gson.stream.JsonReader) -> ˊ
     64:65:void write(com.google.gson.stream.JsonWriter,java.sql.Time) -> ･
     40:40:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     40:40:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TimeTypeAdapter$1 -> ᴴ:
+com.google.gson.internal.bind.TimeTypeAdapter$1 -> ᵇ:
     44:44:com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> ･
-com.google.gson.internal.bind.TypeAdapterRuntimeTypeWrapper -> ᴿ:
+com.google.gson.internal.bind.TypeAdapterRuntimeTypeWrapper -> ᵖ:
     com.google.gson.Gson context -> ･
     com.google.gson.TypeAdapter delegate -> ˊ
     java.lang.reflect.Type type -> ˋ
     40:40:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     52:69:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters -> ᵇ:
+com.google.gson.internal.bind.TypeAdapters -> ᵟ:
     com.google.gson.internal.bind.TypeAdapters$1 CLASS$38124732 -> ՙ
     com.google.gson.internal.bind.TypeAdapters$28 CLASS_FACTORY$7baa9f62 -> ･
     com.google.gson.internal.bind.TypeAdapters$2 BIT_SET$38124732 -> י
@@ -3268,134 +3278,134 @@ com.google.gson.internal.bind.TypeAdapters -> ᵇ:
     com.google.gson.internal.bind.TypeAdapters$26 ENUM_FACTORY$7baa9f62 -> ʹ
     779:779:com.google.gson.internal.bind.TypeAdapters$28 newFactory$7f7e58ac(java.lang.Class,com.google.gson.TypeAdapter) -> ･
     792:792:com.google.gson.internal.bind.TypeAdapters$29 newFactory$3c3d753f(java.lang.Class,java.lang.Class,com.google.gson.TypeAdapter) -> ･
-com.google.gson.internal.bind.TypeAdapters$1 -> ᵖ:
+com.google.gson.internal.bind.TypeAdapters$1 -> ḷ:
     61:61:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     61:61:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$10 -> ᵟ:
+com.google.gson.internal.bind.TypeAdapters$10 -> ṙ:
     287:287:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     287:287:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$11 -> ḷ:
+com.google.gson.internal.bind.TypeAdapters$11 -> ṛ:
     302:302:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     302:302:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$12 -> ṙ:
+com.google.gson.internal.bind.TypeAdapters$12 -> ỉ:
     324:324:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     324:324:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$13 -> ṛ:
+com.google.gson.internal.bind.TypeAdapters$13 -> ἰ:
     346:346:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     346:346:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$14 -> ỉ:
+com.google.gson.internal.bind.TypeAdapters$14 -> ἱ:
     368:375:java.math.BigDecimal read(com.google.gson.stream.JsonReader) -> ˊ
     366:366:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     366:366:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$15 -> ἰ:
+com.google.gson.internal.bind.TypeAdapters$15 -> ὶ:
     386:393:java.math.BigInteger read(com.google.gson.stream.JsonReader) -> ˊ
     384:384:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     384:384:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$16 -> ἱ:
+com.google.gson.internal.bind.TypeAdapters$16 -> ί:
     404:404:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     404:404:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$17 -> ὶ:
+com.google.gson.internal.bind.TypeAdapters$17 -> ῐ:
     422:422:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     422:422:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$18 -> ί:
+com.google.gson.internal.bind.TypeAdapters$18 -> ῑ:
     440:440:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     440:440:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$19 -> ῐ:
+com.google.gson.internal.bind.TypeAdapters$19 -> ‿:
     461:469:java.net.URI read(com.google.gson.stream.JsonReader) -> ˊ
     458:458:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     458:458:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$2 -> ῑ:
+com.google.gson.internal.bind.TypeAdapters$2 -> ⁀:
     86:123:java.util.BitSet read(com.google.gson.stream.JsonReader) -> ˊ
     84:84:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     84:84:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$20 -> ‿:
+com.google.gson.internal.bind.TypeAdapters$20 -> ⁔:
     480:480:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     480:480:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$21 -> ⁀:
+com.google.gson.internal.bind.TypeAdapters$21 -> 丨:
     499:499:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     499:499:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$22 -> ⁔:
+com.google.gson.internal.bind.TypeAdapters$22 -> 氵:
     519:524:com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> ･
-com.google.gson.internal.bind.TypeAdapters$22$1 -> 丨:
+com.google.gson.internal.bind.TypeAdapters$22$1 -> 灬:
     com.google.gson.TypeAdapter val$dateTypeAdapter -> ･
     com.google.gson.internal.bind.TypeAdapters$22 this$0 -> ˊ
     524:524:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     524:524:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$23 -> 氵:
+com.google.gson.internal.bind.TypeAdapters$23 -> ﭙ:
     537:537:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     537:537:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$24 -> 灬:
+com.google.gson.internal.bind.TypeAdapters$24 -> ﮂ:
     605:605:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     605:605:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$25 -> ﭙ:
+com.google.gson.internal.bind.TypeAdapters$25 -> ﮄ:
     644:676:com.google.gson.JsonElement read(com.google.gson.stream.JsonReader) -> ˊ
     681:709:void write(com.google.gson.stream.JsonWriter,com.google.gson.JsonElement) -> ･
     642:642:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     642:642:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$26 -> ﮂ:
+com.google.gson.internal.bind.TypeAdapters$26 -> ﹽ:
     755:762:com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> ･
-com.google.gson.internal.bind.TypeAdapters$28 -> ﮄ:
+com.google.gson.internal.bind.TypeAdapters$28 -> ﺋ:
     java.lang.Class val$type -> ･
     com.google.gson.TypeAdapter val$typeAdapter -> ˊ
     782:782:com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> ･
     785:785:java.lang.String toString() -> toString
-com.google.gson.internal.bind.TypeAdapters$29 -> ﹽ:
+com.google.gson.internal.bind.TypeAdapters$29 -> ﺜ:
     java.lang.Class val$unboxed -> ･
     java.lang.Class val$boxed -> ˊ
     com.google.gson.TypeAdapter val$typeAdapter -> ˋ
     795:796:com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> ･
     799:799:java.lang.String toString() -> toString
-com.google.gson.internal.bind.TypeAdapters$3 -> ﺋ:
+com.google.gson.internal.bind.TypeAdapters$3 -> ﻟ:
     143:143:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     143:143:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$30 -> ﺜ:
+com.google.gson.internal.bind.TypeAdapters$30 -> ﾉ:
     java.lang.Class val$base -> ･
     java.lang.Class val$sub -> ˊ
     com.google.gson.internal.bind.TypeAdapters$23 val$typeAdapter$38124732 -> ˋ
     810:811:com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> ･
     814:814:java.lang.String toString() -> toString
-com.google.gson.internal.bind.TypeAdapters$31 -> ﻟ:
+com.google.gson.internal.bind.TypeAdapters$31 -> ľ:
     java.lang.Class val$clazz -> ･
     com.google.gson.TypeAdapter val$typeAdapter -> ˊ
     825:825:com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> ･
     828:828:java.lang.String toString() -> toString
-com.google.gson.internal.bind.TypeAdapters$32 -> ᵇ$1:
+com.google.gson.internal.bind.TypeAdapters$32 -> ᵟ$1:
     int[] $SwitchMap$com$google$gson$stream$JsonToken -> ･
-com.google.gson.internal.bind.TypeAdapters$4 -> ﾉ:
+com.google.gson.internal.bind.TypeAdapters$4 -> ǀ:
     169:169:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     169:169:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$5 -> ľ:
+com.google.gson.internal.bind.TypeAdapters$5 -> ɔ:
     189:197:java.lang.Byte read$1e6781e6(com.google.gson.stream.JsonReader) -> ˊ
     186:186:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     186:186:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$6 -> ǀ:
+com.google.gson.internal.bind.TypeAdapters$6 -> ɟ:
     212:219:java.lang.Short read$1e6781e6(com.google.gson.stream.JsonReader) -> ˊ
     209:209:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     209:209:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$7 -> ɔ:
+com.google.gson.internal.bind.TypeAdapters$7 -> ɺ:
     234:241:java.lang.Integer read$1e6781e6(com.google.gson.stream.JsonReader) -> ˊ
     231:231:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     231:231:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$8 -> ɟ:
+com.google.gson.internal.bind.TypeAdapters$8 -> ɼ:
     256:263:java.lang.Long read$1e6781e6(com.google.gson.stream.JsonReader) -> ˊ
     253:253:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     253:253:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$9 -> ɺ:
+com.google.gson.internal.bind.TypeAdapters$9 -> ʱ:
     272:272:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     272:272:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.internal.bind.TypeAdapters$EnumTypeAdapter -> ᵇ$･:
+com.google.gson.internal.bind.TypeAdapters$EnumTypeAdapter -> ᵟ$･:
     java.util.HashMap nameToConstant$5a983bf5 -> ･
     java.util.HashMap constantToName$5a983bf5 -> ˊ
     717:717:java.lang.Object read(com.google.gson.stream.JsonReader) -> ･
     717:717:void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> ･
-com.google.gson.reflect.TypeToken -> ɼ:
+com.google.gson.reflect.TypeToken -> ˠ:
     java.lang.Class rawType -> ･
     java.lang.reflect.Type type -> ˊ
     int hashCode -> ˋ
     280:280:int hashCode() -> hashCode
     284:284:boolean equals(java.lang.Object) -> equals
     289:289:java.lang.String toString() -> toString
-com.google.gson.stream.JsonReader -> ʱ:
+com.google.gson.stream.JsonReader -> Ί:
     char[] NON_EXECUTE_PREFIX -> ･
     java.io.InputStreamReader in$23a3d810 -> ˋ
     boolean lenient -> ˊ
@@ -3446,7 +3456,7 @@ com.google.gson.stream.JsonReader -> ʱ:
     190:190:int access$002(com.google.gson.stream.JsonReader,int) -> ･
     190:190:int access$200(com.google.gson.stream.JsonReader) -> ˋ
     190:190:int access$300(com.google.gson.stream.JsonReader) -> ˎ
-com.google.gson.stream.JsonReader$1 -> ˠ:
+com.google.gson.stream.JsonReader$1 -> ϲ:
     1534:1549:void promoteNameToValue(com.google.gson.stream.JsonReader) -> ･
 com.google.gson.stream.JsonToken -> com.google.gson.stream.JsonToken:
     com.google.gson.stream.JsonToken BEGIN_ARRAY -> ･
@@ -3462,7 +3472,7 @@ com.google.gson.stream.JsonToken -> com.google.gson.stream.JsonToken:
     com.google.gson.stream.JsonToken[] $VALUES -> ι
     25:25:com.google.gson.stream.JsonToken[] values() -> values
     25:25:com.google.gson.stream.JsonToken valueOf(java.lang.String) -> valueOf
-com.google.gson.stream.JsonWriter -> Ί:
+com.google.gson.stream.JsonWriter -> ϳ:
     java.lang.String[] REPLACEMENT_CHARS -> ˎ
     java.lang.String[] HTML_SAFE_REPLACEMENT_CHARS -> ˏ
     java.io.Writer out -> ᐝ
@@ -3490,7 +3500,7 @@ com.google.gson.stream.JsonWriter -> Ί:
     600:631:void beforeValue(boolean) -> ˊ
 com.google.gson.stream.MalformedJsonException -> com.google.gson.stream.MalformedJsonException:
     long serialVersionUID -> serialVersionUID
-com.linkbubble.Config -> ϲ:
+com.linkbubble.Config -> Ј:
     android.util.DisplayMetrics mDm -> ˈ
     int mScreenCenterX -> ･
     int mScreenHeight -> ˊ
@@ -3532,7 +3542,7 @@ com.linkbubble.Constant$BubbleAction -> com.linkbubble.Constant$BubbleAction:
     com.linkbubble.Constant$BubbleAction[] $VALUES -> ˏ
     7:7:com.linkbubble.Constant$BubbleAction[] values() -> values
     7:7:com.linkbubble.Constant$BubbleAction valueOf(java.lang.String) -> valueOf
-com.linkbubble.DRM -> ϳ:
+com.linkbubble.DRM -> с:
     java.lang.String TAG -> ･
     int sLicenseState -> ˏ
     java.lang.String LICENSE_KEY -> ᐝ
@@ -3563,18 +3573,18 @@ com.linkbubble.DRM -> ϳ:
     21:21:java.lang.String access$300() -> ᐝ
     21:21:void access$400(com.linkbubble.DRM,int) -> ･
     java.lang.String $(int,int,int) -> ･
-com.linkbubble.DRM$1 -> Ј:
+com.linkbubble.DRM$1 -> т:
     java.lang.String val$encryptedFirstInstallTime -> ･
     com.linkbubble.DRM this$0 -> ˊ
     73:76:void run() -> run
-com.linkbubble.DRM$2 -> с:
+com.linkbubble.DRM$2 -> х:
     com.linkbubble.DRM this$0 -> ･
     280:289:void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
     292:297:void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
-com.linkbubble.DRM$ProHandler -> ϳ$･:
+com.linkbubble.DRM$ProHandler -> с$･:
     com.linkbubble.DRM this$0 -> ･
     248:261:void handleMessage(android.os.Message) -> handleMessage
-com.linkbubble.DRM$SetStateThread -> ϳ$if:
+com.linkbubble.DRM$SetStateThread -> с$if:
     android.content.SharedPreferences mSharedPreferences -> ･
     java.lang.String mEncryptedState -> ˊ
     java.lang.String mEncryptedLeft -> ˋ
@@ -3614,11 +3624,11 @@ com.linkbubble.MainApplication -> com.linkbubble.MainApplication:
     350:351:void showUpgradePrompt(android.content.Context,int,java.lang.String) -> ･
     354:379:void showUpgradePrompt(android.content.Context,java.lang.String,java.lang.String) -> ˋ
     java.lang.String $(int,int,int) -> ･
-com.linkbubble.MainApplication$1 -> т:
+com.linkbubble.MainApplication$1 -> ј:
     java.lang.String val$urlAsString -> ･
     android.content.Context val$context -> ˊ
     205:211:void onSelected(com.linkbubble.util.ActionItem) -> ･
-com.linkbubble.MainApplication$2 -> х:
+com.linkbubble.MainApplication$2 -> ґ:
     android.content.pm.ResolveInfo val$storeResolveInfo -> ･
     android.content.Context val$context -> ˊ
     java.lang.String val$prompt -> ˋ
@@ -3655,6 +3665,7 @@ com.linkbubble.MainController -> com.linkbubble.MainController:
     com.linkbubble.util.AppPoller$AppPollerListener mAppPollerListener$68d024af$b0f9ede -> ﾞ
     boolean mCanDisplay -> ʹ
     byte[] $ -> ՙ
+    int $$ -> י
     85:92:void addRootWindow$73ade143(android.widget.FrameLayout,android.view.WindowManager$LayoutParams) -> ･
     95:102:void removeRootWindow$3c7ec8c3(android.widget.FrameLayout) -> ･
     105:109:void updateRootWindowLayout$73ade143(android.widget.FrameLayout,android.view.WindowManager$LayoutParams) -> ˊ
@@ -3671,41 +3682,41 @@ com.linkbubble.MainController -> com.linkbubble.MainController:
     492:511:boolean handleResolveInfo(android.content.pm.ResolveInfo,java.lang.String,long) -> ･
     521:628:com.linkbubble.ui.TabView openUrl(java.lang.String,long,boolean,java.lang.String,boolean) -> ･
     643:654:void showBadge(boolean) -> ･
-    673:691:boolean closeTab(com.linkbubble.ui.TabView,com.linkbubble.Constant$BubbleAction,boolean) -> ･
-    708:718:void expandBubbleFlow$256a6c5(boolean) -> ˊ
-    725:729:void switchToBubbleView() -> ˎ
-    736:737:void beginAppPolling() -> ˏ
-    761:773:void onStateChangedEvent(com.linkbubble.MainApplication$StateChangedEvent) -> onStateChangedEvent
-    776:786:boolean reloadAllTabs$faab209(android.app.Activity) -> ･
-    793:803:void setCanDisplay(boolean) -> ˋ
-    806:812:void updateKeyguardLocked() -> ᐝ
+    673:684:boolean closeTab(com.linkbubble.ui.TabView,com.linkbubble.Constant$BubbleAction,boolean) -> ･
+    701:711:void expandBubbleFlow$256a6c5(boolean) -> ˊ
+    718:722:void switchToBubbleView() -> ˎ
+    729:732:void beginAppPolling() -> ˏ
+    758:770:void onStateChangedEvent(com.linkbubble.MainApplication$StateChangedEvent) -> onStateChangedEvent
+    773:783:boolean reloadAllTabs$faab209(android.app.Activity) -> ･
+    790:800:void setCanDisplay(boolean) -> ˋ
+    803:809:void updateKeyguardLocked() -> ᐝ
     45:45:com.linkbubble.ui.BubbleDraggable access$000(com.linkbubble.MainController) -> ･
     45:45:com.linkbubble.ui.BubbleFlowDraggable access$100(com.linkbubble.MainController) -> ˊ
     45:45:boolean access$202$44fb5824(com.linkbubble.MainController) -> ˋ
     45:45:boolean access$200(com.linkbubble.MainController) -> ˎ
     45:45:java.lang.String access$300(com.linkbubble.MainController) -> ˏ
     java.lang.String $(int,int,int) -> ･
-com.linkbubble.MainController$1 -> ј:
+com.linkbubble.MainController$1 -> ך:
     com.linkbubble.MainController this$0 -> ･
     197:201:void onAnimationEnd(com.linkbubble.ui.BubbleFlowView) -> ･
 com.linkbubble.MainController$10 -> com.linkbubble.MainController$1:
     int[] $SwitchMap$com$linkbubble$ui$BubbleDraggable$Mode -> ･
-com.linkbubble.MainController$2 -> ґ:
+com.linkbubble.MainController$2 -> כ:
     com.linkbubble.MainController this$0 -> ･
     208:215:void onAnimationEnd(com.linkbubble.ui.BubbleFlowView) -> ･
-com.linkbubble.MainController$3 -> ך:
+com.linkbubble.MainController$3 -> ء:
     com.linkbubble.MainController this$0 -> ･
     222:225:void run() -> run
-com.linkbubble.MainController$4 -> כ:
+com.linkbubble.MainController$4 -> ر:
     com.linkbubble.MainController this$0 -> ･
     231:232:void run() -> run
-com.linkbubble.MainController$7 -> ء:
+com.linkbubble.MainController$7 -> ڎ:
     java.util.ArrayList val$resolveInfos$7865b31 -> ･
     java.lang.String val$urlAsString -> ˊ
     com.linkbubble.ui.TabView val$result -> ˋ
     com.linkbubble.MainController this$0 -> ˎ
     587:613:void onSelected(com.linkbubble.util.ActionItem,boolean) -> ･
-com.linkbubble.MainController$8 -> ر:
+com.linkbubble.MainController$8 -> ڏ:
     com.linkbubble.MainController this$0 -> ･
     619:620:void onDismiss(android.content.DialogInterface) -> onDismiss
 com.linkbubble.MainController$BeginAnimateFinalTabAwayEvent -> com.linkbubble.MainController$BeginAnimateFinalTabAwayEvent:
@@ -3735,13 +3746,13 @@ com.linkbubble.MainService -> com.linkbubble.MainService:
     32:62:int onStartCommand(android.content.Intent,int,int) -> onStartCommand
     68:124:void onCreate() -> onCreate
     128:132:void onDestroy() -> onDestroy
-com.linkbubble.MainService$2 -> ڎ:
+com.linkbubble.MainService$2 -> ઽ:
     137:140:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.linkbubble.MainService$3 -> ڏ:
+com.linkbubble.MainService$3 -> ເ:
     146:149:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.linkbubble.MainService$4 -> ઽ:
+com.linkbubble.MainService$4 -> ᓰ:
     155:156:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.linkbubble.R$styleable -> ເ:
+com.linkbubble.R$styleable -> ᓲ:
     int[] FlipImageView -> FlipImageView
     int FlipImageView_defaultView -> FlipImageView_defaultView
     int FlipImageView_flipDuration -> FlipImageView_flipDuration
@@ -3791,41 +3802,41 @@ com.linkbubble.Settings -> com.linkbubble.Settings:
     com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent mLinkLoadTimeStatsUpdatedEvent -> ˌ
     java.util.ArrayList mLastAppRedirects$7865b31 -> ˍ
     byte[] $ -> ˑ
-    91:92:void initModule$faab20d(com.linkbubble.MainApplication) -> ･
-    98:99:void deinitModule() -> ･
-    102:104:void setConsumeBubblesChangedEventHandler$4d0351a7$6858d67a(com.linkbubble.Settings$ConsumeBubblesChangedEventHandler) -> ･
-    110:110:com.linkbubble.Settings get() -> ˊ
-    163:178:void configureDefaultApp(android.content.pm.PackageManager,java.lang.String,java.lang.String) -> ･
-    186:208:void onOrientationChange() -> ˋ
-    211:266:void updateBrowsers() -> ˎ
-    270:274:boolean doesPackageExist(android.content.pm.PackageManager,java.lang.String) -> ･
-    278:284:android.content.pm.ResolveInfo findResolveInfoForPackageName(java.util.List,java.lang.String) -> ･
-    288:303:android.content.pm.ResolveInfo getYouTubeViewResolveInfo() -> ˏ
-    345:351:boolean setDefaultLeftConsumeBubble(android.content.pm.ResolveInfo,android.content.pm.PackageManager) -> ･
-    374:381:android.content.ComponentName getDefaultBrowserComponentName(android.content.Context) -> ･
-    385:394:android.graphics.drawable.Drawable getDefaultBrowserIcon(android.content.Context) -> ˊ
-    398:419:void setConsumeBubble(com.linkbubble.Constant$BubbleAction,com.linkbubble.Constant$ActionType,java.lang.String,java.lang.String,java.lang.String) -> ･
-    422:429:java.lang.String getConsumeBubbleLabel(com.linkbubble.Constant$BubbleAction) -> ･
-    433:440:java.lang.String getConsumeBubblePackageName(com.linkbubble.Constant$BubbleAction) -> ˊ
-    444:451:java.lang.String getConsumeBubbleActivityClassName(com.linkbubble.Constant$BubbleAction) -> ˋ
-    478:492:android.graphics.drawable.Drawable getConsumeBubbleIcon(com.linkbubble.Constant$BubbleAction) -> ˎ
-    508:512:void setInterceptLinksFrom(java.lang.String,java.lang.String) -> ･
-    558:586:boolean redirectUrlToBrowser(java.lang.String,android.content.pm.PackageManager) -> ･
-    601:634:java.util.ArrayList getAppsThatHandleUrl$6450ac98(java.lang.String,android.content.pm.PackageManager) -> ˊ
-    638:662:android.content.pm.ResolveInfo getDefaultAppForUrl$14c9ac02(java.net.URL,java.util.ArrayList) -> ･
-    671:680:void setDefaultApp(java.lang.String,android.content.pm.ResolveInfo,boolean) -> ･
-    684:689:void addDefaultApp(java.lang.String,android.content.ComponentName,boolean) -> ･
-    699:709:java.util.Vector loadCurrentTabs() -> ᐝ
-    713:735:void saveCurrentTabs$61fb9e66(java.util.ArrayList) -> ･
-    738:754:void saveDefaultApps() -> ʻ
-    758:778:void configureDefaultApps(java.lang.String) -> ˋ
-    781:789:java.util.TreeMap getDefaultAppsMap() -> ʼ
-    793:805:android.graphics.Point getBubbleRestingPoint() -> ʽ
-    867:889:void trackLinkLoadTime(long,com.linkbubble.Settings$LinkLoadType,java.lang.String) -> ･
-    931:939:boolean didRecentlyRedirectToApp(java.lang.String) -> ･
-    944:972:void addRedirectToApp(java.lang.String) -> ˊ
-    975:990:void saveRecentAppRedirects() -> ͺ
-    993:1011:void loadRecentAppRedirects() -> ι
+    88:89:void initModule$faab20d(com.linkbubble.MainApplication) -> ･
+    95:96:void deinitModule() -> ･
+    99:101:void setConsumeBubblesChangedEventHandler$4d0351a7$6858d67a(com.linkbubble.Settings$ConsumeBubblesChangedEventHandler) -> ･
+    107:107:com.linkbubble.Settings get() -> ˊ
+    160:175:void configureDefaultApp(android.content.pm.PackageManager,java.lang.String,java.lang.String) -> ･
+    183:205:void onOrientationChange() -> ˋ
+    208:263:void updateBrowsers() -> ˎ
+    267:271:boolean doesPackageExist(android.content.pm.PackageManager,java.lang.String) -> ･
+    275:281:android.content.pm.ResolveInfo findResolveInfoForPackageName(java.util.List,java.lang.String) -> ･
+    285:300:android.content.pm.ResolveInfo getYouTubeViewResolveInfo() -> ˏ
+    342:348:boolean setDefaultLeftConsumeBubble(android.content.pm.ResolveInfo,android.content.pm.PackageManager) -> ･
+    371:378:android.content.ComponentName getDefaultBrowserComponentName(android.content.Context) -> ･
+    382:391:android.graphics.drawable.Drawable getDefaultBrowserIcon(android.content.Context) -> ˊ
+    395:416:void setConsumeBubble(com.linkbubble.Constant$BubbleAction,com.linkbubble.Constant$ActionType,java.lang.String,java.lang.String,java.lang.String) -> ･
+    419:426:java.lang.String getConsumeBubbleLabel(com.linkbubble.Constant$BubbleAction) -> ･
+    430:437:java.lang.String getConsumeBubblePackageName(com.linkbubble.Constant$BubbleAction) -> ˊ
+    441:448:java.lang.String getConsumeBubbleActivityClassName(com.linkbubble.Constant$BubbleAction) -> ˋ
+    475:489:android.graphics.drawable.Drawable getConsumeBubbleIcon(com.linkbubble.Constant$BubbleAction) -> ˎ
+    505:509:void setInterceptLinksFrom(java.lang.String,java.lang.String) -> ･
+    539:567:boolean redirectUrlToBrowser(java.lang.String,android.content.pm.PackageManager) -> ･
+    582:615:java.util.ArrayList getAppsThatHandleUrl$6450ac98(java.lang.String,android.content.pm.PackageManager) -> ˊ
+    619:643:android.content.pm.ResolveInfo getDefaultAppForUrl$14c9ac02(java.net.URL,java.util.ArrayList) -> ･
+    652:661:void setDefaultApp(java.lang.String,android.content.pm.ResolveInfo,boolean) -> ･
+    665:670:void addDefaultApp(java.lang.String,android.content.ComponentName,boolean) -> ･
+    680:690:java.util.Vector loadCurrentTabs() -> ᐝ
+    694:716:void saveCurrentTabs$61fb9e66(java.util.ArrayList) -> ･
+    719:735:void saveDefaultApps() -> ʻ
+    739:759:void configureDefaultApps(java.lang.String) -> ˋ
+    762:770:java.util.TreeMap getDefaultAppsMap() -> ʼ
+    774:786:android.graphics.Point getBubbleRestingPoint() -> ʽ
+    848:870:void trackLinkLoadTime(long,com.linkbubble.Settings$LinkLoadType,java.lang.String) -> ･
+    912:920:boolean didRecentlyRedirectToApp(java.lang.String) -> ･
+    925:953:void addRedirectToApp(java.lang.String) -> ˊ
+    956:971:void saveRecentAppRedirects() -> ͺ
+    974:992:void loadRecentAppRedirects() -> ι
     java.lang.String $(int,int,int) -> ･
 com.linkbubble.Settings$1 -> com.linkbubble.Settings$1:
     int[] $SwitchMap$com$linkbubble$Constant$BubbleAction -> ･
@@ -3844,9 +3855,9 @@ com.linkbubble.Settings$LinkLoadType -> com.linkbubble.Settings$LinkLoadType:
     com.linkbubble.Settings$LinkLoadType ShareToOtherApp -> ˎ
     com.linkbubble.Settings$LinkLoadType OpenInOtherApp -> ˏ
     com.linkbubble.Settings$LinkLoadType[] $VALUES -> ᐝ
-    850:850:com.linkbubble.Settings$LinkLoadType[] values() -> values
-    850:850:com.linkbubble.Settings$LinkLoadType valueOf(java.lang.String) -> valueOf
-com.linkbubble.db.DatabaseHelper -> ᓰ:
+    831:831:com.linkbubble.Settings$LinkLoadType[] values() -> values
+    831:831:com.linkbubble.Settings$LinkLoadType valueOf(java.lang.String) -> valueOf
+com.linkbubble.db.DatabaseHelper -> ᓵ:
     java.lang.String[] LINK_HISTORY_COLUMNS -> ･
     java.lang.String[] FAVICON_EXISTS_COLUMNS -> ˊ
     java.lang.String[] FAVICON_FETCH_COLUMNS -> ˋ
@@ -3868,13 +3879,13 @@ com.linkbubble.db.HistoryRecord -> com.linkbubble.db.HistoryRecord:
     64:64:java.lang.String toString() -> toString
 com.linkbubble.db.HistoryRecord$ChangedEvent -> com.linkbubble.db.HistoryRecord$ChangedEvent:
     com.linkbubble.db.HistoryRecord mHistoryRecord -> ･
-com.linkbubble.physics.Circle -> ᓲ:
+com.linkbubble.physics.Circle -> ᔿ:
     float mX -> ･
     float mY -> ˊ
     float mRadius -> ˋ
-com.linkbubble.physics.Draggable -> ᓵ:
+com.linkbubble.physics.Draggable -> ᕻ:
     com.linkbubble.physics.DraggableHelper getDraggableHelper() -> ･
-com.linkbubble.physics.Draggable$OnUpdateListener -> ᓵ$･:
+com.linkbubble.physics.Draggable$OnUpdateListener -> ᕻ$･:
     com.linkbubble.MainController this$0 -> ･
 com.linkbubble.physics.DraggableHelper -> com.linkbubble.physics.DraggableHelper:
     com.linkbubble.physics.DraggableHelper$TouchEvent mTouchEvent -> ˌ
@@ -3911,7 +3922,7 @@ com.linkbubble.physics.DraggableHelper -> com.linkbubble.physics.DraggableHelper
     293:303:void clearTargetPos() -> ･
     306:313:void setExactPos(int,int) -> ･
     316:336:void setTargetPos(int,int,float,com.linkbubble.physics.DraggableHelper$AnimationType,com.linkbubble.physics.DraggableHelper$AnimationEventListener) -> ･
-com.linkbubble.physics.DraggableHelper$1 -> ᔿ:
+com.linkbubble.physics.DraggableHelper$1 -> ᴄ:
     com.linkbubble.physics.DraggableHelper this$0 -> ･
     251:266:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
 com.linkbubble.physics.DraggableHelper$2 -> com.linkbubble.physics.DraggableHelper$1:
@@ -3950,7 +3961,7 @@ com.linkbubble.physics.DraggableHelper$TouchEvent -> com.linkbubble.physics.Drag
     int posY -> ˊ
     float rawX -> ˋ
     float rawY -> ˎ
-com.linkbubble.physics.FlingTracker -> ᕻ:
+com.linkbubble.physics.FlingTracker -> ᴐ:
     int MAX_EVENTS -> ˏ
     float DECAY -> ᐝ
     java.util.ArrayDeque mEventBuf -> ･
@@ -3959,7 +3970,7 @@ com.linkbubble.physics.FlingTracker -> ᕻ:
     com.linkbubble.physics.FlingTracker sTracker -> ˎ
     26:30:void addMovement(android.view.MotionEvent) -> ･
     35:77:void computeCurrentVelocity$1349ef() -> ･
-com.linkbubble.physics.FlingTracker$MotionEventCopy -> ᕻ$･:
+com.linkbubble.physics.FlingTracker$MotionEventCopy -> ᴐ$･:
     float x -> ･
     float y -> ˊ
     long t -> ˋ
@@ -4022,34 +4033,34 @@ com.linkbubble.ui.BubbleDraggable -> com.linkbubble.ui.BubbleDraggable:
     24:24:void access$1700(com.linkbubble.ui.BubbleDraggable) -> ˌ
     24:24:com.linkbubble.ui.BubbleFlowDraggable access$1800(com.linkbubble.ui.BubbleDraggable) -> ˍ
     24:24:void access$1900$5a47e988(com.linkbubble.ui.BubbleDraggable) -> ˑ
-com.linkbubble.ui.BubbleDraggable$1 -> ᴄ:
+com.linkbubble.ui.BubbleDraggable$1 -> ᴛ:
     com.linkbubble.ui.BubbleDraggable this$0 -> ･
     96:98:void onAnimationComplete() -> ･
     102:103:void onCancel() -> ˊ
-com.linkbubble.ui.BubbleDraggable$2 -> ᴐ:
+com.linkbubble.ui.BubbleDraggable$2 -> ᴺ:
     com.linkbubble.ui.BubbleTargetView val$tv -> ･
     com.linkbubble.ui.BubbleDraggable this$0 -> ˊ
     219:233:void onAnimationComplete() -> ･
     237:238:void onCancel() -> ˊ
-com.linkbubble.ui.BubbleDraggable$3 -> ᴛ:
+com.linkbubble.ui.BubbleDraggable$3 -> ᵈ:
     com.linkbubble.ui.BubbleDraggable this$0 -> ･
     288:290:void onAnimationComplete() -> ･
     293:294:void onCancel() -> ˊ
-com.linkbubble.ui.BubbleDraggable$4 -> ᴺ:
+com.linkbubble.ui.BubbleDraggable$4 -> ᵑ:
     com.linkbubble.MainController val$mainController -> ･
     com.linkbubble.ui.BubbleDraggable this$0 -> ˊ
     339:340:void onAnimationComplete() -> ･
     343:346:void onCancel() -> ˊ
-com.linkbubble.ui.BubbleDraggable$5 -> ᵈ:
+com.linkbubble.ui.BubbleDraggable$5 -> ᵨ:
     com.linkbubble.ui.BubbleDraggable this$0 -> ･
     387:402:void onActionDown(com.linkbubble.physics.DraggableHelper$TouchEvent) -> ･
     406:469:void onActionMove(com.linkbubble.physics.DraggableHelper$MoveEvent) -> ･
     473:517:void onActionUp(com.linkbubble.physics.DraggableHelper$ReleaseEvent) -> ･
-com.linkbubble.ui.BubbleDraggable$5$1 -> ᵑ:
+com.linkbubble.ui.BubbleDraggable$5$1 -> Ḯ:
     com.linkbubble.ui.BubbleDraggable$5 this$1 -> ･
     441:442:void onAnimationComplete() -> ･
     445:446:void onCancel() -> ˊ
-com.linkbubble.ui.BubbleDraggable$5$2 -> ᵨ:
+com.linkbubble.ui.BubbleDraggable$5$2 -> Ἰ:
     com.linkbubble.ui.BubbleDraggable$5 this$1 -> ･
     454:459:void onAnimationComplete() -> ･
     462:463:void onCancel() -> ˊ
@@ -4063,18 +4074,18 @@ com.linkbubble.ui.BubbleFlowActivity -> com.linkbubble.ui.BubbleFlowActivity:
     com.linkbubble.ui.BubbleFlowView mBubbleFlowView -> ･
     18:67:void onCreate(android.os.Bundle) -> onCreate
     71:79:void onResume() -> onResume
-com.linkbubble.ui.BubbleFlowActivity$1 -> Ḯ:
+com.linkbubble.ui.BubbleFlowActivity$1 -> Ἱ:
     android.view.LayoutInflater val$inflater -> ･
     com.linkbubble.ui.BubbleFlowActivity this$0 -> ˊ
     39:41:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.BubbleFlowActivity$2 -> Ἰ:
+com.linkbubble.ui.BubbleFlowActivity$2 -> Ῐ:
     com.linkbubble.ui.BubbleFlowActivity this$0 -> ･
     47:51:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.BubbleFlowActivity$3 -> Ἱ:
+com.linkbubble.ui.BubbleFlowActivity$3 -> Ῑ:
     android.widget.Button val$animateButton -> ･
     com.linkbubble.ui.BubbleFlowActivity this$0 -> ˊ
     58:65:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.BubbleFlowActivity$4 -> Ῐ:
+com.linkbubble.ui.BubbleFlowActivity$4 -> Ὶ:
     com.linkbubble.ui.BubbleFlowActivity this$0 -> ･
     76:77:void run() -> run
 com.linkbubble.ui.BubbleFlowDraggable -> com.linkbubble.ui.BubbleFlowDraggable:
@@ -4106,7 +4117,7 @@ com.linkbubble.ui.BubbleFlowDraggable -> com.linkbubble.ui.BubbleFlowDraggable:
     413:414:void saveCurrentTabs() -> ˏ
     26:26:void access$000(com.linkbubble.ui.BubbleFlowDraggable,com.linkbubble.ui.TabView) -> ･
     26:26:android.support.v4.app.FragmentManager$OnBackStackChangedListener access$100$34615e2b$11c98f3e() -> ᐝ
-com.linkbubble.ui.BubbleFlowDraggable$2 -> Ῑ:
+com.linkbubble.ui.BubbleFlowDraggable$2 -> Ί:
     com.linkbubble.ui.BubbleFlowDraggable this$0 -> ･
     104:105:void onActionDown(com.linkbubble.physics.DraggableHelper$TouchEvent) -> ･
     111:112:void onActionMove(com.linkbubble.physics.DraggableHelper$MoveEvent) -> ･
@@ -4194,43 +4205,43 @@ com.linkbubble.ui.BubbleFlowView -> com.linkbubble.ui.BubbleFlowView:
     27:27:android.view.GestureDetector access$1700(com.linkbubble.ui.BubbleFlowView) -> ـ
     27:27:com.linkbubble.util.VerticalGestureListener access$1800(com.linkbubble.ui.BubbleFlowView) -> ᐧ
     27:27:long access$1002(com.linkbubble.ui.BubbleFlowView,long) -> ･
-com.linkbubble.ui.BubbleFlowView$1 -> Ὶ:
+com.linkbubble.ui.BubbleFlowView$1 -> ℴ:
     android.view.View val$view -> ･
     com.linkbubble.ui.BubbleFlowView$OnRemovedListener val$onRemovedListener -> ˊ
     com.linkbubble.ui.BubbleFlowView this$0 -> ˋ
     234:234:void onAnimationStart(android.view.animation.Animation) -> onAnimationStart
     238:256:void onAnimationEnd(android.view.animation.Animation) -> onAnimationEnd
     261:261:void onAnimationRepeat(android.view.animation.Animation) -> onAnimationRepeat
-com.linkbubble.ui.BubbleFlowView$2 -> Ί:
+com.linkbubble.ui.BubbleFlowView$2 -> ⅹ:
     android.view.View val$viewToShift -> ･
     com.linkbubble.ui.BubbleFlowView this$0 -> ˊ
     276:278:void onApplyTransform$4169e4a8(float) -> ･
-com.linkbubble.ui.BubbleFlowView$3 -> ℴ:
+com.linkbubble.ui.BubbleFlowView$3 -> ⅽ:
     android.view.View val$viewToShift -> ･
     com.linkbubble.ui.BubbleFlowView this$0 -> ˊ
     290:292:void onApplyTransform$4169e4a8(float) -> ･
-com.linkbubble.ui.BubbleFlowView$4 -> ⅹ:
+com.linkbubble.ui.BubbleFlowView$4 -> ײַ:
     com.linkbubble.ui.BubbleFlowView$AnimationEventListener val$animationEventListener -> ･
     com.linkbubble.ui.BubbleFlowView this$0 -> ˊ
     437:437:void onAnimationStart(android.view.animation.Animation) -> onAnimationStart
     441:444:void onAnimationEnd(android.view.animation.Animation) -> onAnimationEnd
     449:449:void onAnimationRepeat(android.view.animation.Animation) -> onAnimationRepeat
-com.linkbubble.ui.BubbleFlowView$5 -> ⅽ:
+com.linkbubble.ui.BubbleFlowView$5 -> ﬧ:
     com.linkbubble.MainController$2 val$animationEventListener$2b803ca8 -> ･
     com.linkbubble.ui.BubbleFlowView this$0 -> ˊ
     510:510:void onAnimationStart(android.view.animation.Animation) -> onAnimationStart
     514:518:void onAnimationEnd(android.view.animation.Animation) -> onAnimationEnd
     523:523:void onAnimationRepeat(android.view.animation.Animation) -> onAnimationRepeat
-com.linkbubble.ui.BubbleFlowView$6 -> ײַ:
+com.linkbubble.ui.BubbleFlowView$6 -> דּ:
     com.linkbubble.ui.BubbleFlowView this$0 -> ･
     561:574:void run() -> run
-com.linkbubble.ui.BubbleFlowView$7 -> ﬧ:
+com.linkbubble.ui.BubbleFlowView$7 -> ﭝ:
     com.linkbubble.ui.BubbleFlowView this$0 -> ･
     716:773:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
-com.linkbubble.ui.BubbleFlowView$8 -> דּ:
+com.linkbubble.ui.BubbleFlowView$8 -> ﭥ:
     com.linkbubble.ui.BubbleFlowView this$0 -> ･
     781:797:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.BubbleFlowView$9 -> ﭝ:
+com.linkbubble.ui.BubbleFlowView$9 -> ﮆ:
     com.linkbubble.ui.BubbleFlowView this$0 -> ･
     803:884:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
 com.linkbubble.ui.BubbleFlowView$AnimationEventListener -> com.linkbubble.ui.BubbleFlowView$･:
@@ -4341,7 +4352,7 @@ com.linkbubble.ui.BubbleView -> com.linkbubble.ui.BubbleView:
     24:24:com.linkbubble.ui.BubbleView$OnApplyFaviconListener access$000(com.linkbubble.ui.BubbleView) -> ･
     24:24:void access$100(com.linkbubble.ui.BubbleView,android.graphics.Bitmap,java.lang.String) -> ･
     24:24:com.linkbubble.ui.BubbleView access$200(com.linkbubble.ui.BubbleView) -> ˊ
-com.linkbubble.ui.BubbleView$1 -> ﭥ:
+com.linkbubble.ui.BubbleView$1 -> ﹱ:
     com.linkbubble.ui.BubbleView this$0 -> ･
     140:155:void onFaviconLoaded$179d4c45(java.lang.String,android.graphics.Bitmap) -> ･
 com.linkbubble.ui.BubbleView$FaviconTransformation -> com.linkbubble.ui.BubbleView$･:
@@ -4386,6 +4397,16 @@ com.linkbubble.ui.CanvasView -> com.linkbubble.ui.CanvasView:
     334:341:void destroy() -> ･
     345:378:void update$133aeb() -> ˊ
     28:28:java.util.Vector access$000(com.linkbubble.ui.CanvasView) -> ･
+com.linkbubble.ui.ChangeLogDialog -> ﺀ:
+    android.app.Activity fActivity -> ･
+    byte[] $ -> ˊ
+    53:57:java.lang.String GetAppVersion() -> ･
+    63:73:java.lang.String ParseReleaseTag(android.content.res.XmlResourceParser) -> ･
+    88:115:java.lang.String GetHTMLChangelog(int,android.content.res.Resources) -> ･
+    java.lang.String $(int,int,int) -> ･
+com.linkbubble.ui.ChangeLogDialog$1 -> ﺪ:
+    com.linkbubble.ui.ChangeLogDialog this$0 -> ･
+    160:161:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.CloseTabTargetView -> com.linkbubble.ui.CloseTabTargetView:
     com.linkbubble.ui.CloseTabTargetView$CloseAllView mCloseAllView -> ᴵ
     android.view.animation.LinearInterpolator mInterpolator -> ᵎ
@@ -4400,7 +4421,7 @@ com.linkbubble.ui.CloseTabTargetView -> com.linkbubble.ui.CloseTabTargetView:
     129:130:void onEndBubbleDragEvent(com.linkbubble.MainController$EndBubbleDragEvent) -> onEndBubbleDragEvent
     135:136:void onDraggableBubbleMovedEvent(com.linkbubble.MainController$DraggableBubbleMovedEvent) -> onDraggableBubbleMovedEvent
     23:23:com.linkbubble.ui.CloseTabTargetView$CloseAllView access$000(com.linkbubble.ui.CloseTabTargetView) -> ･
-com.linkbubble.ui.CloseTabTargetView$1 -> ﮆ:
+com.linkbubble.ui.CloseTabTargetView$1 -> ﺭ:
     com.linkbubble.ui.CloseTabTargetView this$0 -> ･
     92:92:void onAnimationStart(android.animation.Animator) -> onAnimationStart
     96:97:void onAnimationEnd(android.animation.Animator) -> onAnimationEnd
@@ -4475,17 +4496,17 @@ com.linkbubble.ui.ContentView -> com.linkbubble.ui.ContentView:
     byte[] $ -> ᗮ
     185:206:void dispatchDraw(android.graphics.Canvas) -> dispatchDraw
     221:237:void updateIncognitoMode(boolean) -> ･
-    607:652:void onPageLoadComplete(java.lang.String) -> ･
-    1193:1198:void configureOpenEmbedButton() -> ˎ
-    1209:1211:void updateAppsForUrl(java.net.URL) -> ･
-    1214:1302:void updateAppsForUrl$7e1a7565(java.util.ArrayList,java.net.URL) -> ･
-    1350:1354:void saveLoadTime() -> ･
-    1361:1370:boolean updateUrl(java.lang.String) -> ˊ
-    1374:1382:java.net.URL getUpdatedUrl(java.lang.String) -> ˎ
-    1390:1406:void hidePopups() -> ˊ
-    1409:1413:void resetButtonPressedStates() -> ˋ
-    1428:1439:boolean openInApp(android.content.pm.ResolveInfo,java.lang.String) -> ･
-    1465:1472:void updateUrlTextView(java.lang.String) -> ˋ
+    608:653:void onPageLoadComplete(java.lang.String) -> ･
+    1194:1199:void configureOpenEmbedButton() -> ˎ
+    1210:1212:void updateAppsForUrl(java.net.URL) -> ･
+    1215:1303:void updateAppsForUrl$7e1a7565(java.util.ArrayList,java.net.URL) -> ･
+    1351:1355:void saveLoadTime() -> ･
+    1362:1371:boolean updateUrl(java.lang.String) -> ˊ
+    1375:1383:java.net.URL getUpdatedUrl(java.lang.String) -> ˎ
+    1391:1407:void hidePopups() -> ˊ
+    1410:1414:void resetButtonPressedStates() -> ˋ
+    1429:1440:boolean openInApp(android.content.pm.ResolveInfo,java.lang.String) -> ･
+    1466:1473:void updateUrlTextView(java.lang.String) -> ˋ
     74:74:com.linkbubble.ui.TabView access$000(com.linkbubble.ui.ContentView) -> ･
     74:74:java.lang.String access$102(com.linkbubble.ui.ContentView,java.lang.String) -> ･
     74:74:java.net.URL access$200(com.linkbubble.ui.ContentView) -> ˊ
@@ -4543,54 +4564,54 @@ com.linkbubble.ui.ContentView -> com.linkbubble.ui.ContentView:
     74:74:com.linkbubble.ui.OpenEmbedButton access$3900(com.linkbubble.ui.ContentView) -> ᵢ
     74:74:android.app.AlertDialog access$4000(com.linkbubble.ui.ContentView) -> ⁱ
     java.lang.String $(int,int,int) -> ･
-com.linkbubble.ui.ContentView$1 -> ﹱ:
+com.linkbubble.ui.ContentView$1 -> ｊ:
     java.lang.String val$urlAsString -> ･
     boolean val$closeBubbleOnShare -> ˊ
     com.linkbubble.ui.ContentView this$0 -> ˋ
     244:257:void onSelected(com.linkbubble.util.ActionItem) -> ･
-com.linkbubble.ui.ContentView$10 -> ﺀ:
+com.linkbubble.ui.ContentView$10 -> ｭ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    923:924:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.ContentView$13 -> ﺪ:
+    924:925:void onClick(android.view.View) -> onClick
+com.linkbubble.ui.ContentView$13 -> Ī:
     com.linkbubble.ui.ContentView this$0 -> ･
-    947:949:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.ContentView$14 -> ﺭ:
+    948:950:void onClick(android.view.View) -> onClick
+com.linkbubble.ui.ContentView$14 -> Ĭ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    955:1032:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.ContentView$14$1 -> ｊ:
+    956:1033:void onClick(android.view.View) -> onClick
+com.linkbubble.ui.ContentView$14$1 -> Į:
     android.content.Context val$context -> ･
     com.linkbubble.ui.ContentView$14 this$1 -> ˊ
-    975:1020:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
-com.linkbubble.ui.ContentView$14$2 -> ｭ:
+    976:1021:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
+com.linkbubble.ui.ContentView$14$2 -> į:
     com.linkbubble.ui.ContentView$14 this$1 -> ･
-    1026:1029:void onDismiss(android.widget.PopupMenu) -> onDismiss
-com.linkbubble.ui.ContentView$15 -> Ī:
+    1027:1030:void onDismiss(android.widget.PopupMenu) -> onDismiss
+com.linkbubble.ui.ContentView$15 -> ŕ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    1037:1038:void onSwipeRight() -> ･
-    1040:1041:void onSwipeLeft() -> ˊ
-com.linkbubble.ui.ContentView$16 -> Ĭ:
+    1038:1039:void onSwipeRight() -> ･
+    1041:1042:void onSwipeLeft() -> ˊ
+com.linkbubble.ui.ContentView$16 -> ȉ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    1048:1052:void run() -> run
-com.linkbubble.ui.ContentView$17 -> Į:
+    1049:1053:void run() -> run
+com.linkbubble.ui.ContentView$17 -> ȓ:
     com.linkbubble.ui.ContentView$17$1 mUpdateOpenInAppRunnable$453f5682 -> ˊ
     android.os.Handler mHandler -> ˋ
     com.linkbubble.ui.ContentView this$0 -> ･
-    1063:1073:void onYouTubeEmbeds() -> ･
-    1078:1093:void onTouchIconLoaded(android.graphics.Bitmap,java.lang.String) -> ･
-    1097:1098:void onDropDownFound() -> ˊ
-    1102:1109:void onDropDownWarningClick() -> ˋ
-com.linkbubble.ui.ContentView$17$1 -> į:
+    1064:1074:void onYouTubeEmbeds() -> ･
+    1079:1094:void onTouchIconLoaded(android.graphics.Bitmap,java.lang.String) -> ･
+    1098:1099:void onDropDownFound() -> ˊ
+    1103:1110:void onDropDownWarningClick() -> ˋ
+com.linkbubble.ui.ContentView$17$1 -> ɭ:
     com.linkbubble.ui.ContentView$17 this$1 -> ･
-    1067:1068:void run() -> run
-com.linkbubble.ui.ContentView$17$2 -> ŕ:
+    1068:1069:void run() -> run
+com.linkbubble.ui.ContentView$17$2 -> ɻ:
     java.lang.String val$pageUrl -> ･
     android.graphics.Bitmap val$bitmap -> ˊ
     com.linkbubble.ui.ContentView$17 this$1 -> ˋ
-    1085:1091:void run() -> run
-com.linkbubble.ui.ContentView$17$3 -> ȉ:
+    1086:1092:void run() -> run
+com.linkbubble.ui.ContentView$17$3 -> ʏ:
     com.linkbubble.ui.ContentView$17 this$1 -> ･
-    1105:1107:void run() -> run
-com.linkbubble.ui.ContentView$18 -> ȓ:
+    1106:1108:void run() -> run
+com.linkbubble.ui.ContentView$18 -> ʔ:
     java.util.ArrayList val$longClickSelections -> ･
     java.lang.String val$openInNewBubbleLabel -> ˊ
     java.lang.String val$urlAsString -> ˋ
@@ -4599,97 +4620,99 @@ com.linkbubble.ui.ContentView$18 -> ȓ:
     java.lang.String val$leftConsumeBubbleLabel -> ᐝ
     java.lang.String val$rightConsumeBubbleLabel -> ʻ
     com.linkbubble.ui.ContentView this$0 -> ʼ
-    1165:1183:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.linkbubble.ui.ContentView$19 -> ɭ:
+    1166:1184:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+com.linkbubble.ui.ContentView$19 -> ʕ:
     java.lang.String val$urlAsString -> ･
     com.linkbubble.ui.ContentView this$0 -> ˊ
-    1456:1457:void onClick() -> ･
-    1460:1460:void onClose() -> ˊ
-com.linkbubble.ui.ContentView$2 -> ɻ:
+    1457:1458:void onClick() -> ･
+    1461:1461:void onClose() -> ˊ
+com.linkbubble.ui.ContentView$2 -> ʖ:
     com.linkbubble.ui.ContentView this$0 -> ･
     310:311:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.ContentView$20 -> ʏ:
+com.linkbubble.ui.ContentView$20 -> ʷ:
     android.webkit.GeolocationPermissions$Callback val$callback -> ･
     java.lang.String val$origin -> ˊ
     com.linkbubble.ui.ContentView this$0 -> ˋ
-    1491:1493:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.ContentView$3 -> ʔ:
+    1492:1494:void onClick(android.view.View) -> onClick
+com.linkbubble.ui.ContentView$3 -> ΐ:
     com.linkbubble.ui.ContentView this$0 -> ･
     355:369:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
-com.linkbubble.ui.ContentView$4 -> ʕ:
+com.linkbubble.ui.ContentView$4 -> Γ:
     com.linkbubble.ui.ContentView this$0 -> ･
     byte[] $ -> ˊ
+    int $$ -> ˋ
     377:429:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
     434:438:void onReceivedError(android.webkit.WebView,int,java.lang.String,java.lang.String) -> onReceivedError
     442:443:void onReceivedSslError(android.webkit.WebView,android.webkit.SslErrorHandler,android.net.http.SslError) -> onReceivedSslError
-    447:582:void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
-    586:600:void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+    447:583:void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
+    587:601:void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
     java.lang.String $(int,int,int) -> ･
-com.linkbubble.ui.ContentView$4$1 -> ʖ:
+com.linkbubble.ui.ContentView$4$1 -> τ:
     android.content.Context val$context -> ･
     java.util.ArrayList val$resolveInfos -> ˊ
     java.lang.String val$urlAsString -> ˋ
     com.linkbubble.ui.ContentView$4 this$1 -> ˎ
-    522:549:void onSelected(com.linkbubble.util.ActionItem,boolean) -> ･
-com.linkbubble.ui.ContentView$4$2 -> ʷ:
+    521:550:void onSelected(com.linkbubble.util.ActionItem,boolean) -> ･
+com.linkbubble.ui.ContentView$4$2 -> Г:
     com.linkbubble.ui.ContentView$4 this$1 -> ･
-    555:556:void onDismiss(android.content.DialogInterface) -> onDismiss
-com.linkbubble.ui.ContentView$5 -> ΐ:
+    556:557:void onDismiss(android.content.DialogInterface) -> onDismiss
+com.linkbubble.ui.ContentView$5 -> ל:
     com.linkbubble.ui.ContentView this$0 -> ･
-    660:665:void run() -> run
-com.linkbubble.ui.ContentView$6 -> Γ:
+    661:666:void run() -> run
+com.linkbubble.ui.ContentView$6 -> ץ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    671:712:boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
-com.linkbubble.ui.ContentView$7 -> τ:
+    672:713:boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
+com.linkbubble.ui.ContentView$7 -> ز:
     com.linkbubble.ui.ContentView this$0 -> ･
-    719:722:void onReceivedTitle(android.webkit.WebView,java.lang.String) -> onReceivedTitle
-    726:737:void onReceivedIcon(android.webkit.WebView,android.graphics.Bitmap) -> onReceivedIcon
-    743:770:void onProgressChanged(android.webkit.WebView,int) -> onProgressChanged
-    774:775:void onCloseWindow(android.webkit.WebView) -> onCloseWindow
-    779:798:boolean onJsAlert(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsAlert
-    803:820:boolean onJsConfirm(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsConfirm
-    825:853:boolean onJsPrompt(android.webkit.WebView,java.lang.String,java.lang.String,java.lang.String,android.webkit.JsPromptResult) -> onJsPrompt
-    861:862:boolean onConsoleMessage(android.webkit.ConsoleMessage) -> onConsoleMessage
-    868:876:boolean onCreateWindow(android.webkit.WebView,boolean,boolean,android.os.Message) -> onCreateWindow
-    881:882:void onGeolocationPermissionsShowPrompt(java.lang.String,android.webkit.GeolocationPermissions$Callback) -> onGeolocationPermissionsShowPrompt
-com.linkbubble.ui.ContentView$7$1 -> Г:
+    720:723:void onReceivedTitle(android.webkit.WebView,java.lang.String) -> onReceivedTitle
+    727:738:void onReceivedIcon(android.webkit.WebView,android.graphics.Bitmap) -> onReceivedIcon
+    744:771:void onProgressChanged(android.webkit.WebView,int) -> onProgressChanged
+    775:776:void onCloseWindow(android.webkit.WebView) -> onCloseWindow
+    780:799:boolean onJsAlert(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsAlert
+    804:821:boolean onJsConfirm(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsConfirm
+    826:854:boolean onJsPrompt(android.webkit.WebView,java.lang.String,java.lang.String,java.lang.String,android.webkit.JsPromptResult) -> onJsPrompt
+    862:863:boolean onConsoleMessage(android.webkit.ConsoleMessage) -> onConsoleMessage
+    869:877:boolean onCreateWindow(android.webkit.WebView,boolean,boolean,android.os.Message) -> onCreateWindow
+    882:883:void onGeolocationPermissionsShowPrompt(java.lang.String,android.webkit.GeolocationPermissions$Callback) -> onGeolocationPermissionsShowPrompt
+com.linkbubble.ui.ContentView$7$1 -> ڐ:
     com.linkbubble.ui.ContentView$7 this$1 -> ･
-    788:788:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.ui.ContentView$7$2 -> ל:
+    789:789:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.ui.ContentView$7$2 -> ڔ:
     com.linkbubble.ui.ContentView$7 this$1 -> ･
-    794:795:void onDismiss(android.content.DialogInterface) -> onDismiss
-com.linkbubble.ui.ContentView$7$3 -> ץ:
+    795:796:void onDismiss(android.content.DialogInterface) -> onDismiss
+com.linkbubble.ui.ContentView$7$3 -> ܖ:
     android.webkit.JsResult val$result -> ･
     com.linkbubble.ui.ContentView$7 this$1 -> ˊ
-    810:811:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.ui.ContentView$7$4 -> ز:
+    811:812:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.ui.ContentView$7$4 -> ܢ:
     android.webkit.JsResult val$result -> ･
     com.linkbubble.ui.ContentView$7 this$1 -> ˊ
-    816:817:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.ui.ContentView$7$5 -> ڐ:
+    817:818:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.ui.ContentView$7$5 -> ა:
     android.view.View val$v -> ･
     android.webkit.JsPromptResult val$result -> ˊ
     com.linkbubble.ui.ContentView$7 this$1 -> ˋ
-    836:838:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.ui.ContentView$7$6 -> ڔ:
+    837:839:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.ui.ContentView$7$6 -> ი:
     android.webkit.JsPromptResult val$result -> ･
     com.linkbubble.ui.ContentView$7 this$1 -> ˊ
-    843:844:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.ui.ContentView$7$7 -> ܖ:
+    844:845:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.ui.ContentView$7$7 -> Ꮀ:
     android.webkit.JsPromptResult val$result -> ･
     com.linkbubble.ui.ContentView$7 this$1 -> ˊ
-    848:849:void onCancel(android.content.DialogInterface) -> onCancel
-com.linkbubble.ui.ContentView$8 -> ܢ:
+    849:850:void onCancel(android.content.DialogInterface) -> onCancel
+com.linkbubble.ui.ContentView$8 -> Ꮮ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    888:905:boolean onLongClick(android.view.View) -> onLongClick
-com.linkbubble.ui.ContentView$9 -> ა:
+    889:906:boolean onLongClick(android.view.View) -> onLongClick
+com.linkbubble.ui.ContentView$9 -> ᒣ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    915:917:void onDownloadStart(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long) -> onDownloadStart
+    916:918:void onDownloadStart(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long) -> onDownloadStart
 com.linkbubble.ui.ContentView$AppForUrl -> com.linkbubble.ui.ContentView$･:
     android.content.pm.ResolveInfo mResolveInfo -> ･
     java.net.URL mUrl -> ˊ
     android.graphics.drawable.Drawable mIcon -> ˋ
     byte[] $ -> ˎ
+    int $$ -> ˏ
     164:169:android.graphics.drawable.Drawable getIcon(android.content.Context) -> ･
     java.lang.String $(int,int,int) -> ･
 com.linkbubble.ui.ContentView$EventHandler -> com.linkbubble.ui.ContentView$if:
@@ -4705,7 +4728,7 @@ com.linkbubble.ui.ContentViewButton -> com.linkbubble.ui.ContentViewButton:
     com.linkbubble.ui.ContentViewButton$1 mButtonOnTouchListener$26ce0268 -> ˎ
     60:69:void setIsTouched(boolean) -> ･
     80:109:void setImageDrawable(android.graphics.drawable.Drawable) -> setImageDrawable
-com.linkbubble.ui.ContentViewButton$1 -> ი:
+com.linkbubble.ui.ContentViewButton$1 -> ᒥ:
     com.linkbubble.ui.ContentViewButton this$0 -> ･
     44:54:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
 com.linkbubble.ui.DefaultBrowserResetActivity -> com.linkbubble.ui.DefaultBrowserResetActivity:
@@ -4714,19 +4737,19 @@ com.linkbubble.ui.DownloadHandlerActivity -> com.linkbubble.ui.DownloadHandlerAc
 com.linkbubble.ui.EntryActivity -> com.linkbubble.ui.EntryActivity:
     com.linkbubble.ui.EntryActivity sCurrentInstance -> ･
     android.os.Handler mHandler -> ˊ
-    38:163:void onCreate(android.os.Bundle) -> onCreate
-    185:190:void onDestroy() -> onDestroy
-    194:197:void onStart() -> onStart
-    201:204:void onStop() -> onStop
-    208:209:void onBackPressed() -> onBackPressed
-com.linkbubble.ui.EntryActivity$1 -> Ꮀ:
+    38:165:void onCreate(android.os.Bundle) -> onCreate
+    187:192:void onDestroy() -> onDestroy
+    196:199:void onStart() -> onStart
+    203:206:void onStop() -> onStop
+    210:211:void onBackPressed() -> onBackPressed
+com.linkbubble.ui.EntryActivity$1 -> ᒧ:
     com.linkbubble.ui.EntryActivity this$0 -> ･
     51:52:void onClick() -> ･
     56:57:void onClose() -> ˊ
-com.linkbubble.ui.EntryActivity$2 -> Ꮮ:
+com.linkbubble.ui.EntryActivity$2 -> ᒪ:
     com.linkbubble.ui.EntryActivity this$0 -> ･
-    218:221:void run() -> run
-com.linkbubble.ui.FAQDialog -> ᒣ:
+    220:223:void run() -> run
+com.linkbubble.ui.FAQDialog -> ᓳ:
     android.app.Activity mActivity -> ･
     boolean[] mExpanded -> ᐝ
     java.util.ArrayList sQuestionStringIds -> ˊ
@@ -4736,10 +4759,10 @@ com.linkbubble.ui.FAQDialog -> ᒣ:
     int sIssuesIndex -> ˏ
     25:25:android.app.Activity access$000(com.linkbubble.ui.FAQDialog) -> ･
     25:25:boolean[] access$100(com.linkbubble.ui.FAQDialog) -> ˊ
-com.linkbubble.ui.FAQDialog$1 -> ᒥ:
+com.linkbubble.ui.FAQDialog$1 -> ᘄ:
     com.linkbubble.ui.FAQDialog this$0 -> ･
     100:113:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.linkbubble.ui.FAQDialog$FAQAdapter -> ᒣ$･:
+com.linkbubble.ui.FAQDialog$FAQAdapter -> ᓳ$･:
     android.view.LayoutInflater mInflater -> ˊ
     com.linkbubble.ui.FAQDialog this$0 -> ･
     159:159:int getCount() -> getCount
@@ -4823,17 +4846,17 @@ com.linkbubble.ui.HistoryActivity -> com.linkbubble.ui.HistoryActivity:
     50:50:com.linkbubble.ui.HistoryActivity$HistoryAdapter access$100(com.linkbubble.ui.HistoryActivity) -> ˊ
     50:50:java.util.List access$002$49c7a933(com.linkbubble.ui.HistoryActivity) -> ˋ
     50:50:org.mozilla.gecko.favicons.Favicons access$300() -> ･
-com.linkbubble.ui.HistoryActivity$2 -> ᒧ:
+com.linkbubble.ui.HistoryActivity$2 -> ᴠ:
     com.linkbubble.ui.SwipeDismissListViewTouchListener val$swipeDismissTouchListener -> ･
     com.linkbubble.ui.HistoryActivity this$0 -> ˊ
     154:154:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
-com.linkbubble.ui.HistoryActivity$3 -> ᒪ:
+com.linkbubble.ui.HistoryActivity$3 -> ᴰ:
     com.linkbubble.ui.HistoryActivity this$0 -> ･
     187:192:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.ui.HistoryActivity$4 -> ᓳ:
+com.linkbubble.ui.HistoryActivity$4 -> ᴻ:
     com.linkbubble.ui.HistoryActivity this$0 -> ･
     197:198:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.ui.HistoryActivity$5 -> ᘄ:
+com.linkbubble.ui.HistoryActivity$5 -> ᵠ:
     java.util.ArrayList val$longClickSelections -> ˋ
     com.linkbubble.ui.HistoryActivity$HistoryItem val$historyItem -> ･
     java.lang.String val$openInNewBubbleLabel -> ˎ
@@ -4845,7 +4868,7 @@ com.linkbubble.ui.HistoryActivity$5 -> ᘄ:
     android.app.AlertDialog val$longPressAlertDialog -> ͺ
     com.linkbubble.ui.HistoryActivity this$0 -> ˊ
     265:302:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.linkbubble.ui.HistoryActivity$5$1 -> ᴠ:
+com.linkbubble.ui.HistoryActivity$5$1 -> ᵩ:
     com.linkbubble.ui.HistoryActivity$5 this$1 -> ･
     282:288:void onSelected(com.linkbubble.util.ActionItem) -> ･
 com.linkbubble.ui.HistoryActivity$HistoryAdapter -> com.linkbubble.ui.HistoryActivity$･:
@@ -4867,7 +4890,7 @@ com.linkbubble.ui.HistoryActivity$HistoryItem -> com.linkbubble.ui.HistoryActivi
     java.lang.String mFaviconUrl -> ʻ
     boolean mFaviconSet -> ʼ
     com.linkbubble.ui.HistoryActivity$HistoryItem$1 mOnFaviconLoadedListener$3c68e95f -> ʽ
-com.linkbubble.ui.HistoryActivity$HistoryItem$1 -> ᴰ:
+com.linkbubble.ui.HistoryActivity$HistoryItem$1 -> ḻ:
     com.linkbubble.ui.HistoryActivity$HistoryItem this$0 -> ･
     422:429:void onFaviconLoaded$179d4c45(java.lang.String,android.graphics.Bitmap) -> ･
 com.linkbubble.ui.HomeActivity -> com.linkbubble.ui.HomeActivity:
@@ -4900,37 +4923,37 @@ com.linkbubble.ui.HomeActivity -> com.linkbubble.ui.HomeActivity:
     439:445:void onStateChangedEvent(com.linkbubble.MainApplication$StateChangedEvent) -> onStateChangedEvent
     43:43:void access$000$1608cbb1(android.accounts.Account[],com.parse.ParseObject) -> ･
     java.lang.String $(int,int,int) -> ･
-com.linkbubble.ui.HomeActivity$1 -> ᴻ:
+com.linkbubble.ui.HomeActivity$1 -> ṟ:
     android.widget.FrameLayout val$rootView -> ･
     android.view.View val$acceptTermsView -> ˊ
     com.linkbubble.ui.HomeActivity this$0 -> ˋ
     95:99:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.HomeActivity$2 -> ᵠ:
+com.linkbubble.ui.HomeActivity$2 -> ẛ:
     com.linkbubble.ui.HomeActivity this$0 -> ･
     105:105:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.HomeActivity$3 -> ᵩ:
+com.linkbubble.ui.HomeActivity$3 -> Ỉ:
     android.accounts.Account[] val$accounts -> ･
     com.linkbubble.ui.HomeActivity this$0 -> ˊ
     140:141:void done(com.parse.ParseObject,com.parse.ParseException) -> done
-com.linkbubble.ui.HomeActivity$4 -> ḻ:
+com.linkbubble.ui.HomeActivity$4 -> ῒ:
     com.linkbubble.ui.HomeActivity this$0 -> ･
     161:173:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.HomeActivity$5 -> ṟ:
+com.linkbubble.ui.HomeActivity$5 -> ΐ:
     com.linkbubble.ui.HomeActivity this$0 -> ･
     179:180:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.HomeActivity$6 -> ẛ:
+com.linkbubble.ui.HomeActivity$6 -> Ⅼ:
     com.linkbubble.ui.HomeActivity this$0 -> ･
     186:187:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.HomeActivity$7 -> Ỉ:
+com.linkbubble.ui.HomeActivity$7 -> ⅴ:
     com.linkbubble.ui.HomeActivity this$0 -> ･
     400:401:void onClick() -> ･
     406:406:void onClose() -> ˊ
-com.linkbubble.ui.OnSwipeTouchListener -> ῒ:
+com.linkbubble.ui.OnSwipeTouchListener -> ィ:
     android.view.GestureDetector gestureDetector -> ･
     15:15:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
     59:59:void onSwipeRight() -> ･
     62:62:void onSwipeLeft() -> ˊ
-com.linkbubble.ui.OnSwipeTouchListener$GestureListener -> ῒ$･:
+com.linkbubble.ui.OnSwipeTouchListener$GestureListener -> ィ$･:
     com.linkbubble.ui.OnSwipeTouchListener this$0 -> ･
     25:25:boolean onDown(android.view.MotionEvent) -> onDown
     30:54:boolean onFling(android.view.MotionEvent,android.view.MotionEvent,float,float) -> onFling
@@ -4962,7 +4985,7 @@ com.linkbubble.ui.OpenInAppButton -> com.linkbubble.ui.OpenInAppButton:
     228:264:void onClick(android.view.View) -> onClick
     23:23:com.linkbubble.ui.ContentView$AppForUrl access$000(com.linkbubble.ui.OpenInAppButton,java.lang.String,java.lang.String) -> ･
     23:23:com.linkbubble.ui.OpenInAppButton$OnOpenInAppClickListener access$100(com.linkbubble.ui.OpenInAppButton) -> ･
-com.linkbubble.ui.OpenInAppButton$1 -> ΐ:
+com.linkbubble.ui.OpenInAppButton$1 -> ךּ:
     com.linkbubble.ui.OpenInAppButton this$0 -> ･
     246:258:void onSelected(com.linkbubble.util.ActionItem,boolean) -> ･
 com.linkbubble.ui.OpenInAppButton$OnOpenInAppClickListener -> com.linkbubble.ui.OpenInAppButton$･:
@@ -4993,7 +5016,7 @@ com.linkbubble.ui.ProgressIndicator$ProgressImageView -> com.linkbubble.ui.Progr
     android.animation.ObjectAnimator mAnimator -> ･
     com.linkbubble.ui.ProgressIndicator this$0 -> ˊ
     128:138:void setVisibility(int) -> setVisibility
-com.linkbubble.ui.Prompt -> Ⅼ:
+com.linkbubble.ui.Prompt -> כּ:
     com.linkbubble.ui.Prompt sPrompt -> ･
     boolean mVisible -> ˊ
     android.view.View mRootView -> ˋ
@@ -5009,16 +5032,16 @@ com.linkbubble.ui.Prompt -> Ⅼ:
     88:104:void showPrompt$59f274f6$27665e4(java.lang.String,android.graphics.drawable.Drawable,com.linkbubble.ui.Prompt$OnPromptEventListener) -> ˊ
     107:138:void hidePrompt(boolean) -> ･
     148:153:void show$59f274f6$27665e4(java.lang.String,android.graphics.drawable.Drawable,com.linkbubble.ui.Prompt$OnPromptEventListener) -> ･
-com.linkbubble.ui.Prompt$1 -> ⅴ:
+com.linkbubble.ui.Prompt$1 -> ﭨ:
     com.linkbubble.ui.Prompt this$0 -> ･
     77:81:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.Prompt$2 -> ィ:
+com.linkbubble.ui.Prompt$2 -> ﮢ:
     com.linkbubble.ui.Prompt this$0 -> ･
     126:135:void onAnimationEnd(android.animation.Animator) -> onAnimationEnd
-com.linkbubble.ui.Prompt$3 -> ךּ:
+com.linkbubble.ui.Prompt$3 -> ﺌ:
     com.linkbubble.ui.Prompt this$0 -> ･
     143:144:void run() -> run
-com.linkbubble.ui.Prompt$OnPromptEventListener -> Ⅼ$･:
+com.linkbubble.ui.Prompt$OnPromptEventListener -> כּ$･:
     void onClick() -> ･
     void onClose() -> ˊ
 com.linkbubble.ui.SettingsActivity -> com.linkbubble.ui.SettingsActivity:
@@ -5026,95 +5049,88 @@ com.linkbubble.ui.SettingsActivity -> com.linkbubble.ui.SettingsActivity:
     24:26:void onStart() -> onStart
     30:32:void finish() -> finish
 com.linkbubble.ui.SettingsFragment -> com.linkbubble.ui.SettingsFragment:
-    android.preference.Preference mAutoContentDisplayPreference -> ˋ
     android.preference.Preference mInterceptLinksFromPreference -> ･
-    android.preference.Preference mWebViewTextZoomPreference -> ˎ
-    int TAPS_TO_FORCE_A_CRASH -> ˏ
-    int mForceCrashCountdown -> ᐝ
+    android.preference.Preference mWebViewTextZoomPreference -> ˋ
+    int TAPS_TO_FORCE_A_CRASH -> ˎ
+    int mForceCrashCountdown -> ˏ
     android.widget.Toast mForceCrashToast -> ˊ
-    byte[] $ -> ʻ
-    int $$ -> ʼ
-    72:129:void configureDefaultAppsList() -> ˎ
-    133:405:void onCreate(android.os.Bundle) -> onCreate
-    409:413:void onResume() -> onResume
-    417:422:void onDestroy() -> onDestroy
-    497:508:void updateAutoContentDisplayPreference() -> ･
-    595:595:void doCrash() -> ˊ
-    754:825:android.app.AlertDialog getInterceptLinksFromDialog$57c64132(android.app.Activity) -> ･
+    byte[] $ -> ᐝ
+    71:128:void configureDefaultAppsList() -> ˋ
+    132:392:void onCreate(android.os.Bundle) -> onCreate
+    396:400:void onResume() -> onResume
+    404:409:void onDestroy() -> onDestroy
+    540:540:void doCrash() -> ･
+    699:770:android.app.AlertDialog getInterceptLinksFromDialog$57c64132(android.app.Activity) -> ･
     58:58:void access$000(com.linkbubble.ui.SettingsFragment) -> ･
     58:58:boolean access$100(com.linkbubble.ui.SettingsFragment) -> ˊ
     58:58:android.preference.Preference access$200(com.linkbubble.ui.SettingsFragment) -> ˋ
     58:58:int access$300(com.linkbubble.ui.SettingsFragment) -> ˎ
     58:58:int access$310(com.linkbubble.ui.SettingsFragment) -> ˏ
-    58:58:int access$400() -> ˋ
+    58:58:int access$400() -> ˊ
     java.lang.String $(int,int,int) -> ･
-com.linkbubble.ui.SettingsFragment$1 -> כּ:
+com.linkbubble.ui.SettingsFragment$1 -> ﺬ:
     java.lang.CharSequence val$label -> ˋ
     java.lang.String val$host -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    97:117:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
-com.linkbubble.ui.SettingsFragment$1$1 -> ﭨ:
+    96:116:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.linkbubble.ui.SettingsFragment$1$1 -> ﺯ:
     com.linkbubble.ui.SettingsFragment$1 this$1 -> ･
-    106:108:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.ui.SettingsFragment$1$2 -> ﮢ:
+    105:107:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.ui.SettingsFragment$1$2 -> ﻣ:
     com.linkbubble.ui.SettingsFragment$1 this$1 -> ･
-    114:114:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.ui.SettingsFragment$10 -> ﺌ:
+    113:113:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.ui.SettingsFragment$10 -> Ｊ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    270:271:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
-com.linkbubble.ui.SettingsFragment$11 -> ﺬ:
+    269:275:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.linkbubble.ui.SettingsFragment$11 -> Ｌ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    281:287:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
-com.linkbubble.ui.SettingsFragment$12 -> ﺯ:
+    285:290:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.linkbubble.ui.SettingsFragment$12 -> ｧ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    297:302:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
-com.linkbubble.ui.SettingsFragment$13 -> ﻣ:
+    310:311:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.linkbubble.ui.SettingsFragment$13 -> ｲ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    322:323:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
-com.linkbubble.ui.SettingsFragment$14 -> Ｊ:
+    319:321:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.linkbubble.ui.SettingsFragment$14 -> ﾌ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    331:333:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
-com.linkbubble.ui.SettingsFragment$15 -> Ｌ:
+    328:329:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.linkbubble.ui.SettingsFragment$15 -> ﾍ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    340:341:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
-com.linkbubble.ui.SettingsFragment$16 -> ｧ:
+    336:355:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.linkbubble.ui.SettingsFragment$15$1 -> ċ:
+    com.linkbubble.ui.SettingsFragment$15 this$1 -> ･
+    340:343:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+com.linkbubble.ui.SettingsFragment$16 -> ĩ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    348:367:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
-com.linkbubble.ui.SettingsFragment$16$1 -> ｲ:
-    com.linkbubble.ui.SettingsFragment$16 this$1 -> ･
-    352:355:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
-com.linkbubble.ui.SettingsFragment$17 -> ﾌ:
+    362:363:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.linkbubble.ui.SettingsFragment$17 -> ɽ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    374:375:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
-com.linkbubble.ui.SettingsFragment$18 -> ﾍ:
+    370:371:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.linkbubble.ui.SettingsFragment$18 -> ʃ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    382:383:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
-com.linkbubble.ui.SettingsFragment$2 -> ċ:
+    385:389:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.linkbubble.ui.SettingsFragment$2 -> ʌ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    149:151:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
-com.linkbubble.ui.SettingsFragment$20 -> ĩ:
-    android.widget.ListView val$listView -> ･
-    com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    486:489:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.ui.SettingsFragment$21 -> ɽ:
+    152:153:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.linkbubble.ui.SettingsFragment$20 -> Ξ:
     android.widget.TextView val$textView -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    526:535:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
-    540:540:void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
-    545:545:void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
-com.linkbubble.ui.SettingsFragment$22 -> ʃ:
+    471:480:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+    485:485:void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
+    490:490:void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
+com.linkbubble.ui.SettingsFragment$21 -> ς:
     android.widget.SeekBar val$seekBar -> ･
     int val$initialZoom -> ˊ
     com.linkbubble.ui.SettingsFragment this$0 -> ˋ
-    561:569:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.ui.SettingsFragment$23 -> ʌ:
+    506:514:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.ui.SettingsFragment$22 -> ϛ:
     int val$initialZoom -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    576:584:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.ui.SettingsFragment$24 -> Ξ:
+    521:529:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.ui.SettingsFragment$23 -> ч:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    606:621:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.SettingsFragment$25 -> ς:
+    551:566:void onClick(android.view.View) -> onClick
+com.linkbubble.ui.SettingsFragment$24 -> ѓ:
     android.widget.ListView val$listView -> ･
     java.util.ArrayList val$items -> ˊ
     java.lang.String val$clearCache -> ˋ
@@ -5124,62 +5140,62 @@ com.linkbubble.ui.SettingsFragment$25 -> ς:
     java.lang.String val$clearHistory -> ʻ
     java.lang.String val$clearPasswords -> ʼ
     com.linkbubble.ui.SettingsFragment this$0 -> ʽ
-    666:716:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.ui.SettingsFragment$26 -> ϛ:
+    611:661:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.ui.SettingsFragment$25 -> ב:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    721:722:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.ui.SettingsFragment$27 -> ч:
+    666:667:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.ui.SettingsFragment$26 -> װ:
     android.app.Activity val$context$48463d4e -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    761:765:void onClick(android.view.View) -> onClick
-com.linkbubble.ui.SettingsFragment$28 -> ѓ:
+    706:710:void onClick(android.view.View) -> onClick
+com.linkbubble.ui.SettingsFragment$27 -> ه:
     android.widget.ListView val$listView -> ･
     java.util.ArrayList val$allApps -> ˊ
     com.linkbubble.ui.SettingsFragment this$0 -> ˋ
-    804:821:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.ui.SettingsFragment$3 -> ב:
+    749:766:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.ui.SettingsFragment$3 -> ډ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    164:165:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
-com.linkbubble.ui.SettingsFragment$4 -> װ:
+    165:169:boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
+com.linkbubble.ui.SettingsFragment$4 -> ږ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    177:181:boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
-com.linkbubble.ui.SettingsFragment$5 -> ه:
-    com.linkbubble.ui.SettingsFragment this$0 -> ･
-    191:191:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
-com.linkbubble.ui.SettingsFragment$6 -> ډ:
+    179:179:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.linkbubble.ui.SettingsFragment$5 -> ڗ:
     android.preference.Preference val$leftConsumeBubblePreference -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    199:208:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
-com.linkbubble.ui.SettingsFragment$6$1 -> ږ:
-    com.linkbubble.ui.SettingsFragment$6 this$1 -> ･
-    202:205:void onSelected(com.linkbubble.util.ActionItem) -> ･
-com.linkbubble.ui.SettingsFragment$7 -> ڗ:
+    187:196:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.linkbubble.ui.SettingsFragment$5$1 -> ە:
+    com.linkbubble.ui.SettingsFragment$5 this$1 -> ･
+    190:193:void onSelected(com.linkbubble.util.ActionItem) -> ･
+com.linkbubble.ui.SettingsFragment$6 -> ܕ:
     android.preference.Preference val$rightConsumeBubblePreference -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    217:226:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
-com.linkbubble.ui.SettingsFragment$7$1 -> ە:
-    com.linkbubble.ui.SettingsFragment$7 this$1 -> ･
-    220:223:void onSelected(com.linkbubble.util.ActionItem) -> ･
-com.linkbubble.ui.SettingsFragment$8 -> ܕ:
+    205:214:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.linkbubble.ui.SettingsFragment$6$1 -> ণ:
+    com.linkbubble.ui.SettingsFragment$6 this$1 -> ･
+    208:211:void onSelected(com.linkbubble.util.ActionItem) -> ･
+com.linkbubble.ui.SettingsFragment$7 -> จ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    240:252:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
-com.linkbubble.ui.SettingsFragment$8$1 -> ণ:
+    228:240:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.linkbubble.ui.SettingsFragment$7$1 -> แ:
     android.preference.Preference val$preference -> ･
-    com.linkbubble.ui.SettingsFragment$8 this$1 -> ˊ
-    243:249:void onSelected(com.linkbubble.util.ActionItem) -> ･
-com.linkbubble.ui.SettingsFragment$9 -> จ:
+    com.linkbubble.ui.SettingsFragment$7 this$1 -> ˊ
+    231:237:void onSelected(com.linkbubble.util.ActionItem) -> ･
+com.linkbubble.ui.SettingsFragment$8 -> ๆ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    262:262:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    250:250:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.linkbubble.ui.SettingsFragment$9 -> Ꭻ:
+    com.linkbubble.ui.SettingsFragment this$0 -> ･
+    258:259:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$AppInfo -> com.linkbubble.ui.SettingsFragment$･:
     java.lang.String mActivityName -> ˎ
     java.lang.String mPackageName -> ･
     java.lang.String mDisplayName -> ˊ
     java.lang.String mSortName -> ˋ
 com.linkbubble.ui.SettingsFragment$AppInfoComparator -> com.linkbubble.ui.SettingsFragment$if:
-    746:746:int compare(java.lang.Object,java.lang.Object) -> compare
+    691:691:int compare(java.lang.Object,java.lang.Object) -> compare
 com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent -> com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent:
     boolean mIncognito -> ･
-com.linkbubble.ui.SwipeDismissListViewTouchListener -> แ:
+com.linkbubble.ui.SwipeDismissListViewTouchListener -> Ꮁ:
     int mSlop -> ˊ
     int mMinFlingVelocity -> ˋ
     int mMaxFlingVelocity -> ˎ
@@ -5205,27 +5221,27 @@ com.linkbubble.ui.SwipeDismissListViewTouchListener -> แ:
     78:78:android.widget.ListView access$300(com.linkbubble.ui.SwipeDismissListViewTouchListener) -> ˎ
     78:78:com.linkbubble.ui.SwipeDismissListViewTouchListener$DismissCallbacks access$400(com.linkbubble.ui.SwipeDismissListViewTouchListener) -> ˏ
     78:78:int access$502$53683516(com.linkbubble.ui.SwipeDismissListViewTouchListener) -> ᐝ
-com.linkbubble.ui.SwipeDismissListViewTouchListener$1 -> ๆ:
+com.linkbubble.ui.SwipeDismissListViewTouchListener$1 -> Ꮣ:
     com.linkbubble.ui.SwipeDismissListViewTouchListener this$0 -> ･
     163:164:void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
     168:168:void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
-com.linkbubble.ui.SwipeDismissListViewTouchListener$2 -> Ꭻ:
+com.linkbubble.ui.SwipeDismissListViewTouchListener$2 -> ᒦ:
     android.view.View val$downView -> ･
     int val$downPosition -> ˊ
     com.linkbubble.ui.SwipeDismissListViewTouchListener this$0 -> ˋ
     274:275:void onAnimationEnd(android.animation.Animator) -> onAnimationEnd
-com.linkbubble.ui.SwipeDismissListViewTouchListener$3 -> Ꮁ:
+com.linkbubble.ui.SwipeDismissListViewTouchListener$3 -> ᒨ:
     int val$originalHeight -> ･
     com.linkbubble.ui.SwipeDismissListViewTouchListener this$0 -> ˊ
     358:392:void onAnimationEnd(android.animation.Animator) -> onAnimationEnd
-com.linkbubble.ui.SwipeDismissListViewTouchListener$4 -> Ꮣ:
+com.linkbubble.ui.SwipeDismissListViewTouchListener$4 -> ᒫ:
     android.view.ViewGroup$LayoutParams val$lp -> ･
     android.view.View val$dismissView -> ˊ
     com.linkbubble.ui.SwipeDismissListViewTouchListener this$0 -> ˋ
     398:400:void onAnimationUpdate(android.animation.ValueAnimator) -> onAnimationUpdate
-com.linkbubble.ui.SwipeDismissListViewTouchListener$DismissCallbacks -> แ$･:
+com.linkbubble.ui.SwipeDismissListViewTouchListener$DismissCallbacks -> Ꮁ$･:
     com.linkbubble.ui.HistoryActivity this$0 -> ･
-com.linkbubble.ui.SwipeDismissListViewTouchListener$PendingDismissData -> แ$if:
+com.linkbubble.ui.SwipeDismissListViewTouchListener$PendingDismissData -> Ꮁ$if:
     int position -> ･
     android.view.View view -> ˊ
     com.linkbubble.ui.SwipeDismissListViewTouchListener this$0 -> ˋ
@@ -5238,10 +5254,10 @@ com.linkbubble.ui.TabView -> com.linkbubble.ui.TabView:
     155:159:void onPageLoaded(boolean) -> ･
     21:21:com.linkbubble.util.ScaleUpAnimHelper access$000(com.linkbubble.ui.TabView) -> ･
     21:21:com.linkbubble.ui.ContentView access$100(com.linkbubble.ui.TabView) -> ˊ
-com.linkbubble.ui.TabView$2 -> ᒦ:
+com.linkbubble.ui.TabView$2 -> ᖟ:
     com.linkbubble.ui.TabView this$0 -> ･
     126:126:void onClick(android.view.View) -> onClick
-com.linkbubble.util.ActionItem -> ᒨ:
+com.linkbubble.util.ActionItem -> ᘇ:
     java.lang.String mLabel -> ･
     com.linkbubble.Constant$ActionType mType -> ˊ
     java.lang.String mCategory -> ˋ
@@ -5250,64 +5266,64 @@ com.linkbubble.util.ActionItem -> ᒨ:
     android.graphics.drawable.Drawable mIcon -> ᐝ
     byte[] $ -> ʻ
     73:138:java.util.ArrayList getActionItems(android.content.Context,boolean,boolean,boolean) -> ･
-    142:171:android.app.AlertDialog getDefaultBrowserAlert$472415a9(android.app.Activity,com.linkbubble.ui.SettingsFragment$8$1) -> ･
+    142:171:android.app.AlertDialog getDefaultBrowserAlert$472415a9(android.app.Activity,com.linkbubble.ui.SettingsFragment$7$1) -> ･
     176:315:android.app.AlertDialog getActionItemPickerAlert$7acab40a$97e5037(android.content.Context,java.util.ArrayList,com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener) -> ･
     320:361:android.app.AlertDialog getConfigureBubbleAlert$472415a9(android.app.Activity,com.linkbubble.util.ActionItem$OnActionItemSelectedListener) -> ･
     367:395:android.app.AlertDialog getShareAlert$7e15ad1b(android.content.Context,com.linkbubble.util.ActionItem$OnActionItemSelectedListener) -> ･
     38:38:android.graphics.drawable.Drawable access$000(com.linkbubble.util.ActionItem) -> ･
     java.lang.String $(int,int,int) -> ･
-com.linkbubble.util.ActionItem$1 -> ᒫ:
+com.linkbubble.util.ActionItem$1 -> ᙇ:
     126:126:int compare(java.lang.Object,java.lang.Object) -> compare
-com.linkbubble.util.ActionItem$10 -> ᖟ:
+com.linkbubble.util.ActionItem$10 -> ᴧ:
     com.linkbubble.util.ActionItem$OnActionItemSelectedListener val$onActionItemSelectedListener -> ･
     android.app.AlertDialog val$alertDialog -> ˊ
     385:392:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.linkbubble.util.ActionItem$1ActionItemListView -> ᘇ:
+com.linkbubble.util.ActionItem$1ActionItemListView -> ᴮ:
     boolean mDefaultSet -> ˊ
     long mLastItemClickTime -> ･
     212:226:void draw(android.graphics.Canvas) -> draw
-com.linkbubble.util.ActionItem$2 -> ᙇ:
-    com.linkbubble.ui.SettingsFragment$8$1 val$onActionItemSelectedListener$2df75527 -> ･
+com.linkbubble.util.ActionItem$2 -> ᴳ:
+    com.linkbubble.ui.SettingsFragment$7$1 val$onActionItemSelectedListener$2df75527 -> ･
     android.app.AlertDialog val$alertDialog -> ˊ
     158:168:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.linkbubble.util.ActionItem$3 -> ᴧ:
+com.linkbubble.util.ActionItem$3 -> ᴼ:
     189:189:int compare(java.lang.Object,java.lang.Object) -> compare
-com.linkbubble.util.ActionItem$4 -> ᴮ:
+com.linkbubble.util.ActionItem$4 -> ᵍ:
     com.linkbubble.util.ActionItem$1ActionItemListView val$listView -> ･
     java.util.ArrayList val$actionItems -> ˊ
     com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener val$onActionItemDefaultSelectedListener -> ˋ
     android.app.AlertDialog val$alertDialog -> ˎ
     254:290:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.linkbubble.util.ActionItem$5 -> ᴳ:
+com.linkbubble.util.ActionItem$5 -> ᵐ:
     com.linkbubble.util.ActionItem$1ActionItemListView val$listView -> ･
     java.util.ArrayList val$actionItems -> ˊ
     com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener val$onActionItemDefaultSelectedListener -> ˋ
     296:301:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.util.ActionItem$6 -> ᴼ:
+com.linkbubble.util.ActionItem$6 -> ᵚ:
     com.linkbubble.util.ActionItem$1ActionItemListView val$listView -> ･
     java.util.ArrayList val$actionItems -> ˊ
     com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener val$onActionItemDefaultSelectedListener -> ˋ
     307:312:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.util.ActionItem$7 -> ᵍ:
+com.linkbubble.util.ActionItem$7 -> ᵝ:
     com.linkbubble.util.ActionItem$OnActionItemSelectedListener val$onActionItemSelectedListener -> ･
     android.app.AlertDialog val$alertDialog -> ˊ
     336:343:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.linkbubble.util.ActionItem$8 -> ᵐ:
+com.linkbubble.util.ActionItem$8 -> ᵦ:
     350:350:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.util.ActionItem$9 -> ᵚ:
+com.linkbubble.util.ActionItem$9 -> ẋ:
     358:358:void onCancel(android.content.DialogInterface) -> onCancel
-com.linkbubble.util.ActionItem$ActionItemAdapter -> ᒨ$･:
+com.linkbubble.util.ActionItem$ActionItemAdapter -> ᘇ$･:
     android.content.Context mContext -> ･
     int mLayoutResourceId -> ˊ
     com.linkbubble.util.ActionItem[] mData -> ˋ
     414:429:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
     434:439:android.view.View getHeaderView(int,android.view.View,android.view.ViewGroup) -> ･
     444:448:long getHeaderId(int) -> ･
-com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener -> ᒨ$if:
+com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener -> ᘇ$if:
     void onSelected(com.linkbubble.util.ActionItem,boolean) -> ･
-com.linkbubble.util.ActionItem$OnActionItemSelectedListener -> ᒨ$ˊ:
+com.linkbubble.util.ActionItem$OnActionItemSelectedListener -> ᘇ$ˊ:
     void onSelected(com.linkbubble.util.ActionItem) -> ･
-com.linkbubble.util.AppPoller -> ᵝ:
+com.linkbubble.util.AppPoller -> ẍ:
     int VERIFY_TIME -> ʼ
     com.linkbubble.MainService mContext$48463d4e -> ･
     com.linkbubble.util.AppPoller$AppPollerListener mAppPollingListener$68d024af$b0f9ede -> ˊ
@@ -5328,12 +5344,12 @@ com.linkbubble.util.AppPoller -> ᵝ:
     16:16:int access$600() -> ･
     16:16:java.lang.String access$202(com.linkbubble.util.AppPoller,java.lang.String) -> ˊ
     16:16:com.linkbubble.util.AppPoller$AppPollerListener access$700(com.linkbubble.util.AppPoller) -> ᐝ
-com.linkbubble.util.AppPoller$1 -> ᵦ:
+com.linkbubble.util.AppPoller$1 -> 〳:
     com.linkbubble.util.AppPoller this$0 -> ･
     89:143:void handleMessage(android.os.Message) -> handleMessage
-com.linkbubble.util.AppPoller$AppPollerListener -> ᵝ$･:
+com.linkbubble.util.AppPoller$AppPollerListener -> ẍ$･:
     com.linkbubble.MainController this$0 -> ･
-com.linkbubble.util.Encrypt -> ẋ:
+com.linkbubble.util.Encrypt -> 〵:
     java.lang.String sCryptoPass -> ･
     21:49:java.lang.String encryptIt(java.lang.String) -> ･
     54:83:java.lang.String decryptIt(java.lang.String) -> ˊ
@@ -5380,13 +5396,13 @@ com.linkbubble.util.ScaleUpAnimHelper -> com.linkbubble.util.ScaleUpAnimHelper:
     com.linkbubble.util.ScaleUpAnimHelper$2 mHideListener$28ea8dba -> ˏ
     26:45:void show() -> ･
     48:53:void hide() -> ˊ
-com.linkbubble.util.ScaleUpAnimHelper$1 -> ẍ:
+com.linkbubble.util.ScaleUpAnimHelper$1 -> ノ:
     com.linkbubble.util.ScaleUpAnimHelper this$0 -> ･
     60:61:void onAnimationStart(android.animation.Animator) -> onAnimationStart
     65:66:void onAnimationEnd(android.animation.Animator) -> onAnimationEnd
     71:71:void onAnimationCancel(android.animation.Animator) -> onAnimationCancel
     76:76:void onAnimationRepeat(android.animation.Animator) -> onAnimationRepeat
-com.linkbubble.util.ScaleUpAnimHelper$2 -> 〳:
+com.linkbubble.util.ScaleUpAnimHelper$2 -> 亅:
     com.linkbubble.util.ScaleUpAnimHelper this$0 -> ･
     82:83:void onAnimationStart(android.animation.Animator) -> onAnimationStart
     87:89:void onAnimationEnd(android.animation.Animator) -> onAnimationEnd
@@ -5399,21 +5415,21 @@ com.linkbubble.util.ScaleUpAnimHelper$AnimState -> com.linkbubble.util.ScaleUpAn
     com.linkbubble.util.ScaleUpAnimHelper$AnimState[] $VALUES -> ˎ
     10:10:com.linkbubble.util.ScaleUpAnimHelper$AnimState[] values() -> values
     10:10:com.linkbubble.util.ScaleUpAnimHelper$AnimState valueOf(java.lang.String) -> valueOf
-com.linkbubble.util.StatHat -> 〵:
+com.linkbubble.util.StatHat -> 亠:
     com.linkbubble.util.StatHat sInstance -> ･
     com.linkbubble.util.StatHatService mStatHatService -> ˊ
     34:38:com.linkbubble.util.StatHat get() -> ･
-com.linkbubble.util.StatHat$1 -> ノ:
+com.linkbubble.util.StatHat$1 -> 冫:
     com.linkbubble.util.StatHat this$0 -> ･
     47:47:void log(java.lang.String) -> ･
-com.linkbubble.util.StatHat$2 -> 亅:
+com.linkbubble.util.StatHat$2 -> לּ:
     java.lang.String val$statName -> ･
     com.linkbubble.util.StatHat this$0 -> ˊ
-com.linkbubble.util.StatHat$3 -> 亠:
+com.linkbubble.util.StatHat$3 -> ﮃ:
     java.lang.String val$statName -> ･
     com.linkbubble.util.StatHat this$0 -> ˊ
-com.linkbubble.util.StatHatService -> 冫:
-com.linkbubble.util.TranslateAnimationEx -> לּ:
+com.linkbubble.util.StatHatService -> ﮅ:
+com.linkbubble.util.TranslateAnimationEx -> ﱠ:
     int mFromXType -> ･
     int mToXType -> ˊ
     int mFromYType -> ˋ
@@ -5429,31 +5445,32 @@ com.linkbubble.util.TranslateAnimationEx -> לּ:
     com.linkbubble.util.TranslateAnimationEx$TransformationListener mTransformationListener -> ʿ
     65:78:void applyTransformation(float,android.view.animation.Transformation) -> applyTransformation
     82:87:void initialize(int,int,int,int) -> initialize
-com.linkbubble.util.TranslateAnimationEx$TransformationListener -> לּ$･:
+com.linkbubble.util.TranslateAnimationEx$TransformationListener -> ﱠ$･:
     void onApplyTransform$4169e4a8(float) -> ･
-com.linkbubble.util.Util -> ﮃ:
-    byte[] $ -> ･
-    int $$ -> ˊ
-    30:33:void Assert(boolean,java.lang.String) -> ･
-    36:36:float clamp(float,float,float) -> ･
-    40:40:int clamp(int,int,int) -> ･
-    60:60:java.lang.String getPrettyDate(java.util.Date) -> ･
-    116:122:java.lang.String getPrettyTimeElapsed(android.content.res.Resources,long,java.lang.String) -> ･
-    128:157:java.lang.String downloadJSONAsString$7a1ba7c4(java.lang.String) -> ･
-    161:164:float distance(float,float,float,float) -> ･
-    168:168:java.lang.String getDefaultFaviconUrl(java.net.URL) -> ･
-    187:198:int computeOutCode(float,float,float,float,float,float) -> ･
-    209:267:boolean clipLineSegmentToRectangle(float,float,float,float,float,float,float,float,com.linkbubble.util.Util$ClipResult) -> ･
-    271:285:void closestPointToLineSegment(float,float,float,float,float,float,com.linkbubble.util.Util$Point) -> ･
-    288:294:boolean isLinkBubbleResolveInfo(android.content.pm.ResolveInfo) -> ･
-    298:309:boolean checkForTamper$5eebc1b(android.app.Activity,com.linkbubble.ui.Prompt$OnPromptEventListener) -> ･
+com.linkbubble.util.Util -> ﱢ:
+    java.util.Random sRandom -> ･
+    byte[] $ -> ˊ
+    31:34:void Assert(boolean,java.lang.String) -> ･
+    37:37:float clamp(float,float,float) -> ･
+    41:41:int clamp(int,int,int) -> ･
+    61:61:java.lang.String getPrettyDate(java.util.Date) -> ･
+    117:123:java.lang.String getPrettyTimeElapsed(android.content.res.Resources,long,java.lang.String) -> ･
+    129:158:java.lang.String downloadJSONAsString$7a1ba7c4(java.lang.String) -> ･
+    162:165:float distance(float,float,float,float) -> ･
+    169:169:java.lang.String getDefaultFaviconUrl(java.net.URL) -> ･
+    188:199:int computeOutCode(float,float,float,float,float,float) -> ･
+    210:268:boolean clipLineSegmentToRectangle(float,float,float,float,float,float,float,float,com.linkbubble.util.Util$ClipResult) -> ･
+    272:286:void closestPointToLineSegment(float,float,float,float,float,float,com.linkbubble.util.Util$Point) -> ･
+    289:295:boolean isLinkBubbleResolveInfo(android.content.pm.ResolveInfo) -> ･
+    299:310:boolean checkForTamper$5eebc1b(android.app.Activity,com.linkbubble.ui.Prompt$OnPromptEventListener) -> ･
+    316:324:int randInt$255f288() -> ･
     java.lang.String $(int,int,int) -> ˊ
-com.linkbubble.util.Util$ClipResult -> ﮃ$･:
+com.linkbubble.util.Util$ClipResult -> ﱢ$･:
     int x0 -> ･
     int y0 -> ˊ
     int x1 -> ˋ
     int y1 -> ˎ
-com.linkbubble.util.Util$Point -> ﮃ$if:
+com.linkbubble.util.Util$Point -> ﱢ$if:
     int x -> ･
     int y -> ˊ
 com.linkbubble.util.VerticalGestureListener -> com.linkbubble.util.VerticalGestureListener:
@@ -5467,7 +5484,7 @@ com.linkbubble.util.VerticalGestureListener$GestureDirection -> com.linkbubble.u
     com.linkbubble.util.VerticalGestureListener$GestureDirection[] $VALUES -> ˏ
     10:10:com.linkbubble.util.VerticalGestureListener$GestureDirection[] values() -> values
     10:10:com.linkbubble.util.VerticalGestureListener$GestureDirection valueOf(java.lang.String) -> valueOf
-com.linkbubble.util.YouTubeEmbedHelper -> ﮅ:
+com.linkbubble.util.YouTubeEmbedHelper -> ﺮ:
     android.content.Context mContext -> ˋ
     java.util.ArrayList mEmbedIds$7865b31 -> ･
     java.util.ArrayList mEmbedInfo$7865b31 -> ˎ
@@ -5485,26 +5502,26 @@ com.linkbubble.util.YouTubeEmbedHelper -> ﮅ:
     32:32:android.content.Context access$400(com.linkbubble.util.YouTubeEmbedHelper) -> ˋ
     32:32:java.util.ArrayList access$500$704a6ca7(com.linkbubble.util.YouTubeEmbedHelper) -> ˎ
     java.lang.String $(int,int,int) -> ･
-com.linkbubble.util.YouTubeEmbedHelper$1 -> ﱠ:
+com.linkbubble.util.YouTubeEmbedHelper$1 -> ﻠ:
     android.app.AlertDialog val$alertDialog -> ･
     com.linkbubble.util.YouTubeEmbedHelper this$0 -> ˊ
     226:231:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.linkbubble.util.YouTubeEmbedHelper$2 -> ﱢ:
+com.linkbubble.util.YouTubeEmbedHelper$2 -> ﻩ:
     android.app.AlertDialog val$alertDialog -> ･
     com.linkbubble.util.YouTubeEmbedHelper this$0 -> ˊ
     243:244:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.util.YouTubeEmbedHelper$DownloadYouTubeEmbedInfoTask -> ﮅ$･:
+com.linkbubble.util.YouTubeEmbedHelper$DownloadYouTubeEmbedInfoTask -> ﺮ$･:
     android.app.AlertDialog mLoadingAlertDialog -> ･
     boolean mShowResultsOnCompletion -> ˊ
     com.linkbubble.util.YouTubeEmbedHelper this$0 -> ˋ
     267:356:java.lang.Boolean doInBackground$5f8445a4() -> ･
     254:254:void onPostExecute(java.lang.Object) -> onPostExecute
     254:254:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.linkbubble.util.YouTubeEmbedHelper$EmbedInfo -> ﮅ$if:
+com.linkbubble.util.YouTubeEmbedHelper$EmbedInfo -> ﺮ$if:
     java.lang.String mTitle -> ･
     java.lang.String mThumbnailUrl -> ˊ
     java.lang.String mId -> ˋ
-com.linkbubble.util.YouTubeEmbedHelper$EmbedItemAdapter -> ﮅ$ˊ:
+com.linkbubble.util.YouTubeEmbedHelper$EmbedItemAdapter -> ﺮ$ˊ:
     com.linkbubble.util.YouTubeEmbedHelper this$0 -> ･
     373:373:int getCount() -> getCount
     378:378:java.lang.Object getItem(int) -> getItem
@@ -9559,13 +9576,13 @@ com.parse.twitter.Twitter$1$1$1 -> com.parse.twitter.Twitter$1$1$1:
     168:186:void onPostExecute(com.parse.signpost.http.HttpParameters) -> onPostExecute
     147:147:void onPostExecute(java.lang.Object) -> onPostExecute
     147:147:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.squareup.otto.AnnotatedHandlerFinder -> ﺮ:
+com.squareup.otto.AnnotatedHandlerFinder -> ｃ:
     java.util.HashMap PRODUCERS_CACHE$5a983bf5 -> ･
     java.util.HashMap SUBSCRIBERS_CACHE$5a983bf5 -> ˊ
     49:111:void loadAnnotatedMethods(java.lang.Class) -> ･
     115:129:java.util.HashMap findAllProducers$131b677a(java.lang.Object) -> ･
     134:151:java.util.HashMap findAllSubscribers$131b677a(java.lang.Object) -> ˊ
-com.squareup.otto.Bus -> ﻠ:
+com.squareup.otto.Bus -> ｩ:
     java.util.concurrent.ConcurrentHashMap handlersByType$4bde89de -> ･
     java.util.concurrent.ConcurrentHashMap producersByType$4bde89de -> ˊ
     java.lang.String identifier -> ˋ
@@ -9582,19 +9599,19 @@ com.squareup.otto.Bus -> ﻠ:
     354:372:void dispatchQueuedEvents() -> ･
     384:388:void dispatch(java.lang.Object,com.squareup.otto.EventHandler) -> ･
     431:445:java.util.HashSet getClassesFor$704f7a57(java.lang.Class) -> ･
-com.squareup.otto.Bus$1 -> ﻩ:
+com.squareup.otto.Bus$1 -> ｪ:
     com.squareup.otto.Bus this$0 -> ･
     110:110:java.lang.Object initialValue() -> initialValue
-com.squareup.otto.Bus$2 -> ｃ:
+com.squareup.otto.Bus$2 -> ﾃ:
     com.squareup.otto.Bus this$0 -> ･
     117:117:java.lang.Object initialValue() -> initialValue
-com.squareup.otto.Bus$EventWithHandler -> ﻠ$･:
+com.squareup.otto.Bus$EventWithHandler -> ｩ$･:
     java.lang.Object event -> ･
     com.squareup.otto.EventHandler handler -> ˊ
-com.squareup.otto.DeadEvent -> ｩ:
+com.squareup.otto.DeadEvent -> ﾅ:
     com.squareup.otto.Bus source$5f790d9c -> ･
     java.lang.Object event -> ˊ
-com.squareup.otto.EventHandler -> ｪ:
+com.squareup.otto.EventHandler -> ﾝ:
     java.lang.Object target -> ˊ
     java.lang.reflect.Method method -> ˋ
     int hashCode -> ˎ
@@ -9603,7 +9620,7 @@ com.squareup.otto.EventHandler -> ｪ:
     101:101:java.lang.String toString() -> toString
     105:105:int hashCode() -> hashCode
     109:123:boolean equals(java.lang.Object) -> equals
-com.squareup.otto.EventProducer -> ﾃ:
+com.squareup.otto.EventProducer -> ĵ:
     java.lang.Object target -> ･
     java.lang.reflect.Method method -> ˋ
     int hashCode -> ˎ
@@ -9612,23 +9629,23 @@ com.squareup.otto.EventProducer -> ﾃ:
     96:96:java.lang.String toString() -> toString
     100:100:int hashCode() -> hashCode
     104:118:boolean equals(java.lang.Object) -> equals
-com.squareup.otto.HandlerFinder -> ﾅ:
+com.squareup.otto.HandlerFinder -> ĸ:
     com.squareup.otto.HandlerFinder$1 ANNOTATED$250ec4e3 -> ･
     java.util.HashMap findAllProducers$131b677a(java.lang.Object) -> ･
     java.util.HashMap findAllSubscribers$131b677a(java.lang.Object) -> ˊ
-com.squareup.otto.HandlerFinder$1 -> ﾝ:
+com.squareup.otto.HandlerFinder$1 -> Ĺ:
     33:33:java.util.HashMap findAllProducers$131b677a(java.lang.Object) -> ･
     38:38:java.util.HashMap findAllSubscribers$131b677a(java.lang.Object) -> ˊ
-com.squareup.otto.Produce -> ĵ:
-com.squareup.otto.Subscribe -> ĸ:
-com.squareup.otto.ThreadEnforcer -> Ĺ:
+com.squareup.otto.Produce -> Ļ:
+com.squareup.otto.Subscribe -> Ŀ:
+com.squareup.otto.ThreadEnforcer -> ř:
     com.squareup.otto.ThreadEnforcer$2 MAIN$22e1dc31 -> ･
     void enforce(com.squareup.otto.Bus) -> ･
-com.squareup.otto.ThreadEnforcer$1 -> Ļ:
+com.squareup.otto.ThreadEnforcer$1 -> ǰ:
     40:40:void enforce(com.squareup.otto.Bus) -> ･
-com.squareup.otto.ThreadEnforcer$2 -> Ŀ:
+com.squareup.otto.ThreadEnforcer$2 -> ɫ:
     46:49:void enforce(com.squareup.otto.Bus) -> ･
-com.squareup.picasso.Action -> ř:
+com.squareup.picasso.Action -> ʇ:
     com.squareup.picasso.Picasso picasso -> ･
     com.squareup.picasso.Request data -> ˊ
     com.squareup.picasso.Action$RequestWeakReference target$112e3024 -> ˋ
@@ -9641,14 +9658,14 @@ com.squareup.picasso.Action -> ř:
     void complete(android.graphics.Bitmap,com.squareup.picasso.Picasso$LoadedFrom) -> ･
     void error() -> ･
     61:62:void cancel() -> ˊ
-com.squareup.picasso.Action$RequestWeakReference -> ř$･:
+com.squareup.picasso.Action$RequestWeakReference -> ʇ$･:
     com.squareup.picasso.Action action -> ･
-com.squareup.picasso.AssetBitmapHunter -> ǰ:
+com.squareup.picasso.AssetBitmapHunter -> ʋ:
     android.content.res.AssetManager assetManager -> ͺ
     22:23:android.graphics.Bitmap decode(com.squareup.picasso.Request) -> ･
     27:27:com.squareup.picasso.Picasso$LoadedFrom getLoadedFrom() -> ･
     31:48:android.graphics.Bitmap decodeAsset(java.lang.String) -> ･
-com.squareup.picasso.BitmapHunter -> ɫ:
+com.squareup.picasso.BitmapHunter -> Υ:
     java.lang.Object DECODE_LOCK -> ͺ
     com.squareup.picasso.Picasso picasso -> ･
     com.squareup.picasso.Dispatcher dispatcher -> ι
@@ -9671,32 +9688,32 @@ com.squareup.picasso.BitmapHunter -> ɫ:
     181:201:com.squareup.picasso.BitmapHunter forRequest$2d832570(android.content.Context,com.squareup.picasso.Picasso,com.squareup.picasso.Dispatcher,com.squareup.picasso.LruCache,com.squareup.picasso.Stats,com.squareup.picasso.Action,com.squareup.picasso.Downloader) -> ･
     206:217:void calculateInSampleSize(int,int,android.graphics.BitmapFactory$Options) -> ･
     220:250:android.graphics.Bitmap applyCustomTransformations(java.util.List,android.graphics.Bitmap) -> ･
-com.squareup.picasso.Cache -> ʇ:
+com.squareup.picasso.Cache -> ϟ:
     android.graphics.Bitmap get(java.lang.String) -> ･
     void set(java.lang.String,android.graphics.Bitmap) -> ･
-com.squareup.picasso.Cache$1 -> ʋ:
+com.squareup.picasso.Cache$1 -> Ѓ:
     46:46:android.graphics.Bitmap get(java.lang.String) -> ･
     51:51:void set(java.lang.String,android.graphics.Bitmap) -> ･
-com.squareup.picasso.ContactsPhotoBitmapHunter -> Υ:
+com.squareup.picasso.ContactsPhotoBitmapHunter -> ҁ:
     android.content.Context context -> ͺ
     43:48:android.graphics.Bitmap decode(com.squareup.picasso.Request) -> ･
     53:53:com.squareup.picasso.Picasso$LoadedFrom getLoadedFrom() -> ･
     57:68:java.io.InputStream getInputStream() -> ˊ
     73:88:android.graphics.Bitmap decodeStream(java.io.InputStream,com.squareup.picasso.Request) -> ･
-com.squareup.picasso.ContentProviderBitmapHunter -> ϟ:
+com.squareup.picasso.ContentProviderBitmapHunter -> Ґ:
     java.lang.String[] CONTENT_ORIENTATION -> ι
     37:38:android.graphics.Bitmap decode(com.squareup.picasso.Request) -> ･
     42:54:int getContentProviderExifRotation(android.content.ContentResolver,android.net.Uri) -> ･
-com.squareup.picasso.ContentStreamBitmapHunter -> Ѓ:
+com.squareup.picasso.ContentStreamBitmapHunter -> ғ:
     android.content.Context context -> ͺ
     38:38:android.graphics.Bitmap decode(com.squareup.picasso.Request) -> ･
     42:42:com.squareup.picasso.Picasso$LoadedFrom getLoadedFrom() -> ･
     46:64:android.graphics.Bitmap decodeContentStream(com.squareup.picasso.Request) -> ˊ
-com.squareup.picasso.DeferredRequestCreator -> ҁ:
+com.squareup.picasso.DeferredRequestCreator -> ҭ:
     android.support.v4.app.FragmentManager$OnBackStackChangedListener callback$159d2882 -> ･
     41:60:boolean onPreDraw() -> onPreDraw
     64:74:void cancel() -> ･
-com.squareup.picasso.Dispatcher -> Ґ:
+com.squareup.picasso.Dispatcher -> Ү:
     com.squareup.picasso.Dispatcher$DispatcherThread dispatcherThread -> ʾ
     android.content.Context context -> ･
     com.squareup.picasso.PicassoExecutorService service$331d0885 -> ˊ
@@ -9711,31 +9728,31 @@ com.squareup.picasso.Dispatcher -> Ґ:
     android.net.NetworkInfo networkInfo -> ͺ
     boolean airplaneMode -> ι
     202:209:void batch(com.squareup.picasso.BitmapHunter) -> ･
-com.squareup.picasso.Dispatcher$DispatcherHandler -> Ґ$･:
+com.squareup.picasso.Dispatcher$DispatcherHandler -> Ү$･:
     com.squareup.picasso.Dispatcher this$0 -> ･
     217:257:void handleMessage(android.os.Message) -> handleMessage
-com.squareup.picasso.Dispatcher$DispatcherThread -> Ґ$if:
-com.squareup.picasso.Dispatcher$NetworkBroadcastReceiver -> Ґ$ˊ:
+com.squareup.picasso.Dispatcher$DispatcherThread -> Ү$if:
+com.squareup.picasso.Dispatcher$NetworkBroadcastReceiver -> Ү$ˊ:
     android.net.ConnectivityManager connectivityManager -> ˊ
     com.squareup.picasso.Dispatcher this$0 -> ･
     293:301:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.squareup.picasso.Downloader -> ғ:
+com.squareup.picasso.Downloader -> ԇ:
     com.squareup.picasso.Downloader$Response load(android.net.Uri,boolean) -> ･
-com.squareup.picasso.Downloader$Response -> ғ$･:
+com.squareup.picasso.Downloader$Response -> ԇ$･:
     java.io.InputStream stream -> ･
     android.graphics.Bitmap bitmap -> ˋ
     boolean cached -> ˊ
-com.squareup.picasso.FetchAction -> ҭ:
+com.squareup.picasso.FetchAction -> ה:
     26:26:void complete(android.graphics.Bitmap,com.squareup.picasso.Picasso$LoadedFrom) -> ･
     29:29:void error() -> ･
-com.squareup.picasso.FileBitmapHunter -> Ү:
+com.squareup.picasso.FileBitmapHunter -> ٲ:
     39:40:android.graphics.Bitmap decode(com.squareup.picasso.Request) -> ･
-com.squareup.picasso.ImageViewAction -> ԇ:
+com.squareup.picasso.ImageViewAction -> ٳ:
     android.support.v4.app.FragmentManager$OnBackStackChangedListener callback$159d2882 -> ᐝ
     34:48:void complete(android.graphics.Bitmap,com.squareup.picasso.Picasso$LoadedFrom) -> ･
     54:58:void error() -> ･
     70:71:void cancel() -> ˊ
-com.squareup.picasso.LruCache -> ה:
+com.squareup.picasso.LruCache -> ژ:
     java.util.LinkedHashMap map -> ･
     int maxSize -> ˊ
     int size -> ˋ
@@ -9746,7 +9763,7 @@ com.squareup.picasso.LruCache -> ה:
     49:63:android.graphics.Bitmap get(java.lang.String) -> ･
     67:82:void set(java.lang.String,android.graphics.Bitmap) -> ･
     88:104:void trimToSize(int) -> ･
-com.squareup.picasso.MarkableInputStream -> ٲ:
+com.squareup.picasso.MarkableInputStream -> ں:
     java.io.InputStream in -> ･
     long offset -> ˊ
     long reset -> ˋ
@@ -9765,12 +9782,12 @@ com.squareup.picasso.MarkableInputStream -> ٲ:
     140:140:int available() -> available
     144:145:void close() -> close
     148:148:boolean markSupported() -> markSupported
-com.squareup.picasso.NetworkBitmapHunter -> ٳ:
+com.squareup.picasso.NetworkBitmapHunter -> ܥ:
     com.squareup.picasso.Downloader downloader -> ͺ
     int retryCount -> ι
     44:62:android.graphics.Bitmap decode(com.squareup.picasso.Request) -> ･
     67:72:boolean shouldRetry$552f0f64(android.net.NetworkInfo) -> ･
-com.squareup.picasso.OkHttpDownloader -> ژ:
+com.squareup.picasso.OkHttpDownloader -> ধ:
     com.squareup.okhttp.OkHttpClient client -> ･
     99:117:com.squareup.picasso.Downloader$Response load(android.net.Uri,boolean) -> ･
 com.squareup.picasso.Picasso -> com.squareup.picasso.Picasso:
@@ -9794,7 +9811,7 @@ com.squareup.picasso.Picasso -> com.squareup.picasso.Picasso:
     322:335:void cancelExistingRequest(java.lang.Object) -> ･
     389:392:com.squareup.picasso.Picasso with(android.content.Context) -> ･
     46:46:void access$000(com.squareup.picasso.Picasso,java.lang.Object) -> ･
-com.squareup.picasso.Picasso$1 -> ں:
+com.squareup.picasso.Picasso$1 -> ร:
     85:99:void handleMessage(android.os.Message) -> handleMessage
 com.squareup.picasso.Picasso$Builder -> com.squareup.picasso.Picasso$･:
     android.content.Context context -> ･
@@ -9806,7 +9823,7 @@ com.squareup.picasso.Picasso$CleanupThread -> com.squareup.picasso.Picasso$if:
     java.lang.ref.ReferenceQueue referenceQueue -> ･
     com.squareup.picasso.Picasso$1 handler$2ace4d50 -> ˊ
     349:363:void run() -> run
-com.squareup.picasso.Picasso$CleanupThread$1 -> ܥ:
+com.squareup.picasso.Picasso$CleanupThread$1 -> ใ:
     java.lang.Exception val$e -> ･
     com.squareup.picasso.Picasso$CleanupThread this$0 -> ˊ
     359:359:void run() -> run
@@ -9821,9 +9838,9 @@ com.squareup.picasso.Picasso$LoadedFrom -> com.squareup.picasso.Picasso$LoadedFr
 com.squareup.picasso.Picasso$RequestTransformer -> com.squareup.picasso.Picasso$ˊ:
     com.squareup.picasso.Picasso$RequestTransformer$1 IDENTITY$65803f31 -> ･
     com.squareup.picasso.Request transformRequest(com.squareup.picasso.Request) -> ･
-com.squareup.picasso.Picasso$RequestTransformer$1 -> ধ:
+com.squareup.picasso.Picasso$RequestTransformer$1 -> Ꭲ:
     78:78:com.squareup.picasso.Request transformRequest(com.squareup.picasso.Request) -> ･
-com.squareup.picasso.PicassoDrawable -> ร:
+com.squareup.picasso.PicassoDrawable -> Ꭸ:
     android.graphics.Paint DEBUG_PAINT -> ･
     boolean debugging -> ˊ
     float density -> ˋ
@@ -9842,8 +9859,8 @@ com.squareup.picasso.PicassoDrawable -> ร:
     144:144:int getOpacity() -> getOpacity
     148:155:void onBoundsChange(android.graphics.Rect) -> onBoundsChange
     194:202:android.graphics.Path getTrianglePath(android.graphics.Point,int) -> ･
-com.squareup.picasso.PicassoExecutorService -> ใ:
-com.squareup.picasso.Request -> Ꭲ:
+com.squareup.picasso.PicassoExecutorService -> Ꮠ:
+com.squareup.picasso.Request -> ᐜ:
     android.net.Uri uri -> ･
     int resourceId -> ˊ
     java.util.List transformations -> ˋ
@@ -9855,21 +9872,21 @@ com.squareup.picasso.Request -> Ꭲ:
     float rotationPivotX -> ʽ
     float rotationPivotY -> ͺ
     boolean hasRotationPivot -> ι
-com.squareup.picasso.Request$Builder -> Ꭲ$･:
+com.squareup.picasso.Request$Builder -> ᐜ$･:
     android.net.Uri uri -> ･
     int resourceId -> ˏ
     int targetWidth -> ˊ
     int targetHeight -> ˋ
     java.util.ArrayList transformations$7865b31 -> ˎ
-com.squareup.picasso.RequestCreator -> Ꭸ:
+com.squareup.picasso.RequestCreator -> ᒩ:
     com.squareup.picasso.Picasso picasso -> ･
     com.squareup.picasso.Request$Builder data -> ˊ
     332:379:void into$4ca0a893$e0ed7c6(android.widget.ImageView) -> ･
-com.squareup.picasso.ResourceBitmapHunter -> Ꮠ:
+com.squareup.picasso.ResourceBitmapHunter -> ᓶ:
     android.content.Context context -> ͺ
     36:36:android.graphics.Bitmap decode(com.squareup.picasso.Request) -> ･
     40:40:com.squareup.picasso.Picasso$LoadedFrom getLoadedFrom() -> ･
-com.squareup.picasso.Stats -> ᐜ:
+com.squareup.picasso.Stats -> ᓷ:
     android.os.HandlerThread statsThread -> ͺ
     com.squareup.picasso.LruCache cache$7cde88d -> ι
     com.squareup.picasso.Stats$StatsHandler handler$2ace4d50 -> ･
@@ -9881,30 +9898,30 @@ com.squareup.picasso.Stats -> ᐜ:
     long averageTransformedBitmapSize -> ʻ
     int originalBitmapCount -> ʼ
     int transformedBitmapCount -> ʽ
-com.squareup.picasso.Stats$StatsHandler -> ᐜ$･:
+com.squareup.picasso.Stats$StatsHandler -> ᓷ$･:
     com.squareup.picasso.Stats this$0 -> ･
     120:144:void handleMessage(android.os.Message) -> handleMessage
-com.squareup.picasso.Stats$StatsHandler$1 -> ᒩ:
+com.squareup.picasso.Stats$StatsHandler$1 -> ᓸ:
     android.os.Message val$msg -> ･
     com.squareup.picasso.Stats$StatsHandler this$1 -> ˊ
     140:140:void run() -> run
-com.squareup.picasso.Transformation -> ᓶ:
+com.squareup.picasso.Transformation -> ᓹ:
     android.graphics.Bitmap transform(android.graphics.Bitmap) -> ･
     java.lang.String key() -> ･
-com.squareup.picasso.UrlConnectionDownloader -> ᓷ:
+com.squareup.picasso.UrlConnectionDownloader -> ᓼ:
     java.lang.Object lock -> ･
     android.net.http.HttpResponseCache cache$5f790d9c -> ˊ
     android.content.Context context -> ˋ
     54:72:com.squareup.picasso.Downloader$Response load(android.net.Uri,boolean) -> ･
-com.squareup.picasso.Utils$PicassoThread -> ᓸ:
+com.squareup.picasso.Utils$PicassoThread -> ᓽ:
     217:219:void run() -> run
-com.squareup.picasso.Utils$PicassoThreadFactory -> ᓹ:
+com.squareup.picasso.Utils$PicassoThreadFactory -> ᔀ:
     207:207:java.lang.Thread newThread(java.lang.Runnable) -> newThread
-dexguard.util.TamperDetection -> ᓼ:
+dexguard.util.TamperDetection -> ᔁ:
     byte[] a -> ･
     int checkApk$faab21a(android.app.Activity) -> ･
     java.lang.String a(int,int,int) -> ･
-org.mozilla.gecko.favicons.Favicons -> ᓽ:
+org.mozilla.gecko.favicons.Favicons -> ᔄ:
     com.linkbubble.MainApplication sContext$48463d4e -> ･
     android.graphics.Bitmap sDefaultFavicon -> ˊ
     java.util.Map mLoadTasks -> ˋ
@@ -9916,7 +9933,7 @@ org.mozilla.gecko.favicons.Favicons -> ᓽ:
     303:317:boolean cancelFaviconLoad(int) -> ･
     321:335:void close() -> ･
     427:433:java.lang.String guessDefaultFaviconURL(java.lang.String) -> ˊ
-org.mozilla.gecko.favicons.LoadFaviconTask -> ᔀ:
+org.mozilla.gecko.favicons.LoadFaviconTask -> ᔨ:
     java.util.HashMap loadsInFlight -> ˎ
     java.util.concurrent.atomic.AtomicInteger mNextFaviconLoadId -> ˏ
     org.mozilla.gecko.favicons.Favicons mFavicons -> ᐝ
@@ -9938,11 +9955,11 @@ org.mozilla.gecko.favicons.LoadFaviconTask -> ᔀ:
     473:486:void closeHTTPClient() -> ˊ
     38:38:android.graphics.Bitmap doInBackground$42af7916$6240c47a() -> ˋ
     38:38:void onPostExecute$5d527811(android.graphics.Bitmap) -> ･
-org.mozilla.gecko.favicons.LoadFaviconTask$1 -> ᔁ:
+org.mozilla.gecko.favicons.LoadFaviconTask$1 -> ᔭ:
     483:484:void run() -> run
-org.mozilla.gecko.favicons.OnFaviconLoadedListener -> ᔄ:
+org.mozilla.gecko.favicons.OnFaviconLoadedListener -> ᖕ:
     void onFaviconLoaded$179d4c45(java.lang.String,android.graphics.Bitmap) -> ･
-org.mozilla.gecko.favicons.cache.FaviconCache -> ᔨ:
+org.mozilla.gecko.favicons.cache.FaviconCache -> ᘆ:
     java.lang.String LOGTAG -> ˎ
     int sInstanceCount -> ˏ
     int mMaxCachedWidth -> ᐝ
@@ -9964,7 +9981,7 @@ org.mozilla.gecko.favicons.cache.FaviconCache -> ᔨ:
     527:531:void setMostRecentlyUsed(org.mozilla.gecko.favicons.cache.FaviconCacheElement) -> ･
     541:572:void putSingleFavicon(java.lang.String,android.graphics.Bitmap) -> ･
     644:665:void cullIfRequired() -> ˊ
-org.mozilla.gecko.favicons.cache.FaviconCacheElement -> ᔭ:
+org.mozilla.gecko.favicons.cache.FaviconCacheElement -> ᴋ:
     boolean mIsPrimary -> ･
     android.graphics.Bitmap mFaviconPayload -> ˊ
     boolean mInvalidated -> ˋ
@@ -9972,32 +9989,32 @@ org.mozilla.gecko.favicons.cache.FaviconCacheElement -> ᔭ:
     org.mozilla.gecko.favicons.cache.FaviconsForURL mBackpointer -> ˏ
     99:114:void onEvictedFromCache() -> ･
     13:13:int compareTo(java.lang.Object) -> compareTo
-org.mozilla.gecko.favicons.cache.FaviconsForURL -> ᖕ:
+org.mozilla.gecko.favicons.cache.FaviconsForURL -> ᴹ:
     int mDominantColor -> ˎ
     long mDownloadTimestamp -> ･
     java.util.ArrayList mFavicons -> ˊ
     boolean mHasFailed -> ˋ
-    43:51:org.mozilla.gecko.favicons.cache.FaviconCacheElement addInternal(android.graphics.Bitmap,boolean,int) -> ･
-    140:151:int ensureDominantColor() -> ･
-org.mozilla.gecko.util.GeckoBackgroundThread -> ᘆ:
+    44:52:org.mozilla.gecko.favicons.cache.FaviconCacheElement addInternal(android.graphics.Bitmap,boolean,int) -> ･
+    141:157:int ensureDominantColor() -> ･
+org.mozilla.gecko.util.GeckoBackgroundThread -> ᴽ:
     android.os.Handler sHandler -> ･
     java.util.concurrent.SynchronousQueue mHandlerQueue -> ˊ
     26:33:void run() -> run
     37:45:android.os.Handler getHandler() -> ･
     49:54:void post$5b03c68d(org.mozilla.gecko.favicons.LoadFaviconTask$1) -> ･
-org.mozilla.gecko.util.NonEvictingLruCache -> ᴋ:
+org.mozilla.gecko.util.NonEvictingLruCache -> ḟ:
     java.util.concurrent.ConcurrentHashMap permanent -> ･
     android.support.v4.util.LruCache evictable -> ˊ
-org.mozilla.gecko.util.ThreadUtils -> ᴹ:
+org.mozilla.gecko.util.ThreadUtils -> Ḷ:
     org.mozilla.gecko.util.GeckoBackgroundThread sBackgroundThread$72a5fc31 -> ･
     77:78:void setBackgroundThread$58fe1566(org.mozilla.gecko.util.GeckoBackgroundThread) -> ･
     97:97:android.os.Handler getBackgroundHandler() -> ･
     101:102:void postToBackgroundThread$5b03c68d(org.mozilla.gecko.favicons.LoadFaviconTask$1) -> ･
     134:134:boolean isOnBackgroundThread() -> ˊ
     163:163:void resetGeckoPriority() -> ˋ
-org.mozilla.gecko.util.ThreadUtils$1 -> ᴽ:
+org.mozilla.gecko.util.ThreadUtils$1 -> ḹ:
     34:35:void run() -> run
-org.mozilla.gecko.util.UiAsyncTask -> ḟ:
+org.mozilla.gecko.util.UiAsyncTask -> ḽ:
     boolean mCancelled -> ˊ
     android.os.Handler mBackgroundThreadHandler -> ˋ
     android.os.Handler sHandler -> ･
@@ -10005,15 +10022,15 @@ org.mozilla.gecko.util.UiAsyncTask -> ḟ:
     83:83:void onPostExecute$5d527811(android.graphics.Bitmap) -> ･
     84:84:void onCancelled() -> ･
     android.graphics.Bitmap doInBackground$42af7916$6240c47a() -> ˋ
-org.mozilla.gecko.util.UiAsyncTask$1 -> Ḷ:
+org.mozilla.gecko.util.UiAsyncTask$1 -> ṝ:
     java.lang.Void[] val$params$7b09cd37 -> ･
     org.mozilla.gecko.favicons.LoadFaviconTask this$0$6c64eb41 -> ˊ
     66:68:void run() -> run
-org.mozilla.gecko.util.UiAsyncTask$BackgroundTaskRunnable -> ḟ$･:
+org.mozilla.gecko.util.UiAsyncTask$BackgroundTaskRunnable -> ḽ$･:
     java.lang.Void[] mParams$7b09cd37 -> ˊ
     org.mozilla.gecko.favicons.LoadFaviconTask this$0$6c64eb41 -> ･
     48:59:void run() -> run
-org.mozilla.gecko.util.UiAsyncTask$BackgroundTaskRunnable$1 -> ḹ:
+org.mozilla.gecko.util.UiAsyncTask$BackgroundTaskRunnable$1 -> ṿ:
     android.graphics.Bitmap val$result$5f790d9c -> ･
     org.mozilla.gecko.util.UiAsyncTask$BackgroundTaskRunnable this$1 -> ˊ
     53:57:void run() -> run
@@ -10037,35 +10054,35 @@ org.mozilla.gecko.widget.FaviconView -> org.mozilla.gecko.widget.FaviconView:
     139:173:void formatImage() -> ･
     204:220:void updateImageInternal$5f65ed51(android.graphics.Bitmap,java.lang.String) -> ˊ
     283:294:void updateImage(android.graphics.Bitmap,java.lang.String) -> ･
-retrofit.Callback -> ḽ:
-retrofit.CallbackRunnable -> ṝ:
+retrofit.Callback -> ἲ:
+retrofit.CallbackRunnable -> ἳ:
     retrofit.Callback callback -> ･
     java.util.concurrent.Executor callbackExecutor -> ˊ
     38:51:void run() -> run
     retrofit.ResponseWrapper obtainResponse() -> ･
-retrofit.CallbackRunnable$1 -> ṿ:
+retrofit.CallbackRunnable$1 -> ἴ:
     retrofit.ResponseWrapper val$wrapper -> ･
     retrofit.CallbackRunnable this$0 -> ˊ
     41:41:void run() -> run
-retrofit.CallbackRunnable$2 -> ἲ:
+retrofit.CallbackRunnable$2 -> ἵ:
     retrofit.RetrofitError val$e -> ･
     retrofit.CallbackRunnable this$0 -> ˊ
     47:47:void run() -> run
-retrofit.Endpoint -> ἳ:
+retrofit.Endpoint -> ῖ:
     java.lang.String apiUrl -> ･
     java.lang.String name -> ˊ
-retrofit.ErrorHandler -> ἴ:
+retrofit.ErrorHandler -> ℐ:
     retrofit.ErrorHandler$1 DEFAULT$7f4b3b29 -> ･
     retrofit.RetrofitError handleError$7ae2ebb0(retrofit.RetrofitError) -> ･
-retrofit.ErrorHandler$1 -> ἵ:
+retrofit.ErrorHandler$1 -> 〱:
     52:52:retrofit.RetrofitError handleError$7ae2ebb0(retrofit.RetrofitError) -> ･
-retrofit.ExceptionCatchingTypedInput -> ῖ:
+retrofit.ExceptionCatchingTypedInput -> 丿:
     retrofit.mime.TypedInput delegate -> ˊ
     retrofit.ExceptionCatchingTypedInput$ExceptionCatchingInputStream delegateStream -> ･
     17:17:java.lang.String mimeType() -> ･
     21:21:long length() -> ˊ
     25:25:java.io.InputStream in() -> ˋ
-retrofit.ExceptionCatchingTypedInput$ExceptionCatchingInputStream -> ῖ$･:
+retrofit.ExceptionCatchingTypedInput$ExceptionCatchingInputStream -> 丿$･:
     java.io.InputStream delegate -> ˊ
     java.io.IOException thrownException -> ･
     46:49:int read() -> read
@@ -10077,7 +10094,7 @@ retrofit.ExceptionCatchingTypedInput$ExceptionCatchingInputStream -> ῖ$･:
     99:100:void mark(int) -> mark
     104:108:void reset() -> reset
     112:112:boolean markSupported() -> markSupported
-retrofit.Platform -> ℐ:
+retrofit.Platform -> בּ:
     retrofit.Platform PLATFORM -> ˊ
     boolean HAS_RX_JAVA -> ･
     42:42:retrofit.Platform get() -> ･
@@ -10089,44 +10106,44 @@ retrofit.Platform -> ℐ:
     retrofit.RestAdapter$Log defaultLog() -> ᐝ
     155:158:boolean hasOkHttpOnClasspath() -> ʻ
     174:178:boolean hasRxJavaOnClasspath() -> ʽ
-retrofit.Platform$Android -> ℐ$･:
+retrofit.Platform$Android -> בּ$･:
     111:111:retrofit.converter.Converter defaultConverter$1d19edb$1b8d16fa() -> ˊ
     116:123:retrofit.client.Client$Provider defaultClient() -> ˋ
     131:131:java.util.concurrent.ExecutorService defaultHttpExecutor$31914045() -> ˎ
     144:144:java.util.concurrent.Executor defaultCallbackExecutor() -> ˏ
     148:148:retrofit.RestAdapter$Log defaultLog() -> ᐝ
-retrofit.Platform$Android$1 -> 〱:
+retrofit.Platform$Android$1 -> ﭩ:
     retrofit.client.Client val$client -> ･
     retrofit.Platform$Android this$0 -> ˊ
     125:125:retrofit.client.Client get() -> ･
-retrofit.Platform$Android$2 -> 丿:
+retrofit.Platform$Android$2 -> ﮇ:
     retrofit.Platform$Android this$0 -> ･
     133:133:java.lang.Thread newThread(java.lang.Runnable) -> newThread
-retrofit.Platform$Android$2$1 -> בּ:
+retrofit.Platform$Android$2$1 -> ﮊ:
     java.lang.Runnable val$r -> ･
     retrofit.Platform$Android$2 this$1 -> ˊ
     135:137:void run() -> run
-retrofit.Platform$Base -> ℐ$if:
+retrofit.Platform$Base -> בּ$if:
     65:65:retrofit.converter.Converter defaultConverter$1d19edb$1b8d16fa() -> ˊ
     70:75:retrofit.client.Client$Provider defaultClient() -> ˋ
     83:83:java.util.concurrent.ExecutorService defaultHttpExecutor$31914045() -> ˎ
     96:96:java.util.concurrent.Executor defaultCallbackExecutor() -> ˏ
     100:100:retrofit.RestAdapter$Log defaultLog() -> ᐝ
-retrofit.Platform$Base$1 -> ﭩ:
+retrofit.Platform$Base$1 -> ﮞ:
     retrofit.client.UrlConnectionClient val$client$3fb31984 -> ･
     retrofit.Platform$Base this$0 -> ˊ
     77:77:retrofit.client.Client get() -> ･
-retrofit.Platform$Base$2 -> ﮇ:
+retrofit.Platform$Base$2 -> ﮣ:
     retrofit.Platform$Base this$0 -> ･
     85:85:java.lang.Thread newThread(java.lang.Runnable) -> newThread
-retrofit.Platform$Base$2$1 -> ﮊ:
+retrofit.Platform$Base$2$1 -> ﺰ:
     java.lang.Runnable val$r -> ･
     retrofit.Platform$Base$2 this$1 -> ˊ
     87:89:void run() -> run
-retrofit.Platform$Base$3 -> ﮞ:
+retrofit.Platform$Base$3 -> ﻪ:
     retrofit.Platform$Base this$0 -> ･
     102:103:void log(java.lang.String) -> ･
-retrofit.RequestBuilder -> ﮣ:
+retrofit.RequestBuilder -> ｯ:
     retrofit.converter.Converter converter -> ･
     java.lang.String[] paramNames -> ˊ
     retrofit.RestMethodInfo$ParamUsage[] paramUsages -> ˋ
@@ -10147,15 +10164,15 @@ retrofit.RequestBuilder -> ﮣ:
     142:143:void addQueryParam(java.lang.String,java.lang.String) -> ˎ
     146:147:void addEncodedQueryParam(java.lang.String,java.lang.String) -> ˏ
     150:170:void addQueryParam(java.lang.String,java.lang.String,boolean) -> ˊ
-retrofit.RequestBuilder$1 -> ﮣ$1:
+retrofit.RequestBuilder$1 -> ｯ$1:
     int[] $SwitchMap$retrofit$RestMethodInfo$RequestType -> ･
     int[] $SwitchMap$retrofit$RestMethodInfo$ParamUsage -> ˊ
-retrofit.RequestInterceptor -> ﺰ:
+retrofit.RequestInterceptor -> ｼ:
     retrofit.RequestInterceptor$1 NONE$c56ba4b -> ･
     void intercept(retrofit.RequestInterceptor$RequestFacade) -> ･
-retrofit.RequestInterceptor$1 -> ﻪ:
+retrofit.RequestInterceptor$1 -> ｿ:
     38:38:void intercept(retrofit.RequestInterceptor$RequestFacade) -> ･
-retrofit.RequestInterceptor$RequestFacade -> ﺰ$･:
+retrofit.RequestInterceptor$RequestFacade -> ｼ$･:
     void addHeader(java.lang.String,java.lang.String) -> ･
     void addPathParam(java.lang.String,java.lang.String) -> ˊ
     void addEncodedPathParam(java.lang.String,java.lang.String) -> ˋ
@@ -10193,7 +10210,7 @@ retrofit.RequestInterceptorTape$CommandWithParams -> retrofit.RequestInterceptor
     retrofit.RequestInterceptorTape$Command command -> ･
     java.lang.String name -> ˊ
     java.lang.String value -> ˋ
-retrofit.ResponseWrapper -> ｯ:
+retrofit.ResponseWrapper -> ﾄ:
     retrofit.client.Response response -> ･
     java.lang.Object responseBody -> ˊ
 retrofit.RestAdapter -> retrofit.RestAdapter:
@@ -10226,7 +10243,7 @@ retrofit.RestAdapter$Builder -> retrofit.RestAdapter$･:
     retrofit.RestAdapter$LogLevel logLevel -> ʽ
 retrofit.RestAdapter$Log -> retrofit.RestAdapter$if:
     void log(java.lang.String) -> ･
-retrofit.RestAdapter$Log$1 -> ｼ:
+retrofit.RestAdapter$Log$1 -> ﾕ:
     127:127:void log(java.lang.String) -> ･
 retrofit.RestAdapter$LogLevel -> retrofit.RestAdapter$LogLevel:
     retrofit.RestAdapter$LogLevel NONE -> ･
@@ -10241,13 +10258,13 @@ retrofit.RestAdapter$RestHandler -> retrofit.RestAdapter$ˊ:
     retrofit.RestAdapter this$0 -> ˊ
     273:316:java.lang.Object invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[]) -> invoke
     327:428:java.lang.Object invokeRequest(retrofit.RequestInterceptor,retrofit.RestMethodInfo,java.lang.Object[]) -> ･
-retrofit.RestAdapter$RestHandler$1 -> ｿ:
+retrofit.RestAdapter$RestHandler$1 -> ć:
     retrofit.RequestInterceptorTape val$interceptorTape -> ･
     retrofit.RestMethodInfo val$methodInfo -> ˊ
     java.lang.Object[] val$args -> ˋ
     retrofit.RestAdapter$RestHandler this$1 -> ˎ
     303:303:java.lang.Object call() -> call
-retrofit.RestAdapter$RestHandler$2 -> ﾄ:
+retrofit.RestAdapter$RestHandler$2 -> Ĩ:
     retrofit.RequestInterceptorTape val$interceptorTape -> ･
     retrofit.RestMethodInfo val$methodInfo -> ˊ
     java.lang.Object[] val$args -> ˋ
@@ -10255,7 +10272,7 @@ retrofit.RestAdapter$RestHandler$2 -> ﾄ:
     313:313:retrofit.ResponseWrapper obtainResponse() -> ･
 retrofit.RestAdapter$RxSupport -> retrofit.RestAdapter$If:
     rx.Scheduler scheduler -> ･
-retrofit.RestAdapter$RxSupport$1 -> ﾕ:
+retrofit.RestAdapter$RxSupport$1 -> Ľ:
     retrofit.RestAdapter$RestHandler$1 val$request$57c06997 -> ･
     retrofit.RestAdapter$RxSupport this$0 -> ˊ
 retrofit.RestMethodInfo -> retrofit.RestMethodInfo:
@@ -10321,7 +10338,7 @@ retrofit.RetrofitError -> retrofit.RetrofitError:
     32:32:retrofit.RetrofitError conversionError(java.lang.String,retrofit.client.Response,retrofit.converter.Converter,java.lang.reflect.Type,retrofit.converter.ConversionException) -> ･
     37:37:retrofit.RetrofitError httpError(java.lang.String,retrofit.client.Response,retrofit.converter.Converter,java.lang.reflect.Type) -> ･
     41:41:retrofit.RetrofitError unexpectedError(java.lang.String,java.lang.Throwable) -> ･
-retrofit.Types -> ć:
+retrofit.Types -> ŧ:
     java.lang.reflect.Type[] EMPTY_TYPE_ARRAY -> ･
     42:69:java.lang.Class getRawType(java.lang.reflect.Type) -> ･
     76:111:boolean equals(java.lang.reflect.Type,java.lang.reflect.Type) -> ･
@@ -10332,13 +10349,13 @@ retrofit.Types -> ć:
     34:34:void access$000(java.lang.reflect.Type) -> ˋ
     34:34:int access$100$5d527804(java.lang.reflect.Type) -> ˎ
     34:34:java.lang.reflect.Type[] access$200() -> ･
-retrofit.Types$GenericArrayTypeImpl -> ć$･:
+retrofit.Types$GenericArrayTypeImpl -> ŧ$･:
     java.lang.reflect.Type componentType -> ･
     347:347:java.lang.reflect.Type getGenericComponentType() -> getGenericComponentType
     351:351:boolean equals(java.lang.Object) -> equals
     356:356:int hashCode() -> hashCode
     360:360:java.lang.String toString() -> toString
-retrofit.Types$ParameterizedTypeImpl -> ć$if:
+retrofit.Types$ParameterizedTypeImpl -> ŧ$if:
     java.lang.reflect.Type ownerType -> ･
     java.lang.reflect.Type rawType -> ˊ
     java.lang.reflect.Type[] typeArguments -> ˋ
@@ -10348,7 +10365,7 @@ retrofit.Types$ParameterizedTypeImpl -> ć$if:
     320:320:boolean equals(java.lang.Object) -> equals
     324:324:int hashCode() -> hashCode
     328:335:java.lang.String toString() -> toString
-retrofit.Types$WildcardTypeImpl -> ć$ˊ:
+retrofit.Types$WildcardTypeImpl -> ŧ$ˊ:
     java.lang.reflect.Type upperBound -> ･
     java.lang.reflect.Type lowerBound -> ˊ
     392:392:java.lang.reflect.Type[] getUpperBounds() -> getUpperBounds
@@ -10356,57 +10373,57 @@ retrofit.Types$WildcardTypeImpl -> ć$ˊ:
     400:400:boolean equals(java.lang.Object) -> equals
     405:405:int hashCode() -> hashCode
     409:411:java.lang.String toString() -> toString
-retrofit.Utils$SynchronousExecutor -> Ĩ:
+retrofit.Utils$SynchronousExecutor -> Ƭ:
     114:115:void execute(java.lang.Runnable) -> execute
-retrofit.android.AndroidApacheClient -> Ľ:
-retrofit.android.AndroidLog -> ŧ:
+retrofit.android.AndroidApacheClient -> ȑ:
+retrofit.android.AndroidLog -> ț:
     java.lang.String tag -> ･
     17:17:void log(java.lang.String) -> ･
-retrofit.android.MainThreadExecutor -> Ƭ:
+retrofit.android.MainThreadExecutor -> ɤ:
     android.os.Handler handler -> ･
     28:29:void execute(java.lang.Runnable) -> execute
-retrofit.client.ApacheClient -> ȑ:
+retrofit.client.ApacheClient -> ɬ:
     org.apache.http.client.HttpClient client -> ･
     63:65:retrofit.client.Response execute(retrofit.client.Request) -> ･
-retrofit.client.ApacheClient$GenericHttpRequest -> ȑ$･:
+retrofit.client.ApacheClient$GenericHttpRequest -> ɬ$･:
     java.lang.String method -> ･
     124:124:java.lang.String getMethod() -> getMethod
-retrofit.client.ApacheClient$TypedOutputEntity -> ȑ$if:
+retrofit.client.ApacheClient$TypedOutputEntity -> ɬ$if:
     retrofit.mime.TypedOutput typedOutput -> ･
     138:138:boolean isRepeatable() -> isRepeatable
     142:142:long getContentLength() -> getContentLength
     146:148:java.io.InputStream getContent() -> getContent
     152:153:void writeTo(java.io.OutputStream) -> writeTo
     156:156:boolean isStreaming() -> isStreaming
-retrofit.client.Client -> ț:
+retrofit.client.Client -> Τ:
     retrofit.client.Response execute(retrofit.client.Request) -> ･
-retrofit.client.Client$Provider -> ț$･:
+retrofit.client.Client$Provider -> Τ$･:
     retrofit.client.Client get() -> ･
-retrofit.client.Header -> ɤ:
+retrofit.client.Header -> ο:
     java.lang.String name -> ･
     java.lang.String value -> ˊ
     37:45:boolean equals(java.lang.Object) -> equals
     49:51:int hashCode() -> hashCode
     55:55:java.lang.String toString() -> toString
-retrofit.client.OkClient -> ɬ:
+retrofit.client.OkClient -> υ:
     com.squareup.okhttp.OkHttpClient client -> ･
     44:44:java.net.HttpURLConnection openConnection(retrofit.client.Request) -> ˊ
-retrofit.client.Request -> Τ:
+retrofit.client.Request -> Т:
     java.lang.String method -> ･
     java.lang.String url -> ˊ
     java.util.List headers -> ˋ
     retrofit.mime.TypedOutput body -> ˎ
-retrofit.client.Response -> ο:
+retrofit.client.Response -> о:
     java.lang.String url -> ･
     int status -> ˊ
     java.lang.String reason -> ˋ
     java.util.List headers -> ˎ
     retrofit.mime.TypedInput body -> ˏ
-retrofit.client.UrlConnectionClient -> υ:
+retrofit.client.UrlConnectionClient -> у:
     java.lang.reflect.Field methodField -> ･
     47:49:retrofit.client.Response execute(retrofit.client.Request) -> ･
     53:57:java.net.HttpURLConnection openConnection(retrofit.client.Request) -> ˊ
-retrofit.client.UrlConnectionClient$TypedInputStream -> υ$･:
+retrofit.client.UrlConnectionClient$TypedInputStream -> у$･:
     java.lang.String mimeType -> ･
     long length -> ˊ
     java.io.InputStream stream -> ˋ
@@ -10414,52 +10431,52 @@ retrofit.client.UrlConnectionClient$TypedInputStream -> υ$･:
     133:133:long length() -> ˊ
     137:137:java.io.InputStream in() -> ˋ
 retrofit.converter.ConversionException -> retrofit.converter.ConversionException:
-retrofit.converter.Converter -> Т:
+retrofit.converter.Converter -> э:
     com.google.gson.Gson gson -> ･
     java.lang.String encoding -> ˊ
     56:73:java.lang.Object fromBody$17b9747e(retrofit.ExceptionCatchingTypedInput,java.lang.reflect.Type) -> ･
     80:82:retrofit.converter.GsonConverter$JsonTypedOutput toBody$1c49876a(java.lang.Object) -> ･
-retrofit.converter.GsonConverter$JsonTypedOutput -> о:
+retrofit.converter.GsonConverter$JsonTypedOutput -> є:
     byte[] jsonBytes -> ･
     java.lang.String mimeType -> ˊ
     100:100:java.lang.String mimeType() -> ･
     104:104:long length() -> ˊ
     108:109:void writeTo(java.io.OutputStream) -> ･
-retrofit.http.Body -> у:
-retrofit.http.EncodedPath -> э:
+retrofit.http.Body -> ӵ:
+retrofit.http.EncodedPath -> ԍ:
     java.lang.String value() -> ･
-retrofit.http.EncodedQuery -> є:
+retrofit.http.EncodedQuery -> օ:
     java.lang.String value() -> ･
-retrofit.http.EncodedQueryMap -> ӵ:
-retrofit.http.Field -> ԍ:
+retrofit.http.EncodedQueryMap -> א:
+retrofit.http.Field -> ע:
     java.lang.String value() -> ･
-retrofit.http.FieldMap -> օ:
-retrofit.http.FormUrlEncoded -> א:
-retrofit.http.Header -> ע:
+retrofit.http.FieldMap -> ة:
+retrofit.http.FormUrlEncoded -> ن:
+retrofit.http.Header -> ٮ:
     java.lang.String value() -> ･
-retrofit.http.Headers -> ة:
+retrofit.http.Headers -> ٱ:
     java.lang.String[] value() -> ･
-retrofit.http.Multipart -> ن:
-retrofit.http.Part -> ٮ:
+retrofit.http.Multipart -> ڈ:
+retrofit.http.Part -> ڙ:
     java.lang.String value() -> ･
-retrofit.http.Path -> ٱ:
+retrofit.http.Path -> ऽ:
     java.lang.String value() -> ･
-retrofit.http.Query -> ڈ:
+retrofit.http.Query -> บ:
     java.lang.String value() -> ･
-retrofit.http.QueryMap -> ڙ:
-retrofit.http.RestMethod -> ऽ:
+retrofit.http.QueryMap -> ย:
+retrofit.http.RestMethod -> ะ:
     java.lang.String value() -> ･
     boolean hasBody() -> ˊ
-retrofit.mime.FormUrlEncodedTypedOutput -> บ:
+retrofit.mime.FormUrlEncodedTypedOutput -> າ:
     java.io.ByteArrayOutputStream content -> ･
     27:45:void addField(java.lang.String,java.lang.String) -> ･
     53:53:java.lang.String mimeType() -> ･
     57:57:long length() -> ˊ
     61:62:void writeTo(java.io.OutputStream) -> ･
-retrofit.mime.MimeUtil -> ย:
+retrofit.mime.MimeUtil -> ᐳ:
     java.util.regex.Pattern CHARSET -> ･
     28:32:java.lang.String parseCharset(java.lang.String) -> ･
-retrofit.mime.MultipartTypedOutput -> ะ:
+retrofit.mime.MultipartTypedOutput -> ᐸ:
     java.util.LinkedList mimeParts$7865b31 -> ･
     byte[] footer -> ˊ
     java.lang.String boundary -> ˋ
@@ -10470,7 +10487,7 @@ retrofit.mime.MultipartTypedOutput -> ะ:
     127:131:void writeTo(java.io.OutputStream) -> ･
     135:148:byte[] buildBoundary(java.lang.String,boolean,boolean) -> ･
     154:169:byte[] buildHeader(java.lang.String,retrofit.mime.TypedOutput) -> ˊ
-retrofit.mime.MultipartTypedOutput$MimePart -> ะ$･:
+retrofit.mime.MultipartTypedOutput$MimePart -> ᐸ$･:
     retrofit.mime.TypedOutput body -> ･
     java.lang.String name -> ˎ
     boolean isFirst -> ˏ
@@ -10480,7 +10497,7 @@ retrofit.mime.MultipartTypedOutput$MimePart -> ะ$･:
     boolean isBuilt -> ʻ
     54:58:long size() -> ･
     63:67:void build() -> ˊ
-retrofit.mime.TypedByteArray -> າ:
+retrofit.mime.TypedByteArray -> ᒉ:
     java.lang.String mimeType -> ˊ
     byte[] bytes -> ･
     58:58:java.lang.String mimeType() -> ･
@@ -10489,17 +10506,17 @@ retrofit.mime.TypedByteArray -> າ:
     70:70:java.io.InputStream in() -> ˋ
     74:82:boolean equals(java.lang.Object) -> equals
     86:88:int hashCode() -> hashCode
-retrofit.mime.TypedInput -> ᐳ:
+retrofit.mime.TypedInput -> ᒋ:
     java.lang.String mimeType() -> ･
     long length() -> ˊ
     java.io.InputStream in() -> ˋ
-retrofit.mime.TypedOutput -> ᐸ:
+retrofit.mime.TypedOutput -> ᒍ:
     java.lang.String mimeType() -> ･
     long length() -> ˊ
     void writeTo(java.io.OutputStream) -> ･
-retrofit.mime.TypedString -> ᒉ:
+retrofit.mime.TypedString -> ᒐ:
     27:29:byte[] convertToBytes(java.lang.String) -> ･
-se.emilsjolander.stickylistheaders.AdapterWrapper -> ᒋ:
+se.emilsjolander.stickylistheaders.AdapterWrapper -> ᓓ:
     se.emilsjolander.stickylistheaders.StickyListHeadersAdapter mDelegate -> ･
     java.util.LinkedList mHeaderCache$7865b31 -> ˏ
     android.content.Context mContext -> ᐝ
@@ -10529,23 +10546,23 @@ se.emilsjolander.stickylistheaders.AdapterWrapper -> ᒋ:
     26:26:void access$101(se.emilsjolander.stickylistheaders.AdapterWrapper) -> ˊ
     26:26:void access$201(se.emilsjolander.stickylistheaders.AdapterWrapper) -> ˋ
     26:26:se.emilsjolander.stickylistheaders.AdapterWrapper$OnHeaderClickListener access$300(se.emilsjolander.stickylistheaders.AdapterWrapper) -> ˎ
-se.emilsjolander.stickylistheaders.AdapterWrapper$1 -> ᒍ:
+se.emilsjolander.stickylistheaders.AdapterWrapper$1 -> ᓕ:
     se.emilsjolander.stickylistheaders.AdapterWrapper this$0 -> ･
     42:44:void onInvalidated() -> onInvalidated
     48:49:void onChanged() -> onChanged
-se.emilsjolander.stickylistheaders.AdapterWrapper$2 -> ᒐ:
+se.emilsjolander.stickylistheaders.AdapterWrapper$2 -> ᓗ:
     int val$position -> ･
     se.emilsjolander.stickylistheaders.AdapterWrapper this$0 -> ˊ
     138:142:void onClick(android.view.View) -> onClick
-se.emilsjolander.stickylistheaders.AdapterWrapper$OnHeaderClickListener -> ᒋ$･:
+se.emilsjolander.stickylistheaders.AdapterWrapper$OnHeaderClickListener -> ᓓ$･:
     se.emilsjolander.stickylistheaders.StickyListHeadersListView this$0 -> ･
 se.emilsjolander.stickylistheaders.ApiLevelTooLowException -> se.emilsjolander.stickylistheaders.ApiLevelTooLowException:
     long serialVersionUID -> serialVersionUID
-se.emilsjolander.stickylistheaders.CheckableWrapperView -> ᓓ:
+se.emilsjolander.stickylistheaders.CheckableWrapperView -> ᓚ:
     19:19:boolean isChecked() -> isChecked
     24:25:void setChecked(boolean) -> setChecked
     29:30:void toggle() -> toggle
-se.emilsjolander.stickylistheaders.R$styleable -> ᓕ:
+se.emilsjolander.stickylistheaders.R$styleable -> ᓺ:
     int[] StickyListHeadersListView -> StickyListHeadersListView
     int StickyListHeadersListView_android_cacheColorHint -> StickyListHeadersListView_android_cacheColorHint
     int StickyListHeadersListView_android_choiceMode -> StickyListHeadersListView_android_choiceMode
@@ -10567,12 +10584,12 @@ se.emilsjolander.stickylistheaders.R$styleable -> ᓕ:
     int StickyListHeadersListView_android_scrollingCache -> StickyListHeadersListView_android_scrollingCache
     int StickyListHeadersListView_hasStickyHeaders -> StickyListHeadersListView_hasStickyHeaders
     int StickyListHeadersListView_isDrawingListUnderStickyHeader -> StickyListHeadersListView_isDrawingListUnderStickyHeader
-se.emilsjolander.stickylistheaders.SectionIndexerAdapterWrapper -> ᓗ:
+se.emilsjolander.stickylistheaders.SectionIndexerAdapterWrapper -> ᓻ:
     android.widget.SectionIndexer mSectionIndexerDelegate -> ˏ
     19:19:int getPositionForSection(int) -> getPositionForSection
     24:24:int getSectionForPosition(int) -> getSectionForPosition
     29:29:java.lang.Object[] getSections() -> getSections
-se.emilsjolander.stickylistheaders.StickyListHeadersAdapter -> ᓚ:
+se.emilsjolander.stickylistheaders.StickyListHeadersAdapter -> ᓾ:
     android.view.View getHeaderView(int,android.view.View,android.view.ViewGroup) -> ･
     long getHeaderId(int) -> ･
 se.emilsjolander.stickylistheaders.StickyListHeadersListView -> se.emilsjolander.stickylistheaders.StickyListHeadersListView:
@@ -10641,7 +10658,7 @@ se.emilsjolander.stickylistheaders.StickyListHeadersListView -> se.emilsjolander
     32:32:int access$1100(se.emilsjolander.stickylistheaders.StickyListHeadersListView) -> ʽ
     32:32:boolean access$1200$71bec1a2(se.emilsjolander.stickylistheaders.StickyListHeadersListView,android.graphics.Canvas,android.view.View) -> ･
     32:32:boolean access$1300$71bec1a2(se.emilsjolander.stickylistheaders.StickyListHeadersListView,android.graphics.Canvas,android.view.View) -> ˊ
-se.emilsjolander.stickylistheaders.StickyListHeadersListView$1 -> ᓺ:
+se.emilsjolander.stickylistheaders.StickyListHeadersListView$1 -> ᓿ:
     se.emilsjolander.stickylistheaders.StickyListHeadersListView this$0 -> ･
     379:384:void onClick(android.view.View) -> onClick
 se.emilsjolander.stickylistheaders.StickyListHeadersListView$AdapterWrapperDataSetObserver -> se.emilsjolander.stickylistheaders.StickyListHeadersListView$･:
@@ -10661,7 +10678,7 @@ se.emilsjolander.stickylistheaders.WrapperView -> se.emilsjolander.stickylisthea
     81:113:void onMeasure(int,int) -> onMeasure
     118:136:void onLayout(boolean,int,int,int,int) -> onLayout
     140:149:void dispatchDraw(android.graphics.Canvas) -> dispatchDraw
-se.emilsjolander.stickylistheaders.WrapperViewList -> ᓻ:
+se.emilsjolander.stickylistheaders.WrapperViewList -> ᔂ:
     se.emilsjolander.stickylistheaders.WrapperViewList$LifeCycleListener mLifeCycleListener$1e5db02a$17848d06 -> ･
     java.util.ArrayList mFooterViews$7865b31 -> ˊ
     int mTopClippingLength -> ˋ
@@ -10675,5 +10692,5 @@ se.emilsjolander.stickylistheaders.WrapperViewList -> ᓻ:
     124:128:boolean removeFooterView(android.view.View) -> removeFooterView
     143:166:int getFixedFirstVisibleItem() -> ･
     171:173:void setClipToPadding(boolean) -> setClipToPadding
-se.emilsjolander.stickylistheaders.WrapperViewList$LifeCycleListener -> ᓻ$･:
+se.emilsjolander.stickylistheaders.WrapperViewList$LifeCycleListener -> ᔂ$･:
     se.emilsjolander.stickylistheaders.StickyListHeadersListView this$0 -> ･
