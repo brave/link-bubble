@@ -21,6 +21,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 
 /**
  * Created by gw on 2/10/13.
@@ -307,5 +308,19 @@ public class Util {
         }
 
         return false;
+    }
+
+    static Random sRandom = null;
+    public static int randInt(int min, int max) {
+
+        if (sRandom == null) {
+            sRandom = new Random();
+        }
+
+        // nextInt is normally exclusive of the top value,
+        // so add 1 to make it inclusive
+        int randomNum = sRandom.nextInt((max - min) + 1) + min;
+
+        return randomNum;
     }
 }
