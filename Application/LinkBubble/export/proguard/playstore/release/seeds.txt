@@ -3322,11 +3322,8 @@ com.linkbubble.R$string: int no_default_browser
 com.linkbubble.R$string: int notification_summary
 com.linkbubble.R$string: int notification_title
 com.linkbubble.R$string: int pick_default_app
-com.linkbubble.R$string: int preference_auto_content_display_always
-com.linkbubble.R$string: int preference_auto_content_display_app_redirect
-com.linkbubble.R$string: int preference_auto_content_display_link_loaded
-com.linkbubble.R$string: int preference_auto_content_display_never
-com.linkbubble.R$string: int preference_auto_content_display_title
+com.linkbubble.R$string: int preference_auto_content_display_link_loaded_summary
+com.linkbubble.R$string: int preference_auto_content_display_link_loaded_title
 com.linkbubble.R$string: int preference_category_browser
 com.linkbubble.R$string: int preference_category_configuration
 com.linkbubble.R$string: int preference_category_debug
