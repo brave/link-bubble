@@ -491,8 +491,7 @@ public class ContentView extends FrameLayout {
                 }
             }
 
-            if (Settings.get().getAutoContentDisplayAppRedirect()
-                    && mHandledAppPickerForCurrentUrl == false
+            if (mHandledAppPickerForCurrentUrl == false
                     && mUsingLinkBubbleAsDefaultForCurrentUrl == false
                     && mAppsForUrl != null
                     && mAppsForUrl.size() > 0

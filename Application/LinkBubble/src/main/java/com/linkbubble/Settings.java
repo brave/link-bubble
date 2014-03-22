@@ -34,15 +34,12 @@ import java.util.Vector;
 public class Settings {
 
     public static final String PREFERENCE_ENABLED = "preference_enabled";
-    public static final String PREFERENCE_AUTO_CONTENT_DISPLAY_TYPE = "preference_auto_content_display";
     public static final String PREFERENCE_CHECK_FOR_YOUTUBE_EMBEDS = "preference_scan_for_youtube_embeds";
     public static final String PREFERENCE_INTERCEPT_LINKS_FROM = "preference_intercept_links_from";
     public static final String PREFERENCE_INTERCEPT_LINKS_FROM_APP_NAME = "preference_intercept_links_from_app_name";
 
-    public static final String PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT = "preference_auto_content_display_app_redirect";
-    public static final boolean PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT_DEFAULT = true;
     public static final String PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED = "preference_auto_content_display_link_loaded";
-    public static final boolean PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED_DEFAULT = true;
+    public static final boolean PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED_DEFAULT = false;
 
     public static final String PREFERENCE_LEFT_CONSUME_BUBBLE = "preference_left_consume_bubble";
     public static final String PREFERENCE_LEFT_CONSUME_BUBBLE_PACKAGE_NAME = "preference_left_consume_bubble_package_name";
@@ -511,24 +508,8 @@ public class Settings {
         editor.commit();
     }
 
-    public boolean getAutoContentDisplayAppRedirect() {
-        return mSharedPreferences.getBoolean(PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT, PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT_DEFAULT);
-    }
-
-    public void setAutoContentDisplayAppRedirect(boolean value) {
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putBoolean(PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT, value);
-        editor.commit();
-    }
-
     public boolean getAutoContentDisplayLinkLoaded() {
         return mSharedPreferences.getBoolean(PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED, PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED_DEFAULT);
-    }
-
-    public void setAutoContentDisplayLinkLoaded(boolean value) {
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putBoolean(PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED, value);
-        editor.commit();
     }
 
     public boolean isIncognitoMode() {
