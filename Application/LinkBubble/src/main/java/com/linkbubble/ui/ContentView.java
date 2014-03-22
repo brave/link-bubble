@@ -541,7 +541,9 @@ public class ContentView extends FrameLayout {
                                         }
 
                                         if (loaded) {
-                                            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing());
+                                            if (MainController.get() != null) {
+                                                MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing());
+                                            }
                                             Settings.get().addRedirectToApp(urlAsString);
                                         }
                                         // NOTE: no need to call loadUrl(urlAsString) or anything in the event the link is to be handled by
