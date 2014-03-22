@@ -1296,8 +1296,6 @@ android.support.v4.widget.ViewDragHelper:
 com.crashlytics.android.CrashTest
 com.crashlytics.android.Crashlytics:
     public static final java.lang.String TAG
-    156:169:public static void logException(java.lang.Throwable)
-    175:177:static void a(java.lang.String)
     198:199:public static void log(java.lang.String)
     202:210:private static void a(int,java.lang.String,java.lang.String)
     226:230:public static void log(int,java.lang.String,java.lang.String)
@@ -1319,7 +1317,6 @@ com.crashlytics.android.Crashlytics:
     447:450:public final boolean verifyPinning(java.net.URL)
     488:489:public final void crash()
     729:735:private static java.lang.String c(java.lang.String)
-com.crashlytics.android.P
 com.crashlytics.android.PinningInfoProvider:
     public abstract java.io.InputStream getKeyStoreStream()
     public abstract java.lang.String getKeyStorePassword()
@@ -1327,13 +1324,8 @@ com.crashlytics.android.PinningInfoProvider:
 com.crashlytics.android.internal.A
 com.crashlytics.android.internal.B:
     81:81:public java.lang.String getVersion()
-    148:151:public void onException(com.crashlytics.android.internal.ae)
-com.crashlytics.android.internal.M:
-    98:100:public final void b(java.lang.String)
 com.crashlytics.android.internal.Z:
-    748:753:public static java.lang.String a(int)
     801:815:public static java.lang.String b(int)
-com.crashlytics.android.internal.ae
 com.crashlytics.android.internal.ao:
     495:509:public final synchronized void c()
     513:520:private synchronized void d()
@@ -1370,11 +1362,9 @@ com.crashlytics.android.internal.z:
 com.crashlytics.android.j
 com.crashlytics.android.k
 com.crashlytics.android.v:
-    357:367:final void a(java.lang.Thread,java.lang.Throwable)
     373:385:final void a(long,java.lang.String)
     532:576:static void a(com.crashlytics.android.internal.ao,int,long,java.lang.String)
     603:634:private boolean k()
-    66:66:static synthetic void b(com.crashlytics.android.v,java.util.Date,java.lang.Thread,java.lang.Throwable)
     66:66:static synthetic com.crashlytics.android.internal.ao d(com.crashlytics.android.v)
     66:66:static synthetic boolean e(com.crashlytics.android.v)
 com.crashlytics.android.x
@@ -1600,7 +1590,7 @@ com.linkbubble.DRM:
     static final int LICENSE_IGNORE_ERROR
 com.linkbubble.MainController:
     private static final java.lang.String TAG
-    732:733:public void switchToExpandedView()
+    725:726:public void switchToExpandedView()
 com.linkbubble.MainService:
     private static final java.lang.String BCAST_CONFIGCHANGED
 com.linkbubble.R$anim
@@ -1619,12 +1609,9 @@ com.linkbubble.R$style
 com.linkbubble.R$xml
 com.linkbubble.Settings:
     public static final java.lang.String PREFERENCE_ENABLED
-    public static final java.lang.String PREFERENCE_AUTO_CONTENT_DISPLAY_TYPE
     public static final java.lang.String PREFERENCE_CHECK_FOR_YOUTUBE_EMBEDS
     public static final java.lang.String PREFERENCE_INTERCEPT_LINKS_FROM
     public static final java.lang.String PREFERENCE_INTERCEPT_LINKS_FROM_APP_NAME
-    public static final java.lang.String PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT
-    public static final boolean PREFERENCE_AUTO_CONTENT_DISPLAY_APP_REDIRECT_DEFAULT
     public static final java.lang.String PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED
     public static final boolean PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED_DEFAULT
     public static final java.lang.String PREFERENCE_LEFT_CONSUME_BUBBLE
@@ -1663,7 +1650,7 @@ com.linkbubble.Settings:
     private static final java.lang.String LAST_APP_REDIRECT_KEY_TIME
     private static final java.lang.String LAST_APP_REDIRECT_KEY_URL
     private static final int MAX_LAST_APP_REDIRECT_COUNT
-    544:544:public boolean checkForYouTubeEmbeds()
+    525:525:public boolean checkForYouTubeEmbeds()
 com.linkbubble.db.DatabaseHelper:
     private static final java.lang.String TAG
     private static final int DATABASE_VERSION
@@ -1712,8 +1699,10 @@ com.linkbubble.ui.CanvasView:
     private android.graphics.Paint mTargetOffsetDebugPaint
     private android.graphics.Paint mTargetTractorDebugPaint
     private android.graphics.Rect mTargetDebugRect
-com.linkbubble.ui.ChangeLogDialog
-com.linkbubble.ui.ChangeLogDialog$1
+com.linkbubble.ui.ChangeLogDialog:
+    private static final java.lang.String TAG
+    private static final java.lang.String TITLE_CHANGELOG
+    private static final java.lang.String CHANGELOG_XML
 com.linkbubble.ui.CloseTabTargetView:
     private static final int ANIM_DURATION
     private static final float MIN_SCALE
@@ -1759,8 +1748,8 @@ com.linkbubble.ui.ProgressIndicator$ProgressArcView:
 com.linkbubble.ui.Prompt:
     public static final int LENGTH_LONG
 com.linkbubble.ui.SettingsFragment:
-    426:434:public void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)
-    438:466:void checkDefaultBrowser()
+    413:421:public void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)
+    425:453:void checkDefaultBrowser()
 com.linkbubble.ui.SettingsFragment$19
 com.linkbubble.util.Analytics:
     public static final java.lang.String OPENED_URL_FROM_SETTINGS
@@ -1804,7 +1793,7 @@ com.linkbubble.util.Util:
     private static final int OUTCODE_RIGHT
     private static final int OUTCODE_BOTTOM
     private static final int OUTCODE_TOP
-    45:52:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
+    46:53:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
 com.squareup.otto.AnnotatedHandlerFinder:
     154:156:private AnnotatedHandlerFinder()
 com.squareup.otto.Bus:
