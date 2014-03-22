@@ -5,6 +5,8 @@
         <change>NEW: Clicking the version number in the settings displays the full change log.</change>
         <change>CHANGE: Add a new 'Auto expand' checkbox to the settings. This replaces the previous 'Auto content display' setting.</change>
         <change>CHANGE: By default, links no longer expand when they have finished loading.</change>
+        <change>CHANGE: Free version no longer displays the notice about Link Bubble only handling links from a single app each time a link is
+                loaded from a non-designated app. This prompt now only displays very rarely.</change>
         <change>BUG FIX: Many stability fixes.</change>
     </release>
 
