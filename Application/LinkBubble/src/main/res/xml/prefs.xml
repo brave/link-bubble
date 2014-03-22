@@ -182,8 +182,8 @@
         <Preference
             android:key="preference_version"
             android:title="@string/preference_version_title"
+            android:summary="@string/preference_version_summary"
              />
-        <!-- android:summary="@string/preference_version_summary" -->
 
     </PreferenceCategory>
 
