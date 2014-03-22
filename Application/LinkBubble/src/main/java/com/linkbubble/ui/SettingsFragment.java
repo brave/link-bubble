@@ -802,7 +802,7 @@ public class SettingsFragment extends PreferenceFragment {
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 int position = listView.getCheckedItemPosition();
-                if (position < allApps.size()) {
+                if (position > -1 && position < allApps.size()) {
                     AppInfo app = allApps.get(position);
                     Settings.get().setInterceptLinksFrom(app.mPackageName, app.mDisplayName);
                 }
