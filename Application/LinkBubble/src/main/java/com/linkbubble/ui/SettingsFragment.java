@@ -57,7 +57,6 @@ import java.util.TreeMap;
  */
 public class SettingsFragment extends PreferenceFragment {
 
-    private Preference mAutoContentDisplayPreference;
     private Preference mInterceptLinksFromPreference;
     private Preference mWebViewTextZoomPreference;
 
@@ -141,17 +140,6 @@ public class SettingsFragment extends PreferenceFragment {
 
         PreferenceCategory generalCategory = (PreferenceCategory) findPreference("preference_category_general");
         PreferenceCategory configurationCategory = (PreferenceCategory) findPreference("preference_category_configuration");
-
-        mAutoContentDisplayPreference = findPreference(Settings.PREFERENCE_AUTO_CONTENT_DISPLAY_TYPE);
-        mAutoContentDisplayPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                AlertDialog alertDialog = getAutoContentDisplayDialog();
-                alertDialog.show();
-                return true;
-            }
-        });
-        updateAutoContentDisplayPreference();
 
         Preference interceptLinksFromPreference = findPreference(Settings.PREFERENCE_INTERCEPT_LINKS_FROM);
         if (DRM.isLicensed()) {
@@ -462,48 +450,6 @@ public class SettingsFragment extends PreferenceFragment {
                     }
                 });
             }
-        }
-    }
-
-    AlertDialog getAutoContentDisplayDialog() {
-
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_multiple_choice);
-        listAdapter.add(getString(R.string.preference_auto_content_display_app_redirect));
-        listAdapter.add(getString(R.string.preference_auto_content_display_link_loaded));
-
-        final ListView listView = new ListView(getActivity());
-        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        listView.setAdapter(listAdapter);
-        listView.setItemChecked(0, Settings.get().getAutoContentDisplayAppRedirect());
-        listView.setItemChecked(1, Settings.get().getAutoContentDisplayLinkLoaded());
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setIcon(R.drawable.ic_alert_icon);
-        builder.setView(listView);
-        builder.setIcon(0);
-        builder.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Settings.get().setAutoContentDisplayAppRedirect(listView.isItemChecked(0));
-                Settings.get().setAutoContentDisplayLinkLoaded(listView.isItemChecked(1));
-                updateAutoContentDisplayPreference();
-            }
-        });
-        builder.setTitle(R.string.preference_auto_content_display_title);
-
-        return builder.create();
-    }
-
-    void updateAutoContentDisplayPreference() {
-        boolean appRedirect = Settings.get().getAutoContentDisplayAppRedirect();
-        boolean linkLoaded = Settings.get().getAutoContentDisplayLinkLoaded();
-        if (appRedirect && linkLoaded) {
-            mAutoContentDisplayPreference.setSummary(R.string.preference_auto_content_display_always);
-        } else if (appRedirect) {
-            mAutoContentDisplayPreference.setSummary(R.string.preference_auto_content_display_app_redirect);
-        } else if (linkLoaded) {
-            mAutoContentDisplayPreference.setSummary(R.string.preference_auto_content_display_link_loaded);
-        } else {
-            mAutoContentDisplayPreference.setSummary(R.string.preference_auto_content_display_never);
         }
     }
 
