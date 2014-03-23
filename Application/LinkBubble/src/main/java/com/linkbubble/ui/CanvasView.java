@@ -345,7 +345,9 @@ public class CanvasView extends FrameLayout {
         if (mAnimPeriod > 0.0f && mAnimTime <= mAnimPeriod) {
             float t = Util.clamp(0.0f, mAnimTime / mAnimPeriod, 1.0f);
             mContentViewY = (int) (mInitialY + (mTargetY - mInitialY) * t);
-            mContentView.setTranslationY(mContentViewY);
+            if (mContentView != null) {
+                mContentView.setTranslationY(mContentViewY);
+            }
             if (mAnimTime < mAnimPeriod) {
                 MainController.get().scheduleUpdate();
             } else if (mTargetY == 0.0f) {
