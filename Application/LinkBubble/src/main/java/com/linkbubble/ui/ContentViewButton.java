@@ -96,6 +96,10 @@ public class ContentViewButton extends FrameLayout {
                     newWidth = newHeight = maxIconSize;
                 }
 
+                // Potential fix for user exceptions below saying that width and height must be > 0
+                newWidth = Math.max(1, newWidth);
+                newHeight = Math.max(1, newHeight);
+
                 try {
                     Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmapDrawable.getBitmap(), newWidth, newHeight, true);
                     drawable = new BitmapDrawable(getResources(), resizedBitmap);
