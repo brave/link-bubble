@@ -131,7 +131,7 @@ public final class ThreadUtils {
     }
 
     public static boolean isOnBackgroundThread() {
-        return isOnThread(sBackgroundThread);
+        return sBackgroundThread != null && isOnThread(sBackgroundThread);
     }
 
     public static boolean isOnThread(Thread thread) {
