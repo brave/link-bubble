@@ -151,6 +151,18 @@
     <string name="title_changelog">Change log</string>
     <string name="changelog_close">Close</string>
 
+    <string name="faq_close_tab_question">How can I quickly close a tab?</string>
+    <string name="faq_close_tab_answer">Pressing the hardware Back button is the fastest way. Flicking a tab onto the Close button is another good way.</string>
+    <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble isn\'t intercepting links!]]></string>
+    <string name="faq_app_internal_browser_answer"><![CDATA[There are 3 causes of this:<br/>
+            1). A browser other thank Link Bubble is set as your default system browser. See the option in Link Bubble\'s Settings to change this.<br/>
+            2). The free version of Link Bubble only intercepts links from a single app. See the Settings for which app this is or to change it.
+            Note that by upgrading to Link Bubble Pro, links will be intercepted from all non-browser apps.<br/>
+            3). Apps such as Talon, Reddit is Fun and others have inbuilt browsers that render links. Check the settings of that app and
+            enable \"External browser\" or deselect \"Integrated browser\" or similar.
+            <br/><br/>Note: other browser apps such as Chrome are hardcoded to load links in themselves, and thus Link Bubble is unable
+            to load links clicked from other browser apps.
+            ]]></string>
     <string name="faq_future_features_question">Will you add support for bookmarks, favorites, extensions, etc.?</string>
     <string name="faq_future_features_answer">Never say never, but for now Link Bubble is focused solely on being the best possible way of loading
             and consuming links loaded from other apps.</string>
