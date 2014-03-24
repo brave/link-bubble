@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.0.3" versioncode="10300">
+        <change>CHANGE: "Close all" long press text uses Sans Serif font.</change>
+        <change>BUG FIX: Many stability fixes.</change>
+    </release>
+
     <release version="1.0.2" versioncode="10200">
         <change>NEW: Clicking the version number in the settings displays the full change log.</change>
         <change>CHANGE: Add a new 'Auto expand' checkbox to the settings. Replaces the previous (and confusing) 'Auto content display' setting.</change>
