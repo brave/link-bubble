@@ -155,7 +155,7 @@ public class CloseTabTargetView extends BubbleTargetView {
             mPaint = new Paint();
             mPaint.setAntiAlias(true);
             mPaint.setTextSize(Config.dpToPx(12));
-            mPaint.setTypeface(Typeface.create(Typeface.SERIF,Typeface.BOLD));
+            mPaint.setTypeface(Typeface.create(Typeface.SANS_SERIF,Typeface.BOLD));
             mPaint.setTextAlign(Paint.Align.CENTER);
             mPaint.setColor(Color.WHITE);
 
