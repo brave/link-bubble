@@ -147,7 +147,7 @@ public class FaviconsForURL {
                         return mDominantColor;
                     } catch (IllegalStateException ex) {
                         // https://crashlytics.com/digital-ashes/android/apps/com.linkbubble.playstore/issues/532b555ffabb27481b16d958
-                        CrashTracking.logException(ex);
+                        CrashTracking.logHandledException(ex);
                     }
                 }
             }
