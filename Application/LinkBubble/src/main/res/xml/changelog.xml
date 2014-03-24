@@ -2,6 +2,8 @@
 <changelog>
 
     <release version="1.0.3" versioncode="10300">
+        <change>CHANGE: Increase time period required before "Close all" functionality kicks in when hovering over the Close bubble.
+            Should address people unintentionally closing all their open tabs.</change>
         <change>CHANGE: "Close all" long press text uses Sans Serif font.</change>
         <change>BUG FIX: Many stability fixes.</change>
     </release>
