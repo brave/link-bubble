@@ -38,11 +38,6 @@
 #    "java.lang.String"
 #
 
-#-injars      bin/classes
-#-injars      bin/resources.ap_
-#-injars      libs
-#-outjars     bin/application.apk
-
 -dalvik
 -repackageclasses ''
 -allowaccessmodification
@@ -86,7 +81,7 @@
     *;
 }
 
--keep public class * extends com.util.StatHatService.** { *; }
+-keep public class * extends com.linkbubble.util.StatHatService.** { *; }
 
 -keepclasseswithmembers class * {
     public <init>(android.content.Context, android.util.AttributeSet);
