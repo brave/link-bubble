@@ -207,6 +207,10 @@ public class MainApplication extends Application {
                         intent.setClassName(actionItem.mPackageName, actionItem.mActivityClassName);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra(Intent.EXTRA_TEXT, urlAsString);
+                        String title = MainApplication.sTitleHashMap.get(urlAsString);
+                        if (title != null) {
+                            intent.putExtra(Intent.EXTRA_SUBJECT, title);
+                        }
                         context.startActivity(intent);
                     }
                 });
@@ -220,6 +224,10 @@ public class MainApplication extends Application {
             intent.setClassName(consumePackageName, consumeName);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra(Intent.EXTRA_TEXT, urlAsString);
+            String title = MainApplication.sTitleHashMap.get(urlAsString);
+            if (title != null) {
+                intent.putExtra(Intent.EXTRA_SUBJECT, title);
+            }
             try {
                 context.startActivity(intent);
                 if (totalTrackedLoadTime > -1) {
