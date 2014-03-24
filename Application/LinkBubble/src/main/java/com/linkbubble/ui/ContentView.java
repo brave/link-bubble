@@ -246,6 +246,10 @@ public class ContentView extends FrameLayout {
                 intent.setClassName(actionItem.mPackageName, actionItem.mActivityClassName);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(Intent.EXTRA_TEXT, urlAsString);
+                String title = MainApplication.sTitleHashMap.get(urlAsString);
+                if (title != null) {
+                    intent.putExtra(Intent.EXTRA_SUBJECT, title);
+                }
                 getContext().startActivity(intent);
 
                 boolean isCopyToClipboardAction = actionItem.mPackageName.equals("com.google.android.apps.docs")
