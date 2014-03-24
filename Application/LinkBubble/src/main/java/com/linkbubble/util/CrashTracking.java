@@ -9,7 +9,7 @@ public class CrashTracking {
         Crashlytics.start(context);
     }
 
-    public static void logException(Throwable throwable) {
+    public static void logHandledException(Throwable throwable) {
         Crashlytics.logException(throwable);
     }
 
