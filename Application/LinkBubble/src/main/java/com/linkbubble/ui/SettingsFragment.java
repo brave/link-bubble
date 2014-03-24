@@ -140,6 +140,7 @@ public class SettingsFragment extends PreferenceFragment {
 
         PreferenceCategory generalCategory = (PreferenceCategory) findPreference("preference_category_general");
         PreferenceCategory configurationCategory = (PreferenceCategory) findPreference("preference_category_configuration");
+        PreferenceScreen helpScreen = (PreferenceScreen) getPreferenceScreen().findPreference("preference_screen_help");
 
         Preference interceptLinksFromPreference = findPreference(Settings.PREFERENCE_INTERCEPT_LINKS_FROM);
         if (DRM.isLicensed()) {
@@ -292,11 +293,23 @@ public class SettingsFragment extends PreferenceFragment {
             });
         }
 
+        Preference otherAppsPreference = findPreference("preference_my_other_apps");
+        otherAppsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = MainApplication.getStoreIntent(getActivity(), BuildConfig.STORE_MY_OTHER_APPS_URL);
+                if (intent != null) {
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
         if (DRM.isLicensed()) {
             generalCategory.removePreference(getProPreference);
             if (Settings.get().getSayThanksClicked()) {
                 generalCategory.removePreference(sayThanksPreference);
-                PreferenceScreen helpScreen = (PreferenceScreen) getPreferenceScreen().findPreference("preference_screen_help");
                 helpScreen.addPreference(sayThanksPreference);
             }
         } else {
