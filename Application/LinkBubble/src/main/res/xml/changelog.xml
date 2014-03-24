@@ -5,6 +5,7 @@
         <change>CHANGE: Increase time period required before "Close all" functionality kicks in when hovering over the Close bubble.
             Should address people unintentionally closing all their open tabs.</change>
         <change>CHANGE: "Close all" long press text uses Sans Serif font.</change>
+        <change>CHANGE: Move FAQ to front page of the Settings.</change>
         <change>CHANGE: Add shortcut to view my other apps to the Settings.</change>
         <change>BUG FIX: Many stability fixes.</change>
     </release>

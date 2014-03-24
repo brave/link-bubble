@@ -208,6 +208,7 @@
     <string name="faq_feature_request_answer">I have a lot of </string> -->
 
     <string name="faq_title">FAQ</string>
+    <string name="preference_faq_summary">Question about the app? Try here.</string>
     <string name="faq_section_general">General</string>
     <string name="faq_section_issues">Issues</string>
 
