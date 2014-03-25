@@ -408,7 +408,7 @@ public class SettingsFragment extends PreferenceFragment {
     public void onResume() {
         super.onResume();
 
-        //checkDefaultBrowser();
+        checkDefaultBrowser();
         configureDefaultAppsList();
     }
 
@@ -435,32 +435,39 @@ public class SettingsFragment extends PreferenceFragment {
 
     void checkDefaultBrowser() {
 
-        Preference setDefaultPreference = getPreferenceScreen().findPreference("preference_set_default_browser");
+        PackageManager packageManager = getActivity().getPackageManager();
+
+        Preference setDefaultBrowserPreference = findPreference("preference_set_default_browser");
         // Will be null if onResume() is called after the preference has already been removed.
-        if (setDefaultPreference != null) {
-            if (Util.isDefaultBrowser(getActivity().getPackageName(), getActivity().getPackageManager())) {
-                getPreferenceScreen().removePreference(setDefaultPreference);
-            } else {
-                setDefaultPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        if (setDefaultBrowserPreference != null) {
+            setDefaultBrowserPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 
-                    @Override
-                    public boolean onPreferenceClick(Preference preference) {
-                        // Via http://stackoverflow.com/a/13239706/328679
-                        PackageManager packageManager = getActivity().getPackageManager();
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    // Via http://stackoverflow.com/a/13239706/328679
+                    PackageManager packageManager = getActivity().getPackageManager();
 
-                        ComponentName dummyComponentName = new ComponentName(getActivity().getApplication(),
-                                                                DefaultBrowserResetActivity.class);
-                        packageManager.setComponentEnabledSetting(dummyComponentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+                    ComponentName dummyComponentName = new ComponentName(getActivity().getApplication(),
+                            DefaultBrowserResetActivity.class);
+                    packageManager.setComponentEnabledSetting(dummyComponentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
 
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse(Config.SET_DEFAULT_BROWSER_URL));
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        getActivity().startActivity(intent);
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(Config.SET_DEFAULT_BROWSER_URL));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    getActivity().startActivity(intent);
 
-                        packageManager.setComponentEnabledSetting(dummyComponentName, PackageManager.COMPONENT_ENABLED_STATE_DEFAULT, PackageManager.DONT_KILL_APP);
-                        return true;
-                    }
-                });
+                    packageManager.setComponentEnabledSetting(dummyComponentName, PackageManager.COMPONENT_ENABLED_STATE_DEFAULT, PackageManager.DONT_KILL_APP);
+                    return true;
+                }
+            });
+
+            ResolveInfo defaultBrowserResolveInfo = Util.getDefaultBrowser(packageManager);
+            if (defaultBrowserResolveInfo != null) {
+                if (defaultBrowserResolveInfo.activityInfo != null
+                        && defaultBrowserResolveInfo.activityInfo.packageName.equals(BuildConfig.PACKAGE_NAME)) {
+                    PreferenceCategory category = (PreferenceCategory) findPreference("preference_category_configuration");
+                    category.removePreference(setDefaultBrowserPreference);
+                }
             }
         }
     }
