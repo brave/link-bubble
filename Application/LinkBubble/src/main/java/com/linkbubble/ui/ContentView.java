@@ -246,7 +246,7 @@ public class ContentView extends FrameLayout {
                 intent.setClassName(actionItem.mPackageName, actionItem.mActivityClassName);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(Intent.EXTRA_TEXT, urlAsString);
-                String title = MainApplication.sTitleHashMap.get(urlAsString);
+                String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(urlAsString) : null;
                 if (title != null) {
                     intent.putExtra(Intent.EXTRA_SUBJECT, title);
                 }
@@ -641,7 +641,7 @@ public class ContentView extends FrameLayout {
             mEventHandler.onPageLoaded(false);
             Log.d(TAG, "onPageFinished() - url: " + urlAsString);
 
-            String title = MainApplication.sTitleHashMap.get(urlAsString);
+            String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(urlAsString) : "";
             MainApplication.saveUrlInHistory(getContext(), null, mUrl.toString(), mUrl.getHost(), title);
             if (title == null) {    // if no title is set, display nothing rather than "Loading..." #265
                 mTitleTextView.setText(null);
@@ -693,7 +693,7 @@ public class ContentView extends FrameLayout {
                             updateUrl(previousUrlAsString);
                             Log.d(TAG, "[urlstack] Go back: " + urlBefore + " -> " + webView.getUrl() + ", urlStack.size():" + mUrlStack.size());
                             updateUrlTextView(previousUrlAsString);
-                            String title = MainApplication.sTitleHashMap.get(previousUrlAsString);
+                            String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(previousUrlAsString) : null;
                             if (title == null) {
                                 title = getResources().getString(R.string.loading);
                             }
@@ -723,7 +723,9 @@ public class ContentView extends FrameLayout {
         public void onReceivedTitle(WebView webView, String title) {
             super.onReceivedTitle(webView, title);
             mTitleTextView.setText(title);
-            MainApplication.sTitleHashMap.put(webView.getUrl(), title);
+            if (MainApplication.sTitleHashMap != null) {
+                MainApplication.sTitleHashMap.put(webView.getUrl(), title);
+            }
         }
 
         @Override
