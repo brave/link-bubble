@@ -1052,7 +1052,8 @@ public class ContentView extends FrameLayout {
         public void run() {
             synchronized (mIsDestroyed) {
                 if (mIsDestroyed == false && mDoDropDownCheck) {
-                    mPageInspector.run(mWebView, PageInspector.INSPECT_DROP_DOWN);
+                    // Check for YouTube as well to fix issues where sometimes embeds are not found.
+                    mPageInspector.run(mWebView, PageInspector.INSPECT_DROP_DOWN | PageInspector.INSPECT_YOUTUBE);
                 }
             }
         }
