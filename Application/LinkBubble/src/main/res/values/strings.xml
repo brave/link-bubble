@@ -155,8 +155,10 @@
     <string name="faq_close_tab_answer">Pressing the hardware Back button is the fastest way. Flicking a tab onto the Close button is another good way.</string>
     <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble isn\'t intercepting links!]]></string>
     <string name="faq_app_internal_browser_answer"><![CDATA[There are 3 causes of this:<br/>
-            1). A browser other thank Link Bubble is set as your default system browser. See the option in Link Bubble\'s Settings to change this.<br/>
-            2). The free version of Link Bubble only intercepts links from a single app. See the Settings for which app this is or to change it.
+            1). A browser other thank Link Bubble is set as your default system browser. See the
+            \"Set default system browser\" option in Link Bubble\'s Settings to change this.<br/>
+            2). The free version of Link Bubble only intercepts links from a single app. See the
+            \"Intercept links from\" option in Link Bubble\'s Settings for which app this is or to change it.
             Note that by upgrading to Link Bubble Pro, links will be intercepted from all non-browser apps.<br/>
             3). Apps such as Talon, Reddit is Fun and others have inbuilt browsers that render links. Check the settings of that app and
             enable \"External browser\" or deselect \"Integrated browser\" or similar.
