@@ -141,7 +141,7 @@ public class FaviconsForURL {
         if (mDominantColor == -1) {
             // Find a payload, any payload, that is not invalidated.
             for (FaviconCacheElement element : mFavicons) {
-                if (!element.mInvalidated) {
+                if (!element.mInvalidated && element.mFaviconPayload.isRecycled() == false) {
                     try {
                         mDominantColor = BitmapUtils.getDominantColor(element.mFaviconPayload);
                         return mDominantColor;
