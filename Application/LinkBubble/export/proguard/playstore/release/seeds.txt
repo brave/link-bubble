@@ -3271,6 +3271,8 @@ com.linkbubble.R$string: int erase_all_history_message
 com.linkbubble.R$string: int erase_all_history_title
 com.linkbubble.R$string: int faq_alternate_payment_answer
 com.linkbubble.R$string: int faq_alternate_payment_question
+com.linkbubble.R$string: int faq_app_internal_browser_answer
+com.linkbubble.R$string: int faq_app_internal_browser_question
 com.linkbubble.R$string: int faq_beta_programme_answer
 com.linkbubble.R$string: int faq_beta_programme_question
 com.linkbubble.R$string: int faq_cant_type_url_answer
@@ -3279,6 +3281,8 @@ com.linkbubble.R$string: int faq_change_default_browser_answer
 com.linkbubble.R$string: int faq_change_default_browser_question
 com.linkbubble.R$string: int faq_close_quickly_answer
 com.linkbubble.R$string: int faq_close_quickly_question
+com.linkbubble.R$string: int faq_close_tab_answer
+com.linkbubble.R$string: int faq_close_tab_question
 com.linkbubble.R$string: int faq_copy_text_answer
 com.linkbubble.R$string: int faq_copy_text_question
 com.linkbubble.R$string: int faq_crap_webview_answer
@@ -3345,6 +3349,7 @@ com.linkbubble.R$string: int preference_default_apps_notice_summary
 com.linkbubble.R$string: int preference_default_apps_title
 com.linkbubble.R$string: int preference_default_browser
 com.linkbubble.R$string: int preference_enabled_title
+com.linkbubble.R$string: int preference_faq_summary
 com.linkbubble.R$string: int preference_get_pro_summary
 com.linkbubble.R$string: int preference_get_pro_title
 com.linkbubble.R$string: int preference_google_account_redirect_summary
@@ -3354,6 +3359,8 @@ com.linkbubble.R$string: int preference_intercept_links_from_note
 com.linkbubble.R$string: int preference_intercept_links_from_title
 com.linkbubble.R$string: int preference_left_consume_bubble_title
 com.linkbubble.R$string: int preference_more
+com.linkbubble.R$string: int preference_my_other_apps_summary
+com.linkbubble.R$string: int preference_my_other_apps_title
 com.linkbubble.R$string: int preference_osl_title
 com.linkbubble.R$string: int preference_privacy_policy_title
 com.linkbubble.R$string: int preference_right_consume_bubble_title

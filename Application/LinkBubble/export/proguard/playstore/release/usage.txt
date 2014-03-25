@@ -1748,9 +1748,7 @@ com.linkbubble.ui.ProgressIndicator$ProgressArcView:
 com.linkbubble.ui.Prompt:
     public static final int LENGTH_LONG
 com.linkbubble.ui.SettingsFragment:
-    413:421:public void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)
-    425:453:void checkDefaultBrowser()
-com.linkbubble.ui.SettingsFragment$19
+    426:434:public void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)
 com.linkbubble.util.Analytics:
     public static final java.lang.String OPENED_URL_FROM_SETTINGS
     public static final java.lang.String OPENED_URL_FROM_NEW_TAB
@@ -1793,7 +1791,7 @@ com.linkbubble.util.Util:
     private static final int OUTCODE_RIGHT
     private static final int OUTCODE_BOTTOM
     private static final int OUTCODE_TOP
-    46:53:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
+    47:54:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
 com.squareup.otto.AnnotatedHandlerFinder:
     154:156:private AnnotatedHandlerFinder()
 com.squareup.otto.Bus:
