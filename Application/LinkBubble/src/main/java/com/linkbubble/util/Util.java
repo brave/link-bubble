@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import com.linkbubble.BuildConfig;
+import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.ui.Prompt;
@@ -322,5 +323,11 @@ public class Util {
         int randomNum = sRandom.nextInt((max - min) + 1) + min;
 
         return randomNum;
+    }
+
+    static public ResolveInfo getDefaultBrowser(PackageManager packageManager) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(Config.SET_DEFAULT_BROWSER_URL));
+        return packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
     }
 }

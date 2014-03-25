@@ -11,11 +11,10 @@
             android:title="@string/preference_enabled_title"
             android:defaultValue="true" />-->
 
-        <!--
         <Preference
             android:key="preference_set_default_browser"
             android:title="@string/preference_set_default_browser_title"
-            android:summary="@string/preference_set_default_browser_summary" /> -->
+            android:summary="@string/preference_set_default_browser_summary"/>
 
         <CheckBoxPreference
             android:key="preference_auto_content_display_link_loaded"
