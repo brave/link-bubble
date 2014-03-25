@@ -10,6 +10,7 @@
         <change>IMPROVEMENT: Expand FAQ with entries about common questions such as how to close a tab quickly and why links may not be loading with Link Bubble.</change>
         <change>CHANGE: Move FAQ to front page of the Settings to improve its visibility.</change>
         <change>CHANGE: Add shortcut to view my other apps to the Settings.</change>
+        <change>BUG FIX: Fix case where YouTube embeds were sometimes not found on a page.</change>
         <change>BUG FIX: Many stability fixes.</change>
     </release>
 
