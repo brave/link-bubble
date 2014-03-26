@@ -1462,7 +1462,9 @@ public class ContentView extends FrameLayout {
         Prompt.show(message, drawable, Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
             @Override
             public void onClick() {
-                openInBrowser(urlAsString);
+                if (urlAsString != null) {
+                    openInBrowser(urlAsString);
+                }
             }
             @Override
             public void onClose() {
