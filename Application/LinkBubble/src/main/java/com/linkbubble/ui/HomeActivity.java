@@ -26,6 +26,7 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
 import com.parse.GetCallback;
@@ -67,6 +68,8 @@ public class HomeActivity extends Activity {
         CrashTracking.init(this);
 
         setContentView(R.layout.activity_home);
+
+        Analytics.trackScreenView(HomeActivity.class.getSimpleName());
 
         mBackgroundView = findViewById(R.id.background);
         mContentView = findViewById(R.id.content);
