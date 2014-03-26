@@ -187,6 +187,8 @@ public class MainController implements Choreographer.FrameCallback {
     private BubbleFlowDraggable mBubbleFlowDraggable;
     private BubbleDraggable mBubbleDraggable;
 
+    private long mPreviousFrameTime;
+
     // false if the user has forcibilty minimized the Bubbles from ContentView. Set back to true once a new link is loaded.
     private boolean mCanAutoDisplayLink;
 
@@ -450,7 +452,12 @@ public class MainController implements Choreographer.FrameCallback {
     public void doFrame(long frameTimeNanos) {
         mUpdateScheduled = false;
 
-        float dt = 1.0f / 60.0f;
+        float t0 = mPreviousFrameTime / 1000000000.0f;
+        float t1 = frameTimeNanos / 1000000000.0f;
+        float t = t1 - t0;
+        float dt = Util.clamp(0.0f, t, 3.0f / 60.0f);
+
+        mPreviousFrameTime = frameTimeNanos;
 
         if (mBubbleFlowDraggable.update()) {
             scheduleUpdate();

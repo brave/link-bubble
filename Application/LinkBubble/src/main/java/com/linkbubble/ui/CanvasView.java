@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -342,7 +343,7 @@ public class CanvasView extends FrameLayout {
 
     public void update(float dt) {
 
-        if (mAnimPeriod > 0.0f && mAnimTime <= mAnimPeriod) {
+        if (mAnimPeriod > 0.0f) {
             float t = Util.clamp(0.0f, mAnimTime / mAnimPeriod, 1.0f);
             mContentViewY = (int) (mInitialY + (mTargetY - mInitialY) * t);
             if (mContentView != null) {
