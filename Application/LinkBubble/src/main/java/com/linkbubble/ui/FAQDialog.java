@@ -55,6 +55,7 @@ public class FAQDialog {
         "faq_report_bug",
     };
 
+    static int sBetaIndex = 7;
     static int sIssuesIndex = 11;
 
 	public FAQDialog(Activity context) {
@@ -94,13 +95,11 @@ public class FAQDialog {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*
-                if (position == 0) {
+                if (position == sBetaIndex) {
                     Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse("http://s3.amazonaws.com/actionlauncher/action_launcher_beta.html"));
+                    i.setData(Uri.parse("https://s3.amazonaws.com/linkbubble/link_bubble_beta.html"));
                     mActivity.startActivity(i);
-                } else */
-                if (position == sFAQSize-1) {
+                } else if (position == sFAQSize-1) {
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO,
                                                     Uri.fromParts("mailto", "support@linkbubble.com", null));
                     String appVersion = BuildConfig.VERSION_NAME;
