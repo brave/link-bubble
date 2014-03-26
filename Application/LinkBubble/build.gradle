@@ -96,6 +96,7 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:19.0.+'
+    compile 'com.google.android.gms:play-services:4.3.+'
     compile 'se.emilsjolander:stickylistheaders:2.1.2'
     compile 'com.crashlytics.android:crashlytics:1.+'
     compile 'com.squareup.retrofit:retrofit:1.4.1'
