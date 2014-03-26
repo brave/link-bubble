@@ -1,5 +1,21 @@
 package com.linkbubble.util;
+
+import android.app.Application;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 public class Analytics {
+
+    public static final String GA_PROPERTY_ID = "UA-49396039-1";
+
+    static Tracker sTracker;
+
+    public static void init(Application application) {
+        GoogleAnalytics analytics = GoogleAnalytics.getInstance(application);
+        sTracker = analytics.newTracker(GA_PROPERTY_ID);
+        GoogleAnalytics.getInstance(application).setLocalDispatchPeriod(15);
+    }
 
     public static final String OPENED_URL_FROM_SETTINGS = "LinkBubble-Settings";
     public static final String OPENED_URL_FROM_NEW_TAB = "LinkBubble-NewTab";
@@ -31,5 +47,10 @@ public class Analytics {
 
     public static void trackUpgradePromptClicked(String promptType) {
         StatHat.get().ezPostCount("upgrade_prompt_clicked~" + promptType, 1);
+    }
+
+    public static void trackScreenView(String screenName) {
+        sTracker.setScreenName(screenName);
+        sTracker.send(new HitBuilders.AppViewBuilder().build());
     }
 }
