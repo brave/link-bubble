@@ -328,7 +328,9 @@ public class DraggableHelper {
             mAnimPeriod = t;
             mAnimTime = 0.0f;
 
-            MainController.get().scheduleUpdate();
+            if (MainController.get() != null) {
+                MainController.get().scheduleUpdate();
+            }
         } else if (listener != null) {
             mAnimationListener = null;
             listener.onAnimationComplete();
