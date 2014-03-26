@@ -153,6 +153,17 @@
 
     <string name="faq_close_tab_question">How can I quickly close a tab?</string>
     <string name="faq_close_tab_answer">Pressing the hardware Back button is the fastest way. Flicking a tab onto the Close button is another good way.</string>
+    <string name="faq_back_button_minimize_question">I think pressing the Back button should minimize the browser!</string>
+    <string name="faq_back_button_minimize_answer"><![CDATA[Minimizing Link Bubble when the hardware Back button is pressed is not feasible.
+            Consider the following case:<br/>
+            1). example.com/page1 is loaded in the first tab.<br/>
+            2). You click a link on this page, and load example.com/page2 in the same tab.<br/>
+            3). You now want to go back to the link in step 1.<br/><br/>
+            How do you do this if pressing the hardware Back button minimizes Link Bubble? Pressing the tiny back indicator on the
+            tab itself is not feasible.<br/><br/>
+            Link Bubble is a browser, and Android browsers have a long since established standard of
+            either going back in the URL stack, or if no such stack exists, closing the current page when the Back button is pressed.
+            Link Bubble follows this standard.]]></string>
     <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble isn\'t intercepting links!]]></string>
     <string name="faq_app_internal_browser_answer"><![CDATA[There are 3 causes of this:<br/>
             1). A browser other thank Link Bubble is set as your default system browser. See the
