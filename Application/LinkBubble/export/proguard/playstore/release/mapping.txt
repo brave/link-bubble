@@ -4500,16 +4500,16 @@ com.linkbubble.ui.ContentView -> com.linkbubble.ui.ContentView:
     185:206:void dispatchDraw(android.graphics.Canvas) -> dispatchDraw
     221:237:void updateIncognitoMode(boolean) -> ･
     612:657:void onPageLoadComplete(java.lang.String) -> ･
-    1199:1204:void configureOpenEmbedButton() -> ˎ
-    1215:1217:void updateAppsForUrl(java.net.URL) -> ･
-    1220:1308:void updateAppsForUrl$7e1a7565(java.util.ArrayList,java.net.URL) -> ･
-    1356:1360:void saveLoadTime() -> ･
-    1367:1376:boolean updateUrl(java.lang.String) -> ˊ
-    1380:1388:java.net.URL getUpdatedUrl(java.lang.String) -> ˎ
-    1396:1412:void hidePopups() -> ˊ
-    1415:1419:void resetButtonPressedStates() -> ˋ
-    1434:1445:boolean openInApp(android.content.pm.ResolveInfo,java.lang.String) -> ･
-    1471:1478:void updateUrlTextView(java.lang.String) -> ˋ
+    1201:1206:void configureOpenEmbedButton() -> ˎ
+    1217:1219:void updateAppsForUrl(java.net.URL) -> ･
+    1222:1310:void updateAppsForUrl$7e1a7565(java.util.ArrayList,java.net.URL) -> ･
+    1358:1362:void saveLoadTime() -> ･
+    1369:1378:boolean updateUrl(java.lang.String) -> ˊ
+    1382:1390:java.net.URL getUpdatedUrl(java.lang.String) -> ˎ
+    1398:1414:void hidePopups() -> ˊ
+    1417:1421:void resetButtonPressedStates() -> ˋ
+    1436:1447:boolean openInApp(android.content.pm.ResolveInfo,java.lang.String) -> ･
+    1473:1480:void updateUrlTextView(java.lang.String) -> ˋ
     74:74:com.linkbubble.ui.TabView access$000(com.linkbubble.ui.ContentView) -> ･
     74:74:java.lang.String access$102(com.linkbubble.ui.ContentView,java.lang.String) -> ･
     74:74:java.net.URL access$200(com.linkbubble.ui.ContentView) -> ˊ
@@ -4574,46 +4574,46 @@ com.linkbubble.ui.ContentView$1 -> ｊ:
     244:261:void onSelected(com.linkbubble.util.ActionItem) -> ･
 com.linkbubble.ui.ContentView$10 -> ｭ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    928:929:void onClick(android.view.View) -> onClick
+    930:931:void onClick(android.view.View) -> onClick
 com.linkbubble.ui.ContentView$13 -> Ī:
     com.linkbubble.ui.ContentView this$0 -> ･
-    952:954:void onClick(android.view.View) -> onClick
+    954:956:void onClick(android.view.View) -> onClick
 com.linkbubble.ui.ContentView$14 -> Ĭ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    960:1037:void onClick(android.view.View) -> onClick
+    962:1039:void onClick(android.view.View) -> onClick
 com.linkbubble.ui.ContentView$14$1 -> Į:
     android.content.Context val$context -> ･
     com.linkbubble.ui.ContentView$14 this$1 -> ˊ
-    980:1025:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
+    982:1027:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
 com.linkbubble.ui.ContentView$14$2 -> į:
     com.linkbubble.ui.ContentView$14 this$1 -> ･
-    1031:1034:void onDismiss(android.widget.PopupMenu) -> onDismiss
+    1033:1036:void onDismiss(android.widget.PopupMenu) -> onDismiss
 com.linkbubble.ui.ContentView$15 -> ŕ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    1042:1043:void onSwipeRight() -> ･
-    1045:1046:void onSwipeLeft() -> ˊ
+    1044:1045:void onSwipeRight() -> ･
+    1047:1048:void onSwipeLeft() -> ˊ
 com.linkbubble.ui.ContentView$16 -> ȉ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    1053:1058:void run() -> run
+    1055:1060:void run() -> run
 com.linkbubble.ui.ContentView$17 -> ȓ:
     com.linkbubble.ui.ContentView$17$1 mUpdateOpenInAppRunnable$453f5682 -> ˊ
     android.os.Handler mHandler -> ˋ
     com.linkbubble.ui.ContentView this$0 -> ･
-    1069:1079:void onYouTubeEmbeds() -> ･
-    1084:1099:void onTouchIconLoaded(android.graphics.Bitmap,java.lang.String) -> ･
-    1103:1104:void onDropDownFound() -> ˊ
-    1108:1115:void onDropDownWarningClick() -> ˋ
+    1071:1081:void onYouTubeEmbeds() -> ･
+    1086:1101:void onTouchIconLoaded(android.graphics.Bitmap,java.lang.String) -> ･
+    1105:1106:void onDropDownFound() -> ˊ
+    1110:1117:void onDropDownWarningClick() -> ˋ
 com.linkbubble.ui.ContentView$17$1 -> ɭ:
     com.linkbubble.ui.ContentView$17 this$1 -> ･
-    1073:1074:void run() -> run
+    1075:1076:void run() -> run
 com.linkbubble.ui.ContentView$17$2 -> ɻ:
     java.lang.String val$pageUrl -> ･
     android.graphics.Bitmap val$bitmap -> ˊ
     com.linkbubble.ui.ContentView$17 this$1 -> ˋ
-    1091:1097:void run() -> run
+    1093:1099:void run() -> run
 com.linkbubble.ui.ContentView$17$3 -> ʏ:
     com.linkbubble.ui.ContentView$17 this$1 -> ･
-    1111:1113:void run() -> run
+    1113:1115:void run() -> run
 com.linkbubble.ui.ContentView$18 -> ʔ:
     java.util.ArrayList val$longClickSelections -> ･
     java.lang.String val$openInNewBubbleLabel -> ˊ
@@ -4623,12 +4623,12 @@ com.linkbubble.ui.ContentView$18 -> ʔ:
     java.lang.String val$leftConsumeBubbleLabel -> ᐝ
     java.lang.String val$rightConsumeBubbleLabel -> ʻ
     com.linkbubble.ui.ContentView this$0 -> ʼ
-    1171:1189:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    1173:1191:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.linkbubble.ui.ContentView$19 -> ʕ:
     java.lang.String val$urlAsString -> ･
     com.linkbubble.ui.ContentView this$0 -> ˊ
-    1462:1463:void onClick() -> ･
-    1466:1466:void onClose() -> ˊ
+    1464:1465:void onClick() -> ･
+    1468:1468:void onClose() -> ˊ
 com.linkbubble.ui.ContentView$2 -> ʖ:
     com.linkbubble.ui.ContentView this$0 -> ･
     314:315:void onClick(android.view.View) -> onClick
@@ -4636,7 +4636,7 @@ com.linkbubble.ui.ContentView$20 -> ʷ:
     android.webkit.GeolocationPermissions$Callback val$callback -> ･
     java.lang.String val$origin -> ˊ
     com.linkbubble.ui.ContentView this$0 -> ˋ
-    1497:1499:void onClick(android.view.View) -> onClick
+    1499:1501:void onClick(android.view.View) -> onClick
 com.linkbubble.ui.ContentView$3 -> ΐ:
     com.linkbubble.ui.ContentView this$0 -> ･
     359:373:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
@@ -4666,49 +4666,49 @@ com.linkbubble.ui.ContentView$6 -> ץ:
     676:717:boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
 com.linkbubble.ui.ContentView$7 -> ز:
     com.linkbubble.ui.ContentView this$0 -> ･
-    724:727:void onReceivedTitle(android.webkit.WebView,java.lang.String) -> onReceivedTitle
-    731:742:void onReceivedIcon(android.webkit.WebView,android.graphics.Bitmap) -> onReceivedIcon
-    748:775:void onProgressChanged(android.webkit.WebView,int) -> onProgressChanged
-    779:780:void onCloseWindow(android.webkit.WebView) -> onCloseWindow
-    784:803:boolean onJsAlert(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsAlert
-    808:825:boolean onJsConfirm(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsConfirm
-    830:858:boolean onJsPrompt(android.webkit.WebView,java.lang.String,java.lang.String,java.lang.String,android.webkit.JsPromptResult) -> onJsPrompt
-    866:867:boolean onConsoleMessage(android.webkit.ConsoleMessage) -> onConsoleMessage
-    873:881:boolean onCreateWindow(android.webkit.WebView,boolean,boolean,android.os.Message) -> onCreateWindow
-    886:887:void onGeolocationPermissionsShowPrompt(java.lang.String,android.webkit.GeolocationPermissions$Callback) -> onGeolocationPermissionsShowPrompt
+    724:729:void onReceivedTitle(android.webkit.WebView,java.lang.String) -> onReceivedTitle
+    733:744:void onReceivedIcon(android.webkit.WebView,android.graphics.Bitmap) -> onReceivedIcon
+    750:777:void onProgressChanged(android.webkit.WebView,int) -> onProgressChanged
+    781:782:void onCloseWindow(android.webkit.WebView) -> onCloseWindow
+    786:805:boolean onJsAlert(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsAlert
+    810:827:boolean onJsConfirm(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsConfirm
+    832:860:boolean onJsPrompt(android.webkit.WebView,java.lang.String,java.lang.String,java.lang.String,android.webkit.JsPromptResult) -> onJsPrompt
+    868:869:boolean onConsoleMessage(android.webkit.ConsoleMessage) -> onConsoleMessage
+    875:883:boolean onCreateWindow(android.webkit.WebView,boolean,boolean,android.os.Message) -> onCreateWindow
+    888:889:void onGeolocationPermissionsShowPrompt(java.lang.String,android.webkit.GeolocationPermissions$Callback) -> onGeolocationPermissionsShowPrompt
 com.linkbubble.ui.ContentView$7$1 -> ڐ:
     com.linkbubble.ui.ContentView$7 this$1 -> ･
-    793:793:void onClick(android.content.DialogInterface,int) -> onClick
+    795:795:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.ContentView$7$2 -> ڔ:
     com.linkbubble.ui.ContentView$7 this$1 -> ･
-    799:800:void onDismiss(android.content.DialogInterface) -> onDismiss
+    801:802:void onDismiss(android.content.DialogInterface) -> onDismiss
 com.linkbubble.ui.ContentView$7$3 -> ܖ:
     android.webkit.JsResult val$result -> ･
     com.linkbubble.ui.ContentView$7 this$1 -> ˊ
-    815:816:void onClick(android.content.DialogInterface,int) -> onClick
+    817:818:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.ContentView$7$4 -> ܢ:
     android.webkit.JsResult val$result -> ･
     com.linkbubble.ui.ContentView$7 this$1 -> ˊ
-    821:822:void onClick(android.content.DialogInterface,int) -> onClick
+    823:824:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.ContentView$7$5 -> ა:
     android.view.View val$v -> ･
     android.webkit.JsPromptResult val$result -> ˊ
     com.linkbubble.ui.ContentView$7 this$1 -> ˋ
-    841:843:void onClick(android.content.DialogInterface,int) -> onClick
+    843:845:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.ContentView$7$6 -> ი:
     android.webkit.JsPromptResult val$result -> ･
     com.linkbubble.ui.ContentView$7 this$1 -> ˊ
-    848:849:void onClick(android.content.DialogInterface,int) -> onClick
+    850:851:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.ContentView$7$7 -> Ꮀ:
     android.webkit.JsPromptResult val$result -> ･
     com.linkbubble.ui.ContentView$7 this$1 -> ˊ
-    853:854:void onCancel(android.content.DialogInterface) -> onCancel
+    855:856:void onCancel(android.content.DialogInterface) -> onCancel
 com.linkbubble.ui.ContentView$8 -> Ꮮ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    893:910:boolean onLongClick(android.view.View) -> onLongClick
+    895:912:boolean onLongClick(android.view.View) -> onLongClick
 com.linkbubble.ui.ContentView$9 -> ᒣ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    920:922:void onDownloadStart(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long) -> onDownloadStart
+    922:924:void onDownloadStart(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long) -> onDownloadStart
 com.linkbubble.ui.ContentView$AppForUrl -> com.linkbubble.ui.ContentView$･:
     android.content.pm.ResolveInfo mResolveInfo -> ･
     java.net.URL mUrl -> ˊ
@@ -4753,17 +4753,18 @@ com.linkbubble.ui.EntryActivity$2 -> ᒪ:
     220:223:void run() -> run
 com.linkbubble.ui.FAQDialog -> ᓳ:
     android.app.Activity mActivity -> ･
-    boolean[] mExpanded -> ᐝ
+    boolean[] mExpanded -> ʻ
     java.util.ArrayList sQuestionStringIds -> ˊ
     java.util.ArrayList sAnswerStringIds -> ˋ
     int sFAQSize -> ˎ
-    java.lang.String[] sFAQEntry -> ʻ
-    int sIssuesIndex -> ˏ
+    java.lang.String[] sFAQEntry -> ʼ
+    int sBetaIndex -> ˏ
+    int sIssuesIndex -> ᐝ
     25:25:android.app.Activity access$000(com.linkbubble.ui.FAQDialog) -> ･
     25:25:boolean[] access$100(com.linkbubble.ui.FAQDialog) -> ˊ
 com.linkbubble.ui.FAQDialog$1 -> ᘄ:
     com.linkbubble.ui.FAQDialog this$0 -> ･
-    102:115:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    98:115:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.linkbubble.ui.FAQDialog$FAQAdapter -> ᓳ$･:
     android.view.LayoutInflater mInflater -> ˊ
     com.linkbubble.ui.FAQDialog this$0 -> ･
