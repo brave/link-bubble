@@ -34,6 +34,7 @@ public class FAQDialog {
     static String[] sFAQEntry = {
         "faq_app_internal_browser",
         "faq_close_tab",
+        "faq_back_button_minimize",
         "faq_cant_type_url",
         "faq_future_features",
         "faq_ongoing_notificaion",
@@ -54,7 +55,7 @@ public class FAQDialog {
         "faq_report_bug",
     };
 
-    static int sIssuesIndex = 10;
+    static int sIssuesIndex = 11;
 
 	public FAQDialog(Activity context) {
         if (sQuestionStringIds == null) {
