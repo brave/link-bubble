@@ -255,7 +255,7 @@ public class ContentView extends FrameLayout {
                 boolean isCopyToClipboardAction = actionItem.mPackageName.equals("com.google.android.apps.docs")
                         && actionItem.mActivityClassName.equals("com.google.android.apps.docs.app.SendTextToClipboardActivity");
 
-                if (closeBubbleOnShare && isCopyToClipboardAction == false) {
+                if (closeBubbleOnShare && isCopyToClipboardAction == false && MainController.get() != null) {
                     MainController.get().closeTab(mOwnerTabView, true);
                 }
             }
