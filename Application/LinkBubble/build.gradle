@@ -14,8 +14,8 @@ buildscript {
 // Manifest version information!
 def versionMajor = 1
 def versionMinor = 0
-def versionPatch = 3
-def versionBuild = 1 // bump for dogfood builds, public betas, etc.
+def versionPatch = 4
+def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 if(buildMode == "dexguard") {
     apply plugin:'dexguard'
@@ -96,6 +96,7 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:19.0.+'
+    compile 'com.google.android.gms:play-services:4.3.+'
     compile 'se.emilsjolander:stickylistheaders:2.1.2'
     compile 'com.crashlytics.android:crashlytics:1.+'
     compile 'com.squareup.retrofit:retrofit:1.4.1'

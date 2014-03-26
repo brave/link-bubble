@@ -255,7 +255,7 @@ public class ContentView extends FrameLayout {
                 boolean isCopyToClipboardAction = actionItem.mPackageName.equals("com.google.android.apps.docs")
                         && actionItem.mActivityClassName.equals("com.google.android.apps.docs.app.SendTextToClipboardActivity");
 
-                if (closeBubbleOnShare && isCopyToClipboardAction == false) {
+                if (closeBubbleOnShare && isCopyToClipboardAction == false && MainController.get() != null) {
                     MainController.get().closeTab(mOwnerTabView, true);
                 }
             }
@@ -723,8 +723,9 @@ public class ContentView extends FrameLayout {
         public void onReceivedTitle(WebView webView, String title) {
             super.onReceivedTitle(webView, title);
             mTitleTextView.setText(title);
-            if (MainApplication.sTitleHashMap != null) {
-                MainApplication.sTitleHashMap.put(webView.getUrl(), title);
+            String url = webView.getUrl();
+            if (MainApplication.sTitleHashMap != null && url != null) {
+                MainApplication.sTitleHashMap.put(url, title);
             }
         }
 
@@ -1414,10 +1415,18 @@ public class ContentView extends FrameLayout {
     }
 
     private void resetButtonPressedStates() {
-        mShareButton.setIsTouched(false);
-        mOpenEmbedButton.setIsTouched(false);
-        mOpenInAppButton.setIsTouched(false);
-        mOverflowButton.setIsTouched(false);
+        if (mShareButton != null) {
+            mShareButton.setIsTouched(false);
+        }
+        if (mOpenEmbedButton != null) {
+            mOpenEmbedButton.setIsTouched(false);
+        }
+        if (mOpenInAppButton != null) {
+            mOpenInAppButton.setIsTouched(false);
+        }
+        if (mOverflowButton != null) {
+            mOverflowButton.setIsTouched(false);
+        }
     }
 
     private boolean openInBrowser(String urlAsString) {
@@ -1461,7 +1470,9 @@ public class ContentView extends FrameLayout {
         Prompt.show(message, drawable, Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
             @Override
             public void onClick() {
-                openInBrowser(urlAsString);
+                if (urlAsString != null) {
+                    openInBrowser(urlAsString);
+                }
             }
             @Override
             public void onClose() {
