@@ -723,8 +723,9 @@ public class ContentView extends FrameLayout {
         public void onReceivedTitle(WebView webView, String title) {
             super.onReceivedTitle(webView, title);
             mTitleTextView.setText(title);
-            if (MainApplication.sTitleHashMap != null) {
-                MainApplication.sTitleHashMap.put(webView.getUrl(), title);
+            String url = webView.getUrl();
+            if (MainApplication.sTitleHashMap != null && url != null) {
+                MainApplication.sTitleHashMap.put(url, title);
             }
         }
 
