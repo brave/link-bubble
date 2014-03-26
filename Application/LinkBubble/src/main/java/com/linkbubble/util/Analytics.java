@@ -17,6 +17,8 @@ public class Analytics {
         GoogleAnalytics.getInstance(application).setLocalDispatchPeriod(15);
     }
 
+    private static final String CATEGORY = "Usage";
+
     public static final String OPENED_URL_FROM_SETTINGS = "LinkBubble-Settings";
     public static final String OPENED_URL_FROM_NEW_TAB = "LinkBubble-NewTab";
     public static final String OPENED_URL_FROM_NEW_WINDOW = "LinkBubble-NewWindow";
@@ -25,14 +27,22 @@ public class Analytics {
 
     public static void trackOpenUrl(String openedFromAppName) {
         if (openedFromAppName != null) {
-            StatHat.get().ezPostCount("opened_from~" + openedFromAppName, 1);
-            StatHat.get().ezPostCount("tab_opened", 1);
+
+            sTracker.send(new HitBuilders.EventBuilder()
+                    .setCategory(CATEGORY)
+                    .setAction("URL opened from")
+                    .setLabel(openedFromAppName)
+                    .build());
         }
     }
 
     public static void trackTimeSaved(long time) {
         if (time > -1) {
-            StatHat.get().ezPostValue("time_saved", (double) (time) / 1000.f);
+            sTracker.send(new HitBuilders.TimingBuilder()
+                    .setCategory(CATEGORY)
+                    .setValue(time)
+                    .setVariable("time saved")
+                    .build());
         }
     }
 
