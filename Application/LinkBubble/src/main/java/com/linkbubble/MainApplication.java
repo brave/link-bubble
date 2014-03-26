@@ -52,6 +52,8 @@ public class MainApplication extends Application {
 
         sDatabaseHelper = new DatabaseHelper(this);
 
+        Analytics.init(this);
+
         Favicons.attachToContext(this);
         recreateFaviconCache();
 
