@@ -3273,6 +3273,8 @@ com.linkbubble.R$string: int faq_alternate_payment_answer
 com.linkbubble.R$string: int faq_alternate_payment_question
 com.linkbubble.R$string: int faq_app_internal_browser_answer
 com.linkbubble.R$string: int faq_app_internal_browser_question
+com.linkbubble.R$string: int faq_back_button_minimize_answer
+com.linkbubble.R$string: int faq_back_button_minimize_question
 com.linkbubble.R$string: int faq_beta_programme_answer
 com.linkbubble.R$string: int faq_beta_programme_question
 com.linkbubble.R$string: int faq_cant_type_url_answer
