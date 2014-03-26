@@ -1415,10 +1415,18 @@ public class ContentView extends FrameLayout {
     }
 
     private void resetButtonPressedStates() {
-        mShareButton.setIsTouched(false);
-        mOpenEmbedButton.setIsTouched(false);
-        mOpenInAppButton.setIsTouched(false);
-        mOverflowButton.setIsTouched(false);
+        if (mShareButton != null) {
+            mShareButton.setIsTouched(false);
+        }
+        if (mOpenEmbedButton != null) {
+            mOpenEmbedButton.setIsTouched(false);
+        }
+        if (mOpenInAppButton != null) {
+            mOpenInAppButton.setIsTouched(false);
+        }
+        if (mOverflowButton != null) {
+            mOverflowButton.setIsTouched(false);
+        }
     }
 
     private boolean openInBrowser(String urlAsString) {
