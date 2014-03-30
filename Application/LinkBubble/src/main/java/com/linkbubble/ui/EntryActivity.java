@@ -38,7 +38,10 @@ public class EntryActivity extends Activity {
         sCurrentInstance = this;
 
         Intent intent = getIntent();
-        boolean isActionView = intent.getAction().equals(Intent.ACTION_VIEW);
+        boolean isActionView = false;
+        if (intent != null && intent.getAction() != null) {
+            isActionView = intent.getAction().equals(Intent.ACTION_VIEW);
+        }
 
         super.onCreate(savedInstanceState);
         CrashTracking.init(this);
