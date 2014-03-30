@@ -456,8 +456,12 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
         if (setupList) {
             setupListView();
         } else {
-            mMessageView.setVisibility(View.GONE);
-            mHistoryAdapter.notifyDataSetChanged();
+            if (mMessageView != null) {
+                mMessageView.setVisibility(View.GONE);
+            }
+            if (mHistoryAdapter != null) {
+                mHistoryAdapter.notifyDataSetChanged();
+            }
         }
     }
 }
