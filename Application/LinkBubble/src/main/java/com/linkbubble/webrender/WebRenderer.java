@@ -4,9 +4,8 @@ package com.linkbubble.webrender;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.View;
-import android.webkit.GeolocationPermissions;
 import android.webkit.WebView;
-import com.linkbubble.R;
+import com.linkbubble.util.YouTubeEmbedHelper;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,6 +30,10 @@ public abstract class WebRenderer {
         public void onShowBrowserPrompt();
         public void onCloseWindow();
         public void onGeolocationPermissionsShowPrompt(String origin, GetGeolocationCallback callback);
+        public int getPageInspectFlags();
+        public void onPageInspectorYouTubeEmbedFound();
+        public void onPageInspectorTouchIconLoaded(Bitmap bitmap, String pageUrl);
+        public void onPageInspectorDropDownWarningClick();
     }
 
     protected URL mUrl;
@@ -54,6 +57,14 @@ public abstract class WebRenderer {
     public abstract void stopLoading();
 
     public abstract void hidePopups();
+
+    public abstract void resetPageInspector();
+
+    public abstract void runPageInspector();
+
+    public abstract YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper();
+
+    public void onPageLoadComplete() {}
 
     public URL getUrl() {
         return mUrl;

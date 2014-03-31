@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
+import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -36,11 +37,14 @@ import com.linkbubble.ui.TabView;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
+import com.linkbubble.util.YouTubeEmbedHelper;
 
 import java.net.URL;
 
 public class WebViewRenderer extends WebRenderer {
 
+    private String TAG;
+    private Handler mHandler;
     private Context mContext;
     private WebView mWebView;
     private View mTouchInterceptorView;
@@ -50,13 +54,18 @@ public class WebViewRenderer extends WebRenderer {
     private AlertDialog mJsAlertDialog;
     private AlertDialog mJsConfirmDialog;
     private AlertDialog mJsPromptDialog;
+    private PageInspector mPageInspector;
+    private int mCheckForEmbedsCount;
     private Boolean mIsDestroyed = false;
 
-    public WebViewRenderer(Context context, Controller controller, View webRendererPlaceholder) {
+    public WebViewRenderer(Context context, Controller controller, View webRendererPlaceholder, String tag) {
         super(context, controller, webRendererPlaceholder);
 
+        mHandler = new Handler();
+        TAG = tag;
         mContext = context;
         mController = controller;
+        mDoDropDownCheck = true;
 
         mWebView = new WebView(context);
         mWebView.setLayoutParams(webRendererPlaceholder.getLayoutParams());
@@ -89,6 +98,8 @@ public class WebViewRenderer extends WebRenderer {
         webSettings.setUseWideViewPort(true);
         webSettings.setSupportMultipleWindows(DRM.isLicensed() ? true : false);
         webSettings.setGeolocationDatabasePath(Constant.WEBVIEW_DATABASE_LOCATION);
+
+        mPageInspector = new PageInspector(mContext, mWebView, mOnPageInspectorItemFoundListener);
     }
 
     @Override
@@ -157,6 +168,64 @@ public class WebViewRenderer extends WebRenderer {
             mJsPromptDialog = null;
         }
     }
+
+    @Override
+    public void onPageLoadComplete() {
+        super.onPageLoadComplete();
+
+        mHandler.postDelayed(mDropDownCheckRunnable, Constant.DROP_DOWN_CHECK_TIME);
+    }
+
+    @Override
+    public void resetPageInspector() {
+        mPageInspector.reset();
+    }
+
+    @Override
+    public void runPageInspector() {
+        mPageInspector.run(mWebView, mController.getPageInspectFlags());
+    }
+
+    @Override
+    public YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper() {
+        return mPageInspector.getYouTubeEmbedHelper();
+    }
+
+    PageInspector.OnItemFoundListener mOnPageInspectorItemFoundListener = new PageInspector.OnItemFoundListener() {
+
+        @Override
+        public void onYouTubeEmbeds() {
+            mController.onPageInspectorYouTubeEmbedFound();
+        }
+
+        @Override
+        public void onTouchIconLoaded(Bitmap bitmap, String pageUrl) {
+            mController.onPageInspectorTouchIconLoaded(bitmap, pageUrl);
+        }
+
+        @Override
+        public void onDropDownFound() {
+            mDoDropDownCheck = false;
+        }
+
+        @Override
+        public void onDropDownWarningClick() {
+            mController.onPageInspectorDropDownWarningClick();
+        }
+    };
+
+    private boolean mDoDropDownCheck;
+    private Runnable mDropDownCheckRunnable = new Runnable() {
+        @Override
+        public void run() {
+            synchronized (mIsDestroyed) {
+                if (mIsDestroyed == false && mDoDropDownCheck) {
+                    // Check for YouTube as well to fix issues where sometimes embeds are not found.
+                    mPageInspector.run(mWebView, PageInspector.INSPECT_DROP_DOWN | PageInspector.INSPECT_YOUTUBE);
+                }
+            }
+        }
+    };
 
     View.OnKeyListener mOnKeyListener = new View.OnKeyListener() {
         @Override
@@ -238,6 +307,10 @@ public class WebViewRenderer extends WebRenderer {
                 }
             }
 
+            if (viaInput) {
+                mDoDropDownCheck = true;
+            }
+
             return mController.shouldOverrideUrlLoading(urlAsString, viaInput);
         }
 
@@ -253,6 +326,7 @@ public class WebViewRenderer extends WebRenderer {
 
         @Override
         public void onPageStarted(WebView view, String urlAsString, Bitmap favIcon) {
+            mDoDropDownCheck = true;
             mController.onPageStarted(urlAsString, favIcon);
         }
 
@@ -286,6 +360,23 @@ public class WebViewRenderer extends WebRenderer {
         @Override
         public void onProgressChanged(WebView webView, int progress) {
             mController.onProgressChanged(webView, progress);
+
+            // At 60%, the page is more often largely viewable, but waiting for background shite to finish which can
+            // take many, many seconds, even on a strong connection. Thus, do a check for embeds now to prevent the button
+            // not being updated until 100% is reached, which feels too slow as a user.
+            if (progress >= 60) {
+                if (mCheckForEmbedsCount == 0) {
+                    mCheckForEmbedsCount = 1;
+                    mPageInspector.reset();
+
+                    Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
+                    mPageInspector.run(webView, mController.getPageInspectFlags());
+                } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
+                    mCheckForEmbedsCount = 2;
+                    Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
+                    mPageInspector.run(webView, mController.getPageInspectFlags());
+                }
+            }
         }
 
         @Override
