@@ -50,7 +50,7 @@ public class WebViewRenderer extends WebRenderer {
     private AlertDialog mJsAlertDialog;
     private AlertDialog mJsConfirmDialog;
     private AlertDialog mJsPromptDialog;
-
+    private Boolean mIsDestroyed = false;
 
     public WebViewRenderer(Context context, Controller controller, View webRendererPlaceholder) {
         super(context, controller, webRendererPlaceholder);
@@ -75,6 +75,8 @@ public class WebViewRenderer extends WebRenderer {
         mWebView.setWebChromeClient(mWebChromeClient);
         mWebView.setWebViewClient(mWebViewClient);
         mWebView.setDownloadListener(mDownloadListener);
+        mWebView.setOnLongClickListener(mOnWebViewLongClickListener);
+        mWebView.setOnKeyListener(mOnKeyListener);
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -91,6 +93,7 @@ public class WebViewRenderer extends WebRenderer {
 
     @Override
     public void destroy() {
+        mIsDestroyed = true;
         mWebView.destroy();
     }
 
@@ -154,6 +157,47 @@ public class WebViewRenderer extends WebRenderer {
             mJsPromptDialog = null;
         }
     }
+
+    View.OnKeyListener mOnKeyListener = new View.OnKeyListener() {
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
+            if (event.getAction() == KeyEvent.ACTION_DOWN && mIsDestroyed == false) {
+                WebView webView = (WebView) v;
+                switch (keyCode) {
+                    case KeyEvent.KEYCODE_BACK: {
+                        return mController.onBackPressed();
+                    }
+                }
+            }
+
+            return false;
+        }
+    };
+
+    View.OnLongClickListener mOnWebViewLongClickListener = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            WebView.HitTestResult hitTestResult = mWebView.getHitTestResult();
+            //Log.d(TAG, "onLongClick type: " + hitTestResult.getType());
+            switch (hitTestResult.getType()) {
+                case WebView.HitTestResult.SRC_ANCHOR_TYPE:
+                case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: {
+                    final String url = hitTestResult.getExtra();
+                    if (url == null) {
+                        return false;
+                    }
+
+                    mController.onUrlLongClick(url);
+                    return true;
+                }
+
+                case WebView.HitTestResult.UNKNOWN_TYPE:
+                default:
+                    mController.onShowBrowserPrompt();
+                    return false;
+            }
+        }
+    };
 
     private View.OnTouchListener mWebViewOnTouchListener = new View.OnTouchListener() {
         @Override
