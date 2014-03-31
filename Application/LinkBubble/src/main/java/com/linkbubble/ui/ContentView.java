@@ -15,37 +15,21 @@ import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.net.Uri;
-import android.net.http.SslError;
 import android.os.Handler;
-import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.webkit.ConsoleMessage;
-import android.webkit.DownloadListener;
-import android.webkit.GeolocationPermissions;
-import android.webkit.JsPromptResult;
-import android.webkit.JsResult;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
@@ -77,7 +61,7 @@ public class ContentView extends FrameLayout {
 
     private static final String TAG = "UrlLoad";
 
-    private WebRenderer mWebRender;
+    private WebRenderer mWebRenderer;
     private TabView mOwnerTabView;
 
     private CondensedTextView mTitleTextView;
@@ -148,7 +132,7 @@ public class ContentView extends FrameLayout {
     }
 
     public WebRenderer getWebRenderer() {
-        return mWebRender;
+        return mWebRenderer;
     }
 
     static class AppForUrl {
@@ -207,10 +191,10 @@ public class ContentView extends FrameLayout {
     }
 
     public void destroy() {
-        Log.d(TAG, "*** destroy() - url" + (mWebRender.getUrl() != null ? mWebRender.getUrl().toString() : "<null>"));
+        Log.d(TAG, "*** destroy() - url" + (mWebRenderer.getUrl() != null ? mWebRenderer.getUrl().toString() : "<null>"));
         mIsDestroyed = true;
-        removeView(mWebRender.getView());
-        mWebRender.destroy();
+        removeView(mWebRenderer.getView());
+        mWebRenderer.destroy();
         //if (mDelayedAutoContentDisplayLinkLoadedScheduled) {
         //    mDelayedAutoContentDisplayLinkLoadedScheduled = false;
         //    Log.e(TAG, "*** set mDelayedAutoContentDisplayLinkLoadedScheduled=" + mDelayedAutoContentDisplayLinkLoadedScheduled);
@@ -219,7 +203,7 @@ public class ContentView extends FrameLayout {
     }
 
     public void updateIncognitoMode(boolean incognito) {
-        mWebRender.updateIncognitoMode(incognito);
+        mWebRenderer.updateIncognitoMode(incognito);
     }
 
     private void showSelectShareMethod(final String urlAsString, final boolean closeBubbleOnShare) {
@@ -252,8 +236,8 @@ public class ContentView extends FrameLayout {
     @SuppressLint("SetJavaScriptEnabled")
     void configure(String urlAsString, TabView ownerTabView, long urlLoadStartTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
         View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
-        mWebRender = new WebViewRenderer(getContext(), mWebRendererController, webRendererPlaceholder);
-        mWebRender.setUrl(urlAsString);
+        mWebRenderer = new WebViewRenderer(getContext(), mWebRendererController, webRendererPlaceholder);
+        mWebRenderer.setUrl(urlAsString);
 
         mOwnerTabView = ownerTabView;
         mDoDropDownCheck = true;
@@ -305,7 +289,7 @@ public class ContentView extends FrameLayout {
         mEventHandler.onCanGoBackChanged(false);
         mPageFinishedLoading = false;
 
-        WebView webView = mWebRender.getWebView();
+        WebView webView = mWebRenderer.getWebView();
 
         mPageInspector = new PageInspector(getContext(), webView, mOnPageInspectorItemFoundListener);
 
@@ -315,9 +299,9 @@ public class ContentView extends FrameLayout {
         mInitialUrlAsString = urlAsString;
 
         updateUrl(urlAsString);
-        updateAppsForUrl(mWebRender.getUrl());
+        updateAppsForUrl(mWebRenderer.getUrl());
         Log.d(TAG, "load url: " + urlAsString);
-        mWebRender.loadUrl(urlAsString);
+        mWebRenderer.loadUrl(urlAsString);
         mTitleTextView.setText(R.string.loading);
         updateUrlTextView(urlAsString);
     }
@@ -344,13 +328,13 @@ public class ContentView extends FrameLayout {
             if (updatedUrl == null) {
                 Log.d(TAG, "ignore unsupported URI scheme: " + urlAsString);
                 showOpenInBrowserPrompt(R.string.unsupported_scheme_default_browser,
-                        R.string.unsupported_scheme_no_default_browser, mWebRender.getUrl().toString());
+                        R.string.unsupported_scheme_no_default_browser, mWebRenderer.getUrl().toString());
                 return true;        // true because we've handled the link ourselves
             }
 
             Log.d(TAG, "shouldOverrideUrlLoading() - url:" + urlAsString);
             if (viaUserInput) {
-                URL currentUrl = mWebRender.getUrl();
+                URL currentUrl = mWebRenderer.getUrl();
                 mUrlStack.push(currentUrl);
                 mDoDropDownCheck = true;
                 mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
@@ -365,8 +349,8 @@ public class ContentView extends FrameLayout {
             //}
             removeCallbacks(mDelayedAutoContentDisplayLinkLoadedRunnable);
 
-            mWebRender.setUrl(updatedUrl);
-            mWebRender.loadUrl(urlAsString);
+            mWebRenderer.setUrl(updatedUrl);
+            mWebRenderer.loadUrl(urlAsString);
             return true;
         }
 
@@ -398,7 +382,7 @@ public class ContentView extends FrameLayout {
             mPageFinishedLoading = false;
             mDoDropDownCheck = true;
 
-            String oldUrl = mWebRender.getUrl().toString();
+            String oldUrl = mWebRenderer.getUrl().toString();
 
             if (updateUrl(urlAsString) == false) {
                 List<ResolveInfo> apps = Settings.get().getAppsThatHandleUrl(urlAsString, getContext().getPackageManager());
@@ -418,7 +402,7 @@ public class ContentView extends FrameLayout {
             final Context context = getContext();
             PackageManager packageManager = context.getPackageManager();
 
-            URL currentUrl = mWebRender.getUrl();
+            URL currentUrl = mWebRenderer.getUrl();
             updateAppsForUrl(Settings.get().getAppsThatHandleUrl(currentUrl.toString(), packageManager), currentUrl);
             if (Settings.get().redirectUrlToBrowser(urlAsString, packageManager)) {
                 if (openInBrowser(urlAsString)) {
@@ -506,7 +490,7 @@ public class ContentView extends FrameLayout {
             configureOpenInAppButton();
             configureOpenEmbedButton();
             Log.d(TAG, "redirect to url: " + urlAsString);
-            mEventHandler.onPageLoading(mWebRender.getUrl());
+            mEventHandler.onPageLoading(mWebRenderer.getUrl());
             mTitleTextView.setText(R.string.loading);
             updateUrlTextView(urlAsString);
 
@@ -558,7 +542,7 @@ public class ContentView extends FrameLayout {
             // too many ill-effects, because BitmapView attempts to load host/favicon.ico automatically anyway.
             if (mPageFinishedLoading) {
                 if (mEventHandler.onReceivedIcon(bitmap)) {
-                    String faviconUrl = Util.getDefaultFaviconUrl(mWebRender.getUrl());
+                    String faviconUrl = Util.getDefaultFaviconUrl(mWebRenderer.getUrl());
                     MainApplication.sFavicons.putFaviconInMemCache(faviconUrl, bitmap);
                 }
             }
@@ -603,18 +587,18 @@ public class ContentView extends FrameLayout {
                 MainController.get().closeTab(mOwnerTabView, true);
                 return true;
             } else {
-                mWebRender.stopLoading();
-                String urlBefore = mWebRender.getUrl().toString();
+                mWebRenderer.stopLoading();
+                String urlBefore = mWebRenderer.getUrl().toString();
 
                 URL previousUrl = mUrlStack.pop();
                 String previousUrlAsString = previousUrl.toString();
                 mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
                 mHandledAppPickerForCurrentUrl = false;
                 mUsingLinkBubbleAsDefaultForCurrentUrl = false;
-                mWebRender.loadUrl(previousUrlAsString);
+                mWebRenderer.loadUrl(previousUrlAsString);
 
                 updateUrl(previousUrlAsString);
-                Log.d(TAG, "[urlstack] Go back: " + urlBefore + " -> " + mWebRender.getUrl() + ", urlStack.size():" + mUrlStack.size());
+                Log.d(TAG, "[urlstack] Go back: " + urlBefore + " -> " + mWebRenderer.getUrl() + ", urlStack.size():" + mUrlStack.size());
                 updateUrlTextView(previousUrlAsString);
                 String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(previousUrlAsString) : null;
                 if (title == null) {
@@ -622,7 +606,7 @@ public class ContentView extends FrameLayout {
                 }
                 mTitleTextView.setText(title);
 
-                mEventHandler.onPageLoading(mWebRender.getUrl());
+                mEventHandler.onPageLoading(mWebRenderer.getUrl());
 
                 updateAppsForUrl(null, previousUrl);
                 configureOpenInAppButton();
@@ -642,7 +626,7 @@ public class ContentView extends FrameLayout {
         @Override
         public void onShowBrowserPrompt() {
             showOpenInBrowserPrompt(R.string.long_press_unsupported_default_browser,
-                    R.string.long_press_unsupported_no_default_browser, mWebRender.getUrl().toString());
+                    R.string.long_press_unsupported_no_default_browser, mWebRenderer.getUrl().toString());
 
         }
 
@@ -665,13 +649,13 @@ public class ContentView extends FrameLayout {
         mPageFinishedLoading = true;
 
         // Always check again at 100%
-        mPageInspector.run(mWebRender.getWebView(), getPageInspectFlags());
+        mPageInspector.run(mWebRenderer.getWebView(), getPageInspectFlags());
 
         // NOTE: *don't* call updateUrl() here. Turns out, this function is called after a redirect has occurred.
         // Eg, urlAsString "t.co/xyz" even after the next redirect is starting to load
 
         // Check exact equality first for common case to avoid an allocation.
-        URL currentUrl = mWebRender.getUrl();
+        URL currentUrl = mWebRenderer.getUrl();
         boolean equalUrl = currentUrl.toString().equals(urlAsString);
 
         if (!equalUrl) {
@@ -727,7 +711,7 @@ public class ContentView extends FrameLayout {
     OnClickListener mOnShareButtonClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            showSelectShareMethod(mWebRender.getUrl().toString(), true);
+            showSelectShareMethod(mWebRenderer.getUrl().toString(), true);
         }
     };
 
@@ -752,7 +736,7 @@ public class ContentView extends FrameLayout {
         @Override
         public void onClick(View v) {
             mReloadButton.setVisibility(GONE);
-            mWebRender.reload();
+            mWebRenderer.reload();
         }
     };
 
@@ -791,10 +775,10 @@ public class ContentView extends FrameLayout {
 
                         case R.id.item_reload_page: {
                             mPageInspector.reset();
-                            URL currentUrl = mWebRender.getUrl();
+                            URL currentUrl = mWebRenderer.getUrl();
                             mEventHandler.onPageLoading(currentUrl);
-                            mWebRender.stopLoading();
-                            mWebRender.reload();
+                            mWebRenderer.stopLoading();
+                            mWebRenderer.reload();
                             String urlAsString = currentUrl.toString();
                             updateAppsForUrl(currentUrl);
                             configureOpenInAppButton();
@@ -807,12 +791,12 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_open_in_browser: {
-                            openInBrowser(mWebRender.getUrl().toString());
+                            openInBrowser(mWebRenderer.getUrl().toString());
                             break;
                         }
 
                         case R.id.item_copy_link: {
-                            MainApplication.copyLinkToClipboard(getContext(), mWebRender.getUrl().toString(), R.string.bubble_link_copied_to_clipboard);
+                            MainApplication.copyLinkToClipboard(getContext(), mWebRenderer.getUrl().toString(), R.string.bubble_link_copied_to_clipboard);
                             break;
                         }
 
@@ -856,7 +840,7 @@ public class ContentView extends FrameLayout {
             synchronized (mIsDestroyed) {
                 if (mIsDestroyed == false && mDoDropDownCheck) {
                     // Check for YouTube as well to fix issues where sometimes embeds are not found.
-                    mPageInspector.run(mWebRender.getWebView(), PageInspector.INSPECT_DROP_DOWN | PageInspector.INSPECT_YOUTUBE);
+                    mPageInspector.run(mWebRenderer.getWebView(), PageInspector.INSPECT_DROP_DOWN | PageInspector.INSPECT_YOUTUBE);
                 }
             }
         }
@@ -891,7 +875,7 @@ public class ContentView extends FrameLayout {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    URL url = mWebRender.getUrl();
+                    URL url = mWebRenderer.getUrl();
                     if (url != null && url.toString().equals(pageUrl)) {
                         mEventHandler.onReceivedIcon(bitmap);
 
@@ -913,7 +897,7 @@ public class ContentView extends FrameLayout {
                 @Override
                 public void run() {
                     showOpenInBrowserPrompt(R.string.unsupported_drop_down_default_browser,
-                            R.string.unsupported_drop_down_no_default_browser, mWebRender.getUrl().toString());
+                            R.string.unsupported_drop_down_no_default_browser, mWebRenderer.getUrl().toString());
                 }
             });
         }
@@ -1118,7 +1102,7 @@ public class ContentView extends FrameLayout {
                 mTempAppsForUrl.add(appForUrl.mResolveInfo);
             }
             if (mTempAppsForUrl.size() > 0) {
-                ResolveInfo defaultApp = Settings.get().getDefaultAppForUrl(mWebRender.getUrl(), mTempAppsForUrl);
+                ResolveInfo defaultApp = Settings.get().getDefaultAppForUrl(mWebRenderer.getUrl(), mTempAppsForUrl);
                 if (defaultApp != null) {
                     for (AppForUrl appForUrl : mAppsForUrl) {
                         if (appForUrl.mResolveInfo == defaultApp) {
@@ -1158,7 +1142,7 @@ public class ContentView extends FrameLayout {
 
     public void saveLoadTime() {
         if (mInitialUrlLoadStartTime > -1) {
-            Settings.get().trackLinkLoadTime(System.currentTimeMillis() - mInitialUrlLoadStartTime, Settings.LinkLoadType.PageLoad, mWebRender.getUrl().toString());
+            Settings.get().trackLinkLoadTime(System.currentTimeMillis() - mInitialUrlLoadStartTime, Settings.LinkLoadType.PageLoad, mWebRenderer.getUrl().toString());
             mInitialUrlLoadStartTime = -1;
         }
     }
@@ -1168,10 +1152,10 @@ public class ContentView extends FrameLayout {
     }
 
     private boolean updateUrl(String urlAsString) {
-        if (urlAsString.equals(mWebRender.getUrl().toString()) == false) {
+        if (urlAsString.equals(mWebRenderer.getUrl().toString()) == false) {
             try {
-                Log.d(TAG, "change url from " + mWebRender.getUrl() + " to " + urlAsString);
-                mWebRender.setUrl(urlAsString);
+                Log.d(TAG, "change url from " + mWebRenderer.getUrl() + " to " + urlAsString);
+                mWebRenderer.setUrl(urlAsString);
             } catch (MalformedURLException e) {
                 return false;
             }
@@ -1181,7 +1165,7 @@ public class ContentView extends FrameLayout {
     }
 
     private URL getUpdatedUrl(String urlAsString) {
-        URL currentUrl = mWebRender.getUrl();
+        URL currentUrl = mWebRenderer.getUrl();
         if (urlAsString.equals(currentUrl.toString()) == false) {
             try {
                 Log.d(TAG, "getUpdatedUrl(): change url from " + currentUrl + " to " + urlAsString);
@@ -1194,7 +1178,7 @@ public class ContentView extends FrameLayout {
     }
 
     URL getUrl() {
-        return mWebRender.getUrl();
+        return mWebRenderer.getUrl();
     }
 
     private void hidePopups() {
@@ -1206,7 +1190,7 @@ public class ContentView extends FrameLayout {
             mLongPressAlertDialog.dismiss();
             mLongPressAlertDialog = null;
         }
-        mWebRender.hidePopups();
+        mWebRenderer.hidePopups();
     }
 
     private void resetButtonPressedStates() {
