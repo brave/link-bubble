@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.net.http.SslError;
 import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -17,9 +18,11 @@ import android.webkit.DownloadListener;
 import android.webkit.GeolocationPermissions;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.linkbubble.Constant;
@@ -38,13 +41,19 @@ import java.net.URL;
 public class WebViewRenderer extends WebRenderer {
 
     private WebView mWebView;
+    private Controller mController;
 
-    public WebViewRenderer(Context context, View webRendererPlaceholder) {
-        super(context, webRendererPlaceholder);
+    public WebViewRenderer(Context context, Controller controller, View webRendererPlaceholder) {
+        super(context, controller, webRendererPlaceholder);
+
+        mController = controller;
 
         mWebView = new WebView(context);
         mWebView.setLayoutParams(webRendererPlaceholder.getLayoutParams());
         Util.replaceViewAtPosition(webRendererPlaceholder, mWebView);
+
+        mWebView.setLongClickable(true);
+        mWebView.setWebViewClient(mWebViewClient);
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -108,4 +117,31 @@ public class WebViewRenderer extends WebRenderer {
     public void stopLoading() {
         mWebView.stopLoading();
     }
+
+    WebViewClient mWebViewClient = new WebViewClient() {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView wView, final String urlAsString) {
+            return mController.shouldOverrideUrlLoading(urlAsString);
+        }
+
+        @Override
+        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            mController.onReceivedError();
+        }
+
+        @Override
+        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+            handler.proceed();
+        }
+
+        @Override
+        public void onPageStarted(WebView view, String urlAsString, Bitmap favIcon) {
+            mController.onPageStarted(urlAsString, favIcon);
+        }
+
+        @Override
+        public void onPageFinished(WebView webView, String urlAsString) {
+            mController.onPageFinished(urlAsString);
+        }
+    };
 }

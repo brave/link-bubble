@@ -2,12 +2,20 @@ package com.linkbubble.webrender;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.View;
 import android.webkit.WebView;
 
 public abstract class WebRenderer {
 
-    public WebRenderer(Context context, View webRendererPlaceholder) {
+    public interface Controller {
+        public boolean shouldOverrideUrlLoading(String urlAsString);
+        public void onReceivedError();
+        public void onPageStarted(String urlAsString, Bitmap favIcon);
+        public void onPageFinished(String urlAsString);
+    }
+
+    public WebRenderer(Context context, Controller controller, View webRendererPlaceholder) {
         super();
     }
 
