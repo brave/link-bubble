@@ -107,9 +107,6 @@ public class ContentView extends FrameLayout {
     private int mCheckForEmbedsCount;
     private PopupMenu mOverflowPopupMenu;
     private AlertDialog mLongPressAlertDialog;
-    private AlertDialog mJsAlertDialog;
-    private AlertDialog mJsConfirmDialog;
-    private AlertDialog mJsPromptDialog;
     private long mInitialUrlLoadStartTime;
     private String mInitialUrlAsString;
     private int mHeaderHeight;
@@ -316,7 +313,6 @@ public class ContentView extends FrameLayout {
 
         WebView webView = mWebRender.getWebView();
         webView.setOnLongClickListener(mOnWebViewLongClickListener);
-        webView.setWebChromeClient(mWebChromeClient);
         webView.setOnKeyListener(mOnKeyListener);
 
         mPageInspector = new PageInspector(getContext(), webView, mOnPageInspectorItemFoundListener);
@@ -584,6 +580,72 @@ public class ContentView extends FrameLayout {
             openInBrowser(urlAsString);
             MainController.get().closeTab(mOwnerTabView, true);
         }
+
+        @Override
+        public void onReceivedTitle(String url, String title) {
+            mTitleTextView.setText(title);
+            if (MainApplication.sTitleHashMap != null && url != null) {
+                MainApplication.sTitleHashMap.put(url, title);
+            }
+        }
+
+        @Override
+        public void onReceivedIcon(Bitmap bitmap) {
+
+            // Only pass this along if the page has finished loading (https://github.com/chrislacy/LinkBubble/issues/155).
+            // This is to prevent passing a stale icon along when a redirect has already occurred. This shouldn't cause
+            // too many ill-effects, because BitmapView attempts to load host/favicon.ico automatically anyway.
+            if (mPageFinishedLoading) {
+                if (mEventHandler.onReceivedIcon(bitmap)) {
+                    String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
+                    MainApplication.sFavicons.putFaviconInMemCache(faviconUrl, bitmap);
+                }
+            }
+        }
+
+        @Override
+        public void onProgressChanged(WebView webView, int progress) {
+            //Log.d(TAG, "onProgressChanged() - progress:" + progress);
+
+            mCurrentProgress = progress;
+
+            // Note: annoyingly, onProgressChanged() can be called with values from a previous url.
+            // Eg, "http://t.co/fR9bzpvyLW" redirects to "http://on.recode.net/1eOqNVq" which redirects to
+            // "http://recode.net/2014/01/20/...", and after the "on.recode.net" redirect, progress is 100 for a moment.
+            mEventHandler.onProgressChanged(progress);
+
+            // At 60%, the page is more often largely viewable, but waiting for background shite to finish which can
+            // take many, many seconds, even on a strong connection. Thus, do a check for embeds now to prevent the button
+            // not being updated until 100% is reached, which feels too slow as a user.
+            if (progress >= 60) {
+                if (mCheckForEmbedsCount == 0) {
+                    mCheckForEmbedsCount = 1;
+                    mPageInspector.reset();
+
+                    Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
+                    mPageInspector.run(webView, getPageInspectFlags());
+                } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
+                    mCheckForEmbedsCount = 2;
+                    Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
+                    mPageInspector.run(webView, getPageInspectFlags());
+                }
+
+                if (progress == 100 && mPageFinishedIgnoredUrl != null && mPageFinishedIgnoredUrl.equals(webView.getUrl())) {
+                    onPageLoadComplete(webView.getUrl());
+                }
+            }
+        }
+
+        @Override
+        public void onCloseWindow() {
+            MainController.get().closeTab(mOwnerTabView, true);
+        }
+
+        @Override
+        public void onGeolocationPermissionsShowPrompt(String origin, WebRenderer.GetGeolocationCallback callback) {
+            showAllowLocationDialog(origin, callback);
+        }
+
     };
 
     private String mPageFinishedIgnoredUrl;
@@ -696,178 +758,6 @@ public class ContentView extends FrameLayout {
             }
 
             return false;
-        }
-    };
-
-    WebChromeClient mWebChromeClient = new WebChromeClient() {
-        @Override
-        public void onReceivedTitle(WebView webView, String title) {
-            super.onReceivedTitle(webView, title);
-            mTitleTextView.setText(title);
-            String url = webView.getUrl();
-            if (MainApplication.sTitleHashMap != null && url != null) {
-                MainApplication.sTitleHashMap.put(url, title);
-            }
-        }
-
-        @Override
-        public void onReceivedIcon(WebView webView, Bitmap bitmap) {
-            super.onReceivedIcon(webView, bitmap);
-
-            // Only pass this along if the page has finished loading (https://github.com/chrislacy/LinkBubble/issues/155).
-            // This is to prevent passing a stale icon along when a redirect has already occurred. This shouldn't cause
-            // too many ill-effects, because BitmapView attempts to load host/favicon.ico automatically anyway.
-            if (mPageFinishedLoading) {
-                if (mEventHandler.onReceivedIcon(bitmap)) {
-                    String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
-                    MainApplication.sFavicons.putFaviconInMemCache(faviconUrl, bitmap);
-                }
-            }
-        }
-
-        @Override
-        public void onProgressChanged(WebView webView, int progress) {
-            //Log.d(TAG, "onProgressChanged() - progress:" + progress);
-
-            mCurrentProgress = progress;
-
-            // Note: annoyingly, onProgressChanged() can be called with values from a previous url.
-            // Eg, "http://t.co/fR9bzpvyLW" redirects to "http://on.recode.net/1eOqNVq" which redirects to
-            // "http://recode.net/2014/01/20/...", and after the "on.recode.net" redirect, progress is 100 for a moment.
-            mEventHandler.onProgressChanged(progress);
-
-            // At 60%, the page is more often largely viewable, but waiting for background shite to finish which can
-            // take many, many seconds, even on a strong connection. Thus, do a check for embeds now to prevent the button
-            // not being updated until 100% is reached, which feels too slow as a user.
-            if (progress >= 60) {
-                if (mCheckForEmbedsCount == 0) {
-                    mCheckForEmbedsCount = 1;
-                    mPageInspector.reset();
-
-                    Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                    mPageInspector.run(webView, getPageInspectFlags());
-                } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
-                    mCheckForEmbedsCount = 2;
-                    Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                    mPageInspector.run(webView, getPageInspectFlags());
-                }
-
-                if (progress == 100 && mPageFinishedIgnoredUrl != null && mPageFinishedIgnoredUrl.equals(webView.getUrl())) {
-                    onPageLoadComplete(webView.getUrl());
-                }
-            }
-        }
-
-        @Override
-        public void onCloseWindow(WebView window) {
-            MainController.get().closeTab(mOwnerTabView, true);
-        }
-
-        @Override
-        public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
-            mJsAlertDialog = new AlertDialog.Builder(getContext()).create();
-            mJsAlertDialog.setMessage(message);
-            mJsAlertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-            mJsAlertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getResources().getString(R.string.action_ok),
-                    new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-
-                    });
-            mJsAlertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    mJsAlertDialog = null;
-                }
-            });
-            mJsAlertDialog.show();
-            return true;
-        }
-
-        @Override
-        public boolean onJsConfirm(WebView view, String url, String message, final JsResult result) {
-            mJsConfirmDialog = new AlertDialog.Builder(getContext()).create();
-            mJsConfirmDialog.setTitle(R.string.confirm_title);
-            mJsConfirmDialog.setMessage(message);
-            mJsConfirmDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-            mJsConfirmDialog.setButton(AlertDialog.BUTTON_POSITIVE, getResources().getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    result.confirm();
-                }
-            });
-            mJsConfirmDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getResources().getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    result.cancel();
-                }
-            });
-            mJsConfirmDialog.show();
-            return true;
-        }
-
-        @Override
-        public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, final JsPromptResult result) {
-            final View v = LayoutInflater.from(getContext()).inflate(R.layout.view_javascript_prompt, null);
-
-            ((TextView)v.findViewById(R.id.prompt_message_text)).setText(message);
-            ((EditText)v.findViewById(R.id.prompt_input_field)).setText(defaultValue);
-
-            mJsPromptDialog = new AlertDialog.Builder(getContext()).create();
-            mJsPromptDialog.setView(v);
-            mJsPromptDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-            mJsPromptDialog.setButton(AlertDialog.BUTTON_POSITIVE, getResources().getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    String value = ((EditText)v.findViewById(R.id.prompt_input_field)).getText().toString();
-                    result.confirm(value);
-                }
-            });
-            mJsPromptDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getResources().getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    result.cancel();
-                }
-            });
-            mJsPromptDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                public void onCancel(DialogInterface dialog) {
-                    result.cancel();
-                }
-            });
-            mJsPromptDialog.show();
-
-            return true;
-        }
-
-        @Override
-        public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
-            // Call the old version of this function for backwards compatability.
-            //onConsoleMessage(consoleMessage.message(), consoleMessage.lineNumber(),
-            //        consoleMessage.sourceId());
-            Log.d("Console", consoleMessage.message());
-            return false;
-        }
-
-        @Override
-        public boolean onCreateWindow(WebView view, boolean dialog, boolean userGesture, Message resultMsg)
-        {
-            TabView tabView = MainController.get().openUrl(Constant.NEW_TAB_URL, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_WINDOW);
-            if (tabView != null) {
-                WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
-                transport.setWebView(tabView.getContentView().getWebRenderer().getWebView());
-                resultMsg.sendToTarget();
-                return true;
-            }
-
-            return false;
-        }
-
-        @Override
-        public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
-            showAllowLocationDialog(origin, callback);
         }
     };
 
@@ -1375,14 +1265,7 @@ public class ContentView extends FrameLayout {
             mLongPressAlertDialog.dismiss();
             mLongPressAlertDialog = null;
         }
-        if (mJsAlertDialog != null) {
-            mJsAlertDialog.dismiss();
-            mJsAlertDialog = null;
-        }
-        if (mJsConfirmDialog != null) {
-            mJsConfirmDialog.dismiss();
-            mJsConfirmDialog = null;
-        }
+        mWebRender.hidePopups();
     }
 
     private void resetButtonPressedStates() {
@@ -1461,7 +1344,7 @@ public class ContentView extends FrameLayout {
         }
     }
 
-    void showAllowLocationDialog(final String origin, final GeolocationPermissions.Callback callback) {
+    void showAllowLocationDialog(final String origin, final WebRenderer.GetGeolocationCallback callback) {
 
         LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
         if (locationManager == null
@@ -1478,7 +1361,7 @@ public class ContentView extends FrameLayout {
         mRequestLocationYesButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.invoke(origin, true, false);
+                callback.onAllow();
                 hideAllowLocationDialog();
             }
         });
