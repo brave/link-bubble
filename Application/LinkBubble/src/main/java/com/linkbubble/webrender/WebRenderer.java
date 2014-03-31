@@ -13,6 +13,7 @@ public abstract class WebRenderer {
         public void onReceivedError();
         public void onPageStarted(String urlAsString, Bitmap favIcon);
         public void onPageFinished(String urlAsString);
+        public void onDownloadStart(String urlAsString);
     }
 
     public WebRenderer(Context context, Controller controller, View webRendererPlaceholder) {
