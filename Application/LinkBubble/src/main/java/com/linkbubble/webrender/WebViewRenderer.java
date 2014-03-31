@@ -41,7 +41,7 @@ import com.linkbubble.util.YouTubeEmbedHelper;
 
 import java.net.URL;
 
-public class WebViewRenderer extends WebRenderer {
+class WebViewRenderer extends WebRenderer {
 
     private String TAG;
     private Handler mHandler;
