@@ -22,7 +22,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -247,7 +246,6 @@ public class ContentView extends FrameLayout {
             mAppPickersUrls.add(urlAsString);
         }
 
-        //mWebView = (WebView) findViewById(R.id.webView);
         mToolbarLayout = (LinearLayout) findViewById(R.id.content_toolbar);
         mTitleTextView = (CondensedTextView) findViewById(R.id.title_text);
         mUrlTextView = (CondensedTextView) findViewById(R.id.url_text);
@@ -286,10 +284,6 @@ public class ContentView extends FrameLayout {
         mEventHandler = eventHandler;
         mEventHandler.onCanGoBackChanged(false);
         mPageFinishedLoading = false;
-
-        WebView webView = mWebRenderer.getWebView();
-
-
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
@@ -545,7 +539,7 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
-        public void onProgressChanged(WebView webView, int progress) {
+        public void onProgressChanged(int progress, String urlAsString) {
             //Log.d(TAG, "onProgressChanged() - progress:" + progress);
 
             mCurrentProgress = progress;
@@ -555,8 +549,8 @@ public class ContentView extends FrameLayout {
             // "http://recode.net/2014/01/20/...", and after the "on.recode.net" redirect, progress is 100 for a moment.
             mEventHandler.onProgressChanged(progress);
 
-            if (progress == 100 && mPageFinishedIgnoredUrl != null && mPageFinishedIgnoredUrl.equals(webView.getUrl())) {
-                onPageLoadComplete(webView.getUrl());
+            if (progress == 100 && mPageFinishedIgnoredUrl != null && mPageFinishedIgnoredUrl.equals(urlAsString)) {
+                onPageLoadComplete(urlAsString);
             }
         }
 

@@ -114,11 +114,6 @@ public class WebViewRenderer extends WebRenderer {
     }
 
     @Override
-    public WebView getWebView() {
-        return mWebView;
-    }
-
-    @Override
     public void updateIncognitoMode(boolean incognito) {
         if (incognito) {
             mWebView.getSettings().setCacheMode(mWebView.getSettings().LOAD_NO_CACHE);
@@ -359,7 +354,7 @@ public class WebViewRenderer extends WebRenderer {
 
         @Override
         public void onProgressChanged(WebView webView, int progress) {
-            mController.onProgressChanged(webView, progress);
+            mController.onProgressChanged(progress, webView.getUrl());
 
             // At 60%, the page is more often largely viewable, but waiting for background shite to finish which can
             // take many, many seconds, even on a strong connection. Thus, do a check for embeds now to prevent the button
