@@ -42,7 +42,6 @@ import com.linkbubble.util.Analytics;
 import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.webrender.WebRenderer;
-import com.linkbubble.webrender.WebViewRenderer;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -234,7 +233,7 @@ public class ContentView extends FrameLayout {
     @SuppressLint("SetJavaScriptEnabled")
     void configure(String urlAsString, TabView ownerTabView, long urlLoadStartTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
         View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
-        mWebRenderer = new WebViewRenderer(getContext(), mWebRendererController, webRendererPlaceholder, TAG);
+        mWebRenderer = WebRenderer.create(WebRenderer.Type.WebView, getContext(), mWebRendererController, webRendererPlaceholder, TAG);
         mWebRenderer.setUrl(urlAsString);
 
         mOwnerTabView = ownerTabView;

@@ -36,9 +36,26 @@ public abstract class WebRenderer {
         public void onPageInspectorDropDownWarningClick();
     }
 
+    public enum Type {
+        Stub,
+        WebView,
+    };
+
+    public static WebRenderer create(Type type, Context context, Controller controller, View webRendererPlaceholder, String TAG) {
+        switch (type) {
+            case Stub:
+                return new StubRenderer(context, controller, webRendererPlaceholder, TAG);
+
+            case WebView:
+                return new WebViewRenderer(context, controller, webRendererPlaceholder, TAG);
+        }
+
+        throw new IllegalArgumentException("Invalid type");
+    }
+
     protected URL mUrl;
 
-    public WebRenderer(Context context, Controller controller, View webRendererPlaceholder) {
+    WebRenderer(Context context, Controller controller, View webRendererPlaceholder) {
         super();
     }
 
