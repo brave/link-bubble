@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.view.View;
 import android.webkit.GeolocationPermissions;
 import android.webkit.WebView;
+import com.linkbubble.R;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -25,6 +26,9 @@ public abstract class WebRenderer {
         public void onReceivedTitle(String url, String title);
         public void onReceivedIcon(Bitmap bitmap);
         public void onProgressChanged(WebView webView, int progress);
+        public boolean onBackPressed();
+        public void onUrlLongClick(String url);
+        public void onShowBrowserPrompt();
         public void onCloseWindow();
         public void onGeolocationPermissionsShowPrompt(String origin, GetGeolocationCallback callback);
     }
