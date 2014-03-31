@@ -54,6 +54,7 @@ public class WebViewRenderer extends WebRenderer {
 
         mWebView.setLongClickable(true);
         mWebView.setWebViewClient(mWebViewClient);
+        mWebView.setDownloadListener(mDownloadListener);
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -142,6 +143,15 @@ public class WebViewRenderer extends WebRenderer {
         @Override
         public void onPageFinished(WebView webView, String urlAsString) {
             mController.onPageFinished(urlAsString);
+        }
+    };
+
+    DownloadListener mDownloadListener = new DownloadListener() {
+        @Override
+        public void onDownloadStart(String urlAsString, String userAgent,
+                                    String contentDisposition, String mimetype,
+                                    long contentLength) {
+            mController.onDownloadStart(urlAsString);
         }
     };
 }

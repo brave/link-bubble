@@ -318,7 +318,6 @@ public class ContentView extends FrameLayout {
         webView.setOnLongClickListener(mOnWebViewLongClickListener);
         webView.setWebChromeClient(mWebChromeClient);
         webView.setOnKeyListener(mOnKeyListener);
-        webView.setDownloadListener(mDownloadListener);
 
         mPageInspector = new PageInspector(getContext(), webView, mOnPageInspectorItemFoundListener);
 
@@ -578,6 +577,12 @@ public class ContentView extends FrameLayout {
             }
 
             onPageLoadComplete(urlAsString);
+        }
+
+        @Override
+        public void onDownloadStart(String urlAsString) {
+            openInBrowser(urlAsString);
+            MainController.get().closeTab(mOwnerTabView, true);
         }
     };
 
@@ -888,16 +893,6 @@ public class ContentView extends FrameLayout {
                     showOpenInBrowserPrompt(R.string.long_press_unsupported_default_browser,                            R.string.long_press_unsupported_no_default_browser, mUrl.toString());
                     return false;
             }
-        }
-    };
-
-    DownloadListener mDownloadListener = new DownloadListener() {
-        @Override
-        public void onDownloadStart(String urlAsString, String userAgent,
-                String contentDisposition, String mimetype,
-        long contentLength) {
-            openInBrowser(urlAsString);
-            MainController.get().closeTab(mOwnerTabView, true);
         }
     };
 
