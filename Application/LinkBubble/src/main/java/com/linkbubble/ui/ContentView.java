@@ -268,7 +268,7 @@ public class ContentView extends FrameLayout {
         }
 
         View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
-        mWebRender = new WebViewRenderer(getContext(), webRendererPlaceholder);
+        mWebRender = new WebViewRenderer(getContext(), mWebRendererController, webRendererPlaceholder);
 
 
         //mWebView = (WebView) findViewById(R.id.webView);
@@ -315,11 +315,9 @@ public class ContentView extends FrameLayout {
         mPageFinishedLoading = false;
 
         WebView webView = mWebRender.getWebView();
-        webView.setLongClickable(true);
         webView.setOnLongClickListener(mOnWebViewLongClickListener);
         webView.setWebChromeClient(mWebChromeClient);
         webView.setOnKeyListener(mOnKeyListener);
-        webView.setWebViewClient(mWebViewClient);
         webView.setDownloadListener(mDownloadListener);
 
         mPageInspector = new PageInspector(getContext(), webView, mOnPageInspectorItemFoundListener);
@@ -358,10 +356,10 @@ public class ContentView extends FrameLayout {
         }
     };
 
-    WebViewClient mWebViewClient = new WebViewClient() {
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView wView, final String urlAsString) {
+    WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {
 
+        @Override
+        public boolean shouldOverrideUrlLoading(String urlAsString) {
             if (mIsDestroyed) {
                 return true;
             }
@@ -374,7 +372,7 @@ public class ContentView extends FrameLayout {
                 return true;
             }
 
-                URL updatedUrl = getUpdatedUrl(urlAsString);
+            URL updatedUrl = getUpdatedUrl(urlAsString);
             if (updatedUrl == null) {
                 Log.d(TAG, "ignore unsupported URI scheme: " + urlAsString);
                 showOpenInBrowserPrompt(R.string.unsupported_scheme_default_browser,
@@ -418,7 +416,7 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
-        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+        public void onReceivedError() {
             Log.d(TAG, "onReceivedError()");
             mEventHandler.onPageLoaded(true);
             mReloadButton.setVisibility(VISIBLE);
@@ -426,12 +424,7 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
-        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-            handler.proceed();
-        }
-
-        @Override
-        public void onPageStarted(WebView view, final String urlAsString, Bitmap favIcon) {
+        public void onPageStarted(final String urlAsString, Bitmap favIcon) {
             Log.d(TAG, "onPageStarted() - " + urlAsString);
 
             // Ensure that items opened in new tabs are redirected to a browser when not licensed, re #371, re #360
@@ -497,7 +490,7 @@ public class ContentView extends FrameLayout {
                 } else {
                     boolean isOnlyLinkBubble = mAppsForUrl.size() == 1 ? Util.isLinkBubbleResolveInfo(mAppsForUrl.get(0).mResolveInfo) : false;
                     if (isOnlyLinkBubble == false && MainApplication.sShowingAppPickerDialog == false &&
-                        mHandledAppPickerForCurrentUrl == false && mAppPickersUrls.contains(urlAsString) == false) {
+                            mHandledAppPickerForCurrentUrl == false && mAppPickersUrls.contains(urlAsString) == false) {
                         final ArrayList<ResolveInfo> resolveInfos = new ArrayList<ResolveInfo>();
                         for (AppForUrl appForUrl : mAppsForUrl) {
                             resolveInfos.add(appForUrl.mResolveInfo);
@@ -571,8 +564,7 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
-        public void onPageFinished(WebView webView, String urlAsString) {
-            super.onPageFinished(webView, urlAsString);
+        public void onPageFinished(String urlAsString) {
 
             if (mIsDestroyed) {
                 return;
