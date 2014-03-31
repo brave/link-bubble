@@ -4,9 +4,14 @@ package com.linkbubble.webrender;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.View;
+import android.webkit.GeolocationPermissions;
 import android.webkit.WebView;
 
 public abstract class WebRenderer {
+
+    public interface GetGeolocationCallback {
+        public void onAllow();
+    }
 
     public interface Controller {
         public boolean shouldOverrideUrlLoading(String urlAsString);
@@ -14,6 +19,11 @@ public abstract class WebRenderer {
         public void onPageStarted(String urlAsString, Bitmap favIcon);
         public void onPageFinished(String urlAsString);
         public void onDownloadStart(String urlAsString);
+        public void onReceivedTitle(String url, String title);
+        public void onReceivedIcon(Bitmap bitmap);
+        public void onProgressChanged(WebView webView, int progress);
+        public void onCloseWindow();
+        public void onGeolocationPermissionsShowPrompt(String origin, GetGeolocationCallback callback);
     }
 
     public WebRenderer(Context context, Controller controller, View webRendererPlaceholder) {
@@ -33,4 +43,6 @@ public abstract class WebRenderer {
     public abstract void reload();
 
     public abstract void stopLoading();
+
+    public abstract void hidePopups();
 }

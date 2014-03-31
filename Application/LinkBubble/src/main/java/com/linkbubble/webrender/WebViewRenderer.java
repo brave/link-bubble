@@ -40,12 +40,18 @@ import java.net.URL;
 
 public class WebViewRenderer extends WebRenderer {
 
+    private Context mContext;
     private WebView mWebView;
     private Controller mController;
+    private AlertDialog mJsAlertDialog;
+    private AlertDialog mJsConfirmDialog;
+    private AlertDialog mJsPromptDialog;
+
 
     public WebViewRenderer(Context context, Controller controller, View webRendererPlaceholder) {
         super(context, controller, webRendererPlaceholder);
 
+        mContext = context;
         mController = controller;
 
         mWebView = new WebView(context);
@@ -53,6 +59,7 @@ public class WebViewRenderer extends WebRenderer {
         Util.replaceViewAtPosition(webRendererPlaceholder, mWebView);
 
         mWebView.setLongClickable(true);
+        mWebView.setWebChromeClient(mWebChromeClient);
         mWebView.setWebViewClient(mWebViewClient);
         mWebView.setDownloadListener(mDownloadListener);
 
@@ -119,6 +126,22 @@ public class WebViewRenderer extends WebRenderer {
         mWebView.stopLoading();
     }
 
+    @Override
+    public void hidePopups() {
+        if (mJsAlertDialog != null) {
+            mJsAlertDialog.dismiss();
+            mJsAlertDialog = null;
+        }
+        if (mJsConfirmDialog != null) {
+            mJsConfirmDialog.dismiss();
+            mJsConfirmDialog = null;
+        }
+        if (mJsPromptDialog != null) {
+            mJsPromptDialog.dismiss();
+            mJsPromptDialog = null;
+        }
+    }
+
     WebViewClient mWebViewClient = new WebViewClient() {
         @Override
         public boolean shouldOverrideUrlLoading(WebView wView, final String urlAsString) {
@@ -152,6 +175,127 @@ public class WebViewRenderer extends WebRenderer {
                                     String contentDisposition, String mimetype,
                                     long contentLength) {
             mController.onDownloadStart(urlAsString);
+        }
+    };
+
+
+    WebChromeClient mWebChromeClient = new WebChromeClient() {
+        @Override
+        public void onReceivedTitle(WebView webView, String title) {
+            mController.onReceivedTitle(webView.getUrl(), title);
+        }
+
+        @Override
+        public void onReceivedIcon(WebView webView, Bitmap bitmap) {
+            mController.onReceivedIcon(bitmap);
+        }
+
+        @Override
+        public void onProgressChanged(WebView webView, int progress) {
+            mController.onProgressChanged(webView, progress);
+        }
+
+        @Override
+        public void onCloseWindow(WebView window) {
+            mController.onCloseWindow();
+        }
+
+        @Override
+        public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+            mJsAlertDialog = new AlertDialog.Builder(mContext).create();
+            mJsAlertDialog.setMessage(message);
+            mJsAlertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            mJsAlertDialog.setButton(AlertDialog.BUTTON_POSITIVE, mContext.getResources().getString(R.string.action_ok),
+                    new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+
+                    });
+            mJsAlertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    mJsAlertDialog = null;
+                }
+            });
+            mJsAlertDialog.show();
+            return true;
+        }
+
+        @Override
+        public boolean onJsConfirm(WebView view, String url, String message, final JsResult result) {
+            mJsConfirmDialog = new AlertDialog.Builder(mContext).create();
+            mJsConfirmDialog.setTitle(R.string.confirm_title);
+            mJsConfirmDialog.setMessage(message);
+            mJsConfirmDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            mJsConfirmDialog.setButton(AlertDialog.BUTTON_POSITIVE, mContext.getResources().getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    result.confirm();
+                }
+            });
+            mJsConfirmDialog.setButton(AlertDialog.BUTTON_NEGATIVE, mContext.getResources().getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    result.cancel();
+                }
+            });
+            mJsConfirmDialog.show();
+            return true;
+        }
+
+        @Override
+        public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, final JsPromptResult result) {
+            final View v = LayoutInflater.from(mContext).inflate(R.layout.view_javascript_prompt, null);
+
+            ((TextView)v.findViewById(R.id.prompt_message_text)).setText(message);
+            ((EditText)v.findViewById(R.id.prompt_input_field)).setText(defaultValue);
+
+            mJsPromptDialog = new AlertDialog.Builder(mContext).create();
+            mJsPromptDialog.setView(v);
+            mJsPromptDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            mJsPromptDialog.setButton(AlertDialog.BUTTON_POSITIVE, mContext.getResources().getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String value = ((EditText)v.findViewById(R.id.prompt_input_field)).getText().toString();
+                    result.confirm(value);
+                }
+            });
+            mJsPromptDialog.setButton(AlertDialog.BUTTON_NEGATIVE, mContext.getResources().getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    result.cancel();
+                }
+            });
+            mJsPromptDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                public void onCancel(DialogInterface dialog) {
+                    result.cancel();
+                }
+            });
+            mJsPromptDialog.show();
+
+            return true;
+        }
+
+        @Override
+        public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+            // Call the old version of this function for backwards compatability.
+            //onConsoleMessage(consoleMessage.message(), consoleMessage.lineNumber(),
+            //        consoleMessage.sourceId());
+            Log.d("Console", consoleMessage.message());
+            return false;
+        }
+
+        @Override
+        public void onGeolocationPermissionsShowPrompt(final String origin, final GeolocationPermissions.Callback callback) {
+            mController.onGeolocationPermissionsShowPrompt(origin, new GetGeolocationCallback() {
+                @Override
+                public void onAllow() {
+                    callback.invoke(origin, true, false);
+                }
+            });
         }
     };
 }
