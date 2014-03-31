@@ -10,6 +10,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -42,6 +43,9 @@ public class WebViewRenderer extends WebRenderer {
 
     private Context mContext;
     private WebView mWebView;
+    private View mTouchInterceptorView;
+    private long mLastWebViewTouchUpTime = -1;
+    private String mLastWebViewTouchDownUrl;
     private Controller mController;
     private AlertDialog mJsAlertDialog;
     private AlertDialog mJsConfirmDialog;
@@ -57,6 +61,15 @@ public class WebViewRenderer extends WebRenderer {
         mWebView = new WebView(context);
         mWebView.setLayoutParams(webRendererPlaceholder.getLayoutParams());
         Util.replaceViewAtPosition(webRendererPlaceholder, mWebView);
+
+        mTouchInterceptorView = new View(context);
+        mTouchInterceptorView.setLayoutParams(webRendererPlaceholder.getLayoutParams());
+        mTouchInterceptorView.setWillNotDraw(true);
+        mTouchInterceptorView.setOnTouchListener(mWebViewOnTouchListener);
+
+        ViewGroup parent = (ViewGroup)mWebView.getParent();
+        int index = parent.indexOfChild(mWebView);
+        parent.addView(mTouchInterceptorView, index+1);
 
         mWebView.setLongClickable(true);
         mWebView.setWebChromeClient(mWebChromeClient);
@@ -142,10 +155,46 @@ public class WebViewRenderer extends WebRenderer {
         }
     }
 
+    private View.OnTouchListener mWebViewOnTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            final int action = event.getAction() & MotionEvent.ACTION_MASK;
+            switch (action) {
+                case MotionEvent.ACTION_DOWN:
+                    mLastWebViewTouchDownUrl = mUrl.toString();
+                    //Log.d(TAG, "[urlstack] WebView - MotionEvent.ACTION_DOWN");
+                    break;
+
+                case MotionEvent.ACTION_UP:
+                    mLastWebViewTouchUpTime = System.currentTimeMillis();
+                    //Log.d(TAG, "[urlstack] WebView - MotionEvent.ACTION_UP");
+                    break;
+            }
+            // Forcibly pass along to the WebView. This ensures we receive the ACTION_UP event above.
+            mWebView.onTouchEvent(event);
+            return true;
+        }
+    };
+
     WebViewClient mWebViewClient = new WebViewClient() {
         @Override
         public boolean shouldOverrideUrlLoading(WebView wView, final String urlAsString) {
-            return mController.shouldOverrideUrlLoading(urlAsString);
+            boolean viaInput = false;
+            if (mLastWebViewTouchUpTime > -1) {
+                long touchUpTimeDelta = System.currentTimeMillis() - mLastWebViewTouchUpTime;
+                // this value needs to be largish
+                if (touchUpTimeDelta < 1500) {
+                    // If the url has changed since the use pressed their finger down, a redirect has likely occurred,
+                    // in which case we don't update the Url Stack
+                    if (mLastWebViewTouchDownUrl.equals(mUrl.toString())) {
+                        viaInput = true;
+                    }
+                    mLastWebViewTouchUpTime = -1;
+
+                }
+            }
+
+            return mController.shouldOverrideUrlLoading(urlAsString, viaInput);
         }
 
         @Override
