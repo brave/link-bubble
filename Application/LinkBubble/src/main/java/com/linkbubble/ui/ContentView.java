@@ -306,8 +306,6 @@ public class ContentView extends FrameLayout {
         mPageFinishedLoading = false;
 
         WebView webView = mWebRender.getWebView();
-        webView.setOnLongClickListener(mOnWebViewLongClickListener);
-        webView.setOnKeyListener(mOnKeyListener);
 
         mPageInspector = new PageInspector(getContext(), webView, mOnPageInspectorItemFoundListener);
 
@@ -600,6 +598,55 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
+        public boolean onBackPressed() {
+            if (mUrlStack.size() == 0) {
+                MainController.get().closeTab(mOwnerTabView, true);
+                return true;
+            } else {
+                mWebRender.stopLoading();
+                String urlBefore = mWebRender.getUrl().toString();
+
+                URL previousUrl = mUrlStack.pop();
+                String previousUrlAsString = previousUrl.toString();
+                mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
+                mHandledAppPickerForCurrentUrl = false;
+                mUsingLinkBubbleAsDefaultForCurrentUrl = false;
+                mWebRender.loadUrl(previousUrlAsString);
+
+                updateUrl(previousUrlAsString);
+                Log.d(TAG, "[urlstack] Go back: " + urlBefore + " -> " + mWebRender.getUrl() + ", urlStack.size():" + mUrlStack.size());
+                updateUrlTextView(previousUrlAsString);
+                String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(previousUrlAsString) : null;
+                if (title == null) {
+                    title = getResources().getString(R.string.loading);
+                }
+                mTitleTextView.setText(title);
+
+                mEventHandler.onPageLoading(mWebRender.getUrl());
+
+                updateAppsForUrl(null, previousUrl);
+                configureOpenInAppButton();
+
+                mPageInspector.reset();
+                configureOpenEmbedButton();
+
+                return true;
+            }
+        }
+
+        @Override
+        public void onUrlLongClick(String url) {
+            ContentView.this.onUrlLongClick(url);
+        }
+
+        @Override
+        public void onShowBrowserPrompt() {
+            showOpenInBrowserPrompt(R.string.long_press_unsupported_default_browser,
+                    R.string.long_press_unsupported_no_default_browser, mWebRender.getUrl().toString());
+
+        }
+
+        @Override
         public void onCloseWindow() {
             MainController.get().closeTab(mOwnerTabView, true);
         }
@@ -673,80 +720,6 @@ public class ContentView extends FrameLayout {
                 //Log.e(TAG, "*** set mDelayedAutoContentDisplayLinkLoadedScheduled=" + mDelayedAutoContentDisplayLinkLoadedScheduled);
                 MainController.get().autoContentDisplayLinkLoaded(mOwnerTabView);
                 saveLoadTime();
-            }
-        }
-    };
-
-    OnKeyListener mOnKeyListener = new OnKeyListener() {
-        @Override
-        public boolean onKey(View v, int keyCode, KeyEvent event) {
-            if (event.getAction() == KeyEvent.ACTION_DOWN && mIsDestroyed == false) {
-                WebView webView = (WebView) v;
-                switch (keyCode) {
-                    case KeyEvent.KEYCODE_BACK: {
-                        if (mUrlStack.size() == 0) {
-                            MainController.get().closeTab(mOwnerTabView, true);
-                        } else {
-                            webView.stopLoading();
-                            String urlBefore = webView.getUrl();
-
-                            URL previousUrl = mUrlStack.pop();
-                            String previousUrlAsString = previousUrl.toString();
-                            mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
-                            mHandledAppPickerForCurrentUrl = false;
-                            mUsingLinkBubbleAsDefaultForCurrentUrl = false;
-                            webView.loadUrl(previousUrlAsString);
-
-                            updateUrl(previousUrlAsString);
-                            Log.d(TAG, "[urlstack] Go back: " + urlBefore + " -> " + webView.getUrl() + ", urlStack.size():" + mUrlStack.size());
-                            updateUrlTextView(previousUrlAsString);
-                            String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(previousUrlAsString) : null;
-                            if (title == null) {
-                                title = getResources().getString(R.string.loading);
-                            }
-                            mTitleTextView.setText(title);
-
-                            mEventHandler.onPageLoading(mWebRender.getUrl());
-
-                            updateAppsForUrl(null, previousUrl);
-                            configureOpenInAppButton();
-
-                            mPageInspector.reset();
-                            configureOpenEmbedButton();
-
-                            return true;
-                        }
-                        break;
-                    }
-                }
-            }
-
-            return false;
-        }
-    };
-
-    OnLongClickListener mOnWebViewLongClickListener = new OnLongClickListener() {
-        @Override
-        public boolean onLongClick(View v) {
-            WebView.HitTestResult hitTestResult = mWebRender.getWebView().getHitTestResult();
-            Log.d(TAG, "onLongClick type: " + hitTestResult.getType());
-            switch (hitTestResult.getType()) {
-                case WebView.HitTestResult.SRC_ANCHOR_TYPE:
-                case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: {
-                    final String url = hitTestResult.getExtra();
-                    if (url == null) {
-                        return false;
-                    }
-
-                    onUrlLongClick(url);
-                    return true;
-                }
-
-                case WebView.HitTestResult.UNKNOWN_TYPE:
-                default:
-                    showOpenInBrowserPrompt(R.string.long_press_unsupported_default_browser,
-                            R.string.long_press_unsupported_no_default_browser, mWebRender.getUrl().toString());
-                    return false;
             }
         }
     };
