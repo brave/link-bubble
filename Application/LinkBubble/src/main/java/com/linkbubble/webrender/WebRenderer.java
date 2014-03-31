@@ -7,6 +7,9 @@ import android.view.View;
 import android.webkit.GeolocationPermissions;
 import android.webkit.WebView;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public abstract class WebRenderer {
 
     public interface GetGeolocationCallback {
@@ -25,6 +28,8 @@ public abstract class WebRenderer {
         public void onCloseWindow();
         public void onGeolocationPermissionsShowPrompt(String origin, GetGeolocationCallback callback);
     }
+
+    private URL mUrl;
 
     public WebRenderer(Context context, Controller controller, View webRendererPlaceholder) {
         super();
@@ -45,4 +50,16 @@ public abstract class WebRenderer {
     public abstract void stopLoading();
 
     public abstract void hidePopups();
+
+    public URL getUrl() {
+        return mUrl;
+    }
+
+    public void setUrl(String urlAsString) throws MalformedURLException {
+        mUrl = new URL(urlAsString);
+    }
+
+    public void setUrl(URL url) {
+        mUrl = url;
+    }
 }
