@@ -86,14 +86,13 @@ public class ContentView extends FrameLayout {
     private List<AppForUrl> mAppsForUrl = new ArrayList<AppForUrl>();
     private List<ResolveInfo> mTempAppsForUrl = new ArrayList<ResolveInfo>();
 
-    private int mCheckForEmbedsCount;
     private PopupMenu mOverflowPopupMenu;
     private AlertDialog mLongPressAlertDialog;
     private long mInitialUrlLoadStartTime;
     private String mInitialUrlAsString;
     private int mHeaderHeight;
     private Path mTempPath = new Path();
-    private PageInspector mPageInspector;
+
     private Stack<URL> mUrlStack = new Stack<URL>();
     // We only want to handle this once per link. This prevents 3+ dialogs appearing for some links, which is a bad experience. #224
     private boolean mHandledAppPickerForCurrentUrl = false;
@@ -236,11 +235,10 @@ public class ContentView extends FrameLayout {
     @SuppressLint("SetJavaScriptEnabled")
     void configure(String urlAsString, TabView ownerTabView, long urlLoadStartTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
         View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
-        mWebRenderer = new WebViewRenderer(getContext(), mWebRendererController, webRendererPlaceholder);
+        mWebRenderer = new WebViewRenderer(getContext(), mWebRendererController, webRendererPlaceholder, TAG);
         mWebRenderer.setUrl(urlAsString);
 
         mOwnerTabView = ownerTabView;
-        mDoDropDownCheck = true;
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_header);
         mHandledAppPickerForCurrentUrl = hasShownAppPicker;
         mUsingLinkBubbleAsDefaultForCurrentUrl = false;
@@ -291,7 +289,7 @@ public class ContentView extends FrameLayout {
 
         WebView webView = mWebRenderer.getWebView();
 
-        mPageInspector = new PageInspector(getContext(), webView, mOnPageInspectorItemFoundListener);
+
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
@@ -336,7 +334,6 @@ public class ContentView extends FrameLayout {
             if (viaUserInput) {
                 URL currentUrl = mWebRenderer.getUrl();
                 mUrlStack.push(currentUrl);
-                mDoDropDownCheck = true;
                 mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
                 Log.d(TAG, "[urlstack] push:" + currentUrl.toString() + ", urlStack.size():" + mUrlStack.size());// + ", delta:" + touchUpTimeDelta);
                 mHandledAppPickerForCurrentUrl = false;
@@ -380,7 +377,6 @@ public class ContentView extends FrameLayout {
             hideAllowLocationDialog();
 
             mPageFinishedLoading = false;
-            mDoDropDownCheck = true;
 
             String oldUrl = mWebRenderer.getUrl().toString();
 
@@ -397,7 +393,7 @@ public class ContentView extends FrameLayout {
                 MainController.get().saveCurrentTabs();
             }
 
-            mPageInspector.reset();
+            mWebRenderer.resetPageInspector();
 
             final Context context = getContext();
             PackageManager packageManager = context.getPackageManager();
@@ -559,25 +555,8 @@ public class ContentView extends FrameLayout {
             // "http://recode.net/2014/01/20/...", and after the "on.recode.net" redirect, progress is 100 for a moment.
             mEventHandler.onProgressChanged(progress);
 
-            // At 60%, the page is more often largely viewable, but waiting for background shite to finish which can
-            // take many, many seconds, even on a strong connection. Thus, do a check for embeds now to prevent the button
-            // not being updated until 100% is reached, which feels too slow as a user.
-            if (progress >= 60) {
-                if (mCheckForEmbedsCount == 0) {
-                    mCheckForEmbedsCount = 1;
-                    mPageInspector.reset();
-
-                    Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                    mPageInspector.run(webView, getPageInspectFlags());
-                } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
-                    mCheckForEmbedsCount = 2;
-                    Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                    mPageInspector.run(webView, getPageInspectFlags());
-                }
-
-                if (progress == 100 && mPageFinishedIgnoredUrl != null && mPageFinishedIgnoredUrl.equals(webView.getUrl())) {
-                    onPageLoadComplete(webView.getUrl());
-                }
+            if (progress == 100 && mPageFinishedIgnoredUrl != null && mPageFinishedIgnoredUrl.equals(webView.getUrl())) {
+                onPageLoadComplete(webView.getUrl());
             }
         }
 
@@ -611,7 +590,7 @@ public class ContentView extends FrameLayout {
                 updateAppsForUrl(null, previousUrl);
                 configureOpenInAppButton();
 
-                mPageInspector.reset();
+                mWebRenderer.resetPageInspector();
                 configureOpenEmbedButton();
 
                 return true;
@@ -640,6 +619,63 @@ public class ContentView extends FrameLayout {
             showAllowLocationDialog(origin, callback);
         }
 
+        @Override
+        public int getPageInspectFlags() {
+            int flags = PageInspector.INSPECT_DROP_DOWN | PageInspector.INSPECT_YOUTUBE;
+            if (mEventHandler.hasHighQualityFavicon() == false) {
+                flags |= PageInspector.INSPECT_TOUCH_ICON;
+            }
+            return flags;
+        }
+
+        private Handler mHandler = new Handler();
+        private Runnable mUpdateOpenInAppRunnable = null;
+
+        @Override
+        public void onPageInspectorYouTubeEmbedFound() {
+            if (mUpdateOpenInAppRunnable == null) {
+                mUpdateOpenInAppRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        configureOpenEmbedButton();
+                    }
+                };
+            }
+
+            mOpenEmbedButton.post(mUpdateOpenInAppRunnable);
+        }
+
+        @Override
+        public void onPageInspectorTouchIconLoaded(final Bitmap bitmap, final String pageUrl) {
+            if (bitmap == null || pageUrl == null) {
+                return;
+            }
+
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    URL url = mWebRenderer.getUrl();
+                    if (url != null && url.toString().equals(pageUrl)) {
+                        mEventHandler.onReceivedIcon(bitmap);
+
+                        String faviconUrl = Util.getDefaultFaviconUrl(url);
+                        MainApplication.sFavicons.putFaviconInMemCache(faviconUrl, bitmap);
+                    }
+                }
+            });
+        }
+
+        @Override
+        public void onPageInspectorDropDownWarningClick() {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    showOpenInBrowserPrompt(R.string.unsupported_drop_down_default_browser,
+                            R.string.unsupported_drop_down_no_default_browser, mWebRenderer.getUrl().toString());
+                }
+            });
+        }
+
     };
 
     private String mPageFinishedIgnoredUrl;
@@ -649,7 +685,7 @@ public class ContentView extends FrameLayout {
         mPageFinishedLoading = true;
 
         // Always check again at 100%
-        mPageInspector.run(mWebRenderer.getWebView(), getPageInspectFlags());
+        mWebRenderer.runPageInspector();
 
         // NOTE: *don't* call updateUrl() here. Turns out, this function is called after a redirect has occurred.
         // Eg, urlAsString "t.co/xyz" even after the next redirect is starting to load
@@ -685,10 +721,11 @@ public class ContentView extends FrameLayout {
                 mTitleTextView.setText(null);
             }
 
-            postDelayed(mDropDownCheckRunnable, Constant.DROP_DOWN_CHECK_TIME);
             //mDelayedAutoContentDisplayLinkLoadedScheduled = true;
             //Log.d(TAG, "set mDelayedAutoContentDisplayLinkLoadedScheduled=" + mDelayedAutoContentDisplayLinkLoadedScheduled);
             postDelayed(mDelayedAutoContentDisplayLinkLoadedRunnable, Constant.AUTO_CONTENT_DISPLAY_DELAY);
+
+            mWebRenderer.onPageLoadComplete();
         }
 
         mPageFinishedIgnoredUrl = null;
@@ -774,7 +811,7 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_reload_page: {
-                            mPageInspector.reset();
+                            mWebRenderer.resetPageInspector();
                             URL currentUrl = mWebRenderer.getUrl();
                             mEventHandler.onPageLoading(currentUrl);
                             mWebRenderer.stopLoading();
@@ -832,84 +869,6 @@ public class ContentView extends FrameLayout {
             MainController.get().showNextBubble();
         }
     };
-
-    private boolean mDoDropDownCheck;
-    private Runnable mDropDownCheckRunnable = new Runnable() {
-        @Override
-        public void run() {
-            synchronized (mIsDestroyed) {
-                if (mIsDestroyed == false && mDoDropDownCheck) {
-                    // Check for YouTube as well to fix issues where sometimes embeds are not found.
-                    mPageInspector.run(mWebRenderer.getWebView(), PageInspector.INSPECT_DROP_DOWN | PageInspector.INSPECT_YOUTUBE);
-                }
-            }
-        }
-    };
-
-    PageInspector.OnItemFoundListener mOnPageInspectorItemFoundListener = new PageInspector.OnItemFoundListener() {
-
-        private Runnable mUpdateOpenInAppRunnable = null;
-        private Handler mHandler = new Handler();
-
-        @Override
-        public void onYouTubeEmbeds() {
-            if (mUpdateOpenInAppRunnable == null) {
-                mUpdateOpenInAppRunnable = new Runnable() {
-                    @Override
-                    public void run() {
-                        configureOpenEmbedButton();
-                    }
-                };
-            }
-
-            mOpenEmbedButton.post(mUpdateOpenInAppRunnable);
-        }
-
-        @Override
-        public void onTouchIconLoaded(final Bitmap bitmap, final String pageUrl) {
-
-            if (bitmap == null || pageUrl == null) {
-                return;
-            }
-
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    URL url = mWebRenderer.getUrl();
-                    if (url != null && url.toString().equals(pageUrl)) {
-                        mEventHandler.onReceivedIcon(bitmap);
-
-                        String faviconUrl = Util.getDefaultFaviconUrl(url);
-                        MainApplication.sFavicons.putFaviconInMemCache(faviconUrl, bitmap);
-                    }
-                }
-            });
-        }
-
-        @Override
-        public void onDropDownFound() {
-            mDoDropDownCheck = false;
-        }
-
-        @Override
-        public void onDropDownWarningClick() {
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    showOpenInBrowserPrompt(R.string.unsupported_drop_down_default_browser,
-                            R.string.unsupported_drop_down_no_default_browser, mWebRenderer.getUrl().toString());
-                }
-            });
-        }
-    };
-
-    int getPageInspectFlags() {
-        int flags = PageInspector.INSPECT_DROP_DOWN | PageInspector.INSPECT_YOUTUBE;
-        if (mEventHandler.hasHighQualityFavicon() == false) {
-            flags |= PageInspector.INSPECT_TOUCH_ICON;
-        }
-        return flags;
-    }
 
     private void onUrlLongClick(final String urlAsString) {
         Resources resources = getResources();
@@ -984,7 +943,7 @@ public class ContentView extends FrameLayout {
     }
 
     private void configureOpenEmbedButton() {
-        if (mOpenEmbedButton.configure(mPageInspector.getYouTubeEmbedHelper())) {
+        if (mOpenEmbedButton.configure(mWebRenderer.getPageInspectorYouTubeEmbedHelper())) {
             mOpenEmbedButton.invalidate();
         } else {
             mOpenEmbedButton.setVisibility(GONE);
