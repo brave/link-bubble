@@ -79,7 +79,7 @@ public class ContentView extends FrameLayout {
 
     private WebRenderer mWebRender;
     private TabView mOwnerTabView;
-    private View mTouchInterceptorView;
+
     private CondensedTextView mTitleTextView;
     private CondensedTextView mUrlTextView;
     private ContentViewButton mShareButton;
@@ -94,8 +94,7 @@ public class ContentView extends FrameLayout {
     private LinearLayout mToolbarLayout;
     private EventHandler mEventHandler;
     private int mCurrentProgress = 0;
-    private long mLastWebViewTouchUpTime = -1;
-    private String mLastWebViewTouchDownUrl;
+
     private boolean mPageFinishedLoading;
     private Boolean mIsDestroyed = false;
     private Set<String> mAppPickersUrls = new HashSet<String>();
@@ -267,9 +266,6 @@ public class ContentView extends FrameLayout {
         }
 
         //mWebView = (WebView) findViewById(R.id.webView);
-        mTouchInterceptorView = findViewById(R.id.touch_interceptor);
-        mTouchInterceptorView.setWillNotDraw(true);
-        mTouchInterceptorView.setOnTouchListener(mWebViewOnTouchListener);
         mToolbarLayout = (LinearLayout) findViewById(R.id.content_toolbar);
         mTitleTextView = (CondensedTextView) findViewById(R.id.title_text);
         mUrlTextView = (CondensedTextView) findViewById(R.id.url_text);
@@ -328,31 +324,12 @@ public class ContentView extends FrameLayout {
         updateUrlTextView(urlAsString);
     }
 
-    private OnTouchListener mWebViewOnTouchListener = new OnTouchListener() {
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            final int action = event.getAction() & MotionEvent.ACTION_MASK;
-            switch (action) {
-                case MotionEvent.ACTION_DOWN:
-                    mLastWebViewTouchDownUrl = mWebRender.getUrl().toString();
-                    //Log.d(TAG, "[urlstack] WebView - MotionEvent.ACTION_DOWN");
-                    break;
 
-                case MotionEvent.ACTION_UP:
-                    mLastWebViewTouchUpTime = System.currentTimeMillis();
-                    Log.d(TAG, "[urlstack] WebView - MotionEvent.ACTION_UP");
-                    break;
-            }
-            // Forcibly pass along to the WebView. This ensures we receive the ACTION_UP event above.
-            mWebRender.getWebView().onTouchEvent(event);
-            return true;
-        }
-    };
 
     WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {
 
         @Override
-        public boolean shouldOverrideUrlLoading(String urlAsString) {
+        public boolean shouldOverrideUrlLoading(String urlAsString, boolean viaUserInput) {
             if (mIsDestroyed) {
                 return true;
             }
@@ -374,28 +351,14 @@ public class ContentView extends FrameLayout {
             }
 
             Log.d(TAG, "shouldOverrideUrlLoading() - url:" + urlAsString);
-            if (mLastWebViewTouchUpTime > -1) {
-                long touchUpTimeDelta = System.currentTimeMillis() - mLastWebViewTouchUpTime;
-                // this value needs to be largish
-                if (touchUpTimeDelta < 1500) {
-                    // If the url has changed since the use pressed their finger down, a redirect has likely occurred,
-                    // in which case we don't update the Url Stack
-                    URL currentUrl = mWebRender.getUrl();
-                    if (mLastWebViewTouchDownUrl.equals(currentUrl.toString())) {
-                        mUrlStack.push(currentUrl);
-                        mDoDropDownCheck = true;
-                        mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
-                        Log.d(TAG, "[urlstack] push:" + currentUrl.toString() + ", urlStack.size():" + mUrlStack.size() + ", delta:" + touchUpTimeDelta);
-                        mHandledAppPickerForCurrentUrl = false;
-                        mUsingLinkBubbleAsDefaultForCurrentUrl = false;
-                    } else {
-                        Log.d(TAG, "[urlstack] DON'T ADD " + currentUrl.toString() + " because of redirect");
-                    }
-                    mLastWebViewTouchUpTime = -1;
-
-                } else {
-                    Log.d(TAG, "[urlstack] IGNORED because of delta:" + touchUpTimeDelta);
-                }
+            if (viaUserInput) {
+                URL currentUrl = mWebRender.getUrl();
+                mUrlStack.push(currentUrl);
+                mDoDropDownCheck = true;
+                mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
+                Log.d(TAG, "[urlstack] push:" + currentUrl.toString() + ", urlStack.size():" + mUrlStack.size());// + ", delta:" + touchUpTimeDelta);
+                mHandledAppPickerForCurrentUrl = false;
+                mUsingLinkBubbleAsDefaultForCurrentUrl = false;
             }
 
             //if (mDelayedAutoContentDisplayLinkLoadedScheduled) {

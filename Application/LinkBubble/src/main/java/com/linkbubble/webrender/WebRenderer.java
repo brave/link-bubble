@@ -17,7 +17,7 @@ public abstract class WebRenderer {
     }
 
     public interface Controller {
-        public boolean shouldOverrideUrlLoading(String urlAsString);
+        public boolean shouldOverrideUrlLoading(String urlAsString, boolean viaUserInput);
         public void onReceivedError();
         public void onPageStarted(String urlAsString, Bitmap favIcon);
         public void onPageFinished(String urlAsString);
@@ -29,7 +29,7 @@ public abstract class WebRenderer {
         public void onGeolocationPermissionsShowPrompt(String origin, GetGeolocationCallback callback);
     }
 
-    private URL mUrl;
+    protected URL mUrl;
 
     public WebRenderer(Context context, Controller controller, View webRendererPlaceholder) {
         super();
