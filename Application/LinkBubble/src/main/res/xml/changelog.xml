@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.0.4" versioncode="10401">
+        <change>CHANGE: Remove rotating dots during webpage loading.</change>
+        <change>BUG FIX: Many stability fixes.</change>
+    </release>
+
     <release version="1.0.3" versioncode="10300">
         <change>NEW: Add option to set Link Bubble as the default system browser (assuming it is not already).</change>
         <change>IMPROVEMENT: Include the title of a webpage when sharing URLs.</change>
