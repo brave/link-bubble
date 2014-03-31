@@ -93,7 +93,6 @@ public class ContentView extends FrameLayout {
     private Button mRequestLocationYesButton;
     private LinearLayout mToolbarLayout;
     private EventHandler mEventHandler;
-    private URL mUrl;
     private int mCurrentProgress = 0;
     private long mLastWebViewTouchUpTime = -1;
     private String mLastWebViewTouchDownUrl;
@@ -209,7 +208,7 @@ public class ContentView extends FrameLayout {
     }
 
     public void destroy() {
-        Log.d(TAG, "*** destroy() - url" + (mUrl != null ? mUrl.toString() : "<null>"));
+        Log.d(TAG, "*** destroy() - url" + (mWebRender.getUrl() != null ? mWebRender.getUrl().toString() : "<null>"));
         mIsDestroyed = true;
         removeView(mWebRender.getView());
         mWebRender.destroy();
@@ -253,7 +252,10 @@ public class ContentView extends FrameLayout {
 
     @SuppressLint("SetJavaScriptEnabled")
     void configure(String urlAsString, TabView ownerTabView, long urlLoadStartTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
-        mUrl = new URL(urlAsString);
+        View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
+        mWebRender = new WebViewRenderer(getContext(), mWebRendererController, webRendererPlaceholder);
+        mWebRender.setUrl(urlAsString);
+
         mOwnerTabView = ownerTabView;
         mDoDropDownCheck = true;
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_header);
@@ -263,10 +265,6 @@ public class ContentView extends FrameLayout {
         if (hasShownAppPicker) {
             mAppPickersUrls.add(urlAsString);
         }
-
-        View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
-        mWebRender = new WebViewRenderer(getContext(), mWebRendererController, webRendererPlaceholder);
-
 
         //mWebView = (WebView) findViewById(R.id.webView);
         mTouchInterceptorView = findViewById(R.id.touch_interceptor);
@@ -323,7 +321,7 @@ public class ContentView extends FrameLayout {
         mInitialUrlAsString = urlAsString;
 
         updateUrl(urlAsString);
-        updateAppsForUrl(mUrl);
+        updateAppsForUrl(mWebRender.getUrl());
         Log.d(TAG, "load url: " + urlAsString);
         mWebRender.loadUrl(urlAsString);
         mTitleTextView.setText(R.string.loading);
@@ -336,7 +334,7 @@ public class ContentView extends FrameLayout {
             final int action = event.getAction() & MotionEvent.ACTION_MASK;
             switch (action) {
                 case MotionEvent.ACTION_DOWN:
-                    mLastWebViewTouchDownUrl = mUrl.toString();
+                    mLastWebViewTouchDownUrl = mWebRender.getUrl().toString();
                     //Log.d(TAG, "[urlstack] WebView - MotionEvent.ACTION_DOWN");
                     break;
 
@@ -371,7 +369,7 @@ public class ContentView extends FrameLayout {
             if (updatedUrl == null) {
                 Log.d(TAG, "ignore unsupported URI scheme: " + urlAsString);
                 showOpenInBrowserPrompt(R.string.unsupported_scheme_default_browser,
-                        R.string.unsupported_scheme_no_default_browser, mUrl.toString());
+                        R.string.unsupported_scheme_no_default_browser, mWebRender.getUrl().toString());
                 return true;        // true because we've handled the link ourselves
             }
 
@@ -382,15 +380,16 @@ public class ContentView extends FrameLayout {
                 if (touchUpTimeDelta < 1500) {
                     // If the url has changed since the use pressed their finger down, a redirect has likely occurred,
                     // in which case we don't update the Url Stack
-                    if (mLastWebViewTouchDownUrl.equals(mUrl.toString())) {
-                        mUrlStack.push(mUrl);
+                    URL currentUrl = mWebRender.getUrl();
+                    if (mLastWebViewTouchDownUrl.equals(currentUrl.toString())) {
+                        mUrlStack.push(currentUrl);
                         mDoDropDownCheck = true;
                         mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
-                        Log.d(TAG, "[urlstack] push:" + mUrl.toString() + ", urlStack.size():" + mUrlStack.size() + ", delta:" + touchUpTimeDelta);
+                        Log.d(TAG, "[urlstack] push:" + currentUrl.toString() + ", urlStack.size():" + mUrlStack.size() + ", delta:" + touchUpTimeDelta);
                         mHandledAppPickerForCurrentUrl = false;
                         mUsingLinkBubbleAsDefaultForCurrentUrl = false;
                     } else {
-                        Log.d(TAG, "[urlstack] DON'T ADD " + mUrl.toString() + " because of redirect");
+                        Log.d(TAG, "[urlstack] DON'T ADD " + currentUrl.toString() + " because of redirect");
                     }
                     mLastWebViewTouchUpTime = -1;
 
@@ -405,7 +404,7 @@ public class ContentView extends FrameLayout {
             //}
             removeCallbacks(mDelayedAutoContentDisplayLinkLoadedRunnable);
 
-            mUrl = updatedUrl;
+            mWebRender.setUrl(updatedUrl);
             mWebRender.loadUrl(urlAsString);
             return true;
         }
@@ -438,7 +437,7 @@ public class ContentView extends FrameLayout {
             mPageFinishedLoading = false;
             mDoDropDownCheck = true;
 
-            String oldUrl = mUrl.toString();
+            String oldUrl = mWebRender.getUrl().toString();
 
             if (updateUrl(urlAsString) == false) {
                 List<ResolveInfo> apps = Settings.get().getAppsThatHandleUrl(urlAsString, getContext().getPackageManager());
@@ -458,7 +457,8 @@ public class ContentView extends FrameLayout {
             final Context context = getContext();
             PackageManager packageManager = context.getPackageManager();
 
-            updateAppsForUrl(Settings.get().getAppsThatHandleUrl(mUrl.toString(), packageManager), mUrl);
+            URL currentUrl = mWebRender.getUrl();
+            updateAppsForUrl(Settings.get().getAppsThatHandleUrl(currentUrl.toString(), packageManager), currentUrl);
             if (Settings.get().redirectUrlToBrowser(urlAsString, packageManager)) {
                 if (openInBrowser(urlAsString)) {
                     String title = String.format(context.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
@@ -545,7 +545,7 @@ public class ContentView extends FrameLayout {
             configureOpenInAppButton();
             configureOpenEmbedButton();
             Log.d(TAG, "redirect to url: " + urlAsString);
-            mEventHandler.onPageLoading(mUrl);
+            mEventHandler.onPageLoading(mWebRender.getUrl());
             mTitleTextView.setText(R.string.loading);
             updateUrlTextView(urlAsString);
 
@@ -597,7 +597,7 @@ public class ContentView extends FrameLayout {
             // too many ill-effects, because BitmapView attempts to load host/favicon.ico automatically anyway.
             if (mPageFinishedLoading) {
                 if (mEventHandler.onReceivedIcon(bitmap)) {
-                    String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
+                    String faviconUrl = Util.getDefaultFaviconUrl(mWebRender.getUrl());
                     MainApplication.sFavicons.putFaviconInMemCache(faviconUrl, bitmap);
                 }
             }
@@ -661,15 +661,16 @@ public class ContentView extends FrameLayout {
         // Eg, urlAsString "t.co/xyz" even after the next redirect is starting to load
 
         // Check exact equality first for common case to avoid an allocation.
-        boolean equalUrl = mUrl.toString().equals(urlAsString);
+        URL currentUrl = mWebRender.getUrl();
+        boolean equalUrl = currentUrl.toString().equals(urlAsString);
 
         if (!equalUrl) {
             try {
                 URL url = new URL(urlAsString);
 
-                if (url.getProtocol().equals(mUrl.getProtocol()) &&
-                        url.getHost().equals(mUrl.getHost()) &&
-                        url.getPath().equals(mUrl.getPath())) {
+                if (url.getProtocol().equals(currentUrl.getProtocol()) &&
+                        url.getHost().equals(currentUrl.getHost()) &&
+                        url.getPath().equals(currentUrl.getPath())) {
                     equalUrl = true;
                 }
             } catch (MalformedURLException e) {
@@ -677,7 +678,7 @@ public class ContentView extends FrameLayout {
         }
 
         if (equalUrl) {
-            updateAppsForUrl(mUrl);
+            updateAppsForUrl(currentUrl);
             configureOpenInAppButton();
             configureOpenEmbedButton();
 
@@ -685,7 +686,7 @@ public class ContentView extends FrameLayout {
             Log.d(TAG, "onPageFinished() - url: " + urlAsString);
 
             String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(urlAsString) : "";
-            MainApplication.saveUrlInHistory(getContext(), null, mUrl.toString(), mUrl.getHost(), title);
+            MainApplication.saveUrlInHistory(getContext(), null, currentUrl.toString(), currentUrl.getHost(), title);
             if (title == null) {    // if no title is set, display nothing rather than "Loading..." #265
                 mTitleTextView.setText(null);
             }
@@ -742,7 +743,7 @@ public class ContentView extends FrameLayout {
                             }
                             mTitleTextView.setText(title);
 
-                            mEventHandler.onPageLoading(mUrl);
+                            mEventHandler.onPageLoading(mWebRender.getUrl());
 
                             updateAppsForUrl(null, previousUrl);
                             configureOpenInAppButton();
@@ -780,7 +781,8 @@ public class ContentView extends FrameLayout {
 
                 case WebView.HitTestResult.UNKNOWN_TYPE:
                 default:
-                    showOpenInBrowserPrompt(R.string.long_press_unsupported_default_browser,                            R.string.long_press_unsupported_no_default_browser, mUrl.toString());
+                    showOpenInBrowserPrompt(R.string.long_press_unsupported_default_browser,
+                            R.string.long_press_unsupported_no_default_browser, mWebRender.getUrl().toString());
                     return false;
             }
         }
@@ -789,7 +791,7 @@ public class ContentView extends FrameLayout {
     OnClickListener mOnShareButtonClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            showSelectShareMethod(mUrl.toString(), true);
+            showSelectShareMethod(mWebRender.getUrl().toString(), true);
         }
     };
 
@@ -853,11 +855,12 @@ public class ContentView extends FrameLayout {
 
                         case R.id.item_reload_page: {
                             mPageInspector.reset();
-                            mEventHandler.onPageLoading(mUrl);
+                            URL currentUrl = mWebRender.getUrl();
+                            mEventHandler.onPageLoading(currentUrl);
                             mWebRender.stopLoading();
                             mWebRender.reload();
-                            String urlAsString = mUrl.toString();
-                            updateAppsForUrl(mUrl);
+                            String urlAsString = currentUrl.toString();
+                            updateAppsForUrl(currentUrl);
                             configureOpenInAppButton();
                             configureOpenEmbedButton();
                             Log.d(TAG, "reload url: " + urlAsString);
@@ -868,12 +871,12 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_open_in_browser: {
-                            openInBrowser(mUrl.toString());
+                            openInBrowser(mWebRender.getUrl().toString());
                             break;
                         }
 
                         case R.id.item_copy_link: {
-                            MainApplication.copyLinkToClipboard(getContext(), mUrl.toString(), R.string.bubble_link_copied_to_clipboard);
+                            MainApplication.copyLinkToClipboard(getContext(), mWebRender.getUrl().toString(), R.string.bubble_link_copied_to_clipboard);
                             break;
                         }
 
@@ -952,10 +955,11 @@ public class ContentView extends FrameLayout {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    if (mUrl != null && mUrl.toString().equals(pageUrl)) {
+                    URL url = mWebRender.getUrl();
+                    if (url != null && url.toString().equals(pageUrl)) {
                         mEventHandler.onReceivedIcon(bitmap);
 
-                        String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
+                        String faviconUrl = Util.getDefaultFaviconUrl(url);
                         MainApplication.sFavicons.putFaviconInMemCache(faviconUrl, bitmap);
                     }
                 }
@@ -973,7 +977,7 @@ public class ContentView extends FrameLayout {
                 @Override
                 public void run() {
                     showOpenInBrowserPrompt(R.string.unsupported_drop_down_default_browser,
-                            R.string.unsupported_drop_down_no_default_browser, mUrl.toString());
+                            R.string.unsupported_drop_down_no_default_browser, mWebRender.getUrl().toString());
                 }
             });
         }
@@ -1178,7 +1182,7 @@ public class ContentView extends FrameLayout {
                 mTempAppsForUrl.add(appForUrl.mResolveInfo);
             }
             if (mTempAppsForUrl.size() > 0) {
-                ResolveInfo defaultApp = Settings.get().getDefaultAppForUrl(mUrl, mTempAppsForUrl);
+                ResolveInfo defaultApp = Settings.get().getDefaultAppForUrl(mWebRender.getUrl(), mTempAppsForUrl);
                 if (defaultApp != null) {
                     for (AppForUrl appForUrl : mAppsForUrl) {
                         if (appForUrl.mResolveInfo == defaultApp) {
@@ -1218,7 +1222,7 @@ public class ContentView extends FrameLayout {
 
     public void saveLoadTime() {
         if (mInitialUrlLoadStartTime > -1) {
-            Settings.get().trackLinkLoadTime(System.currentTimeMillis() - mInitialUrlLoadStartTime, Settings.LinkLoadType.PageLoad, mUrl.toString());
+            Settings.get().trackLinkLoadTime(System.currentTimeMillis() - mInitialUrlLoadStartTime, Settings.LinkLoadType.PageLoad, mWebRender.getUrl().toString());
             mInitialUrlLoadStartTime = -1;
         }
     }
@@ -1228,10 +1232,10 @@ public class ContentView extends FrameLayout {
     }
 
     private boolean updateUrl(String urlAsString) {
-        if (urlAsString.equals(mUrl.toString()) == false) {
+        if (urlAsString.equals(mWebRender.getUrl().toString()) == false) {
             try {
-                Log.d(TAG, "change url from " + mUrl + " to " + urlAsString);
-                mUrl = new URL(urlAsString);
+                Log.d(TAG, "change url from " + mWebRender.getUrl() + " to " + urlAsString);
+                mWebRender.setUrl(urlAsString);
             } catch (MalformedURLException e) {
                 return false;
             }
@@ -1241,19 +1245,20 @@ public class ContentView extends FrameLayout {
     }
 
     private URL getUpdatedUrl(String urlAsString) {
-        if (urlAsString.equals(mUrl.toString()) == false) {
+        URL currentUrl = mWebRender.getUrl();
+        if (urlAsString.equals(currentUrl.toString()) == false) {
             try {
-                Log.d(TAG, "getUpdatedUrl(): change url from " + mUrl + " to " + urlAsString);
+                Log.d(TAG, "getUpdatedUrl(): change url from " + currentUrl + " to " + urlAsString);
                 return new URL(urlAsString);
             } catch (MalformedURLException e) {
                 return null;
             }
         }
-        return mUrl;
+        return currentUrl;
     }
 
     URL getUrl() {
-        return mUrl;
+        return mWebRender.getUrl();
     }
 
     private void hidePopups() {
