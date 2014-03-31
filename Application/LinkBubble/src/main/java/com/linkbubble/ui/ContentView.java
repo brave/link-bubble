@@ -58,6 +58,8 @@ import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
+import com.linkbubble.webrender.WebRenderer;
+import com.linkbubble.webrender.WebViewRenderer;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -75,8 +77,8 @@ public class ContentView extends FrameLayout {
 
     private static final String TAG = "UrlLoad";
 
+    private WebRenderer mWebRender;
     private TabView mOwnerTabView;
-    private WebView mWebView;
     private View mTouchInterceptorView;
     private CondensedTextView mTitleTextView;
     private CondensedTextView mUrlTextView;
@@ -150,6 +152,10 @@ public class ContentView extends FrameLayout {
         return -1;
     }
 
+    public WebRenderer getWebRenderer() {
+        return mWebRender;
+    }
+
     static class AppForUrl {
         ResolveInfo mResolveInfo;
         URL mUrl;
@@ -208,8 +214,8 @@ public class ContentView extends FrameLayout {
     public void destroy() {
         Log.d(TAG, "*** destroy() - url" + (mUrl != null ? mUrl.toString() : "<null>"));
         mIsDestroyed = true;
-        removeView(mWebView);
-        mWebView.destroy();
+        removeView(mWebRender.getView());
+        mWebRender.destroy();
         //if (mDelayedAutoContentDisplayLinkLoadedScheduled) {
         //    mDelayedAutoContentDisplayLinkLoadedScheduled = false;
         //    Log.e(TAG, "*** set mDelayedAutoContentDisplayLinkLoadedScheduled=" + mDelayedAutoContentDisplayLinkLoadedScheduled);
@@ -218,22 +224,7 @@ public class ContentView extends FrameLayout {
     }
 
     public void updateIncognitoMode(boolean incognito) {
-        if (incognito) {
-            mWebView.getSettings().setCacheMode(mWebView.getSettings().LOAD_NO_CACHE);
-            mWebView.getSettings().setAppCacheEnabled(false);
-            mWebView.clearHistory();
-            mWebView.clearCache(true);
-
-            mWebView.clearFormData();
-            mWebView.getSettings().setSavePassword(false);
-            mWebView.getSettings().setSaveFormData(false);
-        } else {
-            mWebView.getSettings().setCacheMode(mWebView.getSettings().LOAD_DEFAULT);
-            mWebView.getSettings().setAppCacheEnabled(true);
-
-            mWebView.getSettings().setSavePassword(true);
-            mWebView.getSettings().setSaveFormData(true);
-        }
+        mWebRender.updateIncognitoMode(incognito);
     }
 
     private void showSelectShareMethod(final String urlAsString, final boolean closeBubbleOnShare) {
@@ -276,7 +267,11 @@ public class ContentView extends FrameLayout {
             mAppPickersUrls.add(urlAsString);
         }
 
-        mWebView = (WebView) findViewById(R.id.webView);
+        View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
+        mWebRender = new WebViewRenderer(getContext(), webRendererPlaceholder);
+
+
+        //mWebView = (WebView) findViewById(R.id.webView);
         mTouchInterceptorView = findViewById(R.id.touch_interceptor);
         mTouchInterceptorView.setWillNotDraw(true);
         mTouchInterceptorView.setOnTouchListener(mWebViewOnTouchListener);
@@ -319,26 +314,15 @@ public class ContentView extends FrameLayout {
         mEventHandler.onCanGoBackChanged(false);
         mPageFinishedLoading = false;
 
-        WebSettings webSettings = mWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setGeolocationEnabled(true);
-        webSettings.setSupportZoom(true);
-        webSettings.setTextZoom(Settings.get().getWebViewTextZoom());
-        webSettings.setBuiltInZoomControls(true);
-        webSettings.setDisplayZoomControls(false);
-        webSettings.setLoadWithOverviewMode(true);
-        webSettings.setUseWideViewPort(true);
-        webSettings.setSupportMultipleWindows(DRM.isLicensed() ? true : false);
-        webSettings.setGeolocationDatabasePath(Constant.WEBVIEW_DATABASE_LOCATION);
+        WebView webView = mWebRender.getWebView();
+        webView.setLongClickable(true);
+        webView.setOnLongClickListener(mOnWebViewLongClickListener);
+        webView.setWebChromeClient(mWebChromeClient);
+        webView.setOnKeyListener(mOnKeyListener);
+        webView.setWebViewClient(mWebViewClient);
+        webView.setDownloadListener(mDownloadListener);
 
-        mWebView.setLongClickable(true);
-        mWebView.setOnLongClickListener(mOnWebViewLongClickListener);
-        mWebView.setWebChromeClient(mWebChromeClient);
-        mWebView.setOnKeyListener(mOnKeyListener);
-        mWebView.setWebViewClient(mWebViewClient);
-        mWebView.setDownloadListener(mDownloadListener);
-
-        mPageInspector = new PageInspector(getContext(), mWebView, mOnPageInspectorItemFoundListener);
+        mPageInspector = new PageInspector(getContext(), webView, mOnPageInspectorItemFoundListener);
 
         updateIncognitoMode(Settings.get().isIncognitoMode());
 
@@ -348,7 +332,7 @@ public class ContentView extends FrameLayout {
         updateUrl(urlAsString);
         updateAppsForUrl(mUrl);
         Log.d(TAG, "load url: " + urlAsString);
-        mWebView.loadUrl(urlAsString);
+        mWebRender.loadUrl(urlAsString);
         mTitleTextView.setText(R.string.loading);
         updateUrlTextView(urlAsString);
     }
@@ -369,7 +353,7 @@ public class ContentView extends FrameLayout {
                     break;
             }
             // Forcibly pass along to the WebView. This ensures we receive the ACTION_UP event above.
-            mWebView.onTouchEvent(event);
+            mWebRender.getWebView().onTouchEvent(event);
             return true;
         }
     };
@@ -429,7 +413,7 @@ public class ContentView extends FrameLayout {
             removeCallbacks(mDelayedAutoContentDisplayLinkLoadedRunnable);
 
             mUrl = updatedUrl;
-            mWebView.loadUrl(urlAsString);
+            mWebRender.loadUrl(urlAsString);
             return true;
         }
 
@@ -612,7 +596,7 @@ public class ContentView extends FrameLayout {
         mPageFinishedLoading = true;
 
         // Always check again at 100%
-        mPageInspector.run(mWebView, getPageInspectFlags());
+        mPageInspector.run(mWebRender.getWebView(), getPageInspectFlags());
 
         // NOTE: *don't* call updateUrl() here. Turns out, this function is called after a redirect has occurred.
         // Eg, urlAsString "t.co/xyz" even after the next redirect is starting to load
@@ -876,7 +860,7 @@ public class ContentView extends FrameLayout {
             TabView tabView = MainController.get().openUrl(Constant.NEW_TAB_URL, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_WINDOW);
             if (tabView != null) {
                 WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
-                transport.setWebView(tabView.getContentView().mWebView);
+                transport.setWebView(tabView.getContentView().getWebRenderer().getWebView());
                 resultMsg.sendToTarget();
                 return true;
             }
@@ -893,7 +877,7 @@ public class ContentView extends FrameLayout {
     OnLongClickListener mOnWebViewLongClickListener = new OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
-            WebView.HitTestResult hitTestResult = mWebView.getHitTestResult();
+            WebView.HitTestResult hitTestResult = mWebRender.getWebView().getHitTestResult();
             Log.d(TAG, "onLongClick type: " + hitTestResult.getType());
             switch (hitTestResult.getType()) {
                 case WebView.HitTestResult.SRC_ANCHOR_TYPE:
@@ -953,7 +937,7 @@ public class ContentView extends FrameLayout {
         @Override
         public void onClick(View v) {
             mReloadButton.setVisibility(GONE);
-            mWebView.reload();
+            mWebRender.reload();
         }
     };
 
@@ -993,8 +977,8 @@ public class ContentView extends FrameLayout {
                         case R.id.item_reload_page: {
                             mPageInspector.reset();
                             mEventHandler.onPageLoading(mUrl);
-                            mWebView.stopLoading();
-                            mWebView.reload();
+                            mWebRender.stopLoading();
+                            mWebRender.reload();
                             String urlAsString = mUrl.toString();
                             updateAppsForUrl(mUrl);
                             configureOpenInAppButton();
@@ -1056,7 +1040,7 @@ public class ContentView extends FrameLayout {
             synchronized (mIsDestroyed) {
                 if (mIsDestroyed == false && mDoDropDownCheck) {
                     // Check for YouTube as well to fix issues where sometimes embeds are not found.
-                    mPageInspector.run(mWebView, PageInspector.INSPECT_DROP_DOWN | PageInspector.INSPECT_YOUTUBE);
+                    mPageInspector.run(mWebRender.getWebView(), PageInspector.INSPECT_DROP_DOWN | PageInspector.INSPECT_YOUTUBE);
                 }
             }
         }
