@@ -7,6 +7,8 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.view.View;
+import android.view.ViewGroup;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
@@ -329,5 +331,12 @@ public class Util {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(Config.SET_DEFAULT_BROWSER_URL));
         return packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
+    }
+
+    static public void replaceViewAtPosition(View viewToReplace, View replaceWith) {
+        ViewGroup parent = (ViewGroup) viewToReplace.getParent();
+        int index = parent.indexOfChild(viewToReplace);
+        parent.removeView(viewToReplace);
+        parent.addView(replaceWith, index);
     }
 }
