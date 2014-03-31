@@ -24,7 +24,7 @@ public abstract class WebRenderer {
         public void onDownloadStart(String urlAsString);
         public void onReceivedTitle(String url, String title);
         public void onReceivedIcon(Bitmap bitmap);
-        public void onProgressChanged(WebView webView, int progress);
+        public void onProgressChanged(int progress, String urlAsString);
         public boolean onBackPressed();
         public void onUrlLongClick(String url);
         public void onShowBrowserPrompt();
@@ -45,8 +45,6 @@ public abstract class WebRenderer {
     public abstract void destroy();
     
     public abstract View getView();
-
-    public abstract WebView getWebView();
 
     public abstract void updateIncognitoMode(boolean incognito);
 
