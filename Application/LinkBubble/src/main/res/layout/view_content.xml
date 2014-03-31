@@ -87,8 +87,8 @@
 
     </LinearLayout>
 
-    <WebView
-        android:id="@+id/webView"
+    <View
+        android:id="@+id/web_renderer_placeholder"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="@dimen/webview_margin_top"/>
