@@ -17,6 +17,8 @@ public class Constant {
         Share,
     }
 
+    public static final boolean PROFILE_FPS = false;
+
     public static final String INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION = "com.android.launcher.intent.extra.shortcut.INGORE_LAUNCH_ANIMATION";
 
     public static boolean SAVE_CURRENT_TABS = true;
