@@ -8,17 +8,20 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Choreographer;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.ui.BubbleDraggable;
@@ -161,7 +164,9 @@ public class MainController implements Choreographer.FrameCallback {
         Bus bus = app.getBus();
         bus.unregister(sInstance);
 
-        //sInstance.mWindowManager.removeView(sInstance.mTextView);
+        if (Constant.PROFILE_FPS) {
+            sInstance.mWindowManager.removeView(sInstance.mTextView);
+        }
         sInstance.mBubbleDraggable.destroy();
         sInstance.mBubbleFlowDraggable.destroy();
         sInstance.mCanvasView.destroy();
@@ -273,22 +278,21 @@ public class MainController implements Choreographer.FrameCallback {
 
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 
-        /*
-        mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        mTextView = new TextView(mContext);
-        mTextView.setTextColor(0xff00ffff);
-        mTextView.setTextSize(32.0f);
-        mWindowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
-        mWindowManagerParams.x = 500;
-        mWindowManagerParams.y = 16;
-        mWindowManagerParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        mWindowManagerParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
-        mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_PHONE;
-        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
-        mWindowManagerParams.format = PixelFormat.TRANSPARENT;
-        mWindowManagerParams.setTitle("LinkBubble: Debug Text");
-        mWindowManager.addView(mTextView, mWindowManagerParams);
-*/
+        if (Constant.PROFILE_FPS) {
+            mTextView = new TextView(mContext);
+            mTextView.setTextColor(0xff00ffff);
+            mTextView.setTextSize(32.0f);
+            mWindowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
+            mWindowManagerParams.x = 500;
+            mWindowManagerParams.y = 16;
+            mWindowManagerParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            mWindowManagerParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
+            mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_PHONE;
+            mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
+            mWindowManagerParams.format = PixelFormat.TRANSPARENT;
+            mWindowManagerParams.setTitle("LinkBubble: Debug Text");
+            mWindowManager.addView(mTextView, mWindowManagerParams);
+        }
 
         mUpdateScheduled = false;
         mChoreographer = Choreographer.getInstance();
@@ -337,10 +341,8 @@ public class MainController implements Choreographer.FrameCallback {
         mEventHandler.onDestroy();
     }
 
-    //private TextView mTextView;
-    //private WindowManager mWindowManager;
-    //private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
-    //private int mFrameNumber;
+    private TextView mTextView;
+    private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
 
     public void onPageLoaded(TabView tab, boolean withError) {
         // Ensure this is not an edge case where the Tab has already been destroyed, re #254
@@ -449,6 +451,11 @@ public class MainController implements Choreographer.FrameCallback {
         return false;
     }
 
+    private static final int MAX_SAMPLE_COUNT = 60 * 10;
+    private static final float MAX_VALID_TIME = 10.0f / 60.0f;
+    private float [] mSamples = new float[MAX_SAMPLE_COUNT];
+    private int mSampleCount = 0;
+
     public void doFrame(long frameTimeNanos) {
         mUpdateScheduled = false;
 
@@ -467,8 +474,6 @@ public class MainController implements Choreographer.FrameCallback {
 
         mCanvasView.update(dt);
 
-        //mTextView.setText("S=" + mCurrentState.getName() + " F=" + mFrameNumber++);
-
         if (getActiveTabCount() == 0 && mBubblesLoaded > 0 && !mUpdateScheduled) {
             // Will be non-zero in the event a link has been dismissed by a user, but its TabView
             // instance is still animating off screen. In that case, keep triggering an update so that when the
@@ -481,6 +486,37 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         updateKeyguardLocked();
+
+        if (Constant.PROFILE_FPS) {
+            if (t < MAX_VALID_TIME) {
+                mSamples[mSampleCount % MAX_SAMPLE_COUNT] = t;
+                ++mSampleCount;
+            }
+
+            float total = 0.0f;
+            float worst = 0.0f;
+            float best = 99999999.0f;
+            int badFrames = 0;
+            int frameCount = Math.min(mSampleCount, MAX_SAMPLE_COUNT);
+            for (int i = 0; i < frameCount; ++i) {
+                total += mSamples[i];
+                worst = Math.max(worst, mSamples[i]);
+                best = Math.min(best, mSamples[i]);
+                if (mSamples[i] > 1.5f / 60.0f) {
+                    ++badFrames;
+                }
+            }
+
+            String sbest = String.format("%.2f", 1000.0f * best);
+            String sworst = String.format("%.2f", 1000.0f * worst);
+            String savg = String.format("%.2f", 1000.0f * total / frameCount);
+            String badpc = String.format("%.2f", 100.0f * badFrames / frameCount);
+            String s = "Best=" + sbest + "\nWorst=" + sworst + "\nAvg=" + savg + "\nBad=" + badFrames + "\nBad %=" + badpc + "%";
+
+            mTextView.setSingleLine(false);
+            mTextView.setText(s);
+            scheduleUpdate();
+        }
     }
 
     public void onCloseSystemDialogs() {
