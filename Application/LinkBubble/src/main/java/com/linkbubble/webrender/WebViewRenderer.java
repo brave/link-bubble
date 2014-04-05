@@ -98,6 +98,7 @@ class WebViewRenderer extends WebRenderer {
         webSettings.setUseWideViewPort(true);
         webSettings.setSupportMultipleWindows(DRM.isLicensed() ? true : false);
         webSettings.setGeolocationDatabasePath(Constant.WEBVIEW_DATABASE_LOCATION);
+        webSettings.setSavePassword(false);
 
         mPageInspector = new PageInspector(mContext, mWebView, mOnPageInspectorItemFoundListener);
     }
