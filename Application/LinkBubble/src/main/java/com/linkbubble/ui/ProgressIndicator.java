@@ -30,7 +30,7 @@ public class ProgressIndicator extends FrameLayout {
     private int mProgress;
     private URL mUrl;
 
-    //private ProgressImageView mIndicatorImage;
+    private ProgressImageView mIndicatorImage;
     private ProgressArcView mProgressArcView;
 
     public ProgressIndicator(Context context) {
@@ -60,21 +60,21 @@ public class ProgressIndicator extends FrameLayout {
         arcLP.gravity = Gravity.CENTER;
         addView(mProgressArcView, arcLP);
 
-        //mIndicatorImage = new ProgressImageView(getContext());
-        //mIndicatorImage.setImageResource(R.drawable.loading_dots);
+        mIndicatorImage = new ProgressImageView(getContext());
+        mIndicatorImage.setImageResource(R.drawable.loading_dots);
 
-        //FrameLayout.LayoutParams indicatorLP = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        //indicatorLP.gravity = Gravity.CENTER;
-        //addView(mIndicatorImage, indicatorLP);
+        FrameLayout.LayoutParams indicatorLP = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        indicatorLP.gravity = Gravity.CENTER;
+        addView(mIndicatorImage, indicatorLP);
     }
 
-    //void showProgressSpinner(boolean show) {
-    //    mIndicatorImage.setVisibility(show ? VISIBLE : GONE);
-    //}
+    void showProgressSpinner(boolean show) {
+        mIndicatorImage.setVisibility(show ? VISIBLE : GONE);
+    }
 
-    //boolean isProgressSpinnerShowing() {
-    //    return mIndicatorImage.getVisibility() == VISIBLE;
-    //}
+    boolean isProgressSpinnerShowing() {
+        return mIndicatorImage.getVisibility() == VISIBLE;
+    }
 
     public int getMax() {
         return mMax;
@@ -107,8 +107,7 @@ public class ProgressIndicator extends FrameLayout {
     }
 
     boolean isIndicatorShowing() {
-        //return mIndicatorImage.getVisibility() == VISIBLE;
-        return mProgressArcView.mProgress < 1.f ? true : false;
+        return mIndicatorImage.getVisibility() == VISIBLE;
     }
 
     private class ProgressImageView extends ImageView {
@@ -145,7 +144,7 @@ public class ProgressIndicator extends FrameLayout {
         private RectF mOval;
         //private float mStart = -90;
         //private float mSweep;
-        float mProgress;
+        private float mProgress;
         private static final float SWEEP_INC = 2.5f;
         private static final float START_INC = 0;
         private String mUrl;
