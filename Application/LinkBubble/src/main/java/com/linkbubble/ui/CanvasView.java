@@ -343,7 +343,14 @@ public class CanvasView extends FrameLayout {
 
     public void update(float dt) {
 
-        if (mAnimPeriod > 0.0f) {
+        boolean updateAnimTime;
+        if (Constant.DYNAMIC_ANIM_STEP) {
+            updateAnimTime = mAnimPeriod > 0.0f;
+        } else {
+            updateAnimTime = mAnimPeriod > 0.0f && mAnimTime <= mAnimPeriod;
+        }
+
+        if (updateAnimTime) {
             float t = Util.clamp(0.0f, mAnimTime / mAnimPeriod, 1.0f);
             mContentViewY = (int) (mInitialY + (mTargetY - mInitialY) * t);
             if (mContentView != null) {
