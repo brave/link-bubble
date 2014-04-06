@@ -4218,11 +4218,10 @@ com.linkbubble.R$id: int time_per_link
 com.linkbubble.R$id: int time_total
 com.linkbubble.R$id: int title_text
 com.linkbubble.R$id: int top_buttons_container
-com.linkbubble.R$id: int touch_interceptor
 com.linkbubble.R$id: int upgrade_button
 com.linkbubble.R$id: int url_text
 com.linkbubble.R$id: int watson_icon
-com.linkbubble.R$id: int webView
+com.linkbubble.R$id: int web_renderer_placeholder
 com.linkbubble.R$id: int x
 com.linkbubble.R$id: int y
 com.linkbubble.R$id: int z
@@ -4746,6 +4745,9 @@ com.linkbubble.util.VerticalGestureListener: VerticalGestureListener()
 com.linkbubble.util.VerticalGestureListener$GestureDirection
 com.linkbubble.util.VerticalGestureListener$GestureDirection: com.linkbubble.util.VerticalGestureListener$GestureDirection[] values()
 com.linkbubble.util.VerticalGestureListener$GestureDirection: com.linkbubble.util.VerticalGestureListener$GestureDirection valueOf(java.lang.String)
+com.linkbubble.webrender.WebRenderer$Type
+com.linkbubble.webrender.WebRenderer$Type: com.linkbubble.webrender.WebRenderer$Type[] values()
+com.linkbubble.webrender.WebRenderer$Type: com.linkbubble.webrender.WebRenderer$Type valueOf(java.lang.String)
 com.parse.BackgroundTask
 com.parse.BackgroundTask: com.parse.ParseCallback callback
 com.parse.BackgroundTask: java.lang.Object result

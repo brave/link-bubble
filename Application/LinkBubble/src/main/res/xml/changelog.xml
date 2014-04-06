@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="1.0.4" versioncode="10401">
-        <change>CHANGE: Remove rotating dots during webpage loading.</change>
+    <release version="1.0.4" versioncode="10402">
         <change>BUG FIX: Many stability fixes.</change>
     </release>
 
