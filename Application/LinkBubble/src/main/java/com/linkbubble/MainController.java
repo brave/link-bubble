@@ -462,9 +462,13 @@ public class MainController implements Choreographer.FrameCallback {
         float t0 = mPreviousFrameTime / 1000000000.0f;
         float t1 = frameTimeNanos / 1000000000.0f;
         float t = t1 - t0;
-        float dt = Util.clamp(0.0f, t, 3.0f / 60.0f);
-
         mPreviousFrameTime = frameTimeNanos;
+        float dt;
+        if (Constant.DYNAMIC_ANIM_STEP) {
+            dt = Util.clamp(0.0f, t, 3.0f / 60.0f);
+        } else {
+            dt = 1.0f / 60.0f;
+        }
 
         if (mBubbleFlowDraggable.update()) {
             scheduleUpdate();

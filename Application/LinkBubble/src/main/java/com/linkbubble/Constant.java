@@ -17,6 +17,9 @@ public class Constant {
         Share,
     }
 
+    // Make GW's changes per d46678694ab79ed7a4aec5e293beff9ae9a62382 optional
+    public static final boolean DYNAMIC_ANIM_STEP = true;
+
     public static final boolean PROFILE_FPS = false;
 
     public static final String INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION = "com.android.launcher.intent.extra.shortcut.INGORE_LAUNCH_ANIMATION";
