@@ -3617,6 +3617,8 @@ com.linkbubble.Config:
     public static final java.lang.String YOUTUBE_API_THUMBNAILS_LOW_QUALITY
     public static final java.lang.String YOUTUBE_API_THUMBNAILS_HIGH_QUALITY
 com.linkbubble.Constant:
+    public static final boolean DYNAMIC_ANIM_STEP
+    public static final boolean PROFILE_FPS
     public static final java.lang.String INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION
     public static final int BUBBLE_ANIM_TIME
     public static final float BUBBLE_MODE_ALPHA
@@ -3640,7 +3642,7 @@ com.linkbubble.Constant:
     public static final java.lang.String TWITTER_ACCOUNT_TYPE
     public static final java.lang.String YAHOO_ACCOUNT_TYPE
     public static final java.lang.String WEBVIEW_DATABASE_LOCATION
-    67:70:public static java.lang.String getValidDeviceId()
+    72:75:public static java.lang.String getValidDeviceId()
 com.linkbubble.DRM:
     static final int MSG_LICENSE_RESULT
     static final int MSG_CHECK_LICENSE
@@ -3650,7 +3652,10 @@ com.linkbubble.DRM:
     static final int LICENSE_IGNORE_ERROR
 com.linkbubble.MainController:
     private static final java.lang.String TAG
-    732:733:public void switchToExpandedView()
+    private android.widget.TextView mTextView
+    private static final int MAX_SAMPLE_COUNT
+    private static final float MAX_VALID_TIME
+    772:773:public void switchToExpandedView()
 com.linkbubble.MainService:
     private static final java.lang.String BCAST_CONFIGCHANGED
 com.linkbubble.R$anim
@@ -3768,6 +3773,7 @@ com.linkbubble.ui.CloseTabTargetView:
     private static final float MIN_SCALE
 com.linkbubble.ui.ContentView:
     private static final java.lang.String TAG
+    132:132:public com.linkbubble.webrender.WebRenderer getWebRenderer()
 com.linkbubble.ui.ContentView$EventHandler:
     public abstract void setDefaultFavicon()
 com.linkbubble.ui.ContentViewButton:
@@ -3805,7 +3811,6 @@ com.linkbubble.ui.ProgressIndicator:
 com.linkbubble.ui.ProgressIndicator$ProgressArcView:
     private static final float SWEEP_INC
     private static final float START_INC
-com.linkbubble.ui.ProgressIndicator$ProgressImageView
 com.linkbubble.ui.Prompt:
     public static final int LENGTH_LONG
 com.linkbubble.ui.SettingsFragment:
@@ -3858,7 +3863,7 @@ com.linkbubble.util.Util:
     private static final int OUTCODE_RIGHT
     private static final int OUTCODE_BOTTOM
     private static final int OUTCODE_TOP
-    47:54:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
+    49:56:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
 com.squareup.otto.AnnotatedHandlerFinder:
     154:156:private AnnotatedHandlerFinder()
 com.squareup.otto.Bus:
