@@ -123,13 +123,11 @@ class WebViewRenderer extends WebRenderer {
             mWebView.clearCache(true);
 
             mWebView.clearFormData();
-            mWebView.getSettings().setSavePassword(false);
             mWebView.getSettings().setSaveFormData(false);
         } else {
             mWebView.getSettings().setCacheMode(mWebView.getSettings().LOAD_DEFAULT);
             mWebView.getSettings().setAppCacheEnabled(true);
 
-            mWebView.getSettings().setSavePassword(true);
             mWebView.getSettings().setSaveFormData(true);
         }
     }
