@@ -24,7 +24,7 @@
     <dimen name="bubble_pager_height">@dimen/bubble_pager_item_height</dimen>
     <dimen name="bubble_progress_size">52dp</dimen>
     <dimen name="bubble_progress_stroke">1px</dimen>
-    <dimen name="content_offset">60dp</dimen>
+    <dimen name="content_offset">84dp</dimen>
     <dimen name="stat_height">200dp</dimen>
     <dimen name="stat_bubble_size">140dp</dimen>
     <dimen name="stat_bubble_text_size">28sp</dimen>
@@ -45,7 +45,7 @@
     <dimen name="browser_toolbar_favicon_size">25.33dip</dimen>
 
     <dimen name="bubble_target_icon_size">40dp</dimen>
-    <dimen name="bubble_target_y">24dp</dimen>
+    <dimen name="bubble_target_y">40dp</dimen>
     <dimen name="close_bubble_target_y">31dp</dimen>
     <dimen name="close_tab_text_circle_size">66dp</dimen>
     <dimen name="close_tab_target_size">92dp</dimen>

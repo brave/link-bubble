@@ -120,6 +120,7 @@ public class CanvasView extends FrameLayout {
 
         mTopMaskView = new ImageView(context);
         mTopMaskView.setImageResource(R.drawable.masked_background_half);
+        //mTopMaskView.setBackgroundColor(0xffff00ff);
         mTopMaskView.setScaleType(ImageView.ScaleType.FIT_XY);
         FrameLayout.LayoutParams topMaskLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, canvasMaskHeight);
         topMaskLP.gravity = Gravity.TOP;
@@ -140,8 +141,8 @@ public class CanvasView extends FrameLayout {
         mWindowManagerParams.y = 0;
         mWindowManagerParams.height = WindowManager.LayoutParams.MATCH_PARENT;
         mWindowManagerParams.width = WindowManager.LayoutParams.MATCH_PARENT;
-        mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_PHONE;
-        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
+        mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
+        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
         mWindowManagerParams.setTitle("LinkBubble: CanvasView");
         MainController.addRootWindow(this, mWindowManagerParams);
