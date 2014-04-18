@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/keep_installed"
+        android:text="@string/pro_keep_installed"
         android:padding="12dp"
         android:textSize="14dp"
         />
@@ -67,7 +67,7 @@
 
     <Button
         android:id="@+id/retry"
-        android:text="@string/action_retry"
+        android:text="@string/pro_action_retry"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
