@@ -94,7 +94,7 @@ public class MainActivity extends Activity {
         mChecker = new LicenseChecker(this, serverManagedPolicy, Constant.BASE64_PUBLIC_KEY);
 
         if (getActionBar() != null) {
-            getActionBar().setTitle(getString(R.string.application_name) + " (" + BuildConfig.VERSION_NAME + ")");
+            getActionBar().setTitle(getString(R.string.pro_application_name) + " (" + BuildConfig.VERSION_NAME + ")");
         }
     }
 
@@ -138,11 +138,11 @@ public class MainActivity extends Activity {
 	            	if (mLicenseState == ProMessengerService.LICENSE_VALID) {
                         mImage.setVisibility(View.VISIBLE);
                         mKeepInstalledText.setVisibility(View.VISIBLE);
-                        mStatusText.setText(R.string.status_verified);
+                        mStatusText.setText(R.string.pro_status_verified);
 	            		if (mLinkBubbleApp != null) {
-	            			mLicenseButton.setText(R.string.action_load_app);
+	            			mLicenseButton.setText(R.string.pro_action_load_app);
 	            		} else {
-	            			mLicenseButton.setText(R.string.action_install_app);
+	            			mLicenseButton.setText(R.string.pro_action_install_app);
 	            		}
 	            		mLicenseButton.setVisibility(View.VISIBLE);
 	            		mLicenseButton.setEnabled(true);
@@ -150,11 +150,11 @@ public class MainActivity extends Activity {
                         mRetryButton.setVisibility(View.GONE);
 	            	} else if (mLicenseState == ProMessengerService.LICENSE_INVALID) {
                         if (policyReason == Policy.NOT_LICENSED) {
-                            mStatusText.setText(R.string.status_unlicensed);
-                            mLicenseButton.setText(R.string.action_store);
+                            mStatusText.setText(R.string.pro_status_unlicensed);
+                            mLicenseButton.setText(R.string.pro_action_store);
                         } else {
-                            mStatusText.setText(R.string.status_buy);
-                            mLicenseButton.setText(R.string.action_buy);
+                            mStatusText.setText(R.string.pro_status_buy);
+                            mLicenseButton.setText(R.string.pro_action_buy);
                         }
 	            		mLicenseButton.setVisibility(View.VISIBLE);
 	            		mLicenseButton.setEnabled(true);
@@ -174,7 +174,7 @@ public class MainActivity extends Activity {
         mRetryButton.setVisibility(View.GONE);
         mLicenseButton.setEnabled(false);
         setProgressBarIndeterminateVisibility(true);
-        mStatusText.setText(R.string.status_checking_license);
+        mStatusText.setText(R.string.pro_status_checking_license);
         mChecker.checkAccess(mLicenseCheckerCallback);
     }
 
