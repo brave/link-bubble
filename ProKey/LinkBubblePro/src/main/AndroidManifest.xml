@@ -10,7 +10,7 @@
 
     <application
         android:icon="@drawable/ic_launcher"
-        android:label="@string/application_name"
+        android:label="@string/pro_application_name"
         android:theme="@android:style/Theme.Holo.Light"
         >
         <activity
@@ -18,7 +18,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             >
-            <intent-filter android:label="@string/application_name">
+            <intent-filter android:label="@string/pro_application_name">
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="linkbubble.intent.action.PRO_ACTIVITY" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -29,7 +29,7 @@
                  android:protectionLevel="signature"
                  android:exported="true">
 
-            <intent-filter android:label="@string/application_name">
+            <intent-filter android:label="@string/pro_application_name">
                 <action android:name="linkbubble.license.PRO_SERVICE" />
             </intent-filter>
 
