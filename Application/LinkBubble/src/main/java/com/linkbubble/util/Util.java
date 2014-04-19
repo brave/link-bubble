@@ -1,5 +1,6 @@
 package com.linkbubble.util;
 
+import android.accounts.Account;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -7,6 +8,7 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.util.Patterns;
 import android.view.View;
 import android.view.ViewGroup;
 import com.linkbubble.BuildConfig;
@@ -25,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 /**
  * Created by gw on 2/10/13.
@@ -338,5 +341,17 @@ public class Util {
         int index = parent.indexOfChild(viewToReplace);
         parent.removeView(viewToReplace);
         parent.addView(replaceWith, index);
+    }
+
+    static public String getDefaultEmail(Account[] accounts) {
+        Pattern emailPattern = Patterns.EMAIL_ADDRESS;
+        for (Account account : accounts) {
+            if (emailPattern.matcher(account.name).matches()) {
+                if (account.name != null) {
+                    return account.name;
+                }
+            }
+        }
+        return null;
     }
 }

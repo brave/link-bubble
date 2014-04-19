@@ -94,7 +94,7 @@ public class EntryActivity extends Activity {
 
                     if (url.equals(Constant.TERMS_OF_SERVICE_URL) || url.equals(Constant.PRIVACY_POLICY_URL)) {
                         canLoadFromThisApp = true;
-                    } else if (DRM.isLicensed() == false) {
+                    } else if (DRM.allowProFeatures() == false) {
                         String interceptFromPackageName = Settings.get().getInterceptLinksFromPackageName();
                         if (interceptFromPackageName == null) {
                             canLoadFromThisApp = true;
@@ -139,7 +139,7 @@ public class EntryActivity extends Activity {
                 if (MainController.get() == null) {
                     // Restore open tabs
                     Vector<String> urls = Settings.get().loadCurrentTabs();
-                    if (urls.size() > 0 && DRM.isLicensed()) {
+                    if (urls.size() > 0 && DRM.allowProFeatures()) {
                         MainApplication.restoreLinks(this, urls.toArray(new String[urls.size()]));
                     }
                 }

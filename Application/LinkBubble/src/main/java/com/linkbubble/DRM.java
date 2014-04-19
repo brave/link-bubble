@@ -37,6 +37,14 @@ public class DRM {
         return sLicenseState == DRM.LICENSE_VALID;
     }
 
+    public static boolean isInTrialPeriod() {
+        return false;
+    }
+
+    public static boolean allowProFeatures() {
+        return isLicensed() || isInTrialPeriod();
+    }
+
     private static String LICENSE_KEY = "lb_licenseKey";
     private static String FIRST_INSTALL_TIME_KEY = "lb_firstInstallTime";
     private static String USAGE_TIME_LEFT_KEY = "lb_usageTimeLeft";
@@ -296,4 +304,6 @@ public class DRM {
             mProServiceBound = false;
         }
     };
+
+
 }

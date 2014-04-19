@@ -133,7 +133,7 @@ public class HomeActivity extends Activity {
                 ((MainApplication)getApplicationContext()).initParse();
                 try {
                     final Account[] accounts = AccountManager.get(this).getAccounts();
-                    String defaultEmail = getDefaultEmail(accounts);
+                    String defaultEmail = Util.getDefaultEmail(accounts);
                     if (defaultEmail != null) {
                         ParseQuery<ParseObject> query = ParseQuery.getQuery(Constant.DATA_USER_ENTRY);
                         query.whereEqualTo(Constant.DATA_USER_EMAIL_KEY_PREFIX + "1", defaultEmail);
@@ -191,18 +191,6 @@ public class HomeActivity extends Activity {
         });
 
         MainApplication.registerForBus(this, this);
-    }
-
-    private String getDefaultEmail(Account[] accounts) {
-        Pattern emailPattern = Patterns.EMAIL_ADDRESS;
-        for (Account account : accounts) {
-            if (emailPattern.matcher(account.name).matches()) {
-                if (account.name != null) {
-                    return account.name;
-                }
-            }
-        }
-        return null;
     }
 
     private void setInfo(Account[] accounts, ParseObject parseObject) {
