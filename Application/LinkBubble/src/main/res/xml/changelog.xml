@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.1.0" versioncode="11000">
+        <change>IMPROVEMENT: If the "Vibrate on touch" system setting is disabled, the app will not trigger any vibrations.</change>
+        <change>BUG FIX: Many stability fixes.</change>
+    </release>
+
     <release version="1.0.4" versioncode="10402">
         <change>BUG FIX: Many stability fixes.</change>
     </release>
