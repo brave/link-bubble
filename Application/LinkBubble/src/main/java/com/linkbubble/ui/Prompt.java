@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import com.linkbubble.Config;
@@ -34,6 +35,7 @@ public class Prompt {
     private View mBarView;
     private TextView mMessageView;
     private ImageButton mButton;
+    private Button mCloseButton;
     private ViewPropertyAnimator mBarAnimator;
     private Handler mHideHandler = new Handler();
     private OnPromptEventListener mListener;
@@ -77,6 +79,14 @@ public class Prompt {
                 if (mListener != null) {
                     mListener.onClick();
                 }
+                hidePrompt(false);
+            }
+        });
+
+        mCloseButton = (Button) mBarView.findViewById(R.id.prompt_close_button);
+        mCloseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 hidePrompt(false);
             }
         });

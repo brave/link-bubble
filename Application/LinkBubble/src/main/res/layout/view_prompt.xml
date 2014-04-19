@@ -7,4 +7,19 @@
         android:id="@+id/prompt_button"
         style="@style/PromptButton"
         android:contentDescription="@string/content_description_button"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/prompt_close_button"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/close_indicator"/>
+
+    </FrameLayout>
 </LinearLayout>
