@@ -270,4 +270,52 @@
         <item quantity="other">You are now <xliff:g id="step_count">%1$d</xliff:g> steps away from FORCING A CRASH.</item>
     </plurals>
 
+    <string name="service_name">Link Bubble Renderer</string>
+    <string name="notification_title">Link Bubble</string>
+
+    <string name="pro_application_name">Link Bubble Pro</string>
+    <string name="pro_status_checking_license">Checking license…</string>
+	<string name="pro_status_buy">Unable to verify license.\n\nSome causes of this problem include:\n • There is no Internet connection.\n • This application has been tampered
+                            with.\n\nCheck your Internet connection, and if necessary, try installing the app from the Play Store again.</string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting me as I develop this project.</string>
+    <string name="pro_status_unlicensed">Google Play is reporting this copy of Link Bubble Pro is unlicensed.\n\nAssuming you have
+                            indeed purchased a copy of Link Bubble Pro, the most common reason for this is that email address used
+                            for your purchase is not configured with the Play Store on this device.</string>
+
+    <string name="pro_keep_installed">Note: you don\'t need to load Link Bubble Pro again, but you do need to keep it installed for verification purposes.\n\nThis app will be hidden throughout the system so it doesn\'t appear in your launcher(s).</string>
+
+    <string name="pro_action_load_app">Load Link Bubble</string>
+    <string name="pro_action_install_app">Install Link Bubble</string>
+    <string name="pro_action_buy">Buy App</string>
+    <string name="pro_action_retry">Retry</string>
+    <string name="pro_action_store">Play Store</string>
+
+
+
+    <string name="store_listing_title">Link Bubble</string>
+    <string name="store_listing_promo_text">Mobile browsing done right.</string>
+    <string name="store_listing_description_title">Link Bubble is an all-new browser designed and crafted solely with mobile devices in mind.</string>
+    <string name="store_listing_description_features">
+    Features include:
+    • When you click on a link in an app, Link Bubble loads that webpage in the background, leaving you free to keep using your current app rather than your precious time being wasted watching a page load. Once the page has fully loaded, it will animate on screen.
+    • Link Bubble\'s flick physics allow you to go from clicking a link to sharing a link or adding it to a service such as Pocket in little more than a second!
+    • Load multiple links from your current app at the same time (requires Pro).
+    • Gracefully handles links that redirect to other apps. No longer does clicking an Instagram link in Twitter redirect to a full screen browser before loading Instagram!
+    • Deep integration with the apps on your system.
+    • Locates embedded YouTube videos on web pages, and provides a shortcut to load those videos directly in the YouTube app.
+    • Handy stats that illustrate how much time you are saving by using Link Bubble.
+    </string>
+    <string name="store_listing_description_location_permission">Regarding the Location permission: This is required so that you might grant permission for a website to access your location (such as those with an embedded map). Link Bubble itself never accesses your location.</string>
+
+    <string name="pro_store_listing_title">Link Bubble Pro</string>
+    <string name="pro_store_listing_description_title">Link Bubble Pro unlocks the full feature set of Link Bubble.</string>
+    <string name="pro_store_listing_description_features">
+    Upgrades include:
+    • Infinite number of tabs (free version is limited to just one tab).
+    • Load links from all apps on your device (free version intercepts links from just one app).
+    • Remove the upgrade incentives throughout the free version.
+    • Support me so I get to make more of these apps :)
+    </string>
+
+
 </resources>
