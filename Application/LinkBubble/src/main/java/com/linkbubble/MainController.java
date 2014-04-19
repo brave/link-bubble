@@ -567,7 +567,7 @@ public class MainController implements Choreographer.FrameCallback {
 
         Analytics.trackOpenUrl(openedFromAppName);
 
-        if (doLicenseCheck && !DRM.isLicensed() && getActiveTabCount() > 0) {
+        if (doLicenseCheck && !DRM.allowProFeatures() && getActiveTabCount() > 0) {
             if (urlAsString.equals(Constant.NEW_TAB_URL) == false
                 && urlAsString.equals(Constant.PRIVACY_POLICY_URL) == false
                 && urlAsString.equals(Constant.TERMS_OF_SERVICE_URL) == false) {
