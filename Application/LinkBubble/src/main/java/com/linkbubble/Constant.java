@@ -94,5 +94,8 @@ public class Constant {
     public static final String TWITTER_ACCOUNT_TYPE = "com.twitter.android.auth.login";
     public static final String YAHOO_ACCOUNT_TYPE = "com.yahoo.mobile.client.share.account";
 
+    public static final String DATA_TRIAL_ENTRY = "Trial";
+    public static final String DATA_TRIAL_EMAIL = "email";
+
     public static final String WEBVIEW_DATABASE_LOCATION = "/data/data/" + BuildConfig.PACKAGE_NAME;
 }
