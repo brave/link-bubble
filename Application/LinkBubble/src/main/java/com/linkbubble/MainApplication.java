@@ -6,6 +6,7 @@ import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -247,9 +248,13 @@ public class MainApplication extends Application {
         }
 
         if (result) {
-            Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-            if (vibrator.hasVibrator()) {
-                vibrator.vibrate(17);
+            boolean hapticFeedbackEnabled = android.provider.Settings.System.getInt(context.getContentResolver(),
+                    android.provider.Settings.System.HAPTIC_FEEDBACK_ENABLED, 0) != 0;
+            if (hapticFeedbackEnabled) {
+                Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+                if (vibrator.hasVibrator()) {
+                    vibrator.vibrate(17);
+                }
             }
         }
 
