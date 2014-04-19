@@ -42,7 +42,7 @@ public class Config {
         mBubbleWidth = mBubbleHeight = context.getResources().getDimensionPixelSize(R.dimen.bubble_size);
 
         mScreenCenterX = (int) (mDm.widthPixels * 0.5f);
-        mScreenHeight = mDm.heightPixels; // - getStatusBarHeight(context);
+        mScreenHeight = mDm.heightPixels - getStatusBarHeight(context);
         mScreenWidth = mDm.widthPixels;
 
         mBubbleSnapLeftX = (int) (-mBubbleWidth * 0.2f);
