@@ -58,7 +58,7 @@ public class Config {
         sDensityDpi = mDm.densityDpi;
     }
 
-    private static int getStatusBarHeight(Context context) {
+    public static int getStatusBarHeight(Context context) {
         int result = 33;        // Guess 33 if we can't find the resource as this is what the value is on a N7.
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
