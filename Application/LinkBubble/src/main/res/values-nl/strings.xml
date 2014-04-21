@@ -262,11 +262,6 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="accept_terms_and_privacy"><![CDATA[Door verder te gaan, accepteer je de Link Bubble
 <a href="http://www.linkbubble.com/terms">voorwaarden</a> en het <a href="http://www.linkbubble.com/privacy">privacybeleid</a>.]]></string>
 
-    <plurals name="force_crash_countdown">
-        <item quantity="one">Je bent nu <xliff:g id="step_count">%1$d</xliff:g> stap verwijderd van het AFDWINGEN VAN EEN CRASH.</item>
-        <item quantity="other">Je bent nu <xliff:g id="step_count">%1$d</xliff:g> stappen verwijderd van het AFDWINGEN VAN EEN CRASH.</item>
-    </plurals>
-
     <string name="service_name">Link Bubble Renderer</string>
     <string name="notification_title">Link Bubble</string>
 

@@ -232,11 +232,6 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
 
     <string name="accept_terms_and_privacy"><![CDATA[ในการดำเนินการต่อ นั่นหมายความว่าคุณยอมรับ <a href="http://www.linkbubble.com/terms">ข้อกำหนด</a> และ <a href="http://www.linkbubble.com/privacy">นโยบายความเป็นส่วนตัว</a> ของ Link Bubble]]></string>
 
-    <plurals name="force_crash_countdown">
-        <item quantity="one">คุณกำลังเหลือ <xliff:g id="step_count">%1$d</xliff:g> ขั้นเพื่อสร้างการแครช</item>
-        <item quantity="other">คุณกำลังเหลือ <xliff:g id="step_count">%1$d</xliff:g> ขั้นเพื่อสร้างการแครช</item>
-    </plurals>
-
     <string name="service_name">เรนเดอร์ Link Bubble</string>
     <string name="notification_title">Link Bubble</string>
 

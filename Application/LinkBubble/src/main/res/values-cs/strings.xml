@@ -262,12 +262,6 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
     <string name="accept_terms_and_privacy"><![CDATA[Pokračováním potvrzujete, že souhlasíte s
 <a href="http://www.linkbubble.com/terms">podmínkami použití</a> a <a href="http://www.linkbubble.com/privacy">zásadami ochrany soukromí</a> aplikace Link Bubble.]]></string>
 
-    <plurals name="force_crash_countdown">
-        <item quantity="one">Jste teď <xliff:g id="step_count">%1$d</xliff:g> kroků od VYNUCENÍ PÁDU.</item>
-        <item quantity="other">Jste teď <xliff:g id="step_count">%1$d</xliff:g> kroků od VYNUCENÍ PÁDU.</item>
-        <item quantity="few"></item>
-    </plurals>
-
     <string name="service_name">Link Bubble Renderer</string>
     <string name="notification_title">Link Bubble</string>
 
