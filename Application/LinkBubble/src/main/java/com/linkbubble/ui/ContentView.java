@@ -788,6 +788,7 @@ public class ContentView extends FrameLayout {
                         String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
             }
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_copy_link, Menu.NONE, resources.getString(R.string.action_copy_to_clipboard));
+            mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_close_tab, Menu.NONE, resources.getString(R.string.action_close_tab));
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_settings, Menu.NONE,
                     resources.getString(R.string.action_settings));
             mOverflowPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -827,6 +828,11 @@ public class ContentView extends FrameLayout {
 
                         case R.id.item_copy_link: {
                             MainApplication.copyLinkToClipboard(getContext(), mWebRenderer.getUrl().toString(), R.string.bubble_link_copied_to_clipboard);
+                            break;
+                        }
+
+                        case R.id.item_close_tab: {
+                            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing());
                             break;
                         }
 

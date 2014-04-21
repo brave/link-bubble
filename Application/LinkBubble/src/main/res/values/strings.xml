@@ -23,6 +23,7 @@
     <string name="action_copy_to_clipboard">Copy link</string>
     <string name="action_share">Share</string>
     <string name="action_close_all">Close all</string>
+    <string name="action_close_tab">Close bubble</string>
     <string name="share_via">Share via…</string>
 
     <string name="share_invalid_data">Link Bubble us unable to share this item as it is not a valid URL.</string>
