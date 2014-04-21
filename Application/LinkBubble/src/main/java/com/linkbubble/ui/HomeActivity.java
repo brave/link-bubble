@@ -51,6 +51,7 @@ public class HomeActivity extends Activity {
     View mContentView;
     View mBackgroundView;
     View mTopButtonsContainerView;
+    TrialTimeView mTrialTimeView;
     Button mActionButtonView;
     View mHistoryCircleButtonView;
     View mSettingsCircleButtonView;
@@ -79,6 +80,7 @@ public class HomeActivity extends Activity {
         mSettingsCircleButtonView = findViewById(R.id.settings_circle);
         mActionButtonView = (Button)findViewById(R.id.big_white_button);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
+        mTrialTimeView = (TrialTimeView) findViewById(R.id.trial_time_view);
         mTimeSavedPerLinkContainerView = mStatsFlipView.getDefaultView();
         mTimeSavedPerLinkTextView = (CondensedTextView) mTimeSavedPerLinkContainerView.findViewById(R.id.time_per_link);
         mTimeSavedPerLinkTextView.setText("");
@@ -430,8 +432,11 @@ public class HomeActivity extends Activity {
             long hoursLeft = trialTimeRemaining / hour;
             long minutesLeft = (trialTimeRemaining - (hour * hoursLeft))/ minute;
             msg = hoursLeft + " hours, " + minutesLeft + " minutes, trialTimeRemaining:" + trialTimeRemaining;
+            mTrialTimeView.setProgress(1.f - (float)trialTimeRemaining / (float)Constant.TRIAL_TIME);
         }
         Log.d("Trial", "timeRemaining: " + msg);
+
+        mTrialTimeView.setVisibility(MainApplication.isInTrialPeriod() && DRM.isLicensed() == false ? View.VISIBLE : View.GONE);
     }
 
     @SuppressWarnings("unused")
