@@ -196,7 +196,7 @@ WebView v Androidu předepisuje, aby se prvek &lt;select&gt; zobrazil přes Dial
 tohoto chování. Tento hack byl přidán, aby v Link Bubble ze všech stránek jednoduše odstranil rozbalovací menu.
 Rozhodně to není ideální, ale je to lepší než nechat aplikaci spadnout, což by se jinak stalo :\\]]></string>
     <string name="faq_copy_text_question">Proč nemůžu ze stránky zkopírovat text?</string>
-    <string name="faq_copy_text_answer">Je to bohužel omezení samotného systému Android. <br/><br/>Technická odpověď:
+    <string name="faq_copy_text_answer"><![CDATA[Je to bohužel omezení samotného systému Android. <br/><br/>Technická odpověď:
  Kopírování funguje jen tehdy, pokud WebView v Androidu běží přes Activity, nikoliv Service (což je případ Link Bubble).]]></string>
     <string name="faq_translucent_status_bar_question">Proč se aplikace nepřekresluje přes průsvitný stavový řádek?</string>
     <string name="faq_translucent_status_bar_answer">Je to bohužel omezení samotného systému Android.</string>
@@ -265,6 +265,7 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
     <plurals name="force_crash_countdown">
         <item quantity="one">Jste teď <xliff:g id="step_count">%1$d</xliff:g> kroků od VYNUCENÍ PÁDU.</item>
         <item quantity="other">Jste teď <xliff:g id="step_count">%1$d</xliff:g> kroků od VYNUCENÍ PÁDU.</item>
+        <item quantity="few"></item>
     </plurals>
 
     <string name="service_name">Link Bubble Renderer</string>
