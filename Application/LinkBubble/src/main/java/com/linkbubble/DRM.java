@@ -37,12 +37,8 @@ public class DRM {
         return sLicenseState == DRM.LICENSE_VALID;
     }
 
-    public static boolean isInTrialPeriod() {
-        return false;
-    }
-
     public static boolean allowProFeatures() {
-        return isLicensed() || isInTrialPeriod();
+        return isLicensed() || MainApplication.isInTrialPeriod();
     }
 
     private static String LICENSE_KEY = "lb_licenseKey";
