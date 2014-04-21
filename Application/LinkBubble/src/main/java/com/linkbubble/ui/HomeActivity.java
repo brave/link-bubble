@@ -37,6 +37,7 @@ import com.parse.SaveCallback;
 import com.squareup.otto.Subscribe;
 import org.w3c.dom.Text;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Vector;
 import java.util.regex.Pattern;
@@ -316,6 +317,8 @@ public class HomeActivity extends Activity {
 
         MainApplication.checkForProVersion(getApplicationContext());
         Util.checkForTamper(this, mTamperPromptEventListener);
+
+        updateTimeTrialRemaining();
     }
 
     @Override
@@ -418,6 +421,19 @@ public class HomeActivity extends Activity {
         }
     }
 
+    void updateTimeTrialRemaining() {
+        String msg = "";
+        long trialTimeRemaining = MainApplication.getTrialTimeRemaining();
+        if (trialTimeRemaining > -1) {
+            final long minute = 60 * 1000;
+            final long hour = 60 * minute;
+            long hoursLeft = trialTimeRemaining / hour;
+            long minutesLeft = (trialTimeRemaining - (hour * hoursLeft))/ minute;
+            msg = hoursLeft + " hours, " + minutesLeft + " minutes, trialTimeRemaining:" + trialTimeRemaining;
+        }
+        Log.d("Trial", "timeRemaining: " + msg);
+    }
+
     @SuppressWarnings("unused")
     @Subscribe
     public void onLinkLoadTimeStatsUpdatedEvent(Settings.LinkLoadTimeStatsUpdatedEvent event) {
@@ -433,5 +449,11 @@ public class HomeActivity extends Activity {
             Toast.makeText(this, R.string.valid_license_detected, Toast.LENGTH_LONG).show();
             event.mDisplayedToast = true;
         }
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onTrialTimeStartTimeReceivedEvent(MainApplication.TrialTimeStartTimeReceivedEvent event) {
+        updateTimeTrialRemaining();
     }
 }
