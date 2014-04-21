@@ -1,5 +1,7 @@
 package com.linkbubble;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.content.ActivityNotFoundException;
@@ -15,6 +17,7 @@ import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Vibrator;
+import android.util.Log;
 import android.widget.Toast;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
@@ -22,12 +25,17 @@ import com.linkbubble.ui.Prompt;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.Tamper;
+import com.linkbubble.util.Util;
+import com.parse.GetCallback;
 import com.parse.Parse;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.squareup.otto.Bus;
 import org.mozilla.gecko.favicons.Favicons;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
@@ -41,6 +49,7 @@ public class MainApplication extends Application {
     public static Favicons sFavicons;
     public static DRM sDrm;
     public static boolean sShowingAppPickerDialog = false;
+    private static long sTrialStartTime = -1;
 
     @Override
     public void onCreate() {
@@ -59,6 +68,74 @@ public class MainApplication extends Application {
         recreateFaviconCache();
 
         sDrm = new DRM(this);
+
+        initParse();
+        initTrialStartTime();
+    }
+
+    public static class TrialTimeStartTimeReceivedEvent {
+        public TrialTimeStartTimeReceivedEvent(long startTime) {
+            mStartTime = startTime;
+        }
+        public long mStartTime;
+    }
+
+    private void initTrialStartTime() {
+        try {
+            final Account[] accounts = AccountManager.get(this).getAccounts();
+            final String defaultEmail = Util.getDefaultEmail(accounts);
+            if (defaultEmail != null) {
+                ParseQuery<ParseObject> query = ParseQuery.getQuery(Constant.DATA_TRIAL_ENTRY);
+                query.whereEqualTo(Constant.DATA_TRIAL_EMAIL, defaultEmail);
+                query.getFirstInBackground(new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(ParseObject parseObject, com.parse.ParseException e) {
+                        if (parseObject != null) {
+                            sTrialStartTime = parseObject.getCreatedAt().getTime();
+                            Log.d("Trial", "Additional run, sTrialStartTime:" + sTrialStartTime);
+                        } else {
+                            parseObject = new ParseObject(Constant.DATA_TRIAL_ENTRY);
+                            parseObject.put(Constant.DATA_TRIAL_EMAIL, defaultEmail);
+                            parseObject.saveInBackground();
+                            sTrialStartTime = System.currentTimeMillis();
+                            Log.d("Trial", "Initial run, sTrialStartTime:" + sTrialStartTime);
+                        }
+
+                        TrialTimeStartTimeReceivedEvent event = new TrialTimeStartTimeReceivedEvent(sTrialStartTime);
+                        postEvent(MainApplication.this, event);
+                    }
+                });
+            }
+        } catch (Exception ex) {
+        }
+    }
+
+    public static boolean isInTrialPeriod() {
+        if (sTrialStartTime == -1) {
+            return false;
+        }
+
+        long currentTimeMillis = System.currentTimeMillis();
+        long timeDelay = currentTimeMillis - sTrialStartTime;
+        if (timeDelay < Constant.TRIAL_TIME) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static long getTrialTimeRemaining() {
+        if (sTrialStartTime == -1) {
+            return -1;
+        }
+
+        long currentTime = System.currentTimeMillis();
+        long endTrialTime = sTrialStartTime + Constant.TRIAL_TIME;
+        if (currentTime < endTrialTime) {
+            return endTrialTime - currentTime;
+        }
+
+        return -1;
     }
 
     public static void checkForProVersion(Context context) {
