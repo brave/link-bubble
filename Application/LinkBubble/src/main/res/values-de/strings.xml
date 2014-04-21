@@ -257,11 +257,6 @@ aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend 
     <string name="accept_terms_and_privacy"><![CDATA[Durch Fortsetzen erklärst du dich einverstanden mit Link Bubbles
 <a href="http://www.linkbubble.com/terms">Bedingungen</a> und <a href="http://www.linkbubble.com/privacy">Datenschutzrichtlinien</a>.]]></string>
 
-    <plurals name="force_crash_countdown">
-        <item quantity="one">Du bist nun <xliff:g id="step_count">%1$d</xliff:g> Schritt davon entfernt, EINEN ABSTURZ ZU ERZWINGEN.</item>
-        <item quantity="other">Du bist jetzt <xliff:g id="step_count">%1$d</xliff:g> Schritte davon entfernt EINEN ABSTURZ ZU ERZWINGEN.</item>
-    </plurals>
-
     <string name="service_name">Link Bubble Renderer</string>
     <string name="notification_title">Link Bubble</string>
 

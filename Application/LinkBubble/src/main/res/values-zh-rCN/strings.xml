@@ -237,11 +237,6 @@ Link Bubble 亦遵循该标准。]]></string>
 
     <string name="accept_terms_and_privacy"><![CDATA[如果要继续，请确认您接受 Link Bubble 的<a href="http://www.linkbubble.com/terms">条款</a>和<a href="http://www.linkbubble.com/privacy">隐私政策</a>。]]></string>
 
-    <plurals name="force_crash_countdown">
-        <item quantity="one">您现在与程序崩溃只有 <xliff:g id="step_count">%1$d</xliff:g> 步之遥。</item>
-        <item quantity="other">您现在与程序崩溃只有 <xliff:g id="step_count">%1$d</xliff:g> 步之遥。</item>
-    </plurals>
-
     <string name="service_name">Link Bubble 渲染器</string>
     <string name="notification_title">Link Bubble</string>
 
