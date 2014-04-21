@@ -780,8 +780,10 @@ public class ContentView extends FrameLayout {
                 mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_upgrade_to_pro, Menu.NONE,
                         resources.getString(R.string.action_upgrade_to_pro));
             }
-            mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_reload_page, Menu.NONE,
-                    resources.getString(R.string.action_reload_page));
+            if (mCurrentProgress != 100) {
+                mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_stop, Menu.NONE, resources.getString(R.string.action_stop));
+            }
+            mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_reload_page, Menu.NONE, resources.getString(R.string.action_reload_page));
             String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
             if (defaultBrowserLabel != null) {
                 mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
@@ -828,6 +830,11 @@ public class ContentView extends FrameLayout {
 
                         case R.id.item_copy_link: {
                             MainApplication.copyLinkToClipboard(getContext(), mWebRenderer.getUrl().toString(), R.string.bubble_link_copied_to_clipboard);
+                            break;
+                        }
+
+                        case R.id.item_stop: {
+                            mWebRenderer.stopLoading();
                             break;
                         }
 
