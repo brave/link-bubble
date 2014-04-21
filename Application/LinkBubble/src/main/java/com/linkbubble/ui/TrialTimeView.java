@@ -16,6 +16,7 @@ import com.linkbubble.R;
 class TrialTimeView extends View {
     private Paint mBasePaint;
     private Paint mElapsedPaint;
+    private Paint mOutlinePaint;
     private RectF mOval;
     private float mProgress;
 
@@ -43,6 +44,12 @@ class TrialTimeView extends View {
         mElapsedPaint.setAntiAlias(true);
         mElapsedPaint.setColor(resources.getColor(android.R.color.holo_orange_dark));
         mElapsedPaint.setStyle(Paint.Style.FILL);
+
+        mOutlinePaint = new Paint();
+        mOutlinePaint.setAntiAlias(true);
+        mOutlinePaint.setColor(resources.getColor(R.color.bubble_border));
+        mOutlinePaint.setStyle(Paint.Style.STROKE);
+        mOutlinePaint.setStrokeWidth(strokeWidth);
 
         int size = resources.getDimensionPixelSize(R.dimen.bubble_progress_size) - strokeWidth;
         mOval = new RectF(getPaddingLeft(), getPaddingTop(), size+getPaddingLeft()+getPaddingRight(), size+getPaddingTop()+getPaddingBottom());
@@ -91,5 +98,6 @@ class TrialTimeView extends View {
         }
 
         canvas.drawArc(mOval, -90, sweep, true, mElapsedPaint);
+        canvas.drawArc(mOval, -90, 360, false, mOutlinePaint);
     }
 }
