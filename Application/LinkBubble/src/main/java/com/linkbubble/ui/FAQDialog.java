@@ -56,6 +56,7 @@ public class FAQDialog {
     };
 
     static int sBetaIndex = 7;
+    static int sTransliationsIndex = 8;
     static int sIssuesIndex = 11;
 
 	public FAQDialog(Activity context) {
@@ -98,6 +99,10 @@ public class FAQDialog {
                 if (position == sBetaIndex) {
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse("https://s3.amazonaws.com/linkbubble/link_bubble_beta.html"));
+                    mActivity.startActivity(i);
+                } else if (position == sTransliationsIndex) {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse("http://www.getlocalization.com/LinkBubble/"));
                     mActivity.startActivity(i);
                 } else if (position == sFAQSize-1) {
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO,
