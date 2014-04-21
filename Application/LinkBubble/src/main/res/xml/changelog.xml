@@ -6,6 +6,7 @@
         <change>NEW: Add "Close bubble" option to overflow menu.</change>
         <change>NEW: Add "Stop" option to overflow menu when a webpage is loading.</change>
         <change>IMPROVEMENT: If the "Vibrate on touch" system setting is disabled, the app will not trigger any vibrations.</change>
+        <change>IMPROVEMENT: Add a Close button on the upgrade/inform popup.</change>
         <change>IMPROVEMENT: The FAQ's translation question now redirects to the community Link Bubble translation project.</change>
         <change>BUG FIX: Many stability fixes.</change>
     </release>
