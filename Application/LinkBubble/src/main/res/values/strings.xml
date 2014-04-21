@@ -240,6 +240,8 @@
     <string name="activity_resolver_use_always">Always</string>
     <string name="activity_resolver_use_once">Just once</string>
 
+    <string name="trial_time_on_click">%1$s remaining of your 24 hour Link Bubble Pro trial.</string>
+
     <string name="credits_title">Link Bubble Credits</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">Concept, design and programming</string>
