@@ -46,8 +46,8 @@
     <com.linkbubble.ui.TrialTimeView
         android:id="@+id/trial_time_view"
         android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:layout_gravity="top|left"
         android:paddingLeft="8dp"
         android:paddingTop="8dp"
