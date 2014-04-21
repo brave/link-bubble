@@ -244,13 +244,6 @@ Link Bubble.]]></string>
     <string name="accept_terms_and_privacy"><![CDATA[Продолжая, вы соглашаетесь с 
 <a href="http://www.linkbubble.com/terms">условиями</a> и <a href="http://www.linkbubble.com/privacy">политикой конфиденциальности</a> Link Bubble.]]></string>
 
-    <plurals name="force_crash_countdown">
-        <item quantity="one">Сейчас вы в <xliff:g id="step_count">%1$d</xliff:g> шаге от ПАДЕНИЯ ПРИЛОЖЕНИЯ.</item>
-        <item quantity="other">Сейчас вы в <xliff:g id="step_count">%1$d</xliff:g> шагах от ПАДЕНИЯ ПРИЛОЖЕНИЯ.</item>
-        <item quantity="few"></item>
-        <item quantity="many"></item>
-    </plurals>
-
     <string name="service_name">Рендерер Link Bubble</string>
     <string name="notification_title">Link Bubble</string>
 

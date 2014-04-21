@@ -242,11 +242,6 @@ In futuro valuterò usi alternativi di rendering come FireFox, GeckoView e Chrom
 
     <string name="accept_terms_and_privacy"><![CDATA[Continuando, accetti i <a href="http://www.linkbubble.com/terms">termini</a> e le <a href="http://www.linkbubble.com/privacy">politiche sulla privacy</a> di Link Bubble.]]></string>
 
-    <plurals name="force_crash_countdown">
-        <item quantity="one">Adesso sei a <xliff:g id="step_count">%1$d</xliff:g> passo dal FORZARE UN ARRESTO dell\'app.</item>
-        <item quantity="other">Adesso sei a <xliff:g id="step_count">%1$d</xliff:g> passi dal FORZARE UN ARRESTO dell\'app.</item>
-    </plurals>
-
     <string name="service_name">Visualizzatore Link Bubble</string>
     <string name="notification_title">Link Bubble</string>
 

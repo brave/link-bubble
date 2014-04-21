@@ -578,7 +578,7 @@ public class SettingsFragment extends PreferenceFragment {
                             mForceCrashToast.cancel();
                         }
                         mForceCrashToast = Toast.makeText(getActivity(),
-                                getResources().getQuantityString(R.plurals.force_crash_countdown, mForceCrashCountdown, mForceCrashCountdown),
+                                "You are now " + mForceCrashCountdown + " step(s) away from FORCING A CRASH.",
                                 Toast.LENGTH_SHORT);
                         mForceCrashToast.show();
                     }
