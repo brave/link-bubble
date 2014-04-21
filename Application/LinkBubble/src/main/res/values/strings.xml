@@ -78,6 +78,8 @@
     <string name="preference_clear_form_data">Form data</string>
     <string name="preference_clear_history">History</string>
     <string name="preference_clear_passwords">Passwords</string>
+    <string name="preference_incognito_title">Incognito Mode</string>
+    <string name="preference_incognito_summary">Prevent storing all history and cookies</string>
 
     <string name="preference_help_title">Help</string>
     <string name="preference_show_welcome_message_title">Show welcome page</string>
