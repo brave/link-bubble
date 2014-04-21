@@ -28,6 +28,8 @@ public class Constant {
 
     public static final int TRIAL_TIME = 1000 * 60 * 60 * 24;
 
+    public static final boolean COVER_STATUS_BAR = false;
+
     public static final int BUBBLE_ANIM_TIME = 300;
 
     public static final float BUBBLE_MODE_ALPHA = 1.f;
