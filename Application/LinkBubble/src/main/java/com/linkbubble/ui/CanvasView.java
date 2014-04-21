@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,20 +73,22 @@ public class CanvasView extends FrameLayout {
         mEnabled = true;
         mContentViewY = Config.mScreenHeight - Config.mContentOffset;
 
-        mStatusBarCoverView = new View(context);
-        mStatusBarCoverView.setBackgroundColor(0xff000000);
-        mStatusBarCoverView.setVisibility(GONE);
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        lp.gravity = Gravity.TOP | Gravity.LEFT;
-        lp.x = 0;
-        lp.y = 0;
-        lp.height = Config.getStatusBarHeight(context);
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.type = WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
-        lp.flags = WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
-        lp.format = PixelFormat.TRANSPARENT;
-        lp.setTitle("LinkBubble: StatusBar");
-        MainController.addRootWindow(mStatusBarCoverView, lp);
+        if (Constant.COVER_STATUS_BAR) {
+            mStatusBarCoverView = new View(context);
+            mStatusBarCoverView.setBackgroundColor(0xff000000);
+            mStatusBarCoverView.setVisibility(GONE);
+            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+            lp.gravity = Gravity.TOP | Gravity.LEFT;
+            lp.x = 0;
+            lp.y = 0;
+            lp.height = Config.getStatusBarHeight(context);
+            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+            lp.type = WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
+            lp.flags = WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
+            lp.format = PixelFormat.TRANSPARENT;
+            lp.setTitle("LinkBubble: StatusBar");
+            MainController.addRootWindow(mStatusBarCoverView, lp);
+        }
 
         applyAlpha();
 
@@ -193,15 +194,21 @@ public class CanvasView extends FrameLayout {
     private void applyAlpha() {
         Util.Assert(mCurrentAlpha >= 0.0f && mCurrentAlpha <= 1.0f, "alpha out of range: " + mCurrentAlpha);
 
-        mStatusBarCoverView.setAlpha(mCurrentAlpha);
+        if (mStatusBarCoverView != null) {
+            mStatusBarCoverView.setAlpha(mCurrentAlpha);
+        }
         setAlpha(mCurrentAlpha);
 
         if (!mEnabled || mCurrentAlpha == 0.0f) {
             setVisibility(GONE);
-            mStatusBarCoverView.setVisibility(GONE);
+            if (mStatusBarCoverView != null) {
+                mStatusBarCoverView.setVisibility(GONE);
+            }
         } else {
             setVisibility(VISIBLE);
-            mStatusBarCoverView.setVisibility(VISIBLE);
+            if (mStatusBarCoverView != null) {
+                mStatusBarCoverView.setVisibility(VISIBLE);
+            }
         }
 
         if (mContentView != null) {
