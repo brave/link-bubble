@@ -85,7 +85,7 @@ class TrialTimeView extends View {
 
     void setProgress(float progress) {
         Log.d("Trial", "setProgress():" + progress);
-        mProgress = progress;
+        mProgress = Math.max(.01f, progress);
         invalidate();
     }
 
