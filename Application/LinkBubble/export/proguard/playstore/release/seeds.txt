@@ -3962,6 +3962,9 @@ com.linkbubble.R: R()
 com.linkbubble.R$anim: int activity_close_enter
 com.linkbubble.R$anim: int activity_close_exit
 com.linkbubble.R$anim: R$anim()
+com.linkbubble.R$array: int preference_user_agent_options
+com.linkbubble.R$array: int preference_user_agent_values
+com.linkbubble.R$array: R$array()
 com.linkbubble.R$attr: int adSize
 com.linkbubble.R$attr: int adSizes
 com.linkbubble.R$attr: int adUnitId
@@ -4169,12 +4172,14 @@ com.linkbubble.R$id: int hybrid
 com.linkbubble.R$id: int icon
 com.linkbubble.R$id: int image
 com.linkbubble.R$id: int image_view
+com.linkbubble.R$id: int item_close_tab
 com.linkbubble.R$id: int item_copy_link
 com.linkbubble.R$id: int item_open_in_browser
 com.linkbubble.R$id: int item_open_in_bubble
 com.linkbubble.R$id: int item_reload_page
 com.linkbubble.R$id: int item_settings
 com.linkbubble.R$id: int item_share
+com.linkbubble.R$id: int item_stop
 com.linkbubble.R$id: int item_upgrade_to_pro
 com.linkbubble.R$id: int label
 com.linkbubble.R$id: int lacy_icon
@@ -4192,6 +4197,7 @@ com.linkbubble.R$id: int page_url
 com.linkbubble.R$id: int progressIndicator
 com.linkbubble.R$id: int prompt
 com.linkbubble.R$id: int prompt_button
+com.linkbubble.R$id: int prompt_close_button
 com.linkbubble.R$id: int prompt_input_field
 com.linkbubble.R$id: int prompt_message
 com.linkbubble.R$id: int prompt_message_text
@@ -4218,6 +4224,7 @@ com.linkbubble.R$id: int time_per_link
 com.linkbubble.R$id: int time_total
 com.linkbubble.R$id: int title_text
 com.linkbubble.R$id: int top_buttons_container
+com.linkbubble.R$id: int trial_time_view
 com.linkbubble.R$id: int upgrade_button
 com.linkbubble.R$id: int url_text
 com.linkbubble.R$id: int watson_icon
@@ -4258,12 +4265,11 @@ com.linkbubble.R$layout: int view_youtube_embed_item
 com.linkbubble.R$layout: R$layout()
 com.linkbubble.R$menu: int history_activity
 com.linkbubble.R$menu: R$menu()
-com.linkbubble.R$plurals: int force_crash_countdown
-com.linkbubble.R$plurals: R$plurals()
 com.linkbubble.R$string: int accept_terms_and_privacy
 com.linkbubble.R$string: int action_cancel
 com.linkbubble.R$string: int action_clear_data
 com.linkbubble.R$string: int action_close_all
+com.linkbubble.R$string: int action_close_tab
 com.linkbubble.R$string: int action_copy_to_clipboard
 com.linkbubble.R$string: int action_help
 com.linkbubble.R$string: int action_ok
@@ -4273,6 +4279,7 @@ com.linkbubble.R$string: int action_reload_page
 com.linkbubble.R$string: int action_remove
 com.linkbubble.R$string: int action_settings
 com.linkbubble.R$string: int action_share
+com.linkbubble.R$string: int action_stop
 com.linkbubble.R$string: int action_upgrade_to_pro
 com.linkbubble.R$string: int action_use_default
 com.linkbubble.R$string: int activity_resolver_use_always
@@ -4366,6 +4373,8 @@ com.linkbubble.R$string: int faq_next_update_eta_answer
 com.linkbubble.R$string: int faq_next_update_eta_question
 com.linkbubble.R$string: int faq_ongoing_notificaion_answer
 com.linkbubble.R$string: int faq_ongoing_notificaion_question
+com.linkbubble.R$string: int faq_pro_trial_answer
+com.linkbubble.R$string: int faq_pro_trial_question
 com.linkbubble.R$string: int faq_report_bug_answer
 com.linkbubble.R$string: int faq_report_bug_question
 com.linkbubble.R$string: int faq_roadmap_answer
@@ -4425,6 +4434,8 @@ com.linkbubble.R$string: int preference_get_pro_title
 com.linkbubble.R$string: int preference_google_account_redirect_summary
 com.linkbubble.R$string: int preference_google_account_redirect_title
 com.linkbubble.R$string: int preference_help_title
+com.linkbubble.R$string: int preference_incognito_summary
+com.linkbubble.R$string: int preference_incognito_title
 com.linkbubble.R$string: int preference_intercept_links_from_note
 com.linkbubble.R$string: int preference_intercept_links_from_title
 com.linkbubble.R$string: int preference_left_consume_bubble_title
@@ -4442,6 +4453,7 @@ com.linkbubble.R$string: int preference_set_default_browser_summary
 com.linkbubble.R$string: int preference_set_default_browser_title
 com.linkbubble.R$string: int preference_show_welcome_message_title
 com.linkbubble.R$string: int preference_terms_of_service_title
+com.linkbubble.R$string: int preference_user_agent_title
 com.linkbubble.R$string: int preference_version_summary
 com.linkbubble.R$string: int preference_version_title
 com.linkbubble.R$string: int preference_webview_text_zoom_note
@@ -4449,6 +4461,20 @@ com.linkbubble.R$string: int preference_webview_text_zoom_reloading_current
 com.linkbubble.R$string: int preference_webview_text_zoom_title
 com.linkbubble.R$string: int private_data_cleared
 com.linkbubble.R$string: int private_data_cleared_reloading_current
+com.linkbubble.R$string: int pro_action_buy
+com.linkbubble.R$string: int pro_action_install_app
+com.linkbubble.R$string: int pro_action_load_app
+com.linkbubble.R$string: int pro_action_retry
+com.linkbubble.R$string: int pro_action_store
+com.linkbubble.R$string: int pro_application_name
+com.linkbubble.R$string: int pro_keep_installed
+com.linkbubble.R$string: int pro_status_buy
+com.linkbubble.R$string: int pro_status_checking_license
+com.linkbubble.R$string: int pro_status_unlicensed
+com.linkbubble.R$string: int pro_status_verified
+com.linkbubble.R$string: int pro_store_listing_description_features
+com.linkbubble.R$string: int pro_store_listing_description_title
+com.linkbubble.R$string: int pro_store_listing_title
 com.linkbubble.R$string: int remove_default_message
 com.linkbubble.R$string: int remove_default_title
 com.linkbubble.R$string: int requesting_location_message
@@ -4460,6 +4486,11 @@ com.linkbubble.R$string: int stat_has_saved_you
 com.linkbubble.R$string: int stat_per_link
 com.linkbubble.R$string: int stat_saves_you
 com.linkbubble.R$string: int stat_so_far
+com.linkbubble.R$string: int store_listing_description_features
+com.linkbubble.R$string: int store_listing_description_location_permission
+com.linkbubble.R$string: int store_listing_description_title
+com.linkbubble.R$string: int store_listing_promo_text
+com.linkbubble.R$string: int store_listing_title
 com.linkbubble.R$string: int tampered_apk
 com.linkbubble.R$string: int time_hours
 com.linkbubble.R$string: int time_minutes
@@ -4467,6 +4498,7 @@ com.linkbubble.R$string: int time_seconds
 com.linkbubble.R$string: int title_changelog
 com.linkbubble.R$string: int title_settings
 com.linkbubble.R$string: int title_youtube_embed_to_load
+com.linkbubble.R$string: int trial_time_on_click
 com.linkbubble.R$string: int unsupported_drop_down_default_browser
 com.linkbubble.R$string: int unsupported_drop_down_no_default_browser
 com.linkbubble.R$string: int unsupported_scheme
@@ -4474,7 +4506,25 @@ com.linkbubble.R$string: int unsupported_scheme_default_browser
 com.linkbubble.R$string: int unsupported_scheme_no_default_browser
 com.linkbubble.R$string: int upgrade_incentive_one_app
 com.linkbubble.R$string: int upgrade_incentive_one_link
+com.linkbubble.R$string: int user_agent_changed_reloading_current
 com.linkbubble.R$string: int valid_license_detected
+com.linkbubble.R$string: int welcome_page_intro_end
+com.linkbubble.R$string: int welcome_page_intro_point_1
+com.linkbubble.R$string: int welcome_page_intro_point_2
+com.linkbubble.R$string: int welcome_page_intro_title
+com.linkbubble.R$string: int welcome_page_more_also
+com.linkbubble.R$string: int welcome_page_more_pocket_end
+com.linkbubble.R$string: int welcome_page_more_pocket_start
+com.linkbubble.R$string: int welcome_page_more_point_1
+com.linkbubble.R$string: int welcome_page_more_point_2
+com.linkbubble.R$string: int welcome_page_more_title
+com.linkbubble.R$string: int welcome_page_pro_end
+com.linkbubble.R$string: int welcome_page_pro_intro
+com.linkbubble.R$string: int welcome_page_pro_point_1
+com.linkbubble.R$string: int welcome_page_pro_point_2
+com.linkbubble.R$string: int welcome_page_pro_point_3
+com.linkbubble.R$string: int welcome_page_ps
+com.linkbubble.R$string: int welcome_page_title
 com.linkbubble.R$string: int yes
 com.linkbubble.R$string: int youtube_embed_error_summary
 com.linkbubble.R$string: int youtube_embed_error_title
@@ -4716,6 +4766,10 @@ com.linkbubble.ui.TabView
 com.linkbubble.ui.TabView: TabView(android.content.Context)
 com.linkbubble.ui.TabView: TabView(android.content.Context,android.util.AttributeSet)
 com.linkbubble.ui.TabView: TabView(android.content.Context,android.util.AttributeSet,int)
+com.linkbubble.ui.TrialTimeView
+com.linkbubble.ui.TrialTimeView: TrialTimeView(android.content.Context)
+com.linkbubble.ui.TrialTimeView: TrialTimeView(android.content.Context,android.util.AttributeSet)
+com.linkbubble.ui.TrialTimeView: TrialTimeView(android.content.Context,android.util.AttributeSet,int)
 com.linkbubble.util.ActionItem$1: ActionItem$1()
 com.linkbubble.util.ActionItem$1ActionItemListView: ActionItem$1ActionItemListView(android.content.Context)
 com.linkbubble.util.ActionItem$3: ActionItem$3()
