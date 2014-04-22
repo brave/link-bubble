@@ -84,7 +84,7 @@
             android:entries="@array/preference_user_agent_options"
             android:entryValues="@array/preference_user_agent_values"
             android:dialogTitle="@string/preference_user_agent_title"
-            android:defaultValue="holo_dark"
+            android:defaultValue="default"
             />
 
         <CheckBoxPreference
