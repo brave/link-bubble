@@ -70,7 +70,7 @@ public class MainApplication extends Application {
         sDrm = new DRM(this);
 
         initParse();
-        //initTrialStartTime();
+        initTrialStartTime();
     }
 
     public static class TrialTimeStartTimeReceivedEvent {
