@@ -55,10 +55,11 @@ import java.util.TreeMap;
 /**
  * Created by gw on 11/09/13.
  */
-public class SettingsFragment extends PreferenceFragment {
+public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private Preference mInterceptLinksFromPreference;
     private Preference mWebViewTextZoomPreference;
+    private ListPreference mUserAgentPreference;
 
     public static class IncognitoModeChangedEvent {
         public IncognitoModeChangedEvent(boolean value) {
@@ -262,6 +263,8 @@ public class SettingsFragment extends PreferenceFragment {
         });
         mWebViewTextZoomPreference.setSummary(Settings.get().getWebViewTextZoom() + "%");
 
+        mUserAgentPreference = (ListPreference) findPreference(Settings.PREFERENCE_USER_AGENT);
+
         Preference sayThanksPreference = findPreference("preference_say_thanks");
         if (sayThanksPreference != null) {
             sayThanksPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -408,8 +411,22 @@ public class SettingsFragment extends PreferenceFragment {
     public void onResume() {
         super.onResume();
 
+        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+
+        if (mUserAgentPreference.getEntry() == null) {
+            mUserAgentPreference.setValueIndex(0);
+        }
+        mUserAgentPreference.setSummary(mUserAgentPreference.getEntry());
+
         checkDefaultBrowser();
         configureDefaultAppsList();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -421,15 +438,18 @@ public class SettingsFragment extends PreferenceFragment {
         bus.unregister(this);
     }
 
-    //@Override
+    @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        Preference pref = findPreference(key);
+        Preference preference = findPreference(key);
 
-        //Settings.get().refresh(key);
-
-        if (pref instanceof ListPreference) {
-            ListPreference listPref = (ListPreference) pref;
-            pref.setSummary(listPref.getEntry());
+        if (preference instanceof ListPreference) {
+            ListPreference listPref = (ListPreference) preference;
+            preference.setSummary(listPref.getEntry());
+            if (preference == mUserAgentPreference) {
+                if (MainController.get() != null && MainController.get().reloadAllTabs(getActivity())) {
+                    Toast.makeText(getActivity(), R.string.user_agent_changed_reloading_current, Toast.LENGTH_SHORT).show();
+                }
+            }
         }
     }
 
