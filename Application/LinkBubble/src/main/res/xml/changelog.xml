@@ -2,6 +2,7 @@
 <changelog>
 
     <release version="1.1.0" versioncode="11000">
+        <change>NEW: Add a 24 hour trial of Link Bubble Pro's features for all non-Pro users.</change>
         <change>NEW: Translation support for Czech, Chinese (Simplified), Dutch, German, Italian, Russian and Thai. More languages to follow.</change>
         <change>NEW: Add option to change the User Agent.</change>
         <change>NEW: Add "Close bubble" option to overflow menu.</change>
