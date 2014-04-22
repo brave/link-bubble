@@ -3620,6 +3620,8 @@ com.linkbubble.Constant:
     public static final boolean DYNAMIC_ANIM_STEP
     public static final boolean PROFILE_FPS
     public static final java.lang.String INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION
+    public static final int TRIAL_TIME
+    public static final boolean COVER_STATUS_BAR
     public static final int BUBBLE_ANIM_TIME
     public static final float BUBBLE_MODE_ALPHA
     public static final int DESIRED_FAVICON_SIZE
@@ -3641,8 +3643,13 @@ com.linkbubble.Constant:
     public static final int DATA_USER_MAX_EMAILS
     public static final java.lang.String TWITTER_ACCOUNT_TYPE
     public static final java.lang.String YAHOO_ACCOUNT_TYPE
+    public static final java.lang.String DATA_TRIAL_ENTRY
+    public static final java.lang.String DATA_TRIAL_EMAIL
     public static final java.lang.String WEBVIEW_DATABASE_LOCATION
-    72:75:public static java.lang.String getValidDeviceId()
+    public static final java.lang.String USER_AGENT_CHROME_PHONE
+    public static final java.lang.String USER_AGENT_CHROME_TABLET
+    public static final java.lang.String USER_AGENT_CHROME_DESKTOP
+    76:79:public static java.lang.String getValidDeviceId()
 com.linkbubble.DRM:
     static final int MSG_LICENSE_RESULT
     static final int MSG_CHECK_LICENSE
@@ -3659,6 +3666,7 @@ com.linkbubble.MainController:
 com.linkbubble.MainService:
     private static final java.lang.String BCAST_CONFIGCHANGED
 com.linkbubble.R$anim
+com.linkbubble.R$array
 com.linkbubble.R$attr
 com.linkbubble.R$bool
 com.linkbubble.R$color
@@ -3668,7 +3676,6 @@ com.linkbubble.R$id
 com.linkbubble.R$integer
 com.linkbubble.R$layout
 com.linkbubble.R$menu
-com.linkbubble.R$plurals
 com.linkbubble.R$string
 com.linkbubble.R$style
 com.linkbubble.R$xml
@@ -3699,6 +3706,7 @@ com.linkbubble.Settings:
     public static final int PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN
     public static final int PREFERENCE_WEBVIEW_TEXT_ZOOM_DEFAULT
     public static final int PREFERENCE_WEBVIEW_TEXT_ZOOM_MAX
+    public static final java.lang.String PREFERENCE_USER_AGENT
     private static final java.lang.String SAY_THANKS_CLICKED
     private static final java.lang.String DEFAULT_APPS_MAP_KEY_HOST
     private static final java.lang.String DEFAULT_APPS_MAP_KEY_COMPONENT
@@ -3715,7 +3723,7 @@ com.linkbubble.Settings:
     private static final java.lang.String LAST_APP_REDIRECT_KEY_TIME
     private static final java.lang.String LAST_APP_REDIRECT_KEY_URL
     private static final int MAX_LAST_APP_REDIRECT_COUNT
-    525:525:public boolean checkForYouTubeEmbeds()
+    540:540:public boolean checkForYouTubeEmbeds()
 com.linkbubble.db.DatabaseHelper:
     private static final java.lang.String TAG
     private static final int DATABASE_VERSION
@@ -3795,6 +3803,7 @@ com.linkbubble.ui.HistoryActivity:
 com.linkbubble.ui.HomeActivity:
     private static final java.lang.String TAG
     private static final java.lang.String PLAYED_INTRO_ANIM_KEY
+    462:463:public void onTrialTimeStartTimeReceivedEvent(com.linkbubble.MainApplication$TrialTimeStartTimeReceivedEvent)
 com.linkbubble.ui.OnSwipeTouchListener$GestureListener:
     private static final int SWIPE_THRESHOLD
     private static final int SWIPE_VELOCITY_THRESHOLD
@@ -3813,8 +3822,6 @@ com.linkbubble.ui.ProgressIndicator$ProgressArcView:
     private static final float START_INC
 com.linkbubble.ui.Prompt:
     public static final int LENGTH_LONG
-com.linkbubble.ui.SettingsFragment:
-    426:434:public void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)
 com.linkbubble.util.Analytics:
     public static final java.lang.String GA_PROPERTY_ID
     private static final java.lang.String CATEGORY
@@ -3863,7 +3870,7 @@ com.linkbubble.util.Util:
     private static final int OUTCODE_RIGHT
     private static final int OUTCODE_BOTTOM
     private static final int OUTCODE_TOP
-    49:56:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
+    52:59:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
 com.squareup.otto.AnnotatedHandlerFinder:
     154:156:private AnnotatedHandlerFinder()
 com.squareup.otto.Bus:
