@@ -334,5 +334,22 @@
     • Support me so I get to make more of these apps :)
     </string>
 
+    <string name="welcome_page_title">Welcome to Link Bubble!</string>
+    <string name="welcome_page_intro_title">How does it work?</string>
+    <string name="welcome_page_intro_point_1">Click a link in an app.</string>
+    <string name="welcome_page_intro_point_2">A bubble will appear on the edge of the screen and the link will begin loading in the background. As soon as the page is loaded, it will be displayed.</string>
+    <string name="welcome_page_intro_end">It\'s that simple! With Link Bubble, you can keep using your current app rather than wasting your time watching links redirect and waiting for pages to load. What\'s not to love about that?</string>
+    <string name="welcome_page_more_title">Show me more!</string>
+    <string name="welcome_page_more_pocket_start">You can also quickly share a link or add it to an app such as Pocket:</string>
+    <string name="welcome_page_more_pocket_end">Looks both fun and useful right?</string>
+    <string name="welcome_page_more_also">Link Bubble also:</string>
+    <string name="welcome_page_more_point_1">Redirects links to a dedicated app (E.g., Instagram).</string>
+    <string name="welcome_page_more_point_2">Finds embedded videos so you can easily load them in the YouTube app.</string>
+    <string name="welcome_page_pro_intro">The free version gives you a taste of Link Bubble\'s power, but with Pro you can:</string>
+    <string name="welcome_page_pro_point_1">Load multiple bubbles at once.</string>
+    <string name="welcome_page_pro_point_2">Load links from all apps.</string>
+    <string name="welcome_page_pro_point_3">Help ensure I am able to write more apps in the future :)</string>
+    <string name="welcome_page_pro_end">Thanks, and enjoy the app!</string>
+    <string name="welcome_page_ps">PS. To close this bubble, either press the Back button or long press the bubble and flick it onto the Close bubble.</string>
 
 </resources>
