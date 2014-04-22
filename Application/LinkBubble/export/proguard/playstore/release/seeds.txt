@@ -4525,6 +4525,7 @@ com.linkbubble.R$string: int welcome_page_pro_point_2
 com.linkbubble.R$string: int welcome_page_pro_point_3
 com.linkbubble.R$string: int welcome_page_ps
 com.linkbubble.R$string: int welcome_page_title
+com.linkbubble.R$string: int welcome_page_trial_notice
 com.linkbubble.R$string: int yes
 com.linkbubble.R$string: int youtube_embed_error_summary
 com.linkbubble.R$string: int youtube_embed_error_title
