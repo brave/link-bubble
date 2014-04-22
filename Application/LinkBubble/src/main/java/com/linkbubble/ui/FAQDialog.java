@@ -32,6 +32,7 @@ public class FAQDialog {
     static int sFAQSize = 0;
 
     static String[] sFAQEntry = {
+        "faq_pro_trial",
         "faq_app_internal_browser",
         "faq_close_tab",
         "faq_back_button_minimize",
@@ -55,9 +56,9 @@ public class FAQDialog {
         "faq_report_bug",
     };
 
-    static int sBetaIndex = 7;
-    static int sTransliationsIndex = 8;
-    static int sIssuesIndex = 11;
+    static int sBetaIndex = 8;
+    static int sTransliationsIndex = 9;
+    static int sIssuesIndex = 12;
 
 	public FAQDialog(Activity context) {
         if (sQuestionStringIds == null) {
