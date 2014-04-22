@@ -204,6 +204,7 @@
     # ensure event handler functions are not stripped
     public void onLinkLoadTimeStatsUpdatedEvent(com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent);
     public void onStateChangedEvent(com.linkbubble.MainApplication$StateChangedEvent);
+    public void onTrialTimeStartTimeReceivedEvent(com.linkbubble.MainApplication.TrialTimeStartTimeReceivedEvent);
 }
 
 -keep public interface com.android.vending.licensing.ILicensingService
