@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -29,17 +28,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
-import com.linkbubble.MainApplication;
-import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.ui.TabView;
-import com.linkbubble.util.Analytics;
 import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
-
-import java.net.URL;
 
 class WebViewRenderer extends WebRenderer {
 
@@ -99,6 +92,11 @@ class WebViewRenderer extends WebRenderer {
         webSettings.setSupportMultipleWindows(DRM.allowProFeatures() ? true : false);
         webSettings.setGeolocationDatabasePath(Constant.WEBVIEW_DATABASE_LOCATION);
         webSettings.setSavePassword(false);
+
+        String userAgentString = Settings.get().getUserAgentString();
+        if (userAgentString != null) {
+            webSettings.setUserAgentString(userAgentString);
+        }
 
         mPageInspector = new PageInspector(mContext, mWebView, mOnPageInspectorItemFoundListener);
     }

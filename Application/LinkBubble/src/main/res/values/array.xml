@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="preference_user_agent_values">
+        <item>default</item>
+        <item>chrome_phone</item>
+        <item>chrome_tablet</item>
+        <item>chrome_desktop</item>
+    </string-array>
+
+</resources>

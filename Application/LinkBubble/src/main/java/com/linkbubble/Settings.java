@@ -66,6 +66,8 @@ public class Settings {
     public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_DEFAULT = 120;
     public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_MAX = 250;
 
+    public static final String PREFERENCE_USER_AGENT = "preference_user_agent";
+
     private static final String SAY_THANKS_CLICKED = "say_thanks_clicked";
 
     private static final String DEFAULT_APPS_MAP_KEY_HOST = "host";
@@ -514,6 +516,19 @@ public class Settings {
 
     public boolean isIncognitoMode() {
         return mSharedPreferences.getBoolean("preference_incognito", false);
+    }
+
+    public String getUserAgentString() {
+        String defaultUserAgent = mSharedPreferences.getString(PREFERENCE_USER_AGENT, "default");
+        if (defaultUserAgent.equals("chrome_phone")) {
+            return Constant.USER_AGENT_CHROME_PHONE;
+        } else if (defaultUserAgent.equals("chrome_tablet")) {
+            return Constant.USER_AGENT_CHROME_TABLET;
+        } else if (defaultUserAgent.equals("chrome_desktop")) {
+            return Constant.USER_AGENT_CHROME_DESKTOP;
+        }
+
+        return null;
     }
 
     public boolean isEnabled() {
