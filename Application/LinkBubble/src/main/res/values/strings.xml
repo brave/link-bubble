@@ -335,6 +335,7 @@
     </string>
 
     <string name="welcome_page_title">Welcome to Link Bubble!</string>
+    <string name="welcome_page_trial_notice">Note: For the first 24 hours after first installing Link Bubble, you will have access to all of Link Bubble Pro\'s premium features as a one-time trial.</string>
     <string name="welcome_page_intro_title">How does it work?</string>
     <string name="welcome_page_intro_point_1">Click a link in an app.</string>
     <string name="welcome_page_intro_point_2">A bubble will appear on the edge of the screen and the link will begin loading in the background. As soon as the page is loaded, it will be displayed.</string>
