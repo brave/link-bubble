@@ -3,22 +3,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/prompt" style="@style/Prompt">
     <TextView android:id="@+id/prompt_message" style="@style/PromptMessage" />
-    <ImageButton
-        android:id="@+id/prompt_button"
-        style="@style/PromptButton"
-        android:contentDescription="@string/content_description_button"/>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageButton
+            android:id="@+id/prompt_button"
+            style="@style/PromptButton"
+            android:contentDescription="@string/content_description_button"/>
+
         <Button
             android:id="@+id/prompt_close_button"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginLeft="12dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginRight="2dp"
             android:layout_marginTop="2dp"
+            android:layout_gravity="right|top"
             android:background="@drawable/close_indicator"/>
 
     </FrameLayout>
