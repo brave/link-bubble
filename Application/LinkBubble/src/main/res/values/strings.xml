@@ -195,7 +195,7 @@
     <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
             (+Chris Lacy) for help with translations, so be sure to keep an eye on my feed.]]></string>
     <string name="faq_roadmap_question">Do you publish a feature roadmap? Can I up-vote upcoming features?</string>
-    <string name="faq_roadmap_answer">For competitive reasons, the answer to both of these questions is \'no\' I\'m afraid.<br/><br/></string>
+    <string name="faq_roadmap_answer">For competitive reasons, the answer to both of these questions is \'no\' I\'m afraid.</string>
     <string name="faq_alternate_payment_question">I don\'t have a credit card and/or I can\'t purchase from Google Play. How do I buy Pro?</string>
     <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble only supports purchases via Google Play at this time.<br/><br/>Additional
             payment methods will hopefully be added in the future (assuming they do not violate the Google Play Developer Program Policies).]]></string>
