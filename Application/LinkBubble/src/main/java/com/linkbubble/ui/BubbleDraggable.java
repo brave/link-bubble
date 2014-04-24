@@ -401,7 +401,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                     mBadgeView.animate().alpha(1.0f).setDuration(Constant.BUBBLE_ANIM_TIME);
 
                     MainController mainController = MainController.get();
-                    mainController.scheduleUpdate();
+                    if (mainController != null) {
+                        mainController.scheduleUpdate();
+                    }
 
                     MainApplication.postEvent(getContext(), mBeginBubbleDragEvent);
                 }
