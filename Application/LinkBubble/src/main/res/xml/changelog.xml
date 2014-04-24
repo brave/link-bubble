@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.1.1" versioncode="11100">
+        <change>NEW: Arabic translation support.</change>
+        <change>IMPROVEMENT: Updated translations.</change>
+        <change>BUG FIX: Stability fixes.</change>
+    </release>
+
     <release version="1.1.0" versioncode="11000">
         <change>NEW: Add a 24 hour trial of Link Bubble Pro's features for all non-Pro users.</change>
         <change>NEW: Translation support for Czech, Chinese (Simplified), Dutch, German, Italian, Russian and Thai. More languages to follow.</change>
