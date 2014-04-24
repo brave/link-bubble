@@ -3,7 +3,7 @@
 
     <string name="download_activity_label">Downloader</string>
     <string name="notification_summary">Berühren, um alle offenen Blasen auszublenden</string>
-    <string name="share_picker_label">Teilen (Auswahl)</string>
+    <string name="share_picker_label">Teilen-Auswahl</string>
 
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
@@ -19,17 +19,19 @@
     <string name="action_reload_page">Neu laden</string>
     <string name="action_open_in_browser">In %1$s öffnen</string>
     <string name="action_open_in_new_bubble">In neuer Blase öffnen</string>
-    <string name="action_upgrade_to_pro">★Auf Pro-Version aktualisieren★</string>
+    <string name="action_upgrade_to_pro">★Auf Pro aktualisieren★</string>
     <string name="action_copy_to_clipboard">Link kopieren</string>
     <string name="action_share">Teilen</string>
     <string name="action_close_all">Alle schließen</string>
-    <string name="share_via">Teilen mit...</string>
+    <string name="action_close_tab">Blase schließen</string>
+    <string name="action_stop">Anhalten</string>
+    <string name="share_via">Teilen über...</string>
 
     <string name="share_invalid_data">Link Bubble kann dieses Element nicht teilen, da es keine gültige URL ist.</string>
     <string name="consume_activity_not_found">Anwendung kann nicht gefunden werden. Du kannst die Zuweisung der Blase in den Einstellungen ändern.</string>
 
     <string name="pick_default_app">Standard-App auswählen</string>
-    <string name="default_browser_set">Link Bubble wurde als Standard-Browser festfelegt.</string>
+    <string name="default_browser_set">Link Bubble wurde als Standard-Browser festgelegt.</string>
     <string name="clear_history">Verlauf löschen</string>
 
     <string name="preference_category_general">Allgemein</string>
@@ -62,9 +64,9 @@
     <string name="preference_scan_for_youtube_embeds_title">Auf YouTube-Einbettungen prüfen</string>
     <string name="preference_scan_for_youtube_embeds_summary">Verknüpfung zur YouTube-App bei eingebetteten YouTube-Videos anzeigen.</string>
 
-    <string name="preference_webview_text_zoom_title">Textzoom</string>
-    <string name="preference_webview_text_zoom_note">Hinweis: Aktuelle Blasen werden neu geladen, um die neue Zoomstufe des Textes anzuwenden.</string>
-    <string name="preference_webview_text_zoom_reloading_current">Neue Textzoomstufe angewendet. Aktuelle Blasen werden neu geladen...</string>
+    <string name="preference_webview_text_zoom_title">Text-Skalierung</string>
+    <string name="preference_webview_text_zoom_note">Hinweis: Aktuelle Blasen werden neu geladen, um die neue Skalierungsstufe des Textes anzuwenden.</string>
+    <string name="preference_webview_text_zoom_reloading_current">Neue Textskalierungsstufe angewendet. Aktuelle Blasen werden neu geladen...</string>
     <string name="preference_clear_browser_cache_title">Private Daten löschen</string>
     <string name="preference_clear_cache">Zwischenspeicher</string>
     <string name="preference_clear_cookies">Cookies</string>
@@ -72,6 +74,15 @@
     <string name="preference_clear_form_data">Formulardaten</string>
     <string name="preference_clear_history">Verlauf</string>
     <string name="preference_clear_passwords">Passwörter</string>
+    <string name="preference_incognito_title">Inkognito Modus</string>
+    <string name="preference_incognito_summary">Das Speichern des gesamten Verlaufes und aller Cookies verhindern</string>
+    <string name="preference_user_agent_title">User Agent</string>
+    <string-array name="preference_user_agent_options">
+        <item>Standard</item>
+        <item>Chrome Telefon</item>
+        <item>Chrome Tablet</item>
+        <item>Chrome Desktop</item>
+    </string-array>
 
     <string name="preference_help_title">Hilfe</string>
     <string name="preference_show_welcome_message_title">Willkommen-Seite anzeigen</string>
@@ -82,8 +93,8 @@
     <string name="preference_say_thanks_title">Bedanke dich!</string>
     <string name="preference_say_thanks_summary">Gefällt dir Link Bubble? Dann hinterlasse bitte im Play Store einen Erfahrungsbericht.</string>
     <string name="preference_get_pro_title">Link Bubble Pro</string>
-    <string name="preference_get_pro_summary">Für mehr Features auf Pro aktualisieren.</string>
-    <string name="preference_version_title">VErsion</string>
+    <string name="preference_get_pro_summary">Für mehr Funktionen auf Pro aktualisieren.</string>
+    <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">Was ist neu?</string>
 
     <string name="preference_my_other_apps_title">Weitere Apps von Chris Lacy</string>
@@ -94,7 +105,7 @@
     <string name="long_press_unsupported_default_browser">Limitationen in Android verhindern, dass Link Bubble diesen Eintrag auswählen kann.\n Link in %1$s öffnen?</string>
     <string name="long_press_unsupported_no_default_browser">Limitationen in Android verhindern, dass Link Bubble diesen Eintrag auswählen kann.\nLink im Browser öffnen.</string>
     <string name="unsupported_scheme_default_browser">Dieser Linktyp wird zurzeit nicht unterstützt. Webseite in %1$s öffnen? </string>
-    <string name="unsupported_scheme_no_default_browser">Dieser Linktyp wird zurzeit nicht unterstützt. Öffne den Link in einem Browser</string>
+    <string name="unsupported_scheme_no_default_browser">Dieser Linktyp wird zurzeit nicht unterstützt. Öffne den Link in einem Browser.</string>
     <string name="unsupported_scheme">Dieser Linktyp wird zurzeit nicht unterstützt.</string>
     <string name="unsupported_drop_down_default_browser">Einschränkungen des Android Systems verhindern die Funktion von Dropdown-Elementen in Link Bubble. \nIn %1$s öffnen?</string>
     <string name="unsupported_drop_down_no_default_browser">Einschränkungen des Android Systems verhindern die Funktion von Dropdown-Elementen in Link Bubble. \nÖffne den Link in einem Browser.</string>
@@ -109,7 +120,7 @@
     <string name="youtube_embed_error_title">Hoppla</string>
     <string name="youtube_embed_error_summary">Zur Zeit können keine Infos über YouTube Videos abgerufen werden. Bitte versuche es später erneut.</string>
 
-    <string name="loading">Laden...</string>
+    <string name="loading">Lade...</string>
 
     <string name="histroy_unread">Ungelesen</string>
     <string name="histroy_all">Alle</string>
@@ -119,9 +130,10 @@
     <string name="empty">Leer</string>
     <string name="history_already_empty">Verlauf bereits leer</string>
     <string name="private_data_cleared">Private Daten gelöscht</string>
-    <string name="private_data_cleared_reloading_current">Private Daten gelöscht. Bestehende Blasen werden neu geladen.</string>
+    <string name="private_data_cleared_reloading_current">Private Daten gelöscht. Bestehende Blasen werden neu geladen...</string>
+    <string name="user_agent_changed_reloading_current">Der User Agent wurde geändert. Die aktuellen Blasen werden neu geladen...</string>
     <string name="link_loaded_with_app">Geladen in %1$s</string>
-    <string name="link_redirected">Umleiten zu %1$s</string>
+    <string name="link_redirected">Umgeleitet zu %1$s</string>
 
     <string name="tampered_apk">Deine Kopie von Link Bubble wurde auf illegale Weise verändert und wird deshalb nicht zuverlässig funktionieren. Bitte über den Play Store neu installieren.</string>
     <string name="upgrade_incentive_one_link">Link Bubble Pro ist erforderlich um mehr als eine Blase auf einmal zu öffnen. Auf Pro upgraden?</string>
@@ -148,16 +160,16 @@
 
     <string name="faq_close_tab_question">Wie kann ich schnell einen Tab schließen?</string>
     <string name="faq_close_tab_answer">Am schnellsten ist es, die Zurück-Taste des Gerätes zu drücken. Eine andere gute Möglichkeit ist es, den Tab auf den Schließen Button zu schieben.</string>
-    <string name="faq_back_button_minimize_question">Ich finde die Zurück-Taste zu drücken sollte den Browser minimieren!</string>
+    <string name="faq_back_button_minimize_question">Ich finde das Drücken der Zurück-Taste sollte den Browser minimieren!</string>
     <string name="faq_back_button_minimize_answer"><![CDATA[Link Bubble über die Zurück-Taste zu minimieren ist nicht realisierbar.
 Betrachte folgenden Fall:<br/>
-1). beispiel.com/seite1 wird im ersten Tab geladen.<br/>
-2). Du klickst auf einen Link auf dieser Seite und öffnest beispiel.com/seite2 im selben Tab.<br/>
+1). beispiel.de/seite1 wird im ersten Tab geladen.<br/>
+2). Du klickst auf einen Link auf dieser Seite und öffnest beispiel.de/seite2 im selben Tab.<br/>
 3). Du willst jetzt zurück zum Link aus Schritt 1<br/><br/>
-Wie könntest du das machen, wenn die Zurück Taste Link Bubble minimieren würde? Die kleine Zurück-Anzeige auf dem Tab selbst 
+Wie könntest du das machen, wenn die Zurück-Taste Link Bubble minimieren würde? Die kleine Zurück-Anzeige auf dem Tab selbst 
 zu nutzen ist nicht sinnvoll.<br/><br/>
 Link Bubble ist ein Browser, und Android Browser haben seit Langem den Standard etabliert, 
-dass die Zurücktaste zur vorherigen Seite im URL Stapel führt, oder, falls kein Stapel existiert, die aktuelle Seite zu schließen.
+dass die Zurück-Taste zur vorherigen Seite im URL Stapel führt, oder, falls kein Stapel existiert, die aktuelle Seite zu schließen.
 Link Bubble folgt diesem Standard.]]></string>
     <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble öffnet keine Links!]]></string>
     <string name="faq_app_internal_browser_answer"><![CDATA[Dafür gibt es 3 Ursachen:<br/>
@@ -216,9 +228,16 @@ zu beenden.]]></string>
 (selbst eine grobe Schätzung anzugeben).<br/><br/>Es ist leider oft so, dass solche Einschätzungen von manchen Leuten als Verpflichtung 
 aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend einem Grund verschiebt.]]></string>
     <string name="faq_close_quickly_question">Wie kann ich Link Bubble schnell anhalten?</string>
+    <string name="faq_close_quickly_answer">Wische vom oberen Rand des Bilschirms nach unten um die Benachrichtigungsanzeige zu öffnen und klicke auf die \"Link Bubble\" Benachrichtigung.</string>
     <string name="faq_change_default_browser_question">Wie kann ich Link Bubble als Standardbrowser entfernen?</string>
     <string name="faq_change_default_browser_answer">Systemeinstellungen -> Apps -> Heruntergeladen -> Link Bubble -> Aktionen auf Standard zurücksetzen</string>
-    <string name="faq_close_quickly_answer">Wische vom oberen Rand des Bilschirms nach unten um die Benachrichtigungsanzeige zu öffnen und klicke auf die \"Link Bubble\" Benachrichtigung.</string>
+    <string name="faq_pro_trial_question">Wie funktioniert die Link Bubble Pro Testversion?</string>
+    <string name="faq_pro_trial_answer"><![CDATA[*In den ersten 24 Stunden nach der Installation von Link Bubble haben Nutzer, die nicht Link Bubble Pro haben, Zugriff auf alle Premium-Features (mehrere Tabs, Links werden von allen Apps abgefangen etc.).<br/>
+* Während dieser einmaligen Testperiode sind die Premium-Features von Link Bubble Pro für alle deine Geräte verfügbar.<br/>
+* Ein Wecker zeigt dir in der linken oberen Ecke der Hauptseite von Link Bubble, wie viel Zeit in deiner Testperiode noch verbleibt.<br/>
+* Wer Link Bubble vor der Version 1.1 getestet hat, ist für einen weiteren Test zugelassen.<br/>
+* Für die Überprüfung wird ist der Pro-Test mit deiner E-Mail-Adresse verknüpft. Wenn auf dem Gerät keine E-Mail-Adresse gefunden wird, ist der Test nicht möglich.<br/>
+* Sorry, aber der Testzeitraum kann nicht zurückgesetzt werden. Bitte erfreue dich an dem vollen Zugriff auf die Pro-Features in den ersten 24 Stunden nach der Installation von Link Bubble.]]></string>
     <string name="faq_report_bug_question">Einen Fehler melden</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -231,6 +250,8 @@ aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend 
 
     <string name="activity_resolver_use_always">Immer</string>
     <string name="activity_resolver_use_once">Nur einmal</string>
+
+    <string name="trial_time_on_click">Es sind noch %1$s von dem 24-Stunden-Test von Link Bubble Pro übrig.</string>
 
     <string name="credits_title">Link Bubble Credits</string>
     <string name="credits_lacy_name">Chris Lacy</string>
@@ -301,5 +322,23 @@ die Seite geladen ist. Sobald die Seite fertig geladen ist, wird es auf dem Bild
 • Entfernt alle Upgrade Anreize der kostenlosen Version
 • Unterstützung für mich, damit ich mehr solche Apps machen kann :)</string>
 
+    <string name="welcome_page_title">Willkommen bei Link Bubble!</string>
+    <string name="welcome_page_trial_notice">Anmerkung: In den ersten 24 Stunden nach der Installation hast du im Rahmen eines einmaligen Tests Zugang zu allen Premium-Features von Link Bubble Pro.</string>
+    <string name="welcome_page_intro_title">Wie funktioniert es?</string>
+    <string name="welcome_page_intro_point_1">Klicke einen Link in einer App.</string>
+    <string name="welcome_page_intro_point_2">Eine Blase wird am Rand des Bildschirms auftauchen und der Link wird im Hintergrund zu laden beginnen. Sobald die Seite geladen ist wird sie angezeigt.</string>
+    <string name="welcome_page_intro_end">So einfach ist das! Mit Link Bubble kannst du deine aktuelle App weiterbenutzen statt Zeit damit zu verschwenden, den Weiterleitungen zuzuschauen und auf das Laden der Seiten zu warten. Was kann man daran nicht lieben?</string>
+    <string name="welcome_page_more_title">Zeig mir mehr!</string>
+    <string name="welcome_page_more_pocket_start">Du kannst auch schnell einen Link teilen oder zu einer App wie Pocket hinzufügen:</string>
+    <string name="welcome_page_more_pocket_end">Sieht das nicht angenehm und nützlich aus?</string>
+    <string name="welcome_page_more_also">Link Bubble auch:</string>
+    <string name="welcome_page_more_point_1">Leitet Links zu einer festgelegten App (z. B. Instagram) weiter.</string>
+    <string name="welcome_page_more_point_2">Erkennt eingebettete Videos, so dass du sie einfach in der YouTube-App laden kannst.</string>
+    <string name="welcome_page_pro_intro">Die kostenlose Version gibt dir einen Vorgeschmack von Link Bubble\'s Fähigkeiten. Mit der Pro-Version kannst du:</string>
+    <string name="welcome_page_pro_point_1">Links aus allen Apps laden.</string>
+    <string name="welcome_page_pro_point_2">Lade Links von allen Apps.</string>
+    <string name="welcome_page_pro_point_3">Dabei mithelfen, mir das Programmieren weiterer Apps in der Zukunft zu ermöglichen :)</string>
+    <string name="welcome_page_pro_end">Danke und viel Spaß mit der App!</string>
+    <string name="welcome_page_ps">PS: Um diese Bubble zu schließen, drücke entweder die Zurück-Schaltfläche oder halte die Bubble gedrückt und verschiebe sie auf die "Schließen"-Bubble.</string>
 
 </resources>

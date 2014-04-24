@@ -23,12 +23,14 @@
     <string name="action_copy_to_clipboard">Link kopiëren</string>
     <string name="action_share">Delen</string>
     <string name="action_close_all">Alles sluiten</string>
+    <string name="action_close_tab">Bubbel sluiten</string>
+    <string name="action_stop">Stop</string>
     <string name="share_via">Delen via...</string>
 
     <string name="share_invalid_data">Link Bubble kan dit item niet delen, omdat de URL ongeldig is.</string>
     <string name="consume_activity_not_found">Kan applicatie niet vinden. Overweeg de bubbel-actie te wijzigen via Instellingen</string>
 
-    <string name="pick_default_app">Standaard-app kiezen</string>
+    <string name="pick_default_app">Standaardapp kiezen</string>
     <string name="default_browser_set">Link Bubble is ingesteld als de standaardbrowser.</string>
     <string name="clear_history">Geschiedenis wissen</string>
 
@@ -47,10 +49,11 @@
     <string name="preference_category_redirect_to_browser">Doorsturen naar terugvalbrowser</string>
     <string name="preference_category_fallback_browser">Standaard terugvalbrowser</string>
     <string name="preference_category_other_apps">Andere apps</string>
-    <string name="preference_default_apps_title">Standaard-apps</string>
-    <string name="preference_default_apps_notice_summary">Wordt gebruikt als één of meer niet-browser-apps op je systeem de URL kunnen afhandelen.\n\nTik om een standaard te verwijderen.</string>
-    <string name="preference_default_apps_notice_no_defaults_summary">Wordt gebruikt als één of meer niet-browser-apps op je apparaat de URL kunnen afhandelen.
-Je kan de standaard-app instellen om deze links mee te openen.\n\nDe standaard-app die gebruikt wordt in dit geval,
+    <string name="preference_default_apps_title">Standaardapps</string>
+    <string name="preference_default_apps_notice_summary">Wordt gebruikt als één of meer niet-browserapps op je systeem de URL
+kunnen afhandelen.\n\nTik om een standaard te verwijderen.</string>
+    <string name="preference_default_apps_notice_no_defaults_summary">Wordt gebruikt als één of meer niet-browserapps op je apparaat de URL kunnen afhandelen.
+Je kan de standaardapp instellen om deze links mee te openen.\n\nDe standaardapp die gebruikt wordt in dit geval,
 wordt ingesteld als je links laadt met Link Bubble.</string>
     <string name="preference_google_account_redirect_title">Google Account redirect</string>
     <string name="preference_google_account_redirect_summary">Stuur accounts.google.com-links door naar de standaard terugvalbrowser</string>
@@ -64,9 +67,9 @@ wordt ingesteld als je links laadt met Link Bubble.</string>
     <string name="preference_scan_for_youtube_embeds_title">Ingesloten YouTube-videos herkennen</string>
     <string name="preference_scan_for_youtube_embeds_summary">Snelkoppeling weergeven om ingesloten video(\'s) te laden in de YouTube-app.</string>
 
-    <string name="preference_webview_text_zoom_title">Tekst-zoom</string>
-    <string name="preference_webview_text_zoom_note">Let op: de huidige bubbels worden opnieuw geladen met de nieuw ingestelde tekst-zoom, nadat je \"OK\" kiest.</string>
-    <string name="preference_webview_text_zoom_reloading_current">Nieuwe tekst-zoom toegepast. Huidige bubbels herladen...</string>
+    <string name="preference_webview_text_zoom_title">Tekstzoom</string>
+    <string name="preference_webview_text_zoom_note">Let op: de huidige bubbels worden opnieuw geladen met de nieuw ingestelde tekstzoom, nadat je \"OK\" kiest.</string>
+    <string name="preference_webview_text_zoom_reloading_current">Nieuwe tekstzoom toegepast. Huidige bubbels herladen...</string>
     <string name="preference_clear_browser_cache_title">Privégegevens wissen</string>
     <string name="preference_clear_cache">Cache</string>
     <string name="preference_clear_cookies">Cookies</string>
@@ -74,6 +77,15 @@ wordt ingesteld als je links laadt met Link Bubble.</string>
     <string name="preference_clear_form_data">Formuliergegevens</string>
     <string name="preference_clear_history">Geschiedenis</string>
     <string name="preference_clear_passwords">Wachtwoorden</string>
+    <string name="preference_incognito_title">Incognitostand</string>
+    <string name="preference_incognito_summary">Voorkom het bewaren van geschiedenis en cookies</string>
+    <string name="preference_user_agent_title">User Agent</string>
+    <string-array name="preference_user_agent_options">
+        <item>Standaard</item>
+        <item>Chrome mobiele telefoon</item>
+        <item>Chrome tablet</item>
+        <item>Chrome desktop</item>
+    </string-array>
 
     <string name="preference_help_title">Help</string>
     <string name="preference_show_welcome_message_title">Welkomstpagina tonen</string>
@@ -82,7 +94,7 @@ wordt ingesteld als je links laadt met Link Bubble.</string>
     <string name="preference_privacy_policy_title">Privacyvoorwaarden</string>
     <string name="preference_terms_of_service_title">Algemene voorwaarden</string>
     <string name="preference_say_thanks_title">Zeg dankjewel!</string>
-    <string name="preference_say_thanks_summary">Waardeer je Link Bubble? Misschien kan je dan een review achterlaten in de Play Store.</string>
+    <string name="preference_say_thanks_summary">Waardeer je Link Bubble? Misschien wil je dan een review achterlaten in de Play Store.</string>
     <string name="preference_get_pro_title">Link Bubble Pro</string>
     <string name="preference_get_pro_summary">Upgrade naar Pro voor meer functies.</string>
     <string name="preference_version_title">Versie</string>
@@ -92,7 +104,8 @@ wordt ingesteld als je links laadt met Link Bubble.</string>
     <string name="preference_my_other_apps_summary">Vind je Link Bubble leuk? Probeer dan ook eens mijn andere apps.</string>
 
     <string name="remove_default_title">Standaard verwijderen?</string>
-    <string name="remove_default_message">%1$s verwijderen als de standaard-app om %2$s-links mee te laden?\n\nLet op: je kan de volgende keer dat je een %2$s-link laadt een nieuwe standaard-app instellen.</string>
+    <string name="remove_default_message">%1$s verwijderen als de standaardapp om %2$s-links mee te laden?\n\nLet op: je kan de volgende keer
+dat je een %2$s-link laadt een nieuwe standaardapp instellen.</string>
     <string name="long_press_unsupported_default_browser">Door beperkingen van het Androidsysteem kan Link Bubble dit item niet selecteren.\nLink openen in %1$s?</string>
     <string name="long_press_unsupported_no_default_browser">Door beperkingen van het Androidsysteem kan Link Bubble dit item niet selecteren.\nOpen de link in een browser.</string>
     <string name="unsupported_scheme_default_browser">Link-type wordt momenteel niet ondersteund. Webpagina openen in %1$s?</string>
@@ -122,6 +135,7 @@ wordt ingesteld als je links laadt met Link Bubble.</string>
     <string name="history_already_empty">Geschiedenis is al leeg</string>
     <string name="private_data_cleared">Privégegevens gewist</string>
     <string name="private_data_cleared_reloading_current">Privégegevens gewist. Huidige bubbels herladen...</string>
+    <string name="user_agent_changed_reloading_current">User Agent veranderd. Huidige bubbels herladen…</string>
     <string name="link_loaded_with_app">Geladen met %1$s</string>
     <string name="link_redirected">Doorgestuurd naar %1$s</string>
 
@@ -180,7 +194,7 @@ om links van andere apps te laden en te verwerken.</string>
     <string name="faq_translations_answer"><![CDATA[Ik hoop binnenkort vertalingen te kunnen toevoegen.<br/><br/>Wanneer ik dat doe, zal ik zeker een oproep doen via Google+
 (+Chris Lacy) voor hulp bij de vertalingen, dus hou mijn feed in de gaten.]]></string>
     <string name="faq_roadmap_question">Heb je een roadmap gepubliceerd? Kan ik stemmen voor toekomstige functies?</string>
-    <string name="faq_roadmap_answer">Ik ben bang dat vanwege de concurrentie het antwoord op beide vragen \'\nee\'\ is.</string>
+    <string name="faq_roadmap_answer">Ik ben bang dat vanwege de concurrentie het antwoord op beide vragen \'nee\' is.</string>
     <string name="faq_alternate_payment_question">Ik heb geen creditcard en/of ik kan niet kopen op Google Play. Hoe koop ik Pro?</string>
     <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble ondersteunt op dit moment alleen aanschaf via Google Play.<br/><br/>Aanvullende
 betaalmogelijkheden worden hopelijk in de toekomst aangeboden (voor zover ze de Google Play Developer Program Policies niet schenden).]]></string>
@@ -202,13 +216,13 @@ De kopieerfunctionaliteit werkt bij het gebruiken van Android\'s WebView vanuit 
     <string name="faq_beta_programme_question">Is er een beta-programma? Hoe kan ik meedoen?</string>
     <string name="faq_beta_programme_answer">Details van het beta-programma zullen te zijner tijd worden aangekondigd. Houd mijn Google+ (+Chris Lacy)-feed in de gaten voor aankondigingen.</string>
     <string name="faq_low_spec_performance_question">Waarom draait Link Bubble langzaam op mijn Nexus S / Galaxy S1 / Moto G-klasse apparaat?</string>
-    <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble is a very resource intensive app, and consequently devices with lower specs
-            can struggle to run the app as well as more powerful devices. Future updates will aim to improve Link Bubble\'s
-            performance, but there is only so much that can realistically be done here.<br/><br/>Technical answer: At the bare minimum, Link Bubble requires the
-            use of a Service and a WebView in order to function. Often multiple WebViews and even multiple Activities are also present.
-            Naturally, allocating these items (especially the WebViews) consumes a <i>lot</i> of memory/resources. Lower spec devices generally
-            have less memory available than Link Bubble requires, and thus performance suffers as garbage collections are frequently triggered.
-            As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on the Nexus 5.]]></string>
+    <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble is een app die veel vraagt van een apparaat, en daarom kunnen apparaten met minder goede specs moeite
+hebben om de app zo goed te draaien als meer krachtige apparaten. Toekomstige versies zullen proberen om de prestaties  van Link Bubble
+te verbeteren, maar de mogelijkheden hiervoor zijn beperkt.<br/><br/>Technisch antwoord: in de kern vereist Link Bubble het gebruik
+van een Service en een WebView om te functioneren. Vaak zijn er meerdere WebViews en zelfs meerdere Activities aanwezig.
+Het toewijzen van deze onderdelen (vooral de WebViews) verbruikt <i>veel</i> geheugen/hulpbronnen. Apparaten met mindere specs hebben
+over het algemeen minder geheugen ter beschikking dan Link Bubble nodig heeft, waardoor de prestaties eronder leiden als garbage collections veelvuldig voorkomen.
+Zo is bijvoorbeelde de max heap size op de Nexus S 48MB, vergeleken met 192MB op de Nexus 5.]]></string>
     <string name="faq_crap_webview_question">Webpagina\'s worden soms niet goed weergegeven of video\'s spelen niet.</string>
     <string name="faq_crap_webview_answer"><![CDATA[LinkBubble gebruikt de standaard Android WebView, helaas is deze soms niet betrouwbaar.
 Alternatieve webweergavemethodes zoals FireFox\'s GeckoView en Chromium zullen waarschijnlijk worden bekeken
@@ -221,9 +235,17 @@ niet te beëindigen.]]></string>
 (zelfs niet om een grove schatting te maken).<br/><br/>Het is de realiteit dat wanneer een schatting wordt gegeven, mensen dit gaan opvatten als een doelstelling,
 en teleurgesteld worden als/wanneer een release vertraagt om de een of andere reden.]]></string>
     <string name="faq_close_quickly_question">Hoe kan ik Link Bubble snel stoppen?</string>
+    <string name="faq_close_quickly_answer">Veeg vanaf de bovenkant van het scherm om het meldingenscherm te openen, en klik op de \"Link Bubble\"-melding.</string>
     <string name="faq_change_default_browser_question">Hoe kan ik Link Bubble weghalen als standaardbrowser?</string>
     <string name="faq_change_default_browser_answer">Systeeminstellingen -> Apps -> Gedownload -> Link Bubble -> Standaardwaarden wissen.</string>
-    <string name="faq_close_quickly_answer">Veeg vanaf de bovenkant van het scherm om het meldingenscherm te openen, en klik op de \"Link Bubble\"-melding.</string>
+    <string name="faq_pro_trial_question">Hoe werkt de Link Bubble Pro-proefperiode?</string>
+    <string name="faq_pro_trial_answer"><![CDATA[• De eerste 24 uur na de installatie van Link Bubble, hebben niet-Link Bubble Pro-gebruikers toegang tot alle
+premiumfuncties (meerdere tabs, links onderscheppen vanuit elke app, etc.) van Pro.<br/>
+• Tijdens deze eenmalig proefperiode zullen de functies van Link Bubble Pro beschikbaar zijn op al je apparaten.<br/>
+• Linksbovenaan op het hoofdscherm van Link Bubble staat een timer, waarmee je kunt zien hoeveel tijd er nog over is van de proefperiode.<br/>
+• Mensen die Link Bubble hebben geprobeerd vóór de 1.1-update kunnen meedoen aan de proefperiode.<br/>
+• Ter verificatie is de Pro-proefperiode gekoppeld aan je e-mailadres. Als er geen e-mailadres wordt gevonden op je apparaat, zal de proefperiode niet beschikbaar zijn.<br/>
+• Helaas kan de proefperiode niet teruggezet worden. Je kunt genieten van volledige toegang tot de Pro-functies in de eerste 24 uur na installatie van Link Bubble.]]></string>
     <string name="faq_report_bug_question">Een bug melden</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -236,6 +258,8 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
 
     <string name="activity_resolver_use_always">Altijd</string>
     <string name="activity_resolver_use_once">Eén keer</string>
+
+    <string name="trial_time_on_click">%1$s resterend van je 24 uur Link Bubble Pro-proefperiode.</string>
 
     <string name="credits_title">Link Bubble credits</string>
     <string name="credits_lacy_name">Chris Lacy</string>
@@ -274,7 +298,7 @@ programma.\n\nControleer je internetverbinding, en probeer indien nodig de app o
 inderdaad een exemplaar van Link Bubble Pro hebt aangeschaft, is de meest voorkomende reden hiervoor dat het bij de aanschaf gebruikte
 e-mailadres niet is geconfigureerd met de Play Store op dit apparaat.</string>
 
-    <string name="pro_keep_installed">Note: you don\'t need to load Link Bubble Pro again, but you do need to keep it installed for verification purposes.\n\nThis app will be hidden throughout the system so it doesn\'t appear in your launcher(s).</string>
+    <string name="pro_keep_installed">Let op: je hoeft Link Bubble Pro niet opnieuw te laden, maar je moet het wel geïnstalleerd houden ten behoeve van verificatie.\n\nDeze app zal worden verborgen in het systeem zodat het niet verschijnt op je startscherm(en).</string>
 
     <string name="pro_action_load_app">Link Bubble laden</string>
     <string name="pro_action_install_app">Link Bubble installeren</string>
@@ -287,17 +311,15 @@ e-mailadres niet is geconfigureerd met de Play Store op dit apparaat.</string>
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Mobiel browsen zoals het zou moeten.</string>
     <string name="store_listing_description_title">Link Bubble is een geheel nieuwe browser, ontworpen en gemaakt met alleen mobiele apparaten in gedachten.</string>
-    <string name="store_listing_description_features">
-    Features include:
-    • When you click on a link in an app, Link Bubble loads that webpage in the background, leaving you free to keep using your current app rather than your precious time being wasted watching a page load. Once the page has fully loaded, it will animate on screen.
-    • Link Bubble\'s flick physics allow you to go from clicking a link to sharing a link or adding it to a service such as Pocket in little more than a second!
-    • Load multiple links from your current app at the same time (requires Pro).
-    • Gracefully handles links that redirect to other apps. No longer does clicking an Instagram link in Twitter redirect to a full screen browser before loading Instagram!
-    • Deep integration with the apps on your system.
-    • Locates embedded YouTube videos on web pages, and provides a shortcut to load those videos directly in the YouTube app.
-    • Handy stats that illustrate how much time you are saving by using Link Bubble.
-    </string>
-    <string name="store_listing_description_location_permission">Regarding the Location permission: This is required so that you might grant permission for a website to access your location (such as those with an embedded map). Link Bubble itself never accesses your location.</string>
+    <string name="store_listing_description_features">Functies zijn onder meer:
+• Wanneer je klikt op een link in een app, laadt Link Bubble die webpagina op de achtergrond, zodat je vrij bent om je huidige app te blijven gebruiken in plaats van je kostbare tijd te verspillen aan het kijken naar een ladende pagina. Zodra de pagina volledig is geladen. zal deze op het scherm verschijnen.
+• Met Link Bubble\'s veegbewegingen kun je in weinig minder dan een seconde vanaf het klikken op een link, deze link delen of de link toevoegen aan een dienst als Pocket!
+• Laad meerdere links tegelijkertijd vanuit je huidige app op hetzelfde moment (vereist Pro).
+• Slim omgaan met links die doorverwijzen naar andere apps. Niet langer krijg je na het klikken op een Instagram-link in Twitter eerst een volledige browser voordat Instagram opent!
+• Diepe integratie met de apps op je systeem.
+• Vind ingesloten YouTube-video\'s op webpagina\'s, en bied een snelkoppeling om die video\'s direct in de YouTube-app te laden. 
+• Handige statistieken die laten zien hoeveel tijd je bespaart door Link Bubble te gebruiken.</string>
+    <string name="store_listing_description_location_permission">Wat betreft de toestemming voor Locatie: dit is nodig, omdat je mogelijk toestemming wil geven aan een website om je locatie te zien (bijvoorbeeld in het geval van een ingebouwde kaart). Link Bubble zelf kijkt nooit naar je locatie.</string>
 
     <string name="pro_store_listing_title">Link Bubble Pro</string>
     <string name="pro_store_listing_description_title">Link Bubble Pro ontsluit alle mogelijkheden van Link Bubble.</string>
@@ -307,5 +329,23 @@ e-mailadres niet is geconfigureerd met de Play Store op dit apparaat.</string>
 • De upgrade-aanmoedigingen weghalen uit de gratis versie.
 • Mij ondersteunen zodat ik meer van dit soort apps kan maken :)</string>
 
+    <string name="welcome_page_title">Welkom bij Link Bubble!</string>
+    <string name="welcome_page_trial_notice">Let op: tijdens de eerste 24 uur na de installatie van Link Bubble heb je toegang tot alle premiumfuncties van Link Bubble Pro, als een eenmalige proefperiode.</string>
+    <string name="welcome_page_intro_title">Hoe werkt het?</string>
+    <string name="welcome_page_intro_point_1">Klik op een link in een app.</string>
+    <string name="welcome_page_intro_point_2">Een bubbel verschijnt aan de rand van het scherm en de link begint met laden op de achtergrond. Zodra de pagina is geladen, zal deze worden getoond.</string>
+    <string name="welcome_page_intro_end">Zo simpel is het! Met Link Bubble kan je doorgaan met je huidige app, in plaats van je tijd te verdoen met het kijken naar links die doorgestuurd worden en wachten op pagina\'s die laden.</string>
+    <string name="welcome_page_more_title">Laat me meer zien!</string>
+    <string name="welcome_page_more_pocket_start">Je kan ook snel een link delen, of toevoegen aan een app zoals Pocket:</string>
+    <string name="welcome_page_more_pocket_end">Dat ziet er leuk en handig uit, toch?</string>
+    <string name="welcome_page_more_also">Link Bubble kan ook:</string>
+    <string name="welcome_page_more_point_1">Links doorsturen naar een specifieke app (bijv. Instagram).</string>
+    <string name="welcome_page_more_point_2">Ingesloten video\'s vinden zodat je deze makkelijk in de YouTube-app kan laden.</string>
+    <string name="welcome_page_pro_intro">De gratis versie laat zien wat er mogelijk is met Link Bubble, maar met Pro kan je:</string>
+    <string name="welcome_page_pro_point_1">Meerdere bubbels tegelijkertijd laden.</string>
+    <string name="welcome_page_pro_point_2">Links uit alle apps laden.</string>
+    <string name="welcome_page_pro_point_3">Ervoor zorgen dat ik meer apps kan maken in de toekomst :)</string>
+    <string name="welcome_page_pro_end">Bedankt, en veel plezier met de app!</string>
+    <string name="welcome_page_ps">PS. Deze bubbel kun je sluiten door op de Terug-knop te drukken, of door lang te drukken op de bubbel en deze bovenop de Sluit-bubbel te vegen.</string>
 
 </resources>
