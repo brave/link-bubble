@@ -73,6 +73,8 @@ public class MainApplication extends Application {
         initTrialStartTime();
     }
 
+    static String TRIAL_START_TIME = "lb_trialStartTime";
+
     public static class TrialTimeStartTimeReceivedEvent {
         public TrialTimeStartTimeReceivedEvent(long startTime) {
             mStartTime = startTime;
@@ -82,6 +84,14 @@ public class MainApplication extends Application {
 
     private void initTrialStartTime() {
         try {
+            long cachedStartTime = sDrm.decryptSharedPreferencesLong(TRIAL_START_TIME, -1);
+            if (cachedStartTime != -1) {
+                sTrialStartTime = cachedStartTime;
+                TrialTimeStartTimeReceivedEvent event = new TrialTimeStartTimeReceivedEvent(sTrialStartTime);
+                postEvent(MainApplication.this, event);
+                return;
+            }
+
             final Account[] accounts = AccountManager.get(this).getAccounts();
             final String defaultEmail = Util.getDefaultEmail(accounts);
             if (defaultEmail != null) {
@@ -103,6 +113,9 @@ public class MainApplication extends Application {
 
                         TrialTimeStartTimeReceivedEvent event = new TrialTimeStartTimeReceivedEvent(sTrialStartTime);
                         postEvent(MainApplication.this, event);
+
+                        String encryptedTrialStartTime = sDrm.encryptLong(sTrialStartTime);
+                        sDrm.saveToPreferences(TRIAL_START_TIME, encryptedTrialStartTime);
                     }
                 });
             }
