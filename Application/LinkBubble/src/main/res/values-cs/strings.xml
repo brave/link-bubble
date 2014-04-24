@@ -23,6 +23,8 @@
     <string name="action_copy_to_clipboard">Zkopírovat odkaz</string>
     <string name="action_share">Sdílet</string>
     <string name="action_close_all">Zavřít vše</string>
+    <string name="action_close_tab">Zavřít bublinu</string>
+    <string name="action_stop">Stop</string>
     <string name="share_via">Sdílet přes…</string>
 
     <string name="share_invalid_data">Link Bubble nedokáže sdílet tuto položku, protože neobsahuje platný odkaz.</string>
@@ -75,6 +77,15 @@ Chcete přejít na verzi Pro?</string>
     <string name="preference_clear_form_data">Data z formulářů</string>
     <string name="preference_clear_history">Historie</string>
     <string name="preference_clear_passwords">Hesla</string>
+    <string name="preference_incognito_title">Anonymní režim</string>
+    <string name="preference_incognito_summary">Neukládá historii prohlížení ani cookies</string>
+    <string name="preference_user_agent_title">User Agent</string>
+    <string-array name="preference_user_agent_options">
+        <item>Výchozí</item>
+        <item>Chrome na mobilu</item>
+        <item>Chrome na tabletu</item>
+        <item>Chrome na desktopu</item>
+    </string-array>
 
     <string name="preference_help_title">Nápověda</string>
     <string name="preference_show_welcome_message_title">Ukázat uvítací stránku</string>
@@ -124,6 +135,7 @@ až příště načtete odkaz z %2$s.</string>
     <string name="history_already_empty">Historie je prázdná</string>
     <string name="private_data_cleared">Osobní data smazána</string>
     <string name="private_data_cleared_reloading_current">Osobní data smazána. Aktualizace stávajících bublin…</string>
+    <string name="user_agent_changed_reloading_current">User Agent změněn. Aktualizace stávajících bublin…</string>
     <string name="link_loaded_with_app">Načteno s %1$s</string>
     <string name="link_redirected">Přesměrováno do %1$s</string>
 
@@ -221,9 +233,16 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
 <br/><br/>Lidé ve skutečnosti berou odhady jako závazek
  a pak jsou naštvaní, když se vydání z různých důvodů zpozdí.]]></string>
     <string name="faq_close_quickly_question">Jak můžu Link Bubble rychle zastavit?</string>
+    <string name="faq_close_quickly_answer">Panel s notifikacemi otevřete táhnutím prstu shora obrazovky a pak kliknete na notifikace \"Link Bubble\".</string>
     <string name="faq_change_default_browser_question">Jak můžu odstranit Link Bubble coby výchozí prohlížeč?</string>
     <string name="faq_change_default_browser_answer">Nastavení systému -> Aplikace -> Stažené -> Link Bubble -> Vymazat výchozí nastavení.</string>
-    <string name="faq_close_quickly_answer">Panel s notifikacemi otevřete táhnutím prstu shora obrazovky a pak kliknete na notifikace \"Link Bubble\".</string>
+    <string name="faq_pro_trial_question">Jak funguje trial verze Link Bubble Pro?</string>
+    <string name="faq_pro_trial_answer"><![CDATA[• Prvních 24 hodin po nainstalování bude mít bezplatná verze Link Bubble dostupné všechny funkce prémiové edice Pro (více záložek, zpracování z více aplikací atd.).<br/>
+• Během této doby budou prémiové funkce Link Bubble Pro dostupné na všech vašich zařízeních.<br/>
+• Na hlavní stránce Link Bubble bude v levém horním rohu časovač, který ukáže, jak dlouho ještě trial verze poběží.<br/>
+• Trial verzi si mohou vyzkoušet i lidé, kteří Link Bubble používali před verzí 1.1.<br/>
+• Kvůli ověření platnosti je trial verze spojena s vaším e-mailem. Pokud se ve vašem zařízení žádní e-mailová adresa nenachází, zkušeností doba nebude dostupná.<br/>
+• Omlouvám se, ale vaše trial verze nemůže být znovu obnovena. Užijte si prémiových funkcí Pro prvních 24 hodin po instalaci Link Bubble.]]></string>
     <string name="faq_report_bug_question">Nahlásit chybu</string>
     <string name="faq_report_bug_answer"><![CDATA[e-mail]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -236,6 +255,8 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
 
     <string name="activity_resolver_use_always">Vždy</string>
     <string name="activity_resolver_use_once">Pouze jednou</string>
+
+    <string name="trial_time_on_click">Zbývá %1$s z 24 hodin do vypršení trial verze Link Bubble Pro.</string>
 
     <string name="credits_title">Autoři Link Bubble</string>
     <string name="credits_lacy_name">Chris Lacy</string>
@@ -305,5 +326,23 @@ při nákupu není nastavena v Play Store na tomto zařízení.</string>
 • Odstraní pobídky k upgradu z bezplatné verze.
 • Podpoříte mě, abych mohl tvořit další takové aplikace. :)</string>
 
+    <string name="welcome_page_title">Vítejte v Link Bubble!</string>
+    <string name="welcome_page_trial_notice">Poznámka: Prvních 24 hodin po první instalaci Link Bubble budete mít přístup ke všem prémiovým funkcím Link Bubble Pro.</string>
+    <string name="welcome_page_intro_title">Jak to funguje?</string>
+    <string name="welcome_page_intro_point_1">Klikněte na odkaz v aplikaci.</string>
+    <string name="welcome_page_intro_point_2">Na okraji obrazovky se objeví bublina a odkaz se načítá na pozadí. Jakmile bude stránka načtena, bublina se stránkou se rozbalí.</string>
+    <string name="welcome_page_intro_end">Je to tak snadné! Můžete dál používat stávající aplikaci místo toho, abyste zabíjeli čas sledováním, jak se načítá prázdná stránka. Co na tom nelze milovat?</string>
+    <string name="welcome_page_more_title">Ukaž mi více!</string>
+    <string name="welcome_page_more_pocket_start">Odkaz můžete také rychle sdílet nebo poslat do aplikace jako např. Pocket.</string>
+    <string name="welcome_page_more_pocket_end">Obojí vypadá zábavně i užitečně, že jo?</string>
+    <string name="welcome_page_more_also">Link Bubble umí také:</string>
+    <string name="welcome_page_more_point_1">Přesměrovat odkazy do zvláštní aplikace (např. Instagram).</string>
+    <string name="welcome_page_more_point_2">Najít na webu vložená videa a nechat je jednoduše otevřít v aplikaci YouTube.</string>
+    <string name="welcome_page_pro_intro">Bezplatná verze vám dá ochutnat sílu Link Bubble, ale s verzí Pro můžete:</string>
+    <string name="welcome_page_pro_point_1">Načítat více bublin současně.</string>
+    <string name="welcome_page_pro_point_2">Zpracovávat odkazy ze všech aplikací.</string>
+    <string name="welcome_page_pro_point_3">Pomůžete mi zajistit, abych v budoucnu napsal i další aplikace. :)</string>
+    <string name="welcome_page_pro_end">Díky a užijte si aplikaci.</string>
+    <string name="welcome_page_ps">PS: Chcete-li zavřít tuto bublinu, dlouze podržte tlačítko Zpět nebo chyťte bublinu a přetáhněte ji na tlačítko Zavřít.</string>
 
 </resources>

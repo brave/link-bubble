@@ -9,11 +9,11 @@
     <string name="no">否</string>
     <string name="cancel">取消</string>
 
-    <string name="action_ok">好</string>
+    <string name="action_ok">确定</string>
     <string name="action_remove">删除</string>
     <string name="action_cancel">取消</string>
     <string name="action_clear_data">清除数据</string>
-    <string name="action_use_default">默认使用</string>
+    <string name="action_use_default">使用默认值</string>
     <string name="action_settings">设置</string>
     <string name="action_help">帮助</string>
     <string name="action_reload_page">重新载入</string>
@@ -23,9 +23,11 @@
     <string name="action_copy_to_clipboard">复制链接</string>
     <string name="action_share">分享</string>
     <string name="action_close_all">关闭所有</string>
+    <string name="action_close_tab">关闭泡泡</string>
+    <string name="action_stop">停止</string>
     <string name="share_via">通过...分享</string>
 
-    <string name="share_invalid_data">Link Bubble不能分享该条目，因为它是一个不有效的链接。</string>
+    <string name="share_invalid_data">Link Bubble 不能分享本条目，因为它不是一个有效的链接。</string>
     <string name="consume_activity_not_found">无法找到程序。请到设置中更改泡泡的跳转动作。</string>
 
     <string name="pick_default_app">选择默认应用</string>
@@ -37,7 +39,7 @@
     <string name="preference_category_browser">浏览器</string>
     <string name="preference_enabled_title">已启用</string>
     <string name="preference_auto_content_display_link_loaded_title">自动展开</string>
-    <string name="preference_auto_content_display_link_loaded_summary">当任意泡泡完成载入时</string>
+    <string name="preference_auto_content_display_link_loaded_summary">当泡泡载入完成后</string>
 
     <string name="preference_left_consume_bubble_title">左侧泡泡</string>
     <string name="preference_right_consume_bubble_title">右侧泡泡</string>
@@ -51,19 +53,20 @@
     <string name="preference_default_apps_notice_summary">当系统中一个或多个程序可以用于打开某链接的时候，使用该程序。\n\n 点击删除一个默认程序。</string>
     <string name="preference_default_apps_notice_no_defaults_summary">当系统中一个或多个程序可用于打开某链接时，您可以设置一个默认程序载入该类链接。\n\n当您用 Link Bubble 打开该类链接时默认使用的应用程序。</string>
     <string name="preference_google_account_redirect_title">谷歌账号重定向</string>
-    <string name="preference_google_account_redirect_summary">用默认待援浏览器重定向 accounts.google.com 链接</string>
+    <string name="preference_google_account_redirect_summary">用默认待援浏览器重定向
+accounts.google.com 链接</string>
     <string name="preference_set_default_browser_title">设置系统默认浏览器</string>
     <string name="preference_set_default_browser_summary">Link Bubble 必须设为系统默认浏览器才能正常工作。点击配置。</string>
     <string name="preference_more">更多...</string>
-    <string name="preference_intercept_links_from_title">截取链接</string>
-    <string name="preference_intercept_links_from_note">注意：免费版Link Bubble限制为只能在一个应用程序中截取链接。要升级到专业版吗？</string>
+    <string name="preference_intercept_links_from_title">接管链接</string>
+    <string name="preference_intercept_links_from_note">注意：免费版 Link Bubble 限制为只能在一个应用中接管链接。要升级到专业版解除该限制吗？</string>
     <string name="intercept_links_from_default_label">点击设置</string>
     <string name="intercept_links_from_default_set_message">免费版 Link Bubble 只加载 %1$s 中的链接。要加载所有程序中的链接，请升级到专业版。</string>
-    <string name="preference_scan_for_youtube_embeds_title">检查YouTube嵌入式视频</string>
-    <string name="preference_scan_for_youtube_embeds_summary">在 YouTube 应用中加载嵌入式视频的快捷方式。</string>
+    <string name="preference_scan_for_youtube_embeds_title">检查 YouTube 嵌入式视频</string>
+    <string name="preference_scan_for_youtube_embeds_summary">在 YouTube 应用中加载嵌入式视频。</string>
 
     <string name="preference_webview_text_zoom_title">文字缩放</string>
-    <string name="preference_webview_text_zoom_note">备注：选择\"确认\"后当前泡泡会以新的页面缩放大小重新加载。</string>
+    <string name="preference_webview_text_zoom_note">备注：选择「确认」后当前泡泡会重新加载以应用新的文字缩放设定。</string>
     <string name="preference_webview_text_zoom_reloading_current">以设置新的页面缩放等级。正在重新载入当前泡泡...</string>
     <string name="preference_clear_browser_cache_title">清除私人数据</string>
     <string name="preference_clear_cache">缓存</string>
@@ -72,6 +75,15 @@
     <string name="preference_clear_form_data">表单数据</string>
     <string name="preference_clear_history">历史记录</string>
     <string name="preference_clear_passwords">密码</string>
+    <string name="preference_incognito_title">隐身模式</string>
+    <string name="preference_incognito_summary">不记录浏览历史及小型文本文件(cookie)</string>
+    <string name="preference_user_agent_title">用户代理</string>
+    <string-array name="preference_user_agent_options">
+        <item>默认</item>
+        <item>手机版 Chrome</item>
+        <item>平板版 Chrome</item>
+        <item>桌面版 Chrome</item>
+    </string-array>
 
     <string name="preference_help_title">帮助</string>
     <string name="preference_show_welcome_message_title">显示欢迎页面</string>
@@ -120,6 +132,7 @@
     <string name="history_already_empty">历史记录已清空</string>
     <string name="private_data_cleared">私人数据已清除</string>
     <string name="private_data_cleared_reloading_current">私人数据已清除。正在重新加载泡泡...</string>
+    <string name="user_agent_changed_reloading_current">用户代理已变更。正在重新加载当前泡泡...</string>
     <string name="link_loaded_with_app">已用 %1$s 加载</string>
     <string name="link_redirected">重定向至 %1$s</string>
 
@@ -157,18 +170,17 @@
 如果点按返回键操作是最小化泡泡，这时该怎么办？点按泡泡上的小返回指示器是不可行的。<br/><br/>
 Link Bubble 是一个浏览器，而 Android 的浏览器有一套长期以来已成文的标准——当点按返回键时，返回链接堆叠中上一链接，或者当堆叠不存在时关闭当前页。
 Link Bubble 亦遵循该标准。]]></string>
-    <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble无法截取链接！]]></string>
+    <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble 无法接管链接！]]></string>
     <string name="faq_app_internal_browser_answer"><![CDATA[对此原因有三：<br/>
-1). 一个非 Link Bubble 的浏览器被设为您系统的默认浏览器。在 Link Bubble 设置中的“设置系统默认浏览器”选项进行更改。<br/>
-2). 免费版的 Link Bubble 只能在一个应用中截取链接。在 Link Bubble 设置中的“从...截取链接”选项来指定或修改该应用。在升级到 Link Bubble 专业版后，所有非浏览器程序中的链接都可以截取。<br/>
-3). 像 Talon、Reddit is Fun以及其他有内置浏览器的应用。检请查该应用设置，并选中“使用外部浏览器”或取消选中“使用内置浏览器”。<br/><br/>
-注意：常规浏览器，比如 Chrome，通过硬编码以在其自身中载入链接，所以 Link Bubble 不能截取其他浏览器中点击的链接。
+一、一个非 Link Bubble 的浏览器被设为您系统的默认浏览器。在 Link Bubble 设置中的「设置系统默认浏览器」选项进行更改。<br/>
+二、免费版的 Link Bubble 只能在一个应用中接管链接。在 Link Bubble 设置中的「从...接管链接」选项来指定或修改该应用。在升级到 Link Bubble 专业版后，所有非浏览器程序中的链接都可以接管。<br/>
+三、像 Talon、Reddit is Fun 以及其他有内置浏览器的应用。检请查该应用设置，并选中「使用外部浏览器」或取消选中「使用内置浏览器」。<br/><br/>
+注意：常规浏览器，比如 Chrome，通过硬编码以在其自身中载入链接，所以 Link Bubble 不能接管其他浏览器中点击的链接。
 ]]></string>
     <string name="faq_future_features_question">你会加入书签、收藏、扩展等功能吗？</string>
     <string name="faq_future_features_answer">不确定，但是目前 Link Bubble 只是专注于将载入和处理应用内链接做到最好。</string>
     <string name="faq_translations_question">什么时候才能有多国语言支持？我能帮忙吗？</string>
-    <string name="faq_translations_answer"><![CDATA[我希望尽快加入多国语言的翻译。<br/><br/>当我需要帮助的时候，我会在Google+
-(+Chris Lacy)上寻求帮助，所以请关注一下我分享的信息。]]></string>
+    <string name="faq_translations_answer"><![CDATA[我希望尽快加入多国语言的翻译。<br/><br/>当我需要帮助的时候，我会在 Google+ (+Chris Lacy) 上寻求帮助，所以请关注一下我分享的信息。]]></string>
     <string name="faq_roadmap_question">你有公布功能路线图吗？我能给要更新的功能投票吗？</string>
     <string name="faq_roadmap_answer">因为竞争原因，恐怕这两个问题的答案都是否定的。<br/><br/></string>
     <string name="faq_alternate_payment_question">我没有信用卡并且/或者我不能在 Google Play 商店中购买。那我该怎么购买专业版？</string>
@@ -182,7 +194,7 @@ Link Bubble 亦遵循该标准。]]></string>
 在一个活动中使用 Android 网络视图时复制功能能正常工作，但是服务却不行（而 Link Bubble 用的就是服务）。]]></string>
     <string name="faq_translucent_status_bar_question">为什么应用状态栏不是半透明的？</string>
     <string name="faq_translucent_status_bar_answer">很遗憾，Android 系统的局限不允许这么做。</string>
-    <string name="faq_beta_programme_question">有没有测试版的程序？我怎么参与测试？</string>
+    <string name="faq_beta_programme_question">本应用有没有测试版？我怎么参与测试？</string>
     <string name="faq_beta_programme_answer">测试版程序项目的细节会在适当的时候公布。关注我的 Google+ (+Chris Lacy) 获取公布信息。</string>
     <string name="faq_low_spec_performance_question">为什么 Link Bubble 在我的 Nexus S / Galaxy S1 / Moto G 等设备中运行缓慢？</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble 是一个大量消耗资源的应用，因此低端设备运行本应用会出现卡顿。未来的更新会以提高 Link Bubble 的性能为目标，但是现在实际上只能做这么多了。<br/><br/>技术上的回答：在最低限度 Link Bubble 需要运行一个服务（Service）和一个网络视图（WebView）来运行其功能。往往也存在多个网络视图（WebView）甚至多个活动（Activities）。
@@ -197,9 +209,16 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="faq_next_update_eta_question">下次更新是什么时候?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[在我准备好的时候！<br/><br/>很不幸，除此以外没有详情了（估计也没有）。<br/><br/>事实中当我给出估计估计时后，人们最终通常把它当作承诺，如果/当更新跳票的时候他们会很郁闷。]]></string>
     <string name="faq_close_quickly_question">我能快速停止 Link Bubble 运行吗？</string>
+    <string name="faq_close_quickly_answer">从屏幕顶部下拉打开通知面板，点击 Link Bubble 通知。</string>
     <string name="faq_change_default_browser_question">如何取消 Link Bubble 作为默认浏览器的设置？</string>
     <string name="faq_change_default_browser_answer">系统设置 -> 应用 -> 已下载 -> Link Bubble -> 清除默认设置。</string>
-    <string name="faq_close_quickly_answer">从屏幕顶部下拉打开通知面板，点击 Link Bubble 通知。</string>
+    <string name="faq_pro_trial_question">Link Bubble 专业版试用期是如何运作的？</string>
+    <string name="faq_pro_trial_answer"><![CDATA[• 在安装 Link Bubble 后的头一天内，未购买 Link Bubble 专业版的用户也能享受专业版的特性（多个泡泡、从所有应用中接管链接等）。<br/>
+• 在首次试用期内，您可以在您的设备上享受所有专业版的特性。<br/>
+• 在 Link Bubble 主屏的左上角将会显示试用期剩余的可用时间。<br/>
+• 所有在升级到 Link Bubble 1.1 之前使用的用户都有资格享用试用期。<br/>
+• 为了对身份进行校验，专业版试用期与您的邮箱会进行关联。如果在设备上未找到邮箱地址，那么您将无法试用专业版。<br/>
+• 试用期仅能享受一次，请在获得专业版试用资格后的一天内尽情享用专业版的特性吧。]]></string>
     <string name="faq_report_bug_question">回报错误</string>
     <string name="faq_report_bug_answer"><![CDATA[电子邮箱]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -212,6 +231,8 @@ Link Bubble 亦遵循该标准。]]></string>
 
     <string name="activity_resolver_use_always">总是</string>
     <string name="activity_resolver_use_once">仅一次</string>
+
+    <string name="trial_time_on_click">%1$s，您的专业版试用期还有 24 小时到期。</string>
 
     <string name="credits_title">关于 Link Bubble</string>
     <string name="credits_lacy_name">Chris Lacy</string>
@@ -248,7 +269,7 @@ Link Bubble 亦遵循该标准。]]></string>
 
     <string name="pro_keep_installed">注意：您不需要再次载入 Link Bubble 专业版。但是出于校验目的，您需要保持其安装。\n\n本应用会在系统中隐藏，所以它不会在您的启动器中显示。</string>
 
-    <string name="pro_action_load_app">加载Link Bubble</string>
+    <string name="pro_action_load_app">加载 Link Bubble</string>
     <string name="pro_action_install_app">安装 Link Bubble</string>
     <string name="pro_action_buy">购买应用</string>
     <string name="pro_action_retry">重试</string>
@@ -258,7 +279,7 @@ Link Bubble 亦遵循该标准。]]></string>
 
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">移动浏览已正确加载。</string>
-    <string name="store_listing_description_title">Link Bubble是一个独具匠心、潜心制作的用于移动设备的浏览器。</string>
+    <string name="store_listing_description_title">Link Bubble 是一个独具匠心、潜心制作的用于移动设备的浏览器。</string>
     <string name="store_listing_description_features">特性包括：
 • 当你在一个应用内点击链接，Link Bubble 会在后台载入它，你将可以继续使用当前的应用，而会让你宝贵的时间浪费在等待页面载入。加载完毕后，会有动画提示。
 • Link Bubble 的滑动功能允许你点指一瞬间完成链接分享，或者加入 Pocket 等服务。
@@ -272,10 +293,28 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="pro_store_listing_title">Link Bubble 专业版</string>
     <string name="pro_store_listing_description_title">Link Bubble 专业版将会解锁所有功能。</string>
     <string name="pro_store_listing_description_features">高级版包括： 
-•无限数量的泡泡（免费版只能同时打开一个泡泡）。 
-•截取设备上的所有应用的链接（免费版只截取一个应用中的链接）。 
-•移除免费版中的升级提示。 
-•支持我，让我投入更多精力来开发应用：）</string>
+• 无限数量的泡泡（免费版只能同时打开一个泡泡）。 
+• 接管设备上的所有应用的链接（免费版只接管一个应用中的链接）。 
+• 移除免费版中的升级提示。 
+• 支持我，让我投入更多精力来开发应用：）</string>
 
+    <string name="welcome_page_title">欢迎使用 Link Bubble！</string>
+    <string name="welcome_page_trial_notice">注意：在第一次安装 Link Bubble 后的一整天内，你将有一次享受专业版的高级功能的体验。</string>
+    <string name="welcome_page_intro_title">它是如何运作的？</string>
+    <string name="welcome_page_intro_point_1">在一个应用中点击链接。</string>
+    <string name="welcome_page_intro_point_2">泡泡将出现在屏幕边缘并与后台加载。在加载完成后，泡泡自动会显示。</string>
+    <string name="welcome_page_intro_end">就这么简单！在加载气泡链接时，您可以继续使用当前的应用程序，而不是在将时间浪费在等待链接重定向和页面加载上。有什么理由让您不喜欢？</string>
+    <string name="welcome_page_more_title">告诉我更多！</string>
+    <string name="welcome_page_more_pocket_start">您也可以快速分享链接或将其添加到其他应用，例如 Pocket：</string>
+    <string name="welcome_page_more_pocket_end">是不是看上去既有趣又有用？</string>
+    <string name="welcome_page_more_also">Link Bubble 也可以：</string>
+    <string name="welcome_page_more_point_1">重定向链接到特定应用（例如 Instagram）</string>
+    <string name="welcome_page_more_point_2">查找页面内嵌入式视频并在 YouTube 应用中加载。</string>
+    <string name="welcome_page_pro_intro">免费版 Link Bubble 让您体验到它的强大之处，但它不仅仅如此，专业版更可以让您：</string>
+    <string name="welcome_page_pro_point_1">同时加载多个泡泡</string>
+    <string name="welcome_page_pro_point_2">从所以应用中加载链接</string>
+    <string name="welcome_page_pro_point_3">帮助我确保在将来能够开发出更多的应用：）</string>
+    <string name="welcome_page_pro_end">感谢您，并尽情享受本应用吧～</string>
+    <string name="welcome_page_ps">注：若要官比一个泡泡，请点击返回键或拖动泡泡只屏幕底部的关闭泡泡中。</string>
 
 </resources>
