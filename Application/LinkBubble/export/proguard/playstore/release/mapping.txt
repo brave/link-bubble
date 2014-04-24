@@ -6633,36 +6633,37 @@ com.linkbubble.DRM -> ｯ:
     byte[] $ -> ˉ
     37:37:boolean isLicensed() -> ･
     41:41:boolean allowProFeatures() -> ˊ
-    86:93:android.content.pm.ServiceInfo getProServiceInfo(android.content.Context) -> ˊ
-    102:117:int decryptSharedPreferencesInt(android.content.SharedPreferences,java.lang.String,int) -> ･
-    121:121:java.lang.String encryptInt(int) -> ･
-    125:140:long decryptSharedPreferencesLong(android.content.SharedPreferences,java.lang.String,long) -> ･
-    144:144:java.lang.String encryptLong(long) -> ･
-    148:150:void onDestroy() -> ˋ
-    153:159:boolean bindProService(android.content.Context) -> ･
-    166:176:void requestLicenseStatus() -> ˎ
-    21:21:java.lang.String access$000() -> ˏ
-    21:21:android.content.SharedPreferences access$100(com.linkbubble.DRM) -> ･
+    80:87:android.content.pm.ServiceInfo getProServiceInfo(android.content.Context) -> ˊ
+    96:111:int decryptSharedPreferencesInt(java.lang.String,int) -> ･
+    115:115:java.lang.String encryptInt(int) -> ･
+    119:134:long decryptSharedPreferencesLong(java.lang.String,long) -> ･
+    138:138:java.lang.String encryptLong(long) -> ･
+    142:149:void saveToPreferences(java.lang.String,java.lang.String) -> ･
+    152:154:void onDestroy() -> ˋ
+    157:163:boolean bindProService(android.content.Context) -> ･
+    170:180:void requestLicenseStatus() -> ˎ
+    21:21:android.content.SharedPreferences access$000(com.linkbubble.DRM) -> ･
+    21:21:java.lang.String access$100() -> ˏ
     21:21:java.lang.String access$200() -> ᐝ
-    21:21:java.lang.String access$300() -> ʻ
-    21:21:void access$400(com.linkbubble.DRM,int) -> ･
+    21:21:void access$300(com.linkbubble.DRM,int) -> ･
     java.lang.String $(int,int,int) -> ･
 com.linkbubble.DRM$1 -> ｼ:
-    java.lang.String val$encryptedFirstInstallTime -> ･
-    com.linkbubble.DRM this$0 -> ˊ
-    77:80:void run() -> run
+    java.lang.String val$key -> ･
+    java.lang.String val$value -> ˊ
+    com.linkbubble.DRM this$0 -> ˋ
+    144:147:void run() -> run
 com.linkbubble.DRM$2 -> ｿ:
     com.linkbubble.DRM this$0 -> ･
-    284:293:void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
-    296:301:void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
+    288:297:void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
+    300:305:void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
 com.linkbubble.DRM$ProHandler -> ｯ$･:
     com.linkbubble.DRM this$0 -> ･
-    252:265:void handleMessage(android.os.Message) -> handleMessage
+    256:269:void handleMessage(android.os.Message) -> handleMessage
 com.linkbubble.DRM$SetStateThread -> ｯ$if:
     android.content.SharedPreferences mSharedPreferences -> ･
     java.lang.String mEncryptedState -> ˊ
     java.lang.String mEncryptedLeft -> ˋ
-    238:243:void run() -> run
+    242:247:void run() -> run
 com.linkbubble.MainApplication -> com.linkbubble.MainApplication:
     com.squareup.otto.Bus mBus -> ･
     com.linkbubble.db.DatabaseHelper sDatabaseHelper -> ˊ
@@ -6670,54 +6671,54 @@ com.linkbubble.MainApplication -> com.linkbubble.MainApplication:
     org.mozilla.gecko.favicons.Favicons sFavicons -> ˎ
     com.linkbubble.DRM sDrm -> ˏ
     boolean sShowingAppPickerDialog -> ᐝ
-    long sTrialStartTime -> ʼ
-    boolean mParseInitialized -> ʻ
-    byte[] $ -> ʽ
-    int $$ -> ͺ
+    long sTrialStartTime -> ʽ
+    java.lang.String TRIAL_START_TIME -> ʻ
+    boolean mParseInitialized -> ʼ
+    byte[] $ -> ͺ
     56:74:void onCreate() -> onCreate
-    114:124:boolean isInTrialPeriod() -> ･
-    128:138:long getTrialTimeRemaining() -> ˊ
-    142:149:void checkForProVersion(android.content.Context) -> ･
-    168:178:void onTerminate() -> onTerminate
-    181:186:void recreateFaviconCache() -> ˋ
-    189:190:void openLink(android.content.Context,java.lang.String,java.lang.String) -> ･
-    193:200:void openLink(android.content.Context,java.lang.String,boolean,java.lang.String) -> ･
-    203:209:void checkRestoreCurrentTabs$faab20d(android.app.Activity) -> ･
-    212:220:void restoreLinks$2213544c(android.app.Activity,java.lang.String[]) -> ･
-    223:234:boolean openInBrowser(android.content.Context,android.content.Intent,boolean) -> ･
-    238:241:boolean openInBrowser$607b2e85$5ffc0101(com.linkbubble.MainService,java.lang.String) -> ･
-    245:248:boolean loadResolveInfoIntent(android.content.Context,android.content.pm.ResolveInfo,java.lang.String,long) -> ･
-    252:261:boolean loadIntent(android.content.Context,java.lang.String,java.lang.String,java.lang.String,long) -> ･
-    265:271:boolean loadIntent(android.content.Context,android.content.Intent,java.lang.String,long) -> ･
-    275:338:boolean handleBubbleAction(android.content.Context,com.linkbubble.Constant$BubbleAction,java.lang.String,long) -> ･
-    342:343:void saveUrlInHistory$5e564888(android.content.Context,java.lang.String,java.lang.String) -> ˊ
-    347:361:void saveUrlInHistory$60130cbe(android.content.Context,java.lang.String,java.lang.String,java.lang.String) -> ･
-    364:366:void postEvent(android.content.Context,java.lang.Object) -> ･
-    369:371:void registerForBus(android.content.Context,java.lang.Object) -> ˊ
-    374:376:void unregisterForBus(android.content.Context,java.lang.Object) -> ˋ
-    379:385:void copyLinkToClipboard(android.content.Context,java.lang.String,int) -> ･
-    388:399:android.content.pm.ResolveInfo getStoreViewResolveInfo(android.content.Context) -> ˊ
-    403:421:android.content.Intent getStoreIntent(android.content.Context,java.lang.String) -> ･
-    425:439:void openAppStore$5ffc00fd(android.app.Activity,java.lang.String) -> ･
-    442:443:void showUpgradePrompt(android.content.Context,int,java.lang.String) -> ･
-    446:471:void showUpgradePrompt(android.content.Context,java.lang.String,java.lang.String) -> ˋ
+    127:137:boolean isInTrialPeriod() -> ･
+    141:151:long getTrialTimeRemaining() -> ˊ
+    155:162:void checkForProVersion(android.content.Context) -> ･
+    181:191:void onTerminate() -> onTerminate
+    194:199:void recreateFaviconCache() -> ˋ
+    202:203:void openLink(android.content.Context,java.lang.String,java.lang.String) -> ･
+    206:213:void openLink(android.content.Context,java.lang.String,boolean,java.lang.String) -> ･
+    216:222:void checkRestoreCurrentTabs$faab20d(android.app.Activity) -> ･
+    225:233:void restoreLinks$2213544c(android.app.Activity,java.lang.String[]) -> ･
+    236:247:boolean openInBrowser(android.content.Context,android.content.Intent,boolean) -> ･
+    251:254:boolean openInBrowser$607b2e85$5ffc0101(com.linkbubble.MainService,java.lang.String) -> ･
+    258:261:boolean loadResolveInfoIntent(android.content.Context,android.content.pm.ResolveInfo,java.lang.String,long) -> ･
+    265:274:boolean loadIntent(android.content.Context,java.lang.String,java.lang.String,java.lang.String,long) -> ･
+    278:284:boolean loadIntent(android.content.Context,android.content.Intent,java.lang.String,long) -> ･
+    288:351:boolean handleBubbleAction(android.content.Context,com.linkbubble.Constant$BubbleAction,java.lang.String,long) -> ･
+    355:356:void saveUrlInHistory$5e564888(android.content.Context,java.lang.String,java.lang.String) -> ˊ
+    360:374:void saveUrlInHistory$60130cbe(android.content.Context,java.lang.String,java.lang.String,java.lang.String) -> ･
+    377:379:void postEvent(android.content.Context,java.lang.Object) -> ･
+    382:384:void registerForBus(android.content.Context,java.lang.Object) -> ˊ
+    387:389:void unregisterForBus(android.content.Context,java.lang.Object) -> ˋ
+    392:398:void copyLinkToClipboard(android.content.Context,java.lang.String,int) -> ･
+    401:412:android.content.pm.ResolveInfo getStoreViewResolveInfo(android.content.Context) -> ˊ
+    416:434:android.content.Intent getStoreIntent(android.content.Context,java.lang.String) -> ･
+    438:452:void openAppStore$5ffc00fd(android.app.Activity,java.lang.String) -> ･
+    455:456:void showUpgradePrompt(android.content.Context,int,java.lang.String) -> ･
+    459:484:void showUpgradePrompt(android.content.Context,java.lang.String,java.lang.String) -> ˋ
     44:44:long access$002(long) -> ･
     44:44:long access$000() -> ˎ
     java.lang.String $(int,int,int) -> ･
 com.linkbubble.MainApplication$1 -> ﾄ:
     java.lang.String val$defaultEmail -> ･
     com.linkbubble.MainApplication this$0 -> ˊ
-    93:106:void done(com.parse.ParseObject,com.parse.ParseException) -> done
+    103:119:void done(com.parse.ParseObject,com.parse.ParseException) -> done
 com.linkbubble.MainApplication$2 -> ﾕ:
     java.lang.String val$urlAsString -> ･
     android.content.Context val$context -> ˊ
-    285:295:void onSelected(com.linkbubble.util.ActionItem) -> ･
+    298:308:void onSelected(com.linkbubble.util.ActionItem) -> ･
 com.linkbubble.MainApplication$3 -> ć:
     android.content.pm.ResolveInfo val$storeResolveInfo -> ･
     android.content.Context val$context -> ˊ
     java.lang.String val$prompt -> ˋ
-    455:463:void onClick() -> ･
-    468:468:void onClose() -> ˊ
+    468:476:void onClick() -> ･
+    481:481:void onClose() -> ˊ
 com.linkbubble.MainApplication$StateChangedEvent -> com.linkbubble.MainApplication$StateChangedEvent:
     int mState -> ･
     int mOldState -> ˊ
@@ -6755,7 +6756,6 @@ com.linkbubble.MainController -> com.linkbubble.MainController:
     com.linkbubble.util.AppPoller$AppPollerListener mAppPollerListener$68d024af$b0f9ede -> ٴ
     boolean mCanDisplay -> ᴵ
     byte[] $ -> ᵎ
-    int $$ -> ᵔ
     88:95:void addRootWindow$73ade143(android.widget.FrameLayout,android.view.WindowManager$LayoutParams) -> ･
     98:105:void removeRootWindow$3c7ec8c3(android.widget.FrameLayout) -> ･
     108:112:void updateRootWindowLayout$73ade143(android.widget.FrameLayout,android.view.WindowManager$LayoutParams) -> ˊ
@@ -6911,7 +6911,6 @@ com.linkbubble.Settings -> com.linkbubble.Settings:
     com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent mLinkLoadTimeStatsUpdatedEvent -> ˌ
     java.util.ArrayList mLastAppRedirects$7865b31 -> ˍ
     byte[] $ -> ˑ
-    int $$ -> ـ
     90:91:void initModule$faab20d(com.linkbubble.MainApplication) -> ･
     97:98:void deinitModule() -> ･
     101:103:void setConsumeBubblesChangedEventHandler$4d0351a7$6858d67a(com.linkbubble.Settings$ConsumeBubblesChangedEventHandler) -> ･
@@ -7511,7 +7510,6 @@ com.linkbubble.ui.CanvasView -> com.linkbubble.ui.CanvasView:
 com.linkbubble.ui.ChangeLogDialog -> ᒐ:
     android.app.Activity fActivity -> ･
     byte[] $ -> ˊ
-    int $$ -> ˋ
     53:57:java.lang.String GetAppVersion() -> ･
     63:73:java.lang.String ParseReleaseTag(android.content.res.XmlResourceParser) -> ･
     88:115:java.lang.String GetHTMLChangelog(int,android.content.res.Resources) -> ･
@@ -7739,7 +7737,6 @@ com.linkbubble.ui.ContentView$AppForUrl -> com.linkbubble.ui.ContentView$･:
     java.net.URL mUrl -> ˊ
     android.graphics.drawable.Drawable mIcon -> ˋ
     byte[] $ -> ˎ
-    int $$ -> ˏ
     146:151:android.graphics.drawable.Drawable getIcon(android.content.Context) -> ･
     java.lang.String $(int,int,int) -> ･
 com.linkbubble.ui.ContentView$EventHandler -> com.linkbubble.ui.ContentView$if:
@@ -8090,6 +8087,7 @@ com.linkbubble.ui.SettingsFragment -> com.linkbubble.ui.SettingsFragment:
     int mForceCrashCountdown -> ᐝ
     android.widget.Toast mForceCrashToast -> ˊ
     byte[] $ -> ʻ
+    int $$ -> ʼ
     72:129:void configureDefaultAppsList() -> ˋ
     133:408:void onCreate(android.os.Bundle) -> onCreate
     412:423:void onResume() -> onResume
@@ -8318,6 +8316,7 @@ com.linkbubble.util.ActionItem -> ڹ:
     java.lang.String mActivityClassName -> ˏ
     android.graphics.drawable.Drawable mIcon -> ᐝ
     byte[] $ -> ʻ
+    int $$ -> ʼ
     73:138:java.util.ArrayList getActionItems(android.content.Context,boolean,boolean,boolean) -> ･
     142:171:android.app.AlertDialog getDefaultBrowserAlert$472415a9(android.app.Activity,com.linkbubble.ui.SettingsFragment$7$1) -> ･
     176:315:android.app.AlertDialog getActionItemPickerAlert$7acab40a$97e5037(android.content.Context,java.util.ArrayList,com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener) -> ･
@@ -8498,7 +8497,6 @@ com.linkbubble.util.TranslateAnimationEx$TransformationListener -> ᒬ$･:
 com.linkbubble.util.Util -> ᒭ:
     java.util.Random sRandom -> ･
     byte[] $ -> ˊ
-    int $$ -> ˋ
     37:40:void Assert(boolean,java.lang.String) -> ･
     43:43:float clamp(float,float,float) -> ･
     47:47:int clamp(int,int,int) -> ･
