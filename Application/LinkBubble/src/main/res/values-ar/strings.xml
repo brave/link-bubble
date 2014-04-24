@@ -101,7 +101,7 @@
     <string name="preference_my_other_apps_summary">أعجبك فقاة العنوان ؟لماذا لا ترى المزيد من البرامج؟</string>
 
     <string name="remove_default_title">حذف اللإفتراضي؟</string>
-    <string name="remove_default_message">حذف 1% من البرنامج الإفتراضي ليشغل العنوان باستخدام 2%؟ ملاحظة:تستطيع ان تجعل برنامج إفتراضي جديد ليستخدم بالمرة القادمة اللتي تحمل فيها عنوان 2%.</string>
+    <string name="remove_default_message">حذف %1$s من البرنامج الإفتراضي ليشغل العنوان باستخدام %2$s؟ ملاحظة:تستطيع ان تجعل برنامج إفتراضي جديد ليستخدم بالمرة القادمة اللتي تحمل فيها عنوان %2$s.</string>
     <string name="long_press_unsupported_default_browser">نظام الأندرويد يمنع فقاعة العنوان من اختيار هذا البند.فتح العنوان باستخدام 1%.</string>
     <string name="long_press_unsupported_no_default_browser">نظام الأندرويد يمنع فقاعة العنوان من اختيار هذا البند.فتح العنوان باستخدام المتصفح.</string>
     <string name="unsupported_scheme_default_browser">نوع هذا العنوان غير مدعوم حاليا .فتح الصفحة باستخدام 1%؟</string>
