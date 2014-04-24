@@ -6973,13 +6973,14 @@ com.linkbubble.db.DatabaseHelper -> υ:
     java.lang.String[] FAVICON_FETCH_COLUMNS -> ˋ
     50:68:void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
     73:77:void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
-    80:85:android.content.ContentValues getContentValues(com.linkbubble.db.HistoryRecord) -> ˊ
+    80:85:android.content.ContentValues getContentValues(com.linkbubble.db.HistoryRecord) -> ˋ
     89:109:void addHistoryRecord(com.linkbubble.db.HistoryRecord) -> ･
-    112:120:void updateHistoryRecord(com.linkbubble.db.HistoryRecord) -> ˋ
-    137:165:int getRecentHistoryRecordId(java.lang.String) -> ˊ
-    236:275:android.graphics.Bitmap getFavicon(java.lang.String) -> ･
-    279:319:boolean faviconExists(java.lang.String,android.graphics.Bitmap) -> ･
-    332:358:void addFaviconForUrl(java.lang.String,android.graphics.Bitmap,java.lang.String) -> ･
+    112:120:void updateHistoryRecord(com.linkbubble.db.HistoryRecord) -> ˎ
+    124:135:boolean deleteHistoryRecord(com.linkbubble.db.HistoryRecord) -> ˊ
+    145:173:int getRecentHistoryRecordId(java.lang.String) -> ˊ
+    244:283:android.graphics.Bitmap getFavicon(java.lang.String) -> ･
+    287:327:boolean faviconExists(java.lang.String,android.graphics.Bitmap) -> ･
+    340:366:void addFaviconForUrl(java.lang.String,android.graphics.Bitmap,java.lang.String) -> ･
 com.linkbubble.db.HistoryRecord -> com.linkbubble.db.HistoryRecord:
     int mId -> ･
     java.lang.String mUrl -> ˊ
@@ -7111,12 +7112,12 @@ com.linkbubble.ui.BubbleDraggable -> com.linkbubble.ui.BubbleDraggable:
     float mTimeOnSnapTarget -> ʽ
     249:308:void doAnimateToBubbleView(int) -> ･
     315:356:void doAnimateToContentView$1385ff() -> ˊ
-    361:534:void configure$449f363(int,int,int,int,com.linkbubble.ui.CanvasView) -> ･
-    537:538:void setBubbleFlowDraggable(com.linkbubble.ui.BubbleFlowDraggable) -> setBubbleFlowDraggable
-    546:547:void setOnUpdateListener(com.linkbubble.physics.Draggable$OnUpdateListener) -> setOnUpdateListener
-    551:551:com.linkbubble.physics.DraggableHelper getDraggableHelper() -> ･
-    597:598:void setExactPos(int,int) -> setExactPos
-    601:605:void setTargetPos(int,int,float,com.linkbubble.physics.DraggableHelper$AnimationType,com.linkbubble.physics.DraggableHelper$AnimationEventListener) -> setTargetPos
+    361:536:void configure$449f363(int,int,int,int,com.linkbubble.ui.CanvasView) -> ･
+    539:540:void setBubbleFlowDraggable(com.linkbubble.ui.BubbleFlowDraggable) -> setBubbleFlowDraggable
+    548:549:void setOnUpdateListener(com.linkbubble.physics.Draggable$OnUpdateListener) -> setOnUpdateListener
+    553:553:com.linkbubble.physics.DraggableHelper getDraggableHelper() -> ･
+    599:600:void setExactPos(int,int) -> setExactPos
+    603:607:void setTargetPos(int,int,float,com.linkbubble.physics.DraggableHelper$AnimationType,com.linkbubble.physics.DraggableHelper$AnimationEventListener) -> setTargetPos
     24:24:void access$000(com.linkbubble.ui.BubbleDraggable) -> ･
     24:24:com.linkbubble.physics.DraggableHelper access$100(com.linkbubble.ui.BubbleDraggable) -> ˊ
     24:24:com.linkbubble.MainController$EndBubbleDragEvent access$200(com.linkbubble.ui.BubbleDraggable) -> ˋ
@@ -7163,17 +7164,17 @@ com.linkbubble.ui.BubbleDraggable$4 -> օ:
     349:352:void onCancel() -> ˊ
 com.linkbubble.ui.BubbleDraggable$5 -> א:
     com.linkbubble.ui.BubbleDraggable this$0 -> ･
-    393:408:void onActionDown(com.linkbubble.physics.DraggableHelper$TouchEvent) -> ･
-    412:475:void onActionMove(com.linkbubble.physics.DraggableHelper$MoveEvent) -> ･
-    479:523:void onActionUp(com.linkbubble.physics.DraggableHelper$ReleaseEvent) -> ･
+    393:410:void onActionDown(com.linkbubble.physics.DraggableHelper$TouchEvent) -> ･
+    414:477:void onActionMove(com.linkbubble.physics.DraggableHelper$MoveEvent) -> ･
+    481:525:void onActionUp(com.linkbubble.physics.DraggableHelper$ReleaseEvent) -> ･
 com.linkbubble.ui.BubbleDraggable$5$1 -> ע:
     com.linkbubble.ui.BubbleDraggable$5 this$1 -> ･
-    447:448:void onAnimationComplete() -> ･
-    451:452:void onCancel() -> ˊ
+    449:450:void onAnimationComplete() -> ･
+    453:454:void onCancel() -> ˊ
 com.linkbubble.ui.BubbleDraggable$5$2 -> ة:
     com.linkbubble.ui.BubbleDraggable$5 this$1 -> ･
-    460:465:void onAnimationComplete() -> ･
-    468:469:void onCancel() -> ˊ
+    462:467:void onAnimationComplete() -> ･
+    470:471:void onCancel() -> ˊ
 com.linkbubble.ui.BubbleDraggable$Mode -> com.linkbubble.ui.BubbleDraggable$Mode:
     com.linkbubble.ui.BubbleDraggable$Mode BubbleView -> ･
     com.linkbubble.ui.BubbleDraggable$Mode ContentView -> ˊ
@@ -7864,12 +7865,12 @@ com.linkbubble.ui.HistoryActivity -> com.linkbubble.ui.HistoryActivity:
     78:84:void onDestroy() -> onDestroy
     88:96:void onStart() -> onStart
     100:103:void onStop() -> onStop
-    106:159:void setupListView() -> ˊ
-    163:168:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
-    173:205:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-    210:214:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-    218:311:boolean onItemLongClick(android.widget.AdapterView,android.view.View,int,long) -> onItemLongClick
-    436:466:void onHistoryRecordChangedEvent(com.linkbubble.db.HistoryRecord$ChangedEvent) -> onHistoryRecordChangedEvent
+    106:160:void setupListView() -> ˊ
+    164:169:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    174:206:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    211:215:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    219:312:boolean onItemLongClick(android.widget.AdapterView,android.view.View,int,long) -> onItemLongClick
+    437:467:void onHistoryRecordChangedEvent(com.linkbubble.db.HistoryRecord$ChangedEvent) -> onHistoryRecordChangedEvent
     50:50:java.util.ArrayList access$000$326a91de(com.linkbubble.ui.HistoryActivity) -> ･
     50:50:com.linkbubble.ui.HistoryActivity$HistoryAdapter access$100(com.linkbubble.ui.HistoryActivity) -> ˊ
     50:50:java.util.List access$002$49c7a933(com.linkbubble.ui.HistoryActivity) -> ˋ
@@ -7877,13 +7878,13 @@ com.linkbubble.ui.HistoryActivity -> com.linkbubble.ui.HistoryActivity:
 com.linkbubble.ui.HistoryActivity$2 -> Ẏ:
     com.linkbubble.ui.SwipeDismissListViewTouchListener val$swipeDismissTouchListener -> ･
     com.linkbubble.ui.HistoryActivity this$0 -> ˊ
-    154:154:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    155:155:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
 com.linkbubble.ui.HistoryActivity$3 -> ẗ:
     com.linkbubble.ui.HistoryActivity this$0 -> ･
-    187:192:void onClick(android.content.DialogInterface,int) -> onClick
+    188:193:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.HistoryActivity$4 -> Ἲ:
     com.linkbubble.ui.HistoryActivity this$0 -> ･
-    197:198:void onClick(android.content.DialogInterface,int) -> onClick
+    198:199:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.HistoryActivity$5 -> Ἳ:
     java.util.ArrayList val$longClickSelections -> ˋ
     com.linkbubble.ui.HistoryActivity$HistoryItem val$historyItem -> ･
@@ -7895,19 +7896,19 @@ com.linkbubble.ui.HistoryActivity$5 -> Ἳ:
     java.lang.String val$copyLinkLabel -> ʽ
     android.app.AlertDialog val$longPressAlertDialog -> ͺ
     com.linkbubble.ui.HistoryActivity this$0 -> ˊ
-    265:302:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    266:303:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.linkbubble.ui.HistoryActivity$5$1 -> Ἴ:
     com.linkbubble.ui.HistoryActivity$5 this$1 -> ･
-    282:288:void onSelected(com.linkbubble.util.ActionItem) -> ･
+    283:289:void onSelected(com.linkbubble.util.ActionItem) -> ･
 com.linkbubble.ui.HistoryActivity$HistoryAdapter -> com.linkbubble.ui.HistoryActivity$･:
     android.view.LayoutInflater mInflater -> ･
     com.linkbubble.ui.HistoryActivity this$0 -> ˊ
-    329:329:int getCount() -> getCount
-    334:334:java.lang.Object getItem(int) -> getItem
-    339:339:long getItemId(int) -> getItemId
-    344:344:int getViewTypeCount() -> getViewTypeCount
-    349:349:int getItemViewType(int) -> getItemViewType
-    355:404:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    330:330:int getCount() -> getCount
+    335:335:java.lang.Object getItem(int) -> getItem
+    340:340:long getItemId(int) -> getItemId
+    345:345:int getViewTypeCount() -> getViewTypeCount
+    350:350:int getItemViewType(int) -> getItemViewType
+    356:405:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
 com.linkbubble.ui.HistoryActivity$HistoryItem -> com.linkbubble.ui.HistoryActivity$if:
     android.widget.TextView mTitleTextView -> ･
     android.widget.TextView mUrlTextView -> ˊ
@@ -7920,7 +7921,7 @@ com.linkbubble.ui.HistoryActivity$HistoryItem -> com.linkbubble.ui.HistoryActivi
     com.linkbubble.ui.HistoryActivity$HistoryItem$1 mOnFaviconLoadedListener$3c68e95f -> ʽ
 com.linkbubble.ui.HistoryActivity$HistoryItem$1 -> Ἵ:
     com.linkbubble.ui.HistoryActivity$HistoryItem this$0 -> ･
-    422:429:void onFaviconLoaded$179d4c45(java.lang.String,android.graphics.Bitmap) -> ･
+    423:430:void onFaviconLoaded$179d4c45(java.lang.String,android.graphics.Bitmap) -> ･
 com.linkbubble.ui.HomeActivity -> com.linkbubble.ui.HomeActivity:
     android.view.View mContentView -> ˊ
     android.view.View mBackgroundView -> ˋ
