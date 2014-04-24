@@ -225,7 +225,7 @@
             have less memory available than Link Bubble requires, and thus performance suffers as garbage collections are frequently triggered.
             As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on the Nexus 5.]]></string>
     <string name="faq_crap_webview_question">Sometimes webpages don\'t display correctly or videos don\'t play.</string>
-    <string name="faq_crap_webview_answer"><![CDATA[LinkBubble uses the standard Android WebView, but unfortunately it is sometimes unreliable.
+    <string name="faq_crap_webview_answer"><![CDATA[Link Bubble uses the standard Android WebView, but unfortunately it is sometimes unreliable.
             Alternative web rendering methods such as FireFox\'s GeckoView and Chromium will likely be investigated going
             forward.<br/><br/>In the event a webpage doesn\'t display correctly in Link Bubble, the easiest thing to do is just to load a traditional browser for that link.]]></string>
     <string name="faq_ongoing_notificaion_question">Why does the ongoing notification always display when Link Bubble is running?</string>
