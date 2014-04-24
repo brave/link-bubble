@@ -23,6 +23,8 @@
     <string name="action_copy_to_clipboard">Копировать ссылку</string>
     <string name="action_share">Поделиться</string>
     <string name="action_close_all">Закрыть все</string>
+    <string name="action_close_tab">Закрыть пузырь</string>
+    <string name="action_stop">Стоп</string>
     <string name="share_via">Поделиться</string>
 
     <string name="share_invalid_data">Link Bubble не может поделиться контентом, поскольку это не является ссылкой.</string>
@@ -44,15 +46,15 @@
     <string name="preference_configure_bubble_title">Настройка пузыря</string>
     <string name="preference_category_debug">Отладка</string>
     <string name="preference_default_browser">Резервный браузер</string>
-    <string name="preference_category_redirect_to_browser">Редиректить на резервный браузер</string>
+    <string name="preference_category_redirect_to_browser">Перенаправлять на резервный браузер</string>
     <string name="preference_category_fallback_browser">Резервный браузер по умолчанию</string>
     <string name="preference_category_other_apps">Другие приложения</string>
     <string name="preference_default_apps_title">Стандартные приложения</string>
     <string name="preference_default_apps_notice_summary">Используются, когда одно или несколько не-браузерных приложений могут обработать ссылку.\n\nНажмите, чтобы сбросить умолчания.</string>
     <string name="preference_default_apps_notice_no_defaults_summary">Используются, когда одно или несколько не-браузерных приложений могут обработать ссылку.
 Вы можете выбрать приложение, которое будет открывать такие ссылки.\n\nПриложение по умолчанию выбирается, когда вы открываете ссылки с помощью Link Bubble.</string>
-    <string name="preference_google_account_redirect_title">Редиректить Google Account</string>
-    <string name="preference_google_account_redirect_summary">Редиректить ссылки вида accounts.google.com в резервный браузер</string>
+    <string name="preference_google_account_redirect_title">Перенаправление Google Account</string>
+    <string name="preference_google_account_redirect_summary">Перенаправлять ссылки accounts.google.com в резервный браузер</string>
     <string name="preference_set_default_browser_title">Установить браузер по умолчанию</string>
     <string name="preference_set_default_browser_summary">Link Bubble должен быть браузером по умолчанию, чтобы правильно работать. Нажмите для настройки.</string>
     <string name="preference_more">Ещё...</string>
@@ -73,6 +75,15 @@
     <string name="preference_clear_form_data">Формат данных</string>
     <string name="preference_clear_history">История</string>
     <string name="preference_clear_passwords">Пароли</string>
+    <string name="preference_incognito_title">Режим инкогнито</string>
+    <string name="preference_incognito_summary">Не сохранять историю и cookies</string>
+    <string name="preference_user_agent_title">User Agent</string>
+    <string-array name="preference_user_agent_options">
+        <item>По умолчанию</item>
+        <item>Chrome (телефон)</item>
+        <item>Chrome (планшет)</item>
+        <item>Chrome (ПК)</item>
+    </string-array>
 
     <string name="preference_help_title">Помощь</string>
     <string name="preference_show_welcome_message_title">Показать стартовую страницу</string>
@@ -122,6 +133,7 @@
     <string name="history_already_empty">История уже пуста</string>
     <string name="private_data_cleared">Личные данные очищены</string>
     <string name="private_data_cleared_reloading_current">Личные данные очищены. Перезагрузка текущих пузырей...</string>
+    <string name="user_agent_changed_reloading_current">Изменен User Agent. Перезагрузка текущих пузырей...</string>
     <string name="link_loaded_with_app">Загружено в %1$s</string>
     <string name="link_redirected">Перенаправлено в %1$s</string>
 
@@ -203,9 +215,16 @@ Link Bubble.]]></string>
     <string name="faq_next_update_eta_question">Когда будет обновление?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[Когда оно будет готово!<br/><br/>Невозможно быть более точным, даже если сказать примерно.<br/><br/>Всё дело в том, что люди считают примерные даты окончательными и точными и часто расстраиваются, если к ожидаемой дате нет обновления.]]></string>
     <string name="faq_close_quickly_question">Как быстро закрыть Link Bubble?</string>
+    <string name="faq_close_quickly_answer">Откройте панель уведомлений и нажмите на уведомление Link Bubble.</string>
     <string name="faq_change_default_browser_question">Как сменить стандартный браузер с Link Bubble на другой?</string>
     <string name="faq_change_default_browser_answer">Настройки -> Приложения -> Загруженные -> Link Bubble -> Сбросить значения по умолчанию.</string>
-    <string name="faq_close_quickly_answer">Откройте панель уведомлений и нажмите на уведомление Link Bubble.</string>
+    <string name="faq_pro_trial_question">Как работает пробный режим Link Bubble Pro?</string>
+    <string name="faq_pro_trial_answer"><![CDATA[• На первые 24 часа пользователи бесплатной версии Link Bubble получают доступ ко всем функциям, доступным в Pro-версии (несколько пузырей, открытие ссылкой из всех приложений, и так далее).<br/>
+• Во время этого единоразового пробного периода Pro-функции Link Bubble будут доступны на всех ваших устройствах.<br/>
+• Таймер в левом верхнем углу экрана будет показывать, сколько времени у вас ещё осталось.<br/>
+• Загрузившие Link Bubble до версии 1.1 также имеют доступ к пробному периоду.<br/>
+• в целях безопасности пробный период привязывается к вашему email. Если такового нет на устройстве, пробный период не будет доступен.<br/>
+• К сожалению, пробный период нельзя сбросить. Вы сможете пользоваться Pro-функциями только первые 24 часа после установки Link Bubble.]]></string>
     <string name="faq_report_bug_question">Сообщить об ошибке</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -219,6 +238,8 @@ Link Bubble.]]></string>
     <string name="activity_resolver_use_always">Всегда</string>
     <string name="activity_resolver_use_once">Только сейчас</string>
 
+    <string name="trial_time_on_click">Осталось %1$s от Вашей 24-часовой пробы Link Bubble Pro.</string>
+
     <string name="credits_title">Разработчики Link Bubble</string>
     <string name="credits_lacy_name">Крис Лейси</string>
     <string name="credits_lacy_credit">Концепт, дизайн и программирование </string>
@@ -227,8 +248,8 @@ Link Bubble.]]></string>
     <string name="credits_app_copyright">Авторские права защищены: 2014, Digital Ashes / Крис Лейси.</string>
 
     <string name="content_description_button">Кнопка</string>
-    <string name="content_description_target_icon">Bubble target icon</string>
-    <string name="content_description_close_bubble_icon">Close bubble icon</string>
+    <string name="content_description_target_icon">Иконка цели пузыря</string>
+    <string name="content_description_close_bubble_icon">Иконка закрытия пузыря</string>
     <string name="content_description_link_bubble_logo">Логотип Link Bubble</string>
     <string name="content_description_app_icon">Иконка приложения</string>
     <string name="content_description_youtube_video_thumbnail">Превью видео YouTube</string>
@@ -284,5 +305,23 @@ Link Bubble.]]></string>
 • Убираются все призывы купить апгрейд до платной версии.
 • Вы поддерживаете меня, чтобы я мог делать больше таких приложений :)</string>
 
+    <string name="welcome_page_title">Добро пожаловать в Link Bubble!</string>
+    <string name="welcome_page_trial_notice">Внимание: первые 24 часа использования вам будут доступны все Pro-функции как единоразовый пробный период.</string>
+    <string name="welcome_page_intro_title">Как это работает?</string>
+    <string name="welcome_page_intro_point_1">Нажмите на ссылку в приложении.</string>
+    <string name="welcome_page_intro_point_2">Пузырь появится на краю экрана и ссылка начнет загружаться в фоне. Как только страница загрузится, она отобразится.</string>
+    <string name="welcome_page_intro_end">Это просто! С Link Bubble вы можете продолжить работу в приложении вместо того, чтобы смотреть на пустой браузер и ждать, пока загрузится страница. Здорово, правда?</string>
+    <string name="welcome_page_more_title">Покажи мне больше!</string>
+    <string name="welcome_page_more_pocket_start">Вы также можете быстро отправлять ссылки или добавлять их в такие приложения, как Pocket:</string>
+    <string name="welcome_page_more_pocket_end">Выглядит интересно и полезно, правда?</string>
+    <string name="welcome_page_more_also">Link Bubble также:</string>
+    <string name="welcome_page_more_point_1">Направляет ссылки в нужное приложение (например, Instagram).</string>
+    <string name="welcome_page_more_point_2">Находит встроенные видео на странице, чтобы вы могли легко открыть их в приложении YouTube.</string>
+    <string name="welcome_page_pro_intro">Бесплатная версия даёт вам попробовать возможности Link Bubble, но с Pro версией вы можете:</string>
+    <string name="welcome_page_pro_point_1">Открывайте несколько пузырей одновременно.</string>
+    <string name="welcome_page_pro_point_2">Загружать ссылки из всех приложений</string>
+    <string name="welcome_page_pro_point_3">Помогаете мне написать ещё больше приложений в будущем :)</string>
+    <string name="welcome_page_pro_end">Спасибо, наслаждайтесь приложением!</string>
+    <string name="welcome_page_ps">P.S. Чтобы закрыть пузырь, нажмите кнопку Назад или смахните его вниз на пузырь закрытия.</string>
 
 </resources>

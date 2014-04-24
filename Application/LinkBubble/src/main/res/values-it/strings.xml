@@ -23,6 +23,8 @@
     <string name="action_copy_to_clipboard">Copia collegamento</string>
     <string name="action_share">Condividi</string>
     <string name="action_close_all">Chiudi tutto</string>
+    <string name="action_close_tab">Chiudi la bolla</string>
+    <string name="action_stop">Stop</string>
     <string name="share_via">Condividi tramite...</string>
 
     <string name="share_invalid_data">Link Bubble non è in grado di condividere questo elemento, non essendo un URL valido.</string>
@@ -43,14 +45,14 @@
     <string name="preference_right_consume_bubble_title">Bolla a destra</string>
     <string name="preference_configure_bubble_title">Configura le bolle</string>
     <string name="preference_category_debug">Debug</string>
-    <string name="preference_default_browser">Browser predefinito in caso di errore</string>
+    <string name="preference_default_browser">Browser in caso di errore</string>
     <string name="preference_category_redirect_to_browser">Utilizza il browser predefinito in caso di errore</string>
-    <string name="preference_category_fallback_browser">Browser predefinito in caso di errore</string>
+    <string name="preference_category_fallback_browser">Browser in caso di errore</string>
     <string name="preference_category_other_apps">Altre app</string>
     <string name="preference_default_apps_title">App predefinite</string>
     <string name="preference_default_apps_notice_summary">Usato quando una o più app non browser nel tuo sistema possono gestire un URL.\n\nTocca per rimuovere un valore predefinito.</string>
     <string name="preference_default_apps_notice_no_defaults_summary">Usato quando una o più app non browser nel tuo device possono gestire un URL, puoi configurare l\'app predefinita con cui caricare questi collegamenti.\n\nL\'app predefinita da usare in questi casi è configurata appena apri un collegamento con Link Bubble.</string>
-    <string name="preference_google_account_redirect_title">Ridirezione all\'Account Google</string>
+    <string name="preference_google_account_redirect_title">Redirection compte Google</string>
     <string name="preference_google_account_redirect_summary">Utilizza il browser predefinito in caso di errore per i collegamenti ad accounts.google.com</string>
     <string name="preference_set_default_browser_title">Imposta il browser predefinito di sistema</string>
     <string name="preference_set_default_browser_summary">Link Bubble deve essere impostato come browser predefinito per poter funzionare. Tocca per configurare.</string>
@@ -72,6 +74,15 @@
     <string name="preference_clear_form_data">Dati modulo</string>
     <string name="preference_clear_history">Cronologia</string>
     <string name="preference_clear_passwords">Password</string>
+    <string name="preference_incognito_title">Modalità in incognito</string>
+    <string name="preference_incognito_summary">Previeni la memorizzazione della cronologia e dei cookie</string>
+    <string name="preference_user_agent_title">User Agent</string>
+    <string-array name="preference_user_agent_options">
+        <item>Predefinito</item>
+        <item>Chrome Phone</item>
+        <item>Chrome Tablet</item>
+        <item>Chrome Desktop</item>
+    </string-array>
 
     <string name="preference_help_title">Aiuto</string>
     <string name="preference_show_welcome_message_title">Mostra la pagina di benvenuto</string>
@@ -120,6 +131,7 @@
     <string name="history_already_empty">La cronologia è già vuota</string>
     <string name="private_data_cleared">Dati privati eliminati</string>
     <string name="private_data_cleared_reloading_current">Dati privati eliminati. Sto ricaricando le bolle correnti...</string>
+    <string name="user_agent_changed_reloading_current">Lo  user Agent è cambiato. Le bolle correnti si stanno ricaricando…</string>
     <string name="link_loaded_with_app">Caricato con %1$s</string>
     <string name="link_redirected">Ridireziona a %1$s</string>
 
@@ -202,9 +214,16 @@ In futuro valuterò usi alternativi di rendering come FireFox, GeckoView e Chrom
     <string name="faq_next_update_eta_question">Quando arriverà il prossimo aggiornamento?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[Quando sarà pronto!<br/><br/>E\' difficile fornire una stima esatta.<br/><br/>La realtà è che quando si fornisce una stima, molto spesso questa viene interpretata dagli utenti come un impegno e quando si verifica un imprevisto che allunga i tempi previsti questo genera lamentele.]]></string>
     <string name="faq_close_quickly_question">Come posso interrompere velocemente l\'avvio di Link Bubble?</string>
+    <string name="faq_close_quickly_answer">Scorri dall\'alto dello schermo per aprire il pannello delle notifiche e clicka la notifica \"Link Bubble\".</string>
     <string name="faq_change_default_browser_question">Come posso rimuovere l\'impostazione di Link Bubble come browser predefinito?</string>
     <string name="faq_change_default_browser_answer">Impostazioni di sistema -> Applicazioni -> Scaricate -> Link Bubble -> Elimina predefiniti.</string>
-    <string name="faq_close_quickly_answer">Scorri dall\'alto dello schermo per aprire il pannello delle notifiche e clicka la notifica \"Link Bubble\".</string>
+    <string name="faq_pro_trial_question">Come funziona Link Bubble Pro Trial?</string>
+    <string name="faq_pro_trial_answer"><![CDATA[• Per le prime 24 ore dopo l\'installazione di Link Bubble is installed, tutti gli utenti che non hanno acquistato Link Bubble Pro avranno accesso a tutte le funzioni della versione Pro (tab multipli, link intercettati da tutte le app, etc.).<br/>
+• Durante questo periodo di prova, le funzioni di Link Bubble Pro saranno disponibili per tutti i tuoi device.<br/>
+• Un timer in alto a sinistra nella schermata di Link Bubble, ti informerà quanto tempo è rimasto nel tuo periodo di prova.<br/>
+• Gli utenti che hanno provato Link Bubble prima della versione 1.1 potranno godere del periodo di prova.<br/>
+• Il tuo email sarà utilizzato per verificare il periodo di prova della versione Pro. Se nessun email è trovato sul device, il periodo di prova non sarà disponibile.<br/>
+• Il periodo di prova non può essere resettato. Se vuoi fruire di tutte le funzioni della versione Pro devi utilizzarle nelle prime 24 ore dopo l\'installazione.]]></string>
     <string name="faq_report_bug_question">Riporta un errore</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -217,6 +236,8 @@ In futuro valuterò usi alternativi di rendering come FireFox, GeckoView e Chrom
 
     <string name="activity_resolver_use_always">Sempre</string>
     <string name="activity_resolver_use_once">Una sola volta</string>
+
+    <string name="trial_time_on_click">Rimangono %1$s delle tue 24 ore di prova con Link Bubble Pro.</string>
 
     <string name="credits_title">Crediti su Link Bubble</string>
     <string name="credits_lacy_name">Chris Lacy</string>
@@ -281,5 +302,23 @@ In futuro valuterò usi alternativi di rendering come FireFox, GeckoView e Chrom
 • Rimuove i messaggi che incentivano l\'aggiornamento alla versione Pro.
 • Supporta il mio lavoro cosicché io possa creare altre app come questa :)</string>
 
+    <string name="welcome_page_title">Benvenuto in Link Bubble!</string>
+    <string name="welcome_page_trial_notice">Nota: Per le prime 24 ore dopo la prima installazione di Link Bubble, avrai accesso a tutte le funzionalità Premium di Link Bubble Pro come periodo di prova una-tantum.</string>
+    <string name="welcome_page_intro_title">Come funziona?</string>
+    <string name="welcome_page_intro_point_1">Clicca un link in una app.</string>
+    <string name="welcome_page_intro_point_2">Una bolla apparirà lungo il bordo dello schermo e il link sarà caricato in background. Quando la pagina è caricata, verrà visualizzata.</string>
+    <string name="welcome_page_intro_end">E\' semplice, con Link Bubble puoi continuare ad utilizzare la tua app, senza perdere tempo nell\'aprire un link ed aspettare che la pagina sia caricata. Come non amare una funzione così?</string>
+    <string name="welcome_page_more_title">Mostra ancora!</string>
+    <string name="welcome_page_more_pocket_start">Puoi condividere velocemente un link o aggiungerlo ad altre app come Pocket.</string>
+    <string name="welcome_page_more_pocket_end">Sembra sia divertente che utile, vero?</string>
+    <string name="welcome_page_more_also">Ancora su Link Bubble:</string>
+    <string name="welcome_page_more_point_1">Ridireziona i collegamenti ad un\'app dedicata (p.e., Instagram).</string>
+    <string name="welcome_page_more_point_2">Trova i video incorporati, affinché tu possa caricarli facilmente nell\'app YouTube.</string>
+    <string name="welcome_page_pro_intro">La versione gratuita di Link Bubble ti permette di assaggiare la potenza dell\'app, ma con la versione Pro puoi:</string>
+    <string name="welcome_page_pro_point_1">Carica più bolle contemporaneamente.</string>
+    <string name="welcome_page_pro_point_2">Carica i link da tutte le app.</string>
+    <string name="welcome_page_pro_point_3">Aiutami ad assicurarti che io possa scrivere altre app in futuro :)</string>
+    <string name="welcome_page_pro_end">Grazie, e goditi l\'app!</string>
+    <string name="welcome_page_ps">P.S.: Per chiudere questa bolla, premi il tasto Indietro oppure tieni premuta una bolla e trascinala sulla bolla Chiudi.</string>
 
 </resources>
