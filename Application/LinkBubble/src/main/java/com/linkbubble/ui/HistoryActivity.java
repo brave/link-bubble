@@ -132,8 +132,9 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                                 for (int position : reverseSortedPositions) {
                                     Object item = listView.getItemAtPosition(position);
                                     if (item instanceof HistoryRecord) {
-                                        databaseHelper.deleteHistoryRecord((HistoryRecord)item);
-                                        mHistoryRecords.remove(item);
+                                        if (databaseHelper.deleteHistoryRecord((HistoryRecord)item)) {
+                                            mHistoryRecords.remove(item);
+                                        }
                                     }
                                 }
 

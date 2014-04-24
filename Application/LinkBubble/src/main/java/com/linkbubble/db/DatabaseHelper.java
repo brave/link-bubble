@@ -119,12 +119,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteHistoryRecord(HistoryRecord historyRecord) {
+    public boolean deleteHistoryRecord(HistoryRecord historyRecord) {
+
+        boolean result = false;
+
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(TABLE_LINK_HISTORY, KEY_ID + " = ?", new String[] { String.valueOf(historyRecord.getId()) });
+        try {
+            db.delete(TABLE_LINK_HISTORY, KEY_ID + " = ?", new String[]{String.valueOf(historyRecord.getId())});
+            result = true;
+            Log.d(TAG, "deleted historyRecord:" + historyRecord.toString());
+        } catch (IllegalStateException ex) {
+        }
         db.close();
 
-        Log.d(TAG, "deleted historyRecord:" + historyRecord.toString());
+        return result;
     }
 
     public void deleteAllHistoryRecords() {
