@@ -2,6 +2,8 @@ package com.linkbubble.webrender;
 
 
 import android.content.Context;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -127,7 +129,9 @@ public class DiffBotRenderer extends WebRenderer {
 
                     if (article.mBody != null) {
                         mBodyTextView.setVisibility(View.VISIBLE);
-                        mBodyTextView.setText(article.mBody);
+                        //mBodyTextView.setText(article.mBody);
+                        mBodyTextView.setText(Html.fromHtml(article.mHtml));
+                        mBodyTextView.setMovementMethod(LinkMovementMethod.getInstance());
                     } else {
                         mBodyTextView.setVisibility(View.GONE);
                     }
