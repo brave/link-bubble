@@ -7,6 +7,7 @@ import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import com.linkbubble.Config;
+import com.linkbubble.Constant;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -113,7 +114,6 @@ public class PageInspector {
     private String mLastYouTubeEmbedResultString = null;
     private OnItemFoundListener mOnItemFoundListener;
 
-    private static final int TOUCH_ICON_MAX_SIZE = 256;
     private static final int MAX_FAVICON_ENTRIES = 4;
     private TouchIconEntry[] mTouchIconEntries = new TouchIconEntry[MAX_FAVICON_ENTRIES];
     private int mTouchIconEntryCount = 0;
@@ -313,9 +313,9 @@ public class PageInspector {
             int w = source.getWidth();
 
             Bitmap result = source;
-            if (w > TOUCH_ICON_MAX_SIZE) {
+            if (w > Constant.TOUCH_ICON_MAX_SIZE) {
                 try {
-                    result = Bitmap.createScaledBitmap(source, TOUCH_ICON_MAX_SIZE, TOUCH_ICON_MAX_SIZE, true);
+                    result = Bitmap.createScaledBitmap(source, Constant.TOUCH_ICON_MAX_SIZE, Constant.TOUCH_ICON_MAX_SIZE, true);
                 } catch (OutOfMemoryError e) {
                     
                 }
