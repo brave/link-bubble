@@ -99,7 +99,7 @@ dependencies {
     compile 'com.google.android.gms:play-services:4.3.+'
     compile 'se.emilsjolander:stickylistheaders:2.1.2'
     compile 'com.crashlytics.android:crashlytics:1.+'
-    compile 'com.squareup.retrofit:retrofit:1.4.1'
+    compile 'com.squareup.retrofit:retrofit:1.5.0'
     compile files('libs/otto-1.3.4.jar')
     compile files('libs/picasso-2.1.1.jar')
     compile files('libs/dexguard_util.jar')
