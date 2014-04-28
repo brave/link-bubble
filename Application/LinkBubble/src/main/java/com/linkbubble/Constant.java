@@ -106,4 +106,6 @@ public class Constant {
     public static final String USER_AGENT_CHROME_PHONE = "Mozilla/5.0 (Linux; Android 4.4.2; GT-I9505 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.114 Mobile Safari/537.36";
     public static final String USER_AGENT_CHROME_TABLET = "Mozilla/5.0 (Linux; Android 4.4.2; Nexus 7 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.48 Safari/537.36";
     public static final String USER_AGENT_CHROME_DESKTOP = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36";
+
+    public static final String DIFFBOT_KEY = "0f33cad70f2dcf3f9be136ed713c6e58";
 }
