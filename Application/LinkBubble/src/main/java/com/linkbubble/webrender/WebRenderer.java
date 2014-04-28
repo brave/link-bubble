@@ -58,11 +58,13 @@ public abstract class WebRenderer {
     }
 
     protected Context mContext;
+    protected Controller mController;
     protected URL mUrl;
 
     WebRenderer(Context context, Controller controller, View webRendererPlaceholder) {
         super();
         mContext = context;
+        mController = controller;
     }
 
     public abstract void destroy();
