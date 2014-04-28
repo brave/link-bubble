@@ -42,7 +42,6 @@ class WebViewRenderer extends WebRenderer {
     private View mTouchInterceptorView;
     private long mLastWebViewTouchUpTime = -1;
     private String mLastWebViewTouchDownUrl;
-    private Controller mController;
     private AlertDialog mJsAlertDialog;
     private AlertDialog mJsConfirmDialog;
     private AlertDialog mJsPromptDialog;
@@ -56,7 +55,6 @@ class WebViewRenderer extends WebRenderer {
         mHandler = new Handler();
         TAG = tag;
         mContext = context;
-        mController = controller;
         mDoDropDownCheck = true;
 
         mWebView = new WebView(context);
