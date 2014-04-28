@@ -57,10 +57,12 @@ public abstract class WebRenderer {
         throw new IllegalArgumentException("Invalid type");
     }
 
+    protected Context mContext;
     protected URL mUrl;
 
     WebRenderer(Context context, Controller controller, View webRendererPlaceholder) {
         super();
+        mContext = context;
     }
 
     public abstract void destroy();

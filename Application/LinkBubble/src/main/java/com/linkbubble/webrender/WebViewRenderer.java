@@ -38,7 +38,6 @@ class WebViewRenderer extends WebRenderer {
 
     private String TAG;
     private Handler mHandler;
-    private Context mContext;
     private WebView mWebView;
     private View mTouchInterceptorView;
     private long mLastWebViewTouchUpTime = -1;
