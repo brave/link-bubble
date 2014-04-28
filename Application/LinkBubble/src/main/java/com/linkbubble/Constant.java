@@ -48,6 +48,8 @@ public class Constant {
 
     public static final int AUTO_CONTENT_DISPLAY_DELAY = 200;
 
+    public static final int TOUCH_ICON_MAX_SIZE = 256;
+
     public static final String PRIVACY_POLICY_URL = "http://www.linkbubble.com/privacy";
     public static final String TERMS_OF_SERVICE_URL = "http://www.linkbubble.com/terms";
 
