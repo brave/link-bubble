@@ -39,6 +39,7 @@ public abstract class WebRenderer {
     public enum Type {
         DiffBot,
         Snacktory,
+        SnacktoryWebView,
         Stub,
         WebView,
     };
@@ -50,6 +51,9 @@ public abstract class WebRenderer {
 
             case Snacktory:
                 return new SnacktoryRenderer(context, controller, webRendererPlaceholder, TAG);
+
+            case SnacktoryWebView:
+                return new SnacktoryWebViewRenderer(context, controller, webRendererPlaceholder, TAG);
 
             case Stub:
                 return new StubRenderer(context, controller, webRendererPlaceholder, TAG);
