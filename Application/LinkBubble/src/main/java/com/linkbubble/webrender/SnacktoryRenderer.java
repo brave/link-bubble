@@ -155,10 +155,12 @@ public class SnacktoryRenderer extends WebRenderer {
                 mTitleTextView.setVisibility(View.GONE);
             }
 
-            String text = result.getText();
-            if (text != null) {
+            String html = result.getHtml();
+            if (html != null) {
                 mBodyTextView.setVisibility(View.VISIBLE);
-                mBodyTextView.setText(text);
+                mBodyTextView.setText(Html.fromHtml(html));
+                mBodyTextView.setMovementMethod(LinkMovementMethod.getInstance());
+                SafeUrlSpan.fixUrlSpans(mBodyTextView);
             } else {
                 mBodyTextView.setVisibility(View.GONE);
             }
