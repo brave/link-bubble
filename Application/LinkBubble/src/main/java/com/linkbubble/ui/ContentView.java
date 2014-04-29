@@ -1174,6 +1174,7 @@ public class ContentView extends FrameLayout {
     }
 
     private boolean openInBrowser(String urlAsString) {
+        Log.d(TAG, "openInBrowser() - url:" + urlAsString);
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(urlAsString));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
