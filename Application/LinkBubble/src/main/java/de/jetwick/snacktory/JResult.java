@@ -36,6 +36,7 @@ public class JResult implements Serializable {
     private String videoUrl;
     private String rssUrl;
     private String text;
+    private String html;
     private String faviconUrl;
     private String description;
     private String dateString;
@@ -129,6 +130,19 @@ public class JResult implements Serializable {
     public JResult setText(String text) {
         this.text = text;
         return this;
+    }
+
+    public JResult setHtml(String html) {
+        this.html = html;
+        return this;
+    }
+
+    public String getHtml() {
+        if (html == null) {
+            return "";
+        }
+
+        return html;
     }
 
     public List<String> getTextList() {
