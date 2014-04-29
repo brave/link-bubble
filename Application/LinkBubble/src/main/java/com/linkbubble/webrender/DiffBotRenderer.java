@@ -16,6 +16,7 @@ import com.google.gson.annotations.SerializedName;
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
+import com.linkbubble.util.SafeUrlSpan;
 import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
 import com.squareup.picasso.Picasso;
@@ -151,6 +152,7 @@ public class DiffBotRenderer extends WebRenderer {
                         //mBodyTextView.setText(article.mBody);
                         mBodyTextView.setText(Html.fromHtml(article.mHtml));
                         mBodyTextView.setMovementMethod(LinkMovementMethod.getInstance());
+                        SafeUrlSpan.fixUrlSpans(mBodyTextView);
                     } else {
                         mBodyTextView.setVisibility(View.GONE);
                     }
