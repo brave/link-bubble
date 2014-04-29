@@ -167,6 +167,7 @@ public class ArticleTextExtractor {
             // this fails for short facebook post and probably tweets: text.length() > res.getDescription().length()
             if (text.length() > res.getTitle().length()) {
                 res.setText(text);
+                res.setHtml(bestMatchElement.toString());
 //                print("best element:", bestMatchElement);
             }
             res.setTextList(formatter.getTextList(bestMatchElement));
