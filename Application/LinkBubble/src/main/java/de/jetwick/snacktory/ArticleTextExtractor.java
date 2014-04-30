@@ -274,6 +274,12 @@ public class ArticleTextExtractor {
 
                             authorName = SHelper.innerTrim(IGNORE_AUTHOR_PARTS.matcher(authorName).replaceAll(""));
 
+                            // Remove twitter handle: http://www.engadget.com/2014/04/29/freedompop-iphone/
+                            int atIndex = authorName.indexOf("@");
+                            if (atIndex > 0) {
+                                authorName = SHelper.innerTrim(authorName.substring(0, atIndex));
+                            }
+
                             if(authorName.indexOf(",") != -1){
                                 authorName = authorName.split(",")[0];
                             }
