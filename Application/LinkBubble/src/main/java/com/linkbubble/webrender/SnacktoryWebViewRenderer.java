@@ -131,16 +131,35 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
         }
 
         protected void onPostExecute(JResult result) {
-            String pageHtml = "<html><body>";
+            String headHtml =
+                    "  <head>\n" +
+                    "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n" +
+                    "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, height=device-height\"/>\n" +
+                    "    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>\n" +
+                    "    <style type=\"text/css\">" +
+                    "      p, div { font-family: 'Roboto', sans-serif; font-size: 17px; color:#333; line-height: 160%;}" +
+                    "      a {text-decoration: none;}" +
+                    "    </style>";
+
+            String bodyHtml = "<body >\n" +
+                    "    <div style=\"margin:0px 40px 0px 40px\">\n";
 
             String title = result.getTitle();
             if (title != null) {
-                pageHtml += "<h1>" + title + "</h1>";
+                headHtml += "<title>" + title + "</title>";
+                bodyHtml += "<p style=\"font-size:150%;line-height:120%;font-weight:bold;margin:32px 0px 12px 0px\">" + title + "</p>";
             }
+
+            bodyHtml += "<hr style=\"border: 0;height: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.3);\">"
+                    + "<p style=\"width:100%;height:30px\">\n" +
+                    "        <span style=\"float:left;\">By Chris Lacy, <a href=\"http://www.example.com\" >host.com</a></span><span style=\"float:right;\">date</span>\n" +
+                    "       </p>\n" +
+                    "\n" +
+                    "       <div>";
 
             String html = result.getHtml();
             if (html != null) {
-                pageHtml += html;
+                bodyHtml += html;
             }
 
             String urlAsString = result.getCanonicalUrl();
@@ -151,8 +170,15 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
             try {
                 setUrl(urlAsString);
 
+                headHtml += "</head>";
+                bodyHtml += " </div>\n" +
+                        "    </div>\n" +
+                        "  </body>\n";
+
                 //mWebView.loadUrl(urlAsString);
                 //mWebView.stopLoading();
+
+                String pageHtml = "<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + headHtml + bodyHtml + "</html>";
 
                 mWebView.loadData(pageHtml, "text/html", "utf-8");
 
