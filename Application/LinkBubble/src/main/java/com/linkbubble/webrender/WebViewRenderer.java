@@ -38,7 +38,7 @@ class WebViewRenderer extends WebRenderer {
 
     private String TAG;
     private Handler mHandler;
-    private WebView mWebView;
+    protected WebView mWebView;
     private View mTouchInterceptorView;
     private long mLastWebViewTouchUpTime = -1;
     private String mLastWebViewTouchDownUrl;
@@ -57,7 +57,7 @@ class WebViewRenderer extends WebRenderer {
         mContext = context;
         mDoDropDownCheck = true;
 
-        mWebView = new WebView(context);
+        mWebView = newWebView(context);
         mWebView.setLayoutParams(webRendererPlaceholder.getLayoutParams());
         Util.replaceViewAtPosition(webRendererPlaceholder, mWebView);
 
@@ -96,6 +96,10 @@ class WebViewRenderer extends WebRenderer {
         }
 
         mPageInspector = new PageInspector(mContext, mWebView, mOnPageInspectorItemFoundListener);
+    }
+
+    protected WebView newWebView(Context context) {
+        return new WebView(context);
     }
 
     @Override
@@ -315,8 +319,7 @@ class WebViewRenderer extends WebRenderer {
 
         @Override
         public void onPageStarted(WebView view, String urlAsString, Bitmap favIcon) {
-            mDoDropDownCheck = true;
-            mController.onPageStarted(urlAsString, favIcon);
+            webViewClientOnPageStarted(urlAsString, favIcon);
         }
 
         @Override
@@ -324,6 +327,11 @@ class WebViewRenderer extends WebRenderer {
             mController.onPageFinished(urlAsString);
         }
     };
+
+    protected void webViewClientOnPageStarted(String urlAsString, Bitmap favIcon) {
+        mDoDropDownCheck = true;
+        mController.onPageStarted(urlAsString, favIcon);
+    }
 
     DownloadListener mDownloadListener = new DownloadListener() {
         @Override
