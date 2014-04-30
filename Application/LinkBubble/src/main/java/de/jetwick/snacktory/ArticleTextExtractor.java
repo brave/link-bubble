@@ -40,6 +40,8 @@ public class ArticleTextExtractor {
     private Pattern NEGATIVE;
     private static final Pattern NEGATIVE_STYLE =
             Pattern.compile("hidden|display: ?none|font-size: ?small");
+    private static final Pattern IGNORE_AUTHOR_PARTS =
+            Pattern.compile("by|name|author|posted|twitter|handle|news", Pattern.CASE_INSENSITIVE);
     private static final Set<String> IGNORED_TITLE_PARTS = new LinkedHashSet<String>() {
         {
             add("hacker news");
@@ -48,6 +50,8 @@ public class ArticleTextExtractor {
     };
     private static final OutputFormatter DEFAULT_FORMATTER = new OutputFormatter();
     private OutputFormatter formatter = DEFAULT_FORMATTER;
+
+    private static final int MIN_AUTHOR_NAME_LENGTH = 4;
 
     public ArticleTextExtractor() {
         setUnlikely("com(bx|ment|munity)|dis(qus|cuss)|e(xtra|[-]?mail)|foot|"
@@ -96,6 +100,24 @@ public class ArticleTextExtractor {
         this.formatter = formatter;
     }
 
+    // Returns the best node match based on the weights
+    private Element getBestMatchElement(Collection<Element> nodes){
+        int maxWeight = -200;
+        Element bestMatchElement = null;
+
+        for (Element entry : nodes) {
+            int currentWeight = getWeight(entry);
+            if (currentWeight > maxWeight) {
+                maxWeight = currentWeight;
+                bestMatchElement = entry;
+                if (maxWeight > 200)
+                    break;
+            }
+        }
+
+        return bestMatchElement;
+    }
+
     /**
      * @param html extracts article text from given html string. wasn't tested
      * with improper HTML, although jSoup should be able to handle minor stuff.
@@ -133,22 +155,15 @@ public class ArticleTextExtractor {
         res.setDescription(extractDescription(doc));
         res.setCanonicalUrl(extractCanonicalUrl(doc));
 
+        res.setAuthorName(extractAuthorName(doc));
+        res.setAuthorDescription(extractAuthorDescription(doc, res.getAuthorName()));
+
         // now remove the clutter
         prepareDocument(doc);
 
         // init elements
         Collection<Element> nodes = getNodes(doc);
-        int maxWeight = 0;
-        Element bestMatchElement = null;
-        for (Element entry : nodes) {
-            int currentWeight = getWeight(entry);
-            if (currentWeight > maxWeight) {
-                maxWeight = currentWeight;
-                bestMatchElement = entry;
-                if (maxWeight > 200)
-                    break;
-            }
-        }
+        Element bestMatchElement = getBestMatchElement(nodes);
 
         if (bestMatchElement != null) {
             List<ImageResult> images = new ArrayList<ImageResult>();
@@ -221,6 +236,74 @@ public class ArticleTextExtractor {
             }
         }
         return description;
+    }
+
+    // Returns the author name or null
+    protected String extractAuthorName(Document doc) {
+        String authorName = "";
+
+        Element result = doc.select("body [rel*=author]").first();
+
+        if(result != null)
+            authorName = SHelper.innerTrim(result.ownText());
+
+        if (authorName.isEmpty()) {
+            authorName = SHelper.innerTrim(doc.select("head meta[name=author]").attr("content"));
+            if (authorName.isEmpty()) {
+                try{
+                    Elements matches = doc.select(".byLineTag,.byline,.author,.by,.writer,.address");
+
+                    if(matches == null || matches.size() == 0){
+                        matches = doc.select("body [class*=author]");
+                    }
+
+                    if(matches == null || matches.size() == 0){
+                        matches = doc.select("body [title*=author]");
+                    }
+
+                    if(matches != null){
+                        Element bestMatch = getBestMatchElement(matches);
+
+                        if(!(bestMatch == null))
+                        {
+                            authorName = bestMatch.ownText();
+
+                            if(authorName.length() < MIN_AUTHOR_NAME_LENGTH){
+                                authorName = bestMatch.text();
+                            }
+
+                            authorName = SHelper.innerTrim(IGNORE_AUTHOR_PARTS.matcher(authorName).replaceAll(""));
+
+                            if(authorName.indexOf(",") != -1){
+                                authorName = authorName.split(",")[0];
+                            }
+                        }
+                    }
+                }
+                catch(Exception e){
+                    System.out.println(e.toString());
+                }
+            }
+        }
+        return authorName;
+    }
+
+    // Returns the author description or null
+    protected String extractAuthorDescription(Document doc, String authorName){
+
+        String authorDesc = "";
+
+        if(authorName.equals(""))
+            return "";
+
+        Elements nodes = doc.select(":containsOwn(" + authorName + ")");
+
+        Element bestMatch = getBestMatchElement(nodes);
+
+        if(bestMatch != null)
+            authorDesc = bestMatch.text();
+
+        return authorDesc;
     }
 
     protected Collection<String> extractKeywords(Document doc) {

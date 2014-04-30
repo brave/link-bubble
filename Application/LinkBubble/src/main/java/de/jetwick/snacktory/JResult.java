@@ -38,6 +38,8 @@ public class JResult implements Serializable {
     private String text;
     private String html;
     private String faviconUrl;
+    private String authorName;
+    private String authorDescription;
     private String description;
     private String dateString;
     private List<String> textList;
@@ -96,6 +98,28 @@ public class JResult implements Serializable {
         if (rssUrl == null)
             return "";
         return rssUrl;
+    }
+
+    public String getAuthorName() {
+        if (authorName == null)
+            return "";
+        return authorName;
+    }
+
+    public JResult setAuthorName(String authorName) {
+        this.authorName = authorName;
+        return this;
+    }
+
+    public String getAuthorDescription() {
+        if (authorDescription == null)
+            return "";
+        return authorDescription;
+    }
+
+    public JResult setAuthorDescription(String authorDescription) {
+        this.authorDescription = authorDescription;
+        return this;
     }
 
     public String getDescription() {
