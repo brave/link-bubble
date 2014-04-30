@@ -72,6 +72,14 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
     }
 
     @Override
+    protected void webChromeClientOnProgressChanged(WebView webView, int progress) {
+        super.webChromeClientOnProgressChanged(webView, progress);
+        if (progress == 100) {
+            mController.onPageFinished(getUrl().toString());
+        }
+    }
+
+    @Override
     public void loadUrl(String urlAsString) {
 
         Log.d(TAG, "loadUrl() - " + urlAsString);
@@ -152,7 +160,7 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
                     mController.onReceivedTitle(urlAsString, title);
                 }
                 mController.onProgressChanged(100, urlAsString);
-                mController.onPageFinished(urlAsString);
+                //mController.onPageFinished(urlAsString);
 
                 String faviconUrl = result.getFaviconUrl();
                 Log.d(TAG, "faviconUrl:" + faviconUrl);
