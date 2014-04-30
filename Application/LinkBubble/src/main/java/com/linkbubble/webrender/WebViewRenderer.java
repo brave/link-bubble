@@ -356,24 +356,7 @@ class WebViewRenderer extends WebRenderer {
 
         @Override
         public void onProgressChanged(WebView webView, int progress) {
-            mController.onProgressChanged(progress, webView.getUrl());
-
-            // At 60%, the page is more often largely viewable, but waiting for background shite to finish which can
-            // take many, many seconds, even on a strong connection. Thus, do a check for embeds now to prevent the button
-            // not being updated until 100% is reached, which feels too slow as a user.
-            if (progress >= 60) {
-                if (mCheckForEmbedsCount == 0) {
-                    mCheckForEmbedsCount = 1;
-                    mPageInspector.reset();
-
-                    Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                    mPageInspector.run(webView, mController.getPageInspectFlags());
-                } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
-                    mCheckForEmbedsCount = 2;
-                    Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                    mPageInspector.run(webView, mController.getPageInspectFlags());
-                }
-            }
+            webChromeClientOnProgressChanged(webView, progress);
         }
 
         @Override
@@ -479,4 +462,25 @@ class WebViewRenderer extends WebRenderer {
             });
         }
     };
+
+    protected void webChromeClientOnProgressChanged(WebView webView, int progress) {
+        mController.onProgressChanged(progress, webView.getUrl());
+
+        // At 60%, the page is more often largely viewable, but waiting for background shite to finish which can
+        // take many, many seconds, even on a strong connection. Thus, do a check for embeds now to prevent the button
+        // not being updated until 100% is reached, which feels too slow as a user.
+        if (progress >= 60) {
+            if (mCheckForEmbedsCount == 0) {
+                mCheckForEmbedsCount = 1;
+                mPageInspector.reset();
+
+                Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
+                mPageInspector.run(webView, mController.getPageInspectFlags());
+            } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
+                mCheckForEmbedsCount = 2;
+                Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
+                mPageInspector.run(webView, mController.getPageInspectFlags());
+            }
+        }
+    }
 }
