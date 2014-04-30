@@ -19,7 +19,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Parsed result from web page containing important title, text and image.
@@ -42,9 +45,11 @@ public class JResult implements Serializable {
     private String authorDescription;
     private String description;
     private String dateString;
+    private Date date;
     private List<String> textList;
     private Collection<String> keywords;
     private List<ImageResult> images = null;
+    private List<Map<String,String>> links = new ArrayList<Map<String,String>>();
 
     public JResult() {
     }
@@ -111,17 +116,6 @@ public class JResult implements Serializable {
         return this;
     }
 
-    public String getAuthorDescription() {
-        if (authorDescription == null)
-            return "";
-        return authorDescription;
-    }
-
-    public JResult setAuthorDescription(String authorDescription) {
-        this.authorDescription = authorDescription;
-        return this;
-    }
-
     public String getDescription() {
         if (description == null)
             return "";
@@ -130,6 +124,17 @@ public class JResult implements Serializable {
 
     public JResult setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public String getAuthorDescription() {
+        if (authorDescription == null)
+            return "";
+        return authorDescription;
+    }
+
+    public JResult setAuthorDescription(String authorDescription) {
+        this.authorDescription = authorDescription;
         return this;
     }
 
@@ -202,8 +207,8 @@ public class JResult implements Serializable {
         return this;
     }
 
-    public JResult setDate(String date) {
-        this.dateString = date;
+    public JResult setDate(Date date) {
+        this.date = date;
         return this;
     }
 
@@ -218,8 +223,8 @@ public class JResult implements Serializable {
     /**
      * @return get date from url or guessed from text
      */
-    public String getDate() {
-        return dateString;
+    public Date getDate() {
+        return date;
     }
 
     /**
@@ -245,6 +250,20 @@ public class JResult implements Serializable {
      */
     public void setImages(List<ImageResult> images) {
         this.images = images;
+    }
+
+    public void addLink(String url, String text, Integer pos) {
+        Map link = new HashMap();
+        link.put("url", url);
+        link.put("text", text);
+        link.put("offset", String.valueOf(pos));
+        links.add(link);
+    }
+
+    public List<Map<String,String>> getLinks() {
+        if (links == null)
+            return Collections.emptyList();
+        return links;
     }
 
     @Override
