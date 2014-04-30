@@ -246,7 +246,7 @@ public class HtmlFetcher {
         // or should we use? <link rel="canonical" href="http://www.N24.de/news/newsitem_6797232.html"/>
         result.setUrl(url);
         result.setOriginalUrl(originalUrl);
-        result.setDate(SHelper.estimateDate(url));
+        //result.setDate(SHelper.estimateDate(url));
 
         // Immediately put the url into the cache as extracting content takes time.
         if (cache != null) {
