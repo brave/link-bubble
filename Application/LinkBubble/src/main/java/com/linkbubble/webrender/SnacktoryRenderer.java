@@ -3,41 +3,15 @@ package com.linkbubble.webrender;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.net.http.SslError;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.ImageView;
-import android.widget.TextView;
-import com.google.gson.annotations.SerializedName;
 import com.linkbubble.Constant;
-import com.linkbubble.MainApplication;
-import com.linkbubble.R;
-import com.linkbubble.util.SafeUrlSpan;
-import com.linkbubble.util.Util;
-import com.linkbubble.util.YouTubeEmbedHelper;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 import de.jetwick.snacktory.HtmlFetcher;
-import de.jetwick.snacktory.ImageResult;
 import de.jetwick.snacktory.JResult;
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-import retrofit.http.GET;
-import retrofit.http.Path;
-import retrofit.http.Query;
 
 import java.lang.ref.WeakReference;
 import java.net.MalformedURLException;
@@ -45,14 +19,13 @@ import java.net.URL;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
-public class SnacktoryWebViewRenderer extends WebViewRenderer {
+public class SnacktoryRenderer extends WebViewRenderer {
 
     private GetPageAsTextTask mGetPageAsTextTask;
     private TouchIconTransformation mTouchIconTransformation;
 
-    public SnacktoryWebViewRenderer(Context context, Controller controller, View webRendererPlaceholder, String tag) {
+    public SnacktoryRenderer(Context context, Controller controller, View webRendererPlaceholder, String tag) {
         super(context, controller, webRendererPlaceholder, tag);
     }
 
@@ -61,7 +34,7 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
         return new WebView(context) {
 
             public String getUrl() {
-                return SnacktoryWebViewRenderer.this.getUrl().toString();
+                return SnacktoryRenderer.this.getUrl().toString();
             }
 
         };
@@ -216,7 +189,7 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
                 //Log.d(TAG, "faviconUrl:" + faviconUrl);
                 if (faviconUrl != null && faviconUrl.isEmpty() == false) {
                     if (mTouchIconTransformation == null) {
-                        mTouchIconTransformation = new TouchIconTransformation(SnacktoryWebViewRenderer.this);
+                        mTouchIconTransformation = new TouchIconTransformation(SnacktoryRenderer.this);
                     }
                     mTouchIconTransformation.setPageUrl(urlAsString);
                     Picasso.with(mContext).load(faviconUrl).transform(mTouchIconTransformation).fetch();
@@ -229,11 +202,11 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
 
     private static class TouchIconTransformation implements Transformation {
 
-        private WeakReference<SnacktoryWebViewRenderer> mRenderer;
+        private WeakReference<SnacktoryRenderer> mRenderer;
         String mPageUrl = null;
 
-        TouchIconTransformation(SnacktoryWebViewRenderer renderer) {
-            mRenderer = new WeakReference<SnacktoryWebViewRenderer>(renderer);
+        TouchIconTransformation(SnacktoryRenderer renderer) {
+            mRenderer = new WeakReference<SnacktoryRenderer>(renderer);
         }
 
         void setPageUrl(String pageUrl) {
@@ -254,7 +227,7 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
             }
 
             if (result != null && mRenderer != null) {
-                SnacktoryWebViewRenderer renderer = mRenderer.get();
+                SnacktoryRenderer renderer = mRenderer.get();
                 if (renderer != null && renderer.mController != null) {
                     renderer.mController.onPageInspectorTouchIconLoaded(result, mPageUrl);
                 }
