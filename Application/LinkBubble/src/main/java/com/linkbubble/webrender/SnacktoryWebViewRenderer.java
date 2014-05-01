@@ -113,6 +113,7 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
             JResult result = null;
             String url = urls[0];
             try {
+                Log.d(TAG, "GetPageAsTextTask().doInBackground(): url:" + url);
                 HtmlFetcher fetcher = new HtmlFetcher();
                 result = fetcher.fetchAndExtract(url, 30 * 1000, true);
                 //String text = result.getText();
