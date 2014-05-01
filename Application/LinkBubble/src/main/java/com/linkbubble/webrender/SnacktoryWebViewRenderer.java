@@ -202,6 +202,7 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
                 headHtml += "</head>";
                 bodyHtml += " </div>\n" +
                         "    </div>\n" +
+                        "    <br><br><br>" +
                         "  </body>\n";
 
                 //mWebView.loadUrl(urlAsString);
