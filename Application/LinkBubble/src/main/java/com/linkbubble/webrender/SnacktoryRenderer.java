@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import com.linkbubble.Constant;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
@@ -27,25 +26,6 @@ public class SnacktoryRenderer extends WebViewRenderer {
 
     public SnacktoryRenderer(Context context, Controller controller, View webRendererPlaceholder, String tag) {
         super(context, controller, webRendererPlaceholder, tag);
-    }
-
-    @Override
-    protected WebView newWebView(Context context) {
-        return new WebView(context) {
-
-            public String getUrl() {
-                return SnacktoryRenderer.this.getUrl().toString();
-            }
-
-        };
-    }
-
-    @Override
-    protected void webChromeClientOnProgressChanged(WebView webView, int progress) {
-        super.webChromeClientOnProgressChanged(webView, progress);
-        if (progress == 100) {
-            mController.onPageFinished(getUrl().toString());
-        }
     }
 
     @Override
