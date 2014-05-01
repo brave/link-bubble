@@ -211,7 +211,8 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
                 String pageHtml = "<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + headHtml + bodyHtml + "</html>";
 
                 //Log.d(TAG, "pageHtml:" + pageHtml);
-                mWebView.loadData(pageHtml, "text/html", "utf-8");
+                mWebView.loadDataWithBaseURL(urlAsString, pageHtml, "text/html", "utf-8", urlAsString);
+                //mWebView.loadData(pageHtml, "text/html", "utf-8");
 
                 if (title != null) {
                     mController.onReceivedTitle(urlAsString, title);
