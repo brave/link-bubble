@@ -346,6 +346,7 @@ public class ContentView extends FrameLayout {
             try {
                 URL url = new URL(urlAsString);
                 mEventHandler.onPageLoading(url);
+                updateUrlTitleAndText(urlAsString);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
