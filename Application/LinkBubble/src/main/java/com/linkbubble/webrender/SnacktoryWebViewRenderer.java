@@ -42,6 +42,9 @@ import retrofit.http.Query;
 import java.lang.ref.WeakReference;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class SnacktoryWebViewRenderer extends WebViewRenderer {
@@ -131,18 +134,33 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
         }
 
         protected void onPostExecute(JResult result) {
+            String urlAsString = result.getCanonicalUrl();
+            if (urlAsString == null) {
+                urlAsString = result.getUrl();
+            }
+            URL url = null;
+            try {
+                url = new URL(urlAsString);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
             String headHtml =
                     "  <head>\n" +
                     "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n" +
                     "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, height=device-height\"/>\n" +
                     "    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>\n" +
-                    "    <style type=\"text/css\">" +
-                    "      p, div { font-family: 'Roboto', sans-serif; font-size: 17px; color:#333; line-height: 160%;}" +
-                    "      a {text-decoration: none;}" +
+                    "    <style type=\"text/css\">\n" +
+                    "      p, div { font-family: 'Roboto', sans-serif; font-size: 16px; color:#333; line-height: 160%; }\n" +
+                    "      a { text-decoration: none; }\n" +
+                    "      #lbInfo { width:100%; min-height:28px; margin:0 auto; padding-bottom: 20px;}\n" +
+                    "      #lbInfoL { float:left; width:70%; }\n" +
+                    "      #lbInfoR { float:right; width:30%; }\n" +
+                    "    </style>" +
                     "    </style>";
 
             String bodyHtml = "<body >\n" +
-                    "    <div style=\"margin:0px 40px 0px 40px\">\n";
+                    "    <div style=\"margin:0px 24px 0px 24px\">\n";
 
             String title = result.getTitle();
             if (title != null) {
@@ -150,21 +168,32 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
                 bodyHtml += "<p style=\"font-size:150%;line-height:120%;font-weight:bold;margin:32px 0px 12px 0px\">" + title + "</p>";
             }
 
+            String authorName = result.getAuthorName();
+            Date publishedDate = result.getDate();
+
+            String leftString = "";
+            String rightString = "";
+
+            if (authorName != null) {
+                leftString = "<span class=\"nowrap\">by <b>" + authorName + "</b>,</span> ";
+            }
+            if (url != null) {
+                leftString += "<span class=\"nowrap\"><a href=\"" + url.getHost() + "\">" + (url.getHost().replace("www.", "")) + "</a></span>";
+            }
+
+            Log.d("info", "urlHost:" + url.getHost() + ", authorName: " + authorName);
+
+            if (publishedDate != null) {
+                Format formatter = new SimpleDateFormat("MMMM dd, yyyy");
+                rightString = "<span style=\"float:right\">" + formatter.format(publishedDate) + "</span>";
+            }
+
             bodyHtml += "<hr style=\"border: 0;height: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.3);\">"
-                    + "<p style=\"width:100%;height:30px\">\n" +
-                    "        <span style=\"float:left;\">By Chris Lacy, <a href=\"http://www.example.com\" >host.com</a></span><span style=\"float:right;\">date</span>\n" +
-                    "       </p>\n" +
-                    "\n" +
-                    "       <div>";
+                    + "<div id=\"lbInfo\"><div id=\"lbInfoL\">" + leftString + "</div><div id=\"lbInfoR\">" + rightString + "</div></div>";
 
             String html = result.getHtml();
             if (html != null) {
                 bodyHtml += html;
-            }
-
-            String urlAsString = result.getCanonicalUrl();
-            if (urlAsString == null) {
-                urlAsString = result.getUrl();
             }
 
             try {
@@ -180,6 +209,7 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
 
                 String pageHtml = "<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + headHtml + bodyHtml + "</html>";
 
+                //Log.d(TAG, "pageHtml:" + pageHtml);
                 mWebView.loadData(pageHtml, "text/html", "utf-8");
 
                 if (title != null) {
