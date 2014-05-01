@@ -36,7 +36,7 @@ import com.linkbubble.util.YouTubeEmbedHelper;
 
 class WebViewRenderer extends WebRenderer {
 
-    private String TAG;
+    protected String TAG;
     private Handler mHandler;
     protected WebView mWebView;
     private View mTouchInterceptorView;

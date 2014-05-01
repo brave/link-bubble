@@ -49,8 +49,6 @@ import java.util.List;
 
 public class SnacktoryWebViewRenderer extends WebViewRenderer {
 
-    private static final String TAG = "SnacktoryRenderer";
-
     private GetPageAsTextTask mGetPageAsTextTask;
     private TouchIconTransformation mTouchIconTransformation;
 
@@ -117,11 +115,10 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
             try {
                 HtmlFetcher fetcher = new HtmlFetcher();
                 result = fetcher.fetchAndExtract(url, 30 * 1000, true);
-
-                String text = result.getText();
-                String title = result.getTitle();
-                String imageUrl = result.getImageUrl();
-                Log.d(TAG, "title: " + title + ", text: " + text + ", imageUrl:" + imageUrl);
+                //String text = result.getText();
+                //String title = result.getTitle();
+                //String imageUrl = result.getImageUrl();
+                //Log.d(TAG, "title: " + title + ", text: " + text + ", imageUrl:" + imageUrl);
             } catch (Exception ex) {
                 Log.d(TAG, ex.getLocalizedMessage(), ex);
             }
