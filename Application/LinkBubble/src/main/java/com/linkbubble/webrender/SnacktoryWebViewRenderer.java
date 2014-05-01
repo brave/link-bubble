@@ -220,8 +220,8 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
                 //mController.onPageFinished(urlAsString);
 
                 String faviconUrl = result.getFaviconUrl();
-                Log.d(TAG, "faviconUrl:" + faviconUrl);
-                if (faviconUrl != null) {
+                //Log.d(TAG, "faviconUrl:" + faviconUrl);
+                if (faviconUrl != null && faviconUrl.isEmpty() == false) {
                     if (mTouchIconTransformation == null) {
                         mTouchIconTransformation = new TouchIconTransformation(SnacktoryWebViewRenderer.this);
                     }
