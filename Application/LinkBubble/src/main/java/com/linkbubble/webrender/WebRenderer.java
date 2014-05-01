@@ -4,7 +4,6 @@ package com.linkbubble.webrender;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.View;
-import android.webkit.WebView;
 import com.linkbubble.util.YouTubeEmbedHelper;
 
 import java.net.MalformedURLException;
@@ -39,7 +38,7 @@ public abstract class WebRenderer {
 
     public enum Type {
         DiffBot,
-        SnacktoryWebView,
+        Snacktory,
         Stub,
         WebView,
     };
@@ -49,8 +48,8 @@ public abstract class WebRenderer {
             case DiffBot:
                 return new DiffBotRenderer(context, controller, webRendererPlaceholder, TAG);
 
-            case SnacktoryWebView:
-                return new SnacktoryWebViewRenderer(context, controller, webRendererPlaceholder, TAG);
+            case Snacktory:
+                return new SnacktoryRenderer(context, controller, webRendererPlaceholder, TAG);
 
             case Stub:
                 return new StubRenderer(context, controller, webRendererPlaceholder, TAG);
