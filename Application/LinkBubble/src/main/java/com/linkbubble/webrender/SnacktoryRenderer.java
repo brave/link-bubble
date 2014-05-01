@@ -21,6 +21,8 @@ import java.util.Date;
 
 public class SnacktoryRenderer extends WebViewRenderer {
 
+    private static SimpleDateFormat sDateFormat = new SimpleDateFormat("MMM dd, yyyy");
+
     private GetPageAsTextTask mGetPageAsTextTask;
     private TouchIconTransformation mTouchIconTransformation;
 
@@ -129,8 +131,7 @@ public class SnacktoryRenderer extends WebViewRenderer {
             Log.d("info", "urlHost:" + url.getHost() + ", authorName: " + authorName);
 
             if (publishedDate != null) {
-                Format formatter = new SimpleDateFormat("MMMM dd, yyyy");
-                rightString = "<span style=\"float:right\">" + formatter.format(publishedDate) + "</span>";
+                rightString = "<span style=\"float:right\">" + sDateFormat.format(publishedDate) + "</span>";
             }
 
             bodyHtml += "<hr style=\"border: 0;height: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.3);\">"
