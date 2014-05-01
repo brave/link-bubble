@@ -178,7 +178,7 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
                 leftString = "<span class=\"nowrap\">by <b>" + authorName + "</b>,</span> ";
             }
             if (url != null) {
-                leftString += "<span class=\"nowrap\"><a href=\"" + url.getHost() + "\">" + (url.getHost().replace("www.", "")) + "</a></span>";
+                leftString += "<span class=\"nowrap\"><a href=\"" + url.getProtocol() + "://" + url.getHost() + "\">" + (url.getHost().replace("www.", "")) + "</a></span>";
             }
 
             Log.d("info", "urlHost:" + url.getHost() + ", authorName: " + authorName);
