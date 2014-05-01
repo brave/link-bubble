@@ -70,11 +70,6 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
     }
 
     @Override
-    protected void webViewClientOnPageStarted(String urlAsString, Bitmap favIcon) {
-        super.webViewClientOnPageStarted(getUrl().toString(), favIcon);
-    }
-
-    @Override
     protected void webChromeClientOnProgressChanged(WebView webView, int progress) {
         super.webChromeClientOnProgressChanged(webView, progress);
         if (progress == 100) {

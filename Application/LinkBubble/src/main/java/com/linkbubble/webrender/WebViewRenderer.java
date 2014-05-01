@@ -319,7 +319,9 @@ class WebViewRenderer extends WebRenderer {
 
         @Override
         public void onPageStarted(WebView view, String urlAsString, Bitmap favIcon) {
-            webViewClientOnPageStarted(urlAsString, favIcon);
+            Log.d(TAG, "webViewClientOnPageStarted(): urlAsString:" + urlAsString.substring(0, 28) + ", getUrl():" + getUrl().toString());
+            mDoDropDownCheck = true;
+            mController.onPageStarted(urlAsString, favIcon);
         }
 
         @Override
@@ -327,11 +329,6 @@ class WebViewRenderer extends WebRenderer {
             mController.onPageFinished(urlAsString);
         }
     };
-
-    protected void webViewClientOnPageStarted(String urlAsString, Bitmap favIcon) {
-        mDoDropDownCheck = true;
-        mController.onPageStarted(urlAsString, favIcon);
-    }
 
     DownloadListener mDownloadListener = new DownloadListener() {
         @Override
