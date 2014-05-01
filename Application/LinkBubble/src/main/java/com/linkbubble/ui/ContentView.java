@@ -293,11 +293,8 @@ public class ContentView extends FrameLayout {
         updateAppsForUrl(mWebRenderer.getUrl());
         Log.d(TAG, "load url: " + urlAsString);
         mWebRenderer.loadUrl(urlAsString);
-        mTitleTextView.setText(R.string.loading);
-        updateUrlTextView(urlAsString);
+        updateUrlTitleAndText(urlAsString);
     }
-
-
 
     WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {
 
@@ -490,8 +487,7 @@ public class ContentView extends FrameLayout {
             configureOpenEmbedButton();
             Log.d(TAG, "redirect to url: " + urlAsString);
             mEventHandler.onPageLoading(mWebRenderer.getUrl());
-            mTitleTextView.setText(R.string.loading);
-            updateUrlTextView(urlAsString);
+            updateUrlTitleAndText(urlAsString);
 
             if (mShareButton.getVisibility() == GONE) {
                 mShareButton.setVisibility(VISIBLE);
@@ -581,12 +577,7 @@ public class ContentView extends FrameLayout {
 
                 updateUrl(previousUrlAsString);
                 Log.d(TAG, "[urlstack] Go back: " + urlBefore + " -> " + mWebRenderer.getUrl() + ", urlStack.size():" + mUrlStack.size());
-                updateUrlTextView(previousUrlAsString);
-                String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(previousUrlAsString) : null;
-                if (title == null) {
-                    title = getResources().getString(R.string.loading);
-                }
-                mTitleTextView.setText(title);
+                updateUrlTitleAndText(previousUrlAsString);
 
                 mEventHandler.onPageLoading(mWebRenderer.getUrl());
 
@@ -828,8 +819,7 @@ public class ContentView extends FrameLayout {
                             configureOpenEmbedButton();
                             Log.d(TAG, "reload url: " + urlAsString);
                             mInitialUrlLoadStartTime = System.currentTimeMillis();
-                            mTitleTextView.setText(R.string.loading);
-                            updateUrlTextView(urlAsString);
+                            updateUrlTitleAndText(urlAsString);
                             break;
                         }
 
@@ -1235,7 +1225,13 @@ public class ContentView extends FrameLayout {
         });
     }
 
-    void updateUrlTextView(String urlAsString) {
+    void updateUrlTitleAndText(String urlAsString) {
+        String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(urlAsString) : null;
+        if (title == null) {
+            title = getResources().getString(R.string.loading);
+        }
+        mTitleTextView.setText(title);
+
         if (urlAsString.equals(Constant.NEW_TAB_URL)) {
             mUrlTextView.setText(null);
         } else if (urlAsString.equals(Constant.WELCOME_MESSAGE_URL)) {
