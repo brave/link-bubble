@@ -1,5 +1,7 @@
 package de.jetwick.snacktory;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -434,14 +436,28 @@ public class ArticleTextExtractor {
         }
     }
 
+    private String cleanAuthorNameResult(String result) {
+
+        result = SHelper.innerTrim(result);
+
+        try {
+            // If the result is a valid URL, it's not an author name, so ignore it. Was an issue with http://www.engadget.com/2014/04/29/freedompop-iphone/
+            new URL(result);
+            return "";
+        } catch (MalformedURLException e) {
+            return result;
+        }
+    }
+
     // Returns the author name or null
     protected String extractAuthorName(Document doc) {
         String authorName = "";
 
         // first try the Google Author tag
         Element result = doc.select("body [rel*=author]").first();
-        if (result != null)
-            authorName = SHelper.innerTrim(result.ownText());
+        if (result != null) {
+            authorName = cleanAuthorNameResult(result.ownText());
+        }
 
         // if that doesn't work, try some other methods
         if (authorName.isEmpty()) {
@@ -449,14 +465,14 @@ public class ArticleTextExtractor {
             // meta tag approaches, get content
             result = doc.select("head meta[name=author]").first();
             if (result != null) {
-                authorName = SHelper.innerTrim(result.attr("content"));
+                authorName = cleanAuthorNameResult(result.attr("content"));
             }
 
             if (authorName.isEmpty()) {  // for "opengraph"
-                authorName = SHelper.innerTrim(doc.select("head meta[property=article:author]").attr("content"));
+                authorName = cleanAuthorNameResult(doc.select("head meta[property=article:author]").attr("content"));
             }
             if (authorName.isEmpty()) {  // for "schema.org creativework"
-                authorName = SHelper.innerTrim(doc.select("meta[itemprop=author], span[itemprop=author]").attr("content"));
+                authorName = cleanAuthorNameResult(doc.select("meta[itemprop=author], span[itemprop=author]").attr("content"));
             }
 
             // other hacks
@@ -491,12 +507,12 @@ public class ArticleTextExtractor {
                                 authorName = bestMatch.text();
                             }
 
-                            authorName = SHelper.innerTrim(IGNORE_AUTHOR_PARTS.matcher(authorName).replaceAll(""));
+                            authorName = cleanAuthorNameResult(IGNORE_AUTHOR_PARTS.matcher(authorName).replaceAll(""));
 
                             // Remove twitter handle: http://www.engadget.com/2014/04/29/freedompop-iphone/
                             int atIndex = authorName.indexOf("@");
                             if (atIndex > 0) {
-                                authorName = SHelper.innerTrim(authorName.substring(0, atIndex));
+                                authorName = cleanAuthorNameResult(authorName.substring(0, atIndex));
                             }
 
                             if(authorName.indexOf(",") != -1){
