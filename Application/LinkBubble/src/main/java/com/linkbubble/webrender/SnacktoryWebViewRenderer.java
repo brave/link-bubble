@@ -85,7 +85,7 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
         }
 
         mGetPageAsTextTask = new GetPageAsTextTask();
-        mGetPageAsTextTask.execute(getUrl().toString());
+        mGetPageAsTextTask.execute(urlAsString);
     }
 
     @Override
