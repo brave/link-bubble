@@ -86,6 +86,10 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
 
         mGetPageAsTextTask = new GetPageAsTextTask();
         mGetPageAsTextTask.execute(urlAsString);
+
+        // This is only called by Snacktory renderer so that the loading animations start at the point the page HTML commences.
+        // Not needed for other Renderers given onPageStarted() will be called.
+        mController.onLoadUrl(urlAsString);
     }
 
     @Override
