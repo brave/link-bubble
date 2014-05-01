@@ -706,7 +706,7 @@ public class ContentView extends FrameLayout {
             configureOpenEmbedButton();
 
             mEventHandler.onPageLoaded(false);
-            Log.d(TAG, "onPageFinished() - url: " + urlAsString);
+            Log.e(TAG, "onPageLoadComplete() - url: " + urlAsString);
 
             String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(urlAsString) : "";
             MainApplication.saveUrlInHistory(getContext(), null, currentUrl.toString(), currentUrl.getHost(), title);
