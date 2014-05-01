@@ -90,12 +90,7 @@ public class SnacktoryWebViewRenderer extends WebViewRenderer {
 
     @Override
     public void reload() {
-        if (mGetPageAsTextTask != null) {
-            mGetPageAsTextTask.cancel(true);
-        }
-
-        mGetPageAsTextTask = new GetPageAsTextTask();
-        mGetPageAsTextTask.execute(getUrl().toString());
+        loadUrl(getUrl().toString());
     }
 
     @Override
