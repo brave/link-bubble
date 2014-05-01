@@ -72,8 +72,8 @@ public class HtmlFetcher {
         }
         reader.close();
     }
-    private String referrer = "https://github.com/karussell/snacktory";
-    private String userAgent = "Mozilla/5.0 (compatible; Snacktory; +" + referrer + ")";
+    private String referrer = "https://www.linkbubble.com";
+    private String userAgent = "Mozilla/5.0 (compatible; LinkBubble-ClearView; +" + referrer + ")";
     private String cacheControl = "max-age=0";
     private String language = "en-us";
     private String accept = "application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5";
