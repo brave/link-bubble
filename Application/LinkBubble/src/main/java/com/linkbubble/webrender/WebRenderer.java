@@ -18,6 +18,7 @@ public abstract class WebRenderer {
 
     public interface Controller {
         public boolean shouldOverrideUrlLoading(String urlAsString, boolean viaUserInput);
+        public void onLoadUrl(String urlAsString);      // may or may not be called
         public void onReceivedError();
         public void onPageStarted(String urlAsString, Bitmap favIcon);
         public void onPageFinished(String urlAsString);

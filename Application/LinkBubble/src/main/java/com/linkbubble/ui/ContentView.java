@@ -345,6 +345,16 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
+        public void onLoadUrl(String urlAsString) {
+            try {
+                URL url = new URL(urlAsString);
+                mEventHandler.onPageLoading(url);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
         public void onReceivedError() {
             Log.d(TAG, "onReceivedError()");
             mEventHandler.onPageLoaded(true);
