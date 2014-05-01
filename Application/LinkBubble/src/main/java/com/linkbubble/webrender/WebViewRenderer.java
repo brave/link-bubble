@@ -57,7 +57,7 @@ class WebViewRenderer extends WebRenderer {
         mContext = context;
         mDoDropDownCheck = true;
 
-        mWebView = newWebView(context);
+        mWebView = new WebView(context);
         mWebView.setLayoutParams(webRendererPlaceholder.getLayoutParams());
         Util.replaceViewAtPosition(webRendererPlaceholder, mWebView);
 
@@ -96,10 +96,6 @@ class WebViewRenderer extends WebRenderer {
         }
 
         mPageInspector = new PageInspector(mContext, mWebView, mOnPageInspectorItemFoundListener);
-    }
-
-    protected WebView newWebView(Context context) {
-        return new WebView(context);
     }
 
     @Override
@@ -352,7 +348,24 @@ class WebViewRenderer extends WebRenderer {
 
         @Override
         public void onProgressChanged(WebView webView, int progress) {
-            webChromeClientOnProgressChanged(webView, progress);
+            mController.onProgressChanged(progress, webView.getUrl());
+
+            // At 60%, the page is more often largely viewable, but waiting for background shite to finish which can
+            // take many, many seconds, even on a strong connection. Thus, do a check for embeds now to prevent the button
+            // not being updated until 100% is reached, which feels too slow as a user.
+            if (progress >= 60) {
+                if (mCheckForEmbedsCount == 0) {
+                    mCheckForEmbedsCount = 1;
+                    mPageInspector.reset();
+
+                    Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
+                    mPageInspector.run(webView, mController.getPageInspectFlags());
+                } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
+                    mCheckForEmbedsCount = 2;
+                    Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
+                    mPageInspector.run(webView, mController.getPageInspectFlags());
+                }
+            }
         }
 
         @Override
@@ -458,25 +471,4 @@ class WebViewRenderer extends WebRenderer {
             });
         }
     };
-
-    protected void webChromeClientOnProgressChanged(WebView webView, int progress) {
-        mController.onProgressChanged(progress, webView.getUrl());
-
-        // At 60%, the page is more often largely viewable, but waiting for background shite to finish which can
-        // take many, many seconds, even on a strong connection. Thus, do a check for embeds now to prevent the button
-        // not being updated until 100% is reached, which feels too slow as a user.
-        if (progress >= 60) {
-            if (mCheckForEmbedsCount == 0) {
-                mCheckForEmbedsCount = 1;
-                mPageInspector.reset();
-
-                Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                mPageInspector.run(webView, mController.getPageInspectFlags());
-            } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
-                mCheckForEmbedsCount = 2;
-                Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                mPageInspector.run(webView, mController.getPageInspectFlags());
-            }
-        }
-    }
 }
