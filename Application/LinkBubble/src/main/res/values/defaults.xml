@@ -7,4 +7,7 @@
     <integer name="default_fiv_rotations">2</integer>
     <!--Default rotation is CCW-->
     <bool name="default_fiv_isRotationReversed">false</bool>
+
+    <bool name="is_tablet">false</bool>
+
 </resources>
