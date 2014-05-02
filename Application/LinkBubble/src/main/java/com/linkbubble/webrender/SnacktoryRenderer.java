@@ -100,7 +100,8 @@ public class SnacktoryRenderer extends WebViewRenderer {
             }
             URL url = null;
             try {
-                url = new URL(urlAsString);
+                setUrl(urlAsString);
+                url = getUrl();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -155,32 +156,26 @@ public class SnacktoryRenderer extends WebViewRenderer {
                 bodyHtml += html;
             }
 
-            try {
-                setUrl(urlAsString);
+            headHtml += "</head>";
+            bodyHtml += " </div>\n" +
+                    "    </div>\n" +
+                    "    <br><br><br>" +
+                    "  </body>\n";
 
-                headHtml += "</head>";
-                bodyHtml += " </div>\n" +
-                        "    </div>\n" +
-                        "    <br><br><br>" +
-                        "  </body>\n";
+            //mWebView.loadUrl(urlAsString);
+            //mWebView.stopLoading();
 
-                //mWebView.loadUrl(urlAsString);
-                //mWebView.stopLoading();
+            String pageHtml = "<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + headHtml + bodyHtml + "</html>";
 
-                String pageHtml = "<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + headHtml + bodyHtml + "</html>";
+            //Log.d(TAG, "pageHtml:" + pageHtml);
+            mWebView.loadDataWithBaseURL(urlAsString, pageHtml, "text/html", "utf-8", urlAsString);
+            //mWebView.loadData(pageHtml, "text/html", "utf-8");
 
-                //Log.d(TAG, "pageHtml:" + pageHtml);
-                mWebView.loadDataWithBaseURL(urlAsString, pageHtml, "text/html", "utf-8", urlAsString);
-                //mWebView.loadData(pageHtml, "text/html", "utf-8");
-
-                if (title != null) {
-                    mController.onReceivedTitle(urlAsString, title);
-                }
-                mController.onProgressChanged(100, urlAsString);
-                //mController.onPageFinished(urlAsString);
-            } catch (MalformedURLException ex) {
-
+            if (title != null) {
+                mController.onReceivedTitle(urlAsString, title);
             }
+            mController.onProgressChanged(100, urlAsString);
+            //mController.onPageFinished(urlAsString);
         }
     }
 }
