@@ -28,12 +28,33 @@ public class SnacktoryRenderer extends WebViewRenderer {
 
     public SnacktoryRenderer(Context context, Controller controller, View webRendererPlaceholder, String tag) {
         super(context, controller, webRendererPlaceholder, tag);
+
+        mMode = Mode.Web;
+    }
+
+    @Override
+    public void setMode(Mode mode) {
+
+        stopLoading();
+
+        if (mGetPageAsTextTask != null) {
+            mGetPageAsTextTask.cancel(true);
+        }
+
+        mMode = mode;
+
+        loadUrl(getUrl().toString());
     }
 
     @Override
     public void loadUrl(String urlAsString) {
 
         Log.d(TAG, "loadUrl() - " + urlAsString);
+
+        if (mMode == Mode.Web) {
+            super.loadUrl(urlAsString);
+            return;
+        }
 
         if (mGetPageAsTextTask != null) {
             mGetPageAsTextTask.cancel(true);
@@ -49,11 +70,21 @@ public class SnacktoryRenderer extends WebViewRenderer {
 
     @Override
     public void reload() {
+        if (mMode == Mode.Web) {
+            super.reload();
+            return;
+        }
+
         loadUrl(getUrl().toString());
     }
 
     @Override
     public void stopLoading() {
+        if (mMode == Mode.Web) {
+            super.stopLoading();
+            return;
+        }
+
         if (mGetPageAsTextTask != null) {
             mGetPageAsTextTask.cancel(true);
         }

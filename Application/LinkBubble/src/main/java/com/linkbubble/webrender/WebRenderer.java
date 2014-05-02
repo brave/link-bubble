@@ -61,6 +61,13 @@ public abstract class WebRenderer {
         throw new IllegalArgumentException("Invalid type");
     }
 
+    public enum Mode {
+        Web,
+        Article,
+    }
+
+    protected Mode mMode;
+
     protected Context mContext;
     protected Controller mController;
     protected URL mUrl;
@@ -103,5 +110,13 @@ public abstract class WebRenderer {
 
     public void setUrl(URL url) {
         mUrl = url;
+    }
+
+    public Mode getMode() {
+        return mMode;
+    }
+
+    public void setMode(Mode mode) {
+        mMode = mode;
     }
 }
