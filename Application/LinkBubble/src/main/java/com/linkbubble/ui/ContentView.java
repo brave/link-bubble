@@ -233,7 +233,7 @@ public class ContentView extends FrameLayout {
     @SuppressLint("SetJavaScriptEnabled")
     void configure(String urlAsString, TabView ownerTabView, long urlLoadStartTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
         View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
-        mWebRenderer = WebRenderer.create(WebRenderer.Type.WebView, getContext(), mWebRendererController, webRendererPlaceholder, TAG);
+        mWebRenderer = WebRenderer.create(WebRenderer.Type.Snacktory, getContext(), mWebRendererController, webRendererPlaceholder, TAG);
         mWebRenderer.setUrl(urlAsString);
 
         mOwnerTabView = ownerTabView;
@@ -779,13 +779,17 @@ public class ContentView extends FrameLayout {
             mOverflowPopupMenu = new PopupMenu(context, mOverflowButton);
             Resources resources = context.getResources();
             if (DRM.isLicensed() == false) {
-                mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_upgrade_to_pro, Menu.NONE,
-                        resources.getString(R.string.action_upgrade_to_pro));
+                mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_upgrade_to_pro, Menu.NONE, resources.getString(R.string.action_upgrade_to_pro));
             }
             if (mCurrentProgress != 100) {
                 mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_stop, Menu.NONE, resources.getString(R.string.action_stop));
             }
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_reload_page, Menu.NONE, resources.getString(R.string.action_reload_page));
+
+            mOverflowPopupMenu.getMenu().add(R.id.group_article_mode, R.id.item_article_mode, Menu.NONE, resources.getString(R.string.action_article_mode));
+            mOverflowPopupMenu.getMenu().setGroupCheckable(R.id.group_article_mode, true, false);
+            mOverflowPopupMenu.getMenu().findItem(R.id.item_article_mode).setChecked(mWebRenderer.getMode() == WebRenderer.Mode.Article);
+
             String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
             if (defaultBrowserLabel != null) {
                 mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
@@ -793,8 +797,7 @@ public class ContentView extends FrameLayout {
             }
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_copy_link, Menu.NONE, resources.getString(R.string.action_copy_to_clipboard));
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_close_tab, Menu.NONE, resources.getString(R.string.action_close_tab));
-            mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_settings, Menu.NONE,
-                    resources.getString(R.string.action_settings));
+            mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_settings, Menu.NONE, resources.getString(R.string.action_settings));
             mOverflowPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
@@ -841,6 +844,11 @@ public class ContentView extends FrameLayout {
 
                         case R.id.item_close_tab: {
                             MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing());
+                            break;
+                        }
+
+                        case R.id.item_article_mode: {
+                            mWebRenderer.setMode(item.isChecked() ? WebRenderer.Mode.Web : WebRenderer.Mode.Article);
                             break;
                         }
 
