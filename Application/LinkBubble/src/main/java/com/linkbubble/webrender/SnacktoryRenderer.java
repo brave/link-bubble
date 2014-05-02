@@ -24,7 +24,6 @@ public class SnacktoryRenderer extends WebViewRenderer {
     private static SimpleDateFormat sDateFormat = new SimpleDateFormat("MMM dd, yyyy");
 
     private GetPageAsTextTask mGetPageAsTextTask;
-    private TouchIconTransformation mTouchIconTransformation;
 
     public SnacktoryRenderer(Context context, Controller controller, View webRendererPlaceholder, String tag) {
         super(context, controller, webRendererPlaceholder, tag);
@@ -196,60 +195,9 @@ public class SnacktoryRenderer extends WebViewRenderer {
                 }
                 mController.onProgressChanged(100, urlAsString);
                 //mController.onPageFinished(urlAsString);
-
-                String faviconUrl = result.getFaviconUrl();
-                //Log.d(TAG, "faviconUrl:" + faviconUrl);
-                if (faviconUrl != null && faviconUrl.isEmpty() == false) {
-                    if (mTouchIconTransformation == null) {
-                        mTouchIconTransformation = new TouchIconTransformation(SnacktoryRenderer.this);
-                    }
-                    mTouchIconTransformation.setPageUrl(urlAsString);
-                    Picasso.with(mContext).load(faviconUrl).transform(mTouchIconTransformation).fetch();
-                }
             } catch (MalformedURLException ex) {
 
             }
         }
-    }
-
-    private static class TouchIconTransformation implements Transformation {
-
-        private WeakReference<SnacktoryRenderer> mRenderer;
-        String mPageUrl = null;
-
-        TouchIconTransformation(SnacktoryRenderer renderer) {
-            mRenderer = new WeakReference<SnacktoryRenderer>(renderer);
-        }
-
-        void setPageUrl(String pageUrl) {
-            mPageUrl = pageUrl;
-        }
-
-        @Override
-        public Bitmap transform(Bitmap source) {
-            int w = source.getWidth();
-
-            Bitmap result = source;
-            if (w > Constant.TOUCH_ICON_MAX_SIZE) {
-                try {
-                    result = Bitmap.createScaledBitmap(source, Constant.TOUCH_ICON_MAX_SIZE, Constant.TOUCH_ICON_MAX_SIZE, true);
-                } catch (OutOfMemoryError e) {
-
-                }
-            }
-
-            if (result != null && mRenderer != null) {
-                SnacktoryRenderer renderer = mRenderer.get();
-                if (renderer != null && renderer.mController != null) {
-                    renderer.mController.onPageInspectorTouchIconLoaded(result, mPageUrl);
-                }
-            }
-
-            // return null. No need for Picasso to cache this, as we're already doing so elsewhere
-            return null;
-        }
-
-        @Override
-        public String key() { return "faviconTransformation()"; }
     }
 }
