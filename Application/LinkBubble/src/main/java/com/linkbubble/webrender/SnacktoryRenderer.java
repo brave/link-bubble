@@ -21,6 +21,12 @@ import java.util.Date;
 
 public class SnacktoryRenderer extends WebViewRenderer {
 
+    // **Broken links
+    //
+    // [nothing displays]:
+    //  * http://www.bostonglobe.com/sports/2014/04/28/the-donald-sterling-profile-not-pretty-picture/jZx4v3EWUFdLYh9c289ODL/story.html
+
+
     private static SimpleDateFormat sDateFormat = new SimpleDateFormat("MMM dd, yyyy");
 
     private GetPageAsTextTask mGetPageAsTextTask;
@@ -104,6 +110,13 @@ public class SnacktoryRenderer extends WebViewRenderer {
                 url = getUrl();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
+            }
+
+            String text = result.getText();
+            if (text.isEmpty()) {
+                Log.d(TAG, "No text found for - forcing to Web mode");
+                loadUrl(url, Mode.Web);
+                return;
             }
 
             String headHtml =
