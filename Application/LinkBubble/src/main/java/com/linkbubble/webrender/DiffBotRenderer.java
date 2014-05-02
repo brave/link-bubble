@@ -129,8 +129,9 @@ public class DiffBotRenderer extends WebRenderer {
     }
 
     @Override
-    public void loadUrl(String urlAsString) {
+    public void loadUrl(URL url, Mode mode) {
 
+        String urlAsString = url.toString();
         Log.d(TAG, "loadUrl() - " + urlAsString);
 
         sDiffBotService.getArticle(urlAsString, new Callback<Article>() {

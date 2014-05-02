@@ -32,9 +32,9 @@ public class SnacktoryRenderer extends WebViewRenderer {
     }
 
     @Override
-    public void setMode(Mode mode) {
-
-        stopLoading();
+    public void loadUrl(URL url, Mode mode) {
+        String urlAsString = url.toString();
+        Log.d(TAG, "loadUrl() - " + urlAsString);
 
         if (mGetPageAsTextTask != null) {
             mGetPageAsTextTask.cancel(true);
@@ -42,21 +42,9 @@ public class SnacktoryRenderer extends WebViewRenderer {
 
         mMode = mode;
 
-        loadUrl(getUrl().toString());
-    }
-
-    @Override
-    public void loadUrl(String urlAsString) {
-
-        Log.d(TAG, "loadUrl() - " + urlAsString);
-
         if (mMode == Mode.Web) {
-            super.loadUrl(urlAsString);
+            super.loadUrl(url, mMode);
             return;
-        }
-
-        if (mGetPageAsTextTask != null) {
-            mGetPageAsTextTask.cancel(true);
         }
 
         mGetPageAsTextTask = new GetPageAsTextTask();
@@ -74,16 +62,11 @@ public class SnacktoryRenderer extends WebViewRenderer {
             return;
         }
 
-        loadUrl(getUrl().toString());
+        loadUrl(getUrl(), mMode);
     }
 
     @Override
     public void stopLoading() {
-        if (mMode == Mode.Web) {
-            super.stopLoading();
-            return;
-        }
-
         if (mGetPageAsTextTask != null) {
             mGetPageAsTextTask.cancel(true);
         }
