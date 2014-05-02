@@ -58,7 +58,7 @@ class WebViewRenderer extends WebRenderer {
     private int mCheckForEmbedsCount;
     private Boolean mIsDestroyed = false;
 
-    private GetPageAsTextTask mGetPageAsTextTask;
+    private GetArticleContentTask mGetArticleContentTask;
 
     public WebViewRenderer(Context context, Controller controller, View webRendererPlaceholder, String tag) {
         super(context, controller, webRendererPlaceholder);
@@ -143,8 +143,8 @@ class WebViewRenderer extends WebRenderer {
         String urlAsString = url.toString();
         Log.d(TAG, "loadUrl() - " + urlAsString);
 
-        if (mGetPageAsTextTask != null) {
-            mGetPageAsTextTask.cancel(true);
+        if (mGetArticleContentTask != null) {
+            mGetArticleContentTask.cancel(true);
         }
 
         mMode = mode;
@@ -152,8 +152,8 @@ class WebViewRenderer extends WebRenderer {
         switch (mMode) {
 
             case Article:
-                mGetPageAsTextTask = new GetPageAsTextTask();
-                mGetPageAsTextTask.execute(urlAsString);
+                mGetArticleContentTask = new GetArticleContentTask();
+                mGetArticleContentTask.execute(urlAsString);
 
                 // This is only called by Snacktory renderer so that the loading animations start at the point the page HTML commences.
                 // Not needed for other Renderers given onPageStarted() will be called.
@@ -181,8 +181,8 @@ class WebViewRenderer extends WebRenderer {
 
     @Override
     public void stopLoading() {
-        if (mGetPageAsTextTask != null) {
-            mGetPageAsTextTask.cancel(true);
+        if (mGetArticleContentTask != null) {
+            mGetArticleContentTask.cancel(true);
         }
 
         mWebView.stopLoading();
@@ -524,13 +524,13 @@ class WebViewRenderer extends WebRenderer {
     // [nothing displays]:
     //  * http://www.bostonglobe.com/sports/2014/04/28/the-donald-sterling-profile-not-pretty-picture/jZx4v3EWUFdLYh9c289ODL/story.html
 
-    private class GetPageAsTextTask extends AsyncTask<String, JResult, JResult> {
+    private class GetArticleContentTask extends AsyncTask<String, JResult, JResult> {
         protected JResult doInBackground(String... urls) {
 
             JResult result = null;
             String url = urls[0];
             try {
-                Log.d(TAG, "GetPageAsTextTask().doInBackground(): url:" + url);
+                Log.d(TAG, "GetArticleContentTask().doInBackground(): url:" + url);
                 HtmlFetcher fetcher = new HtmlFetcher();
                 result = fetcher.fetchAndExtract(url, 30 * 1000, true);
                 //String text = result.getText();
