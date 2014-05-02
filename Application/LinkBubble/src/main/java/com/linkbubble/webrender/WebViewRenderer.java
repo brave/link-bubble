@@ -540,10 +540,15 @@ class WebViewRenderer extends WebRenderer {
             } catch (Exception ex) {
                 Log.d(TAG, ex.getLocalizedMessage(), ex);
             }
-            return result;
+
+            return isCancelled() ? null : result;
         }
 
         protected void onPostExecute(JResult result) {
+            if (result == null) {
+                return;
+            }
+
             String urlAsString = result.getCanonicalUrl();
             if (urlAsString == null) {
                 urlAsString = result.getUrl();
