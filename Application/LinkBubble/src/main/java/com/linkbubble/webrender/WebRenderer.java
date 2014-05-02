@@ -84,7 +84,7 @@ public abstract class WebRenderer {
 
     public abstract void updateIncognitoMode(boolean incognito);
 
-    public abstract void loadUrl(String urlAsString);
+    public abstract void loadUrl(URL url, Mode mode);
 
     public abstract void reload();
 
@@ -114,9 +114,5 @@ public abstract class WebRenderer {
 
     public Mode getMode() {
         return mMode;
-    }
-
-    public void setMode(Mode mode) {
-        mMode = mode;
     }
 }

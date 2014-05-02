@@ -61,6 +61,8 @@ public class Settings {
     public static final String PREFERENCE_DEFAULT_APPS = "preference_default_apps";
     public static final String PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT = "preference_google_accounts_redirect";
 
+    public static final String PREFERENCE_AUTO_ARTICLE_MODE = "preference_auto_article_mode";
+
     public static final String PREFERENCE_WEBVIEW_TEXT_ZOOM = "preference_webview_text_zoom";
     public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN = 50;
     public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_DEFAULT = 120;
@@ -580,6 +582,10 @@ public class Settings {
         packageManager.setComponentEnabledSetting(mDownloadHandlerComponentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
 
         return result;
+    }
+
+    public boolean getAutoArticleMode() {
+        return mSharedPreferences.getBoolean(PREFERENCE_AUTO_ARTICLE_MODE, false);
     }
 
     public int getWebViewTextZoom() {

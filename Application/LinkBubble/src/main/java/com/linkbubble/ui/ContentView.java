@@ -16,6 +16,7 @@ import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Menu;
@@ -289,10 +290,9 @@ public class ContentView extends FrameLayout {
         mInitialUrlLoadStartTime = urlLoadStartTime;
         mInitialUrlAsString = urlAsString;
 
-        updateUrl(urlAsString);
+        updateAndLoadUrl(urlAsString);
         updateAppsForUrl(mWebRenderer.getUrl());
         Log.d(TAG, "load url: " + urlAsString);
-        mWebRenderer.loadUrl(urlAsString);
         updateUrlTitleAndText(urlAsString);
     }
 
@@ -336,8 +336,7 @@ public class ContentView extends FrameLayout {
             //}
             removeCallbacks(mDelayedAutoContentDisplayLinkLoadedRunnable);
 
-            mWebRenderer.setUrl(updatedUrl);
-            mWebRenderer.loadUrl(urlAsString);
+            updateAndLoadUrl(urlAsString);
             return true;
         }
 
@@ -574,9 +573,7 @@ public class ContentView extends FrameLayout {
                 mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
                 mHandledAppPickerForCurrentUrl = false;
                 mUsingLinkBubbleAsDefaultForCurrentUrl = false;
-                mWebRenderer.loadUrl(previousUrlAsString);
-
-                updateUrl(previousUrlAsString);
+                updateAndLoadUrl(previousUrlAsString);
                 Log.d(TAG, "[urlstack] Go back: " + urlBefore + " -> " + mWebRenderer.getUrl() + ", urlStack.size():" + mUrlStack.size());
                 updateUrlTitleAndText(previousUrlAsString);
 
@@ -848,7 +845,7 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_article_mode: {
-                            mWebRenderer.setMode(item.isChecked() ? WebRenderer.Mode.Web : WebRenderer.Mode.Article);
+                            mWebRenderer.loadUrl(getUrl(), item.isChecked() ? WebRenderer.Mode.Web : WebRenderer.Mode.Article);
                             break;
                         }
 
@@ -1136,6 +1133,21 @@ public class ContentView extends FrameLayout {
         }
 
         return true;
+    }
+
+    private void updateAndLoadUrl(String urlAsString) {
+        updateUrl(urlAsString);
+        URL updatedUrl = getUrl();
+
+        WebRenderer.Mode mode = WebRenderer.Mode.Web;
+        if (Settings.get().getAutoArticleMode()) {
+            String path = updatedUrl.getPath();
+            if (path != null && !path.equals("") && !path.equals("/")) {
+                mode = WebRenderer.Mode.Article;
+            }
+        }
+
+        mWebRenderer.loadUrl(updatedUrl, mode);
     }
 
     private URL getUpdatedUrl(String urlAsString) {

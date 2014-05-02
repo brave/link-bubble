@@ -5,6 +5,8 @@ import android.view.View;
 import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
 
+import java.net.URL;
+
 class StubRenderer extends WebRenderer {
 
     View mView;
@@ -34,7 +36,7 @@ class StubRenderer extends WebRenderer {
     }
 
     @Override
-    public void loadUrl(String urlAsString) {
+    public void loadUrl(URL url, Mode mode) {
 
     }
 
