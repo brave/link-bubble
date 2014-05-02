@@ -3,18 +3,15 @@ package com.linkbubble.webrender;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Handler;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.gson.annotations.SerializedName;
 import com.linkbubble.Constant;
-import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.util.SafeUrlSpan;
 import com.linkbubble.util.Util;
@@ -26,7 +23,6 @@ import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.http.GET;
-import retrofit.http.Path;
 import retrofit.http.Query;
 
 import java.lang.ref.WeakReference;
@@ -104,7 +100,7 @@ public class DiffBotRenderer extends WebRenderer {
             sDiffBotService = sRestAdapter.create(DiffBotService.class);
         }
 
-        mView = LayoutInflater.from(context).inflate(R.layout.view_cleanview, null);
+        mView = LayoutInflater.from(context).inflate(R.layout.view_diffbot, null);
         mView.setLayoutParams(webRendererPlaceholder.getLayoutParams());
         Util.replaceViewAtPosition(webRendererPlaceholder, mView);
 
