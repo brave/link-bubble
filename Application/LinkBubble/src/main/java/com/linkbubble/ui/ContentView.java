@@ -234,7 +234,7 @@ public class ContentView extends FrameLayout {
     @SuppressLint("SetJavaScriptEnabled")
     void configure(String urlAsString, TabView ownerTabView, long urlLoadStartTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
         View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
-        mWebRenderer = WebRenderer.create(WebRenderer.Type.Snacktory, getContext(), mWebRendererController, webRendererPlaceholder, TAG);
+        mWebRenderer = WebRenderer.create(WebRenderer.Type.WebView, getContext(), mWebRendererController, webRendererPlaceholder, TAG);
         mWebRenderer.setUrl(urlAsString);
 
         mOwnerTabView = ownerTabView;
