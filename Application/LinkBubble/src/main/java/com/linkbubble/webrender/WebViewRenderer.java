@@ -34,6 +34,8 @@ import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
 
+import java.net.URL;
+
 class WebViewRenderer extends WebRenderer {
 
     protected String TAG;
@@ -128,8 +130,8 @@ class WebViewRenderer extends WebRenderer {
     }
 
     @Override
-    public void loadUrl(String urlAsString) {
-        mWebView.loadUrl(urlAsString);
+    public void loadUrl(URL url, Mode mode) {
+        mWebView.loadUrl(url.toString());
     }
 
     @Override
