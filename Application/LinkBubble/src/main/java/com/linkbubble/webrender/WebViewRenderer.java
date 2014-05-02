@@ -568,6 +568,21 @@ class WebViewRenderer extends WebRenderer {
                 return;
             }
 
+            boolean isTablet = mContext.getResources().getBoolean(R.bool.is_tablet);
+
+            String bodyHMargin;
+            String titleTopMargin;
+            String titleFontSize;
+            if (isTablet) {
+                bodyHMargin = "24px";
+                titleTopMargin = "32px";
+                titleFontSize = "150%";
+            } else {
+                bodyHMargin = "12px";
+                titleTopMargin = "24px";
+                titleFontSize = "130%";
+            }
+
             String headHtml =
                     "  <head>\n" +
                             "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n" +
@@ -583,12 +598,12 @@ class WebViewRenderer extends WebRenderer {
                             "    </style>";
 
             String bodyHtml = "<body >\n" +
-                    "    <div style=\"margin:0px 24px 0px 24px\">\n";
+                    "    <div style=\"margin:0px " + bodyHMargin + " 0px " + bodyHMargin + "\">\n";
 
             String title = result.getTitle();
             if (title != null) {
                 headHtml += "<title>" + title + "</title>";
-                bodyHtml += "<p style=\"font-size:150%;line-height:120%;font-weight:bold;margin:32px 0px 12px 0px\">" + title + "</p>";
+                bodyHtml += "<p style=\"font-size:" + titleFontSize + ";line-height:120%;font-weight:bold;margin:" + titleTopMargin + " 0px 12px 0px\">" + title + "</p>";
             }
 
             String authorName = result.getAuthorName();
@@ -598,7 +613,7 @@ class WebViewRenderer extends WebRenderer {
             String rightString = "";
 
             if (authorName != null) {
-                leftString = "<span class=\"nowrap\">by <b>" + authorName + "</b>,</span> ";
+                leftString = "<span class=\"nowrap\"><b>" + authorName + "</b>,</span> ";
             }
             if (url != null) {
                 leftString += "<span class=\"nowrap\"><a href=\"" + url.getProtocol() + "://" + url.getHost() + "\">" + (url.getHost().replace("www.", "")) + "</a></span>";
