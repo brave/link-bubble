@@ -550,7 +550,7 @@ class WebViewRenderer extends WebRenderer {
             }
 
             String urlAsString = result.getCanonicalUrl();
-            if (urlAsString == null) {
+            if (urlAsString.isEmpty()) {
                 urlAsString = result.getUrl();
             }
             URL url = null;
