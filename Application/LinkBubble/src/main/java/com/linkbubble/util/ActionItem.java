@@ -103,12 +103,14 @@ public class ActionItem {
             intent.setType("text/plain");
             List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, 0);
             for (ResolveInfo resolveInfo : resolveInfos) {
-                actionItems.add(new ActionItem(Constant.ActionType.Share,
-                        resources,
-                        resolveInfo.loadLabel(packageManager).toString(),
-                        resolveInfo.loadIcon(packageManager),
-                        resolveInfo.activityInfo.packageName,
-                        resolveInfo.activityInfo.name));
+                if (resolveInfo.activityInfo.packageName.equals(BuildConfig.PACKAGE_NAME) == false) {
+                    actionItems.add(new ActionItem(Constant.ActionType.Share,
+                            resources,
+                            resolveInfo.loadLabel(packageManager).toString(),
+                            resolveInfo.loadIcon(packageManager),
+                            resolveInfo.activityInfo.packageName,
+                            resolveInfo.activityInfo.name));
+                }
             }
         }
 
