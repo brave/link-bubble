@@ -6,11 +6,11 @@
         <change>NEW: Article Mode, which extracts the main text from a URL. Consumes a lot less battery, RAM and bandwidth.</change>
         <change>NEW: Auto Article Mode setting. If enabled, all articles will attempt to be loaded via Article Mode.</change>
         <change>NEW: Pro users can configure which apps Link Bubble will intercept links from.</change>
-        <change>NEW: URLs can be shared directly to Link Bubble via a 3rd party app's Share button.</change>
         <change>CHANGE: The top-most link doesn't change when subsequent links are loaded (Pro only).</change>
     </release> -->
 
     <release version="1.1.2" versioncode="11200">
+        <change>NEW: URLs can be shared directly to Link Bubble via a 3rd party app's Share button.</change>
         <change>CHANGE: Clicking the Share button when reading a tab no longer automatically closes a tab.</change>
         <change>BUG FIX: Links that should open in a new tab when clicked no longer require a long press.</change>
     </release>
