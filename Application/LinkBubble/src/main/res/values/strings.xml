@@ -2,6 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Downloader</string>
+    <string name="send_intent_label">Open with Link Bubble</string>
     <string name="notification_summary">Touch to hide all open bubbles</string>
     <string name="share_picker_label">Share picker</string>
 
@@ -33,6 +34,7 @@
 
     <string name="pick_default_app">Select default app</string>
     <string name="default_browser_set">Link Bubble has been set as the default browser.</string>
+    <string name="invalid_send_action">Valid link not found.</string>
     <string name="clear_history">Clear history</string>
 
     <string name="preference_category_general">General</string>
