@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -29,8 +30,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
+import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.ui.TabView;
+import com.linkbubble.util.Analytics;
 import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
@@ -504,6 +508,19 @@ class WebViewRenderer extends WebRenderer {
             //onConsoleMessage(consoleMessage.message(), consoleMessage.lineNumber(),
             //        consoleMessage.sourceId());
             Log.d("Console", consoleMessage.message());
+            return false;
+        }
+
+        @Override
+        public boolean onCreateWindow(WebView view, boolean dialog, boolean userGesture, Message resultMsg) {
+            TabView tabView = MainController.get().openUrl(Constant.NEW_TAB_URL, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_WINDOW);
+            if (tabView != null) {
+                WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
+                transport.setWebView((WebView) tabView.getContentView().getWebRenderer().getView());
+                resultMsg.sendToTarget();
+                return true;
+            }
+
             return false;
         }
 
