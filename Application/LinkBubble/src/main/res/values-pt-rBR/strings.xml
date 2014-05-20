@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="download_activity_label">Downloader</string>
+    <string name="notification_summary">Toque para esconder todas as bolhas abertas</string>
+    <string name="share_picker_label">Share picker</string>
+
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="cancel">Cancelar</string>
+
+    <string name="action_ok">OK</string>
+    <string name="action_remove">Remover</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_clear_data">Limpar Informação</string>
+    <string name="action_use_default">Usar padrão</string>
+    <string name="action_settings">Configurações</string>
+    <string name="action_help">Ajuda</string>
+    <string name="action_reload_page">Recarregar</string>
+    <string name="action_open_in_browser">Abrir no %1$s</string>
+    <string name="action_open_in_new_bubble">Abrir em uma nova bolha</string>
+    <string name="action_upgrade_to_pro">★Upgrade para versão Pro★</string>
+    <string name="action_copy_to_clipboard">Copiar Link</string>
+    <string name="action_share">Compartilhar</string>
+    <string name="action_close_all">Fechar todas</string>
+    <string name="action_close_tab">Fechar bolha</string>
+    <string name="action_stop">Parar</string>
+    <string name="share_via">Compartilhar via...</string>
+
+    <string name="share_invalid_data">Não foi possível compartilhar esse item pois a URL não é valida.</string>
+    <string name="consume_activity_not_found">Não foi possível encontrar o aplicativo. Considere alterar Bubble Action nas Configurações.</string>
+
+    <string name="pick_default_app">Selecione o aplicativo padrão</string>
+    <string name="default_browser_set">Link Bubble foi definido como navegador padrão.</string>
+    <string name="clear_history">Apagar histórico</string>
+
+    <string name="preference_category_general">Geral</string>
+    <string name="preference_category_configuration">Controles do aplicativo</string>
+    <string name="preference_category_browser">Navegador</string>
+    <string name="preference_enabled_title">Ativado</string>
+    <string name="preference_auto_content_display_link_loaded_title">Auto expandir</string>
+    <string name="preference_auto_content_display_link_loaded_summary">Quando qualquer bolha terminar de carregar</string>
+
+    <string name="preference_left_consume_bubble_title">Bolha da esquerda</string>
+    <string name="preference_right_consume_bubble_title">Bolha da direita</string>
+    <string name="preference_configure_bubble_title">Configurar bolha</string>
+    <string name="preference_category_debug">Debug</string>
+    <string name="preference_default_browser">Default fallback browser</string>
+    <string name="preference_category_redirect_to_browser">Redirect to fallback browser</string>
+    <string name="preference_category_fallback_browser">Default fallback browser</string>
+    <string name="preference_category_other_apps">Outros apps</string>
+    <string name="preference_default_apps_title">Apps padrões</string>
+    <string name="preference_default_apps_notice_summary">Used when one or more non-browser apps on your system can handle a
+                    URL.\n\nTap to remove a default.</string>
+    <string name="preference_default_apps_notice_no_defaults_summary">Used when one or more non-browser apps on your device can handle a URL,
+                you can configure the default app to load such links with.\n\nThe default app to use in this case is configured as
+                you load links with Link Bubble.</string>
+    <string name="preference_google_account_redirect_title">Redirecionamento da Conta Google</string>
+    <string name="preference_google_account_redirect_summary">Redirect accounts.google.com links to default fallback browser</string>
+    <string name="preference_set_default_browser_title">Escolha o navegador padrão do sistema</string>
+    <string name="preference_set_default_browser_summary">Link Bubble precisa estar selecionado como navegador padrão do sistema para funcionar. Toque para configurar.</string>
+    <string name="preference_more">Mais...</string>
+    <string name="preference_intercept_links_from_title">Interceptar links de</string>
+    <string name="preference_intercept_links_from_note">Nota: A restrição de interceptar links de só um aplicativo só existe na 
+versão grátis do Link Bubble. Atualizar pra versão Pro?</string>
+    <string name="intercept_links_from_default_label">Toque pra definir</string>
+    <string name="intercept_links_from_default_set_message">Link Bubble configurado para carregar links de %1$s.\nPara carregar links de todos os apps, atualize pra Pro.</string>
+    <string name="preference_scan_for_youtube_embeds_title">Check for YouTube embeds</string>
+    <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
+
+    <string name="preference_webview_text_zoom_title">Ampliar texto</string>
+    <string name="preference_webview_text_zoom_note">Nota: As bolhas abertas serão recarregadas com o novo zoom de texto aplicado após selecionar \"OK\".</string>
+    <string name="preference_webview_text_zoom_reloading_current">Novo zoom de texto aplicado. Recarregando bolhas atuais...</string>
+    <string name="preference_clear_browser_cache_title">Limpar informação privada</string>
+    <string name="preference_clear_cache">Cache</string>
+    <string name="preference_clear_cookies">Cookies</string>
+    <string name="preference_clear_favicons">Favicons</string>
+    <string name="preference_clear_form_data">Form data</string>
+    <string name="preference_clear_history">Histórico</string>
+    <string name="preference_clear_passwords">Senhas</string>
+    <string name="preference_incognito_title">Modo Anônimo</string>
+    <string name="preference_incognito_summary">Prevent storing all history and cookies</string>
+    <string name="preference_user_agent_title">User Agent</string>
+    <string-array name="preference_user_agent_options">
+        <item>Padrão</item>
+        <item>Chrome Phone</item>
+        <item>Chrome Tablet</item>
+        <item>Chrome Desktop</item>
+    </string-array>
+
+    <string name="preference_help_title">Ajuda</string>
+    <string name="preference_show_welcome_message_title">Mostrar página de boas vindas</string>
+    <string name="preference_credits_title">Créditos</string>
+    <string name="preference_osl_title">Open source licenses</string>
+    <string name="preference_privacy_policy_title">Política de privacidade</string>
+    <string name="preference_terms_of_service_title">Termos de Serviço</string>
+    <string name="preference_say_thanks_title">Diga Obrigado!</string>
+    <string name="preference_say_thanks_summary">Curtindo Link Bubble? Seria legal se você pudesse fazer um review na Play Store.</string>
+    <string name="preference_get_pro_title">Link Bubble Pro</string>
+    <string name="preference_get_pro_summary">Upgrade to Pro for more features.</string>
+    <string name="preference_version_title">Versão</string>
+    <string name="preference_version_summary">O que tem de novo?</string>
+
+    <string name="preference_my_other_apps_title">Mais apps do Chris Lacy</string>
+    <string name="preference_my_other_apps_summary">Curte Link Bubble? Por que então não confere meus outros aplicativos?</string>
+
+    <string name="remove_default_title">Remover padrão?</string>
+    <string name="remove_default_message">Remove %1$s as the default app to load %2$s links with?\n\nNote: you can set a new default app to use next
+                                            time you load a %2$s link.</string>
+    <string name="long_press_unsupported_default_browser">Android system limitations prevent Link Bubble from selecting this item.\nOpen link in %1$s?</string>
+    <string name="long_press_unsupported_no_default_browser">Android system limitations prevent Link Bubble from selecting this item.\nOpen link in a browser.</string>
+    <string name="unsupported_scheme_default_browser">Tipo de link ainda não é suportado. Abrir página no %1$s?</string>
+    <string name="unsupported_scheme_no_default_browser">Link type currently not supported. Open the link a browser.</string>
+    <string name="unsupported_scheme">Tipo de link não suportado.</string>
+    <string name="unsupported_drop_down_default_browser">Android system limitations prevent drop down elements from working in Link Bubble.\nOpen in %1$s?</string>
+    <string name="unsupported_drop_down_no_default_browser">Android system limitations prevent drop down elements from working in Link Bubble.\nOpen the link in a browser.</string>
+
+    <string name="consume_category_view">Ver link</string>
+    <string name="consume_category_share">Enviar/compartilhar link</string>
+
+    <string name="title_settings">Configurações</string>
+
+    <string name="title_youtube_embed_to_load">Selecione o vídeo pra tocar</string>
+    <string name="loading_youtube_embed_info">Fetching info about YouTube videos…</string>
+    <string name="youtube_embed_error_title">Oops</string>
+    <string name="youtube_embed_error_summary">Unable to retrieve info about YouTube videos at this time. Please try again later.</string>
+
+    <string name="loading">Carregando...</string>
+
+    <string name="histroy_unread">Não lido</string>
+    <string name="histroy_all">Todos</string>
+    <string name="history">Histórico</string>
+    <string name="erase_all_history_title">Apagar tudo?</string>
+    <string name="erase_all_history_message">Apagar todo o seu histórico de navegação do Link Bubble?</string>
+    <string name="empty">Limpar</string>
+    <string name="history_already_empty">Histórico já está vazio</string>
+    <string name="private_data_cleared">Informação privada apagada</string>
+    <string name="private_data_cleared_reloading_current">Private data cleared. Reloading current bubbles…</string>
+    <string name="user_agent_changed_reloading_current">User Agent changed. Reloading current bubbles…</string>
+    <string name="link_loaded_with_app">Carregado com %1$s</string>
+    <string name="link_redirected">Redirecionado para %1$s</string>
+
+    <string name="tampered_apk">Sua cópia do Link Bubble foi ilegalmente modificada e portanto não funcionará direito. Por favor reinstale pela Play Store.</string>
+    <string name="upgrade_incentive_one_link">Link Bubble Pro is required to load more than one bubble at a time. Upgrade to Pro?</string>
+    <string name="upgrade_incentive_one_app">Link Bubble Pro is required to load links from more than one app. Upgrade to Pro?</string>
+    <string name="valid_license_detected">Valid Link Bubble Pro license detected.\nThank you for supporting this project, and enjoy the app :)</string>
+
+    <string name="bubble_link_copied_to_clipboard">Bubble link copied to clipboard.</string>
+    <string name="link_copied_to_clipboard">Link copiado para área de transferência.</string>
+
+    <string name="stat_saves_you">te salva</string>
+    <string name="stat_has_saved_you">te salvou</string>
+    <string name="stat_so_far">até agora</string>
+    <string name="stat_per_link">por link</string>
+    <string name="time_seconds">segundos</string>
+    <string name="time_minutes">minutos</string>
+    <string name="time_hours">horas</string>
+
+    <string name="confirm_title">Confirmar</string>
+
+    <string name="no_default_browser">Nenhum navegador padrão encontrado no sistema.</string>
+
+    <string name="title_changelog">Registro de mudanças</string>
+    <string name="changelog_close">Fechar</string>
+
+    <string name="faq_close_tab_question">Como eu consigo fechar rapidamente uma aba?</string>
+    <string name="faq_close_tab_answer">Apertando o botão de Voltar do celular é o jeito mais rápido. Arrastar a aba até o botão de Fechar também é uma ótima ideia.</string>
+    <string name="faq_back_button_minimize_question">Eu acho que apertar o botão de Voltar deveria minimizar o navegador!</string>
+    <string name="faq_back_button_minimize_answer"><![CDATA[Minimizing Link Bubble when the hardware Back button is pressed is not feasible.
+            Consider the following case:<br/>
+            1). example.com/page1 is loaded in the first tab.<br/>
+            2). You click a link on this page, and load example.com/page2 in the same tab.<br/>
+            3). You now want to go back to the link in step 1.<br/><br/>
+            How do you do this if pressing the hardware Back button minimizes Link Bubble? Pressing the tiny back indicator on the
+            tab itself is not feasible.<br/><br/>
+            Link Bubble is a browser, and Android browsers have a long since established standard of
+            either going back in the URL stack, or if no such stack exists, closing the current page when the Back button is pressed.
+            Link Bubble follows this standard.]]></string>
+    <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble isn\'t intercepting links!]]></string>
+    <string name="faq_app_internal_browser_answer"><![CDATA[There are 3 causes of this:<br/>
+            1). A browser other thank Link Bubble is set as your default system browser. See the
+            \"Set default system browser\" option in Link Bubble\'s Settings to change this.<br/>
+            2). The free version of Link Bubble only intercepts links from a single app. See the
+            \"Intercept links from\" option in Link Bubble\'s Settings for which app this is or to change it.
+            Note that by upgrading to Link Bubble Pro, links will be intercepted from all non-browser apps.<br/>
+            3). Apps such as Talon, Reddit is Fun and others have inbuilt browsers that render links. Check the settings of that app and
+            enable \"External browser\" or deselect \"Integrated browser\" or similar.
+            <br/><br/>Note: other browser apps such as Chrome are hardcoded to load links in themselves, and thus Link Bubble is unable
+            to load links clicked from other browser apps.
+            ]]></string>
+    <string name="faq_future_features_question">Quando você vai adicionar suporte a favoritos, extensões, etc?</string>
+    <string name="faq_future_features_answer">Nunca diga nunca, mas por enquanto o Link Bubble é focado somente em ser o melhor jeito possível de carregar
+ e consumir links carregados por outros apps.</string>
+    <string name="faq_translations_question">Quando você vai adicionar tradução de linguagens estrangeiras? Posso ajudar?</string>
+    <string name="faq_translations_answer"><![CDATA[Eu espero adicionar suporte a tradução logo.<br/><br/>Quando eu fizer, eu irei com certeza avisar no Google+
+(+Chris Lacy) por ajuda nas traduções, então fique de olho no meu mural.]]></string>
+    <string name="faq_roadmap_question">Você publica um roadmap das próximas versões? [...]</string>
+    <string name="faq_roadmap_answer">Por razões competitivas, a resposta para ambas as perguntas é não. Sinto muito. <br/><br/></string>
+    <string name="faq_alternate_payment_question">Eu não tenho cartão de crédito e/ou não consigo comprar pelo Google Play. Como eu posso comprar o Pro?</string>
+    <string name="faq_alternate_payment_answer"><![CDATA[Por enquanto, Link Bubble só suporta compras pelo Google Play.<br/><br/>Formas adicionais de pagamento talvez sejam adicionadas no futuro (desde que não violem as regras do Google Play Developer Program).]]>
+</string>
+    <string name="faq_cant_type_url_question">Por que eu não posso digitar o nome do link que eu quero visitar?</string>
+    <string name="faq_cant_type_url_answer"><![CDATA[This is entirely as intended. Link Bubble is designed not to be a complete replacement for your browser, but to instead be used to
+            load and display links from other apps as elegantly, helpfully and as quickly as possible.<br/><br/>If you want to load a new url in Link Bubble,
+            searching for a page via Google Now and loading the result with Link Bubble is a great way of doing so.<br/><br/>For quickly
+            loading your favorites, I find the Chrome Bookmarks widget very helpful.]]></string>
+    <string name="faq_drop_down_items_question">Why don\'t drop down menus work?</string>
+    <string name="faq_drop_down_items_answer"><![CDATA[Unfortunately Android system limitations prevent this from working.<br/><br/>Technical answer:
+            Android\'s WebView hardcodes &lt;select&gt; elements to display via a Dialog, which cannot be launched from a Service. WebView does not provide a means of
+            overriding this behavior. Thus a hack has been added to simply disable drop down items from all pages in Link Bubble.
+            This is far from ideal, but it is certainly better than having the app crash, which is what happens otherwise :\\]]></string>
+    <string name="faq_copy_text_question">Por que eu não posso copiar texto de um site?</string>
+    <string name="faq_copy_text_answer"><![CDATA[Infelizmente as limitações do Android impedem que isso funcione.<br/><br/>Resposta técnica:
+A função copiar só funciona quando você usa o navegador por uma atividade, mas não de um serviço (que é o que o Link Bubble usa).]]></string>
+    <string name="faq_translucent_status_bar_question">Por que o aplicativo não fica em cima da barra de status transparente?</string>
+    <string name="faq_translucent_status_bar_answer">Infelizmente limitações do Android previnem isso.</string>
+    <string name="faq_beta_programme_question">Existe algum programa beta? Como posso participar?</string>
+    <string name="faq_beta_programme_answer">Detalhes sobre o beta serão anunciados no futuro. Fique de olho no meu mural do Google+ (+Chris Lacy) para novidades.</string>
+    <string name="faq_low_spec_performance_question">Por que o Link Bubble está lento no meu Nexus S / Galaxy S1 / Moto G celular?</string>
+    <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble é um aplicativo que consome recursos intensos, e, consequentemente, aparelhos com especificações 
+menores pode ser que sofram ao executar o app. Atualizações futuras serão miradas em melhorar a performance, mas existe 
+um limite no que pode ser feito aqui. </br></br>Resposta técnica: No mínimo, Link Bubble requer o uso de um serviço e de 
+uma visualização da web. As vezes múltiplas atividades e visualizações estão presentes. Naturalmente, alocar todos esses 
+items (especialmente visualização da web) consome <i>muita</i> memória/recursos. Aparelhos com especificações menores
+ geralmente possuem menos memória disponível que o Link Bubble precisa, portanto a performance cai uma vez que lixos da
+ memória são frequentemente chamados. Como um exemplo, o limite do Nexus S é 48MB, comparado a 192MB do Nexus 5.]]></string>
+    <string name="faq_crap_webview_question">As vezes as páginas não aparecem corretamente ou vídeos não tocam.</string>
+    <string name="faq_crap_webview_answer"><![CDATA[LinkBubble usa o Android WebView padrão, mas infelizmente as vezes ele não é confiável. Existem métodos 
+alternativos como o GeckoView do Firefox e Chromium que serão investigados no futuro como uma possibilidade.<br/>
+<br/>Caso uma página não seja mostrada corretamente, a coisa mais fácil a se fazer é abrir o link no navegador padrão.]]></string>
+    <string name="faq_ongoing_notificaion_question">Por que aparece uma notificação sempre que o Link Bubble está funcionando?</string>
+    <string name="faq_ongoing_notificaion_answer"><![CDATA[Unfortunately this ongoing notification is necessary to encourage the Android OS not to terminate
+            Link Bubble.]]></string>
+    <string name="faq_next_update_eta_question">Quando vai chegar a próxima atualização?</string>
+    <string name="faq_next_update_eta_answer"><![CDATA[Quando estiver pronta!<br/><br/>Infelizmente não tenho como
+ ser mais específico (nem para estimar uma data).<br/><br/>A realidade é que, quando as estimativas são dadas, as 
+pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por quaisquer motivos.]]></string>
+    <string name="faq_close_quickly_question">Como eu posso fazer o Link Bubble parar de funcionar?</string>
+    <string name="faq_close_quickly_answer">Swipe from the top of the screen to open the notifications pane and click the \"Link Bubble\" notification.</string>
+    <string name="faq_change_default_browser_question">Como eu posso remover o Link Bubble como navegador principal?</string>
+    <string name="faq_change_default_browser_answer">Configurações do Sistema -> Apps -> Baixados -> Link Bubble -> Apagar padrão.</string>
+    <string name="faq_pro_trial_question">How does the Link Bubble Pro trial work?</string>
+    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
+        Pro\'s premium features (multiple tabs, links being intercepted from any app, etc.).<br/>
+        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
+        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
+        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
+        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
+        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
+    <string name="faq_report_bug_question">Report a bug</string>
+    <string name="faq_report_bug_answer"><![CDATA[email]]></string>
+    <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
+    <string name="faq_feature_request_answer">I have a lot of </string> -->
+
+    <string name="faq_title">Perguntas Frequentes</string>
+    <string name="preference_faq_summary">Perguntas sobre o aplicativo? Comece aqui.</string>
+    <string name="faq_section_general">Geral</string>
+    <string name="faq_section_issues">Problemas</string>
+
+    <string name="activity_resolver_use_always">Sempre</string>
+    <string name="activity_resolver_use_once">Somente uma vez</string>
+
+    <string name="trial_time_on_click">%1$s remaining of your 24 hour Link Bubble Pro trial.</string>
+
+    <string name="credits_title">Créditos do Link Bubble</string>
+    <string name="credits_lacy_name">Chris Lacy</string>
+    <string name="credits_lacy_credit">Conceito, design e programação</string>
+    <string name="credits_watson_name">Glenn Watson</string>
+    <string name="credits_watson_credit">Programação</string>
+    <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
+
+    <string name="content_description_button">Botão</string>
+    <string name="content_description_target_icon">Bubble target icon</string>
+    <string name="content_description_close_bubble_icon">Close bubble icon</string>
+    <string name="content_description_link_bubble_logo">Link Bubble logo</string>
+    <string name="content_description_app_icon">Ícone do app</string>
+    <string name="content_description_youtube_video_thumbnail">YouTube video thumbnail</string>
+    <string name="content_description_lacy_profile_image">Caneca feia do Chris Lacy</string>
+    <string name="content_description_watson_profile_image">Glenn Watson</string>
+    <string name="content_description_history">Histórico</string>
+    <string name="content_description_settings">Configurações</string>
+    <string name="content_description_can_go_back">Pode voltar</string>
+    <string name="content_description_upgrade_to_pro">Upgrade to Pro</string>
+
+    <string name="requesting_location_message">%1$s deseja saber a sua localização. Permitir?</string>
+
+    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
+    <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
+
+    <string name="service_name">Renderizador do Link Bubble</string>
+    <string name="notification_title">Link Bubble</string>
+
+    <string name="pro_application_name">Link Bubble Pro</string>
+    <string name="pro_status_checking_license">Checando licença...</string>
+	<string name="pro_status_buy">Unable to verify license.\n\nSome causes of this problem include:\n • There is no Internet connection.\n • This application has been tampered
+                            with.\n\nCheck your Internet connection, and if necessary, try installing the app from the Play Store again.</string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting me as I develop this project.</string>
+    <string name="pro_status_unlicensed">Google Play is reporting this copy of Link Bubble Pro is unlicensed.\n\nAssuming you have
+                            indeed purchased a copy of Link Bubble Pro, the most common reason for this is that email address used
+                            for your purchase is not configured with the Play Store on this device.</string>
+
+    <string name="pro_keep_installed">Note: you don\'t need to load Link Bubble Pro again, but you do need to keep it installed for verification purposes.\n\nThis app will be hidden throughout the system so it doesn\'t appear in your launcher(s).</string>
+
+    <string name="pro_action_load_app">Carregar Link Bubble</string>
+    <string name="pro_action_install_app">Instalar Link Bubble</string>
+    <string name="pro_action_buy">Comprar App</string>
+    <string name="pro_action_retry">Recarregar</string>
+    <string name="pro_action_store">Play Store</string>
+
+
+
+    <string name="store_listing_title">Link Bubble</string>
+    <string name="store_listing_promo_text">Navegação móvel feita do jeito certo.</string>
+    <string name="store_listing_description_title">Link Bubble é um navegador totalmente novo desenhado e aprimorado somente com dispositivos moveis em mente.</string>
+    <string name="store_listing_description_features">
+    Features include:
+    • When you click on a link in an app, Link Bubble loads that webpage in the background, leaving you free to keep using your current app rather than your precious time being wasted watching a page load. Once the page has fully loaded, it will animate on screen.
+    • Link Bubble\'s flick physics allow you to go from clicking a link to sharing a link or adding it to a service such as Pocket in little more than a second!
+    • Load multiple links from your current app at the same time (requires Pro).
+    • Gracefully handles links that redirect to other apps. No longer does clicking an Instagram link in Twitter redirect to a full screen browser before loading Instagram!
+    • Deep integration with the apps on your system.
+    • Locates embedded YouTube videos on web pages, and provides a shortcut to load those videos directly in the YouTube app.
+    • Handy stats that illustrate how much time you are saving by using Link Bubble.
+    </string>
+    <string name="store_listing_description_location_permission">Regarding the Location permission: This is required so that you might grant permission for a website to access your location (such as those with an embedded map). Link Bubble itself never accesses your location.</string>
+
+    <string name="pro_store_listing_title">Link Bubble Pro</string>
+    <string name="pro_store_listing_description_title">Link Bubble Pro unlocks the full feature set of Link Bubble.</string>
+    <string name="pro_store_listing_description_features">
+    Upgrades include:
+    • Infinite number of tabs (free version is limited to just one tab).
+    • Load links from all apps on your device (free version intercepts links from just one app).
+    • Remove the upgrade incentives throughout the free version.
+    • Support me so I get to make more of these apps :)
+    </string>
+
+    <string name="welcome_page_title">Bem vindo ao Link Bubble!</string>
+    <string name="welcome_page_trial_notice">Note: For the first 24 hours after first installing Link Bubble, you will have access to all of Link Bubble Pro\'s premium features as a one-time trial.</string>
+    <string name="welcome_page_intro_title">Como ele funciona?</string>
+    <string name="welcome_page_intro_point_1">Click a link in an app.</string>
+    <string name="welcome_page_intro_point_2">A bubble will appear on the edge of the screen and the link will begin loading in the background. As soon as the page is loaded, it will be displayed.</string>
+    <string name="welcome_page_intro_end">It\'s that simple! With Link Bubble, you can keep using your current app rather than wasting your time watching links redirect and waiting for pages to load. What\'s not to love about that?</string>
+    <string name="welcome_page_more_title">Me mostre mais!</string>
+    <string name="welcome_page_more_pocket_start">You can also quickly share a link or add it to an app such as Pocket:</string>
+    <string name="welcome_page_more_pocket_end">Looks both fun and useful right?</string>
+    <string name="welcome_page_more_also">Link Bubble também:</string>
+    <string name="welcome_page_more_point_1">Redireciona links para o app dedicado (por exemplo, Instagram).</string>
+    <string name="welcome_page_more_point_2">Finds embedded videos so you can easily load them in the YouTube app.</string>
+    <string name="welcome_page_pro_intro">A versão grátis dá uma amostra do poder do Link Bubble, mas com a Pro você pode:</string>
+    <string name="welcome_page_pro_point_1">Carregar múltiplas bolhas de uma vez.</string>
+    <string name="welcome_page_pro_point_2">Carregar links de todos os apps.</string>
+    <string name="welcome_page_pro_point_3">Ajude a garantir que eu possa escrever mais apps no futuro :)</string>
+    <string name="welcome_page_pro_end">Obrigado, e aproveite o app!</string>
+    <string name="welcome_page_ps">PS. To close this bubble, either press the Back button or long press the bubble and flick it onto the Close bubble.</string>
+
+</resources>

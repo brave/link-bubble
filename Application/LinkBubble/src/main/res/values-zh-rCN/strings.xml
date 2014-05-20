@@ -22,10 +22,10 @@
     <string name="action_upgrade_to_pro">★升级到专业版★</string>
     <string name="action_copy_to_clipboard">复制链接</string>
     <string name="action_share">分享</string>
-    <string name="action_close_all">关闭所有</string>
+    <string name="action_close_all">全部关闭</string>
     <string name="action_close_tab">关闭泡泡</string>
     <string name="action_stop">停止</string>
-    <string name="share_via">通过...分享</string>
+    <string name="share_via">分享页面，通过</string>
 
     <string name="share_invalid_data">Link Bubble 不能分享本条目，因为它不是一个有效的链接。</string>
     <string name="consume_activity_not_found">无法找到程序。请到设置中更改泡泡的跳转动作。</string>
@@ -232,7 +232,7 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="activity_resolver_use_always">总是</string>
     <string name="activity_resolver_use_once">仅一次</string>
 
-    <string name="trial_time_on_click">%1$s，您的专业版试用期还有 24 小时到期。</string>
+    <string name="trial_time_on_click">您的 24 小时专业版试用期还有 %1$s 到期。</string>
 
     <string name="credits_title">关于 Link Bubble</string>
     <string name="credits_lacy_name">Chris Lacy</string>
@@ -312,9 +312,9 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="welcome_page_more_point_2">查找页面内嵌入式视频并在 YouTube 应用中加载。</string>
     <string name="welcome_page_pro_intro">免费版 Link Bubble 让您体验到它的强大之处，但它不仅仅如此，专业版更可以让您：</string>
     <string name="welcome_page_pro_point_1">同时加载多个泡泡</string>
-    <string name="welcome_page_pro_point_2">从所以应用中加载链接</string>
+    <string name="welcome_page_pro_point_2">从所有应用中加载链接</string>
     <string name="welcome_page_pro_point_3">帮助我确保在将来能够开发出更多的应用：）</string>
-    <string name="welcome_page_pro_end">感谢您，并尽情享受本应用吧～</string>
-    <string name="welcome_page_ps">注：若要官比一个泡泡，请点击返回键或拖动泡泡只屏幕底部的关闭泡泡中。</string>
+    <string name="welcome_page_pro_end">感谢您的使用！</string>
+    <string name="welcome_page_ps">注：若要关闭本泡泡，请按返回键或长按泡泡并拖动到屏幕底部的关闭泡泡中。</string>
 
 </resources>
