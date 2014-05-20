@@ -71,6 +71,20 @@
                     android:host="*"
                     android:scheme="https" />
             </intent-filter>
+
+            <intent-filter android:label="@string/send_intent_label">
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+                <!--
+                <data
+                    android:host="*"
+                    android:scheme="http" />
+                <data
+                    android:host="*"
+                    android:scheme="https" />-->
+            </intent-filter>
+
         </activity>
 
         <activity android:name=".ui.HideAllBubblesActivity"
