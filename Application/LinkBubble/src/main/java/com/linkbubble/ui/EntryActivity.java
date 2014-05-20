@@ -23,6 +23,8 @@ import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.Vector;
 
@@ -39,8 +41,10 @@ public class EntryActivity extends Activity {
 
         Intent intent = getIntent();
         boolean isActionView = false;
+        boolean isActionSend = false;
         if (intent != null && intent.getAction() != null) {
             isActionView = intent.getAction().equals(Intent.ACTION_VIEW);
+            isActionSend = intent.getAction().equals(Intent.ACTION_SEND);
         }
 
         super.onCreate(savedInstanceState);
@@ -62,10 +66,35 @@ public class EntryActivity extends Activity {
 
         List<Intent> browsers = Settings.get().getBrowsers();
 
-        if (isActionView) {
+        if (isActionView || isActionSend) {
             boolean openLink = false;
 
             String url = intent.getDataString();
+
+            if (isActionSend) {
+                String type = intent.getType();
+                Bundle extras = intent.getExtras();
+                if (type != null && type.equals("text/plain") && extras.containsKey(Intent.EXTRA_TEXT)) {
+                    String text = extras.getString(Intent.EXTRA_TEXT);
+                    String[] splitText = text.split(" ");
+                    for (String s : splitText) {
+                        try {
+                            URL _url = new URL(s);
+                            url = _url.toString();
+                            openLink = true;
+                            break;
+                        } catch (MalformedURLException ex) {
+                        }
+                    }
+
+                    if (openLink == false) {
+                        Toast.makeText(this, R.string.invalid_send_action, Toast.LENGTH_SHORT).show();
+                        finish();
+                        return;
+                    }
+                }
+            }
+
             // Special case code for the setting the default browser. If this URL is received, do nothing.
             if (url.equals(Config.SET_DEFAULT_BROWSER_URL)) {
                 Toast.makeText(this, R.string.default_browser_set, Toast.LENGTH_SHORT).show();
