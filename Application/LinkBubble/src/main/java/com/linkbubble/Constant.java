@@ -17,6 +17,8 @@ public class Constant {
         Share,
     }
 
+    public static final boolean ARTICLE_MODE = false;
+
     // Make GW's changes per d46678694ab79ed7a4aec5e293beff9ae9a62382 optional
     public static final boolean DYNAMIC_ANIM_STEP = true;
 
