@@ -434,7 +434,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
                         if (mCurrentSnapTarget == null) {
                             if (tv == null) {
-                                setTargetPos(targetX, targetY, 0.02f, DraggableHelper.AnimationType.Linear, null);
+                                setTargetPos(targetX, targetY, 0.0f, DraggableHelper.AnimationType.DistanceProportion, null);
                             } else {
                                 tv.beginSnapping();
                                 mCurrentSnapTarget = tv;
@@ -601,7 +601,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
     public void setTargetPos(int xp, int yp, float t, DraggableHelper.AnimationType type, DraggableHelper.AnimationEventListener listener) {
         Util.Assert(!mAnimActive, "mAnimActive:" + mAnimActive);
-        Util.Assert(t > 0.0f, "t:" + t);      // Don't think this happens anymore - just to catch if it does happen and investigate why.
+        //Util.Assert(t > 0.0f, "t:" + t);      // Don't think this happens anymore - just to catch if it does happen and investigate why.
         mAnimActive = listener != null;
         mDraggableHelper.setTargetPos(xp, yp, t, type, listener);
     }
