@@ -3996,6 +3996,7 @@ com.linkbubble.R$attr: R$attr()
 com.linkbubble.R$bool: int default_fiv_isAnimated
 com.linkbubble.R$bool: int default_fiv_isFlipped
 com.linkbubble.R$bool: int default_fiv_isRotationReversed
+com.linkbubble.R$bool: int is_tablet
 com.linkbubble.R$bool: R$bool()
 com.linkbubble.R$color: int action_picker_selected_color
 com.linkbubble.R$color: int badge_text
@@ -4157,6 +4158,7 @@ com.linkbubble.R$id: int back_indicator
 com.linkbubble.R$id: int background
 com.linkbubble.R$id: int badge_view
 com.linkbubble.R$id: int big_white_button
+com.linkbubble.R$id: int body_text
 com.linkbubble.R$id: int bubble_flow
 com.linkbubble.R$id: int close_all_view
 com.linkbubble.R$id: int content
@@ -4166,12 +4168,14 @@ com.linkbubble.R$id: int debug_text
 com.linkbubble.R$id: int faq_list
 com.linkbubble.R$id: int favicon
 com.linkbubble.R$id: int fragment
+com.linkbubble.R$id: int group_article_mode
 com.linkbubble.R$id: int header_logo
 com.linkbubble.R$id: int history_circle
 com.linkbubble.R$id: int hybrid
 com.linkbubble.R$id: int icon
 com.linkbubble.R$id: int image
 com.linkbubble.R$id: int image_view
+com.linkbubble.R$id: int item_article_mode
 com.linkbubble.R$id: int item_close_tab
 com.linkbubble.R$id: int item_copy_link
 com.linkbubble.R$id: int item_open_in_browser
@@ -4250,6 +4254,7 @@ com.linkbubble.R$layout: int view_close_tab_target
 com.linkbubble.R$layout: int view_consume_bubble_target
 com.linkbubble.R$layout: int view_content
 com.linkbubble.R$layout: int view_credits
+com.linkbubble.R$layout: int view_diffbot
 com.linkbubble.R$layout: int view_faq
 com.linkbubble.R$layout: int view_faq_item
 com.linkbubble.R$layout: int view_intercept_links_from_app_list
@@ -4266,6 +4271,7 @@ com.linkbubble.R$layout: R$layout()
 com.linkbubble.R$menu: int history_activity
 com.linkbubble.R$menu: R$menu()
 com.linkbubble.R$string: int accept_terms_and_privacy
+com.linkbubble.R$string: int action_article_mode
 com.linkbubble.R$string: int action_cancel
 com.linkbubble.R$string: int action_clear_data
 com.linkbubble.R$string: int action_close_all
@@ -4392,6 +4398,7 @@ com.linkbubble.R$string: int histroy_all
 com.linkbubble.R$string: int histroy_unread
 com.linkbubble.R$string: int intercept_links_from_default_label
 com.linkbubble.R$string: int intercept_links_from_default_set_message
+com.linkbubble.R$string: int invalid_send_action
 com.linkbubble.R$string: int link_copied_to_clipboard
 com.linkbubble.R$string: int link_loaded_with_app
 com.linkbubble.R$string: int link_redirected
@@ -4405,6 +4412,9 @@ com.linkbubble.R$string: int no_default_browser
 com.linkbubble.R$string: int notification_summary
 com.linkbubble.R$string: int notification_title
 com.linkbubble.R$string: int pick_default_app
+com.linkbubble.R$string: int preference_article_mode_title
+com.linkbubble.R$string: int preference_auto_article_mode_summary
+com.linkbubble.R$string: int preference_auto_article_mode_title
 com.linkbubble.R$string: int preference_auto_content_display_link_loaded_summary
 com.linkbubble.R$string: int preference_auto_content_display_link_loaded_title
 com.linkbubble.R$string: int preference_category_browser
@@ -4478,6 +4488,7 @@ com.linkbubble.R$string: int pro_store_listing_title
 com.linkbubble.R$string: int remove_default_message
 com.linkbubble.R$string: int remove_default_title
 com.linkbubble.R$string: int requesting_location_message
+com.linkbubble.R$string: int send_intent_label
 com.linkbubble.R$string: int service_name
 com.linkbubble.R$string: int share_invalid_data
 com.linkbubble.R$string: int share_picker_label
@@ -4787,6 +4798,7 @@ com.linkbubble.util.PageInspector$JSEmbedHandler: void onTouchIconLinks(java.lan
 com.linkbubble.util.PageInspector$JSEmbedHandler: void onYouTubeEmbeds(java.lang.String)
 com.linkbubble.util.PageInspector$JSEmbedHandler: void onDropDownFound()
 com.linkbubble.util.PageInspector$JSEmbedHandler: void onDropDownWarningClick()
+com.linkbubble.util.SafeUrlSpan
 com.linkbubble.util.ScaleUpAnimHelper$AnimState
 com.linkbubble.util.ScaleUpAnimHelper$AnimState: com.linkbubble.util.ScaleUpAnimHelper$AnimState[] values()
 com.linkbubble.util.ScaleUpAnimHelper$AnimState: com.linkbubble.util.ScaleUpAnimHelper$AnimState valueOf(java.lang.String)
@@ -4800,6 +4812,11 @@ com.linkbubble.util.VerticalGestureListener: VerticalGestureListener()
 com.linkbubble.util.VerticalGestureListener$GestureDirection
 com.linkbubble.util.VerticalGestureListener$GestureDirection: com.linkbubble.util.VerticalGestureListener$GestureDirection[] values()
 com.linkbubble.util.VerticalGestureListener$GestureDirection: com.linkbubble.util.VerticalGestureListener$GestureDirection valueOf(java.lang.String)
+com.linkbubble.webrender.DiffBotRenderer$Article: DiffBotRenderer$Article()
+com.linkbubble.webrender.DiffBotRenderer$Article$Image: DiffBotRenderer$Article$Image()
+com.linkbubble.webrender.WebRenderer$Mode
+com.linkbubble.webrender.WebRenderer$Mode: com.linkbubble.webrender.WebRenderer$Mode[] values()
+com.linkbubble.webrender.WebRenderer$Mode: com.linkbubble.webrender.WebRenderer$Mode valueOf(java.lang.String)
 com.linkbubble.webrender.WebRenderer$Type
 com.linkbubble.webrender.WebRenderer$Type: com.linkbubble.webrender.WebRenderer$Type[] values()
 com.linkbubble.webrender.WebRenderer$Type: com.linkbubble.webrender.WebRenderer$Type valueOf(java.lang.String)
@@ -9430,7 +9447,194 @@ com.squareup.picasso.Picasso$RequestTransformer$1: Picasso$RequestTransformer$1(
 com.squareup.picasso.PicassoExecutorService: PicassoExecutorService()
 com.squareup.picasso.RequestCreator: RequestCreator()
 com.squareup.picasso.Utils$PicassoThreadFactory: Utils$PicassoThreadFactory()
+de.jetwick.snacktory.ArticleTextExtractor: ArticleTextExtractor()
+de.jetwick.snacktory.ArticleTextExtractor$1
+de.jetwick.snacktory.ArticleTextExtractor$1: ArticleTextExtractor$1()
+de.jetwick.snacktory.Converter: Converter()
+de.jetwick.snacktory.HtmlFetcher: HtmlFetcher()
+de.jetwick.snacktory.HtmlFetcher$1
+de.jetwick.snacktory.HtmlFetcher$1: de.jetwick.snacktory.HtmlFetcher this$0
+de.jetwick.snacktory.JResult
+de.jetwick.snacktory.JResult: java.lang.String title
+de.jetwick.snacktory.JResult: java.lang.String url
+de.jetwick.snacktory.JResult: java.lang.String originalUrl
+de.jetwick.snacktory.JResult: java.lang.String canonicalUrl
+de.jetwick.snacktory.JResult: java.lang.String imageUrl
+de.jetwick.snacktory.JResult: java.lang.String videoUrl
+de.jetwick.snacktory.JResult: java.lang.String rssUrl
+de.jetwick.snacktory.JResult: java.lang.String text
+de.jetwick.snacktory.JResult: java.lang.String html
+de.jetwick.snacktory.JResult: java.lang.String faviconUrl
+de.jetwick.snacktory.JResult: java.lang.String authorName
+de.jetwick.snacktory.JResult: java.lang.String authorDescription
+de.jetwick.snacktory.JResult: java.lang.String description
+de.jetwick.snacktory.JResult: java.lang.String dateString
+de.jetwick.snacktory.JResult: java.util.Date date
+de.jetwick.snacktory.JResult: java.util.List textList
+de.jetwick.snacktory.JResult: java.util.Collection keywords
+de.jetwick.snacktory.JResult: java.util.List images
+de.jetwick.snacktory.JResult: java.util.List links
+de.jetwick.snacktory.JResult: JResult()
+de.jetwick.snacktory.MapEntry
+de.jetwick.snacktory.MapEntry: long serialVersionUID
+de.jetwick.snacktory.MapEntry: java.lang.Object key
+de.jetwick.snacktory.MapEntry: java.lang.Object value
+de.jetwick.snacktory.OutputFormatter: OutputFormatter()
+de.jetwick.snacktory.SHelper: SHelper()
+de.jetwick.snacktory.Util: Util()
 dexguard.util.TamperDetection: TamperDetection()
+org.jsoup.Connection$Method
+org.jsoup.Connection$Method: org.jsoup.Connection$Method[] values()
+org.jsoup.Connection$Method: org.jsoup.Connection$Method valueOf(java.lang.String)
+org.jsoup.HttpStatusException
+org.jsoup.HttpStatusException: int statusCode
+org.jsoup.HttpStatusException: java.lang.String url
+org.jsoup.UnsupportedMimeTypeException
+org.jsoup.UnsupportedMimeTypeException: java.lang.String mimeType
+org.jsoup.UnsupportedMimeTypeException: java.lang.String url
+org.jsoup.examples.HtmlToPlainText: HtmlToPlainText()
+org.jsoup.examples.ListLinks: ListLinks()
+org.jsoup.helper.DescendableLinkedList
+org.jsoup.helper.DescendableLinkedList: DescendableLinkedList()
+org.jsoup.helper.HttpConnection$Response: HttpConnection$Response()
+org.jsoup.helper.StringUtil: StringUtil()
+org.jsoup.nodes.Attributes: Attributes()
+org.jsoup.nodes.Document$OutputSettings: Document$OutputSettings()
+org.jsoup.nodes.Document$QuirksMode
+org.jsoup.nodes.Document$QuirksMode: org.jsoup.nodes.Document$QuirksMode[] values()
+org.jsoup.nodes.Document$QuirksMode: org.jsoup.nodes.Document$QuirksMode valueOf(java.lang.String)
+org.jsoup.nodes.Entities$EscapeMode
+org.jsoup.nodes.Entities$EscapeMode: java.util.Map map
+org.jsoup.nodes.Entities$EscapeMode: org.jsoup.nodes.Entities$EscapeMode[] values()
+org.jsoup.nodes.Entities$EscapeMode: org.jsoup.nodes.Entities$EscapeMode valueOf(java.lang.String)
+org.jsoup.nodes.Node: Node()
+org.jsoup.parser.HtmlTreeBuilder: HtmlTreeBuilder()
+org.jsoup.parser.HtmlTreeBuilderState
+org.jsoup.parser.HtmlTreeBuilderState: org.jsoup.parser.HtmlTreeBuilderState[] values()
+org.jsoup.parser.HtmlTreeBuilderState: org.jsoup.parser.HtmlTreeBuilderState valueOf(java.lang.String)
+org.jsoup.parser.HtmlTreeBuilderState$1
+org.jsoup.parser.HtmlTreeBuilderState$10
+org.jsoup.parser.HtmlTreeBuilderState$11
+org.jsoup.parser.HtmlTreeBuilderState$12
+org.jsoup.parser.HtmlTreeBuilderState$13
+org.jsoup.parser.HtmlTreeBuilderState$14
+org.jsoup.parser.HtmlTreeBuilderState$15
+org.jsoup.parser.HtmlTreeBuilderState$16
+org.jsoup.parser.HtmlTreeBuilderState$17
+org.jsoup.parser.HtmlTreeBuilderState$18
+org.jsoup.parser.HtmlTreeBuilderState$19
+org.jsoup.parser.HtmlTreeBuilderState$2
+org.jsoup.parser.HtmlTreeBuilderState$20
+org.jsoup.parser.HtmlTreeBuilderState$21
+org.jsoup.parser.HtmlTreeBuilderState$22
+org.jsoup.parser.HtmlTreeBuilderState$23
+org.jsoup.parser.HtmlTreeBuilderState$3
+org.jsoup.parser.HtmlTreeBuilderState$4
+org.jsoup.parser.HtmlTreeBuilderState$5
+org.jsoup.parser.HtmlTreeBuilderState$6
+org.jsoup.parser.HtmlTreeBuilderState$7
+org.jsoup.parser.HtmlTreeBuilderState$8
+org.jsoup.parser.HtmlTreeBuilderState$9
+org.jsoup.parser.ParseErrorList
+org.jsoup.parser.ParseErrorList: int maxSize
+org.jsoup.parser.Token$Comment: Token$Comment()
+org.jsoup.parser.Token$Doctype: Token$Doctype()
+org.jsoup.parser.Token$EOF: Token$EOF()
+org.jsoup.parser.Token$EndTag: Token$EndTag()
+org.jsoup.parser.Token$StartTag: Token$StartTag()
+org.jsoup.parser.Token$Tag: Token$Tag()
+org.jsoup.parser.Token$TokenType
+org.jsoup.parser.Token$TokenType: org.jsoup.parser.Token$TokenType[] values()
+org.jsoup.parser.Token$TokenType: org.jsoup.parser.Token$TokenType valueOf(java.lang.String)
+org.jsoup.parser.TokeniserState
+org.jsoup.parser.TokeniserState: org.jsoup.parser.TokeniserState[] values()
+org.jsoup.parser.TokeniserState: org.jsoup.parser.TokeniserState valueOf(java.lang.String)
+org.jsoup.parser.TokeniserState$1
+org.jsoup.parser.TokeniserState$10
+org.jsoup.parser.TokeniserState$11
+org.jsoup.parser.TokeniserState$12
+org.jsoup.parser.TokeniserState$13
+org.jsoup.parser.TokeniserState$14
+org.jsoup.parser.TokeniserState$15
+org.jsoup.parser.TokeniserState$16
+org.jsoup.parser.TokeniserState$17
+org.jsoup.parser.TokeniserState$18
+org.jsoup.parser.TokeniserState$19
+org.jsoup.parser.TokeniserState$2
+org.jsoup.parser.TokeniserState$20
+org.jsoup.parser.TokeniserState$21
+org.jsoup.parser.TokeniserState$22
+org.jsoup.parser.TokeniserState$23
+org.jsoup.parser.TokeniserState$24
+org.jsoup.parser.TokeniserState$25
+org.jsoup.parser.TokeniserState$26
+org.jsoup.parser.TokeniserState$27
+org.jsoup.parser.TokeniserState$28
+org.jsoup.parser.TokeniserState$29
+org.jsoup.parser.TokeniserState$3
+org.jsoup.parser.TokeniserState$30
+org.jsoup.parser.TokeniserState$31
+org.jsoup.parser.TokeniserState$32
+org.jsoup.parser.TokeniserState$33
+org.jsoup.parser.TokeniserState$34
+org.jsoup.parser.TokeniserState$35
+org.jsoup.parser.TokeniserState$36
+org.jsoup.parser.TokeniserState$37
+org.jsoup.parser.TokeniserState$38
+org.jsoup.parser.TokeniserState$39
+org.jsoup.parser.TokeniserState$4
+org.jsoup.parser.TokeniserState$40
+org.jsoup.parser.TokeniserState$41
+org.jsoup.parser.TokeniserState$42
+org.jsoup.parser.TokeniserState$43
+org.jsoup.parser.TokeniserState$44
+org.jsoup.parser.TokeniserState$45
+org.jsoup.parser.TokeniserState$46
+org.jsoup.parser.TokeniserState$47
+org.jsoup.parser.TokeniserState$48
+org.jsoup.parser.TokeniserState$49
+org.jsoup.parser.TokeniserState$5
+org.jsoup.parser.TokeniserState$50
+org.jsoup.parser.TokeniserState$51
+org.jsoup.parser.TokeniserState$52
+org.jsoup.parser.TokeniserState$53
+org.jsoup.parser.TokeniserState$54
+org.jsoup.parser.TokeniserState$55
+org.jsoup.parser.TokeniserState$56
+org.jsoup.parser.TokeniserState$57
+org.jsoup.parser.TokeniserState$58
+org.jsoup.parser.TokeniserState$59
+org.jsoup.parser.TokeniserState$6
+org.jsoup.parser.TokeniserState$60
+org.jsoup.parser.TokeniserState$61
+org.jsoup.parser.TokeniserState$62
+org.jsoup.parser.TokeniserState$63
+org.jsoup.parser.TokeniserState$64
+org.jsoup.parser.TokeniserState$65
+org.jsoup.parser.TokeniserState$66
+org.jsoup.parser.TokeniserState$67
+org.jsoup.parser.TokeniserState$7
+org.jsoup.parser.TokeniserState$8
+org.jsoup.parser.TokeniserState$9
+org.jsoup.parser.TreeBuilder: TreeBuilder()
+org.jsoup.parser.XmlTreeBuilder: XmlTreeBuilder()
+org.jsoup.safety.Whitelist: Whitelist()
+org.jsoup.select.CombiningEvaluator: CombiningEvaluator()
+org.jsoup.select.CombiningEvaluator$Or: CombiningEvaluator$Or()
+org.jsoup.select.Elements: Elements()
+org.jsoup.select.Evaluator: Evaluator()
+org.jsoup.select.Evaluator$AllElements: Evaluator$AllElements()
+org.jsoup.select.Evaluator$IsEmpty: Evaluator$IsEmpty()
+org.jsoup.select.Evaluator$IsFirstChild: Evaluator$IsFirstChild()
+org.jsoup.select.Evaluator$IsFirstOfType: Evaluator$IsFirstOfType()
+org.jsoup.select.Evaluator$IsLastChild: Evaluator$IsLastChild()
+org.jsoup.select.Evaluator$IsLastOfType: Evaluator$IsLastOfType()
+org.jsoup.select.Evaluator$IsOnlyChild: Evaluator$IsOnlyChild()
+org.jsoup.select.Evaluator$IsOnlyOfType: Evaluator$IsOnlyOfType()
+org.jsoup.select.Evaluator$IsRoot: Evaluator$IsRoot()
+org.jsoup.select.Selector$SelectorParseException
+org.jsoup.select.StructuralEvaluator: StructuralEvaluator()
+org.jsoup.select.StructuralEvaluator$Root: StructuralEvaluator$Root()
 org.mozilla.gecko.favicons.Favicons: Favicons()
 org.mozilla.gecko.favicons.LoadFaviconTask$1: LoadFaviconTask$1()
 org.mozilla.gecko.util.ThreadUtils: ThreadUtils()
@@ -9441,6 +9645,29 @@ org.mozilla.gecko.widget.FaviconView
 org.mozilla.gecko.widget.FaviconView: FaviconView(android.content.Context)
 org.mozilla.gecko.widget.FaviconView: FaviconView(android.content.Context,android.util.AttributeSet)
 org.mozilla.gecko.widget.FaviconView: FaviconView(android.content.Context,android.util.AttributeSet,int)
+org.slf4j.Marker
+org.slf4j.helpers.BasicMDCAdapter: BasicMDCAdapter()
+org.slf4j.helpers.BasicMarker
+org.slf4j.helpers.BasicMarker: long serialVersionUID
+org.slf4j.helpers.BasicMarker: java.lang.String name
+org.slf4j.helpers.BasicMarker: java.util.List refereceList
+org.slf4j.helpers.BasicMarkerFactory: BasicMarkerFactory()
+org.slf4j.helpers.MarkerIgnoringBase
+org.slf4j.helpers.MarkerIgnoringBase: MarkerIgnoringBase()
+org.slf4j.helpers.MessageFormatter: MessageFormatter()
+org.slf4j.helpers.NOPLogger
+org.slf4j.helpers.NOPLogger: long serialVersionUID
+org.slf4j.helpers.NOPLogger: NOPLogger()
+org.slf4j.helpers.NOPMakerAdapter: NOPMakerAdapter()
+org.slf4j.helpers.NamedLoggerBase
+org.slf4j.helpers.NamedLoggerBase: java.lang.String name
+org.slf4j.helpers.NamedLoggerBase: NamedLoggerBase()
+org.slf4j.helpers.NamedLoggerBase: java.lang.Object readResolve()
+org.slf4j.helpers.SubstituteLoggerFactory: SubstituteLoggerFactory()
+org.slf4j.helpers.Util: Util()
+org.slf4j.impl.AndroidLogger
+org.slf4j.impl.AndroidLogger: long serialVersionUID
+org.slf4j.impl.AndroidLoggerFactory: AndroidLoggerFactory()
 retrofit.ErrorHandler$1: ErrorHandler$1()
 retrofit.Platform: Platform()
 retrofit.RequestInterceptor$1: RequestInterceptor$1()
@@ -9477,6 +9704,7 @@ retrofit.RetrofitError: boolean networkError
 retrofit.Utils$SynchronousExecutor: Utils$SynchronousExecutor()
 retrofit.android.AndroidApacheClient: AndroidApacheClient()
 retrofit.android.MainThreadExecutor: MainThreadExecutor()
+retrofit.appengine.UrlFetchClient: UrlFetchClient()
 retrofit.client.ApacheClient: ApacheClient()
 retrofit.client.OkClient: OkClient()
 retrofit.client.UrlConnectionClient: UrlConnectionClient()
