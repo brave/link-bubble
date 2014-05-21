@@ -63,7 +63,7 @@ public class CanvasView extends FrameLayout {
     private Util.Point mClosestPoint = new Util.Point();
     private Rect mTractorRegion = new Rect();
 
-    private View mStatusBarCoverView;
+    private ImageView mStatusBarCoverView;
 
     public CanvasView(Context context) {
         super(context);
@@ -72,21 +72,23 @@ public class CanvasView extends FrameLayout {
 
         mEnabled = true;
         mContentViewY = Config.mScreenHeight - Config.mContentOffset;
+        int canvasMaskHeight = getResources().getDimensionPixelSize(R.dimen.canvas_mask_height);
 
         if (Constant.COVER_STATUS_BAR) {
-            mStatusBarCoverView = new View(context);
-            mStatusBarCoverView.setBackgroundColor(0xff000000);
-            mStatusBarCoverView.setVisibility(GONE);
+            mStatusBarCoverView = new ImageView(context);
+            mStatusBarCoverView.setImageResource(R.drawable.masked_background_half);
+            mStatusBarCoverView.setScaleType(ImageView.ScaleType.FIT_XY);
             WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
             lp.gravity = Gravity.TOP | Gravity.LEFT;
             lp.x = 0;
             lp.y = 0;
-            lp.height = Config.getStatusBarHeight(context);
+            lp.height = canvasMaskHeight + Config.getStatusBarHeight(context);
             lp.width = WindowManager.LayoutParams.MATCH_PARENT;
             lp.type = WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
             lp.flags = WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
             lp.format = PixelFormat.TRANSPARENT;
-            lp.setTitle("LinkBubble: StatusBar");
+            mStatusBarCoverView.setLayoutParams(lp);
+
             MainController.addRootWindow(mStatusBarCoverView, lp);
         }
 
@@ -135,15 +137,15 @@ public class CanvasView extends FrameLayout {
             }
         });
 
-        int canvasMaskHeight = getResources().getDimensionPixelSize(R.dimen.canvas_mask_height);
-
-        mTopMaskView = new ImageView(context);
-        mTopMaskView.setImageResource(R.drawable.masked_background_half);
-        mTopMaskView.setScaleType(ImageView.ScaleType.FIT_XY);
-        FrameLayout.LayoutParams topMaskLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, canvasMaskHeight);
-        topMaskLP.gravity = Gravity.TOP;
-        mTopMaskView.setLayoutParams(topMaskLP);
-        addView(mTopMaskView);
+        if (Constant.COVER_STATUS_BAR == false) {
+            mTopMaskView = new ImageView(context);
+            mTopMaskView.setImageResource(R.drawable.masked_background_half);
+            mTopMaskView.setScaleType(ImageView.ScaleType.FIT_XY);
+            FrameLayout.LayoutParams topMaskLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, canvasMaskHeight);
+            topMaskLP.gravity = Gravity.TOP;
+            mTopMaskView.setLayoutParams(topMaskLP);
+            addView(mTopMaskView);
+        }
 
         mBottomMaskView = new ImageView(context);
         mBottomMaskView.setImageResource(R.drawable.masked_background_half);
