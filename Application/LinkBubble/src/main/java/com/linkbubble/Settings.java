@@ -585,7 +585,7 @@ public class Settings {
     }
 
     public boolean getAutoArticleMode() {
-        return mSharedPreferences.getBoolean(PREFERENCE_AUTO_ARTICLE_MODE, false);
+        return Constant.ARTICLE_MODE ? false : mSharedPreferences.getBoolean(PREFERENCE_AUTO_ARTICLE_MODE, false);
     }
 
     public int getWebViewTextZoom() {

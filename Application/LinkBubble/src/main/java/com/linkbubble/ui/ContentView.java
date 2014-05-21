@@ -783,9 +783,11 @@ public class ContentView extends FrameLayout {
             }
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_reload_page, Menu.NONE, resources.getString(R.string.action_reload_page));
 
-            mOverflowPopupMenu.getMenu().add(R.id.group_article_mode, R.id.item_article_mode, Menu.NONE, resources.getString(R.string.action_article_mode));
-            mOverflowPopupMenu.getMenu().setGroupCheckable(R.id.group_article_mode, true, false);
-            mOverflowPopupMenu.getMenu().findItem(R.id.item_article_mode).setChecked(mWebRenderer.getMode() == WebRenderer.Mode.Article);
+            if (Constant.ARTICLE_MODE) {
+                mOverflowPopupMenu.getMenu().add(R.id.group_article_mode, R.id.item_article_mode, Menu.NONE, resources.getString(R.string.action_article_mode));
+                mOverflowPopupMenu.getMenu().setGroupCheckable(R.id.group_article_mode, true, false);
+                mOverflowPopupMenu.getMenu().findItem(R.id.item_article_mode).setChecked(mWebRenderer.getMode() == WebRenderer.Mode.Article);
+            }
 
             String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
             if (defaultBrowserLabel != null) {
@@ -845,7 +847,9 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_article_mode: {
-                            mWebRenderer.loadUrl(getUrl(), item.isChecked() ? WebRenderer.Mode.Web : WebRenderer.Mode.Article);
+                            if (Constant.ARTICLE_MODE) {
+                                mWebRenderer.loadUrl(getUrl(), item.isChecked() ? WebRenderer.Mode.Web : WebRenderer.Mode.Article);
+                            }
                             break;
                         }
 
