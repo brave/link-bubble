@@ -22,14 +22,8 @@
         <activity
             android:name=".ui.HomeActivity"
             android:theme="@style/HomeTheme"
-            android:excludeFromRecents="false">
+            android:excludeFromRecents="false"/>
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
 
         <!--
         <activity
@@ -76,13 +70,11 @@
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="text/plain" />
-                <!--
-                <data
-                    android:host="*"
-                    android:scheme="http" />
-                <data
-                    android:host="*"
-                    android:scheme="https" />-->
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>

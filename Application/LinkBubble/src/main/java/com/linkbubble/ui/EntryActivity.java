@@ -187,7 +187,7 @@ public class EntryActivity extends Activity {
             }
         } else {
             if (!showingTamperPrompt) {
-                startActivityForResult(new Intent(this, SettingsActivity.class), 0);
+                startActivityForResult(new Intent(this, HomeActivity.class), 0);
             }
         }
 
