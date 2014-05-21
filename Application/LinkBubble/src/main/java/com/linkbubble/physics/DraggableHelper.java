@@ -2,6 +2,7 @@ package com.linkbubble.physics;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -18,7 +19,8 @@ public class DraggableHelper {
         Linear,
         SmallOvershoot,
         MediumOvershoot,
-        LargeOvershoot
+        LargeOvershoot,
+        DistanceProportion
     }
 
     public interface OnTouchActionEventListener {
@@ -250,7 +252,7 @@ public class DraggableHelper {
 
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN: {
-                   return onTouchActionDown(event);
+                    return onTouchActionDown(event);
                 }
                 case MotionEvent.ACTION_MOVE: {
                     return onTouchActionMove(event);
@@ -317,16 +319,32 @@ public class DraggableHelper {
         mAnimationListener = listener;
 
         if (x != mTargetX || y != mTargetY) {
-            mAnimType = type;
 
-            mInitialX = mWindowManagerParams.x;
-            mInitialY = mWindowManagerParams.y;
+            if (type == AnimationType.DistanceProportion) {
+                float maxTime = 0.02f;
+                float maxDistance = 50.0f;
 
-            mTargetX = x;
-            mTargetY = y;
+                float d = Util.distance(x, y, mWindowManagerParams.x, mWindowManagerParams.y);
+                t = maxTime * d / maxDistance;
+                t = maxTime - Util.clamp(0.0f, t, maxTime);
+                type = AnimationType.Linear;
+            }
 
-            mAnimPeriod = t;
-            mAnimTime = 0.0f;
+            if (t < 0.0001f) {
+                clearTargetPos();
+                setExactPos(x, y);
+            } else {
+                mAnimType = type;
+
+                mInitialX = mWindowManagerParams.x;
+                mInitialY = mWindowManagerParams.y;
+
+                mTargetX = x;
+                mTargetY = y;
+
+                mAnimPeriod = t;
+                mAnimTime = 0.0f;
+            }
 
             if (MainController.get() != null) {
                 MainController.get().scheduleUpdate();
