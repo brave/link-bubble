@@ -114,8 +114,8 @@ android.support.v4.app.BackStackRecord$Op -> ･$･:
     java.lang.String a$124ef427(java.lang.String,java.lang.String,android.content.Context,android.util.AttributeSet) -> ･
     java.lang.String e(com.google.android.gms.internal.ke) -> ･
     void a(java.lang.String,java.lang.Object,java.lang.StringBuffer,java.lang.StringBuffer) -> ･
-    java.lang.String bR(java.lang.String) -> ͺ
-    java.lang.String ap(java.lang.String) -> ι
+    java.lang.String bR(java.lang.String) -> ʾ
+    java.lang.String ap(java.lang.String) -> ʿ
     void a(byte[],java.lang.StringBuffer) -> ･
     java.lang.Boolean a(byte) -> ･
     byte c(java.lang.Boolean) -> ･
@@ -129,8 +129,20 @@ android.support.v4.app.BackStackRecord$Op -> ･$･:
     126:139:boolean parseResponseSourceHeader(java.lang.String) -> ʽ
     145:148:com.squareup.picasso.Downloader createDefaultDownloader(android.content.Context) -> ･
     161:172:long calculateDiskCacheSize(java.io.File) -> ･
+    15:17:void notNull(java.lang.Object) -> ˋ
+    25:27:void notNull$75ba1f9b(java.lang.String,java.lang.String) -> ･
+    34:36:void isTrue(boolean) -> ˊ
+    44:46:void isTrue(boolean,java.lang.String) -> ˋ
+    53:55:void isFalse(boolean) -> ˋ
+    63:65:void isFalse(boolean,java.lang.String) -> ˎ
+    72:73:void noNullElements$1b4f7664(org.jsoup.nodes.Node[]) -> ･
+    91:93:void notEmpty(java.lang.String) -> ͺ
+    101:103:void notEmpty(java.lang.String,java.lang.String) -> ˊ
+    110:110:void fail(java.lang.String) -> ι
+    23:25:org.jsoup.select.Elements collect(org.jsoup.select.Evaluator,org.jsoup.nodes.Element) -> ･
     147:149:android.graphics.Bitmap decodeStream(java.io.InputStream) -> ･
     73:90:retrofit.client.Response readBodyToBytesIfNecessary(retrofit.client.Response) -> ･
+    101:110:void validateServiceClass(java.lang.Class) -> ･
 android.support.v4.app.BackStackState -> android.support.v4.app.BackStackState:
     int[] mOps -> ･
     int mTransition -> ˊ
@@ -424,6 +436,8 @@ android.support.v4.app.FragmentTabHost$TabInfo -> android.support.v4.app.Fragmen
     android.os.Bundle args -> ˋ
     android.support.v4.app.Fragment fragment -> ˎ
     void ba(java.lang.String) -> ･
+    239:250:android.graphics.Bitmap transform(android.graphics.Bitmap) -> ･
+    262:262:java.lang.String key() -> ･
     418:422:void a$4cd69f7b(com.crashlytics.android.internal.at,int) -> ･
 android.support.v4.app.FragmentTransaction -> aUx:
     android.support.v4.app.BackStackRecord add$324a6018(int,android.support.v4.app.Fragment,java.lang.String) -> ･
@@ -2359,18 +2373,21 @@ com.crashlytics.android.internal.aE -> ⁿ:
 com.crashlytics.android.internal.aF -> Ⅰ:
     java.nio.charset.CharsetEncoder a -> ･
     733:737:com.crashlytics.android.internal.aF a(java.lang.String) -> ･
-com.crashlytics.android.internal.aJ -> ⅰ:
-    java.lang.String a -> ･
-    com.crashlytics.android.internal.z b$48463d4e -> ˊ
-com.crashlytics.android.internal.aK -> 丶:
-    java.lang.String a -> ･
-    int b -> ˊ
-    int c -> ˋ
-com.crashlytics.android.internal.aM -> ﭔ:
+com.crashlytics.android.internal.aI -> ⅰ:
     java.lang.String a -> ･
     java.lang.String b -> ˊ
     java.lang.String c -> ˋ
     boolean d -> ˎ
+    153:157:int indexOfSignChars(java.lang.String,int) -> ･
+com.crashlytics.android.internal.aJ -> 丶:
+    java.lang.String a -> ･
+    com.crashlytics.android.internal.z b$48463d4e -> ˊ
+    37:40:void reportFailure(java.lang.String,java.lang.Throwable) -> ･
+    43:44:void reportFailure(java.lang.String) -> ･
+com.crashlytics.android.internal.aK -> ﭔ:
+    java.lang.String a -> ･
+    int b -> ˊ
+    int c -> ˋ
 com.crashlytics.android.internal.aN -> ﭠ:
     21:43:org.json.JSONObject a() -> ･
 com.crashlytics.android.internal.aO -> ﯦ:
@@ -2394,7 +2411,6 @@ com.crashlytics.android.internal.aS -> ﺗ:
     com.crashlytics.android.internal.aW b -> ˊ
     boolean c -> ˋ
     byte[] $ -> ˎ
-    int $$ -> ˏ
     42:42:com.crashlytics.android.internal.aS a() -> ･
     59:90:com.crashlytics.android.internal.aS a(android.content.Context,com.crashlytics.android.internal.av,java.lang.String,java.lang.String,java.lang.String) -> ･
     125:127:boolean c() -> ˊ
@@ -2422,7 +2438,7 @@ com.crashlytics.android.internal.aW -> ﾆ:
     40:64:com.crashlytics.android.internal.aX a(com.crashlytics.android.internal.aV) -> ･
     68:99:com.crashlytics.android.internal.aX b(com.crashlytics.android.internal.aV) -> ˊ
 com.crashlytics.android.internal.aX -> İ:
-    com.crashlytics.android.internal.aM a -> ･
+    com.crashlytics.android.internal.aI a$63fb6d4d -> ･
     com.crashlytics.android.internal.aR b -> ˊ
     com.crashlytics.android.internal.aQ c -> ˋ
     com.crashlytics.android.internal.aP d -> ˎ
@@ -2561,7 +2577,7 @@ com.crashlytics.android.internal.ao -> ᒃ:
     233:243:java.lang.String g() -> ˎ
     283:293:java.lang.String h() -> ˏ
     298:306:java.lang.String i() -> ᐝ
-    java.lang.String $$24d420ae(int) -> ･
+    java.lang.String $$24d420ae() -> ʻ
 com.crashlytics.android.internal.ap -> com.crashlytics.android.internal.ap:
     com.crashlytics.android.internal.ap a -> ･
     com.crashlytics.android.internal.ap b -> ˊ
@@ -4648,6 +4664,7 @@ com.google.android.gms.internal.cv -> ʷ:
     java.lang.String pP -> ˋ
     boolean pQ -> ˎ
     byte[] $ -> ˏ
+    int $$ -> ᐝ
     void a(android.content.Context,java.lang.String,boolean,java.net.HttpURLConnection) -> ･
     boolean h(android.content.Context) -> ･
     boolean a(android.content.pm.PackageManager,java.lang.String,java.lang.String) -> ･
@@ -6598,8 +6615,8 @@ com.linkbubble.Constant -> com.linkbubble.Constant:
     java.lang.String DEVICE_ID -> ˊ
     java.lang.String sSecureAndroidId -> ˋ
     byte[] $ -> ˎ
-    59:69:java.lang.String getOSFlavor() -> ･
-    84:87:java.lang.String getSecureAndroidId(android.content.Context) -> ･
+    63:73:java.lang.String getOSFlavor() -> ･
+    88:91:java.lang.String getSecureAndroidId(android.content.Context) -> ･
 com.linkbubble.Constant$ActionType -> com.linkbubble.Constant$ActionType:
     com.linkbubble.Constant$ActionType Unknown -> ･
     com.linkbubble.Constant$ActionType View -> ˊ
@@ -6675,6 +6692,7 @@ com.linkbubble.MainApplication -> com.linkbubble.MainApplication:
     java.lang.String TRIAL_START_TIME -> ʻ
     boolean mParseInitialized -> ʼ
     byte[] $ -> ͺ
+    int $$ -> ι
     56:74:void onCreate() -> onCreate
     127:137:boolean isInTrialPeriod() -> ･
     141:151:long getTrialTimeRemaining() -> ˊ
@@ -6911,41 +6929,42 @@ com.linkbubble.Settings -> com.linkbubble.Settings:
     com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent mLinkLoadTimeStatsUpdatedEvent -> ˌ
     java.util.ArrayList mLastAppRedirects$7865b31 -> ˍ
     byte[] $ -> ˑ
-    90:91:void initModule$faab20d(com.linkbubble.MainApplication) -> ･
-    97:98:void deinitModule() -> ･
-    101:103:void setConsumeBubblesChangedEventHandler$4d0351a7$6858d67a(com.linkbubble.Settings$ConsumeBubblesChangedEventHandler) -> ･
-    109:109:com.linkbubble.Settings get() -> ˊ
-    162:177:void configureDefaultApp(android.content.pm.PackageManager,java.lang.String,java.lang.String) -> ･
-    185:207:void onOrientationChange() -> ˋ
-    210:265:void updateBrowsers() -> ˎ
-    269:273:boolean doesPackageExist(android.content.pm.PackageManager,java.lang.String) -> ･
-    277:283:android.content.pm.ResolveInfo findResolveInfoForPackageName(java.util.List,java.lang.String) -> ･
-    287:302:android.content.pm.ResolveInfo getYouTubeViewResolveInfo() -> ˏ
-    344:350:boolean setDefaultLeftConsumeBubble(android.content.pm.ResolveInfo,android.content.pm.PackageManager) -> ･
-    373:380:android.content.ComponentName getDefaultBrowserComponentName(android.content.Context) -> ･
-    384:393:android.graphics.drawable.Drawable getDefaultBrowserIcon(android.content.Context) -> ˊ
-    397:418:void setConsumeBubble(com.linkbubble.Constant$BubbleAction,com.linkbubble.Constant$ActionType,java.lang.String,java.lang.String,java.lang.String) -> ･
-    421:428:java.lang.String getConsumeBubbleLabel(com.linkbubble.Constant$BubbleAction) -> ･
-    432:439:java.lang.String getConsumeBubblePackageName(com.linkbubble.Constant$BubbleAction) -> ˊ
-    443:450:java.lang.String getConsumeBubbleActivityClassName(com.linkbubble.Constant$BubbleAction) -> ˋ
-    477:491:android.graphics.drawable.Drawable getConsumeBubbleIcon(com.linkbubble.Constant$BubbleAction) -> ˎ
-    507:511:void setInterceptLinksFrom(java.lang.String,java.lang.String) -> ･
-    554:582:boolean redirectUrlToBrowser(java.lang.String,android.content.pm.PackageManager) -> ･
-    597:630:java.util.ArrayList getAppsThatHandleUrl$6450ac98(java.lang.String,android.content.pm.PackageManager) -> ˊ
-    634:658:android.content.pm.ResolveInfo getDefaultAppForUrl$14c9ac02(java.net.URL,java.util.ArrayList) -> ･
-    667:676:void setDefaultApp(java.lang.String,android.content.pm.ResolveInfo,boolean) -> ･
-    680:685:void addDefaultApp(java.lang.String,android.content.ComponentName,boolean) -> ･
-    695:705:java.util.Vector loadCurrentTabs() -> ᐝ
-    709:731:void saveCurrentTabs$61fb9e66(java.util.ArrayList) -> ･
-    734:750:void saveDefaultApps() -> ʻ
-    754:774:void configureDefaultApps(java.lang.String) -> ˋ
-    777:785:java.util.TreeMap getDefaultAppsMap() -> ʼ
-    789:801:android.graphics.Point getBubbleRestingPoint() -> ʽ
-    863:885:void trackLinkLoadTime(long,com.linkbubble.Settings$LinkLoadType,java.lang.String) -> ･
-    927:935:boolean didRecentlyRedirectToApp(java.lang.String) -> ･
-    940:968:void addRedirectToApp(java.lang.String) -> ˊ
-    971:986:void saveRecentAppRedirects() -> ͺ
-    989:1007:void loadRecentAppRedirects() -> ι
+    int $$ -> ـ
+    92:93:void initModule$faab20d(com.linkbubble.MainApplication) -> ･
+    99:100:void deinitModule() -> ･
+    103:105:void setConsumeBubblesChangedEventHandler$4d0351a7$6858d67a(com.linkbubble.Settings$ConsumeBubblesChangedEventHandler) -> ･
+    111:111:com.linkbubble.Settings get() -> ˊ
+    164:179:void configureDefaultApp(android.content.pm.PackageManager,java.lang.String,java.lang.String) -> ･
+    187:209:void onOrientationChange() -> ˋ
+    212:267:void updateBrowsers() -> ˎ
+    271:275:boolean doesPackageExist(android.content.pm.PackageManager,java.lang.String) -> ･
+    279:285:android.content.pm.ResolveInfo findResolveInfoForPackageName(java.util.List,java.lang.String) -> ･
+    289:304:android.content.pm.ResolveInfo getYouTubeViewResolveInfo() -> ˏ
+    346:352:boolean setDefaultLeftConsumeBubble(android.content.pm.ResolveInfo,android.content.pm.PackageManager) -> ･
+    375:382:android.content.ComponentName getDefaultBrowserComponentName(android.content.Context) -> ･
+    386:395:android.graphics.drawable.Drawable getDefaultBrowserIcon(android.content.Context) -> ˊ
+    399:420:void setConsumeBubble(com.linkbubble.Constant$BubbleAction,com.linkbubble.Constant$ActionType,java.lang.String,java.lang.String,java.lang.String) -> ･
+    423:430:java.lang.String getConsumeBubbleLabel(com.linkbubble.Constant$BubbleAction) -> ･
+    434:441:java.lang.String getConsumeBubblePackageName(com.linkbubble.Constant$BubbleAction) -> ˊ
+    445:452:java.lang.String getConsumeBubbleActivityClassName(com.linkbubble.Constant$BubbleAction) -> ˋ
+    479:493:android.graphics.drawable.Drawable getConsumeBubbleIcon(com.linkbubble.Constant$BubbleAction) -> ˎ
+    509:513:void setInterceptLinksFrom(java.lang.String,java.lang.String) -> ･
+    556:584:boolean redirectUrlToBrowser(java.lang.String,android.content.pm.PackageManager) -> ･
+    603:636:java.util.ArrayList getAppsThatHandleUrl$6450ac98(java.lang.String,android.content.pm.PackageManager) -> ˊ
+    640:664:android.content.pm.ResolveInfo getDefaultAppForUrl$14c9ac02(java.net.URL,java.util.ArrayList) -> ･
+    673:682:void setDefaultApp(java.lang.String,android.content.pm.ResolveInfo,boolean) -> ･
+    686:691:void addDefaultApp(java.lang.String,android.content.ComponentName,boolean) -> ･
+    701:711:java.util.Vector loadCurrentTabs() -> ᐝ
+    715:737:void saveCurrentTabs$61fb9e66(java.util.ArrayList) -> ･
+    740:756:void saveDefaultApps() -> ʻ
+    760:780:void configureDefaultApps(java.lang.String) -> ˋ
+    783:791:java.util.TreeMap getDefaultAppsMap() -> ʼ
+    795:807:android.graphics.Point getBubbleRestingPoint() -> ʽ
+    869:891:void trackLinkLoadTime(long,com.linkbubble.Settings$LinkLoadType,java.lang.String) -> ･
+    933:941:boolean didRecentlyRedirectToApp(java.lang.String) -> ･
+    946:974:void addRedirectToApp(java.lang.String) -> ˊ
+    977:992:void saveRecentAppRedirects() -> ͺ
+    995:1013:void loadRecentAppRedirects() -> ι
     java.lang.String $(int,int,int) -> ･
 com.linkbubble.Settings$1 -> com.linkbubble.Settings$1:
     int[] $SwitchMap$com$linkbubble$Constant$BubbleAction -> ･
@@ -6964,8 +6983,8 @@ com.linkbubble.Settings$LinkLoadType -> com.linkbubble.Settings$LinkLoadType:
     com.linkbubble.Settings$LinkLoadType ShareToOtherApp -> ˎ
     com.linkbubble.Settings$LinkLoadType OpenInOtherApp -> ˏ
     com.linkbubble.Settings$LinkLoadType[] $VALUES -> ᐝ
-    846:846:com.linkbubble.Settings$LinkLoadType[] values() -> values
-    846:846:com.linkbubble.Settings$LinkLoadType valueOf(java.lang.String) -> valueOf
+    852:852:com.linkbubble.Settings$LinkLoadType[] values() -> values
+    852:852:com.linkbubble.Settings$LinkLoadType valueOf(java.lang.String) -> valueOf
 com.linkbubble.db.DatabaseHelper -> υ:
     java.lang.String[] LINK_HISTORY_COLUMNS -> ･
     java.lang.String[] FAVICON_EXISTS_COLUMNS -> ˊ
@@ -7025,16 +7044,16 @@ com.linkbubble.physics.DraggableHelper -> com.linkbubble.physics.DraggableHelper
     com.linkbubble.physics.DraggableHelper$AnimationEventListener mAnimationListener -> ˉ
     com.linkbubble.physics.DraggableHelper$OnTouchActionEventListener mOnTouchActionEventListener -> ՙ
     com.linkbubble.physics.DraggableHelper$1 mOnTouchListener$26ce0268 -> י
-    114:126:void addMoveEvent(float,float,long) -> ･
-    129:153:boolean onTouchActionDown(android.view.MotionEvent) -> ･
-    157:178:boolean onTouchActionMove(android.view.MotionEvent) -> ˊ
-    182:243:boolean onTouchActionUp(android.view.MotionEvent) -> ˋ
-    293:303:void clearTargetPos() -> ･
-    306:313:void setExactPos(int,int) -> ･
-    316:338:void setTargetPos(int,int,float,com.linkbubble.physics.DraggableHelper$AnimationType,com.linkbubble.physics.DraggableHelper$AnimationEventListener) -> ･
+    116:128:void addMoveEvent(float,float,long) -> ･
+    131:155:boolean onTouchActionDown(android.view.MotionEvent) -> ･
+    159:180:boolean onTouchActionMove(android.view.MotionEvent) -> ˊ
+    184:245:boolean onTouchActionUp(android.view.MotionEvent) -> ˋ
+    295:305:void clearTargetPos() -> ･
+    308:315:void setExactPos(int,int) -> ･
+    318:356:void setTargetPos(int,int,float,com.linkbubble.physics.DraggableHelper$AnimationType,com.linkbubble.physics.DraggableHelper$AnimationEventListener) -> ･
 com.linkbubble.physics.DraggableHelper$1 -> у:
     com.linkbubble.physics.DraggableHelper this$0 -> ･
-    251:266:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    253:268:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
 com.linkbubble.physics.DraggableHelper$2 -> com.linkbubble.physics.DraggableHelper$1:
     int[] $SwitchMap$com$linkbubble$physics$DraggableHelper$AnimationType -> ･
 com.linkbubble.physics.DraggableHelper$AnimationEventListener -> com.linkbubble.physics.DraggableHelper$･:
@@ -7045,9 +7064,10 @@ com.linkbubble.physics.DraggableHelper$AnimationType -> com.linkbubble.physics.D
     com.linkbubble.physics.DraggableHelper$AnimationType SmallOvershoot -> ˊ
     com.linkbubble.physics.DraggableHelper$AnimationType MediumOvershoot -> ˋ
     com.linkbubble.physics.DraggableHelper$AnimationType LargeOvershoot -> ˎ
-    com.linkbubble.physics.DraggableHelper$AnimationType[] $VALUES -> ˏ
-    17:17:com.linkbubble.physics.DraggableHelper$AnimationType[] values() -> values
-    17:17:com.linkbubble.physics.DraggableHelper$AnimationType valueOf(java.lang.String) -> valueOf
+    com.linkbubble.physics.DraggableHelper$AnimationType DistanceProportion -> ˏ
+    com.linkbubble.physics.DraggableHelper$AnimationType[] $VALUES -> ᐝ
+    18:18:com.linkbubble.physics.DraggableHelper$AnimationType[] values() -> values
+    18:18:com.linkbubble.physics.DraggableHelper$AnimationType valueOf(java.lang.String) -> valueOf
 com.linkbubble.physics.DraggableHelper$InternalMoveEvent -> com.linkbubble.physics.DraggableHelper$if:
     long mTime -> ･
     float mX -> ˊ
@@ -7587,67 +7607,68 @@ com.linkbubble.ui.ContentView -> com.linkbubble.ui.ContentView:
     com.linkbubble.ui.ContentView$9 mOnOverflowButtonClickListener$23ece1c1 -> ᵢ
     com.linkbubble.ui.ContentView$10 mOnTextContainerTouchListener$7fc3a0c9 -> ⁱ
     byte[] $ -> ˮ
-    167:188:void dispatchDraw(android.graphics.Canvas) -> dispatchDraw
-    678:725:void onPageLoadComplete(java.lang.String) -> ･
-    952:957:void configureOpenEmbedButton() -> ˎ
-    968:970:void updateAppsForUrl(java.net.URL) -> ･
-    973:1061:void updateAppsForUrl$7e1a7565(java.util.ArrayList,java.net.URL) -> ･
-    1109:1113:void saveLoadTime() -> ･
-    1120:1129:boolean updateUrl(java.lang.String) -> ˊ
-    1133:1142:java.net.URL getUpdatedUrl(java.lang.String) -> ˎ
-    1150:1159:void hidePopups() -> ˊ
-    1162:1174:void resetButtonPressedStates() -> ˋ
-    1189:1200:boolean openInApp(android.content.pm.ResolveInfo,java.lang.String) -> ･
-    1228:1235:void updateUrlTextView(java.lang.String) -> ˋ
-    58:58:com.linkbubble.ui.TabView access$000(com.linkbubble.ui.ContentView) -> ･
-    58:58:java.lang.Boolean access$100(com.linkbubble.ui.ContentView) -> ˊ
-    58:58:long access$200(com.linkbubble.ui.ContentView) -> ˋ
-    58:58:java.net.URL access$300(com.linkbubble.ui.ContentView,java.lang.String) -> ･
-    58:58:com.linkbubble.webrender.WebRenderer access$400(com.linkbubble.ui.ContentView) -> ˎ
-    58:58:void access$500(com.linkbubble.ui.ContentView,int,int,java.lang.String) -> ･
-    58:58:java.util.Stack access$600(com.linkbubble.ui.ContentView) -> ˏ
-    58:58:com.linkbubble.ui.ContentView$EventHandler access$700(com.linkbubble.ui.ContentView) -> ᐝ
-    58:58:boolean access$802(com.linkbubble.ui.ContentView,boolean) -> ･
-    58:58:boolean access$902(com.linkbubble.ui.ContentView,boolean) -> ˊ
-    58:58:com.linkbubble.ui.ContentViewButton access$1000(com.linkbubble.ui.ContentView) -> ʻ
-    58:58:com.linkbubble.ui.ContentViewButton access$1100(com.linkbubble.ui.ContentView) -> ʼ
-    58:58:java.lang.String access$1200(com.linkbubble.ui.ContentView) -> ʽ
-    58:58:boolean access$1300(com.linkbubble.ui.ContentView,java.lang.String) -> ˊ
-    58:58:boolean access$1402$5afed9d6(com.linkbubble.ui.ContentView) -> ͺ
-    58:58:boolean access$1500(com.linkbubble.ui.ContentView,java.lang.String) -> ˋ
-    58:58:boolean access$1600(com.linkbubble.ui.ContentView,android.content.pm.ResolveInfo,java.lang.String) -> ･
-    58:58:void access$1700$41defa9e(com.linkbubble.ui.ContentView,java.util.ArrayList,java.net.URL) -> ･
-    58:58:boolean access$800(com.linkbubble.ui.ContentView) -> ι
-    58:58:boolean access$900(com.linkbubble.ui.ContentView) -> ʾ
-    58:58:java.util.ArrayList access$1800$7e890e19(com.linkbubble.ui.ContentView) -> ʿ
-    58:58:java.util.HashSet access$1900$14ae2223(com.linkbubble.ui.ContentView) -> ˈ
-    58:58:long access$202(com.linkbubble.ui.ContentView,long) -> ･
-    58:58:void access$2000(com.linkbubble.ui.ContentView) -> ˉ
-    58:58:void access$2100(com.linkbubble.ui.ContentView) -> ˌ
-    58:58:com.linkbubble.ui.CondensedTextView access$2200(com.linkbubble.ui.ContentView) -> ˍ
-    58:58:int access$2300(com.linkbubble.ui.ContentView) -> ˑ
-    58:58:java.lang.String access$2402(com.linkbubble.ui.ContentView,java.lang.String) -> ˎ
-    58:58:boolean access$1400(com.linkbubble.ui.ContentView) -> ـ
-    58:58:int access$2302(com.linkbubble.ui.ContentView,int) -> ･
-    58:58:java.lang.String access$2400(com.linkbubble.ui.ContentView) -> ᐧ
-    58:58:void access$2500(com.linkbubble.ui.ContentView,java.lang.String) -> ˏ
-    58:58:com.linkbubble.ui.OpenEmbedButton access$2600(com.linkbubble.ui.ContentView) -> ᐨ
-    58:58:void access$2700(com.linkbubble.ui.ContentView,java.lang.String,boolean) -> ･
-    58:58:android.widget.PopupMenu access$2802(com.linkbubble.ui.ContentView,android.widget.PopupMenu) -> ･
-    58:58:com.linkbubble.ui.ContentViewButton access$2900(com.linkbubble.ui.ContentView) -> ・
-    58:58:android.widget.PopupMenu access$2800(com.linkbubble.ui.ContentView) -> ﹳ
-    58:58:void access$3000(com.linkbubble.ui.ContentView,java.net.URL) -> ･
-    58:58:android.app.AlertDialog access$3100(com.linkbubble.ui.ContentView) -> ﾞ
+    168:189:void dispatchDraw(android.graphics.Canvas) -> dispatchDraw
+    677:724:void onPageLoadComplete(java.lang.String) -> ･
+    962:967:void configureOpenEmbedButton() -> ˎ
+    978:980:void updateAppsForUrl(java.net.URL) -> ･
+    983:1071:void updateAppsForUrl$7e1a7565(java.util.ArrayList,java.net.URL) -> ･
+    1119:1123:void saveLoadTime() -> ･
+    1130:1139:boolean updateUrl(java.lang.String) -> ˎ
+    1143:1155:void updateAndLoadUrl(java.lang.String) -> ˊ
+    1158:1167:java.net.URL getUpdatedUrl(java.lang.String) -> ˏ
+    1175:1184:void hidePopups() -> ˊ
+    1187:1199:void resetButtonPressedStates() -> ˋ
+    1215:1226:boolean openInApp(android.content.pm.ResolveInfo,java.lang.String) -> ･
+    1254:1267:void updateUrlTitleAndText(java.lang.String) -> ˋ
+    59:59:java.lang.Boolean access$000(com.linkbubble.ui.ContentView) -> ･
+    59:59:long access$100(com.linkbubble.ui.ContentView) -> ˊ
+    59:59:java.net.URL access$200(com.linkbubble.ui.ContentView,java.lang.String) -> ･
+    59:59:com.linkbubble.webrender.WebRenderer access$300(com.linkbubble.ui.ContentView) -> ˋ
+    59:59:void access$400(com.linkbubble.ui.ContentView,int,int,java.lang.String) -> ･
+    59:59:java.util.Stack access$500(com.linkbubble.ui.ContentView) -> ˎ
+    59:59:com.linkbubble.ui.ContentView$EventHandler access$600(com.linkbubble.ui.ContentView) -> ˏ
+    59:59:boolean access$702(com.linkbubble.ui.ContentView,boolean) -> ･
+    59:59:boolean access$802(com.linkbubble.ui.ContentView,boolean) -> ˊ
+    59:59:void access$900(com.linkbubble.ui.ContentView,java.lang.String) -> ˊ
+    59:59:com.linkbubble.ui.ContentViewButton access$1000(com.linkbubble.ui.ContentView) -> ᐝ
+    59:59:com.linkbubble.ui.ContentViewButton access$1100(com.linkbubble.ui.ContentView) -> ʻ
+    59:59:java.lang.String access$1200(com.linkbubble.ui.ContentView) -> ʼ
+    59:59:boolean access$1300(com.linkbubble.ui.ContentView,java.lang.String) -> ˋ
+    59:59:boolean access$1402$5afed9d6(com.linkbubble.ui.ContentView) -> ʽ
+    59:59:boolean access$1500(com.linkbubble.ui.ContentView,java.lang.String) -> ˎ
+    59:59:boolean access$1600(com.linkbubble.ui.ContentView,android.content.pm.ResolveInfo,java.lang.String) -> ･
+    59:59:void access$1700$41defa9e(com.linkbubble.ui.ContentView,java.util.ArrayList,java.net.URL) -> ･
+    59:59:boolean access$700(com.linkbubble.ui.ContentView) -> ͺ
+    59:59:boolean access$800(com.linkbubble.ui.ContentView) -> ι
+    59:59:java.util.ArrayList access$1800$7e890e19(com.linkbubble.ui.ContentView) -> ʾ
+    59:59:java.util.HashSet access$1900$14ae2223(com.linkbubble.ui.ContentView) -> ʿ
+    59:59:long access$102(com.linkbubble.ui.ContentView,long) -> ･
+    59:59:com.linkbubble.ui.TabView access$2000(com.linkbubble.ui.ContentView) -> ˈ
+    59:59:void access$2100(com.linkbubble.ui.ContentView) -> ˉ
+    59:59:void access$2200(com.linkbubble.ui.ContentView) -> ˌ
+    59:59:int access$2300(com.linkbubble.ui.ContentView) -> ˍ
+    59:59:java.lang.String access$2402(com.linkbubble.ui.ContentView,java.lang.String) -> ˏ
+    59:59:com.linkbubble.ui.CondensedTextView access$2500(com.linkbubble.ui.ContentView) -> ˑ
+    59:59:boolean access$1400(com.linkbubble.ui.ContentView) -> ـ
+    59:59:int access$2302(com.linkbubble.ui.ContentView,int) -> ･
+    59:59:java.lang.String access$2400(com.linkbubble.ui.ContentView) -> ᐧ
+    59:59:void access$2600(com.linkbubble.ui.ContentView,java.lang.String) -> ᐝ
+    59:59:com.linkbubble.ui.OpenEmbedButton access$2700(com.linkbubble.ui.ContentView) -> ᐨ
+    59:59:void access$2800$5aa23ae4(com.linkbubble.ui.ContentView,java.lang.String) -> ʻ
+    59:59:android.widget.PopupMenu access$2902(com.linkbubble.ui.ContentView,android.widget.PopupMenu) -> ･
+    59:59:com.linkbubble.ui.ContentViewButton access$3000(com.linkbubble.ui.ContentView) -> ・
+    59:59:android.widget.PopupMenu access$2900(com.linkbubble.ui.ContentView) -> ﹳ
+    59:59:void access$3100(com.linkbubble.ui.ContentView,java.net.URL) -> ･
+    59:59:android.app.AlertDialog access$3200(com.linkbubble.ui.ContentView) -> ﾞ
     java.lang.String $(int,int,int) -> ･
 com.linkbubble.ui.ContentView$1 -> ᓗ:
     java.lang.String val$urlAsString -> ･
-    boolean val$closeBubbleOnShare -> ˊ
-    com.linkbubble.ui.ContentView this$0 -> ˋ
-    211:228:void onSelected(com.linkbubble.util.ActionItem) -> ･
+    com.linkbubble.ui.ContentView this$0 -> ˊ
+    212:229:void onSelected(com.linkbubble.util.ActionItem) -> ･
 com.linkbubble.ui.ContentView$10 -> ᓚ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    872:873:void onSwipeRight() -> ･
-    875:876:void onSwipeLeft() -> ˊ
+    882:883:void onSwipeRight() -> ･
+    885:886:void onSwipeLeft() -> ˊ
 com.linkbubble.ui.ContentView$11 -> ᓺ:
     java.util.ArrayList val$longClickSelections -> ･
     java.lang.String val$openInNewBubbleLabel -> ˊ
@@ -7657,87 +7678,89 @@ com.linkbubble.ui.ContentView$11 -> ᓺ:
     java.lang.String val$leftConsumeBubbleLabel -> ᐝ
     java.lang.String val$rightConsumeBubbleLabel -> ʻ
     com.linkbubble.ui.ContentView this$0 -> ʼ
-    924:942:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    934:952:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.linkbubble.ui.ContentView$12 -> ᓻ:
     java.lang.String val$urlAsString -> ･
     com.linkbubble.ui.ContentView this$0 -> ˊ
-    1217:1220:void onClick() -> ･
-    1223:1223:void onClose() -> ˊ
+    1243:1246:void onClick() -> ･
+    1249:1249:void onClose() -> ˊ
 com.linkbubble.ui.ContentView$13 -> ᓾ:
     com.linkbubble.webrender.WebRenderer$GetGeolocationCallback val$callback -> ･
     com.linkbubble.ui.ContentView this$0 -> ˊ
-    1254:1256:void onClick(android.view.View) -> onClick
+    1286:1288:void onClick(android.view.View) -> onClick
 com.linkbubble.ui.ContentView$2 -> ᓿ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    279:280:void onClick(android.view.View) -> onClick
+    280:281:void onClick(android.view.View) -> onClick
 com.linkbubble.ui.ContentView$3 -> ᔂ:
     android.os.Handler mHandler -> ˊ
     com.linkbubble.ui.ContentView$3$3 mUpdateOpenInAppRunnable$453f5682 -> ˋ
     com.linkbubble.ui.ContentView this$0 -> ･
     byte[] $ -> ˎ
-    306:344:boolean shouldOverrideUrlLoading(java.lang.String,boolean) -> ･
-    349:353:void onReceivedError() -> ･
-    357:493:void onPageStarted$3c2eaaf1(java.lang.String) -> ･
-    498:510:void onPageFinished(java.lang.String) -> ˊ
-    514:516:void onDownloadStart(java.lang.String) -> ˋ
-    520:524:void onReceivedTitle(java.lang.String,java.lang.String) -> ･
-    532:538:void onReceivedIcon(android.graphics.Bitmap) -> ･
-    544:554:void onProgressChanged(int,java.lang.String) -> ･
-    558:589:boolean onBackPressed() -> ˊ
-    595:596:void onUrlLongClick(java.lang.String) -> ˎ
-    600:603:void onShowBrowserPrompt() -> ˋ
-    607:608:void onCloseWindow() -> ˎ
-    612:613:void onGeolocationPermissionsShowPrompt$f7860c0$78c28c36(java.lang.String,com.linkbubble.webrender.WebRenderer$GetGeolocationCallback) -> ･
-    617:621:int getPageInspectFlags() -> ˏ
-    629:639:void onPageInspectorYouTubeEmbedFound() -> ᐝ
-    643:659:void onPageInspectorTouchIconLoaded(android.graphics.Bitmap,java.lang.String) -> ･
-    663:670:void onPageInspectorDropDownWarningClick() -> ʻ
+    303:340:boolean shouldOverrideUrlLoading(java.lang.String,boolean) -> ･
+    346:352:void onLoadUrl(java.lang.String) -> ･
+    356:360:void onReceivedError() -> ･
+    364:499:void onPageStarted$3c2eaaf1(java.lang.String) -> ˊ
+    504:516:void onPageFinished(java.lang.String) -> ˋ
+    520:522:void onDownloadStart(java.lang.String) -> ˎ
+    526:530:void onReceivedTitle(java.lang.String,java.lang.String) -> ･
+    538:544:void onReceivedIcon(android.graphics.Bitmap) -> ･
+    550:560:void onProgressChanged(int,java.lang.String) -> ･
+    564:588:boolean onBackPressed() -> ˊ
+    594:595:void onUrlLongClick(java.lang.String) -> ˏ
+    599:602:void onShowBrowserPrompt() -> ˋ
+    606:607:void onCloseWindow() -> ˎ
+    611:612:void onGeolocationPermissionsShowPrompt$f7860c0$78c28c36(java.lang.String,com.linkbubble.webrender.WebRenderer$GetGeolocationCallback) -> ･
+    616:620:int getPageInspectFlags() -> ˏ
+    628:638:void onPageInspectorYouTubeEmbedFound() -> ᐝ
+    642:658:void onPageInspectorTouchIconLoaded(android.graphics.Bitmap,java.lang.String) -> ･
+    662:669:void onPageInspectorDropDownWarningClick() -> ʻ
     java.lang.String $(int,int,int) -> ･
 com.linkbubble.ui.ContentView$3$1 -> ᔃ:
     android.content.Context val$context -> ･
     java.util.ArrayList val$resolveInfos -> ˊ
     java.lang.String val$urlAsString -> ˋ
     com.linkbubble.ui.ContentView$3 this$1 -> ˎ
-    431:460:void onSelected(com.linkbubble.util.ActionItem,boolean) -> ･
+    438:467:void onSelected(com.linkbubble.util.ActionItem,boolean) -> ･
 com.linkbubble.ui.ContentView$3$2 -> ᔦ:
     com.linkbubble.ui.ContentView$3 this$1 -> ･
-    466:467:void onDismiss(android.content.DialogInterface) -> onDismiss
+    473:474:void onDismiss(android.content.DialogInterface) -> onDismiss
 com.linkbubble.ui.ContentView$3$3 -> ᔩ:
     com.linkbubble.ui.ContentView$3 this$1 -> ･
-    633:634:void run() -> run
+    632:633:void run() -> run
 com.linkbubble.ui.ContentView$3$4 -> ᔪ:
     java.lang.String val$pageUrl -> ･
     android.graphics.Bitmap val$bitmap -> ˊ
     com.linkbubble.ui.ContentView$3 this$1 -> ˋ
-    650:657:void run() -> run
+    649:656:void run() -> run
 com.linkbubble.ui.ContentView$3$5 -> ᔮ:
     com.linkbubble.ui.ContentView$3 this$1 -> ･
-    666:668:void run() -> run
+    665:667:void run() -> run
 com.linkbubble.ui.ContentView$4 -> ᘤ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    733:738:void run() -> run
+    732:737:void run() -> run
 com.linkbubble.ui.ContentView$5 -> ᚐ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    744:745:void onClick(android.view.View) -> onClick
+    743:744:void onClick(android.view.View) -> onClick
 com.linkbubble.ui.ContentView$8 -> ᴈ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    768:770:void onClick(android.view.View) -> onClick
+    767:769:void onClick(android.view.View) -> onClick
 com.linkbubble.ui.ContentView$9 -> ᴏ:
     com.linkbubble.ui.ContentView this$0 -> ･
-    776:867:void onClick(android.view.View) -> onClick
+    775:877:void onClick(android.view.View) -> onClick
 com.linkbubble.ui.ContentView$9$1 -> ᴢ:
     android.content.Context val$context -> ･
     com.linkbubble.ui.ContentView$9 this$1 -> ˊ
-    799:855:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
+    803:865:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
 com.linkbubble.ui.ContentView$9$2 -> ᴣ:
     com.linkbubble.ui.ContentView$9 this$1 -> ･
-    861:864:void onDismiss(android.widget.PopupMenu) -> onDismiss
+    871:874:void onDismiss(android.widget.PopupMenu) -> onDismiss
 com.linkbubble.ui.ContentView$AppForUrl -> com.linkbubble.ui.ContentView$･:
     android.content.pm.ResolveInfo mResolveInfo -> ･
     java.net.URL mUrl -> ˊ
     android.graphics.drawable.Drawable mIcon -> ˋ
     byte[] $ -> ˎ
-    146:151:android.graphics.drawable.Drawable getIcon(android.content.Context) -> ･
+    int $$ -> ˏ
+    147:152:android.graphics.drawable.Drawable getIcon(android.content.Context) -> ･
     java.lang.String $(int,int,int) -> ･
 com.linkbubble.ui.ContentView$EventHandler -> com.linkbubble.ui.ContentView$if:
     com.linkbubble.ui.TabView this$0 -> ･
@@ -7761,18 +7784,19 @@ com.linkbubble.ui.DownloadHandlerActivity -> com.linkbubble.ui.DownloadHandlerAc
 com.linkbubble.ui.EntryActivity -> com.linkbubble.ui.EntryActivity:
     com.linkbubble.ui.EntryActivity sCurrentInstance -> ･
     android.os.Handler mHandler -> ˊ
-    38:168:void onCreate(android.os.Bundle) -> onCreate
-    190:195:void onDestroy() -> onDestroy
-    199:202:void onStart() -> onStart
-    206:209:void onStop() -> onStop
-    213:214:void onBackPressed() -> onBackPressed
+    40:197:void onCreate(android.os.Bundle) -> onCreate
+    203:214:android.app.ActivityManager$RecentTaskInfo getPreviousTaskInfo(java.util.List) -> ･
+    219:224:void onDestroy() -> onDestroy
+    228:231:void onStart() -> onStart
+    235:238:void onStop() -> onStop
+    242:243:void onBackPressed() -> onBackPressed
 com.linkbubble.ui.EntryActivity$1 -> Ḭ:
     com.linkbubble.ui.EntryActivity this$0 -> ･
-    54:55:void onClick() -> ･
-    59:60:void onClose() -> ˊ
+    58:59:void onClick() -> ･
+    63:64:void onClose() -> ˊ
 com.linkbubble.ui.EntryActivity$2 -> ḭ:
     com.linkbubble.ui.EntryActivity this$0 -> ･
-    223:226:void run() -> run
+    252:255:void run() -> run
 com.linkbubble.ui.FAQDialog -> ṫ:
     android.app.Activity mActivity -> ･
     boolean[] mExpanded -> ʼ
@@ -7935,6 +7959,7 @@ com.linkbubble.ui.HomeActivity -> com.linkbubble.ui.HomeActivity:
     android.os.Handler mHandler -> ˈ
     com.linkbubble.ui.HomeActivity$7 mTamperPromptEventListener$b55cb24 -> ･
     byte[] $ -> ˉ
+    int $$ -> ˌ
     69:197:void onCreate(android.os.Bundle) -> onCreate
     201:261:void setInfo(android.accounts.Account[],com.parse.ParseObject) -> ˊ
     264:289:boolean updateParseObject(com.parse.ParseObject,java.util.HashSet,java.lang.String) -> ･
@@ -8087,7 +8112,6 @@ com.linkbubble.ui.SettingsFragment -> com.linkbubble.ui.SettingsFragment:
     int mForceCrashCountdown -> ᐝ
     android.widget.Toast mForceCrashToast -> ˊ
     byte[] $ -> ʻ
-    int $$ -> ʼ
     72:129:void configureDefaultAppsList() -> ˋ
     133:408:void onCreate(android.os.Bundle) -> onCreate
     412:423:void onResume() -> onResume
@@ -8316,61 +8340,60 @@ com.linkbubble.util.ActionItem -> ڹ:
     java.lang.String mActivityClassName -> ˏ
     android.graphics.drawable.Drawable mIcon -> ᐝ
     byte[] $ -> ʻ
-    int $$ -> ʼ
-    73:138:java.util.ArrayList getActionItems(android.content.Context,boolean,boolean,boolean) -> ･
-    142:171:android.app.AlertDialog getDefaultBrowserAlert$472415a9(android.app.Activity,com.linkbubble.ui.SettingsFragment$7$1) -> ･
-    176:315:android.app.AlertDialog getActionItemPickerAlert$7acab40a$97e5037(android.content.Context,java.util.ArrayList,com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener) -> ･
-    320:361:android.app.AlertDialog getConfigureBubbleAlert$472415a9(android.app.Activity,com.linkbubble.util.ActionItem$OnActionItemSelectedListener) -> ･
-    367:395:android.app.AlertDialog getShareAlert$7e15ad1b(android.content.Context,com.linkbubble.util.ActionItem$OnActionItemSelectedListener) -> ･
+    73:140:java.util.ArrayList getActionItems(android.content.Context,boolean,boolean,boolean) -> ･
+    144:173:android.app.AlertDialog getDefaultBrowserAlert$472415a9(android.app.Activity,com.linkbubble.ui.SettingsFragment$7$1) -> ･
+    178:317:android.app.AlertDialog getActionItemPickerAlert$7acab40a$97e5037(android.content.Context,java.util.ArrayList,com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener) -> ･
+    322:363:android.app.AlertDialog getConfigureBubbleAlert$472415a9(android.app.Activity,com.linkbubble.util.ActionItem$OnActionItemSelectedListener) -> ･
+    369:397:android.app.AlertDialog getShareAlert$7e15ad1b(android.content.Context,com.linkbubble.util.ActionItem$OnActionItemSelectedListener) -> ･
     38:38:android.graphics.drawable.Drawable access$000(com.linkbubble.util.ActionItem) -> ･
     java.lang.String $(int,int,int) -> ･
 com.linkbubble.util.ActionItem$1 -> ۂ:
-    126:126:int compare(java.lang.Object,java.lang.Object) -> compare
+    128:128:int compare(java.lang.Object,java.lang.Object) -> compare
 com.linkbubble.util.ActionItem$10 -> ۊ:
     com.linkbubble.util.ActionItem$OnActionItemSelectedListener val$onActionItemSelectedListener -> ･
     android.app.AlertDialog val$alertDialog -> ˊ
-    385:392:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    387:394:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.linkbubble.util.ActionItem$1ActionItemListView -> ܚ:
     boolean mDefaultSet -> ˊ
     long mLastItemClickTime -> ･
-    212:226:void draw(android.graphics.Canvas) -> draw
+    214:228:void draw(android.graphics.Canvas) -> draw
 com.linkbubble.util.ActionItem$2 -> ܪ:
     com.linkbubble.ui.SettingsFragment$7$1 val$onActionItemSelectedListener$2df75527 -> ･
     android.app.AlertDialog val$alertDialog -> ˊ
-    158:168:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    160:170:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.linkbubble.util.ActionItem$3 -> ܬ:
-    189:189:int compare(java.lang.Object,java.lang.Object) -> compare
+    191:191:int compare(java.lang.Object,java.lang.Object) -> compare
 com.linkbubble.util.ActionItem$4 -> र:
     com.linkbubble.util.ActionItem$1ActionItemListView val$listView -> ･
     java.util.ArrayList val$actionItems -> ˊ
     com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener val$onActionItemDefaultSelectedListener -> ˋ
     android.app.AlertDialog val$alertDialog -> ˎ
-    254:290:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    256:292:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.linkbubble.util.ActionItem$5 -> ঌ:
     com.linkbubble.util.ActionItem$1ActionItemListView val$listView -> ･
     java.util.ArrayList val$actionItems -> ˊ
     com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener val$onActionItemDefaultSelectedListener -> ˋ
-    296:301:void onClick(android.content.DialogInterface,int) -> onClick
+    298:303:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.util.ActionItem$6 -> গ:
     com.linkbubble.util.ActionItem$1ActionItemListView val$listView -> ･
     java.util.ArrayList val$actionItems -> ˊ
     com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener val$onActionItemDefaultSelectedListener -> ˋ
-    307:312:void onClick(android.content.DialogInterface,int) -> onClick
+    309:314:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.util.ActionItem$7 -> ঢ:
     com.linkbubble.util.ActionItem$OnActionItemSelectedListener val$onActionItemSelectedListener -> ･
     android.app.AlertDialog val$alertDialog -> ˊ
-    336:343:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    338:345:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.linkbubble.util.ActionItem$8 -> ব:
-    350:350:void onClick(android.content.DialogInterface,int) -> onClick
+    352:352:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.util.ActionItem$9 -> শ:
-    358:358:void onCancel(android.content.DialogInterface) -> onCancel
+    360:360:void onCancel(android.content.DialogInterface) -> onCancel
 com.linkbubble.util.ActionItem$ActionItemAdapter -> ڹ$･:
     android.content.Context mContext -> ･
     int mLayoutResourceId -> ˊ
     com.linkbubble.util.ActionItem[] mData -> ˋ
-    414:429:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-    434:439:android.view.View getHeaderView(int,android.view.View,android.view.ViewGroup) -> ･
-    444:448:long getHeaderId(int) -> ･
+    416:431:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    436:441:android.view.View getHeaderView(int,android.view.View,android.view.ViewGroup) -> ･
+    446:450:long getHeaderId(int) -> ･
 com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener -> ڹ$if:
     void onSelected(com.linkbubble.util.ActionItem,boolean) -> ･
 com.linkbubble.util.ActionItem$OnActionItemSelectedListener -> ڹ$ˊ:
@@ -8475,6 +8498,8 @@ com.linkbubble.util.StatHat$1 -> ᒌ:
 com.linkbubble.util.StatHat$3 -> ᒎ:
     java.lang.String val$statName -> ･
     com.linkbubble.util.StatHat this$0 -> ˊ
+    89:89:void failure(retrofit.RetrofitError) -> ･
+    80:80:void success$5b40cb57(java.lang.Object) -> ･
 com.linkbubble.util.StatHatService -> ᒑ:
 com.linkbubble.util.TranslateAnimationEx -> ᒬ:
     int mFromXType -> ･
@@ -8576,47 +8601,71 @@ com.linkbubble.util.YouTubeEmbedHelper$EmbedItemAdapter -> ᒮ$ˊ:
     378:378:java.lang.Object getItem(int) -> getItem
     383:383:long getItemId(int) -> getItemId
     389:406:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.linkbubble.webrender.StubRenderer -> ᒳ:
-    android.view.View mView -> ˊ
-    24:24:void destroy() -> ･
-    28:28:android.webkit.WebView getView$2f72df89() -> ˊ
-    34:34:void updateIncognitoMode(boolean) -> ･
-    39:39:void loadUrl(java.lang.String) -> ･
-    44:44:void reload() -> ˋ
-    49:49:void stopLoading() -> ˎ
-    54:54:void hidePopups() -> ˏ
-    59:59:void resetPageInspector() -> ᐝ
-    64:64:void runPageInspector() -> ʻ
-    68:68:com.linkbubble.util.YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper() -> ʼ
+com.linkbubble.webrender.DiffBotRenderer -> ᒳ:
+    com.linkbubble.webrender.DiffBotRenderer$DiffBotService sDiffBotService -> ʼ
+    android.view.View mView -> ʽ
+    android.widget.ImageView mImageView -> ･
+    android.widget.TextView mTitleTextView -> ˊ
+    android.widget.TextView mBodyTextView -> ˋ
+    115:115:void destroy() -> ･
+    119:119:android.webkit.WebView getView$2f72df89() -> ˊ
+    125:125:void updateIncognitoMode(boolean) -> ･
+    130:192:void loadUrl(java.net.URL,com.linkbubble.webrender.WebRenderer$Mode) -> ･
+    197:197:void reload() -> ˋ
+    202:202:void stopLoading() -> ˎ
+    207:207:void hidePopups() -> ˏ
+    212:212:void resetPageInspector() -> ᐝ
+    217:217:void runPageInspector() -> ʻ
+    221:221:com.linkbubble.util.YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper() -> ʼ
+com.linkbubble.webrender.DiffBotRenderer$1 -> ᒶ:
+    com.linkbubble.webrender.DiffBotRenderer this$0 -> ･
+    189:190:void failure(retrofit.RetrofitError) -> ･
+    133:133:void success$5b40cb57(java.lang.Object) -> ･
+com.linkbubble.webrender.DiffBotRenderer$DiffBotService -> ᒳ$･:
+com.linkbubble.webrender.StubRenderer -> ᒷ:
+    android.view.View mView -> ･
+    26:26:void destroy() -> ･
+    30:30:android.webkit.WebView getView$2f72df89() -> ˊ
+    36:36:void updateIncognitoMode(boolean) -> ･
+    41:41:void loadUrl(java.net.URL,com.linkbubble.webrender.WebRenderer$Mode) -> ･
+    46:46:void reload() -> ˋ
+    51:51:void stopLoading() -> ˎ
+    56:56:void hidePopups() -> ˏ
+    61:61:void resetPageInspector() -> ᐝ
+    66:66:void runPageInspector() -> ʻ
+    70:70:com.linkbubble.util.YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper() -> ʼ
 com.linkbubble.webrender.WebRenderer -> com.linkbubble.webrender.WebRenderer:
-    java.net.URL mUrl -> ･
+    com.linkbubble.webrender.WebRenderer$Mode mMode -> ˎ
+    android.content.Context mContext -> ˏ
+    com.linkbubble.ui.ContentView$3 mController$f2be6e2 -> ᐝ
+    java.net.URL mUrl -> ʻ
     void destroy() -> ･
     android.webkit.WebView getView$2f72df89() -> ˊ
     void updateIncognitoMode(boolean) -> ･
-    void loadUrl(java.lang.String) -> ･
+    void loadUrl(java.net.URL,com.linkbubble.webrender.WebRenderer$Mode) -> ･
     void reload() -> ˋ
     void stopLoading() -> ˎ
     void hidePopups() -> ˏ
     void resetPageInspector() -> ᐝ
     void runPageInspector() -> ʻ
     com.linkbubble.util.YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper() -> ʼ
-    82:82:void onPageLoadComplete() -> ʽ
-    85:85:java.net.URL getUrl() -> ͺ
-    89:90:void setUrl(java.lang.String) -> ˊ
-    93:94:void setUrl(java.net.URL) -> ･
+    97:97:void onPageLoadComplete() -> ʽ
+    100:100:java.net.URL getUrl() -> ͺ
+    104:105:void setUrl(java.lang.String) -> ･
 com.linkbubble.webrender.WebRenderer$1 -> com.linkbubble.webrender.WebRenderer$1:
     int[] $SwitchMap$com$linkbubble$webrender$WebRenderer$Type -> ･
 com.linkbubble.webrender.WebRenderer$Controller -> com.linkbubble.webrender.WebRenderer$･:
     boolean shouldOverrideUrlLoading(java.lang.String,boolean) -> ･
+    void onLoadUrl(java.lang.String) -> ･
     void onReceivedError() -> ･
-    void onPageStarted$3c2eaaf1(java.lang.String) -> ･
-    void onPageFinished(java.lang.String) -> ˊ
-    void onDownloadStart(java.lang.String) -> ˋ
+    void onPageStarted$3c2eaaf1(java.lang.String) -> ˊ
+    void onPageFinished(java.lang.String) -> ˋ
+    void onDownloadStart(java.lang.String) -> ˎ
     void onReceivedTitle(java.lang.String,java.lang.String) -> ･
     void onReceivedIcon(android.graphics.Bitmap) -> ･
     void onProgressChanged(int,java.lang.String) -> ･
     boolean onBackPressed() -> ˊ
-    void onUrlLongClick(java.lang.String) -> ˎ
+    void onUrlLongClick(java.lang.String) -> ˏ
     void onShowBrowserPrompt() -> ˋ
     void onCloseWindow() -> ˎ
     void onGeolocationPermissionsShowPrompt$f7860c0$78c28c36(java.lang.String,com.linkbubble.webrender.WebRenderer$GetGeolocationCallback) -> ･
@@ -8628,107 +8677,139 @@ com.linkbubble.webrender.WebRenderer$GetGeolocationCallback -> com.linkbubble.we
     android.webkit.GeolocationPermissions$Callback val$callback -> ･
     java.lang.String val$origin -> ˊ
     com.linkbubble.webrender.WebViewRenderer$8 this$1 -> ˋ
+com.linkbubble.webrender.WebRenderer$Mode -> com.linkbubble.webrender.WebRenderer$Mode:
+    com.linkbubble.webrender.WebRenderer$Mode Web -> ･
+    com.linkbubble.webrender.WebRenderer$Mode Article -> ˊ
+    com.linkbubble.webrender.WebRenderer$Mode[] $VALUES -> ˋ
+    60:60:com.linkbubble.webrender.WebRenderer$Mode[] values() -> values
+    60:60:com.linkbubble.webrender.WebRenderer$Mode valueOf(java.lang.String) -> valueOf
 com.linkbubble.webrender.WebRenderer$Type -> com.linkbubble.webrender.WebRenderer$Type:
-    com.linkbubble.webrender.WebRenderer$Type Stub -> ･
-    com.linkbubble.webrender.WebRenderer$Type WebView -> ˊ
-    com.linkbubble.webrender.WebRenderer$Type[] $VALUES -> ˋ
+    com.linkbubble.webrender.WebRenderer$Type DiffBot -> ･
+    com.linkbubble.webrender.WebRenderer$Type Stub -> ˊ
+    com.linkbubble.webrender.WebRenderer$Type WebView -> ˋ
+    com.linkbubble.webrender.WebRenderer$Type[] $VALUES -> ˎ
     39:39:com.linkbubble.webrender.WebRenderer$Type[] values() -> values
     39:39:com.linkbubble.webrender.WebRenderer$Type valueOf(java.lang.String) -> valueOf
-com.linkbubble.webrender.WebViewRenderer -> ᒶ:
-    java.lang.String TAG -> ˈ
-    android.os.Handler mHandler -> ˉ
-    android.content.Context mContext -> ˊ
-    android.webkit.WebView mWebView -> ˋ
-    android.view.View mTouchInterceptorView -> ˌ
-    long mLastWebViewTouchUpTime -> ˎ
-    java.lang.String mLastWebViewTouchDownUrl -> ˏ
-    com.linkbubble.ui.ContentView$3 mController$f2be6e2 -> ᐝ
-    android.app.AlertDialog mJsAlertDialog -> ʻ
-    android.app.AlertDialog mJsConfirmDialog -> ʼ
-    android.app.AlertDialog mJsPromptDialog -> ʽ
-    com.linkbubble.util.PageInspector mPageInspector -> ͺ
-    int mCheckForEmbedsCount -> ι
-    java.lang.Boolean mIsDestroyed -> ʾ
-    com.linkbubble.util.PageInspector$OnItemFoundListener mOnPageInspectorItemFoundListener$48fbc32f$2bd65ba -> ˍ
-    boolean mDoDropDownCheck -> ʿ
-    com.linkbubble.webrender.WebViewRenderer$2 mDropDownCheckRunnable$453f5682 -> ˑ
-    com.linkbubble.webrender.WebViewRenderer$3 mOnKeyListener$6df0ff48 -> ـ
-    com.linkbubble.webrender.WebViewRenderer$4 mOnWebViewLongClickListener$785c825 -> ᐧ
-    com.linkbubble.webrender.WebViewRenderer$5 mWebViewOnTouchListener$26ce0268 -> ᐨ
-    com.linkbubble.webrender.WebViewRenderer$6 mWebViewClient$37b6b5d8 -> ・
-    com.linkbubble.webrender.WebViewRenderer$7 mDownloadListener$5eab45e -> ﹳ
-    com.linkbubble.webrender.WebViewRenderer$8 mWebChromeClient$451ad23 -> ﾞ
-    106:108:void destroy() -> ･
-    112:112:android.webkit.WebView getView$2f72df89() -> ˊ
-    117:131:void updateIncognitoMode(boolean) -> ･
-    135:136:void loadUrl(java.lang.String) -> ･
-    140:141:void reload() -> ˋ
-    145:146:void stopLoading() -> ˎ
-    150:162:void hidePopups() -> ˏ
-    166:169:void onPageLoadComplete() -> ʽ
-    173:174:void resetPageInspector() -> ᐝ
-    178:179:void runPageInspector() -> ʻ
-    183:183:com.linkbubble.util.YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper() -> ʼ
-com.linkbubble.webrender.WebViewRenderer$2 -> ᒷ:
+com.linkbubble.webrender.WebViewRenderer -> ᒺ:
+    java.text.SimpleDateFormat sDateFormat -> ˊ
+    java.lang.String TAG -> ˋ
+    android.os.Handler mHandler -> ʼ
+    android.webkit.WebView mWebView -> ･
+    android.view.View mTouchInterceptorView -> ʽ
+    long mLastWebViewTouchUpTime -> ͺ
+    java.lang.String mLastWebViewTouchDownUrl -> ι
+    android.app.AlertDialog mJsAlertDialog -> ʾ
+    android.app.AlertDialog mJsConfirmDialog -> ʿ
+    android.app.AlertDialog mJsPromptDialog -> ˈ
+    com.linkbubble.util.PageInspector mPageInspector -> ˉ
+    int mCheckForEmbedsCount -> ˌ
+    java.lang.Boolean mIsDestroyed -> ˍ
+    com.linkbubble.webrender.WebViewRenderer$GetArticleContentTask mGetArticleContentTask -> ˑ
+    com.linkbubble.util.PageInspector$OnItemFoundListener mOnPageInspectorItemFoundListener$48fbc32f$2bd65ba -> ـ
+    boolean mDoDropDownCheck -> ᐧ
+    com.linkbubble.webrender.WebViewRenderer$2 mDropDownCheckRunnable$453f5682 -> ᐨ
+    com.linkbubble.webrender.WebViewRenderer$3 mOnKeyListener$6df0ff48 -> ・
+    com.linkbubble.webrender.WebViewRenderer$4 mOnWebViewLongClickListener$785c825 -> ﹳ
+    com.linkbubble.webrender.WebViewRenderer$5 mWebViewOnTouchListener$26ce0268 -> ﾞ
+    com.linkbubble.webrender.WebViewRenderer$6 mWebViewClient$37b6b5d8 -> ʹ
+    com.linkbubble.webrender.WebViewRenderer$7 mDownloadListener$5eab45e -> ՙ
+    com.linkbubble.webrender.WebViewRenderer$8 mWebChromeClient$451ad23 -> י
+    118:120:void destroy() -> ･
+    124:124:android.webkit.WebView getView$2f72df89() -> ˊ
+    129:143:void updateIncognitoMode(boolean) -> ･
+    147:171:void loadUrl(java.net.URL,com.linkbubble.webrender.WebRenderer$Mode) -> ･
+    175:184:void reload() -> ˋ
+    188:193:void stopLoading() -> ˎ
+    197:209:void hidePopups() -> ˏ
+    213:216:void onPageLoadComplete() -> ʽ
+    220:221:void resetPageInspector() -> ᐝ
+    225:226:void runPageInspector() -> ʻ
+    230:230:com.linkbubble.util.YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper() -> ʼ
+    49:49:boolean access$102(com.linkbubble.webrender.WebViewRenderer,boolean) -> ･
+    49:49:java.lang.Boolean access$200(com.linkbubble.webrender.WebViewRenderer) -> ･
+    49:49:boolean access$100(com.linkbubble.webrender.WebViewRenderer) -> ˊ
+    49:49:com.linkbubble.util.PageInspector access$300(com.linkbubble.webrender.WebViewRenderer) -> ˋ
+    49:49:java.lang.String access$402(com.linkbubble.webrender.WebViewRenderer,java.lang.String) -> ･
+    49:49:long access$502(com.linkbubble.webrender.WebViewRenderer,long) -> ･
+    49:49:long access$500(com.linkbubble.webrender.WebViewRenderer) -> ˎ
+    49:49:java.lang.String access$400(com.linkbubble.webrender.WebViewRenderer) -> ˏ
+    49:49:int access$600(com.linkbubble.webrender.WebViewRenderer) -> ᐝ
+    49:49:int access$602(com.linkbubble.webrender.WebViewRenderer,int) -> ･
+    49:49:android.app.AlertDialog access$702(com.linkbubble.webrender.WebViewRenderer,android.app.AlertDialog) -> ･
+    49:49:android.app.AlertDialog access$700(com.linkbubble.webrender.WebViewRenderer) -> ʻ
+    49:49:android.app.AlertDialog access$802(com.linkbubble.webrender.WebViewRenderer,android.app.AlertDialog) -> ˊ
+    49:49:android.app.AlertDialog access$800(com.linkbubble.webrender.WebViewRenderer) -> ʼ
+    49:49:android.app.AlertDialog access$902(com.linkbubble.webrender.WebViewRenderer,android.app.AlertDialog) -> ˋ
+    49:49:android.app.AlertDialog access$900(com.linkbubble.webrender.WebViewRenderer) -> ʽ
+    49:49:java.text.SimpleDateFormat access$1000() -> ι
+com.linkbubble.webrender.WebViewRenderer$2 -> ᓖ:
     com.linkbubble.webrender.WebViewRenderer this$0 -> ･
-    213:218:void run() -> run
-com.linkbubble.webrender.WebViewRenderer$3 -> ᒺ:
+    260:265:void run() -> run
+com.linkbubble.webrender.WebViewRenderer$3 -> ᓘ:
     com.linkbubble.webrender.WebViewRenderer this$0 -> ･
-    225:234:boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
-com.linkbubble.webrender.WebViewRenderer$4 -> ᓖ:
+    272:281:boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
+com.linkbubble.webrender.WebViewRenderer$4 -> ᓛ:
     com.linkbubble.webrender.WebViewRenderer this$0 -> ･
-    241:258:boolean onLongClick(android.view.View) -> onLongClick
-com.linkbubble.webrender.WebViewRenderer$5 -> ᓘ:
+    288:305:boolean onLongClick(android.view.View) -> onLongClick
+com.linkbubble.webrender.WebViewRenderer$5 -> ᔫ:
     com.linkbubble.webrender.WebViewRenderer this$0 -> ･
-    266:280:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
-com.linkbubble.webrender.WebViewRenderer$6 -> ᓛ:
+    313:327:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+com.linkbubble.webrender.WebViewRenderer$6 -> ᘂ:
     com.linkbubble.webrender.WebViewRenderer this$0 -> ･
-    287:306:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
-    311:312:void onReceivedError(android.webkit.WebView,int,java.lang.String,java.lang.String) -> onReceivedError
-    316:317:void onReceivedSslError(android.webkit.WebView,android.webkit.SslErrorHandler,android.net.http.SslError) -> onReceivedSslError
-    321:323:void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
-    327:328:void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
-com.linkbubble.webrender.WebViewRenderer$7 -> ᔫ:
+    334:353:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    358:359:void onReceivedError(android.webkit.WebView,int,java.lang.String,java.lang.String) -> onReceivedError
+    363:364:void onReceivedSslError(android.webkit.WebView,android.webkit.SslErrorHandler,android.net.http.SslError) -> onReceivedSslError
+    368:370:void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
+    374:375:void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+com.linkbubble.webrender.WebViewRenderer$7 -> ᘢ:
     com.linkbubble.webrender.WebViewRenderer this$0 -> ･
-    336:337:void onDownloadStart(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long) -> onDownloadStart
-com.linkbubble.webrender.WebViewRenderer$8 -> ᘂ:
+    383:384:void onDownloadStart(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long) -> onDownloadStart
+com.linkbubble.webrender.WebViewRenderer$8 -> ᚁ:
     com.linkbubble.webrender.WebViewRenderer this$0 -> ･
-    344:345:void onReceivedTitle(android.webkit.WebView,java.lang.String) -> onReceivedTitle
-    349:350:void onReceivedIcon(android.webkit.WebView,android.graphics.Bitmap) -> onReceivedIcon
-    354:372:void onProgressChanged(android.webkit.WebView,int) -> onProgressChanged
-    376:377:void onCloseWindow(android.webkit.WebView) -> onCloseWindow
-    381:400:boolean onJsAlert(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsAlert
-    405:422:boolean onJsConfirm(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsConfirm
-    427:455:boolean onJsPrompt(android.webkit.WebView,java.lang.String,java.lang.String,java.lang.String,android.webkit.JsPromptResult) -> onJsPrompt
-    463:464:boolean onConsoleMessage(android.webkit.ConsoleMessage) -> onConsoleMessage
-    469:475:void onGeolocationPermissionsShowPrompt(java.lang.String,android.webkit.GeolocationPermissions$Callback) -> onGeolocationPermissionsShowPrompt
-com.linkbubble.webrender.WebViewRenderer$8$1 -> ᘢ:
+    391:392:void onReceivedTitle(android.webkit.WebView,java.lang.String) -> onReceivedTitle
+    396:397:void onReceivedIcon(android.webkit.WebView,android.graphics.Bitmap) -> onReceivedIcon
+    401:419:void onProgressChanged(android.webkit.WebView,int) -> onProgressChanged
+    423:424:void onCloseWindow(android.webkit.WebView) -> onCloseWindow
+    428:447:boolean onJsAlert(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsAlert
+    452:469:boolean onJsConfirm(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsConfirm
+    474:502:boolean onJsPrompt(android.webkit.WebView,java.lang.String,java.lang.String,java.lang.String,android.webkit.JsPromptResult) -> onJsPrompt
+    510:511:boolean onConsoleMessage(android.webkit.ConsoleMessage) -> onConsoleMessage
+    516:524:boolean onCreateWindow(android.webkit.WebView,boolean,boolean,android.os.Message) -> onCreateWindow
+    529:535:void onGeolocationPermissionsShowPrompt(java.lang.String,android.webkit.GeolocationPermissions$Callback) -> onGeolocationPermissionsShowPrompt
+com.linkbubble.webrender.WebViewRenderer$8$1 -> ᚆ:
     com.linkbubble.webrender.WebViewRenderer$8 this$1 -> ･
-    390:390:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.webrender.WebViewRenderer$8$2 -> ᚁ:
+    437:437:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.webrender.WebViewRenderer$8$2 -> ᴒ:
     com.linkbubble.webrender.WebViewRenderer$8 this$1 -> ･
-    396:397:void onDismiss(android.content.DialogInterface) -> onDismiss
-com.linkbubble.webrender.WebViewRenderer$8$3 -> ᚆ:
+    443:444:void onDismiss(android.content.DialogInterface) -> onDismiss
+com.linkbubble.webrender.WebViewRenderer$8$3 -> ᴫ:
     android.webkit.JsResult val$result -> ･
     com.linkbubble.webrender.WebViewRenderer$8 this$1 -> ˊ
-    412:413:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.webrender.WebViewRenderer$8$4 -> ᴒ:
+    459:460:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.webrender.WebViewRenderer$8$4 -> Ḻ:
     android.webkit.JsResult val$result -> ･
     com.linkbubble.webrender.WebViewRenderer$8 this$1 -> ˊ
-    418:419:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.webrender.WebViewRenderer$8$5 -> ᴫ:
+    465:466:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.webrender.WebViewRenderer$8$5 -> Ṫ:
     android.view.View val$v -> ･
     android.webkit.JsPromptResult val$result -> ˊ
     com.linkbubble.webrender.WebViewRenderer$8 this$1 -> ˋ
-    438:440:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.webrender.WebViewRenderer$8$6 -> Ḻ:
+    485:487:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.webrender.WebViewRenderer$8$6 -> Ỳ:
     android.webkit.JsPromptResult val$result -> ･
     com.linkbubble.webrender.WebViewRenderer$8 this$1 -> ˊ
-    445:446:void onClick(android.content.DialogInterface,int) -> onClick
-com.linkbubble.webrender.WebViewRenderer$8$7 -> Ṫ:
+    492:493:void onClick(android.content.DialogInterface,int) -> onClick
+com.linkbubble.webrender.WebViewRenderer$8$7 -> Ỵ:
     android.webkit.JsPromptResult val$result -> ･
     com.linkbubble.webrender.WebViewRenderer$8 this$1 -> ˊ
-    450:451:void onCancel(android.content.DialogInterface) -> onCancel
+    497:498:void onCancel(android.content.DialogInterface) -> onCancel
+com.linkbubble.webrender.WebViewRenderer$9 -> ᒺ$1:
+    int[] $SwitchMap$com$linkbubble$webrender$WebRenderer$Mode -> ･
+com.linkbubble.webrender.WebViewRenderer$GetArticleContentTask -> ᒺ$･:
+    com.linkbubble.webrender.WebViewRenderer this$0 -> ･
+    547:561:de.jetwick.snacktory.JResult doInBackground(java.lang.String[]) -> ･
+    544:544:void onPostExecute(java.lang.Object) -> onPostExecute
+    544:544:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
 com.parse.BackgroundTask -> com.parse.BackgroundTask:
     com.parse.ParseCallback callback -> callback
     java.lang.Object result -> result
@@ -12778,13 +12859,13 @@ com.parse.twitter.Twitter$1$1$1 -> com.parse.twitter.Twitter$1$1$1:
     168:186:void onPostExecute(com.parse.signpost.http.HttpParameters) -> onPostExecute
     147:147:void onPostExecute(java.lang.Object) -> onPostExecute
     147:147:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.squareup.otto.AnnotatedHandlerFinder -> Ỳ:
+com.squareup.otto.AnnotatedHandlerFinder -> ἶ:
     java.util.HashMap PRODUCERS_CACHE$5a983bf5 -> ･
     java.util.HashMap SUBSCRIBERS_CACHE$5a983bf5 -> ˊ
     49:111:void loadAnnotatedMethods(java.lang.Class) -> ･
     115:129:java.util.HashMap findAllProducers$131b677a(java.lang.Object) -> ･
     134:151:java.util.HashMap findAllSubscribers$131b677a(java.lang.Object) -> ˊ
-com.squareup.otto.Bus -> Ỵ:
+com.squareup.otto.Bus -> ἷ:
     java.util.concurrent.ConcurrentHashMap handlersByType$4bde89de -> ･
     java.util.concurrent.ConcurrentHashMap producersByType$4bde89de -> ˊ
     java.lang.String identifier -> ˋ
@@ -12801,19 +12882,19 @@ com.squareup.otto.Bus -> Ỵ:
     354:372:void dispatchQueuedEvents() -> ･
     384:388:void dispatch(java.lang.Object,com.squareup.otto.EventHandler) -> ･
     431:445:java.util.HashSet getClassesFor$704f7a57(java.lang.Class) -> ･
-com.squareup.otto.Bus$1 -> ἶ:
+com.squareup.otto.Bus$1 -> ῗ:
     com.squareup.otto.Bus this$0 -> ･
     110:110:java.lang.Object initialValue() -> initialValue
-com.squareup.otto.Bus$2 -> ἷ:
+com.squareup.otto.Bus$2 -> ℓ:
     com.squareup.otto.Bus this$0 -> ･
     117:117:java.lang.Object initialValue() -> initialValue
-com.squareup.otto.Bus$EventWithHandler -> Ỵ$･:
+com.squareup.otto.Bus$EventWithHandler -> ἷ$･:
     java.lang.Object event -> ･
     com.squareup.otto.EventHandler handler -> ˊ
-com.squareup.otto.DeadEvent -> ῗ:
+com.squareup.otto.DeadEvent -> Ⅴ:
     com.squareup.otto.Bus source$5f790d9c -> ･
     java.lang.Object event -> ˊ
-com.squareup.otto.EventHandler -> ℓ:
+com.squareup.otto.EventHandler -> ゞ:
     java.lang.Object target -> ˊ
     java.lang.reflect.Method method -> ˋ
     int hashCode -> ˎ
@@ -12822,7 +12903,7 @@ com.squareup.otto.EventHandler -> ℓ:
     101:101:java.lang.String toString() -> toString
     105:105:int hashCode() -> hashCode
     109:123:boolean equals(java.lang.Object) -> equals
-com.squareup.otto.EventProducer -> Ⅴ:
+com.squareup.otto.EventProducer -> イ:
     java.lang.Object target -> ･
     java.lang.reflect.Method method -> ˋ
     int hashCode -> ˎ
@@ -12831,23 +12912,23 @@ com.squareup.otto.EventProducer -> Ⅴ:
     96:96:java.lang.String toString() -> toString
     100:100:int hashCode() -> hashCode
     104:118:boolean equals(java.lang.Object) -> equals
-com.squareup.otto.HandlerFinder -> ゞ:
+com.squareup.otto.HandlerFinder -> 忄:
     com.squareup.otto.HandlerFinder$1 ANNOTATED$250ec4e3 -> ･
     java.util.HashMap findAllProducers$131b677a(java.lang.Object) -> ･
     java.util.HashMap findAllSubscribers$131b677a(java.lang.Object) -> ˊ
-com.squareup.otto.HandlerFinder$1 -> イ:
+com.squareup.otto.HandlerFinder$1 -> אּ:
     33:33:java.util.HashMap findAllProducers$131b677a(java.lang.Object) -> ･
     38:38:java.util.HashMap findAllSubscribers$131b677a(java.lang.Object) -> ˊ
-com.squareup.otto.Produce -> 忄:
-com.squareup.otto.Subscribe -> אּ:
-com.squareup.otto.ThreadEnforcer -> ﮋ:
+com.squareup.otto.Produce -> ﮋ:
+com.squareup.otto.Subscribe -> ﺏ:
+com.squareup.otto.ThreadEnforcer -> ﺔ:
     com.squareup.otto.ThreadEnforcer$2 MAIN$22e1dc31 -> ･
     void enforce(com.squareup.otto.Bus) -> ･
-com.squareup.otto.ThreadEnforcer$1 -> ﺏ:
+com.squareup.otto.ThreadEnforcer$1 -> ﺣ:
     40:40:void enforce(com.squareup.otto.Bus) -> ･
-com.squareup.otto.ThreadEnforcer$2 -> ﺔ:
+com.squareup.otto.ThreadEnforcer$2 -> ﻡ:
     46:49:void enforce(com.squareup.otto.Bus) -> ･
-com.squareup.picasso.Action -> ﺣ:
+com.squareup.picasso.Action -> ｕ:
     com.squareup.picasso.Picasso picasso -> ･
     com.squareup.picasso.Request data -> ˊ
     com.squareup.picasso.Action$RequestWeakReference target$112e3024 -> ˋ
@@ -12860,14 +12941,14 @@ com.squareup.picasso.Action -> ﺣ:
     void complete(android.graphics.Bitmap,com.squareup.picasso.Picasso$LoadedFrom) -> ･
     void error() -> ･
     61:62:void cancel() -> ˊ
-com.squareup.picasso.Action$RequestWeakReference -> ﺣ$･:
+com.squareup.picasso.Action$RequestWeakReference -> ｕ$･:
     com.squareup.picasso.Action action -> ･
-com.squareup.picasso.AssetBitmapHunter -> ﻡ:
+com.squareup.picasso.AssetBitmapHunter -> ｚ:
     android.content.res.AssetManager assetManager -> ͺ
     22:23:android.graphics.Bitmap decode(com.squareup.picasso.Request) -> ･
     27:27:com.squareup.picasso.Picasso$LoadedFrom getLoadedFrom() -> ･
     31:48:android.graphics.Bitmap decodeAsset(java.lang.String) -> ･
-com.squareup.picasso.BitmapHunter -> ｕ:
+com.squareup.picasso.BitmapHunter -> ｫ:
     java.lang.Object DECODE_LOCK -> ͺ
     com.squareup.picasso.Picasso picasso -> ･
     com.squareup.picasso.Dispatcher dispatcher -> ι
@@ -12890,32 +12971,32 @@ com.squareup.picasso.BitmapHunter -> ｕ:
     181:201:com.squareup.picasso.BitmapHunter forRequest$2d832570(android.content.Context,com.squareup.picasso.Picasso,com.squareup.picasso.Dispatcher,com.squareup.picasso.LruCache,com.squareup.picasso.Stats,com.squareup.picasso.Action,com.squareup.picasso.Downloader) -> ･
     206:217:void calculateInSampleSize(int,int,android.graphics.BitmapFactory$Options) -> ･
     220:250:android.graphics.Bitmap applyCustomTransformations(java.util.List,android.graphics.Bitmap) -> ･
-com.squareup.picasso.Cache -> ｚ:
+com.squareup.picasso.Cache -> ｮ:
     android.graphics.Bitmap get(java.lang.String) -> ･
     void set(java.lang.String,android.graphics.Bitmap) -> ･
-com.squareup.picasso.Cache$1 -> ｫ:
+com.squareup.picasso.Cache$1 -> ｱ:
     46:46:android.graphics.Bitmap get(java.lang.String) -> ･
     51:51:void set(java.lang.String,android.graphics.Bitmap) -> ･
-com.squareup.picasso.ContactsPhotoBitmapHunter -> ｮ:
+com.squareup.picasso.ContactsPhotoBitmapHunter -> ﾏ:
     android.content.Context context -> ͺ
     43:48:android.graphics.Bitmap decode(com.squareup.picasso.Request) -> ･
     53:53:com.squareup.picasso.Picasso$LoadedFrom getLoadedFrom() -> ･
     57:68:java.io.InputStream getInputStream() -> ˊ
     73:88:android.graphics.Bitmap decodeStream(java.io.InputStream,com.squareup.picasso.Request) -> ･
-com.squareup.picasso.ContentProviderBitmapHunter -> ｱ:
+com.squareup.picasso.ContentProviderBitmapHunter -> ﾗ:
     java.lang.String[] CONTENT_ORIENTATION -> ι
     37:38:android.graphics.Bitmap decode(com.squareup.picasso.Request) -> ･
     42:54:int getContentProviderExifRotation(android.content.ContentResolver,android.net.Uri) -> ･
-com.squareup.picasso.ContentStreamBitmapHunter -> ﾏ:
+com.squareup.picasso.ContentStreamBitmapHunter -> ﾜ:
     android.content.Context context -> ͺ
     38:38:android.graphics.Bitmap decode(com.squareup.picasso.Request) -> ･
     42:42:com.squareup.picasso.Picasso$LoadedFrom getLoadedFrom() -> ･
     46:64:android.graphics.Bitmap decodeContentStream(com.squareup.picasso.Request) -> ˊ
-com.squareup.picasso.DeferredRequestCreator -> ﾗ:
+com.squareup.picasso.DeferredRequestCreator -> ĉ:
     android.support.v4.app.FragmentManager$OnBackStackChangedListener callback$159d2882 -> ･
     41:60:boolean onPreDraw() -> onPreDraw
     64:74:void cancel() -> ･
-com.squareup.picasso.Dispatcher -> ﾜ:
+com.squareup.picasso.Dispatcher -> č:
     com.squareup.picasso.Dispatcher$DispatcherThread dispatcherThread -> ʾ
     android.content.Context context -> ･
     com.squareup.picasso.PicassoExecutorService service$331d0885 -> ˊ
@@ -12930,31 +13011,31 @@ com.squareup.picasso.Dispatcher -> ﾜ:
     android.net.NetworkInfo networkInfo -> ͺ
     boolean airplaneMode -> ι
     202:209:void batch(com.squareup.picasso.BitmapHunter) -> ･
-com.squareup.picasso.Dispatcher$DispatcherHandler -> ﾜ$･:
+com.squareup.picasso.Dispatcher$DispatcherHandler -> č$･:
     com.squareup.picasso.Dispatcher this$0 -> ･
     217:257:void handleMessage(android.os.Message) -> handleMessage
-com.squareup.picasso.Dispatcher$DispatcherThread -> ﾜ$if:
-com.squareup.picasso.Dispatcher$NetworkBroadcastReceiver -> ﾜ$ˊ:
+com.squareup.picasso.Dispatcher$DispatcherThread -> č$if:
+com.squareup.picasso.Dispatcher$NetworkBroadcastReceiver -> č$ˊ:
     android.net.ConnectivityManager connectivityManager -> ˊ
     com.squareup.picasso.Dispatcher this$0 -> ･
     293:301:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.squareup.picasso.Downloader -> ĉ:
+com.squareup.picasso.Downloader -> Ŷ:
     com.squareup.picasso.Downloader$Response load(android.net.Uri,boolean) -> ･
-com.squareup.picasso.Downloader$Response -> ĉ$･:
+com.squareup.picasso.Downloader$Response -> Ŷ$･:
     java.io.InputStream stream -> ･
     android.graphics.Bitmap bitmap -> ˋ
     boolean cached -> ˊ
-com.squareup.picasso.FetchAction -> č:
+com.squareup.picasso.FetchAction -> ż:
     26:26:void complete(android.graphics.Bitmap,com.squareup.picasso.Picasso$LoadedFrom) -> ･
     29:29:void error() -> ･
-com.squareup.picasso.FileBitmapHunter -> Ŷ:
+com.squareup.picasso.FileBitmapHunter -> ƨ:
     39:40:android.graphics.Bitmap decode(com.squareup.picasso.Request) -> ･
-com.squareup.picasso.ImageViewAction -> ż:
+com.squareup.picasso.ImageViewAction -> ƫ:
     android.support.v4.app.FragmentManager$OnBackStackChangedListener callback$159d2882 -> ᐝ
     34:48:void complete(android.graphics.Bitmap,com.squareup.picasso.Picasso$LoadedFrom) -> ･
     54:58:void error() -> ･
     70:71:void cancel() -> ˊ
-com.squareup.picasso.LruCache -> ƨ:
+com.squareup.picasso.LruCache -> Ƴ:
     java.util.LinkedHashMap map -> ･
     int maxSize -> ˊ
     int size -> ˋ
@@ -12965,7 +13046,7 @@ com.squareup.picasso.LruCache -> ƨ:
     49:63:android.graphics.Bitmap get(java.lang.String) -> ･
     67:82:void set(java.lang.String,android.graphics.Bitmap) -> ･
     88:104:void trimToSize(int) -> ･
-com.squareup.picasso.MarkableInputStream -> ƫ:
+com.squareup.picasso.MarkableInputStream -> Ț:
     java.io.InputStream in -> ･
     long offset -> ˊ
     long reset -> ˋ
@@ -12984,12 +13065,12 @@ com.squareup.picasso.MarkableInputStream -> ƫ:
     140:140:int available() -> available
     144:145:void close() -> close
     148:148:boolean markSupported() -> markSupported
-com.squareup.picasso.NetworkBitmapHunter -> Ƴ:
+com.squareup.picasso.NetworkBitmapHunter -> ȯ:
     com.squareup.picasso.Downloader downloader -> ͺ
     int retryCount -> ι
     44:62:android.graphics.Bitmap decode(com.squareup.picasso.Request) -> ･
     67:72:boolean shouldRetry$552f0f64(android.net.NetworkInfo) -> ･
-com.squareup.picasso.OkHttpDownloader -> Ț:
+com.squareup.picasso.OkHttpDownloader -> ɢ:
     com.squareup.okhttp.OkHttpClient client -> ･
     99:117:com.squareup.picasso.Downloader$Response load(android.net.Uri,boolean) -> ･
 com.squareup.picasso.Picasso -> com.squareup.picasso.Picasso:
@@ -13013,7 +13094,7 @@ com.squareup.picasso.Picasso -> com.squareup.picasso.Picasso:
     322:335:void cancelExistingRequest(java.lang.Object) -> ･
     389:392:com.squareup.picasso.Picasso with(android.content.Context) -> ･
     46:46:void access$000(com.squareup.picasso.Picasso,java.lang.Object) -> ･
-com.squareup.picasso.Picasso$1 -> ȯ:
+com.squareup.picasso.Picasso$1 -> ʎ:
     85:99:void handleMessage(android.os.Message) -> handleMessage
 com.squareup.picasso.Picasso$Builder -> com.squareup.picasso.Picasso$･:
     android.content.Context context -> ･
@@ -13025,7 +13106,7 @@ com.squareup.picasso.Picasso$CleanupThread -> com.squareup.picasso.Picasso$if:
     java.lang.ref.ReferenceQueue referenceQueue -> ･
     com.squareup.picasso.Picasso$1 handler$2ace4d50 -> ˊ
     349:363:void run() -> run
-com.squareup.picasso.Picasso$CleanupThread$1 -> ɢ:
+com.squareup.picasso.Picasso$CleanupThread$1 -> ʝ:
     java.lang.Exception val$e -> ･
     com.squareup.picasso.Picasso$CleanupThread this$0 -> ˊ
     359:359:void run() -> run
@@ -13040,9 +13121,9 @@ com.squareup.picasso.Picasso$LoadedFrom -> com.squareup.picasso.Picasso$LoadedFr
 com.squareup.picasso.Picasso$RequestTransformer -> com.squareup.picasso.Picasso$ˊ:
     com.squareup.picasso.Picasso$RequestTransformer$1 IDENTITY$65803f31 -> ･
     com.squareup.picasso.Request transformRequest(com.squareup.picasso.Request) -> ･
-com.squareup.picasso.Picasso$RequestTransformer$1 -> ʎ:
+com.squareup.picasso.Picasso$RequestTransformer$1 -> ʭ:
     78:78:com.squareup.picasso.Request transformRequest(com.squareup.picasso.Request) -> ･
-com.squareup.picasso.PicassoDrawable -> ʝ:
+com.squareup.picasso.PicassoDrawable -> λ:
     android.graphics.Paint DEBUG_PAINT -> ･
     boolean debugging -> ˊ
     float density -> ˋ
@@ -13061,8 +13142,8 @@ com.squareup.picasso.PicassoDrawable -> ʝ:
     144:144:int getOpacity() -> getOpacity
     148:155:void onBoundsChange(android.graphics.Rect) -> onBoundsChange
     194:202:android.graphics.Path getTrianglePath(android.graphics.Point,int) -> ･
-com.squareup.picasso.PicassoExecutorService -> ʭ:
-com.squareup.picasso.Request -> λ:
+com.squareup.picasso.PicassoExecutorService -> ϋ:
+com.squareup.picasso.Request -> ϒ:
     android.net.Uri uri -> ･
     int resourceId -> ˊ
     java.util.List transformations -> ˋ
@@ -13074,21 +13155,21 @@ com.squareup.picasso.Request -> λ:
     float rotationPivotX -> ʽ
     float rotationPivotY -> ͺ
     boolean hasRotationPivot -> ι
-com.squareup.picasso.Request$Builder -> λ$･:
+com.squareup.picasso.Request$Builder -> ϒ$･:
     android.net.Uri uri -> ･
     int resourceId -> ˏ
     int targetWidth -> ˊ
     int targetHeight -> ˋ
     java.util.ArrayList transformations$7865b31 -> ˎ
-com.squareup.picasso.RequestCreator -> ϋ:
+com.squareup.picasso.RequestCreator -> Ϝ:
     com.squareup.picasso.Picasso picasso -> ･
     com.squareup.picasso.Request$Builder data -> ˊ
     332:379:void into$4ca0a893$e0ed7c6(android.widget.ImageView) -> ･
-com.squareup.picasso.ResourceBitmapHunter -> ϒ:
+com.squareup.picasso.ResourceBitmapHunter -> к:
     android.content.Context context -> ͺ
     36:36:android.graphics.Bitmap decode(com.squareup.picasso.Request) -> ･
     40:40:com.squareup.picasso.Picasso$LoadedFrom getLoadedFrom() -> ･
-com.squareup.picasso.Stats -> Ϝ:
+com.squareup.picasso.Stats -> ѕ:
     android.os.HandlerThread statsThread -> ͺ
     com.squareup.picasso.LruCache cache$7cde88d -> ι
     com.squareup.picasso.Stats$StatsHandler handler$2ace4d50 -> ･
@@ -13100,30 +13181,1092 @@ com.squareup.picasso.Stats -> Ϝ:
     long averageTransformedBitmapSize -> ʻ
     int originalBitmapCount -> ʼ
     int transformedBitmapCount -> ʽ
-com.squareup.picasso.Stats$StatsHandler -> Ϝ$･:
+com.squareup.picasso.Stats$StatsHandler -> ѕ$･:
     com.squareup.picasso.Stats this$0 -> ･
     120:144:void handleMessage(android.os.Message) -> handleMessage
-com.squareup.picasso.Stats$StatsHandler$1 -> к:
+com.squareup.picasso.Stats$StatsHandler$1 -> ӧ:
     android.os.Message val$msg -> ･
     com.squareup.picasso.Stats$StatsHandler this$1 -> ˊ
     140:140:void run() -> run
-com.squareup.picasso.Transformation -> ѕ:
+com.squareup.picasso.Transformation -> ӭ:
     android.graphics.Bitmap transform(android.graphics.Bitmap) -> ･
     java.lang.String key() -> ･
-com.squareup.picasso.UrlConnectionDownloader -> ӧ:
+com.squareup.picasso.UrlConnectionDownloader -> ӱ:
     java.lang.Object lock -> ･
     android.net.http.HttpResponseCache cache$5f790d9c -> ˊ
     android.content.Context context -> ˋ
     54:72:com.squareup.picasso.Downloader$Response load(android.net.Uri,boolean) -> ･
-com.squareup.picasso.Utils$PicassoThread -> ӭ:
+com.squareup.picasso.Utils$PicassoThread -> ԏ:
     217:219:void run() -> run
-com.squareup.picasso.Utils$PicassoThreadFactory -> ӱ:
+com.squareup.picasso.Utils$PicassoThreadFactory -> Դ:
     207:207:java.lang.Thread newThread(java.lang.Runnable) -> newThread
-dexguard.util.TamperDetection -> ԏ:
+de.jetwick.snacktory.ArticleTextExtractor -> չ:
+    java.util.regex.Pattern NODES -> ˊ
+    java.lang.String unlikelyStr -> ˋ
+    java.util.regex.Pattern UNLIKELY -> ˎ
+    java.lang.String positiveStr -> ˏ
+    java.util.regex.Pattern POSITIVE -> ᐝ
+    java.lang.String negativeStr -> ʻ
+    java.util.regex.Pattern NEGATIVE -> ʼ
+    java.util.regex.Pattern NEGATIVE_STYLE -> ʽ
+    java.util.regex.Pattern IGNORE_AUTHOR_PARTS -> ͺ
+    de.jetwick.snacktory.ArticleTextExtractor$1 IGNORED_TITLE_PARTS$5a95723b -> ι
+    de.jetwick.snacktory.OutputFormatter DEFAULT_FORMATTER -> ʾ
+    de.jetwick.snacktory.OutputFormatter formatter -> ･
+    109:122:org.jsoup.nodes.Element getBestMatchElement(java.util.Collection) -> ･
+    155:226:de.jetwick.snacktory.JResult extractContent(de.jetwick.snacktory.JResult,org.jsoup.nodes.Document,de.jetwick.snacktory.OutputFormatter) -> ･
+    392:435:java.util.Date parseDate(java.lang.String) -> ･
+    441:448:java.lang.String cleanAuthorNameResult(java.lang.String) -> ˊ
+    454:529:java.lang.String extractAuthorName(org.jsoup.nodes.Document) -> ･
+    691:696:int getScore(org.jsoup.nodes.Element) -> ･
+    745:807:org.jsoup.nodes.Element determineImageSource$5e7d2cbc(org.jsoup.nodes.Element,java.util.ArrayList) -> ･
+    843:858:org.jsoup.nodes.Document removeScriptsAndStyles(org.jsoup.nodes.Document) -> ˊ
+    920:929:java.util.Set getNodes$6af7ea4b(org.jsoup.nodes.Document) -> ˋ
+    933:954:java.lang.String cleanTitle(java.lang.String) -> ˋ
+de.jetwick.snacktory.ArticleTextExtractor$1 -> de.jetwick.snacktory.ArticleTextExtractor$1:
+de.jetwick.snacktory.ArticleTextExtractor$ImageComparator -> չ$･:
+    de.jetwick.snacktory.ArticleTextExtractor this$0 -> ･
+    963:963:int compare(java.lang.Object,java.lang.Object) -> compare
+de.jetwick.snacktory.Converter -> ט:
+    int maxBytes -> ･
+    java.lang.String encoding -> ˊ
+    java.lang.String url -> ˋ
+    54:72:java.lang.String extractEncoding(java.lang.String) -> ･
+    97:163:java.lang.String streamToString(java.io.InputStream,int,java.lang.String) -> ･
+    177:227:java.lang.String detectCharset(java.lang.String,java.io.ByteArrayOutputStream,java.io.BufferedInputStream,java.lang.String) -> ･
+de.jetwick.snacktory.HtmlFetcher -> ס:
+    java.lang.String referrer -> ･
+    java.lang.String userAgent -> ˊ
+    java.lang.String cacheControl -> ˋ
+    java.lang.String language -> ˎ
+    java.lang.String accept -> ˏ
+    java.lang.String charset -> ᐝ
+    java.util.concurrent.atomic.AtomicInteger cacheCounter -> ʻ
+    int maxTextLength -> ʼ
+    de.jetwick.snacktory.ArticleTextExtractor extractor -> ʽ
+    de.jetwick.snacktory.HtmlFetcher$1 furtherResolveNecessary$5a95723b -> ͺ
+    204:279:de.jetwick.snacktory.JResult fetchAndExtract$4cd553a9(java.lang.String) -> ･
+    335:369:java.lang.String getResolvedUrl(java.lang.String,int) -> ･
+    396:415:java.net.HttpURLConnection createUrlConnection$61b4eef1(java.lang.String,int) -> ˊ
+de.jetwick.snacktory.HtmlFetcher$1 -> de.jetwick.snacktory.HtmlFetcher$1:
+    de.jetwick.snacktory.HtmlFetcher this$0 -> this$0
+de.jetwick.snacktory.ImageResult -> ף:
+    java.lang.String src -> ˊ
+    java.lang.Integer weight -> ･
+    java.lang.String title -> ˋ
+    int height -> ˎ
+    int width -> ˏ
+    java.lang.String alt -> ᐝ
+    boolean noFollow -> ʻ
+de.jetwick.snacktory.JResult -> de.jetwick.snacktory.JResult:
+    java.lang.String title -> title
+    java.lang.String url -> url
+    java.lang.String originalUrl -> originalUrl
+    java.lang.String canonicalUrl -> canonicalUrl
+    java.lang.String imageUrl -> imageUrl
+    java.lang.String videoUrl -> videoUrl
+    java.lang.String rssUrl -> rssUrl
+    java.lang.String text -> text
+    java.lang.String html -> html
+    java.lang.String faviconUrl -> faviconUrl
+    java.lang.String authorName -> authorName
+    java.lang.String authorDescription -> authorDescription
+    java.lang.String description -> description
+    java.lang.String dateString -> dateString
+    java.util.Date date -> date
+    java.util.List textList -> textList
+    java.util.Collection keywords -> keywords
+    java.util.List images -> images
+    java.util.List links -> links
+    271:271:java.lang.String toString() -> toString
+de.jetwick.snacktory.OutputFormatter -> ت:
+    java.util.List NODES_TO_REPLACE -> ･
+    java.util.regex.Pattern unlikelyPattern -> ˊ
+    int minParagraphText -> ˋ
+    java.util.List nodesToReplace -> ˎ
+    java.lang.String nodesToKeepCssSelector -> ˏ
+    54:67:java.lang.String getFormattedText(org.jsoup.nodes.Element) -> ･
+    74:80:java.util.ArrayList getTextList$6bbf8840(org.jsoup.nodes.Element) -> ˊ
+    99:115:void append(org.jsoup.nodes.Element,java.lang.StringBuilder,java.lang.String) -> ･
+    118:125:boolean unlikely(org.jsoup.nodes.Node) -> ･
+    129:145:void appendTextSkipHidden(org.jsoup.nodes.Element,java.lang.StringBuilder) -> ･
+de.jetwick.snacktory.SHelper -> ٺ:
+    java.util.regex.Pattern SPACE -> ･
+    47:54:java.lang.String replaceSpaces(java.lang.String) -> ･
+    58:64:int count(java.lang.String,java.lang.String) -> ･
+    71:89:java.lang.String innerTrim(java.lang.String) -> ˊ
+    97:110:java.lang.String encodingCleanup(java.lang.String) -> ˋ
+    157:157:java.lang.String getDefaultFavicon(java.lang.String) -> ˎ
+    166:187:java.lang.String useDomainOfFirstArg4Second(java.lang.String,java.lang.String) -> ˊ
+    195:213:java.lang.String extractDomain(java.lang.String,boolean) -> ･
+    223:223:boolean isVideo(java.lang.String) -> ˏ
+    228:228:boolean isAudio(java.lang.String) -> ᐝ
+    232:232:boolean isDoc(java.lang.String) -> ʻ
+    237:237:boolean isPackage(java.lang.String) -> ʼ
+    242:242:boolean isApp(java.lang.String) -> ʽ
+    246:246:boolean isImage(java.lang.String) -> ͺ
+    255:258:void enableCookieMgmt() -> ･
+    265:266:void enableUserAgentOverwrite() -> ˊ
+    269:279:java.lang.String getUrlFromUglyGoogleRedirect(java.lang.String) -> ι
+    283:288:java.lang.String getUrlFromUglyFacebookRedirect(java.lang.String) -> ʾ
+    301:303:java.lang.String urlDecode(java.lang.String) -> ˌ
+    312:312:java.lang.String removeHashbang(java.lang.String) -> ʿ
+    336:404:java.lang.String estimateDate(java.lang.String) -> ˈ
+    433:439:void enableAnySSL() -> ˋ
+    458:464:int countLetters(java.lang.String) -> ˉ
+de.jetwick.snacktory.SHelper$DefaultTrustManager -> ٺ$･:
+    445:445:void checkClientTrusted(java.security.cert.X509Certificate[],java.lang.String) -> checkClientTrusted
+    449:449:void checkServerTrusted(java.security.cert.X509Certificate[],java.lang.String) -> checkServerTrusted
+    453:453:java.security.cert.X509Certificate[] getAcceptedIssuers() -> getAcceptedIssuers
+dexguard.util.TamperDetection -> ٻ:
     byte[] a -> ･
     int checkApk$faab21a(android.app.Activity) -> ･
     java.lang.String a(int,int,int) -> ･
-org.mozilla.gecko.favicons.Favicons -> Դ:
+org.jsoup.helper.DescendableLinkedList -> org.jsoup.helper.DescendableLinkedList:
+    24:25:void push(java.lang.Object) -> push
+    32:32:java.lang.Object peekLast() -> peekLast
+    40:40:java.lang.Object pollLast() -> pollLast
+    48:48:java.util.Iterator descendingIterator() -> descendingIterator
+org.jsoup.helper.DescendableLinkedList$DescendingIterator -> org.jsoup.helper.DescendableLinkedList$･:
+    java.util.ListIterator iter -> ･
+    org.jsoup.helper.DescendableLinkedList this$0 -> ˊ
+    64:64:boolean hasNext() -> hasNext
+    72:72:java.lang.Object next() -> next
+    79:80:void remove() -> remove
+org.jsoup.helper.StringUtil -> ړ:
+    java.lang.String[] padding -> ･
+    20:20:java.lang.String join$32ec4510(java.util.ArrayList,java.lang.String) -> ･
+    51:60:java.lang.String padding(int) -> ･
+    69:77:boolean isBlank(java.lang.String) -> ･
+    86:94:boolean isNumeric(java.lang.String) -> ˊ
+    103:103:boolean isWhitespace(int) -> ˊ
+    107:131:java.lang.String normaliseWhitespace(java.lang.String) -> ˋ
+    135:139:boolean in(java.lang.String,java.lang.String[]) -> ･
+org.jsoup.nodes.Attribute -> ڽ:
+    java.lang.String key -> ･
+    java.lang.String value -> ˊ
+    85:85:java.lang.String toString() -> toString
+    105:113:boolean equals(java.lang.Object) -> equals
+    118:120:int hashCode() -> hashCode
+    126:128:org.jsoup.nodes.Attribute clone() -> ･
+    11:11:java.lang.Object clone() -> clone
+    11:11:java.lang.Object setValue(java.lang.Object) -> setValue
+    11:11:java.lang.Object getValue() -> getValue
+    11:11:java.lang.Object getKey() -> getKey
+org.jsoup.nodes.Attributes -> ܐ:
+    java.util.LinkedHashMap attributes -> ･
+    31:37:java.lang.String get(java.lang.String) -> ･
+    55:59:void put(org.jsoup.nodes.Attribute) -> ･
+    96:101:void addAll(org.jsoup.nodes.Attributes) -> ･
+    104:104:java.util.Iterator iterator() -> iterator
+    113:120:java.util.List asList() -> ･
+    143:151:void html(java.lang.StringBuilder,org.jsoup.nodes.Document$OutputSettings) -> ･
+    154:154:java.lang.String toString() -> toString
+    159:166:boolean equals(java.lang.Object) -> equals
+    171:171:int hashCode() -> hashCode
+    176:188:org.jsoup.nodes.Attributes clone() -> ˊ
+    17:17:java.lang.Object clone() -> clone
+org.jsoup.nodes.Comment -> ܫ:
+    21:21:java.lang.String nodeName() -> ･
+    33:39:void outerHtmlHead(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> ･
+    41:41:void outerHtmlTail(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> ˊ
+    44:44:java.lang.String toString() -> toString
+org.jsoup.nodes.DataNode -> ट:
+    21:21:java.lang.String nodeName() -> ･
+    43:44:void outerHtmlHead(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> ･
+    46:46:void outerHtmlTail(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> ˊ
+    49:49:java.lang.String toString() -> toString
+org.jsoup.nodes.Document -> org.jsoup.nodes.Document:
+    org.jsoup.nodes.Document$OutputSettings outputSettings -> ･
+    org.jsoup.nodes.Document$QuirksMode quirksMode -> ˊ
+    java.lang.String location -> ͺ
+    191:191:java.lang.String outerHtml() -> ˊ
+    207:207:java.lang.String nodeName() -> ･
+    396:396:boolean equals(java.lang.Object) -> equals
+    17:17:org.jsoup.nodes.Element clone() -> ˋ
+    17:17:org.jsoup.nodes.Node clone() -> ˎ
+    17:17:java.lang.Object clone() -> clone
+org.jsoup.nodes.Document$OutputSettings -> org.jsoup.nodes.Document$･:
+    org.jsoup.nodes.Entities$EscapeMode escapeMode -> ･
+    java.nio.charset.Charset charset -> ˏ
+    java.nio.charset.CharsetEncoder charsetEncoder -> ˊ
+    boolean prettyPrint -> ˋ
+    boolean outline -> ᐝ
+    int indentAmount -> ˎ
+    351:358:org.jsoup.nodes.Document$OutputSettings clone() -> ･
+    220:220:java.lang.Object clone() -> clone
+org.jsoup.nodes.Document$QuirksMode -> org.jsoup.nodes.Document$QuirksMode:
+    org.jsoup.nodes.Document$QuirksMode noQuirks -> ･
+    org.jsoup.nodes.Document$QuirksMode quirks -> ˊ
+    org.jsoup.nodes.Document$QuirksMode limitedQuirks -> ˋ
+    org.jsoup.nodes.Document$QuirksMode[] $VALUES -> ˎ
+    381:381:org.jsoup.nodes.Document$QuirksMode[] values() -> values
+    381:381:org.jsoup.nodes.Document$QuirksMode valueOf(java.lang.String) -> valueOf
+org.jsoup.nodes.DocumentType -> ও:
+    30:30:java.lang.String nodeName() -> ･
+    35:41:void outerHtmlHead(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> ･
+    45:45:void outerHtmlTail(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> ˊ
+org.jsoup.nodes.Element -> চ:
+    org.jsoup.parser.Tag tag -> ˋ
+    java.util.LinkedHashSet classNames$5a95723b -> ˎ
+    55:55:java.lang.String nodeName() -> ･
+    116:117:org.jsoup.nodes.Element attr(java.lang.String,java.lang.String) -> ･
+    184:189:org.jsoup.select.Elements children() -> ˏ
+    262:265:org.jsoup.nodes.Element appendChild(org.jsoup.nodes.Node) -> ･
+    401:401:org.jsoup.nodes.Element before(org.jsoup.nodes.Node) -> ˊ
+    489:496:org.jsoup.nodes.Element previousElementSibling() -> ᐝ
+    529:537:java.lang.Integer indexInList$2b9320c1(org.jsoup.nodes.Element,org.jsoup.select.Elements) -> ･
+    818:836:java.lang.String text() -> ʻ
+    857:865:void ownText(java.lang.StringBuilder) -> ･
+    868:876:void appendNormalisedText(java.lang.StringBuilder,org.jsoup.nodes.TextNode) -> ･
+    885:890:boolean preserveWhitespace(org.jsoup.nodes.Node) -> ˋ
+    913:924:boolean hasText() -> ʼ
+    1070:1081:void outerHtmlHead(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> ･
+    1084:1091:void outerHtmlTail(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> ˊ
+    1107:1109:void html(java.lang.StringBuilder) -> ˊ
+    1124:1124:java.lang.String toString() -> toString
+    1129:1129:boolean equals(java.lang.Object) -> equals
+    1135:1137:int hashCode() -> hashCode
+    1142:1144:org.jsoup.nodes.Element clone() -> ˋ
+    21:21:org.jsoup.nodes.Node clone() -> ˎ
+    21:21:org.jsoup.nodes.Node before(org.jsoup.nodes.Node) -> ˎ
+    21:21:org.jsoup.nodes.Node parent() -> ʽ
+    21:21:org.jsoup.nodes.Node attr(java.lang.String,java.lang.String) -> ˊ
+    21:21:java.lang.Object clone() -> clone
+org.jsoup.nodes.Element$1 -> দ:
+    java.lang.StringBuilder val$accum -> ･
+    org.jsoup.nodes.Element this$0 -> ˊ
+    821:831:void head(org.jsoup.nodes.Node,int) -> ･
+    834:834:void tail(org.jsoup.nodes.Node,int) -> ˊ
+org.jsoup.nodes.Entities -> org.jsoup.nodes.Entities:
+    java.util.HashMap full$5a983bf5 -> ･
+    java.util.HashMap xhtmlByVal$5a983bf5 -> ˊ
+    java.util.HashMap base$5a983bf5 -> ˋ
+    java.util.HashMap baseByVal$5a983bf5 -> ˎ
+    java.util.HashMap fullByVal$5a983bf5 -> ˏ
+    java.lang.Object[][] xhtmlArray -> ᐝ
+    53:53:boolean isNamedEntity(java.lang.String) -> ･
+    63:63:boolean isBaseNamedEntity(java.lang.String) -> ˊ
+    72:72:java.lang.Character getCharacterByName(java.lang.String) -> ˋ
+    76:76:java.lang.String escape(java.lang.String,org.jsoup.nodes.Document$OutputSettings) -> ･
+    147:162:java.util.HashMap loadEntities$694ad9f4(java.lang.String) -> ˎ
+    166:179:java.util.HashMap toCharacterKey$76056a5b$3a1480d3(java.util.HashMap) -> ･
+    17:17:java.util.HashMap access$000$604efcea() -> ･
+    17:17:java.util.HashMap access$100$604efcea() -> ˊ
+    17:17:java.util.HashMap access$200$604efcea() -> ˋ
+org.jsoup.nodes.Entities$EscapeMode -> org.jsoup.nodes.Entities$EscapeMode:
+    org.jsoup.nodes.Entities$EscapeMode xhtml -> ˊ
+    org.jsoup.nodes.Entities$EscapeMode base -> ･
+    org.jsoup.nodes.Entities$EscapeMode extended -> ˋ
+    java.util.Map map -> map
+    org.jsoup.nodes.Entities$EscapeMode[] $VALUES -> ˎ
+    18:18:org.jsoup.nodes.Entities$EscapeMode[] values() -> values
+    18:18:org.jsoup.nodes.Entities$EscapeMode valueOf(java.lang.String) -> valueOf
+org.jsoup.nodes.FormElement -> ন:
+    org.jsoup.select.Elements elements -> ･
+    97:97:boolean equals(java.lang.Object) -> equals
+org.jsoup.nodes.Node -> প:
+    org.jsoup.nodes.Node parentNode -> ˏ
+    java.util.List childNodes -> ᐝ
+    org.jsoup.nodes.Attributes attributes -> ʻ
+    java.lang.String baseUri -> ʼ
+    int siblingIndex -> ʽ
+    java.lang.String nodeName() -> ･
+    72:78:java.lang.String attr(java.lang.String) -> ･
+    86:86:org.jsoup.nodes.Attributes attributes() -> ͺ
+    96:97:org.jsoup.nodes.Node attr(java.lang.String,java.lang.String) -> ˊ
+    106:113:boolean hasAttr(java.lang.String) -> ˊ
+    173:194:java.lang.String absUrl(java.lang.String) -> ˋ
+    247:247:org.jsoup.nodes.Node parent() -> ʽ
+    263:268:org.jsoup.nodes.Document ownerDocument() -> ι
+    297:301:org.jsoup.nodes.Node before(org.jsoup.nodes.Node) -> ˎ
+    430:435:void removeChild(org.jsoup.nodes.Node) -> ˏ
+    463:466:void reindexChildren() -> ˋ
+    490:499:org.jsoup.nodes.Node nextSibling() -> ʾ
+    550:552:java.lang.String outerHtml() -> ˊ
+    void outerHtmlHead(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> ･
+    void outerHtmlTail(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> ˊ
+    573:573:java.lang.String toString() -> toString
+    582:584:boolean equals(java.lang.Object) -> equals
+    589:592:int hashCode() -> hashCode
+    605:621:org.jsoup.nodes.Node clone() -> ˎ
+    632:646:org.jsoup.nodes.Node doClone(org.jsoup.nodes.Node) -> ･
+    20:20:java.lang.Object clone() -> clone
+org.jsoup.nodes.Node$1 -> য:
+    java.lang.String val$baseUri -> ･
+    org.jsoup.nodes.Document this$0$a77616a -> ˊ
+    144:145:void head(org.jsoup.nodes.Node,int) -> ･
+    148:148:void tail(org.jsoup.nodes.Node,int) -> ˊ
+org.jsoup.nodes.Node$OuterHtmlVisitor -> প$･:
+    java.lang.StringBuilder accum -> ･
+    org.jsoup.nodes.Document$OutputSettings out -> ˊ
+    659:660:void head(org.jsoup.nodes.Node,int) -> ･
+    663:665:void tail(org.jsoup.nodes.Node,int) -> ˊ
+org.jsoup.nodes.TextNode -> র:
+    java.lang.String text -> ･
+    32:32:java.lang.String nodeName() -> ･
+    93:101:void outerHtmlHead(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> ･
+    103:103:void outerHtmlTail(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> ˊ
+    106:106:java.lang.String toString() -> toString
+    134:138:void ensureAttributes() -> ˋ
+    142:143:java.lang.String attr(java.lang.String) -> ･
+    148:149:org.jsoup.nodes.Attributes attributes() -> ͺ
+    154:155:org.jsoup.nodes.Node attr(java.lang.String,java.lang.String) -> ˊ
+    160:161:boolean hasAttr(java.lang.String) -> ˊ
+    172:173:java.lang.String absUrl(java.lang.String) -> ˋ
+org.jsoup.nodes.XmlDeclaration -> হ:
+    boolean isProcessingInstruction -> ･
+    24:24:java.lang.String nodeName() -> ･
+    36:41:void outerHtmlHead(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> ･
+    43:43:void outerHtmlTail(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> ˊ
+    46:46:java.lang.String toString() -> toString
+org.jsoup.parser.CharacterReader -> ৰ:
+    char[] input -> ･
+    int length -> ˊ
+    int pos -> ˋ
+    int mark -> ˎ
+    33:33:char current() -> ･
+    37:39:char consume() -> ˊ
+    84:97:int nextIndexOf$76bab10c(java.lang.String) -> ･
+    101:107:java.lang.String consumeTo(char) -> ･
+    123:133:java.lang.String consumeToAny(char[]) -> ･
+    137:139:java.lang.String consumeToEnd() -> ˋ
+    143:152:java.lang.String consumeLetterSequence() -> ˎ
+    156:172:java.lang.String consumeLetterThenDigitSequence() -> ˏ
+    188:196:java.lang.String consumeDigitSequence() -> ᐝ
+    200:200:boolean matches(char) -> ˊ
+    230:238:boolean matchesAny(char[]) -> ˊ
+    242:245:boolean matchesLetter() -> ʻ
+    256:260:boolean matchConsume(java.lang.String) -> ˊ
+    265:269:boolean matchConsumeIgnoreCase(java.lang.String) -> ˋ
+    275:277:boolean containsIgnoreCase(java.lang.String) -> ˎ
+    282:282:java.lang.String toString() -> toString
+org.jsoup.parser.HtmlTreeBuilder -> ค:
+    java.lang.String[] TagsScriptStyle -> ᐧ
+    java.lang.String[] TagsSearchInScope -> ･
+    java.lang.String[] TagSearchList -> ˊ
+    java.lang.String[] TagSearchButton -> ˋ
+    java.lang.String[] TagSearchTableScope -> ˎ
+    java.lang.String[] TagSearchSelectScope -> ᐨ
+    java.lang.String[] TagSearchEndTags -> ・
+    java.lang.String[] TagSearchSpecial -> ﹳ
+    org.jsoup.parser.HtmlTreeBuilderState state -> ˏ
+    org.jsoup.parser.HtmlTreeBuilderState originalState -> ᐝ
+    boolean baseUriSetFromDoc -> ﾞ
+    org.jsoup.nodes.Element headElement -> ʻ
+    org.jsoup.nodes.FormElement formElement -> ʼ
+    org.jsoup.helper.DescendableLinkedList formattingElements -> ʽ
+    java.util.ArrayList pendingTableCharacters$7865b31 -> ͺ
+    boolean framesetOk -> ι
+    boolean fosterInserts -> ʾ
+    boolean fragmentParsing -> ʹ
+    boolean $assertionsDisabled -> ՙ
+    53:54:org.jsoup.nodes.Document parse(java.lang.String,java.lang.String,org.jsoup.parser.ParseErrorList) -> ･
+    110:111:boolean process(org.jsoup.parser.Token) -> ･
+    115:116:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilderState) -> ･
+    144:144:org.jsoup.nodes.Document getDocument() -> ･
+    148:148:java.lang.String getBaseUri() -> ˊ
+    152:161:void maybeSetBaseUri(org.jsoup.nodes.Element) -> ･
+    168:170:void error(org.jsoup.parser.HtmlTreeBuilderState) -> ･
+    175:185:org.jsoup.nodes.Element insert(org.jsoup.parser.Token$StartTag) -> ･
+    189:191:org.jsoup.nodes.Element insert(java.lang.String) -> ･
+    200:212:org.jsoup.nodes.Element insertEmpty(org.jsoup.parser.Token$StartTag) -> ˊ
+    216:222:org.jsoup.nodes.FormElement insertForm(org.jsoup.parser.Token$StartTag,boolean) -> ･
+    226:228:void insert(org.jsoup.parser.Token$Comment) -> ･
+    233:238:void insert(org.jsoup.parser.Token$Character) -> ･
+    242:254:void insertNode(org.jsoup.nodes.Node) -> ˊ
+    258:262:org.jsoup.nodes.Element pop() -> ˋ
+    266:267:void push(org.jsoup.nodes.Element) -> ˊ
+    270:270:org.jsoup.helper.DescendableLinkedList getStack() -> ˎ
+    274:274:boolean onStack(org.jsoup.nodes.Element) -> ˋ
+    278:285:boolean isElementInQueue(org.jsoup.helper.DescendableLinkedList,org.jsoup.nodes.Element) -> ･
+    289:296:org.jsoup.nodes.Element getFromStack(java.lang.String) -> ˊ
+    300:308:boolean removeFromStack(org.jsoup.nodes.Element) -> ˎ
+    312:322:void popStackToClose(java.lang.String) -> ˋ
+    325:335:void popStackToClose(java.lang.String[]) -> ･
+    338:347:void popStackToBefore(java.lang.String) -> ˎ
+    350:351:void clearStackToTableContext() -> ˏ
+    362:370:void clearStackToContext(java.lang.String[]) -> ˊ
+    373:381:org.jsoup.nodes.Element aboveOnStack(org.jsoup.nodes.Element) -> ˏ
+    385:388:void insertOnStackAfter(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    391:392:void replaceOnStack(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ˊ
+    395:399:void replaceInQueue$57ade4b3(org.jsoup.helper.DescendableLinkedList,org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    402:449:void resetInsertionMode() -> ᐝ
+    457:469:boolean inSpecificScope(java.lang.String[],java.lang.String[],java.lang.String[]) -> ･
+    495:495:boolean inTableScope(java.lang.String) -> ˏ
+    499:509:boolean inSelectScope(java.lang.String) -> ᐝ
+    558:561:void generateImpliedEndTags(java.lang.String) -> ʻ
+    570:571:boolean isSpecial(org.jsoup.nodes.Element) -> ᐝ
+    576:592:void pushActiveFormattingElements(org.jsoup.nodes.Element) -> ʻ
+    603:636:void reconstructFormattingElements() -> ʻ
+    641:645:void clearFormattingElementsToLastMarker() -> ʼ
+    650:658:void removeFromActiveFormattingElements(org.jsoup.nodes.Element) -> ʼ
+    665:673:org.jsoup.nodes.Element getActiveFormattingElement(java.lang.String) -> ʼ
+    685:704:void insertInFosterParent(org.jsoup.nodes.Node) -> ･
+    708:708:java.lang.String toString() -> toString
+org.jsoup.parser.HtmlTreeBuilderState -> org.jsoup.parser.HtmlTreeBuilderState:
+    org.jsoup.parser.HtmlTreeBuilderState$1 Initial$4e31dbef -> ･
+    org.jsoup.parser.HtmlTreeBuilderState$2 BeforeHtml$4e31dbef -> ˊ
+    org.jsoup.parser.HtmlTreeBuilderState$3 BeforeHead$4e31dbef -> ˋ
+    org.jsoup.parser.HtmlTreeBuilderState$4 InHead$4e31dbef -> ˎ
+    org.jsoup.parser.HtmlTreeBuilderState$5 InHeadNoscript$4e31dbef -> ˏ
+    org.jsoup.parser.HtmlTreeBuilderState$6 AfterHead$4e31dbef -> ᐝ
+    org.jsoup.parser.HtmlTreeBuilderState$7 InBody$4e31dbef -> ʻ
+    org.jsoup.parser.HtmlTreeBuilderState$8 Text$4e31dbef -> ʼ
+    org.jsoup.parser.HtmlTreeBuilderState$9 InTable$4e31dbef -> ʽ
+    org.jsoup.parser.HtmlTreeBuilderState$10 InTableText$4e31dbef -> ͺ
+    org.jsoup.parser.HtmlTreeBuilderState$11 InCaption$4e31dbef -> ι
+    org.jsoup.parser.HtmlTreeBuilderState$12 InColumnGroup$4e31dbef -> ʾ
+    org.jsoup.parser.HtmlTreeBuilderState$13 InTableBody$4e31dbef -> ʿ
+    org.jsoup.parser.HtmlTreeBuilderState$14 InRow$4e31dbef -> ˈ
+    org.jsoup.parser.HtmlTreeBuilderState$15 InCell$4e31dbef -> ˉ
+    org.jsoup.parser.HtmlTreeBuilderState$16 InSelect$4e31dbef -> ˌ
+    org.jsoup.parser.HtmlTreeBuilderState$17 InSelectInTable$4e31dbef -> ˍ
+    org.jsoup.parser.HtmlTreeBuilderState$18 AfterBody$4e31dbef -> ˑ
+    org.jsoup.parser.HtmlTreeBuilderState$19 InFrameset$4e31dbef -> ـ
+    org.jsoup.parser.HtmlTreeBuilderState$20 AfterFrameset$4e31dbef -> ᐧ
+    org.jsoup.parser.HtmlTreeBuilderState$21 AfterAfterBody$4e31dbef -> ᐨ
+    org.jsoup.parser.HtmlTreeBuilderState$22 AfterAfterFrameset$4e31dbef -> ・
+    org.jsoup.parser.HtmlTreeBuilderState$23 ForeignContent$4e31dbef -> ﾞ
+    java.lang.String nullString -> ﹳ
+    org.jsoup.parser.HtmlTreeBuilderState[] $VALUES -> ʹ
+    13:13:org.jsoup.parser.HtmlTreeBuilderState[] values() -> values
+    13:13:org.jsoup.parser.HtmlTreeBuilderState valueOf(java.lang.String) -> valueOf
+    boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+    13:13:boolean access$100(org.jsoup.parser.Token) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$1 -> org.jsoup.parser.HtmlTreeBuilderState$1:
+    16:34:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$10 -> org.jsoup.parser.HtmlTreeBuilderState$10:
+    900:931:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$11 -> org.jsoup.parser.HtmlTreeBuilderState$11:
+    936:966:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$12 -> org.jsoup.parser.HtmlTreeBuilderState$12:
+    971:1014:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$13 -> org.jsoup.parser.HtmlTreeBuilderState$13:
+    1026:1066:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+    1070:1077:boolean exitTableBody(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ˊ
+org.jsoup.parser.HtmlTreeBuilderState$14 -> org.jsoup.parser.HtmlTreeBuilderState$14:
+    1086:1130:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$15 -> org.jsoup.parser.HtmlTreeBuilderState$15:
+    1147:1188:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+    1196:1200:void closeCell(org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$16 -> org.jsoup.parser.HtmlTreeBuilderState$16:
+    1204:1282:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$17 -> org.jsoup.parser.HtmlTreeBuilderState$17:
+    1292:1304:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$18 -> org.jsoup.parser.HtmlTreeBuilderState$18:
+    1310:1333:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$19 -> org.jsoup.parser.HtmlTreeBuilderState$19:
+    1338:1379:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$2 -> org.jsoup.parser.HtmlTreeBuilderState$2:
+    39:57:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$20 -> org.jsoup.parser.HtmlTreeBuilderState$20:
+    1384:1403:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$21 -> org.jsoup.parser.HtmlTreeBuilderState$21:
+    1408:1419:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$22 -> org.jsoup.parser.HtmlTreeBuilderState$22:
+    1424:1436:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$23 -> org.jsoup.parser.HtmlTreeBuilderState$23:
+    1441:1441:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$24 -> org.jsoup.parser.HtmlTreeBuilderState$24:
+    int[] $SwitchMap$org$jsoup$parser$Token$TokenType -> ･
+org.jsoup.parser.HtmlTreeBuilderState$3 -> org.jsoup.parser.HtmlTreeBuilderState$3:
+    68:91:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$4 -> org.jsoup.parser.HtmlTreeBuilderState$4:
+    96:158:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$5 -> org.jsoup.parser.HtmlTreeBuilderState$5:
+    168:186:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$6 -> org.jsoup.parser.HtmlTreeBuilderState$6:
+    197:237:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$7 -> org.jsoup.parser.HtmlTreeBuilderState$7:
+    248:754:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+    758:776:boolean anyOtherEndTag(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ˊ
+org.jsoup.parser.HtmlTreeBuilderState$8 -> org.jsoup.parser.HtmlTreeBuilderState$8:
+    782:795:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+org.jsoup.parser.HtmlTreeBuilderState$9 -> org.jsoup.parser.HtmlTreeBuilderState$9:
+    800:882:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ･
+    886:895:boolean anythingElse(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> ˊ
+org.jsoup.parser.HtmlTreeBuilderState$Constants -> org.jsoup.parser.HtmlTreeBuilderState$･:
+    java.lang.String[] InBodyStartToHead -> ･
+    java.lang.String[] InBodyStartPClosers -> ˊ
+    java.lang.String[] Headings -> ˋ
+    java.lang.String[] InBodyStartPreListing -> ˎ
+    java.lang.String[] InBodyStartLiBreakers -> ˏ
+    java.lang.String[] DdDt -> ᐝ
+    java.lang.String[] Formatters -> ʻ
+    java.lang.String[] InBodyStartApplets -> ʼ
+    java.lang.String[] InBodyStartEmptyFormatters -> ʽ
+    java.lang.String[] InBodyStartMedia -> ͺ
+    java.lang.String[] InBodyStartInputAttribs -> ι
+    java.lang.String[] InBodyStartOptions -> ʾ
+    java.lang.String[] InBodyStartRuby -> ʿ
+    java.lang.String[] InBodyStartDrop -> ˈ
+    java.lang.String[] InBodyEndClosers -> ˉ
+    java.lang.String[] InBodyEndAdoptionFormatters -> ˌ
+    java.lang.String[] InBodyEndTableFosters -> ˍ
+    1480:1480:java.lang.String[] access$500() -> ･
+    1480:1480:java.lang.String[] access$600() -> ˊ
+    1480:1480:java.lang.String[] access$700() -> ˋ
+    1480:1480:java.lang.String[] access$800() -> ˎ
+    1480:1480:java.lang.String[] access$900() -> ˏ
+    1480:1480:java.lang.String[] access$1000() -> ᐝ
+    1480:1480:java.lang.String[] access$1100() -> ʻ
+    1480:1480:java.lang.String[] access$1200() -> ʼ
+    1480:1480:java.lang.String[] access$1300() -> ʽ
+    1480:1480:java.lang.String[] access$1400() -> ͺ
+    1480:1480:java.lang.String[] access$1500() -> ι
+    1480:1480:java.lang.String[] access$1600() -> ʾ
+    1480:1480:java.lang.String[] access$1700() -> ʿ
+    1480:1480:java.lang.String[] access$1800() -> ˈ
+    1480:1480:java.lang.String[] access$1900() -> ˉ
+    1480:1480:java.lang.String[] access$2000() -> ˌ
+    1480:1480:java.lang.String[] access$2100() -> ˍ
+org.jsoup.parser.ParseError -> ฅ:
+    int pos -> ･
+    java.lang.String errorMsg -> ˊ
+    38:38:java.lang.String toString() -> toString
+org.jsoup.parser.ParseErrorList -> org.jsoup.parser.ParseErrorList:
+    int maxSize -> maxSize
+    28:28:org.jsoup.parser.ParseErrorList noTracking() -> ･
+org.jsoup.parser.Tag -> ถ:
+    java.util.HashMap tags$5a983bf5 -> ･
+    java.lang.String tagName -> ˊ
+    boolean isBlock -> ˋ
+    boolean formatAsBlock -> ˎ
+    boolean canContainBlock -> ʽ
+    boolean canContainInline -> ͺ
+    boolean empty -> ˏ
+    boolean selfClosing -> ᐝ
+    boolean preserveWhitespace -> ʻ
+    boolean formList -> ʼ
+    boolean formSubmit -> ι
+    java.lang.String[] blockTags -> ʾ
+    java.lang.String[] inlineTags -> ʿ
+    java.lang.String[] emptyTags -> ˈ
+    java.lang.String[] formatAsInlineTags -> ˉ
+    java.lang.String[] preserveWhitespaceTags -> ˌ
+    java.lang.String[] formListedTags -> ˍ
+    java.lang.String[] formSubmitTags -> ˑ
+    49:64:org.jsoup.parser.Tag valueOf(java.lang.String) -> ･
+    181:197:boolean equals(java.lang.Object) -> equals
+    202:212:int hashCode() -> hashCode
+    216:216:java.lang.String toString() -> toString
+org.jsoup.parser.Token -> org.jsoup.parser.Token:
+    org.jsoup.parser.Token$TokenType type -> ･
+org.jsoup.parser.Token$Character -> org.jsoup.parser.Token$･:
+    java.lang.String data -> ˊ
+    213:213:java.lang.String toString() -> toString
+org.jsoup.parser.Token$Comment -> org.jsoup.parser.Token$if:
+    java.lang.StringBuilder data -> ˊ
+    boolean bogus -> ˋ
+    195:195:java.lang.String toString() -> toString
+org.jsoup.parser.Token$Doctype -> org.jsoup.parser.Token$ˊ:
+    java.lang.StringBuilder name -> ˊ
+    java.lang.StringBuilder publicIdentifier -> ˋ
+    java.lang.StringBuilder systemIdentifier -> ˎ
+    boolean forceQuirks -> ˏ
+org.jsoup.parser.Token$EOF -> org.jsoup.parser.Token$If:
+org.jsoup.parser.Token$EndTag -> org.jsoup.parser.Token$ˋ:
+    177:177:java.lang.String toString() -> toString
+org.jsoup.parser.Token$StartTag -> org.jsoup.parser.Token$iF:
+    157:160:java.lang.String toString() -> toString
+org.jsoup.parser.Token$Tag -> org.jsoup.parser.Token$ˎ:
+    java.lang.String tagName -> ˊ
+    java.lang.String pendingAttributeName -> ˋ
+    java.lang.StringBuilder pendingAttributeValue -> ˎ
+    boolean selfClosing -> ˏ
+    org.jsoup.nodes.Attributes attributes -> ᐝ
+    56:70:void newAttribute() -> ･
+    81:82:java.lang.String name() -> ˊ
+    86:87:org.jsoup.parser.Token$Tag name(java.lang.String) -> ･
+    101:102:void appendTagName(java.lang.String) -> ˊ
+    105:106:void appendTagName(char) -> ･
+org.jsoup.parser.Token$TokenType -> org.jsoup.parser.Token$TokenType:
+    org.jsoup.parser.Token$TokenType Doctype -> ･
+    org.jsoup.parser.Token$TokenType StartTag -> ˊ
+    org.jsoup.parser.Token$TokenType EndTag -> ˋ
+    org.jsoup.parser.Token$TokenType Comment -> ˎ
+    org.jsoup.parser.Token$TokenType Character -> ˏ
+    org.jsoup.parser.Token$TokenType EOF -> ᐝ
+    org.jsoup.parser.Token$TokenType[] $VALUES -> ʻ
+    267:267:org.jsoup.parser.Token$TokenType[] values() -> values
+    267:267:org.jsoup.parser.Token$TokenType valueOf(java.lang.String) -> valueOf
+org.jsoup.parser.TokenQueue -> ท:
+    java.lang.String queue -> ･
+    int pos -> ˊ
+    89:93:boolean matchesAny(java.lang.String[]) -> ･
+    97:104:boolean matchesAny(char[]) -> ･
+    119:123:boolean matchChomp(java.lang.String) -> ･
+    140:140:boolean matchesWord() -> ･
+    166:173:void consume(java.lang.String) -> ˊ
+    224:230:java.lang.String consumeToAny(java.lang.String[]) -> ˊ
+    242:244:java.lang.String chompTo(java.lang.String) -> ˋ
+    263:285:java.lang.String chompBalanced(char,char) -> ･
+    294:305:java.lang.String unescape(java.lang.String) -> ˎ
+    312:317:boolean consumeWhitespace() -> ˊ
+    350:354:java.lang.String consumeElementSelector() -> ˋ
+    363:367:java.lang.String consumeCssIdentifier() -> ˎ
+    393:393:java.lang.String toString() -> toString
+org.jsoup.parser.Tokeniser -> ป:
+    org.jsoup.parser.CharacterReader reader -> ･
+    org.jsoup.parser.ParseErrorList errors -> ι
+    org.jsoup.parser.TokeniserState state -> ˊ
+    org.jsoup.parser.Token emitPending -> ˋ
+    boolean isEmitPending -> ˎ
+    java.lang.StringBuilder charBuffer -> ˏ
+    java.lang.StringBuilder dataBuffer -> ᐝ
+    org.jsoup.parser.Token$Tag tagPending -> ʻ
+    org.jsoup.parser.Token$Doctype doctypePending -> ʼ
+    org.jsoup.parser.Token$Comment commentPending -> ʽ
+    org.jsoup.parser.Token$StartTag lastStartTag -> ʾ
+    boolean selfClosingFlagAcknowledged -> ͺ
+    56:71:void emit(org.jsoup.parser.Token) -> ･
+    105:157:char[] consumeCharacterReference(java.lang.Character,boolean) -> ･
+    192:194:boolean isAppropriateEndTagToken() -> ･
+    198:198:java.lang.String appropriateEndTagName() -> ˊ
+    202:204:void error(org.jsoup.parser.TokeniserState) -> ･
+    207:209:void eofError(org.jsoup.parser.TokeniserState) -> ˊ
+    212:214:void characterReferenceError(java.lang.String) -> ˊ
+    217:219:void error(java.lang.String) -> ･
+org.jsoup.parser.TokeniserState -> org.jsoup.parser.TokeniserState:
+    org.jsoup.parser.TokeniserState$1 Data$389620af -> ･
+    org.jsoup.parser.TokeniserState$2 CharacterReferenceInData$389620af -> ˊ
+    org.jsoup.parser.TokeniserState$3 Rcdata$389620af -> ˋ
+    org.jsoup.parser.TokeniserState$4 CharacterReferenceInRcdata$389620af -> ˎ
+    org.jsoup.parser.TokeniserState$5 Rawtext$389620af -> ˏ
+    org.jsoup.parser.TokeniserState$6 ScriptData$389620af -> ᐝ
+    org.jsoup.parser.TokeniserState$7 PLAINTEXT$389620af -> ʻ
+    org.jsoup.parser.TokeniserState$8 TagOpen$389620af -> ʼ
+    org.jsoup.parser.TokeniserState$9 EndTagOpen$389620af -> ʽ
+    org.jsoup.parser.TokeniserState$10 TagName$389620af -> ͺ
+    org.jsoup.parser.TokeniserState$11 RcdataLessthanSign$389620af -> ι
+    org.jsoup.parser.TokeniserState$12 RCDATAEndTagOpen$389620af -> ʾ
+    org.jsoup.parser.TokeniserState$13 RCDATAEndTagName$389620af -> ʿ
+    org.jsoup.parser.TokeniserState$14 RawtextLessthanSign$389620af -> ˈ
+    org.jsoup.parser.TokeniserState$15 RawtextEndTagOpen$389620af -> ˉ
+    org.jsoup.parser.TokeniserState$16 RawtextEndTagName$389620af -> ˌ
+    org.jsoup.parser.TokeniserState$17 ScriptDataLessthanSign$389620af -> ˍ
+    org.jsoup.parser.TokeniserState$18 ScriptDataEndTagOpen$389620af -> ˑ
+    org.jsoup.parser.TokeniserState$19 ScriptDataEndTagName$389620af -> ـ
+    org.jsoup.parser.TokeniserState$20 ScriptDataEscapeStart$389620af -> ᐧ
+    org.jsoup.parser.TokeniserState$21 ScriptDataEscapeStartDash$389620af -> ᐨ
+    org.jsoup.parser.TokeniserState$22 ScriptDataEscaped$389620af -> ・
+    org.jsoup.parser.TokeniserState$23 ScriptDataEscapedDash$389620af -> ﹳ
+    org.jsoup.parser.TokeniserState$24 ScriptDataEscapedDashDash$389620af -> ﾞ
+    org.jsoup.parser.TokeniserState$25 ScriptDataEscapedLessthanSign$389620af -> ʹ
+    org.jsoup.parser.TokeniserState$26 ScriptDataEscapedEndTagOpen$389620af -> ՙ
+    org.jsoup.parser.TokeniserState$27 ScriptDataEscapedEndTagName$389620af -> י
+    org.jsoup.parser.TokeniserState$28 ScriptDataDoubleEscapeStart$389620af -> ٴ
+    org.jsoup.parser.TokeniserState$29 ScriptDataDoubleEscaped$389620af -> ᴵ
+    org.jsoup.parser.TokeniserState$30 ScriptDataDoubleEscapedDash$389620af -> ᵎ
+    org.jsoup.parser.TokeniserState$31 ScriptDataDoubleEscapedDashDash$389620af -> ᵔ
+    org.jsoup.parser.TokeniserState$32 ScriptDataDoubleEscapedLessthanSign$389620af -> ᵢ
+    org.jsoup.parser.TokeniserState$33 ScriptDataDoubleEscapeEnd$389620af -> ⁱ
+    org.jsoup.parser.TokeniserState$34 BeforeAttributeName$389620af -> ﹶ
+    org.jsoup.parser.TokeniserState$35 AttributeName$389620af -> ﹺ
+    org.jsoup.parser.TokeniserState$36 AfterAttributeName$389620af -> ｰ
+    org.jsoup.parser.TokeniserState$37 BeforeAttributeValue$389620af -> ʳ
+    org.jsoup.parser.TokeniserState$38 AttributeValue_doubleQuoted$389620af -> ʴ
+    org.jsoup.parser.TokeniserState$39 AttributeValue_singleQuoted$389620af -> ˆ
+    org.jsoup.parser.TokeniserState$40 AttributeValue_unquoted$389620af -> ˇ
+    org.jsoup.parser.TokeniserState$41 AfterAttributeValue_quoted$389620af -> ˡ
+    org.jsoup.parser.TokeniserState$42 SelfClosingStartTag$389620af -> ˮ
+    org.jsoup.parser.TokeniserState$43 BogusComment$389620af -> ۥ
+    org.jsoup.parser.TokeniserState$44 MarkupDeclarationOpen$389620af -> ᐠ
+    org.jsoup.parser.TokeniserState$45 CommentStart$389620af -> ᐣ
+    org.jsoup.parser.TokeniserState$46 CommentStartDash$389620af -> ᐩ
+    org.jsoup.parser.TokeniserState$47 Comment$389620af -> ᑊ
+    org.jsoup.parser.TokeniserState$48 CommentEndDash$389620af -> ᕀ
+    org.jsoup.parser.TokeniserState$49 CommentEnd$389620af -> ᵕ
+    org.jsoup.parser.TokeniserState$50 CommentEndBang$389620af -> ᵣ
+    org.jsoup.parser.TokeniserState$51 Doctype$389620af -> יִ
+    org.jsoup.parser.TokeniserState$52 BeforeDoctypeName$389620af -> יּ
+    org.jsoup.parser.TokeniserState$53 DoctypeName$389620af -> ᐟ
+    org.jsoup.parser.TokeniserState$54 AfterDoctypeName$389620af -> ᐡ
+    org.jsoup.parser.TokeniserState$55 AfterDoctypePublicKeyword$389620af -> ᐪ
+    org.jsoup.parser.TokeniserState$56 BeforeDoctypePublicIdentifier$389620af -> ᒽ
+    org.jsoup.parser.TokeniserState$57 DoctypePublicIdentifier_doubleQuoted$389620af -> ᔇ
+    org.jsoup.parser.TokeniserState$58 DoctypePublicIdentifier_singleQuoted$389620af -> ᔈ
+    org.jsoup.parser.TokeniserState$59 AfterDoctypePublicIdentifier$389620af -> ᗮ
+    org.jsoup.parser.TokeniserState$60 BetweenDoctypePublicAndSystemIdentifiers$389620af -> ᴶ
+    org.jsoup.parser.TokeniserState$61 AfterDoctypeSystemKeyword$389620af -> ᴸ
+    org.jsoup.parser.TokeniserState$62 BeforeDoctypeSystemIdentifier$389620af -> ᵀ
+    org.jsoup.parser.TokeniserState$63 DoctypeSystemIdentifier_doubleQuoted$389620af -> ᵋ
+    org.jsoup.parser.TokeniserState$64 DoctypeSystemIdentifier_singleQuoted$389620af -> ᵗ
+    org.jsoup.parser.TokeniserState$65 AfterDoctypeSystemIdentifier$389620af -> ﾟ
+    org.jsoup.parser.TokeniserState$66 BogusDoctype$389620af -> ı
+    org.jsoup.parser.TokeniserState$67 CdataSection$389620af -> ǃ
+    java.lang.String replacementStr -> ʲ
+    org.jsoup.parser.TokeniserState[] $VALUES -> ː
+    6:6:org.jsoup.parser.TokeniserState[] values() -> values
+    6:6:org.jsoup.parser.TokeniserState valueOf(java.lang.String) -> valueOf
+    void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+    6:6:void access$200(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader,org.jsoup.parser.TokeniserState) -> ･
+    6:6:void access$300(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader,org.jsoup.parser.TokeniserState,org.jsoup.parser.TokeniserState) -> ･
+org.jsoup.parser.TokeniserState$1 -> org.jsoup.parser.TokeniserState$1:
+    10:29:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$10 -> org.jsoup.parser.TokeniserState$10:
+    185:211:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$11 -> org.jsoup.parser.TokeniserState$11:
+    216:230:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$12 -> org.jsoup.parser.TokeniserState$12:
+    234:243:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$13 -> org.jsoup.parser.TokeniserState$13:
+    247:283:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+    286:289:void anythingElse(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ˊ
+org.jsoup.parser.TokeniserState$14 -> org.jsoup.parser.TokeniserState$14:
+    293:300:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$15 -> org.jsoup.parser.TokeniserState$15:
+    304:311:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$16 -> org.jsoup.parser.TokeniserState$16:
+    315:316:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$17 -> org.jsoup.parser.TokeniserState$17:
+    320:334:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$18 -> org.jsoup.parser.TokeniserState$18:
+    338:346:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$19 -> org.jsoup.parser.TokeniserState$19:
+    350:351:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$2 -> org.jsoup.parser.TokeniserState$2:
+    34:40:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$20 -> org.jsoup.parser.TokeniserState$20:
+    355:361:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$21 -> org.jsoup.parser.TokeniserState$21:
+    365:371:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$22 -> org.jsoup.parser.TokeniserState$22:
+    375:398:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$23 -> org.jsoup.parser.TokeniserState$23:
+    402:426:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$24 -> org.jsoup.parser.TokeniserState$24:
+    430:457:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$25 -> org.jsoup.parser.TokeniserState$25:
+    461:473:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$26 -> org.jsoup.parser.TokeniserState$26:
+    477:486:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$27 -> org.jsoup.parser.TokeniserState$27:
+    490:491:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$28 -> org.jsoup.parser.TokeniserState$28:
+    495:496:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$29 -> org.jsoup.parser.TokeniserState$29:
+    500:523:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$3 -> org.jsoup.parser.TokeniserState$3:
+    45:65:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$30 -> org.jsoup.parser.TokeniserState$30:
+    527:550:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$31 -> org.jsoup.parser.TokeniserState$31:
+    554:580:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$32 -> org.jsoup.parser.TokeniserState$32:
+    584:591:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$33 -> org.jsoup.parser.TokeniserState$33:
+    595:596:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$34 -> org.jsoup.parser.TokeniserState$34:
+    601:640:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$35 -> org.jsoup.parser.TokeniserState$35:
+    645:682:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$36 -> org.jsoup.parser.TokeniserState$36:
+    686:727:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$37 -> org.jsoup.parser.TokeniserState$37:
+    731:775:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$38 -> org.jsoup.parser.TokeniserState$38:
+    779:805:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$39 -> org.jsoup.parser.TokeniserState$39:
+    809:835:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$4 -> org.jsoup.parser.TokeniserState$4:
+    69:75:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$40 -> org.jsoup.parser.TokeniserState$40:
+    839:882:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$41 -> org.jsoup.parser.TokeniserState$41:
+    887:913:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$42 -> org.jsoup.parser.TokeniserState$42:
+    917:932:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$43 -> org.jsoup.parser.TokeniserState$43:
+    938:945:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$44 -> org.jsoup.parser.TokeniserState$44:
+    949:963:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$45 -> org.jsoup.parser.TokeniserState$45:
+    967:991:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$46 -> org.jsoup.parser.TokeniserState$46:
+    995:1019:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$47 -> org.jsoup.parser.TokeniserState$47:
+    1023:1041:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$48 -> org.jsoup.parser.TokeniserState$48:
+    1045:1064:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$49 -> org.jsoup.parser.TokeniserState$49:
+    1068:1097:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$5 -> org.jsoup.parser.TokeniserState$5:
+    79:96:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$50 -> org.jsoup.parser.TokeniserState$50:
+    1101:1125:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$51 -> org.jsoup.parser.TokeniserState$51:
+    1129:1149:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$52 -> org.jsoup.parser.TokeniserState$52:
+    1153:1183:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$53 -> org.jsoup.parser.TokeniserState$53:
+    1187:1218:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$54 -> org.jsoup.parser.TokeniserState$54:
+    1222:1244:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$55 -> org.jsoup.parser.TokeniserState$55:
+    1248:1284:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$56 -> org.jsoup.parser.TokeniserState$56:
+    1288:1321:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$57 -> org.jsoup.parser.TokeniserState$57:
+    1325:1349:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$58 -> org.jsoup.parser.TokeniserState$58:
+    1353:1377:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$59 -> org.jsoup.parser.TokeniserState$59:
+    1381:1415:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$6 -> org.jsoup.parser.TokeniserState$6:
+    100:117:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$60 -> org.jsoup.parser.TokeniserState$60:
+    1419:1452:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$61 -> org.jsoup.parser.TokeniserState$61:
+    1456:1492:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$62 -> org.jsoup.parser.TokeniserState$62:
+    1496:1529:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$63 -> org.jsoup.parser.TokeniserState$63:
+    1533:1557:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$64 -> org.jsoup.parser.TokeniserState$64:
+    1561:1585:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$65 -> org.jsoup.parser.TokeniserState$65:
+    1589:1612:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$66 -> org.jsoup.parser.TokeniserState$66:
+    1616:1625:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$67 -> org.jsoup.parser.TokeniserState$67:
+    1634:1638:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$7 -> org.jsoup.parser.TokeniserState$7:
+    121:135:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$8 -> org.jsoup.parser.TokeniserState$8:
+    140:161:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TokeniserState$9 -> org.jsoup.parser.TokeniserState$9:
+    165:179:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> ･
+org.jsoup.parser.TreeBuilder -> ผ:
+    org.jsoup.parser.CharacterReader reader -> ʿ
+    org.jsoup.parser.Tokeniser tokeniser -> ˈ
+    org.jsoup.nodes.Document doc -> ˉ
+    org.jsoup.helper.DescendableLinkedList stack -> ˌ
+    java.lang.String baseUri -> ˍ
+    org.jsoup.parser.Token currentToken -> ˑ
+    org.jsoup.parser.ParseErrorList errors -> ـ
+    40:42:org.jsoup.nodes.Document parse(java.lang.String,java.lang.String,org.jsoup.parser.ParseErrorList) -> ･
+    boolean process(org.jsoup.parser.Token) -> ･
+    58:58:org.jsoup.nodes.Element currentElement() -> ʽ
+org.jsoup.select.Collector$Accumulator -> ภ:
+    org.jsoup.nodes.Element root -> ･
+    org.jsoup.select.Elements elements -> ˊ
+    org.jsoup.select.Evaluator eval -> ˋ
+    40:45:void head(org.jsoup.nodes.Node,int) -> ･
+    49:49:void tail(org.jsoup.nodes.Node,int) -> ˊ
+org.jsoup.select.CombiningEvaluator -> ล:
+    java.util.ArrayList evaluators -> ･
+    int num -> ˊ
+org.jsoup.select.CombiningEvaluator$And -> ล$･:
+    53:58:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    63:63:java.lang.String toString() -> toString
+org.jsoup.select.CombiningEvaluator$Or -> ล$if:
+    92:97:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    102:102:java.lang.String toString() -> toString
+org.jsoup.select.Elements -> ห:
+    java.util.ArrayList contents$7865b31 -> ･
+    47:58:org.jsoup.select.Elements clone() -> ˊ
+    70:74:java.lang.String attr(java.lang.String) -> ･
+    196:202:java.lang.String text() -> ･
+    252:252:java.lang.String toString() -> toString
+    416:416:org.jsoup.select.Elements select(java.lang.String) -> ˊ
+    512:512:int size() -> size
+    514:514:boolean isEmpty() -> isEmpty
+    516:516:boolean contains(java.lang.Object) -> contains
+    518:518:java.util.Iterator iterator() -> iterator
+    520:520:java.lang.Object[] toArray() -> toArray
+    522:522:java.lang.Object[] toArray(java.lang.Object[]) -> toArray
+    526:526:boolean remove(java.lang.Object) -> remove
+    528:528:boolean containsAll(java.util.Collection) -> containsAll
+    530:530:boolean addAll(java.util.Collection) -> addAll
+    532:532:boolean addAll(int,java.util.Collection) -> addAll
+    534:534:boolean removeAll(java.util.Collection) -> removeAll
+    536:536:boolean retainAll(java.util.Collection) -> retainAll
+    538:538:void clear() -> clear
+    540:540:boolean equals(java.lang.Object) -> equals
+    542:542:int hashCode() -> hashCode
+    552:552:int indexOf(java.lang.Object) -> indexOf
+    554:554:int lastIndexOf(java.lang.Object) -> lastIndexOf
+    556:556:java.util.ListIterator listIterator() -> listIterator
+    558:558:java.util.ListIterator listIterator(int) -> listIterator
+    560:560:java.util.List subList(int,int) -> subList
+    16:16:java.lang.Object clone() -> clone
+    16:16:java.lang.Object remove(int) -> remove
+    16:16:void add(int,java.lang.Object) -> add
+    16:16:java.lang.Object set(int,java.lang.Object) -> set
+    16:16:java.lang.Object get(int) -> get
+    16:16:boolean add(java.lang.Object) -> add
+org.jsoup.select.Evaluator -> โ:
+    boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+org.jsoup.select.Evaluator$AllElements -> โ$･:
+    292:292:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    297:297:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$Attribute -> โ$if:
+    java.lang.String key -> ･
+    108:108:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    113:113:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$AttributeKeyPair -> โ$ˊ:
+    java.lang.String key -> ･
+    java.lang.String value -> ˊ
+org.jsoup.select.Evaluator$AttributeStarting -> โ$If:
+    java.lang.String keyPrefix -> ･
+    130:135:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    140:140:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$AttributeWithValue -> โ$ˋ:
+    155:155:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    160:160:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$AttributeWithValueContaining -> โ$iF:
+    235:235:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    240:240:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$AttributeWithValueEnding -> โ$ˎ:
+    215:215:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    220:220:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$AttributeWithValueMatching -> โ$IF:
+    java.lang.String key -> ･
+    java.util.regex.Pattern pattern -> ˊ
+    259:259:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    264:264:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$AttributeWithValueNot -> โ$ˏ:
+    175:175:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    180:180:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$AttributeWithValueStarting -> โ$aux:
+    195:195:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    200:200:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$Class -> โ$ᐝ:
+    java.lang.String className -> ･
+    86:86:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    91:91:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$ContainsOwnText -> โ$Aux:
+    java.lang.String searchText -> ･
+    649:649:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    654:654:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$ContainsText -> โ$ʻ:
+    java.lang.String searchText -> ･
+    628:628:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    633:633:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$CssNthEvaluator -> โ$aUx:
+    int a -> ･
+    int b -> ˊ
+    411:417:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    422:426:java.lang.String toString() -> toString
+    java.lang.String getPseudoClass() -> ･
+    int calculatePosition$296f3858(org.jsoup.nodes.Element) -> ･
+org.jsoup.select.Evaluator$Id -> โ$ʼ:
+    java.lang.String id -> ･
+    64:64:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    69:69:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$IndexEquals -> โ$AUx:
+    351:351:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    356:356:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$IndexEvaluator -> โ$ʽ:
+    int index -> ･
+org.jsoup.select.Evaluator$IndexGreaterThan -> โ$auX:
+    331:331:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    336:336:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$IndexLessThan -> โ$ͺ:
+    311:311:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    316:316:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$IsEmpty -> โ$AuX:
+    590:595:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    599:599:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$IsFirstChild -> โ$ι:
+    529:530:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    535:535:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$IsFirstOfType -> โ$aUX:
+    383:383:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$IsLastChild -> โ$ʾ:
+    367:368:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    373:373:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$IsLastOfType -> โ$AUX:
+    393:393:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$IsNthChild -> โ$ʿ:
+    446:446:int calculatePosition$296f3858(org.jsoup.nodes.Element) -> ･
+    451:451:java.lang.String getPseudoClass() -> ･
+org.jsoup.select.Evaluator$IsNthLastChild -> โ$con:
+    467:467:int calculatePosition$296f3858(org.jsoup.nodes.Element) -> ･
+    472:472:java.lang.String getPseudoClass() -> ･
+org.jsoup.select.Evaluator$IsNthLastOfType -> โ$ˈ:
+    509:514:int calculatePosition$296f3858(org.jsoup.nodes.Element) -> ･
+    519:519:java.lang.String getPseudoClass() -> ･
+org.jsoup.select.Evaluator$IsNthOfType -> โ$Con:
+    486:492:int calculatePosition$296f3858(org.jsoup.nodes.Element) -> ･
+    497:497:java.lang.String getPseudoClass() -> ･
+org.jsoup.select.Evaluator$IsOnlyChild -> โ$ˉ:
+    559:560:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    564:564:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$IsOnlyOfType -> โ$cOn:
+    571:579:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    583:583:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$IsRoot -> โ$ˌ:
+    547:548:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    552:552:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$Matches -> โ$COn:
+    java.util.regex.Pattern pattern -> ･
+    670:671:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    676:676:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$MatchesOwn -> โ$ˍ:
+    java.util.regex.Pattern pattern -> ･
+    692:693:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    698:698:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$Tag -> โ$coN:
+    java.lang.String tagName -> ･
+    43:43:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    48:48:java.lang.String toString() -> toString
+org.jsoup.select.NodeTraversor -> ไ:
+    org.jsoup.select.NodeVisitor visitor -> ･
+    26:46:void traverse(org.jsoup.nodes.Node) -> ･
+org.jsoup.select.NodeVisitor -> Ⴡ:
+    void head(org.jsoup.nodes.Node,int) -> ･
+    void tail(org.jsoup.nodes.Node,int) -> ˊ
+org.jsoup.select.QueryParser -> ძ:
+    java.lang.String[] combinators -> ･
+    java.lang.String[] AttributeEvals -> ˊ
+    org.jsoup.parser.TokenQueue tq -> ˋ
+    java.lang.String query -> ˎ
+    java.util.ArrayList evals$7865b31 -> ˏ
+    java.util.regex.Pattern NTH_AB -> ᐝ
+    java.util.regex.Pattern NTH_B -> ʻ
+    38:39:org.jsoup.select.Evaluator parse(java.lang.String) -> ･
+    76:125:void combinator(char) -> ･
+    128:139:java.lang.String consumeSubQuery() -> ･
+    143:196:void findElements() -> ˊ
+    207:210:void byClass() -> ˋ
+    213:221:void byTag() -> ˎ
+    224:253:void byAttribute() -> ˏ
+    279:309:void cssNthChild(boolean,boolean) -> ･
+    319:323:void has() -> ᐝ
+    327:334:void contains(boolean) -> ･
+    338:346:void matches(boolean) -> ˊ
+    350:355:void not() -> ʻ
+org.jsoup.select.Selector -> org.jsoup.select.Selector:
+    org.jsoup.select.Evaluator evaluator -> ･
+    org.jsoup.nodes.Element root -> ˊ
+    104:111:org.jsoup.select.Elements select$72ca08d8(java.lang.String,org.jsoup.select.Elements) -> ･
+org.jsoup.select.Selector$SelectorParseException -> org.jsoup.select.Selector$SelectorParseException:
+org.jsoup.select.StructuralEvaluator -> ᐵ:
+    org.jsoup.select.Evaluator evaluator -> ･
+org.jsoup.select.StructuralEvaluator$Has -> ᐵ$･:
+    23:27:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    31:31:java.lang.String toString() -> toString
+org.jsoup.select.StructuralEvaluator$ImmediateParent -> ᐵ$if:
+    78:82:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    86:86:java.lang.String toString() -> toString
+org.jsoup.select.StructuralEvaluator$ImmediatePreviousSibling -> ᐵ$ˊ:
+    121:125:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    129:129:java.lang.String toString() -> toString
+org.jsoup.select.StructuralEvaluator$Not -> ᐵ$If:
+    41:41:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    45:45:java.lang.String toString() -> toString
+org.jsoup.select.StructuralEvaluator$Parent -> ᐵ$ˋ:
+    55:64:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    68:68:java.lang.String toString() -> toString
+org.jsoup.select.StructuralEvaluator$PreviousSibling -> ᐵ$iF:
+    96:107:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+    111:111:java.lang.String toString() -> toString
+org.jsoup.select.StructuralEvaluator$Root -> ᐵ$ˎ:
+    13:13:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> ･
+org.mozilla.gecko.favicons.Favicons -> ᑈ:
     com.linkbubble.MainApplication sContext$48463d4e -> ･
     android.graphics.Bitmap sDefaultFavicon -> ˊ
     java.util.Map mLoadTasks -> ˋ
@@ -13135,7 +14278,7 @@ org.mozilla.gecko.favicons.Favicons -> Դ:
     303:317:boolean cancelFaviconLoad(int) -> ･
     321:335:void close() -> ･
     427:433:java.lang.String guessDefaultFaviconURL(java.lang.String) -> ˊ
-org.mozilla.gecko.favicons.LoadFaviconTask -> չ:
+org.mozilla.gecko.favicons.LoadFaviconTask -> ᒏ:
     java.util.HashMap loadsInFlight -> ˎ
     java.util.concurrent.atomic.AtomicInteger mNextFaviconLoadId -> ˏ
     org.mozilla.gecko.favicons.Favicons mFavicons -> ᐝ
@@ -13157,11 +14300,11 @@ org.mozilla.gecko.favicons.LoadFaviconTask -> չ:
     473:486:void closeHTTPClient() -> ˊ
     38:38:android.graphics.Bitmap doInBackground$42af7916$6240c47a() -> ˋ
     38:38:void onPostExecute$5d527811(android.graphics.Bitmap) -> ･
-org.mozilla.gecko.favicons.LoadFaviconTask$1 -> ט:
+org.mozilla.gecko.favicons.LoadFaviconTask$1 -> ᒰ:
     483:484:void run() -> run
-org.mozilla.gecko.favicons.OnFaviconLoadedListener -> ס:
+org.mozilla.gecko.favicons.OnFaviconLoadedListener -> ᒱ:
     void onFaviconLoaded$179d4c45(java.lang.String,android.graphics.Bitmap) -> ･
-org.mozilla.gecko.favicons.cache.FaviconCache -> ף:
+org.mozilla.gecko.favicons.cache.FaviconCache -> ᒴ:
     java.lang.String LOGTAG -> ˎ
     int sInstanceCount -> ˏ
     int mMaxCachedWidth -> ᐝ
@@ -13183,7 +14326,7 @@ org.mozilla.gecko.favicons.cache.FaviconCache -> ף:
     527:531:void setMostRecentlyUsed(org.mozilla.gecko.favicons.cache.FaviconCacheElement) -> ･
     541:572:void putSingleFavicon(java.lang.String,android.graphics.Bitmap) -> ･
     644:665:void cullIfRequired() -> ˊ
-org.mozilla.gecko.favicons.cache.FaviconCacheElement -> ت:
+org.mozilla.gecko.favicons.cache.FaviconCacheElement -> ᒵ:
     boolean mIsPrimary -> ･
     android.graphics.Bitmap mFaviconPayload -> ˊ
     boolean mInvalidated -> ˋ
@@ -13191,32 +14334,32 @@ org.mozilla.gecko.favicons.cache.FaviconCacheElement -> ت:
     org.mozilla.gecko.favicons.cache.FaviconsForURL mBackpointer -> ˏ
     99:114:void onEvictedFromCache() -> ･
     13:13:int compareTo(java.lang.Object) -> compareTo
-org.mozilla.gecko.favicons.cache.FaviconsForURL -> ٺ:
+org.mozilla.gecko.favicons.cache.FaviconsForURL -> ᒸ:
     int mDominantColor -> ˎ
     long mDownloadTimestamp -> ･
     java.util.ArrayList mFavicons -> ˊ
     boolean mHasFailed -> ˋ
     44:52:org.mozilla.gecko.favicons.cache.FaviconCacheElement addInternal(android.graphics.Bitmap,boolean,int) -> ･
     141:157:int ensureDominantColor() -> ･
-org.mozilla.gecko.util.GeckoBackgroundThread -> ٻ:
+org.mozilla.gecko.util.GeckoBackgroundThread -> ᒹ:
     android.os.Handler sHandler -> ･
     java.util.concurrent.SynchronousQueue mHandlerQueue -> ˊ
     26:33:void run() -> run
     37:45:android.os.Handler getHandler() -> ･
     49:54:void post$5b03c68d(org.mozilla.gecko.favicons.LoadFaviconTask$1) -> ･
-org.mozilla.gecko.util.NonEvictingLruCache -> ړ:
+org.mozilla.gecko.util.NonEvictingLruCache -> ᓙ:
     java.util.concurrent.ConcurrentHashMap permanent -> ･
     android.support.v4.util.LruCache evictable -> ˊ
-org.mozilla.gecko.util.ThreadUtils -> ڽ:
+org.mozilla.gecko.util.ThreadUtils -> ᔬ:
     org.mozilla.gecko.util.GeckoBackgroundThread sBackgroundThread$72a5fc31 -> ･
     77:78:void setBackgroundThread$58fe1566(org.mozilla.gecko.util.GeckoBackgroundThread) -> ･
     97:97:android.os.Handler getBackgroundHandler() -> ･
     101:102:void postToBackgroundThread$5b03c68d(org.mozilla.gecko.favicons.LoadFaviconTask$1) -> ･
     134:134:boolean isOnBackgroundThread() -> ˊ
     163:163:void resetGeckoPriority() -> ˋ
-org.mozilla.gecko.util.ThreadUtils$1 -> ܐ:
+org.mozilla.gecko.util.ThreadUtils$1 -> ᖧ:
     34:35:void run() -> run
-org.mozilla.gecko.util.UiAsyncTask -> ܫ:
+org.mozilla.gecko.util.UiAsyncTask -> ᖨ:
     boolean mCancelled -> ˊ
     android.os.Handler mBackgroundThreadHandler -> ˋ
     android.os.Handler sHandler -> ･
@@ -13224,15 +14367,15 @@ org.mozilla.gecko.util.UiAsyncTask -> ܫ:
     83:83:void onPostExecute$5d527811(android.graphics.Bitmap) -> ･
     84:84:void onCancelled() -> ･
     android.graphics.Bitmap doInBackground$42af7916$6240c47a() -> ˋ
-org.mozilla.gecko.util.UiAsyncTask$1 -> ट:
+org.mozilla.gecko.util.UiAsyncTask$1 -> ᖪ:
     java.lang.Void[] val$params$7b09cd37 -> ･
     org.mozilla.gecko.favicons.LoadFaviconTask this$0$6c64eb41 -> ˊ
     66:68:void run() -> run
-org.mozilla.gecko.util.UiAsyncTask$BackgroundTaskRunnable -> ܫ$･:
+org.mozilla.gecko.util.UiAsyncTask$BackgroundTaskRunnable -> ᖨ$･:
     java.lang.Void[] mParams$7b09cd37 -> ˊ
     org.mozilla.gecko.favicons.LoadFaviconTask this$0$6c64eb41 -> ･
     48:59:void run() -> run
-org.mozilla.gecko.util.UiAsyncTask$BackgroundTaskRunnable$1 -> ও:
+org.mozilla.gecko.util.UiAsyncTask$BackgroundTaskRunnable$1 -> ᖬ:
     android.graphics.Bitmap val$result$5f790d9c -> ･
     org.mozilla.gecko.util.UiAsyncTask$BackgroundTaskRunnable this$1 -> ˊ
     53:57:void run() -> run
@@ -13256,35 +14399,76 @@ org.mozilla.gecko.widget.FaviconView -> org.mozilla.gecko.widget.FaviconView:
     139:173:void formatImage() -> ･
     204:220:void updateImageInternal$5f65ed51(android.graphics.Bitmap,java.lang.String) -> ˊ
     283:294:void updateImage(android.graphics.Bitmap,java.lang.String) -> ･
-retrofit.Callback -> চ:
-retrofit.CallbackRunnable -> দ:
+org.slf4j.ILoggerFactory -> ᖽ:
+    org.slf4j.helpers.MarkerIgnoringBase getLogger$424215df(java.lang.String) -> ･
+org.slf4j.LoggerFactory -> ᖾ:
+    int INITIALIZATION_STATE -> ･
+    org.slf4j.helpers.SubstituteLoggerFactory TEMP_FACTORY -> ˊ
+    java.lang.String[] API_COMPATIBILITY_LIST -> ˋ
+    java.lang.String STATIC_LOGGER_BINDER_PATH -> ˎ
+    156:180:void versionSanityCheck() -> ･
+    188:207:void singleImplementationSanityCheck() -> ˊ
+    222:223:org.slf4j.helpers.MarkerIgnoringBase getLogger$424215df(java.lang.String) -> ･
+    235:235:org.slf4j.helpers.MarkerIgnoringBase getLogger$4ecaad6a$2e2e5d1f(java.lang.Class) -> ･
+org.slf4j.helpers.MarkerIgnoringBase -> org.slf4j.helpers.MarkerIgnoringBase:
+    163:163:java.lang.String toString() -> toString
+    39:39:java.lang.String getName() -> ･
+org.slf4j.helpers.NOPLogger -> org.slf4j.helpers.NOPLogger:
+    long serialVersionUID -> serialVersionUID
+    org.slf4j.helpers.NOPLogger NOP_LOGGER -> ･
+    65:65:java.lang.String getName() -> ･
+org.slf4j.helpers.NamedLoggerBase -> org.slf4j.helpers.NamedLoggerBase:
+    java.lang.String name -> name
+    21:21:java.lang.String getName() -> ･
+    41:41:java.lang.Object readResolve() -> readResolve
+org.slf4j.helpers.SubstituteLoggerFactory -> ᖿ:
+    java.util.ArrayList loggerNameList$7865b31 -> ･
+    59:60:org.slf4j.helpers.MarkerIgnoringBase getLogger$424215df(java.lang.String) -> ･
+org.slf4j.impl.AndroidLogger -> org.slf4j.impl.AndroidLogger:
+    long serialVersionUID -> serialVersionUID
+org.slf4j.impl.AndroidLoggerFactory -> ᗁ:
+    java.util.HashMap loggerMap$5a983bf5 -> ･
+    53:64:org.slf4j.impl.AndroidLogger getLogger(java.lang.String) -> ˊ
+    41:41:org.slf4j.helpers.MarkerIgnoringBase getLogger$424215df(java.lang.String) -> ･
+org.slf4j.impl.StaticLoggerBinder -> ᘅ:
+    org.slf4j.impl.StaticLoggerBinder SINGLETON -> ˋ
+    java.lang.String REQUESTED_API_VERSION -> ･
+    java.lang.String loggerFactoryClassStr -> ˎ
+    org.slf4j.impl.AndroidLoggerFactory loggerFactory$55c7b1a7 -> ˊ
+    56:56:org.slf4j.impl.StaticLoggerBinder getSingleton() -> ･
+    86:86:java.lang.String getLoggerFactoryClassStr() -> ˊ
+retrofit.Callback -> ᘣ:
+    void success$5b40cb57(java.lang.Object) -> ･
+    void failure(retrofit.RetrofitError) -> ･
+retrofit.CallbackRunnable -> ᘦ:
     retrofit.Callback callback -> ･
     java.util.concurrent.Executor callbackExecutor -> ˊ
-    38:51:void run() -> run
+    retrofit.ErrorHandler errorHandler -> ˋ
+    42:57:void run() -> run
     retrofit.ResponseWrapper obtainResponse() -> ･
-retrofit.CallbackRunnable$1 -> ন:
+retrofit.CallbackRunnable$1 -> ᘧ:
     retrofit.ResponseWrapper val$wrapper -> ･
     retrofit.CallbackRunnable this$0 -> ˊ
-    41:41:void run() -> run
-retrofit.CallbackRunnable$2 -> প:
-    retrofit.RetrofitError val$e -> ･
+    45:46:void run() -> run
+retrofit.CallbackRunnable$2 -> ᴉ:
+    retrofit.RetrofitError val$handled -> ･
     retrofit.CallbackRunnable this$0 -> ˊ
-    47:47:void run() -> run
-retrofit.Endpoint -> য:
+    53:54:void run() -> run
+retrofit.Endpoint -> ᴘ:
     java.lang.String apiUrl -> ･
     java.lang.String name -> ˊ
-retrofit.ErrorHandler -> র:
+retrofit.ErrorHandler -> ᴝ:
     retrofit.ErrorHandler$1 DEFAULT$7f4b3b29 -> ･
     retrofit.RetrofitError handleError$7ae2ebb0(retrofit.RetrofitError) -> ･
-retrofit.ErrorHandler$1 -> হ:
+retrofit.ErrorHandler$1 -> ᴦ:
     52:52:retrofit.RetrofitError handleError$7ae2ebb0(retrofit.RetrofitError) -> ･
-retrofit.ExceptionCatchingTypedInput -> ৰ:
+retrofit.ExceptionCatchingTypedInput -> ᴩ:
     retrofit.mime.TypedInput delegate -> ˊ
     retrofit.ExceptionCatchingTypedInput$ExceptionCatchingInputStream delegateStream -> ･
     17:17:java.lang.String mimeType() -> ･
     21:21:long length() -> ˊ
     25:25:java.io.InputStream in() -> ˋ
-retrofit.ExceptionCatchingTypedInput$ExceptionCatchingInputStream -> ৰ$･:
+retrofit.ExceptionCatchingTypedInput$ExceptionCatchingInputStream -> ᴩ$･:
     java.io.InputStream delegate -> ˊ
     java.io.IOException thrownException -> ･
     46:49:int read() -> read
@@ -13296,85 +14480,92 @@ retrofit.ExceptionCatchingTypedInput$ExceptionCatchingInputStream -> ৰ$･:
     99:100:void mark(int) -> mark
     104:108:void reset() -> reset
     112:112:boolean markSupported() -> markSupported
-retrofit.Platform -> ค:
+retrofit.Platform -> ᴭ:
     retrofit.Platform PLATFORM -> ˊ
     boolean HAS_RX_JAVA -> ･
-    42:42:retrofit.Platform get() -> ･
-    47:53:retrofit.Platform findPlatform() -> ʼ
+    43:43:retrofit.Platform get() -> ･
+    48:59:retrofit.Platform findPlatform() -> ʼ
     retrofit.converter.Converter defaultConverter$1d19edb$1b8d16fa() -> ˊ
     retrofit.client.Client$Provider defaultClient() -> ˋ
     java.util.concurrent.ExecutorService defaultHttpExecutor$31914045() -> ˎ
     java.util.concurrent.Executor defaultCallbackExecutor() -> ˏ
     retrofit.RestAdapter$Log defaultLog() -> ᐝ
-    155:158:boolean hasOkHttpOnClasspath() -> ʻ
-    174:178:boolean hasRxJavaOnClasspath() -> ʽ
-retrofit.Platform$Android -> ค$･:
-    111:111:retrofit.converter.Converter defaultConverter$1d19edb$1b8d16fa() -> ˊ
-    116:123:retrofit.client.Client$Provider defaultClient() -> ˋ
-    131:131:java.util.concurrent.ExecutorService defaultHttpExecutor$31914045() -> ˎ
-    144:144:java.util.concurrent.Executor defaultCallbackExecutor() -> ˏ
-    148:148:retrofit.RestAdapter$Log defaultLog() -> ᐝ
-retrofit.Platform$Android$1 -> ฅ:
+    172:175:boolean hasOkHttpOnClasspath() -> ʻ
+    191:195:boolean hasRxJavaOnClasspath() -> ʽ
+retrofit.Platform$Android -> ᴭ$･:
+    117:117:retrofit.converter.Converter defaultConverter$1d19edb$1b8d16fa() -> ˊ
+    122:129:retrofit.client.Client$Provider defaultClient() -> ˋ
+    137:137:java.util.concurrent.ExecutorService defaultHttpExecutor$31914045() -> ˎ
+    150:150:java.util.concurrent.Executor defaultCallbackExecutor() -> ˏ
+    154:154:retrofit.RestAdapter$Log defaultLog() -> ᐝ
+retrofit.Platform$Android$1 -> Ṭ:
     retrofit.client.Client val$client -> ･
     retrofit.Platform$Android this$0 -> ˊ
-    125:125:retrofit.client.Client get() -> ･
-retrofit.Platform$Android$2 -> ถ:
+    131:131:retrofit.client.Client get() -> ･
+retrofit.Platform$Android$2 -> ṯ:
     retrofit.Platform$Android this$0 -> ･
-    133:133:java.lang.Thread newThread(java.lang.Runnable) -> newThread
-retrofit.Platform$Android$2$1 -> ท:
+    139:139:java.lang.Thread newThread(java.lang.Runnable) -> newThread
+retrofit.Platform$Android$2$1 -> ẏ:
     java.lang.Runnable val$r -> ･
     retrofit.Platform$Android$2 this$1 -> ˊ
-    135:137:void run() -> run
-retrofit.Platform$Base -> ค$if:
-    65:65:retrofit.converter.Converter defaultConverter$1d19edb$1b8d16fa() -> ˊ
-    70:75:retrofit.client.Client$Provider defaultClient() -> ˋ
-    83:83:java.util.concurrent.ExecutorService defaultHttpExecutor$31914045() -> ˎ
-    96:96:java.util.concurrent.Executor defaultCallbackExecutor() -> ˏ
-    100:100:retrofit.RestAdapter$Log defaultLog() -> ᐝ
-retrofit.Platform$Base$1 -> ป:
+    141:143:void run() -> run
+retrofit.Platform$AppEngine -> ᴭ$if:
+    160:161:retrofit.client.Client$Provider defaultClient() -> ˋ
+retrofit.Platform$AppEngine$1 -> ẓ:
+    retrofit.appengine.UrlFetchClient val$client -> ･
+    retrofit.Platform$AppEngine this$0 -> ˊ
+    163:163:retrofit.client.Client get() -> ･
+retrofit.Platform$Base -> ᴭ$ˊ:
+    71:71:retrofit.converter.Converter defaultConverter$1d19edb$1b8d16fa() -> ˊ
+    76:81:retrofit.client.Client$Provider defaultClient() -> ˋ
+    89:89:java.util.concurrent.ExecutorService defaultHttpExecutor$31914045() -> ˎ
+    102:102:java.util.concurrent.Executor defaultCallbackExecutor() -> ˏ
+    106:106:retrofit.RestAdapter$Log defaultLog() -> ᐝ
+retrofit.Platform$Base$1 -> ọ:
     retrofit.client.UrlConnectionClient val$client$3fb31984 -> ･
     retrofit.Platform$Base this$0 -> ˊ
-    77:77:retrofit.client.Client get() -> ･
-retrofit.Platform$Base$2 -> ผ:
+    83:83:retrofit.client.Client get() -> ･
+retrofit.Platform$Base$2 -> ỵ:
     retrofit.Platform$Base this$0 -> ･
-    85:85:java.lang.Thread newThread(java.lang.Runnable) -> newThread
-retrofit.Platform$Base$2$1 -> ภ:
+    91:91:java.lang.Thread newThread(java.lang.Runnable) -> newThread
+retrofit.Platform$Base$2$1 -> Ἶ:
     java.lang.Runnable val$r -> ･
     retrofit.Platform$Base$2 this$1 -> ˊ
-    87:89:void run() -> run
-retrofit.Platform$Base$3 -> ล:
+    93:95:void run() -> run
+retrofit.Platform$Base$3 -> Ἷ:
     retrofit.Platform$Base this$0 -> ･
-    102:103:void log(java.lang.String) -> ･
-retrofit.RequestBuilder -> ห:
+    108:109:void log(java.lang.String) -> ･
+retrofit.RequestBuilder -> ℷ:
     retrofit.converter.Converter converter -> ･
     java.lang.String[] paramNames -> ˊ
     retrofit.RestMethodInfo$ParamUsage[] paramUsages -> ˋ
     java.lang.String requestMethod -> ˎ
     boolean isSynchronous -> ˏ
     boolean isObservable -> ᐝ
-    retrofit.mime.FormUrlEncodedTypedOutput formBody -> ʻ
-    retrofit.mime.MultipartTypedOutput multipartBody -> ʼ
-    retrofit.mime.TypedOutput body -> ʽ
-    java.lang.String apiUrl -> ͺ
+    java.lang.String apiUrl -> ʻ
+    retrofit.mime.FormUrlEncodedTypedOutput formBody -> ʼ
+    retrofit.mime.MultipartTypedOutput multipartBody -> ʽ
+    retrofit.mime.TypedOutput body -> ͺ
     java.lang.String relativeUrl -> ι
     java.lang.StringBuilder queryParams -> ʾ
     java.util.ArrayList headers$7865b31 -> ʿ
-    98:106:void addHeader(java.lang.String,java.lang.String) -> ･
-    109:110:void addPathParam(java.lang.String,java.lang.String) -> ˊ
-    113:114:void addEncodedPathParam(java.lang.String,java.lang.String) -> ˋ
-    117:138:void addPathParam(java.lang.String,java.lang.String,boolean) -> ･
-    142:143:void addQueryParam(java.lang.String,java.lang.String) -> ˎ
-    146:147:void addEncodedQueryParam(java.lang.String,java.lang.String) -> ˏ
-    150:170:void addQueryParam(java.lang.String,java.lang.String,boolean) -> ˊ
-retrofit.RequestBuilder$1 -> ห$1:
+    boolean hasContentTypeHeader -> ˈ
+    97:109:void addHeader(java.lang.String,java.lang.String) -> ･
+    112:113:void addPathParam(java.lang.String,java.lang.String) -> ˊ
+    116:117:void addEncodedPathParam(java.lang.String,java.lang.String) -> ˋ
+    120:141:void addPathParam(java.lang.String,java.lang.String,boolean) -> ･
+    145:146:void addQueryParam(java.lang.String,java.lang.String) -> ˎ
+    149:150:void addEncodedQueryParam(java.lang.String,java.lang.String) -> ˏ
+    153:173:void addQueryParam(java.lang.String,java.lang.String,boolean) -> ˊ
+retrofit.RequestBuilder$1 -> ℷ$1:
     int[] $SwitchMap$retrofit$RestMethodInfo$RequestType -> ･
     int[] $SwitchMap$retrofit$RestMethodInfo$ParamUsage -> ˊ
-retrofit.RequestInterceptor -> โ:
+retrofit.RequestInterceptor -> Ⅱ:
     retrofit.RequestInterceptor$1 NONE$c56ba4b -> ･
     void intercept(retrofit.RequestInterceptor$RequestFacade) -> ･
-retrofit.RequestInterceptor$1 -> ไ:
+retrofit.RequestInterceptor$1 -> ⅱ:
     38:38:void intercept(retrofit.RequestInterceptor$RequestFacade) -> ･
-retrofit.RequestInterceptor$RequestFacade -> โ$･:
+retrofit.RequestInterceptor$RequestFacade -> Ⅱ$･:
     void addHeader(java.lang.String,java.lang.String) -> ･
     void addPathParam(java.lang.String,java.lang.String) -> ˊ
     void addEncodedPathParam(java.lang.String,java.lang.String) -> ˋ
@@ -13412,9 +14603,9 @@ retrofit.RequestInterceptorTape$CommandWithParams -> retrofit.RequestInterceptor
     retrofit.RequestInterceptorTape$Command command -> ･
     java.lang.String name -> ˊ
     java.lang.String value -> ˋ
-retrofit.ResponseWrapper -> Ⴡ:
-    retrofit.client.Response response -> ･
-    java.lang.Object responseBody -> ˊ
+retrofit.ResponseWrapper -> 々:
+    retrofit.client.Response response -> ˊ
+    java.lang.Object responseBody -> ･
 retrofit.RestAdapter -> retrofit.RestAdapter:
     java.util.LinkedHashMap serviceMethodInfoCache$5a983bf5 -> ͺ
     retrofit.Endpoint server -> ･
@@ -13428,79 +14619,85 @@ retrofit.RestAdapter -> retrofit.RestAdapter:
     android.support.v4.app.FragmentManager$OnBackStackChangedListener profiler$503bb442 -> ʾ
     retrofit.RestAdapter$RxSupport rxSupport -> ʼ
     retrofit.RestAdapter$LogLevel logLevel -> ʽ
-    210:217:java.util.Map getMethodInfoCache(java.lang.Class) -> ･
-    221:228:retrofit.RestMethodInfo getMethodInfo(java.util.Map,java.lang.reflect.Method) -> ･
-    436:476:retrofit.client.Request logAndReplaceRequest(java.lang.String,retrofit.client.Request) -> ･
-    521:526:void logException(java.lang.Throwable,java.lang.String) -> ･
-    115:115:retrofit.client.Response access$500(retrofit.RestAdapter,java.lang.String,retrofit.client.Response,long) -> ･
+    203:205:java.lang.Object create(java.lang.Class) -> ･
+    209:216:java.util.Map getMethodInfoCache(java.lang.Class) -> ˊ
+    220:227:retrofit.RestMethodInfo getMethodInfo(java.util.Map,java.lang.reflect.Method) -> ･
+    437:469:retrofit.client.Request logAndReplaceRequest(java.lang.String,retrofit.client.Request) -> ･
+    514:519:void logException(java.lang.Throwable,java.lang.String) -> ･
+    114:114:retrofit.client.Response access$600(retrofit.RestAdapter,java.lang.String,retrofit.client.Response,long) -> ･
 retrofit.RestAdapter$Builder -> retrofit.RestAdapter$･:
     retrofit.Endpoint endpoint -> ･
-    retrofit.client.Client$Provider clientProvider -> ˊ
-    java.util.concurrent.ExecutorService httpExecutor$54ff24dc -> ˋ
-    java.util.concurrent.Executor callbackExecutor -> ˎ
-    retrofit.RequestInterceptor$1 requestInterceptor$c56ba4b -> ˏ
-    retrofit.converter.Converter converter -> ᐝ
-    retrofit.ErrorHandler$1 errorHandler$7f4b3b29 -> ʻ
-    retrofit.RestAdapter$Log log -> ʼ
-    retrofit.RestAdapter$LogLevel logLevel -> ʽ
+    retrofit.client.Client$Provider clientProvider -> ˎ
+    java.util.concurrent.ExecutorService httpExecutor$54ff24dc -> ˏ
+    java.util.concurrent.Executor callbackExecutor -> ᐝ
+    retrofit.RequestInterceptor$1 requestInterceptor$c56ba4b -> ʻ
+    retrofit.converter.Converter converter -> ʼ
+    retrofit.ErrorHandler$1 errorHandler$7f4b3b29 -> ʽ
+    retrofit.RestAdapter$Log log -> ˊ
+    retrofit.RestAdapter$LogLevel logLevel -> ˋ
+    704:708:retrofit.RestAdapter build() -> ･
+    713:734:void ensureSaneDefaults() -> ˊ
 retrofit.RestAdapter$Log -> retrofit.RestAdapter$if:
     void log(java.lang.String) -> ･
-retrofit.RestAdapter$Log$1 -> ძ:
-    127:127:void log(java.lang.String) -> ･
+retrofit.RestAdapter$Log$1 -> ぃ:
+    126:126:void log(java.lang.String) -> ･
 retrofit.RestAdapter$LogLevel -> retrofit.RestAdapter$LogLevel:
     retrofit.RestAdapter$LogLevel NONE -> ･
     retrofit.RestAdapter$LogLevel BASIC -> ˊ
     retrofit.RestAdapter$LogLevel HEADERS -> ˋ
     retrofit.RestAdapter$LogLevel FULL -> ˎ
     retrofit.RestAdapter$LogLevel[] $VALUES -> ˏ
-    132:132:retrofit.RestAdapter$LogLevel[] values() -> values
-    132:132:retrofit.RestAdapter$LogLevel valueOf(java.lang.String) -> valueOf
+    131:131:retrofit.RestAdapter$LogLevel[] values() -> values
+    131:131:retrofit.RestAdapter$LogLevel valueOf(java.lang.String) -> valueOf
 retrofit.RestAdapter$RestHandler -> retrofit.RestAdapter$ˊ:
     java.util.Map methodDetailsCache -> ･
     retrofit.RestAdapter this$0 -> ˊ
-    273:316:java.lang.Object invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[]) -> invoke
-    327:428:java.lang.Object invokeRequest(retrofit.RequestInterceptor,retrofit.RestMethodInfo,java.lang.Object[]) -> ･
-retrofit.RestAdapter$RestHandler$1 -> ᐵ:
+    275:318:java.lang.Object invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[]) -> invoke
+    329:429:java.lang.Object invokeRequest(retrofit.RequestInterceptor,retrofit.RestMethodInfo,java.lang.Object[]) -> ･
+retrofit.RestAdapter$RestHandler$1 -> ァ:
     retrofit.RequestInterceptorTape val$interceptorTape -> ･
     retrofit.RestMethodInfo val$methodInfo -> ˊ
     java.lang.Object[] val$args -> ˋ
     retrofit.RestAdapter$RestHandler this$1 -> ˎ
-    303:303:java.lang.Object call() -> call
-retrofit.RestAdapter$RestHandler$2 -> ᑈ:
-    retrofit.RequestInterceptorTape val$interceptorTape -> ･
-    retrofit.RestMethodInfo val$methodInfo -> ˊ
-    java.lang.Object[] val$args -> ˋ
-    retrofit.RestAdapter$RestHandler this$1 -> ˎ
-    313:313:retrofit.ResponseWrapper obtainResponse() -> ･
+    305:305:java.lang.Object call() -> call
+retrofit.RestAdapter$RestHandler$2 -> ッ:
+    retrofit.RequestInterceptorTape val$interceptorTape -> ˊ
+    retrofit.RestMethodInfo val$methodInfo -> ˋ
+    java.lang.Object[] val$args -> ˎ
+    retrofit.RestAdapter$RestHandler this$1 -> ˏ
+    315:315:retrofit.ResponseWrapper obtainResponse() -> ･
 retrofit.RestAdapter$RxSupport -> retrofit.RestAdapter$If:
     rx.Scheduler scheduler -> ･
-retrofit.RestAdapter$RxSupport$1 -> ᒏ:
+    retrofit.ErrorHandler errorHandler -> ˊ
+retrofit.RestAdapter$RxSupport$1 -> ヾ:
     retrofit.RestAdapter$RestHandler$1 val$request$57c06997 -> ･
     retrofit.RestAdapter$RxSupport this$0 -> ˊ
 retrofit.RestMethodInfo -> retrofit.RestMethodInfo:
-    java.util.regex.Pattern PARAM_NAME_REGEX -> ι
-    java.util.regex.Pattern PARAM_URL_REGEX -> ʾ
-    java.lang.reflect.Method method -> ʿ
-    boolean loaded -> ˈ
-    retrofit.RestMethodInfo$ResponseType responseType -> ˉ
+    java.util.regex.Pattern PARAM_NAME_REGEX -> ʾ
+    java.util.regex.Pattern PARAM_URL_REGEX -> ʿ
+    java.lang.reflect.Method method -> ˈ
+    boolean loaded -> ˉ
+    retrofit.RestMethodInfo$ResponseType responseType -> ˌ
     boolean isSynchronous -> ･
     boolean isObservable -> ˊ
     java.lang.reflect.Type responseObjectType -> ˋ
     retrofit.RestMethodInfo$RequestType requestType -> ˎ
     java.lang.String requestMethod -> ˏ
-    boolean requestHasBody -> ˌ
+    boolean requestHasBody -> ˍ
     java.lang.String requestUrl -> ᐝ
-    java.util.LinkedHashSet requestUrlParamNames$5a95723b -> ˍ
+    java.util.LinkedHashSet requestUrlParamNames$5a95723b -> ˑ
     java.lang.String requestQuery -> ʻ
     java.util.ArrayList headers$7865b31 -> ʼ
-    java.lang.String[] requestParamNames -> ʽ
-    retrofit.RestMethodInfo$ParamUsage[] requestParamUsage -> ͺ
-    113:119:void init() -> ･
-    237:247:java.util.ArrayList parseHeaders$528b683(java.lang.String[]) -> ･
-    313:320:java.lang.reflect.Type getParameterUpperBound(java.lang.reflect.ParameterizedType) -> ･
-    328:458:void parseParameters() -> ˊ
-    461:472:void validatePathName(java.lang.String) -> ･
-    479:484:java.util.LinkedHashSet parsePathParameters$694da3ae(java.lang.String) -> ˊ
+    boolean hasContentTypeHeader -> ʽ
+    java.lang.String[] requestParamNames -> ͺ
+    retrofit.RestMethodInfo$ParamUsage[] requestParamUsage -> ι
+    114:118:java.lang.IllegalArgumentException methodError$58c19f78(java.lang.String,java.lang.Object[]) -> ･
+    122:122:java.lang.IllegalArgumentException parameterError$6c5ec341(int,java.lang.String,java.lang.Object[]) -> ･
+    126:132:void init() -> ･
+    226:240:java.util.ArrayList parseHeaders$528b683(java.lang.String[]) -> ･
+    298:305:java.lang.reflect.Type getParameterUpperBound(java.lang.reflect.ParameterizedType) -> ･
+    313:443:void parseParameters() -> ˊ
+    446:454:void validatePathName(int,java.lang.String) -> ･
 retrofit.RestMethodInfo$ParamUsage -> retrofit.RestMethodInfo$ParamUsage:
     retrofit.RestMethodInfo$ParamUsage PATH -> ･
     retrofit.RestMethodInfo$ParamUsage ENCODED_PATH -> ˊ
@@ -13540,24 +14737,24 @@ retrofit.RetrofitError -> retrofit.RetrofitError:
     32:32:retrofit.RetrofitError conversionError(java.lang.String,retrofit.client.Response,retrofit.converter.Converter,java.lang.reflect.Type,retrofit.converter.ConversionException) -> ･
     37:37:retrofit.RetrofitError httpError(java.lang.String,retrofit.client.Response,retrofit.converter.Converter,java.lang.reflect.Type) -> ･
     41:41:retrofit.RetrofitError unexpectedError(java.lang.String,java.lang.Throwable) -> ･
-retrofit.Types -> ᒰ:
+retrofit.Types -> 乀:
     java.lang.reflect.Type[] EMPTY_TYPE_ARRAY -> ･
     42:69:java.lang.Class getRawType(java.lang.reflect.Type) -> ･
     76:111:boolean equals(java.lang.reflect.Type,java.lang.reflect.Type) -> ･
     121:149:java.lang.reflect.Type getGenericSupertype(java.lang.reflect.Type,java.lang.Class,java.lang.Class) -> ˊ
     168:168:java.lang.String typeToString(java.lang.reflect.Type) -> ˊ
-    179:180:java.lang.reflect.Type getSupertype(java.lang.reflect.Type,java.lang.Class,java.lang.Class) -> ･
+    179:181:java.lang.reflect.Type getSupertype(java.lang.reflect.Type,java.lang.Class,java.lang.Class) -> ･
     187:249:java.lang.reflect.Type resolve(java.lang.reflect.Type,java.lang.Class,java.lang.reflect.Type) -> ･
     34:34:void access$000(java.lang.reflect.Type) -> ˋ
     34:34:int access$100$5d527804(java.lang.reflect.Type) -> ˎ
     34:34:java.lang.reflect.Type[] access$200() -> ･
-retrofit.Types$GenericArrayTypeImpl -> ᒰ$･:
+retrofit.Types$GenericArrayTypeImpl -> 乀$･:
     java.lang.reflect.Type componentType -> ･
     347:347:java.lang.reflect.Type getGenericComponentType() -> getGenericComponentType
-    351:351:boolean equals(java.lang.Object) -> equals
+    351:352:boolean equals(java.lang.Object) -> equals
     356:356:int hashCode() -> hashCode
     360:360:java.lang.String toString() -> toString
-retrofit.Types$ParameterizedTypeImpl -> ᒰ$if:
+retrofit.Types$ParameterizedTypeImpl -> 乀$if:
     java.lang.reflect.Type ownerType -> ･
     java.lang.reflect.Type rawType -> ˊ
     java.lang.reflect.Type[] typeArguments -> ˋ
@@ -13567,7 +14764,7 @@ retrofit.Types$ParameterizedTypeImpl -> ᒰ$if:
     320:320:boolean equals(java.lang.Object) -> equals
     324:324:int hashCode() -> hashCode
     328:335:java.lang.String toString() -> toString
-retrofit.Types$WildcardTypeImpl -> ᒰ$ˊ:
+retrofit.Types$WildcardTypeImpl -> 乀$ˊ:
     java.lang.reflect.Type upperBound -> ･
     java.lang.reflect.Type lowerBound -> ˊ
     392:392:java.lang.reflect.Type[] getUpperBounds() -> getUpperBounds
@@ -13575,121 +14772,124 @@ retrofit.Types$WildcardTypeImpl -> ᒰ$ˊ:
     400:400:boolean equals(java.lang.Object) -> equals
     405:405:int hashCode() -> hashCode
     409:411:java.lang.String toString() -> toString
-retrofit.Utils$SynchronousExecutor -> ᒱ:
+retrofit.Utils$SynchronousExecutor -> 宀:
     114:115:void execute(java.lang.Runnable) -> execute
-retrofit.android.AndroidApacheClient -> ᒴ:
-retrofit.android.AndroidLog -> ᒵ:
+retrofit.android.AndroidApacheClient -> ﬥ:
+retrofit.android.AndroidLog -> צּ:
     java.lang.String tag -> ･
     17:17:void log(java.lang.String) -> ･
-retrofit.android.MainThreadExecutor -> ᒸ:
+retrofit.android.MainThreadExecutor -> בֿ:
     android.os.Handler handler -> ･
     28:29:void execute(java.lang.Runnable) -> execute
-retrofit.client.ApacheClient -> ᒹ:
+retrofit.appengine.UrlFetchClient -> ﭒ:
+    com.google.appengine.api.urlfetch.URLFetchService urlFetchService -> ･
+    52:54:retrofit.client.Response execute(retrofit.client.Request) -> ･
+    83:104:retrofit.client.Response parseResponse(com.google.appengine.api.urlfetch.HTTPResponse) -> ･
+retrofit.client.ApacheClient -> ﭞ:
     org.apache.http.client.HttpClient client -> ･
     63:65:retrofit.client.Response execute(retrofit.client.Request) -> ･
-retrofit.client.ApacheClient$GenericHttpRequest -> ᒹ$･:
+retrofit.client.ApacheClient$GenericHttpRequest -> ﭞ$･:
     java.lang.String method -> ･
     124:124:java.lang.String getMethod() -> getMethod
-retrofit.client.ApacheClient$TypedOutputEntity -> ᒹ$if:
+retrofit.client.ApacheClient$TypedOutputEntity -> ﭞ$if:
     retrofit.mime.TypedOutput typedOutput -> ･
-    138:138:boolean isRepeatable() -> isRepeatable
-    142:142:long getContentLength() -> getContentLength
-    146:148:java.io.InputStream getContent() -> getContent
-    152:153:void writeTo(java.io.OutputStream) -> writeTo
-    156:156:boolean isStreaming() -> isStreaming
-retrofit.client.Client -> ᓙ:
+    137:137:boolean isRepeatable() -> isRepeatable
+    141:141:long getContentLength() -> getContentLength
+    145:147:java.io.InputStream getContent() -> getContent
+    151:152:void writeTo(java.io.OutputStream) -> writeTo
+    155:155:boolean isStreaming() -> isStreaming
+retrofit.client.Client -> ﺕ:
     retrofit.client.Response execute(retrofit.client.Request) -> ･
-retrofit.client.Client$Provider -> ᓙ$･:
+retrofit.client.Client$Provider -> ﺕ$･:
     retrofit.client.Client get() -> ･
-retrofit.client.Header -> ᔬ:
+retrofit.client.Header -> ﺟ:
     java.lang.String name -> ･
     java.lang.String value -> ˊ
     37:45:boolean equals(java.lang.Object) -> equals
     49:51:int hashCode() -> hashCode
     55:55:java.lang.String toString() -> toString
-retrofit.client.OkClient -> ᖧ:
+retrofit.client.OkClient -> ﺧ:
     com.squareup.okhttp.OkHttpClient client -> ･
     44:44:java.net.HttpURLConnection openConnection(retrofit.client.Request) -> ˊ
-retrofit.client.Request -> ᖨ:
+retrofit.client.Request -> ﻋ:
     java.lang.String method -> ･
     java.lang.String url -> ˊ
     java.util.List headers -> ˋ
     retrofit.mime.TypedOutput body -> ˎ
-retrofit.client.Response -> ᖪ:
+retrofit.client.Response -> ﻌ:
     java.lang.String url -> ･
     int status -> ˊ
     java.lang.String reason -> ˋ
     java.util.List headers -> ˎ
     retrofit.mime.TypedInput body -> ˏ
-retrofit.client.UrlConnectionClient -> ᖬ:
-    java.lang.reflect.Field methodField -> ･
-    47:49:retrofit.client.Response execute(retrofit.client.Request) -> ･
-    53:57:java.net.HttpURLConnection openConnection(retrofit.client.Request) -> ˊ
-retrofit.client.UrlConnectionClient$TypedInputStream -> ᖬ$･:
+retrofit.client.UrlConnectionClient -> ﻢ:
+    36:38:retrofit.client.Response execute(retrofit.client.Request) -> ･
+    42:46:java.net.HttpURLConnection openConnection(retrofit.client.Request) -> ˊ
+retrofit.client.UrlConnectionClient$TypedInputStream -> ﻢ$･:
     java.lang.String mimeType -> ･
     long length -> ˊ
     java.io.InputStream stream -> ˋ
-    129:129:java.lang.String mimeType() -> ･
-    133:133:long length() -> ˊ
-    137:137:java.io.InputStream in() -> ˋ
+    107:107:java.lang.String mimeType() -> ･
+    111:111:long length() -> ˊ
+    115:115:java.io.InputStream in() -> ˋ
 retrofit.converter.ConversionException -> retrofit.converter.ConversionException:
-retrofit.converter.Converter -> ᖽ:
+retrofit.converter.Converter -> Ｆ:
     com.google.gson.Gson gson -> ･
     java.lang.String encoding -> ˊ
     56:73:java.lang.Object fromBody$17b9747e(retrofit.ExceptionCatchingTypedInput,java.lang.reflect.Type) -> ･
     80:82:retrofit.converter.GsonConverter$JsonTypedOutput toBody$1c49876a(java.lang.Object) -> ･
-retrofit.converter.GsonConverter$JsonTypedOutput -> ᖾ:
+retrofit.converter.GsonConverter$JsonTypedOutput -> Ｉ:
     byte[] jsonBytes -> ･
     java.lang.String mimeType -> ˊ
     100:100:java.lang.String mimeType() -> ･
     104:104:long length() -> ˊ
     108:109:void writeTo(java.io.OutputStream) -> ･
-retrofit.http.Body -> ᖿ:
-retrofit.http.EncodedPath -> ᗁ:
+retrofit.http.Body -> ｌ:
+retrofit.http.EncodedPath -> ｎ:
     java.lang.String value() -> ･
-retrofit.http.EncodedQuery -> ᘅ:
+retrofit.http.EncodedQuery -> ｒ:
     java.lang.String value() -> ･
-retrofit.http.EncodedQueryMap -> ᘣ:
-retrofit.http.Field -> ᘦ:
+retrofit.http.EncodedQueryMap -> ｓ:
+retrofit.http.Field -> ｦ:
     java.lang.String value() -> ･
-retrofit.http.FieldMap -> ᘧ:
-retrofit.http.FormUrlEncoded -> ᴉ:
-retrofit.http.Header -> ᴘ:
+retrofit.http.FieldMap -> ｳ:
+retrofit.http.FormUrlEncoded -> ｷ:
+retrofit.http.Header -> ｸ:
     java.lang.String value() -> ･
-retrofit.http.Headers -> ᴝ:
+retrofit.http.Headers -> ｹ:
     java.lang.String[] value() -> ･
-retrofit.http.Multipart -> ᴦ:
-retrofit.http.Part -> ᴩ:
+retrofit.http.Multipart -> ｽ:
+retrofit.http.Part -> ﾁ:
     java.lang.String value() -> ･
-retrofit.http.Path -> ᴭ:
+retrofit.http.Path -> ﾊ:
     java.lang.String value() -> ･
-retrofit.http.Query -> Ṭ:
+retrofit.http.Query -> ﾓ:
     java.lang.String value() -> ･
-retrofit.http.QueryMap -> ṯ:
-retrofit.http.RestMethod -> ẏ:
+retrofit.http.QueryMap -> Ĵ:
+retrofit.http.RestMethod -> Ł:
     java.lang.String value() -> ･
     boolean hasBody() -> ˊ
-retrofit.mime.FormUrlEncodedTypedOutput -> ẓ:
+retrofit.mime.FormUrlEncodedTypedOutput -> ō:
     java.io.ByteArrayOutputStream content -> ･
     27:45:void addField(java.lang.String,java.lang.String) -> ･
     53:53:java.lang.String mimeType() -> ･
     57:57:long length() -> ˊ
     61:62:void writeTo(java.io.OutputStream) -> ･
-retrofit.mime.MimeUtil -> ọ:
+retrofit.mime.MimeUtil -> ţ:
     java.util.regex.Pattern CHARSET -> ･
     28:32:java.lang.String parseCharset(java.lang.String) -> ･
-retrofit.mime.MultipartTypedOutput -> ỵ:
+retrofit.mime.MultipartTypedOutput -> Ť:
     java.util.LinkedList mimeParts$7865b31 -> ･
     byte[] footer -> ˊ
     java.lang.String boundary -> ˋ
     long length -> ˎ
-    97:108:void addPart(java.lang.String,retrofit.mime.TypedOutput) -> ･
-    119:119:java.lang.String mimeType() -> ･
-    123:123:long length() -> ˊ
-    127:131:void writeTo(java.io.OutputStream) -> ･
-    135:148:byte[] buildBoundary(java.lang.String,boolean,boolean) -> ･
-    154:169:byte[] buildHeader(java.lang.String,retrofit.mime.TypedOutput) -> ˊ
-retrofit.mime.MultipartTypedOutput$MimePart -> ỵ$･:
+    97:113:void addPart(java.lang.String,retrofit.mime.TypedOutput) -> ･
+    124:124:java.lang.String mimeType() -> ･
+    128:128:long length() -> ˊ
+    132:136:void writeTo(java.io.OutputStream) -> ･
+    140:153:byte[] buildBoundary(java.lang.String,boolean,boolean) -> ･
+    159:174:byte[] buildHeader(java.lang.String,retrofit.mime.TypedOutput) -> ˊ
+retrofit.mime.MultipartTypedOutput$MimePart -> Ť$･:
     retrofit.mime.TypedOutput body -> ･
     java.lang.String name -> ˎ
     boolean isFirst -> ˏ
@@ -13699,7 +14899,7 @@ retrofit.mime.MultipartTypedOutput$MimePart -> ỵ$･:
     boolean isBuilt -> ʻ
     54:58:long size() -> ･
     63:67:void build() -> ˊ
-retrofit.mime.TypedByteArray -> Ἶ:
+retrofit.mime.TypedByteArray -> Ɔ:
     java.lang.String mimeType -> ˊ
     byte[] bytes -> ･
     58:58:java.lang.String mimeType() -> ･
@@ -13708,17 +14908,17 @@ retrofit.mime.TypedByteArray -> Ἶ:
     70:70:java.io.InputStream in() -> ˋ
     74:82:boolean equals(java.lang.Object) -> equals
     86:88:int hashCode() -> hashCode
-retrofit.mime.TypedInput -> Ἷ:
+retrofit.mime.TypedInput -> ƈ:
     java.lang.String mimeType() -> ･
     long length() -> ˊ
     java.io.InputStream in() -> ˋ
-retrofit.mime.TypedOutput -> ℷ:
+retrofit.mime.TypedOutput -> ȝ:
     java.lang.String mimeType() -> ･
     long length() -> ˊ
     void writeTo(java.io.OutputStream) -> ･
-retrofit.mime.TypedString -> Ⅱ:
+retrofit.mime.TypedString -> Ȳ:
     27:29:byte[] convertToBytes(java.lang.String) -> ･
-se.emilsjolander.stickylistheaders.AdapterWrapper -> ⅱ:
+se.emilsjolander.stickylistheaders.AdapterWrapper -> ʜ:
     se.emilsjolander.stickylistheaders.StickyListHeadersAdapter mDelegate -> ･
     java.util.LinkedList mHeaderCache$7865b31 -> ˏ
     android.content.Context mContext -> ᐝ
@@ -13748,23 +14948,23 @@ se.emilsjolander.stickylistheaders.AdapterWrapper -> ⅱ:
     26:26:void access$101(se.emilsjolander.stickylistheaders.AdapterWrapper) -> ˊ
     26:26:void access$201(se.emilsjolander.stickylistheaders.AdapterWrapper) -> ˋ
     26:26:se.emilsjolander.stickylistheaders.AdapterWrapper$OnHeaderClickListener access$300(se.emilsjolander.stickylistheaders.AdapterWrapper) -> ˎ
-se.emilsjolander.stickylistheaders.AdapterWrapper$1 -> 々:
+se.emilsjolander.stickylistheaders.AdapterWrapper$1 -> Ύ:
     se.emilsjolander.stickylistheaders.AdapterWrapper this$0 -> ･
     42:44:void onInvalidated() -> onInvalidated
     48:49:void onChanged() -> onChanged
-se.emilsjolander.stickylistheaders.AdapterWrapper$2 -> ぃ:
+se.emilsjolander.stickylistheaders.AdapterWrapper$2 -> Κ:
     int val$position -> ･
     se.emilsjolander.stickylistheaders.AdapterWrapper this$0 -> ˊ
     138:142:void onClick(android.view.View) -> onClick
-se.emilsjolander.stickylistheaders.AdapterWrapper$OnHeaderClickListener -> ⅱ$･:
+se.emilsjolander.stickylistheaders.AdapterWrapper$OnHeaderClickListener -> ʜ$･:
     se.emilsjolander.stickylistheaders.StickyListHeadersListView this$0 -> ･
 se.emilsjolander.stickylistheaders.ApiLevelTooLowException -> se.emilsjolander.stickylistheaders.ApiLevelTooLowException:
     long serialVersionUID -> serialVersionUID
-se.emilsjolander.stickylistheaders.CheckableWrapperView -> ァ:
+se.emilsjolander.stickylistheaders.CheckableWrapperView -> Λ:
     19:19:boolean isChecked() -> isChecked
     24:25:void setChecked(boolean) -> setChecked
     29:30:void toggle() -> toggle
-se.emilsjolander.stickylistheaders.R$styleable -> ッ:
+se.emilsjolander.stickylistheaders.R$styleable -> ϙ:
     int[] StickyListHeadersListView -> StickyListHeadersListView
     int StickyListHeadersListView_android_cacheColorHint -> StickyListHeadersListView_android_cacheColorHint
     int StickyListHeadersListView_android_choiceMode -> StickyListHeadersListView_android_choiceMode
@@ -13786,12 +14986,12 @@ se.emilsjolander.stickylistheaders.R$styleable -> ッ:
     int StickyListHeadersListView_android_scrollingCache -> StickyListHeadersListView_android_scrollingCache
     int StickyListHeadersListView_hasStickyHeaders -> StickyListHeadersListView_hasStickyHeaders
     int StickyListHeadersListView_isDrawingListUnderStickyHeader -> StickyListHeadersListView_isDrawingListUnderStickyHeader
-se.emilsjolander.stickylistheaders.SectionIndexerAdapterWrapper -> ヾ:
+se.emilsjolander.stickylistheaders.SectionIndexerAdapterWrapper -> ϝ:
     android.widget.SectionIndexer mSectionIndexerDelegate -> ˏ
     19:19:int getPositionForSection(int) -> getPositionForSection
     24:24:int getSectionForPosition(int) -> getSectionForPosition
     29:29:java.lang.Object[] getSections() -> getSections
-se.emilsjolander.stickylistheaders.StickyListHeadersAdapter -> 乀:
+se.emilsjolander.stickylistheaders.StickyListHeadersAdapter -> Ϯ:
     android.view.View getHeaderView(int,android.view.View,android.view.ViewGroup) -> ･
     long getHeaderId(int) -> ･
 se.emilsjolander.stickylistheaders.StickyListHeadersListView -> se.emilsjolander.stickylistheaders.StickyListHeadersListView:
@@ -13860,7 +15060,7 @@ se.emilsjolander.stickylistheaders.StickyListHeadersListView -> se.emilsjolander
     32:32:int access$1100(se.emilsjolander.stickylistheaders.StickyListHeadersListView) -> ʽ
     32:32:boolean access$1200$71bec1a2(se.emilsjolander.stickylistheaders.StickyListHeadersListView,android.graphics.Canvas,android.view.View) -> ･
     32:32:boolean access$1300$71bec1a2(se.emilsjolander.stickylistheaders.StickyListHeadersListView,android.graphics.Canvas,android.view.View) -> ˊ
-se.emilsjolander.stickylistheaders.StickyListHeadersListView$1 -> 宀:
+se.emilsjolander.stickylistheaders.StickyListHeadersListView$1 -> ϯ:
     se.emilsjolander.stickylistheaders.StickyListHeadersListView this$0 -> ･
     379:384:void onClick(android.view.View) -> onClick
 se.emilsjolander.stickylistheaders.StickyListHeadersListView$AdapterWrapperDataSetObserver -> se.emilsjolander.stickylistheaders.StickyListHeadersListView$･:
@@ -13880,7 +15080,7 @@ se.emilsjolander.stickylistheaders.WrapperView -> se.emilsjolander.stickylisthea
     81:113:void onMeasure(int,int) -> onMeasure
     118:136:void onLayout(boolean,int,int,int,int) -> onLayout
     140:149:void dispatchDraw(android.graphics.Canvas) -> dispatchDraw
-se.emilsjolander.stickylistheaders.WrapperViewList -> ﬥ:
+se.emilsjolander.stickylistheaders.WrapperViewList -> ϵ:
     se.emilsjolander.stickylistheaders.WrapperViewList$LifeCycleListener mLifeCycleListener$1e5db02a$17848d06 -> ･
     java.util.ArrayList mFooterViews$7865b31 -> ˊ
     int mTopClippingLength -> ˋ
@@ -13894,5 +15094,5 @@ se.emilsjolander.stickylistheaders.WrapperViewList -> ﬥ:
     124:128:boolean removeFooterView(android.view.View) -> removeFooterView
     143:166:int getFixedFirstVisibleItem() -> ･
     171:173:void setClipToPadding(boolean) -> setClipToPadding
-se.emilsjolander.stickylistheaders.WrapperViewList$LifeCycleListener -> ﬥ$･:
+se.emilsjolander.stickylistheaders.WrapperViewList$LifeCycleListener -> ϵ$･:
     se.emilsjolander.stickylistheaders.StickyListHeadersListView this$0 -> ･

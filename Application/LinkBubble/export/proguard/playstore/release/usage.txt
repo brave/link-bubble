@@ -3617,6 +3617,7 @@ com.linkbubble.Config:
     public static final java.lang.String YOUTUBE_API_THUMBNAILS_LOW_QUALITY
     public static final java.lang.String YOUTUBE_API_THUMBNAILS_HIGH_QUALITY
 com.linkbubble.Constant:
+    public static final boolean ARTICLE_MODE
     public static final boolean DYNAMIC_ANIM_STEP
     public static final boolean PROFILE_FPS
     public static final java.lang.String INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION
@@ -3630,6 +3631,7 @@ com.linkbubble.Constant:
     public static final java.lang.String NEW_TAB_URL
     public static final int DROP_DOWN_CHECK_TIME
     public static final int AUTO_CONTENT_DISPLAY_DELAY
+    public static final int TOUCH_ICON_MAX_SIZE
     public static final java.lang.String PRIVACY_POLICY_URL
     public static final java.lang.String TERMS_OF_SERVICE_URL
     public static final boolean DEBUG_SHOW_TARGET_REGIONS
@@ -3649,7 +3651,8 @@ com.linkbubble.Constant:
     public static final java.lang.String USER_AGENT_CHROME_PHONE
     public static final java.lang.String USER_AGENT_CHROME_TABLET
     public static final java.lang.String USER_AGENT_CHROME_DESKTOP
-    76:79:public static java.lang.String getValidDeviceId()
+    public static final java.lang.String DIFFBOT_KEY
+    80:83:public static java.lang.String getValidDeviceId()
 com.linkbubble.DRM:
     static final int MSG_LICENSE_RESULT
     static final int MSG_CHECK_LICENSE
@@ -3702,6 +3705,7 @@ com.linkbubble.Settings:
     public static final java.lang.String PREFERENCE_CURRENT_TABS
     public static final java.lang.String PREFERENCE_DEFAULT_APPS
     public static final java.lang.String PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT
+    public static final java.lang.String PREFERENCE_AUTO_ARTICLE_MODE
     public static final java.lang.String PREFERENCE_WEBVIEW_TEXT_ZOOM
     public static final int PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN
     public static final int PREFERENCE_WEBVIEW_TEXT_ZOOM_DEFAULT
@@ -3723,7 +3727,7 @@ com.linkbubble.Settings:
     private static final java.lang.String LAST_APP_REDIRECT_KEY_TIME
     private static final java.lang.String LAST_APP_REDIRECT_KEY_URL
     private static final int MAX_LAST_APP_REDIRECT_COUNT
-    540:540:public boolean checkForYouTubeEmbeds()
+    542:542:public boolean checkForYouTubeEmbeds()
 com.linkbubble.db.DatabaseHelper:
     private static final java.lang.String TAG
     private static final int DATABASE_VERSION
@@ -3744,8 +3748,8 @@ com.linkbubble.physics.Draggable:
     public abstract void update(float)
     public abstract void onOrientationChanged()
 com.linkbubble.physics.DraggableHelper:
-    282:288:public float getAnimCompleteFraction()
-    354:354:public android.view.View getView()
+    284:290:public float getAnimCompleteFraction()
+    372:372:public android.view.View getView()
 com.linkbubble.physics.FlingTracker:
     static final boolean DEBUG
 com.linkbubble.ui.BubbleDraggable:
@@ -3781,7 +3785,6 @@ com.linkbubble.ui.CloseTabTargetView:
     private static final float MIN_SCALE
 com.linkbubble.ui.ContentView:
     private static final java.lang.String TAG
-    132:132:public com.linkbubble.webrender.WebRenderer getWebRenderer()
 com.linkbubble.ui.ContentView$EventHandler:
     public abstract void setDefaultFavicon()
 com.linkbubble.ui.ContentViewButton:
@@ -3853,7 +3856,6 @@ com.linkbubble.util.PageInspector:
     private static final java.lang.String JS_DROP_DOWN_ITEM_CHECK
     private static final java.lang.String JS_YOUTUBE_EMBED_CHECK
     private static final java.lang.String JS_TOUCH_ICON_CHECK
-    private static final int TOUCH_ICON_MAX_SIZE
     private static final int MAX_FAVICON_ENTRIES
 com.linkbubble.util.StatHat:
     private static final java.lang.String KEY
@@ -3871,6 +3873,18 @@ com.linkbubble.util.Util:
     private static final int OUTCODE_BOTTOM
     private static final int OUTCODE_TOP
     52:59:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
+com.linkbubble.webrender.DiffBotRenderer:
+    private static final java.lang.String TAG
+    private static final java.lang.String API_URL
+com.linkbubble.webrender.DiffBotRenderer$Article:
+    java.lang.String mAuthor
+    java.lang.String mType
+    java.lang.String mDate
+com.linkbubble.webrender.DiffBotRenderer$Article$Image:
+    java.lang.String mCaption
+com.linkbubble.webrender.WebRenderer:
+    108:109:public void setUrl(java.net.URL)
+    112:112:public com.linkbubble.webrender.WebRenderer$Mode getMode()
 com.squareup.otto.AnnotatedHandlerFinder:
     154:156:private AnnotatedHandlerFinder()
 com.squareup.otto.Bus:
@@ -4018,6 +4032,363 @@ com.squareup.picasso.Utils$BitmapHoneycombMR1:
     223:223:private Utils$BitmapHoneycombMR1()
 com.squareup.picasso.Utils$OkHttpLoaderCreator:
     229:229:private Utils$OkHttpLoaderCreator()
+de.jetwick.snacktory.ArticleTextExtractor:
+    private static final int MIN_AUTHOR_NAME_LENGTH
+    79:79:public de.jetwick.snacktory.ArticleTextExtractor addUnlikely(java.lang.String)
+    89:89:public de.jetwick.snacktory.ArticleTextExtractor addPositive(java.lang.String)
+    99:100:public de.jetwick.snacktory.ArticleTextExtractor addNegative(java.lang.String)
+    104:105:public void setOutputFormatter(de.jetwick.snacktory.OutputFormatter)
+    131:131:public de.jetwick.snacktory.JResult extractContent(org.jsoup.nodes.Document)
+    135:135:public de.jetwick.snacktory.JResult extractContent(org.jsoup.nodes.Document,de.jetwick.snacktory.OutputFormatter)
+    139:139:public de.jetwick.snacktory.JResult extractContent(java.lang.String)
+    830:840:protected void stripUnlikelyCandidates(org.jsoup.nodes.Document)
+    862:863:private void print(org.jsoup.nodes.Element)
+    866:867:private void print(java.lang.String,org.jsoup.nodes.Element)
+    870:872:private void print(java.lang.String,org.jsoup.nodes.Element,java.lang.String)
+    899:913:private java.lang.String doTitleSplits(java.lang.String,java.lang.String)
+de.jetwick.snacktory.Converter:
+    public static final java.lang.String UTF8
+    public static final java.lang.String ISO
+    public static final int K2
+    48:49:public de.jetwick.snacktory.Converter setMaxBytes(int)
+    76:78:public java.lang.String getEncoding()
+    82:82:public java.lang.String streamToString(java.io.InputStream)
+de.jetwick.snacktory.HtmlFetcher:
+    52:74:public static void main(java.lang.String[])
+    120:121:public void setExtractor(de.jetwick.snacktory.ArticleTextExtractor)
+    124:124:public de.jetwick.snacktory.ArticleTextExtractor getExtractor()
+    128:129:public de.jetwick.snacktory.HtmlFetcher setCache(de.jetwick.snacktory.SCache)
+    133:133:public de.jetwick.snacktory.SCache getCache()
+    137:137:public int getCacheCounter()
+    141:142:public de.jetwick.snacktory.HtmlFetcher clearCacheCounter()
+    146:147:public de.jetwick.snacktory.HtmlFetcher setMaxTextLength(int)
+    151:151:public int getMaxTextLength()
+    155:156:public void setAccept(java.lang.String)
+    159:160:public void setCharset(java.lang.String)
+    163:164:public void setCacheControl(java.lang.String)
+    167:167:public java.lang.String getLanguage()
+    171:172:public void setLanguage(java.lang.String)
+    175:175:public java.lang.String getReferrer()
+    179:180:public de.jetwick.snacktory.HtmlFetcher setReferrer(java.lang.String)
+    184:184:public java.lang.String getUserAgent()
+    188:189:public void setUserAgent(java.lang.String)
+    192:192:public java.lang.String getAccept()
+    196:196:public java.lang.String getCacheControl()
+    200:200:public java.lang.String getCharset()
+de.jetwick.snacktory.ImageResult:
+    public org.jsoup.nodes.Element element
+de.jetwick.snacktory.JResult:
+    74:74:public java.lang.String getOriginalUrl()
+    120:122:public java.lang.String getDescription()
+    131:133:public java.lang.String getAuthorDescription()
+    178:180:public java.util.List getTextList()
+    216:216:public java.util.Collection getKeywords()
+    234:236:public java.util.List getImages()
+    243:245:public int getImagesCount()
+    264:266:public java.util.List getLinks()
+de.jetwick.snacktory.MapEntry
+de.jetwick.snacktory.OutputFormatter:
+    public static final int MIN_PARAGRAPH_TEXT
+    35:36:public OutputFormatter(int)
+    47:48:public void setNodesToKeepCssSelector(java.lang.String)
+    154:154:protected java.lang.String node2TextOld(org.jsoup.nodes.Element)
+    164:165:public de.jetwick.snacktory.OutputFormatter setUnlikelyPattern(java.lang.String)
+    169:169:public de.jetwick.snacktory.OutputFormatter appendUnlikelyPattern(java.lang.String)
+de.jetwick.snacktory.SCache:
+    public abstract int getSize()
+de.jetwick.snacktory.SHelper:
+    public static final java.lang.String UTF8
+    117:121:public static java.lang.String getLongestSubstring(java.lang.String,java.lang.String)
+    125:153:public static int[] longestSubstring(java.lang.String,java.lang.String)
+    217:218:public static boolean isVideoLink(java.lang.String)
+    293:295:public static java.lang.String urlEncode(java.lang.String)
+    316:316:public static java.lang.String printNode(org.jsoup.nodes.Element)
+    320:332:public static java.lang.String printNode(org.jsoup.nodes.Element,int)
+    408:419:public static java.lang.String completeDate(java.lang.String)
+    427:427:public static java.text.SimpleDateFormat createDateFormatter()
+de.jetwick.snacktory.Util:
+    77:80:public static int indexOf(java.lang.String,char)
+    139:142:public static int indexOf(java.lang.String,java.lang.String)
+org.jsoup.Connection
+org.jsoup.Connection$Base
+org.jsoup.Connection$KeyVal
+org.jsoup.Connection$Method
+org.jsoup.Connection$Request
+org.jsoup.Connection$Response
+org.jsoup.HttpStatusException
+org.jsoup.Jsoup:
+    20:20:private Jsoup()
+    31:31:public static org.jsoup.nodes.Document parse(java.lang.String,java.lang.String)
+    45:45:public static org.jsoup.nodes.Document parse(java.lang.String,java.lang.String,org.jsoup.parser.Parser)
+    73:73:public static org.jsoup.Connection connect(java.lang.String)
+    88:88:public static org.jsoup.nodes.Document parse(java.io.File,java.lang.String,java.lang.String)
+    103:103:public static org.jsoup.nodes.Document parse(java.io.File,java.lang.String)
+    118:118:public static org.jsoup.nodes.Document parse(java.io.InputStream,java.lang.String,java.lang.String)
+    135:135:public static org.jsoup.nodes.Document parse(java.io.InputStream,java.lang.String,java.lang.String,org.jsoup.parser.Parser)
+    148:148:public static org.jsoup.nodes.Document parseBodyFragment(java.lang.String,java.lang.String)
+    160:160:public static org.jsoup.nodes.Document parseBodyFragment(java.lang.String)
+    181:183:public static org.jsoup.nodes.Document parse(java.net.URL,int)
+    198:201:public static java.lang.String clean(java.lang.String,java.lang.String,org.jsoup.safety.Whitelist)
+    215:215:public static java.lang.String clean(java.lang.String,org.jsoup.safety.Whitelist)
+    231:235:public static java.lang.String clean(java.lang.String,java.lang.String,org.jsoup.safety.Whitelist,org.jsoup.nodes.Document$OutputSettings)
+    247:249:public static boolean isValid(java.lang.String,org.jsoup.safety.Whitelist)
+org.jsoup.UnsupportedMimeTypeException
+org.jsoup.examples.HtmlToPlainText
+org.jsoup.examples.HtmlToPlainText$1
+org.jsoup.examples.HtmlToPlainText$FormattingVisitor
+org.jsoup.examples.ListLinks
+org.jsoup.helper.DataUtil
+org.jsoup.helper.HttpConnection
+org.jsoup.helper.HttpConnection$1
+org.jsoup.helper.HttpConnection$Base
+org.jsoup.helper.HttpConnection$KeyVal
+org.jsoup.helper.HttpConnection$Request
+org.jsoup.helper.HttpConnection$Response
+org.jsoup.helper.Validate:
+    8:8:private Validate()
+org.jsoup.nodes.Attribute:
+    41:43:public void setKey(java.lang.String)
+    95:96:public static org.jsoup.nodes.Attribute createFromEncoded(java.lang.String,java.lang.String)
+    100:100:protected boolean isDataAttribute()
+org.jsoup.nodes.Attributes:
+    protected static final java.lang.String dataPrefix
+    66:70:public void remove(java.lang.String)
+    129:129:public java.util.Map dataset()
+    247:247:private static java.lang.String dataKey(java.lang.String)
+    17:17:static synthetic java.util.LinkedHashMap access$100(org.jsoup.nodes.Attributes)
+    17:17:static synthetic java.util.LinkedHashMap access$102(org.jsoup.nodes.Attributes,java.util.LinkedHashMap)
+    17:17:static synthetic java.lang.String access$300(java.lang.String)
+org.jsoup.nodes.Attributes$1
+org.jsoup.nodes.Attributes$Dataset
+org.jsoup.nodes.Attributes$Dataset$DatasetIterator
+org.jsoup.nodes.Attributes$Dataset$EntrySet
+org.jsoup.nodes.Comment:
+    private static final java.lang.String COMMENT_KEY
+org.jsoup.nodes.DataNode:
+    private static final java.lang.String DATA_KEY
+    38:39:public org.jsoup.nodes.DataNode setWholeData(java.lang.String)
+    59:60:public static org.jsoup.nodes.DataNode createFromEncoded(java.lang.String,java.lang.String)
+org.jsoup.nodes.Document:
+    39:46:public static org.jsoup.nodes.Document createShell(java.lang.String)
+    55:55:public java.lang.String location()
+    63:63:public org.jsoup.nodes.Element head()
+    71:71:public org.jsoup.nodes.Element body()
+    90:97:public void title(java.lang.String)
+    105:105:public org.jsoup.nodes.Element createElement(java.lang.String)
+    114:131:public org.jsoup.nodes.Document normalise()
+    136:151:private void normaliseTextNodes(org.jsoup.nodes.Element)
+    155:173:private void normaliseStructure(java.lang.String,org.jsoup.nodes.Element)
+    177:186:private org.jsoup.nodes.Element findFirstElementByTagName(java.lang.String,org.jsoup.nodes.Node)
+    201:202:public org.jsoup.nodes.Element text(java.lang.String)
+    376:378:public org.jsoup.nodes.Document outputSettings(org.jsoup.nodes.Document$OutputSettings)
+org.jsoup.nodes.Document$OutputSettings:
+    248:249:public org.jsoup.nodes.Document$OutputSettings escapeMode(org.jsoup.nodes.Entities$EscapeMode)
+    261:261:public java.nio.charset.Charset charset()
+    305:306:public org.jsoup.nodes.Document$OutputSettings prettyPrint(boolean)
+    324:325:public org.jsoup.nodes.Document$OutputSettings outline(boolean)
+    342:344:public org.jsoup.nodes.Document$OutputSettings indentAmount(int)
+org.jsoup.nodes.Element:
+    75:77:public org.jsoup.nodes.Element tagName(java.lang.String)
+    134:134:public java.util.Map dataset()
+    147:149:public org.jsoup.select.Elements parents()
+    153:158:private static void accumulateParents(org.jsoup.nodes.Element,org.jsoup.select.Elements)
+    209:214:public java.util.List textNodes()
+    226:231:public java.util.List dataNodes()
+    275:278:public org.jsoup.nodes.Element prependChild(org.jsoup.nodes.Node)
+    292:300:public org.jsoup.nodes.Element insertChildren(int,java.util.Collection)
+    311:313:public org.jsoup.nodes.Element appendElement(java.lang.String)
+    324:326:public org.jsoup.nodes.Element prependElement(java.lang.String)
+    336:338:public org.jsoup.nodes.Element appendText(java.lang.String)
+    348:350:public org.jsoup.nodes.Element prependText(java.lang.String)
+    360:364:public org.jsoup.nodes.Element append(java.lang.String)
+    374:378:public org.jsoup.nodes.Element prepend(java.lang.String)
+    390:390:public org.jsoup.nodes.Element before(java.lang.String)
+    413:413:public org.jsoup.nodes.Element after(java.lang.String)
+    424:424:public org.jsoup.nodes.Element after(org.jsoup.nodes.Node)
+    432:433:public org.jsoup.nodes.Element empty()
+    444:444:public org.jsoup.nodes.Element wrap(java.lang.String)
+    473:480:public org.jsoup.nodes.Element nextElementSibling()
+    505:506:public org.jsoup.nodes.Element firstElementSibling()
+    524:525:public org.jsoup.nodes.Element lastElementSibling()
+    564:570:public org.jsoup.nodes.Element getElementById(java.lang.String)
+    585:587:public org.jsoup.select.Elements getElementsByClass(java.lang.String)
+    597:600:public org.jsoup.select.Elements getElementsByAttribute(java.lang.String)
+    610:613:public org.jsoup.select.Elements getElementsByAttributeStarting(java.lang.String)
+    624:624:public org.jsoup.select.Elements getElementsByAttributeValue(java.lang.String,java.lang.String)
+    635:635:public org.jsoup.select.Elements getElementsByAttributeValueNot(java.lang.String,java.lang.String)
+    646:646:public org.jsoup.select.Elements getElementsByAttributeValueStarting(java.lang.String,java.lang.String)
+    657:657:public org.jsoup.select.Elements getElementsByAttributeValueEnding(java.lang.String,java.lang.String)
+    668:668:public org.jsoup.select.Elements getElementsByAttributeValueContaining(java.lang.String,java.lang.String)
+    678:678:public org.jsoup.select.Elements getElementsByAttributeValueMatching(java.lang.String,java.util.regex.Pattern)
+    691:695:public org.jsoup.select.Elements getElementsByAttributeValueMatching(java.lang.String,java.lang.String)
+    704:704:public org.jsoup.select.Elements getElementsByIndexLessThan(int)
+    713:713:public org.jsoup.select.Elements getElementsByIndexGreaterThan(int)
+    722:722:public org.jsoup.select.Elements getElementsByIndexEquals(int)
+    733:733:public org.jsoup.select.Elements getElementsContainingText(java.lang.String)
+    744:744:public org.jsoup.select.Elements getElementsContainingOwnText(java.lang.String)
+    754:754:public org.jsoup.select.Elements getElementsMatchingText(java.util.regex.Pattern)
+    766:770:public org.jsoup.select.Elements getElementsMatchingText(java.lang.String)
+    780:780:public org.jsoup.select.Elements getElementsMatchingOwnText(java.util.regex.Pattern)
+    792:796:public org.jsoup.select.Elements getElementsMatchingOwnText(java.lang.String)
+    899:905:public org.jsoup.nodes.Element text(java.lang.String)
+    934:946:public java.lang.String data()
+    978:980:public org.jsoup.nodes.Element classNames(java.util.Set)
+    1003:1009:public org.jsoup.nodes.Element addClass(java.lang.String)
+    1018:1024:public org.jsoup.nodes.Element removeClass(java.lang.String)
+    1033:1042:public org.jsoup.nodes.Element toggleClass(java.lang.String)
+    1050:1053:public java.lang.String val()
+    1062:1066:public org.jsoup.nodes.Element val(java.lang.String)
+    1118:1120:public org.jsoup.nodes.Element html(java.lang.String)
+    21:21:public bridge synthetic org.jsoup.nodes.Node wrap(java.lang.String)
+    21:21:public bridge synthetic org.jsoup.nodes.Node after(org.jsoup.nodes.Node)
+    21:21:public bridge synthetic org.jsoup.nodes.Node after(java.lang.String)
+    21:21:public bridge synthetic org.jsoup.nodes.Node before(java.lang.String)
+org.jsoup.nodes.Entities:
+    111:111:static java.lang.String unescape(java.lang.String)
+    121:121:static java.lang.String unescape(java.lang.String,boolean)
+org.jsoup.nodes.FormElement:
+    36:36:public org.jsoup.select.Elements elements()
+    57:66:public org.jsoup.Connection submit()
+    75:92:public java.util.List formData()
+org.jsoup.nodes.Node:
+    122:124:public org.jsoup.nodes.Node removeAttr(java.lang.String)
+    132:132:public java.lang.String baseUri()
+    223:227:public java.util.List childNodesCopy()
+    239:239:protected org.jsoup.nodes.Node[] childNodesAsArray()
+    286:287:public org.jsoup.nodes.Node before(java.lang.String)
+    311:312:public org.jsoup.nodes.Node after(java.lang.String)
+    322:326:public org.jsoup.nodes.Node after(org.jsoup.nodes.Node)
+    330:336:private void addSiblingHtml(int,java.lang.String)
+    344:365:public org.jsoup.nodes.Node wrap(java.lang.String)
+    382:389:public org.jsoup.nodes.Node unwrap()
+    393:397:private org.jsoup.nodes.Element getDeepChild(org.jsoup.nodes.Element)
+    405:408:public void replaceWith(org.jsoup.nodes.Node)
+    417:427:protected void replaceChild(org.jsoup.nodes.Node,org.jsoup.nodes.Node)
+    507:516:public org.jsoup.nodes.Node previousSibling()
+org.jsoup.nodes.TextNode:
+    private static final java.lang.String TEXT_KEY
+    50:53:public org.jsoup.nodes.TextNode text(java.lang.String)
+    79:89:public org.jsoup.nodes.TextNode splitText(int)
+    115:116:public static org.jsoup.nodes.TextNode createFromEncoded(java.lang.String,java.lang.String)
+    166:167:public org.jsoup.nodes.Node removeAttr(java.lang.String)
+org.jsoup.nodes.XmlDeclaration:
+    private static final java.lang.String DECL_KEY
+    18:21:public XmlDeclaration(java.lang.String,java.lang.String,boolean)
+org.jsoup.parser.CharacterReader:
+    static final char EOF
+    59:59:java.lang.String consumeAsString()
+org.jsoup.parser.HtmlTreeBuilder:
+    59:105:java.util.List parseFragment(java.lang.String,org.jsoup.nodes.Element,java.lang.String,org.jsoup.parser.ParseErrorList)
+    545:546:void setPendingTableCharacters(java.util.List)
+org.jsoup.parser.HtmlTreeBuilderState$Constants:
+    1480:1480:private HtmlTreeBuilderState$Constants()
+org.jsoup.parser.ParseError:
+    25:25:public java.lang.String getErrorMessage()
+    33:33:public int getPosition()
+org.jsoup.parser.ParseErrorList:
+    private static final int INITIAL_CAPACITY
+    24:24:int getMaxSize()
+    32:32:static org.jsoup.parser.ParseErrorList tracking(int)
+org.jsoup.parser.Parser:
+    private static final int DEFAULT_MAX_ERRORS
+    private org.jsoup.parser.TreeBuilder treeBuilder
+    private int maxErrors
+    private org.jsoup.parser.ParseErrorList errors
+    17:26:public Parser(org.jsoup.parser.TreeBuilder)
+    29:31:public org.jsoup.nodes.Document parseInput(java.lang.String,java.lang.String)
+    40:40:public org.jsoup.parser.TreeBuilder getTreeBuilder()
+    49:50:public org.jsoup.parser.Parser setTreeBuilder(org.jsoup.parser.TreeBuilder)
+    58:58:public boolean isTrackErrors()
+    67:68:public org.jsoup.parser.Parser setTrackErrors(int)
+    76:76:public java.util.List getErrors()
+    104:105:public static java.util.List parseFragment(java.lang.String,org.jsoup.nodes.Element,java.lang.String)
+    116:117:public static java.util.List parseXmlFragment(java.lang.String,java.lang.String)
+    129:136:public static org.jsoup.nodes.Document parseBodyFragment(java.lang.String,java.lang.String)
+    146:147:public static java.lang.String unescapeEntities(java.lang.String,boolean)
+    158:158:public static org.jsoup.nodes.Document parseBodyFragmentRelaxed(java.lang.String,java.lang.String)
+    169:169:public static org.jsoup.parser.Parser htmlParser()
+    178:178:public static org.jsoup.parser.Parser xmlParser()
+org.jsoup.parser.Tag:
+    91:91:public boolean canContainBlock()
+    100:100:public boolean isInline()
+    109:109:public boolean isData()
+    118:118:public boolean isEmpty()
+    146:146:public static boolean isKnownTag(java.lang.String)
+    171:171:public boolean isFormSubmittable()
+org.jsoup.parser.TokenQueue:
+    private static final char ESC
+    43:43:public char peek()
+    51:52:public void addFirst(java.lang.Character)
+    60:62:public void addFirst(java.lang.String)
+    79:79:public boolean matchesCS(java.lang.String)
+    109:109:public boolean matchesStartTag()
+    147:148:public void advance()
+    192:213:public java.lang.String consumeToIgnoreCase(java.lang.String)
+    248:250:public java.lang.String chompToIgnoreCase(java.lang.String)
+    325:328:public java.lang.String consumeWord()
+    337:341:public java.lang.String consumeTagName()
+    375:379:public java.lang.String consumeAttributeKey()
+org.jsoup.parser.Tokeniser:
+    static final char replacementChar
+    88:88:org.jsoup.parser.TokeniserState getState()
+    223:223:boolean currentNodeInHtmlNS()
+    234:246:java.lang.String unescapeEntities(boolean)
+org.jsoup.parser.TokeniserState:
+    private static final char nullChar
+    private static final char replacementChar
+    private static final char eof
+org.jsoup.parser.TreeBuilder:
+    36:36:org.jsoup.nodes.Document parse(java.lang.String,java.lang.String)
+org.jsoup.parser.XmlTreeBuilder
+org.jsoup.parser.XmlTreeBuilder$1
+org.jsoup.safety.Cleaner
+org.jsoup.safety.Cleaner$1
+org.jsoup.safety.Cleaner$CleaningVisitor
+org.jsoup.safety.Cleaner$ElementMeta
+org.jsoup.safety.Whitelist
+org.jsoup.safety.Whitelist$AttributeKey
+org.jsoup.safety.Whitelist$AttributeValue
+org.jsoup.safety.Whitelist$Protocol
+org.jsoup.safety.Whitelist$TagName
+org.jsoup.safety.Whitelist$TypedValue
+org.jsoup.select.Collector:
+    13:14:private Collector()
+org.jsoup.select.CombiningEvaluator$Or:
+    73:79:CombiningEvaluator$Or(java.util.Collection)
+org.jsoup.select.Elements:
+    36:37:public varargs Elements(org.jsoup.nodes.Element[])
+    83:87:public boolean hasAttr(java.lang.String)
+    97:100:public org.jsoup.select.Elements attr(java.lang.String,java.lang.String)
+    109:112:public org.jsoup.select.Elements removeAttr(java.lang.String)
+    121:124:public org.jsoup.select.Elements addClass(java.lang.String)
+    133:136:public org.jsoup.select.Elements removeClass(java.lang.String)
+    145:148:public org.jsoup.select.Elements toggleClass(java.lang.String)
+    157:161:public boolean hasClass(java.lang.String)
+    170:173:public java.lang.String val()
+    182:184:public org.jsoup.select.Elements val(java.lang.String)
+    206:210:public boolean hasText()
+    220:226:public java.lang.String html()
+    263:266:public org.jsoup.select.Elements tagName(java.lang.String)
+    276:279:public org.jsoup.select.Elements html(java.lang.String)
+    289:292:public org.jsoup.select.Elements prepend(java.lang.String)
+    302:305:public org.jsoup.select.Elements append(java.lang.String)
+    315:318:public org.jsoup.select.Elements before(java.lang.String)
+    328:331:public org.jsoup.select.Elements after(java.lang.String)
+    344:348:public org.jsoup.select.Elements wrap(java.lang.String)
+    365:368:public org.jsoup.select.Elements unwrap()
+    383:386:public org.jsoup.select.Elements empty()
+    402:405:public org.jsoup.select.Elements remove()
+    430:431:public org.jsoup.select.Elements not(java.lang.String)
+    442:442:public org.jsoup.select.Elements eq(int)
+    451:452:public boolean is(java.lang.String)
+    460:464:public org.jsoup.select.Elements parents()
+    481:481:public org.jsoup.nodes.Element last()
+    490:495:public org.jsoup.select.Elements traverse(org.jsoup.select.NodeVisitor)
+    504:508:public java.util.List forms()
+org.jsoup.select.Evaluator$CssNthEvaluator:
+    406:407:public Evaluator$CssNthEvaluator(int)
+org.jsoup.select.Selector:
+    120:132:static org.jsoup.select.Elements filterOut(java.util.Collection,java.util.Collection)
 org.mozilla.gecko.favicons.Favicons:
     private static final java.lang.String LOGTAG
     public static final int FAVICON_CACHE_SIZE_BYTES
@@ -4086,6 +4457,182 @@ org.mozilla.gecko.util.ThreadUtils:
 org.mozilla.gecko.util.ThreadUtils$UiThreadBlockedException
 org.mozilla.gecko.widget.FaviconView:
     297:297:public android.graphics.Bitmap getBitmap()
+org.slf4j.IMarkerFactory
+org.slf4j.Logger:
+    public static final java.lang.String ROOT_LOGGER_NAME
+    public abstract java.lang.String getName()
+    public abstract boolean isTraceEnabled()
+    public abstract void trace(java.lang.String)
+    public abstract void trace(java.lang.String,java.lang.Object)
+    public abstract void trace(java.lang.String,java.lang.Object,java.lang.Object)
+    public abstract void trace(java.lang.String,java.lang.Object[])
+    public abstract void trace(java.lang.String,java.lang.Throwable)
+    public abstract boolean isTraceEnabled(org.slf4j.Marker)
+    public abstract void trace(org.slf4j.Marker,java.lang.String)
+    public abstract void trace(org.slf4j.Marker,java.lang.String,java.lang.Object)
+    public abstract void trace(org.slf4j.Marker,java.lang.String,java.lang.Object,java.lang.Object)
+    public abstract void trace(org.slf4j.Marker,java.lang.String,java.lang.Object[])
+    public abstract void trace(org.slf4j.Marker,java.lang.String,java.lang.Throwable)
+    public abstract void debug(java.lang.String,java.lang.Object)
+    public abstract void debug(java.lang.String,java.lang.Object,java.lang.Object)
+    public abstract void debug(java.lang.String,java.lang.Object[])
+    public abstract void debug(java.lang.String,java.lang.Throwable)
+    public abstract boolean isDebugEnabled(org.slf4j.Marker)
+    public abstract void debug(org.slf4j.Marker,java.lang.String)
+    public abstract void debug(org.slf4j.Marker,java.lang.String,java.lang.Object)
+    public abstract void debug(org.slf4j.Marker,java.lang.String,java.lang.Object,java.lang.Object)
+    public abstract void debug(org.slf4j.Marker,java.lang.String,java.lang.Object[])
+    public abstract void debug(org.slf4j.Marker,java.lang.String,java.lang.Throwable)
+    public abstract boolean isInfoEnabled()
+    public abstract void info(java.lang.String,java.lang.Object)
+    public abstract void info(java.lang.String,java.lang.Object,java.lang.Object)
+    public abstract void info(java.lang.String,java.lang.Object[])
+    public abstract void info(java.lang.String,java.lang.Throwable)
+    public abstract boolean isInfoEnabled(org.slf4j.Marker)
+    public abstract void info(org.slf4j.Marker,java.lang.String)
+    public abstract void info(org.slf4j.Marker,java.lang.String,java.lang.Object)
+    public abstract void info(org.slf4j.Marker,java.lang.String,java.lang.Object,java.lang.Object)
+    public abstract void info(org.slf4j.Marker,java.lang.String,java.lang.Object[])
+    public abstract void info(org.slf4j.Marker,java.lang.String,java.lang.Throwable)
+    public abstract boolean isWarnEnabled()
+    public abstract void warn(java.lang.String,java.lang.Object)
+    public abstract void warn(java.lang.String,java.lang.Object[])
+    public abstract void warn(java.lang.String,java.lang.Object,java.lang.Object)
+    public abstract void warn(java.lang.String,java.lang.Throwable)
+    public abstract boolean isWarnEnabled(org.slf4j.Marker)
+    public abstract void warn(org.slf4j.Marker,java.lang.String)
+    public abstract void warn(org.slf4j.Marker,java.lang.String,java.lang.Object)
+    public abstract void warn(org.slf4j.Marker,java.lang.String,java.lang.Object,java.lang.Object)
+    public abstract void warn(org.slf4j.Marker,java.lang.String,java.lang.Object[])
+    public abstract void warn(org.slf4j.Marker,java.lang.String,java.lang.Throwable)
+    public abstract boolean isErrorEnabled()
+    public abstract void error(java.lang.String)
+    public abstract void error(java.lang.String,java.lang.Object)
+    public abstract void error(java.lang.String,java.lang.Object,java.lang.Object)
+    public abstract void error(java.lang.String,java.lang.Object[])
+    public abstract void error(java.lang.String,java.lang.Throwable)
+    public abstract boolean isErrorEnabled(org.slf4j.Marker)
+    public abstract void error(org.slf4j.Marker,java.lang.String)
+    public abstract void error(org.slf4j.Marker,java.lang.String,java.lang.Object)
+    public abstract void error(org.slf4j.Marker,java.lang.String,java.lang.Object,java.lang.Object)
+    public abstract void error(org.slf4j.Marker,java.lang.String,java.lang.Object[])
+    public abstract void error(org.slf4j.Marker,java.lang.String,java.lang.Throwable)
+org.slf4j.LoggerFactory:
+    static final java.lang.String NO_STATICLOGGERBINDER_URL
+    static final java.lang.String MULTIPLE_BINDINGS_URL
+    static final java.lang.String NULL_LF_URL
+    static final java.lang.String VERSION_MISMATCH
+    static final java.lang.String SUBSTITUTE_LOGGER_URL
+    static final java.lang.String UNSUCCESSFUL_INIT_URL
+    static final java.lang.String UNSUCCESSFUL_INIT_MSG
+    static final int UNINITIALIZED
+    static final int ONGOING_INITILIZATION
+    static final int FAILED_INITILIZATION
+    static final int SUCCESSFUL_INITILIZATION
+    static final int GET_SINGLETON_INEXISTENT
+    static final int GET_SINGLETON_EXISTS
+    101:104:static void reset()
+org.slf4j.MDC
+org.slf4j.Marker
+org.slf4j.MarkerFactory
+org.slf4j.helpers.BasicMDCAdapter
+org.slf4j.helpers.BasicMarker
+org.slf4j.helpers.BasicMarkerFactory
+org.slf4j.helpers.MarkerIgnoringBase:
+    42:42:public boolean isTraceEnabled(org.slf4j.Marker)
+    46:47:public void trace(org.slf4j.Marker,java.lang.String)
+    50:51:public void trace(org.slf4j.Marker,java.lang.String,java.lang.Object)
+    54:55:public void trace(org.slf4j.Marker,java.lang.String,java.lang.Object,java.lang.Object)
+    58:59:public void trace(org.slf4j.Marker,java.lang.String,java.lang.Object[])
+    62:63:public void trace(org.slf4j.Marker,java.lang.String,java.lang.Throwable)
+    66:66:public boolean isDebugEnabled(org.slf4j.Marker)
+    70:71:public void debug(org.slf4j.Marker,java.lang.String)
+    74:75:public void debug(org.slf4j.Marker,java.lang.String,java.lang.Object)
+    78:79:public void debug(org.slf4j.Marker,java.lang.String,java.lang.Object,java.lang.Object)
+    82:83:public void debug(org.slf4j.Marker,java.lang.String,java.lang.Object[])
+    86:87:public void debug(org.slf4j.Marker,java.lang.String,java.lang.Throwable)
+    90:90:public boolean isInfoEnabled(org.slf4j.Marker)
+    94:95:public void info(org.slf4j.Marker,java.lang.String)
+    98:99:public void info(org.slf4j.Marker,java.lang.String,java.lang.Object)
+    102:103:public void info(org.slf4j.Marker,java.lang.String,java.lang.Object,java.lang.Object)
+    106:107:public void info(org.slf4j.Marker,java.lang.String,java.lang.Object[])
+    110:111:public void info(org.slf4j.Marker,java.lang.String,java.lang.Throwable)
+    114:114:public boolean isWarnEnabled(org.slf4j.Marker)
+    118:119:public void warn(org.slf4j.Marker,java.lang.String)
+    122:123:public void warn(org.slf4j.Marker,java.lang.String,java.lang.Object)
+    126:127:public void warn(org.slf4j.Marker,java.lang.String,java.lang.Object,java.lang.Object)
+    130:131:public void warn(org.slf4j.Marker,java.lang.String,java.lang.Object[])
+    134:135:public void warn(org.slf4j.Marker,java.lang.String,java.lang.Throwable)
+    139:139:public boolean isErrorEnabled(org.slf4j.Marker)
+    143:144:public void error(org.slf4j.Marker,java.lang.String)
+    147:148:public void error(org.slf4j.Marker,java.lang.String,java.lang.Object)
+    151:152:public void error(org.slf4j.Marker,java.lang.String,java.lang.Object,java.lang.Object)
+    155:156:public void error(org.slf4j.Marker,java.lang.String,java.lang.Object[])
+    159:160:public void error(org.slf4j.Marker,java.lang.String,java.lang.Throwable)
+org.slf4j.helpers.MessageFormatter
+org.slf4j.helpers.NOPLogger:
+    73:73:public final boolean isTraceEnabled()
+    79:79:public final void trace(java.lang.String)
+    84:84:public final void trace(java.lang.String,java.lang.Object)
+    89:89:public final void trace(java.lang.String,java.lang.Object,java.lang.Object)
+    94:94:public final void trace(java.lang.String,java.lang.Object[])
+    99:99:public final void trace(java.lang.String,java.lang.Throwable)
+    117:117:public final void debug(java.lang.String,java.lang.Object)
+    122:122:public final void debug(java.lang.String,java.lang.Object,java.lang.Object)
+    127:127:public final void debug(java.lang.String,java.lang.Object[])
+    134:134:public final void debug(java.lang.String,java.lang.Throwable)
+    142:142:public final boolean isInfoEnabled()
+    154:154:public final void info(java.lang.String,java.lang.Object)
+    159:159:public final void info(java.lang.String,java.lang.Object,java.lang.Object)
+    164:164:public final void info(java.lang.String,java.lang.Object[])
+    170:170:public final void info(java.lang.String,java.lang.Throwable)
+    178:178:public final boolean isWarnEnabled()
+    189:189:public final void warn(java.lang.String,java.lang.Object)
+    194:194:public final void warn(java.lang.String,java.lang.Object,java.lang.Object)
+    199:199:public final void warn(java.lang.String,java.lang.Object[])
+    205:205:public final void warn(java.lang.String,java.lang.Throwable)
+    210:210:public final boolean isErrorEnabled()
+    216:216:public final void error(java.lang.String)
+    221:221:public final void error(java.lang.String,java.lang.Object)
+    226:226:public final void error(java.lang.String,java.lang.Object,java.lang.Object)
+    231:231:public final void error(java.lang.String,java.lang.Object[])
+    237:237:public final void error(java.lang.String,java.lang.Throwable)
+org.slf4j.helpers.NOPMakerAdapter
+org.slf4j.impl.AndroidLogger:
+    73:73:public boolean isTraceEnabled()
+    79:80:public void trace(java.lang.String)
+    85:86:public void trace(java.lang.String,java.lang.Object)
+    91:92:public void trace(java.lang.String,java.lang.Object,java.lang.Object)
+    97:98:public void trace(java.lang.String,java.lang.Object[])
+    103:104:public void trace(java.lang.String,java.lang.Throwable)
+    121:122:public void debug(java.lang.String,java.lang.Object)
+    127:128:public void debug(java.lang.String,java.lang.Object,java.lang.Object)
+    133:134:public void debug(java.lang.String,java.lang.Object[])
+    139:140:public void debug(java.lang.String,java.lang.Throwable)
+    145:145:public boolean isInfoEnabled()
+    157:158:public void info(java.lang.String,java.lang.Object)
+    163:164:public void info(java.lang.String,java.lang.Object,java.lang.Object)
+    169:170:public void info(java.lang.String,java.lang.Object[])
+    175:176:public void info(java.lang.String,java.lang.Throwable)
+    181:181:public boolean isWarnEnabled()
+    193:194:public void warn(java.lang.String,java.lang.Object)
+    199:200:public void warn(java.lang.String,java.lang.Object,java.lang.Object)
+    205:206:public void warn(java.lang.String,java.lang.Object[])
+    211:212:public void warn(java.lang.String,java.lang.Throwable)
+    217:217:public boolean isErrorEnabled()
+    223:224:public void error(java.lang.String)
+    229:230:public void error(java.lang.String,java.lang.Object)
+    235:236:public void error(java.lang.String,java.lang.Object,java.lang.Object)
+    241:242:public void error(java.lang.String,java.lang.Object[])
+    247:248:public void error(java.lang.String,java.lang.Throwable)
+    259:259:private java.lang.String format(java.lang.String,java.lang.Object,java.lang.Object)
+    270:270:private java.lang.String format(java.lang.String,java.lang.Object[])
+org.slf4j.impl.StaticMDCBinder
+org.slf4j.impl.StaticMarkerBinder
+org.slf4j.spi.LocationAwareLogger
+org.slf4j.spi.LoggerFactoryBinder
+org.slf4j.spi.MDCAdapter
+org.slf4j.spi.MarkerFactoryBinder
 retrofit.ChangeableServer
 retrofit.Endpoint:
     public abstract java.lang.String getName()
@@ -4093,7 +4640,7 @@ retrofit.Endpoints:
     10:11:private Endpoints()
     20:20:public static retrofit.Endpoint newFixedEndpoint(java.lang.String,java.lang.String)
 retrofit.Platform$OkClientInstantiator:
-    166:166:private Platform$OkClientInstantiator()
+    183:183:private Platform$OkClientInstantiator()
 retrofit.Profiler$RequestInformation:
     65:65:public java.lang.String getMethod()
     70:70:public java.lang.String getBaseUrl()
@@ -4104,28 +4651,30 @@ retrofit.ResponseCallback
 retrofit.RestAdapter:
     static final java.lang.String THREAD_PREFIX
     static final java.lang.String IDLE_THREAD_NAME
-    190:194:public void setLogLevel(retrofit.RestAdapter$LogLevel)
-    198:198:public retrofit.RestAdapter$LogLevel getLogLevel()
+    189:193:public void setLogLevel(retrofit.RestAdapter$LogLevel)
+    197:197:public retrofit.RestAdapter$LogLevel getLogLevel()
 retrofit.RestAdapter$Builder:
-    579:579:public retrofit.RestAdapter$Builder setServer(java.lang.String)
-    590:590:public retrofit.RestAdapter$Builder setServer(retrofit.Server)
-    604:608:public retrofit.RestAdapter$Builder setEndpoint(retrofit.Endpoint)
-    613:616:public retrofit.RestAdapter$Builder setClient(retrofit.client.Client)
-    625:629:public retrofit.RestAdapter$Builder setClient(retrofit.client.Client$Provider)
-    641:649:public retrofit.RestAdapter$Builder setExecutors(java.util.concurrent.Executor,java.util.concurrent.Executor)
-    654:658:public retrofit.RestAdapter$Builder setRequestInterceptor(retrofit.RequestInterceptor)
-    663:667:public retrofit.RestAdapter$Builder setConverter(retrofit.converter.Converter)
-    672:676:public retrofit.RestAdapter$Builder setProfiler(retrofit.Profiler)
-    684:688:public retrofit.RestAdapter$Builder setErrorHandler(retrofit.ErrorHandler)
+    572:572:public retrofit.RestAdapter$Builder setServer(java.lang.String)
+    583:583:public retrofit.RestAdapter$Builder setServer(retrofit.Server)
+    597:601:public retrofit.RestAdapter$Builder setEndpoint(retrofit.Endpoint)
+    606:609:public retrofit.RestAdapter$Builder setClient(retrofit.client.Client)
+    618:622:public retrofit.RestAdapter$Builder setClient(retrofit.client.Client$Provider)
+    634:642:public retrofit.RestAdapter$Builder setExecutors(java.util.concurrent.Executor,java.util.concurrent.Executor)
+    647:651:public retrofit.RestAdapter$Builder setRequestInterceptor(retrofit.RequestInterceptor)
+    656:660:public retrofit.RestAdapter$Builder setConverter(retrofit.converter.Converter)
+    665:669:public retrofit.RestAdapter$Builder setProfiler(retrofit.Profiler)
+    677:681:public retrofit.RestAdapter$Builder setErrorHandler(retrofit.ErrorHandler)
 retrofit.RestAdapter$Builder$1
+retrofit.RestAdapter$RxSupport:
+    231:231:static synthetic retrofit.ErrorHandler access$000(retrofit.RestAdapter$RxSupport)
 retrofit.RestAdapter$RxSupport$1:
-    247:256:public rx.Subscription onSubscribe(rx.Observer)
+    243:259:public void call(rx.Subscriber)
+    241:241:public bridge synthetic void call(java.lang.Object)
 retrofit.RestMethodInfo:
     private static final java.lang.String PARAM
 retrofit.RestMethodInfo$RxSupport:
-    488:488:private RestMethodInfo$RxSupport()
+    470:470:private RestMethodInfo$RxSupport()
 retrofit.RetrofitError:
-    62:62:public java.lang.String getUrl()
     67:67:public retrofit.client.Response getResponse()
     72:72:public boolean isNetworkError()
     80:87:public java.lang.Object getBody()
