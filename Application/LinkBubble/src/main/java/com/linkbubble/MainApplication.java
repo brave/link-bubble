@@ -274,10 +274,22 @@ public class MainApplication extends Application {
             }
             return true;
         } catch (SecurityException ex) {
-            if (toastOnError) {
-                 Toast.makeText(context, R.string.unable_to_launch_app, Toast.LENGTH_SHORT).show();
+            openIntent = new Intent(Intent.ACTION_VIEW);
+            openIntent.setPackage(packageName);
+            openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            openIntent.setData(Uri.parse(urlAsString));
+            try {
+                context.startActivity(openIntent);
+                if (urlLoadStartTime > -1) {
+                    Settings.get().trackLinkLoadTime(System.currentTimeMillis() - urlLoadStartTime, Settings.LinkLoadType.AppRedirectBrowser, urlAsString);
+                }
+                return true;
+            } catch (SecurityException ex2) {
+                if (toastOnError) {
+                    Toast.makeText(context, R.string.unable_to_launch_app, Toast.LENGTH_SHORT).show();
+                }
+                return false;
             }
-            return false;
         }
     }
 
