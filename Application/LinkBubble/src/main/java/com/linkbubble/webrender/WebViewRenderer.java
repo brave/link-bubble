@@ -190,6 +190,9 @@ class WebViewRenderer extends WebRenderer {
         }
 
         mWebView.stopLoading();
+
+        // Ensure the loading indicators cease when stop is pressed.
+        mWebChromeClient.onProgressChanged(mWebView, 100);
     }
 
     @Override
