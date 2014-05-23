@@ -8,6 +8,10 @@
         <change>CHANGE: The top-most link doesn't change when subsequent links are loaded (Pro only).</change>
     </release> -->
 
+    <release version="1.1.3" versioncode="11300">
+        <change>BUG FIX: Google+ redirects work again (thanks +Ian Lake!).</change>
+    </release>
+
     <release version="1.1.2" versioncode="11200">
         <change>NEW: Initial translations for Chinese (Taiwan), Danish, French, Hindi, Hungarian, Japanese, Polish, Portuguese, Portuguese (Brazil), Spanish, Spanish (Latin America), Swedish and Turkish.</change>
         <change>NEW: URLs can be shared directly to Link Bubble via a 3rd party app's Share button.</change>
