@@ -451,7 +451,7 @@ public class ContentView extends FrameLayout {
 
                                                 mInitialUrlLoadStartTime = -1;
                                                 loaded = MainApplication.loadIntent(context, actionItem.mPackageName,
-                                                        actionItem.mActivityClassName, urlAsString, -1);
+                                                        actionItem.mActivityClassName, urlAsString, -1, true);
                                                 break;
                                             }
                                         }

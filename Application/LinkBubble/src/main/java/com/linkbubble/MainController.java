@@ -645,7 +645,7 @@ public class MainController implements Choreographer.FrameCallback {
                                     }
 
                                     loaded = MainApplication.loadIntent(mContext, actionItem.mPackageName,
-                                            actionItem.mActivityClassName, urlAsString, -1);
+                                            actionItem.mActivityClassName, urlAsString, -1, true);
                                     break;
                                 }
                             }
