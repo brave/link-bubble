@@ -256,22 +256,29 @@ public class MainApplication extends Application {
 
     public static boolean loadResolveInfoIntent(Context context, ResolveInfo resolveInfo, String url, long urlLoadStartTime) {
         if (resolveInfo.activityInfo != null) {
-            return loadIntent(context, resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name, url, urlLoadStartTime);
+            return loadIntent(context, resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name, url, urlLoadStartTime, true);
         }
         return false;
     }
 
-    public static boolean loadIntent(Context context, String packageName, String className, String urlAsString, long urlLoadStartTime) {
+    public static boolean loadIntent(Context context, String packageName, String className, String urlAsString, long urlLoadStartTime, boolean toastOnError) {
         Intent openIntent = new Intent(Intent.ACTION_VIEW);
         openIntent.setClassName(packageName, className);
         openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         openIntent.setData(Uri.parse(urlAsString));
-        context.startActivity(openIntent);
-        //Log.d(TAG, "redirect to app: " + resolveInfo.loadLabel(context.getPackageManager()) + ", url:" + url);
-        if (urlLoadStartTime > -1) {
-            Settings.get().trackLinkLoadTime(System.currentTimeMillis() - urlLoadStartTime, Settings.LinkLoadType.AppRedirectBrowser, urlAsString);
+        try {
+            context.startActivity(openIntent);
+            //Log.d(TAG, "redirect to app: " + resolveInfo.loadLabel(context.getPackageManager()) + ", url:" + url);
+            if (urlLoadStartTime > -1) {
+                Settings.get().trackLinkLoadTime(System.currentTimeMillis() - urlLoadStartTime, Settings.LinkLoadType.AppRedirectBrowser, urlAsString);
+            }
+            return true;
+        } catch (SecurityException ex) {
+            if (toastOnError) {
+                 Toast.makeText(context, R.string.unable_to_launch_app, Toast.LENGTH_SHORT).show();
+            }
+            return false;
         }
-        return true;
     }
 
     public static boolean loadIntent(Context context, Intent intent, String urlAsString, long urlLoadStartTime) {
@@ -332,7 +339,7 @@ public class MainApplication extends Application {
             }
         } else if (actionType == Constant.ActionType.View) {
             result = MainApplication.loadIntent(context, Settings.get().getConsumeBubblePackageName(action),
-                    Settings.get().getConsumeBubbleActivityClassName(action), urlAsString, -1);
+                    Settings.get().getConsumeBubbleActivityClassName(action), urlAsString, -1, true);
         } else if (action == Constant.BubbleAction.Close) {
             result = true;
         }
@@ -444,7 +451,7 @@ public class MainApplication extends Application {
             IntentFilter filter = info.filter;
             if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
                 if (info.activityInfo.packageName.equals(BuildConfig.STORE_PACKAGE)) {
-                    MainApplication.loadIntent(context, info.activityInfo.packageName, info.activityInfo.name, BuildConfig.STORE_PRO_URL, -1);
+                    MainApplication.loadIntent(context, info.activityInfo.packageName, info.activityInfo.name, BuildConfig.STORE_PRO_URL, -1, true);
                     return;
                 }
             }
