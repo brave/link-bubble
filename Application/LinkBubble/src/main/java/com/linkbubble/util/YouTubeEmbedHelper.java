@@ -132,7 +132,7 @@ public class YouTubeEmbedHelper {
     private boolean loadYouTubeVideo(String id) {
         if (mYouTubeResolveInfo != null) {
             return MainApplication.loadIntent(mContext, mYouTubeResolveInfo.activityInfo.packageName,
-                    mYouTubeResolveInfo.activityInfo.name, Config.YOUTUBE_WATCH_PREFIX + id, -1);
+                    mYouTubeResolveInfo.activityInfo.name, Config.YOUTUBE_WATCH_PREFIX + id, -1, true);
         }
 
         return false;

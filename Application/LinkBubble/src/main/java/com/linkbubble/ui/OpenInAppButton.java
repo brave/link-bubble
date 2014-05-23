@@ -227,11 +227,11 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
     public void onClick(View v) {
         if (v.getTag() instanceof ContentView.AppForUrl) {
             ContentView.AppForUrl appForUrl = (ContentView.AppForUrl)v.getTag();
-            MainApplication.loadIntent(getContext(), appForUrl.mResolveInfo.activityInfo.packageName,
-                    appForUrl.mResolveInfo.activityInfo.name, appForUrl.mUrl.toString(), -1);
-
-            if (mOnOpenInAppClickListener != null) {
-                mOnOpenInAppClickListener.onAppOpened();
+            if (MainApplication.loadIntent(getContext(), appForUrl.mResolveInfo.activityInfo.packageName,
+                    appForUrl.mResolveInfo.activityInfo.name, appForUrl.mUrl.toString(), -1, true)) {
+                if (mOnOpenInAppClickListener != null) {
+                    mOnOpenInAppClickListener.onAppOpened();
+                }
             }
         } else {
             if (mAppsForUrl != null && mAppsForUrl.size() > 1) {
@@ -248,12 +248,12 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
                                     if (always) {
                                         Settings.get().setDefaultApp(appForUrl.mUrl.toString(), appForUrl.mResolveInfo);
                                     }
-                                    MainApplication.loadIntent(getContext(), appForUrl.mResolveInfo.activityInfo.packageName,
-                                            appForUrl.mResolveInfo.activityInfo.name, appForUrl.mUrl.toString(), -1);
-                                }
-
-                                if (mOnOpenInAppClickListener != null) {
-                                    mOnOpenInAppClickListener.onAppOpened();
+                                    if (MainApplication.loadIntent(getContext(), appForUrl.mResolveInfo.activityInfo.packageName,
+                                            appForUrl.mResolveInfo.activityInfo.name, appForUrl.mUrl.toString(), -1, true)) {
+                                        if (mOnOpenInAppClickListener != null) {
+                                            mOnOpenInAppClickListener.onAppOpened();
+                                        }
+                                    }
                                 }
                             }
                         });

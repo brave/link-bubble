@@ -35,6 +35,7 @@
     <string name="pick_default_app">Select default app</string>
     <string name="default_browser_set">Link Bubble has been set as the default browser.</string>
     <string name="invalid_send_action">Valid link not found.</string>
+    <string name="unable_to_launch_app">Unable to launch 3rd party application.</string>
     <string name="clear_history">Clear history</string>
 
     <string name="preference_category_general">General</string>
