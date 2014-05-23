@@ -6706,20 +6706,20 @@ com.linkbubble.MainApplication -> com.linkbubble.MainApplication:
     236:247:boolean openInBrowser(android.content.Context,android.content.Intent,boolean) -> ･
     251:254:boolean openInBrowser$607b2e85$5ffc0101(com.linkbubble.MainService,java.lang.String) -> ･
     258:261:boolean loadResolveInfoIntent(android.content.Context,android.content.pm.ResolveInfo,java.lang.String,long) -> ･
-    265:280:boolean loadIntent$1296501b(android.content.Context,java.lang.String,java.lang.String,java.lang.String,long) -> ･
-    285:291:boolean loadIntent(android.content.Context,android.content.Intent,java.lang.String,long) -> ･
-    295:358:boolean handleBubbleAction(android.content.Context,com.linkbubble.Constant$BubbleAction,java.lang.String,long) -> ･
-    362:363:void saveUrlInHistory$5e564888(android.content.Context,java.lang.String,java.lang.String) -> ˊ
-    367:381:void saveUrlInHistory$60130cbe(android.content.Context,java.lang.String,java.lang.String,java.lang.String) -> ･
-    384:386:void postEvent(android.content.Context,java.lang.Object) -> ･
-    389:391:void registerForBus(android.content.Context,java.lang.Object) -> ˊ
-    394:396:void unregisterForBus(android.content.Context,java.lang.Object) -> ˋ
-    399:405:void copyLinkToClipboard(android.content.Context,java.lang.String,int) -> ･
-    408:419:android.content.pm.ResolveInfo getStoreViewResolveInfo(android.content.Context) -> ˊ
-    423:441:android.content.Intent getStoreIntent(android.content.Context,java.lang.String) -> ･
-    445:459:void openAppStore$5ffc00fd(android.app.Activity,java.lang.String) -> ･
-    462:463:void showUpgradePrompt(android.content.Context,int,java.lang.String) -> ･
-    466:491:void showUpgradePrompt(android.content.Context,java.lang.String,java.lang.String) -> ˋ
+    265:291:boolean loadIntent$1296501b(android.content.Context,java.lang.String,java.lang.String,java.lang.String,long) -> ･
+    297:303:boolean loadIntent(android.content.Context,android.content.Intent,java.lang.String,long) -> ･
+    307:370:boolean handleBubbleAction(android.content.Context,com.linkbubble.Constant$BubbleAction,java.lang.String,long) -> ･
+    374:375:void saveUrlInHistory$5e564888(android.content.Context,java.lang.String,java.lang.String) -> ˊ
+    379:393:void saveUrlInHistory$60130cbe(android.content.Context,java.lang.String,java.lang.String,java.lang.String) -> ･
+    396:398:void postEvent(android.content.Context,java.lang.Object) -> ･
+    401:403:void registerForBus(android.content.Context,java.lang.Object) -> ˊ
+    406:408:void unregisterForBus(android.content.Context,java.lang.Object) -> ˋ
+    411:417:void copyLinkToClipboard(android.content.Context,java.lang.String,int) -> ･
+    420:431:android.content.pm.ResolveInfo getStoreViewResolveInfo(android.content.Context) -> ˊ
+    435:453:android.content.Intent getStoreIntent(android.content.Context,java.lang.String) -> ･
+    457:471:void openAppStore$5ffc00fd(android.app.Activity,java.lang.String) -> ･
+    474:475:void showUpgradePrompt(android.content.Context,int,java.lang.String) -> ･
+    478:503:void showUpgradePrompt(android.content.Context,java.lang.String,java.lang.String) -> ˋ
     44:44:long access$002(long) -> ･
     44:44:long access$000() -> ˎ
     java.lang.String $(int,int,int) -> ･
@@ -6730,13 +6730,13 @@ com.linkbubble.MainApplication$1 -> ﾄ:
 com.linkbubble.MainApplication$2 -> ﾕ:
     java.lang.String val$urlAsString -> ･
     android.content.Context val$context -> ˊ
-    305:315:void onSelected(com.linkbubble.util.ActionItem) -> ･
+    317:327:void onSelected(com.linkbubble.util.ActionItem) -> ･
 com.linkbubble.MainApplication$3 -> ć:
     android.content.pm.ResolveInfo val$storeResolveInfo -> ･
     android.content.Context val$context -> ˊ
     java.lang.String val$prompt -> ˋ
-    475:483:void onClick() -> ･
-    488:488:void onClose() -> ˊ
+    487:495:void onClick() -> ･
+    500:500:void onClose() -> ˊ
 com.linkbubble.MainApplication$StateChangedEvent -> com.linkbubble.MainApplication$StateChangedEvent:
     int mState -> ･
     int mOldState -> ˊ
@@ -6774,6 +6774,7 @@ com.linkbubble.MainController -> com.linkbubble.MainController:
     com.linkbubble.util.AppPoller$AppPollerListener mAppPollerListener$68d024af$b0f9ede -> ٴ
     boolean mCanDisplay -> ᴵ
     byte[] $ -> ᵎ
+    int $$ -> ᵔ
     88:95:void addRootWindow$73ade143(android.widget.FrameLayout,android.view.WindowManager$LayoutParams) -> ･
     98:105:void removeRootWindow$3c7ec8c3(android.widget.FrameLayout) -> ･
     108:112:void updateRootWindowLayout$73ade143(android.widget.FrameLayout,android.view.WindowManager$LayoutParams) -> ˊ
@@ -6929,6 +6930,7 @@ com.linkbubble.Settings -> com.linkbubble.Settings:
     com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent mLinkLoadTimeStatsUpdatedEvent -> ˌ
     java.util.ArrayList mLastAppRedirects$7865b31 -> ˍ
     byte[] $ -> ˑ
+    int $$ -> ـ
     92:93:void initModule$faab20d(com.linkbubble.MainApplication) -> ･
     99:100:void deinitModule() -> ･
     103:105:void setConsumeBubblesChangedEventHandler$4d0351a7$6858d67a(com.linkbubble.Settings$ConsumeBubblesChangedEventHandler) -> ･
@@ -7759,6 +7761,7 @@ com.linkbubble.ui.ContentView$AppForUrl -> com.linkbubble.ui.ContentView$･:
     java.net.URL mUrl -> ˊ
     android.graphics.drawable.Drawable mIcon -> ˋ
     byte[] $ -> ˎ
+    int $$ -> ˏ
     147:152:android.graphics.drawable.Drawable getIcon(android.content.Context) -> ･
     java.lang.String $(int,int,int) -> ･
 com.linkbubble.ui.ContentView$EventHandler -> com.linkbubble.ui.ContentView$if:
@@ -8011,6 +8014,7 @@ com.linkbubble.ui.OpenEmbedButton -> com.linkbubble.ui.OpenEmbedButton:
     com.linkbubble.ui.OpenEmbedButton$OnOpenEmbedClickListener mOnOpenEmbedClickListener$5614dd00$669c1f2a -> ˊ
     com.linkbubble.util.YouTubeEmbedHelper mYouTubeEmbedHelper -> ˋ
     byte[] $ -> ˎ
+    int $$ -> ˏ
     42:57:boolean configure(com.linkbubble.util.YouTubeEmbedHelper) -> ･
     63:64:void onClick(android.view.View) -> onClick
     java.lang.String $(int,int,int) -> ･
@@ -8337,6 +8341,7 @@ com.linkbubble.util.ActionItem -> ڹ:
     java.lang.String mActivityClassName -> ˏ
     android.graphics.drawable.Drawable mIcon -> ᐝ
     byte[] $ -> ʻ
+    int $$ -> ʼ
     73:140:java.util.ArrayList getActionItems(android.content.Context,boolean,boolean,boolean) -> ･
     144:173:android.app.AlertDialog getDefaultBrowserAlert$472415a9(android.app.Activity,com.linkbubble.ui.SettingsFragment$7$1) -> ･
     178:317:android.app.AlertDialog getActionItemPickerAlert$7acab40a$97e5037(android.content.Context,java.util.ArrayList,com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener) -> ･
