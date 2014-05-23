@@ -4510,6 +4510,7 @@ com.linkbubble.R$string: int title_changelog
 com.linkbubble.R$string: int title_settings
 com.linkbubble.R$string: int title_youtube_embed_to_load
 com.linkbubble.R$string: int trial_time_on_click
+com.linkbubble.R$string: int unable_to_launch_app
 com.linkbubble.R$string: int unsupported_drop_down_default_browser
 com.linkbubble.R$string: int unsupported_drop_down_no_default_browser
 com.linkbubble.R$string: int unsupported_scheme

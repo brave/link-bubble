@@ -12,8 +12,9 @@
         <change>NEW: Initial translations for Chinese (Taiwan), Danish, French, Hindi, Hungarian, Japanese, Polish, Portuguese, Portuguese (Brazil), Spanish, Spanish (Latin America), Swedish and Turkish.</change>
         <change>NEW: URLs can be shared directly to Link Bubble via a 3rd party app's Share button.</change>
         <change>IMPROVEMENT: Smoother animation when dragging a bubble.</change>
-        <change>CHANGE: Clicking the Share button when reading a tab no longer automatically closes a tab.</change>
+        <change>CHANGE: Clicking the Share button when reading a tab no longer automatically closes the current tab.</change>
         <change>BUG FIX: Links that should open in a new tab when clicked no longer require a long press.</change>
+        <change>BUG FIX: Stability fix when attempting to load a 3rd party app fails.</change>
     </release>
 
     <release version="1.1.1" versioncode="11100">
