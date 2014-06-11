@@ -35,8 +35,7 @@ public class Settings {
 
     public static final String PREFERENCE_ENABLED = "preference_enabled";
     public static final String PREFERENCE_CHECK_FOR_YOUTUBE_EMBEDS = "preference_scan_for_youtube_embeds";
-    public static final String PREFERENCE_INTERCEPT_LINKS_FROM = "preference_intercept_links_from2";
-    public static final String PREFERENCE_INTERCEPT_LINKS_FROM_APP_NAME = "preference_intercept_links_from_app_name";
+    public static final String PREFERENCE_IGNORE_LINKS_FROM = "preference_ignore_links_from";
 
     public static final String PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED = "preference_auto_content_display_link_loaded";
     public static final boolean PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED_DEFAULT = false;
@@ -123,6 +122,7 @@ public class Settings {
     public ResolveInfo mLinkBubbleEntryActivityResolveInfo;
     private boolean mCheckedForYouTubeResolveInfo = false;
     private ConsumeBubblesChangedEventHandler mConsumeBubblesChangedEventHandler;
+    private List<String> mIgnoreLinksFromPackageNames;
     // The point to save
     private Point mBubbleRestingPoint = new Point();
     // The point used as the return value. Required so we don't overwrite the desired point in landscape mode
@@ -157,6 +157,7 @@ public class Settings {
 
         loadLinkLoadStats();
         loadRecentAppRedirects();
+        loadIgnoreLinksFromPackageNames();
     }
 
     private void configureDefaultApp(PackageManager packageManager, String urlAsString, String desiredPackageName) {
@@ -507,23 +508,52 @@ public class Settings {
         return mContext.getResources().getDrawable(R.drawable.ic_launcher);
     }
 
-    public String getInterceptLinksFromPackageName() {
-        return mSharedPreferences.getString(PREFERENCE_INTERCEPT_LINKS_FROM, null);
-    }
-
-    public String getInterceptLinksFromAppName() {
-        String name = mSharedPreferences.getString(PREFERENCE_INTERCEPT_LINKS_FROM_APP_NAME, null);
-        if (name == null) {
-            name = mContext.getString(R.string.intercept_links_from_default_label);
+    private void loadIgnoreLinksFromPackageNames() {
+        if (mIgnoreLinksFromPackageNames == null) {
+            mIgnoreLinksFromPackageNames = new ArrayList<String>();
         }
-        return name;
+        mIgnoreLinksFromPackageNames.clear();
+
+        String string = mSharedPreferences.getString(LAST_APP_REDIRECTS, null);
+        if (string != null) {
+            String[] split = string.split(",");
+            if (split != null && split.length > 0) {
+                for (String s : split) {
+                    mIgnoreLinksFromPackageNames.add(s);
+                }
+            }
+        }
     }
 
-    public void setInterceptLinksFrom(String packageName, String appName) {
+    public void setIgnoreLinksFromPackageNames(ArrayList<String> packageNames) {
+
+        mIgnoreLinksFromPackageNames.clear();
+
+        String result = "";
+        if (packageNames != null && packageNames.size() > 0) {
+            for (String packageName : packageNames) {
+                result += packageName + ",";
+                mIgnoreLinksFromPackageNames.add(packageName);
+            }
+        }
+
         SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putString(PREFERENCE_INTERCEPT_LINKS_FROM, packageName);
-        editor.putString(PREFERENCE_INTERCEPT_LINKS_FROM_APP_NAME, appName);
+        editor.putString(PREFERENCE_IGNORE_LINKS_FROM, result);
         editor.commit();
+    }
+
+    public List<String> getIgnoreLinksFromPackageNames() {
+        return mIgnoreLinksFromPackageNames;
+    }
+
+    public boolean ignoreLinkFromPackageName(String packageName) {
+        for (String ignore : mIgnoreLinksFromPackageNames) {
+            if (ignore.equals(packageName)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public boolean getAutoContentDisplayLinkLoaded() {
