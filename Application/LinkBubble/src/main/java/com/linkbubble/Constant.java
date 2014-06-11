@@ -1,6 +1,7 @@
 package com.linkbubble;
 
 import android.content.Context;
+import android.os.Build;
 
 public class Constant {
 
@@ -30,7 +31,7 @@ public class Constant {
 
     public static final int TRIAL_TIME = 1000 * 60 * 60 * 24;
 
-    public static final boolean COVER_STATUS_BAR = false;
+    public static boolean COVER_STATUS_BAR = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) ? true : false;
 
     public static final int BUBBLE_ANIM_TIME = 300;
 

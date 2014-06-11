@@ -2,10 +2,12 @@
 <changelog>
 
     <release version="1.2.0" versioncode="12000">
-        <!--<change>NEW: Article Mode, which extracts the main text from a URL. Consumes a lot less battery, RAM and bandwidth.</change>
-        <change>NEW: Pro users can configure which apps Link Bubble will intercept links from.</change>
+
+        <!--<change>NEW: Pro users can configure which apps Link Bubble will intercept links from.</change>
         <change>CHANGE: The top-most link doesn't change when subsequent links are loaded (Pro only).</change>-->
+        <change>NEW: Article Mode, which extracts the main text from a URL.</change>
         <change>IMPROVEMENT: If a link was just loaded, prevent loading that link again for a short time period. Fixes multiple links loading in the event a link is clicked twice.</change>
+        <change>IMPROVEMENT: Top mask extends to status bar. Looks better in apps using translucent mode.</change>
     </release>
 
     <release version="1.1.3" versioncode="11300">
