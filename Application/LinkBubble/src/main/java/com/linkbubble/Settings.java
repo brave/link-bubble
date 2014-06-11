@@ -35,7 +35,7 @@ public class Settings {
 
     public static final String PREFERENCE_ENABLED = "preference_enabled";
     public static final String PREFERENCE_CHECK_FOR_YOUTUBE_EMBEDS = "preference_scan_for_youtube_embeds";
-    public static final String PREFERENCE_INTERCEPT_LINKS_FROM = "preference_intercept_links_from";
+    public static final String PREFERENCE_INTERCEPT_LINKS_FROM = "preference_intercept_links_from2";
     public static final String PREFERENCE_INTERCEPT_LINKS_FROM_APP_NAME = "preference_intercept_links_from_app_name";
 
     public static final String PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED = "preference_auto_content_display_link_loaded";
@@ -354,6 +354,20 @@ public class Settings {
 
     public List<Intent> getBrowsers() {
         return mBrowsers;
+    }
+
+    public List<String> getBrowserPackageNames() {
+        List<String> result = null;
+        if (mBrowsers != null) {
+            for (Intent browser : mBrowsers) {
+                if (result == null) {
+                    result = new ArrayList<String>();
+                }
+                result.add(browser.getComponent().getPackageName());
+            }
+        }
+
+        return result;
     }
 
     public void setDefaultBrowser(String label, String packageName) {

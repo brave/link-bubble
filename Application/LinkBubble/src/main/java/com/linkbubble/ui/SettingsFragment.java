@@ -41,8 +41,10 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
+import com.linkbubble.util.AppPickerList;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -143,20 +145,14 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         PreferenceCategory configurationCategory = (PreferenceCategory) findPreference("preference_category_configuration");
         PreferenceScreen helpScreen = (PreferenceScreen) getPreferenceScreen().findPreference("preference_screen_help");
 
-        Preference interceptLinksFromPreference = findPreference(Settings.PREFERENCE_INTERCEPT_LINKS_FROM);
-        if (DRM.isLicensed()) {
-            configurationCategory.removePreference(interceptLinksFromPreference);
-        } else {
-            mInterceptLinksFromPreference = interceptLinksFromPreference;
-            mInterceptLinksFromPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    getInterceptLinksFromDialog(getActivity()).show();
-                    return true;
-                }
-            });
-            updateInterceptLinksFromPreference();
-        }
+        mInterceptLinksFromPreference = findPreference(Settings.PREFERENCE_INTERCEPT_LINKS_FROM);
+        mInterceptLinksFromPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                getInterceptLinksFromDialog2(getActivity()).show();
+                return true;
+            }
+        });
 
         Preference incognitoButton = findPreference("preference_incognito");
         if (incognitoButton != null) {
@@ -494,7 +490,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
     void updateInterceptLinksFromPreference() {
         if (mInterceptLinksFromPreference != null) {
-            mInterceptLinksFromPreference.setSummary(Settings.get().getInterceptLinksFromAppName());
+            //mInterceptLinksFromPreference.setSummary(Settings.get().getInterceptLinksFromAppName());
         }
     }
 
@@ -733,6 +729,57 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         public int compare(AppInfo lhs, AppInfo rhs) {
             return lhs.mSortName.compareTo(rhs.mSortName);
         }
+    }
+
+    public AlertDialog getInterceptLinksFromDialog2(final Context context) {
+        final List<String> browserPackageNames = Settings.get().getBrowserPackageNames();
+
+        final View layout = AppPickerList.createView(context,
+                ((MainApplication)context.getApplicationContext()).mIconCache,
+                AppPickerList.SelectionType.MultipleSelection, new AppPickerList.Initializer() {
+                    @Override
+                    public boolean setChecked(String packageName, String activityName) {
+                        return true;//LauncherPreferences.get().isAppHidden(packageName, activityName);
+                    }
+
+                    @Override
+                    public boolean addToList(String packageName) {
+                        if (packageName.equals(BuildConfig.PACKAGE_NAME)) {
+                            return false;
+                        }
+
+                        for (String browserPackageName : browserPackageNames) {
+                            if (browserPackageName.equals(packageName)) {
+                                return false;
+                            }
+                        }
+
+                        return true;
+                    }
+                });
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setView(layout);
+        builder.setIcon(0);
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+
+                /*
+                JSONArray array = new JSONArray();
+
+                ArrayList<AppPickerList.AppInfo> results = AppPickerList.getSelected(layout);
+                for (AppPickerList.AppInfo result : results) {
+                    array.put(LauncherPreferences.getHiddenAppFormatString(result.mPackageName, result.mActivityName));
+                }
+
+                if (LauncherPreferences.get().setHiddenApps(array)) {
+                    LauncherPreferences.get().refresh(KEY_RESTART_PREFERENCE);
+                }*/
+            }
+        });
+        builder.setTitle(R.string.preference_intercept_links_from_title);
+
+        return builder.create();
     }
 
     public AlertDialog getInterceptLinksFromDialog(final Context context) {
