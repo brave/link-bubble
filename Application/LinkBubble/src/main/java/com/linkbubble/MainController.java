@@ -505,7 +505,7 @@ public class MainController implements Choreographer.FrameCallback {
             // Will be non-zero in the event a link has been dismissed by a user, but its TabView
             // instance is still animating off screen. In that case, keep triggering an update so that when the
             // item finishes, we are ready to call onDestroy().
-            if (mBubbleFlowDraggable.getVisibleTabCount() == 0) {
+            if (mBubbleFlowDraggable.getVisibleTabCount() == 0 && Prompt.isShowing() == false) {
                 finish();
             } else {
                 scheduleUpdate();
@@ -566,7 +566,7 @@ public class MainController implements Choreographer.FrameCallback {
         boolean isLinkBubble = resolveInfo.activityInfo != null
                 && resolveInfo.activityInfo.packageName.equals(mAppPackageName);
         if (isLinkBubble == false && MainApplication.loadResolveInfoIntent(mContext, resolveInfo, urlAsString, -1)) {
-            if (getActiveTabCount() == 0) {
+            if (getActiveTabCount() == 0 && Prompt.isShowing() == false) {
                 finish();
             }
 
@@ -610,7 +610,7 @@ public class MainController implements Choreographer.FrameCallback {
             url = new URL(urlAsString);
         } catch (MalformedURLException e) { // If this is not a valid scheme, back out. #271
             Toast.makeText(mContext, mContext.getString(R.string.unsupported_scheme), Toast.LENGTH_SHORT).show();
-            if (getActiveTabCount() == 0) {
+            if (getActiveTabCount() == 0 && Prompt.isShowing() == false) {
                 finish();
             }
             return null;
@@ -622,7 +622,7 @@ public class MainController implements Choreographer.FrameCallback {
             intent.setData(Uri.parse(urlAsString));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             if (MainApplication.openInBrowser(mContext, intent, false)) {
-                if (getActiveTabCount() == 0) {
+                if (getActiveTabCount() == 0 && Prompt.isShowing() == false) {
                     finish();
                 }
 
@@ -681,7 +681,7 @@ public class MainController implements Choreographer.FrameCallback {
                             if (loaded) {
                                 Settings.get().addRedirectToApp(urlAsString);
                                 closeTab(result, contentViewShowing(), false);
-                                if (getActiveTabCount() == 0) {
+                                if (getActiveTabCount() == 0 && Prompt.isShowing() == false) {
                                     finish();
                                 }
                             }

@@ -31,8 +31,8 @@ public class Prompt {
     public static final int LENGTH_LONG = 6000;
 
     private static Prompt sPrompt;
+    private static boolean sIsShowing;
 
-    private boolean mVisible;
     private View mRootView;
     private View mBarView;
     private TextView mMessageView;
@@ -54,6 +54,10 @@ public class Prompt {
     public static void deinitModule() {
         Util.Assert(sPrompt != null, "null instance");
         sPrompt = null;
+    }
+
+    public static boolean isShowing() {
+        return sIsShowing;
     }
 
     private Prompt(Context context) {
@@ -133,7 +137,7 @@ public class Prompt {
 
         mLayoutParams.y = Config.dpToPx(40.0f);
         mWindowManager.addView(mRootView, mLayoutParams);
-        mVisible = true;
+        sIsShowing = true;
     }
 
     private void hidePrompt(boolean immediate) {
@@ -142,9 +146,9 @@ public class Prompt {
         if (immediate) {
             mBarView.setVisibility(View.GONE);
             mBarView.setAlpha(0);
-            if (mVisible) {
+            if (sIsShowing) {
                 mWindowManager.removeViewImmediate(mRootView);
-                mVisible = false;
+                sIsShowing = false;
             }
             if (mListener != null) {
                 mListener.onClose();
@@ -157,9 +161,9 @@ public class Prompt {
                             @Override
                             public void onAnimationEnd(Animator animation) {
                                 mBarView.setVisibility(View.GONE);
-                                if (mVisible) {
+                                if (sIsShowing) {
                                     mWindowManager.removeViewImmediate(mRootView);
-                                    mVisible = false;
+                                    sIsShowing = false;
                                 }
                                 if (mListener != null) {
                                     mListener.onClose();
