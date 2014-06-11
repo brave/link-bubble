@@ -55,4 +55,6 @@
     <dimen name="consume_bubble_target_x_offset">5dp</dimen>
     <dimen name="consume_bubble_target_tractor_beam_x">80dp</dimen>
 
+    <dimen name="app_icon_size">48dp</dimen>
+
 </resources>
