@@ -360,4 +360,6 @@
     <string name="welcome_page_pro_end">Thanks, and enjoy the app!</string>
     <string name="welcome_page_ps">PS. To close this bubble, either press the Back button or long press the bubble and flick it onto the Close bubble.</string>
 
+    <string name="duplicate_link_will_not_be_loaded">Link already loaded. Ignoring...</string>
+
 </resources>
