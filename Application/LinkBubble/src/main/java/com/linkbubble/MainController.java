@@ -26,6 +26,7 @@ import com.linkbubble.ui.BubbleDraggable;
 import com.linkbubble.ui.BubbleFlowDraggable;
 import com.linkbubble.ui.BubbleFlowView;
 import com.linkbubble.ui.CanvasView;
+import com.linkbubble.ui.Prompt;
 import com.linkbubble.ui.SettingsFragment;
 import com.linkbubble.ui.TabView;
 import com.linkbubble.util.ActionItem;
@@ -679,7 +680,7 @@ public class MainController implements Choreographer.FrameCallback {
 
                             if (loaded) {
                                 Settings.get().addRedirectToApp(urlAsString);
-                                closeTab(result, contentViewShowing());
+                                closeTab(result, contentViewShowing(), false);
                                 if (getActiveTabCount() == 0) {
                                     finish();
                                 }
@@ -736,17 +737,17 @@ public class MainController implements Choreographer.FrameCallback {
 
     public boolean closeCurrentTab(Constant.BubbleAction action, boolean animateOff) {
         if (mBubbleFlowDraggable != null) {
-            return closeTab(mBubbleFlowDraggable.getCurrentTab(), action, animateOff);
+            return closeTab(mBubbleFlowDraggable.getCurrentTab(), action, animateOff, true);
         }
 
         return false;
     }
 
-    public boolean closeTab(TabView tabView, boolean animateOff) {
-        return closeTab(tabView, Constant.BubbleAction.Close, animateOff);
+    public boolean closeTab(TabView tabView, boolean animateOff, boolean canShowUndoPrompt) {
+        return closeTab(tabView, Constant.BubbleAction.Close, animateOff, canShowUndoPrompt);
     }
 
-    public boolean closeTab(TabView tabView, Constant.BubbleAction action, boolean animateOff) {
+    public boolean closeTab(TabView tabView, Constant.BubbleAction action, boolean animateOff, boolean canShowUndoPrompt) {
         if (mBubbleFlowDraggable != null) {
             mBubbleFlowDraggable.closeTab(tabView, animateOff, action, tabView != null ? tabView.getTotalTrackedLoadTime() : -1);
         }
@@ -756,6 +757,33 @@ public class MainController implements Choreographer.FrameCallback {
             hideBubbleDraggable();
             // Ensure BubbleFlowDraggable gets at least 1 update in the event items are animating off screen. See #237.
             scheduleUpdate();
+        }
+
+        if (canShowUndoPrompt) {
+            String urlAsString = tabView.getUrl().toString();
+            String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(urlAsString) : null;
+            if (title != null) {
+                title = "Closed: " + title;
+            } else {
+                title = "Closed tab";
+            }
+            Prompt.show(title,
+                    mContext.getResources().getDrawable(R.drawable.ic_undobar_undo),
+                    Prompt.LENGTH_SHORT,
+                    false,
+                    true,
+                    new Prompt.OnPromptEventListener() {
+                        @Override
+                        public void onClick() {
+
+                        }
+
+                        @Override
+                        public void onClose() {
+
+                        }
+                    }
+            );
         }
 
         return getActiveTabCount() > 0;

@@ -458,7 +458,7 @@ public class ContentView extends FrameLayout {
 
                                         if (loaded) {
                                             if (MainController.get() != null) {
-                                                MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing());
+                                                MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), false);
                                             }
                                             Settings.get().addRedirectToApp(urlAsString);
                                         }
@@ -518,7 +518,7 @@ public class ContentView extends FrameLayout {
         @Override
         public void onDownloadStart(String urlAsString) {
             openInBrowser(urlAsString);
-            MainController.get().closeTab(mOwnerTabView, true);
+            MainController.get().closeTab(mOwnerTabView, true, false);
         }
 
         @Override
@@ -562,7 +562,7 @@ public class ContentView extends FrameLayout {
         @Override
         public boolean onBackPressed() {
             if (mUrlStack.size() == 0) {
-                MainController.get().closeTab(mOwnerTabView, true);
+                MainController.get().closeTab(mOwnerTabView, true, true);
                 return true;
             } else {
                 mWebRenderer.stopLoading();
@@ -603,7 +603,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onCloseWindow() {
-            MainController.get().closeTab(mOwnerTabView, true);
+            MainController.get().closeTab(mOwnerTabView, true, true);
         }
 
         @Override
@@ -748,7 +748,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onAppOpened() {
-            MainController.get().closeTab(mOwnerTabView, true);
+            MainController.get().closeTab(mOwnerTabView, true, false);
         }
 
     };
@@ -842,7 +842,7 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_close_tab: {
-                            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing());
+                            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), true);
                             break;
                         }
 
@@ -1204,7 +1204,7 @@ public class ContentView extends FrameLayout {
         intent.setData(Uri.parse(urlAsString));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         if (MainApplication.openInBrowser(getContext(), intent, true) && MainController.get() != null && mOwnerTabView != null) {
-            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing());
+            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), false);
             return true;
         }
 
@@ -1218,7 +1218,7 @@ public class ContentView extends FrameLayout {
                     resolveInfo.loadLabel(context.getPackageManager()));
             MainApplication.saveUrlInHistory(context, resolveInfo, urlAsString, title);
 
-            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing());
+            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), false);
             Settings.get().addRedirectToApp(urlAsString);
             return true;
         }
