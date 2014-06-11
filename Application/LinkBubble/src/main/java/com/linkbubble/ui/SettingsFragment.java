@@ -44,10 +44,8 @@ import com.linkbubble.util.Analytics;
 import com.linkbubble.util.AppPickerList;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
-import org.json.JSONArray;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
@@ -145,11 +143,11 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         PreferenceCategory configurationCategory = (PreferenceCategory) findPreference("preference_category_configuration");
         PreferenceScreen helpScreen = (PreferenceScreen) getPreferenceScreen().findPreference("preference_screen_help");
 
-        mInterceptLinksFromPreference = findPreference(Settings.PREFERENCE_INTERCEPT_LINKS_FROM);
+        mInterceptLinksFromPreference = findPreference(Settings.PREFERENCE_IGNORE_LINKS_FROM);
         mInterceptLinksFromPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                getInterceptLinksFromDialog2(getActivity()).show();
+                getDontInterceptLinksFromDialog(getActivity()).show();
                 return true;
             }
         });
@@ -731,7 +729,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         }
     }
 
-    public AlertDialog getInterceptLinksFromDialog2(final Context context) {
+    public AlertDialog getDontInterceptLinksFromDialog(final Context context) {
         final List<String> browserPackageNames = Settings.get().getBrowserPackageNames();
 
         final View layout = AppPickerList.createView(context,
@@ -739,7 +737,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                 AppPickerList.SelectionType.MultipleSelection, new AppPickerList.Initializer() {
                     @Override
                     public boolean setChecked(String packageName, String activityName) {
-                        return true;//LauncherPreferences.get().isAppHidden(packageName, activityName);
+                        return Settings.get().ignoreLinkFromPackageName(packageName) ? false : true;
                     }
 
                     @Override
@@ -764,92 +762,16 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
-                /*
-                JSONArray array = new JSONArray();
+                ArrayList<String> ignorePackageNames = new ArrayList<String>();
 
-                ArrayList<AppPickerList.AppInfo> results = AppPickerList.getSelected(layout);
-                for (AppPickerList.AppInfo result : results) {
-                    array.put(LauncherPreferences.getHiddenAppFormatString(result.mPackageName, result.mActivityName));
-                }
-
-                if (LauncherPreferences.get().setHiddenApps(array)) {
-                    LauncherPreferences.get().refresh(KEY_RESTART_PREFERENCE);
-                }*/
-            }
-        });
-        builder.setTitle(R.string.preference_intercept_links_from_title);
-
-        return builder.create();
-    }
-
-    public AlertDialog getInterceptLinksFromDialog(final Context context) {
-        PackageManager packageManager = context.getPackageManager();
-        String packageName = context.getPackageName();
-        final View layout = View.inflate(context, R.layout.view_intercept_links_from_app_list, null);
-
-        layout.findViewById(R.id.upgrade_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = MainApplication.getStoreIntent(context, BuildConfig.STORE_PRO_URL);
-                if (intent != null) {
-                    context.startActivity(intent);
-                }
-            }
-        });
-
-        final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-        List<ResolveInfo> allResolveInfo = packageManager.queryIntentActivities(mainIntent, 0);
-
-        final ArrayList<AppInfo> allApps = new ArrayList<AppInfo>();
-        for (ResolveInfo info : allResolveInfo) {
-            if (info.activityInfo.packageName != null
-                    && info.activityInfo.packageName.equals(packageName) == false) {
-                allApps.add(new AppInfo(info.activityInfo.name, info.activityInfo.packageName, info.loadLabel(packageManager).toString()));
-            }
-        }
-        Collections.sort(allApps, new AppInfoComparator());
-
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_single_choice);
-        for (AppInfo appInfo : allApps) {
-            listAdapter.add(appInfo.mDisplayName);
-        }
-        final ListView listView = (ListView) layout.findViewById(R.id.apps_list);
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        listView.setAdapter(listAdapter);
-        String interceptFromPackageName = Settings.get().getInterceptLinksFromPackageName();
-        if (interceptFromPackageName != null) {
-            for (int i = 0; i < allApps.size(); i++) {
-                AppInfo app = allApps.get(i);
-                if (app.mPackageName.equals(interceptFromPackageName)) {
-                    listView.setItemChecked(i, true);
-                    break;
-                }
-            }
-        }
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setView(layout);
-        builder.setIcon(R.drawable.ic_alert_icon);
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                int position = listView.getCheckedItemPosition();
-                if (position > -1 && position < allApps.size()) {
-                    AppInfo app = allApps.get(position);
-                    Settings.get().setInterceptLinksFrom(app.mPackageName, app.mDisplayName);
-                }
-                updateInterceptLinksFromPreference();
-                /*
-                JSONArray array = new JSONArray();
-
-                int count = listView.getCount();
-                for (int i = 0; i < count; i++) {
-                    if (listView.isItemChecked(i)) {
-                        AppInfo app = allApps.get(i);
-                        array.put(LauncherPreferences.getHiddenAppFormatString(app.mPackageName, app.mActivityName));
+                ArrayList<AppPickerList.AppInfo> results = AppPickerList.getUnselected(layout);
+                if (results != null) {
+                    for (AppPickerList.AppInfo result : results) {
+                        ignorePackageNames.add(result.mPackageName);
                     }
                 }
-                */
+
+                Settings.get().setIgnoreLinksFromPackageNames(ignorePackageNames);
             }
         });
         builder.setTitle(R.string.preference_intercept_links_from_title);

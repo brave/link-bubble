@@ -26,9 +26,9 @@ import java.util.Locale;
 
 public class AppPickerList {
 
-    static class AppInfo {
+    public static class AppInfo {
         String mActivityName;
-        String mPackageName;
+        public String mPackageName;
         String mDisplayName;
         String mSortName;
         Intent mIntent;
@@ -152,16 +152,31 @@ public class AppPickerList {
             }
         });
 
-        listView.setTag(appPickerListInfo.mAllApps);
+        listView.setTag(appPickerListInfo);
         return listView;
     }
 
-    static ArrayList<AppInfo> getSelected(View view) {
+    public static ArrayList<AppInfo> getSelected(View view) {
         ArrayList<AppInfo> result = new ArrayList<AppInfo>();
 
         AppPickerListInfo appPickerListInfo = (AppPickerListInfo) view.getTag();
         for (AppInfo appInfo : appPickerListInfo.mAllApps) {
             if (appInfo.mChecked) {
+                result.add(appInfo);
+            }
+        }
+
+        appPickerListInfo.mSingleCheckedTextView = null;
+
+        return result.size() > 0 ? result : null;
+    }
+
+    public static ArrayList<AppInfo> getUnselected(View view) {
+        ArrayList<AppInfo> result = new ArrayList<AppInfo>();
+
+        AppPickerListInfo appPickerListInfo = (AppPickerListInfo) view.getTag();
+        for (AppInfo appInfo : appPickerListInfo.mAllApps) {
+            if (appInfo.mChecked == false) {
                 result.add(appInfo);
             }
         }
