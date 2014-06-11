@@ -768,6 +768,7 @@ public class MainController implements Choreographer.FrameCallback {
                 title = "Closed tab";
             }
             Prompt.show(title,
+                    mContext.getResources().getString(R.string.action_undo).toUpperCase(),
                     mContext.getResources().getDrawable(R.drawable.ic_undobar_undo),
                     Prompt.LENGTH_SHORT,
                     false,

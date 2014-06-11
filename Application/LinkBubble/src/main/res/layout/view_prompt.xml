@@ -8,10 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/prompt_button"
-            style="@style/PromptButton"
-            android:contentDescription="@string/content_description_button"/>
+        <TextView
+            android:id="@+id/prompt_button_text_view"
+            style="@style/PromptButtonTextView"
+            android:text="some text"/>
 
         <Button
             android:id="@+id/prompt_close_button"
