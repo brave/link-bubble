@@ -24,6 +24,7 @@ import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
+import com.linkbubble.util.IconCache;
 import com.linkbubble.util.Tamper;
 import com.linkbubble.util.Util;
 import com.parse.GetCallback;
@@ -50,6 +51,8 @@ public class MainApplication extends Application {
     public static DRM sDrm;
     public static boolean sShowingAppPickerDialog = false;
     private static long sTrialStartTime = -1;
+
+    public IconCache mIconCache;
 
     @Override
     public void onCreate() {
