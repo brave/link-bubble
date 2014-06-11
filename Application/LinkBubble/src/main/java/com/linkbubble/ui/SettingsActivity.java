@@ -5,6 +5,7 @@ import android.preference.PreferenceActivity;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.util.CrashTracking;
+import com.linkbubble.util.IconCache;
 
 
 public class SettingsActivity extends PreferenceActivity {
@@ -14,6 +15,11 @@ public class SettingsActivity extends PreferenceActivity {
 
         super.onCreate(savedInstanceState);
         CrashTracking.init(this);
+
+        MainApplication mainApplication = (MainApplication) getApplicationContext();
+        if (mainApplication.mIconCache == null) {
+            mainApplication.mIconCache = new IconCache(mainApplication);
+        }
 
         setContentView(R.layout.activity_settings);
         setTitle(R.string.title_settings);
