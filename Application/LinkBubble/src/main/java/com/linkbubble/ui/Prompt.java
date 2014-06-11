@@ -15,7 +15,6 @@ import android.view.ViewPropertyAnimator;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import com.linkbubble.Config;
 import com.linkbubble.R;
@@ -37,7 +36,7 @@ public class Prompt {
     private View mRootView;
     private View mBarView;
     private TextView mMessageView;
-    private ImageButton mButton;
+    private TextView mPromptButtonTextView;
     private Button mCloseButton;
     private ViewPropertyAnimator mBarAnimator;
     private Handler mHideHandler = new Handler();
@@ -75,11 +74,11 @@ public class Prompt {
         mBarAnimator = mBarView.animate();
 
         mMessageView = (TextView) mBarView.findViewById(R.id.prompt_message);
-        mButton = (ImageButton) mBarView.findViewById(R.id.prompt_button);
+        mPromptButtonTextView = (TextView)mBarView.findViewById(R.id.prompt_button_text_view);
 
         mButtonDefaultRightMargin = context.getResources().getDimensionPixelSize(R.dimen.prompt_button_right_margin);
 
-        mButton.setOnClickListener(new View.OnClickListener() {
+        mPromptButtonTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mListener != null) {
@@ -100,7 +99,7 @@ public class Prompt {
         hidePrompt(true);
     }
 
-    private void showPrompt(CharSequence text, Drawable icon, int duration, boolean showCloseButton, boolean forceSingleLine, OnPromptEventListener listener) {
+    private void showPrompt(CharSequence text, CharSequence buttonText, Drawable icon, int duration, boolean showCloseButton, boolean forceSingleLine, OnPromptEventListener listener) {
         mMessageView.setText(text);
         if (forceSingleLine) {
             mMessageView.setSingleLine(true);
@@ -110,8 +109,11 @@ public class Prompt {
             mMessageView.setEllipsize(null);
         }
         mListener = listener;
-        mButton.setImageDrawable(icon);
-        FrameLayout.LayoutParams buttonLP = (FrameLayout.LayoutParams) mButton.getLayoutParams();
+
+        mPromptButtonTextView.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+        mPromptButtonTextView.setCompoundDrawablePadding(Config.dpToPx(8));
+        mPromptButtonTextView.setText(buttonText);
+        FrameLayout.LayoutParams buttonLP = (FrameLayout.LayoutParams) mPromptButtonTextView.getLayoutParams();
         if (showCloseButton) {
             mCloseButton.setVisibility(View.VISIBLE);
             buttonLP.setMargins(buttonLP.leftMargin, buttonLP.topMargin, mButtonDefaultRightMargin, buttonLP.bottomMargin);
@@ -176,14 +178,14 @@ public class Prompt {
     };
 
     public static void show(CharSequence text, Drawable icon, int duration, OnPromptEventListener listener) {
-        show(text, icon, duration, true, false, listener);
+        show(text, null, icon, duration, true, false, listener);
     }
 
-    public static void show(CharSequence text, Drawable icon, int duration, boolean showCloseButton, boolean forceSingleLine, OnPromptEventListener listener) {
+    public static void show(CharSequence text, CharSequence buttonText, Drawable icon, int duration, boolean showCloseButton, boolean forceSingleLine, OnPromptEventListener listener) {
         Util.Assert(sPrompt != null, "null instance");
         if (sPrompt != null) {
             sPrompt.hidePrompt(true);
-            sPrompt.showPrompt(text, icon, duration, showCloseButton, forceSingleLine, listener);
+            sPrompt.showPrompt(text, buttonText, icon, duration, showCloseButton, forceSingleLine, listener);
         }
     }
 }
