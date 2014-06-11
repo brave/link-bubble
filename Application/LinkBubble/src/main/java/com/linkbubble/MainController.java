@@ -5,13 +5,11 @@ import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Choreographer;
 import android.view.Gravity;
@@ -39,6 +37,7 @@ import com.squareup.otto.Subscribe;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -139,6 +138,18 @@ public class MainController implements Choreographer.FrameCallback {
 
     private OrientationChangedEvent mOrientationChangedEvent = new OrientationChangedEvent();
     private BeginExpandTransitionEvent mBeginExpandTransitionEvent = new BeginExpandTransitionEvent();
+
+    private static class OpenUrlInfo {
+        String mUrlAsString;
+        long mStartTime;
+
+        OpenUrlInfo(String url, long startTime) {
+            mUrlAsString = url;
+            mStartTime = startTime;
+        }
+    };
+
+    private ArrayList<OpenUrlInfo> mOpenUrlInfos = new ArrayList<OpenUrlInfo>();
 
     // End of event bus classes
 
@@ -439,6 +450,17 @@ public class MainController implements Choreographer.FrameCallback {
         return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.isUrlActive(urlAsString) : false;
     }
 
+    public boolean wasUrlRecentlyLoaded(String urlAsString, long urlLoadStartTime) {
+        for (OpenUrlInfo openUrlInfo : mOpenUrlInfos) {
+            long delta = urlLoadStartTime - openUrlInfo.mStartTime;
+            if (openUrlInfo.mUrlAsString.equals(urlAsString) && delta < 7 * 1000) {
+                //Log.d("blerg", "urlAsString:" + urlAsString + ", openUrlInfo.mUrlAsString:" + openUrlInfo.mUrlAsString + ", delta: " + delta);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getTabIndex(TabView tab) {
         return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getIndexOfView(tab) : -1;
     }
@@ -567,6 +589,11 @@ public class MainController implements Choreographer.FrameCallback {
 
         Analytics.trackOpenUrl(openedFromAppName);
 
+        if (wasUrlRecentlyLoaded(urlAsString, urlLoadStartTime)) {
+            Toast.makeText(mContext, R.string.duplicate_link_will_not_be_loaded, Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
         if (doLicenseCheck && !DRM.allowProFeatures() && getActiveTabCount() > 0) {
             if (urlAsString.equals(Constant.NEW_TAB_URL) == false
                 && urlAsString.equals(Constant.PRIVACY_POLICY_URL) == false
@@ -683,6 +710,9 @@ public class MainController implements Choreographer.FrameCallback {
         TabView result = mBubbleFlowDraggable.openUrlInTab(url, urlLoadStartTime, setAsCurrentTab, hasShownAppPicker);
         showBadge(getActiveTabCount() > 1 ? true : false);
         ++mBubblesLoaded;
+
+        mOpenUrlInfos.add(new OpenUrlInfo(url, urlLoadStartTime));
+
         return result;
     }
 
