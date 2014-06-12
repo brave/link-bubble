@@ -145,7 +145,7 @@ public class ExpandedActivity extends Activity {
         mIsShowing = true;
 
         MainController mainController = MainController.get();
-        if (mainController == null) {
+        if (mainController == null || mainController.contentViewShowing() == false) {
             minimize();
         }
 
