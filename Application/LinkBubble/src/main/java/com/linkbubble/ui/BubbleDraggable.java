@@ -245,6 +245,18 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         });
     }
 
+    public void snapToBubbleView() {
+        mMode = Mode.BubbleView;
+        mDraggableHelper.cancelAnimation();
+
+        MainController.get().collapseBubbleFlow(0);
+
+        Point bubbleRestingPoint = Settings.get().getBubbleRestingPoint();
+        setTargetPos(bubbleRestingPoint.x, bubbleRestingPoint.y, 0, DraggableHelper.AnimationType.Linear, null);
+
+        MainApplication.postEvent(getContext(), mEndCollapseTransitionEvent);
+    }
+
     private void doAnimateToBubbleView(int animTimeMs) {
         if (mAnimActive) {
             if (mMode == Mode.BubbleView) {
