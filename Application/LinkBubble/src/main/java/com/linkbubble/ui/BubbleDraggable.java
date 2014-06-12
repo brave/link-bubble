@@ -35,6 +35,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     private MainController.BeginBubbleDragEvent mBeginBubbleDragEvent = new MainController.BeginBubbleDragEvent();
     private MainController.DraggableBubbleMovedEvent mDraggableBubbleMovedEvent = new MainController.DraggableBubbleMovedEvent();
     private MainController.EndBubbleDragEvent mEndBubbleDragEvent = new MainController.EndBubbleDragEvent();
+    private MainController.EndExpandTransitionEvent mEndExpandTransitionEvent = new MainController.EndExpandTransitionEvent();
     private MainController.BeginCollapseTransitionEvent mBeginCollapseTransitionEvent = new MainController.BeginCollapseTransitionEvent();
     private MainController.EndCollapseTransitionEvent mEndCollapseTransitionEvent = new MainController.EndCollapseTransitionEvent();
 
@@ -355,6 +356,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             @Override
             public void onAnimationComplete() {
                 onAnimComplete();
+                MainApplication.postEvent(getContext(), mEndExpandTransitionEvent);
             }
             @Override
             public void onCancel() {
