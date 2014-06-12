@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import com.linkbubble.BuildConfig;
+import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
@@ -40,6 +42,11 @@ public class ExpandedActivity extends Activity {
         getActionBar().hide();
 
         MainApplication.registerForBus(this, this);
+
+        if (Constant.EXPANDED_ACTIVITY_DEBUG) {
+            View view = findViewById(R.id.expanded_root);
+            view.setBackgroundColor(0x5500ff00);
+        }
     }
 
     @SuppressWarnings("unused")
