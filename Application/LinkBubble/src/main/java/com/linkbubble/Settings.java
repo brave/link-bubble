@@ -892,6 +892,10 @@ public class Settings {
         return mSharedPreferences.getBoolean("auto_load_url", false);
     }
 
+    public boolean getOkGooglePreference() {
+        return true;
+    }
+
     private static final int APP_CHANGE_ANIM_TIME = 250;
 
     private static final String TOTAL_TIME_SAVED_KEY = "total_time_saved";

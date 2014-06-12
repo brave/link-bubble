@@ -5,15 +5,18 @@ import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import com.google.android.hotword.client.HotwordServiceClient;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
+import com.linkbubble.Settings;
 import com.linkbubble.util.CrashTracking;
 import com.squareup.otto.Subscribe;
 
@@ -26,6 +29,8 @@ public class ExpandedActivity extends Activity {
     private boolean mIsAlive = false;
     private boolean mIsShowing = false;
     private final Handler mHandler = new Handler();
+
+    private HotwordServiceClient mHotwordServiceClient;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,39 @@ public class ExpandedActivity extends Activity {
             View view = findViewById(R.id.expanded_root);
             view.setBackgroundColor(0x5500ff00);
         }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Settings.get().getOkGooglePreference()) {
+            try {
+                mHotwordServiceClient = new HotwordServiceClient(this);
+            } catch (Exception ex) {
+                // ignore if anything went wrong...
+            }
+        }
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
+        Log.d(TAG, "onAttachedToWindow()");
+
+        if (mHotwordServiceClient != null) {
+            mHotwordServiceClient.onAttachedToWindow();
+            mHotwordServiceClient.requestHotwordDetection(true);
+        }
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+
+        Log.d(TAG, "onDetachedFromWindow()");
+
+        if (mHotwordServiceClient != null) {
+            mHotwordServiceClient.onDetachedFromWindow();
+            mHotwordServiceClient.requestHotwordDetection(false);
+        }
+
+        super.onDetachedFromWindow();
     }
 
     @SuppressWarnings("unused")
@@ -107,8 +145,12 @@ public class ExpandedActivity extends Activity {
         mIsShowing = true;
 
         MainController mainController = MainController.get();
-        if (mainController == null) {// || mainController.contentViewShowing() == false) {
+        if (mainController == null) {
             minimize();
+        }
+
+        if (mHotwordServiceClient != null) {
+            mHotwordServiceClient.requestHotwordDetection(true);
         }
     }
 
@@ -117,6 +159,10 @@ public class ExpandedActivity extends Activity {
         Log.d(TAG, "MainActivity.onPause()");
         super.onPause();
         mIsShowing = false;
+
+        if (mHotwordServiceClient != null) {
+            mHotwordServiceClient.requestHotwordDetection(false);
+        }
     }
 
     @Override
