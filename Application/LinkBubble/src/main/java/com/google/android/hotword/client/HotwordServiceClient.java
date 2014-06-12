@@ -26,20 +26,17 @@ public class HotwordServiceClient {
 
 	private final Activity mActivity;
 	private final ServiceConnection mConnection;
-	private final WindowId.FocusObserver mFocusObserver;
 
 	private IHotwordService mHotwordService;
 
 	private boolean mHotwordStart;
 	private boolean mIsAvailable = true;
 	private boolean mIsBound;
-	private boolean mIsFocused = false;
 	private boolean mIsRequested = true;
 
 	public HotwordServiceClient(Activity activity) {
 		mActivity = activity;
 		mConnection = new HotwordServiceConnection();
-		mFocusObserver = new WindowFocusObserver();
 	}
 
 	private void assertMainThread() {
@@ -60,7 +57,7 @@ public class HotwordServiceClient {
 	}
 
 	private void internalRequestHotword() {
-		if (mIsFocused && mIsRequested) {
+		if (mIsRequested) {
 			if (!mHotwordStart) {
 				mHotwordStart = true;
 				if (!mIsBound) {
@@ -71,7 +68,7 @@ public class HotwordServiceClient {
 
 		try {
 			if (mHotwordService != null)
-				mHotwordService.requestHotwordDetection(mActivity.getPackageName(), mIsFocused && mIsRequested);
+				mHotwordService.requestHotwordDetection(mActivity.getPackageName(), mIsRequested);
 		} catch (RemoteException e) {
 			Log.w(TAG, "requestHotwordDetection - remote call failed", e);
 			return;
@@ -91,7 +88,6 @@ public class HotwordServiceClient {
 			return;
 
 		assertMainThread();
-		mActivity.getWindow().getDecorView().getWindowId().registerFocusObserver(mFocusObserver);
 		internalBind();
 	}
 
@@ -105,7 +101,6 @@ public class HotwordServiceClient {
 		}
 
 		assertMainThread();
-		mActivity.getWindow().getDecorView().getWindowId().unregisterFocusObserver(mFocusObserver);
 		mActivity.unbindService(mConnection);
 		mIsBound = false;
 	}
@@ -130,20 +125,6 @@ public class HotwordServiceClient {
 		public void onServiceDisconnected(ComponentName componentName) {
 			mIsBound = false;
 			mHotwordService = null;
-		}
-	}
-
-	private class WindowFocusObserver extends WindowId.FocusObserver {
-		private WindowFocusObserver() {}
-
-		public void onFocusGained(WindowId wid) {
-			mIsFocused = true;
-			internalRequestHotword();
-		}
-
-		public void onFocusLost(WindowId wid) {
-			mIsFocused = false;
-			internalRequestHotword();
 		}
 	}
 }
