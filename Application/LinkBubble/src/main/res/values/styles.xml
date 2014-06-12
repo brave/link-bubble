@@ -112,4 +112,26 @@
         <item name="android:layout_width">wrap_content</item>
     </style>
 
+
+    <style name="ExpandedModeBaseTheme" parent="android:Theme.Holo.Light">
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:actionBarStyle">@style/ExpandedModeActionBar</item>
+        <item name="android:windowActionBarOverlay">true</item>
+    </style>
+
+    <style name="ExpandedModeTheme" parent="ExpandedModeBaseTheme"/>
+
+    <style name="ExpandedModeActionBar" parent="android:Widget.Holo.ActionBar">
+        <item name="android:height">@dimen/bubble_size</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:icon">@android:color/transparent</item>
+        <item name="android:displayOptions"></item>
+    </style>
+
+
 </resources>

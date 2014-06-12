@@ -125,7 +125,15 @@
 
         <meta-data android:name="com.google.android.gms.version"
                    android:value="@integer/google_play_services_version" />
-        
+
+        <activity
+            android:name=".ui.ExpandedActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/ExpandedModeTheme">
+        </activity>
+
         <activity
             android:name=".ui.DownloadHandlerActivity"
             android:excludeFromRecents="true"
