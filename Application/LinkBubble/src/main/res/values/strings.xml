@@ -108,6 +108,8 @@
     <string name="preference_get_pro_summary">Upgrade to Pro for more features.</string>
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">What\'s new?</string>
+    <string name="preference_more_title">More...</string>
+    <string name="preference_show_undo_close_tab_title">Undo prompt after tab close</string>
 
     <string name="preference_my_other_apps_title">More apps by Chris Lacy</string>
     <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out my other apps?</string>
