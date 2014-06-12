@@ -39,6 +39,7 @@ public class Settings {
 
     public static final String PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED = "preference_auto_content_display_link_loaded";
     public static final boolean PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED_DEFAULT = false;
+    public static final String PREFERENCE_SHOW_UNDO_CLOSE_TAB = "preference_show_undo_close_tab_prompt";
 
     public static final String PREFERENCE_LEFT_CONSUME_BUBBLE = "preference_left_consume_bubble";
     public static final String PREFERENCE_LEFT_CONSUME_BUBBLE_PACKAGE_NAME = "preference_left_consume_bubble_package_name";
@@ -641,6 +642,10 @@ public class Settings {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putInt(PREFERENCE_WEBVIEW_TEXT_ZOOM, zoom);
         editor.commit();
+    }
+
+    public boolean getShowUndoCloseTab() {
+        return mSharedPreferences.getBoolean(PREFERENCE_SHOW_UNDO_CLOSE_TAB, true);
     }
 
     public List<ResolveInfo> getAppsThatHandleUrl(String urlAsString, PackageManager packageManager) {

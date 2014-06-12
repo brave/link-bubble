@@ -759,7 +759,7 @@ public class MainController implements Choreographer.FrameCallback {
             scheduleUpdate();
         }
 
-        if (canShowUndoPrompt) {
+        if (canShowUndoPrompt && Settings.get().getShowUndoCloseTab()) {
             final String urlAsString = tabView.getUrl().toString();
             String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(urlAsString) : null;
             if (title != null) {
