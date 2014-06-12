@@ -153,6 +153,7 @@
     public void onEndCollapseTransition(com.linkbubble.MainController$EndCollapseTransitionEvent);
     public void onIncognitoModeChanged(com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent);
     public void onStateChangedEvent(com.linkbubble.MainApplication$StateChangedEvent);
+    public void onEndAnimateFinalTabAway(com.linkbubble.MainController$EndAnimateFinalTabAwayEvent);
 }
 
 -keep class com.linkbubble.MainApplication$StateChangedEvent
@@ -162,6 +163,7 @@
 -keep class com.linkbubble.MainController$BeginExpandTransitionEvent
 -keep class com.linkbubble.MainController$CurrentTabChangedEvent
 -keep class com.linkbubble.MainController$DraggableBubbleMovedEvent
+-keep class com.linkbubble.MainController$EndAnimateFinalTabAwayEvent
 -keep class com.linkbubble.MainController$EndBubbleDragEvent
 -keep class com.linkbubble.MainController$EndCollapseTransitionEvent
 -keep class com.linkbubble.MainController$OrientationChangedEvent
