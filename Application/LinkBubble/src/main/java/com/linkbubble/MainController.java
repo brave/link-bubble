@@ -26,6 +26,7 @@ import com.linkbubble.ui.BubbleDraggable;
 import com.linkbubble.ui.BubbleFlowDraggable;
 import com.linkbubble.ui.BubbleFlowView;
 import com.linkbubble.ui.CanvasView;
+import com.linkbubble.ui.ExpandedActivity;
 import com.linkbubble.ui.Prompt;
 import com.linkbubble.ui.SettingsFragment;
 import com.linkbubble.ui.TabView;
@@ -67,6 +68,9 @@ public class MainController implements Choreographer.FrameCallback {
 
     public static class BeginExpandTransitionEvent {
         public float mPeriod;
+    }
+
+    public static class EndExpandTransitionEvent {
     }
 
     public static class BeginCollapseTransitionEvent {
@@ -423,6 +427,16 @@ public class MainController implements Choreographer.FrameCallback {
     @Subscribe
     public void onBeginExpandTransition(MainController.BeginExpandTransitionEvent e) {
         showBadge(false);
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEndExpandTransition(MainController.EndExpandTransitionEvent e) {
+        if (Constant.EXPANDED_ACTIVITY_ENABLED) {
+            Intent i = new Intent(mContext, ExpandedActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            mContext.getApplicationContext().startActivity(i);
+        }
     }
 
     public void scheduleUpdate() {
