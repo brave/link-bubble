@@ -9,7 +9,7 @@
         <change>NEW: Fine-grained control over which apps Link Bubble will load links from.</change>
         <change>NEW: Free version allows for a link to be loaded from any app (previously was restricted to a single app).</change>
         <change>IMPROVEMENT: If a link was just loaded, prevent loading that link again for a short time period. Fixes multiple links loading in the event a link is clicked twice.</change>
-        <change>IMPROVEMENT: Top mask extends to status bar. Looks better in apps using translucent mode.</change>
+        <!--<change>IMPROVEMENT: Top mask extends to status bar. Looks better in apps using translucent mode.</change>-->
     </release>
 
     <release version="1.1.3" versioncode="11300">
