@@ -16,12 +16,6 @@
             android:title="@string/preference_set_default_browser_title"
             android:summary="@string/preference_set_default_browser_summary"/>
 
-        <CheckBoxPreference
-            android:key="preference_auto_content_display_link_loaded"
-            android:title="@string/preference_auto_content_display_link_loaded_title"
-            android:summary="@string/preference_auto_content_display_link_loaded_summary"
-            />
-
         <Preference
             android:key="preference_ignore_links_from"
             android:title="@string/preference_intercept_links_from_title"
@@ -65,6 +59,25 @@
                     />
 
             </PreferenceCategory>
+
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:key="preference_more"
+            android:title="@string/preference_more_title"
+            >
+
+            <CheckBoxPreference
+                android:key="preference_auto_content_display_link_loaded"
+                android:title="@string/preference_auto_content_display_link_loaded_title"
+                android:summary="@string/preference_auto_content_display_link_loaded_summary"
+                />
+
+            <CheckBoxPreference
+                android:key="preference_show_undo_close_tab_prompt"
+                android:title="@string/preference_show_undo_close_tab_title"
+                android:defaultValue="true"
+                />
 
         </PreferenceScreen>
 
