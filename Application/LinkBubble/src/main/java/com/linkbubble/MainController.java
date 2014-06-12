@@ -62,6 +62,9 @@ public class MainController implements Choreographer.FrameCallback {
         public TabView mTab;
     }
 
+    public static class EndAnimateFinalTabAwayEvent {
+    }
+
     public static class BeginExpandTransitionEvent {
         public float mPeriod;
     }
@@ -456,7 +459,9 @@ public class MainController implements Choreographer.FrameCallback {
             long delta = urlLoadStartTime - openUrlInfo.mStartTime;
             if (openUrlInfo.mUrlAsString.equals(urlAsString) && delta < 7 * 1000) {
                 //Log.d("blerg", "urlAsString:" + urlAsString + ", openUrlInfo.mUrlAsString:" + openUrlInfo.mUrlAsString + ", delta: " + delta);
-                return true;
+                if (mBubbleFlowDraggable != null && mBubbleFlowDraggable.isUrlActive(urlAsString)) {
+                    return true;
+                }
             }
         }
         return false;
@@ -706,6 +711,8 @@ public class MainController implements Choreographer.FrameCallback {
     protected TabView openUrlInTab(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker) {
         if (getActiveTabCount() == 0) {
             mBubbleDraggable.setVisibility(View.VISIBLE);
+            collapseBubbleFlow(0);
+            mBubbleFlowDraggable.setVisibility(View.GONE);
         }
 
         TabView result = mBubbleFlowDraggable.openUrlInTab(url, urlLoadStartTime, setAsCurrentTab, hasShownAppPicker);
@@ -879,6 +886,16 @@ public class MainController implements Choreographer.FrameCallback {
             Toast.makeText(mContext, R.string.valid_license_detected, Toast.LENGTH_LONG).show();
             event.mDisplayedToast = true;
         }
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEndAnimateFinalTabAway(MainController.EndAnimateFinalTabAwayEvent event) {
+        if (mBubbleDraggable != null) {
+            mBubbleDraggable.snapToBubbleView();
+        }
+        collapseBubbleFlow(0);
+        mBubbleFlowDraggable.setVisibility(View.GONE);
     }
 
     public boolean reloadAllTabs(Context context) {
