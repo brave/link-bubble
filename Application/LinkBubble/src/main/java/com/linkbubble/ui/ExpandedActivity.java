@@ -114,7 +114,7 @@ public class ExpandedActivity extends Activity {
 
     @Override
     public void onPause() {
-        Log.d(TAG, "MainActivity.onResume()");
+        Log.d(TAG, "MainActivity.onPause()");
         super.onPause();
         mIsShowing = false;
     }
