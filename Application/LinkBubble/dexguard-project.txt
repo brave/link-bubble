@@ -166,6 +166,7 @@
 -keep class com.linkbubble.MainController$EndAnimateFinalTabAwayEvent
 -keep class com.linkbubble.MainController$EndBubbleDragEvent
 -keep class com.linkbubble.MainController$EndCollapseTransitionEvent
+-keep class com.linkbubble.MainController$EndExpandTransitionEvent
 -keep class com.linkbubble.MainController$OrientationChangedEvent
 -keep class com.linkbubble.db.HistoryRecord$ChangedEvent
 -keep class com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent
@@ -195,6 +196,11 @@
     public void onBeginBubbleDrag(com.linkbubble.MainController$BeginBubbleDragEvent);
     public void onDraggableBubbleMovedEvent(com.linkbubble.MainController$DraggableBubbleMovedEvent);
     public void onEndBubbleDragEvent(com.linkbubble.MainController$EndBubbleDragEvent);
+}
+
+-keepclassmembers class com.linkbubble.ui.ExpandedActivity {
+    # ensure event handler functions are not stripped
+    public void onBeginCollapseTransition(com.linkbubble.MainController$BeginCollapseTransitionEvent);
 }
 
 -keepclassmembers class com.linkbubble.ui.HistoryActivity {
