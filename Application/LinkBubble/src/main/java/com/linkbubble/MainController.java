@@ -760,7 +760,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         if (canShowUndoPrompt) {
-            String urlAsString = tabView.getUrl().toString();
+            final String urlAsString = tabView.getUrl().toString();
             String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(urlAsString) : null;
             if (title != null) {
                 title = "Closed: " + title;
@@ -776,7 +776,13 @@ public class MainController implements Choreographer.FrameCallback {
                     new Prompt.OnPromptEventListener() {
                         @Override
                         public void onClick() {
-
+                            if (getActiveTabCount() == 0) {
+                                openUrlInTab(urlAsString, System.currentTimeMillis(), true, false);
+                                mBubbleDraggable.snapToBubbleView();
+                                collapseBubbleFlow(0);
+                            } else {
+                                openUrlInTab(urlAsString, System.currentTimeMillis(), false, false);
+                            }
                         }
 
                         @Override
