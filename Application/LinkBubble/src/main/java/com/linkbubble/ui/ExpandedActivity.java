@@ -9,7 +9,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import com.google.android.hotword.client.HotwordServiceClient;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
@@ -26,6 +29,11 @@ public class ExpandedActivity extends Activity {
 
     private static final String TAG = "ExpandedActivity";
 
+    private static ExpandedActivity sInstance;
+    static ExpandedActivity get() {
+        return sInstance;
+    }
+
     public static class MinimizeExpandedActivityEvent {};
 
     public static class EnableHotwordSeviceEvent {
@@ -41,7 +49,9 @@ public class ExpandedActivity extends Activity {
     private final Handler mHandler = new Handler();
 
     private HotwordServiceClient mHotwordServiceClient;
-    
+
+    private LinearLayout mWebRendererContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,6 +60,8 @@ public class ExpandedActivity extends Activity {
         super.onCreate(savedInstanceState);
         CrashTracking.init(this);
 
+        sInstance = this;
+
         mIsAlive = true;
 
         setContentView(R.layout.activity_expanded);
@@ -57,6 +69,11 @@ public class ExpandedActivity extends Activity {
         getActionBar().hide();
 
         MainApplication.registerForBus(this, this);
+
+        mWebRendererContainer = (LinearLayout) findViewById(R.id.web_renderer_container);
+        if (Constant.SELECT_TEXT_VIA_ACTIVITY == false) {
+            mWebRendererContainer.setWillNotDraw(true);
+        }
 
         if (Constant.EXPANDED_ACTIVITY_DEBUG) {
             View view = findViewById(R.id.expanded_root);
@@ -78,6 +95,18 @@ public class ExpandedActivity extends Activity {
                 // ignore if anything went wrong...
             }
         }
+    }
+
+    @Override
+    public void onActionModeStarted(ActionMode actionMode) {
+        super.onActionModeStarted(actionMode);
+        Log.d(TAG, "onActionModeStarted()");
+    }
+
+    @Override
+    public void onActionModeFinished(ActionMode actionMode) {
+        super.onActionModeFinished(actionMode);
+        Log.d(TAG, "onActionModeFinished()");
     }
 
     @Override
@@ -131,6 +160,10 @@ public class ExpandedActivity extends Activity {
 
         mIsAlive = false;
 
+        if (sInstance == this) {
+            sInstance = null;
+        }
+
         MainApplication.unregisterForBus(this, this);
     }
 
@@ -163,6 +196,13 @@ public class ExpandedActivity extends Activity {
 
         if (mHotwordServiceClient != null) {
             mHotwordServiceClient.requestHotwordDetection(true);
+        }
+
+        if (Constant.SELECT_TEXT_VIA_ACTIVITY && mWebRendererContainer.getChildCount() == 0) {
+            TabView current = MainController.get().getCurrentTab();
+            if (current != null) {
+                setWebRenderer(current.getContentView().getWebRenderer().getView());
+            }
         }
     }
 
@@ -242,6 +282,14 @@ public class ExpandedActivity extends Activity {
         }
     };
 
+    public void setWebRenderer(View view) {
+        if (mWebRendererContainer.getChildCount() == 0) {
+            if (view.getParent() != null) {
+                ((ViewGroup) view.getParent()).removeView(view);
+            }
+            mWebRendererContainer.addView(view);
+        }
+    }
 
     @SuppressWarnings("unused")
     @Subscribe
