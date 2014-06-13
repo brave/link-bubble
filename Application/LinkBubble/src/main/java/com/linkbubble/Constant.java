@@ -34,7 +34,7 @@ public class Constant {
 
     public static boolean SELECT_TEXT_VIA_ACTIVITY = false;
 
-    public static boolean ARTICLE_MODE_BUTTON = false;
+    public static boolean ARTICLE_MODE_BUTTON = true;
 
     public static final int TRIAL_TIME = 1000 * 60 * 60 * 24;
 
