@@ -279,6 +279,43 @@ public class HtmlFetcher {
         return result;
     }
 
+    public JResult extract(String url, String html) throws Exception {
+        JResult result = new JResult();
+        // or should we use? <link rel="canonical" href="http://www.N24.de/news/newsitem_6797232.html"/>
+        result.setUrl(url);
+        result.setOriginalUrl(url);
+        //result.setDate(SHelper.estimateDate(url));
+
+        // Immediately put the url into the cache as extracting content takes time.
+        if (cache != null) {
+            cache.put(url, result);
+        }
+
+        String lowerUrl = url.toLowerCase();
+        if (SHelper.isDoc(lowerUrl) || SHelper.isApp(lowerUrl) || SHelper.isPackage(lowerUrl)) {
+            // skip
+        } else if (SHelper.isVideo(lowerUrl) || SHelper.isAudio(lowerUrl)) {
+            result.setVideoUrl(url);
+        } else if (SHelper.isImage(lowerUrl)) {
+            result.setImageUrl(url);
+        } else {
+            extractor.extractContent(result, html);
+            if (result.getFaviconUrl().isEmpty())
+                result.setFaviconUrl(SHelper.getDefaultFavicon(url));
+
+            // some links are relative to root and do not include the domain of the url :(
+            result.setFaviconUrl(fixUrl(url, result.getFaviconUrl()));
+            result.setImageUrl(fixUrl(url, result.getImageUrl()));
+            result.setVideoUrl(fixUrl(url, result.getVideoUrl()));
+            result.setRssUrl(fixUrl(url, result.getRssUrl()));
+        }
+        result.setText(lessText(result.getText()));
+        synchronized (result) {
+            result.notifyAll();
+        }
+        return result;
+    }
+
     public String lessText(String text) {
         if (text == null)
             return "";
