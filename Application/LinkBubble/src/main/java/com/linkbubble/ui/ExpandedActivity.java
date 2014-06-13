@@ -25,6 +25,8 @@ import java.util.List;
 public class ExpandedActivity extends Activity {
 
     private static final String TAG = "ExpandedActivity";
+
+    public static class MinimizeExpandedActivityEvent {};
     
     private boolean mIsAlive = false;
     private boolean mIsShowing = false;
@@ -85,12 +87,6 @@ public class ExpandedActivity extends Activity {
         }
 
         super.onDetachedFromWindow();
-    }
-
-    @SuppressWarnings("unused")
-    @Subscribe
-    public void onBeginCollapseTransition(MainController.BeginCollapseTransitionEvent e) {
-        minimize();
     }
 
     /*
@@ -230,4 +226,16 @@ public class ExpandedActivity extends Activity {
         }
     };
 
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onBeginCollapseTransition(MainController.BeginCollapseTransitionEvent e) {
+        minimize();
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onMinimizeExpandedActivity(MinimizeExpandedActivityEvent e) {
+        minimize();
+    }
 }
