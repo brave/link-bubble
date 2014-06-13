@@ -229,6 +229,14 @@ class WebViewRenderer extends WebRenderer {
     }
 
     @Override
+    public boolean articleModeContentReady() {
+        if (mArticleModeContent != null) {
+            return mArticleModeContent.mPageHtml.isEmpty() ? false : true;
+        }
+        return false;
+    }
+
+    @Override
     public void resetPageInspector() {
         mPageInspector.reset();
     }
@@ -671,6 +679,8 @@ class WebViewRenderer extends WebRenderer {
                 return;
             }
 
+            mController.onArticleModeHtmlReady();
+            /*
             //Log.d(TAG, "pageHtml:" + pageHtml);
             mWebView.loadDataWithBaseURL(urlAsString, mArticleModeContent.mPageHtml, "text/html", "utf-8", urlAsString);
             //mWebView.loadData(pageHtml, "text/html", "utf-8");
@@ -680,6 +690,7 @@ class WebViewRenderer extends WebRenderer {
             }
             mController.onProgressChanged(100, urlAsString);
             //mController.onPageFinished(urlAsString);
+            */
         }
     }
 
