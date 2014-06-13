@@ -7,7 +7,7 @@
         <change>CHANGE: The top-most link doesn't change when subsequent links are loaded (Pro only).</change>-->
         <change>NEW: Fine-grained control over which apps Link Bubble will load links from.</change>
         <change>NEW: Article Mode, which extracts the main text from a URL.</change>
-        <change>NEW: When closing a tab, display a prompt allowing people to undo the closing of the tab ala Chrome (configurable via Settings).</change>
+        <change>NEW: When closing a tab, display an Undo prompt allowing people to undo the closing of the tab ala Chrome (configurable via Settings).</change>
         <change>NEW: Free version allows for a link to be loaded from any app (previously was restricted to a single app).</change>
         <change>IMPROVEMENT: If a link was just loaded, prevent loading that link again for a short time period. Fixes multiple links loading in the event a link is clicked twice.</change>
         <!--<change>IMPROVEMENT: Top mask extends to status bar. Looks better in apps using translucent mode.</change>-->

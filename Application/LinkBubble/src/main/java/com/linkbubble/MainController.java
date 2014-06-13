@@ -791,13 +791,14 @@ public class MainController implements Choreographer.FrameCallback {
         if (canShowUndoPrompt && Settings.get().getShowUndoCloseTab()) {
             final String urlAsString = tabView.getUrl().toString();
             String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(urlAsString) : null;
+            String message;
             if (title != null) {
-                title = "Closed: " + title;
+                message = String.format(mContext.getResources().getString(R.string.undo_close_tab_title), title);
             } else {
-                title = "Closed tab";
+                message = mContext.getResources().getString(R.string.undo_close_tab_no_title);
             }
             tabView.mWasRestored = false;
-            Prompt.show(title,
+            Prompt.show(message,
                     mContext.getResources().getString(R.string.action_undo).toUpperCase(),
                     mContext.getResources().getDrawable(R.drawable.ic_undobar_undo),
                     Prompt.LENGTH_SHORT,
