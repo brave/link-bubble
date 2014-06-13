@@ -738,6 +738,14 @@ public class MainController implements Choreographer.FrameCallback {
         return result;
     }
 
+    protected void restoreTab(TabView tab) {
+        mBubbleFlowDraggable.restoreTab(tab);
+        final float bubblePeriod = (float) Constant.BUBBLE_ANIM_TIME / 1000.f;
+        final float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
+        expandBubbleFlow((long) (contentPeriod * 1000), false);
+        ++mBubblesLoaded;
+    }
+
     public void showBadge(boolean show) {
         if (mBubbleDraggable != null) {
             int tabCount = mBubbleFlowDraggable.getActiveTabCount();
@@ -768,7 +776,7 @@ public class MainController implements Choreographer.FrameCallback {
         return closeTab(tabView, Constant.BubbleAction.Close, animateOff, canShowUndoPrompt);
     }
 
-    public boolean closeTab(TabView tabView, Constant.BubbleAction action, boolean animateOff, boolean canShowUndoPrompt) {
+    public boolean closeTab(final TabView tabView, Constant.BubbleAction action, boolean animateOff, boolean canShowUndoPrompt) {
         if (mBubbleFlowDraggable != null) {
             mBubbleFlowDraggable.closeTab(tabView, animateOff, action, tabView != null ? tabView.getTotalTrackedLoadTime() : -1);
         }
@@ -788,6 +796,7 @@ public class MainController implements Choreographer.FrameCallback {
             } else {
                 title = "Closed tab";
             }
+            tabView.mWasRestored = false;
             Prompt.show(title,
                     mContext.getResources().getString(R.string.action_undo).toUpperCase(),
                     mContext.getResources().getDrawable(R.drawable.ic_undobar_undo),
@@ -797,21 +806,26 @@ public class MainController implements Choreographer.FrameCallback {
                     new Prompt.OnPromptEventListener() {
                         @Override
                         public void onClick() {
-                            if (getActiveTabCount() == 0) {
-                                openUrlInTab(urlAsString, System.currentTimeMillis(), true, false);
-                                mBubbleDraggable.snapToBubbleView();
-                                collapseBubbleFlow(0);
-                            } else {
-                                openUrlInTab(urlAsString, System.currentTimeMillis(), false, false);
+                            if (tabView.mWasRestored == false) {
+                                restoreTab(tabView);
                             }
                         }
 
                         @Override
                         public void onClose() {
-
+                            if (tabView.mWasRestored == false) {
+                                tabView.destroy();
+                            }
                         }
                     }
             );
+        } else {
+            mBubbleDraggable.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    tabView.destroy();
+                }
+            }, 500);
         }
 
         return getActiveTabCount() > 0;
@@ -905,10 +919,6 @@ public class MainController implements Choreographer.FrameCallback {
     @SuppressWarnings("unused")
     @Subscribe
     public void onEndAnimateFinalTabAway(MainController.EndAnimateFinalTabAwayEvent event) {
-        if (mBubbleDraggable != null) {
-            mBubbleDraggable.snapToBubbleView();
-        }
-        collapseBubbleFlow(0);
         mBubbleFlowDraggable.setVisibility(View.GONE);
     }
 
