@@ -33,6 +33,16 @@
     <string name="share_invalid_data">Link Bubble us unable to share this item as it is not a valid URL.</string>
     <string name="consume_activity_not_found">Unable to find application. Consider changing bubble action via Settings.</string>
 
+    <string name="upgrade">Upgrade</string>
+    <string name="upgrade_to_pro">Upgrade to Pro</string>
+    <string name="upgrade_ok_google">Want to load Google Now by speaking \"OK, Google\"?</string>
+    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
+        Load multiple tabs at once\n •
+        Use \"OK, Google\" voice activation\n •
+        Use Article mode\n •
+        Support me as I develop this app :)
+        </string>
+
     <string name="undo_close_tab_title">Closed %1$s</string>
     <string name="undo_close_tab_no_title">Closed tab</string>
 
