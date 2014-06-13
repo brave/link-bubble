@@ -24,6 +24,8 @@ public class TabView extends BubbleView {
     private ImageView mBackIndicatorView;
     private ScaleUpAnimHelper mBackIndicatorAnimHelper;
 
+    public boolean mWasRestored;
+
     public TabView(Context context) {
         this(context, null);
     }
@@ -143,7 +145,7 @@ public class TabView extends BubbleView {
         });
     }
 
-    void destroy() {
+    public void destroy() {
         // Will be null
         if (mContentView != null) {
             mContentView.destroy();
