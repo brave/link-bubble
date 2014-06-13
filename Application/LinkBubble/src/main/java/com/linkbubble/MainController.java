@@ -981,4 +981,9 @@ public class MainController implements Choreographer.FrameCallback {
             setCanDisplay(true);
         }
     }
+
+    public TabView getCurrentTab() {
+        TabView tab = mBubbleFlowDraggable.getCurrentTab();
+        return tab;
+    }
 }
