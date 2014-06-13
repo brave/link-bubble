@@ -678,7 +678,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onArticleModeHtmlReady() {
-
+            configureArticleModeButton();
         }
 
     };
@@ -997,7 +997,7 @@ public class ContentView extends FrameLayout {
     }
 
     private void configureArticleModeButton() {
-        if (Constant.ARTICLE_MODE_BUTTON && mCurrentProgress == 100) {
+        if (Constant.ARTICLE_MODE_BUTTON && mWebRenderer.articleModeContentReady()) {
             mArticleModeButton.setVisibility(VISIBLE);
         } else {
             mArticleModeButton.setVisibility(GONE);

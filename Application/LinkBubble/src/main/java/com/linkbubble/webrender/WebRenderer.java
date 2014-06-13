@@ -112,4 +112,6 @@ public abstract class WebRenderer {
     public Mode getMode() {
         return mMode;
     }
+
+    public boolean articleModeContentReady() {return false;}
 }
