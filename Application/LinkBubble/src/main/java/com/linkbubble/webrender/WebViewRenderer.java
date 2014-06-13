@@ -304,7 +304,9 @@ class WebViewRenderer extends WebRenderer {
 
                 case WebView.HitTestResult.UNKNOWN_TYPE:
                 default:
-                    mController.onShowBrowserPrompt();
+                    if (Constant.SELECT_TEXT_VIA_ACTIVITY == false) {
+                        mController.onShowBrowserPrompt();
+                    }
                     return false;
             }
         }
