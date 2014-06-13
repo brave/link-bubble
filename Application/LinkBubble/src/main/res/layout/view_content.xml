@@ -75,6 +75,11 @@
             android:visibility="gone"
             />
 
+        <com.linkbubble.ui.ArticleModeButton
+            style="@style/ToolbarButton"
+            android:id="@+id/article_mode_button"
+            android:visibility="gone"/>
+
         <com.linkbubble.ui.ContentViewButton
             style="@style/ToolbarButton"
             android:id="@+id/share_button"
