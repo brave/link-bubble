@@ -676,6 +676,11 @@ public class ContentView extends FrameLayout {
             });
         }
 
+        @Override
+        public void onArticleModeHtmlReady() {
+
+        }
+
     };
 
     private String mPageFinishedIgnoredUrl;

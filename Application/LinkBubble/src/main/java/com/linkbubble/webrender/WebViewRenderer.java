@@ -63,6 +63,8 @@ class WebViewRenderer extends WebRenderer {
     private Boolean mIsDestroyed = false;
 
     private GetArticleContentTask mGetArticleContentTask;
+    private BuildArticleModeContentTask mBuildArticleModeContentTask;
+    private ArticleModeContent mArticleModeContent;
 
     public WebViewRenderer(Context context, Controller controller, View webRendererPlaceholder, String tag) {
         super(context, controller, webRendererPlaceholder);
@@ -150,14 +152,18 @@ class WebViewRenderer extends WebRenderer {
         if (mGetArticleContentTask != null) {
             mGetArticleContentTask.cancel(true);
         }
+        if (mBuildArticleModeContentTask != null) {
+            mBuildArticleModeContentTask.cancel(true);
+        }
+        mArticleModeContent = null;
 
         mMode = mode;
 
         switch (mMode) {
 
             case Article:
-                mGetArticleContentTask = new GetArticleContentTask();
-                mGetArticleContentTask.execute(urlAsString);
+                //mGetArticleContentTask = new GetArticleContentTask();
+                //mGetArticleContentTask.execute(urlAsString);
 
                 // This is only called by Snacktory renderer so that the loading animations start at the point the page HTML commences.
                 // Not needed for other Renderers given onPageStarted() will be called.
@@ -188,6 +194,10 @@ class WebViewRenderer extends WebRenderer {
         if (mGetArticleContentTask != null) {
             mGetArticleContentTask.cancel(true);
         }
+        if (mBuildArticleModeContentTask != null) {
+            mBuildArticleModeContentTask.cancel(true);
+        }
+        mArticleModeContent = null;
 
         mWebView.stopLoading();
 
@@ -225,7 +235,11 @@ class WebViewRenderer extends WebRenderer {
 
     @Override
     public void runPageInspector() {
-        mPageInspector.run(mWebView, mController.getPageInspectFlags() | PageInspector.INSPECT_FETCH_HTML);
+        int flags = mController.getPageInspectFlags();
+        if (mBuildArticleModeContentTask == null) {
+            flags |= PageInspector.INSPECT_FETCH_HTML;
+        }
+        mPageInspector.run(mWebView, flags);
     }
 
     @Override
@@ -253,6 +267,14 @@ class WebViewRenderer extends WebRenderer {
         @Override
         public void onDropDownWarningClick() {
             mController.onPageInspectorDropDownWarningClick();
+        }
+
+        @Override
+        public void onFetchHtml(String html) {
+            if (html != null && html.isEmpty() == false) {
+                mBuildArticleModeContentTask = new BuildArticleModeContentTask();
+                mBuildArticleModeContentTask.execute(getUrl().toString(), html);
+            }
         }
     };
 
@@ -599,6 +621,62 @@ class WebViewRenderer extends WebRenderer {
 
             if (articleModeContent.mTitle != null) {
                 mController.onReceivedTitle(urlAsString, articleModeContent.mTitle);
+            }
+            mController.onProgressChanged(100, urlAsString);
+            //mController.onPageFinished(urlAsString);
+        }
+    }
+
+    private class BuildArticleModeContentTask extends AsyncTask<String, JResult, JResult> {
+        protected JResult doInBackground(String... data) {
+
+            JResult result = null;
+            String url = data[0];
+            String pageHtml = data[1];
+            try {
+                Log.d(TAG, "GetArticleContentTask().doInBackground(): url:" + url);
+                HtmlFetcher fetcher = new HtmlFetcher();
+                result = fetcher.extract(url, pageHtml);
+            } catch (Exception ex) {
+                Log.d(TAG, ex.getLocalizedMessage(), ex);
+            }
+
+            return isCancelled() ? null : result;
+        }
+
+        protected void onPostExecute(JResult result) {
+            if (result == null) {
+                return;
+            }
+
+            mArticleModeContent = getArticleModeContent(mContext, result);
+
+            if (mArticleModeContent == null) {
+                return;
+            }
+
+            String urlAsString = null;
+            if (mArticleModeContent.mUrl != null) {
+                setUrl(mArticleModeContent.mUrl);
+                urlAsString = mArticleModeContent.mUrl.toString();
+            }
+
+            if (urlAsString == null) {
+                return;
+            }
+
+            if (mArticleModeContent.mText.isEmpty()) {
+                Log.d(TAG, "No text found for - forcing to Web mode");
+                loadUrl(getUrl(), Mode.Web);
+                return;
+            }
+
+            //Log.d(TAG, "pageHtml:" + pageHtml);
+            mWebView.loadDataWithBaseURL(urlAsString, mArticleModeContent.mPageHtml, "text/html", "utf-8", urlAsString);
+            //mWebView.loadData(pageHtml, "text/html", "utf-8");
+
+            if (mArticleModeContent.mTitle != null) {
+                mController.onReceivedTitle(urlAsString, mArticleModeContent.mTitle);
             }
             mController.onProgressChanged(100, urlAsString);
             //mController.onPageFinished(urlAsString);

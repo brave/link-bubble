@@ -130,6 +130,7 @@ public class PageInspector {
         void onTouchIconLoaded(Bitmap bitmap, String pageUrl);
         void onDropDownFound();
         void onDropDownWarningClick();
+        void onFetchHtml(String html);
     }
 
     public PageInspector(Context context, WebView webView, OnItemFoundListener listener) {
@@ -308,6 +309,9 @@ public class PageInspector {
         @JavascriptInterface
         public void fetchHtml(String html) {
             //Log.d(TAG, "fetchHtml() - " + html);
+            if (mOnItemFoundListener != null) {
+                mOnItemFoundListener.onFetchHtml(html);
+            }
         }
     }
 

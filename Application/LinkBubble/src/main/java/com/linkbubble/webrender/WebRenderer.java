@@ -34,6 +34,7 @@ public abstract class WebRenderer {
         public void onPageInspectorYouTubeEmbedFound();
         public void onPageInspectorTouchIconLoaded(Bitmap bitmap, String pageUrl);
         public void onPageInspectorDropDownWarningClick();
+        public void onArticleModeHtmlReady();
     }
 
     public enum Type {
