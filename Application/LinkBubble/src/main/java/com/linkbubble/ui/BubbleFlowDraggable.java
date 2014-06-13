@@ -316,6 +316,16 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         return tabView;
     }
 
+    public void restoreTab(TabView tabView) {
+        add(tabView, mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView);
+
+        mBubbleDraggable.mBadgeView.setCount(getActiveTabCount());
+
+        saveCurrentTabs();
+
+        tabView.mWasRestored = true;
+    }
+
     @Override
     protected void remove(final int index, boolean animateOff, boolean removeFromList, final OnRemovedListener onRemovedListener) {
         if (index < 0 || index >= mViews.size()) {
@@ -354,7 +364,8 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
         @Override
         public void onRemoved(View view) {
-            ((TabView)view).destroy();
+            // Tabs are now destroyed after a time so the Undo close tab functionality works.
+            //((TabView)view).destroy();
         }
     };
 
