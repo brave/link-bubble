@@ -67,6 +67,7 @@ public class ContentView extends FrameLayout {
     private CondensedTextView mUrlTextView;
     private ContentViewButton mShareButton;
     private ContentViewButton mReloadButton;
+    private ArticleModeButton mArticleModeButton;
     private OpenInAppButton mOpenInAppButton;
     private OpenEmbedButton mOpenEmbedButton;
     private ContentViewButton mOverflowButton;
@@ -266,6 +267,10 @@ public class ContentView extends FrameLayout {
         mReloadButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_reload));
         mReloadButton.setOnClickListener(mOnReloadButtonClickListener);
 
+        mArticleModeButton = (ArticleModeButton)findViewById(R.id.article_mode_button);
+        mArticleModeButton.setState(ArticleModeButton.State.Article);
+        mArticleModeButton.setOnClickListener(mOnArticleModeButtonClickListener);
+
         mOverflowButton = (ContentViewButton)mToolbarLayout.findViewById(R.id.overflow_button);
         mOverflowButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_overflow_round));
         mOverflowButton.setOnClickListener(mOnOverflowButtonClickListener);
@@ -357,6 +362,7 @@ public class ContentView extends FrameLayout {
             mEventHandler.onPageLoaded(true);
             mReloadButton.setVisibility(VISIBLE);
             mShareButton.setVisibility(GONE);
+            mArticleModeButton.setVisibility(GONE);
         }
 
         @Override
@@ -485,6 +491,7 @@ public class ContentView extends FrameLayout {
 
             configureOpenInAppButton();
             configureOpenEmbedButton();
+            configureArticleModeButton();
             Log.d(TAG, "redirect to url: " + urlAsString);
             mEventHandler.onPageLoading(mWebRenderer.getUrl());
             updateUrlTitleAndText(urlAsString);
@@ -581,6 +588,7 @@ public class ContentView extends FrameLayout {
 
                 updateAppsForUrl(null, previousUrl);
                 configureOpenInAppButton();
+                configureArticleModeButton();
 
                 mWebRenderer.resetPageInspector();
                 configureOpenEmbedButton();
@@ -703,6 +711,7 @@ public class ContentView extends FrameLayout {
             updateAppsForUrl(currentUrl);
             configureOpenInAppButton();
             configureOpenEmbedButton();
+            configureArticleModeButton();
 
             mEventHandler.onPageLoaded(false);
             Log.e(TAG, "onPageLoadComplete() - url: " + urlAsString);
@@ -769,6 +778,13 @@ public class ContentView extends FrameLayout {
         }
     };
 
+    OnClickListener mOnArticleModeButtonClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mArticleModeButton.toggleState();
+        }
+    };
+
     OnClickListener mOnOverflowButtonClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -820,6 +836,7 @@ public class ContentView extends FrameLayout {
                             updateAppsForUrl(currentUrl);
                             configureOpenInAppButton();
                             configureOpenEmbedButton();
+                            configureArticleModeButton();
                             Log.d(TAG, "reload url: " + urlAsString);
                             mInitialUrlLoadStartTime = System.currentTimeMillis();
                             updateUrlTitleAndText(urlAsString);
@@ -971,6 +988,14 @@ public class ContentView extends FrameLayout {
             mOpenInAppButton.invalidate();
         } else {
             mOpenInAppButton.setVisibility(GONE);
+        }
+    }
+
+    private void configureArticleModeButton() {
+        if (Constant.ARTICLE_MODE_BUTTON && mCurrentProgress == 100) {
+            mArticleModeButton.setVisibility(VISIBLE);
+        } else {
+            mArticleModeButton.setVisibility(GONE);
         }
     }
 
@@ -1192,6 +1217,9 @@ public class ContentView extends FrameLayout {
         }
         if (mOpenInAppButton != null) {
             mOpenInAppButton.setIsTouched(false);
+        }
+        if (mArticleModeButton != null) {
+            mArticleModeButton.setIsTouched(false);
         }
         if (mOverflowButton != null) {
             mOverflowButton.setIsTouched(false);
