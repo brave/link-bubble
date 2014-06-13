@@ -170,6 +170,7 @@
 -keep class com.linkbubble.MainController$OrientationChangedEvent
 -keep class com.linkbubble.db.HistoryRecord$ChangedEvent
 -keep class com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent
+-keep class com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent
 -keep class com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent
 
 -keepclassmembers class com.linkbubble.ui.BubbleTargetView {
@@ -201,6 +202,7 @@
 -keepclassmembers class com.linkbubble.ui.ExpandedActivity {
     # ensure event handler functions are not stripped
     public void onBeginCollapseTransition(com.linkbubble.MainController$BeginCollapseTransitionEvent);
+    public void onMinimizeExpandedActivity(com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent);
 }
 
 -keepclassmembers class com.linkbubble.ui.HistoryActivity {
