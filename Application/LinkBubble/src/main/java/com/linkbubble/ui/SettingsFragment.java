@@ -14,7 +14,9 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
@@ -60,6 +62,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     private Preference mInterceptLinksFromPreference;
     private Preference mWebViewTextZoomPreference;
     private ListPreference mUserAgentPreference;
+    private CheckBoxPreference mOKGooglePreference;
 
     public static class IncognitoModeChangedEvent {
         public IncognitoModeChangedEvent(boolean value) {
@@ -165,6 +168,14 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                     return true;
                 }
             });
+        }
+
+        CheckBoxPreference okGooglePreference = (CheckBoxPreference)findPreference(Settings.KEY_OK_GOOGLE_PREFERENCE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            mOKGooglePreference = okGooglePreference;
+        } else {
+            PreferenceScreen moreScreen = (PreferenceScreen) findPreference("preference_more");
+            moreScreen.removePreference(okGooglePreference);
         }
 
         Preference crashButton = findPreference("debug_crash");
