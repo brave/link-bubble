@@ -59,4 +59,9 @@
 
     <dimen name="app_icon_size">48dp</dimen>
 
+    <dimen name="preference_item_padding_left">8.0dip</dimen>
+    <dimen name="preference_item_padding_right">8.0dip</dimen>
+    <dimen name="preference_icon_minWidth">0.0dip</dimen>
+    <dimen name="preference_ribbon_width">48.0dip</dimen>
+
 </resources>

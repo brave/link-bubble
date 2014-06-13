@@ -1,0 +1,6 @@
+<resources>
+
+    <dimen name="preference_ribbon_width">56.0dip</dimen>
+    <dimen name="preference_icon_minWidth">56.0dip</dimen>
+
+</resources>

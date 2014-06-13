@@ -30,6 +30,7 @@ import android.webkit.WebViewDatabase;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -169,16 +170,29 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             });
         }
 
-        CheckBoxPreference okGooglePreference = (CheckBoxPreference)findPreference(Settings.KEY_OK_GOOGLE_PREFERENCE);
+        final CheckBoxPreference okGooglePreference = (CheckBoxPreference)findPreference(Settings.KEY_OK_GOOGLE_PREFERENCE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            okGooglePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    boolean checked = (Boolean)newValue;
-                    MainApplication.postEvent(getActivity(), new ExpandedActivity.EnableHotwordSeviceEvent(checked));
-                    return true;
-                }
-            });
+            if (DRM.isLicensed()) {
+                okGooglePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object newValue) {
+                        boolean checked = (Boolean) newValue;
+                        MainApplication.postEvent(getActivity(), new ExpandedActivity.EnableHotwordSeviceEvent(checked));
+                        return true;
+                    }
+                });
+            } else {
+                showProBanner(okGooglePreference);
+                okGooglePreference.setChecked(false);
+                okGooglePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                    @Override
+                    public boolean onPreferenceClick(Preference preference) {
+                        okGooglePreference.setChecked(false);
+                        upsellPro(R.string.upgrade_ok_google);
+                        return true;
+                    }
+                });
+            }
         } else {
             PreferenceScreen moreScreen = (PreferenceScreen) findPreference("preference_more");
             moreScreen.removePreference(okGooglePreference);
@@ -462,6 +476,42 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                 }
             }
         }
+    }
+
+    void showProBanner(Preference preference) {
+        if (DRM.isLicensed() == false) {
+            preference.setLayoutResource(R.layout.preference_pro_banner);
+        }
+    }
+
+    long mLastUpsellTime;
+    void upsellPro(int stringId) {
+        if (System.currentTimeMillis() - mLastUpsellTime < 100) {
+            return;
+        }
+
+        TextView textView = new TextView(getActivity());
+        int padding = (int) Config.dpToPx(8);
+        textView.setPadding(padding, padding, padding, padding);
+        textView.setText(getString(stringId) + "\n\n" + getString(R.string.upgrade_from_settings_summary));
+
+        ScrollView layout = new ScrollView(getActivity());
+        layout.addView(textView);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(layout);
+        builder.setIcon(0);
+        builder.setPositiveButton(R.string.upgrade, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.STORE_PRO_URL));
+                startActivity(intent);
+            }
+        });
+        builder.setTitle(R.string.upgrade_to_pro);
+
+        AlertDialog alertView = builder.create();
+        alertView.show();
+        mLastUpsellTime = System.currentTimeMillis();
     }
 
     void checkDefaultBrowser() {
