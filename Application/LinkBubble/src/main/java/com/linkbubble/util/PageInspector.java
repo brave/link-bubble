@@ -22,6 +22,7 @@ public class PageInspector {
     public static final int INSPECT_DROP_DOWN = 1;
     public static final int INSPECT_YOUTUBE = 2;
     public static final int INSPECT_TOUCH_ICON = 4;
+    public static final int INSPECT_FETCH_HTML = 8;
     public static final int INSPECT_ALL = INSPECT_DROP_DOWN | INSPECT_YOUTUBE | INSPECT_TOUCH_ICON;
 
     private static final String JS_VARIABLE = "LinkBubble";
@@ -107,6 +108,10 @@ public class PageInspector {
             "  }\n" +
             "}";
 
+    private static final String JS_FETCH_HTML =
+            "javascript:window." + JS_VARIABLE + ".fetchHtml" +
+                    "('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');";
+
     private Context mContext;
     private String mWebViewUrl;
     private JSEmbedHandler mJSEmbedHandler;
@@ -149,6 +154,10 @@ public class PageInspector {
 
         if ((inspectFlags & INSPECT_YOUTUBE) != 0) {
             jsEmbed += JS_YOUTUBE_EMBED_CHECK;
+        }
+
+        if ((inspectFlags & INSPECT_FETCH_HTML) != 0) {
+            jsEmbed += JS_FETCH_HTML;
         }
 
         jsEmbed += "})();";
@@ -294,6 +303,11 @@ public class PageInspector {
             if (mOnItemFoundListener != null) {
                 mOnItemFoundListener.onDropDownWarningClick();
             }
+        }
+
+        @JavascriptInterface
+        public void fetchHtml(String html) {
+            //Log.d(TAG, "fetchHtml() - " + html);
         }
     }
 
