@@ -57,6 +57,8 @@ public class Settings {
     public static final String PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME = "preference_default_browser_package_name";
     public static final String PREFERENCE_DEFAULT_BROWSER_LABEL = "preference_default_browser_bubble_label";
 
+    public static final String KEY_OK_GOOGLE_PREFERENCE = "preference_ok_google";
+
     public static final String PREFERENCE_CURRENT_TABS = "preference_current_bubbles";
     public static final String PREFERENCE_DEFAULT_APPS = "preference_default_apps";
     public static final String PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT = "preference_google_accounts_redirect";
@@ -893,7 +895,10 @@ public class Settings {
     }
 
     public boolean getOkGooglePreference() {
-        return true;
+        if (DRM.isLicensed() == false) {
+            return false;
+        }
+        return mSharedPreferences.getBoolean(KEY_OK_GOOGLE_PREFERENCE, false);
     }
 
     private static final int APP_CHANGE_ANIM_TIME = 250;
