@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.ActionMode;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import com.google.android.hotword.client.HotwordServiceClient;
 import com.linkbubble.BuildConfig;
@@ -70,14 +71,17 @@ public class ExpandedActivity extends Activity {
 
         MainApplication.registerForBus(this, this);
 
+        FrameLayout rootView = (FrameLayout) findViewById(R.id.expanded_root);
+
         mWebRendererContainer = (LinearLayout) findViewById(R.id.web_renderer_container);
         if (Constant.SELECT_TEXT_VIA_ACTIVITY == false) {
-            mWebRendererContainer.setWillNotDraw(true);
+            //mWebRendererContainer.setWillNotDraw(true);
+            rootView.removeView(mWebRendererContainer);
+            mWebRendererContainer = null;
         }
 
         if (Constant.EXPANDED_ACTIVITY_DEBUG) {
-            View view = findViewById(R.id.expanded_root);
-            view.setBackgroundColor(0x5500ff00);
+            rootView.setBackgroundColor(0x5500ff00);
         }
 
         initHotwordService();
