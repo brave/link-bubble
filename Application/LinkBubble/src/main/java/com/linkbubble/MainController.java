@@ -146,6 +146,7 @@ public class MainController implements Choreographer.FrameCallback {
 
     private OrientationChangedEvent mOrientationChangedEvent = new OrientationChangedEvent();
     private BeginExpandTransitionEvent mBeginExpandTransitionEvent = new BeginExpandTransitionEvent();
+    private ExpandedActivity.MinimizeExpandedActivityEvent mMinimizeExpandedActivityEvent = new ExpandedActivity.MinimizeExpandedActivityEvent();
 
     private static class OpenUrlInfo {
         String mUrlAsString;
@@ -432,6 +433,10 @@ public class MainController implements Choreographer.FrameCallback {
     @SuppressWarnings("unused")
     @Subscribe
     public void onEndExpandTransition(MainController.EndExpandTransitionEvent e) {
+        showExpandedActivity();
+    }
+
+    void showExpandedActivity() {
         if (Constant.EXPANDED_ACTIVITY_ENABLED) {
             Intent i = new Intent(mContext, ExpandedActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -743,6 +748,7 @@ public class MainController implements Choreographer.FrameCallback {
         final float bubblePeriod = (float) Constant.BUBBLE_ANIM_TIME / 1000.f;
         final float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
         expandBubbleFlow((long) (contentPeriod * 1000), false);
+        showExpandedActivity();
         ++mBubblesLoaded;
     }
 
@@ -786,6 +792,8 @@ public class MainController implements Choreographer.FrameCallback {
             hideBubbleDraggable();
             // Ensure BubbleFlowDraggable gets at least 1 update in the event items are animating off screen. See #237.
             scheduleUpdate();
+
+            MainApplication.postEvent(mContext, mMinimizeExpandedActivityEvent);
         }
 
         if (canShowUndoPrompt && Settings.get().getShowUndoCloseTab()) {
