@@ -27,6 +27,14 @@ public class ExpandedActivity extends Activity {
     private static final String TAG = "ExpandedActivity";
 
     public static class MinimizeExpandedActivityEvent {};
+
+    public static class EnableHotwordSeviceEvent {
+        boolean mEnable;
+
+        EnableHotwordSeviceEvent(boolean enable) {
+            mEnable = enable;
+        }
+    };
     
     private boolean mIsAlive = false;
     private boolean mIsShowing = false;
@@ -55,7 +63,15 @@ public class ExpandedActivity extends Activity {
             view.setBackgroundColor(0x5500ff00);
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Settings.get().getOkGooglePreference()) {
+        initHotwordService();
+    }
+
+    void initHotwordService() {
+        initHotwordService(Settings.get().getOkGooglePreference());
+    }
+
+    void initHotwordService(boolean enabled) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && enabled) {
             try {
                 mHotwordServiceClient = new HotwordServiceClient(this);
             } catch (Exception ex) {
@@ -237,5 +253,17 @@ public class ExpandedActivity extends Activity {
     @Subscribe
     public void onMinimizeExpandedActivity(MinimizeExpandedActivityEvent e) {
         minimize();
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEnableHotwordSevice(EnableHotwordSeviceEvent event) {
+        if (event.mEnable && mHotwordServiceClient == null) {
+            initHotwordService(event.mEnable);
+        }
+        if (event.mEnable == false && mHotwordServiceClient != null) {
+            mHotwordServiceClient.requestHotwordDetection(false);
+            mHotwordServiceClient = null;
+        }
     }
 }

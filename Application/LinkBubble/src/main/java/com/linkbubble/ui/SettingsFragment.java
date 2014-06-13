@@ -62,7 +62,6 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     private Preference mInterceptLinksFromPreference;
     private Preference mWebViewTextZoomPreference;
     private ListPreference mUserAgentPreference;
-    private CheckBoxPreference mOKGooglePreference;
 
     public static class IncognitoModeChangedEvent {
         public IncognitoModeChangedEvent(boolean value) {
@@ -172,7 +171,14 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
         CheckBoxPreference okGooglePreference = (CheckBoxPreference)findPreference(Settings.KEY_OK_GOOGLE_PREFERENCE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mOKGooglePreference = okGooglePreference;
+            okGooglePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    boolean checked = (Boolean)newValue;
+                    MainApplication.postEvent(getActivity(), new ExpandedActivity.EnableHotwordSeviceEvent(checked));
+                    return true;
+                }
+            });
         } else {
             PreferenceScreen moreScreen = (PreferenceScreen) findPreference("preference_more");
             moreScreen.removePreference(okGooglePreference);
