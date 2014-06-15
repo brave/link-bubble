@@ -849,7 +849,7 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_open_in_browser: {
-                            openInBrowser(mWebRenderer.getUrl().toString());
+                            openInBrowser(mWebRenderer.getUrl().toString(), true);
                             break;
                         }
 
@@ -1232,12 +1232,16 @@ public class ContentView extends FrameLayout {
     }
 
     private boolean openInBrowser(String urlAsString) {
+        return openInBrowser(urlAsString, false);
+    }
+
+    private boolean openInBrowser(String urlAsString, boolean canShowUndoPrompt) {
         Log.d(TAG, "openInBrowser() - url:" + urlAsString);
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(urlAsString));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         if (MainApplication.openInBrowser(getContext(), intent, true) && MainController.get() != null && mOwnerTabView != null) {
-            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), false);
+            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), canShowUndoPrompt);
             return true;
         }
 
