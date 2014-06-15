@@ -33,6 +33,7 @@ import com.linkbubble.DRM;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.ui.TabView;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.PageInspector;
@@ -48,7 +49,7 @@ import java.util.Date;
 
 class WebViewRenderer extends WebRenderer {
 
-    private static SimpleDateFormat sDateFormat = new SimpleDateFormat("MMM dd, yyyy");
+
     protected String TAG;
     private Handler mHandler;
     protected WebView mWebView;
@@ -62,9 +63,8 @@ class WebViewRenderer extends WebRenderer {
     private int mCheckForEmbedsCount;
     private Boolean mIsDestroyed = false;
 
-    private GetArticleContentTask mGetArticleContentTask;
     private BuildArticleModeContentTask mBuildArticleModeContentTask;
-    private ArticleModeContent mArticleModeContent;
+    private ArticleContent mArticleModeContent;
 
     public WebViewRenderer(Context context, Controller controller, View webRendererPlaceholder, String tag) {
         super(context, controller, webRendererPlaceholder);
@@ -149,9 +149,6 @@ class WebViewRenderer extends WebRenderer {
         String urlAsString = url.toString();
         Log.d(TAG, "loadUrl() - " + urlAsString);
 
-        if (mGetArticleContentTask != null) {
-            mGetArticleContentTask.cancel(true);
-        }
         if (mBuildArticleModeContentTask != null) {
             mBuildArticleModeContentTask.cancel(true);
         }
@@ -191,9 +188,6 @@ class WebViewRenderer extends WebRenderer {
 
     @Override
     public void stopLoading() {
-        if (mGetArticleContentTask != null) {
-            mGetArticleContentTask.cancel(true);
-        }
         if (mBuildArticleModeContentTask != null) {
             mBuildArticleModeContentTask.cancel(true);
         }
@@ -228,13 +222,7 @@ class WebViewRenderer extends WebRenderer {
         mHandler.postDelayed(mDropDownCheckRunnable, Constant.DROP_DOWN_CHECK_TIME);
     }
 
-    @Override
-    public boolean articleModeContentReady() {
-        if (mArticleModeContent != null) {
-            return mArticleModeContent.mPageHtml.isEmpty() ? false : true;
-        }
-        return false;
-    }
+
 
     @Override
     public void resetPageInspector() {
@@ -576,64 +564,6 @@ class WebViewRenderer extends WebRenderer {
     // [nothing displays]:
     //  * http://www.bostonglobe.com/sports/2014/04/28/the-donald-sterling-profile-not-pretty-picture/jZx4v3EWUFdLYh9c289ODL/story.html
 
-    private class GetArticleContentTask extends AsyncTask<String, JResult, JResult> {
-        protected JResult doInBackground(String... urls) {
-
-            JResult result = null;
-            String url = urls[0];
-            try {
-                Log.d(TAG, "GetArticleContentTask().doInBackground(): url:" + url);
-                HtmlFetcher fetcher = new HtmlFetcher();
-                result = fetcher.fetchAndExtract(url, 30 * 1000, true);
-                //String text = result.getText();
-                //String title = result.getTitle();
-                //String imageUrl = result.getImageUrl();
-                //Log.d(TAG, "title: " + title + ", text: " + text + ", imageUrl:" + imageUrl);
-            } catch (Exception ex) {
-                Log.d(TAG, ex.getLocalizedMessage(), ex);
-            }
-
-            return isCancelled() ? null : result;
-        }
-
-        protected void onPostExecute(JResult result) {
-            if (result == null) {
-                return;
-            }
-
-            ArticleModeContent articleModeContent = getArticleModeContent(mContext, result);
-
-            if (articleModeContent == null) {
-                return;
-            }
-
-            String urlAsString = null;
-            if (articleModeContent.mUrl != null) {
-                setUrl(articleModeContent.mUrl);
-                urlAsString = articleModeContent.mUrl.toString();
-            }
-
-            if (urlAsString == null) {
-                return;
-            }
-
-            if (articleModeContent.mText.isEmpty()) {
-                Log.d(TAG, "No text found for - forcing to Web mode");
-                loadUrl(getUrl(), Mode.Web);
-                return;
-            }
-
-            //Log.d(TAG, "pageHtml:" + pageHtml);
-            mWebView.loadDataWithBaseURL(urlAsString, articleModeContent.mPageHtml, "text/html", "utf-8", urlAsString);
-            //mWebView.loadData(pageHtml, "text/html", "utf-8");
-
-            if (articleModeContent.mTitle != null) {
-                mController.onReceivedTitle(urlAsString, articleModeContent.mTitle);
-            }
-            mController.onProgressChanged(100, urlAsString);
-            //mController.onPageFinished(urlAsString);
-        }
-    }
 
     private class BuildArticleModeContentTask extends AsyncTask<String, JResult, JResult> {
         protected JResult doInBackground(String... data) {
@@ -657,7 +587,7 @@ class WebViewRenderer extends WebRenderer {
                 return;
             }
 
-            mArticleModeContent = getArticleModeContent(mContext, result);
+            mArticleModeContent = ArticleContent.getArticleModeContent(mContext, result);
 
             if (mArticleModeContent == null) {
                 return;
@@ -680,126 +610,7 @@ class WebViewRenderer extends WebRenderer {
             }
 
             mController.onArticleModeHtmlReady();
-            /*
-            //Log.d(TAG, "pageHtml:" + pageHtml);
-            mWebView.loadDataWithBaseURL(urlAsString, mArticleModeContent.mPageHtml, "text/html", "utf-8", urlAsString);
-            //mWebView.loadData(pageHtml, "text/html", "utf-8");
-
-            if (mArticleModeContent.mTitle != null) {
-                mController.onReceivedTitle(urlAsString, mArticleModeContent.mTitle);
-            }
-            mController.onProgressChanged(100, urlAsString);
-            //mController.onPageFinished(urlAsString);
-            */
         }
     }
 
-    private static class ArticleModeContent {
-        String mPageHtml;
-        String mTitle;
-        String mText;
-        URL mUrl;
-    }
-
-    private static ArticleModeContent getArticleModeContent(Context context, JResult result) {
-        ArticleModeContent articleModeContent = new ArticleModeContent();
-
-        String urlAsString = result.getCanonicalUrl();
-        if (urlAsString == null || urlAsString.isEmpty()) {
-            urlAsString = result.getUrl();
-        }
-        try {
-            articleModeContent.mUrl = new URL(urlAsString);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            return articleModeContent;
-        }
-
-        articleModeContent.mText = result.getText();
-        if (articleModeContent.mText.isEmpty()) {
-            return articleModeContent;
-        }
-
-        boolean isTablet = context.getResources().getBoolean(R.bool.is_tablet);
-
-        String bodyHMargin;
-        String titleTopMargin;
-        String titleFontSize;
-        if (isTablet) {
-            bodyHMargin = "24px";
-            titleTopMargin = "32px";
-            titleFontSize = "150%";
-        } else {
-            bodyHMargin = "12px";
-            titleTopMargin = "24px";
-            titleFontSize = "130%";
-        }
-
-        String headHtml =
-                "  <head>\n" +
-                        "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n" +
-                        "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, height=device-height\"/>\n" +
-                        "    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>\n" +
-                        "    <style type=\"text/css\">\n" +
-                        "      p, div { font-family: 'Roboto', sans-serif; font-size: 16px; color:#333; line-height: 160%; }\n" +
-                        "      a { text-decoration: none; }\n" +
-                        "      #lbInfo { width:100%; min-height:28px; margin:0 auto; padding-bottom: 20px;}\n" +
-                        "      #lbInfoL { float:left; width:70%; }\n" +
-                        "      #lbInfoR { float:right; width:30%; }\n" +
-                        "    </style>" +
-                        "    </style>";
-
-        String bodyHtml = "<body >\n" +
-                "    <div style=\"margin:0px " + bodyHMargin + " 0px " + bodyHMargin + "\">\n";
-
-        String title = result.getTitle();
-        if (title != null) {
-            headHtml += "<title>" + title + "</title>";
-            bodyHtml += "<p style=\"font-size:" + titleFontSize + ";line-height:120%;font-weight:bold;margin:" + titleTopMargin + " 0px 12px 0px\">" + title + "</p>";
-        }
-
-        String authorName = result.getAuthorName();
-        Date publishedDate = result.getDate();
-
-        String leftString = "";
-        String rightString = "";
-
-        if (authorName != null) {
-            leftString = "<span class=\"nowrap\"><b>" + authorName + "</b>,</span> ";
-        }
-        if (articleModeContent.mUrl != null) {
-            leftString += "<span class=\"nowrap\"><a href=\"" + articleModeContent.mUrl.getProtocol()
-                    + "://" + articleModeContent.mUrl.getHost() + "\">" + (articleModeContent.mUrl.getHost().replace("www.", "")) + "</a></span>";
-        }
-
-        Log.d("info", "urlHost:" + articleModeContent.mUrl.getHost() + ", authorName: " + authorName);
-
-        if (publishedDate != null) {
-            rightString = "<span style=\"float:right\">" + sDateFormat.format(publishedDate) + "</span>";
-        }
-
-        bodyHtml += "<hr style=\"border: 0;height: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.3);\">"
-                + "<div id=\"lbInfo\"><div id=\"lbInfoL\">" + leftString + "</div><div id=\"lbInfoR\">" + rightString + "</div></div>";
-
-        String html = result.getHtml();
-        if (html != null) {
-            bodyHtml += html;
-        }
-
-        headHtml += "</head>";
-        bodyHtml += " </div>\n" +
-                "    </div>\n" +
-                "    <br><br><br>" +
-                "  </body>\n";
-
-        //mWebView.loadUrl(urlAsString);
-        //mWebView.stopLoading();
-
-        String pageHtml = "<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + headHtml + bodyHtml + "</html>";
-
-        articleModeContent.mPageHtml = pageHtml;
-        articleModeContent.mTitle = title;
-
-        return articleModeContent;
-    }
 }
