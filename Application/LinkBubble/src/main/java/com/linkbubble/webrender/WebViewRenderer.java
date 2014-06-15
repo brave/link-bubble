@@ -705,7 +705,7 @@ class WebViewRenderer extends WebRenderer {
         ArticleModeContent articleModeContent = new ArticleModeContent();
 
         String urlAsString = result.getCanonicalUrl();
-        if (urlAsString.isEmpty()) {
+        if (urlAsString == null || urlAsString.isEmpty()) {
             urlAsString = result.getUrl();
         }
         try {
