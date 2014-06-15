@@ -732,6 +732,7 @@ public class MainController implements Choreographer.FrameCallback {
             mBubbleDraggable.setVisibility(View.VISIBLE);
             collapseBubbleFlow(0);
             mBubbleFlowDraggable.setVisibility(View.GONE);
+            mBubbleDraggable.snapToBubbleView();
         }
 
         TabView result = mBubbleFlowDraggable.openUrlInTab(url, urlLoadStartTime, setAsCurrentTab, hasShownAppPicker);
@@ -745,10 +746,15 @@ public class MainController implements Choreographer.FrameCallback {
 
     protected void restoreTab(TabView tab) {
         mBubbleFlowDraggable.restoreTab(tab);
-        final float bubblePeriod = (float) Constant.BUBBLE_ANIM_TIME / 1000.f;
-        final float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
-        expandBubbleFlow((long) (contentPeriod * 1000), false);
-        showExpandedActivity();
+        // Only do this if there's more than 1 tab. Fix #446
+        if (getActiveTabCount() == 1) {
+            final float bubblePeriod = (float) Constant.BUBBLE_ANIM_TIME / 1000.f;
+            final float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
+            expandBubbleFlow((long) (contentPeriod * 1000), false);
+            showExpandedActivity();
+        } else {
+            showBadge(true);
+        }
         ++mBubblesLoaded;
     }
 
