@@ -1020,7 +1020,7 @@ public class ContentView extends FrameLayout {
     }
 
     private void configureArticleModeButton() {
-        if (Constant.ARTICLE_MODE_BUTTON && mWebRenderer.getArticleContent() != null) {
+        if (Constant.ARTICLE_MODE_BUTTON && mWebRenderer.getArticleContent() != null && Settings.get().getArticleModeEnabled()) {
             mArticleModeButton.setVisibility(VISIBLE);
         } else {
             mArticleModeButton.setVisibility(GONE);
