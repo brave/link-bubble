@@ -2,8 +2,10 @@ package com.linkbubble.articlerender;
 
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 import com.linkbubble.R;
+import de.jetwick.snacktory.HtmlFetcher;
 import de.jetwick.snacktory.JResult;
 
 import java.net.MalformedURLException;
@@ -13,12 +15,24 @@ import java.util.Date;
 
 public class ArticleContent {
 
+    private static final String TAG = "ArticleContent";
+
     private static SimpleDateFormat sDateFormat = new SimpleDateFormat("MMM dd, yyyy");
 
     String mPageHtml;
     String mTitle;
     public String mText;
     public URL mUrl;
+
+    public interface OnFinishedListener {
+        public void onFinished(ArticleContent articleContent);
+    }
+
+    static public BuildContentTask fetchArticleContent(Context context, String url, String pageHtml, OnFinishedListener onFinishedListener) {
+        BuildContentTask task = new BuildContentTask(context, onFinishedListener);
+        task.execute(url, pageHtml);
+        return task;
+    }
 
     public static ArticleContent extract(Context context, JResult result) {
         ArticleContent articleModeContent = new ArticleContent();
@@ -122,5 +136,51 @@ public class ArticleContent {
         return articleModeContent;
     }
 
+    // **Broken links
+    //
+    // [nothing displays]:
+    //  * http://www.bostonglobe.com/sports/2014/04/28/the-donald-sterling-profile-not-pretty-picture/jZx4v3EWUFdLYh9c289ODL/story.html
 
+    static public class BuildContentTask extends AsyncTask<String, JResult, JResult> {
+        Context mContext;
+        OnFinishedListener mOnFinishedListener;
+
+        public BuildContentTask(Context context, OnFinishedListener onFetched) {
+            super();
+            mContext = context;
+            mOnFinishedListener = onFetched;
+        }
+
+        protected JResult doInBackground(String... data) {
+
+            JResult result = null;
+            String url = data[0];
+            String pageHtml = data[1];
+            try {
+                Log.d(TAG, "GetArticleContentTask().doInBackground(): url:" + url);
+                HtmlFetcher fetcher = new HtmlFetcher();
+                result = fetcher.extract(url, pageHtml);
+            } catch (Exception ex) {
+                Log.d(TAG, ex.getLocalizedMessage(), ex);
+            }
+
+            return isCancelled() ? null : result;
+        }
+
+        protected void onPostExecute(JResult result) {
+            if (result == null) {
+                mOnFinishedListener.onFinished(null);
+                return;
+            }
+
+            ArticleContent articleContent = ArticleContent.extract(mContext, result);
+
+            if (articleContent.mUrl == null || articleContent.mText.isEmpty()) {
+                mOnFinishedListener.onFinished(null);
+                return;
+            }
+
+            mOnFinishedListener.onFinished(articleContent);
+        }
+    }
 }
