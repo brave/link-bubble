@@ -323,6 +323,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
         saveCurrentTabs();
 
+        if (getActiveTabCount() == 1) {
+            setCurrentTab(tabView);
+        }
+
         tabView.mWasRestored = true;
     }
 
