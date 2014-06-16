@@ -9,7 +9,7 @@
         <change>NEW: Reading Mode (Beta), which extracts the main text from a link (Requires Pro).</change>
         <change>IMPROVEMENT: If a link was just loaded, prevent loading that link again for a short time period. Fixes multiple links loading in the event a link is clicked twice.</change>
         <change>IMPROVEMENT: Blacken out status and navigation bars when rendering on top of an app that uses translucent mode.</change>
-        <change>IMPROVEMENT: Enable the Up button on the Settings.</change>
+        <change>IMPROVEMENT: Enable the Up button on the Settings and History.</change>
         <change>BUG FIX: Stability fixes.</change>
     </release>
 
