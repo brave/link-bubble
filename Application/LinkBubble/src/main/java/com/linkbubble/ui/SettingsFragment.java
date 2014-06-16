@@ -171,7 +171,17 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         }
 
         final CheckBoxPreference articleModePreference = (CheckBoxPreference)findPreference(Settings.KEY_ARTICLE_MODE_PREFERENCE);
-        if (DRM.isLicensed() == false) {
+        if (DRM.isLicensed()) {
+            articleModePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    if (MainController.get() != null && MainController.get().reloadAllTabs(getActivity())) {
+                        Toast.makeText(getActivity(), R.string.article_mode_changed_reloading_current, Toast.LENGTH_SHORT).show();
+                    }
+                    return true;
+                }
+            });
+        } else {
             showProBanner(articleModePreference);
             articleModePreference.setChecked(false);
             articleModePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {

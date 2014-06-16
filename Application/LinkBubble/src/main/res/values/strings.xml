@@ -35,10 +35,11 @@
     <string name="upgrade">Upgrade</string>
     <string name="upgrade_to_pro">Upgrade to Pro</string>
     <string name="upgrade_ok_google">Want to load Google Now by speaking \"OK, Google\"?</string>
+    <string name="upgrade_article_mode">Want to view links in Reading Mode?</string>
     <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
-        Load multiple tabs at once\n •
-        Use \"OK, Google\" voice activation\n •
-        Use Article mode\n •
+        Load multiple tabs at once.\n •
+        Use \"OK, Google\" voice activation.\n •
+        Use Reading Mode.\n •
         Support me as I develop this app :)
         </string>
 
@@ -85,8 +86,8 @@
     <string name="preference_scan_for_youtube_embeds_title">Check for YouTube embeds</string>
     <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
 
-    <string name="preference_article_mode_title">Article Mode</string>
-    <string name="preference_article_mode_summary">Attempt to build Article Mode for articles</string>
+    <string name="preference_article_mode_title">Reading Mode (BETA)</string>
+    <string name="preference_article_mode_summary">Appropriate links will be displayed in a clutter-free Reading Mode.</string>
     <string name="preference_webview_text_zoom_title">Text zoom</string>
     <string name="preference_webview_text_zoom_note">Note: Current bubbles will be reloaded with the new text zoom applied after selecting \"OK\".</string>
     <string name="preference_webview_text_zoom_reloading_current">New text zoom level applied. Reloading current bubbles…</string>
@@ -161,6 +162,7 @@
     <string name="private_data_cleared">Private data cleared</string>
     <string name="private_data_cleared_reloading_current">Private data cleared. Reloading current bubbles…</string>
     <string name="user_agent_changed_reloading_current">User Agent changed. Reloading current bubbles…</string>
+    <string name="article_mode_changed_reloading_current">Reading Mode setting changed. Reloading current bubbles…</string>
     <string name="link_loaded_with_app">Loaded with %1$s</string>
     <string name="link_redirected">Redirected to %1$s</string>
 
