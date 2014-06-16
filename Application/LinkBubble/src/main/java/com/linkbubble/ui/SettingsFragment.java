@@ -170,6 +170,20 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             });
         }
 
+        final CheckBoxPreference articleModePreference = (CheckBoxPreference)findPreference(Settings.KEY_ARTICLE_MODE_PREFERENCE);
+        if (DRM.isLicensed() == false) {
+            showProBanner(articleModePreference);
+            articleModePreference.setChecked(false);
+            articleModePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    articleModePreference.setChecked(false);
+                    upsellPro(R.string.upgrade_article_mode);
+                    return true;
+                }
+            });
+        }
+
         final CheckBoxPreference okGooglePreference = (CheckBoxPreference)findPreference(Settings.KEY_OK_GOOGLE_PREFERENCE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (DRM.isLicensed()) {
@@ -491,7 +505,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         }
 
         TextView textView = new TextView(getActivity());
-        int padding = (int) Config.dpToPx(8);
+        int padding = getResources().getDimensionPixelSize(R.dimen.upgrade_to_pro_dialog_padding);
         textView.setPadding(padding, padding, padding, padding);
         textView.setText(getString(stringId) + "\n\n" + getString(R.string.upgrade_from_settings_summary));
 
