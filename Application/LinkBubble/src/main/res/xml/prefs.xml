@@ -65,12 +65,13 @@
         <PreferenceScreen
             android:key="preference_more"
             android:title="@string/preference_more_title"
+            android:summary="@string/preference_more_summary"
             >
 
             <CheckBoxPreference
                 android:key="preference_ok_google"
                 android:title="@string/preference_ok_google_title"
-                android:summary="@string/preference_ok_google_summary"
+                android:summary="@string/preference_ok_google_summary_long"
                 android:defaultValue="false"
                 />
 
