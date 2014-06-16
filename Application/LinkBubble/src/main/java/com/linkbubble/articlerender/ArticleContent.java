@@ -193,9 +193,15 @@ public class ArticleContent {
 
         // Ignore the media sites
         String host = url.getHost();
-        if (host.contains("google.com") || host.equals("imgur.com") || host.equals("instagram.com") || host.equals("reddit.com")
-                || host.equals("twitter.com") || host.equals("vine.co") || host.equals("vimeo.com") || host.equals("youtube.com")) {
+        if (host.contains("google.com") || host.equals("imgur.com") || host.equals("instagram.com") || host.equals("linkbubble.com")
+                || host.equals("reddit.com") || host.equals("twitter.com") || host.equals("vine.co") || host.equals("vimeo.com")
+                || host.equals("youtube.com")) {
             Log.d(TAG, "ignore host for url: " + url.toString());
+            return false;
+        }
+
+        // Ignore the Link Bubble welcome page
+        if (path.equals("/linkbubble/welcome.html")) {
             return false;
         }
 
