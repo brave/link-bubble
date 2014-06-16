@@ -1,6 +1,7 @@
 package com.linkbubble.articlerender;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ public class ArticleRenderer {
 
         display(articleContent, false);
 
+        Log.d("Article", "ArticleRenderer()");
     }
 
     public void display(ArticleContent articleContent) {
@@ -28,11 +30,13 @@ public class ArticleRenderer {
         mWebView.stopLoading();
         String urlAsString = articleContent.mUrl.toString();
         mWebView.loadDataWithBaseURL(urlAsString, articleContent.mPageHtml, "text/html", "utf-8", urlAsString);
+        Log.d("Article", ".display() - " + (reuse ? "REUSE" : "NEW") + ", url:" + articleContent.mUrl.toString());
     }
 
     public void destroy() {
         if (mWebView != null) {
             mWebView.destroy();
+            Log.d("Article", "ArticleRenderer.destroy()");
         }
     }
 
