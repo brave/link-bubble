@@ -98,6 +98,13 @@
         android:layout_height="fill_parent"
         android:layout_marginTop="@dimen/webview_margin_top"/>
 
+    <View
+        android:id="@+id/article_renderer_placeholder"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="@dimen/webview_margin_top"
+        android:visibility="invisible"/>
+
     <LinearLayout
         android:id="@+id/request_location_container"
         android:layout_width="match_parent"

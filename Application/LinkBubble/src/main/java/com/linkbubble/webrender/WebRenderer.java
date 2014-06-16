@@ -4,6 +4,7 @@ package com.linkbubble.webrender;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.View;
+import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.util.YouTubeEmbedHelper;
 
 import java.net.MalformedURLException;
@@ -34,7 +35,7 @@ public abstract class WebRenderer {
         public void onPageInspectorYouTubeEmbedFound();
         public void onPageInspectorTouchIconLoaded(Bitmap bitmap, String pageUrl);
         public void onPageInspectorDropDownWarningClick();
-        public void onArticleModeHtmlReady();
+        public void onArticleContentReady(ArticleContent articleContent);
     }
 
     public enum Type {
@@ -113,5 +114,7 @@ public abstract class WebRenderer {
         return mMode;
     }
 
-    public boolean articleModeContentReady() {return false;}
+    public ArticleContent getArticleContent() {
+        return null;
+    }
 }
