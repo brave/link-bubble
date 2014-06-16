@@ -20,7 +20,7 @@ public class ArticleContent {
     public String mText;
     public URL mUrl;
 
-    public static ArticleContent getArticleModeContent(Context context, JResult result) {
+    public static ArticleContent extract(Context context, JResult result) {
         ArticleContent articleModeContent = new ArticleContent();
 
         String urlAsString = result.getCanonicalUrl();

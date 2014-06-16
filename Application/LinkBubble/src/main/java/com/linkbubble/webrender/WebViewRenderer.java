@@ -42,10 +42,7 @@ import com.linkbubble.util.YouTubeEmbedHelper;
 import de.jetwick.snacktory.HtmlFetcher;
 import de.jetwick.snacktory.JResult;
 
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 class WebViewRenderer extends WebRenderer {
 
@@ -64,7 +61,7 @@ class WebViewRenderer extends WebRenderer {
     private Boolean mIsDestroyed = false;
 
     private BuildArticleModeContentTask mBuildArticleModeContentTask;
-    private ArticleContent mArticleModeContent;
+    private ArticleContent mArticleContent;
 
     public WebViewRenderer(Context context, Controller controller, View webRendererPlaceholder, String tag) {
         super(context, controller, webRendererPlaceholder);
@@ -152,7 +149,7 @@ class WebViewRenderer extends WebRenderer {
         if (mBuildArticleModeContentTask != null) {
             mBuildArticleModeContentTask.cancel(true);
         }
-        mArticleModeContent = null;
+        mArticleContent = null;
 
         mMode = mode;
 
@@ -191,7 +188,7 @@ class WebViewRenderer extends WebRenderer {
         if (mBuildArticleModeContentTask != null) {
             mBuildArticleModeContentTask.cancel(true);
         }
-        mArticleModeContent = null;
+        mArticleContent = null;
 
         mWebView.stopLoading();
 
@@ -587,30 +584,35 @@ class WebViewRenderer extends WebRenderer {
                 return;
             }
 
-            mArticleModeContent = ArticleContent.getArticleModeContent(mContext, result);
+            mArticleContent = ArticleContent.extract(mContext, result);
 
-            if (mArticleModeContent == null) {
+            if (mArticleContent == null) {
                 return;
             }
 
             String urlAsString = null;
-            if (mArticleModeContent.mUrl != null) {
-                setUrl(mArticleModeContent.mUrl);
-                urlAsString = mArticleModeContent.mUrl.toString();
+            if (mArticleContent.mUrl != null) {
+                setUrl(mArticleContent.mUrl);
+                urlAsString = mArticleContent.mUrl.toString();
             }
 
             if (urlAsString == null) {
                 return;
             }
 
-            if (mArticleModeContent.mText.isEmpty()) {
+            if (mArticleContent.mText.isEmpty()) {
                 Log.d(TAG, "No text found for - forcing to Web mode");
                 loadUrl(getUrl(), Mode.Web);
                 return;
             }
 
-            mController.onArticleModeHtmlReady();
+            mController.onArticleContentReady(mArticleContent);
         }
+    }
+
+    @Override
+    public ArticleContent getArticleContent() {
+        return mArticleContent;
     }
 
 }
