@@ -895,7 +895,7 @@ public class Settings {
         return mSharedPreferences.getBoolean("auto_load_url", false);
     }
 
-    public boolean getOkGooglePreference() {
+    public boolean getOkGoogleEnabled() {
         if (DRM.isLicensed() == false) {
             return false;
         }
