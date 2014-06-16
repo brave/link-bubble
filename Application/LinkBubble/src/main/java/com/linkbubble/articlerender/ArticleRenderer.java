@@ -1,11 +1,13 @@
 package com.linkbubble.articlerender;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.DownloadListener;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import com.linkbubble.Constant;
 import com.linkbubble.util.Util;
@@ -19,10 +21,12 @@ public class ArticleRenderer {
         public void onDownloadStart(String urlAsString);
         public boolean onBackPressed();
         public void onShowBrowserPrompt();
+        public void onFirstPageLoadStarted();
     }
     
     private WebView mWebView;
     private boolean mIsDestroyed = false;
+    private boolean mFirstPageLoadTriggered = false;
     private Controller mController;
 
     public ArticleRenderer(Context context, Controller controller, ArticleContent articleContent, View articleRendererPlaceholder) {
@@ -35,6 +39,8 @@ public class ArticleRenderer {
         mWebView.setDownloadListener(mDownloadListener);
         mWebView.setOnLongClickListener(mOnWebViewLongClickListener);
         mWebView.setOnKeyListener(mOnKeyListener);
+
+        mWebView.setWebViewClient(mWebViewClient);
 
         display(articleContent, false);
 
@@ -69,6 +75,15 @@ public class ArticleRenderer {
             mWebView.stopLoading();
         }
     }
+
+    WebViewClient mWebViewClient = new WebViewClient() {
+        @Override
+        public void onPageStarted(WebView view, String urlAsString, Bitmap favIcon) {
+            if (mFirstPageLoadTriggered == false) {
+                mController.onFirstPageLoadStarted();
+            }
+        }
+    };
 
     DownloadListener mDownloadListener = new DownloadListener() {
         @Override
@@ -110,7 +125,6 @@ public class ArticleRenderer {
         @Override
         public boolean onKey(View v, int keyCode, KeyEvent event) {
             if (event.getAction() == KeyEvent.ACTION_DOWN && mIsDestroyed == false) {
-                WebView webView = (WebView) v;
                 switch (keyCode) {
                     case KeyEvent.KEYCODE_BACK: {
                         return mController.onBackPressed();

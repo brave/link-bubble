@@ -791,6 +791,14 @@ public class ContentView extends FrameLayout {
         public void onShowBrowserPrompt() {
             ContentView.this.onShowBrowserPrompt();
         }
+
+        @Override
+        public void onFirstPageLoadStarted() {
+            // Ugly hack to get ensure the Back button works in Article mode
+            if (mArticleModeButton.getState() == ArticleModeButton.State.Web) {
+                mWebRenderer.getView().setVisibility(View.INVISIBLE);
+            }
+        }
     };;
 
     OnClickListener mOnArticleModeButtonClickListener = new OnClickListener() {
@@ -809,12 +817,12 @@ public class ContentView extends FrameLayout {
                     break;
 
                 case Web:
-                    mWebRenderer.getView().setVisibility(View.INVISIBLE);
                     if (mArticleRenderer == null) {
                         View articleRendererPlaceholder = findViewById(R.id.article_renderer_placeholder);
                         mArticleRenderer = new ArticleRenderer(getContext(), mArticleModeController, articleContent, articleRendererPlaceholder);
                     } else {
                         mArticleRenderer.display(articleContent);
+                        mWebRenderer.getView().setVisibility(View.INVISIBLE);
                     }
                     mArticleRenderer.getView().setVisibility(VISIBLE);
                     break;
