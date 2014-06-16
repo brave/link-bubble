@@ -3810,6 +3810,7 @@ com.google.android.gms.wallet.l: l()
 com.google.android.gms.wallet.m: m()
 com.google.android.gms.wallet.n: n()
 com.google.android.gms.wallet.o: o()
+com.google.android.hotword.service.IHotwordService$Stub: IHotwordService$Stub()
 com.google.gson.DefaultDateTypeAdapter: DefaultDateTypeAdapter()
 com.google.gson.FieldNamingPolicy
 com.google.gson.FieldNamingPolicy: com.google.gson.FieldNamingPolicy[] values()
@@ -3935,6 +3936,7 @@ com.linkbubble.MainController: void onIncognitoModeChanged(com.linkbubble.ui.Set
 com.linkbubble.MainController: void onEndCollapseTransition(com.linkbubble.MainController$EndCollapseTransitionEvent)
 com.linkbubble.MainController: void onBeginExpandTransition(com.linkbubble.MainController$BeginExpandTransitionEvent)
 com.linkbubble.MainController: void onStateChangedEvent(com.linkbubble.MainApplication$StateChangedEvent)
+com.linkbubble.MainController: void onEndAnimateFinalTabAway(com.linkbubble.MainController$EndAnimateFinalTabAwayEvent)
 com.linkbubble.MainController$BeginAnimateFinalTabAwayEvent
 com.linkbubble.MainController$BeginAnimateFinalTabAwayEvent: MainController$BeginAnimateFinalTabAwayEvent()
 com.linkbubble.MainController$BeginBubbleDragEvent
@@ -3947,10 +3949,14 @@ com.linkbubble.MainController$CurrentTabChangedEvent
 com.linkbubble.MainController$CurrentTabChangedEvent: MainController$CurrentTabChangedEvent()
 com.linkbubble.MainController$DraggableBubbleMovedEvent
 com.linkbubble.MainController$DraggableBubbleMovedEvent: MainController$DraggableBubbleMovedEvent()
+com.linkbubble.MainController$EndAnimateFinalTabAwayEvent
+com.linkbubble.MainController$EndAnimateFinalTabAwayEvent: MainController$EndAnimateFinalTabAwayEvent()
 com.linkbubble.MainController$EndBubbleDragEvent
 com.linkbubble.MainController$EndBubbleDragEvent: MainController$EndBubbleDragEvent()
 com.linkbubble.MainController$EndCollapseTransitionEvent
 com.linkbubble.MainController$EndCollapseTransitionEvent: MainController$EndCollapseTransitionEvent()
+com.linkbubble.MainController$EndExpandTransitionEvent
+com.linkbubble.MainController$EndExpandTransitionEvent: MainController$EndExpandTransitionEvent()
 com.linkbubble.MainController$OrientationChangedEvent
 com.linkbubble.MainController$OrientationChangedEvent: MainController$OrientationChangedEvent()
 com.linkbubble.MainService
@@ -4020,6 +4026,7 @@ com.linkbubble.R$color: int request_location_box_color
 com.linkbubble.R$color: int white_button_normal
 com.linkbubble.R$color: int white_button_pressed
 com.linkbubble.R$color: R$color()
+com.linkbubble.R$dimen: int app_icon_size
 com.linkbubble.R$dimen: int app_stack_padding
 com.linkbubble.R$dimen: int app_stack_x_offset
 com.linkbubble.R$dimen: int app_stack_y_offset
@@ -4053,12 +4060,18 @@ com.linkbubble.R$dimen: int content_view_button_max_height
 com.linkbubble.R$dimen: int favicon_bg
 com.linkbubble.R$dimen: int favicon_largest_interesting_size
 com.linkbubble.R$dimen: int home_logo_margin_right
+com.linkbubble.R$dimen: int preference_icon_minWidth
+com.linkbubble.R$dimen: int preference_item_padding_left
+com.linkbubble.R$dimen: int preference_item_padding_right
+com.linkbubble.R$dimen: int preference_ribbon_width
+com.linkbubble.R$dimen: int prompt_button_right_margin
 com.linkbubble.R$dimen: int requesting_location_box_height
 com.linkbubble.R$dimen: int stat_bubble_size
 com.linkbubble.R$dimen: int stat_bubble_text_size
 com.linkbubble.R$dimen: int stat_height
 com.linkbubble.R$dimen: int toolbar_header
 com.linkbubble.R$dimen: int toolbar_height
+com.linkbubble.R$dimen: int upgrade_to_pro_dialog_padding
 com.linkbubble.R$dimen: int webview_margin_top
 com.linkbubble.R$dimen: int youtube_emebed_item_height
 com.linkbubble.R$dimen: R$dimen()
@@ -4105,8 +4118,10 @@ com.linkbubble.R$drawable: int ic_action_clock_light
 com.linkbubble.R$drawable: int ic_action_gear
 com.linkbubble.R$drawable: int ic_action_gear_dark
 com.linkbubble.R$drawable: int ic_action_gear_light
+com.linkbubble.R$drawable: int ic_action_globe
 com.linkbubble.R$drawable: int ic_action_google_play_dark
 com.linkbubble.R$drawable: int ic_action_google_play_light
+com.linkbubble.R$drawable: int ic_action_list
 com.linkbubble.R$drawable: int ic_action_overflow
 com.linkbubble.R$drawable: int ic_action_overflow_light
 com.linkbubble.R$drawable: int ic_action_overflow_round
@@ -4124,9 +4139,11 @@ com.linkbubble.R$drawable: int ic_plusone_standard_off_client
 com.linkbubble.R$drawable: int ic_plusone_tall_off_client
 com.linkbubble.R$drawable: int ic_stat
 com.linkbubble.R$drawable: int ic_transparent
+com.linkbubble.R$drawable: int ic_undobar_undo
 com.linkbubble.R$drawable: int loading_dots
 com.linkbubble.R$drawable: int masked_background
 com.linkbubble.R$drawable: int masked_background_half
+com.linkbubble.R$drawable: int preference_pro_ribbon
 com.linkbubble.R$drawable: int profile_thumb_lacy
 com.linkbubble.R$drawable: int profile_thumb_watson
 com.linkbubble.R$drawable: int prompt
@@ -4154,17 +4171,21 @@ com.linkbubble.R$id: int add_bubble_button
 com.linkbubble.R$id: int animate_bubble_button
 com.linkbubble.R$id: int answer_text_view
 com.linkbubble.R$id: int apps_list
+com.linkbubble.R$id: int article_mode_button
+com.linkbubble.R$id: int article_renderer_placeholder
 com.linkbubble.R$id: int back_indicator
 com.linkbubble.R$id: int background
 com.linkbubble.R$id: int badge_view
 com.linkbubble.R$id: int big_white_button
 com.linkbubble.R$id: int body_text
 com.linkbubble.R$id: int bubble_flow
+com.linkbubble.R$id: int checked_text_view
 com.linkbubble.R$id: int close_all_view
 com.linkbubble.R$id: int content
 com.linkbubble.R$id: int content_text_container
 com.linkbubble.R$id: int content_toolbar
 com.linkbubble.R$id: int debug_text
+com.linkbubble.R$id: int expanded_root
 com.linkbubble.R$id: int faq_list
 com.linkbubble.R$id: int favicon
 com.linkbubble.R$id: int fragment
@@ -4175,7 +4196,6 @@ com.linkbubble.R$id: int hybrid
 com.linkbubble.R$id: int icon
 com.linkbubble.R$id: int image
 com.linkbubble.R$id: int image_view
-com.linkbubble.R$id: int item_article_mode
 com.linkbubble.R$id: int item_close_tab
 com.linkbubble.R$id: int item_copy_link
 com.linkbubble.R$id: int item_open_in_browser
@@ -4198,9 +4218,10 @@ com.linkbubble.R$id: int overflow_button
 com.linkbubble.R$id: int page_date
 com.linkbubble.R$id: int page_title
 com.linkbubble.R$id: int page_url
+com.linkbubble.R$id: int pro_banner
 com.linkbubble.R$id: int progressIndicator
 com.linkbubble.R$id: int prompt
-com.linkbubble.R$id: int prompt_button
+com.linkbubble.R$id: int prompt_button_text_view
 com.linkbubble.R$id: int prompt_close_button
 com.linkbubble.R$id: int prompt_input_field
 com.linkbubble.R$id: int prompt_message
@@ -4223,15 +4244,14 @@ com.linkbubble.R$id: int stat_container
 com.linkbubble.R$id: int stats_flip_view
 com.linkbubble.R$id: int terrain
 com.linkbubble.R$id: int text
-com.linkbubble.R$id: int textView1
 com.linkbubble.R$id: int time_per_link
 com.linkbubble.R$id: int time_total
 com.linkbubble.R$id: int title_text
 com.linkbubble.R$id: int top_buttons_container
 com.linkbubble.R$id: int trial_time_view
-com.linkbubble.R$id: int upgrade_button
 com.linkbubble.R$id: int url_text
 com.linkbubble.R$id: int watson_icon
+com.linkbubble.R$id: int web_renderer_container
 com.linkbubble.R$id: int web_renderer_placeholder
 com.linkbubble.R$id: int x
 com.linkbubble.R$id: int y
@@ -4243,10 +4263,15 @@ com.linkbubble.R$integer: int google_play_services_version
 com.linkbubble.R$integer: R$integer()
 com.linkbubble.R$layout: int action_picker_item
 com.linkbubble.R$layout: int activity_bubble_flow
+com.linkbubble.R$layout: int activity_expanded
 com.linkbubble.R$layout: int activity_history
 com.linkbubble.R$layout: int activity_home
 com.linkbubble.R$layout: int activity_settings
+com.linkbubble.R$layout: int app_picker_list
+com.linkbubble.R$layout: int app_picker_list_item_multiple
+com.linkbubble.R$layout: int app_picker_list_item_single
 com.linkbubble.R$layout: int history_item
+com.linkbubble.R$layout: int preference_pro_banner
 com.linkbubble.R$layout: int view_accept_terms
 com.linkbubble.R$layout: int view_bubble_draggable
 com.linkbubble.R$layout: int view_bubble_flow
@@ -4257,7 +4282,6 @@ com.linkbubble.R$layout: int view_credits
 com.linkbubble.R$layout: int view_diffbot
 com.linkbubble.R$layout: int view_faq
 com.linkbubble.R$layout: int view_faq_item
-com.linkbubble.R$layout: int view_intercept_links_from_app_list
 com.linkbubble.R$layout: int view_javascript_prompt
 com.linkbubble.R$layout: int view_loading
 com.linkbubble.R$layout: int view_preference_text_zoom
@@ -4271,7 +4295,6 @@ com.linkbubble.R$layout: R$layout()
 com.linkbubble.R$menu: int history_activity
 com.linkbubble.R$menu: R$menu()
 com.linkbubble.R$string: int accept_terms_and_privacy
-com.linkbubble.R$string: int action_article_mode
 com.linkbubble.R$string: int action_cancel
 com.linkbubble.R$string: int action_clear_data
 com.linkbubble.R$string: int action_close_all
@@ -4286,11 +4309,13 @@ com.linkbubble.R$string: int action_remove
 com.linkbubble.R$string: int action_settings
 com.linkbubble.R$string: int action_share
 com.linkbubble.R$string: int action_stop
+com.linkbubble.R$string: int action_undo
 com.linkbubble.R$string: int action_upgrade_to_pro
 com.linkbubble.R$string: int action_use_default
 com.linkbubble.R$string: int activity_resolver_use_always
 com.linkbubble.R$string: int activity_resolver_use_once
 com.linkbubble.R$string: int app_name
+com.linkbubble.R$string: int article_mode_changed_reloading_current
 com.linkbubble.R$string: int auth_client_needs_enabling_title
 com.linkbubble.R$string: int auth_client_needs_installation_title
 com.linkbubble.R$string: int auth_client_needs_update_title
@@ -4346,6 +4371,7 @@ com.linkbubble.R$string: int credits_watson_credit
 com.linkbubble.R$string: int credits_watson_name
 com.linkbubble.R$string: int default_browser_set
 com.linkbubble.R$string: int download_activity_label
+com.linkbubble.R$string: int duplicate_link_will_not_be_loaded
 com.linkbubble.R$string: int empty
 com.linkbubble.R$string: int erase_all_history_message
 com.linkbubble.R$string: int erase_all_history_title
@@ -4353,6 +4379,8 @@ com.linkbubble.R$string: int faq_alternate_payment_answer
 com.linkbubble.R$string: int faq_alternate_payment_question
 com.linkbubble.R$string: int faq_app_internal_browser_answer
 com.linkbubble.R$string: int faq_app_internal_browser_question
+com.linkbubble.R$string: int faq_article_mode_answer
+com.linkbubble.R$string: int faq_article_mode_question
 com.linkbubble.R$string: int faq_back_button_minimize_answer
 com.linkbubble.R$string: int faq_back_button_minimize_question
 com.linkbubble.R$string: int faq_beta_programme_answer
@@ -4385,6 +4413,7 @@ com.linkbubble.R$string: int faq_report_bug_answer
 com.linkbubble.R$string: int faq_report_bug_question
 com.linkbubble.R$string: int faq_roadmap_answer
 com.linkbubble.R$string: int faq_roadmap_question
+com.linkbubble.R$string: int faq_section_functionality
 com.linkbubble.R$string: int faq_section_general
 com.linkbubble.R$string: int faq_section_issues
 com.linkbubble.R$string: int faq_title
@@ -4412,9 +4441,8 @@ com.linkbubble.R$string: int no_default_browser
 com.linkbubble.R$string: int notification_summary
 com.linkbubble.R$string: int notification_title
 com.linkbubble.R$string: int pick_default_app
+com.linkbubble.R$string: int preference_article_mode_summary
 com.linkbubble.R$string: int preference_article_mode_title
-com.linkbubble.R$string: int preference_auto_article_mode_summary
-com.linkbubble.R$string: int preference_auto_article_mode_title
 com.linkbubble.R$string: int preference_auto_content_display_link_loaded_summary
 com.linkbubble.R$string: int preference_auto_content_display_link_loaded_title
 com.linkbubble.R$string: int preference_category_browser
@@ -4450,8 +4478,13 @@ com.linkbubble.R$string: int preference_intercept_links_from_note
 com.linkbubble.R$string: int preference_intercept_links_from_title
 com.linkbubble.R$string: int preference_left_consume_bubble_title
 com.linkbubble.R$string: int preference_more
+com.linkbubble.R$string: int preference_more_summary
+com.linkbubble.R$string: int preference_more_title
 com.linkbubble.R$string: int preference_my_other_apps_summary
 com.linkbubble.R$string: int preference_my_other_apps_title
+com.linkbubble.R$string: int preference_ok_google_summary
+com.linkbubble.R$string: int preference_ok_google_summary_long
+com.linkbubble.R$string: int preference_ok_google_title
 com.linkbubble.R$string: int preference_osl_title
 com.linkbubble.R$string: int preference_privacy_policy_title
 com.linkbubble.R$string: int preference_right_consume_bubble_title
@@ -4461,6 +4494,7 @@ com.linkbubble.R$string: int preference_scan_for_youtube_embeds_summary
 com.linkbubble.R$string: int preference_scan_for_youtube_embeds_title
 com.linkbubble.R$string: int preference_set_default_browser_summary
 com.linkbubble.R$string: int preference_set_default_browser_title
+com.linkbubble.R$string: int preference_show_undo_close_tab_title
 com.linkbubble.R$string: int preference_show_welcome_message_title
 com.linkbubble.R$string: int preference_terms_of_service_title
 com.linkbubble.R$string: int preference_user_agent_title
@@ -4511,13 +4545,20 @@ com.linkbubble.R$string: int title_settings
 com.linkbubble.R$string: int title_youtube_embed_to_load
 com.linkbubble.R$string: int trial_time_on_click
 com.linkbubble.R$string: int unable_to_launch_app
+com.linkbubble.R$string: int undo_close_tab_no_title
+com.linkbubble.R$string: int undo_close_tab_title
 com.linkbubble.R$string: int unsupported_drop_down_default_browser
 com.linkbubble.R$string: int unsupported_drop_down_no_default_browser
 com.linkbubble.R$string: int unsupported_scheme
 com.linkbubble.R$string: int unsupported_scheme_default_browser
 com.linkbubble.R$string: int unsupported_scheme_no_default_browser
+com.linkbubble.R$string: int upgrade
+com.linkbubble.R$string: int upgrade_article_mode
+com.linkbubble.R$string: int upgrade_from_settings_summary
 com.linkbubble.R$string: int upgrade_incentive_one_app
 com.linkbubble.R$string: int upgrade_incentive_one_link
+com.linkbubble.R$string: int upgrade_ok_google
+com.linkbubble.R$string: int upgrade_to_pro
 com.linkbubble.R$string: int user_agent_changed_reloading_current
 com.linkbubble.R$string: int valid_license_detected
 com.linkbubble.R$string: int welcome_page_intro_end
@@ -4549,10 +4590,13 @@ com.linkbubble.R$style: int ActiveTheme
 com.linkbubble.R$style: int BigWhiteButton
 com.linkbubble.R$style: int ContentTheme
 com.linkbubble.R$style: int ContentThemeBase
+com.linkbubble.R$style: int ExpandedModeActionBar
+com.linkbubble.R$style: int ExpandedModeBaseTheme
+com.linkbubble.R$style: int ExpandedModeTheme
 com.linkbubble.R$style: int HomeContentContainer
 com.linkbubble.R$style: int HomeTheme
 com.linkbubble.R$style: int Prompt
-com.linkbubble.R$style: int PromptButton
+com.linkbubble.R$style: int PromptButtonTextView
 com.linkbubble.R$style: int PromptMessage
 com.linkbubble.R$style: int SectionHeaderTheme
 com.linkbubble.R$style: int ToolbarButton
@@ -4616,6 +4660,7 @@ com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent: Settings$LinkLoadTimeStat
 com.linkbubble.Settings$LinkLoadType
 com.linkbubble.Settings$LinkLoadType: com.linkbubble.Settings$LinkLoadType[] values()
 com.linkbubble.Settings$LinkLoadType: com.linkbubble.Settings$LinkLoadType valueOf(java.lang.String)
+com.linkbubble.articlerender.ArticleContent: ArticleContent()
 com.linkbubble.db.FaviconRecord: FaviconRecord()
 com.linkbubble.db.HistoryRecord: HistoryRecord()
 com.linkbubble.db.HistoryRecord$ChangedEvent
@@ -4626,6 +4671,14 @@ com.linkbubble.physics.DraggableHelper$MoveEvent: DraggableHelper$MoveEvent()
 com.linkbubble.physics.DraggableHelper$ReleaseEvent: DraggableHelper$ReleaseEvent()
 com.linkbubble.physics.DraggableHelper$TouchEvent: DraggableHelper$TouchEvent()
 com.linkbubble.physics.FlingTracker: FlingTracker()
+com.linkbubble.ui.ArticleModeButton
+com.linkbubble.ui.ArticleModeButton: ArticleModeButton(android.content.Context)
+com.linkbubble.ui.ArticleModeButton: ArticleModeButton(android.content.Context,android.util.AttributeSet)
+com.linkbubble.ui.ArticleModeButton: ArticleModeButton(android.content.Context,android.util.AttributeSet,int)
+com.linkbubble.ui.ArticleModeButton: void setState(com.linkbubble.ui.ArticleModeButton$State)
+com.linkbubble.ui.ArticleModeButton$State
+com.linkbubble.ui.ArticleModeButton$State: com.linkbubble.ui.ArticleModeButton$State[] values()
+com.linkbubble.ui.ArticleModeButton$State: com.linkbubble.ui.ArticleModeButton$State valueOf(java.lang.String)
 com.linkbubble.ui.BadgeView
 com.linkbubble.ui.BadgeView: BadgeView(android.content.Context)
 com.linkbubble.ui.BadgeView: BadgeView(android.content.Context,android.util.AttributeSet)
@@ -4723,6 +4776,15 @@ com.linkbubble.ui.DownloadHandlerActivity
 com.linkbubble.ui.DownloadHandlerActivity: DownloadHandlerActivity()
 com.linkbubble.ui.EntryActivity
 com.linkbubble.ui.EntryActivity: EntryActivity()
+com.linkbubble.ui.ExpandedActivity
+com.linkbubble.ui.ExpandedActivity: ExpandedActivity()
+com.linkbubble.ui.ExpandedActivity: void setWebRenderer(android.view.View)
+com.linkbubble.ui.ExpandedActivity: void onBeginCollapseTransition(com.linkbubble.MainController$BeginCollapseTransitionEvent)
+com.linkbubble.ui.ExpandedActivity: void onMinimizeExpandedActivity(com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent)
+com.linkbubble.ui.ExpandedActivity: void onEnableHotwordSevice(com.linkbubble.ui.ExpandedActivity$EnableHotwordSeviceEvent)
+com.linkbubble.ui.ExpandedActivity$EnableHotwordSeviceEvent
+com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent
+com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent: ExpandedActivity$MinimizeExpandedActivityEvent()
 com.linkbubble.ui.FAQItem
 com.linkbubble.ui.FAQItem: FAQItem(android.content.Context)
 com.linkbubble.ui.FAQItem: FAQItem(android.content.Context,android.util.AttributeSet)
@@ -4752,6 +4814,7 @@ com.linkbubble.ui.HomeActivity
 com.linkbubble.ui.HomeActivity: HomeActivity()
 com.linkbubble.ui.HomeActivity: void onLinkLoadTimeStatsUpdatedEvent(com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent)
 com.linkbubble.ui.HomeActivity: void onStateChangedEvent(com.linkbubble.MainApplication$StateChangedEvent)
+com.linkbubble.ui.HomeActivity: void onTrialTimeStartTimeReceivedEvent(com.linkbubble.MainApplication$TrialTimeStartTimeReceivedEvent)
 com.linkbubble.ui.OnSwipeTouchListener: OnSwipeTouchListener()
 com.linkbubble.ui.OpenEmbedButton
 com.linkbubble.ui.OpenEmbedButton: OpenEmbedButton(android.content.Context)
@@ -4789,6 +4852,12 @@ com.linkbubble.util.ActionItem$3: ActionItem$3()
 com.linkbubble.util.ActionItem$8: ActionItem$8()
 com.linkbubble.util.ActionItem$9: ActionItem$9()
 com.linkbubble.util.Analytics: Analytics()
+com.linkbubble.util.AppPickerList: AppPickerList()
+com.linkbubble.util.AppPickerList$AppInfoComparator: AppPickerList$AppInfoComparator()
+com.linkbubble.util.AppPickerList$AppPickerListInfo: AppPickerList$AppPickerListInfo()
+com.linkbubble.util.AppPickerList$SelectionType
+com.linkbubble.util.AppPickerList$SelectionType: com.linkbubble.util.AppPickerList$SelectionType[] values()
+com.linkbubble.util.AppPickerList$SelectionType: com.linkbubble.util.AppPickerList$SelectionType valueOf(java.lang.String)
 com.linkbubble.util.CrashTracking: CrashTracking()
 com.linkbubble.util.Encrypt: Encrypt()
 com.linkbubble.util.NetworkConnectivity: NetworkConnectivity()
@@ -4799,6 +4868,7 @@ com.linkbubble.util.PageInspector$JSEmbedHandler: void onTouchIconLinks(java.lan
 com.linkbubble.util.PageInspector$JSEmbedHandler: void onYouTubeEmbeds(java.lang.String)
 com.linkbubble.util.PageInspector$JSEmbedHandler: void onDropDownFound()
 com.linkbubble.util.PageInspector$JSEmbedHandler: void onDropDownWarningClick()
+com.linkbubble.util.PageInspector$JSEmbedHandler: void fetchHtml(java.lang.String)
 com.linkbubble.util.SafeUrlSpan
 com.linkbubble.util.ScaleUpAnimHelper$AnimState
 com.linkbubble.util.ScaleUpAnimHelper$AnimState: com.linkbubble.util.ScaleUpAnimHelper$AnimState[] values()
