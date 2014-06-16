@@ -12,16 +12,19 @@ public class ArticleRenderer {
     private WebView mWebView;
 
     public ArticleRenderer(Context context, ArticleContent articleContent, View articleRendererPlaceholder) {
-        if (mWebView == null) {
-            mWebView = new WebView(context);
-            mWebView.setLayoutParams(articleRendererPlaceholder.getLayoutParams());
-            Util.replaceViewAtPosition(articleRendererPlaceholder, mWebView);
-        }
+        mWebView = new WebView(context);
+        mWebView.setLayoutParams(articleRendererPlaceholder.getLayoutParams());
+        Util.replaceViewAtPosition(articleRendererPlaceholder, mWebView);
 
-        display(articleContent);
+        display(articleContent, false);
+
     }
 
     public void display(ArticleContent articleContent) {
+        display(articleContent, true);
+    }
+
+    private void display(ArticleContent articleContent, boolean reuse) {
         mWebView.stopLoading();
         String urlAsString = articleContent.mUrl.toString();
         mWebView.loadDataWithBaseURL(urlAsString, articleContent.mPageHtml, "text/html", "utf-8", urlAsString);

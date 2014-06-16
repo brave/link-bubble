@@ -113,6 +113,7 @@ class WebViewRenderer extends WebRenderer {
     public void destroy() {
         mIsDestroyed = true;
         mWebView.destroy();
+        Log.d("Article", "WebViewRenderer.destroy()");
     }
 
     @Override
@@ -231,6 +232,7 @@ class WebViewRenderer extends WebRenderer {
         int flags = mController.getPageInspectFlags();
         if (fetchHtml && mBuildArticleContentTask == null) {
             flags |= PageInspector.INSPECT_FETCH_HTML;
+            Log.d("Article", "runPageInspector() - fetchHtml");
         }
         mPageInspector.run(mWebView, flags);
     }
