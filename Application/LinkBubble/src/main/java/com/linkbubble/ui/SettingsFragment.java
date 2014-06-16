@@ -849,7 +849,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setView(layout);
-        builder.setIcon(0);
+        builder.setIcon(R.drawable.ic_alert_icon);
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
