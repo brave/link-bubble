@@ -151,6 +151,7 @@
     # ensure event handler functions are not stripped
     public void onBeginExpandTransition(com.linkbubble.MainController$BeginExpandTransitionEvent);
     public void onEndCollapseTransition(com.linkbubble.MainController$EndCollapseTransitionEvent);
+    public void onEndExpandTransition(com.linkbubble.MainController$EndExpandTransitionEvent);
     public void onIncognitoModeChanged(com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent);
     public void onStateChangedEvent(com.linkbubble.MainApplication$StateChangedEvent);
     public void onEndAnimateFinalTabAway(com.linkbubble.MainController$EndAnimateFinalTabAwayEvent);
