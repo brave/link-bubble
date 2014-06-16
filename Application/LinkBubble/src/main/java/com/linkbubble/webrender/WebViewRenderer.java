@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -39,8 +38,6 @@ import com.linkbubble.util.Analytics;
 import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
-import de.jetwick.snacktory.HtmlFetcher;
-import de.jetwick.snacktory.JResult;
 
 import java.net.URL;
 
@@ -60,7 +57,7 @@ class WebViewRenderer extends WebRenderer {
     private int mCheckForEmbedsCount;
     private Boolean mIsDestroyed = false;
 
-    private BuildArticleModeContentTask mBuildArticleModeContentTask;
+    private ArticleContent.BuildContentTask mBuildContentTask;
     private ArticleContent mArticleContent;
 
     public WebViewRenderer(Context context, Controller controller, View webRendererPlaceholder, String tag) {
@@ -146,8 +143,8 @@ class WebViewRenderer extends WebRenderer {
         String urlAsString = url.toString();
         Log.d(TAG, "loadUrl() - " + urlAsString);
 
-        if (mBuildArticleModeContentTask != null) {
-            mBuildArticleModeContentTask.cancel(true);
+        if (mBuildContentTask != null) {
+            mBuildContentTask.cancel(true);
         }
         mArticleContent = null;
 
@@ -185,8 +182,8 @@ class WebViewRenderer extends WebRenderer {
 
     @Override
     public void stopLoading() {
-        if (mBuildArticleModeContentTask != null) {
-            mBuildArticleModeContentTask.cancel(true);
+        if (mBuildContentTask != null) {
+            mBuildContentTask.cancel(true);
         }
         mArticleContent = null;
 
@@ -229,7 +226,7 @@ class WebViewRenderer extends WebRenderer {
     @Override
     public void runPageInspector() {
         int flags = mController.getPageInspectFlags();
-        if (mBuildArticleModeContentTask == null) {
+        if (mBuildContentTask == null) {
             flags |= PageInspector.INSPECT_FETCH_HTML;
         }
         mPageInspector.run(mWebView, flags);
@@ -265,8 +262,14 @@ class WebViewRenderer extends WebRenderer {
         @Override
         public void onFetchHtml(String html) {
             if (html != null && html.isEmpty() == false) {
-                mBuildArticleModeContentTask = new BuildArticleModeContentTask();
-                mBuildArticleModeContentTask.execute(getUrl().toString(), html);
+                mBuildContentTask = ArticleContent.fetchArticleContent(mContext, getUrl().toString(), html,
+                        new ArticleContent.OnFinishedListener() {
+                    @Override
+                    public void onFinished(ArticleContent articleContent) {
+                        mArticleContent = articleContent;
+                        mController.onArticleContentReady(mArticleContent);
+                    }
+                });
             }
         }
     };
@@ -554,61 +557,6 @@ class WebViewRenderer extends WebRenderer {
             });
         }
     };
-
-
-    // **Broken links
-    //
-    // [nothing displays]:
-    //  * http://www.bostonglobe.com/sports/2014/04/28/the-donald-sterling-profile-not-pretty-picture/jZx4v3EWUFdLYh9c289ODL/story.html
-
-
-    private class BuildArticleModeContentTask extends AsyncTask<String, JResult, JResult> {
-        protected JResult doInBackground(String... data) {
-
-            JResult result = null;
-            String url = data[0];
-            String pageHtml = data[1];
-            try {
-                Log.d(TAG, "GetArticleContentTask().doInBackground(): url:" + url);
-                HtmlFetcher fetcher = new HtmlFetcher();
-                result = fetcher.extract(url, pageHtml);
-            } catch (Exception ex) {
-                Log.d(TAG, ex.getLocalizedMessage(), ex);
-            }
-
-            return isCancelled() ? null : result;
-        }
-
-        protected void onPostExecute(JResult result) {
-            if (result == null) {
-                return;
-            }
-
-            mArticleContent = ArticleContent.extract(mContext, result);
-
-            if (mArticleContent == null) {
-                return;
-            }
-
-            String urlAsString = null;
-            if (mArticleContent.mUrl != null) {
-                setUrl(mArticleContent.mUrl);
-                urlAsString = mArticleContent.mUrl.toString();
-            }
-
-            if (urlAsString == null) {
-                return;
-            }
-
-            if (mArticleContent.mText.isEmpty()) {
-                Log.d(TAG, "No text found for - forcing to Web mode");
-                loadUrl(getUrl(), Mode.Web);
-                return;
-            }
-
-            mController.onArticleContentReady(mArticleContent);
-        }
-    }
 
     @Override
     public ArticleContent getArticleContent() {
