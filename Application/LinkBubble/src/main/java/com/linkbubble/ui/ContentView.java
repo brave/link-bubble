@@ -537,8 +537,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onDownloadStart(String urlAsString) {
-            openInBrowser(urlAsString);
-            MainController.get().closeTab(mOwnerTabView, true, false);
+            ContentView.this.onDownloadStart(urlAsString);
         }
 
         @Override
@@ -581,33 +580,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public boolean onBackPressed() {
-            if (mUrlStack.size() == 0) {
-                MainController.get().closeTab(mOwnerTabView, true, true);
-                return true;
-            } else {
-                mWebRenderer.stopLoading();
-                String urlBefore = mWebRenderer.getUrl().toString();
-
-                URL previousUrl = mUrlStack.pop();
-                String previousUrlAsString = previousUrl.toString();
-                mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
-                mHandledAppPickerForCurrentUrl = false;
-                mUsingLinkBubbleAsDefaultForCurrentUrl = false;
-                updateAndLoadUrl(previousUrlAsString);
-                Log.d(TAG, "[urlstack] Go back: " + urlBefore + " -> " + mWebRenderer.getUrl() + ", urlStack.size():" + mUrlStack.size());
-                updateUrlTitleAndText(previousUrlAsString);
-
-                mEventHandler.onPageLoading(mWebRenderer.getUrl());
-
-                updateAppsForUrl(null, previousUrl);
-                configureOpenInAppButton();
-                configureArticleModeButton();
-
-                mWebRenderer.resetPageInspector();
-                configureOpenEmbedButton();
-
-                return true;
-            }
+            return ContentView.this.onBackPressed();
         }
 
         @Override
@@ -617,9 +590,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onShowBrowserPrompt() {
-            showOpenInBrowserPrompt(R.string.long_press_unsupported_default_browser,
-                    R.string.long_press_unsupported_no_default_browser, mWebRenderer.getUrl().toString());
-
+            ContentView.this.onShowBrowserPrompt();
         }
 
         @Override
@@ -799,6 +770,29 @@ public class ContentView extends FrameLayout {
         }
     };
 
+    ArticleRenderer.Controller mArticleModeController = new ArticleRenderer.Controller() {
+
+        @Override
+        public void onUrlLongClick(String url) {
+            ContentView.this.onUrlLongClick(url);
+        }
+
+        @Override
+        public void onDownloadStart(String urlAsString) {
+            ContentView.this.onDownloadStart(urlAsString);
+        }
+
+        @Override
+        public boolean onBackPressed() {
+            return ContentView.this.onBackPressed();
+        }
+
+        @Override
+        public void onShowBrowserPrompt() {
+            ContentView.this.onShowBrowserPrompt();
+        }
+    };;
+
     OnClickListener mOnArticleModeButtonClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -818,7 +812,7 @@ public class ContentView extends FrameLayout {
                     mWebRenderer.getView().setVisibility(View.INVISIBLE);
                     if (mArticleRenderer == null) {
                         View articleRendererPlaceholder = findViewById(R.id.article_renderer_placeholder);
-                        mArticleRenderer = new ArticleRenderer(getContext(), articleContent, articleRendererPlaceholder);
+                        mArticleRenderer = new ArticleRenderer(getContext(), mArticleModeController, articleContent, articleRendererPlaceholder);
                     } else {
                         mArticleRenderer.display(articleContent);
                     }
@@ -932,6 +926,47 @@ public class ContentView extends FrameLayout {
             MainController.get().showNextBubble();
         }
     };
+
+    private void onDownloadStart(String urlAsString) {
+        openInBrowser(urlAsString);
+        MainController.get().closeTab(mOwnerTabView, true, false);
+    }
+
+    private boolean onBackPressed() {
+        if (mUrlStack.size() == 0) {
+            MainController.get().closeTab(mOwnerTabView, true, true);
+            return true;
+        } else {
+            mWebRenderer.stopLoading();
+            String urlBefore = mWebRenderer.getUrl().toString();
+
+            URL previousUrl = mUrlStack.pop();
+            String previousUrlAsString = previousUrl.toString();
+            mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
+            mHandledAppPickerForCurrentUrl = false;
+            mUsingLinkBubbleAsDefaultForCurrentUrl = false;
+            updateAndLoadUrl(previousUrlAsString);
+            Log.d(TAG, "[urlstack] Go back: " + urlBefore + " -> " + mWebRenderer.getUrl() + ", urlStack.size():" + mUrlStack.size());
+            updateUrlTitleAndText(previousUrlAsString);
+
+            mEventHandler.onPageLoading(mWebRenderer.getUrl());
+
+            updateAppsForUrl(null, previousUrl);
+            configureOpenInAppButton();
+            configureArticleModeButton();
+
+            mWebRenderer.resetPageInspector();
+            configureOpenEmbedButton();
+
+            return true;
+        }
+    }
+
+    public void onShowBrowserPrompt() {
+        showOpenInBrowserPrompt(R.string.long_press_unsupported_default_browser,
+                R.string.long_press_unsupported_no_default_browser, mWebRenderer.getUrl().toString());
+
+    }
 
     private void onUrlLongClick(final String urlAsString) {
         Resources resources = getResources();
