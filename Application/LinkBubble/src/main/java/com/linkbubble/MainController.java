@@ -746,12 +746,26 @@ public class MainController implements Choreographer.FrameCallback {
 
     protected void restoreTab(TabView tab) {
         mBubbleFlowDraggable.restoreTab(tab);
-        // Only do this if there's more than 1 tab. Fix #446
+        // Only do this if there's just 1 tab open. Fix #446
         if (getActiveTabCount() == 1) {
-            final float bubblePeriod = (float) Constant.BUBBLE_ANIM_TIME / 1000.f;
-            final float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
-            expandBubbleFlow((long) (contentPeriod * 1000), false);
-            showExpandedActivity();
+            // If the bubble was closed when in BubbleView mode, forcibly reset to Bubble mode
+            if (mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.BubbleView) {
+                mBubbleDraggable.setVisibility(View.VISIBLE);
+                collapseBubbleFlow(0);
+                mBubbleFlowDraggable.setVisibility(View.GONE);
+
+                // Ensure CanvasView has a valid ContentView
+                CurrentTabChangedEvent event = new CurrentTabChangedEvent();
+                event.mTab = tab;
+                MainApplication.postEvent(mContext, event);
+
+                mBubbleDraggable.snapToBubbleView();
+            } else {
+                final float bubblePeriod = (float) Constant.BUBBLE_ANIM_TIME / 1000.f;
+                final float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
+                expandBubbleFlow((long) (contentPeriod * 1000), false);
+                showExpandedActivity();
+            }
         } else {
             showBadge(true);
         }
