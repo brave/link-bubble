@@ -61,11 +61,6 @@ class StubRenderer extends WebRenderer {
     }
 
     @Override
-    public void runPageInspector() {
-
-    }
-
-    @Override
     public YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper() {
         return null;
     }

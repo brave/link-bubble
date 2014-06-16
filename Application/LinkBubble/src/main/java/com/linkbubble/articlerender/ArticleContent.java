@@ -183,4 +183,21 @@ public class ArticleContent {
             mOnFinishedListener.onFinished(articleContent);
         }
     }
+
+    public static boolean tryForArticleContent(URL url) {
+        String host = url.getHost();
+        // Ignore the media sites
+        if (host.equals("instagram.com") || host.equals("imgur.com") || host.equals("vine.co") || host.equals("youtube.com") || host.equals("reddit.com")) {
+            Log.d(TAG, "ignore host for url: " + url.toString());
+            return false;
+        }
+
+        String path = url.getPath();
+        if (path.equals("/") || path.equals("/m/") || path.equals("/mobile/")) {
+            Log.d(TAG, "ignore path for url: " + url.toString());
+            return false;
+        }
+
+        return true;
+    }
 }
