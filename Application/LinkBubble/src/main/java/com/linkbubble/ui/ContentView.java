@@ -16,7 +16,6 @@ import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Handler;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Menu;
@@ -38,6 +37,8 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.articlerender.ArticleContent;
+import com.linkbubble.articlerender.ArticleRenderer;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.PageInspector;
@@ -61,6 +62,7 @@ public class ContentView extends FrameLayout {
     private static final String TAG = "UrlLoad";
 
     private WebRenderer mWebRenderer;
+    private ArticleRenderer mArticleRenderer;
     private TabView mOwnerTabView;
 
     private CondensedTextView mTitleTextView;
@@ -237,6 +239,11 @@ public class ContentView extends FrameLayout {
         View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
         mWebRenderer = WebRenderer.create(WebRenderer.Type.WebView, getContext(), mWebRendererController, webRendererPlaceholder, TAG);
         mWebRenderer.setUrl(urlAsString);
+
+        if (mArticleRenderer != null) {
+            mArticleRenderer.destroy();
+            mArticleRenderer = null;
+        }
 
         mOwnerTabView = ownerTabView;
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_header);
@@ -677,7 +684,7 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
-        public void onArticleModeHtmlReady() {
+        public void onArticleContentReady(ArticleContent articleContent) {
             configureArticleModeButton();
         }
 
@@ -787,6 +794,26 @@ public class ContentView extends FrameLayout {
         @Override
         public void onClick(View v) {
             mArticleModeButton.toggleState();
+
+            ArticleContent articleContent = mWebRenderer.getArticleContent();
+
+            switch (mArticleModeButton.getState()) {
+                case Article:
+                    if (mArticleRenderer != null && mArticleRenderer.getView() != null) {
+                        mArticleRenderer.getView().setVisibility(View.INVISIBLE);
+                    }
+                    mWebRenderer.getView().setVisibility(View.VISIBLE);
+                    break;
+
+                case Web:
+                    mWebRenderer.getView().setVisibility(View.INVISIBLE);
+                    if (mArticleRenderer == null) {
+                        View articleRendererPlaceholder = findViewById(R.id.article_renderer_placeholder);
+                        mArticleRenderer = new ArticleRenderer(getContext(), articleContent, articleRendererPlaceholder);
+                    }
+                    mArticleRenderer.getView().setVisibility(VISIBLE);
+                    break;
+            }
         }
     };
 
@@ -997,7 +1024,7 @@ public class ContentView extends FrameLayout {
     }
 
     private void configureArticleModeButton() {
-        if (Constant.ARTICLE_MODE_BUTTON && mWebRenderer.articleModeContentReady()) {
+        if (Constant.ARTICLE_MODE_BUTTON && mWebRenderer.getArticleContent() != null) {
             mArticleModeButton.setVisibility(VISIBLE);
         } else {
             mArticleModeButton.setVisibility(GONE);
