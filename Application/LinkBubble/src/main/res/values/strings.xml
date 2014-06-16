@@ -121,7 +121,7 @@
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">What\'s new?</string>
     <string name="preference_more_title">More&#8230;</string>
-    <string name="preference_more_summary">\"OK, Google\" voice prompt, Reading Mode and more</string>
+    <string name="preference_more_summary">\"OK, Google\", Reading Mode and more</string>
     <string name="preference_show_undo_close_tab_title">Undo prompt after tab close</string>
 
     <string name="preference_my_other_apps_title">More apps by Chris Lacy</string>
@@ -208,18 +208,23 @@
     <string name="faq_app_internal_browser_answer"><![CDATA[There are 3 causes of this:<br/>
             1). A browser other thank Link Bubble is set as your default system browser. See the
             \"Set default system browser\" option in Link Bubble\'s Settings to change this.<br/>
-            2). The free version of Link Bubble only intercepts links from a single app. See the
-            \"Intercept links from\" option in Link Bubble\'s Settings for which app this is or to change it.
-            Note that by upgrading to Link Bubble Pro, links will be intercepted from all non-browser apps.<br/>
+            2). Link Bubble has been configured not to intercept links from your current app. See the
+            \"Intercept links from\" option in Link Bubble\'s Settings.<br/>
             3). Apps such as Talon, Reddit is Fun and others have inbuilt browsers that render links. Check the settings of that app and
             enable \"External browser\" or deselect \"Integrated browser\" or similar.
             <br/><br/>Note: other browser apps such as Chrome are hardcoded to load links in themselves, and thus Link Bubble is unable
             to load links clicked from other browser apps.
             ]]></string>
+    <string name="faq_article_mode_question">How do I use Reading Mode? Why do some links not work?</string>
+    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode (BETA)).<br/><br/>
+            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
+            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
+            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
+            there is little than can be done here.]]></string>
     <string name="faq_future_features_question">Will you add support for bookmarks, favorites, extensions, etc.?</string>
     <string name="faq_future_features_answer">Never say never, but for now Link Bubble is focused solely on being the best possible way of loading
             and consuming links loaded from other apps.</string>
-    <string name="faq_translations_question">When will you add foreign language translations? Can I help?</string>
+    <string name="faq_translations_question">Can I help translate the app?</string>
     <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
             (+Chris Lacy) for help with translations, so be sure to keep an eye on my feed.]]></string>
     <string name="faq_roadmap_question">Do you publish a feature roadmap? Can I up-vote upcoming features?</string>
@@ -283,6 +288,7 @@
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Question about the app? Try here.</string>
     <string name="faq_section_general">General</string>
+    <string name="faq_section_functionality">App functionality</string>
     <string name="faq_section_issues">Issues</string>
 
     <string name="activity_resolver_use_always">Always</string>
