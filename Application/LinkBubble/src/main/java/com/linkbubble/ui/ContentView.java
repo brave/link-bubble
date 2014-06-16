@@ -810,6 +810,8 @@ public class ContentView extends FrameLayout {
                     if (mArticleRenderer == null) {
                         View articleRendererPlaceholder = findViewById(R.id.article_renderer_placeholder);
                         mArticleRenderer = new ArticleRenderer(getContext(), articleContent, articleRendererPlaceholder);
+                    } else {
+                        mArticleRenderer.display(articleContent);
                     }
                     mArticleRenderer.getView().setVisibility(VISIBLE);
                     break;
@@ -1015,6 +1017,9 @@ public class ContentView extends FrameLayout {
             mArticleModeButton.setVisibility(VISIBLE);
         } else {
             mArticleModeButton.setVisibility(GONE);
+            if (mArticleRenderer != null) {
+                mArticleRenderer.stopLoading();
+            }
         }
     }
 

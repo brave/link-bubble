@@ -57,7 +57,7 @@ class WebViewRenderer extends WebRenderer {
     private int mCheckForEmbedsCount;
     private Boolean mIsDestroyed = false;
 
-    private ArticleContent.BuildContentTask mBuildContentTask;
+    private ArticleContent.BuildContentTask mBuildArticleContentTask;
     private ArticleContent mArticleContent;
 
     public WebViewRenderer(Context context, Controller controller, View webRendererPlaceholder, String tag) {
@@ -138,14 +138,19 @@ class WebViewRenderer extends WebRenderer {
         }
     }
 
+    private void cancelBuildArticleContentTask() {
+        if (mBuildArticleContentTask != null) {
+            mBuildArticleContentTask.cancel(true);
+            mBuildArticleContentTask = null;
+        }
+    }
+
     @Override
     public void loadUrl(URL url, Mode mode) {
         String urlAsString = url.toString();
         Log.d(TAG, "loadUrl() - " + urlAsString);
 
-        if (mBuildContentTask != null) {
-            mBuildContentTask.cancel(true);
-        }
+        cancelBuildArticleContentTask();
         mArticleContent = null;
 
         mMode = mode;
@@ -182,9 +187,7 @@ class WebViewRenderer extends WebRenderer {
 
     @Override
     public void stopLoading() {
-        if (mBuildContentTask != null) {
-            mBuildContentTask.cancel(true);
-        }
+        cancelBuildArticleContentTask();
         mArticleContent = null;
 
         mWebView.stopLoading();
@@ -226,7 +229,7 @@ class WebViewRenderer extends WebRenderer {
     @Override
     public void runPageInspector() {
         int flags = mController.getPageInspectFlags();
-        if (mBuildContentTask == null) {
+        if (mBuildArticleContentTask == null) {
             flags |= PageInspector.INSPECT_FETCH_HTML;
         }
         mPageInspector.run(mWebView, flags);
@@ -262,14 +265,18 @@ class WebViewRenderer extends WebRenderer {
         @Override
         public void onFetchHtml(String html) {
             if (html != null && html.isEmpty() == false) {
-                mBuildContentTask = ArticleContent.fetchArticleContent(mContext, getUrl().toString(), html,
-                        new ArticleContent.OnFinishedListener() {
-                    @Override
-                    public void onFinished(ArticleContent articleContent) {
-                        mArticleContent = articleContent;
-                        mController.onArticleContentReady(mArticleContent);
-                    }
-                });
+                if (mBuildArticleContentTask == null) {
+                    mBuildArticleContentTask = ArticleContent.fetchArticleContent(mContext, getUrl().toString(), html,
+                            new ArticleContent.OnFinishedListener() {
+                                @Override
+                                public void onFinished(ArticleContent articleContent) {
+                                    mArticleContent = articleContent;
+                                    mController.onArticleContentReady(mArticleContent);
+                                    mBuildArticleContentTask = null;
+                                }
+                            }
+                    );
+                }
             }
         }
     };
