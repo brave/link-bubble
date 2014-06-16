@@ -87,7 +87,7 @@
     <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
 
     <string name="preference_article_mode_title">Reading Mode (Beta)</string>
-    <string name="preference_article_mode_summary">Toggled via button on action bar.</string>
+    <string name="preference_article_mode_summary">Toggled via button on action bar</string>
     <string name="preference_webview_text_zoom_title">Text zoom</string>
     <string name="preference_webview_text_zoom_note">Note: Current bubbles will be reloaded with the new text zoom applied after selecting \"OK\".</string>
     <string name="preference_webview_text_zoom_reloading_current">New text zoom level applied. Reloading current bubbles…</string>
@@ -122,13 +122,14 @@
     <string name="preference_version_summary">What\'s new?</string>
     <string name="preference_more_title">More&#8230;</string>
     <string name="preference_more_summary">\"OK, Google\", Reading Mode and more</string>
-    <string name="preference_show_undo_close_tab_title">Undo prompt after tab close</string>
+    <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
     <string name="preference_my_other_apps_title">More apps by Chris Lacy</string>
     <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out my other apps?</string>
 
     <string name="preference_ok_google_title">\"OK, Google\" voice activation</string>
     <string name="preference_ok_google_summary">See FAQ for further detail</string>
+    <string name="preference_ok_google_summary_jelly_bean">Requires Android 4.4 or later</string>
     <string name="preference_ok_google_summary_long">Note: Google haven\'t enabled this functionality for all devices/locales. If speaking \"OK, Google\" doesn\'t work for you in Google Now, it won\'t work in Link Bubble.</string>
 
     <string name="remove_default_title">Remove default?</string>
