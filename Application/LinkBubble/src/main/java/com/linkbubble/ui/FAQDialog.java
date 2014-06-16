@@ -35,15 +35,16 @@ public class FAQDialog {
         "faq_pro_trial",
         "faq_app_internal_browser",
         "faq_close_tab",
-        "faq_back_button_minimize",
-        "faq_cant_type_url",
-        "faq_future_features",
-        "faq_ongoing_notificaion",
+        "faq_article_mode",
         "faq_next_update_eta",
         "faq_beta_programme",
         "faq_translations",
-        "faq_roadmap",
         "faq_alternate_payment",
+
+        "faq_back_button_minimize",
+        "faq_cant_type_url",
+        "faq_future_features",
+        "faq_roadmap",
 
         "faq_close_quickly",
         "faq_change_default_browser",
@@ -51,13 +52,13 @@ public class FAQDialog {
         "faq_low_spec_performance",
         "faq_drop_down_items",
         "faq_copy_text",
-        "faq_translucent_status_bar",
 
         "faq_report_bug",
     };
 
-    static int sBetaIndex = 8;
-    static int sTransliationsIndex = 9;
+    static int sBetaIndex = 5;
+    static int sTransliationsIndex = 6;
+    static int sFunctionalityIndex = 8;
     static int sIssuesIndex = 12;
 
 	public FAQDialog(Activity context) {
@@ -198,8 +199,10 @@ public class FAQDialog {
             TextView headerLabel = (TextView)convertView.findViewById(R.id.section_text);
 
             int stringId = R.string.faq_section_issues;
-            if (position < sIssuesIndex) {
+            if (position < sFunctionalityIndex) {
                 stringId = R.string.faq_section_general;
+            } else if (position < sIssuesIndex) {
+                stringId = R.string.faq_section_functionality;
             }
 
             headerLabel.setText(stringId);
@@ -208,11 +211,13 @@ public class FAQDialog {
 
         @Override
         public long getHeaderId(int position) {
-            if (position < sIssuesIndex) {
+            if (position < sFunctionalityIndex) {
                 return 0;
+            } else if (position < sIssuesIndex) {
+                return 1;
             }
 
-            return 1;
+            return 2;
         }
     }
 }
