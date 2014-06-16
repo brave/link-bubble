@@ -196,6 +196,12 @@ public class ContentView extends FrameLayout {
         mIsDestroyed = true;
         removeView(mWebRenderer.getView());
         mWebRenderer.destroy();
+
+        if (mArticleRenderer != null) {
+            removeView(mArticleRenderer.getView());
+            mArticleRenderer.destroy();
+        }
+
         //if (mDelayedAutoContentDisplayLinkLoadedScheduled) {
         //    mDelayedAutoContentDisplayLinkLoadedScheduled = false;
         //    Log.e(TAG, "*** set mDelayedAutoContentDisplayLinkLoadedScheduled=" + mDelayedAutoContentDisplayLinkLoadedScheduled);
@@ -685,6 +691,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onArticleContentReady(ArticleContent articleContent) {
+            Log.d("Article", "onArticleContentReady() - " + (articleContent == null ? "<null>" : "valid"));
             configureArticleModeButton();
         }
 
@@ -695,9 +702,6 @@ public class ContentView extends FrameLayout {
     void onPageLoadComplete(String urlAsString) {
 
         mPageFinishedLoading = true;
-
-        // Always check again at 100%
-        mWebRenderer.runPageInspector();
 
         // NOTE: *don't* call updateUrl() here. Turns out, this function is called after a redirect has occurred.
         // Eg, urlAsString "t.co/xyz" even after the next redirect is starting to load
@@ -718,6 +722,9 @@ public class ContentView extends FrameLayout {
             } catch (MalformedURLException e) {
             }
         }
+
+        // Always check again at 100%
+        mWebRenderer.runPageInspector(ArticleContent.tryForArticleContent(currentUrl));
 
         if (equalUrl) {
             updateAppsForUrl(currentUrl);

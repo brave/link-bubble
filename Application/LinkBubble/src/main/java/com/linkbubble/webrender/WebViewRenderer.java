@@ -227,9 +227,9 @@ class WebViewRenderer extends WebRenderer {
     }
 
     @Override
-    public void runPageInspector() {
+    public void runPageInspector(boolean fetchHtml) {
         int flags = mController.getPageInspectFlags();
-        if (mBuildArticleContentTask == null) {
+        if (fetchHtml && mBuildArticleContentTask == null) {
             flags |= PageInspector.INSPECT_FETCH_HTML;
         }
         mPageInspector.run(mWebView, flags);
