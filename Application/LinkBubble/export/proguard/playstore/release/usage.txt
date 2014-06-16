@@ -3674,7 +3674,6 @@ com.linkbubble.MainController:
     private android.widget.TextView mTextView
     private static final int MAX_SAMPLE_COUNT
     private static final float MAX_VALID_TIME
-    436:437:public void onEndExpandTransition(com.linkbubble.MainController$EndExpandTransitionEvent)
     901:902:public void switchToExpandedView()
 com.linkbubble.MainService:
     private static final java.lang.String BCAST_CONFIGCHANGED
