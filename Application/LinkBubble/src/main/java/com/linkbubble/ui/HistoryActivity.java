@@ -71,6 +71,8 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
 
         mMessageView = (TextView) findViewById(R.id.message_view);
         mListView = (ListView) findViewById(R.id.listview);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -172,6 +174,10 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+
             case R.id.action_clear_history: {
                 if (mHistoryAdapter == null) {
                     Toast.makeText(this, R.string.history_already_empty, Toast.LENGTH_SHORT).show();
