@@ -185,16 +185,17 @@ public class ArticleContent {
     }
 
     public static boolean tryForArticleContent(URL url) {
-        String host = url.getHost();
-        // Ignore the media sites
-        if (host.equals("instagram.com") || host.equals("imgur.com") || host.equals("vine.co") || host.equals("youtube.com") || host.equals("reddit.com")) {
-            Log.d(TAG, "ignore host for url: " + url.toString());
-            return false;
-        }
-
         String path = url.getPath();
         if (path.equals("/") || path.equals("/m/") || path.equals("/mobile/")) {
             Log.d(TAG, "ignore path for url: " + url.toString());
+            return false;
+        }
+
+        // Ignore the media sites
+        String host = url.getHost();
+        if (host.contains("google.com") || host.equals("imgur.com") || host.equals("instagram.com") || host.equals("reddit.com")
+                || host.equals("twitter.com") || host.equals("vine.co") || host.equals("vimeo.com") || host.equals("youtube.com")) {
+            Log.d(TAG, "ignore host for url: " + url.toString());
             return false;
         }
 
