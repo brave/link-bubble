@@ -2,15 +2,14 @@
 <changelog>
 
     <release version="1.2.0" versioncode="12000">
-
-        <change>NEW: "OK, Google" support (Requires Android 4.4 or later, must be enabled via Settings).</change>
-        <change>NEW: Fine-grained control over which apps Link Bubble will load links from.</change>
-        <change>NEW: When closing a tab, display an Undo prompt allowing people to undo the closing of the tab ala Chrome (configurable via Settings).</change>
+        <change>NEW: "OK, Google" support (Requires Pro, Android 4.4 or later, must be enabled via Settings).</change>
         <change>NEW: Free version allows for a link to be loaded from any app (previously was restricted to a single app).</change>
-        <change>NEW: Reading Mode (BETA), which extracts the main text from a link.</change>
+        <change>NEW: Granular controls to configure which apps Link Bubble will and won't intercept links from.</change>
+        <change>NEW: When closing a tab, an Undo prompt is displayed, allowing people to quickly restore that tab (configurable via Settings).</change>
+        <change>NEW: Reading Mode (Beta), which extracts the main text from a link (Requires Pro).</change>
         <change>IMPROVEMENT: If a link was just loaded, prevent loading that link again for a short time period. Fixes multiple links loading in the event a link is clicked twice.</change>
         <change>IMPROVEMENT: Blacken out status and navigation bars when rendering on top of an app that uses translucent mode.</change>
-        <!--<change>IMPROVEMENT: Top mask extends to status bar. Looks better in apps using translucent mode.</change>-->
+        <change>IMPROVEMENT: Enable the Up button on the Settings.</change>
         <change>BUG FIX: Stability fixes.</change>
     </release>
 
