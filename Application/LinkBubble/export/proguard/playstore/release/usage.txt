@@ -3428,6 +3428,15 @@ com.google.android.gms.wallet.l
 com.google.android.gms.wallet.m
 com.google.android.gms.wallet.n
 com.google.android.gms.wallet.o
+com.google.android.hotword.client.HotwordServiceClient:
+    private static final boolean DBG
+    private static final java.lang.String HOTWORD_SERVICE
+    private static final java.lang.String TAG
+    private static final java.lang.String VEL_PACKAGE
+com.google.android.hotword.service.IHotwordService$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_requestHotwordDetection
+    30:30:public android.os.IBinder asBinder()
 com.google.gson.DefaultDateTypeAdapter
 com.google.gson.FieldAttributes:
     53:53:public java.lang.Class getDeclaringClass()
@@ -3617,12 +3626,12 @@ com.linkbubble.Config:
     public static final java.lang.String YOUTUBE_API_THUMBNAILS_LOW_QUALITY
     public static final java.lang.String YOUTUBE_API_THUMBNAILS_HIGH_QUALITY
 com.linkbubble.Constant:
-    public static final boolean ARTICLE_MODE
     public static final boolean DYNAMIC_ANIM_STEP
     public static final boolean PROFILE_FPS
     public static final java.lang.String INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION
+    public static final boolean EXPANDED_ACTIVITY_ENABLED
+    public static final boolean EXPANDED_ACTIVITY_DEBUG
     public static final int TRIAL_TIME
-    public static final boolean COVER_STATUS_BAR
     public static final int BUBBLE_ANIM_TIME
     public static final float BUBBLE_MODE_ALPHA
     public static final int DESIRED_FAVICON_SIZE
@@ -3652,7 +3661,7 @@ com.linkbubble.Constant:
     public static final java.lang.String USER_AGENT_CHROME_TABLET
     public static final java.lang.String USER_AGENT_CHROME_DESKTOP
     public static final java.lang.String DIFFBOT_KEY
-    80:83:public static java.lang.String getValidDeviceId()
+    86:89:public static java.lang.String getValidDeviceId()
 com.linkbubble.DRM:
     static final int MSG_LICENSE_RESULT
     static final int MSG_CHECK_LICENSE
@@ -3665,7 +3674,8 @@ com.linkbubble.MainController:
     private android.widget.TextView mTextView
     private static final int MAX_SAMPLE_COUNT
     private static final float MAX_VALID_TIME
-    772:773:public void switchToExpandedView()
+    436:437:public void onEndExpandTransition(com.linkbubble.MainController$EndExpandTransitionEvent)
+    901:902:public void switchToExpandedView()
 com.linkbubble.MainService:
     private static final java.lang.String BCAST_CONFIGCHANGED
 com.linkbubble.R$anim
@@ -3685,10 +3695,10 @@ com.linkbubble.R$xml
 com.linkbubble.Settings:
     public static final java.lang.String PREFERENCE_ENABLED
     public static final java.lang.String PREFERENCE_CHECK_FOR_YOUTUBE_EMBEDS
-    public static final java.lang.String PREFERENCE_INTERCEPT_LINKS_FROM
-    public static final java.lang.String PREFERENCE_INTERCEPT_LINKS_FROM_APP_NAME
+    public static final java.lang.String PREFERENCE_IGNORE_LINKS_FROM
     public static final java.lang.String PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED
     public static final boolean PREFERENCE_AUTO_CONTENT_DISPLAY_LINK_LOADED_DEFAULT
+    public static final java.lang.String PREFERENCE_SHOW_UNDO_CLOSE_TAB
     public static final java.lang.String PREFERENCE_LEFT_CONSUME_BUBBLE
     public static final java.lang.String PREFERENCE_LEFT_CONSUME_BUBBLE_PACKAGE_NAME
     public static final java.lang.String PREFERENCE_LEFT_CONSUME_BUBBLE_ACTIVITY_CLASS_NAME
@@ -3702,6 +3712,8 @@ com.linkbubble.Settings:
     public static final java.lang.String PREFERENCE_DEFAULT_BROWSER
     public static final java.lang.String PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME
     public static final java.lang.String PREFERENCE_DEFAULT_BROWSER_LABEL
+    public static final java.lang.String KEY_OK_GOOGLE_PREFERENCE
+    public static final java.lang.String KEY_ARTICLE_MODE_PREFERENCE
     public static final java.lang.String PREFERENCE_CURRENT_TABS
     public static final java.lang.String PREFERENCE_DEFAULT_APPS
     public static final java.lang.String PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT
@@ -3727,7 +3739,10 @@ com.linkbubble.Settings:
     private static final java.lang.String LAST_APP_REDIRECT_KEY_TIME
     private static final java.lang.String LAST_APP_REDIRECT_KEY_URL
     private static final int MAX_LAST_APP_REDIRECT_COUNT
-    542:542:public boolean checkForYouTubeEmbeds()
+    550:550:public java.util.List getIgnoreLinksFromPackageNames()
+    590:590:public boolean checkForYouTubeEmbeds()
+com.linkbubble.articlerender.ArticleContent:
+    private static final java.lang.String TAG
 com.linkbubble.db.DatabaseHelper:
     private static final java.lang.String TAG
     private static final int DATABASE_VERSION
@@ -3789,6 +3804,10 @@ com.linkbubble.ui.ContentView$EventHandler:
     public abstract void setDefaultFavicon()
 com.linkbubble.ui.ContentViewButton:
     static final int sTouchedColor
+com.linkbubble.ui.ExpandedActivity:
+    private static final java.lang.String TAG
+    35:35:static com.linkbubble.ui.ExpandedActivity get()
+    281:282:void cancelDelayedMinimize()
 com.linkbubble.ui.FlipView:
     private static final int FLAG_ROTATION_X
     private static final int FLAG_ROTATION_Y
@@ -3806,7 +3825,6 @@ com.linkbubble.ui.HistoryActivity:
 com.linkbubble.ui.HomeActivity:
     private static final java.lang.String TAG
     private static final java.lang.String PLAYED_INTRO_ANIM_KEY
-    462:463:public void onTrialTimeStartTimeReceivedEvent(com.linkbubble.MainApplication$TrialTimeStartTimeReceivedEvent)
 com.linkbubble.ui.OnSwipeTouchListener$GestureListener:
     private static final int SWIPE_THRESHOLD
     private static final int SWIPE_VELOCITY_THRESHOLD
@@ -3824,7 +3842,12 @@ com.linkbubble.ui.ProgressIndicator$ProgressArcView:
     private static final float SWEEP_INC
     private static final float START_INC
 com.linkbubble.ui.Prompt:
+    public static final int LENGTH_SHORT
     public static final int LENGTH_LONG
+com.linkbubble.ui.SettingsFragment:
+    581:584:void updateInterceptLinksFromPreference()
+com.linkbubble.ui.SettingsFragment$AppInfo
+com.linkbubble.ui.SettingsFragment$AppInfoComparator
 com.linkbubble.util.Analytics:
     public static final java.lang.String GA_PROPERTY_ID
     private static final java.lang.String CATEGORY
@@ -3837,10 +3860,21 @@ com.linkbubble.util.Analytics:
     public static final java.lang.String UPGRADE_PROMPT_SINGLE_APP_SET
     public static final java.lang.String UPGRADE_PROMPT_SINGLE_TAB_OPEN_URL
     public static final java.lang.String UPGRADE_PROMPT_SINGLE_TAB_REDIRECT
+com.linkbubble.util.AppPickerList:
+    160:171:public static java.util.ArrayList getSelected(android.view.View)
 com.linkbubble.util.AppPoller:
     private static final java.lang.String TAG
     private static final int ACTION_POLL_CURRENT_APP
     private static final int LOOP_TIME
+com.linkbubble.util.IconCache:
+    private static final java.lang.String TAG
+    private static final int INITIAL_ICON_CACHE_CAPACITY
+    86:95:public android.graphics.drawable.Drawable getFullResIcon(java.lang.String,int)
+    136:139:public void remove(android.content.ComponentName)
+    145:148:public void flush()
+    180:187:public android.graphics.Bitmap getIcon(android.content.ComponentName,android.content.pm.ResolveInfo,java.util.HashMap)
+    191:191:public boolean isDefaultIcon(android.graphics.Bitmap)
+    221:228:public java.util.HashMap getAllIcons()
 com.linkbubble.util.NetworkConnectivity:
     32:33:public static boolean isConnected(android.content.Context)
     42:43:public static boolean isConnectedWifi(android.content.Context)
@@ -3850,12 +3884,14 @@ com.linkbubble.util.PageInspector:
     public static final int INSPECT_DROP_DOWN
     public static final int INSPECT_YOUTUBE
     public static final int INSPECT_TOUCH_ICON
+    public static final int INSPECT_FETCH_HTML
     public static final int INSPECT_ALL
     private static final java.lang.String JS_VARIABLE
     private static final java.lang.String UNKNOWN_TAG
     private static final java.lang.String JS_DROP_DOWN_ITEM_CHECK
     private static final java.lang.String JS_YOUTUBE_EMBED_CHECK
     private static final java.lang.String JS_TOUCH_ICON_CHECK
+    private static final java.lang.String JS_FETCH_HTML
     private static final int MAX_FAVICON_ENTRIES
 com.linkbubble.util.StatHat:
     private static final java.lang.String KEY
@@ -3872,7 +3908,8 @@ com.linkbubble.util.Util:
     private static final int OUTCODE_RIGHT
     private static final int OUTCODE_BOTTOM
     private static final int OUTCODE_TOP
-    52:59:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
+    61:68:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
+    397:413:static android.graphics.Bitmap createIconBitmap(android.graphics.Bitmap,android.content.Context)
 com.linkbubble.webrender.DiffBotRenderer:
     private static final java.lang.String TAG
     private static final java.lang.String API_URL
@@ -3883,8 +3920,8 @@ com.linkbubble.webrender.DiffBotRenderer$Article:
 com.linkbubble.webrender.DiffBotRenderer$Article$Image:
     java.lang.String mCaption
 com.linkbubble.webrender.WebRenderer:
-    108:109:public void setUrl(java.net.URL)
-    112:112:public com.linkbubble.webrender.WebRenderer$Mode getMode()
+    110:111:public void setUrl(java.net.URL)
+    114:114:public com.linkbubble.webrender.WebRenderer$Mode getMode()
 com.squareup.otto.AnnotatedHandlerFinder:
     154:156:private AnnotatedHandlerFinder()
 com.squareup.otto.Bus:
@@ -4046,13 +4083,7 @@ de.jetwick.snacktory.ArticleTextExtractor:
     866:867:private void print(java.lang.String,org.jsoup.nodes.Element)
     870:872:private void print(java.lang.String,org.jsoup.nodes.Element,java.lang.String)
     899:913:private java.lang.String doTitleSplits(java.lang.String,java.lang.String)
-de.jetwick.snacktory.Converter:
-    public static final java.lang.String UTF8
-    public static final java.lang.String ISO
-    public static final int K2
-    48:49:public de.jetwick.snacktory.Converter setMaxBytes(int)
-    76:78:public java.lang.String getEncoding()
-    82:82:public java.lang.String streamToString(java.io.InputStream)
+de.jetwick.snacktory.Converter
 de.jetwick.snacktory.HtmlFetcher:
     52:74:public static void main(java.lang.String[])
     120:121:public void setExtractor(de.jetwick.snacktory.ArticleTextExtractor)
@@ -4075,6 +4106,14 @@ de.jetwick.snacktory.HtmlFetcher:
     192:192:public java.lang.String getAccept()
     196:196:public java.lang.String getCacheControl()
     200:200:public java.lang.String getCharset()
+    204:279:public de.jetwick.snacktory.JResult fetchAndExtract(java.lang.String,int,boolean)
+    335:335:public java.lang.String fetchAsString(java.lang.String,int)
+    340:356:public java.lang.String fetchAsString(java.lang.String,int,boolean)
+    360:360:public de.jetwick.snacktory.Converter createConverter(java.lang.String)
+    372:407:public java.lang.String getResolvedUrl(java.lang.String,int)
+    417:428:static java.lang.String encodeUriFromHeader(java.lang.String)
+    433:452:protected java.net.HttpURLConnection createUrlConnection(java.lang.String,int,boolean)
+    456:468:private de.jetwick.snacktory.JResult getFromCache(java.lang.String,java.lang.String)
 de.jetwick.snacktory.ImageResult:
     public org.jsoup.nodes.Element element
 de.jetwick.snacktory.JResult:
@@ -4095,13 +4134,19 @@ de.jetwick.snacktory.OutputFormatter:
     164:165:public de.jetwick.snacktory.OutputFormatter setUnlikelyPattern(java.lang.String)
     169:169:public de.jetwick.snacktory.OutputFormatter appendUnlikelyPattern(java.lang.String)
 de.jetwick.snacktory.SCache:
+    public abstract de.jetwick.snacktory.JResult get(java.lang.String)
     public abstract int getSize()
 de.jetwick.snacktory.SHelper:
     public static final java.lang.String UTF8
+    97:110:public static java.lang.String encodingCleanup(java.lang.String)
     117:121:public static java.lang.String getLongestSubstring(java.lang.String,java.lang.String)
     125:153:public static int[] longestSubstring(java.lang.String,java.lang.String)
     217:218:public static boolean isVideoLink(java.lang.String)
+    269:279:public static java.lang.String getUrlFromUglyGoogleRedirect(java.lang.String)
+    283:288:public static java.lang.String getUrlFromUglyFacebookRedirect(java.lang.String)
     293:295:public static java.lang.String urlEncode(java.lang.String)
+    301:303:public static java.lang.String urlDecode(java.lang.String)
+    312:312:public static java.lang.String removeHashbang(java.lang.String)
     316:316:public static java.lang.String printNode(org.jsoup.nodes.Element)
     320:332:public static java.lang.String printNode(org.jsoup.nodes.Element,int)
     408:419:public static java.lang.String completeDate(java.lang.String)
@@ -4473,6 +4518,8 @@ org.slf4j.Logger:
     public abstract void trace(org.slf4j.Marker,java.lang.String,java.lang.Object,java.lang.Object)
     public abstract void trace(org.slf4j.Marker,java.lang.String,java.lang.Object[])
     public abstract void trace(org.slf4j.Marker,java.lang.String,java.lang.Throwable)
+    public abstract boolean isDebugEnabled()
+    public abstract void debug(java.lang.String)
     public abstract void debug(java.lang.String,java.lang.Object)
     public abstract void debug(java.lang.String,java.lang.Object,java.lang.Object)
     public abstract void debug(java.lang.String,java.lang.Object[])
@@ -4484,6 +4531,7 @@ org.slf4j.Logger:
     public abstract void debug(org.slf4j.Marker,java.lang.String,java.lang.Object[])
     public abstract void debug(org.slf4j.Marker,java.lang.String,java.lang.Throwable)
     public abstract boolean isInfoEnabled()
+    public abstract void info(java.lang.String)
     public abstract void info(java.lang.String,java.lang.Object)
     public abstract void info(java.lang.String,java.lang.Object,java.lang.Object)
     public abstract void info(java.lang.String,java.lang.Object[])
@@ -4495,6 +4543,7 @@ org.slf4j.Logger:
     public abstract void info(org.slf4j.Marker,java.lang.String,java.lang.Object[])
     public abstract void info(org.slf4j.Marker,java.lang.String,java.lang.Throwable)
     public abstract boolean isWarnEnabled()
+    public abstract void warn(java.lang.String)
     public abstract void warn(java.lang.String,java.lang.Object)
     public abstract void warn(java.lang.String,java.lang.Object[])
     public abstract void warn(java.lang.String,java.lang.Object,java.lang.Object)
@@ -4577,16 +4626,20 @@ org.slf4j.helpers.NOPLogger:
     89:89:public final void trace(java.lang.String,java.lang.Object,java.lang.Object)
     94:94:public final void trace(java.lang.String,java.lang.Object[])
     99:99:public final void trace(java.lang.String,java.lang.Throwable)
+    106:106:public final boolean isDebugEnabled()
+    112:112:public final void debug(java.lang.String)
     117:117:public final void debug(java.lang.String,java.lang.Object)
     122:122:public final void debug(java.lang.String,java.lang.Object,java.lang.Object)
     127:127:public final void debug(java.lang.String,java.lang.Object[])
     134:134:public final void debug(java.lang.String,java.lang.Throwable)
     142:142:public final boolean isInfoEnabled()
+    149:149:public final void info(java.lang.String)
     154:154:public final void info(java.lang.String,java.lang.Object)
     159:159:public final void info(java.lang.String,java.lang.Object,java.lang.Object)
     164:164:public final void info(java.lang.String,java.lang.Object[])
     170:170:public final void info(java.lang.String,java.lang.Throwable)
     178:178:public final boolean isWarnEnabled()
+    184:184:public final void warn(java.lang.String)
     189:189:public final void warn(java.lang.String,java.lang.Object)
     194:194:public final void warn(java.lang.String,java.lang.Object,java.lang.Object)
     199:199:public final void warn(java.lang.String,java.lang.Object[])
@@ -4605,16 +4658,20 @@ org.slf4j.impl.AndroidLogger:
     91:92:public void trace(java.lang.String,java.lang.Object,java.lang.Object)
     97:98:public void trace(java.lang.String,java.lang.Object[])
     103:104:public void trace(java.lang.String,java.lang.Throwable)
+    109:109:public boolean isDebugEnabled()
+    115:116:public void debug(java.lang.String)
     121:122:public void debug(java.lang.String,java.lang.Object)
     127:128:public void debug(java.lang.String,java.lang.Object,java.lang.Object)
     133:134:public void debug(java.lang.String,java.lang.Object[])
     139:140:public void debug(java.lang.String,java.lang.Throwable)
     145:145:public boolean isInfoEnabled()
+    151:152:public void info(java.lang.String)
     157:158:public void info(java.lang.String,java.lang.Object)
     163:164:public void info(java.lang.String,java.lang.Object,java.lang.Object)
     169:170:public void info(java.lang.String,java.lang.Object[])
     175:176:public void info(java.lang.String,java.lang.Throwable)
     181:181:public boolean isWarnEnabled()
+    187:188:public void warn(java.lang.String)
     193:194:public void warn(java.lang.String,java.lang.Object)
     199:200:public void warn(java.lang.String,java.lang.Object,java.lang.Object)
     205:206:public void warn(java.lang.String,java.lang.Object[])
