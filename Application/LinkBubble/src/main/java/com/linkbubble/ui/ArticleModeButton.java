@@ -47,6 +47,10 @@ public class ArticleModeButton extends ContentViewButton {
         mState = state;
     }
 
+    public State getState() {
+        return mState;
+    }
+
     public void toggleState() {
         setState(mState == State.Article ? State.Web : State.Article);
     }
