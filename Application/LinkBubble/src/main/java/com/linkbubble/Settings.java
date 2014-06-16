@@ -756,7 +756,10 @@ public class Settings {
         try {
             JSONArray jsonArray = new JSONArray(json);
             for (int i=0 ; i < jsonArray.length() ; ++i) {
-                urls.add(jsonArray.getString(i));
+                String urlAsString = jsonArray.getString(i);
+                if (urlAsString.equals(Constant.WELCOME_MESSAGE_URL) == false) {
+                    urls.add(urlAsString);
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
