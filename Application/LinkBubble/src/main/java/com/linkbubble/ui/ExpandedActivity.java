@@ -82,6 +82,8 @@ public class ExpandedActivity extends Activity {
 
         if (Constant.EXPANDED_ACTIVITY_DEBUG) {
             rootView.setBackgroundColor(0x5500ff00);
+        } else {
+            rootView.setWillNotDraw(true);
         }
 
         initHotwordService();
