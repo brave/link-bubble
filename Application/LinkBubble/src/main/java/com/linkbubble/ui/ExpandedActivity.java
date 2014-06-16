@@ -88,7 +88,7 @@ public class ExpandedActivity extends Activity {
     }
 
     void initHotwordService() {
-        initHotwordService(Settings.get().getOkGooglePreference());
+        initHotwordService(Settings.get().getOkGoogleEnabled());
     }
 
     void initHotwordService(boolean enabled) {
