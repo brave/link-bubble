@@ -218,8 +218,8 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                 });
             }
         } else {
-            PreferenceScreen moreScreen = (PreferenceScreen) findPreference("preference_more");
-            moreScreen.removePreference(okGooglePreference);
+            okGooglePreference.setSummary(R.string.preference_ok_google_summary_jelly_bean);
+            okGooglePreference.setEnabled(false);
         }
 
         Preference crashButton = findPreference("debug_crash");
