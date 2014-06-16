@@ -79,7 +79,7 @@
                 android:key="preference_article_mode"
                 android:title="@string/preference_article_mode_title"
                 android:summary="@string/preference_article_mode_summary"
-                android:defaultValue="false"
+                android:defaultValue="true"
                 />
 
             <CheckBoxPreference
