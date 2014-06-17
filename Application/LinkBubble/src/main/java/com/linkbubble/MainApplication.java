@@ -292,6 +292,11 @@ public class MainApplication extends Application {
                     Toast.makeText(context, R.string.unable_to_launch_app, Toast.LENGTH_SHORT).show();
                 }
                 return false;
+            } catch (ActivityNotFoundException activityNotFoundException) {
+                if (toastOnError) {
+                    Toast.makeText(context, R.string.unable_to_launch_app, Toast.LENGTH_SHORT).show();
+                }
+                return false;
             }
         }
     }
