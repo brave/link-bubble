@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.2.1" versioncode="12100">
+        <change>BUG FIX: Fix issue where Back button must be pressed after minimizing Link Bubble by dragging a bubble to the screen edge or on the Close tab target.</change>
+        <change>BUG FIX: Stability fixes.</change>
+    </release>
+
     <release version="1.2.0" versioncode="12000">
         <change>NEW: "OK, Google" support (Requires Pro, Android 4.4 or later, must be enabled via Settings).</change>
         <change>NEW: Free version allows for a link to be loaded from any app (previously was restricted to a single app).</change>
