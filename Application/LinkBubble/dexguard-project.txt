@@ -203,7 +203,6 @@
 
 -keepclassmembers class com.linkbubble.ui.ExpandedActivity {
     # ensure event handler functions are not stripped
-    public void onBeginCollapseTransition(com.linkbubble.MainController$BeginCollapseTransitionEvent);
     public void onEnableHotwordSevice(com.linkbubble.ui.ExpandedActivity$EnableHotwordSeviceEvent);
     public void onMinimizeExpandedActivity(com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent);
 }
