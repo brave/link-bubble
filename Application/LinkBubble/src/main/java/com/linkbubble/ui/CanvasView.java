@@ -65,6 +65,8 @@ public class CanvasView extends FrameLayout {
 
     private ImageView mStatusBarCoverView;
 
+    private ExpandedActivity.MinimizeExpandedActivityEvent mMinimizeExpandedActivityEvent = new ExpandedActivity.MinimizeExpandedActivityEvent();
+
     public CanvasView(Context context) {
         super(context);
 
@@ -284,6 +286,7 @@ public class CanvasView extends FrameLayout {
     public void onEndBubbleDragEvent(MainController.EndBubbleDragEvent e) {
         fadeOut();
         MainController.get().showBadge(true);
+        MainApplication.postEvent(getContext(), mMinimizeExpandedActivityEvent);
     }
 
     @SuppressWarnings("unused")
@@ -301,6 +304,8 @@ public class CanvasView extends FrameLayout {
             mAnimPeriod = 0.0f;
             mAnimTime = 0.0f;
         }
+
+        MainApplication.postEvent(getContext(), mMinimizeExpandedActivityEvent);
     }
 
     @SuppressWarnings("unused")
