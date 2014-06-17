@@ -4781,7 +4781,6 @@ com.linkbubble.ui.EntryActivity: EntryActivity()
 com.linkbubble.ui.ExpandedActivity
 com.linkbubble.ui.ExpandedActivity: ExpandedActivity()
 com.linkbubble.ui.ExpandedActivity: void setWebRenderer(android.view.View)
-com.linkbubble.ui.ExpandedActivity: void onBeginCollapseTransition(com.linkbubble.MainController$BeginCollapseTransitionEvent)
 com.linkbubble.ui.ExpandedActivity: void onMinimizeExpandedActivity(com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent)
 com.linkbubble.ui.ExpandedActivity: void onEnableHotwordSevice(com.linkbubble.ui.ExpandedActivity$EnableHotwordSeviceEvent)
 com.linkbubble.ui.ExpandedActivity$EnableHotwordSeviceEvent
