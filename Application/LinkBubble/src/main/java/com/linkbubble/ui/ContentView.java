@@ -1326,7 +1326,10 @@ public class ContentView extends FrameLayout {
                     resolveInfo.loadLabel(context.getPackageManager()));
             MainApplication.saveUrlInHistory(context, resolveInfo, urlAsString, title);
 
-            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), false);
+            MainController mainController = MainController.get();
+            if (mainController != null) {
+                mainController.closeTab(mOwnerTabView, mainController.contentViewShowing(), false);
+            }
             Settings.get().addRedirectToApp(urlAsString);
             return true;
         }
