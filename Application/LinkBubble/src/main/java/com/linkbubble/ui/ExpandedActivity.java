@@ -299,12 +299,6 @@ public class ExpandedActivity extends Activity {
 
     @SuppressWarnings("unused")
     @Subscribe
-    public void onBeginCollapseTransition(MainController.BeginCollapseTransitionEvent e) {
-        minimize();
-    }
-
-    @SuppressWarnings("unused")
-    @Subscribe
     public void onMinimizeExpandedActivity(MinimizeExpandedActivityEvent e) {
         minimize();
     }
