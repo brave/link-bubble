@@ -815,7 +815,9 @@ public class BubbleFlowView extends HorizontalScrollView {
                     if (DEBUG) {
                         Log.d(TAG, "[longpress] onTouch() DOWN: mStillTouchFrameCount=" + mStillTouchFrameCount);
                     }
-                    MainController.get().scheduleUpdate();
+                    if (MainController.get() != null) {
+                        MainController.get().scheduleUpdate();
+                    }
                 } else if (action == MotionEvent.ACTION_UP) {
                     mTouchView = null;
                     mLongPress = false;
