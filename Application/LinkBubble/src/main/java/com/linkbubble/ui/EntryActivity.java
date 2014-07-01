@@ -154,7 +154,11 @@ public class EntryActivity extends Activity {
                     }
                 }
 
-                MainApplication.openLink(this, url, showedWelcomeUrl ? false : true, openedFromAppName);
+                if (MainApplication.openLink(this, url, true, showedWelcomeUrl ? false : true, openedFromAppName) == false) {
+                    // close the current bubble
+
+                    // Do the action
+                }
             } else {
                 MainApplication.openInBrowser(this, intent, true);
             }
