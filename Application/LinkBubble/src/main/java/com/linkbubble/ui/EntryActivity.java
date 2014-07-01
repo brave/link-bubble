@@ -156,8 +156,11 @@ public class EntryActivity extends Activity {
 
                 if (MainApplication.openLink(this, url, true, showedWelcomeUrl ? false : true, openedFromAppName) == false) {
                     // close the current bubble
+                    //MainApplication.handleBubbleAction(this, Constant.BubbleAction.Close, url, -1);
 
                     // Do the action
+                    MainApplication.handleBubbleAction(this, Constant.BubbleAction.LinkDoubleTap, url, -1);
+
                 }
             } else {
                 MainApplication.openInBrowser(this, intent, true);

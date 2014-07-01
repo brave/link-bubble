@@ -267,6 +267,24 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         });
         rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeRight));
 
+        final Preference linkDoubleTapPreference = findPreference(Settings.PREFERENCE_LINK_DOUBLE_TAP);
+        linkDoubleTapPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                AlertDialog alertDialog = ActionItem.getConfigureBubbleAlert(getActivity(), new ActionItem.OnActionItemSelectedListener() {
+                    @Override
+                    public void onSelected(ActionItem actionItem) {
+                        Settings.get().setConsumeBubble(Constant.BubbleAction.LinkDoubleTap, actionItem.mType, actionItem.getLabel(),
+                                actionItem.mPackageName, actionItem.mActivityClassName);
+                        linkDoubleTapPreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.LinkDoubleTap));
+                    }
+                });
+                alertDialog.show();
+                return true;
+            }
+        });
+        linkDoubleTapPreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.LinkDoubleTap));
+
         Preference defaultBrowserPreference = findPreference(Settings.PREFERENCE_DEFAULT_BROWSER);
         defaultBrowserPreference.setSummary(Settings.get().getDefaultBrowserLabel());
         Drawable defaultBrowserIcon = Settings.get().getDefaultBrowserIcon(getActivity());

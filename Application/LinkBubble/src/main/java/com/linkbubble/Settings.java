@@ -53,6 +53,12 @@ public class Settings {
     public static final String PREFERENCE_RIGHT_CONSUME_BUBBLE_LABEL = "preference_right_consume_bubble_label";
     public static final String PREFERENCE_RIGHT_CONSUME_BUBBLE_TYPE = "preference_right_consume_bubble_type";
 
+    public static final String PREFERENCE_LINK_DOUBLE_TAP = "preference_double_tap";
+    public static final String PREFERENCE_LINK_DOUBLE_TAP_PACKAGE_NAME = "preference_double_tap_package_name";
+    public static final String PREFERENCE_LINK_DOUBLE_TAP_ACTIVITY_CLASS_NAME = "preference_double_tap_activity_class_name";
+    public static final String PREFERENCE_LINK_DOUBLE_TAP_LABEL = "preference_double_tap_bubble_label";
+    public static final String PREFERENCE_LINK_DOUBLE_TAP_TYPE = "preference_double_tap_bubble_type";
+
     public static final String PREFERENCE_DEFAULT_BROWSER = "preference_default_browser";
     public static final String PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME = "preference_default_browser_package_name";
     public static final String PREFERENCE_DEFAULT_BROWSER_LABEL = "preference_default_browser_bubble_label";
@@ -430,6 +436,14 @@ public class Settings {
                 editor.putString(PREFERENCE_RIGHT_CONSUME_BUBBLE_ACTIVITY_CLASS_NAME, activityClassName);
                 editor.putString(PREFERENCE_RIGHT_CONSUME_BUBBLE_TYPE, type.name());
                 break;
+
+            case LinkDoubleTap:
+                editor.putString(PREFERENCE_LINK_DOUBLE_TAP_LABEL, label);
+                editor.putString(PREFERENCE_LINK_DOUBLE_TAP_PACKAGE_NAME, packageName);
+                editor.putString(PREFERENCE_LINK_DOUBLE_TAP_ACTIVITY_CLASS_NAME, activityClassName);
+                editor.putString(PREFERENCE_LINK_DOUBLE_TAP_TYPE, type.name());
+                break;
+
         }
         editor.commit();
 
@@ -445,6 +459,9 @@ public class Settings {
 
             case ConsumeRight:
                 return mSharedPreferences.getString(PREFERENCE_RIGHT_CONSUME_BUBBLE_LABEL, null);
+
+            case LinkDoubleTap:
+                return mSharedPreferences.getString(PREFERENCE_LINK_DOUBLE_TAP_LABEL, mContext.getString(R.string.not_set));
         }
         return null;
     }
@@ -456,6 +473,9 @@ public class Settings {
 
             case ConsumeRight:
                 return mSharedPreferences.getString(PREFERENCE_RIGHT_CONSUME_BUBBLE_PACKAGE_NAME, null);
+
+            case LinkDoubleTap:
+                return mSharedPreferences.getString(PREFERENCE_LINK_DOUBLE_TAP_PACKAGE_NAME, null);
         }
         return null;
     }
@@ -467,6 +487,9 @@ public class Settings {
 
             case ConsumeRight:
                 return mSharedPreferences.getString(PREFERENCE_RIGHT_CONSUME_BUBBLE_ACTIVITY_CLASS_NAME, null);
+
+            case LinkDoubleTap:
+                return mSharedPreferences.getString(PREFERENCE_LINK_DOUBLE_TAP_ACTIVITY_CLASS_NAME, null);
         }
         return null;
     }
@@ -480,6 +503,10 @@ public class Settings {
 
             case ConsumeRight:
                 actionTypeAsString = mSharedPreferences.getString(PREFERENCE_RIGHT_CONSUME_BUBBLE_TYPE, null);
+                break;
+
+            case LinkDoubleTap:
+                actionTypeAsString = mSharedPreferences.getString(PREFERENCE_LINK_DOUBLE_TAP_TYPE, null);
                 break;
         }
 
