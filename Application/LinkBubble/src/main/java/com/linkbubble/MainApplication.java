@@ -54,6 +54,9 @@ public class MainApplication extends Application {
 
     public IconCache mIconCache;
 
+    public static String sLastLoadedUrl;
+    public static long sLastLoadedTime;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -202,17 +205,36 @@ public class MainApplication extends Application {
     }
 
     public static void openLink(Context context, String url, String openedFromAppName) {
-        openLink(context, url, true, openedFromAppName);
+        openLink(context, url, false, true, openedFromAppName);
     }
 
-    public static void openLink(Context context, String url, boolean doLicenseCheck, String openedFromAppName) {
+    public static boolean openLink(Context context, String url, boolean checkLastAppLoad, boolean doLicenseCheck, String openedFromAppName) {
+        long time = System.currentTimeMillis();
+
+        if (checkLastAppLoad) {
+            long timeDiff = time - sLastLoadedTime;
+            boolean earlyExit = false;
+            if (timeDiff < 3000 && sLastLoadedUrl != null && sLastLoadedUrl.equals(url)) {
+                Toast.makeText(context, "DOUBLE TAP!!", Toast.LENGTH_SHORT).show();
+                earlyExit = true;
+            }
+            sLastLoadedUrl = url;
+            sLastLoadedTime = time;
+
+            if (earlyExit) {
+                return false;
+            }
+        }
+
         Intent serviceIntent = new Intent(context, MainService.class);
         serviceIntent.putExtra("cmd", "open");
         serviceIntent.putExtra("url", url);
         serviceIntent.putExtra("doLicenseCheck", doLicenseCheck);
-        serviceIntent.putExtra("start_time", System.currentTimeMillis());
+        serviceIntent.putExtra("start_time", time);
         serviceIntent.putExtra("openedFromAppName", openedFromAppName);
         context.startService(serviceIntent);
+
+        return true;
     }
 
     public static void checkRestoreCurrentTabs(Context context) {
