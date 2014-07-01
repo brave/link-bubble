@@ -132,9 +132,9 @@ public class EntryActivity extends Activity {
             }
 
             if (canLoadFromThisApp == false && !showingTamperPrompt) {
-                if (Util.randInt(0, 30) == 20) {
-                    MainApplication.showUpgradePrompt(this, R.string.upgrade_incentive_one_app, Analytics.UPGRADE_PROMPT_SINGLE_APP);
-                }
+                //if (Util.randInt(0, 30) == 20) {
+                //    MainApplication.showUpgradePrompt(this, R.string.upgrade_incentive_one_app, Analytics.UPGRADE_PROMPT_SINGLE_APP);
+                //}
                 MainApplication.openInBrowser(this, intent, true);
             } else if (openLink && !showingTamperPrompt) {
                 // Don't restore tabs if we've already got tabs open, #389
