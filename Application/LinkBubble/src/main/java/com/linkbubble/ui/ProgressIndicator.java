@@ -140,7 +140,7 @@ public class ProgressIndicator extends FrameLayout {
 
     private static class ProgressArcView extends View {
         private Paint mPaint;
-        private Paint mFramePaint;
+        //private Paint mFramePaint;
         private RectF mOval;
         //private float mStart = -90;
         //private float mSweep;
@@ -165,12 +165,12 @@ public class ProgressIndicator extends FrameLayout {
             float offset = (float)(strokeWidth)/2.f;
             mOval = new RectF(offset, offset, size+offset, size+offset);
 
-            mFramePaint = new Paint();
-            mFramePaint.setAntiAlias(true);
-            mFramePaint.setStrokeWidth(strokeWidth);
+            //mFramePaint = new Paint();
+            //mFramePaint.setAntiAlias(true);
+            //mFramePaint.setStrokeWidth(strokeWidth);
 
             mPaint.setStyle(Paint.Style.STROKE);
-            mFramePaint.setStyle(Paint.Style.STROKE);
+            //mFramePaint.setStyle(Paint.Style.STROKE);
         }
 
         void setProgress(int progress, int maxProgress, URL url) {
