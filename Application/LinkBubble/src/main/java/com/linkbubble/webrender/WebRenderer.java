@@ -2,9 +2,16 @@ package com.linkbubble.webrender;
 
 
 import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.Intent;
+import android.content.IntentSender;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import com.linkbubble.articlerender.ArticleContent;
+import com.linkbubble.ui.ExpandedActivity;
 import com.linkbubble.util.YouTubeEmbedHelper;
 
 import java.net.MalformedURLException;
@@ -66,13 +73,70 @@ public abstract class WebRenderer {
 
     protected Mode mMode;
 
-    protected Context mContext;
     protected Controller mController;
     protected URL mUrl;
 
+    class RendererContextWrapper extends ContextWrapper {
+
+        public RendererContextWrapper(Context base) {
+            super(base);
+        }
+
+        @Override
+        public Resources.Theme getTheme() {
+            if (ExpandedActivity.get() != null) {
+                //return ExpandedActivity.get().getTheme();
+            }
+            return super.getTheme();
+        }
+
+        @Override
+        public Object getSystemService(String name) {
+            if (ExpandedActivity.get() != null) {
+                //return ExpandedActivity.get().getSystemService(name);
+            }
+            return super.getSystemService(name);
+        }
+
+        /*
+        @Override
+        public void startIntentSender(IntentSender intent,
+                                      Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags)
+                throws IntentSender.SendIntentException {
+            super.startIntentSender(intent, fillInIntent, flagsMask,
+                    flagsValues, extraFlags);
+        }
+
+        @Override
+        public void startIntentSender(IntentSender intent,
+                                      Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags,
+                                      Bundle options) throws IntentSender.SendIntentException {
+            super.startIntentSender(intent, fillInIntent, flagsMask,
+                    flagsValues, extraFlags, options);
+        }
+
+        @Override
+        public void startActivity(Intent intent) {
+            Log.e("blerg", "startActivity() " + intent.toString());
+            super.startActivity(intent);
+        }
+
+        @Override
+        public void startActivity(Intent intent, Bundle options) {
+            Log.e("blerg", "startActivity(i,o) " + intent.toString());
+            super.startActivity(intent, options);
+        }*/
+
+        public Resources getResources() {
+            return getBaseContext().getResources();
+        }
+    }
+
+    RendererContextWrapper mContext;
+
     WebRenderer(Context context, Controller controller, View webRendererPlaceholder) {
         super();
-        mContext = context;
+        mContext = new RendererContextWrapper(context);
         mController = controller;
     }
 

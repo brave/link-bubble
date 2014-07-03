@@ -31,7 +31,7 @@ public class ExpandedActivity extends Activity {
     private static final String TAG = "ExpandedActivity";
 
     private static ExpandedActivity sInstance;
-    static ExpandedActivity get() {
+    public static ExpandedActivity get() {
         return sInstance;
     }
 
