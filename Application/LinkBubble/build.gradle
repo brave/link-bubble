@@ -6,7 +6,7 @@ buildscript {
     }
     dependencies {
         classpath ':dexguard:'
-        classpath 'com.android.tools.build:gradle:0.9.0'
+        classpath 'com.android.tools.build:gradle:0.12.+'
         classpath 'com.crashlytics.tools.gradle:crashlytics-gradle:1.+'
     }
 }
@@ -21,7 +21,7 @@ if(buildMode == "dexguard") {
     apply plugin:'dexguard'
     println "*** Apply plugin -> DEXGUARD"
 } else {
-    apply plugin:'android'
+    apply plugin:'com.android.application'
     println "*** Apply plugin -> ANDROID"
 }
 
@@ -37,7 +37,7 @@ def buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone(
 
 android {
     compileSdkVersion 19
-    buildToolsVersion '19.0.3'
+    buildToolsVersion "20.0.0"
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 19
@@ -52,7 +52,7 @@ android {
 
     productFlavors {
         playstore {
-            packageName='com.linkbubble.playstore'
+            applicationId='com.linkbubble.playstore'
 
             buildConfigField "String", "STORE_PACKAGE", "\"com.android.vending\""
             buildConfigField "String", "STORE_URL_PREFIX", "\"http://play.google.com/store/apps/details?id=\""
@@ -75,7 +75,7 @@ android {
     }
     buildTypes {
         debug {
-            packageNameSuffix '.dev'
+            applicationIdSuffix '.dev'
             versionNameSuffix '-dev'
         }
 
@@ -95,8 +95,8 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.0.+'
-    compile 'com.google.android.gms:play-services:4.3.+'
+    compile 'com.android.support:support-v4:20.0.+'
+    compile 'com.google.android.gms:play-services:4.4.+'
     compile 'se.emilsjolander:stickylistheaders:2.1.2'
     compile 'com.crashlytics.android:crashlytics:1.+'
     compile 'com.squareup.retrofit:retrofit:1.5.0'
