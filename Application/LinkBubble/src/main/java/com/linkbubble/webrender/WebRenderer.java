@@ -10,6 +10,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import com.linkbubble.Constant;
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.ui.ExpandedActivity;
 import com.linkbubble.util.YouTubeEmbedHelper;
@@ -84,16 +86,16 @@ public abstract class WebRenderer {
 
         @Override
         public Resources.Theme getTheme() {
-            if (ExpandedActivity.get() != null) {
-                //return ExpandedActivity.get().getTheme();
+            if (Constant.ACTIVITY_WEBVIEW_RENDERING && ExpandedActivity.get() != null) {
+                return ExpandedActivity.get().getTheme();
             }
             return super.getTheme();
         }
 
         @Override
         public Object getSystemService(String name) {
-            if (ExpandedActivity.get() != null) {
-                //return ExpandedActivity.get().getSystemService(name);
+            if (Constant.ACTIVITY_WEBVIEW_RENDERING && ExpandedActivity.get() != null) {
+                return ExpandedActivity.get().getSystemService(name);
             }
             return super.getSystemService(name);
         }
