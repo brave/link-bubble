@@ -434,7 +434,19 @@ public class MainController implements Choreographer.FrameCallback {
     @SuppressWarnings("unused")
     @Subscribe
     public void onEndExpandTransition(MainController.EndExpandTransitionEvent e) {
-        showExpandedActivity();
+        if (Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
+            showExpandedActivity();
+        }
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onExpandedActivityReadyEvent(ExpandedActivity.ExpandedActivityReadyEvent event) {
+        if (mDeferredExpandBubbleFlowTime > -1) {
+            doExpandBubbleFlow(mDeferredExpandBubbleFlowTime, mDeferredExpandBubbleFlowHideDraggable);
+            mDeferredExpandBubbleFlowTime = -1;
+            mDeferredExpandBubbleFlowHideDraggable = false;
+        }
     }
 
     static public long sStartExpandedActivityTime = -1;
@@ -767,7 +779,10 @@ public class MainController implements Choreographer.FrameCallback {
                 final float bubblePeriod = (float) Constant.BUBBLE_ANIM_TIME / 1000.f;
                 final float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
                 expandBubbleFlow((long) (contentPeriod * 1000), false);
-                showExpandedActivity();
+                if (Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
+                    // No need to do this if above is true because it's already done
+                    showExpandedActivity();
+                }
             }
         } else {
             showBadge(true);
@@ -876,7 +891,20 @@ public class MainController implements Choreographer.FrameCallback {
         mBubbleDraggable.setVisibility(View.GONE);
     }
 
+    private long mDeferredExpandBubbleFlowTime = -1;
+    private boolean mDeferredExpandBubbleFlowHideDraggable;
+
     public void expandBubbleFlow(long time, boolean hideDraggable) {
+        if (Constant.ACTIVITY_WEBVIEW_RENDERING) {
+            mDeferredExpandBubbleFlowTime = time;
+            mDeferredExpandBubbleFlowHideDraggable = hideDraggable;
+            showExpandedActivity();
+        } else {
+            doExpandBubbleFlow(time, hideDraggable);
+        }
+    }
+
+    private void doExpandBubbleFlow(long time, boolean hideDraggable) {
         mBeginExpandTransitionEvent.mPeriod = time / 1000.0f;
         MainApplication.postEvent(mContext, mBeginExpandTransitionEvent);
 
