@@ -37,6 +37,8 @@ public class ExpandedActivity extends Activity {
 
     public static class MinimizeExpandedActivityEvent {};
 
+    public static class ExpandedActivityReadyEvent {};
+
     public static class EnableHotwordSeviceEvent {
         boolean mEnable;
 
@@ -74,7 +76,7 @@ public class ExpandedActivity extends Activity {
         FrameLayout rootView = (FrameLayout) findViewById(R.id.expanded_root);
 
         mWebRendererContainer = (LinearLayout) findViewById(R.id.web_renderer_container);
-        if (Constant.SELECT_TEXT_VIA_ACTIVITY == false) {
+        if (Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
             //mWebRendererContainer.setWillNotDraw(true);
             rootView.removeView(mWebRendererContainer);
             mWebRendererContainer = null;
@@ -177,6 +179,9 @@ public class ExpandedActivity extends Activity {
     protected void onStart() {
         Log.d(TAG, "ExpandedActivity.onStart()");
         Log.e(TAG, "Expand time: " + (System.currentTimeMillis() - MainController.sStartExpandedActivityTime));
+
+        MainApplication.postEvent(this, new ExpandedActivityReadyEvent());
+
         super.onStart();
     }
 
@@ -205,7 +210,7 @@ public class ExpandedActivity extends Activity {
             mHotwordServiceClient.requestHotwordDetection(true);
         }
 
-        if (Constant.SELECT_TEXT_VIA_ACTIVITY && mWebRendererContainer.getChildCount() == 0) {
+        if (Constant.ACTIVITY_WEBVIEW_RENDERING && mWebRendererContainer.getChildCount() == 0) {
             TabView current = MainController.get().getCurrentTab();
             if (current != null) {
                 setWebRenderer(current.getContentView().getWebRenderer().getView());
