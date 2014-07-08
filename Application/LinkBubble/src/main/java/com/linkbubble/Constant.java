@@ -20,7 +20,7 @@ public class Constant {
     }
 
     // If true, transfer the WebView to an Activity. Enables text selection and drop down items to work
-    public static boolean ACTIVITY_WEBVIEW_RENDERING = true;
+    public static boolean ACTIVITY_WEBVIEW_RENDERING = false;
 
     // Make GW's changes per d46678694ab79ed7a4aec5e293beff9ae9a62382 optional
     public static final boolean DYNAMIC_ANIM_STEP = true;
