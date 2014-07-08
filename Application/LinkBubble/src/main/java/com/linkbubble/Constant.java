@@ -19,6 +19,9 @@ public class Constant {
         Share,
     }
 
+    // If true, transfer the WebView to an Activity. Enables text selection and drop down items to work
+    public static boolean ACTIVITY_WEBVIEW_RENDERING = true;
+
     // Make GW's changes per d46678694ab79ed7a4aec5e293beff9ae9a62382 optional
     public static final boolean DYNAMIC_ANIM_STEP = true;
 
@@ -30,8 +33,6 @@ public class Constant {
     public static final boolean EXPANDED_ACTIVITY_DEBUG = false;
 
     public static boolean SAVE_CURRENT_TABS = true;
-
-    public static boolean SELECT_TEXT_VIA_ACTIVITY = false;
 
     public static boolean ARTICLE_MODE_BUTTON = true;
 

@@ -74,7 +74,7 @@ public class ExpandedActivity extends Activity {
         FrameLayout rootView = (FrameLayout) findViewById(R.id.expanded_root);
 
         mWebRendererContainer = (LinearLayout) findViewById(R.id.web_renderer_container);
-        if (Constant.SELECT_TEXT_VIA_ACTIVITY == false) {
+        if (Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
             //mWebRendererContainer.setWillNotDraw(true);
             rootView.removeView(mWebRendererContainer);
             mWebRendererContainer = null;
@@ -205,7 +205,7 @@ public class ExpandedActivity extends Activity {
             mHotwordServiceClient.requestHotwordDetection(true);
         }
 
-        if (Constant.SELECT_TEXT_VIA_ACTIVITY && mWebRendererContainer.getChildCount() == 0) {
+        if (Constant.ACTIVITY_WEBVIEW_RENDERING && mWebRendererContainer.getChildCount() == 0) {
             TabView current = MainController.get().getCurrentTab();
             if (current != null) {
                 setWebRenderer(current.getContentView().getWebRenderer().getView());
