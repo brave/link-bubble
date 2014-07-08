@@ -27,6 +27,7 @@ import com.linkbubble.ui.BubbleFlowDraggable;
 import com.linkbubble.ui.BubbleFlowView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.ui.ExpandedActivity;
+import com.linkbubble.ui.HomeActivity;
 import com.linkbubble.ui.Prompt;
 import com.linkbubble.ui.SettingsFragment;
 import com.linkbubble.ui.TabView;
@@ -436,11 +437,15 @@ public class MainController implements Choreographer.FrameCallback {
         showExpandedActivity();
     }
 
-    void showExpandedActivity() {
+    static public long sStartExpandedActivityTime = -1;
+
+    public void showExpandedActivity() {
         if (Constant.EXPANDED_ACTIVITY_ENABLED) {
-            Intent i = new Intent(mContext, ExpandedActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            mContext.getApplicationContext().startActivity(i);
+            Log.e(TAG, "showExpandedActivity()");
+            sStartExpandedActivityTime = System.currentTimeMillis();
+            Intent intent = new Intent(mContext, ExpandedActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);// Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            mContext.getApplicationContext().startActivity(intent);
         }
     }
 
