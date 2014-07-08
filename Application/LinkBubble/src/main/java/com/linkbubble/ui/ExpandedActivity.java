@@ -37,6 +37,8 @@ public class ExpandedActivity extends Activity {
 
     public static class MinimizeExpandedActivityEvent {};
 
+    public static class ExpandedActivityReadyEvent {};
+
     public static class EnableHotwordSeviceEvent {
         boolean mEnable;
 
@@ -177,6 +179,9 @@ public class ExpandedActivity extends Activity {
     protected void onStart() {
         Log.d(TAG, "ExpandedActivity.onStart()");
         Log.e(TAG, "Expand time: " + (System.currentTimeMillis() - MainController.sStartExpandedActivityTime));
+
+        MainApplication.postEvent(this, new ExpandedActivityReadyEvent());
+
         super.onStart();
     }
 
