@@ -440,13 +440,11 @@ public class MainController implements Choreographer.FrameCallback {
     static public long sStartExpandedActivityTime = -1;
 
     public void showExpandedActivity() {
-        if (Constant.EXPANDED_ACTIVITY_ENABLED) {
-            Log.e(TAG, "showExpandedActivity()");
-            sStartExpandedActivityTime = System.currentTimeMillis();
-            Intent intent = new Intent(mContext, ExpandedActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);// Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            mContext.getApplicationContext().startActivity(intent);
-        }
+        Log.e(TAG, "showExpandedActivity()");
+        sStartExpandedActivityTime = System.currentTimeMillis();
+        Intent intent = new Intent(mContext, ExpandedActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);// Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        mContext.getApplicationContext().startActivity(intent);
     }
 
     public void scheduleUpdate() {
