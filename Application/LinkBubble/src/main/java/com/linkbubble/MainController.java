@@ -443,7 +443,7 @@ public class MainController implements Choreographer.FrameCallback {
         Log.e(TAG, "showExpandedActivity()");
         sStartExpandedActivityTime = System.currentTimeMillis();
         Intent intent = new Intent(mContext, ExpandedActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);// Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         mContext.getApplicationContext().startActivity(intent);
     }
 
