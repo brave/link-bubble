@@ -29,7 +29,6 @@ public class Constant {
 
     public static final String INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION = "com.android.launcher.intent.extra.shortcut.INGORE_LAUNCH_ANIMATION";
 
-    public static final boolean EXPANDED_ACTIVITY_ENABLED = true;
     public static final boolean EXPANDED_ACTIVITY_DEBUG = false;
 
     public static boolean SAVE_CURRENT_TABS = true;
