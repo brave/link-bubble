@@ -3,9 +3,7 @@ package com.linkbubble.webrender;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Handler;
@@ -35,7 +33,6 @@ import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.articlerender.ArticleContent;
-import com.linkbubble.ui.ExpandedActivity;
 import com.linkbubble.ui.TabView;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.PageInspector;
@@ -333,7 +330,7 @@ class WebViewRenderer extends WebRenderer {
 
                 case WebView.HitTestResult.UNKNOWN_TYPE:
                 default:
-                    if (Constant.SELECT_TEXT_VIA_ACTIVITY == false) {
+                    if (Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
                         mController.onShowBrowserPrompt();
                     }
                     return false;

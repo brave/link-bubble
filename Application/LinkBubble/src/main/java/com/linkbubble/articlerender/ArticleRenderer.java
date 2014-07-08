@@ -8,10 +8,9 @@ import android.view.View;
 import android.webkit.DownloadListener;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
+
 import com.linkbubble.Constant;
 import com.linkbubble.util.Util;
-import com.linkbubble.webrender.WebRenderer;
 
 
 public class ArticleRenderer {
@@ -113,7 +112,7 @@ public class ArticleRenderer {
 
                 case WebView.HitTestResult.UNKNOWN_TYPE:
                 default:
-                    if (Constant.SELECT_TEXT_VIA_ACTIVITY == false) {
+                    if (Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
                         mController.onShowBrowserPrompt();
                     }
                     return false;
