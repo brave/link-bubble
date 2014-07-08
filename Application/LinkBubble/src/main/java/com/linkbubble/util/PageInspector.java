@@ -145,7 +145,7 @@ public class PageInspector {
 
         String jsEmbed = "javascript:(function() {\n";
 
-        if ((inspectFlags & INSPECT_DROP_DOWN) != 0) {
+        if ((inspectFlags & INSPECT_DROP_DOWN) != 0 && Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
             jsEmbed += JS_DROP_DOWN_ITEM_CHECK;
         }
 
