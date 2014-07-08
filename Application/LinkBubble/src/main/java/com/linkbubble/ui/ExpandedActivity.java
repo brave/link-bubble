@@ -56,7 +56,7 @@ public class ExpandedActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Log.d(TAG, "MainActivity.onCreate()");
+        Log.e(TAG, "ExpandedActivity.onCreate()");
 
         super.onCreate(savedInstanceState);
         CrashTracking.init(this);
@@ -160,7 +160,7 @@ public class ExpandedActivity extends Activity {
 
     @Override
     protected void onDestroy() {
-        Log.d(TAG, "MainActivity.onDestroy()");
+        Log.e(TAG, "***ExpandedActivity.onDestroy()");
 
         super.onDestroy();
 
@@ -175,13 +175,14 @@ public class ExpandedActivity extends Activity {
 
     @Override
     protected void onStart() {
-        Log.d(TAG, "MainActivity.onStart()");
+        Log.d(TAG, "ExpandedActivity.onStart()");
+        Log.e(TAG, "Expand time: " + (System.currentTimeMillis() - MainController.sStartExpandedActivityTime));
         super.onStart();
     }
 
     @Override
     protected void onStop() {
-        Log.d(TAG, "MainActivity.onStop()");
+        Log.d(TAG, "ExpandedActivity.onStop()");
         super.onStop();
 
         //mTopMaskImage.setVisibility(View.GONE);
@@ -190,7 +191,7 @@ public class ExpandedActivity extends Activity {
 
     @Override
     public void onResume() {
-        Log.d(TAG, "MainActivity.onResume()");
+        Log.d(TAG, "ExpandedActivity.onResume()");
         super.onResume();
 
         mIsShowing = true;
@@ -214,7 +215,7 @@ public class ExpandedActivity extends Activity {
 
     @Override
     public void onPause() {
-        Log.d(TAG, "MainActivity.onPause()");
+        Log.d(TAG, "ExpandedActivity.onPause()");
         super.onPause();
         mIsShowing = false;
 
