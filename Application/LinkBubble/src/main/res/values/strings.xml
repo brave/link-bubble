@@ -4,7 +4,7 @@
     <string name="download_activity_label">Downloader</string>
     <string name="send_intent_label">Open with Link Bubble</string>
     <string name="notification_summary">Touch to hide all open bubbles</string>
-    <string name="notification_expand_summary">Expand to hide/close open bubbles</string>
+    <string name="notification_expand_summary">Touch to Close All, expand to Hide</string>
     <string name="notification_action_close_all">Close All</string>
     <string name="notification_action_hide">Hide</string>
     <string name="share_picker_label">Share picker</string>

@@ -87,8 +87,8 @@ public class MainService extends Service {
                         .setPriority(Notification.PRIORITY_MIN)
                         .setContentTitle(getString(R.string.app_name))
                         .setContentText(getString(R.string.notification_expand_summary))
-                        .addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
-                        .addAction(R.drawable.ic_action_halt_dark, getString(R.string.notification_action_hide), hideAllPendingIntent);
+                        .addAction(R.drawable.ic_action_halt_dark, getString(R.string.notification_action_hide), hideAllPendingIntent)
+                        .setContentIntent(closeAllPendingIntent);
         startForeground(1, notificationBuilder.build());
 
         Config.init(this);
