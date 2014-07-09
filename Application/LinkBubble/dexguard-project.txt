@@ -147,6 +147,12 @@
     public static final java.lang.String YAHOO_ACCOUNT_TYPE;
 }
 
+-keepclassmembers class com.linkbubble.MainService {
+    # ensure event handler functions are not stripped
+    public void onShowDefaultNotificationEvent(com.linkbubble.MainService$ShowDefaultNotificationEvent);
+    public void onShowUnhideNotificationEvent(com.linkbubble.MainService$ShowUnhideNotificationEvent);
+}
+
 -keepclassmembers class com.linkbubble.MainController {
     # ensure event handler functions are not stripped
     public void onBeginExpandTransition(com.linkbubble.MainController$BeginExpandTransitionEvent);
@@ -169,6 +175,8 @@
 -keep class com.linkbubble.MainController$EndCollapseTransitionEvent
 -keep class com.linkbubble.MainController$EndExpandTransitionEvent
 -keep class com.linkbubble.MainController$OrientationChangedEvent
+-keep class com.linkbubble.MainService$ShowDefaultNotificationEvent
+-keep class com.linkbubble.MainService$ShowUnhideNotificationEvent
 -keep class com.linkbubble.db.HistoryRecord$ChangedEvent
 -keep class com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent
 -keep class com.linkbubble.ui.ExpandedActivity$EnableHotwordSeviceEvent

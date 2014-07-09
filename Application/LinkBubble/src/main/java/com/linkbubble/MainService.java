@@ -10,10 +10,10 @@ import android.content.IntentFilter;
 import android.os.IBinder;
 import android.webkit.WebIconDatabase;
 
-import com.linkbubble.ui.CloseAllBubblesActivity;
-import com.linkbubble.ui.HideAllBubblesActivity;
+import com.linkbubble.ui.NotificationControlActivity;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
+import com.squareup.otto.Subscribe;
 
 /**
  * Created by gw on 28/08/13.
@@ -22,6 +22,14 @@ public class MainService extends Service {
 
     private static final String BCAST_CONFIGCHANGED = "android.intent.action.CONFIGURATION_CHANGED";
     private boolean mRestoreComplete;
+
+    private static final int NOTIFICATION_ID = 12234;
+
+    public static class ShowDefaultNotificationEvent {
+    }
+
+    public static class ShowUnhideNotificationEvent {
+    }
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -74,22 +82,7 @@ public class MainService extends Service {
         super.onCreate();
         CrashTracking.init(this);
 
-        Intent closeAllIntent = new Intent(this, CloseAllBubblesActivity.class);
-        closeAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent closeAllPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), closeAllIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Intent hideAllIntent = new Intent(this, HideAllBubblesActivity.class);
-        hideAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent hideAllPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), hideAllIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Notification.Builder notificationBuilder = new Notification.Builder(this)
-                        .setSmallIcon(R.drawable.ic_stat)
-                        .setPriority(Notification.PRIORITY_MIN)
-                        .setContentTitle(getString(R.string.app_name))
-                        .setContentText(getString(R.string.notification_expand_summary))
-                        .addAction(R.drawable.ic_action_halt_dark, getString(R.string.notification_action_hide), hideAllPendingIntent)
-                        .setContentIntent(closeAllPendingIntent);
-        startForeground(1, notificationBuilder.build());
+        showDefaultNotification();
 
         Config.init(this);
         Settings.get().onOrientationChange();
@@ -128,14 +121,77 @@ public class MainService extends Service {
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_USER_PRESENT);
         registerReceiver(mScreenReceiver, filter);
+
+        MainApplication.registerForBus(this, this);
     }
 
     @Override
     public void onDestroy() {
+        MainApplication.unregisterForBus(this, this);
         unregisterReceiver(mScreenReceiver);
         unregisterReceiver(mDialogReceiver);
         unregisterReceiver(mBroadcastReceiver);
         MainController.destroy();
+    }
+
+    private void cancelCurrentNotification() {
+        stopForeground(true);
+    }
+
+    private void showDefaultNotification() {
+        Intent closeAllIntent = new Intent(this, NotificationControlActivity.class);
+        closeAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        closeAllIntent.putExtra(NotificationControlActivity.EXTRA_ACTION, NotificationControlActivity.ACTION_CLOSE_ALL);
+        PendingIntent closeAllPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), closeAllIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Intent hideIntent = new Intent(this, NotificationControlActivity.class);
+        hideIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        hideIntent.putExtra(NotificationControlActivity.EXTRA_ACTION, NotificationControlActivity.ACTION_HIDE);
+        PendingIntent hidePendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), hideIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Notification.Builder notificationBuilder = new Notification.Builder(this)
+                .setSmallIcon(R.drawable.ic_stat)
+                .setPriority(Notification.PRIORITY_MIN)
+                .setContentTitle(getString(R.string.app_name))
+                .setContentText(getString(R.string.notification_default_summary))
+                .addAction(R.drawable.ic_action_halt_dark, getString(R.string.notification_action_hide), hidePendingIntent)
+                .setContentIntent(closeAllPendingIntent);
+        startForeground(NOTIFICATION_ID, notificationBuilder.build());
+    }
+
+    private void showUnhideHiddenNotification() {
+        Intent unhideIntent = new Intent(this, NotificationControlActivity.class);
+        unhideIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        unhideIntent.putExtra(NotificationControlActivity.EXTRA_ACTION, NotificationControlActivity.ACTION_UNHIDE);
+        PendingIntent unhidePendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), unhideIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Intent closeAllIntent = new Intent(this, NotificationControlActivity.class);
+        closeAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        closeAllIntent.putExtra(NotificationControlActivity.EXTRA_ACTION, NotificationControlActivity.ACTION_CLOSE_ALL);
+        PendingIntent closeAllPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), closeAllIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Notification.Builder notificationBuilder = new Notification.Builder(this)
+                .setSmallIcon(R.drawable.ic_stat)
+                .setPriority(Notification.PRIORITY_MIN)
+                .setContentTitle(getString(R.string.app_name))
+                .setContentText(getString(R.string.notification_unhide_summary))
+                .addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
+                .setContentIntent(unhidePendingIntent);
+        startForeground(NOTIFICATION_ID, notificationBuilder.build());
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onShowDefaultNotificationEvent(ShowDefaultNotificationEvent event) {
+        cancelCurrentNotification();
+        showDefaultNotification();
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onShowUnhideNotificationEvent(ShowUnhideNotificationEvent event) {
+        cancelCurrentNotification();
+        showUnhideHiddenNotification();
     }
 
     private static BroadcastReceiver mDialogReceiver = new BroadcastReceiver() {
