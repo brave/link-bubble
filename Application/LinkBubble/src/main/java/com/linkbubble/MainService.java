@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 import android.webkit.WebIconDatabase;
+
+import com.linkbubble.ui.CloseAllBubblesActivity;
 import com.linkbubble.ui.HideAllBubblesActivity;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
@@ -72,16 +74,21 @@ public class MainService extends Service {
         super.onCreate();
         CrashTracking.init(this);
 
-        Intent resultIntent = new Intent(this, HideAllBubblesActivity.class);
-        resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent resultPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent closeAllIntent = new Intent(this, CloseAllBubblesActivity.class);
+        closeAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent closeAllPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), closeAllIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Intent hideAllIntent = new Intent(this, HideAllBubblesActivity.class);
+        hideAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent hideAllPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), hideAllIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Notification.Builder notificationBuilder = new Notification.Builder(this)
                         .setSmallIcon(R.drawable.ic_stat)
                         .setPriority(Notification.PRIORITY_MIN)
                         .setContentTitle(getString(R.string.app_name))
-                        .setContentText(getString(R.string.notification_summary))
-                        .setContentIntent(resultPendingIntent);
+                        .setContentText(getString(R.string.notification_expand_summary))
+                        .addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
+                        .addAction(R.drawable.ic_action_halt_dark, getString(R.string.notification_action_hide), hideAllPendingIntent);
         startForeground(1, notificationBuilder.build());
 
         Config.init(this);
