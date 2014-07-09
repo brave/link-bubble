@@ -521,6 +521,10 @@ public class MainController implements Choreographer.FrameCallback {
     public void doFrame(long frameTimeNanos) {
         mUpdateScheduled = false;
 
+        //if (mHiddenByUser == true) {
+        //    return;
+        //}
+
         float t0 = mPreviousFrameTime / 1000000000.0f;
         float t1 = frameTimeNanos / 1000000000.0f;
         float t = t1 - t0;
@@ -551,7 +555,9 @@ public class MainController implements Choreographer.FrameCallback {
             }
         }
 
-        updateKeyguardLocked();
+        if (mHiddenByUser == false) {
+            updateKeyguardLocked();
+        }
 
         if (Constant.PROFILE_FPS) {
             if (t < MAX_VALID_TIME) {
@@ -743,6 +749,8 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     protected TabView openUrlInTab(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker) {
+        setHiddenByUser(false);
+
         if (getActiveTabCount() == 0) {
             mBubbleDraggable.setVisibility(View.VISIBLE);
             collapseBubbleFlow(0);
@@ -994,6 +1002,14 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         return reloaded;
+    }
+
+    private boolean mHiddenByUser = false;
+    public void setHiddenByUser(boolean hiddenByUser) {
+        if (mHiddenByUser != hiddenByUser) {
+            mHiddenByUser = hiddenByUser;
+            setCanDisplay(!mHiddenByUser);
+        }
     }
 
     private boolean mCanDisplay;
