@@ -79,16 +79,11 @@
 
         </activity>
 
-        <activity android:name=".ui.HideAllBubblesActivity"
+        <activity android:name=".ui.NotificationControlActivity"
                   android:excludeFromRecents="true"
                   android:launchMode="singleInstance"
                   android:theme="@style/TransparentTheme"/>
 
-        <activity android:name=".ui.CloseAllBubblesActivity"
-            android:excludeFromRecents="true"
-            android:launchMode="singleInstance"
-            android:theme="@style/TransparentTheme"/>
-        
         <activity android:name=".ui.SettingsActivity"
                   android:label="@string/app_name"
                   android:theme="@android:style/Theme.Holo.Light">

@@ -1008,6 +1008,11 @@ public class MainController implements Choreographer.FrameCallback {
     public void setHiddenByUser(boolean hiddenByUser) {
         if (mHiddenByUser != hiddenByUser) {
             mHiddenByUser = hiddenByUser;
+            if (mHiddenByUser) {
+                MainApplication.postEvent(mContext, new MainService.ShowUnhideNotificationEvent());
+            } else {
+                MainApplication.postEvent(mContext, new MainService.ShowDefaultNotificationEvent());
+            }
             setCanDisplay(!mHiddenByUser);
         }
     }
