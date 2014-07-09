@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.linkbubble.MainController;
 import com.linkbubble.util.CrashTracking;
 
-public class HideAllBubblesActivity extends Activity {
+public class CloseAllBubblesActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,7 +15,8 @@ public class HideAllBubblesActivity extends Activity {
 
         if (MainController.get() != null) {
             MainController.get().saveCurrentTabs();
-            MainController.get().setHiddenByUser(true);
+            MainController.get().closeAllBubbles(false);
+            MainController.get().finish();
         }
 
         finish();
