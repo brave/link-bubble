@@ -497,4 +497,19 @@ public class Util {
             return new ComponentName(info.serviceInfo.packageName, info.serviceInfo.name);
         }
     }
+
+    static public String getDefaultLauncherPackage(PackageManager packageManager) {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        ResolveInfo resolveInfo = packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        if (resolveInfo != null && resolveInfo.activityInfo != null) {
+            if (resolveInfo.activityInfo.packageName.equals("android") == false) {
+                //setDefaultLauncherPreference.setSummary(R.string.not_default_youtube_app);
+                return resolveInfo.activityInfo.packageName;
+            }
+        }
+
+        return null;
+    }
+
 }
