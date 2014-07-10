@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Config;
+import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.ui.Prompt;
@@ -512,4 +513,22 @@ public class Util {
         return null;
     }
 
+    static public Intent getSendIntent(String packageName, String className, String urlAsString) {
+        // TODO: Retrieve the class name below from the app in case Twitter ever change it.
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.setClassName(packageName, className);
+        if (packageName.equals(Constant.POCKET_PACKAGE_NAME)) {
+            // Stop pocket spawning when links added
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        } else {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+        intent.putExtra(Intent.EXTRA_TEXT, urlAsString);
+        String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(urlAsString) : null;
+        if (title != null) {
+            intent.putExtra(Intent.EXTRA_SUBJECT, title);
+        }
+        return intent;
+    }
 }

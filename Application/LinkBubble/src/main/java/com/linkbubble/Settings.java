@@ -336,7 +336,7 @@ public class Settings {
             PackageManager packageManager = mContext.getPackageManager();
             List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, 0);
 
-            if (setDefaultLeftConsumeBubble(findResolveInfoForPackageName(resolveInfos, "com.ideashower.readitlater.pro"), packageManager) == false) {
+            if (setDefaultLeftConsumeBubble(findResolveInfoForPackageName(resolveInfos, Constant.POCKET_PACKAGE_NAME), packageManager) == false) {
                 if (setDefaultLeftConsumeBubble(findResolveInfoForPackageName(resolveInfos, "com.instapaper.android"), packageManager) == false) {
                     if (setDefaultLeftConsumeBubble(findResolveInfoForPackageName(resolveInfos, "com.facebook.katana"), packageManager) == false) {
                         if (setDefaultLeftConsumeBubble(findResolveInfoForPackageName(resolveInfos, "com.twitter.android"), packageManager) == false) {
