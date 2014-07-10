@@ -6,6 +6,7 @@
                 App becomes visible when either a new link is loaded or the app is 'unhidden' via the notification.</change>
         <change>IMPROVEMENT: Much smoother animation when web content slides on/off screen.</change>
         <change>IMPROVEMENT: Add hack to stop Pocket from displaying when you add links to it.</change>
+        <change>IMPROVEMENT: Link Bubble is minimized when links are sent to external apps when running the L Preview.</change>
     </release>
 
     <release version="1.2.1" versioncode="12100">
