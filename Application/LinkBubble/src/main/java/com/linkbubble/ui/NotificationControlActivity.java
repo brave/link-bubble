@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.linkbubble.BuildConfig;
 import com.linkbubble.MainController;
@@ -22,24 +23,36 @@ public class NotificationControlActivity extends Activity {
         super.onCreate(savedInstanceState);
         CrashTracking.init(this);
 
+        MainController mainController = MainController.get();
+
         Intent intent = getIntent();
         String action = intent.getStringExtra(EXTRA_ACTION);
 
+        Log.e("blerg", "NotificationControlActivity.onCreate() - action:" + action);
+        if (action.equals(ACTION_CLOSE_ALL)) {
+            Toast.makeText(this, "*** NotificationAction: " + action, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "NotificationAction: " + action, Toast.LENGTH_SHORT).show();
+        }
+
         if (action != null) {
             if (action.equals(ACTION_CLOSE_ALL)) {
-                if (MainController.get() != null) {
-                    MainController.get().saveCurrentTabs();
-                    MainController.get().closeAllBubbles(false);
-                    MainController.get().finish();
+                if (mainController != null) {
+                    Log.e("blerg", "*** handle " + action);
+                    mainController.saveCurrentTabs();
+                    mainController.closeAllBubbles(false);
+                    mainController.finish();
                 }
             } else if (action.equals(ACTION_HIDE)) {
-                if (MainController.get() != null) {
-                    MainController.get().saveCurrentTabs();
-                    MainController.get().setHiddenByUser(true);
+                if (mainController != null) {
+                    Log.e("blerg", "*** handle " + action);
+                    mainController.saveCurrentTabs();
+                    mainController.setHiddenByUser(true);
                 }
             } else if (action.equals(ACTION_UNHIDE)) {
-                if (MainController.get() != null) {
-                    MainController.get().setHiddenByUser(false);
+                if (mainController != null) {
+                    Log.e("blerg", "*** handle " + action);
+                    mainController.setHiddenByUser(false);
                 }
             }
         }
