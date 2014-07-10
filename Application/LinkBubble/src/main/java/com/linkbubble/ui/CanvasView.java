@@ -236,6 +236,8 @@ public class CanvasView extends FrameLayout {
         //    Log.d("CanvasView", "setContentView() - index:" + bubbleIndex);
         //}
 
+        //Log.d("blerg", "setContentView(): from " + (mContentView != null ? "valid" : "none") + " to " + (contentView != null ? "valid" : "none"));
+
         mContentView = contentView;
         if (mContentView != null) {
             FrameLayout.LayoutParams p = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -354,6 +356,13 @@ public class CanvasView extends FrameLayout {
         MainController.BeginCollapseTransitionEvent collapseTransitionEvent = new MainController.BeginCollapseTransitionEvent();
         collapseTransitionEvent.mPeriod = (Constant.BUBBLE_ANIM_TIME / 1000.f) * 0.666667f;
         onBeginCollapseTransition(collapseTransitionEvent);
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onHideContentEvent(MainController.HideContentEvent event) {
+        setContentView(null);
+        mContentViewY = Config.mScreenHeight - Config.mContentOffset;
     }
 
     private void fadeIn() {

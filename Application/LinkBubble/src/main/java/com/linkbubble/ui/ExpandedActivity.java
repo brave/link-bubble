@@ -37,8 +37,6 @@ public class ExpandedActivity extends Activity {
 
     public static class MinimizeExpandedActivityEvent {};
 
-    public static class FinishExpandedActivityEvent {};
-
     public static class ExpandedActivityReadyEvent {};
 
     public static class EnableHotwordSeviceEvent {
@@ -313,7 +311,7 @@ public class ExpandedActivity extends Activity {
 
     @SuppressWarnings("unused")
     @Subscribe
-    public void onFinishExpandedActivityEvent(FinishExpandedActivityEvent e) {
+    public void onHideContentEvent(MainController.HideContentEvent event) {
         finish();
     }
 
