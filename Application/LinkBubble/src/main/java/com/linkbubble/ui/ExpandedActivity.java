@@ -37,6 +37,8 @@ public class ExpandedActivity extends Activity {
 
     public static class MinimizeExpandedActivityEvent {};
 
+    public static class FinishExpandedActivityEvent {};
+
     public static class ExpandedActivityReadyEvent {};
 
     public static class EnableHotwordSeviceEvent {
@@ -307,6 +309,12 @@ public class ExpandedActivity extends Activity {
     @Subscribe
     public void onMinimizeExpandedActivity(MinimizeExpandedActivityEvent e) {
         minimize();
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onFinishExpandedActivityEvent(FinishExpandedActivityEvent e) {
+        finish();
     }
 
     @SuppressWarnings("unused")
