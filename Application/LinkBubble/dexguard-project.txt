@@ -174,6 +174,7 @@
 -keep class com.linkbubble.MainController$EndBubbleDragEvent
 -keep class com.linkbubble.MainController$EndCollapseTransitionEvent
 -keep class com.linkbubble.MainController$EndExpandTransitionEvent
+-keep class com.linkbubble.MainController$HideContentEvent
 -keep class com.linkbubble.MainController$OrientationChangedEvent
 -keep class com.linkbubble.MainService$ShowDefaultNotificationEvent
 -keep class com.linkbubble.MainService$ShowUnhideNotificationEvent
@@ -181,7 +182,6 @@
 -keep class com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent
 -keep class com.linkbubble.ui.ExpandedActivity$EnableHotwordSeviceEvent
 -keep class com.linkbubble.ui.ExpandedActivity$FinishExpandedActivityEvent
--keep class com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent
 -keep class com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent
 
 -keepclassmembers class com.linkbubble.ui.BubbleTargetView {
@@ -214,7 +214,7 @@
     # ensure event handler functions are not stripped
     public void onEnableHotwordSevice(com.linkbubble.ui.ExpandedActivity$EnableHotwordSeviceEvent);
     public void onFinishExpandedActivityEvent(com.linkbubble.ui.ExpandedActivity$FinishExpandedActivityEvent);
-    public void onMinimizeExpandedActivity(com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent);
+    public void onHideContentEvent(com.linkbubble.MainController$HideContentEvent);
 }
 
 -keepclassmembers class com.linkbubble.ui.HistoryActivity {
