@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.pm.ResolveInfo;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
+import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.squareup.picasso.Picasso;
@@ -131,8 +133,14 @@ public class YouTubeEmbedHelper {
 
     private boolean loadYouTubeVideo(String id) {
         if (mYouTubeResolveInfo != null) {
-            return MainApplication.loadIntent(mContext, mYouTubeResolveInfo.activityInfo.packageName,
-                    mYouTubeResolveInfo.activityInfo.name, Config.YOUTUBE_WATCH_PREFIX + id, -1, true);
+            if (MainApplication.loadIntent(mContext, mYouTubeResolveInfo.activityInfo.packageName,
+                    mYouTubeResolveInfo.activityInfo.name, Config.YOUTUBE_WATCH_PREFIX + id, -1, true)) {
+                // L_WATCH: L currently lacks getRecentTasks(), so minimize here
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+                    MainController.get().switchToBubbleView();
+                }
+                return true;
+            }
         }
 
         return false;

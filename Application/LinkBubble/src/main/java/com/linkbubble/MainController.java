@@ -10,6 +10,7 @@ import android.content.pm.ResolveInfo;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.net.Uri;
+import android.os.Build;
 import android.util.Log;
 import android.view.Choreographer;
 import android.view.Gravity;
@@ -738,6 +739,10 @@ public class MainController implements Choreographer.FrameCallback {
                                 closeTab(result, contentViewShowing(), false);
                                 if (getActiveTabCount() == 0 && Prompt.isShowing() == false) {
                                     finish();
+                                }
+                                // L_WATCH: L currently lacks getRecentTasks(), so minimize here
+                                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+                                    MainController.get().switchToBubbleView();
                                 }
                             }
                         }
