@@ -39,7 +39,7 @@ public class Constant {
 
     public static boolean COVER_STATUS_BAR = false;//(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) ? true : false;
 
-    public static final int BUBBLE_ANIM_TIME = 300;
+    public static final int BUBBLE_ANIM_TIME = 600;
 
     public static final float BUBBLE_MODE_ALPHA = 1.f;
 
