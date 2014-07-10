@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
+import android.util.Log;
 import android.webkit.WebIconDatabase;
 
 import com.linkbubble.ui.NotificationControlActivity;
@@ -136,6 +137,7 @@ public class MainService extends Service {
 
     private void cancelCurrentNotification() {
         stopForeground(true);
+        Log.d("blerg", "cancelCurrentNotification()");
     }
 
     private void showDefaultNotification() {
@@ -159,6 +161,7 @@ public class MainService extends Service {
 
         sLastNotificationId++;
         startForeground(sLastNotificationId, notificationBuilder.build());
+        Log.d("blerg", "showDefaultNotification()");
     }
 
     private void showUnhideHiddenNotification() {
@@ -182,6 +185,7 @@ public class MainService extends Service {
 
         sLastNotificationId++;
         startForeground(sLastNotificationId, notificationBuilder.build());
+        Log.d("blerg", "showUnhideHiddenNotification()");
     }
 
     @SuppressWarnings("unused")
