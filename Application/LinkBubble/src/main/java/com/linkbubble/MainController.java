@@ -85,12 +85,20 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public static class CurrentTabChangedEvent {
+        public CurrentTabChangedEvent() {
+        }
+
+        public CurrentTabChangedEvent(TabView tabView) {
+            mTab = tabView;
+        }
         public TabView mTab;
     }
 
     public static class DraggableBubbleMovedEvent {
         public int mX, mY;
     }
+
+    public static class HideContentEvent {};
 
     public static void addRootWindow(View v, WindowManager.LayoutParams lp) {
         MainController mc = get();
@@ -1014,9 +1022,10 @@ public class MainController implements Choreographer.FrameCallback {
                         mBubbleDraggable.snapToBubbleView();
                         break;
                 }
-                MainApplication.postEvent(mContext, new ExpandedActivity.FinishExpandedActivityEvent());
+                MainApplication.postEvent(mContext, new HideContentEvent());
                 MainApplication.postEvent(mContext, new MainService.ShowUnhideNotificationEvent());
             } else {
+                MainApplication.postEvent(mContext, new CurrentTabChangedEvent(mBubbleFlowDraggable.getCurrentTab()));
                 MainApplication.postEvent(mContext, new MainService.ShowDefaultNotificationEvent());
             }
             setCanDisplay(!mHiddenByUser);
