@@ -1009,6 +1009,12 @@ public class MainController implements Choreographer.FrameCallback {
         if (mHiddenByUser != hiddenByUser) {
             mHiddenByUser = hiddenByUser;
             if (mHiddenByUser) {
+                switch (mBubbleDraggable.getCurrentMode()) {
+                    case ContentView:
+                        mBubbleDraggable.snapToBubbleView();
+                        break;
+                }
+                MainApplication.postEvent(mContext, new ExpandedActivity.FinishExpandedActivityEvent());
                 MainApplication.postEvent(mContext, new MainService.ShowUnhideNotificationEvent());
             } else {
                 MainApplication.postEvent(mContext, new MainService.ShowDefaultNotificationEvent());

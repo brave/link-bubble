@@ -180,6 +180,7 @@
 -keep class com.linkbubble.db.HistoryRecord$ChangedEvent
 -keep class com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent
 -keep class com.linkbubble.ui.ExpandedActivity$EnableHotwordSeviceEvent
+-keep class com.linkbubble.ui.ExpandedActivity$FinishExpandedActivityEvent
 -keep class com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent
 -keep class com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent
 
@@ -212,6 +213,7 @@
 -keepclassmembers class com.linkbubble.ui.ExpandedActivity {
     # ensure event handler functions are not stripped
     public void onEnableHotwordSevice(com.linkbubble.ui.ExpandedActivity$EnableHotwordSeviceEvent);
+    public void onFinishExpandedActivityEvent(com.linkbubble.ui.ExpandedActivity$FinishExpandedActivityEvent);
     public void onMinimizeExpandedActivity(com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent);
 }
 
