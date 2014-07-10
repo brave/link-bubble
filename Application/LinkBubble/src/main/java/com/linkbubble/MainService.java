@@ -23,7 +23,7 @@ public class MainService extends Service {
     private static final String BCAST_CONFIGCHANGED = "android.intent.action.CONFIGURATION_CHANGED";
     private boolean mRestoreComplete;
 
-    private static final int NOTIFICATION_ID = 12234;
+    private static int sLastNotificationId = 12234;
 
     public static class ShowDefaultNotificationEvent {
     }
@@ -156,7 +156,9 @@ public class MainService extends Service {
                 .setContentText(getString(R.string.notification_default_summary))
                 .addAction(R.drawable.ic_action_halt_dark, getString(R.string.notification_action_hide), hidePendingIntent)
                 .setContentIntent(closeAllPendingIntent);
-        startForeground(NOTIFICATION_ID, notificationBuilder.build());
+
+        sLastNotificationId++;
+        startForeground(sLastNotificationId, notificationBuilder.build());
     }
 
     private void showUnhideHiddenNotification() {
@@ -177,7 +179,9 @@ public class MainService extends Service {
                 .setContentText(getString(R.string.notification_unhide_summary))
                 .addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
                 .setContentIntent(unhidePendingIntent);
-        startForeground(NOTIFICATION_ID, notificationBuilder.build());
+
+        sLastNotificationId++;
+        startForeground(sLastNotificationId, notificationBuilder.build());
     }
 
     @SuppressWarnings("unused")
