@@ -218,15 +218,7 @@ public class ContentView extends FrameLayout {
         AlertDialog alertDialog = ActionItem.getShareAlert(getContext(), false, new ActionItem.OnActionItemSelectedListener() {
             @Override
             public void onSelected(ActionItem actionItem) {
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.setClassName(actionItem.mPackageName, actionItem.mActivityClassName);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra(Intent.EXTRA_TEXT, urlAsString);
-                String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(urlAsString) : null;
-                if (title != null) {
-                    intent.putExtra(Intent.EXTRA_SUBJECT, title);
-                }
+                Intent intent = Util.getSendIntent(actionItem.mPackageName, actionItem.mActivityClassName, urlAsString);
                 getContext().startActivity(intent);
 
                 boolean isCopyToClipboardAction = actionItem.mPackageName.equals("com.google.android.apps.docs")
