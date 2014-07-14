@@ -485,7 +485,7 @@ public class MainApplication extends Application {
             IntentFilter filter = info.filter;
             if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
                 if (info.activityInfo.packageName.equals(BuildConfig.STORE_PACKAGE)) {
-                    MainApplication.loadIntent(context, info.activityInfo.packageName, info.activityInfo.name, BuildConfig.STORE_PRO_URL, -1, true);
+                    MainApplication.loadIntent(context, info.activityInfo.packageName, info.activityInfo.name, url, -1, true);
                     return;
                 }
             }
