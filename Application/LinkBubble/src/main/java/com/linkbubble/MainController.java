@@ -770,7 +770,10 @@ public class MainController implements Choreographer.FrameCallback {
             mBubbleDraggable.setVisibility(View.VISIBLE);
             collapseBubbleFlow(0);
             mBubbleFlowDraggable.setVisibility(View.GONE);
-            mBubbleDraggable.snapToBubbleView();
+            // Only do this snap if ContentView is showing. No longer obliterates slide-in animation
+            if (contentViewShowing()) {
+                mBubbleDraggable.snapToBubbleView();
+            }
         }
 
         TabView result = mBubbleFlowDraggable.openUrlInTab(url, urlLoadStartTime, setAsCurrentTab, hasShownAppPicker);
