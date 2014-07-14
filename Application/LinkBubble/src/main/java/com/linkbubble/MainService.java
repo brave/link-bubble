@@ -40,33 +40,33 @@ public class MainService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        MainController mc = MainController.get();
-        if (mc != null && intent != null) {
-            String cmd = intent.getStringExtra("cmd");
-            if (cmd != null) {
-                long urlLoadStartTime = intent.getLongExtra("start_time", System.currentTimeMillis());
+        MainController mainController = MainController.get();
+        if (mainController == null || intent == null || intent.getStringExtra("cmd") == null) {
+            stopSelf();
+            return START_NOT_STICKY;
+        }
 
-                if (cmd.compareTo("open") == 0) {
-                    String url = intent.getStringExtra("url");
-                    if (url != null) {
-                        boolean doLicenseCheck = intent.getBooleanExtra("doLicenseCheck", true);
-                        String openedFromAppName = intent.getStringExtra("openedFromAppName");
-                        mc.openUrl(url, urlLoadStartTime, true, openedFromAppName, doLicenseCheck);
-                    }
-                } else if (cmd.compareTo("restore") == 0) {
-                    if (!mRestoreComplete) {
-                        String [] urls = intent.getStringArrayExtra("urls");
-                        if (urls != null) {
-                            for (int i = 0; i < urls.length; i++) {
-                                String urlAsString = urls[i];
-                                if (urlAsString != null && !urlAsString.equals(Constant.WELCOME_MESSAGE_URL)) {
-                                    mc.openUrl(urlAsString, urlLoadStartTime, i == urls.length - 1, Analytics.OPENED_URL_FROM_RESTORE);
-                                }
-                            }
+        String cmd = intent.getStringExtra("cmd");
+        long urlLoadStartTime = intent.getLongExtra("start_time", System.currentTimeMillis());
+        if (cmd.compareTo("open") == 0) {
+            String url = intent.getStringExtra("url");
+            if (url != null) {
+                boolean doLicenseCheck = intent.getBooleanExtra("doLicenseCheck", true);
+                String openedFromAppName = intent.getStringExtra("openedFromAppName");
+                mainController.openUrl(url, urlLoadStartTime, true, openedFromAppName, doLicenseCheck);
+            }
+        } else if (cmd.compareTo("restore") == 0) {
+            if (!mRestoreComplete) {
+                String [] urls = intent.getStringArrayExtra("urls");
+                if (urls != null) {
+                    for (int i = 0; i < urls.length; i++) {
+                        String urlAsString = urls[i];
+                        if (urlAsString != null && !urlAsString.equals(Constant.WELCOME_MESSAGE_URL)) {
+                            mainController.openUrl(urlAsString, urlLoadStartTime, i == urls.length - 1, Analytics.OPENED_URL_FROM_RESTORE);
                         }
-                        mRestoreComplete = true;
                     }
                 }
+                mRestoreComplete = true;
             }
         }
 
@@ -137,7 +137,7 @@ public class MainService extends Service {
 
     private void cancelCurrentNotification() {
         stopForeground(true);
-        Log.d("blerg", "cancelCurrentNotification()");
+        //Log.d("blerg", "cancelCurrentNotification()");
     }
 
     private void showDefaultNotification() {
@@ -161,7 +161,7 @@ public class MainService extends Service {
 
         sLastNotificationId++;
         startForeground(sLastNotificationId, notificationBuilder.build());
-        Log.d("blerg", "showDefaultNotification()");
+        //Log.d("blerg", "showDefaultNotification()");
     }
 
     private void showUnhideHiddenNotification() {
