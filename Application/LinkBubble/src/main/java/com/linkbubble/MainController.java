@@ -948,6 +948,9 @@ public class MainController implements Choreographer.FrameCallback {
         mCanAutoDisplayLink = false;
         if (MainController.get().getActiveTabCount() > 0) {
             mBubbleDraggable.switchToBubbleView();
+        } else {
+            // If there's no tabs, ensuring pressing Home will cause the CanvasView to go away. Fix #448
+            MainApplication.postEvent(mContext, new MainController.EndCollapseTransitionEvent());
         }
     }
 
