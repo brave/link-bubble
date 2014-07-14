@@ -10,7 +10,7 @@ public class Constant {
         Close,
         ConsumeRight,
         ConsumeLeft,
-        LinkDoubleTap,
+        //LinkDoubleTap,
     }
 
     public enum ActionType {
