@@ -5,6 +5,7 @@
         <change>NEW: Link Bubble can now be 'hidden' via the notification. When hidden, the app will still be running, just no longer visible.
                 App becomes visible when either a new link is loaded or the app is 'unhidden' via the notification.</change>
         <change>IMPROVEMENT: Much smoother animation when web content slides on/off screen.</change>
+        <change>IMPROVEMENT: Restore bubble's slide in animation when a the first link begins to load.</change>
         <change>IMPROVEMENT: Add hack to stop Pocket from displaying when you add links to it.</change>
         <change>IMPROVEMENT: Link Bubble is minimized when links are sent to external apps when running the L Preview.</change>
         <change>BUG FIX: Fix rare issue where no tabs would display and pressing the device's Home button failed to close Link Bubble.</change>
