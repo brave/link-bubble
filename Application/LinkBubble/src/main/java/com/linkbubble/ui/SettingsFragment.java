@@ -267,6 +267,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         });
         rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeRight));
 
+        /*
         final Preference linkDoubleTapPreference = findPreference(Settings.PREFERENCE_LINK_DOUBLE_TAP);
         linkDoubleTapPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
@@ -284,6 +285,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             }
         });
         linkDoubleTapPreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.LinkDoubleTap));
+        */
 
         Preference defaultBrowserPreference = findPreference(Settings.PREFERENCE_DEFAULT_BROWSER);
         defaultBrowserPreference.setSummary(Settings.get().getDefaultBrowserLabel());
