@@ -356,7 +356,13 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             @Override
             public void onAnimationComplete() {
                 onAnimComplete();
-                MainApplication.postEvent(getContext(), mEndExpandTransitionEvent);
+                if (mainController.getActiveTabCount() == 0) {
+                    // Ensure we don't enter state where there are no tabs to display. Fix #448
+                    MainApplication.postEvent(getContext(), new MainController.EndCollapseTransitionEvent());
+                    MainApplication.postEvent(getContext(), new ExpandedActivity.MinimizeExpandedActivityEvent());
+                } else {
+                    MainApplication.postEvent(getContext(), mEndExpandTransitionEvent);
+                }
             }
             @Override
             public void onCancel() {
