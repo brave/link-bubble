@@ -546,7 +546,7 @@ public class Settings {
         }
         mIgnoreLinksFromPackageNames.clear();
 
-        String string = mSharedPreferences.getString(LAST_APP_REDIRECTS, null);
+        String string = mSharedPreferences.getString(PREFERENCE_IGNORE_LINKS_FROM, null);
         if (string != null) {
             String[] split = string.split(",");
             if (split != null && split.length > 0) {
