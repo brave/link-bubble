@@ -160,6 +160,8 @@ public class MainController implements Choreographer.FrameCallback {
     private BeginExpandTransitionEvent mBeginExpandTransitionEvent = new BeginExpandTransitionEvent();
     private ExpandedActivity.MinimizeExpandedActivityEvent mMinimizeExpandedActivityEvent = new ExpandedActivity.MinimizeExpandedActivityEvent();
 
+    private boolean mScreenOn = true;
+
     private static class OpenUrlInfo {
         String mUrlAsString;
         long mStartTime;
@@ -834,6 +836,16 @@ public class MainController implements Choreographer.FrameCallback {
         return mBubbleDraggable != null && mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView;
     }
 
+    public boolean closeTab(int notificationId) {
+        if (mBubbleFlowDraggable != null) {
+            TabView tabView = mBubbleFlowDraggable.getTabByNotification(notificationId);
+            if (tabView != null) {
+                return closeTab(tabView, contentViewShowing() && mScreenOn, true);
+            }
+        }
+        return false;
+    }
+
     public boolean closeCurrentTab(Constant.BubbleAction action, boolean animateOff) {
         if (mBubbleFlowDraggable != null) {
             return closeTab(mBubbleFlowDraggable.getCurrentTab(), action, animateOff, true);
@@ -1074,9 +1086,11 @@ public class MainController implements Choreographer.FrameCallback {
         //Log.d(SCREEN_LOCK_TAG, "---" + action);
 
         if (action.equals(Intent.ACTION_SCREEN_OFF)) {
+            mScreenOn = false;
             setCanDisplay(false);
         } else if (action.equals(Intent.ACTION_SCREEN_ON)) {
             updateKeyguardLocked();
+            mScreenOn = true;
         } else if (action.equals(Intent.ACTION_USER_PRESENT)) {
             setCanDisplay(mHiddenByUser ? false : true);
         }

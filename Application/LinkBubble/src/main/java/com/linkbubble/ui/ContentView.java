@@ -2,6 +2,8 @@ package com.linkbubble.ui;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +19,9 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Menu;
@@ -62,8 +67,11 @@ public class ContentView extends FrameLayout {
 
     private static final String TAG = "UrlLoad";
 
+    private static int sNextArticleNotificationId = 1111;
+
     private WebRenderer mWebRenderer;
     private ArticleRenderer mArticleRenderer;
+    private int mArticleNotificationId = -1;
     private TabView mOwnerTabView;
 
     private CondensedTextView mTitleTextView;
@@ -208,6 +216,10 @@ public class ContentView extends FrameLayout {
         //    Log.e(TAG, "*** set mDelayedAutoContentDisplayLinkLoadedScheduled=" + mDelayedAutoContentDisplayLinkLoadedScheduled);
         //}
         removeCallbacks(mDelayedAutoContentDisplayLinkLoadedRunnable);
+    }
+
+    public void onRemoved() {
+        cancelWearNotification();
     }
 
     public void updateIncognitoMode(boolean incognito) {
@@ -1071,13 +1083,48 @@ public class ContentView extends FrameLayout {
     }
 
     private void configureArticleModeButton() {
-        if (Constant.ARTICLE_MODE_BUTTON && mWebRenderer.getArticleContent() != null && Settings.get().getArticleModeEnabled()) {
+        ArticleContent articleContent = mWebRenderer.getArticleContent();
+        if (Constant.ARTICLE_MODE_BUTTON && articleContent != null && Settings.get().getArticleModeEnabled()) {
+            if (mArticleNotificationId == -1 && TextUtils.isEmpty(articleContent.mText) == false) {
+                mArticleNotificationId = sNextArticleNotificationId;
+                sNextArticleNotificationId++;
+
+                String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(articleContent.mUrl.toString()) : "Open Bubble";
+
+                Context context = getContext();
+                Intent intent = new Intent(context, NotificationControlActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra(NotificationControlActivity.EXTRA_ACTION, NotificationControlActivity.ACTION_CLOSE_TAB);
+                intent.putExtra(NotificationControlActivity.EXTRA_DISMISS_NOTIFICATION, mArticleNotificationId);
+                PendingIntent pendingIntent =
+                        PendingIntent.getActivity(context, mArticleNotificationId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                Notification notification = new NotificationCompat.Builder(context)
+                        .addAction(R.drawable.ic_action_cancel_white, context.getString(R.string.action_close_tab), pendingIntent)
+                        .setContentTitle(title)
+                        .setContentText(articleContent.mText)
+                        .setSmallIcon(R.drawable.ic_launcher)
+                        .setGroup(Constant.NOTIFICATION_GROUP_KEY_ARTICLES)
+                        .build();
+
+                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+                notificationManager.notify(mArticleNotificationId, notification);
+            }
+
             mArticleModeButton.setVisibility(VISIBLE);
         } else {
             mArticleModeButton.setVisibility(GONE);
             if (mArticleRenderer != null) {
                 mArticleRenderer.stopLoading();
             }
+            cancelWearNotification();
+        }
+    }
+
+    private void cancelWearNotification() {
+        if (mArticleNotificationId > -1) {
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+            notificationManager.cancel(mArticleNotificationId);
+            mArticleNotificationId = -1;
         }
     }
 
@@ -1418,5 +1465,9 @@ public class ContentView extends FrameLayout {
     void hideAllowLocationDialog() {
         mRequestLocationContainer.setVisibility(View.GONE);
         mRequestLocationShadow.setVisibility(View.GONE);
+    }
+
+    int getArticleNotificationId() {
+        return mArticleNotificationId;
     }
 }

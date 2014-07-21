@@ -7,7 +7,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.webkit.WebIconDatabase;
 
@@ -23,8 +27,6 @@ public class MainService extends Service {
 
     private static final String BCAST_CONFIGCHANGED = "android.intent.action.CONFIGURATION_CHANGED";
     private boolean mRestoreComplete;
-
-    private static int sLastNotificationId = 12234;
 
     public static class ShowDefaultNotificationEvent {
     }
@@ -151,17 +153,22 @@ public class MainService extends Service {
         hideIntent.putExtra(NotificationControlActivity.EXTRA_ACTION, NotificationControlActivity.ACTION_HIDE);
         PendingIntent hidePendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), hideIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Notification.Builder notificationBuilder = new Notification.Builder(this)
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_stat)
                 .setPriority(Notification.PRIORITY_MIN)
                 .setContentTitle(getString(R.string.app_name))
                 .setContentText(getString(R.string.notification_default_summary))
                 .addAction(R.drawable.ic_action_halt_dark, getString(R.string.notification_action_hide), hidePendingIntent)
+                .setGroup(Constant.NOTIFICATION_GROUP_KEY_ARTICLES)
+                .setGroupSummary(true)
+                .setLocalOnly(true)
                 .setContentIntent(closeAllPendingIntent);
 
-        sLastNotificationId++;
-        startForeground(sLastNotificationId, notificationBuilder.build());
-        //Log.d("blerg", "showDefaultNotification()");
+        // Nuke all previous notifications and generate unique ids
+        NotificationManagerCompat.from(this).cancelAll();
+        int notificationId = 77;
+
+        startForeground(notificationId, notificationBuilder.build());
     }
 
     private void showUnhideHiddenNotification() {
@@ -175,7 +182,7 @@ public class MainService extends Service {
         closeAllIntent.putExtra(NotificationControlActivity.EXTRA_ACTION, NotificationControlActivity.ACTION_CLOSE_ALL);
         PendingIntent closeAllPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), closeAllIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Notification.Builder notificationBuilder = new Notification.Builder(this)
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_stat)
                 .setPriority(Notification.PRIORITY_MIN)
                 .setContentTitle(getString(R.string.app_name))
@@ -183,8 +190,8 @@ public class MainService extends Service {
                 .addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
                 .setContentIntent(unhidePendingIntent);
 
-        sLastNotificationId++;
-        startForeground(sLastNotificationId, notificationBuilder.build());
+        NotificationManagerCompat.from(this).cancelAll();
+        startForeground(1, notificationBuilder.build());
         Log.d("blerg", "showUnhideHiddenNotification()");
     }
 
