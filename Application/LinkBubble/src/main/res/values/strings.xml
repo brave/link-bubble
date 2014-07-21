@@ -41,6 +41,7 @@
     <string name="upgrade_to_pro">Upgrade to Pro</string>
     <string name="upgrade_ok_google">Want to load Google Now by speaking \"OK, Google\"?</string>
     <string name="upgrade_article_mode">Want to view links in Reading Mode?</string>
+    <string name="upgrade_article_mode_wear">Want to view links on Android Wear devices via Reading Mode?</string>
     <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
         Load multiple tabs at once.\n •
         Use \"OK, Google\" voice activation.\n •
@@ -93,6 +94,7 @@
     <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
 
     <string name="preference_article_mode_title">Reading Mode (Beta)</string>
+    <string name="preference_reading_mode_on_wear_title">Reading Mode on Wear</string>
     <string name="preference_article_mode_summary">Toggled via button on action bar</string>
     <string name="preference_webview_text_zoom_title">Text zoom</string>
     <string name="preference_webview_text_zoom_note">Note: Current bubbles will be reloaded with the new text zoom applied after selecting \"OK\".</string>

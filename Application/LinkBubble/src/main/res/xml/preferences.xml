@@ -75,17 +75,21 @@
             >
 
             <CheckBoxPreference
-                android:key="preference_ok_google"
-                android:title="@string/preference_ok_google_title"
-                android:summary="@string/preference_ok_google_summary_long"
-                android:defaultValue="false"
-                />
-
-            <CheckBoxPreference
                 android:key="preference_article_mode"
                 android:title="@string/preference_article_mode_title"
                 android:summary="@string/preference_article_mode_summary"
                 android:defaultValue="true"
+                />
+
+            <CheckBoxPreference
+                android:key="preference_reading_mode_on_wear"
+                android:title="@string/preference_reading_mode_on_wear_title"/>
+
+            <CheckBoxPreference
+                android:key="preference_ok_google"
+                android:title="@string/preference_ok_google_title"
+                android:summary="@string/preference_ok_google_summary_long"
+                android:defaultValue="false"
                 />
 
             <CheckBoxPreference
