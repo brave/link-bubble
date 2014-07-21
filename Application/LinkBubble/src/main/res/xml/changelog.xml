@@ -8,6 +8,7 @@
         <change>IMPROVEMENT: Restore bubble's slide in animation when a the first link begins to load.</change>
         <change>IMPROVEMENT: Add hack to stop Pocket from displaying when you add links to it.</change>
         <change>IMPROVEMENT: Link Bubble is minimized when links are sent to external apps when running the L Preview.</change>
+        <change>BUG FIX: "Intercept links from" works correctly.</change>
         <change>BUG FIX: Fix rare issue where no tabs would display and pressing the device's Home button failed to close Link Bubble.</change>
     </release>
 
