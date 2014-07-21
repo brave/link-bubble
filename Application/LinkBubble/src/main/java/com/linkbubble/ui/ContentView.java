@@ -222,6 +222,11 @@ public class ContentView extends FrameLayout {
         cancelWearNotification();
     }
 
+    public void onRestored() {
+        // If we need to re-add the notification, do so here
+        configureArticleModeButton();
+    }
+
     public void updateIncognitoMode(boolean incognito) {
         mWebRenderer.updateIncognitoMode(incognito);
     }
