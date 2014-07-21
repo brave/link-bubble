@@ -370,8 +370,23 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         public void onRemoved(View view) {
             // Tabs are now destroyed after a time so the Undo close tab functionality works.
             //((TabView)view).destroy();
+
+            ((TabView)view).getContentView().onRemoved();
         }
     };
+
+    public TabView getTabByNotification(int notificationId) {
+        if (mViews != null) {
+            for (View view : mViews) {
+                TabView tabView = ((TabView)view);
+                if (tabView.getContentView().getArticleNotificationId() == notificationId) {
+                    return tabView;
+                }
+            }
+        }
+
+        return null;
+    }
 
     private void closeTab(TabView tab, boolean animateRemove, boolean removeFromList) {
         int index = mViews.indexOf(tab);

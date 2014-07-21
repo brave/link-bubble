@@ -3,6 +3,7 @@ package com.linkbubble.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -12,8 +13,10 @@ import com.linkbubble.util.CrashTracking;
 
 public class NotificationControlActivity extends Activity {
 
+    public static final String EXTRA_DISMISS_NOTIFICATION = BuildConfig.PACKAGE_NAME + ".notification";
     public static final String EXTRA_ACTION     = BuildConfig.PACKAGE_NAME + ".action";
     public static final String ACTION_CLOSE_ALL = "close_all";
+    public static final String ACTION_CLOSE_TAB = "close_tab";
     public static final String ACTION_HIDE      = "hide";
     public static final String ACTION_UNHIDE    = "unhide";
 
@@ -27,21 +30,25 @@ public class NotificationControlActivity extends Activity {
 
         Intent intent = getIntent();
         String action = intent.getStringExtra(EXTRA_ACTION);
-
-        Log.e("blerg", "NotificationControlActivity.onCreate() - action:" + action);
-        if (action.equals(ACTION_CLOSE_ALL)) {
-            Toast.makeText(this, "*** NotificationAction: " + action, Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, "NotificationAction: " + action, Toast.LENGTH_SHORT).show();
-        }
-
+        Log.e("blerg", "NotificationControlActivity.onCreate()");
         if (action != null) {
+            Log.e("blerg", "NotificationControlActivity.onCreate() - action:" + action);
+            if (action.equals(ACTION_CLOSE_ALL)) {
+                Toast.makeText(this, "*** NotificationAction: " + action, Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "NotificationAction: " + action, Toast.LENGTH_SHORT).show();
+            }
+
             if (action.equals(ACTION_CLOSE_ALL)) {
                 if (mainController != null) {
                     Log.e("blerg", "*** handle " + action);
                     mainController.saveCurrentTabs();
                     mainController.closeAllBubbles(false);
                     mainController.finish();
+                }
+            } else if (action.equals(ACTION_CLOSE_TAB)) {
+                if (mainController != null) {
+                    mainController.closeTab(intent.getIntExtra(EXTRA_DISMISS_NOTIFICATION, -1));
                 }
             } else if (action.equals(ACTION_HIDE)) {
                 if (mainController != null) {
