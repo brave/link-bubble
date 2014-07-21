@@ -170,6 +170,30 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             });
         }
 
+        final CheckBoxPreference articleModeWearPreference = (CheckBoxPreference)findPreference(Settings.KEY_ARTICLE_MODE_ON_WEAR_PREFERENCE);
+        if (DRM.isLicensed()) {
+            articleModeWearPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    if (MainController.get() != null && MainController.get().reloadAllTabs(getActivity())) {
+                        Toast.makeText(getActivity(), R.string.article_mode_changed_reloading_current, Toast.LENGTH_SHORT).show();
+                    }
+                    return true;
+                }
+            });
+        } else {
+            showProBanner(articleModeWearPreference);
+            articleModeWearPreference.setChecked(false);
+            articleModeWearPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    articleModeWearPreference.setChecked(false);
+                    upsellPro(R.string.upgrade_article_mode_wear);
+                    return true;
+                }
+            });
+        }
+
         final CheckBoxPreference articleModePreference = (CheckBoxPreference)findPreference(Settings.KEY_ARTICLE_MODE_PREFERENCE);
         if (DRM.isLicensed()) {
             articleModePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {

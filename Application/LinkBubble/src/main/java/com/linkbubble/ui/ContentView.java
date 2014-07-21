@@ -709,7 +709,8 @@ public class ContentView extends FrameLayout {
             }
         }
 
-        boolean fetchPageHtml = Settings.get().getArticleModeEnabled() && ArticleContent.tryForArticleContent(currentUrl);
+        boolean fetchPageHtml = (Settings.get().getArticleModeEnabled() || Settings.get().getArticleModeOnWearEnabled())
+                                    && ArticleContent.tryForArticleContent(currentUrl);
         Log.d("Article", "fetchPageHtml:" + fetchPageHtml);
         // Always check again at 100%
         mWebRenderer.runPageInspector(fetchPageHtml);
@@ -1089,8 +1090,8 @@ public class ContentView extends FrameLayout {
 
     private void configureArticleModeButton() {
         ArticleContent articleContent = mWebRenderer.getArticleContent();
-        if (Constant.ARTICLE_MODE_BUTTON && articleContent != null && Settings.get().getArticleModeEnabled()) {
-            if (mArticleNotificationId == -1 && TextUtils.isEmpty(articleContent.mText) == false) {
+        if (articleContent != null) {
+            if (mArticleNotificationId == -1 && TextUtils.isEmpty(articleContent.mText) == false && Settings.get().getArticleModeOnWearEnabled()) {
                 mArticleNotificationId = sNextArticleNotificationId;
                 sNextArticleNotificationId++;
 
@@ -1115,7 +1116,11 @@ public class ContentView extends FrameLayout {
                 notificationManager.notify(mArticleNotificationId, notification);
             }
 
-            mArticleModeButton.setVisibility(VISIBLE);
+            if (Settings.get().getArticleModeEnabled()) {
+                mArticleModeButton.setVisibility(VISIBLE);
+            } else {
+                mArticleModeButton.setVisibility(GONE);
+            }
         } else {
             mArticleModeButton.setVisibility(GONE);
             if (mArticleRenderer != null) {
