@@ -17,7 +17,6 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
 
@@ -48,7 +47,7 @@ public class EntryActivity extends Activity {
         super.onCreate(savedInstanceState);
         CrashTracking.init(this);
 
-        PreferenceManager.setDefaultValues(this, R.xml.prefs, true);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, true);
 
         boolean showingTamperPrompt = Util.checkForTamper(this, new Prompt.OnPromptEventListener() {
             @Override

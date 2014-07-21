@@ -140,7 +140,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         bus.register(this);
 
         // Load the preferences from an XML resource
-        addPreferencesFromResource(R.xml.prefs);
+        addPreferencesFromResource(R.xml.preferences);
 
         PreferenceCategory generalCategory = (PreferenceCategory) findPreference("preference_category_general");
         PreferenceCategory configurationCategory = (PreferenceCategory) findPreference("preference_category_configuration");
