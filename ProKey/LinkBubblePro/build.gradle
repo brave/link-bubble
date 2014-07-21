@@ -5,7 +5,7 @@ buildscript {
     }
     dependencies {
         classpath ':dexguard:'
-        classpath 'com.android.tools.build:gradle:0.9.0'
+        classpath 'com.android.tools.build:gradle:0.12.1'
     }
 }
 
@@ -19,7 +19,7 @@ if(buildMode == "dexguard") {
     apply plugin:'dexguard'
     println "*** Apply plugin -> DEXGUARD"
 } else {
-    apply plugin:'android'
+    apply plugin:'com.android.application'
     println "*** Apply plugin -> ANDROID"
 }
 repositories {
@@ -32,7 +32,7 @@ def buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone(
 
 android {
     compileSdkVersion 19
-    buildToolsVersion '19.0.0'
+    buildToolsVersion '19.1.0'
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 19
@@ -67,7 +67,7 @@ android {
     buildTypes {
         release {
             if(buildMode == "dexguard") {
-                proguardFile plugin.getDefaultDexGuardFile('dexguard-release.pro')
+                proguardFile getDefaultDexGuardFile('dexguard-release.pro')
                 proguardFile 'dexguard-project.txt'
             }
             signingConfig signingConfigs.release
