@@ -147,13 +147,18 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         PreferenceScreen helpScreen = (PreferenceScreen) getPreferenceScreen().findPreference("preference_screen_help");
 
         mInterceptLinksFromPreference = findPreference(Settings.PREFERENCE_IGNORE_LINKS_FROM);
-        mInterceptLinksFromPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                getDontInterceptLinksFromDialog(getActivity()).show();
-                return true;
-            }
-        });
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+            mInterceptLinksFromPreference.setEnabled(false);
+            mInterceptLinksFromPreference.setSummary(R.string.preference_intercept_links_from_disabled_for_L);
+        } else {
+            mInterceptLinksFromPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    getDontInterceptLinksFromDialog(getActivity()).show();
+                    return true;
+                }
+            });
+        }
 
         Preference incognitoButton = findPreference("preference_incognito");
         if (incognitoButton != null) {

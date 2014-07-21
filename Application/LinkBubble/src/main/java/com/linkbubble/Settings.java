@@ -13,6 +13,7 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
@@ -546,12 +547,15 @@ public class Settings {
         }
         mIgnoreLinksFromPackageNames.clear();
 
-        String string = mSharedPreferences.getString(PREFERENCE_IGNORE_LINKS_FROM, null);
-        if (string != null) {
-            String[] split = string.split(",");
-            if (split != null && split.length > 0) {
-                for (String s : split) {
-                    mIgnoreLinksFromPackageNames.add(s);
+        // Ignore this on L. Hopefully Google reverse this decision...
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
+            String string = mSharedPreferences.getString(PREFERENCE_IGNORE_LINKS_FROM, null);
+            if (string != null) {
+                String[] split = string.split(",");
+                if (split != null && split.length > 0) {
+                    for (String s : split) {
+                        mIgnoreLinksFromPackageNames.add(s);
+                    }
                 }
             }
         }
