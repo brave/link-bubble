@@ -893,6 +893,7 @@ public class MainController implements Choreographer.FrameCallback {
                         public void onClick() {
                             if (tabView.mWasRestored == false) {
                                 restoreTab(tabView);
+                                tabView.getContentView().onRestored();
                             }
                         }
 
