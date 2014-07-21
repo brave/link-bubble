@@ -47,44 +47,6 @@
 
 	</LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/watson_icon"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:padding="0dp"
-            android:src="@drawable/profile_thumb_watson"
-            android:contentDescription="@string/content_description_watson_profile_image"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingLeft="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/credits_watson_name"
-                android:textSize="18sp"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/credits_watson_credit"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="17sp"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
     <!--
      <TextView
         android:id="@+id/credits_art_items"
