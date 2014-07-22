@@ -186,14 +186,14 @@ public class BubbleFlowView extends HorizontalScrollView {
 
         if (insertNextToCenterItem) {
             TranslateAnimation slideOnAnim = new TranslateAnimation(0, 0, -mItemHeight, 0);
-            slideOnAnim.setDuration(Constant.BUBBLE_ANIM_TIME);
+            slideOnAnim.setDuration(Constant.BUBBLE_FLOW_ANIM_TIME);
             slideOnAnim.setFillAfter(true);
             view.startAnimation(slideOnAnim);
 
             for (int i = centerIndex + 2; i < mViews.size(); i++) {
                 View viewToShift = mViews.get(i);
                 TranslateAnimation slideRightAnim = new TranslateAnimation(-mItemWidth, 0, 0, 0);
-                slideRightAnim.setDuration(Constant.BUBBLE_ANIM_TIME);
+                slideRightAnim.setDuration(Constant.BUBBLE_FLOW_ANIM_TIME);
                 slideRightAnim.setFillAfter(true);
                 viewToShift.startAnimation(slideRightAnim);
             }
@@ -225,7 +225,7 @@ public class BubbleFlowView extends HorizontalScrollView {
                 throw new RuntimeException("removeFromList must be true if animating off");
             }
             TranslateAnimation slideOffAnim = new TranslateAnimation(0, 0, 0, -mItemHeight);
-            slideOffAnim.setDuration(Constant.BUBBLE_ANIM_TIME);
+            slideOffAnim.setDuration(Constant.BUBBLE_FLOW_ANIM_TIME);
             slideOffAnim.setFillAfter(true);
             slideOffAnim.setAnimationListener(new Animation.AnimationListener() {
                 @Override
@@ -277,7 +277,7 @@ public class BubbleFlowView extends HorizontalScrollView {
                             updateScaleForView(viewToShift, centerX, viewToShift.getX() + dx);
                         }
                     });
-                    slideAnim.setDuration(Constant.BUBBLE_ANIM_TIME);
+                    slideAnim.setDuration(Constant.BUBBLE_FLOW_ANIM_TIME);
                     slideAnim.setFillAfter(true);
                     viewToShift.startAnimation(slideAnim);
                 }
@@ -291,7 +291,7 @@ public class BubbleFlowView extends HorizontalScrollView {
                             updateScaleForView(viewToShift, centerX, viewToShift.getX() + dx);
                         }
                     });
-                    slideAnim.setDuration(Constant.BUBBLE_ANIM_TIME);
+                    slideAnim.setDuration(Constant.BUBBLE_FLOW_ANIM_TIME);
                     slideAnim.setFillAfter(true);
                     viewToShift.startAnimation(slideAnim);
                 }
@@ -694,7 +694,7 @@ public class BubbleFlowView extends HorizontalScrollView {
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
                 if (!mInterceptingTouch && mLongPress) {
-                    final float bubblePeriod = (float) Constant.BUBBLE_ANIM_TIME / 1000.f;
+                    final float bubblePeriod = (float) Constant.BUBBLE_FLOW_ANIM_TIME / 1000.f;
                     final float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
                     MainController.get().expandBubbleFlow((long) (contentPeriod * 1000), false);
                 }
