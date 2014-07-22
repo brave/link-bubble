@@ -11,6 +11,8 @@
         <change>IMPROVEMENT: "Intercept links from" works correctly for Android 4.4 and below.</change>
         <change>CHANGE: The "Intercept links from" option has unfortunately been disabled for those running the L Preview due to the required Android API functionality being depreciated by Google.</change>
         <change>BUG FIX: Fix rare issue where no tabs would display and pressing the device's Home button failed to close Link Bubble.</change>
+        <change>BUG FIX: Fix issue where web content sometimes failed to slide on screen.</change>
+        <change>BUG FIX: Fix issue where bubble favicon is not updated after the Pro trial has finished.</change>
     </release>
 
     <release version="1.2.1" versioncode="12100">
