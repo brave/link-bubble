@@ -212,6 +212,7 @@ public class MainApplication extends Application {
         long time = System.currentTimeMillis();
 
         if (checkLastAppLoad) {
+            /*
             long timeDiff = time - sLastLoadedTime;
             boolean earlyExit = false;
             if (timeDiff < 3000 && sLastLoadedUrl != null && sLastLoadedUrl.equals(url)) {
@@ -223,7 +224,7 @@ public class MainApplication extends Application {
 
             if (earlyExit) {
                 return false;
-            }
+            }*/
         }
 
         Intent serviceIntent = new Intent(context, MainService.class);
