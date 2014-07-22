@@ -37,6 +37,7 @@ public class CanvasView extends FrameLayout {
     private final float mMaxAlpha = 1.0f;
     private final float mFadeTime = 0.3f;
     private final float mAlphaDelta = mMaxAlpha / mFadeTime;
+    //private final float mAlphaDelta = 1.33f * (mMaxAlpha / (Constant.BUBBLE_ANIM_TIME / 1000.f));
 
     private float mCurrentAlpha = 0.0f;
     private float mTargetAlpha = 0.0f;
@@ -93,8 +94,6 @@ public class CanvasView extends FrameLayout {
 
             MainController.addRootWindow(mStatusBarCoverView, lp);
         }
-
-        applyAlpha();
 
         Resources resources = getResources();
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -158,6 +157,8 @@ public class CanvasView extends FrameLayout {
         mBottomMaskView.setLayoutParams(bottomMaskLP);
         addView(mBottomMaskView);
 
+        applyAlpha();
+
         mWindowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
         mWindowManagerParams.x = 0;
         mWindowManagerParams.y = 0;
@@ -201,9 +202,11 @@ public class CanvasView extends FrameLayout {
         if (mStatusBarCoverView != null) {
             mStatusBarCoverView.setAlpha(mCurrentAlpha);
         }
-        setAlpha(mCurrentAlpha);
 
-        if (!mEnabled || mCurrentAlpha == 0.0f) {
+        mTopMaskView.setAlpha(mCurrentAlpha);
+        mBottomMaskView.setAlpha(mCurrentAlpha);
+
+        if (!mEnabled || (mCurrentAlpha == 0.0f && mContentViewY == (int)(mTargetY))) {
             setVisibility(GONE);
             if (mStatusBarCoverView != null) {
                 mStatusBarCoverView.setVisibility(GONE);
