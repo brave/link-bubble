@@ -69,6 +69,13 @@ public class ContentView extends FrameLayout {
 
     private static int sNextArticleNotificationId = 1111;
 
+    private enum LifeState {
+        Init,
+        Alive,
+        Removed,
+        Destroyed
+    }
+
     private WebRenderer mWebRenderer;
     private ArticleRenderer mArticleRenderer;
     private int mArticleNotificationId = -1;
@@ -91,7 +98,7 @@ public class ContentView extends FrameLayout {
     private int mCurrentProgress = 0;
 
     private boolean mPageFinishedLoading;
-    private Boolean mIsDestroyed = false;
+    private LifeState mLifeState = LifeState.Init;
     private Set<String> mAppPickersUrls = new HashSet<String>();
 
     private List<AppForUrl> mAppsForUrl = new ArrayList<AppForUrl>();
@@ -202,7 +209,7 @@ public class ContentView extends FrameLayout {
 
     public void destroy() {
         Log.d(TAG, "*** destroy() - url" + (mWebRenderer.getUrl() != null ? mWebRenderer.getUrl().toString() : "<null>"));
-        mIsDestroyed = true;
+        mLifeState = LifeState.Destroyed;
         removeView(mWebRenderer.getView());
         mWebRenderer.destroy();
 
@@ -219,10 +226,12 @@ public class ContentView extends FrameLayout {
     }
 
     public void onRemoved() {
+        mLifeState = LifeState.Removed;
         cancelWearNotification();
     }
 
     public void onRestored() {
+        mLifeState = LifeState.Alive;
         // If we need to re-add the notification, do so here
         configureArticleModeButton();
     }
@@ -257,6 +266,8 @@ public class ContentView extends FrameLayout {
 
     @SuppressLint("SetJavaScriptEnabled")
     void configure(String urlAsString, TabView ownerTabView, long urlLoadStartTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
+        mLifeState = LifeState.Alive;
+
         View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
         mWebRenderer = WebRenderer.create(WebRenderer.Type.WebView, getContext(), mWebRendererController, webRendererPlaceholder, TAG);
         mWebRenderer.setUrl(urlAsString);
@@ -333,7 +344,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public boolean shouldOverrideUrlLoading(String urlAsString, boolean viaUserInput) {
-            if (mIsDestroyed) {
+            if (mLifeState != LifeState.Alive) {
                 return true;
             }
 
@@ -404,7 +415,7 @@ public class ContentView extends FrameLayout {
                 return;
             }
 
-            if (mIsDestroyed) {
+            if (mLifeState != LifeState.Alive) {
                 return;
             }
 
@@ -536,7 +547,7 @@ public class ContentView extends FrameLayout {
         @Override
         public void onPageFinished(String urlAsString) {
 
-            if (mIsDestroyed) {
+            if (mLifeState != LifeState.Alive) {
                 return;
             }
 
@@ -746,7 +757,7 @@ public class ContentView extends FrameLayout {
     Runnable mDelayedAutoContentDisplayLinkLoadedRunnable = new Runnable() {
         @Override
         public void run() {
-            if (mIsDestroyed == false && MainController.get() != null) {
+            if (mLifeState == LifeState.Alive && MainController.get() != null) {
                 //Log.e(TAG, "*** set mDelayedAutoContentDisplayLinkLoadedScheduled=" + mDelayedAutoContentDisplayLinkLoadedScheduled);
                 MainController.get().autoContentDisplayLinkLoaded(mOwnerTabView);
                 saveLoadTime();
