@@ -75,6 +75,7 @@ public class CanvasView extends FrameLayout {
 
         mEnabled = true;
         mContentViewY = Config.mScreenHeight - Config.mContentOffset;
+        mTargetY = mContentViewY;
         int canvasMaskHeight = getResources().getDimensionPixelSize(R.dimen.canvas_mask_height);
 
         if (Constant.COVER_STATUS_BAR) {
