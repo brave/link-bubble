@@ -33,8 +33,6 @@ public class Constant {
 
     public static boolean SAVE_CURRENT_TABS = true;
 
-    public static boolean ARTICLE_MODE_BUTTON = true;
-
     public static final int TRIAL_TIME = 1000 * 60 * 60 * 24;
 
     public static boolean COVER_STATUS_BAR = false;//(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) ? true : false;
