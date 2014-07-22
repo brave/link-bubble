@@ -617,8 +617,10 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
             ResolveInfo defaultBrowserResolveInfo = Util.getDefaultBrowser(packageManager);
             if (defaultBrowserResolveInfo != null) {
-                if (defaultBrowserResolveInfo.activityInfo != null
-                        && defaultBrowserResolveInfo.activityInfo.packageName.equals(BuildConfig.PACKAGE_NAME)) {
+                String defaultBrowserPackageName = defaultBrowserResolveInfo.activityInfo != null ? defaultBrowserResolveInfo.activityInfo.packageName : null;
+                if (defaultBrowserPackageName != null
+                        && (defaultBrowserPackageName.equals(BuildConfig.PACKAGE_NAME)
+                            || defaultBrowserPackageName.equals(BuildConfig.TAP_PATH_PACKAGE_NAME))) {
                     PreferenceCategory category = (PreferenceCategory) findPreference("preference_category_configuration");
                     category.removePreference(setDefaultBrowserPreference);
                 }
