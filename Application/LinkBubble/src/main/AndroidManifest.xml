@@ -58,12 +58,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="*"
-                    android:scheme="http" />
-                <data
-                    android:host="*"
-                    android:scheme="https" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
             </intent-filter>
 
             <intent-filter android:label="@string/send_intent_label">
@@ -140,6 +136,8 @@
             android:launchMode="singleInstance"
             android:theme="@style/ExpandedModeTheme">
         </activity>
+
+        <!--
 
         <activity
             android:name=".ui.DownloadHandlerActivity"
@@ -225,6 +223,8 @@
                 <data android:pathPattern=".*\.mov"/>
             </intent-filter>
         </activity>
+
+        -->
 
     </application>
 
