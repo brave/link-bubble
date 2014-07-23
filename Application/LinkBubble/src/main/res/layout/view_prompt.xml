@@ -13,14 +13,15 @@
             style="@style/PromptButtonTextView"
             android:text="some text"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/prompt_close_button"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginRight="2dp"
             android:layout_marginTop="2dp"
             android:layout_gravity="right|top"
-            android:background="@drawable/close_indicator"/>
+            android:src="@drawable/close_indicator"
+            android:background="?android:attr/selectableItemBackground"/>
 
     </FrameLayout>
 </LinearLayout>
