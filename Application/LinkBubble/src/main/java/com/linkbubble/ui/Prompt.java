@@ -15,6 +15,7 @@ import android.view.ViewPropertyAnimator;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import com.linkbubble.Config;
 import com.linkbubble.R;
@@ -37,7 +38,7 @@ public class Prompt {
     private View mBarView;
     private TextView mMessageView;
     private TextView mPromptButtonTextView;
-    private Button mCloseButton;
+    private ImageButton mCloseButton;
     private ViewPropertyAnimator mBarAnimator;
     private Handler mHideHandler = new Handler();
     private OnPromptEventListener mListener;
@@ -92,7 +93,7 @@ public class Prompt {
             }
         });
 
-        mCloseButton = (Button) mBarView.findViewById(R.id.prompt_close_button);
+        mCloseButton = (ImageButton) mBarView.findViewById(R.id.prompt_close_button);
         mCloseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,14 +118,10 @@ public class Prompt {
         mPromptButtonTextView.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
         mPromptButtonTextView.setCompoundDrawablePadding(Config.dpToPx(8));
         mPromptButtonTextView.setText(buttonText);
+
+        mCloseButton.setVisibility(showCloseButton ? View.VISIBLE : View.GONE);
         FrameLayout.LayoutParams buttonLP = (FrameLayout.LayoutParams) mPromptButtonTextView.getLayoutParams();
-        if (showCloseButton) {
-            mCloseButton.setVisibility(View.VISIBLE);
-            buttonLP.setMargins(buttonLP.leftMargin, buttonLP.topMargin, mButtonDefaultRightMargin, buttonLP.bottomMargin);
-        } else {
-            mCloseButton.setVisibility(View.GONE);
-            buttonLP.setMargins(buttonLP.leftMargin, buttonLP.topMargin, 0, buttonLP.bottomMargin);
-        }
+        buttonLP.setMargins(buttonLP.leftMargin, buttonLP.topMargin, 0, buttonLP.bottomMargin);
 
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, duration);
