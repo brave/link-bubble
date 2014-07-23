@@ -897,6 +897,16 @@ public class Settings {
         return mTempBubbleRestingPoint;
     }
 
+    public int getBubbleStartingX(Point bubbleRestingPoint) {
+        float fromX;
+        if (bubbleRestingPoint.x > Config.mScreenCenterX) {
+            fromX = Config.mBubbleSnapRightX + Config.mBubbleWidth;
+        } else {
+            fromX = Config.mBubbleSnapLeftX - Config.mBubbleWidth;
+        }
+        return (int)fromX;
+    }
+
     public void setBubbleRestingPoint(int x, int y) {
         mBubbleRestingPoint.set(x, y);
     }

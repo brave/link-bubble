@@ -375,7 +375,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         mainController.expandBubbleFlow((long) (contentPeriod * 1000), true);
     }
 
-    public void configure(int x0, int y0, int targetX, int targetY, float targetTime, CanvasView cv)  {
+    public void configure(int x0, int y0, int targetX, int targetY, int targetTime, CanvasView cv)  {
 
         try {
             super.configure("http://blerg.com"); // the URL is not actually used...
@@ -548,10 +548,14 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         if (mDraggableHelper.isAlive()) {
             MainController.addRootWindow(this, windowManagerParams);
 
-            setExactPos(x0, y0);
-            if (targetX != x0 || targetY != y0) {
-                setTargetPos(targetX, targetY, targetTime, DraggableHelper.AnimationType.LargeOvershoot, null);
-            }
+            slideOnScreen(x0, y0, targetX, targetY, targetTime);
+        }
+    }
+
+    public void slideOnScreen(int x0, int y0, int targetX, int targetY, int targetTime) {
+        setExactPos(x0, y0);
+        if (targetX != x0 || targetY != y0) {
+            setTargetPos(targetX, targetY, (float)targetTime / 1000.f, DraggableHelper.AnimationType.LargeOvershoot, null);
         }
     }
 
