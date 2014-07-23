@@ -342,13 +342,9 @@ public class MainController implements Choreographer.FrameCallback {
 
         mBubbleDraggable = (BubbleDraggable) inflater.inflate(R.layout.view_bubble_draggable, null);
         Point bubbleRestingPoint = Settings.get().getBubbleRestingPoint();
-        float fromX;
-        if (bubbleRestingPoint.x > Config.mScreenCenterX) {
-            fromX = Config.mBubbleSnapRightX + Config.mBubbleWidth;
-        } else {
-            fromX = Config.mBubbleSnapLeftX - Config.mBubbleWidth;
-        }
-        mBubbleDraggable.configure((int)fromX, bubbleRestingPoint.y, bubbleRestingPoint.x, bubbleRestingPoint.y, 0.4f, mCanvasView);
+        int fromX = Settings.get().getBubbleStartingX(bubbleRestingPoint);
+        mBubbleDraggable.configure(fromX, bubbleRestingPoint.y, bubbleRestingPoint.x, bubbleRestingPoint.y,
+                Constant.BUBBLE_SLIDE_ON_SCREEN_TIME, mCanvasView);
 
         mBubbleDraggable.setOnUpdateListener(new BubbleDraggable.OnUpdateListener() {
             @Override
@@ -775,6 +771,11 @@ public class MainController implements Choreographer.FrameCallback {
             // Only do this snap if ContentView is showing. No longer obliterates slide-in animation
             if (contentViewShowing()) {
                 mBubbleDraggable.snapToBubbleView();
+            } else {
+                Point bubbleRestingPoint = Settings.get().getBubbleRestingPoint();
+                int fromX = Settings.get().getBubbleStartingX(bubbleRestingPoint);
+                mBubbleDraggable.slideOnScreen(fromX, bubbleRestingPoint.y, bubbleRestingPoint.x, bubbleRestingPoint.y,
+                                                Constant.BUBBLE_SLIDE_ON_SCREEN_TIME);
             }
         }
 
