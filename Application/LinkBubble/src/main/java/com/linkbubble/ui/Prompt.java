@@ -42,7 +42,7 @@ public class Prompt {
     private ViewPropertyAnimator mBarAnimator;
     private Handler mHideHandler = new Handler();
     private OnPromptEventListener mListener;
-    private int mButtonDefaultRightMargin;
+    private int mCloseButtonDefaultEdgeMargin;
 
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mLayoutParams;
@@ -81,7 +81,7 @@ public class Prompt {
         mMessageView = (TextView) mBarView.findViewById(R.id.prompt_message);
         mPromptButtonTextView = (TextView)mBarView.findViewById(R.id.prompt_button_text_view);
 
-        mButtonDefaultRightMargin = context.getResources().getDimensionPixelSize(R.dimen.prompt_button_right_margin);
+        mCloseButtonDefaultEdgeMargin = context.getResources().getDimensionPixelSize(R.dimen.prompt_close_button_edge_margin);
 
         mPromptButtonTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,9 +119,14 @@ public class Prompt {
         mPromptButtonTextView.setCompoundDrawablePadding(Config.dpToPx(8));
         mPromptButtonTextView.setText(buttonText);
 
-        mCloseButton.setVisibility(showCloseButton ? View.VISIBLE : View.GONE);
-        FrameLayout.LayoutParams buttonLP = (FrameLayout.LayoutParams) mPromptButtonTextView.getLayoutParams();
-        buttonLP.setMargins(buttonLP.leftMargin, buttonLP.topMargin, 0, buttonLP.bottomMargin);
+        FrameLayout.LayoutParams buttonLP = (FrameLayout.LayoutParams) mMessageView.getLayoutParams();
+        if (showCloseButton) {
+            mCloseButton.setVisibility(View.VISIBLE);
+            buttonLP.setMargins(mCloseButtonDefaultEdgeMargin, buttonLP.topMargin, buttonLP.rightMargin, buttonLP.bottomMargin);
+        } else {
+            mCloseButton.setVisibility(View.GONE);
+            buttonLP.setMargins(0, buttonLP.topMargin, buttonLP.rightMargin, buttonLP.bottomMargin);
+        }
 
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, duration);

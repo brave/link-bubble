@@ -311,6 +311,11 @@
     <string name="credits_lacy_credit">Concept, design and programming</string>
     <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
 
+    <!--
+    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
+        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
+    <string name="restore_tabs_from_previous_session">Restore open tabs from previous session?</string>
+
     <string name="content_description_button">Button</string>
     <string name="content_description_target_icon">Bubble target icon</string>
     <string name="content_description_close_bubble_icon">Close bubble icon</string>
@@ -347,8 +352,6 @@
     <string name="pro_action_buy">Buy App</string>
     <string name="pro_action_retry">Retry</string>
     <string name="pro_action_store">Play Store</string>
-
-
 
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Mobile browsing done right.</string>
