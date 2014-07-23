@@ -145,11 +145,14 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         PreferenceCategory generalCategory = (PreferenceCategory) findPreference("preference_category_general");
         PreferenceCategory configurationCategory = (PreferenceCategory) findPreference("preference_category_configuration");
         PreferenceScreen helpScreen = (PreferenceScreen) getPreferenceScreen().findPreference("preference_screen_help");
+        PreferenceScreen appConfigMoreScreen = (PreferenceScreen)getPreferenceScreen().findPreference("preference_more");
 
         mInterceptLinksFromPreference = findPreference(Settings.PREFERENCE_IGNORE_LINKS_FROM);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
             mInterceptLinksFromPreference.setEnabled(false);
             mInterceptLinksFromPreference.setSummary(R.string.preference_intercept_links_from_disabled_for_L);
+            configurationCategory.removePreference(mInterceptLinksFromPreference);
+            appConfigMoreScreen.addPreference(mInterceptLinksFromPreference);
         } else {
             mInterceptLinksFromPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
