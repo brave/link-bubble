@@ -392,7 +392,7 @@ public class HomeActivity extends Activity {
 
     Prompt.OnPromptEventListener mTamperPromptEventListener = new Prompt.OnPromptEventListener() {
         @Override
-        public void onClick() {
+        public void onActionClick() {
             MainApplication.openAppStore(HomeActivity.this, BuildConfig.STORE_FREE_URL);
         }
 
