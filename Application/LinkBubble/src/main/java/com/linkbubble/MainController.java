@@ -891,7 +891,7 @@ public class MainController implements Choreographer.FrameCallback {
                     true,
                     new Prompt.OnPromptEventListener() {
                         @Override
-                        public void onClick() {
+                        public void onActionClick() {
                             if (tabView.mWasRestored == false) {
                                 restoreTab(tabView);
                                 tabView.getContentView().onRestored();
