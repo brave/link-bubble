@@ -4,5 +4,6 @@
     <string name="app_name">Link Bubble (dev)</string>
     <string name="service_name">Link Bubble Renderer (dev)</string>
     <string name="notification_title">Link Bubble (dev)</string>
+    <string name="send_intent_label">Open with Link Bubble (dev)</string>
 
 </resources>
