@@ -246,15 +246,20 @@ public class MainApplication extends Application {
                 String string = context.getString(R.string.restore_tabs_from_previous_session);
                 Drawable icon = context.getResources().getDrawable(R.drawable.ic_action_redo_white);
                 Prompt.show(string, icon, Prompt.LENGTH_SHORT, new Prompt.OnPromptEventListener() {
+
+                    boolean mOnActionClicked = false;
+
                     @Override
                     public void onClick() {
                         MainApplication.restoreLinks(context, urls.toArray(new String[urls.size()]));
-                        Log.d("blerg", "onClick()");
+                        mOnActionClicked = true;
                     }
 
                     @Override
                     public void onClose() {
-                        Log.d("blerg", "onClose()");
+                        if (mOnActionClicked == false) {
+                            Settings.get().saveCurrentTabs(null);
+                        }
                     }
                 });
             }
