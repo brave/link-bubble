@@ -238,11 +238,25 @@ public class MainApplication extends Application {
         return true;
     }
 
-    public static void checkRestoreCurrentTabs(Context context) {
+    public static void checkRestoreCurrentTabs(final Context context) {
+        // Don't restore tabs if we've already got tabs open, #389
         if (MainController.get() == null) {
-            Vector<String> urls = Settings.get().loadCurrentTabs();
-            if (urls.size() > 0) {
-                MainApplication.restoreLinks(context, urls.toArray(new String[urls.size()]));
+            final Vector<String> urls = Settings.get().loadCurrentTabs();
+            if (urls.size() > 0 && DRM.allowProFeatures()) {
+                String string = context.getString(R.string.restore_tabs_from_previous_session);
+                Drawable icon = context.getResources().getDrawable(R.drawable.ic_action_redo_white);
+                Prompt.show(string, icon, Prompt.LENGTH_SHORT, new Prompt.OnPromptEventListener() {
+                    @Override
+                    public void onClick() {
+                        MainApplication.restoreLinks(context, urls.toArray(new String[urls.size()]));
+                        Log.d("blerg", "onClick()");
+                    }
+
+                    @Override
+                    public void onClose() {
+                        Log.d("blerg", "onClose()");
+                    }
+                });
             }
         }
     }

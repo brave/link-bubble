@@ -35,14 +35,7 @@ public class OpenLinkReceiver extends BroadcastReceiver {
             });
 
             if (!showingTamperPrompt) {
-                // Don't restore tabs if we've already got tabs open, #389
-                if (MainController.get() == null) {
-                    // Restore open tabs
-                    Vector<String> urls = Settings.get().loadCurrentTabs();
-                    if (urls.size() > 0 && DRM.allowProFeatures()) {
-                        MainApplication.restoreLinks(context, urls.toArray(new String[urls.size()]));
-                    }
-                }
+                MainApplication.checkRestoreCurrentTabs(context);
 
                 boolean showedWelcomeUrl = false;
                 if (Settings.get().getWelcomeMessageDisplayed() == false) {

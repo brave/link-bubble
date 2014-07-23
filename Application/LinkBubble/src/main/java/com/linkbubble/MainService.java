@@ -61,15 +61,19 @@ public class MainService extends Service {
             if (!mRestoreComplete) {
                 String [] urls = intent.getStringArrayExtra("urls");
                 if (urls != null) {
+                    int startOpenTabCount = mainController.getActiveTabCount();
+
                     for (int i = 0; i < urls.length; i++) {
                         String urlAsString = urls[i];
                         if (urlAsString != null && !urlAsString.equals(Constant.WELCOME_MESSAGE_URL)) {
-                            boolean setAsCurrentTab;
-                            if (DRM.allowProFeatures()) {
-                                setAsCurrentTab = i == urls.length - 1;
-                            } else {
-                                // If not using Pro features, only 1 tab is allowed, so ensure the first is set as current
-                                setAsCurrentTab = i == 0;
+                            boolean setAsCurrentTab = false;
+                            if (startOpenTabCount == 0) {
+                                if (DRM.allowProFeatures()) {
+                                    setAsCurrentTab = i == urls.length - 1;
+                                } else {
+                                    // If not using Pro features, only 1 tab is allowed, so ensure the first is set as current
+                                    setAsCurrentTab = i == 0;
+                                }
                             }
 
                             mainController.openUrl(urlAsString, urlLoadStartTime, setAsCurrentTab, Analytics.OPENED_URL_FROM_RESTORE, true);
