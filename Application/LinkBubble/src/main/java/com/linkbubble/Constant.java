@@ -39,6 +39,7 @@ public class Constant {
 
     public static final int BUBBLE_ANIM_TIME = 660;
     public static final int BUBBLE_FLOW_ANIM_TIME = 333;
+    public static final int BUBBLE_SLIDE_ON_SCREEN_TIME = BUBBLE_FLOW_ANIM_TIME;
 
     public static final float BUBBLE_MODE_ALPHA = 1.f;
 
