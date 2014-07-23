@@ -9,7 +9,8 @@
         <change>IMPROVEMENT: Add hack to stop Pocket from displaying when you add links to it.</change>
         <change>IMPROVEMENT: Link Bubble is minimized when links are sent to external apps when running the L Preview.</change>
         <change>IMPROVEMENT: "Intercept links from" works correctly for Android 4.4 and below.</change>
-        <change>CHANGE: The "Intercept links from" option has unfortunately been disabled for those running the L Preview due to the required Android API functionality being depreciated by Google.</change>
+        <change>CHANGE: The "Intercept links from" option has unfortunately been disabled for those running the L Preview due to the Android API required for this functionality being depreciated by Google.</change>
+        <change>CHANGE: Tabs from the previous session are no longer automatically restored. Instead a prompt is displayed requiring confirmation to restore these tabs.</change>
         <change>BUG FIX: Fix rare issue where no tabs would display and pressing the device's Home button failed to close Link Bubble.</change>
         <change>BUG FIX: Fix issue where web content sometimes failed to slide on screen.</change>
         <change>BUG FIX: Fix issue where bubble favicon is not updated after the Pro trial has finished.</change>
