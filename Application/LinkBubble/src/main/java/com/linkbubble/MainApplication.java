@@ -250,7 +250,7 @@ public class MainApplication extends Application {
                     boolean mOnActionClicked = false;
 
                     @Override
-                    public void onClick() {
+                    public void onActionClick() {
                         MainApplication.restoreLinks(context, urls.toArray(new String[urls.size()]));
                         mOnActionClicked = true;
                     }
@@ -525,7 +525,7 @@ public class MainApplication extends Application {
 
         Prompt.show(string, icon, Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
             @Override
-            public void onClick() {
+            public void onActionClick() {
                 if (storeResolveInfo != null) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse(BuildConfig.STORE_PRO_URL));

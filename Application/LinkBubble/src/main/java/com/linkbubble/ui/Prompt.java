@@ -24,7 +24,7 @@ import com.linkbubble.util.Util;
 public class Prompt {
 
     public interface OnPromptEventListener {
-        public void onClick();
+        public void onActionClick();
         public void onClose();
     }
 
@@ -87,7 +87,7 @@ public class Prompt {
             @Override
             public void onClick(View view) {
                 if (mListener != null) {
-                    mListener.onClick();
+                    mListener.onActionClick();
                 }
                 hidePrompt(false);
             }

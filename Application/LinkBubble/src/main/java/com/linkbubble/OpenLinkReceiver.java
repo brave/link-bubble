@@ -25,7 +25,7 @@ public class OpenLinkReceiver extends BroadcastReceiver {
 
             boolean showingTamperPrompt = Util.checkForTamper(context, new Prompt.OnPromptEventListener() {
                 @Override
-                public void onClick() {
+                public void onActionClick() {
                     MainApplication.openAppStore(context, BuildConfig.STORE_FREE_URL);
                 }
 
