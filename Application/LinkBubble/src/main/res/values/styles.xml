@@ -89,10 +89,10 @@
     </style>
 
     <style name="PromptMessage">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">24dp</item>
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
         <item name="android:textColor">#fff</item>
         <item name="android:padding">8dp</item>
@@ -101,8 +101,6 @@
     <style name="PromptButtonTextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_gravity">left|center_vertical</item>
-        <item name="android:layout_marginRight">20dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:background">@drawable/prompt_button</item>
         <item name="android:padding">8dp</item>

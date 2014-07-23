@@ -2,16 +2,18 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/prompt" style="@style/Prompt">
-    <TextView android:id="@+id/prompt_message" style="@style/PromptMessage" />
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1">
 
         <TextView
-            android:id="@+id/prompt_button_text_view"
-            style="@style/PromptButtonTextView"
-            android:text="some text"/>
+            style="@style/PromptMessage"
+            android:id="@+id/prompt_message"
+            android:text="@string/restore_tabs_from_previous_session"
+            android:layout_gravity="left|center_vertical"
+        />
 
         <ImageButton
             android:id="@+id/prompt_close_button"
@@ -19,9 +21,14 @@
             android:layout_height="24dp"
             android:layout_marginRight="2dp"
             android:layout_marginTop="2dp"
-            android:layout_gravity="right|top"
+            android:layout_gravity="left|top"
             android:src="@drawable/close_indicator"
             android:background="?android:attr/selectableItemBackground"/>
 
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/prompt_button_text_view"
+        style="@style/PromptButtonTextView"
+        android:text="UNDO"/>
 </LinearLayout>
