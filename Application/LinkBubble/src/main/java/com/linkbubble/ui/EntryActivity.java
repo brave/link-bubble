@@ -136,14 +136,7 @@ public class EntryActivity extends Activity {
                 //}
                 MainApplication.openInBrowser(this, intent, true);
             } else if (openLink && !showingTamperPrompt) {
-                // Don't restore tabs if we've already got tabs open, #389
-                if (MainController.get() == null) {
-                    // Restore open tabs
-                    Vector<String> urls = Settings.get().loadCurrentTabs();
-                    if (urls.size() > 0 && DRM.allowProFeatures()) {
-                        MainApplication.restoreLinks(this, urls.toArray(new String[urls.size()]));
-                    }
-                }
+                MainApplication.checkRestoreCurrentTabs(this);
 
                 boolean showedWelcomeUrl = false;
                 if (Settings.get().getWelcomeMessageDisplayed() == false) {
