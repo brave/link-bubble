@@ -242,10 +242,11 @@ public class MainApplication extends Application {
         // Don't restore tabs if we've already got tabs open, #389
         if (MainController.get() == null) {
             final Vector<String> urls = Settings.get().loadCurrentTabs();
-            if (urls.size() > 0 && DRM.allowProFeatures()) {
-                String string = context.getString(R.string.restore_tabs_from_previous_session);
+            int urlCount = urls.size();
+            if (urlCount > 0 && DRM.allowProFeatures()) {
+                String message = context.getResources().getQuantityString(R.plurals.restore_tabs_from_previous_session, urlCount, urlCount);
                 Drawable icon = context.getResources().getDrawable(R.drawable.ic_action_redo_white);
-                Prompt.show(string, icon, Prompt.LENGTH_SHORT, new Prompt.OnPromptEventListener() {
+                Prompt.show(message, icon, Prompt.LENGTH_SHORT, new Prompt.OnPromptEventListener() {
 
                     boolean mOnActionClicked = false;
 
