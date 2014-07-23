@@ -49,6 +49,7 @@ public class ExpandedActivity extends Activity {
     
     private boolean mIsAlive = false;
     private boolean mIsShowing = false;
+    private boolean mRegisteredForBus = false;
     private final Handler mHandler = new Handler();
 
     private HotwordServiceClient mHotwordServiceClient;
@@ -63,6 +64,13 @@ public class ExpandedActivity extends Activity {
         super.onCreate(savedInstanceState);
         CrashTracking.init(this);
 
+        // Fixes #454
+        if (MainController.get() == null || MainController.get().getActiveTabCount() == 0) {
+            Log.e(TAG, "early finish() because nothing to display");
+            finish();
+            return;
+        }
+
         sInstance = this;
 
         mIsAlive = true;
@@ -72,6 +80,7 @@ public class ExpandedActivity extends Activity {
         getActionBar().hide();
 
         MainApplication.registerForBus(this, this);
+        mRegisteredForBus = true;
 
         FrameLayout rootView = (FrameLayout) findViewById(R.id.expanded_root);
 
@@ -172,7 +181,10 @@ public class ExpandedActivity extends Activity {
             sInstance = null;
         }
 
-        MainApplication.unregisterForBus(this, this);
+        if (mRegisteredForBus) {
+            MainApplication.unregisterForBus(this, this);
+            mRegisteredForBus = false;
+        }
     }
 
     @Override
