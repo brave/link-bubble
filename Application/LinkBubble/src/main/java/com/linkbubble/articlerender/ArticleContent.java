@@ -1,6 +1,5 @@
 package com.linkbubble.articlerender;
 
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -157,7 +156,7 @@ public class ArticleContent {
             String url = data[0];
             String pageHtml = data[1];
             try {
-                Log.d(TAG, "GetArticleContentTask().doInBackground(): url:" + url);
+                Log.d(TAG, "BuildContentTask().doInBackground(): url:" + url);
                 HtmlFetcher fetcher = new HtmlFetcher();
                 result = fetcher.extract(url, pageHtml);
             } catch (Exception ex) {

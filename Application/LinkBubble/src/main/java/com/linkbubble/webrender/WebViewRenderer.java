@@ -110,6 +110,7 @@ class WebViewRenderer extends WebRenderer {
 
     @Override
     public void destroy() {
+        cancelBuildArticleContentTask();
         mIsDestroyed = true;
         mWebView.destroy();
         Log.d("Article", "WebViewRenderer.destroy()");
@@ -141,6 +142,7 @@ class WebViewRenderer extends WebRenderer {
     private void cancelBuildArticleContentTask() {
         if (mBuildArticleContentTask != null) {
             mBuildArticleContentTask.cancel(true);
+            Log.d("Article", "BuildContentTask().cancel()");
             mBuildArticleContentTask = null;
         }
     }
