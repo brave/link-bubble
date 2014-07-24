@@ -198,6 +198,13 @@ public class MainController implements Choreographer.FrameCallback {
         Bus bus = app.getBus();
         bus.unregister(sInstance);
 
+        if (Settings.get().isIncognitoMode()) {
+            CookieManager cookieManager = CookieManager.getInstance();
+            if (cookieManager != null && cookieManager.hasCookies()) {
+                cookieManager.removeAllCookie();
+            }
+        }
+
         if (Constant.PROFILE_FPS) {
             sInstance.mWindowManager.removeView(sInstance.mTextView);
         }
@@ -415,7 +422,7 @@ public class MainController implements Choreographer.FrameCallback {
 
     public void updateIncognitoMode(boolean incognito) {
         CookieSyncManager.createInstance(mContext);
-        CookieManager.getInstance().setAcceptCookie(!incognito);
+        CookieManager.getInstance().setAcceptCookie(true);
 
         if (mBubbleFlowDraggable != null) {
             mBubbleFlowDraggable.updateIncognitoMode(incognito);
