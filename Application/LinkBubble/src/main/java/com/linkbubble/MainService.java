@@ -18,6 +18,7 @@ import android.webkit.WebIconDatabase;
 import com.linkbubble.ui.NotificationControlActivity;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
+import com.linkbubble.util.FlushCacheService;
 import com.squareup.otto.Subscribe;
 
 /**
@@ -108,6 +109,11 @@ public class MainService extends Service {
                 @Override
                 public void onDestroy() {
                     Settings.get().saveBubbleRestingPoint();
+                    // Check if we should flush the WebView cache
+                    if (Settings.get().canFlushWebViewCache()) {
+                        Intent serviceIntent = new Intent(MainService.this, FlushCacheService.class);
+                        startService(serviceIntent);
+                    }
                     stopSelf();
                 }
             });
