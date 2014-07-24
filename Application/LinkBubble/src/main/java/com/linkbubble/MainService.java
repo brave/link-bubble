@@ -109,11 +109,7 @@ public class MainService extends Service {
                 @Override
                 public void onDestroy() {
                     Settings.get().saveBubbleRestingPoint();
-                    // Check if we should flush the WebView cache
-                    if (Settings.get().canFlushWebViewCache()) {
-                        Intent serviceIntent = new Intent(MainService.this, FlushCacheService.class);
-                        startService(serviceIntent);
-                    }
+                    FlushCacheService.doCheck(MainService.this);
                     stopSelf();
                 }
             });
