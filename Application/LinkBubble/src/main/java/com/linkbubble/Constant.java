@@ -59,6 +59,8 @@ public class Constant {
 
     public static final int TOUCH_ICON_MAX_SIZE = 256;
 
+    public static final int EMPTY_WEBVIEW_CACHE_INTERVAL = 7 * 24 * 60 * 60 * 1000;
+
     public static final String PRIVACY_POLICY_URL = "http://www.linkbubble.com/privacy";
     public static final String TERMS_OF_SERVICE_URL = "http://www.linkbubble.com/terms";
 

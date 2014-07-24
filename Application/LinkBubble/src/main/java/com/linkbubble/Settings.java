@@ -91,6 +91,7 @@ public class Settings {
 
     private static final String WELCOME_MESSAGE_DISPLAYED = "welcome_message_displayed";
     private static final String TERMS_ACCEPTED = "terms_accepted";
+    private static final String LAST_FLUSH_WEBVIEW_CACHE_TIME = "last_flush_cache_time";
 
     public interface ConsumeBubblesChangedEventHandler {
         public void onConsumeBubblesChanged();
@@ -153,6 +154,7 @@ public class Settings {
         if (mSharedPreferences.getBoolean("first_run", true)) {
             SharedPreferences.Editor editor = mSharedPreferences.edit();
             editor.putBoolean("first_run", false);
+            editor.putLong(LAST_FLUSH_WEBVIEW_CACHE_TIME, System.currentTimeMillis());
             editor.commit();
 
             PackageManager packageManager = mContext.getPackageManager();
@@ -162,6 +164,13 @@ public class Settings {
             configureDefaultApp(packageManager, "https://play.google.com/store/apps/details?id=com.linkbubble.playstore&hl=en", "com.android.vending");
             configureDefaultApp(packageManager, "https://maps.google.com/maps/ms?msid=212078515518849153944.000434d59f7fc56a57668", "com.google.android.apps.maps");
             saveDefaultApps();
+        } else {
+            // This option is being added in 1.3. For people upgrading from older versions, set the value to force a clear very soon
+            if (mSharedPreferences.getLong(LAST_FLUSH_WEBVIEW_CACHE_TIME, -1) == -1) {
+                SharedPreferences.Editor editor = mSharedPreferences.edit();
+                editor.putLong(LAST_FLUSH_WEBVIEW_CACHE_TIME, System.currentTimeMillis() - Constant.EMPTY_WEBVIEW_CACHE_INTERVAL);
+                editor.apply();
+            }
         }
 
         configureDefaultApps(mSharedPreferences.getString(PREFERENCE_DEFAULT_APPS, null));
@@ -1131,5 +1140,23 @@ public class Settings {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean canFlushWebViewCache() {
+        long lastEmptyTime = mSharedPreferences.getLong(LAST_FLUSH_WEBVIEW_CACHE_TIME, -1);
+        if (lastEmptyTime > -1) {
+            long delta = System.currentTimeMillis() - lastEmptyTime;
+            if (delta > Constant.EMPTY_WEBVIEW_CACHE_INTERVAL) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void updateLastFlushWebViewCacheTime() {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putLong(LAST_FLUSH_WEBVIEW_CACHE_TIME, System.currentTimeMillis());
+        editor.commit();
     }
 }
