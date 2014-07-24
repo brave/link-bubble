@@ -18,6 +18,15 @@ public class FlushCacheService extends Service {
 
     private static final String TAG = "FlushCacheService";
 
+    public static void doCheck(Context context) {
+        // Check if we should flush the WebView cache
+        if (Settings.get().canFlushWebViewCache()) {
+            Intent serviceIntent = new Intent(context, FlushCacheService.class);
+            context.startService(serviceIntent);
+            Log.d(TAG, "startService()");
+        }
+    }
+
     private Handler mHandler = new Handler();
 
     @Override
