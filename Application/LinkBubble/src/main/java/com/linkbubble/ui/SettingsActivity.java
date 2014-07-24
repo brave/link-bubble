@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.util.CrashTracking;
+import com.linkbubble.util.FlushCacheService;
 import com.linkbubble.util.IconCache;
 
 
@@ -26,6 +27,12 @@ public class SettingsActivity extends PreferenceActivity {
         setTitle(R.string.title_settings);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public void onDestroy() {
+        FlushCacheService.doCheck(this);
+        super.onDestroy();
     }
 
     @Override
