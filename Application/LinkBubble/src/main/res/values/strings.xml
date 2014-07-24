@@ -109,6 +109,7 @@
     <string name="preference_clear_passwords">Passwords</string>
     <string name="preference_incognito_title">Incognito Mode</string>
     <string name="preference_incognito_summary">Prevent storing all history and cookies</string>
+    <string name="incognito_mode_changed_reloading_current">Incognito setting changed. Reloading current bubbles…</string>
     <string name="preference_user_agent_title">User Agent</string>
     <string-array name="preference_user_agent_options">
         <item>Default</item>
