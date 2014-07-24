@@ -163,7 +163,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             });
         }
 
-        Preference incognitoButton = findPreference("preference_incognito");
+        Preference incognitoButton = findPreference(Settings.PREFERENCE_INCOGNITO_MODE);
         if (incognitoButton != null) {
             incognitoButton.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
@@ -172,6 +172,10 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                     MainApplication app = (MainApplication) getActivity().getApplication();
                     Bus bus = app.getBus();
                     bus.post(new IncognitoModeChangedEvent((Boolean)newValue));
+
+                    if (MainController.get() != null && MainController.get().reloadAllTabs(getActivity())) {
+                        Toast.makeText(getActivity(), R.string.incognito_mode_changed_reloading_current, Toast.LENGTH_SHORT).show();
+                    }
 
                     return true;
                 }

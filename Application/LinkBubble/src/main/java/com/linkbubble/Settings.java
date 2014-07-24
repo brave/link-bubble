@@ -73,6 +73,7 @@ public class Settings {
     public static final String PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT = "preference_google_accounts_redirect";
 
     public static final String PREFERENCE_AUTO_ARTICLE_MODE = "preference_auto_article_mode";
+    public static final String PREFERENCE_INCOGNITO_MODE = "preference_incognito";
 
     public static final String PREFERENCE_WEBVIEW_TEXT_ZOOM = "preference_webview_text_zoom";
     public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN = 50;
@@ -606,7 +607,7 @@ public class Settings {
     }
 
     public boolean isIncognitoMode() {
-        return mSharedPreferences.getBoolean("preference_incognito", false);
+        return mSharedPreferences.getBoolean(PREFERENCE_INCOGNITO_MODE, false);
     }
 
     public String getUserAgentString() {
