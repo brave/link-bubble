@@ -156,14 +156,16 @@
 -keepclassmembers class com.linkbubble.MainController {
     # ensure event handler functions are not stripped
     public void onBeginExpandTransition(com.linkbubble.MainController$BeginExpandTransitionEvent);
+    public void onEndAnimateFinalTabAway(com.linkbubble.MainController$EndAnimateFinalTabAwayEvent);
     public void onEndCollapseTransition(com.linkbubble.MainController$EndCollapseTransitionEvent);
     public void onEndExpandTransition(com.linkbubble.MainController$EndExpandTransitionEvent);
+    public void onExpandedActivityReadyEvent(com.linkbubble.ui.ExpandedActivity$ExpandedActivityReadyEvent);
     public void onIncognitoModeChanged(com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent);
     public void onStateChangedEvent(com.linkbubble.MainApplication$StateChangedEvent);
-    public void onEndAnimateFinalTabAway(com.linkbubble.MainController$EndAnimateFinalTabAwayEvent);
 }
 
 -keep class com.linkbubble.MainApplication$StateChangedEvent
+-keep class com.linkbubble.MainApplication$TrialTimeStartTimeReceivedEvent
 -keep class com.linkbubble.MainController$BeginAnimateFinalTabAwayEvent
 -keep class com.linkbubble.MainController$BeginBubbleDragEvent
 -keep class com.linkbubble.MainController$BeginCollapseTransitionEvent
@@ -181,7 +183,7 @@
 -keep class com.linkbubble.db.HistoryRecord$ChangedEvent
 -keep class com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent
 -keep class com.linkbubble.ui.ExpandedActivity$EnableHotwordSeviceEvent
--keep class com.linkbubble.ui.ExpandedActivity$FinishExpandedActivityEvent
+-keep class com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent
 -keep class com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent
 
 -keepclassmembers class com.linkbubble.ui.BubbleTargetView {
@@ -200,6 +202,7 @@
     public void onCurrentTabChanged(com.linkbubble.MainController$CurrentTabChangedEvent);
     public void onEndBubbleDragEvent(com.linkbubble.MainController$EndBubbleDragEvent);
     public void onEndCollapseTransition(com.linkbubble.MainController$EndCollapseTransitionEvent);
+    public void onHideContentEvent(com.linkbubble.MainController$HideContentEvent);
     public void onOrientationChanged(com.linkbubble.MainController$OrientationChangedEvent);
 }
 
@@ -213,8 +216,8 @@
 -keepclassmembers class com.linkbubble.ui.ExpandedActivity {
     # ensure event handler functions are not stripped
     public void onEnableHotwordSevice(com.linkbubble.ui.ExpandedActivity$EnableHotwordSeviceEvent);
-    public void onFinishExpandedActivityEvent(com.linkbubble.ui.ExpandedActivity$FinishExpandedActivityEvent);
     public void onHideContentEvent(com.linkbubble.MainController$HideContentEvent);
+    public void onMinimizeExpandedActivity(com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent);
 }
 
 -keepclassmembers class com.linkbubble.ui.HistoryActivity {
