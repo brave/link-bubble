@@ -340,12 +340,11 @@ public class Util {
         return randomNum;
     }
 
-    /*
     static public ResolveInfo getDefaultBrowser(PackageManager packageManager) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(Config.SET_DEFAULT_BROWSER_URL));
         return packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
-    }*/
+    }
 
     static public void replaceViewAtPosition(View viewToReplace, View replaceWith) {
         ViewGroup parent = (ViewGroup) viewToReplace.getParent();
