@@ -17,7 +17,7 @@
     <string name="action_settings">सेटिंग</string>
     <string name="action_help">मदद</string>
     <string name="action_reload_page">रीलोड </string>
-    <string name="action_open_in_browser">%1$ में खोले </string>
+    <string name="action_open_in_browser">%1$S में खोले </string>
     <string name="action_open_in_new_bubble">नये बबल में खोलें</string>
     <string name="action_upgrade_to_pro">★अपग्रेड टू प्रो ★</string>
     <string name="action_copy_to_clipboard">कोपी लिंक </string>
