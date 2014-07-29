@@ -39,10 +39,10 @@ public class ExpandedActivity extends Activity {
 
     public static class ExpandedActivityReadyEvent {};
 
-    public static class EnableHotwordSeviceEvent {
+    public static class EnableHotwordServiceEvent {
         boolean mEnable;
 
-        EnableHotwordSeviceEvent(boolean enable) {
+        EnableHotwordServiceEvent(boolean enable) {
             mEnable = enable;
         }
     };
@@ -329,7 +329,7 @@ public class ExpandedActivity extends Activity {
 
     @SuppressWarnings("unused")
     @Subscribe
-    public void onEnableHotwordSevice(EnableHotwordSeviceEvent event) {
+    public void onEnableHotwordService(EnableHotwordServiceEvent event) {
         if (event.mEnable && mHotwordServiceClient == null) {
             initHotwordService(event.mEnable);
         }

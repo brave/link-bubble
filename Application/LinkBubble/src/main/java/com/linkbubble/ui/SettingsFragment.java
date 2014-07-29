@@ -237,7 +237,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                     @Override
                     public boolean onPreferenceChange(Preference preference, Object newValue) {
                         boolean checked = (Boolean) newValue;
-                        MainApplication.postEvent(getActivity(), new ExpandedActivity.EnableHotwordSeviceEvent(checked));
+                        MainApplication.postEvent(getActivity(), new ExpandedActivity.EnableHotwordServiceEvent(checked));
                         return true;
                     }
                 });
