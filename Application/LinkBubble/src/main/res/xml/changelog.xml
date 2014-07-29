@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.3.1" versioncode="13100">
+        <change>BUG FIX: Misc. bug fix.</change>
+    </release>
+
     <release version="1.3.0" versioncode="13000">
         <change>NEW: Text content from a link can be displayed on Android Wear devices (requires Pro). Links can also be opened/closed on your device via Wear.</change>
         <change>NEW: Link Bubble can now be 'hidden' via the notification. When hidden, the app will still be running, just no longer visible
@@ -9,12 +13,12 @@
         <change>IMPROVEMENT: Restore slide-in animation when the first link begins to load.</change>
         <change>IMPROVEMENT: Add hack to stop Pocket from displaying when you add links to it.</change>
         <change>IMPROVEMENT: Link Bubble is minimized when links are sent to external apps when running the L Preview.</change>
-        <change>IMPROVEMENT: "Intercept links from" works correctly for Android 4.4 and below.</change>
         <change>IMPROVEMENT: Cookies are now enabled in Incognito Mode, but cleared at the end of the session.</change>
         <change>IMPROVEMENT: Changing the Incognito Mode setting forces open bubbles to be reloaded.</change>
         <change>CHANGE: Tabs from the previous session are no longer automatically restored. A prompt is now displayed requiring confirmation to restore these tabs.</change>
         <change>CHANGE: Periodically empty cached web data.</change>
         <change>CHANGE: The "Intercept links from" option has unfortunately been disabled for those running the L Preview due to the Android API required for this functionality being depreciated by Google.</change>
+        <change>BUG FIX: "Intercept links from" works correctly for Android 4.4 and below.</change>
         <change>BUG FIX: Fix rare issue where no tabs would display and pressing the device's Home button failed to close Link Bubble.</change>
         <change>BUG FIX: Fix issue where web content sometimes failed to slide on screen.</change>
         <change>BUG FIX: Fix issue where bubble favicon is not updated after the Pro trial has finished.</change>

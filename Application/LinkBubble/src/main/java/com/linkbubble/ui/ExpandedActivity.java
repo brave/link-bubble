@@ -257,10 +257,11 @@ public class ExpandedActivity extends Activity {
             return;
         }
 
-        if (mIsShowing == false) {
-            Log.d(TAG, "minimize() - mIsShowing:" + mIsShowing + ", exiting...");
-            return;
-        }
+        // Comment out as a fix for #455
+        //if (mIsShowing == false) {
+        //    Log.d(TAG, "minimize() - mIsShowing:" + mIsShowing + ", exiting...");
+        //    return;
+        //}
 
         if (moveTaskToBack(true)) {
             Log.d(TAG, "minimize() - moveTaskToBack(true);");
