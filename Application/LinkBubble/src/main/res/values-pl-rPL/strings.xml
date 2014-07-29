@@ -232,8 +232,6 @@ używany w Androidzie WebView jest napisany w taki sposób, że elementy &lt;sel
     <string name="credits_title">Twórcy Link Bubble</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">Pomysł, projekt, programowanie</string>
-    <string name="credits_watson_name">Glenn Watson</string>
-    <string name="credits_watson_credit">Programowanie</string>
     <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
 
     <string name="content_description_button">Przycisk</string>
@@ -243,7 +241,6 @@ używany w Androidzie WebView jest napisany w taki sposób, że elementy &lt;sel
     <string name="content_description_app_icon">Ikona aplikacji</string>
     <string name="content_description_youtube_video_thumbnail">Miniatura nagrania YouTube</string>
     <string name="content_description_lacy_profile_image">Zakazana morda Chrisa Lacy\'ego</string>
-    <string name="content_description_watson_profile_image">Glenn Watson</string>
     <string name="content_description_history">Historia</string>
     <string name="content_description_settings">Ustawienia</string>
     <string name="content_description_can_go_back">Można się wycofać</string>

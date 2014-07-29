@@ -261,8 +261,6 @@ Copy functionality works when using Android\'s WebView from an Activity, but not
     <string name="credits_title">लिंक बबल क्रेडिट्स </string>
     <string name="credits_lacy_name">क्रिस लेसी </string>
     <string name="credits_lacy_credit">कंसेप्ट, डिज़ाइन और प्रोग्रामिंग </string>
-    <string name="credits_watson_name">ग्लेंन वाट्सन </string>
-    <string name="credits_watson_credit">प्रोग्रामिंग </string>
     <string name="credits_app_copyright">कॉपीराइट 2014, डिजिटल एशेज / क्रिस लैसी .</string>
 
     <string name="content_description_button">बटन</string>
@@ -272,7 +270,6 @@ Copy functionality works when using Android\'s WebView from an Activity, but not
     <string name="content_description_app_icon">ऐप्प आइकॉन </string>
     <string name="content_description_youtube_video_thumbnail">यू ट्यूब विडियो थम्बलिम </string>
     <string name="content_description_lacy_profile_image">क्रिस लेसी\'s ugly mug </string>
-    <string name="content_description_watson_profile_image">ग्लेन वाटसन </string>
     <string name="content_description_history">हिस्ट्री 
 </string>
     <string name="content_description_settings">सेटिंग </string>

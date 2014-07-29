@@ -232,8 +232,6 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="credits_title">เครดิตของ Link Bubble</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">แนวคิด, ออกแบบ และพัฒนา</string>
-    <string name="credits_watson_name">Glenn Watson</string>
-    <string name="credits_watson_credit">พัฒนา</string>
     <string name="credits_app_copyright">สงวนลิขสิทธิ์ 2014, Digital Ashes / Chris Lacy.</string>
 
     <string name="content_description_button">ปุ่ม</string>
@@ -243,7 +241,6 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="content_description_app_icon">ไอคอนของแอป</string>
     <string name="content_description_youtube_video_thumbnail">ภาพตัวอย่างวิดีโอ YouTube</string>
     <string name="content_description_lacy_profile_image">แก้วอันน่าเกลียดของ Chris Lacy</string>
-    <string name="content_description_watson_profile_image">Glenn Watson</string>
     <string name="content_description_history">ประวัติ</string>
     <string name="content_description_settings">ตั้งค่า</string>
     <string name="content_description_can_go_back">ไม่สามารถย้อนกลับ</string>

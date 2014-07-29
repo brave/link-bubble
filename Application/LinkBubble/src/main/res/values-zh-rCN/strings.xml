@@ -237,8 +237,6 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="credits_title">关于 Link Bubble</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">概念、设计及开发</string>
-    <string name="credits_watson_name">Glenn Watson</string>
-    <string name="credits_watson_credit">开发</string>
     <string name="credits_app_copyright">版权所有 2014, Digital Ashes / Chris Lacy.</string>
 
     <string name="content_description_button">按钮</string>
@@ -248,7 +246,6 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="content_description_app_icon">应用图标</string>
     <string name="content_description_youtube_video_thumbnail">YouTube 视频缩略图</string>
     <string name="content_description_lacy_profile_image">Chris Lacy 的丑脸</string>
-    <string name="content_description_watson_profile_image">Glenn Watson</string>
     <string name="content_description_history">历史记录</string>
     <string name="content_description_settings">设置</string>
     <string name="content_description_can_go_back">可以回去</string>
