@@ -15,7 +15,9 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.webkit.WebIconDatabase;
 
-import com.linkbubble.ui.NotificationControlActivity;
+import com.linkbubble.ui.NotificationCloseAllActivity;
+import com.linkbubble.ui.NotificationHideActivity;
+import com.linkbubble.ui.NotificationUnhideActivity;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.FlushCacheService;
@@ -157,14 +159,12 @@ public class MainService extends Service {
     }
 
     private void showDefaultNotification() {
-        Intent closeAllIntent = new Intent(this, NotificationControlActivity.class);
-        closeAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        closeAllIntent.putExtra(NotificationControlActivity.EXTRA_ACTION, NotificationControlActivity.ACTION_CLOSE_ALL);
+        Intent closeAllIntent = new Intent(this, NotificationCloseAllActivity.class);
+        closeAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent closeAllPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), closeAllIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Intent hideIntent = new Intent(this, NotificationControlActivity.class);
-        hideIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        hideIntent.putExtra(NotificationControlActivity.EXTRA_ACTION, NotificationControlActivity.ACTION_HIDE);
+        Intent hideIntent = new Intent(this, NotificationHideActivity.class);
+        hideIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent hidePendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), hideIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
@@ -172,6 +172,8 @@ public class MainService extends Service {
                 .setPriority(Notification.PRIORITY_MIN)
                 .setContentTitle(getString(R.string.app_name))
                 .setContentText(getString(R.string.notification_default_summary))
+                //.addAction(R.drawable.ic_action_eye_closed_dark, getString(R.string.notification_action_hide), hidePendingIntent)
+                //.addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
                 .addAction(R.drawable.ic_action_halt_dark, getString(R.string.notification_action_hide), hidePendingIntent)
                 .setGroup(Constant.NOTIFICATION_GROUP_KEY_ARTICLES)
                 .setGroupSummary(true)
@@ -186,14 +188,12 @@ public class MainService extends Service {
     }
 
     private void showUnhideHiddenNotification() {
-        Intent unhideIntent = new Intent(this, NotificationControlActivity.class);
-        unhideIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        unhideIntent.putExtra(NotificationControlActivity.EXTRA_ACTION, NotificationControlActivity.ACTION_UNHIDE);
+        Intent unhideIntent = new Intent(this, NotificationUnhideActivity.class);
+        unhideIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent unhidePendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), unhideIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Intent closeAllIntent = new Intent(this, NotificationControlActivity.class);
-        closeAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        closeAllIntent.putExtra(NotificationControlActivity.EXTRA_ACTION, NotificationControlActivity.ACTION_CLOSE_ALL);
+        Intent closeAllIntent = new Intent(this, NotificationCloseAllActivity.class);
+        closeAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent closeAllPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), closeAllIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
@@ -202,12 +202,14 @@ public class MainService extends Service {
                 .setContentTitle(getString(R.string.app_name))
                 .setContentText(getString(R.string.notification_unhide_summary))
                 .setLocalOnly(true)
+                //.addAction(R.drawable.ic_action_eye_open_dark, getString(R.string.notification_action_unhide), unhidePendingIntent)
+                //.addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
                 .addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
                 .setContentIntent(unhidePendingIntent);
 
         NotificationManagerCompat.from(this).cancelAll();
         startForeground(1, notificationBuilder.build());
-        Log.d("blerg", "showUnhideHiddenNotification()");
+        //Log.d("blerg", "showUnhideHiddenNotification()");
     }
 
     @SuppressWarnings("unused")
