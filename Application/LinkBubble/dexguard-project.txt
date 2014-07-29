@@ -232,6 +232,7 @@
 -keep public interface com.android.vending.licensing.ILicensingService
 
 -dontwarn android.support.**
+-dontwarn com.google.appengine.api.urlfetch.**
 
 -keepnames class * implements java.io.Serializable
 
