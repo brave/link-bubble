@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -209,10 +210,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         if (isExpanded() == false && mCurrentTab != null) {
             // Ensure the centerIndex matches the current bubble. This should only *NOT* be the case when
             // restoring with N Bubbles from a previous session and the user clicks to expand the BubbleFlowView.
-            int currentTabeIndex = getIndexOfView(mCurrentTab);
+            int currentTabIndex = getIndexOfView(mCurrentTab);
             int centerIndex = getCenterIndex();
-            if (centerIndex > -1 && currentTabeIndex != centerIndex && isAnimatingToCenterIndex() == false) {
-                setCenterIndex(currentTabeIndex, false);
+            if (centerIndex > -1 && currentTabIndex != centerIndex && isAnimatingToCenterIndex() == false) {
+                setCenterIndex(currentTabIndex, false);
             }
         }
 
@@ -386,6 +387,27 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
 
         return null;
+    }
+
+    public void setCurrentTabByNotification(int notificationId, boolean contentViewShowing) {
+        TabView tabView = getTabByNotification(notificationId);
+        if (tabView != null) {
+            int currentTabIndex = getIndexOfView(tabView);
+            if (currentTabIndex > -1) {
+                int centerIndex = getCenterIndex();
+                Log.d("blerg", "centerIndex:" + centerIndex + ", currentTabIndex:" + currentTabIndex);
+                if (contentViewShowing) {
+                    if (centerIndex != currentTabIndex) {
+                        setCenterIndex(currentTabIndex, true);
+                    }
+                } else {
+                    if (centerIndex > -1 && currentTabIndex != centerIndex && isAnimatingToCenterIndex() == false) {
+                        setCenterIndex(currentTabIndex, false);
+                    }
+                }
+                setCurrentTab(tabView);
+            }
+        }
     }
 
     private void closeTab(TabView tab, boolean animateRemove, boolean removeFromList) {
