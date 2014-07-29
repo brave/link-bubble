@@ -1109,10 +1109,9 @@ public class ContentView extends FrameLayout {
                 String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(articleContent.mUrl.toString()) : "Open Bubble";
 
                 Context context = getContext();
-                Intent intent = new Intent(context, NotificationControlActivity.class);
+                Intent intent = new Intent(context, NotificationCloseTabActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra(NotificationControlActivity.EXTRA_ACTION, NotificationControlActivity.ACTION_CLOSE_TAB);
-                intent.putExtra(NotificationControlActivity.EXTRA_DISMISS_NOTIFICATION, mArticleNotificationId);
+                intent.putExtra(NotificationCloseTabActivity.EXTRA_DISMISS_NOTIFICATION, mArticleNotificationId);
                 PendingIntent pendingIntent =
                         PendingIntent.getActivity(context, mArticleNotificationId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 Notification notification = new NotificationCompat.Builder(context)
