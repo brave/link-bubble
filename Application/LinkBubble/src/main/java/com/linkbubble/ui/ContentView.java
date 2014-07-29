@@ -1109,17 +1109,25 @@ public class ContentView extends FrameLayout {
                 String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(articleContent.mUrl.toString()) : "Open Bubble";
 
                 Context context = getContext();
-                Intent intent = new Intent(context, NotificationCloseTabActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra(NotificationCloseTabActivity.EXTRA_DISMISS_NOTIFICATION, mArticleNotificationId);
-                PendingIntent pendingIntent =
-                        PendingIntent.getActivity(context, mArticleNotificationId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                Intent closeTabIntent = new Intent(context, NotificationCloseTabActivity.class);
+                closeTabIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                closeTabIntent.putExtra(NotificationCloseTabActivity.EXTRA_DISMISS_NOTIFICATION, mArticleNotificationId);
+                PendingIntent closeTabPendingIntent =
+                        PendingIntent.getActivity(context, mArticleNotificationId, closeTabIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                Intent openTabIntent = new Intent(context, NotificationOpenTabActivity.class);
+                openTabIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
+                openTabIntent.putExtra(NotificationOpenTabActivity.EXTRA_DISMISS_NOTIFICATION, mArticleNotificationId);
+                PendingIntent openTabPendingIntent = PendingIntent.getActivity(context, (int) System.currentTimeMillis(), openTabIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
                 Notification notification = new NotificationCompat.Builder(context)
-                        .addAction(R.drawable.ic_action_cancel_white, context.getString(R.string.action_close_tab), pendingIntent)
+                        .addAction(R.drawable.ic_action_cancel_white, context.getString(R.string.action_close_tab), closeTabPendingIntent)
                         .setContentTitle(title)
                         .setContentText(articleContent.mText)
                         .setSmallIcon(R.drawable.ic_launcher)
                         .setGroup(Constant.NOTIFICATION_GROUP_KEY_ARTICLES)
+                        .setContentIntent(openTabPendingIntent)
                         .build();
 
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);

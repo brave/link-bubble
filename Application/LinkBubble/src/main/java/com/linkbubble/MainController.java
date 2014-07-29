@@ -608,6 +608,11 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void onCloseSystemDialogs() {
+        long delta = System.currentTimeMillis() - mLastOpenTabFromNotificationTime;
+        // Intent.ACTION_CLOSE_SYSTEM_DIALOGS gets triggered when NotificationOpenTabActivity is instantiated. Ignore that to stop minimizing...
+        if (delta < 200) {
+            return;
+        }
         switchToBubbleView();
     }
 
@@ -842,6 +847,18 @@ public class MainController implements Choreographer.FrameCallback {
 
     public boolean contentViewShowing() {
         return mBubbleDraggable != null && mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView;
+    }
+
+    private long mLastOpenTabFromNotificationTime = -1;
+    public void openTabFromNotification(int notificationId) {
+        mLastOpenTabFromNotificationTime = System.currentTimeMillis();
+        if (mBubbleFlowDraggable != null) {
+            boolean contentViewShowing = contentViewShowing();
+            mBubbleFlowDraggable.setCurrentTabByNotification(notificationId, contentViewShowing);
+            if (!contentViewShowing) {
+                mBubbleDraggable.switchToExpandedView();
+            }
+        }
     }
 
     public boolean closeTab(int notificationId) {
