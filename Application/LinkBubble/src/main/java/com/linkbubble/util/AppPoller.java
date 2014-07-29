@@ -14,6 +14,7 @@ import com.linkbubble.ui.ExpandedActivity;
 import com.linkbubble.ui.NotificationCloseAllActivity;
 import com.linkbubble.ui.NotificationCloseTabActivity;
 import com.linkbubble.ui.NotificationHideActivity;
+import com.linkbubble.ui.NotificationOpenTabActivity;
 import com.linkbubble.ui.NotificationUnhideActivity;
 
 
@@ -78,6 +79,7 @@ public class AppPoller {
             BuildConfig.PACKAGE_NAME + "/" + NotificationCloseTabActivity.class.getName(),
             BuildConfig.PACKAGE_NAME + "/" + NotificationHideActivity.class.getName(),
             BuildConfig.PACKAGE_NAME + "/" + NotificationUnhideActivity.class.getName(),
+            BuildConfig.PACKAGE_NAME + "/" + NotificationOpenTabActivity.class.getName(),
             BuildConfig.PACKAGE_NAME + "/" + EntryActivity.class.getName()};
     private boolean shouldIgnoreActivity(String flatComponentName) {
         for (String string : IGNORE_ACTIVITIES) {
