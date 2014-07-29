@@ -234,8 +234,6 @@
     <string name="credits_title">شكر فقاعة العنوان</string>
     <string name="credits_lacy_name">كريس ليسي</string>
     <string name="credits_lacy_credit">مفهوم والتصميم والبرمجة</string>
-    <string name="credits_watson_name">قلين واتسون</string>
-    <string name="credits_watson_credit">برمجة</string>
     <string name="credits_app_copyright">حقوق 2014 ,ديجيتال اشيس/كريس ليسي</string>
 
     <string name="content_description_button">زر</string>
@@ -245,7 +243,6 @@
     <string name="content_description_app_icon">شعار التطبيق</string>
     <string name="content_description_youtube_video_thumbnail">فيديو يوتيوب المصغرة</string>
     <string name="content_description_lacy_profile_image">كوب كريس ليسي القبيح</string>
-    <string name="content_description_watson_profile_image">قلين واتسون</string>
     <string name="content_description_history">التاريخ</string>
     <string name="content_description_settings">الإعدادات</string>
     <string name="content_description_can_go_back">تستطيع العودة</string>

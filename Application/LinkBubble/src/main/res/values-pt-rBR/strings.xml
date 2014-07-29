@@ -265,8 +265,6 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="credits_title">Créditos do Link Bubble</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">Conceito, design e programação</string>
-    <string name="credits_watson_name">Glenn Watson</string>
-    <string name="credits_watson_credit">Programação</string>
     <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
 
     <string name="content_description_button">Botão</string>
@@ -276,7 +274,6 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="content_description_app_icon">Ícone do app</string>
     <string name="content_description_youtube_video_thumbnail">YouTube video thumbnail</string>
     <string name="content_description_lacy_profile_image">Caneca feia do Chris Lacy</string>
-    <string name="content_description_watson_profile_image">Glenn Watson</string>
     <string name="content_description_history">Histórico</string>
     <string name="content_description_settings">Configurações</string>
     <string name="content_description_can_go_back">Pode voltar</string>

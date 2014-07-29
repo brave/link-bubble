@@ -256,8 +256,6 @@ aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend 
     <string name="credits_title">Link Bubble Credits</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">Konzept, Design und Programmierung</string>
-    <string name="credits_watson_name">Glenn Watson</string>
-    <string name="credits_watson_credit">Programmierung</string>
     <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
 
     <string name="content_description_button">Button</string>
@@ -267,7 +265,6 @@ aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend 
     <string name="content_description_app_icon">App-Icon</string>
     <string name="content_description_youtube_video_thumbnail">YouTube-Video Vorschaubild</string>
     <string name="content_description_lacy_profile_image">Chris Lacy\'s hässliche Visage</string>
-    <string name="content_description_watson_profile_image">Glenn Watson</string>
     <string name="content_description_history">Verlauf</string>
     <string name="content_description_settings">Einstellungen</string>
     <string name="content_description_can_go_back">Du kannst zurückkehren</string>
