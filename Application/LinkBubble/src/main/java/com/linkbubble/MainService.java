@@ -201,6 +201,7 @@ public class MainService extends Service {
                 .setPriority(Notification.PRIORITY_MIN)
                 .setContentTitle(getString(R.string.app_name))
                 .setContentText(getString(R.string.notification_unhide_summary))
+                .setLocalOnly(true)
                 .addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
                 .setContentIntent(unhidePendingIntent);
 
