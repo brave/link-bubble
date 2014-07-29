@@ -182,7 +182,7 @@
 -keep class com.linkbubble.MainService$ShowUnhideNotificationEvent
 -keep class com.linkbubble.db.HistoryRecord$ChangedEvent
 -keep class com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent
--keep class com.linkbubble.ui.ExpandedActivity$EnableHotwordSeviceEvent
+-keep class com.linkbubble.ui.ExpandedActivity$EnableHotwordServiceEvent
 -keep class com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent
 -keep class com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent
 
@@ -215,7 +215,7 @@
 
 -keepclassmembers class com.linkbubble.ui.ExpandedActivity {
     # ensure event handler functions are not stripped
-    public void onEnableHotwordSevice(com.linkbubble.ui.ExpandedActivity$EnableHotwordSeviceEvent);
+    public void onEnableHotwordService(com.linkbubble.ui.ExpandedActivity$EnableHotwordServiceEvent);
     public void onHideContentEvent(com.linkbubble.MainController$HideContentEvent);
     public void onMinimizeExpandedActivity(com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent);
 }
