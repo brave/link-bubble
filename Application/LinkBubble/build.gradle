@@ -1,12 +1,12 @@
 buildscript {
     repositories {
         mavenCentral()
-        flatDir { dirs '../../DexGuard/lib' }
+        flatDir { dirs '../../../DexGuard/lib' }
         maven { url 'http://download.crashlytics.com/maven' }
     }
     dependencies {
         classpath ':dexguard:'
-        classpath 'com.android.tools.build:gradle:0.12.+'
+        classpath 'com.android.tools.build:gradle:0.12.1'
         classpath 'com.crashlytics.tools.gradle:crashlytics-gradle:1.+'
     }
 }
@@ -82,7 +82,7 @@ android {
 
         release {
             if(buildMode == "dexguard") {
-                proguardFile plugin.getDefaultDexGuardFile('dexguard-release.pro')
+                proguardFile getDefaultDexGuardFile('dexguard-release.pro')
                 proguardFile 'dexguard-project.txt'
             }
             proguardFile 'proguard-project.txt'
