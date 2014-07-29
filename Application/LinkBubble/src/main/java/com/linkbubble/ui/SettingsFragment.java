@@ -601,9 +601,8 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         Preference setDefaultBrowserPreference = findPreference("preference_set_default_browser");
         // Will be null if onResume() is called after the preference has already been removed.
         if (setDefaultBrowserPreference != null) {
-            PreferenceCategory category = (PreferenceCategory) findPreference("preference_category_configuration");
-            category.removePreference(setDefaultBrowserPreference);
-            /*
+            //PreferenceCategory category = (PreferenceCategory) findPreference("preference_category_configuration");
+            //category.removePreference(setDefaultBrowserPreference);
             setDefaultBrowserPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 
                 @Override
@@ -634,7 +633,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                     PreferenceCategory category = (PreferenceCategory) findPreference("preference_category_configuration");
                     category.removePreference(setDefaultBrowserPreference);
                 }
-            }*/
+            }
         }
     }
 
