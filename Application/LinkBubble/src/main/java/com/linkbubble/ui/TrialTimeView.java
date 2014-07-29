@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 
-class TrialTimeView extends View {
+public class TrialTimeView extends View {
     private Paint mBasePaint;
     private Paint mElapsedPaint;
     private Paint mOutlinePaint;
