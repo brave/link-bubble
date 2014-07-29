@@ -261,8 +261,6 @@ indlæsning af dine favoritter, kan Chrome Bogmærker widget være meget nyttigt
     <string name="credits_title">Link Bubble Credits</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">Koncept, design og programmering</string>
-    <string name="credits_watson_name">Glenn Watson</string>
-    <string name="credits_watson_credit">Programmering</string>
     <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
 
     <string name="content_description_button">Knap</string>
@@ -272,7 +270,6 @@ indlæsning af dine favoritter, kan Chrome Bogmærker widget være meget nyttigt
     <string name="content_description_app_icon">App ikon</string>
     <string name="content_description_youtube_video_thumbnail">YouTube video thumbnail</string>
     <string name="content_description_lacy_profile_image">Chris Lacy\'s fjæs</string>
-    <string name="content_description_watson_profile_image">Glenn Watson</string>
     <string name="content_description_history">Historik</string>
     <string name="content_description_settings">Indstillinger</string>
     <string name="content_description_can_go_back">Can go back</string>

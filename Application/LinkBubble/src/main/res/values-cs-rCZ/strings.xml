@@ -261,8 +261,6 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
     <string name="credits_title">Autoři Link Bubble</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">Koncept, design a programování</string>
-    <string name="credits_watson_name">Glenn Watson</string>
-    <string name="credits_watson_credit">Programování</string>
     <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
 
     <string name="content_description_button">Tlačítko</string>
@@ -272,7 +270,6 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
     <string name="content_description_app_icon">Ikona aplikace</string>
     <string name="content_description_youtube_video_thumbnail">Náhled videa z YouTube</string>
     <string name="content_description_lacy_profile_image">Hnusný pohled Chrise Lacyho</string>
-    <string name="content_description_watson_profile_image">Glenn Watson</string>
     <string name="content_description_history">Historie</string>
     <string name="content_description_settings">Nastavení</string>
     <string name="content_description_can_go_back">Můžete jít zpět</string>
