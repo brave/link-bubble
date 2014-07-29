@@ -551,4 +551,25 @@ public class MainApplication extends Application {
         public int mOldState;
         public boolean mDisplayedToast;
     }
+
+    /*
+    private void checkStrings() {
+        String blerg = "blerg";
+        String[] langs = {"ar", "cs", "cs-rCZ", "da", "de", "es", "fr", "hi", "hu-rHU", "it", "ja-rJP", "nl", "pl-rPL",
+                "pt-rBR", "pt-rPT", "ru", "sv", "th", "th-rTH", "tr", "zh-rCN", "zh-rTW"};
+        for (String lang : langs) {
+            Util.setLocale(this, lang);
+            Log.e("langcheck", "setLocale():" + lang);
+            Log.d("langcheck", String.format(getString(R.string.trial_time_on_click), blerg));
+            Log.d("langcheck", String.format(getString(R.string.remove_default_message), blerg, blerg, blerg));
+            Log.d("langcheck", String.format(getString(R.string.action_open_in_browser), blerg));
+            Log.d("langcheck", String.format(getString(R.string.link_redirected), blerg));
+            Log.d("langcheck", String.format(getString(R.string.long_press_unsupported_default_browser), blerg));
+            Log.d("langcheck", String.format(getString(R.string.unsupported_scheme_default_browser), blerg));
+            Log.d("langcheck", String.format(getString(R.string.unsupported_drop_down_default_browser), blerg));
+            Log.d("langcheck", String.format(getString(R.string.requesting_location_message), blerg));
+            Log.d("langcheck", String.format(getString(R.string.link_loaded_with_app), blerg));
+            Log.d("langcheck", String.format(getString(R.string.undo_close_tab_title), blerg));
+        }
+    } */
 }
