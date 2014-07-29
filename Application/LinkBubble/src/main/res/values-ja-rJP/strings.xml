@@ -262,8 +262,6 @@
     <string name="credits_title">Link Bubble クレジット</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">コンセプト、デザインとプログラミング</string>
-    <string name="credits_watson_name">Glenn Watson</string>
-    <string name="credits_watson_credit">プログラミング</string>
     <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
 
     <string name="content_description_button">ボタン</string>
@@ -273,7 +271,6 @@
     <string name="content_description_app_icon">アプリアイコン</string>
     <string name="content_description_youtube_video_thumbnail">YouTubeビデオサムネイル</string>
     <string name="content_description_lacy_profile_image">Chris Lacyの酷いマグ</string>
-    <string name="content_description_watson_profile_image">Glenn Watson</string>
     <string name="content_description_history">履歴</string>
     <string name="content_description_settings">設定</string>
     <string name="content_description_can_go_back">戻ることが出来ます</string>

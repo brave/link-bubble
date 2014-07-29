@@ -264,8 +264,6 @@ premiumfuncties (meerdere tabs, links onderscheppen vanuit elke app, etc.) van P
     <string name="credits_title">Link Bubble credits</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">Concept, ontwerp en programmeren</string>
-    <string name="credits_watson_name">Glenn Watson</string>
-    <string name="credits_watson_credit">Programmeren</string>
     <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
 
     <string name="content_description_button">Knop</string>
@@ -275,7 +273,6 @@ premiumfuncties (meerdere tabs, links onderscheppen vanuit elke app, etc.) van P
     <string name="content_description_app_icon">App-pictogram</string>
     <string name="content_description_youtube_video_thumbnail">YouTube-video-miniatuur</string>
     <string name="content_description_lacy_profile_image">Chris Lacy\'s lelijke kop</string>
-    <string name="content_description_watson_profile_image">Glenn Watson</string>
     <string name="content_description_history">Geschiedenis</string>
     <string name="content_description_settings">Instellingen</string>
     <string name="content_description_can_go_back">Terug gaan</string>

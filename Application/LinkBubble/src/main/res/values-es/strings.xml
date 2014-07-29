@@ -260,8 +260,6 @@
     <string name="credits_title">Créditos de Link Bubble</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">Concepto, diseño y programación</string>
-    <string name="credits_watson_name">Glenn Watson</string>
-    <string name="credits_watson_credit">Programación</string>
     <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
 
     <string name="content_description_button">Button</string>
@@ -271,7 +269,6 @@
     <string name="content_description_app_icon">Icono de la app</string>
     <string name="content_description_youtube_video_thumbnail">YouTube video thumbnail</string>
     <string name="content_description_lacy_profile_image">Chris Lacy\'s ugly mug</string>
-    <string name="content_description_watson_profile_image">Glenn Watson</string>
     <string name="content_description_history">Historial</string>
     <string name="content_description_settings">Ajustes</string>
     <string name="content_description_can_go_back">Puedes volver atrás</string>

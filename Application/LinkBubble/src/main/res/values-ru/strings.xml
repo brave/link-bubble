@@ -243,8 +243,6 @@ Link Bubble.]]></string>
     <string name="credits_title">Разработчики Link Bubble</string>
     <string name="credits_lacy_name">Крис Лейси</string>
     <string name="credits_lacy_credit">Концепт, дизайн и программирование </string>
-    <string name="credits_watson_name">Гленн Уотсон</string>
-    <string name="credits_watson_credit">Программирование</string>
     <string name="credits_app_copyright">Авторские права защищены: 2014, Digital Ashes / Крис Лейси.</string>
 
     <string name="content_description_button">Кнопка</string>
@@ -254,7 +252,6 @@ Link Bubble.]]></string>
     <string name="content_description_app_icon">Иконка приложения</string>
     <string name="content_description_youtube_video_thumbnail">Превью видео YouTube</string>
     <string name="content_description_lacy_profile_image">Крис Лейси</string>
-    <string name="content_description_watson_profile_image">Гленн Уотсон</string>
     <string name="content_description_history">История</string>
     <string name="content_description_settings">Настройки</string>
     <string name="content_description_can_go_back">Можно вернуться</string>
