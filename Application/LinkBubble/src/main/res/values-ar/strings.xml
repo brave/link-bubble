@@ -60,7 +60,7 @@
     <string name="preference_intercept_links_from_title">اعترض الروابط من</string>
     <string name="preference_intercept_links_from_note">ملاحظة: حصر اعتراض الروابط من تطبيق واحد موجود فقط في النسخة المجانية من Link bubble. الترقية للنسخة الكاملة؟</string>
     <string name="intercept_links_from_default_label">اضغط للضبط</string>
-    <string name="intercept_links_from_default_set_message">برنامج فقاعة العنوان المجاني مصمم ليشتغل على 1% من البرامج. إذا ارت أن يشتغل على جميع البرامج الرجاء الترقية الى النسخة المدفوعة.</string>
+    <string name="intercept_links_from_default_set_message">برنامج فقاعة العنوان المجاني مصمم ليشتغل على %1$S من البرامج. إذا ارت أن يشتغل على جميع البرامج الرجاء الترقية الى النسخة المدفوعة.</string>
     <string name="preference_scan_for_youtube_embeds_title">تحقق من تضمينات اليوتيوب</string>
     <string name="preference_scan_for_youtube_embeds_summary">عرض إختصار لتشغيل الفيديوهات المتضمنة في برنامج اليوتيوب</string>
 
@@ -102,12 +102,12 @@
 
     <string name="remove_default_title">حذف اللإفتراضي؟</string>
     <string name="remove_default_message">حذف %1$s من البرنامج الإفتراضي ليشغل العنوان باستخدام %2$s؟ ملاحظة:تستطيع ان تجعل برنامج إفتراضي جديد ليستخدم بالمرة القادمة اللتي تحمل فيها عنوان %2$s.</string>
-    <string name="long_press_unsupported_default_browser">نظام الأندرويد يمنع فقاعة العنوان من اختيار هذا البند.فتح العنوان باستخدام 1%.</string>
+    <string name="long_press_unsupported_default_browser">نظام الأندرويد يمنع فقاعة العنوان من اختيار هذا البند.فتح العنوان باستخدام %1$S.</string>
     <string name="long_press_unsupported_no_default_browser">نظام الأندرويد يمنع فقاعة العنوان من اختيار هذا البند.فتح العنوان باستخدام المتصفح.</string>
-    <string name="unsupported_scheme_default_browser">نوع هذا العنوان غير مدعوم حاليا .فتح الصفحة باستخدام 1%؟</string>
+    <string name="unsupported_scheme_default_browser">نوع هذا العنوان غير مدعوم حاليا .فتح الصفحة باستخدام %1$S؟</string>
     <string name="unsupported_scheme_no_default_browser">نوع هذا العنوان غير مدعوم حاليا .فتح الصفحة باستخدام المتصفح.</string>
     <string name="unsupported_scheme">نوع هذا العنوان غير مدعوم حاليا .</string>
-    <string name="unsupported_drop_down_default_browser">نظام الأندرويد يمنع استخدام العناصر المنزلة من ان تعمل في فقاعة العنوان.فتح بإستخدام 1%؟</string>
+    <string name="unsupported_drop_down_default_browser">نظام الأندرويد يمنع استخدام العناصر المنزلة من ان تعمل في فقاعة العنوان.فتح بإستخدام %1$S؟</string>
     <string name="unsupported_drop_down_no_default_browser">نظام الأندرويد يمنع استخدام العناصر المنزلة من ان تعمل في فقاعة العنوان.فتح بإستخدام المتصفح.</string>
 
     <string name="consume_category_view">استعراض العنوان</string>
@@ -132,8 +132,8 @@
     <string name="private_data_cleared">البيانات الخاصة أفرغت</string>
     <string name="private_data_cleared_reloading_current">البيانات الخاصة أفرغت.إعادة تحميل الفقاعات الحالية...</string>
     <string name="user_agent_changed_reloading_current">تم تغيير وكيل المستخدم إعادة تحميل الفقاعات الحالية</string>
-    <string name="link_loaded_with_app">حملت باستخدام 1%</string>
-    <string name="link_redirected">إعادة توجيه إلى 1%</string>
+    <string name="link_loaded_with_app">حملت باستخدام %1$S</string>
+    <string name="link_redirected">إعادة توجيه إلى %1$S</string>
 
     <string name="tampered_apk">نسختك من فقاعة العنوان عدل عليها بشكل غير قانوني لذلك لن تعمل بكفاءة.الرجاء إعادة تنصيبها من البلاي ستور.</string>
     <string name="upgrade_incentive_one_link">فقاعة العنوان المحترفة تستطيع تحميل أكثر من فقاعة بنفس الوقت .ترقية إلى النسخة المحترفة؟</string>
@@ -229,7 +229,7 @@
     <string name="activity_resolver_use_always">دائما</string>
     <string name="activity_resolver_use_once">مرة واحدة</string>
 
-    <string name="trial_time_on_click">1% متبقي من ال24 ساعة للنسخة الإحترافية.</string>
+    <string name="trial_time_on_click">%1$S متبقي من ال24 ساعة للنسخة الإحترافية.</string>
 
     <string name="credits_title">شكر فقاعة العنوان</string>
     <string name="credits_lacy_name">كريس ليسي</string>
@@ -248,7 +248,7 @@
     <string name="content_description_can_go_back">تستطيع العودة</string>
     <string name="content_description_upgrade_to_pro">قم بالترقية للنسخة الإحترافية</string>
 
-    <string name="requesting_location_message">1% يطلب معرفة مكانك.السماح؟</string>
+    <string name="requesting_location_message">%1$S يطلب معرفة مكانك.السماح؟</string>
 
     <string name="accept_terms_and_privacy">بالإستمرار,تعترف أنك تقبل فقاعة العنوان</string>
 
