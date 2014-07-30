@@ -8634,14 +8634,14 @@ com.linkbubble.ui.ExpandedActivity -> com.linkbubble.ui.ExpandedActivity:
     235:242:void onPause() -> onPause
     246:248:void finish() -> finish
     252:253:void onBackPressed() -> onBackPressed
-    256:285:void minimize() -> ･
-    310:316:void setWebRenderer(android.view.View) -> setWebRenderer
-    321:322:void onMinimizeExpandedActivity(com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent) -> onMinimizeExpandedActivity
-    327:328:void onHideContentEvent(com.linkbubble.MainController$HideContentEvent) -> onHideContentEvent
-    333:340:void onEnableHotwordService(com.linkbubble.ui.ExpandedActivity$EnableHotwordServiceEvent) -> onEnableHotwordService
+    256:286:void minimize() -> ･
+    311:317:void setWebRenderer(android.view.View) -> setWebRenderer
+    322:323:void onMinimizeExpandedActivity(com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent) -> onMinimizeExpandedActivity
+    328:329:void onHideContentEvent(com.linkbubble.MainController$HideContentEvent) -> onHideContentEvent
+    334:341:void onEnableHotwordService(com.linkbubble.ui.ExpandedActivity$EnableHotwordServiceEvent) -> onEnableHotwordService
 com.linkbubble.ui.ExpandedActivity$1 -> ܚ:
     com.linkbubble.ui.ExpandedActivity this$0 -> ･
-    305:306:void run() -> run
+    306:307:void run() -> run
 com.linkbubble.ui.ExpandedActivity$EnableHotwordServiceEvent -> com.linkbubble.ui.ExpandedActivity$EnableHotwordServiceEvent:
     boolean mEnable -> ･
 com.linkbubble.ui.ExpandedActivity$ExpandedActivityReadyEvent -> com.linkbubble.ui.ExpandedActivity$･:
@@ -9474,25 +9474,25 @@ com.linkbubble.util.Util -> ܐ:
     android.graphics.Canvas sCanvas -> ᐝ
     byte[] $ -> ʻ
     int $$ -> ʼ
-    47:50:void Assert(boolean,java.lang.String) -> ･
-    53:53:float clamp(float,float,float) -> ･
-    57:57:int clamp(int,int,int) -> ･
-    77:77:java.lang.String getPrettyDate(java.util.Date) -> ･
-    133:139:java.lang.String getPrettyTimeElapsed(android.content.res.Resources,long,java.lang.String) -> ･
-    145:174:java.lang.String downloadJSONAsString$7a1ba7c4(java.lang.String) -> ･
-    178:181:float distance(float,float,float,float) -> ･
-    185:185:java.lang.String getDefaultFaviconUrl(java.net.URL) -> ･
-    204:215:int computeOutCode(float,float,float,float,float,float) -> ･
-    226:284:boolean clipLineSegmentToRectangle(float,float,float,float,float,float,float,float,com.linkbubble.util.Util$ClipResult) -> ･
-    288:302:void closestPointToLineSegment(float,float,float,float,float,float,com.linkbubble.util.Util$Point) -> ･
-    305:311:boolean isLinkBubbleResolveInfo(android.content.pm.ResolveInfo) -> ･
-    315:326:boolean checkForTamper(android.content.Context,com.linkbubble.ui.Prompt$OnPromptEventListener) -> ･
-    344:346:android.content.pm.ResolveInfo getDefaultBrowser(android.content.pm.PackageManager) -> ･
-    350:354:void replaceViewAtPosition(android.view.View,android.view.View) -> ･
-    357:365:java.lang.String getDefaultEmail(android.accounts.Account[]) -> ･
-    422:491:android.graphics.Bitmap createIconBitmap$318dac53$21c049c4(android.graphics.drawable.Drawable,com.linkbubble.MainApplication) -> ･
-    495:498:android.content.ComponentName getComponentNameFromResolveInfo(android.content.pm.ResolveInfo) -> ˊ
-    518:532:android.content.Intent getSendIntent(java.lang.String,java.lang.String,java.lang.String) -> ･
+    48:51:void Assert(boolean,java.lang.String) -> ･
+    54:54:float clamp(float,float,float) -> ･
+    58:58:int clamp(int,int,int) -> ･
+    78:78:java.lang.String getPrettyDate(java.util.Date) -> ･
+    134:140:java.lang.String getPrettyTimeElapsed(android.content.res.Resources,long,java.lang.String) -> ･
+    146:175:java.lang.String downloadJSONAsString$7a1ba7c4(java.lang.String) -> ･
+    179:182:float distance(float,float,float,float) -> ･
+    186:186:java.lang.String getDefaultFaviconUrl(java.net.URL) -> ･
+    205:216:int computeOutCode(float,float,float,float,float,float) -> ･
+    227:285:boolean clipLineSegmentToRectangle(float,float,float,float,float,float,float,float,com.linkbubble.util.Util$ClipResult) -> ･
+    289:303:void closestPointToLineSegment(float,float,float,float,float,float,com.linkbubble.util.Util$Point) -> ･
+    306:312:boolean isLinkBubbleResolveInfo(android.content.pm.ResolveInfo) -> ･
+    316:327:boolean checkForTamper(android.content.Context,com.linkbubble.ui.Prompt$OnPromptEventListener) -> ･
+    345:347:android.content.pm.ResolveInfo getDefaultBrowser(android.content.pm.PackageManager) -> ･
+    351:355:void replaceViewAtPosition(android.view.View,android.view.View) -> ･
+    358:366:java.lang.String getDefaultEmail(android.accounts.Account[]) -> ･
+    423:492:android.graphics.Bitmap createIconBitmap$318dac53$21c049c4(android.graphics.drawable.Drawable,com.linkbubble.MainApplication) -> ･
+    496:499:android.content.ComponentName getComponentNameFromResolveInfo(android.content.pm.ResolveInfo) -> ˊ
+    519:533:android.content.Intent getSendIntent(java.lang.String,java.lang.String,java.lang.String) -> ･
     java.lang.String $(int,int,int) -> ˊ
 com.linkbubble.util.Util$ClipResult -> ܐ$･:
     int x0 -> ･
