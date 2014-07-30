@@ -4835,7 +4835,7 @@ com.linkbubble.ui.ContentViewButton:
     static final int sTouchedColor
 com.linkbubble.ui.ExpandedActivity:
     private static final java.lang.String TAG
-    299:300:void cancelDelayedMinimize()
+    300:301:void cancelDelayedMinimize()
 com.linkbubble.ui.FlipView:
     private static final int FLAG_ROTATION_X
     private static final int FLAG_ROTATION_Y
@@ -4940,10 +4940,11 @@ com.linkbubble.util.Util:
     private static final int OUTCODE_RIGHT
     private static final int OUTCODE_BOTTOM
     private static final int OUTCODE_TOP
-    62:69:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
-    332:340:public static int randInt(int,int)
-    398:414:static android.graphics.Bitmap createIconBitmap(android.graphics.Bitmap,android.content.Context)
-    503:513:public static java.lang.String getDefaultLauncherPackage(android.content.pm.PackageManager)
+    63:70:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
+    333:341:public static int randInt(int,int)
+    399:415:static android.graphics.Bitmap createIconBitmap(android.graphics.Bitmap,android.content.Context)
+    504:514:public static java.lang.String getDefaultLauncherPackage(android.content.pm.PackageManager)
+    537:542:public static void setLocale(android.content.Context,java.lang.String)
 com.linkbubble.webrender.DiffBotRenderer:
     private static final java.lang.String TAG
     private static final java.lang.String API_URL
