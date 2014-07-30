@@ -155,7 +155,8 @@
         <receiver android:name=".OpenLinkReceiver"
             android:protectionLevel="signature">
             <intent-filter>
-                <action android:name="com.linkbubble.OPEN_LINK" />
+                <action android:name="com.linkbubble.playstore.OPEN_LINK" />
+                <action android:name="com.linkbubble.playstore.dev.OPEN_LINK" />
             </intent-filter>
         </receiver>
 
