@@ -14,11 +14,13 @@ import java.util.Vector;
 
 public class OpenLinkReceiver extends BroadcastReceiver {
 
+    private static final String ACTION_NAME = BuildConfig.PACKAGE_NAME + ".OPEN_LINK";
+
     @Override
     public void onReceive(final Context context, Intent intent) {
         final String action = intent.getAction();
 
-        if (action.equals("com.linkbubble.OPEN_LINK")) {
+        if (action.equals(ACTION_NAME)) {
             String urlAsString = intent.getStringExtra("url");
 
             PreferenceManager.setDefaultValues(context, R.xml.preferences, true);
