@@ -146,6 +146,10 @@ public class MainController implements Choreographer.FrameCallback {
                 //WindowManager.LayoutParams lp = (WindowManager.LayoutParams) v.getLayoutParams();
                 //lp.alpha = 0.5f;
                 //mWindowManager.updateViewLayout(v, lp);
+                // Hack to ensure BubbleFlowDraggable doesn't display in Bubble mode, fix #457
+                if (v instanceof BubbleFlowView) {
+                    ((BubbleFlowView)v).forceCollapseEnd();
+                }
                 mWindowManager.removeView(v);
             }
             mRootWindowsVisible = false;
@@ -253,15 +257,19 @@ public class MainController implements Choreographer.FrameCallback {
 
         @Override
         public void onAnimationEnd(BubbleFlowView sender) {
-            mBubbleDraggable.setVisibility(View.VISIBLE);
-            TabView tab = mBubbleFlowDraggable.getCurrentTab();
-            if (tab != null) {
-                tab.setImitator(mBubbleDraggable);
-            }
-            mSetBubbleFlowGone = true;
-            mBubbleFlowDraggable.postDelayed(mSetBubbleFlowGoneRunnable, 33);
+            onBubbleFlowCollapseFinished();
         }
     };
+
+    private void onBubbleFlowCollapseFinished() {
+        mBubbleDraggable.setVisibility(View.VISIBLE);
+        TabView tab = mBubbleFlowDraggable.getCurrentTab();
+        if (tab != null) {
+            tab.setImitator(mBubbleDraggable);
+        }
+        mSetBubbleFlowGone = true;
+        mBubbleFlowDraggable.postDelayed(mSetBubbleFlowGoneRunnable, 33);
+    }
 
     private boolean mSetBubbleFlowGone = false;
     Runnable mSetBubbleFlowGoneRunnable = new Runnable() {

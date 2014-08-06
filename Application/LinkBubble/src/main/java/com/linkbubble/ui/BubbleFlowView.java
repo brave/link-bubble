@@ -476,7 +476,7 @@ public class BubbleFlowView extends HorizontalScrollView {
         collapse(DEFAULT_ANIM_TIME, null);
     }
 
-    public void collapse(long time, final AnimationEventListener animationEventListener) {
+    public void collapse(long time, AnimationEventListener animationEventListener) {
         if (mIsExpanded == false) {
             return;
         }
@@ -494,7 +494,7 @@ public class BubbleFlowView extends HorizontalScrollView {
             return;
         }
         View centerView = mViews.get(centerIndex);
-        boolean addedAnimationListener = false;
+        mCollapseEndAnimationEventListener = null;
         for (int i = 0; i < size; i++) {
             View view = mViews.get(i);
             if (centerView != view) {
@@ -502,7 +502,8 @@ public class BubbleFlowView extends HorizontalScrollView {
                 TranslateAnimation anim = new TranslateAnimation(0, xOffset, 0, 0);
                 anim.setDuration(time);
                 anim.setFillAfter(true);
-                if (addedAnimationListener == false) {
+                if (mCollapseEndAnimationEventListener == null) {
+                    mCollapseEndAnimationEventListener = animationEventListener;
                     anim.setAnimationListener(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
@@ -511,18 +512,13 @@ public class BubbleFlowView extends HorizontalScrollView {
 
                         @Override
                         public void onAnimationEnd(Animation animation) {
-                            if (animationEventListener != null && mDoingCollapse) {
-                                animationEventListener.onAnimationEnd(BubbleFlowView.this);
-                            }
-                            mDoingCollapse = false;
+                            forceCollapseEnd();
                         }
 
                         @Override
                         public void onAnimationRepeat(Animation animation) {
-
                         }
                     });
-                    addedAnimationListener = true;
                 }
                 view.startAnimation(anim);
             }
@@ -535,6 +531,15 @@ public class BubbleFlowView extends HorizontalScrollView {
         }
 
         bringTabViewToFront(centerView);
+    }
+
+    private AnimationEventListener mCollapseEndAnimationEventListener;
+    public void forceCollapseEnd() {
+        if (mCollapseEndAnimationEventListener != null && mDoingCollapse) {
+            mCollapseEndAnimationEventListener.onAnimationEnd(BubbleFlowView.this);
+        }
+        mCollapseEndAnimationEventListener = null;
+        mDoingCollapse = false;
     }
 
     boolean isExpanded() {
