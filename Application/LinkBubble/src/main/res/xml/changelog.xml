@@ -2,6 +2,7 @@
 <changelog>
 
     <release version="1.3.2" versioncode="13200">
+        <change>CHANGE: Increase animation speed.</change>
         <change>BUG FIX: Fix bug where expanded bubbles would display when Link Bubble was minimized.</change>
     </release>
 
