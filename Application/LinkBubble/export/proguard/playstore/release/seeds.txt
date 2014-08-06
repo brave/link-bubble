@@ -5057,8 +5057,6 @@ com.linkbubble.MainService$ShowDefaultNotificationEvent
 com.linkbubble.MainService$ShowDefaultNotificationEvent: MainService$ShowDefaultNotificationEvent()
 com.linkbubble.MainService$ShowUnhideNotificationEvent
 com.linkbubble.MainService$ShowUnhideNotificationEvent: MainService$ShowUnhideNotificationEvent()
-com.linkbubble.OpenLinkReceiver
-com.linkbubble.OpenLinkReceiver: OpenLinkReceiver()
 com.linkbubble.R: R()
 com.linkbubble.R$anim: int activity_close_enter
 com.linkbubble.R$anim: int activity_close_exit
