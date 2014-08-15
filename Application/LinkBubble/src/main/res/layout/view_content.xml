@@ -158,10 +158,33 @@
         android:layout_marginTop="@dimen/webview_margin_top"
         tools:ignore="ContentDescription"/>
 
-    <ImageView
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/toolbar_header"
+        android:layout_height="@dimen/toolbar_header">
+
+    <ImageView
+        android:layout_height="fill_parent"
+        android:layout_width="0dp"
+        android:layout_weight="50"
+        android:layout_gravity="left"
         android:background="@drawable/content_view_top_shadow"
         tools:ignore="ContentDescription"/>
+
+    <ImageView
+        android:layout_width="12dp"
+        android:layout_height="@dimen/toolbar_header"
+        android:background="@drawable/content_view_caret"
+        android:layout_gravity="center_horizontal"
+        tools:ignore="ContentDescription"/>
+
+    <ImageView
+        android:layout_height="fill_parent"
+        android:layout_width="0dp"
+        android:layout_weight="50"
+        android:layout_gravity="right"
+        android:background="@drawable/content_view_top_shadow"
+        tools:ignore="ContentDescription"/>
+
+    </LinearLayout>
 
 </com.linkbubble.ui.ContentView>
