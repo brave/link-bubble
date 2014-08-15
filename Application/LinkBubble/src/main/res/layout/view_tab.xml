@@ -40,7 +40,7 @@
         android:layout_height="@dimen/bubble_icon_size"
         android:id="@+id/progressIndicator"
         android:layout_gravity="center"
-        app:cpb_color="@color/bubble_border"
+        app:cpb_color="@color/color_neutral"
         app:cpb_stroke_width="2dp"
         />
 
