@@ -10,6 +10,10 @@
         <item name="android:titleTextStyle">@style/AppActionBarText</item>
         <item name="android:height">@dimen/action_bar_height</item>
         <!--<item name="android:homeAsUpIndicator">@drawable/ic_ab_back_holo_dark</item>-->
+        <item name="android:logo">@drawable/ic_up</item>
+    </style>
+
+    <style name="HomeActionBar" parent="AppActionBar">
         <item name="android:logo">@android:color/transparent</item>
     </style>
 
@@ -20,6 +24,7 @@
 
     <style name="HomeTheme" parent="@style/AppTheme">
         <!--<item name="android:windowBackground">@null</item>-->
+        <item name="android:actionBarStyle">@style/HomeActionBar</item>
         <item name="android:displayOptions">showTitle</item>
         <item name="android:windowActionBarOverlay">false</item>
         <item name="android:windowIsTranslucent">true</item>
