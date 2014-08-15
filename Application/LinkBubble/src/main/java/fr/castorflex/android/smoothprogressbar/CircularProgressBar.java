@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
@@ -15,10 +16,14 @@ import android.widget.ProgressBar;
 
 import com.linkbubble.R;
 
+import java.net.URL;
+
 /**
  * Created by castorflex on 11/10/13.
  */
 public class CircularProgressBar extends ProgressBar {
+
+    private CircularProgressDrawable mCircularProgressDrawable;
 
   public CircularProgressBar(Context context) {
     this(context, null);
@@ -54,7 +59,6 @@ public class CircularProgressBar extends ProgressBar {
       colors = res.getIntArray(colorsId);
     }
 
-    Drawable indeterminateDrawable;
     CircularProgressDrawable.Builder builder = new CircularProgressDrawable.Builder(context)
         .speed(speed)
         .strokeWidth(strokeWidth)
@@ -66,7 +70,28 @@ public class CircularProgressBar extends ProgressBar {
     else
       builder.color(color);
 
-    indeterminateDrawable = builder.build();
-    setIndeterminateDrawable(indeterminateDrawable);
+    mCircularProgressDrawable = builder.build();
+    setIndeterminateDrawable(mCircularProgressDrawable);
   }
+
+    public boolean isIndicatorShowing() {
+        return getVisibility() == VISIBLE;
+    }
+
+    public void setProgress(boolean indicatorShowing, int progress, URL mUrl) {
+        //Log.d("blerg", "setProgress():" + indicatorShowing);
+    }
+
+    public boolean isProgressSpinnerShowing() {
+        return getVisibility() == VISIBLE;
+    }
+
+    public void showProgressSpinner(boolean progressSpinnerShowing) {
+        //Log.d("blerg", "showProgressSpinner():" + progressSpinnerShowing);
+        setVisibility(progressSpinnerShowing ? VISIBLE : GONE);
+    }
+
+    public void setColor(int rgb) {
+        mCircularProgressDrawable.setOverrideColor(rgb);
+    }
 }

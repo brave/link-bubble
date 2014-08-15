@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.support.v7.graphics.Palette;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import com.linkbubble.Constant;
@@ -21,6 +22,11 @@ import org.mozilla.gecko.favicons.Favicons;
  * selected is the dominant colour of the provided Favicon.
  */
 public class FaviconView extends ImageView {
+
+    public interface OnPaletteChangeListener {
+        void onPaletteChange(Palette palette);
+    }
+
     private Bitmap mIconBitmap;
 
     // Reference to the unscaled bitmap, if any, to prevent repeated assignments of the same bitmap
@@ -69,6 +75,8 @@ public class FaviconView extends ImageView {
         sBackgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         sBackgroundPaint.setStyle(Paint.Style.FILL);
     }
+
+    private OnPaletteChangeListener mOnPaletteChangeListener;
 
     public FaviconView(Context context) {
         this(context, null);
@@ -291,9 +299,21 @@ public class FaviconView extends ImageView {
             setScaleType(ScaleType.CENTER_INSIDE);
             setImageBitmap(bitmap);
         }
+        Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
+            @Override
+            public void onGenerated(Palette palette) {
+                if (mOnPaletteChangeListener != null) {
+                    mOnPaletteChangeListener.onPaletteChange(palette);
+                }
+            }
+        });
     }
 
     public Bitmap getBitmap() {
         return mIconBitmap;
+    }
+
+    public void setOnPaletteChangeListener(OnPaletteChangeListener onPaletteChangeListener) {
+        mOnPaletteChangeListener = onPaletteChangeListener;
     }
 }
