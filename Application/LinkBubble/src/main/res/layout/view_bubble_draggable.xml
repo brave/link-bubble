@@ -29,7 +29,7 @@
         android:layout_height="@dimen/bubble_icon_size"
         android:id="@+id/progressIndicator"
         android:layout_gravity="center"
-        app:cpb_color="@color/bubble_border"
+        app:cpb_color="@color/color_neutral"
         app:cpb_stroke_width="2dp"/>
 
     <org.mozilla.gecko.widget.FaviconView
@@ -46,7 +46,7 @@
         android:layout_height="@dimen/badge_size"
         android:text="3"
         android:background="@drawable/badge_plate"
-        android:textColor="@color/badge_text"
+        android:textColor="@color/color_neutral"
         android:textSize="16sp"
         android:layout_marginLeft="@dimen/badge_margin"
         android:layout_marginRight="@dimen/badge_margin"
