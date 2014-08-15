@@ -1,26 +1,20 @@
 package com.linkbubble.ui;
 
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
-import android.view.animation.Transformation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.linkbubble.R;
-import com.linkbubble.util.Util;
 
 import java.net.URL;
 
@@ -158,7 +152,7 @@ public class ProgressIndicator extends FrameLayout {
             mPaint = new Paint();
             mPaint.setAntiAlias(true);
             //mPaint.setColor(resources.getColor(android.R.color.holo_purple));
-            mPaint.setColor(resources.getColor(R.color.bubble_border));
+            mPaint.setColor(resources.getColor(R.color.color_neutral));
             mPaint.setStrokeWidth(strokeWidth);
 
             int size = resources.getDimensionPixelSize(R.dimen.bubble_progress_size) - strokeWidth;

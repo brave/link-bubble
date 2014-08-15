@@ -47,7 +47,7 @@ public class TrialTimeView extends View {
 
         mOutlinePaint = new Paint();
         mOutlinePaint.setAntiAlias(true);
-        mOutlinePaint.setColor(resources.getColor(R.color.bubble_border));
+        mOutlinePaint.setColor(resources.getColor(R.color.color_neutral));
         mOutlinePaint.setStyle(Paint.Style.STROKE);
         mOutlinePaint.setStrokeWidth(strokeWidth);
 
