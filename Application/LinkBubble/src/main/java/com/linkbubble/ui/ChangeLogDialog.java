@@ -12,6 +12,8 @@ import android.util.Log;
 import android.webkit.WebView;
 import android.widget.Toast;
 import com.linkbubble.R;
+import com.linkbubble.util.Util;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -160,7 +162,7 @@ public class ChangeLogDialog {
                         dialogInterface.dismiss();
                     }
                 });
-        builder.create().show();
+        Util.showThemedDialog(builder.create());
     }
 
 }

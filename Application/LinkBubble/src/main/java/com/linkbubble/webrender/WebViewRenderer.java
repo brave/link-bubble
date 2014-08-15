@@ -476,7 +476,7 @@ class WebViewRenderer extends WebRenderer {
                     mJsAlertDialog = null;
                 }
             });
-            mJsAlertDialog.show();
+            Util.showThemedDialog(mJsAlertDialog);
             return true;
         }
 
@@ -498,7 +498,7 @@ class WebViewRenderer extends WebRenderer {
                     result.cancel();
                 }
             });
-            mJsConfirmDialog.show();
+            Util.showThemedDialog(mJsConfirmDialog);
             return true;
         }
 
@@ -530,7 +530,7 @@ class WebViewRenderer extends WebRenderer {
                     result.cancel();
                 }
             });
-            mJsPromptDialog.show();
+            Util.showThemedDialog(mJsPromptDialog);
 
             return true;
         }

@@ -2,6 +2,7 @@ package com.linkbubble.util;
 
 import android.accounts.Account;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +24,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Config;
@@ -568,5 +570,31 @@ public class Util {
         }
 
         return null;
+    }
+
+    /*
+     * Manually theme divider and title text with @color/apptheme_color
+     */
+    static public void showThemedDialog(Dialog dialog) {
+        dialog.show();
+
+        Resources resources = dialog.getContext().getResources();
+        int color = resources.getColor(R.color.color_primary);
+
+        int dividerId = resources.getIdentifier("android:id/titleDivider", null, null);
+        if (dividerId > 0) {
+            View divider = dialog.findViewById(dividerId);
+            if (divider != null) {
+                divider.setBackgroundColor(color);
+            }
+        }
+
+        int titleTextViewId = resources.getIdentifier("android:id/alertTitle", null, null);
+        if (titleTextViewId > 0) {
+            TextView textView = (TextView) dialog.findViewById(titleTextViewId);
+            if (textView != null) {
+                textView.setTextColor(color);
+            }
+        }
     }
 }

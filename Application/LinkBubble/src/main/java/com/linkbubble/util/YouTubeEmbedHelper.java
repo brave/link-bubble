@@ -151,7 +151,7 @@ public class YouTubeEmbedHelper {
         if (size == 1) {
             return loadYouTubeVideo(mEmbedIds.get(0));
         } else if (size > 1) {
-            getMultipleEmbedsDialog().show();
+            Util.showThemedDialog(getMultipleEmbedsDialog());
             return true;
         }
 
@@ -369,7 +369,7 @@ public class YouTubeEmbedHelper {
                 mLoadingAlertDialog.dismiss();
                 mLoadingAlertDialog = null;
 
-                getEmbedResultsDialog().show();
+                Util.showThemedDialog(getEmbedResultsDialog());
             }
         }
     }
