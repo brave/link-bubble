@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v7.graphics.Palette;
+import android.support.v7.graphics.PaletteItem;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.FrameLayout;
@@ -21,6 +23,8 @@ import org.mozilla.gecko.widget.FaviconView;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import fr.castorflex.android.smoothprogressbar.CircularProgressBar;
+
 public class BubbleView extends FrameLayout  {
 
     private static final String TAG = "BubbleView";
@@ -32,7 +36,7 @@ public class BubbleView extends FrameLayout  {
 
     protected FaviconView mFavicon;
     protected int mFaviconLoadId;
-    private ProgressIndicator mProgressIndicator;
+    private CircularProgressBar mProgressIndicator;
     protected URL mUrl;
     private BubbleView mImitator;       //
     private OnApplyFaviconListener mOnApplyFaviconListener;
@@ -51,8 +55,9 @@ public class BubbleView extends FrameLayout  {
 
     void configure() {
         mFavicon = (FaviconView) findViewById(R.id.favicon);
+        mFavicon.setOnPaletteChangeListener(mOnPaletteChangeListener);
         mFavicon.mFavicons = MainApplication.sFavicons;
-        mProgressIndicator = (ProgressIndicator) findViewById(R.id.progressIndicator);
+        mProgressIndicator = (CircularProgressBar) findViewById(R.id.progressIndicator);
         showProgressBar(true, 0);
     }
 
@@ -295,4 +300,15 @@ public class BubbleView extends FrameLayout  {
             mImitator.mProgressIndicator.setProgress(show, progress, mUrl);
         }
     }
+
+    FaviconView.OnPaletteChangeListener mOnPaletteChangeListener = new FaviconView.OnPaletteChangeListener() {
+
+        @Override
+        public void onPaletteChange(Palette palette) {
+            PaletteItem item = palette.getVibrantColor();
+            if (item != null) {
+                mProgressIndicator.setColor(item.getRgb());
+            }
+        }
+    };
 }
