@@ -56,7 +56,7 @@
         android:id="@+id/back_indicator"
         android:layout_width="@dimen/back_indicator_size"
         android:layout_height="@dimen/back_indicator_size"
-        android:background="@drawable/badge_shape"
+        android:background="@drawable/badge_plate"
         android:layout_marginLeft="@dimen/badge_margin"
         android:layout_marginRight="@dimen/badge_margin"
         android:layout_marginTop="@dimen/badge_margin"
