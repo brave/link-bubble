@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/background"
-        android:background="@drawable/bubble_light"
+        android:src="@drawable/bubble_outline"
+        android:scaleType="fitCenter"
         android:layout_gravity="center"
         tools:ignore="ContentDescription"/>
 
