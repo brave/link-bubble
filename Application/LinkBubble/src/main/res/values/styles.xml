@@ -34,6 +34,10 @@
 
     <style name="ContentTheme" parent="ContentThemeBase"/>
 
+    <style name="MainServiceTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="cpbStyle">@style/CircularProgressBar</item>
+    </style>
+
     <style name="HomeTheme" parent="@android:style/Theme.Holo.Light">
         <!--<item name="android:windowBackground">@null</item>-->
         <item name="android:displayOptions">showTitle</item>

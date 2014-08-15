@@ -95,7 +95,7 @@ public class MainService extends Service {
 
         mRestoreComplete = false;
 
-        setTheme(android.R.style.Theme_Holo_Light);
+        setTheme(R.style.MainServiceTheme);
 
         super.onCreate();
         CrashTracking.init(this);
