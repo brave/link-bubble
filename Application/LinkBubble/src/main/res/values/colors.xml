@@ -5,8 +5,8 @@
     <color name="white_button_pressed">#eee</color>
     <color name="white_button_normal">#fff</color>
 
-    <color name="home_background">#ffe5e5e5</color>
-    <color name="content_toolbar_background">#ffefefef</color>
+    <color name="home_background">#fff</color>
+    <color name="content_toolbar_background">#fff</color>
     <color name="badge_text">@color/bubble_border</color>
 
     <color name="bubble_border">#666666</color>
