@@ -72,7 +72,13 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
         mMessageView = (TextView) findViewById(R.id.message_view);
         mListView = (ListView) findViewById(R.id.listview);
 
+        // This is a bit messy, but setDisplayHomeAsUpEnabled() for the Home button press event to be received, so
+        // enable it but tell it not to draw. Then we can have L's nice looking Up button.
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        View view = Util.getActionBarUpView(this);
+        if (view != null) {
+            view.setVisibility(View.GONE);
+        }
     }
 
     @Override

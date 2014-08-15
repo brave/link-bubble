@@ -1,6 +1,7 @@
 package com.linkbubble.util;
 
 import android.accounts.Account;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +22,8 @@ import android.util.DisplayMetrics;
 import android.util.Patterns;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
@@ -539,5 +542,31 @@ public class Util {
         Configuration config = new Configuration();
         config.locale = locale;
         context.getApplicationContext().getResources().updateConfiguration(config, null);
+    }
+
+    public static ImageView getActionBarUpView(Activity activity) {
+        final View home = activity.findViewById(android.R.id.home);
+        if (home == null) {
+            // Action bar doesn't have a known configuration, an OEM messed with things.
+            return null;
+        }
+
+        final ViewGroup parent = (ViewGroup) home.getParent();
+        final int childCount = parent.getChildCount();
+        if (childCount != 2) {
+            // No idea which one will be the right one, an OEM messed with things.
+            return null;
+        }
+
+        final View first = parent.getChildAt(0);
+        final View second = parent.getChildAt(1);
+        final View up = first.getId() == android.R.id.home ? second : first;
+
+        if (up instanceof ImageView) {
+            // Jackpot! (Probably...)
+            return (ImageView) up;
+        }
+
+        return null;
     }
 }
