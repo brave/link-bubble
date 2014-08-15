@@ -190,6 +190,7 @@ public class ContentView extends FrameLayout {
             return;
         }
 
+        /*
         float centerX = Config.mScreenCenterX;
         float indicatorEndY = 2.f;
         float indicatorStartX = centerX - mHeaderHeight + indicatorEndY;
@@ -205,6 +206,7 @@ public class ContentView extends FrameLayout {
         canvas.drawLine(indicatorStartX, mHeaderHeight, centerX, 0, sBorderPaint);
         canvas.drawLine(centerX, indicatorEndY, indicatorEndX, mHeaderHeight, sBorderPaint);
         canvas.drawLine(indicatorEndX, mHeaderHeight, Config.mScreenWidth, mHeaderHeight, sBorderPaint);
+        */
     }
 
     public void destroy() {
