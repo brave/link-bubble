@@ -116,7 +116,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                                         public void onClick(DialogInterface dialog, int which) {
                                         }
                                     });
-                            alertDialog.show();
+                            Util.showThemedDialog(alertDialog);
                             return true;
                         }
                     });
@@ -279,7 +279,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                         leftConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeLeft));
                     }
                 });
-                alertDialog.show();
+                Util.showThemedDialog(alertDialog);
                 return true;
             }
         });
@@ -297,7 +297,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                         rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeRight));
                     }
                 });
-                alertDialog.show();
+                Util.showThemedDialog(alertDialog);
                 return true;
             }
         });
@@ -343,7 +343,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                         }
                     }
                 });
-                alertDialog.show();
+                Util.showThemedDialog(alertDialog);
                 return true;
             }
         });
@@ -362,7 +362,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         mWebViewTextZoomPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                getTextZoomDialog().show();
+                Util.showThemedDialog(getTextZoomDialog());
                 return true;
             }
         });
@@ -428,7 +428,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                getCreditDialog().show();
+                Util.showThemedDialog(getCreditDialog());
                 return true;
             }
         });
@@ -472,7 +472,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                 builder.setTitle(R.string.preference_osl_title);
 
                 AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                Util.showThemedDialog(alertDialog);
                 return true;
             }
         });
@@ -590,7 +590,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         builder.setTitle(R.string.upgrade_to_pro);
 
         AlertDialog alertView = builder.create();
-        alertView.show();
+        Util.showThemedDialog(alertView);
         mLastUpsellTime = System.currentTimeMillis();
     }
 
@@ -854,7 +854,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         builder.setTitle(R.string.preference_clear_browser_cache_title);
 
         AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        Util.showThemedDialog(alertDialog);
 
         return true;
     }
