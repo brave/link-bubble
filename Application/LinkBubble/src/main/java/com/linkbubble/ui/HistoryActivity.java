@@ -210,7 +210,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                         dialog.dismiss();
                     }
                 });
-                alertDialog.show();
+                Util.showThemedDialog(alertDialog);
                 return true;
             }
         }
@@ -300,7 +300,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
                                 startActivity(intent);
                             }
                         });
-                        alertDialog.show();
+                        Util.showThemedDialog(alertDialog);
                     } else if (leftConsumeBubbleLabel != null && string.equals(leftConsumeBubbleLabel)) {
                         MainApplication.handleBubbleAction(HistoryActivity.this, Constant.BubbleAction.ConsumeLeft, urlAsString, -1);
                     } else if (rightConsumeBubbleLabel != null && string.equals(rightConsumeBubbleLabel)) {
@@ -316,7 +316,7 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
             });
 
             longPressAlertDialog.setView(listView);
-            longPressAlertDialog.show();
+            Util.showThemedDialog(longPressAlertDialog);
 
             return true;
         }
