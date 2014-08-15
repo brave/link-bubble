@@ -1,4 +1,6 @@
 <resources>
+    <dimen name="action_bar_height">64dp</dimen>
+
     <dimen name="toolbar_header">4dp</dimen>
     <dimen name="toolbar_height">56dp</dimen>
     <dimen name="webview_margin_top">60dp</dimen>   <!-- Must equal toolbar_header + toolbar_height -->

@@ -1,4 +1,5 @@
 <resources>
+    <dimen name="action_bar_height">48dp</dimen>
     <dimen name="stat_height">160dp</dimen>
     <dimen name="stat_bubble_size">110dp</dimen>
     <dimen name="stat_bubble_text_size">24sp</dimen>
