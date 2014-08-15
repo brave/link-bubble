@@ -27,6 +27,7 @@ public class SettingsActivity extends PreferenceActivity {
         setTitle(R.string.title_settings);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setIcon(null);
     }
 
     @Override
