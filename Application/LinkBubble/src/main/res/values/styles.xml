@@ -1,5 +1,34 @@
 <resources>
 
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/AppActionBar</item>
+        <item name="android:colorBackground">@android:color/white</item>
+    </style>
+
+    <style name="AppActionBar" parent="@android:style/Widget.Holo.ActionBar">
+        <item name="android:background">@color/color_primary</item>
+        <item name="android:titleTextStyle">@style/AppActionBarText</item>
+        <item name="android:height">@dimen/action_bar_height</item>
+        <!--<item name="android:homeAsUpIndicator">@drawable/ic_ab_back_holo_dark</item>-->
+        <item name="android:logo">@android:color/transparent</item>
+    </style>
+
+    <style name="AppActionBarText" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">22dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="HomeTheme" parent="@style/AppTheme">
+        <!--<item name="android:windowBackground">@null</item>-->
+        <item name="android:displayOptions">showTitle</item>
+        <item name="android:windowActionBarOverlay">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
     <style name="TransparentTheme" parent="android:Theme.Holo.Light">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -34,19 +63,6 @@
     <style name="ContentTheme" parent="ContentThemeBase"/>
 
     <style name="MainServiceTheme" parent="@android:style/Theme.Holo.Light">
-        <item name="cpbStyle">@style/CircularProgressBar</item>
-    </style>
-
-    <style name="HomeTheme" parent="@android:style/Theme.Holo.Light">
-        <!--<item name="android:windowBackground">@null</item>-->
-        <item name="android:displayOptions">showTitle</item>
-        <item name="android:actionBarStyle">@null</item>
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:backgroundDimEnabled">false</item>
-        <item name="android:windowAnimationStyle">@null</item>
         <item name="cpbStyle">@style/CircularProgressBar</item>
     </style>
 

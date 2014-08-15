@@ -1,4 +1,6 @@
 <resources>
+    <dimen name="action_bar_height">56dp</dimen>
+
     <!--  (bubble_size - bubble_icon_size) / 2 -->
     <dimen name="content_bubble_y_offset">-2dp</dimen>
     <dimen name="toolbar_header">4dp</dimen>
