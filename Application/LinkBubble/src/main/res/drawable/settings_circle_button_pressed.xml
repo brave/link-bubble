@@ -25,7 +25,7 @@
     </item> -->
 
     <item >
-        <bitmap android:src="@drawable/ic_action_gear" />
+        <bitmap android:src="@drawable/ic_action_cancel_dark" />
     </item>
 
 </layer-list>
