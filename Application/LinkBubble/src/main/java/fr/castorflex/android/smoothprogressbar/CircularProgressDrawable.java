@@ -29,7 +29,14 @@ import static fr.castorflex.android.smoothprogressbar.Utils.checkSpeed;
 public class CircularProgressDrawable extends Drawable
     implements Animatable {
 
-  public enum Style {NORMAL, ROUNDED}
+    public void setOverrideColor(Integer rgb) {
+        mOverrideColor = rgb;
+        if (mOverrideColor != null) {
+            mPaint.setColor(mOverrideColor);
+        }
+    }
+
+    public enum Style {NORMAL, ROUNDED}
 
   private static final ArgbEvaluator COLOR_EVALUATOR         = new ArgbEvaluator();
   private static final Interpolator  ANGLE_INTERPOLATOR      = new LinearInterpolator();
@@ -49,6 +56,7 @@ public class CircularProgressDrawable extends Drawable
   private boolean mRunning;
   private int     mCurrentIndexColor;
   private int     mCurrentColor;
+  private Integer mOverrideColor;
 
   //params
   private float mBorderWidth;
@@ -204,7 +212,9 @@ public class CircularProgressDrawable extends Drawable
         long duration = animation.getDuration();
         long played = animation.getCurrentPlayTime();
         float fraction = (float) played / duration;
-        if (mColors.length > 1 && fraction > .7f) {
+        if (mOverrideColor != null) {
+          mPaint.setColor(mOverrideColor);
+        } else if (mColors.length > 1 && fraction > .7f) {
           int prevColor = mCurrentColor;
           int nextColor = mColors[(mCurrentIndexColor + 1) % mColors.length];
           mCurrentColor = (Integer) COLOR_EVALUATOR.evaluate((fraction - .7f) / (1 - .7f), prevColor, nextColor);
@@ -225,7 +235,7 @@ public class CircularProgressDrawable extends Drawable
         if (!cancelled) {
           setAppearing();
           mCurrentIndexColor = (mCurrentIndexColor + 1) % mColors.length;
-          mCurrentColor = mColors[mCurrentIndexColor];
+          mCurrentColor = mOverrideColor != null ? mOverrideColor : mColors[mCurrentIndexColor];
           mPaint.setColor(mCurrentColor);
 //          mCurrentGlobalAngle -= mMinSweepAngle;
           mObjectAnimatorSweepAppearing.start();
