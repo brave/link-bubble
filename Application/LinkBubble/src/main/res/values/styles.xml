@@ -44,6 +44,7 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowAnimationStyle">@null</item>
+        <item name="cpbStyle">@style/CircularProgressBar</item>
     </style>
 
     <style name="ActionBarStyle.Translucent" parent="@android:Widget.ActionBar">
