@@ -12,6 +12,9 @@ import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnticipateOvershootInterpolator;
@@ -51,11 +54,8 @@ public class HomeActivity extends Activity {
 
     View mContentView;
     View mBackgroundView;
-    View mTopButtonsContainerView;
     TrialTimeView mTrialTimeView;
     Button mActionButtonView;
-    View mHistoryCircleButtonView;
-    View mSettingsCircleButtonView;
     FlipView mStatsFlipView;
     View mTimeSavedPerLinkContainerView;
     CondensedTextView mTimeSavedPerLinkTextView;
@@ -76,9 +76,6 @@ public class HomeActivity extends Activity {
 
         mBackgroundView = findViewById(R.id.background);
         mContentView = findViewById(R.id.content);
-        mTopButtonsContainerView = findViewById(R.id.top_buttons_container);
-        mHistoryCircleButtonView = findViewById(R.id.history_circle);
-        mSettingsCircleButtonView = findViewById(R.id.settings_circle);
         mActionButtonView = (Button)findViewById(R.id.big_white_button);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
         mTrialTimeView = (TrialTimeView) findViewById(R.id.trial_time_view);
@@ -180,21 +177,35 @@ public class HomeActivity extends Activity {
             }
         });
 
-        mHistoryCircleButtonView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v, true);
-            }
-        });
-
-        mSettingsCircleButtonView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, SettingsActivity.class), v, true);
-            }
-        });
-
         MainApplication.registerForBus(this, this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        getMenuInflater().inflate(R.menu.activity_home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home: {
+                return true;
+            }
+
+            case R.id.action_settings:
+                startActivity(new Intent(HomeActivity.this, SettingsActivity.class), item.getActionView(), true);
+                return true;
+
+            case R.id.action_history:
+                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), item.getActionView(), true);
+                return true;
+        }
+
+        return false;
     }
 
     private void setInfo(Account[] accounts, ParseObject parseObject) {
@@ -292,9 +303,9 @@ public class HomeActivity extends Activity {
 
     private void configureForDrmState() {
         if (DRM.isLicensed()) {
-            mActionButtonView.setText(R.string.history);
-            mHistoryCircleButtonView.setVisibility(View.GONE);
+            mActionButtonView.setVisibility(View.GONE);
         } else {
+            mActionButtonView.setVisibility(View.VISIBLE);
             mActionButtonView.setText(R.string.action_upgrade_to_pro);
         }
     }
@@ -364,10 +375,6 @@ public class HomeActivity extends Activity {
         mActionButtonView.setAlpha(0f);
         mActionButtonView.setVisibility(View.VISIBLE);
         mActionButtonView.animate().alpha(1f).setDuration(250).setStartDelay(750).start();
-
-        mTopButtonsContainerView.setAlpha(0f);
-        mTopButtonsContainerView.setVisibility(View.VISIBLE);
-        mTopButtonsContainerView.animate().alpha(1f).setDuration(250).setStartDelay(750).start();
     }
 
     private void updateLinkLoadTimeStats() {
