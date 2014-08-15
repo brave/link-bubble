@@ -41,7 +41,7 @@
 
         <activity
             android:name=".ui.HistoryActivity"
-            android:theme="@android:style/Theme.Holo.Light"
+            android:theme="@style/AppTheme"
             android:label="@string/history">
         </activity>
 
