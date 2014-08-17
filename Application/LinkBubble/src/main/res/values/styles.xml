@@ -3,6 +3,7 @@
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/AppActionBar</item>
         <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:windowBackground">@android:color/white</item>
     </style>
 
     <style name="AppActionBar" parent="@android:style/Widget.Holo.ActionBar">
