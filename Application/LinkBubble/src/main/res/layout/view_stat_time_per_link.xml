@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="@string/stat_saves_you"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/color_primary"
+        android:textColor="@color/color_highlight"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <com.linkbubble.ui.CondensedTextView
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:text="@string/stat_per_link"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/color_primary"
+        android:textColor="@color/color_highlight"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
 </LinearLayout>

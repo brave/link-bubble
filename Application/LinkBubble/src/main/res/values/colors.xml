@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--http://www.colorhexa.com/663399-->
+
     <color name="color_primary">#663399</color>
     <color name="color_primary_dark">#402060</color>
     <color name="color_highlight">#339933</color>
@@ -11,8 +13,8 @@
     <color name="action_picker_selected_color">#E2E2E2</color>
     <color name="request_location_box_color">#ffefe4c6</color>
 
-    <color name="action_button_pressed">#206020</color>
-    <color name="action_button_normal">@color/color_highlight</color>
+    <color name="action_button_pressed">#402060</color>
+    <color name="action_button_normal">@color/color_primary</color>
 
     <drawable name="color_highlight_2">@color/color_highlight_2</drawable>
 
