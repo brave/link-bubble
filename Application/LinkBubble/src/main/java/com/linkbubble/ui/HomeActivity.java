@@ -54,7 +54,7 @@ public class HomeActivity extends Activity {
 
     View mContentView;
     View mBackgroundView;
-    TrialTimeView mTrialTimeView;
+    TextView mTrialTimeTextView;
     Button mActionButtonView;
     FlipView mStatsFlipView;
     View mTimeSavedPerLinkContainerView;
@@ -78,7 +78,7 @@ public class HomeActivity extends Activity {
         mContentView = findViewById(R.id.content);
         mActionButtonView = (Button)findViewById(R.id.big_white_button);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
-        mTrialTimeView = (TrialTimeView) findViewById(R.id.trial_time_view);
+        mTrialTimeTextView = (TextView) findViewById(R.id.trial_time);
         mTimeSavedPerLinkContainerView = mStatsFlipView.getDefaultView();
         mTimeSavedPerLinkTextView = (CondensedTextView) mTimeSavedPerLinkContainerView.findViewById(R.id.time_per_link);
         mTimeSavedPerLinkTextView.setText("");
@@ -434,19 +434,32 @@ public class HomeActivity extends Activity {
     }
 
     void updateTimeTrialRemaining() {
-        String msg = "";
+        String message = null;
         long trialTimeRemaining = MainApplication.getTrialTimeRemaining();
+
         if (trialTimeRemaining > -1) {
             final long minute = 60 * 1000;
             final long hour = 60 * minute;
             long hoursLeft = trialTimeRemaining / hour;
             long minutesLeft = (trialTimeRemaining - (hour * hoursLeft))/ minute;
-            msg = hoursLeft + " hours, " + minutesLeft + " minutes, trialTimeRemaining:" + trialTimeRemaining;
-            mTrialTimeView.setProgress(1.f - (float)trialTimeRemaining / (float)Constant.TRIAL_TIME);
-        }
-        Log.d("Trial", "timeRemaining: " + msg);
+            String timeLeft = null;
+            if (hoursLeft > 0) {
+                timeLeft = hoursLeft + "H, " + minutesLeft + "M";
+            } else if (minutesLeft > -1) {
+                timeLeft = minutesLeft + "M";
+            }
 
-        mTrialTimeView.setVisibility(MainApplication.isInTrialPeriod() && DRM.isLicensed() == false ? View.VISIBLE : View.GONE);
+            if (timeLeft != null) {
+                message = String.format(getResources().getString(R.string.trial_time_on_click), timeLeft);
+            }
+        }
+
+        if (message != null) {
+            mTrialTimeTextView.setText(message);
+            mTrialTimeTextView.setVisibility(View.VISIBLE);
+        } else {
+            mTrialTimeTextView.setVisibility(View.GONE);
+        }
     }
 
     @SuppressWarnings("unused")
