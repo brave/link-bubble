@@ -1,6 +1,8 @@
 package com.linkbubble.util;
 
 import android.accounts.Account;
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +23,9 @@ import android.util.DisplayMetrics;
 import android.util.Patterns;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
@@ -539,5 +544,57 @@ public class Util {
         Configuration config = new Configuration();
         config.locale = locale;
         context.getApplicationContext().getResources().updateConfiguration(config, null);
+    }
+
+    public static ImageView getActionBarUpView(Activity activity) {
+        final View home = activity.findViewById(android.R.id.home);
+        if (home == null) {
+            // Action bar doesn't have a known configuration, an OEM messed with things.
+            return null;
+        }
+
+        final ViewGroup parent = (ViewGroup) home.getParent();
+        final int childCount = parent.getChildCount();
+        if (childCount != 2) {
+            // No idea which one will be the right one, an OEM messed with things.
+            return null;
+        }
+
+        final View first = parent.getChildAt(0);
+        final View second = parent.getChildAt(1);
+        final View up = first.getId() == android.R.id.home ? second : first;
+
+        if (up instanceof ImageView) {
+            // Jackpot! (Probably...)
+            return (ImageView) up;
+        }
+
+        return null;
+    }
+
+    /*
+     * Manually theme divider and title text with @color/apptheme_color
+     */
+    static public void showThemedDialog(Dialog dialog) {
+        dialog.show();
+
+        Resources resources = dialog.getContext().getResources();
+        int color = resources.getColor(R.color.color_primary);
+
+        int dividerId = resources.getIdentifier("android:id/titleDivider", null, null);
+        if (dividerId > 0) {
+            View divider = dialog.findViewById(dividerId);
+            if (divider != null) {
+                divider.setBackgroundColor(color);
+            }
+        }
+
+        int titleTextViewId = resources.getIdentifier("android:id/alertTitle", null, null);
+        if (titleTextViewId > 0) {
+            TextView textView = (TextView) dialog.findViewById(titleTextViewId);
+            if (textView != null) {
+                textView.setTextColor(color);
+            }
+        }
     }
 }

@@ -1,9 +1,11 @@
 <resources>
+    <dimen name="action_bar_height">56dp</dimen>
+
     <!--  (bubble_size - bubble_icon_size) / 2 -->
     <dimen name="content_bubble_y_offset">-2dp</dimen>
-    <dimen name="toolbar_header">8dp</dimen>
+    <dimen name="toolbar_header">4dp</dimen>
     <dimen name="toolbar_height">48dp</dimen>
-    <dimen name="webview_margin_top">56dp</dimen>   <!-- Must equal toolbar_header + toolbar_height -->
+    <dimen name="webview_margin_top">52dp</dimen>   <!-- Must equal toolbar_header + toolbar_height -->
     <dimen name="content_view_button_max_height">40dp</dimen>
 
     <dimen name="prompt_close_button_edge_margin">20dp</dimen>
@@ -49,8 +51,9 @@
     <dimen name="bubble_target_icon_size">40dp</dimen>
     <dimen name="bubble_target_y">24dp</dimen>
     <dimen name="close_bubble_target_y">31dp</dimen>
-    <dimen name="close_tab_text_circle_size">66dp</dimen>
-    <dimen name="close_tab_target_size">92dp</dimen>
+    <dimen name="close_tab_icon_size">65dp</dimen>
+    <dimen name="close_tab_text_circle_size">63dp</dimen>
+    <dimen name="close_tab_target_size">100dp</dimen>
     <dimen name="close_bubble_target_x_offset">20dp</dimen>
     <dimen name="close_bubble_target_tractor_offset_x">200dp</dimen>
     <dimen name="consume_bubble_target_default_x">50dp</dimen>
@@ -65,5 +68,7 @@
     <dimen name="preference_ribbon_width">48.0dip</dimen>
 
     <dimen name="upgrade_to_pro_dialog_padding">8dp</dimen>
+
+    <dimen name="default_padding">16dp</dimen>
 
 </resources>
