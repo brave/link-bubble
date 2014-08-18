@@ -252,7 +252,7 @@ Link Bubble 亦遵循此標準。]]></string>
 
     <string name="requesting_location_message">%1$s 想要取得您的位置。要允許嗎？</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[繼續後，表示您了解並接受 Link Bubble 的<a href="http://www.linkbubble.com/terms">條款</a>及<a href="http://www.linkbubble.com/privacy">隱私權政策</a>。]]></string>
+    <string name="accept_terms_and_privacy"><![CDATA[繼續後，表示您了解並接受 Link Bubble 的<a href="http://www.digitalashes.com/terms">條款</a>及<a href="http://www.digitalashes.com/privacy">隱私權政策</a>。]]></string>
 
     <string name="service_name">Link Bubble 渲染器</string>
     <string name="notification_title">Link Bubble</string>

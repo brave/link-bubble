@@ -279,7 +279,7 @@
     <string name="requesting_location_message">%1$s は現在位置情報の取得を要求しています。許可しますか？</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[続けることによって、Link Bubbleの
-<a href="http://www.linkbubble.com/terms">規約</a>と<a href="http://www.linkbubble.com/privacy">プライバシーポリシー</a>を受け入れたとみなします。.]]></string>
+<a href="http://www.digitalashes.com/terms">規約</a>と<a href="http://www.digitalashes.com/privacy">プライバシーポリシー</a>を受け入れたとみなします。.]]></string>
 
     <string name="service_name">Link Bubble レンダラー</string>
     <string name="notification_title">Link Bubble</string>

@@ -273,7 +273,7 @@ aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend 
     <string name="requesting_location_message">%1$s fordert deinen Standort an. Erlauben?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[Durch Fortsetzen erklärst du dich einverstanden mit Link Bubbles
-<a href="http://www.linkbubble.com/terms">Bedingungen</a> und <a href="http://www.linkbubble.com/privacy">Datenschutzrichtlinien</a>.]]></string>
+<a href="http://www.digitalashes.com/terms">Bedingungen</a> und <a href="http://www.digitalashes.com/privacy">Datenschutzrichtlinien</a>.]]></string>
 
     <string name="service_name">Link Bubble Renderer</string>
     <string name="notification_title">Link Bubble</string>
