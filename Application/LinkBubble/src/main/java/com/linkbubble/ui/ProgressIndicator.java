@@ -55,16 +55,6 @@ public class ProgressIndicator extends FrameLayout {
         addView(mProgressArcView, arcLP);
     }
 
-    void showProgressSpinner(boolean show) {
-        /*mIndicatorImage.setVisibility(show ? VISIBLE : GONE);*/
-        setVisibility(VISIBLE);
-        Log.d("blerg", "showProgressSpinner():" + show);
-    }
-
-    boolean isProgressSpinnerShowing() {
-        return true;//mIndicatorImage.getVisibility() == VISIBLE;
-    }
-
     public int getMax() {
         return mMax;
     }
@@ -83,20 +73,9 @@ public class ProgressIndicator extends FrameLayout {
     }
 
     public void setProgress(int progress, URL url) {
-
-        //if (show && progress < 100) {
-        //    mIndicatorImage.setVisibility(VISIBLE);
-        //} else {
-        //    mIndicatorImage.setVisibility(GONE);
-        //}
-
         mUrl = url;
         mProgress = progress;
         mProgressArcView.setProgress(progress, mMax, url);
-    }
-
-    boolean isIndicatorShowing() {
-        return getVisibility() == VISIBLE;
     }
 
     public void setColor(int color) {
@@ -144,14 +123,9 @@ public class ProgressIndicator extends FrameLayout {
                 return;
             }
 
-            if (progressN <= .001f) {
-                Log.d("blerg", "zero");
-            }
-
             mUrl = urlAsString;
 
             mProgress = progressN;
-            Log.d("blerg", "setProgress():" + mProgress);
             invalidate();
         }
 
