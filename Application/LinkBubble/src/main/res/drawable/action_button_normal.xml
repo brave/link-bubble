@@ -9,11 +9,5 @@
                   android:width="@dimen/bubble_icon_size"/>
         </shape>
     </item>
-    <item>
-        <shape android:shape="rectangle" >
-            <stroke android:width="@dimen/bubble_icon_stroke_size" android:color="@color/color_neutral" />
-            <solid android:color="@android:color/transparent" />
-        </shape>
-    </item>
 
 </layer-list>
