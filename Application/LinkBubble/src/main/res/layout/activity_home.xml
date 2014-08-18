@@ -54,7 +54,7 @@
     </LinearLayout>
 
     <Button
-        style="@style/BigWhiteButton"
+        style="@style/ActionButton"
         android:id="@+id/big_white_button"
         android:text="@string/history"
         android:layout_gravity="center_horizontal|bottom"
