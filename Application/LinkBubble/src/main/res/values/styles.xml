@@ -1,6 +1,60 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/AppActionBar</item>
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:windowBackground">@android:color/white</item>
+
+
+        <item name="android:textColorHighlight">#99663399</item>
+        <item name="android:textSelectHandleLeft">@drawable/apptheme_text_select_handle_left</item>
+        <item name="android:textSelectHandleRight">@drawable/apptheme_text_select_handle_right</item>
+        <item name="android:textSelectHandle">@drawable/apptheme_text_select_handle_middle</item>
+
+        <item name="android:listChoiceIndicatorMultiple">@drawable/apptheme_btn_check_holo_light</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/apptheme_btn_radio_holo_light</item>
+        <item name="android:buttonStyle">@style/ButtonAppTheme</item>
+        <item name="android:imageButtonStyle">@style/ImageButtonAppTheme</item>
+        <item name="android:progressBarStyleHorizontal">@style/ProgressBarAppTheme</item>
+        <item name="android:seekBarStyle">@style/SeekBarAppTheme</item>
+        <item name="android:listChoiceBackgroundIndicator">@drawable/apptheme_list_selector_holo_light</item>
+        <item name="android:activatedBackgroundIndicator">@drawable/apptheme_activated_background_holo_light</item>
+
+    </style>
+
+    <style name="AppActionBar" parent="@android:style/Widget.Holo.ActionBar">
+        <item name="android:background">@color/color_primary</item>
+        <item name="android:titleTextStyle">@style/AppActionBarText</item>
+        <item name="android:height">@dimen/action_bar_height</item>
+        <!--<item name="android:homeAsUpIndicator">@drawable/ic_ab_back_holo_dark</item>-->
+        <item name="android:logo">@drawable/ic_up</item>
+    </style>
+
+    <style name="NoIconActionBar" parent="AppActionBar">
+        <item name="android:logo">@android:color/transparent</item>
+    </style>
+
+    <style name="AppActionBarText" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">22dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="HomeTheme" parent="@style/AppTheme">
+        <!--<item name="android:windowBackground">@null</item>-->
+        <item name="android:actionBarStyle">@style/NoIconActionBar</item>
+        <item name="android:displayOptions">showTitle</item>
+        <item name="android:windowActionBarOverlay">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <style name="SettingsTheme" parent="@style/AppTheme">
+        <item name="android:actionBarStyle">@style/NoIconActionBar</item>
+    </style>
+
     <style name="TransparentTheme" parent="android:Theme.Holo.Light">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -38,21 +92,8 @@
         <item name="cpbStyle">@style/CircularProgressBar</item>
     </style>
 
-    <style name="HomeTheme" parent="@android:style/Theme.Holo.Light">
-        <!--<item name="android:windowBackground">@null</item>-->
-        <item name="android:displayOptions">showTitle</item>
-        <item name="android:actionBarStyle">@null</item>
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:backgroundDimEnabled">false</item>
-        <item name="android:windowAnimationStyle">@null</item>
-        <item name="cpbStyle">@style/CircularProgressBar</item>
-    </style>
-
     <style name="ActionBarStyle.Translucent" parent="@android:Widget.ActionBar">
-        <item name="android:background">@drawable/actionbar_background</item>
+        <item name="android:background">@null</item>
         <item name="android:icon">@drawable/ic_transparent</item>
         <item name="android:titleTextStyle">@style/ActionBarStyle.Translucent.TitleTextStyle</item>
     </style>
@@ -65,17 +106,13 @@
         <item name="android:background">#f5f5f5</item>
     </style>
 
-    <style name="BigWhiteButton">
+    <style name="ActionButton">
         <item name="android:layout_width">200dp</item>
-        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_height">44dp</item>
         <item name="android:gravity">center</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">#858585</item>
-        <item name="android:background">@drawable/white_button</item>
-    </style>
-
-    <style name="HomeContentContainer">
-        <item name="android:orientation">vertical</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/action_button</item>
     </style>
 
     <style name="Prompt">
@@ -136,5 +173,24 @@
         <item name="android:displayOptions"></item>
     </style>
 
+
+    <style name="ButtonAppTheme" parent="android:Widget.Holo.Light.Button">
+        <item name="android:background">@drawable/apptheme_btn_default_holo_light</item>
+    </style>
+
+    <style name="ImageButtonAppTheme" parent="android:Widget.Holo.Light.ImageButton">
+        <item name="android:background">@drawable/apptheme_btn_default_holo_light</item>
+    </style>
+
+    <style name="ProgressBarAppTheme" parent="android:Widget.Holo.Light.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/apptheme_progress_horizontal_holo_light</item>
+        <item name="android:indeterminateDrawable">@drawable/apptheme_progress_indeterminate_horizontal_holo_light</item>
+    </style>
+
+    <style name="SeekBarAppTheme" parent="android:Widget.Holo.Light.SeekBar">
+        <item name="android:progressDrawable">@drawable/apptheme_scrubber_progress_horizontal_holo_light</item>
+        <item name="android:indeterminateDrawable">@drawable/apptheme_scrubber_progress_horizontal_holo_light</item>
+        <item name="android:thumb">@drawable/apptheme_scrubber_control_selector_holo_light</item>
+    </style>
 
 </resources>

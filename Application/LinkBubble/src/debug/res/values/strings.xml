@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Link Bubble (dev)</string>
-    <string name="service_name">Link Bubble Renderer (dev)</string>
-    <string name="notification_title">Link Bubble (dev)</string>
-    <string name="send_intent_label">Open with Link Bubble (dev)</string>
+    <string name="app_name">Link Bubble[D]</string>
+    <string name="service_name">Link Bubble Renderer[D]</string>
+    <string name="notification_title">Link Bubble[D]</string>
+    <string name="send_intent_label">Open with Link Bubble[D]</string>
 
 </resources>

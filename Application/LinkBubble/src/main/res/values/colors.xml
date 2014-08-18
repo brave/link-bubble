@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <drawable name="actionbar_background">#aa000000</drawable>
+    <!--http://www.colorhexa.com/663399-->
 
-    <color name="white_button_pressed">#eee</color>
-    <color name="white_button_normal">#fff</color>
+    <color name="moderate_orange">#996633</color>
+    <color name="green">#339933</color>
+    <color name="flat_green">#669933</color>
+    <color name="lime_green">#339966</color>
+    <color name="moderate_yellow">#999933</color>
 
-    <color name="home_background">#fff</color>
-    <color name="content_toolbar_background">#fff</color>
-    <color name="badge_text">@color/bubble_border</color>
-
-    <color name="bubble_border">#666666</color>
+    <color name="color_primary">#663399</color>
+    <color name="color_primary_dark">#402060</color>
+    <color name="color_highlight">@color/lime_green</color>
+    <color name="color_highlight_2">@color/moderate_yellow</color>
+    <color name="text_color_primary">#fff</color>
+    <color name="window_background">#fff</color>
+    <color name="color_neutral">#666666</color>
 
     <color name="action_picker_selected_color">#E2E2E2</color>
-
-    <color name="highlight_color">#663399</color>
     <color name="request_location_box_color">#ffefe4c6</color>
+
+    <color name="action_button_pressed">#402060</color>
+    <color name="action_button_normal">@color/color_primary</color>
+
+    <drawable name="color_highlight_2">@color/color_highlight_2</drawable>
 
 </resources>
 

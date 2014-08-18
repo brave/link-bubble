@@ -116,9 +116,6 @@ public class ContentView extends FrameLayout {
     private boolean mHandledAppPickerForCurrentUrl = false;
     private boolean mUsingLinkBubbleAsDefaultForCurrentUrl = false;
 
-    private static Paint sIndicatorPaint;
-    private static Paint sBorderPaint;
-
     public ContentView(Context context) {
         this(context, null);
     }
@@ -129,16 +126,6 @@ public class ContentView extends FrameLayout {
 
     public ContentView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
-        if (sIndicatorPaint == null) {
-            sIndicatorPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            sIndicatorPaint.setColor(getResources().getColor(R.color.content_toolbar_background));
-        }
-
-        if (sBorderPaint == null) {
-            sBorderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            sBorderPaint.setColor(getResources().getColor(R.color.bubble_border));
-        }
     }
 
     public long getTotalTrackedLoadTime() {
@@ -190,6 +177,7 @@ public class ContentView extends FrameLayout {
             return;
         }
 
+        /*
         float centerX = Config.mScreenCenterX;
         float indicatorEndY = 2.f;
         float indicatorStartX = centerX - mHeaderHeight + indicatorEndY;
@@ -205,6 +193,7 @@ public class ContentView extends FrameLayout {
         canvas.drawLine(indicatorStartX, mHeaderHeight, centerX, 0, sBorderPaint);
         canvas.drawLine(centerX, indicatorEndY, indicatorEndX, mHeaderHeight, sBorderPaint);
         canvas.drawLine(indicatorEndX, mHeaderHeight, Config.mScreenWidth, mHeaderHeight, sBorderPaint);
+        */
     }
 
     public void destroy() {
