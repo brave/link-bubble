@@ -115,10 +115,6 @@
         <item name="android:background">@drawable/action_button</item>
     </style>
 
-    <style name="HomeContentContainer">
-        <item name="android:orientation">vertical</item>
-    </style>
-
     <style name="Prompt">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

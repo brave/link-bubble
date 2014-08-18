@@ -20,43 +20,50 @@
         android:layout_height="8dp"
         android:background="@drawable/action_bar_home_shadow"/>
 
-    <TextView
-        android:id="@+id/trial_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:padding="4dp"
-        android:background="@drawable/color_highlight_2"/>
-
     <LinearLayout
-        android:id="@+id/content"
-        style="@style/HomeContentContainer"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_centerInParent="true"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:orientation="vertical">
 
-        <com.linkbubble.ui.FlipView
-            xmlns:flipview="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/stats_flip_view"
+        <TextView
+            android:id="@+id/trial_time"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/stat_height"
-            android:src="@drawable/ic_launcher"
-            flipview:defaultView="@layout/view_stat_time_per_link"
-            flipview:flipView="@layout/view_stat_total_time"
-            flipview:isAnimated="true"/>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:padding="4dp"
+            android:background="@drawable/color_highlight_2"/>
+
+        <FrameLayout
+            android:id="@+id/content"
+            android:layout_width="240dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <com.linkbubble.ui.FlipView
+                xmlns:flipview="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/stats_flip_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/stat_height"
+                android:src="@drawable/ic_launcher"
+                android:layout_gravity="center"
+                flipview:defaultView="@layout/view_stat_time_per_link"
+                flipview:flipView="@layout/view_stat_total_time"
+                flipview:isAnimated="true"/>
+
+        </FrameLayout>
+
+        <Button
+            style="@style/ActionButton"
+            android:id="@+id/big_white_button"
+            android:text="@string/history"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="16dp"
+            />
 
     </LinearLayout>
-
-    <Button
-        style="@style/ActionButton"
-        android:id="@+id/big_white_button"
-        android:text="@string/history"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="20dp"
-        />
 
 </merge>
