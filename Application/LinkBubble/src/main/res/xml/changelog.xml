@@ -2,6 +2,7 @@
 <changelog>
 
     <release version="1.4.0" versioncode="14000">
+        <change>NEW: Material Design! Shadows and color oh my!</change>
         <change>BUG FIX: Shadow image displays underneath bubble targets.</change>
     </release>
 
