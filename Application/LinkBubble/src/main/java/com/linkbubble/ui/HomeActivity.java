@@ -55,6 +55,7 @@ public class HomeActivity extends Activity {
     View mContentView;
     View mBackgroundView;
     TextView mTrialTimeTextView;
+    View mActionButtonContainer;
     Button mActionButtonView;
     FlipView mStatsFlipView;
     View mTimeSavedPerLinkContainerView;
@@ -76,6 +77,7 @@ public class HomeActivity extends Activity {
 
         mBackgroundView = findViewById(R.id.background);
         mContentView = findViewById(R.id.content);
+        mActionButtonContainer = findViewById(R.id.action_button_container);
         mActionButtonView = (Button)findViewById(R.id.big_white_button);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
         mTrialTimeTextView = (TextView) findViewById(R.id.trial_time);
@@ -374,9 +376,9 @@ public class HomeActivity extends Activity {
                 .setInterpolator(new AnticipateOvershootInterpolator())
                 .start();
 
-        mActionButtonView.setAlpha(0f);
-        mActionButtonView.setVisibility(View.VISIBLE);
-        mActionButtonView.animate().alpha(1f).setDuration(250).setStartDelay(750).start();
+        mActionButtonContainer.setAlpha(0f);
+        mActionButtonContainer.setVisibility(View.VISIBLE);
+        mActionButtonContainer.animate().alpha(1f).setDuration(250).setStartDelay(750).start();
     }
 
     private void updateLinkLoadTimeStats() {

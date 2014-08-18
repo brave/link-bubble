@@ -56,13 +56,27 @@
 
         </FrameLayout>
 
-        <Button
-            style="@style/ActionButton"
-            android:id="@+id/big_white_button"
-            android:text="@string/history"
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginBottom="16dp"
-            />
+            android:id="@+id/action_button_container"
+            android:layout_marginBottom="16dp">
+
+            <View
+                android:layout_width="214dp"
+                android:layout_height="58dp"
+                android:layout_gravity="center"
+                android:background="@drawable/action_button_shadow"/>
+
+            <Button
+                style="@style/ActionButton"
+                android:id="@+id/big_white_button"
+                android:text="@string/history"
+                android:layout_gravity="center"
+                />
+
+        </FrameLayout>
 
     </LinearLayout>
 
