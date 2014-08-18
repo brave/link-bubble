@@ -185,6 +185,9 @@ public class HomeActivity extends Activity {
         super.onCreateOptionsMenu(menu);
 
         getMenuInflater().inflate(R.menu.activity_home, menu);
+        if (DRM.isLicensed()) {
+            menu.removeItem(R.id.action_history);
+        }
         return true;
     }
 
@@ -303,9 +306,8 @@ public class HomeActivity extends Activity {
 
     private void configureForDrmState() {
         if (DRM.isLicensed()) {
-            mActionButtonView.setVisibility(View.GONE);
+            mActionButtonView.setText(R.string.history);
         } else {
-            mActionButtonView.setVisibility(View.VISIBLE);
             mActionButtonView.setText(R.string.action_upgrade_to_pro);
         }
     }
