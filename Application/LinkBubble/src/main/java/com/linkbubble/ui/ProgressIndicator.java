@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,6 @@ public class ProgressIndicator extends FrameLayout {
     private int mProgress;
     private URL mUrl;
 
-    private ProgressImageView mIndicatorImage;
     private ProgressArcView mProgressArcView;
 
     public ProgressIndicator(Context context) {
@@ -53,21 +53,16 @@ public class ProgressIndicator extends FrameLayout {
         FrameLayout.LayoutParams arcLP = new LayoutParams(bubbleProgressSize, bubbleProgressSize);
         arcLP.gravity = Gravity.CENTER;
         addView(mProgressArcView, arcLP);
-
-        mIndicatorImage = new ProgressImageView(getContext());
-        mIndicatorImage.setImageResource(R.drawable.loading_dots);
-
-        FrameLayout.LayoutParams indicatorLP = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        indicatorLP.gravity = Gravity.CENTER;
-        addView(mIndicatorImage, indicatorLP);
     }
 
     void showProgressSpinner(boolean show) {
-        mIndicatorImage.setVisibility(show ? VISIBLE : GONE);
+        /*mIndicatorImage.setVisibility(show ? VISIBLE : GONE);*/
+        setVisibility(VISIBLE);
+        Log.d("blerg", "showProgressSpinner():" + show);
     }
 
     boolean isProgressSpinnerShowing() {
-        return mIndicatorImage.getVisibility() == VISIBLE;
+        return true;//mIndicatorImage.getVisibility() == VISIBLE;
     }
 
     public int getMax() {
@@ -87,7 +82,7 @@ public class ProgressIndicator extends FrameLayout {
         return mProgress;
     }
 
-    public void setProgress(boolean show, int progress, URL url) {
+    public void setProgress(int progress, URL url) {
 
         //if (show && progress < 100) {
         //    mIndicatorImage.setVisibility(VISIBLE);
@@ -97,51 +92,29 @@ public class ProgressIndicator extends FrameLayout {
 
         mUrl = url;
         mProgress = progress;
-        mProgressArcView.setProgress(show == false ? 100 : progress, mMax, url);
+        mProgressArcView.setProgress(progress, mMax, url);
     }
 
     boolean isIndicatorShowing() {
-        return mIndicatorImage.getVisibility() == VISIBLE;
+        return getVisibility() == VISIBLE;
     }
 
-    private class ProgressImageView extends ImageView {
-
-        private ObjectAnimator mAnimator = ObjectAnimator.ofFloat(this, "rotation", 0.0f, 359.0f);
-
-        public ProgressImageView(Context context) {
-            super(context);
-
-            mAnimator.setInterpolator(new LinearInterpolator());
-            mAnimator.setRepeatCount(Animation.INFINITE);
-            mAnimator.setDuration(1000);
-            mAnimator.start();
-        }
-
-        @Override
-        public void setVisibility(int visibility) {
-            int oldVisibility = getVisibility();
-            if (visibility != oldVisibility) {
-                if (visibility == VISIBLE) {
-                    mAnimator.start();
-                } else {
-                    mAnimator.cancel();
-                }
-            }
-
-            super.setVisibility(visibility);
-        }
+    public void setColor(int color) {
+        mProgressArcView.setColor(color);
     }
+
 
     private static class ProgressArcView extends View {
         private Paint mPaint;
-        //private Paint mFramePaint;
         private RectF mOval;
-        //private float mStart = -90;
-        //private float mSweep;
         private float mProgress;
-        private static final float SWEEP_INC = 2.5f;
-        private static final float START_INC = 0;
         private String mUrl;
+
+        private int mColor;
+        void setColor(int color) {
+            mColor = color;
+            mPaint.setColor(mColor);
+        }
 
         public ProgressArcView(Context context) {
             super(context);
@@ -151,20 +124,14 @@ public class ProgressIndicator extends FrameLayout {
 
             mPaint = new Paint();
             mPaint.setAntiAlias(true);
-            //mPaint.setColor(resources.getColor(android.R.color.holo_purple));
-            mPaint.setColor(resources.getColor(R.color.color_neutral));
+            mPaint.setColor(mColor);
             mPaint.setStrokeWidth(strokeWidth);
 
             int size = resources.getDimensionPixelSize(R.dimen.bubble_progress_size) - strokeWidth;
             float offset = (float)(strokeWidth)/2.f;
             mOval = new RectF(offset, offset, size+offset, size+offset);
 
-            //mFramePaint = new Paint();
-            //mFramePaint.setAntiAlias(true);
-            //mFramePaint.setStrokeWidth(strokeWidth);
-
             mPaint.setStyle(Paint.Style.STROKE);
-            //mFramePaint.setStyle(Paint.Style.STROKE);
         }
 
         void setProgress(int progress, int maxProgress, URL url) {
@@ -176,9 +143,15 @@ public class ProgressIndicator extends FrameLayout {
             if (progress != 0 && mProgress >= .999f && progressN < .999f && mUrl.equals(urlAsString)) {
                 return;
             }
+
+            if (progressN <= .001f) {
+                Log.d("blerg", "zero");
+            }
+
             mUrl = urlAsString;
 
             mProgress = progressN;
+            Log.d("blerg", "setProgress():" + mProgress);
             invalidate();
         }
 
@@ -186,18 +159,6 @@ public class ProgressIndicator extends FrameLayout {
         protected void onDraw(Canvas canvas) {
             float sweep = 360.f * mProgress;
             canvas.drawArc(mOval, -90, sweep, false, mPaint);
-
-            /*
-            mSweep += SWEEP_INC;
-            if (mSweep > 360) {
-                mSweep -= 360;
-                mStart += START_INC;
-                if (mStart >= 360) {
-                    mStart -= 360;
-                }
-            }
-            invalidate();
-            */
         }
     }
 }

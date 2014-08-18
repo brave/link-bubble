@@ -24,7 +24,7 @@
         android:id="@+id/progressIndicator"
         android:layout_gravity="center"/>-->
 
-    <fr.castorflex.android.smoothprogressbar.CircularProgressBar
+    <com.linkbubble.ui.ProgressIndicator
         android:layout_width="@dimen/bubble_icon_size"
         android:layout_height="@dimen/bubble_icon_size"
         android:id="@+id/progressIndicator"
