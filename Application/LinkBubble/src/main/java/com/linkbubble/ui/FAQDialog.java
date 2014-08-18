@@ -110,7 +110,7 @@ public class FAQDialog {
                     mActivity.startActivity(i);
                 } else if (position == sFAQSize-1) {
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO,
-                                                    Uri.fromParts("mailto", "support@linkbubble.com", null));
+                                                    Uri.fromParts("mailto", "support@digitalashes.com", null));
                     String appVersion = BuildConfig.VERSION_NAME;
                     String subject = "Report a bug (v" + appVersion + ", Android " + Constant.getOSFlavor()
                             + ", " + android.os.Build.MODEL + ", " + Locale.getDefault().getLanguage() + ")";

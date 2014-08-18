@@ -248,7 +248,7 @@ używany w Androidzie WebView jest napisany w taki sposób, że elementy &lt;sel
 
     <string name="requesting_location_message">%1$s chce poznać Twoją lokalizację. Zezwolić?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[Kontynuując akceptujesz postanowienia <a href="http://www.linkbubble.com/terms">regulaminu</a> i <a href="http://www.linkbubble.com/privacy">politykę prywatności</a> aplikacji Link Bubble.]]></string>
+    <string name="accept_terms_and_privacy"><![CDATA[Kontynuując akceptujesz postanowienia <a href="http://www.digitalashes.com/terms">regulaminu</a> i <a href="http://www.digitalashes.com/privacy">politykę prywatności</a> aplikacji Link Bubble.]]></string>
 
     <string name="service_name">Renderer Link Bubble</string>
     <string name="notification_title">Link Bubble</string>
