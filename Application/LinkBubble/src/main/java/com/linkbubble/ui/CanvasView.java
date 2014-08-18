@@ -101,8 +101,7 @@ public class CanvasView extends FrameLayout {
 
         int closeBubbleTargetY = getResources().getDimensionPixelSize(R.dimen.close_bubble_target_y);
         CloseTabTargetView closeTabTargetView = (CloseTabTargetView) inflater.inflate(R.layout.view_close_tab_target, null);
-        Drawable closeDrawable = resources.getDrawable(R.drawable.close_indicator);
-        closeTabTargetView.configure(this, context, closeDrawable, Constant.BubbleAction.Close,
+        closeTabTargetView.configure(this, context, null, Constant.BubbleAction.Close,
                 0, BubbleTargetView.HorizontalAnchor.Center,
                 closeBubbleTargetY, BubbleTargetView.VerticalAnchor.Bottom,
                 resources.getDimensionPixelSize(R.dimen.close_bubble_target_x_offset), closeBubbleTargetY,
