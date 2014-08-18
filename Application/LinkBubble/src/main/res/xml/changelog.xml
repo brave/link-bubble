@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.4.0" versioncode="14000">
+        <change>BUG FIX: Shadow image displays underneath bubble targets.</change>
+    </release>
+
     <release version="1.3.2" versioncode="13200">
         <change>CHANGE: Increase animation speed.</change>
         <change>BUG FIX: Fix bug where expanded bubbles would display when Link Bubble was minimized.</change>

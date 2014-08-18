@@ -99,6 +99,25 @@ public class CanvasView extends FrameLayout {
         Resources resources = getResources();
         LayoutInflater inflater = LayoutInflater.from(context);
 
+        if (Constant.COVER_STATUS_BAR == false) {
+            mTopMaskView = new ImageView(context);
+            mTopMaskView.setImageResource(R.drawable.masked_background_half);
+            mTopMaskView.setScaleType(ImageView.ScaleType.FIT_XY);
+            FrameLayout.LayoutParams topMaskLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, canvasMaskHeight);
+            topMaskLP.gravity = Gravity.TOP;
+            mTopMaskView.setLayoutParams(topMaskLP);
+            addView(mTopMaskView);
+        }
+
+        mBottomMaskView = new ImageView(context);
+        mBottomMaskView.setImageResource(R.drawable.masked_background_half);
+        mBottomMaskView.setScaleType(ImageView.ScaleType.FIT_XY);
+        mBottomMaskView.setRotation(180);
+        FrameLayout.LayoutParams bottomMaskLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, canvasMaskHeight);
+        bottomMaskLP.gravity = Gravity.BOTTOM;
+        mBottomMaskView.setLayoutParams(bottomMaskLP);
+        addView(mBottomMaskView);
+
         int closeBubbleTargetY = getResources().getDimensionPixelSize(R.dimen.close_bubble_target_y);
         CloseTabTargetView closeTabTargetView = (CloseTabTargetView) inflater.inflate(R.layout.view_close_tab_target, null);
         closeTabTargetView.configure(this, context, null, Constant.BubbleAction.Close,
@@ -137,25 +156,6 @@ public class CanvasView extends FrameLayout {
                 }
             }
         });
-
-        if (Constant.COVER_STATUS_BAR == false) {
-            mTopMaskView = new ImageView(context);
-            mTopMaskView.setImageResource(R.drawable.masked_background_half);
-            mTopMaskView.setScaleType(ImageView.ScaleType.FIT_XY);
-            FrameLayout.LayoutParams topMaskLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, canvasMaskHeight);
-            topMaskLP.gravity = Gravity.TOP;
-            mTopMaskView.setLayoutParams(topMaskLP);
-            addView(mTopMaskView);
-        }
-
-        mBottomMaskView = new ImageView(context);
-        mBottomMaskView.setImageResource(R.drawable.masked_background_half);
-        mBottomMaskView.setScaleType(ImageView.ScaleType.FIT_XY);
-        mBottomMaskView.setRotation(180);
-        FrameLayout.LayoutParams bottomMaskLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, canvasMaskHeight);
-        bottomMaskLP.gravity = Gravity.BOTTOM;
-        mBottomMaskView.setLayoutParams(bottomMaskLP);
-        addView(mBottomMaskView);
 
         applyAlpha();
 
