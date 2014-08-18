@@ -194,8 +194,9 @@ public class BubbleTargetView extends FrameLayout {
 
         registerForBus();
 
+        if (d != null && mImage != null) {
+            mImage.setImageDrawable(d);
         }
-        mImage.setImageDrawable(d);
 
         int bubbleIconSize = getResources().getDimensionPixelSize(R.dimen.bubble_icon_size);
         mSnapWidth = bubbleIconSize;
