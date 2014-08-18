@@ -11,78 +11,73 @@
         android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/home_background"
+        android:background="@color/window_background"
         android:alpha="0"
         />
 
-    <LinearLayout
-        android:id="@+id/top_buttons_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|right"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/history_circle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="8dp"
-            android:paddingTop="8dp"
-            android:src="@drawable/history_circle_button"
-            android:contentDescription="@string/content_description_history"
-            />
-
-        <ImageView
-            android:id="@+id/settings_circle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="8dp"
-            android:paddingTop="8dp"
-            android:src="@drawable/settings_circle_button"
-            android:contentDescription="@string/content_description_settings"
-            />
-
-    </LinearLayout>
-
-    <com.linkbubble.ui.TrialTimeView
-        android:id="@+id/trial_time_view"
-        android:visibility="gone"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_gravity="top|left"
-        android:paddingLeft="8dp"
-        android:paddingTop="8dp"
-        android:src="@drawable/settings_circle_button"
-        android:contentDescription="@string/content_description_settings"
-        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@drawable/action_bar_home_shadow"/>
 
     <LinearLayout
-        android:id="@+id/content"
-        style="@style/HomeContentContainer"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_centerInParent="true"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:orientation="vertical">
 
-        <com.linkbubble.ui.FlipView
-            xmlns:flipview="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/stats_flip_view"
+        <TextView
+            android:id="@+id/trial_time"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/stat_height"
-            android:src="@drawable/ic_launcher"
-            flipview:defaultView="@layout/view_stat_time_per_link"
-            flipview:flipView="@layout/view_stat_total_time"
-            flipview:isAnimated="true"/>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:padding="4dp"
+            android:background="@drawable/color_highlight_2"/>
+
+        <FrameLayout
+            android:id="@+id/content"
+            android:layout_width="240dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <com.linkbubble.ui.FlipView
+                xmlns:flipview="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/stats_flip_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/stat_height"
+                android:src="@drawable/ic_launcher"
+                android:layout_gravity="center"
+                flipview:defaultView="@layout/view_stat_time_per_link"
+                flipview:flipView="@layout/view_stat_total_time"
+                flipview:isAnimated="true"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:id="@+id/action_button_container"
+            android:layout_marginBottom="16dp">
+
+            <View
+                android:layout_width="214dp"
+                android:layout_height="58dp"
+                android:layout_gravity="center"
+                android:background="@drawable/action_button_shadow"/>
+
+            <Button
+                style="@style/ActionButton"
+                android:id="@+id/big_white_button"
+                android:text="@string/history"
+                android:layout_gravity="center"
+                />
+
+        </FrameLayout>
 
     </LinearLayout>
-
-    <Button
-        style="@style/BigWhiteButton"
-        android:id="@+id/big_white_button"
-        android:text="@string/history"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="20dp"
-        />
 
 </merge>

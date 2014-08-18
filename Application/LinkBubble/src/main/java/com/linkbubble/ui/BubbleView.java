@@ -308,6 +308,18 @@ public class BubbleView extends FrameLayout  {
             PaletteItem item = palette.getVibrantColor();
             if (item != null) {
                 mProgressIndicator.setColor(item.getRgb());
+            } else {
+                item = palette.getDarkMutedColor();
+                if (item != null) {
+                    mProgressIndicator.setColor(item.getRgb());
+                } else {
+                    item = palette.getMutedColor();
+                    if (item != null) {
+                        mProgressIndicator.setColor(item.getRgb());
+                    } else {
+                        mProgressIndicator.setColor(getResources().getColor(R.color.color_neutral));
+                    }
+                }
             }
         }
     };

@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
 import com.linkbubble.R;
+import com.linkbubble.util.Util;
+
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
@@ -153,7 +155,7 @@ public class FAQDialog {
         });
         */
 
-        alertDialog.show();
+        Util.showThemedDialog(alertDialog);
     }
 
     private class FAQAdapter extends BaseAdapter implements StickyListHeadersAdapter {

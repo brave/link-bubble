@@ -3,6 +3,6 @@
 
     <item android:id="@+id/action_clear_history"
         android:title="@string/clear_history"
-        android:icon="@drawable/ic_action_trash_dark"
+        android:icon="@drawable/ic_action_trash"
         android:showAsAction="always"/>
 </menu>

@@ -377,7 +377,7 @@ public class MainApplication extends Application {
                         context.startActivity(intent);
                     }
                 });
-                alertDialog.show();
+                Util.showThemedDialog(alertDialog);
                 return true;
             }
 
