@@ -100,7 +100,6 @@ public class BubbleView extends FrameLayout  {
                 mImitator.setFallbackFavicon();
             }
             mImitator.mProgressIndicator.setProgress(mProgressIndicator.getProgress(), mUrl);
-            mImitator.mProgressIndicator.showProgressSpinner(mProgressIndicator.isProgressSpinnerShowing());
         }
     }
 
@@ -286,13 +285,6 @@ public class BubbleView extends FrameLayout  {
             mHandler.postDelayed(mProgressRunnable, 33);
         }
     };*/
-
-    void showProgressSpinner(boolean show) {
-        mProgressIndicator.showProgressSpinner(show);
-        if (mImitator != null) {
-            mImitator.mProgressIndicator.showProgressSpinner(show);
-        }
-    }
 
     void showProgressBar(int progress) {
         mProgressIndicator.setProgress(progress, mUrl);
