@@ -20,17 +20,15 @@
         android:layout_height="8dp"
         android:background="@drawable/action_bar_home_shadow"/>
 
-    <com.linkbubble.ui.TrialTimeView
-        android:id="@+id/trial_time_view"
-        android:visibility="gone"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_gravity="top|left"
-        android:paddingLeft="8dp"
-        android:paddingTop="8dp"
-        android:src="@drawable/settings_circle_button"
-        android:contentDescription="@string/content_description_settings"
-        />
+    <TextView
+        android:id="@+id/trial_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:padding="4dp"
+        android:background="@drawable/color_highlight_2"/>
 
     <LinearLayout
         android:id="@+id/content"
