@@ -36,7 +36,7 @@ public class BubbleView extends FrameLayout  {
 
     protected FaviconView mFavicon;
     protected int mFaviconLoadId;
-    private CircularProgressBar mProgressIndicator;
+    private ProgressIndicator mProgressIndicator;
     protected URL mUrl;
     private BubbleView mImitator;       //
     private OnApplyFaviconListener mOnApplyFaviconListener;
@@ -57,8 +57,8 @@ public class BubbleView extends FrameLayout  {
         mFavicon = (FaviconView) findViewById(R.id.favicon);
         mFavicon.setOnPaletteChangeListener(mOnPaletteChangeListener);
         mFavicon.mFavicons = MainApplication.sFavicons;
-        mProgressIndicator = (CircularProgressBar) findViewById(R.id.progressIndicator);
-        showProgressBar(true, 0);
+        mProgressIndicator = (ProgressIndicator) findViewById(R.id.progressIndicator);
+        showProgressBar(0);
     }
 
     void configure(String url) throws MalformedURLException {
@@ -99,7 +99,7 @@ public class BubbleView extends FrameLayout  {
             } else {
                 mImitator.setFallbackFavicon();
             }
-            mImitator.mProgressIndicator.setProgress(mProgressIndicator.isIndicatorShowing(), mProgressIndicator.getProgress(), mUrl);
+            mImitator.mProgressIndicator.setProgress(mProgressIndicator.getProgress(), mUrl);
             mImitator.mProgressIndicator.showProgressSpinner(mProgressIndicator.isProgressSpinnerShowing());
         }
     }
@@ -207,7 +207,7 @@ public class BubbleView extends FrameLayout  {
     protected FaviconTransformation mFaviconTransformation = new FaviconTransformation();
 
     protected void onPageLoaded(boolean withError) {
-        showProgressBar(false, 0);
+        showProgressBar(100);
     }
 
     protected boolean onReceivedIcon(Bitmap favicon, boolean forceSet) {
@@ -269,7 +269,7 @@ public class BubbleView extends FrameLayout  {
     }
 
     public void onProgressChanged(int progress) {
-        showProgressBar(true, progress);
+        showProgressBar(progress);
     }
 
     /*
@@ -294,10 +294,10 @@ public class BubbleView extends FrameLayout  {
         }
     }
 
-    void showProgressBar(boolean show, int progress) {
-        mProgressIndicator.setProgress(show, progress, mUrl);
+    void showProgressBar(int progress) {
+        mProgressIndicator.setProgress(progress, mUrl);
         if (mImitator != null) {
-            mImitator.mProgressIndicator.setProgress(show, progress, mUrl);
+            mImitator.mProgressIndicator.setProgress(progress, mUrl);
         }
     }
 
