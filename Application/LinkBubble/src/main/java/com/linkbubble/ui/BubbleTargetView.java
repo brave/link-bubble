@@ -41,8 +41,6 @@ public class BubbleTargetView extends FrameLayout {
     private int mMaxOffsetY;
     private int mTractorOffsetX;
     private int mTractorOffsetY;
-    private float mButtonWidth;
-    private float mButtonHeight;
     private float mSnapWidth;
     private float mSnapHeight;
     private Circle mSnapCircle;
@@ -103,7 +101,7 @@ public class BubbleTargetView extends FrameLayout {
     }
 
     protected float getRadius() {
-        Drawable defaultDrawable = getContext().getResources().getDrawable(R.drawable.target_default);
+        Drawable defaultDrawable = getContext().getResources().getDrawable(R.drawable.target_plate);
         return defaultDrawable.getIntrinsicWidth() * 0.5f;
     }
 
@@ -173,18 +171,6 @@ public class BubbleTargetView extends FrameLayout {
         }
 
         if (d != null) {
-
-            if (d instanceof BitmapDrawable) {
-                Bitmap bm = ((BitmapDrawable)d).getBitmap();
-                mButtonWidth = bm.getWidth();
-                mButtonHeight = bm.getHeight();
-            } else {
-                mButtonWidth = d.getIntrinsicWidth();
-                mButtonHeight = d.getIntrinsicHeight();
-            }
-            Util.Assert(mButtonWidth > 0, "mButtonWidth:" + mButtonWidth);
-            Util.Assert(mButtonHeight > 0, "mButtonHeight:" + mButtonHeight);
-
             mImage.setImageDrawable(d);
         }
     }
@@ -208,18 +194,9 @@ public class BubbleTargetView extends FrameLayout {
 
         registerForBus();
 
-        if (d instanceof BitmapDrawable) {
-            Bitmap bm = ((BitmapDrawable)d).getBitmap();
-            mButtonWidth = bm.getWidth();
-            mButtonHeight = bm.getHeight();
-        } else {
-            mButtonWidth = d.getIntrinsicWidth();
-            mButtonHeight = d.getIntrinsicHeight();
+        if (d != null && mImage != null) {
+            mImage.setImageDrawable(d);
         }
-        Util.Assert(mButtonWidth > 0, "mButtonWidth:" + mButtonWidth);
-        Util.Assert(mButtonHeight > 0, "mButtonHeight:" + mButtonHeight);
-
-        mImage.setImageDrawable(d);
 
         int bubbleIconSize = getResources().getDimensionPixelSize(R.dimen.bubble_icon_size);
         mSnapWidth = bubbleIconSize;

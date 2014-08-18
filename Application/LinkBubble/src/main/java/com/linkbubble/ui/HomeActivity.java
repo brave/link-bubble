@@ -12,6 +12,9 @@ import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnticipateOvershootInterpolator;
@@ -51,11 +54,9 @@ public class HomeActivity extends Activity {
 
     View mContentView;
     View mBackgroundView;
-    View mTopButtonsContainerView;
-    TrialTimeView mTrialTimeView;
+    TextView mTrialTimeTextView;
+    View mActionButtonContainer;
     Button mActionButtonView;
-    View mHistoryCircleButtonView;
-    View mSettingsCircleButtonView;
     FlipView mStatsFlipView;
     View mTimeSavedPerLinkContainerView;
     CondensedTextView mTimeSavedPerLinkTextView;
@@ -76,12 +77,10 @@ public class HomeActivity extends Activity {
 
         mBackgroundView = findViewById(R.id.background);
         mContentView = findViewById(R.id.content);
-        mTopButtonsContainerView = findViewById(R.id.top_buttons_container);
-        mHistoryCircleButtonView = findViewById(R.id.history_circle);
-        mSettingsCircleButtonView = findViewById(R.id.settings_circle);
+        mActionButtonContainer = findViewById(R.id.action_button_container);
         mActionButtonView = (Button)findViewById(R.id.big_white_button);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
-        mTrialTimeView = (TrialTimeView) findViewById(R.id.trial_time_view);
+        mTrialTimeTextView = (TextView) findViewById(R.id.trial_time);
         mTimeSavedPerLinkContainerView = mStatsFlipView.getDefaultView();
         mTimeSavedPerLinkTextView = (CondensedTextView) mTimeSavedPerLinkContainerView.findViewById(R.id.time_per_link);
         mTimeSavedPerLinkTextView.setText("");
@@ -180,21 +179,38 @@ public class HomeActivity extends Activity {
             }
         });
 
-        mHistoryCircleButtonView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v, true);
-            }
-        });
-
-        mSettingsCircleButtonView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, SettingsActivity.class), v, true);
-            }
-        });
-
         MainApplication.registerForBus(this, this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        getMenuInflater().inflate(R.menu.activity_home, menu);
+        if (DRM.isLicensed()) {
+            menu.removeItem(R.id.action_history);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home: {
+                return true;
+            }
+
+            case R.id.action_settings:
+                startActivity(new Intent(HomeActivity.this, SettingsActivity.class), item.getActionView(), true);
+                return true;
+
+            case R.id.action_history:
+                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), item.getActionView(), true);
+                return true;
+        }
+
+        return false;
     }
 
     private void setInfo(Account[] accounts, ParseObject parseObject) {
@@ -293,7 +309,6 @@ public class HomeActivity extends Activity {
     private void configureForDrmState() {
         if (DRM.isLicensed()) {
             mActionButtonView.setText(R.string.history);
-            mHistoryCircleButtonView.setVisibility(View.GONE);
         } else {
             mActionButtonView.setText(R.string.action_upgrade_to_pro);
         }
@@ -361,13 +376,9 @@ public class HomeActivity extends Activity {
                 .setInterpolator(new AnticipateOvershootInterpolator())
                 .start();
 
-        mActionButtonView.setAlpha(0f);
-        mActionButtonView.setVisibility(View.VISIBLE);
-        mActionButtonView.animate().alpha(1f).setDuration(250).setStartDelay(750).start();
-
-        mTopButtonsContainerView.setAlpha(0f);
-        mTopButtonsContainerView.setVisibility(View.VISIBLE);
-        mTopButtonsContainerView.animate().alpha(1f).setDuration(250).setStartDelay(750).start();
+        mActionButtonContainer.setAlpha(0f);
+        mActionButtonContainer.setVisibility(View.VISIBLE);
+        mActionButtonContainer.animate().alpha(1f).setDuration(250).setStartDelay(750).start();
     }
 
     private void updateLinkLoadTimeStats() {
@@ -427,19 +438,32 @@ public class HomeActivity extends Activity {
     }
 
     void updateTimeTrialRemaining() {
-        String msg = "";
+        String message = null;
         long trialTimeRemaining = MainApplication.getTrialTimeRemaining();
+
         if (trialTimeRemaining > -1) {
             final long minute = 60 * 1000;
             final long hour = 60 * minute;
             long hoursLeft = trialTimeRemaining / hour;
             long minutesLeft = (trialTimeRemaining - (hour * hoursLeft))/ minute;
-            msg = hoursLeft + " hours, " + minutesLeft + " minutes, trialTimeRemaining:" + trialTimeRemaining;
-            mTrialTimeView.setProgress(1.f - (float)trialTimeRemaining / (float)Constant.TRIAL_TIME);
-        }
-        Log.d("Trial", "timeRemaining: " + msg);
+            String timeLeft = null;
+            if (hoursLeft > 0) {
+                timeLeft = hoursLeft + "H, " + minutesLeft + "M";
+            } else if (minutesLeft > -1) {
+                timeLeft = minutesLeft + "M";
+            }
 
-        mTrialTimeView.setVisibility(MainApplication.isInTrialPeriod() && DRM.isLicensed() == false ? View.VISIBLE : View.GONE);
+            if (timeLeft != null) {
+                message = String.format(getResources().getString(R.string.trial_time_on_click), timeLeft);
+            }
+        }
+
+        if (message != null) {
+            mTrialTimeTextView.setText(message);
+            mTrialTimeTextView.setVisibility(View.VISIBLE);
+        } else {
+            mTrialTimeTextView.setVisibility(View.GONE);
+        }
     }
 
     @SuppressWarnings("unused")

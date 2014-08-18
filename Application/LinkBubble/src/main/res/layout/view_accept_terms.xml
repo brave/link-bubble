@@ -25,7 +25,7 @@
             android:layout_marginBottom="20dp"/>
 
         <Button
-            style="@style/BigWhiteButton"
+            style="@style/ActionButton"
             android:id="@+id/accept_terms_and_privacy_button"
             android:text="@android:string/ok"
             android:layout_gravity="center_horizontal|bottom"
