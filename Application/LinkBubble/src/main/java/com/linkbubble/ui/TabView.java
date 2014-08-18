@@ -56,7 +56,7 @@ public class TabView extends BubbleView {
                 URL previousUrl = mUrl;
                 mUrl = url;
 
-                showProgressBar(true, 0);
+                showProgressBar(0);
 
                 if (previousUrl != null && previousUrl.getHost().equals(mUrl.getHost()) && mFaviconLoadId == Favicons.LOADED) {
                     setDefaultFavicon = false;
@@ -74,7 +74,7 @@ public class TabView extends BubbleView {
 
             @Override
             public void onProgressChanged(int progress) {
-                showProgressBar(true, progress);
+                showProgressBar(progress);
             }
 
             @Override
