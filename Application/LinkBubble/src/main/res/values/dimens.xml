@@ -68,4 +68,6 @@
 
     <dimen name="upgrade_to_pro_dialog_padding">8dp</dimen>
 
+    <dimen name="default_padding">16dp</dimen>
+
 </resources>
