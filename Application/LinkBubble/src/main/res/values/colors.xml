@@ -2,7 +2,8 @@
 <resources>
     <color name="color_primary">#663399</color>
     <color name="color_primary_dark">#402060</color>
-    <color name="color_highlight">#669933</color>
+    <color name="color_highlight">#339933</color>
+    <color name="color_highlight_2">#999933</color>
     <color name="text_color_primary">#fff</color>
     <color name="window_background">#fff</color>
     <color name="color_neutral">#666666</color>
@@ -10,8 +11,10 @@
     <color name="action_picker_selected_color">#E2E2E2</color>
     <color name="request_location_box_color">#ffefe4c6</color>
 
-    <color name="action_button_pressed">#406020</color>
+    <color name="action_button_pressed">#206020</color>
     <color name="action_button_normal">@color/color_highlight</color>
+
+    <drawable name="color_highlight_2">@color/color_highlight_2</drawable>
 
 </resources>
 
