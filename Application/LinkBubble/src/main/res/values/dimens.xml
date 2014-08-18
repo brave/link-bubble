@@ -51,8 +51,9 @@
     <dimen name="bubble_target_icon_size">40dp</dimen>
     <dimen name="bubble_target_y">24dp</dimen>
     <dimen name="close_bubble_target_y">31dp</dimen>
-    <dimen name="close_tab_text_circle_size">66dp</dimen>
-    <dimen name="close_tab_target_size">92dp</dimen>
+    <dimen name="close_tab_icon_size">65dp</dimen>
+    <dimen name="close_tab_text_circle_size">63dp</dimen>
+    <dimen name="close_tab_target_size">100dp</dimen>
     <dimen name="close_bubble_target_x_offset">20dp</dimen>
     <dimen name="close_bubble_target_tractor_offset_x">200dp</dimen>
     <dimen name="consume_bubble_target_default_x">50dp</dimen>
