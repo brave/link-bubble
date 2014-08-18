@@ -11,14 +11,14 @@
         android:id="@+id/close_all_view"
         android:layout_width="@dimen/close_tab_target_size"
         android:layout_height="@dimen/close_tab_target_size"
-        android:background="@drawable/target_default"/>
+        android:background="@drawable/target_plate"/>
 
     <ImageView
         android:layout_width="@dimen/bubble_icon_size"
         android:layout_height="@dimen/bubble_icon_size"
         android:layout_gravity="center"
         android:scaleType="centerInside"
-        android:background="@drawable/target_default"
+        android:background="@drawable/target_plate"
         tools:ignore="ContentDescription"/>
 
     <ImageView
