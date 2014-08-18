@@ -15,6 +15,11 @@
         android:alpha="0"
         />
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@drawable/action_bar_home_shadow"/>
+
     <com.linkbubble.ui.TrialTimeView
         android:id="@+id/trial_time_view"
         android:visibility="gone"
