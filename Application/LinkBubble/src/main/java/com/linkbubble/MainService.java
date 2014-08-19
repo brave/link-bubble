@@ -96,7 +96,7 @@ public class MainService extends Service {
 
         mRestoreComplete = false;
 
-        setTheme(R.style.MainServiceTheme);
+        setTheme(Settings.get().useDarkTheme() ? R.style.MainServiceThemeDark : R.style.MainServiceThemeLight);
 
         super.onCreate();
         CrashTracking.init(this);

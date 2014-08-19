@@ -88,7 +88,20 @@
 
     <style name="ContentTheme" parent="ContentThemeBase"/>
 
-    <style name="MainServiceTheme" parent="@android:style/Theme.Holo.Light">
+    <style name="MainServiceThemeLight" parent="@android:style/Theme.Holo.Light">
+        <item name="android:popupMenuStyle">@style/popupMenuStyleLight</item>
+    </style>
+
+    <style name="MainServiceThemeDark" parent="@android:style/Theme.Holo">
+        <item name="android:popupMenuStyle">@style/popupMenuStyleDark</item>
+    </style>
+
+    <style name="popupMenuStyleLight" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@drawable/dropdown_background_light</item>
+    </style>
+
+    <style name="popupMenuStyleDark" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@drawable/dropdown_background_dark</item>
     </style>
 
     <style name="ActionBarStyle.Translucent" parent="@android:Widget.ActionBar">

@@ -275,14 +275,22 @@ public class ContentView extends FrameLayout {
             mAppPickersUrls.add(urlAsString);
         }
 
+        boolean darkTheme = Settings.get().useDarkTheme();
+
         mToolbarLayout = (LinearLayout) findViewById(R.id.content_toolbar);
+        mToolbarLayout.setBackgroundColor(Settings.get().getThemedContentViewColor());
         mTitleTextView = (CondensedTextView) findViewById(R.id.title_text);
+        mTitleTextView.setTextColor(Settings.get().getThemedTextColor());
         mUrlTextView = (CondensedTextView) findViewById(R.id.url_text);
+        mUrlTextView.setTextColor(Settings.get().getThemedTextColor());
 
         findViewById(R.id.content_text_container).setOnTouchListener(mOnTextContainerTouchListener);
 
+        findViewById(R.id.caret).setBackground(getResources().getDrawable(darkTheme ? R.drawable.content_view_caret_dark : R.drawable.content_view_caret_light));
+
         mShareButton = (ContentViewButton)findViewById(R.id.share_button);
-        mShareButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_share));
+        mShareButton.setImageDrawable(
+                getResources().getDrawable(darkTheme ? R.drawable.ic_action_share_white : R.drawable.ic_action_share));
         mShareButton.setOnClickListener(mOnShareButtonClickListener);
 
         mOpenInAppButton = (OpenInAppButton)findViewById(R.id.open_in_app_button);
@@ -292,7 +300,8 @@ public class ContentView extends FrameLayout {
         mOpenEmbedButton.setOnOpenEmbedClickListener(mOnOpenEmbedButtonClickListener);
 
         mReloadButton = (ContentViewButton)findViewById(R.id.reload_button);
-        mReloadButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_reload));
+        mReloadButton.setImageDrawable(
+                getResources().getDrawable(darkTheme ? R.drawable.ic_action_reload_white : R.drawable.ic_action_reload));
         mReloadButton.setOnClickListener(mOnReloadButtonClickListener);
 
         mArticleModeButton = (ArticleModeButton)findViewById(R.id.article_mode_button);
@@ -300,7 +309,8 @@ public class ContentView extends FrameLayout {
         mArticleModeButton.setOnClickListener(mOnArticleModeButtonClickListener);
 
         mOverflowButton = (ContentViewButton)mToolbarLayout.findViewById(R.id.overflow_button);
-        mOverflowButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_overflow_round));
+        mOverflowButton.setImageDrawable(
+                getResources().getDrawable(darkTheme ? R.drawable.ic_action_overflow_round_white : R.drawable.ic_action_overflow_round));
         mOverflowButton.setOnClickListener(mOnOverflowButtonClickListener);
 
         mRequestLocationShadow = findViewById(R.id.request_location_shadow);
@@ -1065,6 +1075,7 @@ public class ContentView extends FrameLayout {
                 }
             }
         });
+        listView.setBackgroundColor(Settings.get().getThemedContentViewColor());
 
         mLongPressAlertDialog = new AlertDialog.Builder(getContext()).create();
         mLongPressAlertDialog.setView(listView);
