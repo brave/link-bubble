@@ -1,6 +1,7 @@
 package com.linkbubble.ui;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -22,7 +23,9 @@ import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -53,6 +56,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.TreeMap;
+
+import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
 
 /**
@@ -228,6 +233,18 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                     return true;
                 }
             });
+        }
+
+        final Preference themePreference = findPreference("preference_theme");
+        themePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Util.showThemedDialog(getThemeDialog());
+                return true;
+            }
+        });
+        if (DRM.isLicensed() == false) {
+            showProBanner(themePreference);
         }
 
         final CheckBoxPreference okGooglePreference = (CheckBoxPreference)findPreference(Settings.KEY_OK_GOOGLE_PREFERENCE);
@@ -641,6 +658,114 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         if (mInterceptLinksFromPreference != null) {
             //mInterceptLinksFromPreference.setSummary(Settings.get().getInterceptLinksFromAppName());
         }
+    }
+
+    AlertDialog getThemeDialog() {
+        final String lightColor = getString(R.string.preference_theme_light_color);
+        final String lightNoColor = getString(R.string.preference_theme_light_no_color);
+        final String darkColor = getString(R.string.preference_theme_dark_color);
+        final String darkNoColor = getString(R.string.preference_theme_dark_no_color);
+
+        final ArrayList<String> items = new ArrayList<String>();
+        items.add(lightColor);
+        items.add(lightNoColor);
+        items.add(darkColor);
+        items.add(darkNoColor);
+
+        PreferenceThemeAdapter adapter = new PreferenceThemeAdapter(getActivity(),
+                R.layout.action_picker_item,
+                items.toArray(new String[0]));
+
+        final ListView listView = new ListView(getActivity());
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        listView.setAdapter(adapter);
+        for (int i = 0; i < items.size(); i++) {
+            //listView.setItemChecked(i, items.get(i).equals(clearFavicons) ? false : true);
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(listView);
+        builder.setIcon(R.drawable.ic_alert_icon);
+        builder.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+
+                boolean changed = true;
+                int count = listView.getCount();
+                for (int i = 0; i < count; i++) {
+                    if (listView.isItemChecked(i)) {
+                        String item = items.get(i);
+                        if (item.equals(lightColor)) {
+                        } else if (item.equals(lightNoColor)) {
+                        } else if (item.equals(darkColor)) {
+                        } else if (item.equals(darkNoColor)) {
+                        }
+                    }
+                }
+
+                if (changed) {
+                    boolean reloaded = false;
+
+                    if (MainController.get() != null) {
+                        reloaded = MainController.get().reloadAllTabs(getActivity());
+                    }
+
+                    //Toast.makeText(getActivity(), reloaded ? R.string.private_data_cleared_reloading_current : R.string.private_data_cleared,
+                    //        Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        builder.setTitle(R.string.preference_theme_title);
+
+        return builder.create();
+    }
+
+    private static class PreferenceThemeAdapter extends ArrayAdapter<String> {
+
+        Context mContext;
+        int mLayoutResourceId;
+
+        public PreferenceThemeAdapter(Context context, int layoutResourceId, String[] data) {
+            super(context, layoutResourceId, data);
+            mLayoutResourceId = layoutResourceId;
+            mContext = context;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            if (convertView==null) {
+                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(mLayoutResourceId, parent, false);
+            }
+
+            TextView label = (TextView) convertView.findViewById(R.id.label);
+            ImageView icon = (ImageView) convertView.findViewById(R.id.icon);
+
+            switch (position) {
+                case 0:
+                    label.setText(mContext.getString(R.string.preference_theme_light_color));
+                    icon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.preference_theme_light_color));
+                    break;
+                case 1:
+                    label.setText(mContext.getString(R.string.preference_theme_light_no_color));
+                    icon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.preference_theme_light_no_color));
+                    break;
+                case 2:
+                    label.setText(mContext.getString(R.string.preference_theme_dark_color));
+                    icon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.preference_theme_dark_color));
+                    break;
+                case 3:
+                    label.setText(mContext.getString(R.string.preference_theme_dark_no_color));
+                    icon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.preference_theme_dark_no_color));
+                    break;
+                default:
+                    break;
+            }
+            convertView.setTag(position);
+
+            return convertView;
+        }
+
     }
 
     AlertDialog getTextZoomDialog() {
