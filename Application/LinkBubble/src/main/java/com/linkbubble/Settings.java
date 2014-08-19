@@ -1162,6 +1162,10 @@ public class Settings {
     }
 
     public boolean useDarkTheme() {
+        return false;
+    }
+
+    public boolean useColoredProgressIndicator() {
         return true;
     }
 
