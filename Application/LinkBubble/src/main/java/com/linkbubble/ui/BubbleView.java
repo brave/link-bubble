@@ -36,7 +36,7 @@ public class BubbleView extends FrameLayout  {
 
     protected FaviconView mFavicon;
     protected int mFaviconLoadId;
-    private ProgressIndicator mProgressIndicator;
+    private ProgressIndicatorView mProgressIndicator;
     protected URL mUrl;
     private BubbleView mImitator;       //
     private OnApplyFaviconListener mOnApplyFaviconListener;
@@ -57,7 +57,7 @@ public class BubbleView extends FrameLayout  {
         mFavicon = (FaviconView) findViewById(R.id.favicon);
         mFavicon.setOnPaletteChangeListener(mOnPaletteChangeListener);
         mFavicon.mFavicons = MainApplication.sFavicons;
-        mProgressIndicator = (ProgressIndicator) findViewById(R.id.progressIndicator);
+        mProgressIndicator = (ProgressIndicatorView) findViewById(R.id.progressIndicator);
         showProgressBar(0);
     }
 
