@@ -537,13 +537,17 @@ public class Settings {
     }
 
     public Drawable getConsumeBubbleIcon(Constant.BubbleAction action) {
+        return getConsumeBubbleIcon(action, true);
+    }
+
+    public Drawable getConsumeBubbleIcon(Constant.BubbleAction action, boolean whiteShareIcon) {
         PackageManager packageManager = mContext.getPackageManager();
         try {
             String packageName = getConsumeBubblePackageName(action);
             String name = getConsumeBubbleActivityClassName(action);
             if (packageName != null && name != null) {
                 if (name.equals(Constant.SHARE_PICKER_NAME)) {
-                    return mContext.getResources().getDrawable(R.drawable.ic_action_share_white);
+                    return mContext.getResources().getDrawable(whiteShareIcon ? R.drawable.ic_action_share_white : R.drawable.ic_action_share);
                 }
                 ComponentName componentName = new ComponentName(packageName, name);
                 return packageManager.getActivityIcon(componentName);
