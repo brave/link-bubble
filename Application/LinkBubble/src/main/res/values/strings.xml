@@ -42,10 +42,13 @@
     <string name="upgrade_ok_google">Want to load Google Now by speaking \"OK, Google\"?</string>
     <string name="upgrade_article_mode">Want to view links in Reading Mode?</string>
     <string name="upgrade_article_mode_wear">Want to view links on Android Wear devices via Reading Mode?</string>
+    <string name="upgrade_theme">Want to use a different theme?</string>
     <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
         Load multiple tabs at once.\n •
-        Use \"OK, Google\" voice activation.\n •
+        Change theme.\n •
         Use Reading Mode.\n •
+        Android Wear support.\n •
+        Use \"OK, Google\" voice activation.\n •
         Support me as I develop this app :)
         </string>
 
@@ -186,7 +189,6 @@
 
     <string name="tampered_apk">Your copy of Link Bubble has been illegally modified and thus will not work reliably. Please reinstall from the Play Store.</string>
     <string name="upgrade_incentive_one_link">Link Bubble Pro is required to load more than one bubble at a time. Upgrade to Pro?</string>
-    <string name="upgrade_incentive_one_app">Link Bubble Pro is required to load links from more than one app. Upgrade to Pro?</string>
     <string name="valid_license_detected">Valid Link Bubble Pro license detected.\nThank you for supporting this project, and enjoy the app :)</string>
 
     <string name="bubble_link_copied_to_clipboard">Bubble link copied to clipboard.</string>
@@ -383,7 +385,7 @@
     <string name="pro_store_listing_description_features">
     Upgrades include:
     • Infinite number of tabs (free version is limited to just one tab).
-    • Load links from all apps on your device (free version intercepts links from just one app).
+    • Theme selection
     • Remove the upgrade incentives throughout the free version.
     • Support me so I get to make more of these apps :)
     </string>
