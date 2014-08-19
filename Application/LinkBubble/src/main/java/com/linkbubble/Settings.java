@@ -1165,7 +1165,10 @@ public class Settings {
     }
 
     public boolean getDarkThemeEnabled() {
-        return mSharedPreferences.getBoolean(PREFERENCE_THEME_DARK, false);
+        if (DRM.isLicensed()) {
+            return mSharedPreferences.getBoolean(PREFERENCE_THEME_DARK, false);
+        }
+        return false;
     }
 
     public void setDarkThemeEnabled(boolean value) {
@@ -1175,7 +1178,10 @@ public class Settings {
     }
 
     public boolean getColoredProgressIndicator() {
-        return mSharedPreferences.getBoolean(PREFERENCE_COLORED_PROGRESS_INDICATOR, true);
+        if (DRM.isLicensed()) {
+            return mSharedPreferences.getBoolean(PREFERENCE_COLORED_PROGRESS_INDICATOR, true);
+        }
+        return true;
     }
 
     public void setColoredProgressIndicator(boolean value) {
