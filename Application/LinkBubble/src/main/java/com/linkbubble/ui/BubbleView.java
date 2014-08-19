@@ -23,8 +23,6 @@ import org.mozilla.gecko.widget.FaviconView;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import fr.castorflex.android.smoothprogressbar.CircularProgressBar;
-
 public class BubbleView extends FrameLayout  {
 
     private static final String TAG = "BubbleView";
