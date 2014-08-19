@@ -14,7 +14,8 @@
     <color name="color_highlight_2">@color/moderate_yellow</color>
     <color name="text_color_primary">#fff</color>
     <color name="window_background">#fff</color>
-    <color name="color_neutral">#666666</color>
+    <color name="badge_text">#666</color>
+    <color name="color_progress_default">#999</color>
 
     <color name="action_picker_selected_color">#E2E2E2</color>
     <color name="request_location_box_color">#ffefe4c6</color>
