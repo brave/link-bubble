@@ -25,6 +25,6 @@ public class BubblePlateView extends ImageView {
             return;
         }
 
-        setImageDrawable(getResources().getDrawable(Settings.get().useDarkTheme() ? R.drawable.bubble_plate_dark : R.drawable.bubble_plate_light));
+        setImageDrawable(getResources().getDrawable(Settings.get().getDarkThemeEnabled() ? R.drawable.bubble_plate_dark : R.drawable.bubble_plate_light));
     }
 }

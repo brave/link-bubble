@@ -72,7 +72,7 @@ public class ProgressIndicatorDrawable extends Drawable {
     }
 
     public void setColor(Integer rgb) {
-        if (Settings.get().useColoredProgressIndicator() == false) {
+        if (Settings.get().getColoredProgressIndicator() == false) {
             rgb = Settings.get().getThemedDefaultProgressColor();
         }
 

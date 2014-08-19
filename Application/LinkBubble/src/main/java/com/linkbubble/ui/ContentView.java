@@ -12,7 +12,6 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
@@ -36,7 +35,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import com.linkbubble.BuildConfig;
-import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
@@ -275,7 +273,7 @@ public class ContentView extends FrameLayout {
             mAppPickersUrls.add(urlAsString);
         }
 
-        boolean darkTheme = Settings.get().useDarkTheme();
+        boolean darkTheme = Settings.get().getDarkThemeEnabled();
 
         mToolbarLayout = (LinearLayout) findViewById(R.id.content_toolbar);
         mToolbarLayout.setBackgroundColor(Settings.get().getThemedContentViewColor());
