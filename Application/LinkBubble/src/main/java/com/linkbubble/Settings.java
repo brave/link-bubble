@@ -68,6 +68,9 @@ public class Settings {
     public static final String KEY_ARTICLE_MODE_PREFERENCE = "preference_article_mode";
     public static final String KEY_ARTICLE_MODE_ON_WEAR_PREFERENCE = "preference_reading_mode_on_wear";
 
+    public static final String PREFERENCE_THEME_DARK = "preference_theme_dark";
+    public static final String PREFERENCE_COLORED_PROGRESS_INDICATOR = "preference_colored_progress_indicator";
+
     public static final String PREFERENCE_CURRENT_TABS = "preference_current_bubbles";
     public static final String PREFERENCE_DEFAULT_APPS = "preference_default_apps";
     public static final String PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT = "preference_google_accounts_redirect";
@@ -1161,30 +1164,42 @@ public class Settings {
         editor.commit();
     }
 
-    public boolean useDarkTheme() {
-        return false;
+    public boolean getDarkThemeEnabled() {
+        return mSharedPreferences.getBoolean(PREFERENCE_THEME_DARK, false);
     }
 
-    public boolean useColoredProgressIndicator() {
-        return true;
+    public void setDarkThemeEnabled(boolean value) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putBoolean(PREFERENCE_THEME_DARK, value);
+        editor.commit();
+    }
+
+    public boolean getColoredProgressIndicator() {
+        return mSharedPreferences.getBoolean(PREFERENCE_COLORED_PROGRESS_INDICATOR, true);
+    }
+
+    public void setColoredProgressIndicator(boolean value) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putBoolean(PREFERENCE_COLORED_PROGRESS_INDICATOR, value);
+        editor.commit();
     }
 
     public int getThemedDefaultProgressColor() {
-        if (useDarkTheme()) {
+        if (getDarkThemeEnabled()) {
             return mContext.getResources().getColor(R.color.color_progress_default_dark);
         }
         return mContext.getResources().getColor(R.color.color_progress_default_light);
     }
 
     public int getThemedContentViewColor() {
-        if(useDarkTheme()) {
+        if(getDarkThemeEnabled()) {
             return mContext.getResources().getColor(R.color.color_content_view_dark);
         }
         return mContext.getResources().getColor(R.color.color_content_view_light);
     }
 
     public int getThemedTextColor() {
-        if (useDarkTheme()) {
+        if (getDarkThemeEnabled()) {
             return mContext.getResources().getColor(R.color.color_text_dark);
         }
         return mContext.getResources().getColor(R.color.color_text_light);

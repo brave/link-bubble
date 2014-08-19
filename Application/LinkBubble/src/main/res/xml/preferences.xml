@@ -57,11 +57,10 @@
             android:title="@string/preference_right_consume_bubble_title"
             />
 
-        <!--
         <Preference
-            android:key="preference_double_tap"
-            android:title="@string/preference_double_tap_title"/>
-            -->
+            android:title="@string/preference_theme_title"
+            android:key="preference_theme"
+            />
 
         <Preference
             android:key="preference_ignore_links_from"
@@ -73,11 +72,6 @@
             android:title="@string/preference_more_title"
             android:summary="@string/preference_more_summary"
             >
-
-            <Preference
-                android:title="@string/preference_theme_title"
-                android:key="preference_theme"
-                />
 
             <CheckBoxPreference
                 android:key="preference_article_mode"

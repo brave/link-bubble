@@ -2,14 +2,8 @@ package com.linkbubble.ui;
 
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 
@@ -37,11 +31,11 @@ public class ArticleModeButton extends ContentViewButton {
     public void setState(State state) {
         switch (state) {
             case Article:
-                setImageDrawable(getResources().getDrawable(Settings.get().useDarkTheme() ? R.drawable.ic_action_list_white : R.drawable.ic_action_list));
+                setImageDrawable(getResources().getDrawable(Settings.get().getDarkThemeEnabled() ? R.drawable.ic_action_list_white : R.drawable.ic_action_list));
                 break;
 
             case Web:
-                setImageDrawable(getResources().getDrawable(Settings.get().useDarkTheme() ? R.drawable.ic_action_globe_white : R.drawable.ic_action_globe));
+                setImageDrawable(getResources().getDrawable(Settings.get().getDarkThemeEnabled() ? R.drawable.ic_action_globe_white : R.drawable.ic_action_globe));
                 break;
         }
 
