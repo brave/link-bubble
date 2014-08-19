@@ -24,13 +24,11 @@
         android:id="@+id/progressIndicator"
         android:layout_gravity="center"/>-->
 
-    <com.linkbubble.ui.ProgressIndicator
+    <com.linkbubble.ui.ProgressIndicatorView
         android:layout_width="@dimen/bubble_icon_size"
         android:layout_height="@dimen/bubble_icon_size"
         android:id="@+id/progressIndicator"
-        android:layout_gravity="center"
-        app:cpb_color="@color/color_neutral"
-        app:cpb_stroke_width="2dp"/>
+        android:layout_gravity="center"/>
 
     <org.mozilla.gecko.widget.FaviconView
         android:layout_width="@dimen/bubble_favicon_size"
