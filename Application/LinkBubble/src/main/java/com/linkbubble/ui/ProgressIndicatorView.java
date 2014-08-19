@@ -57,6 +57,11 @@ public class ProgressIndicatorView extends ImageView {
             return;
         }
 
+        if (mUrl == null || mUrl.equals(urlAsString) == false) {
+            // ensure color is set back to default when the url changes
+            mProgressDrawable.setColor(null);
+        }
+
         mUrl = urlAsString;
         mProgressDrawable.setProgress(progress);
     }
