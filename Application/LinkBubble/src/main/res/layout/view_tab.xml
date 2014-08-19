@@ -8,11 +8,10 @@
     android:layout_height="@dimen/bubble_size"
     >
 
-    <ImageView
+    <com.linkbubble.ui.BubblePlateView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/background"
-        android:src="@drawable/bubble_plate"
         android:scaleType="fitCenter"
         android:layout_gravity="center"
         tools:ignore="ContentDescription"/>
