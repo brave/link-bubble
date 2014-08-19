@@ -21,6 +21,7 @@
         <PreferenceScreen
             android:key="preference_default_apps"
             android:title="@string/preference_default_apps_title"
+            android:summary="@string/preference_default_apps_summary"
              >
 
             <Preference
