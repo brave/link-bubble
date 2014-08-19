@@ -7,7 +7,6 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.view.View;
 
 public class ProgressIndicatorDrawable extends Drawable {
 
@@ -15,11 +14,13 @@ public class ProgressIndicatorDrawable extends Drawable {
     private Paint mPaint;
 
     private float mBorderWidth;
+    private float mWidth;
     private int mColor;
     private float mProgress;
 
-    ProgressIndicatorDrawable(int color, float borderWidth) {
+    ProgressIndicatorDrawable(int color, float width, float borderWidth) {
         mColor = color;
+        mWidth = width;
         mBorderWidth = borderWidth;
 
         mPaint = new Paint();
@@ -58,10 +59,14 @@ public class ProgressIndicatorDrawable extends Drawable {
     @Override
     protected void onBoundsChange(Rect bounds) {
         super.onBoundsChange(bounds);
-        mBounds.left = bounds.left + mBorderWidth / 2f + .5f;
-        mBounds.right = bounds.right - mBorderWidth / 2f - .5f;
-        mBounds.top = bounds.top + mBorderWidth / 2f + .5f;
-        mBounds.bottom = bounds.bottom - mBorderWidth / 2f - .5f;
+
+        float xOffset = ((float)bounds.right - mWidth)/2.f;
+        float yOffset = ((float)bounds.bottom - mWidth)/2.f;
+
+        mBounds.left = xOffset + mBorderWidth / 2f;
+        mBounds.right = xOffset + mWidth - mBorderWidth / 2f;
+        mBounds.top = yOffset + mBorderWidth / 2f;
+        mBounds.bottom = yOffset + mWidth - mBorderWidth / 2f;
     }
 
     public void setColor(Integer rgb) {
