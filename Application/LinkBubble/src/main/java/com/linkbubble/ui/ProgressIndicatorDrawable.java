@@ -7,6 +7,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import com.linkbubble.Settings;
 
@@ -72,9 +73,10 @@ public class ProgressIndicatorDrawable extends Drawable {
     }
 
     public void setColor(Integer rgb) {
-        if (Settings.get().getColoredProgressIndicator() == false) {
+        if (rgb == null || Settings.get().getColoredProgressIndicator() == false) {
             rgb = Settings.get().getThemedDefaultProgressColor();
         }
+        Log.d("blerg", "setColor():" + rgb);
 
         mColor = rgb;
         mPaint.setColor(rgb);
