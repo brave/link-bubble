@@ -1160,4 +1160,29 @@ public class Settings {
         editor.putLong(LAST_FLUSH_WEBVIEW_CACHE_TIME, System.currentTimeMillis());
         editor.commit();
     }
+
+    public boolean useDarkTheme() {
+        return true;
+    }
+
+    public int getThemedDefaultProgressColor() {
+        if (useDarkTheme()) {
+            return mContext.getResources().getColor(R.color.color_progress_default_dark);
+        }
+        return mContext.getResources().getColor(R.color.color_progress_default_light);
+    }
+
+    public int getThemedContentViewColor() {
+        if(useDarkTheme()) {
+            return mContext.getResources().getColor(R.color.color_content_view_dark);
+        }
+        return mContext.getResources().getColor(R.color.color_content_view_light);
+    }
+
+    public int getThemedTextColor() {
+        if (useDarkTheme()) {
+            return mContext.getResources().getColor(R.color.color_text_dark);
+        }
+        return mContext.getResources().getColor(R.color.color_text_light);
+    }
 }

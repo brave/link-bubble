@@ -307,7 +307,7 @@ public class BubbleView extends FrameLayout  {
                     if (item != null) {
                         mProgressIndicator.setColor(item.getRgb());
                     } else {
-                        mProgressIndicator.setColor(getResources().getColor(R.color.color_progress_default));
+                        mProgressIndicator.setColor(Settings.get().getThemedDefaultProgressColor());
                     }
                 }
             }

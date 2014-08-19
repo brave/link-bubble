@@ -15,7 +15,7 @@
         android:id="@+id/content_toolbar"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:background="@drawable/toolbar"
+        android:background="@color/color_content_view_light"
         android:layout_height="@dimen/toolbar_height"
         android:layout_marginTop="@dimen/toolbar_header">
 
@@ -173,7 +173,7 @@
     <ImageView
         android:layout_width="12dp"
         android:layout_height="@dimen/toolbar_header"
-        android:background="@drawable/content_view_caret"
+        android:id="@+id/caret"
         android:layout_gravity="center_horizontal"
         tools:ignore="ContentDescription"/>
 
