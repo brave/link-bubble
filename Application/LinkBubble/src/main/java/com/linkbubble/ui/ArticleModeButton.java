@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.linkbubble.R;
+import com.linkbubble.Settings;
 
 public class ArticleModeButton extends ContentViewButton {
 
@@ -36,11 +37,11 @@ public class ArticleModeButton extends ContentViewButton {
     public void setState(State state) {
         switch (state) {
             case Article:
-                setImageDrawable(getResources().getDrawable(R.drawable.ic_action_list));
+                setImageDrawable(getResources().getDrawable(Settings.get().useDarkTheme() ? R.drawable.ic_action_list_white : R.drawable.ic_action_list));
                 break;
 
             case Web:
-                setImageDrawable(getResources().getDrawable(R.drawable.ic_action_globe));
+                setImageDrawable(getResources().getDrawable(Settings.get().useDarkTheme() ? R.drawable.ic_action_globe_white : R.drawable.ic_action_globe));
                 break;
         }
 

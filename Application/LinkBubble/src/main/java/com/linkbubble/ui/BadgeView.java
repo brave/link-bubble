@@ -8,6 +8,8 @@ import android.widget.TextView;
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.MainController;
+import com.linkbubble.R;
+import com.linkbubble.Settings;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.util.ScaleUpAnimHelper;
 
@@ -29,6 +31,14 @@ public class BadgeView extends TextView {
 
     public BadgeView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
+        if (isInEditMode()) {
+            setTextColor(R.color.color_text_light);
+            setBackground(getResources().getDrawable(R.drawable.badge_plate));
+        }
+
+        setBackground(getResources().getDrawable(Settings.get().useDarkTheme() ? R.drawable.badge_plate_dark : R.drawable.badge_plate));
+        setTextColor(Settings.get().getThemedTextColor());
 
         mCount = 0;
         mAnimHelper = new ScaleUpAnimHelper(this, Constant.BUBBLE_MODE_ALPHA);
