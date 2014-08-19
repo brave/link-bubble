@@ -296,6 +296,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                         Settings.get().setConsumeBubble(Constant.BubbleAction.ConsumeLeft, actionItem.mType, actionItem.getLabel(),
                                 actionItem.mPackageName, actionItem.mActivityClassName);
                         leftConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeLeft));
+                        leftConsumeBubblePreference.setIcon(Settings.get().getConsumeBubbleIcon(Constant.BubbleAction.ConsumeLeft, false));
                     }
                 });
                 Util.showThemedDialog(alertDialog);
@@ -303,6 +304,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             }
         });
         leftConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeLeft));
+        leftConsumeBubblePreference.setIcon(Settings.get().getConsumeBubbleIcon(Constant.BubbleAction.ConsumeLeft, false));
 
         final Preference rightConsumeBubblePreference = findPreference(Settings.PREFERENCE_RIGHT_CONSUME_BUBBLE);
         rightConsumeBubblePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -314,6 +316,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                         Settings.get().setConsumeBubble(Constant.BubbleAction.ConsumeRight, actionItem.mType, actionItem.getLabel(),
                                 actionItem.mPackageName, actionItem.mActivityClassName);
                         rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeRight));
+                        rightConsumeBubblePreference.setIcon(Settings.get().getConsumeBubbleIcon(Constant.BubbleAction.ConsumeRight, false));
                     }
                 });
                 Util.showThemedDialog(alertDialog);
@@ -321,6 +324,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             }
         });
         rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeRight));
+        rightConsumeBubblePreference.setIcon(Settings.get().getConsumeBubbleIcon(Constant.BubbleAction.ConsumeRight, false));
 
         /*
         final Preference linkDoubleTapPreference = findPreference(Settings.PREFERENCE_LINK_DOUBLE_TAP);
@@ -342,6 +346,9 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         linkDoubleTapPreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.LinkDoubleTap));
         */
 
+        final PreferenceScreen defaultAppsPreference = (PreferenceScreen) findPreference(Settings.PREFERENCE_DEFAULT_APPS);
+        defaultAppsPreference.setIcon(Settings.get().getDefaultBrowserIcon(getActivity()));
+
         Preference defaultBrowserPreference = findPreference(Settings.PREFERENCE_DEFAULT_BROWSER);
         defaultBrowserPreference.setSummary(Settings.get().getDefaultBrowserLabel());
         Drawable defaultBrowserIcon = Settings.get().getDefaultBrowserIcon(getActivity());
@@ -359,6 +366,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                         Drawable defaultBrowserIcon = Settings.get().getDefaultBrowserIcon(getActivity());
                         if (defaultBrowserIcon != null) {
                             preference.setIcon(defaultBrowserIcon);
+                            defaultAppsPreference.setIcon(defaultBrowserIcon);
                         }
                     }
                 });
@@ -673,14 +681,18 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         if (darkTheme) {
             if (color) {
                 mThemePreference.setSummary(R.string.preference_theme_dark_color);
+                mThemePreference.setIcon(R.drawable.preference_theme_dark_color);
             } else {
                 mThemePreference.setSummary(R.string.preference_theme_dark_no_color);
+                mThemePreference.setIcon(R.drawable.preference_theme_dark_no_color);
             }
         } else {
             if (color) {
                 mThemePreference.setSummary(R.string.preference_theme_light_color);
+                mThemePreference.setIcon(R.drawable.preference_theme_light_color);
             } else {
                 mThemePreference.setSummary(R.string.preference_theme_light_no_color);
+                mThemePreference.setIcon(R.drawable.preference_theme_light_no_color);
             }
         }
     }
