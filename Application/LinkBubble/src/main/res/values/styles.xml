@@ -89,7 +89,6 @@
     <style name="ContentTheme" parent="ContentThemeBase"/>
 
     <style name="MainServiceTheme" parent="@android:style/Theme.Holo.Light">
-        <item name="cpbStyle">@style/CircularProgressBar</item>
     </style>
 
     <style name="ActionBarStyle.Translucent" parent="@android:Widget.ActionBar">
