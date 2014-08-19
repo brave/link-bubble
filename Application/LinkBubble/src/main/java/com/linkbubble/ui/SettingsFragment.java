@@ -2,6 +2,7 @@ package com.linkbubble.ui;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -367,6 +368,17 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                         if (defaultBrowserIcon != null) {
                             preference.setIcon(defaultBrowserIcon);
                             defaultAppsPreference.setIcon(defaultBrowserIcon);
+
+                            // This is hideous, but going this route because the icon will not update no matter what I do
+                            Dialog dialog = defaultAppsPreference.getDialog();
+                            if (dialog != null) {
+                                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                    @Override
+                                    public void onDismiss(DialogInterface dialog) {
+                                        getActivity().finish();
+                                    }
+                                });
+                            }
                         }
                     }
                 });
