@@ -78,6 +78,7 @@
     <string name="preference_category_fallback_browser">Default fallback browser</string>
     <string name="preference_category_other_apps">Other apps</string>
     <string name="preference_default_apps_title">Default apps</string>
+    <string name="preference_default_apps_summary">Fallback browser, url-specific apps</string>
     <string name="preference_default_apps_notice_summary">Used when one or more non-browser apps on your system can handle a
                     URL.\n\nTap to remove a default.</string>
     <string name="preference_default_apps_notice_no_defaults_summary">Used when one or more non-browser apps on your device can handle a URL,
