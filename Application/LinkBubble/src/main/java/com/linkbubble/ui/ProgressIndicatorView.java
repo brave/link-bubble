@@ -29,6 +29,7 @@ public class ProgressIndicatorView extends ImageView {
         }
 
         mProgressDrawable = new ProgressIndicatorDrawable(getResources().getColor(R.color.color_neutral),
+                getResources().getDimensionPixelSize(R.dimen.bubble_progress_size),
                 getResources().getDimensionPixelSize(R.dimen.bubble_progress_stroke));
         setImageDrawable(mProgressDrawable);
     }
