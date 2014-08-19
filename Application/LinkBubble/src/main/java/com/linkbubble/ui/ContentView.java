@@ -248,7 +248,7 @@ public class ContentView extends FrameLayout {
                 //}
             }
         });
-        alertDialog.show();
+        Util.showThemedDialog(alertDialog);
     }
 
     @SuppressLint("SetJavaScriptEnabled")
