@@ -715,6 +715,14 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         builder.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 if (adapter.mSelectedIndex != startSelectedIndex) {
+                    if (DRM.isLicensed() == false) {
+                        upsellPro(R.string.upgrade_theme);
+                        Settings.get().setDarkThemeEnabled(false);
+                        Settings.get().setColoredProgressIndicator(true);
+                        updateThemeSummary();
+                        return;
+                    }
+
                     switch (adapter.mSelectedIndex) {
                         case THEME_LIGHT_COLOR:
                             Settings.get().setDarkThemeEnabled(false);
