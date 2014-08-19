@@ -7,13 +7,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-import android.util.Log;
 import android.webkit.WebIconDatabase;
 
 import com.linkbubble.ui.NotificationCloseAllActivity;
@@ -96,7 +93,7 @@ public class MainService extends Service {
 
         mRestoreComplete = false;
 
-        setTheme(Settings.get().useDarkTheme() ? R.style.MainServiceThemeDark : R.style.MainServiceThemeLight);
+        setTheme(Settings.get().getDarkThemeEnabled() ? R.style.MainServiceThemeDark : R.style.MainServiceThemeLight);
 
         super.onCreate();
         CrashTracking.init(this);

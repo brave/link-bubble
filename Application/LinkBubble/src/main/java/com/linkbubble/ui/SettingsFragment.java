@@ -1,7 +1,6 @@
 package com.linkbubble.ui;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -31,9 +30,7 @@ import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.WebViewDatabase;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -62,8 +59,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TreeMap;
 
-import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
-
 
 /**
  * Created by gw on 11/09/13.
@@ -72,6 +67,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
     private Preference mInterceptLinksFromPreference;
     private Preference mWebViewTextZoomPreference;
+    private Preference mThemePreference;
     private ListPreference mUserAgentPreference;
 
     public static class IncognitoModeChangedEvent {
@@ -240,16 +236,17 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             });
         }
 
-        final Preference themePreference = findPreference("preference_theme");
-        themePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        mThemePreference = findPreference("preference_theme");
+        mThemePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 Util.showThemedDialog(getThemeDialog());
                 return true;
             }
         });
+        updateThemeSummary();
         if (DRM.isLicensed() == false) {
-            showProBanner(themePreference);
+            showProBanner(mThemePreference);
         }
 
         final CheckBoxPreference okGooglePreference = (CheckBoxPreference)findPreference(Settings.KEY_OK_GOOGLE_PREFERENCE);
@@ -665,6 +662,29 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         }
     }
 
+    private static final int THEME_LIGHT_COLOR = 0;
+    private static final int THEME_LIGHT_NO_COLOR = 1;
+    private static final int THEME_DARK_COLOR = 2;
+    private static final int THEME_DARK_NO_COLOR = 3;
+
+    void updateThemeSummary() {
+        boolean darkTheme = Settings.get().getDarkThemeEnabled();
+        boolean color = Settings.get().getColoredProgressIndicator();
+        if (darkTheme) {
+            if (color) {
+                mThemePreference.setSummary(R.string.preference_theme_dark_color);
+            } else {
+                mThemePreference.setSummary(R.string.preference_theme_dark_no_color);
+            }
+        } else {
+            if (color) {
+                mThemePreference.setSummary(R.string.preference_theme_light_color);
+            } else {
+                mThemePreference.setSummary(R.string.preference_theme_light_no_color);
+            }
+        }
+    }
+
     AlertDialog getThemeDialog() {
         final String lightColor = getString(R.string.preference_theme_light_color);
         final String lightNoColor = getString(R.string.preference_theme_light_no_color);
@@ -677,8 +697,13 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         items.add(darkColor);
         items.add(darkNoColor);
 
-        PreferenceThemeAdapter adapter = new PreferenceThemeAdapter(getActivity(),
+        boolean darkTheme = Settings.get().getDarkThemeEnabled();
+        boolean color = Settings.get().getColoredProgressIndicator();
+        final int startSelectedIndex = darkTheme ? (color ? THEME_DARK_COLOR : 3) : (color ? THEME_LIGHT_COLOR : THEME_LIGHT_NO_COLOR);
+
+        final PreferenceThemeAdapter adapter = new PreferenceThemeAdapter(getActivity(),
                 R.layout.view_preference_theme_item,
+                startSelectedIndex,
                 items.toArray(new String[0]));
 
         final ListView listView = new ListView(getActivity());
@@ -689,23 +714,29 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         builder.setIcon(R.drawable.ic_alert_icon);
         builder.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-
-                boolean changed = true;
-                int count = listView.getCount();
-                for (int i = 0; i < count; i++) {
-                    if (listView.isItemChecked(i)) {
-                        String item = items.get(i);
-                        if (item.equals(lightColor)) {
-                        } else if (item.equals(lightNoColor)) {
-                        } else if (item.equals(darkColor)) {
-                        } else if (item.equals(darkNoColor)) {
-                        }
+                if (adapter.mSelectedIndex != startSelectedIndex) {
+                    switch (adapter.mSelectedIndex) {
+                        case THEME_LIGHT_COLOR:
+                            Settings.get().setDarkThemeEnabled(false);
+                            Settings.get().setColoredProgressIndicator(true);
+                            break;
+                        case THEME_LIGHT_NO_COLOR:
+                            Settings.get().setDarkThemeEnabled(false);
+                            Settings.get().setColoredProgressIndicator(false);
+                            break;
+                        case THEME_DARK_COLOR:
+                            Settings.get().setDarkThemeEnabled(true);
+                            Settings.get().setColoredProgressIndicator(true);
+                            break;
+                        case THEME_DARK_NO_COLOR:
+                            Settings.get().setDarkThemeEnabled(true);
+                            Settings.get().setColoredProgressIndicator(false);
+                            break;
                     }
-                }
 
-                if (changed) {
+                    updateThemeSummary();
+
                     boolean reloaded = false;
-
                     if (MainController.get() != null) {
                         reloaded = MainController.get().reloadAllTabs(getActivity());
                     }
@@ -726,11 +757,11 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         int mLayoutResourceId;
         int mSelectedIndex;
 
-        public PreferenceThemeAdapter(Context context, int layoutResourceId, String[] data) {
+        public PreferenceThemeAdapter(Context context, int layoutResourceId, int initialSelectedIndex, String[] data) {
             super(context, layoutResourceId, data);
             mLayoutResourceId = layoutResourceId;
             mContext = context;
-            mSelectedIndex = 0;
+            mSelectedIndex = initialSelectedIndex;
         }
 
         @Override
@@ -746,19 +777,19 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             final RadioButton radioButton = (RadioButton) convertView.findViewById(R.id.radio_button);
 
             switch (position) {
-                case 0:
+                case THEME_LIGHT_COLOR:
                     label.setText(mContext.getString(R.string.preference_theme_light_color));
                     icon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.preference_theme_light_color));
                     break;
-                case 1:
+                case THEME_LIGHT_NO_COLOR:
                     label.setText(mContext.getString(R.string.preference_theme_light_no_color));
                     icon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.preference_theme_light_no_color));
                     break;
-                case 2:
+                case THEME_DARK_COLOR:
                     label.setText(mContext.getString(R.string.preference_theme_dark_color));
                     icon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.preference_theme_dark_color));
                     break;
-                case 3:
+                case THEME_DARK_NO_COLOR:
                     label.setText(mContext.getString(R.string.preference_theme_dark_no_color));
                     icon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.preference_theme_dark_no_color));
                     break;

@@ -37,7 +37,7 @@ public class BadgeView extends TextView {
             setBackground(getResources().getDrawable(R.drawable.badge_plate));
         }
 
-        setBackground(getResources().getDrawable(Settings.get().useDarkTheme() ? R.drawable.badge_plate_dark : R.drawable.badge_plate));
+        setBackground(getResources().getDrawable(Settings.get().getDarkThemeEnabled() ? R.drawable.badge_plate_dark : R.drawable.badge_plate));
         setTextColor(Settings.get().getThemedTextColor());
 
         mCount = 0;
