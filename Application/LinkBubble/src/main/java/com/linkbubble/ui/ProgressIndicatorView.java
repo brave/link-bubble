@@ -20,7 +20,7 @@ public class ProgressIndicatorView extends ImageView {
     }
 
     public ProgressIndicatorView(Context context, AttributeSet attrs) {
-        this(context, attrs, R.attr.cpbStyle);
+        this(context, attrs, 0);
     }
 
     public ProgressIndicatorView(Context context, AttributeSet attrs, int defStyle) {
