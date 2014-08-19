@@ -24,15 +24,20 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.WebViewDatabase;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckedTextView;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -673,15 +678,11 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         items.add(darkNoColor);
 
         PreferenceThemeAdapter adapter = new PreferenceThemeAdapter(getActivity(),
-                R.layout.action_picker_item,
+                R.layout.view_preference_theme_item,
                 items.toArray(new String[0]));
 
         final ListView listView = new ListView(getActivity());
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         listView.setAdapter(adapter);
-        for (int i = 0; i < items.size(); i++) {
-            //listView.setItemChecked(i, items.get(i).equals(clearFavicons) ? false : true);
-        }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(listView);
@@ -723,15 +724,17 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
         Context mContext;
         int mLayoutResourceId;
+        int mSelectedIndex;
 
         public PreferenceThemeAdapter(Context context, int layoutResourceId, String[] data) {
             super(context, layoutResourceId, data);
             mLayoutResourceId = layoutResourceId;
             mContext = context;
+            mSelectedIndex = 0;
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
 
             if (convertView==null) {
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -740,6 +743,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
             TextView label = (TextView) convertView.findViewById(R.id.label);
             ImageView icon = (ImageView) convertView.findViewById(R.id.icon);
+            final RadioButton radioButton = (RadioButton) convertView.findViewById(R.id.radio_button);
 
             switch (position) {
                 case 0:
@@ -762,7 +766,39 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                     break;
             }
             convertView.setTag(position);
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    radioButton.setChecked(true);
+                    mSelectedIndex = position;
+                    PreferenceThemeAdapter.this.notifyDataSetChanged();
+                }
+            });
+            convertView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    switch (event.getAction()) {
+                        // Pass event along to radio button so UI visually updates
+                        case MotionEvent.ACTION_DOWN:
+                        case MotionEvent.ACTION_UP: {
+                            radioButton.onTouchEvent(event);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
+            radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        mSelectedIndex = position;
+                        PreferenceThemeAdapter.this.notifyDataSetChanged();
+                    }
+                }
+            });
 
+            radioButton.setChecked(position == mSelectedIndex);
             return convertView;
         }
 
