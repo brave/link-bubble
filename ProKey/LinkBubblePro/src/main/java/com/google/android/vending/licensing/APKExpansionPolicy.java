@@ -3,7 +3,7 @@ package com.google.android.vending.licensing;
 
 /*
  * Copyright (C) 2012 The Android Open Source Project
- * Modifications copyright (C) 2012-2013 Saikoa / Itsana BVBA
+ * Modifications copyright (C) 2012-2014 Saikoa / Itsana BVBA
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
