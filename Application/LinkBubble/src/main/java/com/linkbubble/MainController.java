@@ -101,6 +101,10 @@ public class MainController implements Choreographer.FrameCallback {
 
     public static class HideContentEvent {};
 
+    public static class ScreenOnEvent {};
+    public static class ScreenOffEvent {};
+    public static class UserPresentEvent {};
+
     public static void addRootWindow(View v, WindowManager.LayoutParams lp) {
         MainController mc = get();
         if (!mc.mRootViews.contains(v)) {
@@ -164,6 +168,9 @@ public class MainController implements Choreographer.FrameCallback {
     private BeginExpandTransitionEvent mBeginExpandTransitionEvent = new BeginExpandTransitionEvent();
     private ExpandedActivity.MinimizeExpandedActivityEvent mMinimizeExpandedActivityEvent = new ExpandedActivity.MinimizeExpandedActivityEvent();
 
+    private UserPresentEvent mUserPresentEvent = new UserPresentEvent();
+    private ScreenOnEvent mScreenOnEvent = new ScreenOnEvent();
+    private ScreenOffEvent mScreenOffEvent = new ScreenOffEvent();
     private boolean mScreenOn = true;
 
     private static class OpenUrlInfo {
@@ -1123,12 +1130,20 @@ public class MainController implements Choreographer.FrameCallback {
         if (action.equals(Intent.ACTION_SCREEN_OFF)) {
             mScreenOn = false;
             setCanDisplay(false);
+            MainApplication.postEvent(mContext, mScreenOffEvent);
         } else if (action.equals(Intent.ACTION_SCREEN_ON)) {
             updateKeyguardLocked();
             mScreenOn = true;
+            MainApplication.postEvent(mContext, mScreenOnEvent);
         } else if (action.equals(Intent.ACTION_USER_PRESENT)) {
             setCanDisplay(mHiddenByUser ? false : true);
+            MainApplication.postEvent(mContext, mUserPresentEvent);
         }
+    }
+
+
+    public boolean isScreenOn() {
+        return mScreenOn;
     }
 
     public TabView getCurrentTab() {
