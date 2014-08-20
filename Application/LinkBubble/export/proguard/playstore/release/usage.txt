@@ -1789,6 +1789,36 @@ android.support.v4.widget.ViewDragHelper:
     908:927:protected boolean canScroll(android.view.View,boolean,int,int,int,int)
     1331:1337:public boolean isEdgeTouched(int)
     1351:1351:public boolean isEdgeTouched(int,int)
+android.support.v7.graphics.ColorCutQuantizer:
+    private static final int BLACK_FILTER
+    private static final int WHITE_FILTER
+    private static final int COMPONENT_RED
+    private static final int COMPONENT_GREEN
+    private static final int COMPONENT_BLUE
+android.support.v7.graphics.ColorUtils:
+    23:23:private ColorUtils()
+    29:29:static float calculateXyzLuma(int)
+    35:35:static float calculateContrast(int,int)
+android.support.v7.graphics.Palette:
+    private static final int CALCULATE_BITMAP_MIN_DIMENSION
+    private static final int DEFAULT_CALCULATE_NUMBER_COLORS
+    private static final float TARGET_DARK_LUMA
+    private static final float MAX_DARK_LUMA
+    private static final float MIN_LIGHT_LUMA
+    private static final float TARGET_LIGHT_LUMA
+    private static final float MIN_NORMAL_LUMA
+    private static final float TARGET_NORMAL_LUMA
+    private static final float MAX_NORMAL_LUMA
+    private static final float TARGET_MUTED_SATURATION
+    private static final float MAX_MUTED_SATURATION
+    private static final float TARGET_VIBRANT_SATURATION
+    private static final float MIN_VIBRANT_SATURATION
+    106:106:public static android.support.v7.graphics.Palette generate(android.graphics.Bitmap)
+    213:213:public java.util.List getPallete()
+    227:227:public android.support.v7.graphics.PaletteItem getLightVibrantColor()
+    234:234:public android.support.v7.graphics.PaletteItem getDarkVibrantColor()
+    248:248:public android.support.v7.graphics.PaletteItem getLightMutedColor()
+android.support.v7.palette.BuildConfig
 com.crashlytics.android.CrashTest
 com.crashlytics.android.Crashlytics:
     public static final java.lang.String TAG
@@ -4700,7 +4730,8 @@ com.linkbubble.MainController:
     private android.widget.TextView mTextView
     private static final int MAX_SAMPLE_COUNT
     private static final float MAX_VALID_TIME
-    1008:1009:public void switchToExpandedView()
+    1016:1017:public void switchToExpandedView()
+    1148:1148:public boolean isScreenOn()
 com.linkbubble.MainService:
     private static final java.lang.String BCAST_CONFIGCHANGED
 com.linkbubble.R$anim
@@ -4741,11 +4772,14 @@ com.linkbubble.Settings:
     public static final java.lang.String KEY_OK_GOOGLE_PREFERENCE
     public static final java.lang.String KEY_ARTICLE_MODE_PREFERENCE
     public static final java.lang.String KEY_ARTICLE_MODE_ON_WEAR_PREFERENCE
+    public static final java.lang.String PREFERENCE_THEME_DARK
+    public static final java.lang.String PREFERENCE_COLORED_PROGRESS_INDICATOR
     public static final java.lang.String PREFERENCE_CURRENT_TABS
     public static final java.lang.String PREFERENCE_DEFAULT_APPS
     public static final java.lang.String PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT
     public static final java.lang.String PREFERENCE_AUTO_ARTICLE_MODE
     public static final java.lang.String PREFERENCE_INCOGNITO_MODE
+    public static final java.lang.String PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE
     public static final java.lang.String PREFERENCE_WEBVIEW_TEXT_ZOOM
     public static final int PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN
     public static final int PREFERENCE_WEBVIEW_TEXT_ZOOM_DEFAULT
@@ -4768,10 +4802,12 @@ com.linkbubble.Settings:
     private static final java.lang.String LAST_APP_REDIRECT_KEY_TIME
     private static final java.lang.String LAST_APP_REDIRECT_KEY_URL
     private static final int MAX_LAST_APP_REDIRECT_COUNT
-    592:592:public java.util.List getIgnoreLinksFromPackageNames()
-    632:632:public boolean checkForYouTubeEmbeds()
+    609:609:public java.util.List getIgnoreLinksFromPackageNames()
+    687:687:public boolean checkForYouTubeEmbeds()
 com.linkbubble.articlerender.ArticleContent:
     private static final java.lang.String TAG
+com.linkbubble.articlerender.ArticleRenderer:
+    private static final java.lang.String BATTERY_SAVE_TAG
 com.linkbubble.db.DatabaseHelper:
     private static final java.lang.String TAG
     private static final int DATABASE_VERSION
@@ -4810,12 +4846,12 @@ com.linkbubble.ui.BubbleFlowView:
     private static final int SCROLL_FINISHED_CHECK_TIME
     357:357:public int getItemCount()
 com.linkbubble.ui.BubbleTargetView:
-    259:277:public void getOffsetDebugRegion(android.graphics.Rect)
+    236:254:public void getOffsetDebugRegion(android.graphics.Rect)
 com.linkbubble.ui.BubbleView:
     private static final java.lang.String TAG
     private static final boolean DEBUG
-    74:74:public android.graphics.drawable.Drawable getFavicon()
-    267:268:public void onProgressChanged(int)
+    77:77:public android.graphics.drawable.Drawable getFavicon()
+    269:270:public void onProgressChanged(int)
 com.linkbubble.ui.CanvasView:
     private android.graphics.Paint mTargetOffsetDebugPaint
     private android.graphics.Paint mTargetTractorDebugPaint
@@ -4868,18 +4904,23 @@ com.linkbubble.ui.OpenInAppButton:
     private static final float PERSPECTIVE_SHIFT_FACTOR
     private static final float PERSPECTIVE_SCALE_FACTOR
 com.linkbubble.ui.ProgressIndicator:
-    80:80:public int getMax()
-    89:89:public java.net.URL getUrl()
-com.linkbubble.ui.ProgressIndicator$ProgressArcView:
-    private static final float SWEEP_INC
-    private static final float START_INC
+    59:59:public int getMax()
+    68:68:public java.net.URL getUrl()
+    72:72:public int getProgress()
 com.linkbubble.ui.Prompt:
     public static final int LENGTH_SHORT
     public static final int LENGTH_LONG
 com.linkbubble.ui.SettingsFragment:
-    641:644:void updateInterceptLinksFromPreference()
+    private static final int THEME_LIGHT_COLOR
+    private static final int THEME_LIGHT_NO_COLOR
+    private static final int THEME_DARK_COLOR
+    private static final int THEME_DARK_NO_COLOR
+    692:695:void updateInterceptLinksFromPreference()
 com.linkbubble.ui.SettingsFragment$AppInfo
 com.linkbubble.ui.SettingsFragment$AppInfoComparator
+com.linkbubble.ui.ThemedListPreference:
+    public static final java.lang.String TAG
+    29:30:public ThemedListPreference(android.content.Context)
 com.linkbubble.util.Analytics:
     public static final java.lang.String GA_PROPERTY_ID
     private static final java.lang.String CATEGORY
@@ -4940,11 +4981,11 @@ com.linkbubble.util.Util:
     private static final int OUTCODE_RIGHT
     private static final int OUTCODE_BOTTOM
     private static final int OUTCODE_TOP
-    63:70:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
-    333:341:public static int randInt(int,int)
-    399:415:static android.graphics.Bitmap createIconBitmap(android.graphics.Bitmap,android.content.Context)
-    504:514:public static java.lang.String getDefaultLauncherPackage(android.content.pm.PackageManager)
-    537:542:public static void setLocale(android.content.Context,java.lang.String)
+    68:75:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
+    338:346:public static int randInt(int,int)
+    404:420:static android.graphics.Bitmap createIconBitmap(android.graphics.Bitmap,android.content.Context)
+    509:519:public static java.lang.String getDefaultLauncherPackage(android.content.pm.PackageManager)
+    542:547:public static void setLocale(android.content.Context,java.lang.String)
 com.linkbubble.webrender.DiffBotRenderer:
     private static final java.lang.String TAG
     private static final java.lang.String API_URL
@@ -4957,6 +4998,8 @@ com.linkbubble.webrender.DiffBotRenderer$Article$Image:
 com.linkbubble.webrender.WebRenderer:
     176:177:public void setUrl(java.net.URL)
     180:180:public com.linkbubble.webrender.WebRenderer$Mode getMode()
+com.linkbubble.webrender.WebViewRenderer:
+    private static final java.lang.String BATTERY_SAVE_TAG
 com.squareup.otto.AnnotatedHandlerFinder:
     154:156:private AnnotatedHandlerFinder()
 com.squareup.otto.Bus:
@@ -5536,7 +5579,7 @@ org.mozilla.gecko.util.ThreadUtils:
     151:156:public static void reduceGeckoPriority(long)
 org.mozilla.gecko.util.ThreadUtils$UiThreadBlockedException
 org.mozilla.gecko.widget.FaviconView:
-    297:297:public android.graphics.Bitmap getBitmap()
+    313:313:public android.graphics.Bitmap getBitmap()
 org.slf4j.IMarkerFactory
 org.slf4j.Logger:
     public static final java.lang.String ROOT_LOGGER_NAME
