@@ -99,9 +99,9 @@
     <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
     <string name="preference_webview_battery_save_title">Battery Save Mode (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Aggressive</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Pause the updating of web pages when Link Bubble is minimized. Pages in process of loading will finish loading before pausing.</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Pause the updating of web pages when Link Bubble is minimized.\nPages in the process of loading will finish loading before pausing.</string>
     <string name="preference_webview_battery_save_default_title">Default</string>
-    <string name="preference_webview_battery_save_default_summary">Pause the updating of web pages when the screen is off and resume when your device is unlocked.</string>
+    <string name="preference_webview_battery_save_default_summary">Pause the updating of web pages when the screen is off and resume when your device is unlocked.\nPages in the process of loading will finish loading before pausing.</string>
     <string name="preference_webview_battery_save_off_title">Off</string>
     <string name="preference_webview_battery_save_off_summary">Web pages are always active. Useful when streaming YouTube videos and the like.</string>
     <string name="preference_theme_title">Theme</string>
