@@ -178,6 +178,9 @@
 -keep class com.linkbubble.MainController$EndExpandTransitionEvent
 -keep class com.linkbubble.MainController$HideContentEvent
 -keep class com.linkbubble.MainController$OrientationChangedEvent
+-keep class com.linkbubble.MainController$ScreenOnEvent
+-keep class com.linkbubble.MainController$ScreenOffEvent
+-keep class com.linkbubble.MainController$UserPresentEvent
 -keep class com.linkbubble.MainService$ShowDefaultNotificationEvent
 -keep class com.linkbubble.MainService$ShowUnhideNotificationEvent
 -keep class com.linkbubble.db.HistoryRecord$ChangedEvent
@@ -185,6 +188,14 @@
 -keep class com.linkbubble.ui.ExpandedActivity$EnableHotwordServiceEvent
 -keep class com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent
 -keep class com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent
+
+-keepclassmembers class com.linkbubble.articlerender.ArticleRenderer {
+    # ensure event handler functions are not stripped
+    public void onUserPresentEvent(com.linkbubble.MainController$UserPresentEvent);
+    public void onScreenOffEvent(com.linkbubble.MainController$ScreenOffEvent);
+    public void onBeginCollapseTransitionEvent(com.linkbubble.MainController$BeginCollapseTransitionEvent);
+    public void onBeginExpandTransitionEvent(com.linkbubble.MainController$BeginExpandTransitionEvent);
+}
 
 -keepclassmembers class com.linkbubble.ui.BubbleTargetView {
     # ensure event handler functions are not stripped
@@ -230,6 +241,14 @@
     public void onLinkLoadTimeStatsUpdatedEvent(com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent);
     public void onStateChangedEvent(com.linkbubble.MainApplication$StateChangedEvent);
     public void onTrialTimeStartTimeReceivedEvent(com.linkbubble.MainApplication$TrialTimeStartTimeReceivedEvent);
+}
+
+-keepclassmembers class com.linkbubble.webrender.WebViewRenderer {
+    # ensure event handler functions are not stripped
+    public void onUserPresentEvent(com.linkbubble.MainController$UserPresentEvent);
+    public void onScreenOffEvent(com.linkbubble.MainController$ScreenOffEvent);
+    public void onBeginCollapseTransitionEvent(com.linkbubble.MainController$BeginCollapseTransitionEvent);
+    public void onBeginExpandTransitionEvent(com.linkbubble.MainController$BeginExpandTransitionEvent);
 }
 
 -keep public interface com.android.vending.licensing.ILicensingService
