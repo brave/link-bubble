@@ -46,7 +46,7 @@ android {
 
     productFlavors {
         playstore {
-            packageName='com.linkbubble.license.playstore'
+            applicationId='com.linkbubble.license.playstore'
 
             buildConfigField "String", "FREE_PACKAGE_NAME", "\"com.linkbubble.playstore\""
             buildConfigField "String", "STORE_FREE_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.playstore\""
