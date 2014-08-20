@@ -97,7 +97,7 @@
     <string name="intercept_links_from_default_set_message">Link Bubble configured to load links from %1$s.\nTo load links from all apps, upgrade to Pro.</string>
     <string name="preference_scan_for_youtube_embeds_title">Check for YouTube embeds</string>
     <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
-    <string name="preference_webview_battery_save_title">Battery Save Mode</string>
+    <string name="preference_webview_battery_save_title">Battery Save Mode (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Aggressive</string>
     <string name="preference_webview_battery_save_aggressive_summary">Stop updating web pages when Link Bubble is minimized. Currently loading pages will always finish loading.</string>
     <string name="preference_webview_battery_save_default_title">Default</string>
