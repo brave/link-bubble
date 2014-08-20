@@ -204,4 +204,25 @@ public class ArticleRenderer {
                 break;
         }
     }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onHideContentEvent(MainController.HideContentEvent event) {
+        switch (Settings.get().getWebViewBatterySaveMode()) {
+            case Aggressive:
+            case Default:
+                webviewPause("hide event");
+                break;
+        }
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onUnhideContentEvent(MainController.UnhideContentEvent event) {
+        switch (Settings.get().getWebViewBatterySaveMode()) {
+            case Default:
+                webviewResume("unhide event");
+                break;
+        }
+    }
 }
