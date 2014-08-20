@@ -3,7 +3,7 @@ package com.linkbubble.prokey;
 public class Constant {
 
 
-    public static final String BASE64_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxiI5A6L3PPblvMPmnAZwDhtZxEHKLd9ZnR/alpAL+bhv/EFXC9xUPBXMbddFq4D9L8VuutyTpNbUH0TC2jrNtvOqrFmxsosNfwH5DteuWhudoZLwpqnBZcip4tIq/vY3e40XXu9NInw5eK4X9jm55FhrKKoN0g/qAadIvP2PwBBtQ3ujLTVhb/NwRi3p+x2bG6ZHWAUY3bmwYo9j1xNeXvAf1DCc+9+P5whNmXtj5v9rBnDWbxD9c4NZmh544DBx8SCsN9jzmuOW6RIkatKOwSr3ocY1358Lqd58kjTnUOJAKJR06COp6utje1286qdvjKDjR9794fpS1SASSvLv0QIDAQAB";
+    public static final String BASE64_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAveY5MR1VPN8pQnuI1LncZ57UoPY6SpNvJrEka+MvheemQ773bwfnSdIcbewpL7WF5umjVAexIeV+Vcm+SkZUOJIvOVEq+2FhFfXfvjGXsxyOwwVNJm3lJW6S3CyQfrXbUrY9NZ6REchQSz7HAxsneDglTqeAHjOaOBCUnzYIXG7BeqNcqZFvpU11gqyJOdPEvLPVBpNzLpCzSZQWnzV5GkQeFS1QEQFfZVoMRP+BbpDLcclth9agkkKuvHOMAcnFenB1JNuMxljzoKf6wjlJApagmMIayRsKRHBuH29w/ODwYSlJS+dg8IdtIVYIYyo8jr2FTi2gM1+pyZx4IKNwTQIDAQAB";
 
     // Generate your own 20 random bytes, and put them here.
     public static final byte[] SALT = new byte[] {
