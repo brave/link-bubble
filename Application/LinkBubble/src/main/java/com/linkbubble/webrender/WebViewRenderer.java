@@ -29,6 +29,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
+import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
@@ -38,6 +39,7 @@ import com.linkbubble.util.Analytics;
 import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
+import com.squareup.otto.Subscribe;
 
 import java.net.URL;
 
@@ -55,6 +57,8 @@ class WebViewRenderer extends WebRenderer {
     private AlertDialog mJsPromptDialog;
     private PageInspector mPageInspector;
     private int mCheckForEmbedsCount;
+    private int mCurrentProgress;
+    private boolean mPauseOnComplete;
     private Boolean mIsDestroyed = false;
 
     private ArticleContent.BuildContentTask mBuildArticleContentTask;
@@ -106,10 +110,13 @@ class WebViewRenderer extends WebRenderer {
         }
 
         mPageInspector = new PageInspector(mContext, mWebView, mOnPageInspectorItemFoundListener);
+
+        MainApplication.registerForBus(context, this);
     }
 
     @Override
     public void destroy() {
+        MainApplication.unregisterForBus(mContext, this);
         cancelBuildArticleContentTask();
         mIsDestroyed = true;
         mWebView.destroy();
@@ -431,6 +438,7 @@ class WebViewRenderer extends WebRenderer {
 
         @Override
         public void onProgressChanged(WebView webView, int progress) {
+            mCurrentProgress = progress;
             mController.onProgressChanged(progress, webView.getUrl());
 
             // At 60%, the page is more often largely viewable, but waiting for background shite to finish which can
@@ -448,6 +456,10 @@ class WebViewRenderer extends WebRenderer {
                     Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
                     mPageInspector.run(webView, mController.getPageInspectFlags());
                 }
+            }
+
+            if (mCurrentProgress == 100 && mPauseOnComplete) {
+                mHandler.postDelayed(mCheckForPauseRunnable, 3000);
             }
         }
 
@@ -573,4 +585,85 @@ class WebViewRenderer extends WebRenderer {
         return mArticleContent;
     }
 
+    private static final String BATTERY_SAVE_TAG = "BatterySaveWebView";
+
+    private Runnable mCheckForPauseRunnable = new Runnable() {
+        @Override
+        public void run() {
+            switch (Settings.get().getWebViewBatterySaveMode()) {
+                case Default:
+                case Aggressive:
+                    if (mPauseOnComplete) {
+                        mPauseOnComplete = false;
+                        webviewPause("runnable");
+                    }
+                    break;
+            }
+        }
+    };
+
+    private void webviewPause(String via) {
+        String msg = "PAUSE (" + via + ") ";
+        if (mWebView != null && mIsDestroyed == false) {
+            if (mCurrentProgress == 100) {
+                mWebView.onPause();
+                mPauseOnComplete = false;
+            } else {
+                msg += " **IGNORE** (" + mCurrentProgress + ")";
+                mPauseOnComplete = true;
+            }
+
+        }
+        Log.d(BATTERY_SAVE_TAG, msg + ", url:" + getUrl().getHost());
+    }
+
+    private void webviewResume(String via) {
+        mPauseOnComplete = false;
+        String msg = "RESUME (" + via + ") ";
+        if (mWebView != null && mIsDestroyed == false) {
+            mWebView.onResume();
+        }
+        Log.d(BATTERY_SAVE_TAG, msg + ", url:" + getUrl().getHost());
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onUserPresentEvent(MainController.UserPresentEvent event) {
+        switch (Settings.get().getWebViewBatterySaveMode()) {
+            case Default:
+                webviewResume("userPresent");
+                break;
+        }
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onScreenOffEvent(MainController.ScreenOffEvent event) {
+        switch (Settings.get().getWebViewBatterySaveMode()) {
+            case Aggressive:
+            case Default:
+                webviewPause("screenOff");
+                break;
+        }
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onBeginCollapseTransitionEvent(MainController.BeginCollapseTransitionEvent event) {
+        switch (Settings.get().getWebViewBatterySaveMode()) {
+            case Aggressive:
+                webviewPause("beginCollapse");
+                break;
+        }
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onBeginExpandTransitionEvent(MainController.BeginExpandTransitionEvent event) {
+        switch (Settings.get().getWebViewBatterySaveMode()) {
+            case Aggressive:
+                webviewResume("beginExpand");
+                break;
+        }
+    }
 }
