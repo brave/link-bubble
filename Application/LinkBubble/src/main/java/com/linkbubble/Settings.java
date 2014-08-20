@@ -77,6 +77,7 @@ public class Settings {
 
     public static final String PREFERENCE_AUTO_ARTICLE_MODE = "preference_auto_article_mode";
     public static final String PREFERENCE_INCOGNITO_MODE = "preference_incognito";
+    public static final String PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE = "preference_webview_battery_save";
 
     public static final String PREFERENCE_WEBVIEW_TEXT_ZOOM = "preference_webview_text_zoom";
     public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN = 50;
@@ -99,6 +100,12 @@ public class Settings {
 
     public interface ConsumeBubblesChangedEventHandler {
         public void onConsumeBubblesChanged();
+    }
+
+    public enum WebViewBatterySaveMode {
+        Aggressive,
+        Default,
+        Off,
     }
 
     /*
@@ -140,6 +147,7 @@ public class Settings {
     private boolean mCheckedForYouTubeResolveInfo = false;
     private ConsumeBubblesChangedEventHandler mConsumeBubblesChangedEventHandler;
     private List<String> mIgnoreLinksFromPackageNames;
+    private WebViewBatterySaveMode mWebViewBatterySaveMode;
     // The point to save
     private Point mBubbleRestingPoint = new Point();
     // The point used as the return value. Required so we don't overwrite the desired point in landscape mode
@@ -183,6 +191,8 @@ public class Settings {
         loadLinkLoadStats();
         loadRecentAppRedirects();
         loadIgnoreLinksFromPackageNames();
+
+        setWebViewBatterySaveMode(mSharedPreferences.getString(PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE, "default"));
     }
 
     private void configureDefaultApp(PackageManager packageManager, String urlAsString, String desiredPackageName) {
@@ -615,6 +625,44 @@ public class Settings {
 
     public boolean isIncognitoMode() {
         return mSharedPreferences.getBoolean(PREFERENCE_INCOGNITO_MODE, false);
+    }
+
+    public void setWebViewBatterySaveMode(String mode) {
+        if (mode.equals("aggressive")) {
+            mWebViewBatterySaveMode = WebViewBatterySaveMode.Aggressive;
+        } else if (mode.equals("off")) {
+            mWebViewBatterySaveMode = WebViewBatterySaveMode.Off;
+        } else {
+            mWebViewBatterySaveMode = WebViewBatterySaveMode.Default;
+        }
+    }
+
+    public void setWebViewBatterySaveMode(WebViewBatterySaveMode mode) {
+        String value;
+        switch (mode) {
+            case Off:
+                value = "off";
+                break;
+
+            case Aggressive:
+                value = "aggressive";
+                break;
+
+            case Default:
+            default:
+                value = "default";
+                break;
+        }
+
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE, value);
+        editor.apply();
+
+        setWebViewBatterySaveMode(value);
+    }
+
+    public WebViewBatterySaveMode getWebViewBatterySaveMode() {
+        return mWebViewBatterySaveMode;
     }
 
     public String getUserAgentString() {
