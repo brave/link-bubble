@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         mavenCentral()
-        flatDir { dirs '../../DexGuard/lib' }
+        flatDir { dirs '../../../DexGuard/lib' }
     }
     dependencies {
         classpath ':dexguard:'
