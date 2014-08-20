@@ -151,6 +151,7 @@
     # ensure event handler functions are not stripped
     public void onShowDefaultNotificationEvent(com.linkbubble.MainService$ShowDefaultNotificationEvent);
     public void onShowUnhideNotificationEvent(com.linkbubble.MainService$ShowUnhideNotificationEvent);
+    public void onReloadMainServiceEvent(com.linkbubble.MainService$ReloadMainServiceEvent);
 }
 
 -keepclassmembers class com.linkbubble.MainController {
@@ -183,6 +184,7 @@
 -keep class com.linkbubble.MainController$UserPresentEvent
 -keep class com.linkbubble.MainService$ShowDefaultNotificationEvent
 -keep class com.linkbubble.MainService$ShowUnhideNotificationEvent
+-keep class com.linkbubble.MainService$ReloadMainServiceEvent
 -keep class com.linkbubble.db.HistoryRecord$ChangedEvent
 -keep class com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent
 -keep class com.linkbubble.ui.ExpandedActivity$EnableHotwordServiceEvent
