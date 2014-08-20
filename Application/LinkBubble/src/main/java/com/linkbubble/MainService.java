@@ -182,12 +182,11 @@ public class MainService extends Service {
                 .setContentText(getString(R.string.notification_default_summary))
                 //.addAction(R.drawable.ic_action_eye_closed_dark, getString(R.string.notification_action_hide), hidePendingIntent)
                 //.addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
-                .addAction(Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT ? R.drawable.ic_action_halt_white : R.drawable.ic_action_halt_dark,
-                        getString(R.string.notification_action_hide), hidePendingIntent)
+                .addAction(Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT ? R.drawable.ic_action_cancel_white : R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
                 .setGroup(Constant.NOTIFICATION_GROUP_KEY_ARTICLES)
                 .setGroupSummary(true)
                 .setLocalOnly(true)
-                .setContentIntent(closeAllPendingIntent);
+                .setContentIntent(hidePendingIntent);
 
         // Nuke all previous notifications and generate unique ids
         NotificationManagerCompat.from(this).cancelAll();
