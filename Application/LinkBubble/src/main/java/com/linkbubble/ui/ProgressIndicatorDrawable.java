@@ -76,7 +76,7 @@ public class ProgressIndicatorDrawable extends Drawable {
         if (rgb == null || Settings.get().getColoredProgressIndicator() == false) {
             rgb = Settings.get().getThemedDefaultProgressColor();
         }
-        Log.d("blerg", "setColor():" + rgb);
+        //Log.d("blerg", "setColor():" + rgb);
 
         mColor = rgb;
         mPaint.setColor(rgb);
