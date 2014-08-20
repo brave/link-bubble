@@ -69,6 +69,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     private Preference mInterceptLinksFromPreference;
     private Preference mWebViewTextZoomPreference;
     private Preference mThemePreference;
+    private Preference mWebViewBatterySavePreference;
     private ListPreference mUserAgentPreference;
 
     public static class IncognitoModeChangedEvent {
@@ -153,6 +154,16 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         PreferenceCategory configurationCategory = (PreferenceCategory) findPreference("preference_category_configuration");
         PreferenceScreen helpScreen = (PreferenceScreen) getPreferenceScreen().findPreference("preference_screen_help");
         PreferenceScreen appConfigMoreScreen = (PreferenceScreen)getPreferenceScreen().findPreference("preference_more");
+
+        mWebViewBatterySavePreference = findPreference(Settings.PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE);
+        mWebViewBatterySavePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Util.showThemedDialog(getWebViewBatterySaveDialog());
+                return true;
+            }
+        });
+        updateWebViewBatterySaveSummary();
 
         mInterceptLinksFromPreference = findPreference(Settings.PREFERENCE_IGNORE_LINKS_FROM);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
@@ -864,7 +875,119 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             radioButton.setChecked(position == mSelectedIndex);
             return convertView;
         }
+    }
 
+    void updateWebViewBatterySaveSummary() {
+        int position = Settings.get().getWebViewBatterySaveMode().ordinal();
+        if (position == Settings.WebViewBatterySaveMode.Aggressive.ordinal()) {
+            mWebViewBatterySavePreference.setSummary(getString(R.string.preference_webview_battery_save_aggressive_title));
+        } else if (position == Settings.WebViewBatterySaveMode.Default.ordinal()) {
+            mWebViewBatterySavePreference.setSummary(getString(R.string.preference_webview_battery_save_default_title));
+        } else if (position == Settings.WebViewBatterySaveMode.Off.ordinal()) {
+            mWebViewBatterySavePreference.setSummary(getString(R.string.preference_webview_battery_save_off_title));
+        }
+    }
+
+    AlertDialog getWebViewBatterySaveDialog() {
+        final ArrayList<String> items = new ArrayList<String>();
+        items.add(getString(R.string.preference_webview_battery_save_aggressive_title));
+        items.add(getString(R.string.preference_webview_battery_save_default_title));
+        items.add(getString(R.string.preference_webview_battery_save_off_title));
+
+        final PreferenceBatterySaveAdapter adapter = new PreferenceBatterySaveAdapter(getActivity(),
+                R.layout.view_preference_webview_battery_save_item,
+                Settings.get().getWebViewBatterySaveMode().ordinal(),
+                items.toArray(new String[0]));
+
+        final ListView listView = new ListView(getActivity());
+        listView.setAdapter(adapter);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(listView);
+        builder.setIcon(R.drawable.ic_alert_icon);
+        builder.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Settings.WebViewBatterySaveMode mode = Settings.WebViewBatterySaveMode.values()[adapter.mSelectedIndex];
+                Settings.get().setWebViewBatterySaveMode(mode);
+                updateWebViewBatterySaveSummary();
+            }
+        });
+        builder.setTitle(R.string.preference_webview_battery_save_title);
+
+        return builder.create();
+    }
+
+    private static class PreferenceBatterySaveAdapter extends ArrayAdapter<String> {
+
+        Context mContext;
+        int mLayoutResourceId;
+        int mSelectedIndex;
+
+        public PreferenceBatterySaveAdapter(Context context, int layoutResourceId, int initialSelectedIndex, String[] data) {
+            super(context, layoutResourceId, data);
+            mLayoutResourceId = layoutResourceId;
+            mContext = context;
+            mSelectedIndex = initialSelectedIndex;
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+
+            if (convertView==null) {
+                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(mLayoutResourceId, parent, false);
+            }
+
+            TextView label = (TextView) convertView.findViewById(R.id.title);
+            TextView summary = (TextView) convertView.findViewById(R.id.summary);
+            final RadioButton radioButton = (RadioButton) convertView.findViewById(R.id.radio_button);
+
+            if (position == Settings.WebViewBatterySaveMode.Aggressive.ordinal()) {
+                label.setText(mContext.getString(R.string.preference_webview_battery_save_aggressive_title));
+                summary.setText(mContext.getString(R.string.preference_webview_battery_save_aggressive_summary));
+            } else if (position == Settings.WebViewBatterySaveMode.Default.ordinal()) {
+                label.setText(mContext.getString(R.string.preference_webview_battery_save_default_title));
+                summary.setText(mContext.getString(R.string.preference_webview_battery_save_default_summary));
+            } else if (position == Settings.WebViewBatterySaveMode.Off.ordinal()) {
+                label.setText(mContext.getString(R.string.preference_webview_battery_save_off_title));
+                summary.setText(mContext.getString(R.string.preference_webview_battery_save_off_summary));
+            }
+            convertView.setTag(position);
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    radioButton.setChecked(true);
+                    mSelectedIndex = position;
+                    PreferenceBatterySaveAdapter.this.notifyDataSetChanged();
+                }
+            });
+            convertView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    switch (event.getAction()) {
+                        // Pass event along to radio button so UI visually updates
+                        case MotionEvent.ACTION_DOWN:
+                        case MotionEvent.ACTION_UP: {
+                            radioButton.onTouchEvent(event);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
+            radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        mSelectedIndex = position;
+                        PreferenceBatterySaveAdapter.this.notifyDataSetChanged();
+                    }
+                }
+            });
+
+            radioButton.setChecked(position == mSelectedIndex);
+            return convertView;
+        }
     }
 
     AlertDialog getTextZoomDialog() {

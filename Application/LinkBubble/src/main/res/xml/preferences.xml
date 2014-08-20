@@ -127,6 +127,11 @@
         </PreferenceScreen> -->
 
         <Preference
+            android:key="preference_webview_battery_save"
+            android:title="@string/preference_webview_battery_save_title"
+            />
+
+        <Preference
             android:title="@string/preference_webview_text_zoom_title"
             android:key="preference_webview_text_zoom">
         </Preference>
