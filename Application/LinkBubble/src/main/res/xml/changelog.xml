@@ -5,6 +5,7 @@
         <change>NEW: Material Design! Shadows, color and depth, oh my!</change>
         <change>NEW: Theme customization.</change>
         <change>NEW: Battery Save Mode (Beta).</change>
+        <change>CHANGE: Made the Link Bubble notification controls consistent. Touching the notification will always toggle hiding/unhiding the app. Close All is always available by expanding the notification.</change>
         <change>BUG FIX: Notifications display dark icons on L and white icons on earlier Android versions.</change>
         <change>BUG FIX: Shadow image displays underneath bubble targets.</change>
     </release>
