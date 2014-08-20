@@ -46,6 +46,7 @@ import com.linkbubble.Constant;
 import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
+import com.linkbubble.MainService;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.ActionItem;
@@ -779,13 +780,9 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
                     updateThemeSummary();
 
-                    boolean reloaded = false;
                     if (MainController.get() != null) {
-                        reloaded = MainController.get().reloadAllTabs(getActivity());
+                        MainApplication.postEvent(getActivity(), new MainService.ReloadMainServiceEvent(getActivity()));
                     }
-
-                    //Toast.makeText(getActivity(), reloaded ? R.string.private_data_cleared_reloading_current : R.string.private_data_cleared,
-                    //        Toast.LENGTH_SHORT).show();
                 }
             }
         });
