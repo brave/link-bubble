@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2010 The Android Open Source Project
- * Modifications copyright (C) 2012-2014 Saikoa / Itsana BVBA
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +14,10 @@
  * limitations under the License.
  */
 
-package com.google.android.vending.licensing;
+package com.android.vending.licensing;
 
-/**
- * Indicates that an error occurred while validating the integrity of data managed by an
- * {@link Obfuscator}.}
- */
-public class ValidationException extends Exception {
-    public ValidationException() {
-      super();
-    }
-
-    public ValidationException(String s) {
-      super(s);
-    }
-
-    private static final long serialVersionUID = 1L;
+// Android library projects do not yet support AIDL, so this has been
+// precompiled into the src directory.
+oneway interface ILicenseResultListener {
+  void verifyLicense(int responseCode, String signedData, String signature);
 }

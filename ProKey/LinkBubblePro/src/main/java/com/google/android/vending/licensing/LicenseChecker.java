@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2010 The Android Open Source Project
- * Modifications copyright (C) 2012-2013 Saikoa / Itsana BVBA
+ * Modifications copyright (C) 2012-2014 Saikoa / Itsana BVBA
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,11 +18,13 @@
 package com.google.android.vending.licensing;
 
 import com.google.android.vending.licensing.util.Base64;
+import com.google.android.vending.licensing.util.Base64DecoderException;
 
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
@@ -31,8 +33,10 @@ import android.provider.Settings.Secure;
 import android.util.Log;
 
 import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Date;
 import java.util.HashSet;
@@ -85,7 +89,6 @@ public class LicenseChecker implements ServiceConnection {
      */
     public LicenseChecker(Context context, Policy policy, String encodedPublicKey) {
         mContext = context;
-        //Constant.initCrittercism(context);
         mPolicy = policy;
         mPublicKey = generatePublicKey(encodedPublicKey);
         mPackageName = mContext.getPackageName();

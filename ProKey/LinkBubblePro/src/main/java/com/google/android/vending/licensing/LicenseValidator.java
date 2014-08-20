@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2010 The Android Open Source Project
- * Modifications copyright (C) 2012-2013 Saikoa / Itsana BVBA
+ * Modifications copyright (C) 2012-2014 Saikoa / Itsana BVBA
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,23 +33,23 @@ import java.security.SignatureException;
  * Contains data related to a licensing request and methods to verify
  * and process the response.
  */
-public class LicenseValidator {
+class LicenseValidator {
     private static final String TAG = "LicenseValidator";
 
+    // Some random value.
+    private static final int RANDOM = 7;
+
     // Server response codes.
-    public static final int LICENSED = 0x0;
-    public static final int NOT_LICENSED = 0x1;
-    public static final int LICENSED_OLD_KEY = 0x2;
-    public static final int ERROR_NOT_MARKET_MANAGED = 0x3;
-    public static final int ERROR_SERVER_FAILURE = 0x4;
-    public static final int ERROR_OVER_QUOTA = 0x5;
+    private static final int LICENSED = 0x0;
+    private static final int NOT_LICENSED = 0x1;
+    private static final int LICENSED_OLD_KEY = 0x2;
+    private static final int ERROR_NOT_MARKET_MANAGED = 0x3;
+    private static final int ERROR_SERVER_FAILURE = 0x4;
+    private static final int ERROR_OVER_QUOTA = 0x5;
 
-    public static final int ERROR_CONTACTING_SERVER = 0x101;
-    public static final int ERROR_INVALID_PACKAGE_NAME = 0x102;
-    public static final int ERROR_NON_MATCHING_UID = 0x103;
-
-    // I got this on one of my devices once.
-    public static final int ERROR_LACY_UNKNOWN = 291;
+    private static final int ERROR_CONTACTING_SERVER = 0x101;
+    private static final int ERROR_INVALID_PACKAGE_NAME = 0x102;
+    private static final int ERROR_NON_MATCHING_UID = 0x103;
 
     private final Policy mPolicy;
     private final LicenseCheckerCallback mCallback;
@@ -104,8 +104,8 @@ public class LicenseValidator {
 
                 if (!sig.verify(Base64.decode(signature))) {
                     Log.e(TAG, "Signature verification failed.");
-                    //handleInvalidResponse(Policy.SIG_FAIL);
-                    //return;
+                    handleInvalidResponse();
+                    return;
                 }
             //} catch (NoSuchAlgorithmException e) {
             //    // This can't happen on an Android compatible device.
@@ -165,34 +165,34 @@ public class LicenseValidator {
             }
         }
 
-        switch (responseCode) {
-            case LICENSED:
-            case LICENSED_OLD_KEY:
+        switch (RANDOM ^ ~responseCode) {
+            case RANDOM ^ ~LICENSED:
+            case RANDOM ^ ~LICENSED_OLD_KEY:
                 int limiterResponse = mDeviceLimiter.isDeviceAllowed(userId);
                 handleResponse(limiterResponse, data);
                 break;
-            case NOT_LICENSED:
+            case RANDOM ^ ~NOT_LICENSED:
                 handleResponse(Policy.NOT_LICENSED, data);
                 break;
-            case ERROR_CONTACTING_SERVER:
+            case RANDOM ^ ~ERROR_CONTACTING_SERVER:
                 Log.w(TAG, "Error contacting licensing server.");
                 handleResponse(Policy.RETRY, data);
                 break;
-            case ERROR_SERVER_FAILURE:
+            case RANDOM ^ ~ERROR_SERVER_FAILURE:
                 Log.w(TAG, "An error has occurred on the licensing server.");
                 handleResponse(Policy.RETRY, data);
                 break;
-            case ERROR_OVER_QUOTA:
+            case RANDOM ^ ~ERROR_OVER_QUOTA:
                 Log.w(TAG, "Licensing server is refusing to talk to this device, over quota.");
                 handleResponse(Policy.RETRY, data);
                 break;
-            case ERROR_INVALID_PACKAGE_NAME:
+            case RANDOM ^ ~ERROR_INVALID_PACKAGE_NAME:
                 handleApplicationError(LicenseCheckerCallback.ERROR_INVALID_PACKAGE_NAME);
                 break;
-            case ERROR_NON_MATCHING_UID:
+            case RANDOM ^ ~ERROR_NON_MATCHING_UID:
                 handleApplicationError(LicenseCheckerCallback.ERROR_NON_MATCHING_UID);
                 break;
-            case ERROR_NOT_MARKET_MANAGED:
+            case RANDOM ^ ~ERROR_NOT_MARKET_MANAGED:
                 handleApplicationError(LicenseCheckerCallback.ERROR_NOT_MARKET_MANAGED);
                 break;
             default:
@@ -226,9 +226,5 @@ public class LicenseValidator {
 
     private void handleInvalidResponse() {
         mCallback.dontAllow(Policy.NOT_LICENSED);
-    }
-
-    private void handleInvalidResponse(int policyCode) {
-        mCallback.dontAllow(policyCode);
     }
 }
