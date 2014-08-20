@@ -100,6 +100,7 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public static class HideContentEvent {};
+    public static class UnhideContentEvent {};
 
     public static class ScreenOnEvent {};
     public static class ScreenOffEvent {};
@@ -1094,6 +1095,7 @@ public class MainController implements Choreographer.FrameCallback {
             } else {
                 MainApplication.postEvent(mContext, new CurrentTabChangedEvent(mBubbleFlowDraggable.getCurrentTab()));
                 MainApplication.postEvent(mContext, new MainService.ShowDefaultNotificationEvent());
+                MainApplication.postEvent(mContext, new UnhideContentEvent());
             }
             setCanDisplay(!mHiddenByUser);
         }
