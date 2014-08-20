@@ -28,7 +28,7 @@
     <dimen name="bubble_pager_height">@dimen/bubble_pager_item_height</dimen>
     <dimen name="bubble_progress_size">57.5dp</dimen>
     <dimen name="bubble_progress_stroke">2dp</dimen>
-    <dimen name="content_offset">60dp</dimen>
+    <dimen name="content_offset">59dp</dimen>
     <dimen name="stat_height">200dp</dimen>
     <dimen name="stat_bubble_size">140dp</dimen>
     <dimen name="stat_bubble_text_size">28sp</dimen>
