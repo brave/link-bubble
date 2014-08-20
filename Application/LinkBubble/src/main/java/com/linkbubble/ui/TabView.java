@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.linkbubble.Constant;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
+import com.linkbubble.Settings;
 import com.linkbubble.util.ScaleUpAnimHelper;
 import com.linkbubble.util.Util;
 import org.mozilla.gecko.favicons.Favicons;
@@ -42,6 +43,13 @@ public class TabView extends BubbleView {
         super.configure(url);
 
         mBackIndicatorView = (ImageView) findViewById(R.id.back_indicator);
+        if (Settings.get().getDarkThemeEnabled()) {
+            mBackIndicatorView.setBackgroundResource(R.drawable.badge_plate_dark);
+            mBackIndicatorView.setImageResource(R.drawable.ic_action_arrow_left_white);
+        } else {
+            mBackIndicatorView.setBackgroundResource(R.drawable.badge_plate);
+            mBackIndicatorView.setImageResource(R.drawable.ic_action_arrow_left);
+        }
         mBackIndicatorAnimHelper = new ScaleUpAnimHelper(mBackIndicatorView, 1.0f);
         mBackIndicatorAnimHelper.hide();
 
