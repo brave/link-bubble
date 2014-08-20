@@ -101,8 +101,8 @@ public class BubbleTargetView extends FrameLayout {
     }
 
     protected float getRadius() {
-        Drawable defaultDrawable = getContext().getResources().getDrawable(R.drawable.target_plate);
-        return defaultDrawable.getIntrinsicWidth() * 0.5f;
+        int tabSize = getResources().getDimensionPixelSize(R.dimen.bubble_icon_size);
+        return tabSize * 0.5f;
     }
 
     private int getXPos() {
