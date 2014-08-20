@@ -3682,6 +3682,8 @@ android.support.v4.widget.SwipeRefreshLayout: void setColorSchemeResources(int,i
 android.support.v4.widget.SwipeRefreshLayout: void setColorSchemeColors(int,int,int,int)
 android.support.v4.widget.ViewDragHelper$1: ViewDragHelper$1()
 android.support.v4.widget.ViewDragHelper$Callback: ViewDragHelper$Callback()
+android.support.v7.graphics.ColorCutQuantizer$1: ColorCutQuantizer$1()
+android.support.v7.palette.BuildConfig: BuildConfig()
 com.crashlytics.android.CrashTest: CrashTest()
 com.crashlytics.android.Crashlytics: Crashlytics()
 com.crashlytics.android.CrashlyticsMissingDependencyException
@@ -3866,6 +3868,7 @@ com.google.android.gms.R$id: int satellite
 com.google.android.gms.R$id: int selectionDetails
 com.google.android.gms.R$id: int strict_sandbox
 com.google.android.gms.R$id: int terrain
+com.google.android.gms.R$id: int text1
 com.google.android.gms.R$id: int wrap_content
 com.google.android.gms.R$id: R$id()
 com.google.android.gms.R$integer: int google_play_services_version
@@ -5046,13 +5049,23 @@ com.linkbubble.MainController$HideContentEvent
 com.linkbubble.MainController$HideContentEvent: MainController$HideContentEvent()
 com.linkbubble.MainController$OrientationChangedEvent
 com.linkbubble.MainController$OrientationChangedEvent: MainController$OrientationChangedEvent()
+com.linkbubble.MainController$ScreenOffEvent
+com.linkbubble.MainController$ScreenOffEvent: MainController$ScreenOffEvent()
+com.linkbubble.MainController$ScreenOnEvent
+com.linkbubble.MainController$ScreenOnEvent: MainController$ScreenOnEvent()
+com.linkbubble.MainController$UnhideContentEvent
+com.linkbubble.MainController$UnhideContentEvent: MainController$UnhideContentEvent()
+com.linkbubble.MainController$UserPresentEvent
+com.linkbubble.MainController$UserPresentEvent: MainController$UserPresentEvent()
 com.linkbubble.MainService
 com.linkbubble.MainService: MainService()
 com.linkbubble.MainService: void onShowDefaultNotificationEvent(com.linkbubble.MainService$ShowDefaultNotificationEvent)
 com.linkbubble.MainService: void onShowUnhideNotificationEvent(com.linkbubble.MainService$ShowUnhideNotificationEvent)
+com.linkbubble.MainService: void onReloadMainServiceEvent(com.linkbubble.MainService$ReloadMainServiceEvent)
 com.linkbubble.MainService$2: MainService$2()
 com.linkbubble.MainService$3: MainService$3()
 com.linkbubble.MainService$4: MainService$4()
+com.linkbubble.MainService$ReloadMainServiceEvent
 com.linkbubble.MainService$ShowDefaultNotificationEvent
 com.linkbubble.MainService$ShowDefaultNotificationEvent: MainService$ShowDefaultNotificationEvent()
 com.linkbubble.MainService$ShowUnhideNotificationEvent
@@ -5112,9 +5125,21 @@ com.linkbubble.R$bool: int default_fiv_isFlipped
 com.linkbubble.R$bool: int default_fiv_isRotationReversed
 com.linkbubble.R$bool: int is_tablet
 com.linkbubble.R$bool: R$bool()
+com.linkbubble.R$color: int action_button_normal
+com.linkbubble.R$color: int action_button_pressed
 com.linkbubble.R$color: int action_picker_selected_color
-com.linkbubble.R$color: int badge_text
-com.linkbubble.R$color: int bubble_border
+com.linkbubble.R$color: int color_content_view_dark
+com.linkbubble.R$color: int color_content_view_light
+com.linkbubble.R$color: int color_dark_theme
+com.linkbubble.R$color: int color_highlight
+com.linkbubble.R$color: int color_highlight_2
+com.linkbubble.R$color: int color_light_theme
+com.linkbubble.R$color: int color_primary
+com.linkbubble.R$color: int color_primary_dark
+com.linkbubble.R$color: int color_progress_default_dark
+com.linkbubble.R$color: int color_progress_default_light
+com.linkbubble.R$color: int color_text_dark
+com.linkbubble.R$color: int color_text_light
 com.linkbubble.R$color: int common_action_bar_splitter
 com.linkbubble.R$color: int common_signin_btn_dark_text_default
 com.linkbubble.R$color: int common_signin_btn_dark_text_disabled
@@ -5127,10 +5152,13 @@ com.linkbubble.R$color: int common_signin_btn_light_text_focused
 com.linkbubble.R$color: int common_signin_btn_light_text_pressed
 com.linkbubble.R$color: int common_signin_btn_text_dark
 com.linkbubble.R$color: int common_signin_btn_text_light
-com.linkbubble.R$color: int content_toolbar_background
-com.linkbubble.R$color: int highlight_color
-com.linkbubble.R$color: int home_background
+com.linkbubble.R$color: int flat_green
+com.linkbubble.R$color: int green
+com.linkbubble.R$color: int lime_green
+com.linkbubble.R$color: int moderate_orange
+com.linkbubble.R$color: int moderate_yellow
 com.linkbubble.R$color: int request_location_box_color
+com.linkbubble.R$color: int text_color_primary
 com.linkbubble.R$color: int wallet_bright_foreground_disabled_holo_light
 com.linkbubble.R$color: int wallet_bright_foreground_holo_dark
 com.linkbubble.R$color: int wallet_bright_foreground_holo_light
@@ -5146,9 +5174,9 @@ com.linkbubble.R$color: int wallet_holo_blue_light
 com.linkbubble.R$color: int wallet_link_text_light
 com.linkbubble.R$color: int wallet_primary_text_holo_light
 com.linkbubble.R$color: int wallet_secondary_text_holo_dark
-com.linkbubble.R$color: int white_button_normal
-com.linkbubble.R$color: int white_button_pressed
+com.linkbubble.R$color: int window_background
 com.linkbubble.R$color: R$color()
+com.linkbubble.R$dimen: int action_bar_height
 com.linkbubble.R$dimen: int app_icon_size
 com.linkbubble.R$dimen: int app_stack_padding
 com.linkbubble.R$dimen: int app_stack_x_offset
@@ -5172,6 +5200,7 @@ com.linkbubble.R$dimen: int canvas_mask_height
 com.linkbubble.R$dimen: int close_bubble_target_tractor_offset_x
 com.linkbubble.R$dimen: int close_bubble_target_x_offset
 com.linkbubble.R$dimen: int close_bubble_target_y
+com.linkbubble.R$dimen: int close_tab_icon_size
 com.linkbubble.R$dimen: int close_tab_target_size
 com.linkbubble.R$dimen: int close_tab_text_circle_size
 com.linkbubble.R$dimen: int consume_bubble_target_default_x
@@ -5180,6 +5209,7 @@ com.linkbubble.R$dimen: int consume_bubble_target_x_offset
 com.linkbubble.R$dimen: int content_bubble_y_offset
 com.linkbubble.R$dimen: int content_offset
 com.linkbubble.R$dimen: int content_view_button_max_height
+com.linkbubble.R$dimen: int default_padding
 com.linkbubble.R$dimen: int favicon_bg
 com.linkbubble.R$dimen: int favicon_largest_interesting_size
 com.linkbubble.R$dimen: int home_logo_margin_right
@@ -5198,13 +5228,81 @@ com.linkbubble.R$dimen: int upgrade_to_pro_dialog_padding
 com.linkbubble.R$dimen: int webview_margin_top
 com.linkbubble.R$dimen: int youtube_emebed_item_height
 com.linkbubble.R$dimen: R$dimen()
+com.linkbubble.R$drawable: int action_bar_home_shadow
 com.linkbubble.R$drawable: int action_bar_shadow
-com.linkbubble.R$drawable: int actionbar_background
-com.linkbubble.R$drawable: int badge_shape
-com.linkbubble.R$drawable: int bubble_light
-com.linkbubble.R$drawable: int circle_stat_time_per_link
-com.linkbubble.R$drawable: int circle_stat_total_time
+com.linkbubble.R$drawable: int action_button
+com.linkbubble.R$drawable: int action_button_normal
+com.linkbubble.R$drawable: int action_button_pressed
+com.linkbubble.R$drawable: int action_button_shadow
+com.linkbubble.R$drawable: int apptheme_activated_background_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_check_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_check_off_disabled_focused_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_check_off_disabled_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_check_off_focused_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_check_off_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_check_off_pressed_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_check_on_disabled_focused_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_check_on_disabled_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_check_on_focused_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_check_on_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_check_on_pressed_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_default_disabled_focused_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_default_disabled_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_default_focused_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_default_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_default_normal_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_default_pressed_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_radio_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_radio_off_disabled_focused_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_radio_off_disabled_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_radio_off_focused_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_radio_off_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_radio_off_pressed_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_radio_on_disabled_focused_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_radio_on_disabled_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_radio_on_focused_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_radio_on_holo_light
+com.linkbubble.R$drawable: int apptheme_btn_radio_on_pressed_holo_light
+com.linkbubble.R$drawable: int apptheme_item_background_holo_light
+com.linkbubble.R$drawable: int apptheme_list_activated_holo
+com.linkbubble.R$drawable: int apptheme_list_focused_holo
+com.linkbubble.R$drawable: int apptheme_list_longpressed_holo
+com.linkbubble.R$drawable: int apptheme_list_pressed_holo_light
+com.linkbubble.R$drawable: int apptheme_list_selector_background_transition_holo_light
+com.linkbubble.R$drawable: int apptheme_list_selector_disabled_holo_light
+com.linkbubble.R$drawable: int apptheme_list_selector_holo_light
+com.linkbubble.R$drawable: int apptheme_progress_bg_holo_light
+com.linkbubble.R$drawable: int apptheme_progress_horizontal_holo_light
+com.linkbubble.R$drawable: int apptheme_progress_indeterminate_horizontal_holo_light
+com.linkbubble.R$drawable: int apptheme_progress_primary_holo_light
+com.linkbubble.R$drawable: int apptheme_progress_secondary_holo_light
+com.linkbubble.R$drawable: int apptheme_progressbar_indeterminate_holo1
+com.linkbubble.R$drawable: int apptheme_progressbar_indeterminate_holo2
+com.linkbubble.R$drawable: int apptheme_progressbar_indeterminate_holo3
+com.linkbubble.R$drawable: int apptheme_progressbar_indeterminate_holo4
+com.linkbubble.R$drawable: int apptheme_progressbar_indeterminate_holo5
+com.linkbubble.R$drawable: int apptheme_progressbar_indeterminate_holo6
+com.linkbubble.R$drawable: int apptheme_progressbar_indeterminate_holo7
+com.linkbubble.R$drawable: int apptheme_progressbar_indeterminate_holo8
+com.linkbubble.R$drawable: int apptheme_scrubber_control_disabled_holo
+com.linkbubble.R$drawable: int apptheme_scrubber_control_focused_holo
+com.linkbubble.R$drawable: int apptheme_scrubber_control_normal_holo
+com.linkbubble.R$drawable: int apptheme_scrubber_control_pressed_holo
+com.linkbubble.R$drawable: int apptheme_scrubber_control_selector_holo_light
+com.linkbubble.R$drawable: int apptheme_scrubber_primary_holo
+com.linkbubble.R$drawable: int apptheme_scrubber_progress_horizontal_holo_light
+com.linkbubble.R$drawable: int apptheme_scrubber_secondary_holo
+com.linkbubble.R$drawable: int apptheme_scrubber_track_holo_light
+com.linkbubble.R$drawable: int apptheme_text_select_handle_left
+com.linkbubble.R$drawable: int apptheme_text_select_handle_middle
+com.linkbubble.R$drawable: int apptheme_text_select_handle_right
+com.linkbubble.R$drawable: int badge_plate
+com.linkbubble.R$drawable: int badge_plate_dark
+com.linkbubble.R$drawable: int bubble_plate_dark
+com.linkbubble.R$drawable: int bubble_plate_light
 com.linkbubble.R$drawable: int close_indicator
+com.linkbubble.R$drawable: int close_target_plate
+com.linkbubble.R$drawable: int color_highlight_2
 com.linkbubble.R$drawable: int common_signin_btn_icon_dark
 com.linkbubble.R$drawable: int common_signin_btn_icon_disabled_dark
 com.linkbubble.R$drawable: int common_signin_btn_icon_disabled_focus_dark
@@ -5229,36 +5327,40 @@ com.linkbubble.R$drawable: int common_signin_btn_text_normal_dark
 com.linkbubble.R$drawable: int common_signin_btn_text_normal_light
 com.linkbubble.R$drawable: int common_signin_btn_text_pressed_dark
 com.linkbubble.R$drawable: int common_signin_btn_text_pressed_light
+com.linkbubble.R$drawable: int content_view_caret_dark
+com.linkbubble.R$drawable: int content_view_caret_light
+com.linkbubble.R$drawable: int content_view_top_shadow
+com.linkbubble.R$drawable: int dropdown_background_dark
+com.linkbubble.R$drawable: int dropdown_background_light
 com.linkbubble.R$drawable: int embed
 com.linkbubble.R$drawable: int fallback_favicon
-com.linkbubble.R$drawable: int history_circle_button
-com.linkbubble.R$drawable: int history_circle_button_normal
-com.linkbubble.R$drawable: int history_circle_button_pressed
 com.linkbubble.R$drawable: int homeactivity_logo
 com.linkbubble.R$drawable: int ic_action_arrow_left
+com.linkbubble.R$drawable: int ic_action_arrow_left_white
 com.linkbubble.R$drawable: int ic_action_cancel_dark
 com.linkbubble.R$drawable: int ic_action_cancel_white
 com.linkbubble.R$drawable: int ic_action_clock
-com.linkbubble.R$drawable: int ic_action_clock_light
 com.linkbubble.R$drawable: int ic_action_eye_closed_dark
 com.linkbubble.R$drawable: int ic_action_eye_open_dark
-com.linkbubble.R$drawable: int ic_action_gear
-com.linkbubble.R$drawable: int ic_action_gear_dark
-com.linkbubble.R$drawable: int ic_action_gear_light
 com.linkbubble.R$drawable: int ic_action_globe
+com.linkbubble.R$drawable: int ic_action_globe_white
 com.linkbubble.R$drawable: int ic_action_google_play_dark
 com.linkbubble.R$drawable: int ic_action_google_play_light
 com.linkbubble.R$drawable: int ic_action_halt_dark
+com.linkbubble.R$drawable: int ic_action_halt_white
 com.linkbubble.R$drawable: int ic_action_list
+com.linkbubble.R$drawable: int ic_action_list_white
 com.linkbubble.R$drawable: int ic_action_overflow
 com.linkbubble.R$drawable: int ic_action_overflow_light
 com.linkbubble.R$drawable: int ic_action_overflow_round
+com.linkbubble.R$drawable: int ic_action_overflow_round_white
 com.linkbubble.R$drawable: int ic_action_redo_white
 com.linkbubble.R$drawable: int ic_action_reload
+com.linkbubble.R$drawable: int ic_action_reload_white
+com.linkbubble.R$drawable: int ic_action_settings
 com.linkbubble.R$drawable: int ic_action_share
 com.linkbubble.R$drawable: int ic_action_share_white
-com.linkbubble.R$drawable: int ic_action_trash_dark
-com.linkbubble.R$drawable: int ic_action_trash_light
+com.linkbubble.R$drawable: int ic_action_trash
 com.linkbubble.R$drawable: int ic_alert_icon
 com.linkbubble.R$drawable: int ic_google_account
 com.linkbubble.R$drawable: int ic_launcher
@@ -5269,12 +5371,17 @@ com.linkbubble.R$drawable: int ic_plusone_tall_off_client
 com.linkbubble.R$drawable: int ic_stat
 com.linkbubble.R$drawable: int ic_transparent
 com.linkbubble.R$drawable: int ic_undobar_undo
+com.linkbubble.R$drawable: int ic_up
 com.linkbubble.R$drawable: int loading_dots
 com.linkbubble.R$drawable: int masked_background
 com.linkbubble.R$drawable: int masked_background_half
 com.linkbubble.R$drawable: int powered_by_google_dark
 com.linkbubble.R$drawable: int powered_by_google_light
 com.linkbubble.R$drawable: int preference_pro_ribbon
+com.linkbubble.R$drawable: int preference_theme_dark_color
+com.linkbubble.R$drawable: int preference_theme_dark_no_color
+com.linkbubble.R$drawable: int preference_theme_light_color
+com.linkbubble.R$drawable: int preference_theme_light_no_color
 com.linkbubble.R$drawable: int profile_thumb_lacy
 com.linkbubble.R$drawable: int prompt
 com.linkbubble.R$drawable: int prompt_button
@@ -5282,21 +5389,21 @@ com.linkbubble.R$drawable: int prompt_button_focused
 com.linkbubble.R$drawable: int prompt_button_pressed
 com.linkbubble.R$drawable: int prompt_divider
 com.linkbubble.R$drawable: int ribbon_pro
-com.linkbubble.R$drawable: int settings_circle_button
-com.linkbubble.R$drawable: int settings_circle_button_normal
-com.linkbubble.R$drawable: int settings_circle_button_pressed
-com.linkbubble.R$drawable: int target_default
+com.linkbubble.R$drawable: int stat_background_flat_green
+com.linkbubble.R$drawable: int stat_background_green
+com.linkbubble.R$drawable: int stat_background_lime_green
+com.linkbubble.R$drawable: int stat_background_moderate_orange
+com.linkbubble.R$drawable: int target_plate
 com.linkbubble.R$drawable: int text_logo
-com.linkbubble.R$drawable: int toolbar
-com.linkbubble.R$drawable: int white_button
-com.linkbubble.R$drawable: int white_button_normal
-com.linkbubble.R$drawable: int white_button_pressed
 com.linkbubble.R$drawable: R$drawable()
 com.linkbubble.R$id: int accept_terms_and_privacy_button
 com.linkbubble.R$id: int accept_terms_and_privacy_text
 com.linkbubble.R$id: int access_location_no
 com.linkbubble.R$id: int access_location_yes
+com.linkbubble.R$id: int action_button_container
 com.linkbubble.R$id: int action_clear_history
+com.linkbubble.R$id: int action_history
+com.linkbubble.R$id: int action_settings
 com.linkbubble.R$id: int add_bubble_button
 com.linkbubble.R$id: int animate_bubble_button
 com.linkbubble.R$id: int answer_text_view
@@ -5313,6 +5420,7 @@ com.linkbubble.R$id: int bubble_flow
 com.linkbubble.R$id: int buyButton
 com.linkbubble.R$id: int buy_now
 com.linkbubble.R$id: int buy_with_google
+com.linkbubble.R$id: int caret
 com.linkbubble.R$id: int checked_text_view
 com.linkbubble.R$id: int classic
 com.linkbubble.R$id: int close_all_view
@@ -5320,14 +5428,13 @@ com.linkbubble.R$id: int content
 com.linkbubble.R$id: int content_text_container
 com.linkbubble.R$id: int content_toolbar
 com.linkbubble.R$id: int debug_text
+com.linkbubble.R$id: int dialog_title
 com.linkbubble.R$id: int expanded_root
 com.linkbubble.R$id: int faq_list
 com.linkbubble.R$id: int favicon
 com.linkbubble.R$id: int fragment
 com.linkbubble.R$id: int grayscale
 com.linkbubble.R$id: int group_article_mode
-com.linkbubble.R$id: int header_logo
-com.linkbubble.R$id: int history_circle
 com.linkbubble.R$id: int holo_dark
 com.linkbubble.R$id: int holo_light
 com.linkbubble.R$id: int hybrid
@@ -5368,6 +5475,7 @@ com.linkbubble.R$id: int prompt_input_field
 com.linkbubble.R$id: int prompt_message
 com.linkbubble.R$id: int prompt_message_text
 com.linkbubble.R$id: int question_text_view
+com.linkbubble.R$id: int radio_button
 com.linkbubble.R$id: int relLayout1
 com.linkbubble.R$id: int reload_button
 com.linkbubble.R$id: int remove_bubble_button
@@ -5381,18 +5489,19 @@ com.linkbubble.R$id: int section_text
 com.linkbubble.R$id: int seekbar_text_zoom
 com.linkbubble.R$id: int seekbar_title
 com.linkbubble.R$id: int selectionDetails
-com.linkbubble.R$id: int settings_circle
 com.linkbubble.R$id: int share_button
 com.linkbubble.R$id: int stat_container
 com.linkbubble.R$id: int stats_flip_view
 com.linkbubble.R$id: int strict_sandbox
+com.linkbubble.R$id: int summary
 com.linkbubble.R$id: int terrain
 com.linkbubble.R$id: int text
+com.linkbubble.R$id: int text1
 com.linkbubble.R$id: int time_per_link
 com.linkbubble.R$id: int time_total
+com.linkbubble.R$id: int title
 com.linkbubble.R$id: int title_text
-com.linkbubble.R$id: int top_buttons_container
-com.linkbubble.R$id: int trial_time_view
+com.linkbubble.R$id: int trial_time
 com.linkbubble.R$id: int url_text
 com.linkbubble.R$id: int web_renderer_container
 com.linkbubble.R$id: int web_renderer_placeholder
@@ -5428,7 +5537,11 @@ com.linkbubble.R$layout: int view_faq
 com.linkbubble.R$layout: int view_faq_item
 com.linkbubble.R$layout: int view_javascript_prompt
 com.linkbubble.R$layout: int view_loading
+com.linkbubble.R$layout: int view_preference_list_view
+com.linkbubble.R$layout: int view_preference_list_view_item
 com.linkbubble.R$layout: int view_preference_text_zoom
+com.linkbubble.R$layout: int view_preference_theme_item
+com.linkbubble.R$layout: int view_preference_webview_battery_save_item
 com.linkbubble.R$layout: int view_prompt
 com.linkbubble.R$layout: int view_section_header
 com.linkbubble.R$layout: int view_stat_time_per_link
@@ -5436,6 +5549,7 @@ com.linkbubble.R$layout: int view_stat_total_time
 com.linkbubble.R$layout: int view_tab
 com.linkbubble.R$layout: int view_youtube_embed_item
 com.linkbubble.R$layout: R$layout()
+com.linkbubble.R$menu: int activity_home
 com.linkbubble.R$menu: int history_activity
 com.linkbubble.R$menu: R$menu()
 com.linkbubble.R$plurals: int restore_tabs_from_previous_session
@@ -5616,6 +5730,7 @@ com.linkbubble.R$string: int preference_configure_bubble_title
 com.linkbubble.R$string: int preference_credits_title
 com.linkbubble.R$string: int preference_default_apps_notice_no_defaults_summary
 com.linkbubble.R$string: int preference_default_apps_notice_summary
+com.linkbubble.R$string: int preference_default_apps_summary
 com.linkbubble.R$string: int preference_default_apps_title
 com.linkbubble.R$string: int preference_default_browser
 com.linkbubble.R$string: int preference_double_tap_title
@@ -5654,9 +5769,21 @@ com.linkbubble.R$string: int preference_set_default_browser_title
 com.linkbubble.R$string: int preference_show_undo_close_tab_title
 com.linkbubble.R$string: int preference_show_welcome_message_title
 com.linkbubble.R$string: int preference_terms_of_service_title
+com.linkbubble.R$string: int preference_theme_dark_color
+com.linkbubble.R$string: int preference_theme_dark_no_color
+com.linkbubble.R$string: int preference_theme_light_color
+com.linkbubble.R$string: int preference_theme_light_no_color
+com.linkbubble.R$string: int preference_theme_title
 com.linkbubble.R$string: int preference_user_agent_title
 com.linkbubble.R$string: int preference_version_summary
 com.linkbubble.R$string: int preference_version_title
+com.linkbubble.R$string: int preference_webview_battery_save_aggressive_summary
+com.linkbubble.R$string: int preference_webview_battery_save_aggressive_title
+com.linkbubble.R$string: int preference_webview_battery_save_default_summary
+com.linkbubble.R$string: int preference_webview_battery_save_default_title
+com.linkbubble.R$string: int preference_webview_battery_save_off_summary
+com.linkbubble.R$string: int preference_webview_battery_save_off_title
+com.linkbubble.R$string: int preference_webview_battery_save_title
 com.linkbubble.R$string: int preference_webview_text_zoom_note
 com.linkbubble.R$string: int preference_webview_text_zoom_reloading_current
 com.linkbubble.R$string: int preference_webview_text_zoom_title
@@ -5717,6 +5844,7 @@ com.linkbubble.R$string: int upgrade_from_settings_summary
 com.linkbubble.R$string: int upgrade_incentive_one_app
 com.linkbubble.R$string: int upgrade_incentive_one_link
 com.linkbubble.R$string: int upgrade_ok_google
+com.linkbubble.R$string: int upgrade_theme
 com.linkbubble.R$string: int upgrade_to_pro
 com.linkbubble.R$string: int user_agent_changed_reloading_current
 com.linkbubble.R$string: int valid_license_detected
@@ -5746,25 +5874,37 @@ com.linkbubble.R$string: R$string()
 com.linkbubble.R$style: int AcceptTermsText
 com.linkbubble.R$style: int ActionBarStyle_Translucent
 com.linkbubble.R$style: int ActionBarStyle_Translucent_TitleTextStyle
+com.linkbubble.R$style: int ActionButton
 com.linkbubble.R$style: int ActiveTheme
-com.linkbubble.R$style: int BigWhiteButton
+com.linkbubble.R$style: int AppActionBar
+com.linkbubble.R$style: int AppActionBarText
+com.linkbubble.R$style: int AppTheme
+com.linkbubble.R$style: int ButtonAppTheme
 com.linkbubble.R$style: int ContentTheme
 com.linkbubble.R$style: int ContentThemeBase
 com.linkbubble.R$style: int ExpandedModeActionBar
 com.linkbubble.R$style: int ExpandedModeBaseTheme
 com.linkbubble.R$style: int ExpandedModeTheme
-com.linkbubble.R$style: int HomeContentContainer
 com.linkbubble.R$style: int HomeTheme
+com.linkbubble.R$style: int ImageButtonAppTheme
+com.linkbubble.R$style: int MainServiceThemeDark
+com.linkbubble.R$style: int MainServiceThemeLight
+com.linkbubble.R$style: int NoIconActionBar
+com.linkbubble.R$style: int ProgressBarAppTheme
 com.linkbubble.R$style: int Prompt
 com.linkbubble.R$style: int PromptButtonTextView
 com.linkbubble.R$style: int PromptMessage
 com.linkbubble.R$style: int SectionHeaderTheme
+com.linkbubble.R$style: int SeekBarAppTheme
+com.linkbubble.R$style: int SettingsTheme
 com.linkbubble.R$style: int ToolbarButton
 com.linkbubble.R$style: int TransparentTheme
 com.linkbubble.R$style: int WalletFragmentDefaultButtonTextAppearance
 com.linkbubble.R$style: int WalletFragmentDefaultDetailsHeaderTextAppearance
 com.linkbubble.R$style: int WalletFragmentDefaultDetailsTextAppearance
 com.linkbubble.R$style: int WalletFragmentDefaultStyle
+com.linkbubble.R$style: int popupMenuStyleDark
+com.linkbubble.R$style: int popupMenuStyleLight
 com.linkbubble.R$style: R$style()
 com.linkbubble.R$styleable: int[] AdsAttrs
 com.linkbubble.R$styleable: int AdsAttrs_adSize
@@ -5841,7 +5981,16 @@ com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent: Settings$LinkLoadTimeStat
 com.linkbubble.Settings$LinkLoadType
 com.linkbubble.Settings$LinkLoadType: com.linkbubble.Settings$LinkLoadType[] values()
 com.linkbubble.Settings$LinkLoadType: com.linkbubble.Settings$LinkLoadType valueOf(java.lang.String)
+com.linkbubble.Settings$WebViewBatterySaveMode
+com.linkbubble.Settings$WebViewBatterySaveMode: com.linkbubble.Settings$WebViewBatterySaveMode[] values()
+com.linkbubble.Settings$WebViewBatterySaveMode: com.linkbubble.Settings$WebViewBatterySaveMode valueOf(java.lang.String)
 com.linkbubble.articlerender.ArticleContent: ArticleContent()
+com.linkbubble.articlerender.ArticleRenderer: void onUserPresentEvent(com.linkbubble.MainController$UserPresentEvent)
+com.linkbubble.articlerender.ArticleRenderer: void onScreenOffEvent(com.linkbubble.MainController$ScreenOffEvent)
+com.linkbubble.articlerender.ArticleRenderer: void onBeginCollapseTransitionEvent(com.linkbubble.MainController$BeginCollapseTransitionEvent)
+com.linkbubble.articlerender.ArticleRenderer: void onBeginExpandTransitionEvent(com.linkbubble.MainController$BeginExpandTransitionEvent)
+com.linkbubble.articlerender.ArticleRenderer: void onHideContentEvent(com.linkbubble.MainController$HideContentEvent)
+com.linkbubble.articlerender.ArticleRenderer: void onUnhideContentEvent(com.linkbubble.MainController$UnhideContentEvent)
 com.linkbubble.db.FaviconRecord: FaviconRecord()
 com.linkbubble.db.HistoryRecord: HistoryRecord()
 com.linkbubble.db.HistoryRecord$ChangedEvent
@@ -5894,6 +6043,10 @@ com.linkbubble.ui.BubbleFlowView: void setTouchInterceptor(com.linkbubble.ui.Bub
 com.linkbubble.ui.BubbleFlowView: void setCenterIndex(int)
 com.linkbubble.ui.BubbleFlowView: void setCenterIndex(int,boolean)
 com.linkbubble.ui.BubbleFlowView: void setCenterItem(android.view.View)
+com.linkbubble.ui.BubblePlateView
+com.linkbubble.ui.BubblePlateView: BubblePlateView(android.content.Context)
+com.linkbubble.ui.BubblePlateView: BubblePlateView(android.content.Context,android.util.AttributeSet)
+com.linkbubble.ui.BubblePlateView: BubblePlateView(android.content.Context,android.util.AttributeSet,int)
 com.linkbubble.ui.BubbleTargetView
 com.linkbubble.ui.BubbleTargetView: BubbleTargetView(android.content.Context)
 com.linkbubble.ui.BubbleTargetView: BubbleTargetView(android.content.Context,android.util.AttributeSet)
@@ -6024,9 +6177,15 @@ com.linkbubble.ui.ProgressIndicator: ProgressIndicator(android.content.Context)
 com.linkbubble.ui.ProgressIndicator: ProgressIndicator(android.content.Context,android.util.AttributeSet)
 com.linkbubble.ui.ProgressIndicator: ProgressIndicator(android.content.Context,android.util.AttributeSet,int)
 com.linkbubble.ui.ProgressIndicator: void setMax(int)
-com.linkbubble.ui.ProgressIndicator: void setProgress(boolean,int,java.net.URL)
+com.linkbubble.ui.ProgressIndicator: void setProgress(int,java.net.URL)
+com.linkbubble.ui.ProgressIndicator: void setColor(int)
 com.linkbubble.ui.ProgressIndicator$ProgressArcView: ProgressIndicator$ProgressArcView(android.content.Context)
-com.linkbubble.ui.ProgressIndicator$ProgressImageView: void setVisibility(int)
+com.linkbubble.ui.ProgressIndicatorView
+com.linkbubble.ui.ProgressIndicatorView: ProgressIndicatorView(android.content.Context)
+com.linkbubble.ui.ProgressIndicatorView: ProgressIndicatorView(android.content.Context,android.util.AttributeSet)
+com.linkbubble.ui.ProgressIndicatorView: ProgressIndicatorView(android.content.Context,android.util.AttributeSet,int)
+com.linkbubble.ui.ProgressIndicatorView: void setColor(int)
+com.linkbubble.ui.ProgressIndicatorView: void setProgress(int,java.net.URL)
 com.linkbubble.ui.SettingsActivity
 com.linkbubble.ui.SettingsActivity: SettingsActivity()
 com.linkbubble.ui.SettingsFragment
@@ -6037,10 +6196,8 @@ com.linkbubble.ui.TabView
 com.linkbubble.ui.TabView: TabView(android.content.Context)
 com.linkbubble.ui.TabView: TabView(android.content.Context,android.util.AttributeSet)
 com.linkbubble.ui.TabView: TabView(android.content.Context,android.util.AttributeSet,int)
-com.linkbubble.ui.TrialTimeView
-com.linkbubble.ui.TrialTimeView: TrialTimeView(android.content.Context)
-com.linkbubble.ui.TrialTimeView: TrialTimeView(android.content.Context,android.util.AttributeSet)
-com.linkbubble.ui.TrialTimeView: TrialTimeView(android.content.Context,android.util.AttributeSet,int)
+com.linkbubble.ui.ThemedListPreference
+com.linkbubble.ui.ThemedListPreference: ThemedListPreference(android.content.Context,android.util.AttributeSet)
 com.linkbubble.util.ActionItem$1: ActionItem$1()
 com.linkbubble.util.ActionItem$1ActionItemListView: ActionItem$1ActionItemListView(android.content.Context)
 com.linkbubble.util.ActionItem$3: ActionItem$3()
@@ -6091,6 +6248,12 @@ com.linkbubble.webrender.WebRenderer$Mode: com.linkbubble.webrender.WebRenderer$
 com.linkbubble.webrender.WebRenderer$Type
 com.linkbubble.webrender.WebRenderer$Type: com.linkbubble.webrender.WebRenderer$Type[] values()
 com.linkbubble.webrender.WebRenderer$Type: com.linkbubble.webrender.WebRenderer$Type valueOf(java.lang.String)
+com.linkbubble.webrender.WebViewRenderer: void onUserPresentEvent(com.linkbubble.MainController$UserPresentEvent)
+com.linkbubble.webrender.WebViewRenderer: void onScreenOffEvent(com.linkbubble.MainController$ScreenOffEvent)
+com.linkbubble.webrender.WebViewRenderer: void onBeginCollapseTransitionEvent(com.linkbubble.MainController$BeginCollapseTransitionEvent)
+com.linkbubble.webrender.WebViewRenderer: void onBeginExpandTransitionEvent(com.linkbubble.MainController$BeginExpandTransitionEvent)
+com.linkbubble.webrender.WebViewRenderer: void onHideContentEvent(com.linkbubble.MainController$HideContentEvent)
+com.linkbubble.webrender.WebViewRenderer: void onUnhideContentEvent(com.linkbubble.MainController$UnhideContentEvent)
 com.parse.BackgroundTask
 com.parse.BackgroundTask: com.parse.ParseCallback callback
 com.parse.BackgroundTask: java.lang.Object result
@@ -10916,6 +11079,7 @@ org.mozilla.gecko.widget.FaviconView
 org.mozilla.gecko.widget.FaviconView: FaviconView(android.content.Context)
 org.mozilla.gecko.widget.FaviconView: FaviconView(android.content.Context,android.util.AttributeSet)
 org.mozilla.gecko.widget.FaviconView: FaviconView(android.content.Context,android.util.AttributeSet,int)
+org.mozilla.gecko.widget.FaviconView: void setOnPaletteChangeListener(org.mozilla.gecko.widget.FaviconView$OnPaletteChangeListener)
 org.slf4j.Marker
 org.slf4j.helpers.BasicMDCAdapter: BasicMDCAdapter()
 org.slf4j.helpers.BasicMarker
