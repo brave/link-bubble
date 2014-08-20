@@ -3,6 +3,8 @@
 
     <release version="1.4.0" versioncode="14000">
         <change>NEW: Material Design! Shadows, color and depth, oh my!</change>
+        <change>NEW: Theme customization.</change>
+        <change>NEW: Battery Save Mode (Beta).</change>
         <change>BUG FIX: Notifications display dark icons on L and white icons on earlier Android versions.</change>
         <change>BUG FIX: Shadow image displays underneath bubble targets.</change>
     </release>
