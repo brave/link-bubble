@@ -114,9 +114,10 @@
     com.google.android.vending.licensing.ServerManagedPolicy
 
 # Encrypt license-related strings from the sample application.
-#-encryptstrings class com.example.android.market.licensing.MainActivity {
-#    private static final java.lang.String BASE64_PUBLIC_KEY;
-#}
+-encryptstrings class com.linkbubble.prokey.Constant {
+    public static final java.lang.String BASE64_PUBLIC_KEY;
+}
+
 
 -encryptstrings
     "http://market.android.com/details?id=",
