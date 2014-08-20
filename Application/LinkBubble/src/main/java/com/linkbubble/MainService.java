@@ -21,6 +21,8 @@ import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.FlushCacheService;
 import com.squareup.otto.Subscribe;
 
+import java.util.Vector;
+
 /**
  * Created by gw on 28/08/13.
  */
@@ -33,6 +35,14 @@ public class MainService extends Service {
     }
 
     public static class ShowUnhideNotificationEvent {
+    }
+
+    public static class ReloadMainServiceEvent {
+        public ReloadMainServiceEvent(Context context) {
+            mContext = context;
+        }
+
+        public Context mContext;
     }
 
     @Override
@@ -223,6 +233,15 @@ public class MainService extends Service {
     public void onShowUnhideNotificationEvent(ShowUnhideNotificationEvent event) {
         cancelCurrentNotification();
         showUnhideHiddenNotification();
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onReloadMainServiceEvent(ReloadMainServiceEvent event) {
+        stopSelf();
+
+        final Vector<String> urls = Settings.get().loadCurrentTabs();
+        MainApplication.restoreLinks(event.mContext, urls.toArray(new String[urls.size()]));
     }
 
     private static BroadcastReceiver mDialogReceiver = new BroadcastReceiver() {
