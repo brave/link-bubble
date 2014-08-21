@@ -1,3 +1,10 @@
+com.android.vending.licensing.ILicenseResultListener
+com.android.vending.licensing.ILicenseResultListener$Stub
+com.android.vending.licensing.ILicenseResultListener$Stub$Proxy
+com.android.vending.licensing.ILicensingService:
+    public abstract void checkLicense(long,java.lang.String,com.android.vending.licensing.ILicenseResultListener)
+com.android.vending.licensing.ILicensingService$Stub
+com.android.vending.licensing.ILicensingService$Stub$Proxy
 com.google.android.vending.licensing.AESObfuscator:
     private static final java.lang.String UTF8
     private static final java.lang.String KEYGEN_ALGORITHM
@@ -33,22 +40,20 @@ com.google.android.vending.licensing.LicenseCheckerCallback:
     public static final int ERROR_MISSING_PERMISSION
 com.google.android.vending.licensing.LicenseValidator:
     private static final java.lang.String TAG
-    public static final int LICENSED
-    public static final int NOT_LICENSED
-    public static final int LICENSED_OLD_KEY
-    public static final int ERROR_NOT_MARKET_MANAGED
-    public static final int ERROR_SERVER_FAILURE
-    public static final int ERROR_OVER_QUOTA
-    public static final int ERROR_CONTACTING_SERVER
-    public static final int ERROR_INVALID_PACKAGE_NAME
-    public static final int ERROR_NON_MATCHING_UID
-    public static final int ERROR_LACY_UNKNOWN
+    private static final int RANDOM
+    private static final int LICENSED
+    private static final int NOT_LICENSED
+    private static final int LICENSED_OLD_KEY
+    private static final int ERROR_NOT_MARKET_MANAGED
+    private static final int ERROR_SERVER_FAILURE
+    private static final int ERROR_OVER_QUOTA
+    private static final int ERROR_CONTACTING_SERVER
+    private static final int ERROR_INVALID_PACKAGE_NAME
+    private static final int ERROR_NON_MATCHING_UID
     private static final java.lang.String SIGNATURE_ALGORITHM
-    232:233:private void handleInvalidResponse(int)
 com.google.android.vending.licensing.Policy:
     public static final int LICENSED
     public static final int NOT_LICENSED
-    public static final int SIG_FAIL
     public static final int RETRY
 com.google.android.vending.licensing.PreferenceObfuscator:
     private static final java.lang.String TAG
