@@ -597,4 +597,11 @@ public class Util {
             }
         }
     }
+
+    public static boolean isValidBrowserPackageName(String packageName) {
+        if (packageName.equals(BuildConfig.PACKAGE_NAME) || packageName.contains("com.digitalashes.tappath") || packageName.contains("com.linkbubble")) {
+            return false;
+        }
+        return true;
+    }
 }

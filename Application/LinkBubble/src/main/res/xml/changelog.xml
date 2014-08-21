@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.4.1" versioncode="14000">
+        <change>CHANGE: Don't include TapPath in the list of browsers/default apps.</change>
+    </release>
+
     <release version="1.4.0" versioncode="14000">
         <change>NEW: Material Design! Shadows, color and depth, oh my!</change>
         <change>NEW: Select between light and dark themes.</change>
