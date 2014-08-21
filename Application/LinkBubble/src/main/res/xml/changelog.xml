@@ -2,6 +2,7 @@
 <changelog>
 
     <release version="1.4.1" versioncode="14000">
+        <change>IMPROVEMENT: Updated Czech, German, Italian, Polish and Thai translations</change>
         <change>CHANGE: Don't include TapPath in the list of browsers/default apps.</change>
         <change>BUG FIX: Stability fixes.</change>
     </release>
