@@ -62,8 +62,6 @@ wordt ingesteld als je links laadt met Link Bubble.</string>
     <string name="preference_more">Meer...</string>
     <string name="preference_intercept_links_from_title">Links onderscheppen van</string>
     <string name="preference_intercept_links_from_note">Let op: de beperking voor het onderscheppen van links van slechts één app bestaat alleen in de gratis versie van Link Bubble. Upgraden naar Pro?</string>
-    <string name="intercept_links_from_default_label">Tik om in te stellen</string>
-    <string name="intercept_links_from_default_set_message">Link Bubble is ingesteld om links van %1$s te laden.\nOm links te laden van alle apps moet je upgraden naar Pro.</string>
     <string name="preference_scan_for_youtube_embeds_title">Ingesloten YouTube-videos herkennen</string>
     <string name="preference_scan_for_youtube_embeds_summary">Snelkoppeling weergeven om ingesloten video(\'s) te laden in de YouTube-app.</string>
 

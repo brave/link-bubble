@@ -59,8 +59,6 @@
     <string name="preference_more">Más...</string>
     <string name="preference_intercept_links_from_title">Intervenir links de:</string>
     <string name="preference_intercept_links_from_note">Aviso: La restricción para abrir links desde una única app solo existe con la versión gratis de Link Bubble. ¿Volverse Pro?</string>
-    <string name="intercept_links_from_default_label">Toca para seleccionar</string>
-    <string name="intercept_links_from_default_set_message">Link Bubble se ha configurado para cargar links de  %1$s.\nPara cargar links de todas las apps, conviertete a Pro.</string>
     <string name="preference_scan_for_youtube_embeds_title">Comprueba los vídeos de Youtube incrustados</string>
     <string name="preference_scan_for_youtube_embeds_summary">Muestra un atajo para reproducir los videos incrustados de Youtube</string>
 

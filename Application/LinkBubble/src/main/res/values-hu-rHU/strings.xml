@@ -63,8 +63,6 @@
     <string name="preference_intercept_links_from_title">Linkek fogadása innen:</string>
     <string name="preference_intercept_links_from_note">Note: The restriction of intercepting links from just one app only exists with the
         free version of Link Bubble. Upgrade to Pro?</string>
-    <string name="intercept_links_from_default_label">Érintsd meg a beállításhoz</string>
-    <string name="intercept_links_from_default_set_message">Link Bubble a következőtől fogadja a linkeket: %1$s.\n A Pro verzióval mégtöbb alkalmazás hozzáadható.</string>
     <string name="preference_scan_for_youtube_embeds_title">Ellenőrizze a beágyazott YouTube videókat</string>
     <string name="preference_scan_for_youtube_embeds_summary">Parancsikon megjelenítése, amivel beágyazott YouTube videó(ka)t lehet lejátszani</string>
 

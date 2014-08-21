@@ -60,8 +60,6 @@ Appuyez dessus pour en retirer une.</string>
     <string name="preference_more">Plus…</string>
     <string name="preference_intercept_links_from_title">Intercepter les liens depuis</string>
     <string name="preference_intercept_links_from_note">À noter : la restriction selon laquelle l\'interception des liens ne fonctionne que depuis une seule application n\'existe que dans la version gratuite de Link Bubble. Passer à la version Pro ?</string>
-    <string name="intercept_links_from_default_label">Appuyez pour appliquer</string>
-    <string name="intercept_links_from_default_set_message">Link Bubble est configuré pour charger les liens de %1$s.\nPour charger les liens de toutes les applications, passez à la version Pro.</string>
     <string name="preference_scan_for_youtube_embeds_title">Vérifier les incrustations YouTube</string>
     <string name="preference_scan_for_youtube_embeds_summary">Afficher le raccourci pour charger les vidéos intégrées dans l\'application Youtube.</string>
 

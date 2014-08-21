@@ -62,8 +62,6 @@ du kan konfigurere standard appen til at indlæse sådanne links med.\n\nDen sta
     <string name="preference_intercept_links_from_title">Opfang links fra</string>
     <string name="preference_intercept_links_from_note">Bemærk: Begrænsningen på at opfange links fra blot én app, kun findes med den 
 gratis version af Link Bubble. Opgrader til Pro?</string>
-    <string name="intercept_links_from_default_label">Tryk for at vælge</string>
-    <string name="intercept_links_from_default_set_message">Link Bubble er konfigureret til at indlæse links fra%1$s.\nFor af åbne links fra alle apps, opgrader til Pro.</string>
     <string name="preference_scan_for_youtube_embeds_title">Check for YouTube videoer</string>
     <string name="preference_scan_for_youtube_embeds_summary">Vis genvej til at indlæse video(r) på YouTube appen.</string>
 

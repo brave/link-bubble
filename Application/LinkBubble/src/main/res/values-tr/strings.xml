@@ -62,8 +62,6 @@
     <string name="preference_more">Devamı...</string>
     <string name="preference_intercept_links_from_title">Linkleri şunlardan yakala</string>
     <string name="preference_intercept_links_from_note">Not: Linklerin sadece bir programdan yakalanma kısıtlaması ücretsiz sürüm için geçerlidir. Pro\'ya yükselt?</string>
-    <string name="intercept_links_from_default_label">Ayarlamak için dokunun</string>
-    <string name="intercept_links_from_default_set_message">Link Bubble sadece %1$s. için çalışıyor. Tüm uygulamalarda kullanabilmek için Pro\'ya yükseltin.</string>
     <string name="preference_scan_for_youtube_embeds_title">Youtube gömülü videolar için kontrol et</string>
     <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
 

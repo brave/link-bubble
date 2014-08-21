@@ -63,8 +63,6 @@ du laddar länkar med Link Bubble.</string>
     <string name="preference_intercept_links_from_title">Fånga upp länkar från</string>
     <string name="preference_intercept_links_from_note">Notera: Begränsningen att fånga upp länkar från en enda app bara finns med i 
 gratisversionen av Link Bubble. Uppgradera till Pro?</string>
-    <string name="intercept_links_from_default_label">Tryck för att sätta</string>
-    <string name="intercept_links_from_default_set_message">Link Bubble är konfigurerad att ladda länkar från %1$s.\nFör att ladda länkar från alla appar, uppgradera till Pro.</string>
     <string name="preference_scan_for_youtube_embeds_title">Kolla efter YouTube-inbäddningar</string>
     <string name="preference_scan_for_youtube_embeds_summary">Visa genväg för att ladda inbäddad video i YouTube-appen.</string>
 
