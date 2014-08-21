@@ -4802,8 +4802,8 @@ com.linkbubble.Settings:
     private static final java.lang.String LAST_APP_REDIRECT_KEY_TIME
     private static final java.lang.String LAST_APP_REDIRECT_KEY_URL
     private static final int MAX_LAST_APP_REDIRECT_COUNT
-    609:609:public java.util.List getIgnoreLinksFromPackageNames()
-    687:687:public boolean checkForYouTubeEmbeds()
+    608:608:public java.util.List getIgnoreLinksFromPackageNames()
+    686:686:public boolean checkForYouTubeEmbeds()
 com.linkbubble.articlerender.ArticleContent:
     private static final java.lang.String TAG
 com.linkbubble.articlerender.ArticleRenderer:
@@ -4871,7 +4871,7 @@ com.linkbubble.ui.ContentViewButton:
     static final int sTouchedColor
 com.linkbubble.ui.ExpandedActivity:
     private static final java.lang.String TAG
-    300:301:void cancelDelayedMinimize()
+    302:303:void cancelDelayedMinimize()
 com.linkbubble.ui.FlipView:
     private static final int FLAG_ROTATION_X
     private static final int FLAG_ROTATION_Y
