@@ -82,8 +82,6 @@
     <string name="preference_intercept_links_from_title">Intercetta i collegamenti da</string>
     <string name="preference_intercept_links_from_note">Nota: La restrizione di intercettare i collegamenti da un\'unica app esistono solo nella versione gratuita di Link Bubble. Aggiorna alla Pro?</string>
     <string name="preference_intercept_links_from_disabled_for_L">Google ha rimosso le API richieste per questa funzionalità da L.</string>
-    <string name="intercept_links_from_default_label">Tocca per configurare</string>
-    <string name="intercept_links_from_default_set_message">Link Bubble è configurato per caricare collegamenti da %1$s.\nPer caricare collegamenti da tutte le app, aggiorna alla versione Pro.</string>
     <string name="preference_scan_for_youtube_embeds_title">Controlla per i video YouTube incorporati</string>
     <string name="preference_scan_for_youtube_embeds_summary">Visualizza una scorciatoia per caricare nell\'app YouTube i video incorporati.</string>
     <string name="preference_webview_battery_save_title">Modalità risparmio energetico (Beta)</string>

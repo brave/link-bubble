@@ -88,8 +88,6 @@ Wsparcie twórcy w rozwijaniu nowych, wspaniałych aplikacji :)</string>
     <string name="preference_intercept_links_from_title">Przechwytuj linki z</string>
     <string name="preference_intercept_links_from_note">Uwaga: Darmowa wersja Link Bubble umożliwia przechwytywanie linków z tylko jednej aplikacji. Czy chcesz kupić wersję Pro??</string>
     <string name="preference_intercept_links_from_disabled_for_L">Google usunęło API odpowiadające za tę funkcję z Androida L.</string>
-    <string name="intercept_links_from_default_label">Dotknij, aby ustawić</string>
-    <string name="intercept_links_from_default_set_message">Link Bubble wczytuje linki z aplikacji %1$s.\nAby wczytywać linki z wszystkich aplikacji, kup wersję Pro.</string>
     <string name="preference_scan_for_youtube_embeds_title">Szukaj osadzonych nagrań z YouTube</string>
     <string name="preference_scan_for_youtube_embeds_summary">Wyświetlaj skrót umożliwiający wczytywanie osadzonych nagrań w aplikacji YouTube.</string>
     <string name="preference_webview_battery_save_title">Tryb oszczędzania baterii (Beta)</string>

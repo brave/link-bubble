@@ -92,8 +92,6 @@ jakmile přes Link Bubble načtete odkazy.</string>
     <string name="preference_intercept_links_from_note">Poznámka: Zpracování odkazů jen z jedné aplikace je omezení pouze bezplatné verze Link Bubble. 
 Chcete přejít na verzi Pro?</string>
     <string name="preference_intercept_links_from_disabled_for_L">Google have removed the API required for this functionality from L.</string>
-    <string name="intercept_links_from_default_label">Kliknutím nastavit</string>
-    <string name="intercept_links_from_default_set_message">Link Bubble je nastaven, aby načítal odkazy z %1$s.\nPokud chcete načítat odkazy i z jiných aplikací, přejděte na verzi Pro.</string>
     <string name="preference_scan_for_youtube_embeds_title">Zkontrolovat náhledy z YouTube</string>
     <string name="preference_scan_for_youtube_embeds_summary">Zobrazit zkratky pro načítání vložených videí v aplikaci YouTube.</string>
     <string name="preference_webview_battery_save_title">Úsporný režim (beta)</string>

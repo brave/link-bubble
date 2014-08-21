@@ -62,8 +62,6 @@
     <string name="preference_more">更多…</string>
     <string name="preference_intercept_links_from_title">擷取連結</string>
     <string name="preference_intercept_links_from_note">請注意：免費版的 Link Bubble 只能從一個程式中擷取連結。要升級至專業版嗎？ </string>
-    <string name="intercept_links_from_default_label">點此設定</string>
-    <string name="intercept_links_from_default_set_message">Link Bubble 被設為從 %1$s 讀取連結。若要從所有的程式中讀取連結，請升級至專業版。</string>
     <string name="preference_scan_for_youtube_embeds_title">檢查 YouTube 的嵌入式影片</string>
     <string name="preference_scan_for_youtube_embeds_summary">顯示以 YouTube 程式讀取內嵌影片的按鈕。</string>
 

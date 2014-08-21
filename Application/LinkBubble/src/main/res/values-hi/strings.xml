@@ -63,8 +63,6 @@
     <string name="preference_intercept_links_from_title">जह़ा से लिंक्स कों इंटरसेप्ट करे </string>
     <string name="preference_intercept_links_from_note">नोट: फ्री वर्जन सिर्फ एक लिंक को खोलने  के प्रतिबंध के साथ ही मौजूद है.
 ज्यादा  लिंक्स के लिये  प्रो वर्जन ले?</string>
-    <string name="intercept_links_from_default_label">सेट करने के लिए स्पर्श करे </string>
-    <string name="intercept_links_from_default_set_message">लिंक बबल  %1$s से लिंक लोड करने के लिए कॉन्फ़िगर हे . \ सभी ईपीएस से लिंक लोड करने के लिये , प्रो वरजन ले.</string>
     <string name="preference_scan_for_youtube_embeds_title">यूट्यूब एम्बेड्स  के लिए जाँच करें</string>
     <string name="preference_scan_for_youtube_embeds_summary">एम्बेडेड वीडियो को यूट्यूब ऐप  में चलने के लिये डिस्प्ले शॉर्टकट।</string>
 

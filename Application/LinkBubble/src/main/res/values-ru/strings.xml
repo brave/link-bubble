@@ -60,8 +60,6 @@
     <string name="preference_more">Ещё...</string>
     <string name="preference_intercept_links_from_title">Перехватывать ссылки из</string>
     <string name="preference_intercept_links_from_note">Внимание: ограничение перехвата ссылок только из одного приложения отсутствует в Link Bubble Pro. Улучшить?</string>
-    <string name="intercept_links_from_default_label">Нажмите для настройки</string>
-    <string name="intercept_links_from_default_set_message">Link Bubble будет перехватывать ссылки из %1$s.\nЧтобы перехватывать ссылки из всех приложений, улучшите приложение до Pro.</string>
     <string name="preference_scan_for_youtube_embeds_title">Искать встроенные видео YouTube</string>
     <string name="preference_scan_for_youtube_embeds_summary">Показывать кнопку для просмотра встроенных видео в приложении YouTube.</string>
 

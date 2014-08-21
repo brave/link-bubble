@@ -88,8 +88,6 @@ Unterstütze mich als Entwickler der App :)</string>
     <string name="preference_intercept_links_from_title">Links öffnen von</string>
     <string name="preference_intercept_links_from_note">Hinweis: Nur in der kostenlosen Version wird das Öffnen von Links auf eine App beschränkt. Auf Pro aktualisieren?</string>
     <string name="preference_intercept_links_from_disabled_for_L">Google hat die für diese Funktion benötigte API aus L entfernt.</string>
-    <string name="intercept_links_from_default_label">Zum Festlegen berühren</string>
-    <string name="intercept_links_from_default_set_message">Link Bubble wurde für %1$s konfiguriert.\nAktualisiere auf Pro, um Links aus allen Apps öffnen zu können.</string>
     <string name="preference_scan_for_youtube_embeds_title">Auf YouTube-Einbettungen prüfen</string>
     <string name="preference_scan_for_youtube_embeds_summary">Verknüpfung zur YouTube-App bei eingebetteten YouTube-Videos anzeigen.</string>
     <string name="preference_webview_battery_save_title">Energiesparmodus (Beta)</string>
