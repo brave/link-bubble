@@ -4915,7 +4915,7 @@ com.linkbubble.ui.SettingsFragment:
     private static final int THEME_LIGHT_NO_COLOR
     private static final int THEME_DARK_COLOR
     private static final int THEME_DARK_NO_COLOR
-    692:695:void updateInterceptLinksFromPreference()
+    691:694:void updateInterceptLinksFromPreference()
 com.linkbubble.ui.SettingsFragment$AppInfo
 com.linkbubble.ui.SettingsFragment$AppInfoComparator
 com.linkbubble.ui.ThemedListPreference:
