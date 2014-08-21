@@ -2,7 +2,12 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">ดาวน์โหลด</string>
+    <string name="send_intent_label">เปิดด้วย Link Bubble</string>
     <string name="notification_summary">แตะเพื่อซ่อนหน้าต่างทั้งหมด</string>
+    <string name="notification_default_summary">แตะะพื่อซ่อน, ขยายเพื่อปิดทั้งหมด</string>
+    <string name="notification_unhide_summary">แตะเพื่อเลิกซ่อน, ขยายเพื่อปิดทั้งหมด</string>
+    <string name="notification_action_close_all">ปิดทั้งหมด</string>
+    <string name="notification_action_hide">ซ่อน</string>
     <string name="share_picker_label">เลือกการแบ่งปัน</string>
 
     <string name="yes">ใช่</string>
@@ -25,13 +30,34 @@
     <string name="action_close_all">ปิดทั้งหมด</string>
     <string name="action_close_tab">ปิดหน้าต่าง</string>
     <string name="action_stop">หยุด</string>
+    <string name="action_undo">เลิกทำ</string>
     <string name="share_via">แบ่งปันผ่าน...</string>
+    <string name="not_set">ไม่ได้ตั้งค่า</string>
 
     <string name="share_invalid_data">Link Bubble ไม่สามารถแบ่งปันสิ่งนี้เพราะมันไม่ใช่ URL ที่ถูกต้อง</string>
     <string name="consume_activity_not_found">ไม่พบแอป ลองเปลี่ยนตัวเลือกทางลัดผ่านการตั้งค่า</string>
 
+    <string name="upgrade">อัปเกรด</string>
+    <string name="upgrade_to_pro">อัปเกรดเป็นรุ่นโปร</string>
+    <string name="upgrade_ok_google">ต้องการเรียกใช้งาน Google Now โดยพูด \"OK Google\"?</string>
+    <string name="upgrade_article_mode">ต้องการดูลิงก์ในโหมดการอ่าน</string>
+    <string name="upgrade_article_mode_wear">ต้องการดูลิงก์บนอุปกรณ์ Android Wear ผ่านโหมดการอ่าน?</string>
+    <string name="upgrade_theme">ต้องการใช้ธีมที่แตกแต่ง?</string>
+    <string name="upgrade_from_settings_summary">อัปเกรด Link Bubble เป็นรุ่นโปรเพื่อทำสิ่งเหล่านี้ และอักหลายอย่าง:\n •
+โหลดหลายลิงก์พริอมกัน\n •
+เปลี่ยนธีม\n •
+โหมดการอ่าน\n •
+รองรับ Android Wear\n •
+ใช้งานการสั่งด้วยเสียง \"OK, Google\"\n •
+สนับสนุนผมเหมือนที่ผมพัฒนาแอปนี้ :)</string>
+
+    <string name="undo_close_tab_title">ปิด %1$s แล้ว</string>
+    <string name="undo_close_tab_no_title">แท็บถูกปิดแล้ว</string>
+
     <string name="pick_default_app">เลือกแอปเริ่มต้น</string>
     <string name="default_browser_set">Link Bubble ได้ถูกตั้งเป็นเบราว์เซอร์เริ่มต้นแล้ว</string>
+    <string name="invalid_send_action">ไม่พบลิงก์ที่ถูกต้อง</string>
+    <string name="unable_to_launch_app">ไม่สามารถเรียกใช้งานแอปจากบุคคลที่สาม</string>
     <string name="clear_history">ล้างประวัติ</string>
 
     <string name="preference_category_general">ทั่วไป</string>
@@ -43,6 +69,7 @@
 
     <string name="preference_left_consume_bubble_title">ทางลัดฝั่งซ้าย</string>
     <string name="preference_right_consume_bubble_title">ทางลัดฝั่งขวา</string>
+    <string name="preference_double_tap_title">แตะลิงก์สองครั้ง</string>
     <string name="preference_configure_bubble_title">ตั้งค่าทางลัด</string>
     <string name="preference_category_debug">การแก้ปัญหา</string>
     <string name="preference_default_browser">เบราว์เซอร์สำรอง</string>
@@ -50,6 +77,7 @@
     <string name="preference_category_fallback_browser">เบราว์เซอร์สำรอง</string>
     <string name="preference_category_other_apps">แอปอื่นๆ</string>
     <string name="preference_default_apps_title">แอปเริ่มต้น</string>
+    <string name="preference_default_apps_summary">เบราว์เซอร์สำรอง,แอปสำหรับเปิด url เฉพาะ</string>
     <string name="preference_default_apps_notice_summary">ใช้เมื่อมีแอปอื่นในเครื่องสามารถเปิด URL ได้\n\nแตะเพื่อลบค่าเริ่มต้น</string>
     <string name="preference_default_apps_notice_no_defaults_summary">ใช้เมื่อมีแอปอื่นในเครื่องเปิด URL ได้ คุณสามารถตั้งค่าให้เปิดลิงก์ด้วยแอปเหล่านั้นได้\n\nการตั้งค่าแอปเริ่มต้นสามารถทำได้เมื่อคุณเปิดลิงก์ใน Link Bubble</string>
     <string name="preference_google_account_redirect_title">ส่งต่อบัญชีกูเกิล</string>
@@ -59,11 +87,26 @@
     <string name="preference_more">เพิ่มเติม</string>
     <string name="preference_intercept_links_from_title">เปิดลิงก์จาก</string>
     <string name="preference_intercept_links_from_note">หมายเหตุ: ในรุ่นฟรี Link Bubble จำกัดการเปิดลิงก์จากแอปเดียวเท่านั้น อัปเกรดเป็นรุ่นโปร?</string>
+    <string name="preference_intercept_links_from_disabled_for_L">กูเกิลลบ API ที่เราต้องใช้เพื่อให้คุณสมบัตินี้ทำงานออกจาก Android L</string>
     <string name="intercept_links_from_default_label">แตะเพื่อตั้งค่า</string>
     <string name="intercept_links_from_default_set_message">Link Bubble ถูกตั้งให้เปิดลิงก์จาก %1$s.\nหากต้องการเปิดลิงก์จากหลายแอป อัปเกรดเป็นรุ่นโปร</string>
     <string name="preference_scan_for_youtube_embeds_title">ตรวจสอบวิดีโอ YouTube ที่ฝั่งอยู่</string>
     <string name="preference_scan_for_youtube_embeds_summary">แสดงทางลัดเพื่อเปิดวิดีโอที่ฝังอยู่ในหน้าเว็บในแอป YouTube</string>
-
+    <string name="preference_webview_battery_save_title">โหมดประหยัดพลังงาน (ทดสอบ)</string>
+    <string name="preference_webview_battery_save_aggressive_title">แข็งขัน</string>
+    <string name="preference_webview_battery_save_aggressive_summary">หยุดการอัปเดตหน้าเว็บชั่วคราวเมื่อ Link Bubble ย่ออยู่\nหน้าเว็บที่กำลังประมวลผลจะถูกโหลดให้เสร็จก่อนหยุดชั่วคราว</string>
+    <string name="preference_webview_battery_save_default_title">ปกติ</string>
+    <string name="preference_webview_battery_save_default_summary">หยุดการอัปเดตหน้าเว็บชั่วคราวเมื่อปิดหน้าจอและโหลดต่อเมื่อเปิดหน้าจอ\nหน้าเว็บที่กำลังประมวลผลจะถูกโหลดให้เสร็จก่อนหยุดชั่วคราว</string>
+    <string name="preference_webview_battery_save_off_title">ปิด</string>
+    <string name="preference_webview_battery_save_off_summary">หน้าเว็บพร้อมใช้งานเสมอ เหมาะสำหรับการเล่นวิดีโอ YouTube หรือสิ่งที่คล้ายกัน</string>
+    <string name="preference_theme_title">ธีม</string>
+    <string name="preference_theme_light_color">สว่าง + สีไอคอน</string>
+    <string name="preference_theme_light_no_color">สว่าง + สีมาตรฐาน</string>
+    <string name="preference_theme_dark_color">มืด + สีไอคอน</string>
+    <string name="preference_theme_dark_no_color">มืด + สีมาตรฐาน</string>
+    <string name="preference_article_mode_title">โหมดการอ่าน (ทดสอบ)</string>
+    <string name="preference_reading_mode_on_wear_title">โหมดการอ่านบน Android Wear</string>
+    <string name="preference_article_mode_summary">เปิด/ปิดผ่านปุ่มบนแถบคำสั่ง</string>
     <string name="preference_webview_text_zoom_title">ขนาดตัวอักษร</string>
     <string name="preference_webview_text_zoom_note">หมายเหตุ: หน้าต่างที่เปิดอยู่จะถูกโหลดใหม่พร้อมปรับขนาดตัวอักษรหลังจากแตะ \"ตกลง\"</string>
     <string name="preference_webview_text_zoom_reloading_current">ขนาดอักษรถูกปรับใช้แล้ว กำลังโหลดหน้าต่างที่เปิดอยู่ใหม่</string>
@@ -76,6 +119,7 @@
     <string name="preference_clear_passwords">รหัสผ่าน</string>
     <string name="preference_incognito_title">โหมดไม่ระบุตัวตน</string>
     <string name="preference_incognito_summary">ไม่บันทึกประวัติและคุกกี้</string>
+    <string name="incognito_mode_changed_reloading_current">การตั้งค่าโหมดไม่ระบุตัวตนถูกเปลี่ยน กำลังโหลดหน้าเว็บใหม่...</string>
     <string name="preference_user_agent_title">ตัวแทนผู้ใช้</string>
     <string-array name="preference_user_agent_options">
         <item>ค่าเริ่มต้น</item>
@@ -96,9 +140,17 @@
     <string name="preference_get_pro_summary">อัปเกรดเป็นรุ่นโปรเพื่อคุณสมบัติเพิ่มเติม</string>
     <string name="preference_version_title">เวอร์ชัน</string>
     <string name="preference_version_summary">มีอะไรใหม่?</string>
+    <string name="preference_more_title">เพิ่มเติม&#8230;</string>
+    <string name="preference_more_summary">\"OK, Google\", โหมดการอ่าน และอื่นๆ</string>
+    <string name="preference_show_undo_close_tab_title">ปุ่มยกเลิกการปิดแท็บ</string>
 
     <string name="preference_my_other_apps_title">แอปอื่นๆ จาก Chris Lacy</string>
     <string name="preference_my_other_apps_summary">ชอบ Link Bubble? ทำไมไม่ลองแอปอื่นๆ ของผมดูล่ะ?</string>
+
+    <string name="preference_ok_google_title">สั่งงานด้วยเสียง \"OK, Google\"</string>
+    <string name="preference_ok_google_summary">อ่านคำถามที่พบบ่อยสำหรับข้อมูลเพิ่มเติม</string>
+    <string name="preference_ok_google_summary_jelly_bean">ต้องการแอนดรอยด์ 4.4 ขึ้นไป</string>
+    <string name="preference_ok_google_summary_long">หมายเหตุ: กูเกิลไม่ได้เปิดใช้งานคุณสมบัตินี้บนทุกอุปกรณ์/ประเทศ หากไม่สามารถใช้งาน \"OK Google\" บน Google Now ได้ บน Link Bubble ก็จะใช้งานไม่ได้เช่นกัน</string>
 
     <string name="remove_default_title">ล้างค่าเริ่มต้น?</string>
     <string name="remove_default_message">ลบ %1$s ออกจากแอปเริ่มต้นในการโหลดลิงก์ %2$s ?\n\nหมายเหตุ: คุณสามารถตั้งค่าแอปเริ่มต้นใหม่ได้เมื่อเปิดลิงก์ %2$s ครั้งหน้า</string>
@@ -132,12 +184,12 @@
     <string name="private_data_cleared">ข้อมูลส่วนตัวถูกลบแล้ว</string>
     <string name="private_data_cleared_reloading_current">ข้อมูลส่วนตัวถูกลบแล้ว กำลังโหลดหน้าต่างที่เปิดอยู่ใหม่...</string>
     <string name="user_agent_changed_reloading_current">ตัวแทนผู้ใช้ได้ถูกเปลี่ยน กำลังโหลดหน้าต่างที่เปิดอยู่ใหม่...</string>
+    <string name="article_mode_changed_reloading_current">การตั้งค่าโหมดการอ่านถูกเปลี่ยน กำลังโหลดหน้าเว็บใหม่...</string>
     <string name="link_loaded_with_app">โหลดด้วย %1$s</string>
     <string name="link_redirected">ส่งต่อไปยัง %1$s</string>
 
     <string name="tampered_apk">คุณใช้งาน Link Bubble ที่คัดลอกมาและถูกแก้ไขอย่างผิดกฎหมาย ดังนั้นแอปจะไม่ทำงานอย่างถูกต้อง กรุณาติดตั้งแอปใหม่อีกครั้งจาก Play Store</string>
     <string name="upgrade_incentive_one_link">ต้องใช้ Link Bubble รุ่นโปรเพื่อเปิดหลายหน้าต่างในเวลาเดียวกัน อัปเกรดเป็นรุ่นโปร?</string>
-    <string name="upgrade_incentive_one_app">ต้องใช้ Link Bubble รุ่นโปรเพื่อเปิดลิงก์จากหลายแอป อัปเกรดเป็นรุ่นโปร?</string>
     <string name="valid_license_detected">ตรวจพบใบอนุญาต Link Bubble รุ่นโปรที่ถูกต้อง\nขอบคุณสำหรับการสนับสนุนโครงการนี้ และขอให้สนุกกับแอป :)</string>
 
     <string name="bubble_link_copied_to_clipboard">คัดลอกลิงก์ไปยังคลิปบอร์ดแล้ว</string>
@@ -169,15 +221,20 @@
 จะเกิดอะไรขึ้นถ้าการกดปุ่มกลับทำให้หน้าต่าง Link Bubble ถูกย่อ? กดปุ่มกลับเล็กๆ บนไอคอนหน้าต่างนั้นแทบเป็นไปไม่ได้<br/><br/>
 Link Bubble เป็นเบราว์เซอร์, และเบราว์เซอร์บนแอนดรอยด์มีมาตรฐานเดียวกันว่าเมื่อคุณกดปุ่มกลับ คุณจะย้อนกลับไปหน้าที่แล้ว ไม่ใช่ปิดหน้านั้น และ Link Bubble ก็ทำตามมาตรฐานนี้]]></string>
     <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble ไม่ยอมเปิดลิงก์!]]></string>
-    <string name="faq_app_internal_browser_answer"><![CDATA[มีเหตุผล 3 ข้อดังนี้:<br/>
-1). เบราว์เซอร์อื่นเป็นเบราว์เซอร์เริ่มต้นอยู่ ดูตัวเลือก \"ตั้งค่าเบราว์เซอร์เริ่มต้นของเครื่อง	\" ในหน้าตั้งค่าของ Link Bubble เพื่อปรับค่านี้<br/>
-2). คุณใช้รุ่นฟรีซึ่งเปิดลิงก์ได้จากแอปเดียว ดูตัวเลือก \"เปิดลิงก์จาก\" ในหน้าตั้งค่าของ Link Bubble เพื่อเลือกแอปที่ต้องการ คุณยังสามารถอัปเกรดเป็น Link Bubble รุ่นโปร เพื่อเปิดลิงก์จากแอปไหนก็ได้<br/>
-3). บางแอปเช่น Talon, Reddit is Fun หรือแอปอื่นๆ มีเบราว์เซอร์ภายในแอป ตรวจสอบการตั้งค่าของแอปโดยเปิดการใช้งาน \"เบราว์เซอร์ภายนอก\" หรือปิดใช้งาน \"เบราว์เซอร์ภายใน\" หรือตัวเลือกใกล้เคียงกันนี้.
-<br/><br/>หมายเหตุ: แอปเบราว์เซอร์อื่นเช่น Chrome นั้นบังคับให้โหลดลิงก์ภายในตัวเอง ดังนั้น Link Bubble จึงไม่สามารถเปิดลิงก์จากแอปเบราว์เซอร์อื่นได้
+    <string name="faq_app_internal_browser_answer"><![CDATA[มี 3 เหตุผลดังนี้:<br/>
+1). เบราว์เซอร์อื่นที่ไม่ใช่ Link Bubble ถูกตั้งให้เป็นเบราว์เซอร์เริ่มต้นอยู่ ดูตัวเลือก \"ตั้งค่าเบราว์เซอร์เริ่มต้น\" ในหน้าตั้งค่าของ Link Bubble เพื่อเปลี่ยนการตั้งค่านี้<br/>
+2). Link Bubble ได้ถูกตั้งค่าให้ไม่เปิดลิงก์จากแอปที่กำหนด ดูตัวเลือก \"เปิดลิงก์จาก\" ในหน้าตั้งค่าของ Link Bubble<br/>
+3). บางแอปเช่น Talon, Reddit is Fun ฯลฯ มีเบราว์เซอร์ภายในตัวแอป ลองตรวจสอบหน้าตั้งค่าของแต่ละแอป แล้วเปิดใช้งาน \"ใช้เบราว์เซอร์ภายนอก\" หรือปิดใช้งาน \"เบราว์เซอร์ภายใน\" หรือตัวเลือกที่ใกล้เคียงกัน
+<br/><br/>หมายเหตุ: แอปเบราว์เซอร์อื่นๆ เช่น Chrome มีการบังคับให้เปิดลิงก์ภายในตัวเอง นี่คือเหตุผลที่ Link Bubble ไม่สามารถเปิดลิงก์จากแอปเบราว์เซอร์อื่น
 ]]></string>
+    <string name="faq_article_mode_question">ฉันจะใช้งานโหมดการอ่านได้อย่างไร, ทำไมบางลิงก์ถึงใช้งานไม่ได้</string>
+    <string name="faq_article_mode_answer"><![CDATA[อย่างแรก ดูให้แน่ใจว่าโหมดการอ่านได้ถูกเปิดใช้แล้ว (ตั้งค่า -> การควบคุมและอื่นๆ&#8230; -> โหมดการอ่าน (ทดสอบ))<br/><br/>
+หลังจากนั้น เมื่อโหมดการอ่านพร้อมใช้งาน ปุ่มโหมดการอ่านจะปรากฏขึ้นบนแถบคำสั่ง (ข้างปุ่มแบ่งปัน)
+โปรดทำความเข้าใจก่อนว่าปุ่มโหมดการอ่านจะแสดงเมื่อลิงก์ถูกโหลดเสร็จแล้ว และ Link Bubble ได้ประมวลผลโหมดการอ่านจากหน้าเว็บเสร็จแล้วเท่านั้น<br/><br/>
+หมายเหตุ: การประมวลผลโหมดการอ่านจากหน้าเว็บไม่สามารถไว้ใจได้ และอาจไม่สำเร็จ 100% เพราะแต่ละเว็บมีรูปแบบไม่เหมือนกัน]]></string>
     <string name="faq_future_features_question">คุณมีแผนที่จะรองรับบุ๊กมาร์ก, การชื่นชอบ, ส่วนเสริม ฯลฯ หรือไม่?</string>
     <string name="faq_future_features_answer">ไม่สามารถพูดว่าไม่ แต่ในตอนนี้ Link Bubble โฟกัสไปในเรื่องการเป็นช่องทางที่ดีที่สุดในการเปิดลิงก์จากแอปอื่น</string>
-    <string name="faq_translations_question">เมื่อไหร่คุณจะเพิ่มภาษาอื่นในแอป? ฉันช่วยได้ไหม?</string>
+    <string name="faq_translations_question">ฉันสามารถช่วยแปลแอปนี้ได้ไหม?</string>
     <string name="faq_translations_answer"><![CDATA[ผมหวังว่าจะเพิ่มภาษาอื่นในแอปเร็วๆ นี้<br/><br/>เมื่อผมพร้อม ผมจะประกาศบน Google+ ของผม
 (+Chris Lacy) เพื่อรับนักแปล คุณแค่จับตามองโพสต์ของผมไว้ก็พอ]]></string>
     <string name="faq_roadmap_question">คุณได้เผยแพร่แผนในอนาคตหรือไม่? ฉันสามารถโหวตคุณสมบัติใหม่ๆ ได้หรือเปล่า?</string>
@@ -222,6 +279,7 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="faq_title">คำถามที่พบบ่อย</string>
     <string name="preference_faq_summary">มีคำถามเกี่ยวกับแอปนี้? ลองดูที่นี่สิ</string>
     <string name="faq_section_general">ทั่วไป</string>
+    <string name="faq_section_functionality">คุณสมบัติแอป</string>
     <string name="faq_section_issues">ปัญหา</string>
 
     <string name="activity_resolver_use_always">ทุกครั้ง</string>
@@ -233,6 +291,15 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">แนวคิด, ออกแบบ และพัฒนา</string>
     <string name="credits_app_copyright">สงวนลิขสิทธิ์ 2014, Digital Ashes / Chris Lacy.</string>
+
+    <!--
+    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
+        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
+    <string name="restore_tabs_from_previous_session"></string>
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
+    </plurals>
 
     <string name="content_description_button">ปุ่ม</string>
     <string name="content_description_target_icon">ไอคอนหน้าต่าง</string>
@@ -248,7 +315,8 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
 
     <string name="requesting_location_message">%1$s ต้องการทราบตำแหน่งที่ตั้งของคุณ อนุญาต?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[ในการดำเนินการต่อ นั่นหมายความว่าคุณยอมรับ <a href="http://www.digitalashes.com/terms">ข้อกำหนด</a> และ <a href="http://www.digitalashes.com/privacy">นโยบายความเป็นส่วนตัว</a> ของ Link Bubble]]></string>
+    <string name="accept_terms_and_privacy"><![CDATA[ในการดำเนินการต่อ คุณได้รับทราบ
+<a href="http://www.digitalashes.com/terms">ข้อกำหนดการใช้งาน</a> และ <a href="http://www.digitalashes.com/privacy">นโยบายความเป็นส่วนตัว</a> ของ Digital Ashes]]></string>
 
     <string name="service_name">เรนเดอร์ Link Bubble</string>
     <string name="notification_title">Link Bubble</string>
@@ -267,8 +335,6 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="pro_action_retry">ลองอีกครั้ง</string>
     <string name="pro_action_store">Play Store</string>
 
-
-
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">ทางที่ใช่ในการเปิดเว็บบนมือถือ</string>
     <string name="store_listing_description_title">Link Bubble คือเบราว์เซอร์โฉมใหม่ที่ออกแบบและสร้างขึ้นมาเพื่อผู้ที่มีโทรศัพท์มือถืออยู่ในใจ</string>
@@ -284,11 +350,13 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
 
     <string name="pro_store_listing_title">Link Bubble โปร</string>
     <string name="pro_store_listing_description_title">Link Bubble รุ่นโปรปลดล็อกคุณสมบัติเพิ่มเติมของ Link Bubble</string>
-    <string name="pro_store_listing_description_features">ในการอัปเกรดปรักอบไปด้วย:
-• เปิดหน้าต่างได้ไม่จำกัด (รุ่นฟรีจำกัดแค่หนึ่งหน้าต่าง)
-• โหลดลิงก์จากแอปดก็ได้ในเครื่อง (รุ่นฟรีโหลดได้จากแอปเดียวเท่านั้น)
-• ลยข้อความชวนให้อัปเกรดจากรุ่นฟรี
-• สนับสนุนผมเพื่อพัฒนาแอปเหล่านี้ :)</string>
+    <string name="pro_store_listing_description_features">
+    Upgrades include:
+    • Infinite number of tabs (free version is limited to just one tab).
+    • Theme selection
+    • Remove the upgrade incentives throughout the free version.
+    • Support me so I get to make more of these apps :)
+    </string>
 
     <string name="welcome_page_title">ยินดีต้อนรับสู่ Link Bubble!</string>
     <string name="welcome_page_trial_notice">หมายเหตุ: ภายใน 24 ชั่วโมงหลังจากติดตั้ง Link Bubble ครั้งแรก คุณจะได้ทดลองใช้คุณสมบัติของ Link Bubble รุ่นโปรฟรี การทดลองใช้นี้จำกัดเพียงครั้งเดียวเท่านั้น</string>
@@ -308,5 +376,7 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="welcome_page_pro_point_3">และแน่นอน ผมจะเพิ่มคุณสมบัติใหม่ๆ เพิ่มในอนาคต :)</string>
     <string name="welcome_page_pro_end">ขอบคุณ และขอให้สนุกกับแอป!</string>
     <string name="welcome_page_ps">ปล. ในการปิดหน้าต่าง คุณสามารถใช้การกดปุ่มย้อนกลับ หรือกดค้างบนไอคอนหน้าต่าง แล้วโยนมันไปยังปุ่มปิด</string>
+
+    <string name="duplicate_link_will_not_be_loaded">Link already loaded. Ignoring...</string>
 
 </resources>
