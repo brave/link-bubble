@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="1.4.2" versioncode="14200">
+    <release version="1.4.3" versioncode="14300">
         <change>BUG FIX: Fix overly large Link Bubble icon on dialogs on lower-resolution devices.</change>
+        <change>BUG FIX: </change>
     </release>
 
     <release version="1.4.2" versioncode="14200">

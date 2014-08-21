@@ -24,6 +24,8 @@ import android.widget.TextView;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
 import com.linkbubble.R;
+import com.linkbubble.Settings;
+
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
@@ -178,6 +180,11 @@ public class ActionItem {
         Resources resources = context.getResources();
         PackageManager packageManager = context.getPackageManager();
 
+        final int backgroundColorResourceId = Settings.get().getDarkThemeEnabled() ? R.color.color_list_background_dark : R.color.color_list_background_light;
+        final int selectedBackgroundColorResourceId = Settings.get().getDarkThemeEnabled() ? R.color.color_list_selected_background_dark
+                : R.color.color_list_selected_background_light;
+
+
         for (ResolveInfo resolveInfo : resolveInfos) {
             actionItems.add(new ActionItem(Constant.ActionType.View,
                     resources,
@@ -217,7 +224,7 @@ public class ActionItem {
                         if (getChildCount() > selectedIndex) {
                             View child = getChildAt(selectedIndex);
                             if (child != null) {
-                                child.setBackgroundResource(R.color.action_picker_selected_color);
+                                child.setBackgroundResource(selectedBackgroundColorResourceId);
                                 mDefaultSet = true;
                             }
                         }
@@ -272,9 +279,9 @@ public class ActionItem {
                 int viewChildCount = listView.getChildCount();
                 for (int i = 0; i < viewChildCount; i++) {
                     View child = listView.getChildAt(i);
-                    child.setBackgroundResource(android.R.color.white);
+                    child.setBackgroundResource(backgroundColorResourceId);
                 }
-                view.setBackgroundResource(R.color.action_picker_selected_color);
+                view.setBackgroundResource(selectedBackgroundColorResourceId);
                 listView.setTag(position);
 
                 /*
