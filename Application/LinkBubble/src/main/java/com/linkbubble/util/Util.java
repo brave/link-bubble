@@ -31,6 +31,7 @@ import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
+import com.linkbubble.Settings;
 import com.linkbubble.ui.Prompt;
 
 import java.io.BufferedReader;
@@ -579,7 +580,7 @@ public class Util {
         dialog.show();
 
         Resources resources = dialog.getContext().getResources();
-        int color = resources.getColor(R.color.color_primary);
+        int color = resources.getColor(Settings.get().getDarkThemeEnabled() ? R.color.color_primary_bright : R.color.color_primary);
 
         int dividerId = resources.getIdentifier("android:id/titleDivider", null, null);
         if (dividerId > 0) {
