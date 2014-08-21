@@ -7736,26 +7736,26 @@ com.linkbubble.Settings -> com.linkbubble.Settings:
     592:605:void setIgnoreLinksFromPackageNames(java.util.ArrayList) -> ･
     612:618:boolean ignoreLinkFromPackageName(java.lang.String) -> ･
     630:637:void setWebViewBatterySaveMode(java.lang.String) -> ˊ
-    754:787:java.util.ArrayList getAppsThatHandleUrl$6450ac98(java.lang.String,android.content.pm.PackageManager) -> ･
-    791:815:android.content.pm.ResolveInfo getDefaultAppForUrl$14c9ac02(java.net.URL,java.util.ArrayList) -> ･
-    824:833:void setDefaultApp(java.lang.String,android.content.pm.ResolveInfo,boolean) -> ･
-    837:842:void addDefaultApp(java.lang.String,android.content.ComponentName,boolean) -> ･
-    852:865:java.util.Vector loadCurrentTabs() -> ᐝ
-    869:891:void saveCurrentTabs$61fb9e66(java.util.ArrayList) -> ˊ
-    894:910:void saveDefaultApps() -> ʻ
-    914:934:void configureDefaultApps(java.lang.String) -> ˏ
-    937:945:java.util.TreeMap getDefaultAppsMap() -> ʼ
-    949:961:android.graphics.Point getBubbleRestingPoint() -> ʽ
-    966:971:int getBubbleStartingX(android.graphics.Point) -> ･
-    1054:1076:void trackLinkLoadTime(long,com.linkbubble.Settings$LinkLoadType,java.lang.String) -> ･
-    1118:1126:boolean didRecentlyRedirectToApp(java.lang.String) -> ˋ
-    1131:1159:void addRedirectToApp(java.lang.String) -> ˎ
-    1162:1177:void saveRecentAppRedirects() -> ͺ
-    1180:1198:void loadRecentAppRedirects() -> ˌ
-    1201:1209:boolean canFlushWebViewCache() -> ι
-    1245:1248:int getThemedDefaultProgressColor() -> ʾ
-    1252:1255:int getThemedContentViewColor() -> ʿ
-    1259:1262:int getThemedTextColor() -> ˈ
+    754:808:java.util.ArrayList getAppsThatHandleUrl$6450ac98(java.lang.String,android.content.pm.PackageManager) -> ･
+    812:836:android.content.pm.ResolveInfo getDefaultAppForUrl$14c9ac02(java.net.URL,java.util.ArrayList) -> ･
+    845:854:void setDefaultApp(java.lang.String,android.content.pm.ResolveInfo,boolean) -> ･
+    858:863:void addDefaultApp(java.lang.String,android.content.ComponentName,boolean) -> ･
+    873:886:java.util.Vector loadCurrentTabs() -> ᐝ
+    890:912:void saveCurrentTabs$61fb9e66(java.util.ArrayList) -> ˊ
+    915:931:void saveDefaultApps() -> ʻ
+    935:955:void configureDefaultApps(java.lang.String) -> ˏ
+    958:966:java.util.TreeMap getDefaultAppsMap() -> ʼ
+    970:982:android.graphics.Point getBubbleRestingPoint() -> ʽ
+    987:992:int getBubbleStartingX(android.graphics.Point) -> ･
+    1075:1097:void trackLinkLoadTime(long,com.linkbubble.Settings$LinkLoadType,java.lang.String) -> ･
+    1139:1147:boolean didRecentlyRedirectToApp(java.lang.String) -> ˋ
+    1152:1180:void addRedirectToApp(java.lang.String) -> ˎ
+    1183:1198:void saveRecentAppRedirects() -> ͺ
+    1201:1219:void loadRecentAppRedirects() -> ˌ
+    1222:1230:boolean canFlushWebViewCache() -> ι
+    1266:1269:int getThemedDefaultProgressColor() -> ʾ
+    1273:1276:int getThemedContentViewColor() -> ʿ
+    1280:1283:int getThemedTextColor() -> ˈ
     java.lang.String $(int,int,int) -> ･
 com.linkbubble.Settings$1 -> com.linkbubble.Settings$1:
     int[] $SwitchMap$com$linkbubble$Constant$BubbleAction -> ･
@@ -7775,8 +7775,8 @@ com.linkbubble.Settings$LinkLoadType -> com.linkbubble.Settings$LinkLoadType:
     com.linkbubble.Settings$LinkLoadType ShareToOtherApp -> ˎ
     com.linkbubble.Settings$LinkLoadType OpenInOtherApp -> ˏ
     com.linkbubble.Settings$LinkLoadType[] $VALUES -> ᐝ
-    1037:1037:com.linkbubble.Settings$LinkLoadType[] values() -> values
-    1037:1037:com.linkbubble.Settings$LinkLoadType valueOf(java.lang.String) -> valueOf
+    1058:1058:com.linkbubble.Settings$LinkLoadType[] values() -> values
+    1058:1058:com.linkbubble.Settings$LinkLoadType valueOf(java.lang.String) -> valueOf
 com.linkbubble.Settings$WebViewBatterySaveMode -> com.linkbubble.Settings$WebViewBatterySaveMode:
     com.linkbubble.Settings$WebViewBatterySaveMode Aggressive -> ･
     com.linkbubble.Settings$WebViewBatterySaveMode Default -> ˊ
@@ -8405,7 +8405,6 @@ com.linkbubble.ui.CanvasView -> com.linkbubble.ui.CanvasView:
 com.linkbubble.ui.ChangeLogDialog -> ь:
     android.app.Activity fActivity -> ･
     byte[] $ -> ˊ
-    int $$ -> ˋ
     55:59:java.lang.String GetAppVersion() -> ･
     65:75:java.lang.String ParseReleaseTag(android.content.res.XmlResourceParser) -> ･
     90:117:java.lang.String GetHTMLChangelog(int,android.content.res.Resources) -> ･
@@ -9074,147 +9073,148 @@ com.linkbubble.ui.SettingsFragment -> com.linkbubble.ui.SettingsFragment:
     int mForceCrashCountdown -> ʽ
     android.widget.Toast mForceCrashToast -> ･
     byte[] $ -> ͺ
-    84:141:void configureDefaultAppsList() -> ˏ
-    145:564:void onCreate(android.os.Bundle) -> onCreate
-    568:579:void onResume() -> onResume
-    583:586:void onPause() -> onPause
-    590:595:void onDestroy() -> onDestroy
-    599:610:void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String) -> onSharedPreferenceChanged
-    620:646:void upsellPro(int) -> ･
-    703:722:void updateThemeSummary() -> ･
-    878:886:void updateWebViewBatterySaveSummary() -> ˊ
-    1069:1069:void doCrash() -> ˋ
-    68:68:void access$000(com.linkbubble.ui.SettingsFragment) -> ･
-    68:68:boolean access$100(com.linkbubble.ui.SettingsFragment) -> ˊ
-    68:68:android.preference.Preference access$200(com.linkbubble.ui.SettingsFragment) -> ˋ
-    68:68:int access$300(com.linkbubble.ui.SettingsFragment) -> ˎ
-    68:68:int access$310(com.linkbubble.ui.SettingsFragment) -> ˏ
-    68:68:int access$400() -> ˎ
+    87:144:void configureDefaultAppsList() -> ˏ
+    148:563:void onCreate(android.os.Bundle) -> onCreate
+    567:578:void onResume() -> onResume
+    582:585:void onPause() -> onPause
+    589:594:void onDestroy() -> onDestroy
+    598:609:void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String) -> onSharedPreferenceChanged
+    619:645:void upsellPro(int) -> ･
+    702:721:void updateThemeSummary() -> ･
+    877:885:void updateWebViewBatterySaveSummary() -> ˊ
+    1068:1068:void doCrash() -> ˋ
+    1291:1309:void setPreferenceIcon(android.preference.Preference,android.graphics.drawable.Drawable) -> ･
+    71:71:void access$000(com.linkbubble.ui.SettingsFragment) -> ･
+    71:71:boolean access$100(com.linkbubble.ui.SettingsFragment) -> ˊ
+    71:71:android.preference.Preference access$200(com.linkbubble.ui.SettingsFragment) -> ˋ
+    71:71:int access$300(com.linkbubble.ui.SettingsFragment) -> ˎ
+    71:71:int access$310(com.linkbubble.ui.SettingsFragment) -> ˏ
+    71:71:int access$400() -> ˎ
     java.lang.String $(int,int,int) -> ･
 com.linkbubble.ui.SettingsFragment$1 -> ᓖ:
     java.lang.CharSequence val$label -> ˋ
     java.lang.String val$host -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    109:129:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    112:132:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$1$1 -> ᓘ:
     com.linkbubble.ui.SettingsFragment$1 this$1 -> ･
-    118:120:void onClick(android.content.DialogInterface,int) -> onClick
+    121:123:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.SettingsFragment$1$2 -> ᓛ:
     com.linkbubble.ui.SettingsFragment$1 this$1 -> ･
-    126:126:void onClick(android.content.DialogInterface,int) -> onClick
+    129:129:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.SettingsFragment$10 -> ᔫ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    271:273:boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
+    274:276:boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
 com.linkbubble.ui.SettingsFragment$11 -> ᘂ:
     android.preference.CheckBoxPreference val$okGooglePreference -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    282:284:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    285:287:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$12 -> ᘢ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    298:298:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    301:301:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$13 -> ᚁ:
     android.preference.Preference val$leftConsumeBubblePreference -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    306:316:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    309:318:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$13$1 -> ᚆ:
     com.linkbubble.ui.SettingsFragment$13 this$1 -> ･
-    309:313:void onSelected(com.linkbubble.util.ActionItem) -> ･
+    312:315:void onSelected(com.linkbubble.util.ActionItem) -> ･
 com.linkbubble.ui.SettingsFragment$14 -> ᴒ:
     android.preference.Preference val$rightConsumeBubblePreference -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    326:336:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    327:336:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$14$1 -> ᴫ:
     com.linkbubble.ui.SettingsFragment$14 this$1 -> ･
-    329:333:void onSelected(com.linkbubble.util.ActionItem) -> ･
+    330:333:void onSelected(com.linkbubble.util.ActionItem) -> ･
 com.linkbubble.ui.SettingsFragment$15 -> Ḻ:
     android.preference.PreferenceScreen val$defaultAppsPreference -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    374:398:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    373:397:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$15$1 -> Ṫ:
     android.preference.Preference val$preference -> ˊ
     com.linkbubble.ui.SettingsFragment$15 this$1 -> ･
-    377:395:void onSelected(com.linkbubble.util.ActionItem) -> ･
+    376:394:void onSelected(com.linkbubble.util.ActionItem) -> ･
 com.linkbubble.ui.SettingsFragment$15$1$1 -> Ỳ:
     com.linkbubble.ui.SettingsFragment$15$1 this$2 -> ･
-    390:391:void onDismiss(android.content.DialogInterface) -> onDismiss
+    389:390:void onDismiss(android.content.DialogInterface) -> onDismiss
 com.linkbubble.ui.SettingsFragment$16 -> Ỵ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    408:408:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    407:407:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$17 -> ἶ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    416:417:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    415:416:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$18 -> ἷ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    429:435:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    428:434:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$19 -> ῗ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    445:450:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    444:449:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$2 -> ℓ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    163:164:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    166:167:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$20 -> Ⅴ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    459:464:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    458:463:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$21 -> ゞ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    482:483:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    481:482:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$22 -> イ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    491:493:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    490:492:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$23 -> 忄:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    500:501:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    499:500:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$24 -> אּ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    508:527:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    507:526:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$24$1 -> ﮋ:
     com.linkbubble.ui.SettingsFragment$24 this$1 -> ･
-    512:515:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    511:514:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
 com.linkbubble.ui.SettingsFragment$25 -> ﺏ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    534:535:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    533:534:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$26 -> ﺔ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    542:543:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    541:542:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$27 -> ﺣ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    557:561:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    556:560:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$28 -> ﻡ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    637:639:void onClick(android.content.DialogInterface,int) -> onClick
+    636:638:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.SettingsFragment$29 -> ｕ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    662:674:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    661:673:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$3 -> ｚ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    179:180:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    182:183:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$30 -> ｫ:
     com.linkbubble.ui.SettingsFragment$PreferenceThemeAdapter val$adapter -> ･
     int val$startSelectedIndex -> ˊ
     com.linkbubble.ui.SettingsFragment this$0 -> ˋ
-    753:787:void onClick(android.content.DialogInterface,int) -> onClick
+    752:786:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.SettingsFragment$31 -> ｮ:
     com.linkbubble.ui.SettingsFragment$PreferenceBatterySaveAdapter val$adapter -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    907:910:void onClick(android.content.DialogInterface,int) -> onClick
+    906:909:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.SettingsFragment$32 -> ｱ:
     android.widget.TextView val$textView -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    1000:1009:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
-    1014:1014:void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
-    1019:1019:void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
+    999:1008:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+    1013:1013:void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
+    1018:1018:void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
 com.linkbubble.ui.SettingsFragment$33 -> ﾏ:
     android.widget.SeekBar val$seekBar -> ･
     int val$initialZoom -> ˊ
     com.linkbubble.ui.SettingsFragment this$0 -> ˋ
-    1035:1043:void onClick(android.content.DialogInterface,int) -> onClick
+    1034:1042:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.SettingsFragment$34 -> ﾗ:
     int val$initialZoom -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    1050:1058:void onClick(android.content.DialogInterface,int) -> onClick
+    1049:1057:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.SettingsFragment$35 -> ﾜ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    1080:1095:void onClick(android.view.View) -> onClick
+    1079:1094:void onClick(android.view.View) -> onClick
 com.linkbubble.ui.SettingsFragment$36 -> ĉ:
     android.widget.ListView val$listView -> ･
     java.util.ArrayList val$items -> ˊ
@@ -9225,72 +9225,72 @@ com.linkbubble.ui.SettingsFragment$36 -> ĉ:
     java.lang.String val$clearHistory -> ʻ
     java.lang.String val$clearPasswords -> ʼ
     com.linkbubble.ui.SettingsFragment this$0 -> ʽ
-    1140:1190:void onClick(android.content.DialogInterface,int) -> onClick
+    1139:1189:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.SettingsFragment$37 -> č:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    1195:1196:void onClick(android.content.DialogInterface,int) -> onClick
+    1194:1195:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.SettingsFragment$39 -> Ŷ:
     android.widget.ListView val$layout$404490e8 -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    1260:1270:void onClick(android.content.DialogInterface,int) -> onClick
+    1259:1269:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.ui.SettingsFragment$4 -> ż:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    191:199:boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
+    194:202:boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
 com.linkbubble.ui.SettingsFragment$5 -> ƨ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    209:212:boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
+    212:215:boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
 com.linkbubble.ui.SettingsFragment$6 -> ƫ:
     android.preference.CheckBoxPreference val$articleModeWearPreference -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    221:223:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    224:226:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$7 -> Ƴ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    233:236:boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
+    236:239:boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
 com.linkbubble.ui.SettingsFragment$8 -> Ț:
     android.preference.CheckBoxPreference val$articleModePreference -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    245:247:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    248:250:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$9 -> ȯ:
     com.linkbubble.ui.SettingsFragment this$0 -> ･
-    256:257:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    259:260:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent -> com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent:
     boolean mIncognito -> ･
 com.linkbubble.ui.SettingsFragment$PreferenceBatterySaveAdapter -> com.linkbubble.ui.SettingsFragment$･:
     android.app.Activity mContext$48463d4e -> ˊ
     int mLayoutResourceId -> ˋ
     int mSelectedIndex -> ･
-    933:986:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    932:985:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
 com.linkbubble.ui.SettingsFragment$PreferenceBatterySaveAdapter$1 -> ɢ:
     android.widget.RadioButton val$radioButton -> ･
     int val$position -> ˊ
     com.linkbubble.ui.SettingsFragment$PreferenceBatterySaveAdapter this$0 -> ˋ
-    956:959:void onClick(android.view.View) -> onClick
+    955:958:void onClick(android.view.View) -> onClick
 com.linkbubble.ui.SettingsFragment$PreferenceBatterySaveAdapter$2 -> ʎ:
     android.widget.RadioButton val$radioButton -> ･
     com.linkbubble.ui.SettingsFragment$PreferenceBatterySaveAdapter this$0 -> ˊ
-    964:972:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    963:971:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
 com.linkbubble.ui.SettingsFragment$PreferenceBatterySaveAdapter$3 -> ʝ:
     int val$position -> ･
     com.linkbubble.ui.SettingsFragment$PreferenceBatterySaveAdapter this$0 -> ˊ
-    978:982:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+    977:981:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
 com.linkbubble.ui.SettingsFragment$PreferenceThemeAdapter -> com.linkbubble.ui.SettingsFragment$if:
     android.app.Activity mContext$48463d4e -> ˊ
     int mLayoutResourceId -> ˋ
     int mSelectedIndex -> ･
-    810:873:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    809:872:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
 com.linkbubble.ui.SettingsFragment$PreferenceThemeAdapter$1 -> ʭ:
     android.widget.RadioButton val$radioButton -> ･
     int val$position -> ˊ
     com.linkbubble.ui.SettingsFragment$PreferenceThemeAdapter this$0 -> ˋ
-    843:846:void onClick(android.view.View) -> onClick
+    842:845:void onClick(android.view.View) -> onClick
 com.linkbubble.ui.SettingsFragment$PreferenceThemeAdapter$2 -> λ:
     android.widget.RadioButton val$radioButton -> ･
     com.linkbubble.ui.SettingsFragment$PreferenceThemeAdapter this$0 -> ˊ
-    851:859:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    850:858:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
 com.linkbubble.ui.SettingsFragment$PreferenceThemeAdapter$3 -> ϋ:
     int val$position -> ･
     com.linkbubble.ui.SettingsFragment$PreferenceThemeAdapter this$0 -> ˊ
-    865:869:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+    864:868:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
 com.linkbubble.ui.SwipeDismissListViewTouchListener -> ϒ:
     int mSlop -> ˊ
     int mMinFlingVelocity -> ˋ
@@ -9369,6 +9369,7 @@ com.linkbubble.util.ActionItem -> ӱ:
     java.lang.String mActivityClassName -> ˏ
     android.graphics.drawable.Drawable mIcon -> ᐝ
     byte[] $ -> ʻ
+    int $$ -> ʼ
     73:139:java.util.ArrayList getActionItems(android.content.Context,boolean,boolean,boolean) -> ･
     143:172:android.app.AlertDialog getDefaultBrowserAlert$472415a9(android.app.Activity,com.linkbubble.ui.SettingsFragment$15$1) -> ･
     177:316:android.app.AlertDialog getActionItemPickerAlert$7acab40a$97e5037(android.content.Context,java.util.ArrayList,com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener) -> ･
@@ -9429,7 +9430,6 @@ com.linkbubble.util.ActionItem$OnActionItemSelectedListener -> ӱ$ˊ:
     void onSelected(com.linkbubble.util.ActionItem) -> ･
 com.linkbubble.util.AppPickerList -> com.linkbubble.util.AppPickerList:
     byte[] $ -> ･
-    int $$ -> ˊ
     73:156:android.widget.ListView createView$590ee69d$460f63a1$56de75f3(android.app.Activity,com.linkbubble.util.IconCache,com.linkbubble.util.AppPickerList$SelectionType,com.linkbubble.util.AppPickerList$Initializer) -> ･
     175:186:java.util.ArrayList getUnselected$3be2e569(android.widget.ListView) -> ･
     java.lang.String $(int,int,int) -> ･
@@ -9458,7 +9458,7 @@ com.linkbubble.util.AppPickerList$AppPickerListInfo -> com.linkbubble.util.AppPi
 com.linkbubble.util.AppPickerList$Initializer -> com.linkbubble.util.AppPickerList$If:
     java.util.ArrayList val$browserPackageNames$7865b31 -> ･
     com.linkbubble.ui.SettingsFragment this$0 -> ˊ
-    1240:1250:boolean addToList(java.lang.String) -> ･
+    1239:1249:boolean addToList(java.lang.String) -> ･
 com.linkbubble.util.AppPickerList$SelectionType -> com.linkbubble.util.AppPickerList$SelectionType:
     com.linkbubble.util.AppPickerList$SelectionType SingleSelection -> ･
     com.linkbubble.util.AppPickerList$SelectionType MultipleSelection -> ˊ
