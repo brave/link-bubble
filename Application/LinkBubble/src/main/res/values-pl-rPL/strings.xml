@@ -2,7 +2,12 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Pobieranie</string>
+    <string name="send_intent_label">Otwórz w Link Bubble</string>
     <string name="notification_summary">Dotknij, aby ukryć wszystkie otwarte dymki</string>
+    <string name="notification_default_summary">Dotknij, by ukryć, rozwiń, by zamknąć wszystkie</string>
+    <string name="notification_unhide_summary">Dotknij, by odkryć, rozwiń, by zamknąć wszystkie</string>
+    <string name="notification_action_close_all">Zamknij wszystko</string>
+    <string name="notification_action_hide">Ukryj</string>
     <string name="share_picker_label">Menu udostępniania</string>
 
     <string name="yes">Tak</string>
@@ -22,16 +27,37 @@
     <string name="action_upgrade_to_pro">★Kup wersję Pro★</string>
     <string name="action_copy_to_clipboard">Skopiuj link</string>
     <string name="action_share">Udostępnij</string>
-    <string name="action_close_all">Zamknij wszystkie</string>
-    <string name="action_close_tab">Dymek zamykający</string>
+    <string name="action_close_all">Zamknij wszystko</string>
+    <string name="action_close_tab">Zamknij dymek</string>
     <string name="action_stop">Zatrzymaj</string>
+    <string name="action_undo">Cofnij</string>
     <string name="share_via">Udostępnij przez...</string>
+    <string name="not_set">Nie ustawiono</string>
 
     <string name="share_invalid_data">Link Bubble nie może tego udostępnić, ponieważ adres URL nie jest poprawny.</string>
     <string name="consume_activity_not_found">Nie znaleziono aplikacji. Sprawdź akcję dymku w ustawieniach.</string>
 
+    <string name="upgrade">Wersja Pro</string>
+    <string name="upgrade_to_pro">Kup wersję Pro</string>
+    <string name="upgrade_ok_google">Czy chcesz uruchamiać Google Now komendą \"OK, Google\"?</string>
+    <string name="upgrade_article_mode">Czy chcesz wczytywać linki w trybie czytania?</string>
+    <string name="upgrade_article_mode_wear">Chcesz wczytywać linki w trybie czytania na Android Wear?</string>
+    <string name="upgrade_theme">Chcesz użyć innego motywu?</string>
+    <string name="upgrade_from_settings_summary">Linku Bubble Pro daje dostęp do wielu nowych funkcji, takich jak:\n •
+Wczytywanie wielu zakładek równocześnie\n •
+Zmiana motywu\n •
+Tryb czytania\n •
+Wsparcie Android Wear\n •
+Aktywacja komendą głosową \"OK, Google\"\n •
+Wsparcie twórcy w rozwijaniu nowych, wspaniałych aplikacji :)</string>
+
+    <string name="undo_close_tab_title">Zamknięto %1$s</string>
+    <string name="undo_close_tab_no_title">Zamknięto zakładkę</string>
+
     <string name="pick_default_app">Wybierz domyślną aplikację</string>
     <string name="default_browser_set">Aplikacja Link Bubble jest teraz domyślną przeglądarką.</string>
+    <string name="invalid_send_action">Nie znaleziono poprawnego linku.</string>
+    <string name="unable_to_launch_app">Nie udało się uruchomić aplikacji innego producenta.</string>
     <string name="clear_history">Wyczyść historię</string>
 
     <string name="preference_category_general">Ogólne</string>
@@ -43,6 +69,7 @@
 
     <string name="preference_left_consume_bubble_title">Lewy dymek</string>
     <string name="preference_right_consume_bubble_title">Prawy dymek</string>
+    <string name="preference_double_tap_title">Dwukrotne dotknięcie linku</string>
     <string name="preference_configure_bubble_title">Konfiguruj dymek</string>
     <string name="preference_category_debug">Debugowanie</string>
     <string name="preference_default_browser">Domyślna przeglądarka drugorzędna</string>
@@ -50,6 +77,7 @@
     <string name="preference_category_fallback_browser">Domyślna przeglądarka drugorzędna</string>
     <string name="preference_category_other_apps">Inne aplikacje</string>
     <string name="preference_default_apps_title">Domyślne aplikacje</string>
+    <string name="preference_default_apps_summary">Przeglądarka drugorzędna, inne aplikacje</string>
     <string name="preference_default_apps_notice_summary">Używane, gdy więcej niż jedna zainstalowana aplikacja nie będąca przeglądarką może otworzyć dany adres URL.\n\nDotknij, aby usunąć wartość domyślną.</string>
     <string name="preference_default_apps_notice_no_defaults_summary">Używane, gdy więcej niż jedna zainstalowana aplikacja nie będąca przeglądarką może otworzyć dany adres URL. Możesz ustawić domyślną aplikację do wczytywania takich adresów.\n\nAplikację domyślną ustawia się, gdy Link Bubble wczytuje adres URL.</string>
     <string name="preference_google_account_redirect_title">Przekierowanie na konto Google</string>
@@ -59,11 +87,26 @@
     <string name="preference_more">Więcej...</string>
     <string name="preference_intercept_links_from_title">Przechwytuj linki z</string>
     <string name="preference_intercept_links_from_note">Uwaga: Darmowa wersja Link Bubble umożliwia przechwytywanie linków z tylko jednej aplikacji. Czy chcesz kupić wersję Pro??</string>
+    <string name="preference_intercept_links_from_disabled_for_L">Google usunęło API odpowiadające za tę funkcję z Androida L.</string>
     <string name="intercept_links_from_default_label">Dotknij, aby ustawić</string>
     <string name="intercept_links_from_default_set_message">Link Bubble wczytuje linki z aplikacji %1$s.\nAby wczytywać linki z wszystkich aplikacji, kup wersję Pro.</string>
     <string name="preference_scan_for_youtube_embeds_title">Szukaj osadzonych nagrań z YouTube</string>
     <string name="preference_scan_for_youtube_embeds_summary">Wyświetlaj skrót umożliwiający wczytywanie osadzonych nagrań w aplikacji YouTube.</string>
-
+    <string name="preference_webview_battery_save_title">Tryb oszczędzania baterii (Beta)</string>
+    <string name="preference_webview_battery_save_aggressive_title">Agresywny</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Wstrzymuje wczytywanie stron, gdy Link Bubble jest zminimalizowany.\nStrony w trakcie wczytywania zostaną wczytane przed wstrzymaniem.</string>
+    <string name="preference_webview_battery_save_default_title">Domyślne</string>
+    <string name="preference_webview_battery_save_default_summary">Wstrzymuje wczytywanie stron, gdy ekran jest wyłączony i wznawia, gdy urządzenie jest odblokowane.\nStrony w trakcie wczytywania zostaną wczytane przed wstrzymaniem.</string>
+    <string name="preference_webview_battery_save_off_title">Wyłączone</string>
+    <string name="preference_webview_battery_save_off_summary">Strony są zawsze aktywne. Przydatne podczas strumieniowania nagrań z YouTube i tym podobnych.</string>
+    <string name="preference_theme_title">Motyw</string>
+    <string name="preference_theme_light_color">Jasny + kolor ikony</string>
+    <string name="preference_theme_light_no_color">Jasny + kolor neutralny</string>
+    <string name="preference_theme_dark_color">Ciemny + kolor ikony</string>
+    <string name="preference_theme_dark_no_color">Ciemny + kolor neutralny</string>
+    <string name="preference_article_mode_title">Tryb czytania (Beta)</string>
+    <string name="preference_reading_mode_on_wear_title">Tryb czytania przez Wear</string>
+    <string name="preference_article_mode_summary">Przełącznik na pasku zadań</string>
     <string name="preference_webview_text_zoom_title">Rozmiar czcionki</string>
     <string name="preference_webview_text_zoom_note">Uwaga: Aktywne dymki zostaną wczytane ponownie z nowym rozmiarem czcionki po naciśnięciu \"OK\".</string>
     <string name="preference_webview_text_zoom_reloading_current">Ustawiono nowy rozmiar czcionki. Odświeżam aktywne dymki...</string>
@@ -76,6 +119,7 @@
     <string name="preference_clear_passwords">Hasła</string>
     <string name="preference_incognito_title">Tryb incognito</string>
     <string name="preference_incognito_summary">Nie przechowuj historii ani plików cookie</string>
+    <string name="incognito_mode_changed_reloading_current">Zmieniono ustawienia incognito. Odświeżam aktywne dymki...</string>
     <string name="preference_user_agent_title">Agent użytkownika</string>
     <string-array name="preference_user_agent_options">
         <item>Wartość domyślna</item>
@@ -96,9 +140,17 @@
     <string name="preference_get_pro_summary">Kup wersję Pro, aby uzyskać dostęp do dodatkowych funkcji.</string>
     <string name="preference_version_title">Wersja</string>
     <string name="preference_version_summary">Co się zmieniło?</string>
+    <string name="preference_more_title">Więcej&#8230;</string>
+    <string name="preference_more_summary">\"OK, Google\", Tryb czytania, i inne</string>
+    <string name="preference_show_undo_close_tab_title">Monit o przywrócenie zamkniętego dymku</string>
 
     <string name="preference_my_other_apps_title">Inne aplikacje Chrisa Lacy\'ego</string>
     <string name="preference_my_other_apps_summary">Podoba Ci się Link Bubble? Sprawdź inne moje aplikacje.</string>
+
+    <string name="preference_ok_google_title">Aktywacja komendą \"OK, Google\"</string>
+    <string name="preference_ok_google_summary">Więcej informacji znajduje się w FAQ</string>
+    <string name="preference_ok_google_summary_jelly_bean">Wymaga Androida 4.4 lub nowszego</string>
+    <string name="preference_ok_google_summary_long">Uwaga: Google nie włączyło tej funkcji dla wszystkich urządzeń i krajów. Jeśli komenda \"OK, Google\" nie działa wewnątrz Google Now, nie zadziała również w Link Bubble.</string>
 
     <string name="remove_default_title">Usunąć wartość domyślną?</string>
     <string name="remove_default_message">Czy chcesz przestać używać %1$s jako domyślnej aplikacji do otwierania linków %2$s?\n\nUwaga: Możesz ustawić nową domyślną aplikację, która uruchomi się, gdy następnym razem otworzysz link %2$s.</string>
@@ -132,24 +184,24 @@
     <string name="private_data_cleared">Usunięto prywatne dane</string>
     <string name="private_data_cleared_reloading_current">Usunięto prywatne dane. Odświeżam aktywne dymki...</string>
     <string name="user_agent_changed_reloading_current">Zmieniono agenta użytkownika. Odświeżam aktywne dymki...</string>
+    <string name="article_mode_changed_reloading_current">Zmieniono ustawienia trybu czytania. Odświeżam aktywne dymki...</string>
     <string name="link_loaded_with_app">Wczytano przy użyciu aplikacji %1$s</string>
     <string name="link_redirected">Przekierowano do aplikacji %1$s</string>
 
     <string name="tampered_apk">Twoja aplikacja Link Bubble została nielegalnie zmodyfikowana i nie będzie działać poprawnie. Zainstaluj ponownie wersję ze Sklepu Play.</string>
     <string name="upgrade_incentive_one_link">Darmowa wersja aplikacji Link Bubble umożliwia otwarcie tylko jednego dymku w tym samym czasie. Czy chcesz kupić wersję Pro?</string>
-    <string name="upgrade_incentive_one_app">Darmowa wersja aplikacji Link Bubble umożliwia otwieranie linków z tylko jednej aplikacji w tym samym czasie. Czy chcesz kupić wersję Pro?</string>
     <string name="valid_license_detected">Wykryto ważną licencję Link Bubble Pro.\nDziękujemy za wsparcie projektu. Miłego użytkowania :).</string>
 
     <string name="bubble_link_copied_to_clipboard">Skopiowano link z dymku do schowka.</string>
     <string name="link_copied_to_clipboard">Skopiowano link do schowka.</string>
 
-    <string name="stat_saves_you">oszczędza</string>
-    <string name="stat_has_saved_you">zaoszczędził Ci</string>
-    <string name="stat_so_far">jak dotąd</string>
-    <string name="stat_per_link">na linku</string>
-    <string name="time_seconds">s</string>
-    <string name="time_minutes">min</string>
-    <string name="time_hours">godz.</string>
+    <string name="stat_saves_you">OSZCZĘDZASZ</string>
+    <string name="stat_has_saved_you">ZAOSZCZĘDZIŁ CI</string>
+    <string name="stat_so_far">JAK DOTĄD</string>
+    <string name="stat_per_link">NA LINKU</string>
+    <string name="time_seconds">S</string>
+    <string name="time_minutes">MIN</string>
+    <string name="time_hours">GODZ.</string>
 
     <string name="confirm_title">Potwierdź</string>
 
@@ -170,14 +222,20 @@ Jak chcesz to zrobić, jeśli przycisk Wstecz minimalizuje aplikację Link Bubbl
 Link Bubble to przeglądarka, a przeglądarki w systemie Android mają od dawna ustalone działanie przycisku Wstecz - cofają się o jeden krok w historii, albo - jeśli to pierwsza karta w historii - zamykają otwartą kartę.
 Link Bubble działa w zgodzie z tym standardem.]]></string>
     <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble nie przechwytuje linków!]]></string>
-    <string name="faq_app_internal_browser_answer"><![CDATA[Są trzy możliwe przyczyny takiego stanu rzeczy:<br/>
-1) Link Bubble nie jest domyślną przeglądarką systemową. W ustawieniach Link Bubble znajdziesz opcję \"Ustaw domyślną przeglądarkę systemu\", która pomoże naprawić problem.<br/>
-2) Darmowa wersja Link Bubble prechwytuje linki z tylko jednej aplikacji. Sprawdź w ustawieniach opcję \"Przechwytuj linki z\" - tam możesz zmienić wybraną aplikację. Pamiętaj że jeśli zakupisz wersję Prto, to linki będą przechwytywane ze wszystkich aplikacji nie będących przeglądarkami.<br/>
-3) Aplikacje takie jak Talon czy Reddit is Fun  i inne mają wbudowane własne przeglądarki. Sprawdź ustawienia takiej aplikacji i wybierz opcję \"Użyj zewnętrznej przeglądarki\" albo wyłącz opcję \"Używaj wbudowanej przeglądarki\" (albo coś w tym stylu).<br/><br/>
-Uwaga: Inne przeglądarki, takie jak Chrome, zawsze same bedą otwierały kliknięte w nich linki, i Link Bubble nic nie jest w stanie na to poradzić.]]></string>
+    <string name="faq_app_internal_browser_answer"><![CDATA[Są trzy możliwe przyczyny:<br/>
+1). Aplikacja Link Bubble nie jest ustawiona jako Twoja domyślna przeglądarka. Aby to naprawić, wybierz opcję \"Ustaw domyślną przeglądarkę systemu\" w Ustawieniach Link Bubble.<br/>
+2). Aplikację Link Bubble skonfigurowano tak, by nie przechwytywała linków z aktualnie otwartej aplikacji. Aby to zmienić, wybierz opcję \"Przechwytuj linki z\" w ustawieniach Link Bubble.<br/>
+3). Aplikacje takie jak Talon, Reddit, Fun i inne posiadają wbudowane przeglądarki,w  których wczytują linki. Sprawdź ustawienia takiej aplikacji i włącz opcję \"Zewnętrzna przeglądarka\" lub wyłącz opcję \"Zintegrowana przeglądarka\" lub podobne.
+<br/><br/>Uwaga: przeglądarki takie jak Chrome są zakodowane w taki sposób, by zawsze same wczytywać linki. Link Bubble nie jest w stanie przechwytywać linków z innych przeglądarek.
+]]></string>
+    <string name="faq_article_mode_question">Jak korzystać z trybu czytania? Czemu nie działa na niektórych stronach?</string>
+    <string name="faq_article_mode_answer"><![CDATA[Po pierwsze, upewnij się, że tryb czytania jest włączony (Ustawienia -> Sterowanie / Więcej&#8230; -> Tryb czytania (Beta).<br/><br/>
+Po włączeniu, jeśli w danej zakładce możliwe jest przejście w tryb czytania, na pasku zadań zostanie wyświetlona odpowiednia ikona (na lewo od ikony udostępniania).
+Co ważne, ikona ta pojawia się tylko po całkowitym wczytaniu danej strony, i tylko jeśli aplikacji Link Bubble uda się skutecznie wczytać całą treść w trybie artykułu.<br/><br/>
+Uwaga: Wczytywanie treści ze strony jest niedokładnym procesem, który może nie powieść się w 100%. Ze względu na nieustannie zmieniającą się naturę sieci, niewiele można na to poradzić.]]></string>
     <string name="faq_future_features_question">Czy pojawi się możliwość korzystania z zakładek, ulubionych stron, wtyczek itd.?</string>
     <string name="faq_future_features_answer">Być może w odległej przyszłości. Na razie koncentruję się na tym, żeby Link Bubble była najlepszą metodą wczytywania linków z innych aplikacji.</string>
-    <string name="faq_translations_question">Kiedy planowane jest przetłumaczenie aplikacji na mój język? Czy mogę w tym pomóc?</string>
+    <string name="faq_translations_question">Czy mogę pomóc w tłumaczeniu aplikacji?</string>
     <string name="faq_translations_answer"><![CDATA[Tłumaczenie już wkrótce powinno być możliwe.<br/><br/>Kiedy to nastąpi, z pewnością dam znać na Google+
 (+Chris Lacy), że poszukuję tłumaczy. Najlepiej po prostu obserwować mój profil.]]></string>
     <string name="faq_roadmap_question">Czy znajdę gdzieś listę planowanych funkcji? Mogę na nie głosować?</string>
@@ -222,6 +280,7 @@ używany w Androidzie WebView jest napisany w taki sposób, że elementy &lt;sel
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Masz pytanie dotyczące tej aplikacji? Najpierw zajrzyj tutaj.</string>
     <string name="faq_section_general">Ogólne</string>
+    <string name="faq_section_functionality">Funkcje aplikacji</string>
     <string name="faq_section_issues">Problemy</string>
 
     <string name="activity_resolver_use_always">Zawsze</string>
@@ -234,9 +293,18 @@ używany w Androidzie WebView jest napisany w taki sposób, że elementy &lt;sel
     <string name="credits_lacy_credit">Pomysł, projekt, programowanie</string>
     <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
 
+    <!--
+    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
+        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
+    <string name="restore_tabs_from_previous_session"></string>
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Przywrócić zakładkę z poprzedniej sesji?</item>
+        <item quantity="other">Przywrócić zakładki (%d) z poprzedniej sesji?</item>
+    </plurals>
+
     <string name="content_description_button">Przycisk</string>
     <string name="content_description_target_icon">Ikona celu dymku</string>
-    <string name="content_description_close_bubble_icon">Ikona dymku zamykającego</string>
+    <string name="content_description_close_bubble_icon">Ikona zamknięcia dymku</string>
     <string name="content_description_link_bubble_logo">Logo Link Bubble</string>
     <string name="content_description_app_icon">Ikona aplikacji</string>
     <string name="content_description_youtube_video_thumbnail">Miniatura nagrania YouTube</string>
@@ -248,7 +316,7 @@ używany w Androidzie WebView jest napisany w taki sposób, że elementy &lt;sel
 
     <string name="requesting_location_message">%1$s chce poznać Twoją lokalizację. Zezwolić?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[Kontynuując akceptujesz postanowienia <a href="http://www.digitalashes.com/terms">regulaminu</a> i <a href="http://www.digitalashes.com/privacy">politykę prywatności</a> aplikacji Link Bubble.]]></string>
+    <string name="accept_terms_and_privacy"><![CDATA[Kontynuując, potwierdzasz, że akceptujesz <a href="http://www.digitalashes.com/terms">warunki korzystania</a> i <a href="http://www.digitalashes.com/privacy">politykę prywatności</a> Digital Ashes.]]></string>
 
     <string name="service_name">Renderer Link Bubble</string>
     <string name="notification_title">Link Bubble</string>
@@ -267,8 +335,6 @@ używany w Androidzie WebView jest napisany w taki sposób, że elementy &lt;sel
     <string name="pro_action_retry">Spróbuj ponownie</string>
     <string name="pro_action_store">Sklep Play</string>
 
-
-
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Prawdzie mobilna przeglądarka.</string>
     <string name="store_listing_description_title">Link Bubble to zupełnie nowe podejście do przeglądania stron na urządzeniach mobilnych.</string>
@@ -284,11 +350,11 @@ używany w Androidzie WebView jest napisany w taki sposób, że elementy &lt;sel
 
     <string name="pro_store_listing_title">Link Bubble Pro</string>
     <string name="pro_store_listing_description_title">Link Bubble Pro odblokowuje wszystkie funkcje aplikacji Link Bubble.</string>
-    <string name="pro_store_listing_description_features">Wersja Pro umożliwia:
-• Otwieranie nieskończenie wielu linków równocześnie (tylko jeden w wersji darmowej).
-• Przechwytywanie linków z wszystkich aplikacji (tylko jednej w wersji darmowej).
-• Usunięcie obecnych w wersji darmowej informacji i zachęt do zakupu wersji Pro.
-• Wsparcie mnie i zachęcenie do pisania następnych aplikacji :).</string>
+    <string name="pro_store_listing_description_features">Zakup wersji Pro oferuje między innymi następujące korzyści:
+Możliwość otwarcia równocześnie wielu zakładek (w wersji darmowej - tylko jedna)
+Możliwość zmiany motywu
+Usunięcie obecnych w darmowej wersji różnorakich zachęt do zakupu wersji Pro
+Wsparcie twórcy w rozwijaniu nowych, wspaniałych aplikacji :)</string>
 
     <string name="welcome_page_title">Witaj w Link Bubble!</string>
     <string name="welcome_page_trial_notice">Uwaga: Przez pierwsze 24 godziny od zainstalowania aplikacji Link Bubble, będziesz mieć dostęp do wszystkich funkcji Pro w ramach jednorazowego okresu próbnego. </string>
@@ -308,5 +374,7 @@ używany w Androidzie WebView jest napisany w taki sposób, że elementy &lt;sel
     <string name="welcome_page_pro_point_3">Zachęcenie mnie, żebym w przyszłości pisał kolejne aplikacje :)</string>
     <string name="welcome_page_pro_end">Dzięki. Miłego użytkowania!</string>
     <string name="welcome_page_ps">P.S. Aby zamknąć ten dymek naciśnij przycisk Wstecz albo przytrzymaj dymek i przeciągnij go do dymku zamykającego.</string>
+
+    <string name="duplicate_link_will_not_be_loaded">Link został już wczytany. Ignoruję...</string>
 
 </resources>
