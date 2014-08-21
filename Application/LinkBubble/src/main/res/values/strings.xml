@@ -297,7 +297,7 @@
     <string name="faq_change_default_browser_answer">System Settings -> Apps -> Downloaded -> Link Bubble -> Clear defaults.</string>
     <string name="faq_pro_trial_question">How does the Link Bubble Pro trial work?</string>
     <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
-        Pro\'s premium features (multiple tabs, links being intercepted from any app, etc.).<br/>
+        Pro\'s premium features.<br/>
         • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
         • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
         • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
