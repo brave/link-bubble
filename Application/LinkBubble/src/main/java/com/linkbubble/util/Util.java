@@ -598,6 +598,36 @@ public class Util {
         }
     }
 
+    private static Integer sDensityDpi;
+    /*
+     * Use lower density icon on AlertDialogs as large icons look silly
+     */
+    private static int getAlertIconDensityDpi(Context context) {
+        if (sDensityDpi == null) {
+            sDensityDpi = context.getResources().getDisplayMetrics().densityDpi;
+        }
+
+        switch (sDensityDpi) {
+            case DisplayMetrics.DENSITY_LOW:
+            case DisplayMetrics.DENSITY_MEDIUM:
+                return DisplayMetrics.DENSITY_LOW;
+            case DisplayMetrics.DENSITY_TV:
+            case DisplayMetrics.DENSITY_HIGH:
+                return DisplayMetrics.DENSITY_MEDIUM;
+            case DisplayMetrics.DENSITY_XHIGH:
+                return DisplayMetrics.DENSITY_HIGH;
+            case DisplayMetrics.DENSITY_XXHIGH:
+            case DisplayMetrics.DENSITY_XXXHIGH:
+                return DisplayMetrics.DENSITY_XHIGH;
+        }
+
+        return sDensityDpi;
+    }
+
+    public static Drawable getAlertIcon(Context context) {
+        return context.getResources().getDrawableForDensity(R.drawable.ic_launcher, getAlertIconDensityDpi(context));
+    }
+
     public static boolean isValidBrowserPackageName(String packageName) {
         if (packageName.equals(BuildConfig.PACKAGE_NAME) || packageName.contains("com.digitalashes.tappath") || packageName.contains("com.linkbubble")) {
             return false;
