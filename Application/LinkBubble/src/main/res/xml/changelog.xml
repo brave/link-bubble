@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="1.4.1" versioncode="14000">
+    <release version="1.4.2" versioncode="14200">
+        <change>BUG FIX: Ensure icons on Settings screen display at a consistent size.</change>
+    </release>
+
+    <release version="1.4.1" versioncode="14100">
         <change>IMPROVEMENT: Updated Czech, German, Italian, Polish and Thai translations</change>
         <change>CHANGE: Don't include TapPath in the list of browsers/default apps.</change>
         <change>BUG FIX: Stability fixes.</change>
