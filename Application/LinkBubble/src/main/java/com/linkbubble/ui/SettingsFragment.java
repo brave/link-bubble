@@ -1,6 +1,7 @@
 package com.linkbubble.ui;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ComponentName;
@@ -13,6 +14,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -100,7 +103,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                     final String host = key;
                     Preference preference = new Preference(getActivity());
                     preference.setTitle(label);
-                    preference.setIcon(info.loadIcon(packageManager));
+                    setPreferenceIcon(preference, info.loadIcon(packageManager));
                     preference.setSummary(key);
                     preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                         @SuppressLint("StringFormatMatches")        // Lint incorrectly flags this because 2 items are the same.
@@ -308,16 +311,14 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                     public void onSelected(ActionItem actionItem) {
                         Settings.get().setConsumeBubble(Constant.BubbleAction.ConsumeLeft, actionItem.mType, actionItem.getLabel(),
                                 actionItem.mPackageName, actionItem.mActivityClassName);
-                        leftConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeLeft));
-                        leftConsumeBubblePreference.setIcon(Settings.get().getConsumeBubbleIcon(Constant.BubbleAction.ConsumeLeft, false));
+                        updateConsumeBubblePreference(leftConsumeBubblePreference, Constant.BubbleAction.ConsumeLeft);
                     }
                 });
                 Util.showThemedDialog(alertDialog);
                 return true;
             }
         });
-        leftConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeLeft));
-        leftConsumeBubblePreference.setIcon(Settings.get().getConsumeBubbleIcon(Constant.BubbleAction.ConsumeLeft, false));
+        updateConsumeBubblePreference(leftConsumeBubblePreference, Constant.BubbleAction.ConsumeLeft);
 
         final Preference rightConsumeBubblePreference = findPreference(Settings.PREFERENCE_RIGHT_CONSUME_BUBBLE);
         rightConsumeBubblePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -328,16 +329,14 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                     public void onSelected(ActionItem actionItem) {
                         Settings.get().setConsumeBubble(Constant.BubbleAction.ConsumeRight, actionItem.mType, actionItem.getLabel(),
                                 actionItem.mPackageName, actionItem.mActivityClassName);
-                        rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeRight));
-                        rightConsumeBubblePreference.setIcon(Settings.get().getConsumeBubbleIcon(Constant.BubbleAction.ConsumeRight, false));
+                        updateConsumeBubblePreference(rightConsumeBubblePreference, Constant.BubbleAction.ConsumeRight);
                     }
                 });
                 Util.showThemedDialog(alertDialog);
                 return true;
             }
         });
-        rightConsumeBubblePreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeRight));
-        rightConsumeBubblePreference.setIcon(Settings.get().getConsumeBubbleIcon(Constant.BubbleAction.ConsumeRight, false));
+        updateConsumeBubblePreference(rightConsumeBubblePreference, Constant.BubbleAction.ConsumeRight);
 
         /*
         final Preference linkDoubleTapPreference = findPreference(Settings.PREFERENCE_LINK_DOUBLE_TAP);
@@ -360,13 +359,13 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         */
 
         final PreferenceScreen defaultAppsPreference = (PreferenceScreen) findPreference(Settings.PREFERENCE_DEFAULT_APPS);
-        defaultAppsPreference.setIcon(Settings.get().getDefaultBrowserIcon(getActivity()));
+        setPreferenceIcon(defaultAppsPreference, Settings.get().getDefaultBrowserIcon(getActivity()));
 
         Preference defaultBrowserPreference = findPreference(Settings.PREFERENCE_DEFAULT_BROWSER);
         defaultBrowserPreference.setSummary(Settings.get().getDefaultBrowserLabel());
         Drawable defaultBrowserIcon = Settings.get().getDefaultBrowserIcon(getActivity());
         if (defaultBrowserIcon != null) {
-            defaultBrowserPreference.setIcon(defaultBrowserIcon);
+            setPreferenceIcon(defaultBrowserPreference, defaultBrowserIcon);
         }
         defaultBrowserPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
@@ -378,8 +377,8 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                         preference.setSummary(Settings.get().getDefaultBrowserLabel());
                         Drawable defaultBrowserIcon = Settings.get().getDefaultBrowserIcon(getActivity());
                         if (defaultBrowserIcon != null) {
-                            preference.setIcon(defaultBrowserIcon);
-                            defaultAppsPreference.setIcon(defaultBrowserIcon);
+                            setPreferenceIcon(preference, defaultBrowserIcon);
+                            setPreferenceIcon(defaultAppsPreference, defaultBrowserIcon);
 
                             // This is hideous, but going this route because the icon will not update no matter what I do
                             Dialog dialog = defaultAppsPreference.getDialog();
@@ -705,18 +704,18 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         if (darkTheme) {
             if (color) {
                 mThemePreference.setSummary(R.string.preference_theme_dark_color);
-                mThemePreference.setIcon(R.drawable.preference_theme_dark_color);
+                setPreferenceIcon(mThemePreference, R.drawable.preference_theme_dark_color);
             } else {
                 mThemePreference.setSummary(R.string.preference_theme_dark_no_color);
-                mThemePreference.setIcon(R.drawable.preference_theme_dark_no_color);
+                setPreferenceIcon(mThemePreference, R.drawable.preference_theme_dark_no_color);
             }
         } else {
             if (color) {
                 mThemePreference.setSummary(R.string.preference_theme_light_color);
-                mThemePreference.setIcon(R.drawable.preference_theme_light_color);
+                setPreferenceIcon(mThemePreference, R.drawable.preference_theme_light_color);
             } else {
                 mThemePreference.setSummary(R.string.preference_theme_light_no_color);
-                mThemePreference.setIcon(R.drawable.preference_theme_light_no_color);
+                setPreferenceIcon(mThemePreference, R.drawable.preference_theme_light_no_color);
             }
         }
     }
@@ -1272,5 +1271,40 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         builder.setTitle(R.string.preference_intercept_links_from_title);
 
         return builder.create();
+    }
+
+    void updateConsumeBubblePreference(Preference preference, Constant.BubbleAction action) {
+        preference.setSummary(Settings.get().getConsumeBubbleLabel(action));
+        setPreferenceIcon(preference, Settings.get().getConsumeBubbleIcon(action, false));
+    }
+
+    void setPreferenceIcon(Preference preference, int iconResId) {
+        setPreferenceIcon(preference, getResources().getDrawable(iconResId));
+    }
+
+    /*
+     * Ensure icons display at the correct size for the device resolution. Prevents icons with
+     * non-standard sizes from causing text to be justified at wrong position.
+     * This was an issue with "Share picker" (too small) and preference_theme_* (too large) on Nexus S
+     */
+    void setPreferenceIcon(Preference preference, Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+            ActivityManager activityManager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
+            int iconSize = activityManager.getLauncherLargeIconSize();
+            int w = bitmap.getWidth();
+            int h = bitmap.getHeight();
+            if (w == h) {
+                if (w > iconSize) {
+                    Bitmap b = Bitmap.createScaledBitmap(bitmap, iconSize, iconSize, true);
+                    drawable = new BitmapDrawable(getResources(), b);
+                } else if (h < iconSize) {
+                    Bitmap b = Bitmap.createScaledBitmap(bitmap, iconSize, iconSize, true);
+                    drawable = new BitmapDrawable(getResources(), b);
+                }
+            }
+        }
+
+        preference.setIcon(drawable);
     }
 }
