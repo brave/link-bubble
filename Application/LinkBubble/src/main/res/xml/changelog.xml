@@ -2,6 +2,7 @@
 <changelog>
 
     <release version="1.4.2" versioncode="14200">
+        <change>BUG FIX: TapPath no longer appears in the "Select default app" dialog.</change>
         <change>BUG FIX: Ensure icons on Settings screen display at a consistent size.</change>
     </release>
 
