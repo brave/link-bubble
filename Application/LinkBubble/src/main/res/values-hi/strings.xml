@@ -2,7 +2,12 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">डाऊनलोडर</string>
+    <string name="send_intent_label">Open with Link Bubble</string>
     <string name="notification_summary">बबल्स को हाईड करने क लिए टच करें </string>
+    <string name="notification_default_summary">Touch to Hide, expand to Close All</string>
+    <string name="notification_unhide_summary">Touch to Unhide, expand to Close All</string>
+    <string name="notification_action_close_all">Close All</string>
+    <string name="notification_action_hide">Hide</string>
     <string name="share_picker_label">शेयर पीकर</string>
 
     <string name="yes">हाँ</string>
@@ -17,7 +22,7 @@
     <string name="action_settings">सेटिंग</string>
     <string name="action_help">मदद</string>
     <string name="action_reload_page">रीलोड </string>
-    <string name="action_open_in_browser">%1$S में खोले </string>
+    <string name="action_open_in_browser">%1$s में खोले </string>
     <string name="action_open_in_new_bubble">नये बबल में खोलें</string>
     <string name="action_upgrade_to_pro">★अपग्रेड टू प्रो ★</string>
     <string name="action_copy_to_clipboard">कोपी लिंक </string>
@@ -25,13 +30,35 @@
     <string name="action_close_all">सभी बंद करे </string>
     <string name="action_close_tab">बबल बंद करे </string>
     <string name="action_stop">बंद </string>
+    <string name="action_undo">Undo</string>
     <string name="share_via">शेयर वाया </string>
+    <string name="not_set">Not set</string>
 
     <string name="share_invalid_data">लिंक बबल इसे शेयर नही कर सकता क्युकि URL गलत हे </string>
     <string name="consume_activity_not_found">एप्लीकेशन नही मिली।  क्रपया सेटिंग  में जा कर बबल एक्शन चूज  करे </string>
 
+    <string name="upgrade">Upgrade</string>
+    <string name="upgrade_to_pro">Upgrade to Pro</string>
+    <string name="upgrade_ok_google">Want to load Google Now by speaking \"OK, Google\"?</string>
+    <string name="upgrade_article_mode">Want to view links in Reading Mode?</string>
+    <string name="upgrade_article_mode_wear">Want to view links on Android Wear devices via Reading Mode?</string>
+    <string name="upgrade_theme">Want to use a different theme?</string>
+    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
+        Load multiple tabs at once.\n •
+        Change theme.\n •
+        Use Reading Mode.\n •
+        Android Wear support.\n •
+        Use \"OK, Google\" voice activation.\n •
+        Support me as I develop this app :)
+        </string>
+
+    <string name="undo_close_tab_title">Closed %1$s</string>
+    <string name="undo_close_tab_no_title">Closed tab</string>
+
     <string name="pick_default_app">डिफ़ॉल्ट एप्प  सलेक्ट  करे</string>
     <string name="default_browser_set">लिंक बबल अब डिफ़ॉल्ट ब्राउज़र हे </string>
+    <string name="invalid_send_action">Valid link not found.</string>
+    <string name="unable_to_launch_app">Unable to launch 3rd party application.</string>
     <string name="clear_history">हिस्ट्री मिटाये </string>
 
     <string name="preference_category_general">जनरल </string>
@@ -43,6 +70,7 @@
 
     <string name="preference_left_consume_bubble_title">बाया बबल </string>
     <string name="preference_right_consume_bubble_title">दया </string>
+    <string name="preference_double_tap_title">Link double tap</string>
     <string name="preference_configure_bubble_title">कॉन्फ़िगर बबल </string>
     <string name="preference_category_debug">डिबग </string>
     <string name="preference_default_browser">डिफ़ॉल्ट फालबैक ब्राउज़र </string>
@@ -50,6 +78,7 @@
     <string name="preference_category_fallback_browser">डिफ़ॉल्ट फालबैक ब्राउज़र</string>
     <string name="preference_category_other_apps">ओर एप्स </string>
     <string name="preference_default_apps_title">डिफ़ॉल्ट ऐप्स </string>
+    <string name="preference_default_apps_summary">Fallback browser, url-specific apps</string>
     <string name="preference_default_apps_notice_summary">जब एक या ज्यादा नॉन-ब्रोव्सेर ऐप्स URL का यूज़ कर सकती हे \n \n 
 डिफ़ॉल्ट को हटाने के लिए टच करे </string>
     <string name="preference_default_apps_notice_no_defaults_summary">जब एक या ज्यादा नॉन-ब्रोव्सेर ऐप्स URL का यूज़ कर सकती हे, 
@@ -63,9 +92,24 @@
     <string name="preference_intercept_links_from_title">जह़ा से लिंक्स कों इंटरसेप्ट करे </string>
     <string name="preference_intercept_links_from_note">नोट: फ्री वर्जन सिर्फ एक लिंक को खोलने  के प्रतिबंध के साथ ही मौजूद है.
 ज्यादा  लिंक्स के लिये  प्रो वर्जन ले?</string>
+    <string name="preference_intercept_links_from_disabled_for_L">Google have removed the API required for this functionality from L.</string>
     <string name="preference_scan_for_youtube_embeds_title">यूट्यूब एम्बेड्स  के लिए जाँच करें</string>
     <string name="preference_scan_for_youtube_embeds_summary">एम्बेडेड वीडियो को यूट्यूब ऐप  में चलने के लिये डिस्प्ले शॉर्टकट।</string>
-
+    <string name="preference_webview_battery_save_title">Battery Save Mode (Beta)</string>
+    <string name="preference_webview_battery_save_aggressive_title">Aggressive</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Pause the updating of web pages when Link Bubble is minimized.\nPages in the process of loading will finish loading before pausing.</string>
+    <string name="preference_webview_battery_save_default_title">Default</string>
+    <string name="preference_webview_battery_save_default_summary">Pause the updating of web pages when the screen is off and resume when your device is unlocked.\nPages in the process of loading will finish loading before pausing.</string>
+    <string name="preference_webview_battery_save_off_title">Off</string>
+    <string name="preference_webview_battery_save_off_summary">Web pages are always active. Useful when streaming YouTube videos and the like.</string>
+    <string name="preference_theme_title">Theme</string>
+    <string name="preference_theme_light_color">Light + icon color</string>
+    <string name="preference_theme_light_no_color">Light + neutral color</string>
+    <string name="preference_theme_dark_color">Dark + icon color</string>
+    <string name="preference_theme_dark_no_color">Dark + neutral color</string>
+    <string name="preference_article_mode_title">Reading Mode (Beta)</string>
+    <string name="preference_reading_mode_on_wear_title">Reading Mode on Wear</string>
+    <string name="preference_article_mode_summary">Toggled via button on action bar</string>
     <string name="preference_webview_text_zoom_title">टेक्स्ट ज़ूम</string>
     <string name="preference_webview_text_zoom_note">नोट: वर्तमान बबबल्स  \ "ठीक \" का चयन करने के बाद नये टेक्स्ट ज़ूम के साथ रीलोड होंगे।</string>
     <string name="preference_webview_text_zoom_reloading_current">नया टेक्स्ट ज़ूम लेवल सेट हो गया हे। बबल्स रीलोड हो रहे हे… </string>
@@ -78,6 +122,7 @@
     <string name="preference_clear_passwords">पासवर्ड्स </string>
     <string name="preference_incognito_title">गुप्त मोड</string>
     <string name="preference_incognito_summary">हिस्ट्री और कूकीज स्टोर ना करे </string>
+    <string name="incognito_mode_changed_reloading_current">Incognito setting changed. Reloading current bubbles…</string>
     <string name="preference_user_agent_title">उपभोक्ता </string>
     <string-array name="preference_user_agent_options">
         <item>डिफ़ॉल्ट </item>
@@ -98,9 +143,17 @@
     <string name="preference_get_pro_summary">और सुविधा पाने के लिए अपग्रेड करे। </string>
     <string name="preference_version_title">वर्जन </string>
     <string name="preference_version_summary">इसमें  नया क्या हे?</string>
+    <string name="preference_more_title">More&#8230;</string>
+    <string name="preference_more_summary">\"OK, Google\", Reading Mode and more</string>
+    <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
     <string name="preference_my_other_apps_title">च्रिस लेसी की अन्य एप्स </string>
     <string name="preference_my_other_apps_summary">आपको लिंक बबल पसंद हें? क्यू ना आप मेरी दूसरी अप्स कों भी यूज़ करे। </string>
+
+    <string name="preference_ok_google_title">\"OK, Google\" voice activation</string>
+    <string name="preference_ok_google_summary">See FAQ for further detail</string>
+    <string name="preference_ok_google_summary_jelly_bean">Requires Android 4.4 or later</string>
+    <string name="preference_ok_google_summary_long">Note: Google haven\'t enabled this functionality for all devices/locales. If speaking \"OK, Google\" doesn\'t work for you in Google Now, it won\'t work in Link Bubble.</string>
 
     <string name="remove_default_title">डिफ़ॉल्ट हटाये </string>
     <string name="remove_default_message">  %2$s लिंक्स के लिए  %1$s को डिफ़ॉल्ट ऐप से हटाये?\n\nनोट: जब आप अगली बार कोई %2$s लिंक खोलेंगे
@@ -135,12 +188,12 @@
     <string name="private_data_cleared">प्राइवेट डाटा हटा दिया गया </string>
     <string name="private_data_cleared_reloading_current">निजी डेटा को हटाया।  वर्तमान बबल पुन: लोड...</string>
     <string name="user_agent_changed_reloading_current">यूजर एजेंट बदला गया। रिलोडिंग बबल्स ... </string>
+    <string name="article_mode_changed_reloading_current">Reading Mode setting changed. Reloading current bubbles…</string>
     <string name="link_loaded_with_app">%1$s से लोड किया</string>
     <string name="link_redirected">%1$s पर भेजा </string>
 
     <string name="tampered_apk">आपकी लिंक बबल ऐप में गेर क़ानूनी ढंग से बदलाव किये गए हें इसीलिए ये ढंग से काम नही करेगी। क्रपया प्ले स्टोर फिर से इनस्टॉल करे।   </string>
     <string name="upgrade_incentive_one_link">एक से ज्यादा बबल लोड करने के लिए लिंक बबल प्रो चहिये. अपग्रेड तो प्रो? </string>
-    <string name="upgrade_incentive_one_app">एक से ऐप्स  से बबल लोड करने के लिए लिंक बबल प्रो चहिये. अपग्रेड तो प्रो?</string>
     <string name="valid_license_detected">लिंक बबल प्रो का लाइसेंस रजिस्टर हो गया हे। \nआपके सहयोग के लिए शुक्रिया।</string>
 
     <string name="bubble_link_copied_to_clipboard">बबल का लिंक क्लिपबोर्ड पर कॉपी हो गया हे। </string>
@@ -177,19 +230,25 @@
 
 </string>
     <string name="faq_app_internal_browser_question"><![CDATA[लिंक बबल ने लिंक्स को इंतर्सेप्त नही किया!]]></string>
-    <string name="faq_app_internal_browser_answer"><![CDATA[इसके 3 कारण हैं:<br/> 
-1). एक और ब्राउज़र को लगता हे की लिंक बबल आपका डिफ़ॉल्ट सिस्टम ब्राउज़र के रूप में स्थापित हे।
-इसे बदलेन के लिए लिंक बबल की  \ "सेट डिफ़ॉल्ट सिस्टम ब्राउज़र\" विकल्प का चयन करे।<br/> 
-2). लिंक बुलबुला के मुक्त संस्करण केवल एक ही ऐप से लिंक लेता हे।
-यह कोंसी ऐप है या इसे बदलने के लिए लिंक बबल की \"इन्तेर्सप लिक्स फ्रॉम \" विकल्प को देखे। 
-ध्यान दें कि लिंक बबल प्रो  अपग्रेड करने पर,. लिंक सभी गैर ब्राउज़र ईपीएस से खोले जा सकेंगे।<br/> 
-3). Talon , Reddit is Fun और कुछ इस तरह की अन्य ऐप्स का खुद का पर्सनल ब्राउज़र होता हे। उन ऐप्स की सेटिंग में जाए  और
- \"External browser\" को enable या \"Integrated browser\" को अचयनित करे। 
-<br/><br/>नोट :  क्रोम जैसे अन्य ब्राउज़र क्षुधा स्वयं में लिंक लोड करने के लिएप्रतिबद्ध हे 
-इसीलिए इस प्रकार का लिंक, लिंक बबल कोलने में असमर्थ है।]]></string>
+    <string name="faq_app_internal_browser_answer"><![CDATA[There are 3 causes of this:<br/>
+            1). A browser other thank Link Bubble is set as your default system browser. See the
+            \"Set default system browser\" option in Link Bubble\'s Settings to change this.<br/>
+            2). Link Bubble has been configured not to intercept links from your current app. See the
+            \"Intercept links from\" option in Link Bubble\'s Settings.<br/>
+            3). Apps such as Talon, Reddit is Fun and others have inbuilt browsers that render links. Check the settings of that app and
+            enable \"External browser\" or deselect \"Integrated browser\" or similar.
+            <br/><br/>Note: other browser apps such as Chrome are hardcoded to load links in themselves, and thus Link Bubble is unable
+            to load links clicked from other browser apps.
+            ]]></string>
+    <string name="faq_article_mode_question">How do I use Reading Mode? Why do some links not work?</string>
+    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode (BETA)).<br/><br/>
+            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
+            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
+            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
+            there is little than can be done here.]]></string>
     <string name="faq_future_features_question">क्या आप bookmarks, favourites, extentions आदि के लिए support देंगे?</string>
     <string name="faq_future_features_answer">नेवर से नेवर, लेकिन अभी के लिए लिंक बबल का लक्ष्य पूरी तरह से केवल दूसरी एप्स से लिंक्स को बेहतर ढंग से खोलना हे।</string>
-    <string name="faq_translations_question">आप कब विदेशी भाषा में अनुवाद करेंगे? मैं मदद कर सकता हूँ क्या?</string>
+    <string name="faq_translations_question">Can I help translate the app?</string>
     <string name="faq_translations_answer"><![CDATA[मैं जल्द ही अनुवाद समर्थन जोड़ने की उम्मीद में हूँ. <br/> <br/> जब भी मैं करूँगा, मैं निश्चित रूप से Google+ (+Chris Lacy) पर एक पोस्ट करूँगा। 
 अनुवाद के साथ मदद के लिए है, मेरे फ़ीड पर नजर रखे.]]></string>
     <string name="faq_roadmap_question">क्या आप आके के फीचर्स लो रोडमैप पब्लिश करते हे क्या? क्या में उनके लिए समर्थन (voting) कर सकता हु क्या?</string>
@@ -211,36 +270,35 @@ Copy functionality works when using Android\'s WebView from an Activity, but not
     <string name="faq_beta_programme_question">क्या इसका कोई बीटा प्रोग्राम हे? मै केसे ज्वाइन कर सकता हूँ?</string>
     <string name="faq_beta_programme_answer">बीटा प्रोग्राम  की जानकारी जल्दी ही अनाउंस की जाएगी। मेरे गूगल+ (+Chris Lacy) फीड पर नजर रखे। </string>
     <string name="faq_low_spec_performance_question">लिंक बबल मेरी Nexus S /Galaxy S1/Moto G श्रेनि के मोबाइल्स पर धीरे क्यों चलता हे?</string>
-    <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble is a very resource intensive app, and consequently devices with lower specs
-            can struggle to run the app as well as more powerful devices. Future updates will aim to improve Link Bubble\'s
-            performance, but there is only so much that can realistically be done here.<br/><br/>Technical answer: At the bare minimum, Link Bubble requires the
-            use of a Service and a WebView in order to function. Often multiple WebViews and even multiple Activities are also present.
-            Naturally, allocating these items (especially the WebViews) consumes a <i>lot</i> of memory/resources. Lower spec devices generally
-            have less memory available than Link Bubble requires, and thus performance suffers as garbage collections are frequently triggered.
-            As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on the Nexus 5.]]></string>
+    <string name="faq_low_spec_performance_answer"><![CDATA[लिंक बबल एक बहुत संसाधन गहन app है इसीलिए कम स्पेक्स वाले
+ और अधिक शक्तिशाली उपकरण भी इसे चलाने के लिए संघर्ष कर सकते हैं. भविष्य में इसमें सुधर किया जाएगा लेकिन सुधार की भी एक सीमा होगी।
+<br/> <br/> तकनीकी जवाब:.  At the bare minimum, Link Bubble requires the
+use of a Service and a WebView in order to function. Often multiple WebViews and even multiple Activities are also present.
+Naturally, allocating these items (especially the WebViews) consumes a <i>lot</i> of memory/resources. Lower spec devices generally
+have less memory available than Link Bubble requires, and thus performance suffers as garbage collections are frequently triggered.
+As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on the Nexus 5.]]></string>
     <string name="faq_crap_webview_question">कभी कभी वेब पेजेज ढंग से नहीं खुलते या वीडियोस नही चलते हे ?</string>
-    <string name="faq_crap_webview_answer"><![CDATA[LinkBubble uses the standard Android WebView, but unfortunately it is sometimes unreliable.
-            Alternative web rendering methods such as FireFox\'s GeckoView and Chromium will likely be investigated going
-            forward.<br/><br/>In the event a webpage doesn\'t display correctly in Link Bubble, the easiest thing to do is just to load a traditional browser for that link.]]></string>
+    <string name="faq_crap_webview_answer"><![CDATA[लिंक बबल Android WebView का उपयोग करता है, लेकिन दुर्भाग्य से यह कभी कभी अविश्वसनीय है। 
+दुसरे तरीके जेसे फ़ायरफ़ॉक्स का  GeckoView और क्रोमियम जैसे वैकल्पिक वेब प्रतिपादन तरीकों संभावना जा जांच की जाएगी। 
+ <br/> <br/> यदि लिंक बबल किसी वेब पेज को ढंग से प्रदर्शित नही करता हे तब सबसे आसन विकल्प हे उस लिंक को किसी अन्य ब्राउज़र में लोड करना।]]></string>
     <string name="faq_ongoing_notificaion_question">जब भी लिंक बबल चल रहा होता हे तब सारे notifications भी दीखते हे।  एसा क्यों?</string>
     <string name="faq_ongoing_notificaion_answer"><![CDATA[दुर्भाग्य से चल रहे इस नोटीफिकेशन लिंक बबल को बंद करने से रोकने के लिए Android को प्रोत्साहित करने के लिए आवश्यक है.]]></string>
     <string name="faq_next_update_eta_question">इस एप का अगला वर्जन कब आ रहा हे। </string>
-    <string name="faq_next_update_eta_answer"><![CDATA[When it\'s ready!<br/><br/>It\'s not feasible to be any more specific than that unfortunately
-            (even to provide a ballpark estimate).<br/><br/>The reality is, when estimates are given people often end up taking them as a
-            commitment, and can get upset if/when a release slips for whatever reason.]]></string>
+    <string name="faq_next_update_eta_answer"><![CDATA[जब यह तैयार होगा !<br/><br/> इससे और अधिक स्पेसिफिक होना संभव नही होगा।
+(यहां तक ​​कि एक ballpark अनुमान प्रदान करने के लिए). वास्तविकता में जब अनुमान दिए जाते हे, लोग अक्सर उन्हें निश्चितता समज लेते हे और नाराज होते हे जब भी नयी उप्दतेस नही आती हे।]]></string>
     <string name="faq_close_quickly_question">में लिंक बबल को जल्दी से बंद करने के लिए क्या करू?</string>
-    <string name="faq_close_quickly_answer">Swipe from the top of the screen to open the notifications pane and click the \"Link Bubble\" notification.</string>
-    <string name="faq_change_default_browser_question">How can I remove Link Bubble as the default browser?</string>
+    <string name="faq_close_quickly_answer">स्क्रीन के उपर से नोटीफिकेशन पेन खोले और \"लिंक बबल \" पर क्लिक करे। </string>
+    <string name="faq_change_default_browser_question">मैं डिफ़ॉल्ट ब्राउज़र के रूप में कैसे लिंक बबल को केसे हटाऊ ?</string>
     <string name="faq_change_default_browser_answer">सिस्टम सेटिंग -> ऐप्स -> डाउनलोडेड -> लिंक बबल ->
 डिफ़ॉल्ट हटाये।</string>
-    <string name="faq_pro_trial_question">How does the Link Bubble Pro trial work?</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
-        Pro\'s premium features (multiple tabs, links being intercepted from any app, etc.).<br/>
-        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
-        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
-        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
-        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
-        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
+    <string name="faq_pro_trial_question">लिंक बबल का प्रो ट्राइल केसे कार्य करता हे। </string>
+    <string name="faq_pro_trial_answer"><![CDATA[• लिंक बबल इन्स्टाल करने के बाद पहले 24 घंटे के लिए, गैर लिंक बुलबुला प्रो उपयोगकर्ता सभी फीचर उपयोग कर सकेंगे।
+लिंक बबल प्रो की  प्रीमियम की विशेषताएं (एकाधिक टैब, आदि)<br/> 
+• इस परीक्षण अवधि के दौरान, लिंक बबल प्रो के प्रीमियम सुविधाओं आपके सभी उपकरणों के लिए उपलब्ध हो जाएगी। <br/> 
+• लिंक बबल की मुख्य स्क्रीन के ऊपर कितना समय बचा हे ट्रेल के खत्म होने में वह एक घड़ी प्रदर्शित करती  है।<br/> 
+• 1.1 अद्यतन से पहले लिंक बबल को यूज़ करने वाले लोग इस ट्राइल के लिए पात्र हैं। <br/> 
+• वेरिफिकातियो के लिए, प्रो परीक्षण आपके ईमेल पते से जुड़ा हुआ है. यदि कोई ईमेल पता डिवाइस पर नहीं  पाया जाता है, तो ट्राइल उपलब्ध नहीं होगा।<br/> 
+• क्षमा करें, लेकिन आपके परीक्षण अवधि रिसेट नहीं कर सकते हैं।लिंक बबल प्रो ख़रीदे और सुविधाओं के पुरे उपयोग का आनंद लें.]]></string>
     <string name="faq_report_bug_question">बग की रिपोर्ट करे। </string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -249,6 +307,7 @@ Copy functionality works when using Android\'s WebView from an Activity, but not
     <string name="faq_title">अक्सर पूछे जाने वाले प्रश्न और उनके जवाब</string>
     <string name="preference_faq_summary">कोई प्रश्न ? यहाँ जाये। </string>
     <string name="faq_section_general">जनरल </string>
+    <string name="faq_section_functionality">App functionality</string>
     <string name="faq_section_issues">समस्याए </string>
 
     <string name="activity_resolver_use_always">हमेशा </string>
@@ -260,6 +319,15 @@ Copy functionality works when using Android\'s WebView from an Activity, but not
     <string name="credits_lacy_name">क्रिस लेसी </string>
     <string name="credits_lacy_credit">कंसेप्ट, डिज़ाइन और प्रोग्रामिंग </string>
     <string name="credits_app_copyright">कॉपीराइट 2014, डिजिटल एशेज / क्रिस लैसी .</string>
+
+    <!--
+    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
+        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
+    <string name="restore_tabs_from_previous_session"></string>
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
+    </plurals>
 
     <string name="content_description_button">बटन</string>
     <string name="content_description_target_icon">बबल टारगेट आइकॉन </string>
@@ -276,23 +344,23 @@ Copy functionality works when using Android\'s WebView from an Activity, but not
 
     <string name="requesting_location_message">%1$s आपकी लोकेशन मांग रहा हे। लोकेशन की जानकारी दे या नहीं?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
+    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Digital Ashes
     <a href="http://www.digitalashes.com/terms">terms</a> and <a href="http://www.digitalashes.com/privacy">privacy policy</a>.]]></string>
 
-    <string name="service_name">Link Bubble Renderer</string>
+    <string name="service_name">लिंक बबल Renderer</string>
     <string name="notification_title">लिंक बबल </string>
 
     <string name="pro_application_name">लिंक बबल प्रो 
 </string>
     <string name="pro_status_checking_license">लाइसेंस चेक  कर रहा हे... </string>
-	<string name="pro_status_buy">Unable to verify license.\n\nSome causes of this problem include:\n • There is no Internet connection.\n • This application has been tampered
-                            with.\n\nCheck your Internet connection, and if necessary, try installing the app from the Play Store again.</string>
-    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting me as I develop this project.</string>
-    <string name="pro_status_unlicensed">Google Play is reporting this copy of Link Bubble Pro is unlicensed.\n\nAssuming you have
-                            indeed purchased a copy of Link Bubble Pro, the most common reason for this is that email address used
-                            for your purchase is not configured with the Play Store on this device.</string>
+	<string name="pro_status_buy">लाइसेंस वेरीफाई नही हुआ।  \n\nइस प्रोब्ल्म के कुछ कारण:\n • इन्टरनेट कनेक्टेड नही हे।\n • इस ऐप के साथ छेड़खानी की गयी हे।
+\n\nअपने इन्टरनेट कनेक्शन की जाच करे और अगर फिर भी न हो तोह प्ले स्टोर से पुनः इनस्टॉल करे। </string>
+    <string name="pro_status_verified">लिंक बबल प्रो पकी खरीद वेरीफाई हो गयी हे। \n\nइस प्रोजेक्ट में आपकी मदद की में सराहना करता हु। </string>
+    <string name="pro_status_unlicensed">गूगल प्ले स्टोर बता रहा हे की आपकी लिंक बबल ऐप फर्जी हे।
+\n\n अगर आपने वास्तव में लिंक बबल को ख़रीदा हे तो इसका सीधा सा कारण यह हो सकता हे 
+कि आपने जिस मेल एड्रेस से लिंक बबल ख़रीदा हे उससे आपने प्ले स्टोर पर लॉग इन नही किया हुआ हे।  </string>
 
-    <string name="pro_keep_installed">Note: you don\'t need to load Link Bubble Pro again, but you do need to keep it installed for verification purposes.\n\nThis app will be hidden throughout the system so it doesn\'t appear in your launcher(s).</string>
+    <string name="pro_keep_installed">नोट: आपको लिंक बबल प्रो को पुनः लोड करे की कोई जरुरत नही हे। लेकिन आपको वेरिफिकेशन प्रोसेस के लिए इसे इनस्टॉल करे रखना बहोत जरुरी हे। \n\n यह ऐप फ़ोन से अध्श्य रहेगी ताकि किसी लांचर में प्रकट न हो।  </string>
 
     <string name="pro_action_load_app">लोड लिंक बबल </string>
     <string name="pro_action_install_app">इंस्टाल लिंक बबल </string>
@@ -300,37 +368,35 @@ Copy functionality works when using Android\'s WebView from an Activity, but not
     <string name="pro_action_retry">पुनः कोशिश करे </string>
     <string name="pro_action_store">प्ले </string>
 
-
-
     <string name="store_listing_title">लिंक बबल </string>
     <string name="store_listing_promo_text">मोबाइल ब्राउज़िंग सही से हुई। </string>
     <string name="store_listing_description_title">लिंक बबल एक अदभुत ब्राउज़र हे जिसे मोबाइल दिवाइजेज को ध्यान में रखकर बनाया गया हे। </string>
-    <string name="store_listing_description_features">
-    Features include:
-    • When you click on a link in an app, Link Bubble loads that webpage in the background, leaving you free to keep using your current app rather than your precious time being wasted watching a page load. Once the page has fully loaded, it will animate on screen.
-    • Link Bubble\'s flick physics allow you to go from clicking a link to sharing a link or adding it to a service such as Pocket in little more than a second!
-    • Load multiple links from your current app at the same time (requires Pro).
-    • Gracefully handles links that redirect to other apps. No longer does clicking an Instagram link in Twitter redirect to a full screen browser before loading Instagram!
-    • Deep integration with the apps on your system.
-    • Locates embedded YouTube videos on web pages, and provides a shortcut to load those videos directly in the YouTube app.
-    • Handy stats that illustrate how much time you are saving by using Link Bubble.
-    </string>
-    <string name="store_listing_description_location_permission">Regarding the Location permission: This is required so that you might grant permission for a website to access your location (such as those with an embedded map). Link Bubble itself never accesses your location.</string>
+    <string name="store_listing_description_features">आपको ये सुविधाए मिलेगी :
+• जब भी आप किसी लिंक पर क्लिक करेंगे तब लिंक बबल उस लिंक को बैकग्राउंड में लोड करेगा और आपको लिंक को लोड होते देखना नही पड़ेगा। आप आपकी तत्कालीन ऐप को उपयोग करे जब लिंक लोड हो जाएगा तब आपकी स्क्रीन पर आ जाएगा।
+• लिंक बबल में एक फ्लिक से आप किसी भी लिंक को सेकण्ड्स में शेयर या पॉकेट जेसी सुविधा में सेव कर सकते हे। 
+• एक से अधिक लिनक्स को एक बार में लोड करे।  (प्रो में उपलब्ध)
+• अब ट्विटर पर किसी इन्स्ताग्राम लिंक को देखने के लिए आपको इन्स्ताग्राम वेबसाइट को वेब ब्राउज़र में खोलने की कोई जरुरत नही। लिंक बब्ल यह काम काफी आसानी से हैंडल करता हे। 
+• आपकी अन्य एप्स से लिंक बबल का इंटीग्रेशन काफी गूढ़ (डीप) हे। 
+• किसी वेबसाइट में एम्बेडेड यू टूयूब विडियो को यु ट्यूब ऐप में आसानी से खोले। 
+• आपने लिंक बबल को उसे करके कितना किमलती समय बचाया यह भी आपकी ऐप बताती हे। </string>
+    <string name="store_listing_description_location_permission">लोकेशन परमिशन को रेंडर करना: इसकी जरुरत इसलिए हे ताकि आप जो वेबसाइट चला रहे हे उसे आपकी लोकेशन की जानकारी दी जा सके। (जेसे की एम्बेडेड मैप्स वाली वेबसाइट) लिंक बबल खुद आपकी लोकेशन जानकारी का उपयोग नही करता हे। </string>
 
     <string name="pro_store_listing_title">लिंक बबल प्रो।</string>
     <string name="pro_store_listing_description_title">लिंक बबल प्रो ऐप के सारे फीचर उन्लोच्क करता हे। </string>
-    <string name="pro_store_listing_description_features">अपग्रेड करने पर :
-# मनचाहे जितने टैब्स खोल सकते हे  (फ्री वर्जन में सिर्फ एक टेब )
-# सभी ऐप्स  से लिंक लोड कर सकते हे (फ्री वर्जन में सिर्फ एक ऐप से )
-# अपग्रेड करने की सारी आप्शन हटा दिए जाते हे। 
-# सपोर्ट करे हाकी में और भी ऐसी  ऐप्स बना सकू :)</string>
+    <string name="pro_store_listing_description_features">
+    Upgrades include:
+    • Infinite number of tabs (free version is limited to just one tab).
+    • Theme selection
+    • Remove the upgrade incentives throughout the free version.
+    • Support me so I get to make more of these apps :)
+    </string>
 
     <string name="welcome_page_title">लिंक बबल में आपका स्वागत हे!</string>
-    <string name="welcome_page_trial_notice">Note: For the first 24 hours after first installing Link Bubble, you will have access to all of Link Bubble Pro\'s premium features as a one-time trial.</string>
+    <string name="welcome_page_trial_notice"><![CDATA[• लिंक बबल इन्स्टाल करने के बाद पहले 24 घंटे के लिए, गैर लिंक बुलबुला प्रो उपयोगकर्ता सभी फीचर उपयोग कर सकेंगे।]]></string>
     <string name="welcome_page_intro_title">यह केसे काम करता हे?</string>
     <string name="welcome_page_intro_point_1">किसी भी ऐप  में कोई लिंक पर क्लिक करे। </string>
-    <string name="welcome_page_intro_point_2">A bubble will appear on the edge of the screen and the link will begin loading in the background. As soon as the page is loaded, it will be displayed.</string>
-    <string name="welcome_page_intro_end">It\'s that simple! With Link Bubble, you can keep using your current app rather than wasting your time watching links redirect and waiting for pages to load. What\'s not to love about that?</string>
+    <string name="welcome_page_intro_point_2">एक बब्ल स्क्रीन की साइड में दिखाई देगा और आपका लिंक लोड होने लगेगा बैकग्राउंड में। जब लिंक लोड हो जाएगा तब स्क्रीन पर दिखाई देगा। </string>
+    <string name="welcome_page_intro_end">यह एक सैंपल हे। लिकं बबल से आप अपनी करंट ऐप  को उसे कर सकते हे और आपका लिंक बैकग्राउंड में लोड होता जाएगा। बिलकुल भी टाइम वेस्ट नही। हे न ये कमाल की ऐप। </string>
     <string name="welcome_page_more_title">पूरा बताये। </string>
     <string name="welcome_page_more_pocket_start">आप जल्दी से कोई लिंक शेयर या किसी ऐप में ऐड कर सकते हे जेसे की Pocket:</string>
     <string name="welcome_page_more_pocket_end">येह मजेदार और सहयोगी दोनों हे ना?</string>
@@ -343,5 +409,7 @@ Copy functionality works when using Android\'s WebView from an Activity, but not
     <string name="welcome_page_pro_point_3">सहयोद दे, ताकि मै और भी बेहतर ऐप्स बना पाऊ। </string>
     <string name="welcome_page_pro_end">शुक्रिया, ऐप का आनंद ले!</string>
     <string name="welcome_page_ps">अनुलेख। बबल्स को बंद करने के दो तरीके हे। या तोह बेक बटन दबाये या फिर बबल को दबा रखते हुए बंद करने वाले बबल तक घसीटे। </string>
+
+    <string name="duplicate_link_will_not_be_loaded">Link already loaded. Ignoring...</string>
 
 </resources>
