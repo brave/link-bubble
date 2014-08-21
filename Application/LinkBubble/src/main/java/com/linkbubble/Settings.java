@@ -246,7 +246,6 @@ public class Settings {
 
     public void updateBrowsers() {
         mBrowsers.clear();
-        String packageName = mContext.getPackageName();
         PackageManager packageManager = mContext.getPackageManager();
         Intent queryIntent = new Intent();
         queryIntent.setAction(Intent.ACTION_VIEW);
@@ -258,9 +257,9 @@ public class Settings {
             IntentFilter filter = resolveInfo.filter;
             if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
                 // Ignore LinkBubble from this list
-                if (resolveInfo.activityInfo.packageName.equals(packageName)) {
+                if (resolveInfo.activityInfo.packageName.equals(BuildConfig.PACKAGE_NAME)) {
                     mLinkBubbleEntryActivityResolveInfo = resolveInfo;
-                } else {
+                } else if (Util.isValidBrowserPackageName(resolveInfo.activityInfo.packageName)) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setClassName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
                     mBrowsers.add(intent);

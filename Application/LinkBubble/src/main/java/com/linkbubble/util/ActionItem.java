@@ -72,7 +72,6 @@ public class ActionItem {
     private static ArrayList<ActionItem> getActionItems(Context context, boolean viewItems, boolean sendItems, boolean sharePicker) {
         final ArrayList<ActionItem> actionItems = new ArrayList<ActionItem>();
 
-        String packageName = context.getPackageName();
         PackageManager packageManager = context.getPackageManager();
         Resources resources = context.getResources();
 
@@ -85,7 +84,7 @@ public class ActionItem {
                 IntentFilter filter = resolveInfo.filter;
                 if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
                     // Ignore LinkBubble from this list
-                    if (resolveInfo.activityInfo.packageName.equals(packageName) == false) {
+                    if (Util.isValidBrowserPackageName(resolveInfo.activityInfo.packageName)) {
                         actionItems.add(new ActionItem(Constant.ActionType.View,
                                 resources,
                                 resolveInfo.loadLabel(packageManager).toString(),
