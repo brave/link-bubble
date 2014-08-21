@@ -111,7 +111,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                         public boolean onPreferenceClick(Preference preference) {
                             Resources resources = getActivity().getResources();
                             AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
-                            alertDialog.setIcon(R.drawable.ic_alert_icon);
+                            alertDialog.setIcon(Util.getAlertIcon(getActivity()));
                             alertDialog.setTitle(R.string.remove_default_title);
                             alertDialog.setMessage(String.format(resources.getString(R.string.remove_default_message), label, host, host));
                             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, resources.getString(R.string.action_remove),
@@ -516,7 +516,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                 });
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setIcon(R.drawable.ic_alert_icon);
+                builder.setIcon(Util.getAlertIcon(getActivity()));
                 builder.setNegativeButton(R.string.action_ok, null);
                 builder.setView(webView);
                 builder.setTitle(R.string.preference_osl_title);
@@ -746,7 +746,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(listView);
-        builder.setIcon(R.drawable.ic_alert_icon);
+        builder.setIcon(Util.getAlertIcon(getActivity()));
         builder.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 if (adapter.mSelectedIndex != startSelectedIndex) {
@@ -900,7 +900,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(listView);
-        builder.setIcon(R.drawable.ic_alert_icon);
+        builder.setIcon(Util.getAlertIcon(getActivity()));
         builder.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Settings.WebViewBatterySaveMode mode = Settings.WebViewBatterySaveMode.values()[adapter.mSelectedIndex];
@@ -1021,7 +1021,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         seekBar.setProgress(initialZoom - Settings.PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setIcon(R.drawable.ic_alert_icon);
+        builder.setIcon(Util.getAlertIcon(getActivity()));
         builder.setView(layout);
         builder.setTitle(R.string.preference_webview_text_zoom_title);
 
@@ -1095,7 +1095,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         });
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setIcon(R.drawable.ic_alert_icon);
+        builder.setIcon(Util.getAlertIcon(getActivity()));
         builder.setNegativeButton(R.string.action_ok, null);
         builder.setView(layout);
         builder.setTitle(R.string.credits_title);
@@ -1132,7 +1132,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(listView);
-        builder.setIcon(R.drawable.ic_alert_icon);
+        builder.setIcon(Util.getAlertIcon(getActivity()));
         builder.setPositiveButton(R.string.action_clear_data, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
@@ -1252,7 +1252,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setView(layout);
-        builder.setIcon(R.drawable.ic_alert_icon);
+        builder.setIcon(Util.getAlertIcon(getActivity()));
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
@@ -1289,6 +1289,8 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
      */
     void setPreferenceIcon(Preference preference, Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
+            //getResources().getDrawableForDensity()
+            //getResources().getDrawableForDensity()
             Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
             ActivityManager activityManager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
             int iconSize = activityManager.getLauncherLargeIconSize();
