@@ -7714,49 +7714,48 @@ com.linkbubble.Settings -> com.linkbubble.Settings:
     com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent mLinkLoadTimeStatsUpdatedEvent -> ˑ
     java.util.ArrayList mLastAppRedirects$7865b31 -> ـ
     byte[] $ -> ᐧ
-    int $$ -> ᐨ
     115:116:void initModule$faab20d(com.linkbubble.MainApplication) -> ･
     122:123:void deinitModule() -> ･
     126:128:void setConsumeBubblesChangedEventHandler$4d0351a7$6858d67a(com.linkbubble.Settings$ConsumeBubblesChangedEventHandler) -> ･
     134:134:com.linkbubble.Settings get() -> ˊ
     200:215:void configureDefaultApp(android.content.pm.PackageManager,java.lang.String,java.lang.String) -> ･
     223:245:void onOrientationChange() -> ˋ
-    248:303:void updateBrowsers() -> ˎ
-    307:311:boolean doesPackageExist(android.content.pm.PackageManager,java.lang.String) -> ･
-    315:321:android.content.pm.ResolveInfo findResolveInfoForPackageName(java.util.List,java.lang.String) -> ･
-    325:340:android.content.pm.ResolveInfo getYouTubeViewResolveInfo() -> ˏ
-    382:388:boolean setDefaultLeftConsumeBubble(android.content.pm.ResolveInfo,android.content.pm.PackageManager) -> ･
-    425:432:android.content.ComponentName getDefaultBrowserComponentName(android.content.Context) -> ･
-    436:445:android.graphics.drawable.Drawable getDefaultBrowserIcon(android.content.Context) -> ˊ
-    449:478:void setConsumeBubble(com.linkbubble.Constant$BubbleAction,com.linkbubble.Constant$ActionType,java.lang.String,java.lang.String,java.lang.String) -> ･
-    481:491:java.lang.String getConsumeBubbleLabel(com.linkbubble.Constant$BubbleAction) -> ･
-    495:505:java.lang.String getConsumeBubblePackageName(com.linkbubble.Constant$BubbleAction) -> ˊ
-    509:519:java.lang.String getConsumeBubbleActivityClassName(com.linkbubble.Constant$BubbleAction) -> ˋ
-    554:568:android.graphics.drawable.Drawable getConsumeBubbleIcon(com.linkbubble.Constant$BubbleAction,boolean) -> ･
-    572:589:void loadIgnoreLinksFromPackageNames() -> ˉ
-    593:606:void setIgnoreLinksFromPackageNames(java.util.ArrayList) -> ･
-    613:619:boolean ignoreLinkFromPackageName(java.lang.String) -> ･
-    631:638:void setWebViewBatterySaveMode(java.lang.String) -> ˊ
-    755:788:java.util.ArrayList getAppsThatHandleUrl$6450ac98(java.lang.String,android.content.pm.PackageManager) -> ･
-    792:816:android.content.pm.ResolveInfo getDefaultAppForUrl$14c9ac02(java.net.URL,java.util.ArrayList) -> ･
-    825:834:void setDefaultApp(java.lang.String,android.content.pm.ResolveInfo,boolean) -> ･
-    838:843:void addDefaultApp(java.lang.String,android.content.ComponentName,boolean) -> ･
-    853:866:java.util.Vector loadCurrentTabs() -> ᐝ
-    870:892:void saveCurrentTabs$61fb9e66(java.util.ArrayList) -> ˊ
-    895:911:void saveDefaultApps() -> ʻ
-    915:935:void configureDefaultApps(java.lang.String) -> ˏ
-    938:946:java.util.TreeMap getDefaultAppsMap() -> ʼ
-    950:962:android.graphics.Point getBubbleRestingPoint() -> ʽ
-    967:972:int getBubbleStartingX(android.graphics.Point) -> ･
-    1055:1077:void trackLinkLoadTime(long,com.linkbubble.Settings$LinkLoadType,java.lang.String) -> ･
-    1119:1127:boolean didRecentlyRedirectToApp(java.lang.String) -> ˋ
-    1132:1160:void addRedirectToApp(java.lang.String) -> ˎ
-    1163:1178:void saveRecentAppRedirects() -> ͺ
-    1181:1199:void loadRecentAppRedirects() -> ˌ
-    1202:1210:boolean canFlushWebViewCache() -> ι
-    1246:1249:int getThemedDefaultProgressColor() -> ʾ
-    1253:1256:int getThemedContentViewColor() -> ʿ
-    1260:1263:int getThemedTextColor() -> ˈ
+    248:302:void updateBrowsers() -> ˎ
+    306:310:boolean doesPackageExist(android.content.pm.PackageManager,java.lang.String) -> ･
+    314:320:android.content.pm.ResolveInfo findResolveInfoForPackageName(java.util.List,java.lang.String) -> ･
+    324:339:android.content.pm.ResolveInfo getYouTubeViewResolveInfo() -> ˏ
+    381:387:boolean setDefaultLeftConsumeBubble(android.content.pm.ResolveInfo,android.content.pm.PackageManager) -> ･
+    424:431:android.content.ComponentName getDefaultBrowserComponentName(android.content.Context) -> ･
+    435:444:android.graphics.drawable.Drawable getDefaultBrowserIcon(android.content.Context) -> ˊ
+    448:477:void setConsumeBubble(com.linkbubble.Constant$BubbleAction,com.linkbubble.Constant$ActionType,java.lang.String,java.lang.String,java.lang.String) -> ･
+    480:490:java.lang.String getConsumeBubbleLabel(com.linkbubble.Constant$BubbleAction) -> ･
+    494:504:java.lang.String getConsumeBubblePackageName(com.linkbubble.Constant$BubbleAction) -> ˊ
+    508:518:java.lang.String getConsumeBubbleActivityClassName(com.linkbubble.Constant$BubbleAction) -> ˋ
+    553:567:android.graphics.drawable.Drawable getConsumeBubbleIcon(com.linkbubble.Constant$BubbleAction,boolean) -> ･
+    571:588:void loadIgnoreLinksFromPackageNames() -> ˉ
+    592:605:void setIgnoreLinksFromPackageNames(java.util.ArrayList) -> ･
+    612:618:boolean ignoreLinkFromPackageName(java.lang.String) -> ･
+    630:637:void setWebViewBatterySaveMode(java.lang.String) -> ˊ
+    754:787:java.util.ArrayList getAppsThatHandleUrl$6450ac98(java.lang.String,android.content.pm.PackageManager) -> ･
+    791:815:android.content.pm.ResolveInfo getDefaultAppForUrl$14c9ac02(java.net.URL,java.util.ArrayList) -> ･
+    824:833:void setDefaultApp(java.lang.String,android.content.pm.ResolveInfo,boolean) -> ･
+    837:842:void addDefaultApp(java.lang.String,android.content.ComponentName,boolean) -> ･
+    852:865:java.util.Vector loadCurrentTabs() -> ᐝ
+    869:891:void saveCurrentTabs$61fb9e66(java.util.ArrayList) -> ˊ
+    894:910:void saveDefaultApps() -> ʻ
+    914:934:void configureDefaultApps(java.lang.String) -> ˏ
+    937:945:java.util.TreeMap getDefaultAppsMap() -> ʼ
+    949:961:android.graphics.Point getBubbleRestingPoint() -> ʽ
+    966:971:int getBubbleStartingX(android.graphics.Point) -> ･
+    1054:1076:void trackLinkLoadTime(long,com.linkbubble.Settings$LinkLoadType,java.lang.String) -> ･
+    1118:1126:boolean didRecentlyRedirectToApp(java.lang.String) -> ˋ
+    1131:1159:void addRedirectToApp(java.lang.String) -> ˎ
+    1162:1177:void saveRecentAppRedirects() -> ͺ
+    1180:1198:void loadRecentAppRedirects() -> ˌ
+    1201:1209:boolean canFlushWebViewCache() -> ι
+    1245:1248:int getThemedDefaultProgressColor() -> ʾ
+    1252:1255:int getThemedContentViewColor() -> ʿ
+    1259:1262:int getThemedTextColor() -> ˈ
     java.lang.String $(int,int,int) -> ･
 com.linkbubble.Settings$1 -> com.linkbubble.Settings$1:
     int[] $SwitchMap$com$linkbubble$Constant$BubbleAction -> ･
@@ -7776,8 +7775,8 @@ com.linkbubble.Settings$LinkLoadType -> com.linkbubble.Settings$LinkLoadType:
     com.linkbubble.Settings$LinkLoadType ShareToOtherApp -> ˎ
     com.linkbubble.Settings$LinkLoadType OpenInOtherApp -> ˏ
     com.linkbubble.Settings$LinkLoadType[] $VALUES -> ᐝ
-    1038:1038:com.linkbubble.Settings$LinkLoadType[] values() -> values
-    1038:1038:com.linkbubble.Settings$LinkLoadType valueOf(java.lang.String) -> valueOf
+    1037:1037:com.linkbubble.Settings$LinkLoadType[] values() -> values
+    1037:1037:com.linkbubble.Settings$LinkLoadType valueOf(java.lang.String) -> valueOf
 com.linkbubble.Settings$WebViewBatterySaveMode -> com.linkbubble.Settings$WebViewBatterySaveMode:
     com.linkbubble.Settings$WebViewBatterySaveMode Aggressive -> ･
     com.linkbubble.Settings$WebViewBatterySaveMode Default -> ˊ
@@ -7802,36 +7801,38 @@ com.linkbubble.articlerender.ArticleContent$BuildContentTask -> כֿ$･:
     143:143:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
 com.linkbubble.articlerender.ArticleContent$OnFinishedListener -> כֿ$if:
     com.linkbubble.webrender.WebViewRenderer$1 this$1 -> ･
-    283:286:void onFinished(com.linkbubble.articlerender.ArticleContent) -> ･
+    288:291:void onFinished(com.linkbubble.articlerender.ArticleContent) -> ･
 com.linkbubble.articlerender.ArticleRenderer -> ﮈ:
-    android.content.Context mContext -> ･
-    android.webkit.WebView mWebView -> ˊ
-    boolean mIsDestroyed -> ˋ
+    android.content.Context mContext -> ˎ
+    android.webkit.WebView mWebView -> ･
+    boolean mIsDestroyed -> ˊ
     boolean mFirstPageLoadTriggered -> ˏ
-    com.linkbubble.articlerender.ArticleRenderer$Controller mController -> ˎ
-    com.linkbubble.articlerender.ArticleRenderer$1 mWebViewClient$37b6b5d8 -> ᐝ
-    com.linkbubble.articlerender.ArticleRenderer$2 mDownloadListener$5eab45e -> ʻ
-    com.linkbubble.articlerender.ArticleRenderer$3 mOnWebViewLongClickListener$785c825 -> ʼ
-    com.linkbubble.articlerender.ArticleRenderer$4 mOnKeyListener$6df0ff48 -> ʽ
-    64:67:void display$335e71e9(com.linkbubble.articlerender.ArticleContent) -> ･
-    170:175:void onUserPresentEvent(com.linkbubble.MainController$UserPresentEvent) -> onUserPresentEvent
-    180:186:void onScreenOffEvent(com.linkbubble.MainController$ScreenOffEvent) -> onScreenOffEvent
-    191:196:void onBeginCollapseTransitionEvent(com.linkbubble.MainController$BeginCollapseTransitionEvent) -> onBeginCollapseTransitionEvent
-    201:206:void onBeginExpandTransitionEvent(com.linkbubble.MainController$BeginExpandTransitionEvent) -> onBeginExpandTransitionEvent
-    211:217:void onHideContentEvent(com.linkbubble.MainController$HideContentEvent) -> onHideContentEvent
-    222:227:void onUnhideContentEvent(com.linkbubble.MainController$UnhideContentEvent) -> onUnhideContentEvent
+    com.linkbubble.articlerender.ArticleRenderer$Controller mController -> ˋ
+    boolean mRegisteredForBus -> ᐝ
+    com.linkbubble.articlerender.ArticleRenderer$1 mWebViewClient$37b6b5d8 -> ʻ
+    com.linkbubble.articlerender.ArticleRenderer$2 mDownloadListener$5eab45e -> ʼ
+    com.linkbubble.articlerender.ArticleRenderer$3 mOnWebViewLongClickListener$785c825 -> ʽ
+    com.linkbubble.articlerender.ArticleRenderer$4 mOnKeyListener$6df0ff48 -> ͺ
+    66:69:void display$335e71e9(com.linkbubble.articlerender.ArticleContent) -> ･
+    73:80:void destroy() -> ･
+    175:180:void onUserPresentEvent(com.linkbubble.MainController$UserPresentEvent) -> onUserPresentEvent
+    185:191:void onScreenOffEvent(com.linkbubble.MainController$ScreenOffEvent) -> onScreenOffEvent
+    196:201:void onBeginCollapseTransitionEvent(com.linkbubble.MainController$BeginCollapseTransitionEvent) -> onBeginCollapseTransitionEvent
+    206:211:void onBeginExpandTransitionEvent(com.linkbubble.MainController$BeginExpandTransitionEvent) -> onBeginExpandTransitionEvent
+    216:222:void onHideContentEvent(com.linkbubble.MainController$HideContentEvent) -> onHideContentEvent
+    227:232:void onUnhideContentEvent(com.linkbubble.MainController$UnhideContentEvent) -> onUnhideContentEvent
 com.linkbubble.articlerender.ArticleRenderer$1 -> ﺓ:
     com.linkbubble.articlerender.ArticleRenderer this$0 -> ･
-    92:95:void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
+    97:100:void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
 com.linkbubble.articlerender.ArticleRenderer$2 -> ﻤ:
     com.linkbubble.articlerender.ArticleRenderer this$0 -> ･
-    103:104:void onDownloadStart(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long) -> onDownloadStart
+    108:109:void onDownloadStart(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long) -> onDownloadStart
 com.linkbubble.articlerender.ArticleRenderer$3 -> ﻥ:
     com.linkbubble.articlerender.ArticleRenderer this$0 -> ･
-    110:129:boolean onLongClick(android.view.View) -> onLongClick
+    115:134:boolean onLongClick(android.view.View) -> onLongClick
 com.linkbubble.articlerender.ArticleRenderer$4 -> ｆ:
     com.linkbubble.articlerender.ArticleRenderer this$0 -> ･
-    137:145:boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
+    142:150:boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
 com.linkbubble.articlerender.ArticleRenderer$5 -> ﮈ$1:
     int[] $SwitchMap$com$linkbubble$Settings$WebViewBatterySaveMode -> ･
 com.linkbubble.articlerender.ArticleRenderer$Controller -> ﮈ$･:
@@ -8404,6 +8405,7 @@ com.linkbubble.ui.CanvasView -> com.linkbubble.ui.CanvasView:
 com.linkbubble.ui.ChangeLogDialog -> ь:
     android.app.Activity fActivity -> ･
     byte[] $ -> ˊ
+    int $$ -> ˋ
     55:59:java.lang.String GetAppVersion() -> ･
     65:75:java.lang.String ParseReleaseTag(android.content.res.XmlResourceParser) -> ･
     90:117:java.lang.String GetHTMLChangelog(int,android.content.res.Resources) -> ･
@@ -8485,7 +8487,6 @@ com.linkbubble.ui.ContentView -> com.linkbubble.ui.ContentView:
     com.linkbubble.ui.ContentView$11 mOnOverflowButtonClickListener$23ece1c1 -> ʳ
     com.linkbubble.ui.ContentView$12 mOnTextContainerTouchListener$7fc3a0c9 -> ʴ
     byte[] $ -> ᐩ
-    int $$ -> ᑊ
     172:195:void dispatchDraw(android.graphics.Canvas) -> dispatchDraw
     198:213:void destroy() -> ･
     698:749:void onPageLoadComplete(java.lang.String) -> ･
@@ -8655,7 +8656,6 @@ com.linkbubble.ui.ContentView$AppForUrl -> com.linkbubble.ui.ContentView$･:
     java.net.URL mUrl -> ˊ
     android.graphics.drawable.Drawable mIcon -> ˋ
     byte[] $ -> ˎ
-    int $$ -> ˏ
     151:156:android.graphics.drawable.Drawable getIcon(android.content.Context) -> ･
     java.lang.String $(int,int,int) -> ･
 com.linkbubble.ui.ContentView$EventHandler -> com.linkbubble.ui.ContentView$if:
@@ -8722,14 +8722,14 @@ com.linkbubble.ui.ExpandedActivity -> com.linkbubble.ui.ExpandedActivity:
     235:242:void onPause() -> onPause
     246:248:void finish() -> finish
     252:253:void onBackPressed() -> onBackPressed
-    256:286:void minimize() -> ･
-    311:317:void setWebRenderer(android.view.View) -> setWebRenderer
-    322:323:void onMinimizeExpandedActivity(com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent) -> onMinimizeExpandedActivity
-    328:329:void onHideContentEvent(com.linkbubble.MainController$HideContentEvent) -> onHideContentEvent
-    334:341:void onEnableHotwordService(com.linkbubble.ui.ExpandedActivity$EnableHotwordServiceEvent) -> onEnableHotwordService
+    256:288:void minimize() -> ･
+    313:319:void setWebRenderer(android.view.View) -> setWebRenderer
+    324:325:void onMinimizeExpandedActivity(com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent) -> onMinimizeExpandedActivity
+    330:331:void onHideContentEvent(com.linkbubble.MainController$HideContentEvent) -> onHideContentEvent
+    336:343:void onEnableHotwordService(com.linkbubble.ui.ExpandedActivity$EnableHotwordServiceEvent) -> onEnableHotwordService
 com.linkbubble.ui.ExpandedActivity$1 -> গ:
     com.linkbubble.ui.ExpandedActivity this$0 -> ･
-    306:307:void run() -> run
+    308:309:void run() -> run
 com.linkbubble.ui.ExpandedActivity$EnableHotwordServiceEvent -> com.linkbubble.ui.ExpandedActivity$EnableHotwordServiceEvent:
     boolean mEnable -> ･
 com.linkbubble.ui.ExpandedActivity$ExpandedActivityReadyEvent -> com.linkbubble.ui.ExpandedActivity$･:
@@ -9074,7 +9074,6 @@ com.linkbubble.ui.SettingsFragment -> com.linkbubble.ui.SettingsFragment:
     int mForceCrashCountdown -> ʽ
     android.widget.Toast mForceCrashToast -> ･
     byte[] $ -> ͺ
-    int $$ -> ι
     84:141:void configureDefaultAppsList() -> ˏ
     145:564:void onCreate(android.os.Bundle) -> onCreate
     568:579:void onResume() -> onResume
@@ -9370,67 +9369,67 @@ com.linkbubble.util.ActionItem -> ӱ:
     java.lang.String mActivityClassName -> ˏ
     android.graphics.drawable.Drawable mIcon -> ᐝ
     byte[] $ -> ʻ
-    int $$ -> ʼ
-    73:140:java.util.ArrayList getActionItems(android.content.Context,boolean,boolean,boolean) -> ･
-    144:173:android.app.AlertDialog getDefaultBrowserAlert$472415a9(android.app.Activity,com.linkbubble.ui.SettingsFragment$15$1) -> ･
-    178:317:android.app.AlertDialog getActionItemPickerAlert$7acab40a$97e5037(android.content.Context,java.util.ArrayList,com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener) -> ･
-    322:363:android.app.AlertDialog getConfigureBubbleAlert$472415a9(android.app.Activity,com.linkbubble.util.ActionItem$OnActionItemSelectedListener) -> ･
-    369:397:android.app.AlertDialog getShareAlert$7e15ad1b(android.content.Context,com.linkbubble.util.ActionItem$OnActionItemSelectedListener) -> ･
+    73:139:java.util.ArrayList getActionItems(android.content.Context,boolean,boolean,boolean) -> ･
+    143:172:android.app.AlertDialog getDefaultBrowserAlert$472415a9(android.app.Activity,com.linkbubble.ui.SettingsFragment$15$1) -> ･
+    177:316:android.app.AlertDialog getActionItemPickerAlert$7acab40a$97e5037(android.content.Context,java.util.ArrayList,com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener) -> ･
+    321:362:android.app.AlertDialog getConfigureBubbleAlert$472415a9(android.app.Activity,com.linkbubble.util.ActionItem$OnActionItemSelectedListener) -> ･
+    368:396:android.app.AlertDialog getShareAlert$7e15ad1b(android.content.Context,com.linkbubble.util.ActionItem$OnActionItemSelectedListener) -> ･
     38:38:android.graphics.drawable.Drawable access$000(com.linkbubble.util.ActionItem) -> ･
     java.lang.String $(int,int,int) -> ･
 com.linkbubble.util.ActionItem$1 -> ԏ:
-    128:128:int compare(java.lang.Object,java.lang.Object) -> compare
+    127:127:int compare(java.lang.Object,java.lang.Object) -> compare
 com.linkbubble.util.ActionItem$10 -> Դ:
     com.linkbubble.util.ActionItem$OnActionItemSelectedListener val$onActionItemSelectedListener -> ･
     android.app.AlertDialog val$alertDialog -> ˊ
-    387:394:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    386:393:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.linkbubble.util.ActionItem$1ActionItemListView -> չ:
     boolean mDefaultSet -> ˊ
     long mLastItemClickTime -> ･
-    214:228:void draw(android.graphics.Canvas) -> draw
+    213:227:void draw(android.graphics.Canvas) -> draw
 com.linkbubble.util.ActionItem$2 -> ט:
     com.linkbubble.ui.SettingsFragment$15$1 val$onActionItemSelectedListener$2df75527 -> ･
     android.app.AlertDialog val$alertDialog -> ˊ
-    160:170:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    159:169:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.linkbubble.util.ActionItem$3 -> ס:
-    191:191:int compare(java.lang.Object,java.lang.Object) -> compare
+    190:190:int compare(java.lang.Object,java.lang.Object) -> compare
 com.linkbubble.util.ActionItem$4 -> ף:
     com.linkbubble.util.ActionItem$1ActionItemListView val$listView -> ･
     java.util.ArrayList val$actionItems -> ˊ
     com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener val$onActionItemDefaultSelectedListener -> ˋ
     android.app.AlertDialog val$alertDialog -> ˎ
-    256:292:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    255:291:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.linkbubble.util.ActionItem$5 -> ت:
     com.linkbubble.util.ActionItem$1ActionItemListView val$listView -> ･
     java.util.ArrayList val$actionItems -> ˊ
     com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener val$onActionItemDefaultSelectedListener -> ˋ
-    298:303:void onClick(android.content.DialogInterface,int) -> onClick
+    297:302:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.util.ActionItem$6 -> ٺ:
     com.linkbubble.util.ActionItem$1ActionItemListView val$listView -> ･
     java.util.ArrayList val$actionItems -> ˊ
     com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener val$onActionItemDefaultSelectedListener -> ˋ
-    309:314:void onClick(android.content.DialogInterface,int) -> onClick
+    308:313:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.util.ActionItem$7 -> ٻ:
     com.linkbubble.util.ActionItem$OnActionItemSelectedListener val$onActionItemSelectedListener -> ･
     android.app.AlertDialog val$alertDialog -> ˊ
-    338:345:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    337:344:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.linkbubble.util.ActionItem$8 -> ړ:
-    352:352:void onClick(android.content.DialogInterface,int) -> onClick
+    351:351:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.util.ActionItem$9 -> ڽ:
-    360:360:void onCancel(android.content.DialogInterface) -> onCancel
+    359:359:void onCancel(android.content.DialogInterface) -> onCancel
 com.linkbubble.util.ActionItem$ActionItemAdapter -> ӱ$･:
     android.content.Context mContext -> ･
     int mLayoutResourceId -> ˊ
     com.linkbubble.util.ActionItem[] mData -> ˋ
-    416:431:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-    436:441:android.view.View getHeaderView(int,android.view.View,android.view.ViewGroup) -> ･
-    446:450:long getHeaderId(int) -> ･
+    415:430:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    435:440:android.view.View getHeaderView(int,android.view.View,android.view.ViewGroup) -> ･
+    445:449:long getHeaderId(int) -> ･
 com.linkbubble.util.ActionItem$OnActionItemDefaultSelectedListener -> ӱ$if:
     void onSelected(com.linkbubble.util.ActionItem,boolean) -> ･
 com.linkbubble.util.ActionItem$OnActionItemSelectedListener -> ӱ$ˊ:
     void onSelected(com.linkbubble.util.ActionItem) -> ･
 com.linkbubble.util.AppPickerList -> com.linkbubble.util.AppPickerList:
     byte[] $ -> ･
+    int $$ -> ˊ
     73:156:android.widget.ListView createView$590ee69d$460f63a1$56de75f3(android.app.Activity,com.linkbubble.util.IconCache,com.linkbubble.util.AppPickerList$SelectionType,com.linkbubble.util.AppPickerList$Initializer) -> ･
     175:186:java.util.ArrayList getUnselected$3be2e569(android.widget.ListView) -> ･
     java.lang.String $(int,int,int) -> ･
@@ -9627,6 +9626,7 @@ com.linkbubble.util.Util -> ถ:
     android.graphics.Rect sOldBounds -> ˏ
     android.graphics.Canvas sCanvas -> ᐝ
     byte[] $ -> ʻ
+    int $$ -> ʼ
     53:56:void Assert(boolean,java.lang.String) -> ･
     59:59:float clamp(float,float,float) -> ･
     63:63:int clamp(int,int,int) -> ･
@@ -9648,6 +9648,7 @@ com.linkbubble.util.Util -> ถ:
     524:538:android.content.Intent getSendIntent(java.lang.String,java.lang.String,java.lang.String) -> ･
     550:572:android.widget.ImageView getActionBarUpView$19c77797(com.linkbubble.ui.HistoryActivity) -> ･
     579:599:void showThemedDialog$46a48fae(android.app.AlertDialog) -> ･
+    602:605:boolean isValidBrowserPackageName(java.lang.String) -> ˊ
     java.lang.String $(int,int,int) -> ˊ
 com.linkbubble.util.Util$ClipResult -> ถ$･:
     int x0 -> ･
@@ -9675,7 +9676,6 @@ com.linkbubble.util.YouTubeEmbedHelper -> ท:
     com.linkbubble.util.YouTubeEmbedHelper$DownloadYouTubeEmbedInfoTask mCurrentDownloadTask -> ˊ
     android.content.pm.ResolveInfo mYouTubeResolveInfo -> ˋ
     byte[] $ -> ᐝ
-    int $$ -> ʻ
     76:131:boolean onEmbeds(java.lang.String[]) -> ･
     135:146:boolean loadYouTubeVideo(java.lang.String) -> ･
     184:214:android.app.AlertDialog getMultipleEmbedsDialog() -> ･
@@ -9821,112 +9821,113 @@ com.linkbubble.webrender.WebViewRenderer -> โ:
     int mCurrentProgress -> ˈ
     boolean mPauseOnComplete -> ˉ
     java.lang.Boolean mIsDestroyed -> ˌ
+    boolean mRegisteredForBus -> ﹳ
     com.linkbubble.articlerender.ArticleContent$BuildContentTask mBuildArticleContentTask -> ˍ
     com.linkbubble.articlerender.ArticleContent mArticleContent -> ˑ
-    com.linkbubble.webrender.WebViewRenderer$1 mOnPageInspectorItemFoundListener$48fbc32f -> ﹳ
+    com.linkbubble.webrender.WebViewRenderer$1 mOnPageInspectorItemFoundListener$48fbc32f -> ﾞ
     boolean mDoDropDownCheck -> ـ
-    com.linkbubble.webrender.WebViewRenderer$2 mDropDownCheckRunnable$453f5682 -> ﾞ
-    com.linkbubble.webrender.WebViewRenderer$3 mOnKeyListener$6df0ff48 -> ʹ
-    com.linkbubble.webrender.WebViewRenderer$4 mOnWebViewLongClickListener$785c825 -> ՙ
-    com.linkbubble.webrender.WebViewRenderer$5 mWebViewOnTouchListener$26ce0268 -> י
-    com.linkbubble.webrender.WebViewRenderer$6 mWebViewClient$37b6b5d8 -> ٴ
-    com.linkbubble.webrender.WebViewRenderer$7 mDownloadListener$5eab45e -> ᴵ
-    com.linkbubble.webrender.WebViewRenderer$8 mWebChromeClient$451ad23 -> ᵎ
+    com.linkbubble.webrender.WebViewRenderer$2 mDropDownCheckRunnable$453f5682 -> ʹ
+    com.linkbubble.webrender.WebViewRenderer$3 mOnKeyListener$6df0ff48 -> ՙ
+    com.linkbubble.webrender.WebViewRenderer$4 mOnWebViewLongClickListener$785c825 -> י
+    com.linkbubble.webrender.WebViewRenderer$5 mWebViewOnTouchListener$26ce0268 -> ٴ
+    com.linkbubble.webrender.WebViewRenderer$6 mWebViewClient$37b6b5d8 -> ᴵ
+    com.linkbubble.webrender.WebViewRenderer$7 mDownloadListener$5eab45e -> ᵎ
+    com.linkbubble.webrender.WebViewRenderer$8 mWebChromeClient$451ad23 -> ᵔ
     com.linkbubble.webrender.WebViewRenderer$9 mCheckForPauseRunnable$453f5682 -> ᐧ
-    119:123:void destroy() -> ･
-    128:128:android.webkit.WebView getView$2f72df89() -> ˊ
-    133:147:void updateIncognitoMode(boolean) -> ･
-    159:182:void loadUrl(java.net.URL,com.linkbubble.webrender.WebRenderer$Mode) -> ･
-    186:195:void reload() -> ˋ
-    199:206:void stopLoading() -> ˎ
-    210:222:void hidePopups() -> ˏ
-    226:229:void onPageLoadComplete() -> ʼ
-    235:236:void resetPageInspector() -> ᐝ
-    240:246:void runPageInspector(boolean) -> ˊ
-    250:250:com.linkbubble.util.YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper() -> ʻ
-    585:585:com.linkbubble.articlerender.ArticleContent getArticleContent() -> ͺ
-    606:618:void webviewPause$552c4e01() -> ι
-    621:627:void webviewResume$552c4e01() -> ʾ
-    632:637:void onUserPresentEvent(com.linkbubble.MainController$UserPresentEvent) -> onUserPresentEvent
-    642:648:void onScreenOffEvent(com.linkbubble.MainController$ScreenOffEvent) -> onScreenOffEvent
-    653:658:void onBeginCollapseTransitionEvent(com.linkbubble.MainController$BeginCollapseTransitionEvent) -> onBeginCollapseTransitionEvent
-    663:668:void onBeginExpandTransitionEvent(com.linkbubble.MainController$BeginExpandTransitionEvent) -> onBeginExpandTransitionEvent
-    673:679:void onHideContentEvent(com.linkbubble.MainController$HideContentEvent) -> onHideContentEvent
-    684:689:void onUnhideContentEvent(com.linkbubble.MainController$UnhideContentEvent) -> onUnhideContentEvent
+    121:128:void destroy() -> ･
+    133:133:android.webkit.WebView getView$2f72df89() -> ˊ
+    138:152:void updateIncognitoMode(boolean) -> ･
+    164:187:void loadUrl(java.net.URL,com.linkbubble.webrender.WebRenderer$Mode) -> ･
+    191:200:void reload() -> ˋ
+    204:211:void stopLoading() -> ˎ
+    215:227:void hidePopups() -> ˏ
+    231:234:void onPageLoadComplete() -> ʼ
+    240:241:void resetPageInspector() -> ᐝ
+    245:251:void runPageInspector(boolean) -> ˊ
+    255:255:com.linkbubble.util.YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper() -> ʻ
+    590:590:com.linkbubble.articlerender.ArticleContent getArticleContent() -> ͺ
+    611:623:void webviewPause$552c4e01() -> ι
+    626:632:void webviewResume$552c4e01() -> ʾ
+    637:642:void onUserPresentEvent(com.linkbubble.MainController$UserPresentEvent) -> onUserPresentEvent
+    647:653:void onScreenOffEvent(com.linkbubble.MainController$ScreenOffEvent) -> onScreenOffEvent
+    658:663:void onBeginCollapseTransitionEvent(com.linkbubble.MainController$BeginCollapseTransitionEvent) -> onBeginCollapseTransitionEvent
+    668:673:void onBeginExpandTransitionEvent(com.linkbubble.MainController$BeginExpandTransitionEvent) -> onBeginExpandTransitionEvent
+    678:684:void onHideContentEvent(com.linkbubble.MainController$HideContentEvent) -> onHideContentEvent
+    689:694:void onUnhideContentEvent(com.linkbubble.MainController$UnhideContentEvent) -> onUnhideContentEvent
 com.linkbubble.webrender.WebViewRenderer$1 -> ไ:
     com.linkbubble.webrender.WebViewRenderer this$0 -> ･
-    257:258:void onYouTubeEmbeds() -> ･
-    262:263:void onTouchIconLoaded(android.graphics.Bitmap,java.lang.String) -> ･
-    267:268:void onDropDownFound() -> ˊ
-    272:273:void onDropDownWarningClick() -> ˋ
-    277:291:void onFetchHtml(java.lang.String) -> ･
+    262:263:void onYouTubeEmbeds() -> ･
+    267:268:void onTouchIconLoaded(android.graphics.Bitmap,java.lang.String) -> ･
+    272:273:void onDropDownFound() -> ˊ
+    277:278:void onDropDownWarningClick() -> ˋ
+    282:296:void onFetchHtml(java.lang.String) -> ･
 com.linkbubble.webrender.WebViewRenderer$10 -> โ$1:
     int[] $SwitchMap$com$linkbubble$webrender$WebRenderer$Mode -> ･
     int[] $SwitchMap$com$linkbubble$Settings$WebViewBatterySaveMode -> ˊ
 com.linkbubble.webrender.WebViewRenderer$2 -> Ⴡ:
     com.linkbubble.webrender.WebViewRenderer this$0 -> ･
-    298:303:void run() -> run
+    303:308:void run() -> run
 com.linkbubble.webrender.WebViewRenderer$3 -> ძ:
     com.linkbubble.webrender.WebViewRenderer this$0 -> ･
-    310:319:boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
+    315:324:boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
 com.linkbubble.webrender.WebViewRenderer$4 -> ᐵ:
     com.linkbubble.webrender.WebViewRenderer this$0 -> ･
-    326:345:boolean onLongClick(android.view.View) -> onLongClick
+    331:350:boolean onLongClick(android.view.View) -> onLongClick
 com.linkbubble.webrender.WebViewRenderer$5 -> ᑈ:
     com.linkbubble.webrender.WebViewRenderer this$0 -> ･
-    353:367:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    358:372:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
 com.linkbubble.webrender.WebViewRenderer$6 -> ᒏ:
     com.linkbubble.webrender.WebViewRenderer this$0 -> ･
-    374:393:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
-    398:399:void onReceivedError(android.webkit.WebView,int,java.lang.String,java.lang.String) -> onReceivedError
-    403:404:void onReceivedSslError(android.webkit.WebView,android.webkit.SslErrorHandler,android.net.http.SslError) -> onReceivedSslError
-    408:410:void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
-    414:415:void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+    379:398:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    403:404:void onReceivedError(android.webkit.WebView,int,java.lang.String,java.lang.String) -> onReceivedError
+    408:409:void onReceivedSslError(android.webkit.WebView,android.webkit.SslErrorHandler,android.net.http.SslError) -> onReceivedSslError
+    413:415:void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
+    419:420:void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
 com.linkbubble.webrender.WebViewRenderer$7 -> ᒰ:
     com.linkbubble.webrender.WebViewRenderer this$0 -> ･
-    423:424:void onDownloadStart(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long) -> onDownloadStart
+    428:429:void onDownloadStart(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long) -> onDownloadStart
 com.linkbubble.webrender.WebViewRenderer$8 -> ᒱ:
     com.linkbubble.webrender.WebViewRenderer this$0 -> ･
-    431:432:void onReceivedTitle(android.webkit.WebView,java.lang.String) -> onReceivedTitle
-    436:437:void onReceivedIcon(android.webkit.WebView,android.graphics.Bitmap) -> onReceivedIcon
-    441:464:void onProgressChanged(android.webkit.WebView,int) -> onProgressChanged
-    468:469:void onCloseWindow(android.webkit.WebView) -> onCloseWindow
-    473:492:boolean onJsAlert(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsAlert
-    497:514:boolean onJsConfirm(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsConfirm
-    519:547:boolean onJsPrompt(android.webkit.WebView,java.lang.String,java.lang.String,java.lang.String,android.webkit.JsPromptResult) -> onJsPrompt
-    555:556:boolean onConsoleMessage(android.webkit.ConsoleMessage) -> onConsoleMessage
-    561:569:boolean onCreateWindow(android.webkit.WebView,boolean,boolean,android.os.Message) -> onCreateWindow
-    574:580:void onGeolocationPermissionsShowPrompt(java.lang.String,android.webkit.GeolocationPermissions$Callback) -> onGeolocationPermissionsShowPrompt
+    436:437:void onReceivedTitle(android.webkit.WebView,java.lang.String) -> onReceivedTitle
+    441:442:void onReceivedIcon(android.webkit.WebView,android.graphics.Bitmap) -> onReceivedIcon
+    446:469:void onProgressChanged(android.webkit.WebView,int) -> onProgressChanged
+    473:474:void onCloseWindow(android.webkit.WebView) -> onCloseWindow
+    478:497:boolean onJsAlert(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsAlert
+    502:519:boolean onJsConfirm(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsConfirm
+    524:552:boolean onJsPrompt(android.webkit.WebView,java.lang.String,java.lang.String,java.lang.String,android.webkit.JsPromptResult) -> onJsPrompt
+    560:561:boolean onConsoleMessage(android.webkit.ConsoleMessage) -> onConsoleMessage
+    566:574:boolean onCreateWindow(android.webkit.WebView,boolean,boolean,android.os.Message) -> onCreateWindow
+    579:585:void onGeolocationPermissionsShowPrompt(java.lang.String,android.webkit.GeolocationPermissions$Callback) -> onGeolocationPermissionsShowPrompt
 com.linkbubble.webrender.WebViewRenderer$8$1 -> ᒴ:
     com.linkbubble.webrender.WebViewRenderer$8 this$1 -> ･
-    482:482:void onClick(android.content.DialogInterface,int) -> onClick
+    487:487:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.webrender.WebViewRenderer$8$2 -> ᒵ:
     com.linkbubble.webrender.WebViewRenderer$8 this$1 -> ･
-    488:489:void onDismiss(android.content.DialogInterface) -> onDismiss
+    493:494:void onDismiss(android.content.DialogInterface) -> onDismiss
 com.linkbubble.webrender.WebViewRenderer$8$3 -> ᒸ:
     android.webkit.JsResult val$result -> ･
     com.linkbubble.webrender.WebViewRenderer$8 this$1 -> ˊ
-    504:505:void onClick(android.content.DialogInterface,int) -> onClick
+    509:510:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.webrender.WebViewRenderer$8$4 -> ᒹ:
     android.webkit.JsResult val$result -> ･
     com.linkbubble.webrender.WebViewRenderer$8 this$1 -> ˊ
-    510:511:void onClick(android.content.DialogInterface,int) -> onClick
+    515:516:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.webrender.WebViewRenderer$8$5 -> ᓙ:
     android.view.View val$v -> ･
     android.webkit.JsPromptResult val$result -> ˊ
     com.linkbubble.webrender.WebViewRenderer$8 this$1 -> ˋ
-    530:532:void onClick(android.content.DialogInterface,int) -> onClick
+    535:537:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.webrender.WebViewRenderer$8$6 -> ᔬ:
     android.webkit.JsPromptResult val$result -> ･
     com.linkbubble.webrender.WebViewRenderer$8 this$1 -> ˊ
-    537:538:void onClick(android.content.DialogInterface,int) -> onClick
+    542:543:void onClick(android.content.DialogInterface,int) -> onClick
 com.linkbubble.webrender.WebViewRenderer$8$7 -> ᖧ:
     android.webkit.JsPromptResult val$result -> ･
     com.linkbubble.webrender.WebViewRenderer$8 this$1 -> ˊ
-    542:543:void onCancel(android.content.DialogInterface) -> onCancel
+    547:548:void onCancel(android.content.DialogInterface) -> onCancel
 com.linkbubble.webrender.WebViewRenderer$9 -> ᖨ:
     com.linkbubble.webrender.WebViewRenderer this$0 -> ･
-    593:602:void run() -> run
+    598:607:void run() -> run
 com.parse.BackgroundTask -> com.parse.BackgroundTask:
     com.parse.ParseCallback callback -> callback
     java.lang.Object result -> result
