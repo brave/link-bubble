@@ -60,6 +60,7 @@ class WebViewRenderer extends WebRenderer {
     private int mCurrentProgress;
     private boolean mPauseOnComplete;
     private Boolean mIsDestroyed = false;
+    private boolean mRegisteredForBus;
 
     private ArticleContent.BuildContentTask mBuildArticleContentTask;
     private ArticleContent mArticleContent;
@@ -112,11 +113,15 @@ class WebViewRenderer extends WebRenderer {
         mPageInspector = new PageInspector(mContext, mWebView, mOnPageInspectorItemFoundListener);
 
         MainApplication.registerForBus(context, this);
+        mRegisteredForBus = true;
     }
 
     @Override
     public void destroy() {
-        MainApplication.unregisterForBus(mContext, this);
+        if (mRegisteredForBus) {
+            MainApplication.unregisterForBus(mContext, this);
+            mRegisteredForBus = false;
+        }
         cancelBuildArticleContentTask();
         mIsDestroyed = true;
         mWebView.destroy();
