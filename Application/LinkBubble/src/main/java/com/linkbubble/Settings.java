@@ -774,6 +774,27 @@ public class Settings {
                 }
 
                 if (packageOk) {
+                    // Ensure TapPath is always ignored
+                    if (info.activityInfo.packageName.contains("com.digitalashes.tappath")) {
+                        //Log.d("blerg", "ignore " + info.activityInfo.packageName);
+                        packageOk = false;
+                    } else {
+                        // And some special case code for me to ignore alternate builds
+                        if (BuildConfig.DEBUG) {
+                            if (info.activityInfo.packageName.equals("com.linkbubble.playstore")) {
+                                //Log.d("blerg", "ignore " + info.activityInfo.packageName);
+                                packageOk = false;
+                            }
+                        } else {
+                            if (info.activityInfo.packageName.equals("com.linkbubble.playstore.dev")) {
+                                //Log.d("blerg", "ignore " + info.activityInfo.packageName);
+                                packageOk = false;
+                            }
+                        }
+                    }
+                }
+
+                if (packageOk) {
                     results.add(info);
                     Log.d("appHandles", info.loadLabel(packageManager) + " for url:" + urlAsString);
                 }
