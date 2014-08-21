@@ -59,8 +59,6 @@
     <string name="preference_more">المزيد...</string>
     <string name="preference_intercept_links_from_title">اعترض الروابط من</string>
     <string name="preference_intercept_links_from_note">ملاحظة: حصر اعتراض الروابط من تطبيق واحد موجود فقط في النسخة المجانية من Link bubble. الترقية للنسخة الكاملة؟</string>
-    <string name="intercept_links_from_default_label">اضغط للضبط</string>
-    <string name="intercept_links_from_default_set_message">برنامج فقاعة العنوان المجاني مصمم ليشتغل على %1$S من البرامج. إذا ارت أن يشتغل على جميع البرامج الرجاء الترقية الى النسخة المدفوعة.</string>
     <string name="preference_scan_for_youtube_embeds_title">تحقق من تضمينات اليوتيوب</string>
     <string name="preference_scan_for_youtube_embeds_summary">عرض إختصار لتشغيل الفيديوهات المتضمنة في برنامج اليوتيوب</string>
 

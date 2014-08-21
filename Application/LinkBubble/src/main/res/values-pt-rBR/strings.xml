@@ -63,8 +63,6 @@
     <string name="preference_intercept_links_from_title">Interceptar links de</string>
     <string name="preference_intercept_links_from_note">Nota: A restrição de interceptar links de só um aplicativo só existe na 
 versão grátis do Link Bubble. Atualizar pra versão Pro?</string>
-    <string name="intercept_links_from_default_label">Toque pra definir</string>
-    <string name="intercept_links_from_default_set_message">Link Bubble configurado para carregar links de %1$s.\nPara carregar links de todos os apps, atualize pra Pro.</string>
     <string name="preference_scan_for_youtube_embeds_title">Check for YouTube embeds</string>
     <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
 
