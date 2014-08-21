@@ -268,7 +268,9 @@ public class ExpandedActivity extends Activity {
             return;
         }
 
-        MainController.get().showBadge(true);
+        if (MainController.get() != null) {
+            MainController.get().showBadge(true);
+        }
 
         final ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RecentTaskInfo> recentTasks = activityManager.getRecentTasks(16, ActivityManager.RECENT_WITH_EXCLUDED);
