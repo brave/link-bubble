@@ -2,7 +2,12 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">المحمّل</string>
+    <string name="send_intent_label">Open with Link Bubble</string>
     <string name="notification_summary">اضغط لإخفاء كل bubbles المفتوحة</string>
+    <string name="notification_default_summary">Touch to Hide, expand to Close All</string>
+    <string name="notification_unhide_summary">Touch to Unhide, expand to Close All</string>
+    <string name="notification_action_close_all">Close All</string>
+    <string name="notification_action_hide">Hide</string>
     <string name="share_picker_label">نافذة المشاركة</string>
 
     <string name="yes">نعم</string>
@@ -17,7 +22,7 @@
     <string name="action_settings">الإعدادات</string>
     <string name="action_help">مساعدة</string>
     <string name="action_reload_page">تحديث الصفحة</string>
-    <string name="action_open_in_browser">افتح في %1$s</string>
+    <string name="action_open_in_browser">فتح في %1$s</string>
     <string name="action_open_in_new_bubble">افتح في bubble جديدة</string>
     <string name="action_upgrade_to_pro">★قم بالترقية★</string>
     <string name="action_copy_to_clipboard">انسخ الرابط</string>
@@ -25,13 +30,35 @@
     <string name="action_close_all">أغلق الكل</string>
     <string name="action_close_tab">إغلاق الفقاعة</string>
     <string name="action_stop">إيقاف</string>
+    <string name="action_undo">Undo</string>
     <string name="share_via">مشاركة بواسطة..</string>
+    <string name="not_set">Not set</string>
 
     <string name="share_invalid_data">Link Bubble غير قادر على مشاركة هذا المحتوى لأنه ليس رابطاً صحيحاً</string>
     <string name="consume_activity_not_found">غير قادر على إيجاد البرنامج. قم بتغيير عمل الـ bubble من الإعدادت</string>
 
+    <string name="upgrade">Upgrade</string>
+    <string name="upgrade_to_pro">Upgrade to Pro</string>
+    <string name="upgrade_ok_google">Want to load Google Now by speaking \"OK, Google\"?</string>
+    <string name="upgrade_article_mode">Want to view links in Reading Mode?</string>
+    <string name="upgrade_article_mode_wear">Want to view links on Android Wear devices via Reading Mode?</string>
+    <string name="upgrade_theme">Want to use a different theme?</string>
+    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
+        Load multiple tabs at once.\n •
+        Change theme.\n •
+        Use Reading Mode.\n •
+        Android Wear support.\n •
+        Use \"OK, Google\" voice activation.\n •
+        Support me as I develop this app :)
+        </string>
+
+    <string name="undo_close_tab_title">Closed %1$s</string>
+    <string name="undo_close_tab_no_title">Closed tab</string>
+
     <string name="pick_default_app">اختر تطبيق افتراضي</string>
     <string name="default_browser_set">تم تعيين Link Bubble المتصفح الافتراضي</string>
+    <string name="invalid_send_action">Valid link not found.</string>
+    <string name="unable_to_launch_app">Unable to launch 3rd party application.</string>
     <string name="clear_history">امسح التاريخ</string>
 
     <string name="preference_category_general">عام</string>
@@ -43,6 +70,7 @@
 
     <string name="preference_left_consume_bubble_title">bubble اليسرى</string>
     <string name="preference_right_consume_bubble_title">bubble اليمنى</string>
+    <string name="preference_double_tap_title">Link double tap</string>
     <string name="preference_configure_bubble_title">إعداد الفقاعة</string>
     <string name="preference_category_debug">عالج</string>
     <string name="preference_default_browser">المتصفح الإفتراضي المختار</string>
@@ -50,6 +78,7 @@
     <string name="preference_category_fallback_browser">المتصفح الإفتراضي المختار</string>
     <string name="preference_category_other_apps">التطبيقات الأخرى</string>
     <string name="preference_default_apps_title">التطبيقات الافتراضية</string>
+    <string name="preference_default_apps_summary">Fallback browser, url-specific apps</string>
     <string name="preference_default_apps_notice_summary">يستخدم عندما يكون هناك على جهازك تطبيق أو أكثر من تطبيق (غير المتصفحات) يمكنها معالجة رابط.\n\nاضغط على تطبيق لحذفه.</string>
     <string name="preference_default_apps_notice_no_defaults_summary">يستخدم عندما يكون هناك على جهازك تطبيق أو أكثر من تطبيق (غير المتصفحات) يمكنها معالجة رابط. يمكنك اختيار التطبيق الافتراضي لتحميل مثل هذه الروابط.\n\n في مثل هذه الحالات، يتم اختيار التطبيق الافتراضي كلما قمت بفتح الوابط باستخدام Link Bubble</string>
     <string name="preference_google_account_redirect_title">إعادة التحويل لحسابات قوقل</string>
@@ -59,9 +88,24 @@
     <string name="preference_more">المزيد...</string>
     <string name="preference_intercept_links_from_title">اعترض الروابط من</string>
     <string name="preference_intercept_links_from_note">ملاحظة: حصر اعتراض الروابط من تطبيق واحد موجود فقط في النسخة المجانية من Link bubble. الترقية للنسخة الكاملة؟</string>
+    <string name="preference_intercept_links_from_disabled_for_L">Google have removed the API required for this functionality from L.</string>
     <string name="preference_scan_for_youtube_embeds_title">تحقق من تضمينات اليوتيوب</string>
     <string name="preference_scan_for_youtube_embeds_summary">عرض إختصار لتشغيل الفيديوهات المتضمنة في برنامج اليوتيوب</string>
-
+    <string name="preference_webview_battery_save_title">Battery Save Mode (Beta)</string>
+    <string name="preference_webview_battery_save_aggressive_title">Aggressive</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Pause the updating of web pages when Link Bubble is minimized.\nPages in the process of loading will finish loading before pausing.</string>
+    <string name="preference_webview_battery_save_default_title">Default</string>
+    <string name="preference_webview_battery_save_default_summary">Pause the updating of web pages when the screen is off and resume when your device is unlocked.\nPages in the process of loading will finish loading before pausing.</string>
+    <string name="preference_webview_battery_save_off_title">Off</string>
+    <string name="preference_webview_battery_save_off_summary">Web pages are always active. Useful when streaming YouTube videos and the like.</string>
+    <string name="preference_theme_title">Theme</string>
+    <string name="preference_theme_light_color">Light + icon color</string>
+    <string name="preference_theme_light_no_color">Light + neutral color</string>
+    <string name="preference_theme_dark_color">Dark + icon color</string>
+    <string name="preference_theme_dark_no_color">Dark + neutral color</string>
+    <string name="preference_article_mode_title">Reading Mode (Beta)</string>
+    <string name="preference_reading_mode_on_wear_title">Reading Mode on Wear</string>
+    <string name="preference_article_mode_summary">Toggled via button on action bar</string>
     <string name="preference_webview_text_zoom_title">حجم النص</string>
     <string name="preference_webview_text_zoom_note">ملاحظة:الفقاعات الحالية سوف يعاد تحميلها بحجم النص الجديد  بعد إختيار "نعم".</string>
     <string name="preference_webview_text_zoom_reloading_current">حجم النص الجديد طبق.إعادة تحميل الفقاعات الحالية.</string>
@@ -74,6 +118,7 @@
     <string name="preference_clear_passwords">كلمات السر</string>
     <string name="preference_incognito_title">وضع التصفح المتخفي</string>
     <string name="preference_incognito_summary">منع تخزين التاريخ والكوكيز</string>
+    <string name="incognito_mode_changed_reloading_current">Incognito setting changed. Reloading current bubbles…</string>
     <string name="preference_user_agent_title">وكيل المستخدم</string>
     <string-array name="preference_user_agent_options">
         <item>إفتراضي</item>
@@ -94,18 +139,26 @@
     <string name="preference_get_pro_summary">قم بالترقية إلى النسخة المحترفة للحصول على المزيد من المميزات</string>
     <string name="preference_version_title">نسخة</string>
     <string name="preference_version_summary">ما هو الجديد؟</string>
+    <string name="preference_more_title">More&#8230;</string>
+    <string name="preference_more_summary">\"OK, Google\", Reading Mode and more</string>
+    <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
     <string name="preference_my_other_apps_title">المزيد من البرامج من كريس ليسي</string>
     <string name="preference_my_other_apps_summary">أعجبك فقاة العنوان ؟لماذا لا ترى المزيد من البرامج؟</string>
 
+    <string name="preference_ok_google_title">\"OK, Google\" voice activation</string>
+    <string name="preference_ok_google_summary">See FAQ for further detail</string>
+    <string name="preference_ok_google_summary_jelly_bean">Requires Android 4.4 or later</string>
+    <string name="preference_ok_google_summary_long">Note: Google haven\'t enabled this functionality for all devices/locales. If speaking \"OK, Google\" doesn\'t work for you in Google Now, it won\'t work in Link Bubble.</string>
+
     <string name="remove_default_title">حذف اللإفتراضي؟</string>
     <string name="remove_default_message">حذف %1$s من البرنامج الإفتراضي ليشغل العنوان باستخدام %2$s؟ ملاحظة:تستطيع ان تجعل برنامج إفتراضي جديد ليستخدم بالمرة القادمة اللتي تحمل فيها عنوان %2$s.</string>
-    <string name="long_press_unsupported_default_browser">نظام الأندرويد يمنع فقاعة العنوان من اختيار هذا البند.فتح العنوان باستخدام %1$S.</string>
+    <string name="long_press_unsupported_default_browser">نظام الأندرويد يمنع فقاعة العنوان من اختيار هذا البند.فتح العنوان باستخدام %1$s.</string>
     <string name="long_press_unsupported_no_default_browser">نظام الأندرويد يمنع فقاعة العنوان من اختيار هذا البند.فتح العنوان باستخدام المتصفح.</string>
-    <string name="unsupported_scheme_default_browser">نوع هذا العنوان غير مدعوم حاليا .فتح الصفحة باستخدام %1$S؟</string>
+    <string name="unsupported_scheme_default_browser">نوع هذا العنوان غير مدعوم حاليا .فتح الصفحة باستخدام %1$s؟</string>
     <string name="unsupported_scheme_no_default_browser">نوع هذا العنوان غير مدعوم حاليا .فتح الصفحة باستخدام المتصفح.</string>
     <string name="unsupported_scheme">نوع هذا العنوان غير مدعوم حاليا .</string>
-    <string name="unsupported_drop_down_default_browser">نظام الأندرويد يمنع استخدام العناصر المنزلة من ان تعمل في فقاعة العنوان.فتح بإستخدام %1$S؟</string>
+    <string name="unsupported_drop_down_default_browser">نظام الأندرويد يمنع استخدام العناصر المنزلة من ان تعمل في فقاعة العنوان.فتح بإستخدام %1$s؟</string>
     <string name="unsupported_drop_down_no_default_browser">نظام الأندرويد يمنع استخدام العناصر المنزلة من ان تعمل في فقاعة العنوان.فتح بإستخدام المتصفح.</string>
 
     <string name="consume_category_view">استعراض العنوان</string>
@@ -130,12 +183,12 @@
     <string name="private_data_cleared">البيانات الخاصة أفرغت</string>
     <string name="private_data_cleared_reloading_current">البيانات الخاصة أفرغت.إعادة تحميل الفقاعات الحالية...</string>
     <string name="user_agent_changed_reloading_current">تم تغيير وكيل المستخدم إعادة تحميل الفقاعات الحالية</string>
-    <string name="link_loaded_with_app">حملت باستخدام %1$S</string>
-    <string name="link_redirected">إعادة توجيه إلى %1$S</string>
+    <string name="article_mode_changed_reloading_current">Reading Mode setting changed. Reloading current bubbles…</string>
+    <string name="link_loaded_with_app">حملت باستخدام %1$s</string>
+    <string name="link_redirected">إعادة توجيه إلى %1$s</string>
 
     <string name="tampered_apk">نسختك من فقاعة العنوان عدل عليها بشكل غير قانوني لذلك لن تعمل بكفاءة.الرجاء إعادة تنصيبها من البلاي ستور.</string>
     <string name="upgrade_incentive_one_link">فقاعة العنوان المحترفة تستطيع تحميل أكثر من فقاعة بنفس الوقت .ترقية إلى النسخة المحترفة؟</string>
-    <string name="upgrade_incentive_one_app">فقاعة العنوان المحترفة تستطيع تحميل أكثر من فقاعة بنفس الوقت .ترقية إلى النسخة المحترفة؟</string>
     <string name="valid_license_detected">رخصة فقاعة العنوان صحيحة.شكرا لكم لدعم هذا المشروع,وإستمتعوا بهذا البرنامج:)</string>
 
     <string name="bubble_link_copied_to_clipboard">تم نسخ عنوان الفقاعة إلى الحافظة.</string>
@@ -167,14 +220,25 @@
 كيف تستطيع العودة للعنوان السابق إذا كان زر الخلف يغلق الفقاعة؟الضغط على علامة الخلف بالمتصفح غير ظاهرة.
 فقاعة العنوان هو متصفح,ويتبع أساسيات المتصفحات في الأندرويد إذا تم ضغط زر الخلف ولا يوجد هناك عناوين سابقة بنفس الصفحة سوف يتم إغلاق المتصفح.</string>
     <string name="faq_app_internal_browser_question">فقاعة العنوان لا يقوم بإعتراض العناوين</string>
-    <string name="faq_app_internal_browser_answer">هناك 3 مسببات لهذا:
-1-المتصفح الإفتراضي للنظام ليس فقاعة العنوان.
-2-النسخة المجانية من فقاعة العنوان فقط تعترض العناوين من تطبيق واحد.انظر إلى خيار"إعتراض العناوين من" في إعدادات فقاعة العنوان لإختيار اي تطبيق.
-3-تطبيقا مثل تالون ,ريديت ممتعة وغيرها تمتلك متصفح داخلي بها يقوم بالتعامل مع العناوين.انظر إلى الإعدادات به>ه التطبيقات وقم بتفعيل "متصفح خارجي" أو قم بإلغاء إختيار"المتصفح المدمج" أو ماشابهها.
-ملاحظة:متصفحات أخرى  مثل كروم مبرمجة لتحميل العناوين بنفسها,لذلك فقاعة العنوان لا يستطيع تحميل عناوين من متصفحات أخرى.</string>
+    <string name="faq_app_internal_browser_answer"><![CDATA[There are 3 causes of this:<br/>
+            1). A browser other thank Link Bubble is set as your default system browser. See the
+            \"Set default system browser\" option in Link Bubble\'s Settings to change this.<br/>
+            2). Link Bubble has been configured not to intercept links from your current app. See the
+            \"Intercept links from\" option in Link Bubble\'s Settings.<br/>
+            3). Apps such as Talon, Reddit is Fun and others have inbuilt browsers that render links. Check the settings of that app and
+            enable \"External browser\" or deselect \"Integrated browser\" or similar.
+            <br/><br/>Note: other browser apps such as Chrome are hardcoded to load links in themselves, and thus Link Bubble is unable
+            to load links clicked from other browser apps.
+            ]]></string>
+    <string name="faq_article_mode_question">How do I use Reading Mode? Why do some links not work?</string>
+    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode (BETA)).<br/><br/>
+            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
+            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
+            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
+            there is little than can be done here.]]></string>
     <string name="faq_future_features_question">هل ستقوم بإضافة العلامات المرجعية,المفضلة,الإضافات,إلخ؟</string>
     <string name="faq_future_features_answer">لاتقول لا أبدا, لكن حاليا فقاعة العنوان أكثر تركيزا على أن يكون أفضل طريقة لتحميل العناوين و الحصول عليها من التطبيقات الأخرى.</string>
-    <string name="faq_translations_question">متى سيتم إضافة ترجمة لغات أجنبية؟هل أستطيع المساعدة؟</string>
+    <string name="faq_translations_question">Can I help translate the app?</string>
     <string name="faq_translations_answer">أتمنى أن أضع الترجمة قريبا .عندما أفعلها,سوف أضع إعلان على القوقل بلس (Chris Lacy) للمساعدة في الترجمة ,لذلك ترقبوا . </string>
     <string name="faq_roadmap_question">هل تنشر خارطة  المميزات المستقبلية؟ هل يمكنني  التصويت على   القادم من الميزات؟</string>
     <string name="faq_roadmap_answer">لأسباب تنافسية الجواب على السؤالين المطروحين للأسف لا.</string>
@@ -222,17 +286,27 @@
     <string name="faq_title">أسئلة شائعة</string>
     <string name="preference_faq_summary">أسئلة حول البرنامج؟جرب هنا.</string>
     <string name="faq_section_general">عام</string>
+    <string name="faq_section_functionality">App functionality</string>
     <string name="faq_section_issues">مشاكل</string>
 
     <string name="activity_resolver_use_always">دائما</string>
     <string name="activity_resolver_use_once">مرة واحدة</string>
 
-    <string name="trial_time_on_click">%1$S متبقي من ال24 ساعة للنسخة الإحترافية.</string>
+    <string name="trial_time_on_click">%1$s متبقي من ال24 ساعة للنسخة الإحترافية.</string>
 
     <string name="credits_title">شكر فقاعة العنوان</string>
     <string name="credits_lacy_name">كريس ليسي</string>
     <string name="credits_lacy_credit">مفهوم والتصميم والبرمجة</string>
     <string name="credits_app_copyright">حقوق 2014 ,ديجيتال اشيس/كريس ليسي</string>
+
+    <!--
+    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
+        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
+    <string name="restore_tabs_from_previous_session"></string>
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
+    </plurals>
 
     <string name="content_description_button">زر</string>
     <string name="content_description_target_icon">أيقونة فقاعة الهدف</string>
@@ -246,9 +320,10 @@
     <string name="content_description_can_go_back">تستطيع العودة</string>
     <string name="content_description_upgrade_to_pro">قم بالترقية للنسخة الإحترافية</string>
 
-    <string name="requesting_location_message">%1$S يطلب معرفة مكانك.السماح؟</string>
+    <string name="requesting_location_message">%1$s يطلب معرفة مكانك.السماح؟</string>
 
-    <string name="accept_terms_and_privacy">بالإستمرار,تعترف أنك تقبل فقاعة العنوان</string>
+    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Digital Ashes
+    <a href="http://www.digitalashes.com/terms">terms</a> and <a href="http://www.digitalashes.com/privacy">privacy policy</a>.]]></string>
 
     <string name="service_name">فقاعة العنوان العارض</string>
     <string name="notification_title">فقاعة العنوان</string>
@@ -270,8 +345,6 @@
     <string name="pro_action_retry">إعادة المحاولة</string>
     <string name="pro_action_store">بلاي ستور</string>
 
-
-
     <string name="store_listing_title">فقاعة العنوان</string>
     <string name="store_listing_promo_text">تصفح الجوال بالطريقة الصحيحة.</string>
     <string name="store_listing_description_title">فقاعة العنوان هو متصفح جديد مصمم خصيصا للأجهزة المحمولة.</string>
@@ -287,11 +360,13 @@
 
     <string name="pro_store_listing_title">فقاعة العنوان المحترفة</string>
     <string name="pro_store_listing_description_title">فقاعة العنوان المحترفة تفتح لك كل الميزات المقدمة من التطبيق.</string>
-    <string name="pro_store_listing_description_features">وتشمل الترقية: 
-• عدد لانهائي من علامات التبويب (الإصدار المجاني يقتصر على علامة تبويب واحدة فقط). 
-• روابط تحميل من جميع التطبيقات على جهازك (وقراءتها نسخة مجانية من التطبيق الروابط واحد فقط). 
-• إزالة الحوافز الترقية في جميع أنحاء النسخة المجانية. 
-• دعم لي حتى أستطيع أن أعمل المزيد من هذه التطبيقات :)</string>
+    <string name="pro_store_listing_description_features">
+    Upgrades include:
+    • Infinite number of tabs (free version is limited to just one tab).
+    • Theme selection
+    • Remove the upgrade incentives throughout the free version.
+    • Support me so I get to make more of these apps :)
+    </string>
 
     <string name="welcome_page_title">مرحبا بك في فقاعة العنوان!</string>
     <string name="welcome_page_trial_notice">في ال24 ساعة  الأولى من تحميل فقاعة العنوان ,مستخدمي النسخة المجنية سيستمتعون بجميع ميزات النسخة الإحترافية لمرة واحدة.
@@ -312,5 +387,7 @@
     <string name="welcome_page_pro_point_3">المساعدة تمكنني من كتابة برامج أخرى بالمستقبل:)</string>
     <string name="welcome_page_pro_end">شكرا لكم,واستمتعوا بالتطبيق!</string>
     <string name="welcome_page_ps">ملاحظة:لإغلاق الفقاعة,إما قم بضغط زر الخلف أو قم بسحب الفقاعة إلى زر الإغلاق.</string>
+
+    <string name="duplicate_link_will_not_be_loaded">Link already loaded. Ignoring...</string>
 
 </resources>
