@@ -34,6 +34,7 @@ public class ArticleRenderer {
     private boolean mIsDestroyed = false;
     private boolean mFirstPageLoadTriggered = false;
     private Controller mController;
+    private boolean mRegisteredForBus;
 
     public ArticleRenderer(Context context, Controller controller, ArticleContent articleContent, View articleRendererPlaceholder) {
         mContext = context;
@@ -54,6 +55,7 @@ public class ArticleRenderer {
 
         Log.d("Article", "ArticleRenderer()");
         MainApplication.registerForBus(context, this);
+        mRegisteredForBus = true;
     }
 
     public void display(ArticleContent articleContent) {
@@ -68,7 +70,10 @@ public class ArticleRenderer {
     }
 
     public void destroy() {
-        MainApplication.unregisterForBus(mContext, this);
+        if (mRegisteredForBus) {
+            MainApplication.unregisterForBus(mContext, this);
+            mRegisteredForBus = false;
+        }
         mIsDestroyed = true;
         if (mWebView != null) {
             mWebView.destroy();
