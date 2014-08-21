@@ -61,8 +61,6 @@
     <string name="preference_more">その他…</string>
     <string name="preference_intercept_links_from_title">リンクの傍受先</string>
     <string name="preference_intercept_links_from_note">注意：リンクバブルのフリーバージョンでは1つのアプリのリンクしか傍受しません。リンクバブルをアップグレードしますか？</string>
-    <string name="intercept_links_from_default_label">タップして設定</string>
-    <string name="intercept_links_from_default_set_message">リンクバブルは%1$sのリンクをロードするよう設定されました。\nすべてのアプリのリンクをロードさせるにはProへアップグレードしてください。</string>
     <string name="preference_scan_for_youtube_embeds_title">YouTubeの嵌め込みフレームをチェック</string>
     <string name="preference_scan_for_youtube_embeds_summary">嵌め込み映像をYouTubeアプリで開くようなショートカットを表示</string>
 

@@ -60,8 +60,6 @@ accounts.google.com 链接</string>
     <string name="preference_more">更多...</string>
     <string name="preference_intercept_links_from_title">接管链接</string>
     <string name="preference_intercept_links_from_note">注意：免费版 Link Bubble 限制为只能在一个应用中接管链接。要升级到专业版解除该限制吗？</string>
-    <string name="intercept_links_from_default_label">点击设置</string>
-    <string name="intercept_links_from_default_set_message">免费版 Link Bubble 只加载 %1$s 中的链接。要加载所有程序中的链接，请升级到专业版。</string>
     <string name="preference_scan_for_youtube_embeds_title">检查 YouTube 嵌入式视频</string>
     <string name="preference_scan_for_youtube_embeds_summary">在 YouTube 应用中加载嵌入式视频。</string>
 

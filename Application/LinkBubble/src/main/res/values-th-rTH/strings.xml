@@ -88,8 +88,6 @@
     <string name="preference_intercept_links_from_title">เปิดลิงก์จาก</string>
     <string name="preference_intercept_links_from_note">หมายเหตุ: ในรุ่นฟรี Link Bubble จำกัดการเปิดลิงก์จากแอปเดียวเท่านั้น อัปเกรดเป็นรุ่นโปร?</string>
     <string name="preference_intercept_links_from_disabled_for_L">กูเกิลลบ API ที่เราต้องใช้เพื่อให้คุณสมบัตินี้ทำงานออกจาก Android L</string>
-    <string name="intercept_links_from_default_label">แตะเพื่อตั้งค่า</string>
-    <string name="intercept_links_from_default_set_message">Link Bubble ถูกตั้งให้เปิดลิงก์จาก %1$s.\nหากต้องการเปิดลิงก์จากหลายแอป อัปเกรดเป็นรุ่นโปร</string>
     <string name="preference_scan_for_youtube_embeds_title">ตรวจสอบวิดีโอ YouTube ที่ฝั่งอยู่</string>
     <string name="preference_scan_for_youtube_embeds_summary">แสดงทางลัดเพื่อเปิดวิดีโอที่ฝังอยู่ในหน้าเว็บในแอป YouTube</string>
     <string name="preference_webview_battery_save_title">โหมดประหยัดพลังงาน (ทดสอบ)</string>
