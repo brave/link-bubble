@@ -158,6 +158,8 @@ public class Settings {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
         mDownloadHandlerComponentName = new ComponentName(mContext, DownloadHandlerActivity.class);
 
+        checkForVersionUpgrade();
+
         mBrowsers = new Vector<Intent>();
         updateBrowsers();
         setDefaultRightConsumeBubble();
@@ -193,6 +195,56 @@ public class Settings {
         loadIgnoreLinksFromPackageNames();
 
         setWebViewBatterySaveMode(mSharedPreferences.getString(PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE, "default"));
+    }
+
+    private void checkForVersionUpgrade() {
+        final String key = "lastUpgradeVersion";
+        int lastUpgradeVersion = mSharedPreferences.getInt(key, -1);
+        int upgradeVersionToSet = -1;
+        if (lastUpgradeVersion < 1) {
+            // Remove all defaults to TapPath
+            String defaultAppsAsString = mSharedPreferences.getString(PREFERENCE_DEFAULT_APPS, null);
+
+            try {
+                if (defaultAppsAsString != null) {
+                    JSONArray defaultApps = new JSONArray(defaultAppsAsString);
+                    mDefaultAppsMap.clear();
+
+                    boolean tapPathFound = false;
+
+                    for (int i = 0; i < defaultApps.length(); i++) {
+                        try {
+                            JSONObject object = defaultApps.getJSONObject(i);
+                            String host = object.getString(DEFAULT_APPS_MAP_KEY_HOST);
+                            String flattenedName = object.getString(DEFAULT_APPS_MAP_KEY_COMPONENT);
+                            if (flattenedName.contains(BuildConfig.TAP_PATH_PACKAGE_NAME) == false) {
+                                mDefaultAppsMap.put(host, flattenedName);
+                            } else {
+                                tapPathFound = true;
+                                //Log.d("blerg", "ignore " + host + ", " + flattenedName);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    if (tapPathFound) {
+                        saveDefaultApps();
+                    }
+                }
+            } catch (JSONException e) {
+                mDefaultAppsMap.clear();
+            }
+
+            upgradeVersionToSet = 1;
+        }
+
+        if (upgradeVersionToSet > -1) {
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            editor.putInt(key, upgradeVersionToSet);
+            editor.apply();
+        }
     }
 
     private void configureDefaultApp(PackageManager packageManager, String urlAsString, String desiredPackageName) {
