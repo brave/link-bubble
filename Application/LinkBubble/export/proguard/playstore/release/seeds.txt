@@ -5127,14 +5127,18 @@ com.linkbubble.R$bool: int is_tablet
 com.linkbubble.R$bool: R$bool()
 com.linkbubble.R$color: int action_button_normal
 com.linkbubble.R$color: int action_button_pressed
-com.linkbubble.R$color: int action_picker_selected_color
 com.linkbubble.R$color: int color_content_view_dark
 com.linkbubble.R$color: int color_content_view_light
 com.linkbubble.R$color: int color_dark_theme
 com.linkbubble.R$color: int color_highlight
 com.linkbubble.R$color: int color_highlight_2
 com.linkbubble.R$color: int color_light_theme
+com.linkbubble.R$color: int color_list_background_dark
+com.linkbubble.R$color: int color_list_background_light
+com.linkbubble.R$color: int color_list_selected_background_dark
+com.linkbubble.R$color: int color_list_selected_background_light
 com.linkbubble.R$color: int color_primary
+com.linkbubble.R$color: int color_primary_bright
 com.linkbubble.R$color: int color_primary_dark
 com.linkbubble.R$color: int color_progress_default_dark
 com.linkbubble.R$color: int color_progress_default_light
@@ -5334,7 +5338,6 @@ com.linkbubble.R$drawable: int dropdown_background_dark
 com.linkbubble.R$drawable: int dropdown_background_light
 com.linkbubble.R$drawable: int embed
 com.linkbubble.R$drawable: int fallback_favicon
-com.linkbubble.R$drawable: int homeactivity_logo
 com.linkbubble.R$drawable: int ic_action_arrow_left
 com.linkbubble.R$drawable: int ic_action_arrow_left_white
 com.linkbubble.R$drawable: int ic_action_cancel_dark
@@ -5361,7 +5364,6 @@ com.linkbubble.R$drawable: int ic_action_settings
 com.linkbubble.R$drawable: int ic_action_share
 com.linkbubble.R$drawable: int ic_action_share_white
 com.linkbubble.R$drawable: int ic_action_trash
-com.linkbubble.R$drawable: int ic_alert_icon
 com.linkbubble.R$drawable: int ic_google_account
 com.linkbubble.R$drawable: int ic_launcher
 com.linkbubble.R$drawable: int ic_plusone_medium_off_client
@@ -5372,7 +5374,6 @@ com.linkbubble.R$drawable: int ic_stat
 com.linkbubble.R$drawable: int ic_transparent
 com.linkbubble.R$drawable: int ic_undobar_undo
 com.linkbubble.R$drawable: int ic_up
-com.linkbubble.R$drawable: int loading_dots
 com.linkbubble.R$drawable: int masked_background
 com.linkbubble.R$drawable: int masked_background_half
 com.linkbubble.R$drawable: int powered_by_google_dark
@@ -5394,7 +5395,6 @@ com.linkbubble.R$drawable: int stat_background_green
 com.linkbubble.R$drawable: int stat_background_lime_green
 com.linkbubble.R$drawable: int stat_background_moderate_orange
 com.linkbubble.R$drawable: int target_plate
-com.linkbubble.R$drawable: int text_logo
 com.linkbubble.R$drawable: R$drawable()
 com.linkbubble.R$id: int accept_terms_and_privacy_button
 com.linkbubble.R$id: int accept_terms_and_privacy_text
@@ -6197,7 +6197,6 @@ com.linkbubble.ui.TabView: TabView(android.content.Context,android.util.Attribut
 com.linkbubble.ui.ThemedListPreference
 com.linkbubble.ui.ThemedListPreference: ThemedListPreference(android.content.Context,android.util.AttributeSet)
 com.linkbubble.util.ActionItem$1: ActionItem$1()
-com.linkbubble.util.ActionItem$1ActionItemListView: ActionItem$1ActionItemListView(android.content.Context)
 com.linkbubble.util.ActionItem$3: ActionItem$3()
 com.linkbubble.util.ActionItem$8: ActionItem$8()
 com.linkbubble.util.ActionItem$9: ActionItem$9()
