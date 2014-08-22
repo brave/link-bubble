@@ -2,7 +2,12 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Загрузчик</string>
+    <string name="send_intent_label">Открыть в Link Bubble</string>
     <string name="notification_summary">Нажмите для закрытия всех пузырей</string>
+    <string name="notification_default_summary">Нажмите для скрытия, разверните для закрытия всех</string>
+    <string name="notification_unhide_summary">Нажмите, чтобы показать, разверните для закрытия всех</string>
+    <string name="notification_action_close_all">Закрыть все</string>
+    <string name="notification_action_hide">Скрыть</string>
     <string name="share_picker_label">Поделиться</string>
 
     <string name="yes">Да</string>
@@ -25,13 +30,34 @@
     <string name="action_close_all">Закрыть все</string>
     <string name="action_close_tab">Закрыть пузырь</string>
     <string name="action_stop">Стоп</string>
+    <string name="action_undo">Отмена</string>
     <string name="share_via">Поделиться</string>
+    <string name="not_set">Не задано</string>
 
     <string name="share_invalid_data">Link Bubble не может поделиться контентом, поскольку это не является ссылкой.</string>
     <string name="consume_activity_not_found">Не удалось найти приложение. Попробуйте сменить умолчания в настройках.</string>
 
+    <string name="upgrade">Улучшить</string>
+    <string name="upgrade_to_pro">Улучшить до Pro</string>
+    <string name="upgrade_ok_google">Хотите открывать Google Now командой \"OK, Google\"?</string>
+    <string name="upgrade_article_mode">Хотите просматривать ссылки в режиме чтения?</string>
+    <string name="upgrade_article_mode_wear">Хотите открывать ссылки на Android Wear в режиме чтения?</string>
+    <string name="upgrade_theme">Хотите использовать различные темы?</string>
+    <string name="upgrade_from_settings_summary">Улучшите до Link Bubble Pro, чтобы:\n •
+Открывать несколько ссылок одновременно.\n •
+Менять тему.\n •
+Использовать режим чтения.\n •
+Включить поддержку Android Wear.\n •
+Использовать команду \"OK, Google\".\n •
+Поддержать меня в разработке :)</string>
+
+    <string name="undo_close_tab_title">Закрыто %1$s</string>
+    <string name="undo_close_tab_no_title">Закрыт пузырь</string>
+
     <string name="pick_default_app">Выберите приложение</string>
     <string name="default_browser_set">Link Bubble выбран основным браузером.</string>
+    <string name="invalid_send_action">Ссылка не найдена.</string>
+    <string name="unable_to_launch_app">Невозможно запустить стороннее приложение.</string>
     <string name="clear_history">Очистить историю</string>
 
     <string name="preference_category_general">Общие</string>
@@ -43,13 +69,15 @@
 
     <string name="preference_left_consume_bubble_title">Левый пузырь</string>
     <string name="preference_right_consume_bubble_title">Правый пузырь</string>
+    <string name="preference_double_tap_title">Двойной тап</string>
     <string name="preference_configure_bubble_title">Настройка пузыря</string>
     <string name="preference_category_debug">Отладка</string>
     <string name="preference_default_browser">Резервный браузер</string>
     <string name="preference_category_redirect_to_browser">Перенаправлять на резервный браузер</string>
-    <string name="preference_category_fallback_browser">Резервный браузер по умолчанию</string>
+    <string name="preference_category_fallback_browser">Резервный браузер</string>
     <string name="preference_category_other_apps">Другие приложения</string>
     <string name="preference_default_apps_title">Стандартные приложения</string>
+    <string name="preference_default_apps_summary">Резервный браузер, приложения для ссылок</string>
     <string name="preference_default_apps_notice_summary">Используются, когда одно или несколько не-браузерных приложений могут обработать ссылку.\n\nНажмите, чтобы сбросить умолчания.</string>
     <string name="preference_default_apps_notice_no_defaults_summary">Используются, когда одно или несколько не-браузерных приложений могут обработать ссылку.
 Вы можете выбрать приложение, которое будет открывать такие ссылки.\n\nПриложение по умолчанию выбирается, когда вы открываете ссылки с помощью Link Bubble.</string>
@@ -60,9 +88,24 @@
     <string name="preference_more">Ещё...</string>
     <string name="preference_intercept_links_from_title">Перехватывать ссылки из</string>
     <string name="preference_intercept_links_from_note">Внимание: ограничение перехвата ссылок только из одного приложения отсутствует в Link Bubble Pro. Улучшить?</string>
+    <string name="preference_intercept_links_from_disabled_for_L">Необходимый для работы этой функции API был удалён из Android L.</string>
     <string name="preference_scan_for_youtube_embeds_title">Искать встроенные видео YouTube</string>
     <string name="preference_scan_for_youtube_embeds_summary">Показывать кнопку для просмотра встроенных видео в приложении YouTube.</string>
-
+    <string name="preference_webview_battery_save_title">Режим экономии батареи (Beta)</string>
+    <string name="preference_webview_battery_save_aggressive_title">Агрессивный</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Приостанавливать обновление страниц, когда пузыри свёрнуты.\nЗагружающиеся страницы закончат загрузку, прежде чем приостанавливаться.</string>
+    <string name="preference_webview_battery_save_default_title">Стандартный</string>
+    <string name="preference_webview_battery_save_default_summary">Приостанавливать обновление страниц, когда экран выключен, и возобновлять, когда он разблокирован.\nЗагружающиеся страницы закончат загрузку, прежде чем приостанавливаться.</string>
+    <string name="preference_webview_battery_save_off_title">Выключен</string>
+    <string name="preference_webview_battery_save_off_summary">Страницы всегда активны. Удобно для прослушивания видео с YouTube и тому подобного.</string>
+    <string name="preference_theme_title">Тема</string>
+    <string name="preference_theme_light_color">Светлая + цвет иконки</string>
+    <string name="preference_theme_light_no_color">Светлая + нейтр. цвет</string>
+    <string name="preference_theme_dark_color">Тёмная + цвет иконки</string>
+    <string name="preference_theme_dark_no_color">Тёмная + нейтр. цвет</string>
+    <string name="preference_article_mode_title">Режим чтения (Beta)</string>
+    <string name="preference_reading_mode_on_wear_title">Режим чтения для Wear</string>
+    <string name="preference_article_mode_summary">Включается кнопкой в Action Bar</string>
     <string name="preference_webview_text_zoom_title">Увеличение текста</string>
     <string name="preference_webview_text_zoom_note">Внимание: текущие пузыри обновятся с новым размером текста после нажатия \"OK\".</string>
     <string name="preference_webview_text_zoom_reloading_current">Новый размер текста применён. Пузыри перезагружаются...</string>
@@ -75,6 +118,7 @@
     <string name="preference_clear_passwords">Пароли</string>
     <string name="preference_incognito_title">Режим инкогнито</string>
     <string name="preference_incognito_summary">Не сохранять историю и cookies</string>
+    <string name="incognito_mode_changed_reloading_current">Настройка инкогнито изменена. Пузыри перезагружаются...</string>
     <string name="preference_user_agent_title">User Agent</string>
     <string-array name="preference_user_agent_options">
         <item>По умолчанию</item>
@@ -95,9 +139,17 @@
     <string name="preference_get_pro_summary">Улучшите до Pro, чтобы получить больше функций.</string>
     <string name="preference_version_title">Версия</string>
     <string name="preference_version_summary">Что нового?</string>
+    <string name="preference_more_title">Ещё&#8230;</string>
+    <string name="preference_more_summary">\"OK, Google\", режим чтения и прочее</string>
+    <string name="preference_show_undo_close_tab_title">Кнопка отмены закрытия пузыря</string>
 
     <string name="preference_my_other_apps_title">Другие приложения от Криса Лейси</string>
     <string name="preference_my_other_apps_summary">Нравится Link Bubble? Попробуйте другие мои приложения!</string>
+
+    <string name="preference_ok_google_title">Команда \"OK, Google\"</string>
+    <string name="preference_ok_google_summary">Откройте FAQ для подробностей</string>
+    <string name="preference_ok_google_summary_jelly_bean">Требует Android 4.4+</string>
+    <string name="preference_ok_google_summary_long">Внимание: Google ещё не включила эту возможность для всех устройств / стран. Если команда \"OK, Google\" не работает в Google Now, она также не будет работать в Link Bubble.</string>
 
     <string name="remove_default_title">Сбросить умолчание?</string>
     <string name="remove_default_message">Не открывать ссылки вида %2$s с помощью %1$s?\n\nВнимание: вы можете выбрать новое умолчание, когда в следующий раз откроете ссылку вида %2$s.</string>
@@ -131,13 +183,13 @@
     <string name="history_already_empty">История уже пуста</string>
     <string name="private_data_cleared">Личные данные очищены</string>
     <string name="private_data_cleared_reloading_current">Личные данные очищены. Перезагрузка текущих пузырей...</string>
-    <string name="user_agent_changed_reloading_current">Изменен User Agent. Перезагрузка текущих пузырей...</string>
+    <string name="user_agent_changed_reloading_current">Изменён User Agent. Пузыри перезагружаются...</string>
+    <string name="article_mode_changed_reloading_current">Настройка режима чтения изменена. Пузыри перезагружаются...</string>
     <string name="link_loaded_with_app">Загружено в %1$s</string>
     <string name="link_redirected">Перенаправлено в %1$s</string>
 
     <string name="tampered_apk">Ваша копия Link Bubble была нелегально модифицирована и не будет работать правильно. Пожалуйста, переустановите приложение из Google Play.</string>
     <string name="upgrade_incentive_one_link">Чтобы открывать более одного пузыря, требуется Link Bubble Pro. Купить Pro версию?</string>
-    <string name="upgrade_incentive_one_app">Чтобы открывать ссылки более чем из одного приложения, требуется Link Bubble Pro. Улучшить?</string>
     <string name="valid_license_detected">Обнаружена лицензионная версия Link Bubble Pro.\nСпасибо за поддержку, приятной работы :)</string>
 
     <string name="bubble_link_copied_to_clipboard">Ссылка пузыря скопирована в буфер обмена.</string>
@@ -170,18 +222,22 @@
 Link Bubble – это браузер, и браузеры Android давно следуют правилу: кнопка Назад либо возвращает на один пункт в стеке ссылок, либо, если стек пуст, закрытие текущей страницы нажатием кнопки Назад.
 Link Bubble следует тому же правилу.]]></string>
     <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble не перехватывает ссылки!]]></string>
-    <string name="faq_app_internal_browser_answer"><![CDATA[Может быть три причины:<br/>
-1). Link Bubble не является основным системным браузером. Откройте опцию
-\"Установить браузер по умолчанию\" в настройках Link Bubble, чтобы изменить это.<br/>
-2). Бесплатная версия Link Bubble перехватывает ссылки только из одного приложения. Откройте опцию
-\"Перехватывать ссылки из\" в настройках Link Bubble, чтобы выбрать нужное приложение.
-Обновив Link Bubble до Pro, вы сможете открывать ссылки из всех приложений.<br/>
-3). Такие приложения, как Talon, Reddit Sync и другие, имеют собственные встроенные браузеры. Проверьте настройки таких приложений и отключите встроенный браузер в них.
-<br/><br/>Внимание: браузеры, такие, как Chrome, открывают ссылки только внутри себя, поэтому Link Bubble не может перехватывать ссылки из других браузеров.
+    <string name="faq_app_internal_browser_answer"><![CDATA[Этому есть три причины:<br/>
+1). Другой браузер установлен основным системным браузером. Откройте
+\"Установить браузер по умолчанию\" в настройках Link Bubble и измените это.<br/>
+2). Link Bubble настроен не перехватывать ссылки из этого приложения. Откройте
+\"Перехватывать ссылки из\" в настройках Link Bubble.<br/>
+3). Такие приложения, как Talon, Reddit Sync и другие, имеют встроенные браузеры. Откройте настройки этого приложения и выключите встроенный браузер там.
+<br/><br/>Внимание: другие браузеры, такие как Chrome, открывают ссылки только в самом себе, поэтому Link Bubble не может открывать ссылки из других браузеров.
 ]]></string>
+    <string name="faq_article_mode_question">Как использовать режим чтения? Почему некоторые ссылки не работают?</string>
+    <string name="faq_article_mode_answer"><![CDATA[В первую очередь убедитесь, что режим чтения включён (Настройки -> Управление приложением / Ещё&#8230; -> Режим чтения (Beta)).<br/><br/>
+После этого убедитесь, что режим чтения доступен для выбранного пузыря, иконка появится в Action Bar (рядом с иконкой Поделиться).
+Имейте в виду, что иконка появляется только после того, как ссылка будет полностью загружена, и только если Link Bubble удалось извлечь контент для режима чтения.<br/><br/>
+Внимание: Извлечение контента из веб-страниц – ненадёжный процесс, и он не может работать со стопроцентной точностью. Поскольку страницы постоянно меняются и развиваются, тут мало что можно сделать.]]> </string>
     <string name="faq_future_features_question">Будет ли добавлена поддержка закладок, избранного, расширений и прочего?</string>
     <string name="faq_future_features_answer">Не зарекаюсь, но пока что развитие Link Bubble направлено на как можно более комфортное и быстрое открытие ссылок из других приложений.</string>
-    <string name="faq_translations_question">Когда будут добавлены переводы? Могу ли я помочь?</string>
+    <string name="faq_translations_question">Могу ли я помочь с переводом?</string>
     <string name="faq_translations_answer"><![CDATA[Да, как видите, переводы уже есть.<br/><br/>Разработчик не удалил этот пункт из FAQ, поскольку Link Bubble переведён ещё не на все языки. Вы можете помочь ему, связавшись с ним в Google+ (+Chris Lacy).]]></string>
     <string name="faq_roadmap_question">Есть ли в открытом доступе список ваших планов разработки? Могу ли я проголосовать за нужные функции?</string>
     <string name="faq_roadmap_answer">Из-за конкуренции ответ на оба вопроса, к сожалению, "нет".<br/><br/></string>
@@ -231,6 +287,7 @@ Link Bubble.]]></string>
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Есть вопросы? Посмотрите здесь.</string>
     <string name="faq_section_general">Общие</string>
+    <string name="faq_section_functionality">Функциональность</string>
     <string name="faq_section_issues">Проблемы</string>
 
     <string name="activity_resolver_use_always">Всегда</string>
@@ -242,6 +299,15 @@ Link Bubble.]]></string>
     <string name="credits_lacy_name">Крис Лейси</string>
     <string name="credits_lacy_credit">Концепт, дизайн и программирование </string>
     <string name="credits_app_copyright">Авторские права защищены: 2014, Digital Ashes / Крис Лейси.</string>
+
+    <!--
+    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
+        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
+    <string name="restore_tabs_from_previous_session"></string>
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Восстановить пузырь из предыдущей сессии?</item>
+        <item quantity="other">Восстановить %d пузырей из предыдущей сессии?</item>
+    </plurals>
 
     <string name="content_description_button">Кнопка</string>
     <string name="content_description_target_icon">Иконка цели пузыря</string>
@@ -258,7 +324,7 @@ Link Bubble.]]></string>
     <string name="requesting_location_message">%1$s запрашивает ваше местоположение. Разрешить?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[Продолжая, вы соглашаетесь с 
-<a href="http://www.digitalashes.com/terms">условиями</a> и <a href="http://www.digitalashes.com/privacy">политикой конфиденциальности</a> Link Bubble.]]></string>
+<a href="http://www.digitalashes.com/terms">условиями</a> и <a href="http://www.digitalashes.com/privacy">политикой конфиденциальности</a> Digital Ashes.]]></string>
 
     <string name="service_name">Рендерер Link Bubble</string>
     <string name="notification_title">Link Bubble</string>
@@ -277,8 +343,6 @@ Link Bubble.]]></string>
     <string name="pro_action_retry">Попробуйте снова</string>
     <string name="pro_action_store">Магазин Play</string>
 
-
-
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Правильный мобильный браузер.</string>
     <string name="store_listing_description_title">Link Bubble – абсолютно новый браузер, сделанный для исключительного удобства использования на мобильных устройствах.</string>
@@ -294,11 +358,11 @@ Link Bubble.]]></string>
 
     <string name="pro_store_listing_title">Link Bubble Pro</string>
     <string name="pro_store_listing_description_title">Link Bubble Pro открывает все возможности Link Bubble.</string>
-    <string name="pro_store_listing_description_features">Эти возможности включают:
-• Бесконечное число пузырей (бесплатная версия ограничена только одним).
-• Открывайте ссылки из всех приложений на устройстве (бесплатная версия работает только с одним приложением).
-• Убираются все призывы купить апгрейд до платной версии.
-• Вы поддерживаете меня, чтобы я мог делать больше таких приложений :)</string>
+    <string name="pro_store_listing_description_features">Улучшение включает:
+• Бесконечное количество пузырей (только один в бесплатной версии).
+• Выбор тем.
+• Скрытие предложений улучшить приложение до Pro.
+• Поддержку меня в разработке :)</string>
 
     <string name="welcome_page_title">Добро пожаловать в Link Bubble!</string>
     <string name="welcome_page_trial_notice">Внимание: первые 24 часа использования вам будут доступны все Pro-функции как единоразовый пробный период.</string>
@@ -318,5 +382,7 @@ Link Bubble.]]></string>
     <string name="welcome_page_pro_point_3">Также вы помогаете мне написать ещё больше приложений в будущем :)</string>
     <string name="welcome_page_pro_end">Спасибо, наслаждайтесь приложением!</string>
     <string name="welcome_page_ps">P.S. Чтобы закрыть пузырь, нажмите кнопку Назад или смахните его вниз на пузырь закрытия.</string>
+
+    <string name="duplicate_link_will_not_be_loaded">Ссылка уже загружена. Пропуск...</string>
 
 </resources>

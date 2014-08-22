@@ -2,7 +2,12 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">下载器</string>
+    <string name="send_intent_label">使用 Link Bubble 打开</string>
     <string name="notification_summary">触按隐藏所有打开的泡泡</string>
+    <string name="notification_default_summary">点触可隐藏</string>
+    <string name="notification_unhide_summary">点触可显示</string>
+    <string name="notification_action_close_all">关闭所有泡泡</string>
+    <string name="notification_action_hide">隐藏</string>
     <string name="share_picker_label">分享触发器</string>
 
     <string name="yes">是</string>
@@ -25,13 +30,34 @@
     <string name="action_close_all">全部关闭</string>
     <string name="action_close_tab">关闭泡泡</string>
     <string name="action_stop">停止</string>
+    <string name="action_undo">撤销</string>
     <string name="share_via">分享页面，通过</string>
+    <string name="not_set">尚未设置</string>
 
     <string name="share_invalid_data">Link Bubble 不能分享本条目，因为它不是一个有效的链接。</string>
     <string name="consume_activity_not_found">无法找到程序。请到设置中更改泡泡的跳转动作。</string>
 
+    <string name="upgrade">升级</string>
+    <string name="upgrade_to_pro">升级到专业版</string>
+    <string name="upgrade_ok_google">说出「OK, Google」，语音激活谷歌即时？</string>
+    <string name="upgrade_article_mode">使用阅读模式查看链接吗？</string>
+    <string name="upgrade_article_mode_wear">通过阅读模式在 Android 智能手表上查看链接吗？</string>
+    <string name="upgrade_theme">想换一种主题试试？</string>
+    <string name="upgrade_from_settings_summary">升级至 Link Bubble 专业版可以享受以下特性：\n
+• 同时加载多个泡泡\n
+• 更换主题\n
+• 使用阅读模式\n
+• 支持 Android 智能手表\n
+• 激活「OK, Google」语音指令\n
+• 支持我开发本应用 :)</string>
+
+    <string name="undo_close_tab_title">已关闭「%1$s」</string>
+    <string name="undo_close_tab_no_title">已关闭标签</string>
+
     <string name="pick_default_app">选择默认应用</string>
     <string name="default_browser_set">Link Bubble已被设为默认浏览器。</string>
+    <string name="invalid_send_action">未找到有效链接</string>
+    <string name="unable_to_launch_app">无法启动第三方应用程序</string>
     <string name="clear_history">清除历史记录</string>
 
     <string name="preference_category_general">通用</string>
@@ -43,6 +69,7 @@
 
     <string name="preference_left_consume_bubble_title">左侧泡泡</string>
     <string name="preference_right_consume_bubble_title">右侧泡泡</string>
+    <string name="preference_double_tap_title">双击链接</string>
     <string name="preference_configure_bubble_title">配置泡泡</string>
     <string name="preference_category_debug">调试</string>
     <string name="preference_default_browser">默认待援浏览器</string>
@@ -50,6 +77,7 @@
     <string name="preference_category_fallback_browser">默认待援浏览器</string>
     <string name="preference_category_other_apps">其他应用</string>
     <string name="preference_default_apps_title">默认应用</string>
+    <string name="preference_default_apps_summary">待援浏览器、特定链接地址应用</string>
     <string name="preference_default_apps_notice_summary">当系统中一个或多个程序可以用于打开某链接的时候，使用该程序。\n\n 点击删除一个默认程序。</string>
     <string name="preference_default_apps_notice_no_defaults_summary">当系统中一个或多个程序可用于打开某链接时，您可以设置一个默认程序载入该类链接。\n\n当您用 Link Bubble 打开该类链接时默认使用的应用程序。</string>
     <string name="preference_google_account_redirect_title">谷歌账号重定向</string>
@@ -60,9 +88,24 @@ accounts.google.com 链接</string>
     <string name="preference_more">更多...</string>
     <string name="preference_intercept_links_from_title">接管链接</string>
     <string name="preference_intercept_links_from_note">注意：免费版 Link Bubble 限制为只能在一个应用中接管链接。要升级到专业版解除该限制吗？</string>
+    <string name="preference_intercept_links_from_disabled_for_L">Google have removed the API required for this functionality from L.</string>
     <string name="preference_scan_for_youtube_embeds_title">检查 YouTube 嵌入式视频</string>
     <string name="preference_scan_for_youtube_embeds_summary">在 YouTube 应用中加载嵌入式视频。</string>
-
+    <string name="preference_webview_battery_save_title">节电模式（测试功能）</string>
+    <string name="preference_webview_battery_save_aggressive_title">激进</string>
+    <string name="preference_webview_battery_save_aggressive_summary">折叠化泡泡后，暂停加载页面。\n页面加载完成后，暂停页面加载进程。</string>
+    <string name="preference_webview_battery_save_default_title">默认</string>
+    <string name="preference_webview_battery_save_default_summary">关闭屏幕后暂停加载页面，在开启设备后恢复加载页面。\n页面加载完成后，暂停页面加载进程。</string>
+    <string name="preference_webview_battery_save_off_title">关闭</string>
+    <string name="preference_webview_battery_save_off_summary">页面一直处于活动状态。适用于观看 Youtube 等流媒体视频。</string>
+    <string name="preference_theme_title">主题</string>
+    <string name="preference_theme_light_color">亮底+图标主体色边框</string>
+    <string name="preference_theme_light_no_color">亮底+中性色边框</string>
+    <string name="preference_theme_dark_color">暗底+图标主体色边框</string>
+    <string name="preference_theme_dark_no_color">暗底+中性色边框</string>
+    <string name="preference_article_mode_title">阅读模式（测试功能）</string>
+    <string name="preference_reading_mode_on_wear_title">智能手表阅读模式</string>
+    <string name="preference_article_mode_summary">通过操作栏按钮切换</string>
     <string name="preference_webview_text_zoom_title">文字缩放</string>
     <string name="preference_webview_text_zoom_note">备注：选择「确认」后当前泡泡会重新加载以应用新的文字缩放设定。</string>
     <string name="preference_webview_text_zoom_reloading_current">以设置新的页面缩放等级。正在重新载入当前泡泡...</string>
@@ -75,6 +118,7 @@ accounts.google.com 链接</string>
     <string name="preference_clear_passwords">密码</string>
     <string name="preference_incognito_title">隐身模式</string>
     <string name="preference_incognito_summary">不记录浏览历史及小型文本文件(cookie)</string>
+    <string name="incognito_mode_changed_reloading_current">已变更隐身模式。正在重新加载当前泡泡...</string>
     <string name="preference_user_agent_title">用户代理</string>
     <string-array name="preference_user_agent_options">
         <item>默认</item>
@@ -95,9 +139,17 @@ accounts.google.com 链接</string>
     <string name="preference_get_pro_summary">升级到专业版以获取更多功能。</string>
     <string name="preference_version_title">版本</string>
     <string name="preference_version_summary">更新日志</string>
+    <string name="preference_more_title">更多&#8230;</string>
+    <string name="preference_more_summary">「OK, Google」、阅读模式及其他</string>
+    <string name="preference_show_undo_close_tab_title">撤销关闭标签提示</string>
 
     <string name="preference_my_other_apps_title">更多 Chris Lacy 开发的程序</string>
     <string name="preference_my_other_apps_summary">喜欢 Link Bubble 吗？来看看我开发的其它应用程序吧。</string>
+
+    <string name="preference_ok_google_title">「OK, Google」语音激活</string>
+    <string name="preference_ok_google_summary">详细信息请查看常见问题</string>
+    <string name="preference_ok_google_summary_jelly_bean">需要 Android 4.4 及更新版本</string>
+    <string name="preference_ok_google_summary_long">Note: Google haven\'t enabled this functionality for all devices/locales. If speaking \"OK, Google\" doesn\'t work for you in Google Now, it won\'t work in Link Bubble.</string>
 
     <string name="remove_default_title">移除默认？</string>
     <string name="remove_default_message">移除 %1$s 作为载入 %2$s 链接的默认程序的设置？\n\n备注：下次载入 %2$s 链接时可以选择一个新的默认程序。</string>
@@ -131,12 +183,12 @@ accounts.google.com 链接</string>
     <string name="private_data_cleared">私人数据已清除</string>
     <string name="private_data_cleared_reloading_current">私人数据已清除。正在重新加载泡泡...</string>
     <string name="user_agent_changed_reloading_current">用户代理已变更。正在重新加载当前泡泡...</string>
+    <string name="article_mode_changed_reloading_current">已变更阅读模式设置。正在重新加载当前泡泡...</string>
     <string name="link_loaded_with_app">已用 %1$s 加载</string>
     <string name="link_redirected">重定向至 %1$s</string>
 
     <string name="tampered_apk">您的 Link Bubble 已被非法修改，因此无法可靠运行。请到 Play 商店重新安装。</string>
     <string name="upgrade_incentive_one_link">同时加载多个泡泡需要专业版 Link Bubble。要升级到专业版吗？</string>
-    <string name="upgrade_incentive_one_app">在多个应用中载入链接需要专业版 Link Bubble。要升级到专业版吗？</string>
     <string name="valid_license_detected">已通过校验专业版许可。\n感谢您支持本项目，祝您使用愉快：）</string>
 
     <string name="bubble_link_copied_to_clipboard">泡泡的链接已复制到剪贴板。</string>
@@ -169,15 +221,25 @@ accounts.google.com 链接</string>
 Link Bubble 是一个浏览器，而 Android 的浏览器有一套长期以来已成文的标准——当点按返回键时，返回链接堆叠中上一链接，或者当堆叠不存在时关闭当前页。
 Link Bubble 亦遵循该标准。]]></string>
     <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble 无法接管链接！]]></string>
-    <string name="faq_app_internal_browser_answer"><![CDATA[对此原因有三：<br/>
-一、一个非 Link Bubble 的浏览器被设为您系统的默认浏览器。在 Link Bubble 设置中的「设置系统默认浏览器」选项进行更改。<br/>
-二、免费版的 Link Bubble 只能在一个应用中接管链接。在 Link Bubble 设置中的「从...接管链接」选项来指定或修改该应用。在升级到 Link Bubble 专业版后，所有非浏览器程序中的链接都可以接管。<br/>
-三、像 Talon、Reddit is Fun 以及其他有内置浏览器的应用。检请查该应用设置，并选中「使用外部浏览器」或取消选中「使用内置浏览器」。<br/><br/>
-注意：常规浏览器，比如 Chrome，通过硬编码以在其自身中载入链接，所以 Link Bubble 不能接管其他浏览器中点击的链接。
-]]></string>
+    <string name="faq_app_internal_browser_answer"><![CDATA[There are 3 causes of this:<br/>
+            1). A browser other thank Link Bubble is set as your default system browser. See the
+            \"Set default system browser\" option in Link Bubble\'s Settings to change this.<br/>
+            2). Link Bubble has been configured not to intercept links from your current app. See the
+            \"Intercept links from\" option in Link Bubble\'s Settings.<br/>
+            3). Apps such as Talon, Reddit is Fun and others have inbuilt browsers that render links. Check the settings of that app and
+            enable \"External browser\" or deselect \"Integrated browser\" or similar.
+            <br/><br/>Note: other browser apps such as Chrome are hardcoded to load links in themselves, and thus Link Bubble is unable
+            to load links clicked from other browser apps.
+            ]]></string>
+    <string name="faq_article_mode_question">我该如何使用阅读模式？为什么许多链接无法使用阅读模式？</string>
+    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode (BETA)).<br/><br/>
+            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
+            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
+            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
+            there is little than can be done here.]]></string>
     <string name="faq_future_features_question">你会加入书签、收藏、扩展等功能吗？</string>
     <string name="faq_future_features_answer">不确定，但是目前 Link Bubble 只是专注于将载入和处理应用内链接做到最好。</string>
-    <string name="faq_translations_question">什么时候才能有多国语言支持？我能帮忙吗？</string>
+    <string name="faq_translations_question">我能帮助翻译本应用吗？</string>
     <string name="faq_translations_answer"><![CDATA[我希望尽快加入多国语言的翻译。<br/><br/>当我需要帮助的时候，我会在 Google+ (+Chris Lacy) 上寻求帮助，所以请关注一下我分享的信息。]]></string>
     <string name="faq_roadmap_question">你有公布功能路线图吗？我能给要更新的功能投票吗？</string>
     <string name="faq_roadmap_answer">因为竞争原因，恐怕这两个问题的答案都是否定的。<br/><br/></string>
@@ -225,6 +287,7 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="faq_title">常见问题</string>
     <string name="preference_faq_summary">关于应用有问题？到这里看看。</string>
     <string name="faq_section_general">通用</string>
+    <string name="faq_section_functionality">应用功能</string>
     <string name="faq_section_issues">问题</string>
 
     <string name="activity_resolver_use_always">总是</string>
@@ -236,6 +299,15 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">概念、设计及开发</string>
     <string name="credits_app_copyright">版权所有 2014, Digital Ashes / Chris Lacy.</string>
+
+    <!--
+    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
+        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
+    <string name="restore_tabs_from_previous_session"></string>
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">从之前的会话中恢复泡泡？</item>
+        <item quantity="other">从之前的会话中恢复 %d 个泡泡？</item>
+    </plurals>
 
     <string name="content_description_button">按钮</string>
     <string name="content_description_target_icon">泡泡目标图标</string>
@@ -251,7 +323,8 @@ Link Bubble 亦遵循该标准。]]></string>
 
     <string name="requesting_location_message">%1$s 正在请求您的位置。是否允许？</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[如果要继续，请确认您接受 Link Bubble 的<a href="http://www.digitalashes.com/terms">条款</a>和<a href="http://www.digitalashes.com/privacy">隐私政策</a>。]]></string>
+    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Digital Ashes
+    <a href="http://www.digitalashes.com/terms">terms</a> and <a href="http://www.digitalashes.com/privacy">privacy policy</a>.]]></string>
 
     <string name="service_name">Link Bubble 渲染器</string>
     <string name="notification_title">Link Bubble</string>
@@ -270,8 +343,6 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="pro_action_retry">重试</string>
     <string name="pro_action_store">Play 商店</string>
 
-
-
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">移动浏览已正确加载。</string>
     <string name="store_listing_description_title">Link Bubble 是一个独具匠心、潜心制作的用于移动设备的浏览器。</string>
@@ -287,11 +358,13 @@ Link Bubble 亦遵循该标准。]]></string>
 
     <string name="pro_store_listing_title">Link Bubble 专业版</string>
     <string name="pro_store_listing_description_title">Link Bubble 专业版将会解锁所有功能。</string>
-    <string name="pro_store_listing_description_features">高级版包括： 
-• 无限数量的泡泡（免费版只能同时打开一个泡泡）。 
-• 接管设备上的所有应用的链接（免费版只接管一个应用中的链接）。 
-• 移除免费版中的升级提示。 
-• 支持我，让我投入更多精力来开发应用：）</string>
+    <string name="pro_store_listing_description_features">
+    Upgrades include:
+    • Infinite number of tabs (free version is limited to just one tab).
+    • Theme selection
+    • Remove the upgrade incentives throughout the free version.
+    • Support me so I get to make more of these apps :)
+    </string>
 
     <string name="welcome_page_title">欢迎使用 Link Bubble！</string>
     <string name="welcome_page_trial_notice">注意：在第一次安装 Link Bubble 后的一整天内，你将有一次享受专业版的高级功能的体验。</string>
@@ -311,5 +384,7 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="welcome_page_pro_point_3">帮助我确保在将来能够开发出更多的应用：）</string>
     <string name="welcome_page_pro_end">感谢您的使用！</string>
     <string name="welcome_page_ps">注：若要关闭本泡泡，请按返回键或长按泡泡并拖动到屏幕底部的关闭泡泡中。</string>
+
+    <string name="duplicate_link_will_not_be_loaded">已加载该链接，忽略本次点击操作。</string>
 
 </resources>
