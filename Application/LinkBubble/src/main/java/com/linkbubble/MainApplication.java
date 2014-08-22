@@ -570,6 +570,8 @@ public class MainApplication extends Application {
             Log.d("langcheck", String.format(getString(R.string.requesting_location_message), blerg));
             Log.d("langcheck", String.format(getString(R.string.link_loaded_with_app), blerg));
             Log.d("langcheck", String.format(getString(R.string.undo_close_tab_title), blerg));
+            Log.d("langcheck", getResources().getQuantityString(R.plurals.restore_tabs_from_previous_session, 1, 1));
+            Log.d("langcheck", getResources().getQuantityString(R.plurals.restore_tabs_from_previous_session, 2, 2));
         }
     } */
 }
