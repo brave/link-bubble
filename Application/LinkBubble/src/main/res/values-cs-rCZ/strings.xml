@@ -324,8 +324,8 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
         This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
     <string name="restore_tabs_from_previous_session"></string>
     <plurals name="restore_tabs_from_previous_session">
-        <item quantity="one">Restore tab from previous session?</item>
-        <item quantity="other">Restore %d tabs from previous session?</item>
+        <item quantity="one">Obnovit naposledy otevřené záložky?</item>
+        <item quantity="other">Obnovit %d naposledy otevřených záložek?</item>
     </plurals>
 
     <string name="content_description_button">Tlačítko</string>
@@ -407,6 +407,6 @@ při nákupu není nastavena v Play Store na tomto zařízení.</string>
     <string name="welcome_page_pro_end">Díky a užijte si aplikaci.</string>
     <string name="welcome_page_ps">PS: Chcete-li zavřít tuto bublinu, dlouze podržte tlačítko Zpět nebo chyťte bublinu a přetáhněte ji na tlačítko Zavřít.</string>
 
-    <string name="duplicate_link_will_not_be_loaded">Link already loaded. Ignoring...</string>
+    <string name="duplicate_link_will_not_be_loaded">Odkaz už je načtený. Ignorování…</string>
 
 </resources>
