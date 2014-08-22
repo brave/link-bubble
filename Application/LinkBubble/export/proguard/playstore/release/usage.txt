@@ -4802,8 +4802,8 @@ com.linkbubble.Settings:
     private static final java.lang.String LAST_APP_REDIRECT_KEY_TIME
     private static final java.lang.String LAST_APP_REDIRECT_KEY_URL
     private static final int MAX_LAST_APP_REDIRECT_COUNT
-    608:608:public java.util.List getIgnoreLinksFromPackageNames()
-    686:686:public boolean checkForYouTubeEmbeds()
+    660:660:public java.util.List getIgnoreLinksFromPackageNames()
+    738:738:public boolean checkForYouTubeEmbeds()
 com.linkbubble.articlerender.ArticleContent:
     private static final java.lang.String TAG
 com.linkbubble.articlerender.ArticleRenderer:
@@ -4981,11 +4981,11 @@ com.linkbubble.util.Util:
     private static final int OUTCODE_RIGHT
     private static final int OUTCODE_BOTTOM
     private static final int OUTCODE_TOP
-    68:75:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
-    338:346:public static int randInt(int,int)
-    404:420:static android.graphics.Bitmap createIconBitmap(android.graphics.Bitmap,android.content.Context)
-    509:519:public static java.lang.String getDefaultLauncherPackage(android.content.pm.PackageManager)
-    542:547:public static void setLocale(android.content.Context,java.lang.String)
+    69:76:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
+    339:347:public static int randInt(int,int)
+    405:421:static android.graphics.Bitmap createIconBitmap(android.graphics.Bitmap,android.content.Context)
+    510:520:public static java.lang.String getDefaultLauncherPackage(android.content.pm.PackageManager)
+    543:548:public static void setLocale(android.content.Context,java.lang.String)
 com.linkbubble.webrender.DiffBotRenderer:
     private static final java.lang.String TAG
     private static final java.lang.String API_URL
