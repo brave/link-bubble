@@ -35,6 +35,8 @@ public class Constant {
 
     public static final int TRIAL_TIME = 1000 * 60 * 60 * 24;
 
+    public static boolean ENABLE_FLUSH_CACHE_SERVICE = false;
+
     public static boolean COVER_STATUS_BAR = false;//(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) ? true : false;
 
     public static final int BUBBLE_ANIM_TIME = 550;
