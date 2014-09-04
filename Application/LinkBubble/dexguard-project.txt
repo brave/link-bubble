@@ -68,6 +68,11 @@
     public void set*(...);
 }
 
+-keepclassmembers class ** {
+    @com.squareup.otto.Subscribe public *;
+    @com.squareup.otto.Produce public *;
+}
+
 -keep public class com.crittercism.**
 
 -keepclassmembers public class com.crittercism.* {
@@ -145,117 +150,6 @@
 -encryptstrings public class com.linkbubble.Constant {
     public static final java.lang.String TWITTER_ACCOUNT_TYPE;
     public static final java.lang.String YAHOO_ACCOUNT_TYPE;
-}
-
--keepclassmembers class com.linkbubble.MainService {
-    # ensure event handler functions are not stripped
-    public void onShowDefaultNotificationEvent(com.linkbubble.MainService$ShowDefaultNotificationEvent);
-    public void onShowUnhideNotificationEvent(com.linkbubble.MainService$ShowUnhideNotificationEvent);
-    public void onReloadMainServiceEvent(com.linkbubble.MainService$ReloadMainServiceEvent);
-}
-
--keepclassmembers class com.linkbubble.MainController {
-    # ensure event handler functions are not stripped
-    public void onBeginExpandTransition(com.linkbubble.MainController$BeginExpandTransitionEvent);
-    public void onEndAnimateFinalTabAway(com.linkbubble.MainController$EndAnimateFinalTabAwayEvent);
-    public void onEndCollapseTransition(com.linkbubble.MainController$EndCollapseTransitionEvent);
-    public void onEndExpandTransition(com.linkbubble.MainController$EndExpandTransitionEvent);
-    public void onExpandedActivityReadyEvent(com.linkbubble.ui.ExpandedActivity$ExpandedActivityReadyEvent);
-    public void onIncognitoModeChanged(com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent);
-    public void onStateChangedEvent(com.linkbubble.MainApplication$StateChangedEvent);
-}
-
--keep class com.linkbubble.MainApplication$StateChangedEvent
--keep class com.linkbubble.MainApplication$TrialTimeStartTimeReceivedEvent
--keep class com.linkbubble.MainController$BeginAnimateFinalTabAwayEvent
--keep class com.linkbubble.MainController$BeginBubbleDragEvent
--keep class com.linkbubble.MainController$BeginCollapseTransitionEvent
--keep class com.linkbubble.MainController$BeginExpandTransitionEvent
--keep class com.linkbubble.MainController$CurrentTabChangedEvent
--keep class com.linkbubble.MainController$DraggableBubbleMovedEvent
--keep class com.linkbubble.MainController$EndAnimateFinalTabAwayEvent
--keep class com.linkbubble.MainController$EndBubbleDragEvent
--keep class com.linkbubble.MainController$EndCollapseTransitionEvent
--keep class com.linkbubble.MainController$EndExpandTransitionEvent
--keep class com.linkbubble.MainController$HideContentEvent
--keep class com.linkbubble.MainController$OrientationChangedEvent
--keep class com.linkbubble.MainController$ScreenOnEvent
--keep class com.linkbubble.MainController$ScreenOffEvent
--keep class com.linkbubble.MainController$UnhideContentEvent
--keep class com.linkbubble.MainController$UserPresentEvent
--keep class com.linkbubble.MainService$ShowDefaultNotificationEvent
--keep class com.linkbubble.MainService$ShowUnhideNotificationEvent
--keep class com.linkbubble.MainService$ReloadMainServiceEvent
--keep class com.linkbubble.db.HistoryRecord$ChangedEvent
--keep class com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent
--keep class com.linkbubble.ui.ExpandedActivity$EnableHotwordServiceEvent
--keep class com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent
--keep class com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent
-
--keepclassmembers class com.linkbubble.articlerender.ArticleRenderer {
-    # ensure event handler functions are not stripped
-    public void onUserPresentEvent(com.linkbubble.MainController$UserPresentEvent);
-    public void onScreenOffEvent(com.linkbubble.MainController$ScreenOffEvent);
-    public void onBeginCollapseTransitionEvent(com.linkbubble.MainController$BeginCollapseTransitionEvent);
-    public void onBeginExpandTransitionEvent(com.linkbubble.MainController$BeginExpandTransitionEvent);
-    public void onHideContentEvent(com.linkbubble.MainController$HideContentEvent);
-    public void onUnhideContentEvent(com.linkbubble.MainController$UnhideContentEvent);
-}
-
--keepclassmembers class com.linkbubble.ui.BubbleTargetView {
-    # ensure event handler functions are not stripped
-    public void onBeginBubbleDrag(com.linkbubble.MainController$BeginBubbleDragEvent);
-    public void onDraggableBubbleMovedEvent(com.linkbubble.MainController$DraggableBubbleMovedEvent);
-    public void onEndBubbleDragEvent(com.linkbubble.MainController$EndBubbleDragEvent);
-}
-
--keepclassmembers class com.linkbubble.ui.CanvasView {
-    # ensure event handler functions are not stripped
-    public void onBeginAnimateFinalTabAway(com.linkbubble.MainController$BeginAnimateFinalTabAwayEvent);
-    public void onBeginBubbleDrag(com.linkbubble.MainController$BeginBubbleDragEvent);
-    public void onBeginCollapseTransition(com.linkbubble.MainController$BeginCollapseTransitionEvent);
-    public void onBeginExpandTransition(com.linkbubble.MainController$BeginExpandTransitionEvent);
-    public void onCurrentTabChanged(com.linkbubble.MainController$CurrentTabChangedEvent);
-    public void onEndBubbleDragEvent(com.linkbubble.MainController$EndBubbleDragEvent);
-    public void onEndCollapseTransition(com.linkbubble.MainController$EndCollapseTransitionEvent);
-    public void onHideContentEvent(com.linkbubble.MainController$HideContentEvent);
-    public void onOrientationChanged(com.linkbubble.MainController$OrientationChangedEvent);
-}
-
--keepclassmembers class com.linkbubble.ui.CloseTabTargetView {
-    # ensure event handler functions are not stripped
-    public void onBeginBubbleDrag(com.linkbubble.MainController$BeginBubbleDragEvent);
-    public void onDraggableBubbleMovedEvent(com.linkbubble.MainController$DraggableBubbleMovedEvent);
-    public void onEndBubbleDragEvent(com.linkbubble.MainController$EndBubbleDragEvent);
-}
-
--keepclassmembers class com.linkbubble.ui.ExpandedActivity {
-    # ensure event handler functions are not stripped
-    public void onEnableHotwordService(com.linkbubble.ui.ExpandedActivity$EnableHotwordServiceEvent);
-    public void onHideContentEvent(com.linkbubble.MainController$HideContentEvent);
-    public void onMinimizeExpandedActivity(com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent);
-}
-
--keepclassmembers class com.linkbubble.ui.HistoryActivity {
-    # ensure event handler functions are not stripped
-    public void onHistoryRecordChangedEvent(com.linkbubble.db.HistoryRecord$ChangedEvent);
-}
-
--keepclassmembers class com.linkbubble.ui.HomeActivity {
-    # ensure event handler functions are not stripped
-    public void onLinkLoadTimeStatsUpdatedEvent(com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent);
-    public void onStateChangedEvent(com.linkbubble.MainApplication$StateChangedEvent);
-    public void onTrialTimeStartTimeReceivedEvent(com.linkbubble.MainApplication$TrialTimeStartTimeReceivedEvent);
-}
-
--keepclassmembers class com.linkbubble.webrender.WebViewRenderer {
-    # ensure event handler functions are not stripped
-    public void onUserPresentEvent(com.linkbubble.MainController$UserPresentEvent);
-    public void onScreenOffEvent(com.linkbubble.MainController$ScreenOffEvent);
-    public void onBeginCollapseTransitionEvent(com.linkbubble.MainController$BeginCollapseTransitionEvent);
-    public void onBeginExpandTransitionEvent(com.linkbubble.MainController$BeginExpandTransitionEvent);
-    public void onHideContentEvent(com.linkbubble.MainController$HideContentEvent);
-    public void onUnhideContentEvent(com.linkbubble.MainController$UnhideContentEvent);
 }
 
 -keep public interface com.android.vending.licensing.ILicensingService
