@@ -565,6 +565,10 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onReceivedTitle(String url, String title) {
+            if (title == null || title.isEmpty()) {
+                return;
+            }
+
             mTitleTextView.setText(title);
             if (MainApplication.sTitleHashMap != null && url != null) {
                 MainApplication.sTitleHashMap.put(url, title);
