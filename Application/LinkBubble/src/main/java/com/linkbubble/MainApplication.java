@@ -405,7 +405,8 @@ public class MainApplication extends Application {
             if (hapticFeedbackEnabled) {
                 Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
                 if (vibrator.hasVibrator()) {
-                    vibrator.vibrate(17);
+                    vibrator.vibrate(10);
+                    Log.d("blerg", "vibrate!");
                 }
             }
         }
