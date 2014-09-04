@@ -50,19 +50,12 @@ public class HomeActivity extends Activity {
 
     private static final String TAG = "HomeActivity";
 
-    private static final String PLAYED_INTRO_ANIM_KEY = "PlayedIntroAnimation";
-
-    View mContentView;
-    View mBackgroundView;
     TextView mTrialTimeTextView;
-    View mActionButtonContainer;
     Button mActionButtonView;
     FlipView mStatsFlipView;
     View mTimeSavedPerLinkContainerView;
     CondensedTextView mTimeSavedPerLinkTextView;
     CondensedTextView mTimeSavedTotalTextView;
-
-    boolean mPlayedIntroAnimation;
 
     final Handler mHandler = new Handler();
 
@@ -75,9 +68,6 @@ public class HomeActivity extends Activity {
 
         Analytics.trackScreenView(HomeActivity.class.getSimpleName());
 
-        mBackgroundView = findViewById(R.id.background);
-        mContentView = findViewById(R.id.content);
-        mActionButtonContainer = findViewById(R.id.action_button_container);
         mActionButtonView = (Button)findViewById(R.id.big_white_button);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
         mTrialTimeTextView = (TextView) findViewById(R.id.trial_time);
@@ -114,15 +104,6 @@ public class HomeActivity extends Activity {
             if (rootView != null) {
                 rootView.addView(acceptTermsView);
             }
-        }
-
-        if (savedInstanceState != null) {
-            mPlayedIntroAnimation = savedInstanceState.getBoolean(PLAYED_INTRO_ANIM_KEY);
-        }
-
-        if (mPlayedIntroAnimation) {
-            mBackgroundView.setAlpha(1.f);
-            mContentView.setVisibility(View.VISIBLE);
         }
 
         if (Settings.get().getWelcomeMessageDisplayed() == false) {
@@ -328,11 +309,6 @@ public class HomeActivity extends Activity {
 
         updateLinkLoadTimeStats();
 
-        if (mPlayedIntroAnimation == false) {
-            animateOn();
-            mPlayedIntroAnimation = true;
-        }
-
         configureForDrmState();
 
         MainApplication.checkForProVersion(getApplicationContext());
@@ -346,39 +322,6 @@ public class HomeActivity extends Activity {
         super.onStart();
 
         MainApplication.checkRestoreCurrentTabs(this);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-
-        savedInstanceState.putBoolean(PLAYED_INTRO_ANIM_KEY, mPlayedIntroAnimation);
-    }
-
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-
-        mPlayedIntroAnimation = savedInstanceState.getBoolean(PLAYED_INTRO_ANIM_KEY);
-    }
-
-    void animateOn() {
-
-        mBackgroundView.setScaleX(0.0f);
-        mBackgroundView.animate().alpha(1f).scaleX(1f).start();
-
-        mContentView.setAlpha(0f);
-        mContentView.setVisibility(View.VISIBLE);
-        mContentView.setScaleX(0.5f);
-        mContentView.setScaleY(0.5f);
-        mContentView.animate().alpha(1f).scaleX(1f).scaleY(1f)
-                .setDuration(1000)
-                .setInterpolator(new AnticipateOvershootInterpolator())
-                .start();
-
-        mActionButtonContainer.setAlpha(0f);
-        mActionButtonContainer.setVisibility(View.VISIBLE);
-        mActionButtonContainer.animate().alpha(1f).setDuration(250).setStartDelay(750).start();
     }
 
     private void updateLinkLoadTimeStats() {
