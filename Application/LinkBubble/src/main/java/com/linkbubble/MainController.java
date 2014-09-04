@@ -28,9 +28,8 @@ import com.linkbubble.ui.BubbleFlowDraggable;
 import com.linkbubble.ui.BubbleFlowView;
 import com.linkbubble.ui.CanvasView;
 import com.linkbubble.ui.ExpandedActivity;
-import com.linkbubble.ui.HomeActivity;
 import com.linkbubble.ui.Prompt;
-import com.linkbubble.ui.SettingsFragment;
+import com.linkbubble.ui.SettingsActivity;
 import com.linkbubble.ui.TabView;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
@@ -447,7 +446,7 @@ public class MainController implements Choreographer.FrameCallback {
 
     @SuppressWarnings("unused")
     @Subscribe
-    public void onIncognitoModeChanged(SettingsFragment.IncognitoModeChangedEvent event) {
+    public void onIncognitoModeChanged(SettingsActivity.IncognitoModeChangedEvent event) {
         updateIncognitoMode(event.mIncognito);
     }
 
