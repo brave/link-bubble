@@ -79,7 +79,7 @@ public class SettingsMoreActivity extends PreferenceActivity {
 
             PreferenceScreen rootPreferenceScreen = (PreferenceScreen) findPreference("preference_more_root");
 
-            final CheckBoxPreference okGooglePreference = (CheckBoxPreference)findPreference(Settings.KEY_OK_GOOGLE_PREFERENCE);
+            final CheckBoxPreference okGooglePreference = (CheckBoxPreference) findPreference(Settings.KEY_OK_GOOGLE_PREFERENCE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 if (DRM.isLicensed()) {
                     okGooglePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -107,7 +107,7 @@ public class SettingsMoreActivity extends PreferenceActivity {
                 okGooglePreference.setEnabled(false);
             }
 
-            final CheckBoxPreference articleModeWearPreference = (CheckBoxPreference)findPreference(Settings.KEY_ARTICLE_MODE_ON_WEAR_PREFERENCE);
+            final CheckBoxPreference articleModeWearPreference = (CheckBoxPreference) findPreference(Settings.KEY_ARTICLE_MODE_ON_WEAR_PREFERENCE);
             if (DRM.isLicensed()) {
                 articleModeWearPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                     @Override
@@ -131,7 +131,7 @@ public class SettingsMoreActivity extends PreferenceActivity {
                 });
             }
 
-            final CheckBoxPreference articleModePreference = (CheckBoxPreference)findPreference(Settings.KEY_ARTICLE_MODE_PREFERENCE);
+            final CheckBoxPreference articleModePreference = (CheckBoxPreference) findPreference(Settings.KEY_ARTICLE_MODE_PREFERENCE);
             if (DRM.isLicensed()) {
                 articleModePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                     @Override
@@ -155,8 +155,11 @@ public class SettingsMoreActivity extends PreferenceActivity {
                 });
             }
 
+            Preference interceptLinksFromPreference = findPreference(Settings.PREFERENCE_IGNORE_LINKS_FROM);
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
+                rootPreferenceScreen.removePreference(interceptLinksFromPreference);
+            }
         }
-
     }
 
 }
