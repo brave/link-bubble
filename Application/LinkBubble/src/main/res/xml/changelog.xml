@@ -2,6 +2,7 @@
 <changelog>
 
     <release version="1.4.4" versioncode="14400">
+        <change>CHANGE: Reading Mode uses default zoom level.</change>
         <change>CHANGE: Default zoom level is now 100%.</change>
     </release>
 
