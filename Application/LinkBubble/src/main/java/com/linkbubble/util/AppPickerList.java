@@ -86,7 +86,10 @@ public class AppPickerList {
         for (ResolveInfo info : allResolveInfo) {
             if (info.activityInfo != null && info.activityInfo.packageName != null) {
                 if (initializer.addToList(info.activityInfo.packageName)) {
-                    appPickerListInfo.mAllApps.add(new AppInfo(info.activityInfo.name, info.activityInfo.packageName, info.loadLabel(pm).toString()));
+                    // This is the G+ "Photos" Activity. Ignore it.
+                    if (info.activityInfo.name.equals("com.google.android.apps.plus.phone.ConversationListActivity") == false) {
+                        appPickerListInfo.mAllApps.add(new AppInfo(info.activityInfo.name, info.activityInfo.packageName, info.loadLabel(pm).toString()));
+                    }
                 }
             }
         }
