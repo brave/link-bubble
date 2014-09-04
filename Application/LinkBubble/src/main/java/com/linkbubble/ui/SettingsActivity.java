@@ -137,7 +137,6 @@ public class SettingsActivity extends PreferenceActivity {
 
     static public class SettingsFragment extends SettingsBaseFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-        private Preference mInterceptLinksFromPreference;
         private Preference mWebViewTextZoomPreference;
         private Preference mThemePreference;
         private Preference mWebViewBatterySavePreference;
@@ -167,13 +166,11 @@ public class SettingsActivity extends PreferenceActivity {
             });
             updateWebViewBatterySaveSummary();
 
-            mInterceptLinksFromPreference = findPreference(Settings.PREFERENCE_IGNORE_LINKS_FROM);
+            Preference interceptLinksFromPreference = findPreference(Settings.PREFERENCE_IGNORE_LINKS_FROM);
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                mInterceptLinksFromPreference.setEnabled(false);
-                mInterceptLinksFromPreference.setSummary(R.string.preference_intercept_links_from_disabled_for_L);
-                configurationCategory.removePreference(mInterceptLinksFromPreference);
+                configurationCategory.removePreference(interceptLinksFromPreference);
             } else {
-                mInterceptLinksFromPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                interceptLinksFromPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                     @Override
                     public boolean onPreferenceClick(Preference preference) {
                         getDontInterceptLinksFromDialog(getActivity()).show();
@@ -493,12 +490,6 @@ public class SettingsActivity extends PreferenceActivity {
                         category.removePreference(setDefaultBrowserPreference);
                     }
                 }
-            }
-        }
-
-        void updateInterceptLinksFromPreference() {
-            if (mInterceptLinksFromPreference != null) {
-                //mInterceptLinksFromPreference.setSummary(Settings.get().getInterceptLinksFromAppName());
             }
         }
 
