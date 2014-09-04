@@ -120,8 +120,13 @@
                   android:theme="@style/SettingsTheme">
         </activity>
 
-        <activity android:name=".ui.SettingsMoreActivity"
+        <activity android:name=".ui.SettingsDefaultAppsActivity"
             android:label="@string/preference_more_title"
+            android:theme="@style/AppTheme">
+        </activity>
+
+        <activity android:name=".ui.SettingsMoreActivity"
+            android:label="@string/preference_default_apps_title"
             android:theme="@style/AppTheme">
         </activity>
 

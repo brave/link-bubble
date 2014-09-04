@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="preference_default_apps_root">
+
+    <Preference
+        android:title="@string/preference_category_fallback_browser"
+        android:key="preference_default_browser"
+        />
+
+    <CheckBoxPreference
+        android:key="preference_google_accounts_redirect"
+        android:title="@string/preference_google_account_redirect_title"
+        android:summary="@string/preference_google_account_redirect_summary"
+        android:defaultValue="true"
+        android:icon="@drawable/ic_google_account"/>
+
+    <PreferenceCategory
+        android:key="preference_category_other_apps"
+        android:title="@string/preference_category_other_apps" >
+
+        <Preference
+            android:key="preference_default_apps_notice"
+            android:summary="@string/preference_default_apps_notice_summary"
+            />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
