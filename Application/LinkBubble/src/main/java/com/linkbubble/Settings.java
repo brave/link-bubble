@@ -17,7 +17,7 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
-import com.linkbubble.ui.DownloadHandlerActivity;
+
 import com.linkbubble.ui.TabView;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.Util;
@@ -140,7 +140,8 @@ public class Settings {
     private Context mContext;
     private TreeMap<String, String> mDefaultAppsMap = new TreeMap<String, String>();
     private List<Intent> mBrowsers;
-    private ComponentName mDownloadHandlerComponentName;
+    private List<String> mBrowserPackageNames;
+    //private ComponentName mDownloadHandlerComponentName;
     private Intent mDownloadQueryIntent = new Intent();
     private ResolveInfo mYouTubeViewResolveInfo;
     public ResolveInfo mLinkBubbleEntryActivityResolveInfo;
@@ -156,12 +157,10 @@ public class Settings {
     Settings(Context context) {
         mContext = context;
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
-        mDownloadHandlerComponentName = new ComponentName(mContext, DownloadHandlerActivity.class);
+        //mDownloadHandlerComponentName = new ComponentName(mContext, DownloadHandlerActivity.class);
 
         checkForVersionUpgrade();
 
-        mBrowsers = new Vector<Intent>();
-        updateBrowsers();
         setDefaultRightConsumeBubble();
         setDefaultLeftConsumeBubble();
 
@@ -297,7 +296,13 @@ public class Settings {
     }
 
     public void updateBrowsers() {
-        mBrowsers.clear();
+        if (mBrowsers == null) {
+            mBrowsers = new Vector<Intent>();
+            mBrowserPackageNames = new ArrayList<String>();
+        } else {
+            mBrowsers.clear();
+            mBrowserPackageNames.clear();
+        }
         PackageManager packageManager = mContext.getPackageManager();
         Intent queryIntent = new Intent();
         queryIntent.setAction(Intent.ACTION_VIEW);
@@ -315,6 +320,7 @@ public class Settings {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setClassName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
                     mBrowsers.add(intent);
+                    mBrowserPackageNames.add(resolveInfo.activityInfo.packageName);
                     if (fallbackDefaultBrowserPackageName == null) {
                         fallbackDefaultBrowserPackageName = resolveInfo.activityInfo.packageName;
                         fallbackDefaultBrowserActivityClassName = resolveInfo.activityInfo.name;
@@ -440,21 +446,18 @@ public class Settings {
     }
 
     public List<Intent> getBrowsers() {
+        if (mBrowsers == null) {
+            updateBrowsers();
+        }
         return mBrowsers;
     }
 
     public List<String> getBrowserPackageNames() {
-        List<String> result = null;
-        if (mBrowsers != null) {
-            for (Intent browser : mBrowsers) {
-                if (result == null) {
-                    result = new ArrayList<String>();
-                }
-                result.add(browser.getComponent().getPackageName());
-            }
+        if (mBrowserPackageNames == null) {
+            updateBrowsers();
         }
 
-        return result;
+        return mBrowserPackageNames;
     }
 
     public void setDefaultBrowser(String label, String packageName) {

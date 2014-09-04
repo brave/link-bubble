@@ -75,7 +75,6 @@ public class MainApplication extends Application {
 
         sDrm = new DRM(this);
 
-        initParse();
         initTrialStartTime();
     }
 
@@ -101,6 +100,7 @@ public class MainApplication extends Application {
             final Account[] accounts = AccountManager.get(this).getAccounts();
             final String defaultEmail = Util.getDefaultEmail(accounts);
             if (defaultEmail != null) {
+                initParse();
                 ParseQuery<ParseObject> query = ParseQuery.getQuery(Constant.DATA_TRIAL_ENTRY);
                 query.whereEqualTo(Constant.DATA_TRIAL_EMAIL, defaultEmail);
                 query.getFirstInBackground(new GetCallback<ParseObject>() {
