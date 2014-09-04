@@ -61,8 +61,6 @@ public class EntryActivity extends Activity {
             }
         });
 
-        List<Intent> browsers = Settings.get().getBrowsers();
-
         if (isActionView || isActionSend) {
             boolean openLink = false;
 
@@ -111,12 +109,14 @@ public class EntryActivity extends Activity {
                     openedFromAppName = componentName.getPackageName();
 
                     boolean isBlacklisted = false;
+                    /*
+                    List<Intent> browsers = Settings.get().getBrowsers();
                     for (Intent browser : browsers) {
                         if (componentName.getPackageName().equals(browser.getPackage())) {
                             isBlacklisted = true;
                             break;
                         }
-                    }
+                    }*/
 
                     if (url.equals(Constant.TERMS_OF_SERVICE_URL) || url.equals(Constant.PRIVACY_POLICY_URL)) {
                         canLoadFromThisApp = true;
