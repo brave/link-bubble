@@ -137,66 +137,6 @@ public class SettingsActivity extends PreferenceActivity {
         private Preference mWebViewBatterySavePreference;
         private ListPreference mUserAgentPreference;
 
-        private void configureDefaultAppsList() {
-            PreferenceCategory preferenceCategory = (PreferenceCategory)findPreference("preference_category_other_apps");
-            preferenceCategory.removeAll();
-
-            Preference noticePreference = new Preference(getActivity());
-
-            PackageManager packageManager = getActivity().getPackageManager();
-            TreeMap<String, ComponentName> defaultAppsMap = Settings.get().getDefaultAppsMap();
-            if (defaultAppsMap != null && defaultAppsMap.size() > 0) {
-                noticePreference.setSummary(R.string.preference_default_apps_notice_summary);
-                preferenceCategory.addPreference(noticePreference);
-
-                for (String key : defaultAppsMap.keySet()) {
-                    ComponentName componentName = defaultAppsMap.get(key);
-                    try {
-                        ActivityInfo info = packageManager.getActivityInfo(componentName, 0);
-                        final CharSequence label = info.loadLabel(packageManager);
-                        final String host = key;
-                        Preference preference = new Preference(getActivity());
-                        preference.setTitle(label);
-                        setPreferenceIcon(preference, info.loadIcon(packageManager));
-                        preference.setSummary(key);
-                        preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                            @SuppressLint("StringFormatMatches")        // Lint incorrectly flags this because 2 items are the same.
-                            @Override
-                            public boolean onPreferenceClick(Preference preference) {
-                                Resources resources = getActivity().getResources();
-                                AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
-                                alertDialog.setIcon(Util.getAlertIcon(getActivity()));
-                                alertDialog.setTitle(R.string.remove_default_title);
-                                alertDialog.setMessage(String.format(resources.getString(R.string.remove_default_message), label, host, host));
-                                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, resources.getString(R.string.action_remove),
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                Settings.get().removeDefaultApp(host);
-                                                configureDefaultAppsList();
-                                            }
-                                        });
-                                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, resources.getString(R.string.action_cancel),
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                            }
-                                        });
-                                Util.showThemedDialog(alertDialog);
-                                return true;
-                            }
-                        });
-                        preferenceCategory.addPreference(preference);
-                    } catch (PackageManager.NameNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                }
-            } else {
-                noticePreference.setSummary(R.string.preference_default_apps_notice_no_defaults_summary);
-                preferenceCategory.addPreference(noticePreference);
-            }
-        }
-
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -333,48 +273,6 @@ public class SettingsActivity extends PreferenceActivity {
         linkDoubleTapPreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.LinkDoubleTap));
         */
 
-            final PreferenceScreen defaultAppsPreference = (PreferenceScreen) findPreference(Settings.PREFERENCE_DEFAULT_APPS);
-            setPreferenceIcon(defaultAppsPreference, Settings.get().getDefaultBrowserIcon(getActivity()));
-
-            Preference defaultBrowserPreference = findPreference(Settings.PREFERENCE_DEFAULT_BROWSER);
-            defaultBrowserPreference.setSummary(Settings.get().getDefaultBrowserLabel());
-            Drawable defaultBrowserIcon = Settings.get().getDefaultBrowserIcon(getActivity());
-            if (defaultBrowserIcon != null) {
-                setPreferenceIcon(defaultBrowserPreference, defaultBrowserIcon);
-            }
-            defaultBrowserPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(final Preference preference) {
-                    AlertDialog alertDialog = ActionItem.getDefaultBrowserAlert(getActivity(), new ActionItem.OnActionItemSelectedListener() {
-                        @Override
-                        public void onSelected(ActionItem actionItem) {
-                            Settings.get().setDefaultBrowser(actionItem.getLabel(), actionItem.mPackageName);
-                            preference.setSummary(Settings.get().getDefaultBrowserLabel());
-                            Drawable defaultBrowserIcon = Settings.get().getDefaultBrowserIcon(getActivity());
-                            if (defaultBrowserIcon != null) {
-                                setPreferenceIcon(preference, defaultBrowserIcon);
-                                setPreferenceIcon(defaultAppsPreference, defaultBrowserIcon);
-
-                                // This is hideous, but going this route because the icon will not update no matter what I do
-                                Dialog dialog = defaultAppsPreference.getDialog();
-                                if (dialog != null) {
-                                    dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                        @Override
-                                        public void onDismiss(DialogInterface dialog) {
-                                            getActivity().finish();
-                                        }
-                                    });
-                                }
-                            }
-                        }
-                    });
-                    Util.showThemedDialog(alertDialog);
-                    return true;
-                }
-            });
-
-            configureDefaultAppsList();
-
             findPreference("preference_clear_browser_cache").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
@@ -458,6 +356,14 @@ public class SettingsActivity extends PreferenceActivity {
                 }
             });
 
+            findPreference("preference_default_apps").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    startActivity(new Intent(getActivity(), SettingsDefaultAppsActivity.class));
+                    return true;
+                }
+            });
+
             findPreference("preference_more").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
@@ -504,8 +410,10 @@ public class SettingsActivity extends PreferenceActivity {
             }
             mUserAgentPreference.setSummary(mUserAgentPreference.getEntry());
 
+            Preference defaultAppsPreference = findPreference(Settings.PREFERENCE_DEFAULT_APPS);
+            setPreferenceIcon(defaultAppsPreference, Settings.get().getDefaultBrowserIcon(getActivity()));
+
             checkDefaultBrowser();
-            configureDefaultAppsList();
         }
 
         @Override
@@ -1132,37 +1040,7 @@ public class SettingsActivity extends PreferenceActivity {
             setPreferenceIcon(preference, Settings.get().getConsumeBubbleIcon(action, false));
         }
 
-        void setPreferenceIcon(Preference preference, int iconResId) {
-            setPreferenceIcon(preference, getResources().getDrawable(iconResId));
-        }
 
-        /*
-         * Ensure icons display at the correct size for the device resolution. Prevents icons with
-         * non-standard sizes from causing text to be justified at wrong position.
-         * This was an issue with "Share picker" (too small) and preference_theme_* (too large) on Nexus S
-         */
-        void setPreferenceIcon(Preference preference, Drawable drawable) {
-            if (drawable instanceof BitmapDrawable) {
-                //getResources().getDrawableForDensity()
-                //getResources().getDrawableForDensity()
-                Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
-                ActivityManager activityManager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
-                int iconSize = activityManager.getLauncherLargeIconSize();
-                int w = bitmap.getWidth();
-                int h = bitmap.getHeight();
-                if (w == h) {
-                    if (w > iconSize) {
-                        Bitmap b = Bitmap.createScaledBitmap(bitmap, iconSize, iconSize, true);
-                        drawable = new BitmapDrawable(getResources(), b);
-                    } else if (h < iconSize) {
-                        Bitmap b = Bitmap.createScaledBitmap(bitmap, iconSize, iconSize, true);
-                        drawable = new BitmapDrawable(getResources(), b);
-                    }
-                }
-            }
-
-            preference.setIcon(drawable);
-        }
     }
 
 }
