@@ -2,8 +2,10 @@
 <changelog>
 
     <release version="1.4.4" versioncode="14400">
+        <change>IMPROVEMENT: Settings uses Android L's Up button.</change>
         <change>CHANGE: Reading Mode uses default zoom level.</change>
         <change>CHANGE: Default zoom level is now 100%.</change>
+        <change>CHANGE: Don't list the Google Photos app in the "Intercept links from" dialog. This app is actually the same app as Google+, and listing them both only causes confusion.</change>
     </release>
 
     <release version="1.4.3" versioncode="14300">
