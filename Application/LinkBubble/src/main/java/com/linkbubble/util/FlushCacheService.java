@@ -20,7 +20,7 @@ public class FlushCacheService extends Service {
 
     public static void doCheck(Context context) {
         // Check if we should flush the WebView cache
-        if (Settings.get().canFlushWebViewCache()) {
+        if (Constant.ENABLE_FLUSH_CACHE_SERVICE && Settings.get().canFlushWebViewCache()) {
             Intent serviceIntent = new Intent(context, FlushCacheService.class);
             context.startService(serviceIntent);
             Log.d(TAG, "startService()");
