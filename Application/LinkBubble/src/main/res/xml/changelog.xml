@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.4.4" versioncode="14400">
+        <change>CHANGE: Default zoom level is now 100%.</change>
+    </release>
+
     <release version="1.4.3" versioncode="14300">
         <change>IMPROVEMENT: Updated Chinese (Simplified), Chinese (Taiwan), Dutch, French, Russian translations. Thanks to all the volunteer translators!</change>
         <change>BUG FIX: Dialogs display correctly when using Dark theme.</change>
