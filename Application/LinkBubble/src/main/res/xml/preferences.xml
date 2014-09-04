@@ -133,7 +133,7 @@
 
         <Preference
             android:title="@string/preference_webview_text_zoom_title"
-            android:key="preference_webview_text_zoom">
+            android:key="preference_webview_text_zoom2">
         </Preference>
 
         <com.linkbubble.ui.ThemedListPreference
