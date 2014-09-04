@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -50,6 +51,13 @@ public class ArticleRenderer {
         mWebView.setOnKeyListener(mOnKeyListener);
 
         mWebView.setWebViewClient(mWebViewClient);
+
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setSupportZoom(true);
+        webSettings.setTextZoom(Settings.get().getWebViewTextZoom());
+        webSettings.setTextZoom(Settings.get().getWebViewTextZoom());
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setDisplayZoomControls(false);
 
         display(articleContent, false);
 
