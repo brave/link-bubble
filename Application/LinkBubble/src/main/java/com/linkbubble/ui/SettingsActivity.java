@@ -129,7 +129,7 @@ public class SettingsActivity extends PreferenceActivity {
         return false;
     }
 
-    static public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+    static public class SettingsFragment extends SettingsBaseFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
         private Preference mInterceptLinksFromPreference;
         private Preference mWebViewTextZoomPreference;
@@ -210,7 +210,6 @@ public class SettingsActivity extends PreferenceActivity {
 
             PreferenceCategory generalCategory = (PreferenceCategory) findPreference("preference_category_general");
             PreferenceCategory configurationCategory = (PreferenceCategory) findPreference("preference_category_configuration");
-            PreferenceScreen appConfigMoreScreen = (PreferenceScreen)getPreferenceScreen().findPreference("preference_more");
 
             mWebViewBatterySavePreference = findPreference(Settings.PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE);
             mWebViewBatterySavePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -227,7 +226,6 @@ public class SettingsActivity extends PreferenceActivity {
                 mInterceptLinksFromPreference.setEnabled(false);
                 mInterceptLinksFromPreference.setSummary(R.string.preference_intercept_links_from_disabled_for_L);
                 configurationCategory.removePreference(mInterceptLinksFromPreference);
-                appConfigMoreScreen.addPreference(mInterceptLinksFromPreference);
             } else {
                 mInterceptLinksFromPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                     @Override
@@ -257,54 +255,6 @@ public class SettingsActivity extends PreferenceActivity {
                 });
             }
 
-            final CheckBoxPreference articleModeWearPreference = (CheckBoxPreference)findPreference(Settings.KEY_ARTICLE_MODE_ON_WEAR_PREFERENCE);
-            if (DRM.isLicensed()) {
-                articleModeWearPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                    @Override
-                    public boolean onPreferenceChange(Preference preference, Object newValue) {
-                        if (MainController.get() != null && MainController.get().reloadAllTabs(getActivity())) {
-                            Toast.makeText(getActivity(), R.string.article_mode_changed_reloading_current, Toast.LENGTH_SHORT).show();
-                        }
-                        return true;
-                    }
-                });
-            } else {
-                showProBanner(articleModeWearPreference);
-                articleModeWearPreference.setChecked(false);
-                articleModeWearPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                    @Override
-                    public boolean onPreferenceClick(Preference preference) {
-                        articleModeWearPreference.setChecked(false);
-                        upsellPro(R.string.upgrade_article_mode_wear);
-                        return true;
-                    }
-                });
-            }
-
-            final CheckBoxPreference articleModePreference = (CheckBoxPreference)findPreference(Settings.KEY_ARTICLE_MODE_PREFERENCE);
-            if (DRM.isLicensed()) {
-                articleModePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                    @Override
-                    public boolean onPreferenceChange(Preference preference, Object newValue) {
-                        if (MainController.get() != null && MainController.get().reloadAllTabs(getActivity())) {
-                            Toast.makeText(getActivity(), R.string.article_mode_changed_reloading_current, Toast.LENGTH_SHORT).show();
-                        }
-                        return true;
-                    }
-                });
-            } else {
-                showProBanner(articleModePreference);
-                articleModePreference.setChecked(false);
-                articleModePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                    @Override
-                    public boolean onPreferenceClick(Preference preference) {
-                        articleModePreference.setChecked(false);
-                        upsellPro(R.string.upgrade_article_mode);
-                        return true;
-                    }
-                });
-            }
-
             mThemePreference = findPreference("preference_theme");
             mThemePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -316,34 +266,6 @@ public class SettingsActivity extends PreferenceActivity {
             updateThemeSummary();
             if (DRM.isLicensed() == false) {
                 showProBanner(mThemePreference);
-            }
-
-            final CheckBoxPreference okGooglePreference = (CheckBoxPreference)findPreference(Settings.KEY_OK_GOOGLE_PREFERENCE);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                if (DRM.isLicensed()) {
-                    okGooglePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                        @Override
-                        public boolean onPreferenceChange(Preference preference, Object newValue) {
-                            boolean checked = (Boolean) newValue;
-                            MainApplication.postEvent(getActivity(), new ExpandedActivity.EnableHotwordServiceEvent(checked));
-                            return true;
-                        }
-                    });
-                } else {
-                    showProBanner(okGooglePreference);
-                    okGooglePreference.setChecked(false);
-                    okGooglePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                        @Override
-                        public boolean onPreferenceClick(Preference preference) {
-                            okGooglePreference.setChecked(false);
-                            upsellPro(R.string.upgrade_ok_google);
-                            return true;
-                        }
-                    });
-                }
-            } else {
-                okGooglePreference.setSummary(R.string.preference_ok_google_summary_jelly_bean);
-                okGooglePreference.setEnabled(false);
             }
 
             Preference crashButton = findPreference("debug_crash");
@@ -536,6 +458,14 @@ public class SettingsActivity extends PreferenceActivity {
                 }
             });
 
+            findPreference("preference_more").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    startActivity(new Intent(getActivity(), SettingsMoreActivity.class));
+                    return true;
+                }
+            });
+
             findPreference("preference_help").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
@@ -609,41 +539,7 @@ public class SettingsActivity extends PreferenceActivity {
             }
         }
 
-        void showProBanner(Preference preference) {
-            if (DRM.isLicensed() == false) {
-                preference.setLayoutResource(R.layout.preference_pro_banner);
-            }
-        }
 
-        long mLastUpsellTime;
-        void upsellPro(int stringId) {
-            if (System.currentTimeMillis() - mLastUpsellTime < 100) {
-                return;
-            }
-
-            TextView textView = new TextView(getActivity());
-            int padding = getResources().getDimensionPixelSize(R.dimen.upgrade_to_pro_dialog_padding);
-            textView.setPadding(padding, padding, padding, padding);
-            textView.setText(getString(stringId) + "\n\n" + getString(R.string.upgrade_from_settings_summary));
-
-            ScrollView layout = new ScrollView(getActivity());
-            layout.addView(textView);
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setView(layout);
-            builder.setIcon(0);
-            builder.setPositiveButton(R.string.upgrade, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.STORE_PRO_URL));
-                    startActivity(intent);
-                }
-            });
-            builder.setTitle(R.string.upgrade_to_pro);
-
-            AlertDialog alertView = builder.create();
-            Util.showThemedDialog(alertView);
-            mLastUpsellTime = System.currentTimeMillis();
-        }
 
         void checkDefaultBrowser() {
 
