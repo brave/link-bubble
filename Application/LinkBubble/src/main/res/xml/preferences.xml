@@ -68,43 +68,11 @@
             android:title="@string/preference_intercept_links_from_title"
             />
 
-        <PreferenceScreen
+        <Preference
             android:key="preference_more"
             android:title="@string/preference_more_title"
             android:summary="@string/preference_more_summary"
-            >
-
-            <CheckBoxPreference
-                android:key="preference_article_mode"
-                android:title="@string/preference_article_mode_title"
-                android:summary="@string/preference_article_mode_summary"
-                android:defaultValue="true"
-                />
-
-            <CheckBoxPreference
-                android:key="preference_reading_mode_on_wear"
-                android:title="@string/preference_reading_mode_on_wear_title"/>
-
-            <CheckBoxPreference
-                android:key="preference_ok_google"
-                android:title="@string/preference_ok_google_title"
-                android:summary="@string/preference_ok_google_summary_long"
-                android:defaultValue="false"
-                />
-
-            <CheckBoxPreference
-                android:key="preference_show_undo_close_tab_prompt"
-                android:title="@string/preference_show_undo_close_tab_title"
-                android:defaultValue="true"
-                />
-
-            <CheckBoxPreference
-                android:key="preference_auto_content_display_link_loaded"
-                android:title="@string/preference_auto_content_display_link_loaded_title"
-                android:summary="@string/preference_auto_content_display_link_loaded_summary"
-                />
-
-        </PreferenceScreen>
+            />
 
     </PreferenceCategory>
 
