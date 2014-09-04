@@ -79,9 +79,9 @@ public class Settings {
     public static final String PREFERENCE_INCOGNITO_MODE = "preference_incognito";
     public static final String PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE = "preference_webview_battery_save";
 
-    public static final String PREFERENCE_WEBVIEW_TEXT_ZOOM = "preference_webview_text_zoom";
+    public static final String PREFERENCE_WEBVIEW_TEXT_ZOOM = "preference_webview_text_zoom2";
     public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN = 50;
-    public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_DEFAULT = 120;
+    public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_DEFAULT = 100;
     public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_MAX = 250;
 
     public static final String PREFERENCE_USER_AGENT = "preference_user_agent";
