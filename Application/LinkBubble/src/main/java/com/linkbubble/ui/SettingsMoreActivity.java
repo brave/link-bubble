@@ -17,7 +17,6 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
@@ -26,6 +25,7 @@ import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.Analytics;
+import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
 
 /*
@@ -38,7 +38,7 @@ public class SettingsMoreActivity extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        Crashlytics.start(this);
+        CrashTracking.init(this);
 
         setContentView(R.layout.activity_settings_more);
         setTitle(R.string.preference_more_title);

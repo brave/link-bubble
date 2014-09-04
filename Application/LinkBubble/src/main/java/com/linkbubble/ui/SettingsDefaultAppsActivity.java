@@ -28,7 +28,6 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
@@ -38,6 +37,7 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
+import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
 
 import java.util.TreeMap;
@@ -52,7 +52,7 @@ public class SettingsDefaultAppsActivity extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        Crashlytics.start(this);
+        CrashTracking.init(this);
 
         setContentView(R.layout.activity_settings_default_apps);
         setTitle(R.string.preference_more_title);
