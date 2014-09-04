@@ -34,7 +34,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.webkit.WebViewDatabase;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
@@ -56,7 +55,6 @@ import com.linkbubble.MainService;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.ActionItem;
-import com.linkbubble.util.Analytics;
 import com.linkbubble.util.AppPickerList;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.FlushCacheService;
@@ -212,7 +210,6 @@ public class SettingsActivity extends PreferenceActivity {
 
             PreferenceCategory generalCategory = (PreferenceCategory) findPreference("preference_category_general");
             PreferenceCategory configurationCategory = (PreferenceCategory) findPreference("preference_category_configuration");
-            PreferenceScreen helpScreen = (PreferenceScreen) getPreferenceScreen().findPreference("preference_screen_help");
             PreferenceScreen appConfigMoreScreen = (PreferenceScreen)getPreferenceScreen().findPreference("preference_more");
 
             mWebViewBatterySavePreference = findPreference(Settings.PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE);
@@ -524,20 +521,10 @@ public class SettingsActivity extends PreferenceActivity {
                 generalCategory.removePreference(getProPreference);
                 if (Settings.get().getSayThanksClicked()) {
                     generalCategory.removePreference(sayThanksPreference);
-                    helpScreen.addPreference(sayThanksPreference);
                 }
             } else {
                 generalCategory.removePreference(sayThanksPreference);
             }
-
-            findPreference("preference_credits").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    Util.showThemedDialog(getCreditDialog());
-                    return true;
-                }
-            });
 
 
             findPreference("preference_faq").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -549,52 +536,10 @@ public class SettingsActivity extends PreferenceActivity {
                 }
             });
 
-            findPreference("preference_show_welcome_message").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            findPreference("preference_help").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    MainApplication.openLink(getActivity(), Constant.WELCOME_MESSAGE_URL, Analytics.OPENED_URL_FROM_SETTINGS);
-                    return true;
-                }
-            });
-
-            findPreference("preference_osl").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    WebView webView = new WebView(getActivity());
-                    webView.loadUrl("file:///android_asset/open_source_licenses.html");
-                    webView.setWebViewClient(new WebViewClient() {
-                        public boolean shouldOverrideUrlLoading(WebView view, String url){
-                            Intent i = new Intent(Intent.ACTION_VIEW);
-                            i.setData(Uri.parse(url));
-                            startActivity(i);
-                            return true;
-                        }
-                    });
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setIcon(Util.getAlertIcon(getActivity()));
-                    builder.setNegativeButton(R.string.action_ok, null);
-                    builder.setView(webView);
-                    builder.setTitle(R.string.preference_osl_title);
-
-                    AlertDialog alertDialog = builder.create();
-                    Util.showThemedDialog(alertDialog);
-                    return true;
-                }
-            });
-
-            findPreference("preference_privacy_policy").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    MainApplication.openLink(getActivity(), Constant.PRIVACY_POLICY_URL, Analytics.OPENED_URL_FROM_SETTINGS);
-                    return true;
-                }
-            });
-
-            findPreference("preference_terms_of_service").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    MainApplication.openLink(getActivity(), Constant.TERMS_OF_SERVICE_URL, Analytics.OPENED_URL_FROM_SETTINGS);
+                    startActivity(new Intent(getActivity(), SettingsHelpActivity.class));
                     return true;
                 }
             });
@@ -1116,49 +1061,6 @@ public class SettingsActivity extends PreferenceActivity {
             return alertDialog;
         }
 
-        private static int TAPS_TO_FORCE_A_CRASH = 7;
-        private int mForceCrashCountdown = TAPS_TO_FORCE_A_CRASH;
-        Toast mForceCrashToast;
-
-        void doCrash() {
-            throw new RuntimeException("Forced Profile Image Exception");
-        }
-
-        AlertDialog getCreditDialog() {
-            final View layout = View.inflate(getActivity(), R.layout.view_credits, null);
-
-            ImageView profileImage = (ImageView)layout.findViewById(R.id.lacy_icon);
-            profileImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    if (mForceCrashCountdown > 0) {
-                        mForceCrashCountdown--;
-                        if (mForceCrashCountdown == 0) {
-                            doCrash();
-                        } else if (mForceCrashCountdown > 0
-                                && mForceCrashCountdown < (TAPS_TO_FORCE_A_CRASH -2)) {
-                            if (mForceCrashToast != null) {
-                                mForceCrashToast.cancel();
-                            }
-                            mForceCrashToast = Toast.makeText(getActivity(),
-                                    "You are now " + mForceCrashCountdown + " step(s) away from FORCING A CRASH.",
-                                    Toast.LENGTH_SHORT);
-                            mForceCrashToast.show();
-                        }
-                    }
-                }
-            });
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setIcon(Util.getAlertIcon(getActivity()));
-            builder.setNegativeButton(R.string.action_ok, null);
-            builder.setView(layout);
-            builder.setTitle(R.string.credits_title);
-
-            AlertDialog alertDialog = builder.create();
-            return alertDialog;
-        }
 
         private boolean onClearBrowserCachePreferenceClick() {
 
