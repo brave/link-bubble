@@ -159,6 +159,7 @@ public class MainService extends Service {
         unregisterReceiver(mDialogReceiver);
         unregisterReceiver(mBroadcastReceiver);
         MainController.destroy();
+        super.onDestroy();
     }
 
     private void cancelCurrentNotification() {
