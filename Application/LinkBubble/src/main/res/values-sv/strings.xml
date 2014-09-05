@@ -140,7 +140,6 @@ nästa gång du laddar en %2$s-länk </string>
 
     <string name="tampered_apk">Din kopia av Link Bubble har blivit olovligt modifierad och kommer inte fungera tillförlitligt. Vänligen ominstallera från Play Store.</string>
     <string name="upgrade_incentive_one_link">Link Bubble Pro krävs för att kunna ladda mer än en bubbla i taget. Uppgradera till Pro?</string>
-    <string name="upgrade_incentive_one_app">Link Bubble Pro krävs för att kunna ladda länkar från mer än en app. Uppgradera till Pro?</string>
     <string name="valid_license_detected">Giltig Link Bubble Pro-licens upptäckt.\nTack för ditt stöd till detta projekt och njut av appen :)</string>
 
     <string name="bubble_link_copied_to_clipboard">Bubbellänk kopierad till urklipp.</string>

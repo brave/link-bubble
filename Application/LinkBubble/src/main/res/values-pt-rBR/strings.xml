@@ -140,7 +140,6 @@ versão grátis do Link Bubble. Atualizar pra versão Pro?</string>
 
     <string name="tampered_apk">Sua cópia do Link Bubble foi ilegalmente modificada e portanto não funcionará direito. Por favor reinstale pela Play Store.</string>
     <string name="upgrade_incentive_one_link">Link Bubble Pro is required to load more than one bubble at a time. Upgrade to Pro?</string>
-    <string name="upgrade_incentive_one_app">Link Bubble Pro is required to load links from more than one app. Upgrade to Pro?</string>
     <string name="valid_license_detected">Valid Link Bubble Pro license detected.\nThank you for supporting this project, and enjoy the app :)</string>
 
     <string name="bubble_link_copied_to_clipboard">Bubble link copied to clipboard.</string>
