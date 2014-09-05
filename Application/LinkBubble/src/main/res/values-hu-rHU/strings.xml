@@ -139,7 +139,6 @@
 
     <string name="tampered_apk">A Link Bubble alkalmazás megsérült vagy illegálisan módosítva lett, ezért nem fog megfelelően működni. Telepítsd újra a Play Store-ból</string>
     <string name="upgrade_incentive_one_link">Egyszerre több buborék használata csak a Link Bubble Pro verziójában lehetséges. Frissítés Pro-ra?</string>
-    <string name="upgrade_incentive_one_app">Link Bubble Pro is required to load links from more than one app. Upgrade to Pro?</string>
     <string name="valid_license_detected">Érvényes Link Bubble Pro licensz. \n Köszi, a támogatást és sok sikert az app-hoz!</string>
 
     <string name="bubble_link_copied_to_clipboard">Buborék link a vágólapra másolva</string>

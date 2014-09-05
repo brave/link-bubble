@@ -139,7 +139,6 @@ gang du indlæser et %2$s link.</string>
 
     <string name="tampered_apk">Din kopi af Link Bubble er blevet ulovligt ændret, og vil dermed vil ikke fungere pålideligt. Geninstaller fra Play Butik.</string>
     <string name="upgrade_incentive_one_link">Link Bubble Pro er nødvendigt for at indlæse mere end en boble ad gangen. Opgrader til Pro?</string>
-    <string name="upgrade_incentive_one_app">Link Bubble Pro er nødvendigt for at indlæse links fra mere end en app ad gangen. Opgrader til Pro?</string>
     <string name="valid_license_detected">Gyldig Link Bubble Pro licens opdaget.\nTak for at støtte dette projekt, og nyd appen :)</string>
 
     <string name="bubble_link_copied_to_clipboard">Boble link kopieret til udklipsholder.</string>

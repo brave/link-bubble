@@ -135,7 +135,6 @@
 
     <string name="tampered_apk">Tu copia de Link Bubble ha sido modificado ilegalmente, por ese caso no podrá funcionar correctamente. Por favor reinstale la aplicación de la Play Store.</string>
     <string name="upgrade_incentive_one_link">Se necesita Link Bubble Pro para cargar más de una pestaña al mismo tiempo. Desea mejorar a Pro?</string>
-    <string name="upgrade_incentive_one_app">Necesitas la versión Pro para cargar links de una o más aplicaciones. ¿Comprar la versión Pro?</string>
     <string name="valid_license_detected">Se detectó una licencia de Link Bubble Pro. Gracias por ayudar este proyecto, Disfruta de la aplicación :)</string>
 
     <string name="bubble_link_copied_to_clipboard">Bubble link copiada en el portapapeles.</string>
