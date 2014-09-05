@@ -5,8 +5,11 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -158,6 +161,32 @@ public class CanvasView extends FrameLayout {
         });
 
         applyAlpha();
+
+        /*
+        int statusBarHeight = Util.getSystemStatusBarHeight(context);
+        int navBarHeight = Util.getSystemNavigationBarHeight(context);
+
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
+        Log.d("blerg", "height:" + height + ", statusBarHeight:" + statusBarHeight + ", navBarHeight:" + navBarHeight);
+
+        mWindowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
+        mWindowManagerParams.x = 0;
+        mWindowManagerParams.y = -statusBarHeight;
+        mWindowManagerParams.height = height;//WindowManager.LayoutParams.MATCH_PARENT;
+        mWindowManagerParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+        mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+                | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
+                | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
+        mWindowManagerParams.format = PixelFormat.TRANSPARENT;
+        */
 
         mWindowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
         mWindowManagerParams.x = 0;
