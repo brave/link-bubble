@@ -21,6 +21,7 @@ import android.graphics.drawable.PaintDrawable;
 import android.net.Uri;
 import android.util.DisplayMetrics;
 import android.util.Patterns;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -634,5 +635,44 @@ public class Util {
             return false;
         }
         return true;
+    }
+
+    public static Integer getSystemActionBarHeight(Context context) {
+        // Calculate ActionBar height
+        try {
+            TypedValue tv = new TypedValue();
+            if (context.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true))
+            {
+                return TypedValue.complexToDimensionPixelSize(tv.data, context.getResources().getDisplayMetrics());
+            }
+        } catch (Exception e) {}
+
+        return null;
+    }
+
+    public static Integer getSystemStatusBarHeight(Context context) {
+        Integer result = null;
+        try {
+            Resources resources = context.getResources();
+            int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+            if (resourceId > 0) {
+                result = resources.getDimensionPixelSize(resourceId);
+            }
+        } catch (Exception e) {}
+
+        return result;
+    }
+
+    public static Integer getSystemNavigationBarHeight(Context context) {
+        Integer result = null;
+        try {
+            Resources resources = context.getResources();
+            int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+            if (resourceId > 0) {
+                result = resources.getDimensionPixelSize(resourceId);
+            }
+        } catch (Exception e) {}
+
+        return result;
     }
 }
