@@ -5015,47 +5015,29 @@ com.linkbubble.Constant$BubbleAction: com.linkbubble.Constant$BubbleAction[] val
 com.linkbubble.Constant$BubbleAction: com.linkbubble.Constant$BubbleAction valueOf(java.lang.String)
 com.linkbubble.MainApplication
 com.linkbubble.MainApplication: MainApplication()
-com.linkbubble.MainApplication$StateChangedEvent
 com.linkbubble.MainApplication$StateChangedEvent: MainApplication$StateChangedEvent()
-com.linkbubble.MainApplication$TrialTimeStartTimeReceivedEvent
-com.linkbubble.MainController: void onIncognitoModeChanged(com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent)
+com.linkbubble.MainController: void onIncognitoModeChanged(com.linkbubble.ui.SettingsActivity$IncognitoModeChangedEvent)
 com.linkbubble.MainController: void onEndCollapseTransition(com.linkbubble.MainController$EndCollapseTransitionEvent)
 com.linkbubble.MainController: void onBeginExpandTransition(com.linkbubble.MainController$BeginExpandTransitionEvent)
 com.linkbubble.MainController: void onEndExpandTransition(com.linkbubble.MainController$EndExpandTransitionEvent)
 com.linkbubble.MainController: void onExpandedActivityReadyEvent(com.linkbubble.ui.ExpandedActivity$ExpandedActivityReadyEvent)
 com.linkbubble.MainController: void onStateChangedEvent(com.linkbubble.MainApplication$StateChangedEvent)
 com.linkbubble.MainController: void onEndAnimateFinalTabAway(com.linkbubble.MainController$EndAnimateFinalTabAwayEvent)
-com.linkbubble.MainController$BeginAnimateFinalTabAwayEvent
 com.linkbubble.MainController$BeginAnimateFinalTabAwayEvent: MainController$BeginAnimateFinalTabAwayEvent()
-com.linkbubble.MainController$BeginBubbleDragEvent
 com.linkbubble.MainController$BeginBubbleDragEvent: MainController$BeginBubbleDragEvent()
-com.linkbubble.MainController$BeginCollapseTransitionEvent
 com.linkbubble.MainController$BeginCollapseTransitionEvent: MainController$BeginCollapseTransitionEvent()
-com.linkbubble.MainController$BeginExpandTransitionEvent
 com.linkbubble.MainController$BeginExpandTransitionEvent: MainController$BeginExpandTransitionEvent()
-com.linkbubble.MainController$CurrentTabChangedEvent
 com.linkbubble.MainController$CurrentTabChangedEvent: MainController$CurrentTabChangedEvent()
-com.linkbubble.MainController$DraggableBubbleMovedEvent
 com.linkbubble.MainController$DraggableBubbleMovedEvent: MainController$DraggableBubbleMovedEvent()
-com.linkbubble.MainController$EndAnimateFinalTabAwayEvent
 com.linkbubble.MainController$EndAnimateFinalTabAwayEvent: MainController$EndAnimateFinalTabAwayEvent()
-com.linkbubble.MainController$EndBubbleDragEvent
 com.linkbubble.MainController$EndBubbleDragEvent: MainController$EndBubbleDragEvent()
-com.linkbubble.MainController$EndCollapseTransitionEvent
 com.linkbubble.MainController$EndCollapseTransitionEvent: MainController$EndCollapseTransitionEvent()
-com.linkbubble.MainController$EndExpandTransitionEvent
 com.linkbubble.MainController$EndExpandTransitionEvent: MainController$EndExpandTransitionEvent()
-com.linkbubble.MainController$HideContentEvent
 com.linkbubble.MainController$HideContentEvent: MainController$HideContentEvent()
-com.linkbubble.MainController$OrientationChangedEvent
 com.linkbubble.MainController$OrientationChangedEvent: MainController$OrientationChangedEvent()
-com.linkbubble.MainController$ScreenOffEvent
 com.linkbubble.MainController$ScreenOffEvent: MainController$ScreenOffEvent()
-com.linkbubble.MainController$ScreenOnEvent
 com.linkbubble.MainController$ScreenOnEvent: MainController$ScreenOnEvent()
-com.linkbubble.MainController$UnhideContentEvent
 com.linkbubble.MainController$UnhideContentEvent: MainController$UnhideContentEvent()
-com.linkbubble.MainController$UserPresentEvent
 com.linkbubble.MainController$UserPresentEvent: MainController$UserPresentEvent()
 com.linkbubble.MainService
 com.linkbubble.MainService: MainService()
@@ -5065,10 +5047,7 @@ com.linkbubble.MainService: void onReloadMainServiceEvent(com.linkbubble.MainSer
 com.linkbubble.MainService$2: MainService$2()
 com.linkbubble.MainService$3: MainService$3()
 com.linkbubble.MainService$4: MainService$4()
-com.linkbubble.MainService$ReloadMainServiceEvent
-com.linkbubble.MainService$ShowDefaultNotificationEvent
 com.linkbubble.MainService$ShowDefaultNotificationEvent: MainService$ShowDefaultNotificationEvent()
-com.linkbubble.MainService$ShowUnhideNotificationEvent
 com.linkbubble.MainService$ShowUnhideNotificationEvent: MainService$ShowUnhideNotificationEvent()
 com.linkbubble.R: R()
 com.linkbubble.R$anim: int activity_close_enter
@@ -5520,6 +5499,9 @@ com.linkbubble.R$layout: int activity_expanded
 com.linkbubble.R$layout: int activity_history
 com.linkbubble.R$layout: int activity_home
 com.linkbubble.R$layout: int activity_settings
+com.linkbubble.R$layout: int activity_settings_default_apps
+com.linkbubble.R$layout: int activity_settings_help
+com.linkbubble.R$layout: int activity_settings_more
 com.linkbubble.R$layout: int app_picker_list
 com.linkbubble.R$layout: int app_picker_list_item_multiple
 com.linkbubble.R$layout: int app_picker_list_item_single
@@ -5839,7 +5821,6 @@ com.linkbubble.R$string: int upgrade
 com.linkbubble.R$string: int upgrade_article_mode
 com.linkbubble.R$string: int upgrade_article_mode_wear
 com.linkbubble.R$string: int upgrade_from_settings_summary
-com.linkbubble.R$string: int upgrade_incentive_one_app
 com.linkbubble.R$string: int upgrade_incentive_one_link
 com.linkbubble.R$string: int upgrade_ok_google
 com.linkbubble.R$string: int upgrade_theme
@@ -5973,8 +5954,10 @@ com.linkbubble.R$styleable: int WalletFragmentStyle_maskedWalletDetailsTextAppea
 com.linkbubble.R$styleable: R$styleable()
 com.linkbubble.R$xml: int changelog
 com.linkbubble.R$xml: int preferences
+com.linkbubble.R$xml: int preferences_default_apps
+com.linkbubble.R$xml: int preferences_help
+com.linkbubble.R$xml: int preferences_more
 com.linkbubble.R$xml: R$xml()
-com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent
 com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent: Settings$LinkLoadTimeStatsUpdatedEvent()
 com.linkbubble.Settings$LinkLoadType
 com.linkbubble.Settings$LinkLoadType: com.linkbubble.Settings$LinkLoadType[] values()
@@ -5991,7 +5974,6 @@ com.linkbubble.articlerender.ArticleRenderer: void onHideContentEvent(com.linkbu
 com.linkbubble.articlerender.ArticleRenderer: void onUnhideContentEvent(com.linkbubble.MainController$UnhideContentEvent)
 com.linkbubble.db.FaviconRecord: FaviconRecord()
 com.linkbubble.db.HistoryRecord: HistoryRecord()
-com.linkbubble.db.HistoryRecord$ChangedEvent
 com.linkbubble.physics.DraggableHelper$AnimationType
 com.linkbubble.physics.DraggableHelper$AnimationType: com.linkbubble.physics.DraggableHelper$AnimationType[] values()
 com.linkbubble.physics.DraggableHelper$AnimationType: com.linkbubble.physics.DraggableHelper$AnimationType valueOf(java.lang.String)
@@ -6119,9 +6101,7 @@ com.linkbubble.ui.ExpandedActivity: void setWebRenderer(android.view.View)
 com.linkbubble.ui.ExpandedActivity: void onMinimizeExpandedActivity(com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent)
 com.linkbubble.ui.ExpandedActivity: void onHideContentEvent(com.linkbubble.MainController$HideContentEvent)
 com.linkbubble.ui.ExpandedActivity: void onEnableHotwordService(com.linkbubble.ui.ExpandedActivity$EnableHotwordServiceEvent)
-com.linkbubble.ui.ExpandedActivity$EnableHotwordServiceEvent
 com.linkbubble.ui.ExpandedActivity$ExpandedActivityReadyEvent: ExpandedActivity$ExpandedActivityReadyEvent()
-com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent
 com.linkbubble.ui.ExpandedActivity$MinimizeExpandedActivityEvent: ExpandedActivity$MinimizeExpandedActivityEvent()
 com.linkbubble.ui.FAQItem
 com.linkbubble.ui.FAQItem: FAQItem(android.content.Context)
@@ -6186,10 +6166,22 @@ com.linkbubble.ui.ProgressIndicatorView: void setColor(int)
 com.linkbubble.ui.ProgressIndicatorView: void setProgress(int,java.net.URL)
 com.linkbubble.ui.SettingsActivity
 com.linkbubble.ui.SettingsActivity: SettingsActivity()
-com.linkbubble.ui.SettingsFragment
-com.linkbubble.ui.SettingsFragment: SettingsFragment()
-com.linkbubble.ui.SettingsFragment$AppInfoComparator: SettingsFragment$AppInfoComparator()
-com.linkbubble.ui.SettingsFragment$IncognitoModeChangedEvent
+com.linkbubble.ui.SettingsActivity$SettingsFragment
+com.linkbubble.ui.SettingsActivity$SettingsFragment: SettingsActivity$SettingsFragment()
+com.linkbubble.ui.SettingsActivity$SettingsFragment$AppInfoComparator: SettingsActivity$SettingsFragment$AppInfoComparator()
+com.linkbubble.ui.SettingsBaseFragment: SettingsBaseFragment()
+com.linkbubble.ui.SettingsDefaultAppsActivity
+com.linkbubble.ui.SettingsDefaultAppsActivity: SettingsDefaultAppsActivity()
+com.linkbubble.ui.SettingsDefaultAppsActivity$SettingsDefaultAppsFragment
+com.linkbubble.ui.SettingsDefaultAppsActivity$SettingsDefaultAppsFragment: SettingsDefaultAppsActivity$SettingsDefaultAppsFragment()
+com.linkbubble.ui.SettingsHelpActivity
+com.linkbubble.ui.SettingsHelpActivity: SettingsHelpActivity()
+com.linkbubble.ui.SettingsHelpActivity$SettingsHelpFragment
+com.linkbubble.ui.SettingsHelpActivity$SettingsHelpFragment: SettingsHelpActivity$SettingsHelpFragment()
+com.linkbubble.ui.SettingsMoreActivity
+com.linkbubble.ui.SettingsMoreActivity: SettingsMoreActivity()
+com.linkbubble.ui.SettingsMoreActivity$SettingsMoreFragment
+com.linkbubble.ui.SettingsMoreActivity$SettingsMoreFragment: SettingsMoreActivity$SettingsMoreFragment()
 com.linkbubble.ui.TabView
 com.linkbubble.ui.TabView: TabView(android.content.Context)
 com.linkbubble.ui.TabView: TabView(android.content.Context,android.util.AttributeSet)
