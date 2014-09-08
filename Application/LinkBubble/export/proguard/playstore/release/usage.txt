@@ -4714,7 +4714,7 @@ com.linkbubble.Constant:
     public static final java.lang.String USER_AGENT_CHROME_DESKTOP
     public static final java.lang.String DIFFBOT_KEY
     public static final java.lang.String POCKET_PACKAGE_NAME
-    89:92:public static java.lang.String getValidDeviceId()
+    91:94:public static java.lang.String getValidDeviceId()
 com.linkbubble.DRM:
     static final int MSG_LICENSE_RESULT
     static final int MSG_CHECK_LICENSE
@@ -4730,8 +4730,8 @@ com.linkbubble.MainController:
     private android.widget.TextView mTextView
     private static final int MAX_SAMPLE_COUNT
     private static final float MAX_VALID_TIME
-    1016:1017:public void switchToExpandedView()
-    1148:1148:public boolean isScreenOn()
+    1015:1016:public void switchToExpandedView()
+    1147:1147:public boolean isScreenOn()
 com.linkbubble.MainService:
     private static final java.lang.String BCAST_CONFIGCHANGED
 com.linkbubble.R$anim
@@ -4802,8 +4802,8 @@ com.linkbubble.Settings:
     private static final java.lang.String LAST_APP_REDIRECT_KEY_TIME
     private static final java.lang.String LAST_APP_REDIRECT_KEY_URL
     private static final int MAX_LAST_APP_REDIRECT_COUNT
-    660:660:public java.util.List getIgnoreLinksFromPackageNames()
-    738:738:public boolean checkForYouTubeEmbeds()
+    663:663:public java.util.List getIgnoreLinksFromPackageNames()
+    741:741:public boolean checkForYouTubeEmbeds()
 com.linkbubble.articlerender.ArticleContent:
     private static final java.lang.String TAG
 com.linkbubble.articlerender.ArticleRenderer:
@@ -4888,7 +4888,6 @@ com.linkbubble.ui.HistoryActivity:
     private static final int FAVICON_CACHE_SIZE
 com.linkbubble.ui.HomeActivity:
     private static final java.lang.String TAG
-    private static final java.lang.String PLAYED_INTRO_ANIM_KEY
 com.linkbubble.ui.NotificationCloseTabActivity:
     public static final java.lang.String EXTRA_DISMISS_NOTIFICATION
 com.linkbubble.ui.NotificationOpenTabActivity:
@@ -4910,14 +4909,13 @@ com.linkbubble.ui.ProgressIndicator:
 com.linkbubble.ui.Prompt:
     public static final int LENGTH_SHORT
     public static final int LENGTH_LONG
-com.linkbubble.ui.SettingsFragment:
+com.linkbubble.ui.SettingsActivity$SettingsFragment:
     private static final int THEME_LIGHT_COLOR
     private static final int THEME_LIGHT_NO_COLOR
     private static final int THEME_DARK_COLOR
     private static final int THEME_DARK_NO_COLOR
-    691:694:void updateInterceptLinksFromPreference()
-com.linkbubble.ui.SettingsFragment$AppInfo
-com.linkbubble.ui.SettingsFragment$AppInfoComparator
+com.linkbubble.ui.SettingsActivity$SettingsFragment$AppInfo
+com.linkbubble.ui.SettingsActivity$SettingsFragment$AppInfoComparator
 com.linkbubble.ui.ThemedListPreference:
     public static final java.lang.String TAG
     29:30:public ThemedListPreference(android.content.Context)
@@ -4934,7 +4932,7 @@ com.linkbubble.util.Analytics:
     public static final java.lang.String UPGRADE_PROMPT_SINGLE_TAB_OPEN_URL
     public static final java.lang.String UPGRADE_PROMPT_SINGLE_TAB_REDIRECT
 com.linkbubble.util.AppPickerList:
-    160:171:public static java.util.ArrayList getSelected(android.view.View)
+    163:174:public static java.util.ArrayList getSelected(android.view.View)
 com.linkbubble.util.AppPoller:
     private static final java.lang.String TAG
     private static final int ACTION_POLL_CURRENT_APP
@@ -4981,11 +4979,14 @@ com.linkbubble.util.Util:
     private static final int OUTCODE_RIGHT
     private static final int OUTCODE_BOTTOM
     private static final int OUTCODE_TOP
-    69:76:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
-    339:347:public static int randInt(int,int)
-    405:421:static android.graphics.Bitmap createIconBitmap(android.graphics.Bitmap,android.content.Context)
-    510:520:public static java.lang.String getDefaultLauncherPackage(android.content.pm.PackageManager)
-    543:548:public static void setLocale(android.content.Context,java.lang.String)
+    70:77:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
+    340:348:public static int randInt(int,int)
+    406:422:static android.graphics.Bitmap createIconBitmap(android.graphics.Bitmap,android.content.Context)
+    511:521:public static java.lang.String getDefaultLauncherPackage(android.content.pm.PackageManager)
+    544:549:public static void setLocale(android.content.Context,java.lang.String)
+    643:650:public static java.lang.Integer getSystemActionBarHeight(android.content.Context)
+    654:663:public static java.lang.Integer getSystemStatusBarHeight(android.content.Context)
+    667:676:public static java.lang.Integer getSystemNavigationBarHeight(android.content.Context)
 com.linkbubble.webrender.DiffBotRenderer:
     private static final java.lang.String TAG
     private static final java.lang.String API_URL
