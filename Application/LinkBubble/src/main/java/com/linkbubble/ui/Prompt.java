@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import com.linkbubble.Config;
 import com.linkbubble.R;
+import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
 
 public class Prompt {
@@ -191,6 +192,7 @@ public class Prompt {
         Util.Assert(sPrompt != null, "null instance");
         if (sPrompt != null) {
             sPrompt.hidePrompt(true);
+            CrashTracking.log("Prompt.show() text:" + text);
             sPrompt.showPrompt(text, buttonText, icon, duration, showCloseButton, forceSingleLine, listener);
         }
     }

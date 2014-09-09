@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 import com.linkbubble.Settings;
+import com.linkbubble.util.CrashTracking;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -103,7 +104,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         try {
             db.insert(TABLE_LINK_HISTORY, null, getContentValues(historyRecord));
+            CrashTracking.log("DatabaseHelper.addHistoryRecord() success");
         } catch (IllegalStateException ex) {
+            CrashTracking.log("DatabaseHelper.addHistoryRecord() IllegalStateException");
         }
         db.close();
     }
@@ -112,9 +115,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         try {
             ContentValues values = getContentValues(historyRecord);
+            String id = String.valueOf(historyRecord.getId());
             db.update(TABLE_LINK_HISTORY, values,
-                                KEY_ID + " = ?", new String[] { String.valueOf(historyRecord.getId()) });
+                                KEY_ID + " = ?", new String[] { id });
+            CrashTracking.log("DatabaseHelper.updateHistoryRecord() success, id:" + id);
         } catch (IllegalStateException ex) {
+            CrashTracking.log("DatabaseHelper.addHistoryRecord() IllegalStateException");
         }
         db.close();
     }
@@ -125,10 +131,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = getWritableDatabase();
         try {
-            db.delete(TABLE_LINK_HISTORY, KEY_ID + " = ?", new String[]{String.valueOf(historyRecord.getId())});
+            String id = String.valueOf(historyRecord.getId());
+            db.delete(TABLE_LINK_HISTORY, KEY_ID + " = ?", new String[]{id});
             result = true;
             Log.d(TAG, "deleted historyRecord:" + historyRecord.toString());
+            CrashTracking.log("DatabaseHelper.deleteHistoryRecord() success, id:" + id);
         } catch (IllegalStateException ex) {
+            CrashTracking.log("DatabaseHelper.deleteHistoryRecord() IllegalStateException");
         }
         db.close();
 
@@ -266,11 +275,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         byte[] byteArray = cursor.getBlob(2);
                         result = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
                         Log.d(TAG, "getFavicon() - fetched favicon for " + faviconUrl);
+                        CrashTracking.log("DatabaseHelper.getFavicon() success, id:" + id);
                     } else {
                         idToDelete = id;
                     }
                 }
             } catch (IllegalStateException ex) {    // #302
+                CrashTracking.log("DatabaseHelper.getFavicon() IllegalStateException");
             }
             cursor.close();
 
@@ -332,7 +343,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         try {
             String idAsString = String.valueOf(id);
             db.delete(TABLE_FAVICON_CACHE, KEY_ID + " = ?", new String[]{idAsString});
+            CrashTracking.log("DatabaseHelper.deleteFavicon() success, id:" + idAsString);
         } catch (IllegalStateException ex) {
+            CrashTracking.log("DatabaseHelper.deleteFavicon(): IllegalStateException");
         }
 
         db.close();
@@ -364,7 +377,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         try {
             db.insert(TABLE_FAVICON_CACHE, null, values);
+            CrashTracking.log("DatabaseHelper.addFaviconForUrl() success");
         } catch (IllegalStateException ex) {
+            CrashTracking.log("DatabaseHelper.addFaviconForUrl(): IllegalStateException");
         }
         db.close();
 

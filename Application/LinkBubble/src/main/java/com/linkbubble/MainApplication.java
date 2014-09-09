@@ -24,6 +24,7 @@ import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
+import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.IconCache;
 import com.linkbubble.util.Tamper;
 import com.linkbubble.util.Util;
@@ -76,6 +77,7 @@ public class MainApplication extends Application {
         sDrm = new DRM(this);
 
         initTrialStartTime();
+        CrashTracking.log("MainApplication.onCreate()");
     }
 
     static String TRIAL_START_TIME = "lb_trialStartTime";
@@ -271,6 +273,7 @@ public class MainApplication extends Application {
         if (urls == null || urls.length == 0 || Tamper.isTweaked(context)) {
             return;
         }
+        CrashTracking.log("MainApplication.restoreLinks(), urls.length:" + urls.length);
         Intent serviceIntent = new Intent(context, MainService.class);
         serviceIntent.putExtra("cmd", "restore");
         serviceIntent.putExtra("urls", urls);
@@ -285,6 +288,7 @@ public class MainApplication extends Application {
             intent.setComponent(defaultBrowserComponentName);
             context.startActivity(intent);
             activityStarted = true;
+            CrashTracking.log("MainApplication.openInBrowser()");
         }
 
         if (activityStarted == false && showToastIfNoBrowser) {
@@ -318,6 +322,7 @@ public class MainApplication extends Application {
             if (urlLoadStartTime > -1) {
                 Settings.get().trackLinkLoadTime(System.currentTimeMillis() - urlLoadStartTime, Settings.LinkLoadType.AppRedirectBrowser, urlAsString);
             }
+            CrashTracking.log("MainApplication.loadIntent()");
             return true;
         } catch (SecurityException ex) {
             openIntent = new Intent(Intent.ACTION_VIEW);
@@ -329,6 +334,7 @@ public class MainApplication extends Application {
                 if (urlLoadStartTime > -1) {
                     Settings.get().trackLinkLoadTime(System.currentTimeMillis() - urlLoadStartTime, Settings.LinkLoadType.AppRedirectBrowser, urlAsString);
                 }
+                CrashTracking.log("MainApplication.loadIntent() [2]");
                 return true;
             } catch (SecurityException ex2) {
                 if (toastOnError) {
@@ -359,6 +365,7 @@ public class MainApplication extends Application {
         boolean result = false;
         if (actionType == Constant.ActionType.Share) {
             String consumePackageName = Settings.get().getConsumeBubblePackageName(action);
+            CrashTracking.log("MainApplication.handleBubbleAction() action:" + action.toString() + ", consumePackageName:" + consumePackageName);
             String consumeName = Settings.get().getConsumeBubbleActivityClassName(action);
 
             if (consumePackageName.equals(BuildConfig.PACKAGE_NAME) && consumeName.equals(Constant.SHARE_PICKER_NAME)) {
@@ -393,9 +400,12 @@ public class MainApplication extends Application {
                 Toast.makeText(context, R.string.consume_activity_not_found, Toast.LENGTH_LONG).show();
             }
         } else if (actionType == Constant.ActionType.View) {
-            result = MainApplication.loadIntent(context, Settings.get().getConsumeBubblePackageName(action),
+            String consumePackageName = Settings.get().getConsumeBubblePackageName(action);
+            CrashTracking.log("MainApplication.handleBubbleAction() action:" + action.toString() + ", consumePackageName:" + consumePackageName);
+            result = MainApplication.loadIntent(context, consumePackageName,
                     Settings.get().getConsumeBubbleActivityClassName(action), urlAsString, -1, true);
         } else if (action == Constant.BubbleAction.Close) {
+            CrashTracking.log("MainApplication.handleBubbleAction() action:" + action.toString());
             result = true;
         }
 
@@ -436,8 +446,16 @@ public class MainApplication extends Application {
         app.getBus().post(new HistoryRecord.ChangedEvent(historyRecord));
     }
 
+    private static final String sIgnoreClassName = MainController.DraggableBubbleMovedEvent.class.getSimpleName();
+    private static String sLastPostClassName = "";
     public static void postEvent(Context context, Object event) {
         MainApplication app = (MainApplication) context.getApplicationContext();
+        String simpleName = event.getClass().getSimpleName();
+        if (sLastPostClassName.equals(sIgnoreClassName) == false
+                || sLastPostClassName.equals(sIgnoreClassName) == false) {
+            CrashTracking.log("post(" + simpleName + ")");
+            sLastPostClassName = simpleName;
+        }
         app.getBus().post(event);
     }
 

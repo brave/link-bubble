@@ -16,6 +16,7 @@ import com.linkbubble.Settings;
 import com.linkbubble.physics.Circle;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
+import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
 
 import java.net.MalformedURLException;
@@ -325,10 +326,13 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     private void doAnimateToContentView(boolean saveBubbleRestingPoint) {
+        CrashTracking.log("doAnimateToContentView()");
         if (mAnimActive) {
             if (mMode == Mode.ContentView) {
+                CrashTracking.log("doAnimateToContentView() mMode == Mode.ContentView, early exit");
                 return;
             } else {
+                CrashTracking.log("doAnimateToContentView() cancelAnimation()");
                 mDraggableHelper.cancelAnimation();
             }
         }
@@ -356,12 +360,15 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             @Override
             public void onAnimationComplete() {
                 onAnimComplete();
-                if (mainController.getActiveTabCount() == 0) {
+                int activeCount = mainController.getActiveTabCount();
+                if (activeCount == 0) {
                     // Ensure we don't enter state where there are no tabs to display. Fix #448
                     MainApplication.postEvent(getContext(), new MainController.EndCollapseTransitionEvent());
                     MainApplication.postEvent(getContext(), new ExpandedActivity.MinimizeExpandedActivityEvent());
+                    CrashTracking.log("doAnimateToContentView(): onAnimationComplete(): getActiveTabCount()==0");
                 } else {
                     MainApplication.postEvent(getContext(), mEndExpandTransitionEvent);
+                    CrashTracking.log("doAnimateToContentView(): onAnimationComplete(): getActiveTabCount():" + activeCount);
                 }
             }
             @Override
@@ -426,6 +433,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                     }
 
                     MainApplication.postEvent(getContext(), mBeginBubbleDragEvent);
+                    CrashTracking.log("BubbleDraggable.configure(): onActionDown() - start drag");
                 }
             }
 
@@ -499,6 +507,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             @Override
             public void onActionUp(DraggableHelper.ReleaseEvent e) {
                 if (mTouchDown) {
+                    CrashTracking.log("BubbleDraggable.configure(): onActionUp() - end drag");
                     mDraggableHelper.cancelAnimation();
 
                     if (mHasMoved) {
@@ -507,6 +516,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                             float threshold = Config.dpToPx(900.0f);
                             if (v > threshold) {
                                 doFlick(e.vx, e.vy);
+                                CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doFlick()");
                             } else {
                                 MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
 
@@ -517,24 +527,30 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
                                 if (doBubbleView) {
                                     mMode = Mode.BubbleView;
+                                    CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doSnap()");
                                     doSnap();
                                 } else {
+                                    CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doAnimateToContentView() [mHasMoved==true]");
                                     doAnimateToContentView();
                                 }
                             }
                         } else {
                             MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
+                            CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doSnapAction()");
                             doSnapAction(mCurrentSnapTarget.getAction());
                         }
                     } else {
                         MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
 
                         if (mMode == Mode.BubbleView) {
+                            CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doAnimateToContentView() [mMode == Mode.BubbleView]");
                             doAnimateToContentView();
                         } else {
                             if (mMode == Mode.ContentView && mBubbleFlowDraggable.isExpanded() == false) {
+                                CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doAnimateToContentView() [mMode == Mode.ContentView]");
                                 doAnimateToContentView();
                             } else {
+                                CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doAnimateToBubbleView()");
                                 doAnimateToBubbleView(0);
                             }
                         }
@@ -557,6 +573,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         if (targetX != x0 || targetY != y0) {
             setTargetPos(targetX, targetY, (float)targetTime / 1000.f, DraggableHelper.AnimationType.LargeOvershoot, null);
         }
+        CrashTracking.log("BubbleDraggable.slideOnScreen()");
     }
 
     public void setBubbleFlowDraggable(BubbleFlowDraggable bubbleFlowDraggable) {

@@ -1,7 +1,10 @@
 package com.linkbubble.util;
 
 import android.content.Context;
+import android.util.Log;
+
 import com.crashlytics.android.Crashlytics;
+import com.linkbubble.BuildConfig;
 
 public class CrashTracking {
 
@@ -35,5 +38,8 @@ public class CrashTracking {
 
     public static void log(String message) {
         Crashlytics.log(message);
+        if (BuildConfig.DEBUG) {
+            Log.d("CrashTracking", message);
+        }
     }
 }
