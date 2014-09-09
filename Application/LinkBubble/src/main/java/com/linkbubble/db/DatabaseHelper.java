@@ -329,7 +329,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private void deleteFavicon(long id) {
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(TABLE_FAVICON_CACHE, KEY_ID + " = ?", new String[] { String.valueOf(id) });
+        try {
+            String idAsString = String.valueOf(id);
+            db.delete(TABLE_FAVICON_CACHE, KEY_ID + " = ?", new String[]{idAsString});
+        } catch (IllegalStateException ex) {
+        }
+
         db.close();
 
         Log.d(TAG, "deleteFavicon() - id:" + id);
