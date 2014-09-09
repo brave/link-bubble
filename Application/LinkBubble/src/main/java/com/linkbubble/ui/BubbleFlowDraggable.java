@@ -17,6 +17,7 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
+import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.VerticalGestureListener;
 
 import java.net.MalformedURLException;
@@ -206,6 +207,8 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     @Override
     public boolean expand(long time, final AnimationEventListener animationEventListener) {
+
+        CrashTracking.log("BubbleFlowDraggable.expand(): time:" + time);
 
         if (isExpanded() == false && mCurrentTab != null) {
             // Ensure the centerIndex matches the current bubble. This should only *NOT* be the case when
@@ -463,9 +466,13 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     public void closeAllBubbles(boolean removeFromCurrentTabs) {
+        int closeCount = 0;
         for (View view : mViews) {
             closeTab(((TabView) view), false, false);
+            closeCount++;
         }
+
+        CrashTracking.log("closeAllbubbles(): closeCount:" + closeCount);
 
         mViews.clear();
         postClosedTab(removeFromCurrentTabs);
@@ -479,5 +486,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     public void saveCurrentTabs() {
         Settings.get().saveCurrentTabs(mViews);
+        CrashTracking.log("saveCurrentTabs()");
     }
 }
