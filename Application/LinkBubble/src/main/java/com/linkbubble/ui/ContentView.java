@@ -45,6 +45,7 @@ import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.articlerender.ArticleRenderer;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
+import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.webrender.WebRenderer;
@@ -404,6 +405,7 @@ public class ContentView extends FrameLayout {
         @Override
         public void onPageStarted(final String urlAsString, Bitmap favIcon) {
             Log.d(TAG, "onPageStarted() - " + urlAsString);
+            CrashTracking.log("onPageStarted(), index:" + MainController.get().getTabIndex(mOwnerTabView));
 
             // Ensure that items opened in new tabs are redirected to a browser when not licensed, re #371, re #360
             if (mInitialUrlAsString.equals(Constant.NEW_TAB_URL) && DRM.allowProFeatures() == false) {
@@ -477,6 +479,7 @@ public class ContentView extends FrameLayout {
                                 new ActionItem.OnActionItemDefaultSelectedListener() {
                                     @Override
                                     public void onSelected(ActionItem actionItem, boolean always) {
+                                        CrashTracking.log("onPageStarted(): OnActionItemDefaultSelectedListener.onSelected()");
                                         boolean loaded = false;
                                         String appPackageName = context.getPackageName();
                                         for (ResolveInfo resolveInfo : resolveInfos) {
@@ -543,7 +546,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onPageFinished(String urlAsString) {
-
+            CrashTracking.log("onPageFinished(), index:" + MainController.get().getTabIndex(mOwnerTabView));
             if (mLifeState != LifeState.Alive) {
                 return;
             }
@@ -622,6 +625,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onCloseWindow() {
+            CrashTracking.log("WebRenderer.Controller.onCloseWindow()");
             MainController.get().closeTab(mOwnerTabView, true, true);
         }
 
@@ -777,6 +781,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onAppOpened() {
+            CrashTracking.log("mOnOpenInAppButtonClickListener.onAppOpened()");
             MainController.get().closeTab(mOwnerTabView, true, false);
             // L_WATCH: L currently lacks getRecentTasks(), so minimize here
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
@@ -898,6 +903,7 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_reload_page: {
+                            CrashTracking.log("R.id.item_reload_page");
                             mWebRenderer.resetPageInspector();
                             URL currentUrl = mWebRenderer.getUrl();
                             mEventHandler.onPageLoading(currentUrl);
@@ -930,6 +936,7 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_close_tab: {
+                            CrashTracking.log("R.id.item_close_tab");
                             MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), true);
                             break;
                         }
@@ -969,6 +976,7 @@ public class ContentView extends FrameLayout {
 
     private void onDownloadStart(String urlAsString) {
         openInBrowser(urlAsString);
+        CrashTracking.log("onDownloadStart()");
         MainController.get().closeTab(mOwnerTabView, true, false);
         // L_WATCH: L currently lacks getRecentTasks(), so minimize here
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
@@ -978,9 +986,11 @@ public class ContentView extends FrameLayout {
 
     private boolean onBackPressed() {
         if (mUrlStack.size() == 0) {
+            CrashTracking.log("onBackPressed() - closeTab()");
             MainController.get().closeTab(mOwnerTabView, true, true);
             return true;
         } else {
+            CrashTracking.log("onBackPressed() - go back");
             mWebRenderer.stopLoading();
             String urlBefore = mWebRenderer.getUrl().toString();
 
@@ -1391,6 +1401,7 @@ public class ContentView extends FrameLayout {
 
     private boolean openInBrowser(String urlAsString, boolean canShowUndoPrompt) {
         Log.d(TAG, "openInBrowser() - url:" + urlAsString);
+        CrashTracking.log("openInBrowser()");
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(urlAsString));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -1409,6 +1420,7 @@ public class ContentView extends FrameLayout {
     private boolean openInApp(ResolveInfo resolveInfo, String urlAsString) {
         Context context = getContext();
         if (MainApplication.loadResolveInfoIntent(getContext(), resolveInfo, urlAsString, mInitialUrlLoadStartTime)) {
+            CrashTracking.log("openInApp(): resolveInfo:" + resolveInfo.activityInfo.packageName);
             String title = String.format(context.getString(R.string.link_loaded_with_app),
                     resolveInfo.loadLabel(context.getPackageManager()));
             MainApplication.saveUrlInHistory(context, resolveInfo, urlAsString, title);
