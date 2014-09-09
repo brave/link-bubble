@@ -16,6 +16,7 @@ import android.widget.HorizontalScrollView;
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.MainController;
+import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.TranslateAnimationEx;
 import com.linkbubble.util.Util;
 import com.linkbubble.util.VerticalGestureListener;
@@ -477,6 +478,7 @@ public class BubbleFlowView extends HorizontalScrollView {
     }
 
     public void collapse(long time, AnimationEventListener animationEventListener) {
+        CrashTracking.log("BubbleFlowView.collapse(): time:" + time);
         if (mIsExpanded == false) {
             return;
         }

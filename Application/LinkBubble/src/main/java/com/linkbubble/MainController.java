@@ -904,16 +904,16 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public boolean closeTab(TabView tabView, Constant.BubbleAction action, boolean animateOff, boolean canShowUndoPrompt) {
-        CrashTracking.setBool("contentViewShowing", contentViewShowing());
-        CrashTracking.setInt("getActiveTabCount", getActiveTabCount());
-        CrashTracking.setInt("getVisibleTabCount", getVisibleTabCount());
-        CrashTracking.setString("action", action.toString());
-        CrashTracking.setBool("animateOff", animateOff);
-        CrashTracking.setBool("canShowUndoPrompt", canShowUndoPrompt);
+        int activeTabCount = getActiveTabCount();
+        int visibleTabCount = getVisibleTabCount();
+        boolean contentViewShowing = contentViewShowing();
+        CrashTracking.log("MainController.closeTab(): action:" + action.toString() + ", contentViewShowing:" + contentViewShowing
+                + ", visibleTabCount:" + visibleTabCount + ", activeTabCount:" + activeTabCount + ", canShowUndoPrompt:" + canShowUndoPrompt
+                + ", animateOff:" + animateOff + ", canShowUndoPrompt:" + canShowUndoPrompt);
         if (mBubbleFlowDraggable != null) {
             mBubbleFlowDraggable.closeTab(tabView, animateOff, action, tabView != null ? tabView.getTotalTrackedLoadTime() : -1);
         }
-        int activeTabCount = getActiveTabCount();
+
         showBadge(activeTabCount > 1 ? true : false);
         if (activeTabCount == 0) {
             hideBubbleDraggable();
@@ -1088,6 +1088,7 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public boolean reloadAllTabs(Context context) {
+        CrashTracking.log("MainController.reloadAllTabs()");
         boolean reloaded = false;
         closeAllBubbles(false);
         final Vector<String> urls = Settings.get().loadCurrentTabs();

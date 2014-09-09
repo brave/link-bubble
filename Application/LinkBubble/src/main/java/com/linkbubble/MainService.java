@@ -53,13 +53,15 @@ public class MainService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+        String cmd = intent != null ? intent.getStringExtra("cmd") : null;
+        CrashTracking.log("MainService.onStartCommand(), cmd:" + cmd);
+
         MainController mainController = MainController.get();
-        if (mainController == null || intent == null || intent.getStringExtra("cmd") == null) {
+        if (mainController == null || intent == null || cmd == null) {
             stopSelf();
             return START_NOT_STICKY;
         }
 
-        String cmd = intent.getStringExtra("cmd");
         long urlLoadStartTime = intent.getLongExtra("start_time", System.currentTimeMillis());
         if (cmd.compareTo("open") == 0) {
             String url = intent.getStringExtra("url");
@@ -107,6 +109,7 @@ public class MainService extends Service {
 
         super.onCreate();
         CrashTracking.init(this);
+        CrashTracking.log("MainService.onCreate()");
 
         showDefaultNotification();
 
@@ -121,6 +124,7 @@ public class MainService extends Service {
                     Settings.get().saveBubbleRestingPoint();
                     FlushCacheService.doCheck(MainService.this);
                     stopSelf();
+                    CrashTracking.log("MainService.onCreate(): onDestroy()");
                 }
             });
 
@@ -159,6 +163,7 @@ public class MainService extends Service {
         unregisterReceiver(mDialogReceiver);
         unregisterReceiver(mBroadcastReceiver);
         MainController.destroy();
+        CrashTracking.log("MainService.onDestroy()");
         super.onDestroy();
     }
 
