@@ -8,6 +8,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -82,18 +83,21 @@ public class CanvasView extends FrameLayout {
         int canvasMaskHeight = getResources().getDimensionPixelSize(R.dimen.canvas_mask_height);
 
         if (Constant.COVER_STATUS_BAR) {
+            int statusBarHeight = Util.getSystemStatusBarHeight(context);
+
             mStatusBarCoverView = new ImageView(context);
-            mStatusBarCoverView.setImageResource(R.drawable.masked_background_half);
+            mStatusBarCoverView.setImageResource(R.drawable.masked_status_bar);
             mStatusBarCoverView.setScaleType(ImageView.ScaleType.FIT_XY);
             WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
             lp.gravity = Gravity.TOP | Gravity.LEFT;
             lp.x = 0;
-            lp.y = 0;
-            lp.height = canvasMaskHeight + Config.getStatusBarHeight(context);
+            lp.y = -statusBarHeight;
+            lp.height = statusBarHeight;
             lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-            lp.type = WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
+            lp.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
             lp.flags = WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
             lp.format = PixelFormat.TRANSPARENT;
+
             mStatusBarCoverView.setLayoutParams(lp);
 
             MainController.addRootWindow(mStatusBarCoverView, lp);
@@ -102,15 +106,13 @@ public class CanvasView extends FrameLayout {
         Resources resources = getResources();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        if (Constant.COVER_STATUS_BAR == false) {
-            mTopMaskView = new ImageView(context);
-            mTopMaskView.setImageResource(R.drawable.masked_background_half);
-            mTopMaskView.setScaleType(ImageView.ScaleType.FIT_XY);
-            FrameLayout.LayoutParams topMaskLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, canvasMaskHeight);
-            topMaskLP.gravity = Gravity.TOP;
-            mTopMaskView.setLayoutParams(topMaskLP);
-            addView(mTopMaskView);
-        }
+        mTopMaskView = new ImageView(context);
+        mTopMaskView.setImageResource(R.drawable.masked_background_half);
+        mTopMaskView.setScaleType(ImageView.ScaleType.FIT_XY);
+        FrameLayout.LayoutParams topMaskLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, canvasMaskHeight);
+        topMaskLP.gravity = Gravity.TOP;
+        mTopMaskView.setLayoutParams(topMaskLP);
+        addView(mTopMaskView);
 
         mBottomMaskView = new ImageView(context);
         mBottomMaskView.setImageResource(R.drawable.masked_background_half);
@@ -415,6 +417,9 @@ public class CanvasView extends FrameLayout {
         MainApplication.unregisterForBus(getContext(), this);
 
         MainController.removeRootWindow(this);
+        if (mStatusBarCoverView != null) {
+            MainController.removeRootWindow(mStatusBarCoverView);
+        }
     }
 
     public void update(float dt) {
