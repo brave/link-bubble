@@ -34,6 +34,7 @@ import com.linkbubble.ui.TabView;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.AppPoller;
+import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
@@ -515,6 +516,10 @@ public class MainController implements Choreographer.FrameCallback {
         return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getActiveTabCount() : 0;
     }
 
+    public int getVisibleTabCount() {
+        return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.getVisibleTabCount() : 0;
+    }
+
     public boolean isUrlActive(String urlAsString) {
         return mBubbleFlowDraggable != null ? mBubbleFlowDraggable.isUrlActive(urlAsString) : false;
     }
@@ -898,7 +903,13 @@ public class MainController implements Choreographer.FrameCallback {
         return closeTab(tabView, Constant.BubbleAction.Close, animateOff, canShowUndoPrompt);
     }
 
-    public boolean closeTab(final TabView tabView, Constant.BubbleAction action, boolean animateOff, boolean canShowUndoPrompt) {
+    public boolean closeTab(TabView tabView, Constant.BubbleAction action, boolean animateOff, boolean canShowUndoPrompt) {
+        CrashTracking.setBool("contentViewShowing", contentViewShowing());
+        CrashTracking.setInt("getActiveTabCount", getActiveTabCount());
+        CrashTracking.setInt("getVisibleTabCount", getVisibleTabCount());
+        CrashTracking.setString("action", action.toString());
+        CrashTracking.setBool("animateOff", animateOff);
+        CrashTracking.setBool("canShowUndoPrompt", canShowUndoPrompt);
         if (mBubbleFlowDraggable != null) {
             mBubbleFlowDraggable.closeTab(tabView, animateOff, action, tabView != null ? tabView.getTotalTrackedLoadTime() : -1);
         }
@@ -913,48 +924,59 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         if (canShowUndoPrompt && Settings.get().getShowUndoCloseTab()) {
-            final String urlAsString = tabView.getUrl().toString();
-            String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(urlAsString) : null;
-            String message;
-            if (title != null) {
-                message = String.format(mContext.getResources().getString(R.string.undo_close_tab_title), title);
-            } else {
-                message = mContext.getResources().getString(R.string.undo_close_tab_no_title);
-            }
-            tabView.mWasRestored = false;
-            Prompt.show(message,
-                    mContext.getResources().getString(R.string.action_undo).toUpperCase(),
-                    mContext.getResources().getDrawable(R.drawable.ic_undobar_undo),
-                    Prompt.LENGTH_SHORT,
-                    false,
-                    true,
-                    new Prompt.OnPromptEventListener() {
-                        @Override
-                        public void onActionClick() {
-                            if (tabView.mWasRestored == false) {
-                                restoreTab(tabView);
-                                tabView.getContentView().onRestored();
-                            }
-                        }
-
-                        @Override
-                        public void onClose() {
-                            if (tabView.mWasRestored == false) {
-                                tabView.destroy();
-                            }
-                        }
-                    }
-            );
+            showClosePrompt(tabView);
         } else {
-            mBubbleDraggable.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    tabView.destroy();
-                }
-            }, 500);
+            destroyTabOnDelay(tabView);
         }
 
         return getActiveTabCount() > 0;
+    }
+
+    private void destroyTabOnDelay(final TabView tabView) {
+        mBubbleDraggable.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tabView.destroy();
+            }
+        }, 500);
+    }
+
+    private void showClosePrompt(final TabView tabView) {
+        String title = null;
+        if (tabView.getUrl() != null && MainApplication.sTitleHashMap != null) {
+            String urlAsString = tabView.getUrl().toString();
+            title = MainApplication.sTitleHashMap.get(urlAsString);
+        }
+        String message;
+        if (title != null) {
+            message = String.format(mContext.getResources().getString(R.string.undo_close_tab_title), title);
+        } else {
+            message = mContext.getResources().getString(R.string.undo_close_tab_no_title);
+        }
+        tabView.mWasRestored = false;
+        Prompt.show(message,
+                mContext.getResources().getString(R.string.action_undo).toUpperCase(),
+                mContext.getResources().getDrawable(R.drawable.ic_undobar_undo),
+                Prompt.LENGTH_SHORT,
+                false,
+                true,
+                new Prompt.OnPromptEventListener() {
+                    @Override
+                    public void onActionClick() {
+                        if (tabView.mWasRestored == false) {
+                            restoreTab(tabView);
+                            tabView.getContentView().onRestored();
+                        }
+                    }
+
+                    @Override
+                    public void onClose() {
+                        if (tabView.mWasRestored == false) {
+                            tabView.destroy();
+                        }
+                    }
+                }
+        );
     }
 
     public void closeAllBubbles() {
