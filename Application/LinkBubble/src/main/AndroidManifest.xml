@@ -269,9 +269,6 @@
 
         -->
 
-        <service android:name="com.linkbubble.util.FlushCacheService"
-            android:exported="false"/>
-
     </application>
 
 </manifest>
