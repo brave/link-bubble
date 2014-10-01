@@ -2,7 +2,8 @@
 <changelog>
 
     <release version="1.4.5" versioncode="14500">
-        <change>IMPROVEMENT: Color Settings dividers.</change>
+        <change>IMPROVEMENT: Darken beneath the status bar when dragging a bubble (Android 4.4 and above).</change>
+        <change>IMPROVEMENT: Use color on Settings dividers.</change>
         <change>BUG FIX: Stability fixes.</change>
     </release>
 
