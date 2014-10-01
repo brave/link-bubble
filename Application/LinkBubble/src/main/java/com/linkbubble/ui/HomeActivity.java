@@ -31,7 +31,6 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
-import com.linkbubble.util.FlushCacheService;
 import com.linkbubble.util.Util;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -297,8 +296,6 @@ public class HomeActivity extends Activity {
 
     @Override
     public void onDestroy() {
-        FlushCacheService.doCheck(this);
-
         MainApplication.unregisterForBus(this, this);
         super.onDestroy();
     }

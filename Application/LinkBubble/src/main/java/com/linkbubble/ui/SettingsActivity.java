@@ -57,7 +57,6 @@ import com.linkbubble.Settings;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.AppPickerList;
 import com.linkbubble.util.CrashTracking;
-import com.linkbubble.util.FlushCacheService;
 import com.linkbubble.util.IconCache;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
@@ -103,7 +102,6 @@ public class SettingsActivity extends PreferenceActivity {
 
     @Override
     public void onDestroy() {
-        FlushCacheService.doCheck(this);
         super.onDestroy();
     }
 
