@@ -18,7 +18,6 @@ import com.linkbubble.ui.NotificationHideActivity;
 import com.linkbubble.ui.NotificationUnhideActivity;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
-import com.linkbubble.util.FlushCacheService;
 import com.squareup.otto.Subscribe;
 
 import java.util.Vector;
@@ -122,7 +121,6 @@ public class MainService extends Service {
                 @Override
                 public void onDestroy() {
                     Settings.get().saveBubbleRestingPoint();
-                    FlushCacheService.doCheck(MainService.this);
                     stopSelf();
                     CrashTracking.log("MainService.onCreate(): onDestroy()");
                 }
