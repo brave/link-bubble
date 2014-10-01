@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.4.5" versioncode="14500">
+        <change>IMPROVEMENT: Color Settings dividers.</change>
+        <change>BUG FIX: Stability fixes.</change>
+    </release>
+
     <release version="1.4.4" versioncode="14400">
-        <change>IMPROVEMENT: Uses Android L's Up button throughout Settings.</change>
+        <change>IMPROVEMENT: Use Android L's Up button throughout Settings.</change>
         <change>CHANGE: Taper back the animation as Link Bubble is opened via a launcher.</change>
         <change>CHANGE: Default zoom level is now 100%.</change>
         <change>CHANGE: Reading Mode uses default zoom level.</change>
