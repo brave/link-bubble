@@ -904,16 +904,17 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public boolean closeTab(TabView tabView, Constant.BubbleAction action, boolean animateOff, boolean canShowUndoPrompt) {
-        int activeTabCount = getActiveTabCount();
-        int visibleTabCount = getVisibleTabCount();
+
+
         boolean contentViewShowing = contentViewShowing();
         CrashTracking.log("MainController.closeTab(): action:" + action.toString() + ", contentViewShowing:" + contentViewShowing
-                + ", visibleTabCount:" + visibleTabCount + ", activeTabCount:" + activeTabCount + ", canShowUndoPrompt:" + canShowUndoPrompt
+                + ", visibleTabCount:" + getVisibleTabCount() + ", activeTabCount:" + getActiveTabCount() + ", canShowUndoPrompt:" + canShowUndoPrompt
                 + ", animateOff:" + animateOff + ", canShowUndoPrompt:" + canShowUndoPrompt);
         if (mBubbleFlowDraggable != null) {
             mBubbleFlowDraggable.closeTab(tabView, animateOff, action, tabView != null ? tabView.getTotalTrackedLoadTime() : -1);
         }
 
+        int activeTabCount = getActiveTabCount();
         showBadge(activeTabCount > 1 ? true : false);
         if (activeTabCount == 0) {
             hideBubbleDraggable();
