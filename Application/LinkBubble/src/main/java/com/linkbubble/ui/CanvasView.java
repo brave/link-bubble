@@ -114,14 +114,16 @@ public class CanvasView extends FrameLayout {
         mTopMaskView.setLayoutParams(topMaskLP);
         addView(mTopMaskView);
 
-        mBottomMaskView = new ImageView(context);
-        mBottomMaskView.setImageResource(R.drawable.masked_background_half);
-        mBottomMaskView.setScaleType(ImageView.ScaleType.FIT_XY);
-        mBottomMaskView.setRotation(180);
-        FrameLayout.LayoutParams bottomMaskLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, canvasMaskHeight);
-        bottomMaskLP.gravity = Gravity.BOTTOM;
-        mBottomMaskView.setLayoutParams(bottomMaskLP);
-        addView(mBottomMaskView);
+        if (Constant.BOTTOM_CANVAS_MASK) {
+            mBottomMaskView = new ImageView(context);
+            mBottomMaskView.setImageResource(R.drawable.masked_background_half);
+            mBottomMaskView.setScaleType(ImageView.ScaleType.FIT_XY);
+            mBottomMaskView.setRotation(180);
+            FrameLayout.LayoutParams bottomMaskLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, canvasMaskHeight);
+            bottomMaskLP.gravity = Gravity.BOTTOM;
+            mBottomMaskView.setLayoutParams(bottomMaskLP);
+            addView(mBottomMaskView);
+        }
 
         int closeBubbleTargetY = getResources().getDimensionPixelSize(R.dimen.close_bubble_target_y);
         CloseTabTargetView closeTabTargetView = (CloseTabTargetView) inflater.inflate(R.layout.view_close_tab_target, null);
@@ -235,7 +237,9 @@ public class CanvasView extends FrameLayout {
         }
 
         mTopMaskView.setAlpha(mCurrentAlpha);
-        mBottomMaskView.setAlpha(mCurrentAlpha);
+        if (mBottomMaskView != null) {
+            mBottomMaskView.setAlpha(mCurrentAlpha);
+        }
 
         if (!mEnabled || (mCurrentAlpha == 0.0f && mContentViewY == (int)(mTargetY))) {
             setVisibility(GONE);
@@ -308,7 +312,9 @@ public class CanvasView extends FrameLayout {
     @Subscribe
     public void onBeginBubbleDrag(MainController.BeginBubbleDragEvent e) {
         fadeIn();
-        mBottomMaskView.setVisibility(VISIBLE);
+        if (mBottomMaskView != null) {
+            mBottomMaskView.setVisibility(VISIBLE);
+        }
         mContentViewY = Config.mScreenHeight - Config.mContentOffset;
         hideContentView();
         MainController.get().showBadge(false);
@@ -440,7 +446,9 @@ public class CanvasView extends FrameLayout {
             if (mAnimTime < mAnimPeriod) {
                 MainController.get().scheduleUpdate();
             } else if (mTargetY == 0.0f) {
-                mBottomMaskView.setVisibility(GONE);
+                if (mBottomMaskView != null) {
+                    mBottomMaskView.setVisibility(GONE);
+                }
             }
             mAnimTime += dt;
         }

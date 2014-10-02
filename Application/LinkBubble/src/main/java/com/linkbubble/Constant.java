@@ -38,6 +38,7 @@ public class Constant {
     public static boolean ENABLE_FLUSH_CACHE_SERVICE = false;
 
     public static boolean COVER_STATUS_BAR = false;//(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) ? true : false;
+    public static boolean BOTTOM_CANVAS_MASK = false;
 
     public static final int BUBBLE_ANIM_TIME = 550;
     public static final int BUBBLE_FLOW_ANIM_TIME = 333;
