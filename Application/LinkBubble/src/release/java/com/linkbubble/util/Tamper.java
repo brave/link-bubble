@@ -1,6 +1,7 @@
 package com.linkbubble.util;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import dexguard.util.CertificateChecker;
 import dexguard.util.TamperDetector;
@@ -8,6 +9,9 @@ import dexguard.util.TamperDetector;
 public class Tamper {
 
     public static boolean isTweaked(Context context) {
+
+        //long startTime = System.currentTimeMillis();
+
         // You can pick your own value or values for OK,
         // to make the code less predictable.
         final int OK = 545635645;
@@ -27,6 +31,9 @@ public class Tamper {
         // the same.
         int certificateChanged =
                 CertificateChecker.checkCertificate(context, OK);
+
+        //long endTime = System.currentTimeMillis();
+        //Toast.makeText(context, "isTweaked() time:" + (endTime-startTime), Toast.LENGTH_LONG).show();
 
         if (apkChanged != OK || certificateChanged != OK) {
             return true;
