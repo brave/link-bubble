@@ -223,6 +223,9 @@
     "toCharsString",
     "java.lang.String"
 
+-encryptclasses com.linkbubble.util.Tamper
+-encryptclasses dexguard.util.**
+
 # Uncomment and adapt the following lines to properly handle Javascript
 # interface classes for WebView.
 -keep class com.linkbubble.util.PageInspector$JSEmbedHandler
