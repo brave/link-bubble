@@ -36,6 +36,8 @@ public class MainService extends Service {
     public static class ShowUnhideNotificationEvent {
     }
 
+    public static class OnDestroyMainServiceEvent {}
+
     public static class ReloadMainServiceEvent {
         public ReloadMainServiceEvent(Context context) {
             mContext = context;
@@ -121,6 +123,8 @@ public class MainService extends Service {
                 @Override
                 public void onDestroy() {
                     Settings.get().saveBubbleRestingPoint();
+                    CrashTracking.log("MainService.onCreate(): onDestroy() - post OnDestroyMainServiceEvent");
+                    MainApplication.postEvent(MainService.this, new OnDestroyMainServiceEvent());
                     stopSelf();
                     CrashTracking.log("MainService.onCreate(): onDestroy()");
                 }
