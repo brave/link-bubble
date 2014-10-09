@@ -19,6 +19,7 @@ import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
+import com.linkbubble.MainService;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.CrashTracking;
@@ -59,14 +60,14 @@ public class ExpandedActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Log.e(TAG, "ExpandedActivity.onCreate()");
+        CrashTracking.log("ExpandedActivity.onCreate()");
 
         super.onCreate(savedInstanceState);
         CrashTracking.init(this);
 
         // Fixes #454
         if (MainController.get() == null || MainController.get().getActiveTabCount() == 0) {
-            Log.e(TAG, "early finish() because nothing to display");
+            CrashTracking.log("early finish() because nothing to display");
             finish();
             return;
         }
@@ -117,20 +118,20 @@ public class ExpandedActivity extends Activity {
     @Override
     public void onActionModeStarted(ActionMode actionMode) {
         super.onActionModeStarted(actionMode);
-        Log.d(TAG, "onActionModeStarted()");
+        CrashTracking.log("onActionModeStarted()");
     }
 
     @Override
     public void onActionModeFinished(ActionMode actionMode) {
         super.onActionModeFinished(actionMode);
-        Log.d(TAG, "onActionModeFinished()");
+        CrashTracking.log("onActionModeFinished()");
     }
 
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
 
-        Log.d(TAG, "onAttachedToWindow()");
+        //CrashTracking.log("onAttachedToWindow()");
 
         if (mHotwordServiceClient != null) {
             mHotwordServiceClient.onAttachedToWindow();
@@ -141,7 +142,7 @@ public class ExpandedActivity extends Activity {
     @Override
     public void onDetachedFromWindow() {
 
-        Log.d(TAG, "onDetachedFromWindow()");
+        //Log.d(TAG, "onDetachedFromWindow()");
 
         if (mHotwordServiceClient != null) {
             mHotwordServiceClient.onDetachedFromWindow();
@@ -171,7 +172,7 @@ public class ExpandedActivity extends Activity {
 
     @Override
     protected void onDestroy() {
-        Log.e(TAG, "***ExpandedActivity.onDestroy()");
+        CrashTracking.log("***ExpandedActivity.onDestroy()");
 
         super.onDestroy();
 
@@ -189,7 +190,7 @@ public class ExpandedActivity extends Activity {
 
     @Override
     protected void onStart() {
-        Log.d(TAG, "ExpandedActivity.onStart()");
+        CrashTracking.log("ExpandedActivity.onStart()");
         Log.e(TAG, "Expand time: " + (System.currentTimeMillis() - MainController.sStartExpandedActivityTime));
 
         MainApplication.postEvent(this, new ExpandedActivityReadyEvent());
@@ -199,7 +200,7 @@ public class ExpandedActivity extends Activity {
 
     @Override
     protected void onStop() {
-        Log.d(TAG, "ExpandedActivity.onStop()");
+        CrashTracking.log("ExpandedActivity.onStop()");
         super.onStop();
 
         //mTopMaskImage.setVisibility(View.GONE);
@@ -208,7 +209,7 @@ public class ExpandedActivity extends Activity {
 
     @Override
     public void onResume() {
-        Log.d(TAG, "ExpandedActivity.onResume()");
+        CrashTracking.log("ExpandedActivity.onResume()");
         super.onResume();
 
         mIsShowing = true;
@@ -232,7 +233,7 @@ public class ExpandedActivity extends Activity {
 
     @Override
     public void onPause() {
-        Log.d(TAG, "ExpandedActivity.onPause()");
+        CrashTracking.log("ExpandedActivity.onPause()");
         super.onPause();
         mIsShowing = false;
 
@@ -243,6 +244,7 @@ public class ExpandedActivity extends Activity {
 
     @Override
     public void finish() {
+        CrashTracking.log("ExpandedActivity.finish()");
         super.finish();
         overridePendingTransition(0, 0);
     }
@@ -264,7 +266,7 @@ public class ExpandedActivity extends Activity {
         //}
 
         if (moveTaskToBack(true)) {
-            Log.d(TAG, "minimize() - moveTaskToBack(true);");
+            CrashTracking.log("minimize() - moveTaskToBack(true);");
             return;
         }
 
@@ -284,9 +286,9 @@ public class ExpandedActivity extends Activity {
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
             overridePendingTransition(0, 0);
-            Log.e(TAG, "minimize() - " + componentName);
+            CrashTracking.log("minimize() - " + componentName);
         } else {
-            Log.e(TAG, "minimize() - NONE!");
+            CrashTracking.log("minimize() - NONE!");
         }
     }
 
