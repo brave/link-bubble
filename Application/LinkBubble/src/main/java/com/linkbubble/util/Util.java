@@ -319,21 +319,6 @@ public class Util {
         return false;
     }
 
-    public static boolean checkForTamper(Context context, Prompt.OnPromptEventListener listener) {
-        if (Tamper.isTweaked(context)) {
-            String text = context.getResources().getString(R.string.tampered_apk);
-            Drawable icon = null;
-            final ResolveInfo storeResolveInfo = MainApplication.getStoreViewResolveInfo(context);
-            if (storeResolveInfo != null) {
-                icon = storeResolveInfo.loadIcon(context.getPackageManager());
-            }
-            Prompt.show(text, icon, Prompt.LENGTH_LONG, listener);
-            return true;
-        }
-
-        return false;
-    }
-
     static Random sRandom = null;
     public static int randInt(int min, int max) {
 

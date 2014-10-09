@@ -18,6 +18,7 @@ import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.CrashTracking;
+import com.linkbubble.util.TamperCheck;
 import com.linkbubble.util.Util;
 
 import java.net.MalformedURLException;
@@ -49,7 +50,7 @@ public class EntryActivity extends Activity {
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, true);
 
-        boolean showingTamperPrompt = Util.checkForTamper(this, new Prompt.OnPromptEventListener() {
+        boolean showingTamperPrompt = TamperCheck.checkForTamper(this, new Prompt.OnPromptEventListener() {
             @Override
             public void onActionClick() {
                 MainApplication.openAppStore(EntryActivity.this, BuildConfig.STORE_FREE_URL);
