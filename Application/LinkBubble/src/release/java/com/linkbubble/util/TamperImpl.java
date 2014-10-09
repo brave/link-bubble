@@ -6,7 +6,7 @@ import android.widget.Toast;
 import dexguard.util.CertificateChecker;
 import dexguard.util.TamperDetector;
 
-public class Tamper {
+public class TamperImpl {
 
     public static boolean isTweaked(Context context) {
 
