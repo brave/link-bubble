@@ -26,7 +26,6 @@ import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.IconCache;
-import com.linkbubble.util.Tamper;
 import com.linkbubble.util.Util;
 import com.parse.GetCallback;
 import com.parse.Parse;
@@ -274,7 +273,7 @@ public class MainApplication extends Application {
 
     public static void restoreLinks(Context context, String [] urls) {
         context = context.getApplicationContext();
-        if (urls == null || urls.length == 0 || Tamper.isTweaked(context)) {
+        if (urls == null || urls.length == 0) {
             return;
         }
         CrashTracking.log("MainApplication.restoreLinks(), urls.length:" + urls.length);

@@ -12,19 +12,16 @@ import android.widget.Toast;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
-import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.CrashTracking;
-import com.linkbubble.util.TamperCheck;
-import com.linkbubble.util.Util;
+import com.linkbubble.util.Tamper;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-import java.util.Vector;
 
 public class EntryActivity extends Activity {
 
@@ -50,15 +47,12 @@ public class EntryActivity extends Activity {
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, true);
 
-        boolean showingTamperPrompt = TamperCheck.checkForTamper(this, new Prompt.OnPromptEventListener() {
+        Tamper.checkForTamper(getApplicationContext(), new Tamper.Listener() {
             @Override
-            public void onActionClick() {
-                MainApplication.openAppStore(EntryActivity.this, BuildConfig.STORE_FREE_URL);
-            }
-
-            @Override
-            public void onClose() {
-                finish();
+            public void onTweaked() {
+                if (MainController.get() != null) {
+                    MainController.get().closeAllBubbles();
+                }
             }
         });
 
@@ -131,12 +125,12 @@ public class EntryActivity extends Activity {
                 }
             }
 
-            if (canLoadFromThisApp == false && !showingTamperPrompt) {
+            if (canLoadFromThisApp == false) {
                 //if (Util.randInt(0, 30) == 20) {
                 //    MainApplication.showUpgradePrompt(this, R.string.upgrade_incentive_one_app, Analytics.UPGRADE_PROMPT_SINGLE_APP);
                 //}
                 MainApplication.openInBrowser(this, intent, true);
-            } else if (openLink && !showingTamperPrompt) {
+            } else if (openLink) {
                 MainApplication.checkRestoreCurrentTabs(this);
 
                 boolean showedWelcomeUrl = false;
@@ -152,14 +146,10 @@ public class EntryActivity extends Activity {
                 MainApplication.openInBrowser(this, intent, true);
             }
         } else {
-            if (!showingTamperPrompt) {
-                startActivityForResult(new Intent(this, HomeActivity.class), 0);
-            }
+            startActivityForResult(new Intent(this, HomeActivity.class), 0);
         }
 
-        if (!showingTamperPrompt) {
-            finish();
-        }
+        finish();
     }
 
     /*
