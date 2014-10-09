@@ -213,6 +213,8 @@ public class MainApplication extends Application {
     public static boolean openLink(Context context, String url, boolean checkLastAppLoad, boolean doLicenseCheck, String openedFromAppName) {
         long time = System.currentTimeMillis();
 
+        context = context.getApplicationContext();
+
         if (checkLastAppLoad) {
             /*
             long timeDiff = time - sLastLoadedTime;
@@ -240,8 +242,9 @@ public class MainApplication extends Application {
         return true;
     }
 
-    public static void checkRestoreCurrentTabs(final Context context) {
+    public static void checkRestoreCurrentTabs(Context _context) {
         // Don't restore tabs if we've already got tabs open, #389
+        final Context context = _context.getApplicationContext();
         if (MainController.get() == null) {
             final Vector<String> urls = Settings.get().loadCurrentTabs();
             int urlCount = urls.size();
@@ -270,6 +273,7 @@ public class MainApplication extends Application {
     }
 
     public static void restoreLinks(Context context, String [] urls) {
+        context = context.getApplicationContext();
         if (urls == null || urls.length == 0 || Tamper.isTweaked(context)) {
             return;
         }
