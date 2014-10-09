@@ -128,7 +128,6 @@ android.support.v4.app.Fragment:
     861:869:public android.support.v4.app.LoaderManager getLoaderManager()
     877:881:public void startActivity(android.content.Intent)
     888:892:public void startActivityForResult(android.content.Intent,int)
-    1044:1044:public android.view.View getView()
     1332:1333:public void registerForContextMenu(android.view.View)
     1343:1344:public void unregisterForContextMenu(android.view.View)
     1454:1460:android.support.v4.app.Fragment findFragmentByWho(java.lang.String)
@@ -151,7 +150,6 @@ android.support.v4.app.FragmentActivity$FragmentTag:
 android.support.v4.app.FragmentManager:
     public static final int POP_BACK_STACK_INCLUSIVE
     146:146:public android.support.v4.app.FragmentTransaction openTransaction()
-    public abstract android.support.v4.app.Fragment findFragmentById(int)
     public abstract void popBackStack()
     public abstract boolean popBackStackImmediate()
     public abstract void popBackStack(java.lang.String,int)
@@ -1822,8 +1820,6 @@ android.support.v7.palette.BuildConfig
 com.crashlytics.android.CrashTest
 com.crashlytics.android.Crashlytics:
     public static final java.lang.String TAG
-    224:225:public static void log(java.lang.String)
-    228:236:private static void a(int,java.lang.String,java.lang.String)
     252:256:public static void log(int,java.lang.String,java.lang.String)
     284:285:public static void setUserIdentifier(java.lang.String)
     293:294:public static void setUserName(java.lang.String)
@@ -1856,11 +1852,6 @@ com.crashlytics.android.internal.C
 com.crashlytics.android.internal.D:
     104:104:public java.lang.String getVersion()
 com.crashlytics.android.internal.a
-com.crashlytics.android.internal.ab:
-    801:815:public static java.lang.String b(int)
-com.crashlytics.android.internal.aq:
-    495:509:public final synchronized void c()
-    513:520:private synchronized void d()
 com.crashlytics.android.internal.av:
     45:49:public void a(com.crashlytics.android.internal.aG)
     58:58:public com.crashlytics.android.internal.ay a(com.crashlytics.android.internal.ax,java.lang.String)
@@ -1905,13 +1896,6 @@ com.crashlytics.android.internal.v:
     269:270:public final void a(java.lang.String)
 com.crashlytics.android.j
 com.crashlytics.android.k
-com.crashlytics.android.v:
-    373:385:final void a(long,java.lang.String)
-    532:576:static void a(com.crashlytics.android.internal.aq,int,long,java.lang.String)
-    603:634:private boolean k()
-    66:66:static synthetic com.crashlytics.android.internal.aq d(com.crashlytics.android.v)
-    66:66:static synthetic boolean e(com.crashlytics.android.v)
-com.crashlytics.android.x
 com.google.ads.AdRequest:
     public static final java.lang.String VERSION
     public static final java.lang.String LOGTAG
@@ -4714,7 +4698,7 @@ com.linkbubble.Constant:
     public static final java.lang.String USER_AGENT_CHROME_DESKTOP
     public static final java.lang.String DIFFBOT_KEY
     public static final java.lang.String POCKET_PACKAGE_NAME
-    91:94:public static java.lang.String getValidDeviceId()
+    92:95:public static java.lang.String getValidDeviceId()
 com.linkbubble.DRM:
     static final int MSG_LICENSE_RESULT
     static final int MSG_CHECK_LICENSE
@@ -4730,8 +4714,8 @@ com.linkbubble.MainController:
     private android.widget.TextView mTextView
     private static final int MAX_SAMPLE_COUNT
     private static final float MAX_VALID_TIME
-    1015:1016:public void switchToExpandedView()
-    1147:1147:public boolean isScreenOn()
+    1038:1039:public void switchToExpandedView()
+    1171:1171:public boolean isScreenOn()
 com.linkbubble.MainService:
     private static final java.lang.String BCAST_CONFIGCHANGED
 com.linkbubble.R$anim
@@ -4804,6 +4788,8 @@ com.linkbubble.Settings:
     private static final int MAX_LAST_APP_REDIRECT_COUNT
     663:663:public java.util.List getIgnoreLinksFromPackageNames()
     741:741:public boolean checkForYouTubeEmbeds()
+    1277:1285:public boolean canFlushWebViewCache()
+    1289:1292:public void updateLastFlushWebViewCacheTime()
 com.linkbubble.articlerender.ArticleContent:
     private static final java.lang.String TAG
 com.linkbubble.articlerender.ArticleRenderer:
@@ -4835,7 +4821,7 @@ com.linkbubble.physics.FlingTracker:
 com.linkbubble.ui.BubbleDraggable:
     private static final java.lang.String TAG
 com.linkbubble.ui.BubbleFlowDraggable:
-    262:263:public void update(float)
+    265:266:public void update(float)
 com.linkbubble.ui.BubbleFlowView:
     private static final java.lang.String TAG
     private static final boolean DEBUG
@@ -4844,7 +4830,7 @@ com.linkbubble.ui.BubbleFlowView:
     private static final int LONG_PRESS_FRAMES
     private static final int DEFAULT_ANIM_TIME
     private static final int SCROLL_FINISHED_CHECK_TIME
-    357:357:public int getItemCount()
+    358:358:public int getItemCount()
 com.linkbubble.ui.BubbleTargetView:
     236:254:public void getOffsetDebugRegion(android.graphics.Rect)
 com.linkbubble.ui.BubbleView:
@@ -4871,7 +4857,7 @@ com.linkbubble.ui.ContentViewButton:
     static final int sTouchedColor
 com.linkbubble.ui.ExpandedActivity:
     private static final java.lang.String TAG
-    302:303:void cancelDelayedMinimize()
+    304:305:void cancelDelayedMinimize()
 com.linkbubble.ui.FlipView:
     private static final int FLAG_ROTATION_X
     private static final int FLAG_ROTATION_Y
@@ -4937,8 +4923,12 @@ com.linkbubble.util.AppPoller:
     private static final java.lang.String TAG
     private static final int ACTION_POLL_CURRENT_APP
     private static final int LOOP_TIME
-com.linkbubble.util.FlushCacheService:
-    private static final java.lang.String TAG
+com.linkbubble.util.CrashTracking:
+    20:21:public static void setInt(java.lang.String,int)
+    24:25:public static void setDouble(java.lang.String,double)
+    28:29:public static void setFloat(java.lang.String,float)
+    32:33:public static void setString(java.lang.String,java.lang.String)
+    36:37:public static void setBool(java.lang.String,boolean)
 com.linkbubble.util.IconCache:
     private static final java.lang.String TAG
     private static final int INITIAL_ICON_CACHE_CAPACITY
@@ -4980,22 +4970,15 @@ com.linkbubble.util.Util:
     private static final int OUTCODE_BOTTOM
     private static final int OUTCODE_TOP
     70:77:public static boolean isDefaultBrowser(java.lang.String,android.content.pm.PackageManager)
-    340:348:public static int randInt(int,int)
-    406:422:static android.graphics.Bitmap createIconBitmap(android.graphics.Bitmap,android.content.Context)
-    511:521:public static java.lang.String getDefaultLauncherPackage(android.content.pm.PackageManager)
-    544:549:public static void setLocale(android.content.Context,java.lang.String)
-    643:650:public static java.lang.Integer getSystemActionBarHeight(android.content.Context)
-    654:663:public static java.lang.Integer getSystemStatusBarHeight(android.content.Context)
-    667:676:public static java.lang.Integer getSystemNavigationBarHeight(android.content.Context)
+    325:333:public static int randInt(int,int)
+    391:407:static android.graphics.Bitmap createIconBitmap(android.graphics.Bitmap,android.content.Context)
+    496:506:public static java.lang.String getDefaultLauncherPackage(android.content.pm.PackageManager)
+    529:534:public static void setLocale(android.content.Context,java.lang.String)
+    628:635:public static java.lang.Integer getSystemActionBarHeight(android.content.Context)
+    652:661:public static java.lang.Integer getSystemNavigationBarHeight(android.content.Context)
 com.linkbubble.webrender.DiffBotRenderer:
     private static final java.lang.String TAG
     private static final java.lang.String API_URL
-com.linkbubble.webrender.DiffBotRenderer$Article:
-    java.lang.String mAuthor
-    java.lang.String mType
-    java.lang.String mDate
-com.linkbubble.webrender.DiffBotRenderer$Article$Image:
-    java.lang.String mCaption
 com.linkbubble.webrender.WebRenderer:
     176:177:public void setUrl(java.net.URL)
     180:180:public com.linkbubble.webrender.WebRenderer$Mode getMode()
@@ -5233,6 +5216,23 @@ de.jetwick.snacktory.SHelper:
 de.jetwick.snacktory.Util:
     77:80:public static int indexOf(java.lang.String,char)
     139:142:public static int indexOf(java.lang.String,java.lang.String)
+dexguard.util.AssetInputStreamFactory
+dexguard.util.CertificateChecker:
+    public static int checkCertificate(android.content.Context)
+    public static int checkCertificate(android.content.Context,java.lang.String)
+    public static int checkCertificate(android.content.Context,java.lang.String,int)
+    public static int checkCertificate(android.content.Context,long,long)
+    public static int checkCertificate(android.content.Context,long,long,int)
+    public static int checkCertificate(android.content.Context,int,int,int,int)
+    private static int a(android.content.Context,java.nio.LongBuffer,int)
+dexguard.util.DebugDetector
+dexguard.util.EmulatorDetector
+dexguard.util.EncryptedCordovaWebViewClient
+dexguard.util.EncryptedWebViewClient
+dexguard.util.PublicKeyTrustManager
+dexguard.util.RootDetector
+dexguard.util.TamperDetector:
+    public static int checkApk(android.content.Context)
 org.jsoup.Connection
 org.jsoup.Connection$Base
 org.jsoup.Connection$KeyVal
