@@ -332,6 +332,12 @@ public class ExpandedActivity extends Activity {
 
     @SuppressWarnings("unused")
     @Subscribe
+    public void OnOnDestroyMainServiceEvent(MainService.OnDestroyMainServiceEvent event) {
+        finish();
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
     public void onEnableHotwordService(EnableHotwordServiceEvent event) {
         if (event.mEnable && mHotwordServiceClient == null) {
             initHotwordService(event.mEnable);
