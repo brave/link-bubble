@@ -31,6 +31,7 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
+import com.linkbubble.util.TamperCheck;
 import com.linkbubble.util.Util;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -144,7 +145,7 @@ public class HomeActivity extends Activity {
         mActionButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Util.checkForTamper(HomeActivity.this, mTamperPromptEventListener)) {
+                if (TamperCheck.checkForTamper(HomeActivity.this, mTamperPromptEventListener)) {
                     return;
                 }
 
@@ -309,7 +310,7 @@ public class HomeActivity extends Activity {
         configureForDrmState();
 
         MainApplication.checkForProVersion(getApplicationContext());
-        Util.checkForTamper(this, mTamperPromptEventListener);
+        TamperCheck.checkForTamper(this, mTamperPromptEventListener);
 
         updateTimeTrialRemaining();
     }
@@ -359,7 +360,7 @@ public class HomeActivity extends Activity {
     void startActivity(Intent intent, View view, boolean tamperCheck) {
 
         if (tamperCheck) {
-            if (Util.checkForTamper(this, mTamperPromptEventListener)) {
+            if (TamperCheck.checkForTamper(this, mTamperPromptEventListener)) {
                 return;
             }
         }
