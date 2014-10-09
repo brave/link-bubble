@@ -11,13 +11,9 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.util.Patterns;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -31,19 +27,14 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
-import com.linkbubble.util.TamperCheck;
+import com.linkbubble.util.Tamper;
 import com.linkbubble.util.Util;
 import com.parse.GetCallback;
-import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.SaveCallback;
 import com.squareup.otto.Subscribe;
-import org.w3c.dom.Text;
 
-import java.util.Date;
 import java.util.HashSet;
-import java.util.Vector;
 import java.util.regex.Pattern;
 
 public class HomeActivity extends Activity {
@@ -145,12 +136,8 @@ public class HomeActivity extends Activity {
         mActionButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TamperCheck.checkForTamper(HomeActivity.this, mTamperPromptEventListener)) {
-                    return;
-                }
-
                 if (DRM.isLicensed()) {
-                    startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v, false);
+                    startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v);
                 } else {
                     Intent intent = MainApplication.getStoreIntent(HomeActivity.this, BuildConfig.STORE_PRO_URL);
                     if (intent != null) {
@@ -183,11 +170,11 @@ public class HomeActivity extends Activity {
             }
 
             case R.id.action_settings:
-                startActivity(new Intent(HomeActivity.this, SettingsActivity.class), item.getActionView(), true);
+                startActivity(new Intent(HomeActivity.this, SettingsActivity.class), item.getActionView());
                 return true;
 
             case R.id.action_history:
-                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), item.getActionView(), true);
+                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), item.getActionView());
                 return true;
         }
 
@@ -310,7 +297,7 @@ public class HomeActivity extends Activity {
         configureForDrmState();
 
         MainApplication.checkForProVersion(getApplicationContext());
-        TamperCheck.checkForTamper(this, mTamperPromptEventListener);
+        Tamper.checkForTamper(getApplicationContext(), mTamListener);
 
         updateTimeTrialRemaining();
     }
@@ -345,25 +332,7 @@ public class HomeActivity extends Activity {
         }
     }
 
-    Prompt.OnPromptEventListener mTamperPromptEventListener = new Prompt.OnPromptEventListener() {
-        @Override
-        public void onActionClick() {
-            MainApplication.openAppStore(HomeActivity.this, BuildConfig.STORE_FREE_URL);
-        }
-
-        @Override
-        public void onClose() {
-
-        }
-    };
-
-    void startActivity(Intent intent, View view, boolean tamperCheck) {
-
-        if (tamperCheck) {
-            if (TamperCheck.checkForTamper(this, mTamperPromptEventListener)) {
-                return;
-            }
-        }
+    void startActivity(Intent intent, View view) {
 
         boolean useLaunchAnimation = (view != null) &&
                 !intent.hasExtra(Constant.INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION);
@@ -406,6 +375,13 @@ public class HomeActivity extends Activity {
             mTrialTimeTextView.setVisibility(View.GONE);
         }
     }
+
+    private Tamper.Listener mTamListener = new Tamper.Listener() {
+        @Override
+        public void onTweaked() {
+            finish();
+        }
+    };
 
     @SuppressWarnings("unused")
     @Subscribe

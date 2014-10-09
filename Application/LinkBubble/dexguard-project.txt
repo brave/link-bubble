@@ -223,8 +223,8 @@
     "toCharsString",
     "java.lang.String"
 
+-encryptclasses com.linkbubble.util.TamperImpl
 -encryptclasses com.linkbubble.util.Tamper
--encryptclasses com.linkbubble.util.TamperCheck
 -encryptclasses dexguard.util.**
 
 # Uncomment and adapt the following lines to properly handle Javascript
