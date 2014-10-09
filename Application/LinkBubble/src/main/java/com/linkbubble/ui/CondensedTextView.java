@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 public class CondensedTextView extends TextView {
 
-    Typeface sCustomTypeface = null;
+    static Typeface sCustomTypeface = null;
 
     public CondensedTextView(Context context) {
         this(context, null);
