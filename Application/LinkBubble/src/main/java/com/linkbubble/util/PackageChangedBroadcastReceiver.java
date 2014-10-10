@@ -7,6 +7,7 @@ import android.util.Log;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
+import com.linkbubble.MainService;
 import com.linkbubble.Settings;
 
 public class PackageChangedBroadcastReceiver extends BroadcastReceiver {
@@ -20,8 +21,8 @@ public class PackageChangedBroadcastReceiver extends BroadcastReceiver {
                 Settings.get().updateBrowsers();
             }
 
-            if (data != null && data.contains(BuildConfig.PRO_PACKAGE_NAME) && MainApplication.sDrm != null) {
-                MainApplication.checkForProVersion(context.getApplicationContext());
+            if (data != null && data.contains(BuildConfig.PRO_PACKAGE_NAME)) {
+                MainApplication.postEvent(context, new MainService.CheckStateEvent());
                 Log.d(DRM.TAG, "checkForProVersion() finished");
             }
         }

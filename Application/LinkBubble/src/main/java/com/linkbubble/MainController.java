@@ -383,8 +383,6 @@ public class MainController implements Choreographer.FrameCallback {
         mBubbleFlowDraggable.setVisibility(View.GONE);
 
         mBubbleDraggable.setBubbleFlowDraggable(mBubbleFlowDraggable);
-
-        MainApplication.sDrm.requestLicenseStatus();
     }
 
     /*
