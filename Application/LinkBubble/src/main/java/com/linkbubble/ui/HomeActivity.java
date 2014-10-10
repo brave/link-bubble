@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
+import com.linkbubble.LicenseService;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.MainService;
@@ -56,15 +57,11 @@ public class HomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         CrashTracking.init(this);
 
-        Intent serviceIntent = new Intent(getApplicationContext(), MainService.class);
-        serviceIntent.putExtra("doLicenseCheck", true);
-        startService(serviceIntent);
-
-        // TODO: Ensure MainService is always created
-
         setContentView(R.layout.activity_home);
 
         Analytics.trackScreenView(HomeActivity.class.getSimpleName());
+
+        LicenseService.register(this);
 
         mActionButtonView = (Button)findViewById(R.id.big_white_button);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
@@ -291,6 +288,7 @@ public class HomeActivity extends Activity {
 
     @Override
     public void onDestroy() {
+        LicenseService.unregister(this);
         MainApplication.unregisterForBus(this, this);
         super.onDestroy();
     }
@@ -304,7 +302,7 @@ public class HomeActivity extends Activity {
         configureForDrmState();
 
         Tamper.checkForTamper(getApplicationContext(), mTamListener);
-        MainApplication.postEvent(getApplicationContext(), new MainService.CheckStateEvent());
+        MainApplication.postEvent(getApplicationContext(), new LicenseService.CheckStateEvent());
 
         updateTimeTrialRemaining();
     }
