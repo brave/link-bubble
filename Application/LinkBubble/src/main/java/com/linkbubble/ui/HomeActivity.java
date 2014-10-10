@@ -23,6 +23,7 @@ import com.linkbubble.Constant;
 import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
+import com.linkbubble.MainService;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.Analytics;
@@ -54,6 +55,12 @@ public class HomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CrashTracking.init(this);
+
+        Intent serviceIntent = new Intent(getApplicationContext(), MainService.class);
+        serviceIntent.putExtra("doLicenseCheck", true);
+        startService(serviceIntent);
+
+        // TODO: Ensure MainService is always created
 
         setContentView(R.layout.activity_home);
 
@@ -296,8 +303,8 @@ public class HomeActivity extends Activity {
 
         configureForDrmState();
 
-        MainApplication.checkForProVersion(getApplicationContext());
         Tamper.checkForTamper(getApplicationContext(), mTamListener);
+        MainApplication.postEvent(getApplicationContext(), new MainService.CheckStateEvent());
 
         updateTimeTrialRemaining();
     }
