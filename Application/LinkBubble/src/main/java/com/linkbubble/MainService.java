@@ -28,7 +28,11 @@ import java.util.Vector;
 public class MainService extends Service {
 
     private static final String BCAST_CONFIGCHANGED = "android.intent.action.CONFIGURATION_CHANGED";
+
+    public static MainService sInstance = null;
+
     private boolean mRestoreComplete;
+    public DRM mDrm;
 
     public static class ShowDefaultNotificationEvent {
     }
@@ -46,6 +50,8 @@ public class MainService extends Service {
         public Context mContext;
     }
 
+    public static class CheckStateEvent {}
+
     @Override
     public IBinder onBind(Intent intent) {
        return null;
@@ -59,8 +65,7 @@ public class MainService extends Service {
 
         MainController mainController = MainController.get();
         if (mainController == null || intent == null || cmd == null) {
-            stopSelf();
-            return START_NOT_STICKY;
+            return START_STICKY;
         }
 
         long urlLoadStartTime = intent.getLongExtra("start_time", System.currentTimeMillis());
@@ -104,6 +109,7 @@ public class MainService extends Service {
     @Override
     public void onCreate() {
 
+        sInstance = this;
         mRestoreComplete = false;
 
         setTheme(Settings.get().getDarkThemeEnabled() ? R.style.MainServiceThemeDark : R.style.MainServiceThemeLight);
@@ -119,12 +125,13 @@ public class MainService extends Service {
 
         WebIconDatabase.getInstance().open(getDir("icons", MODE_PRIVATE).getPath());
 
+        mDrm = new DRM(this, MainApplication.sDrmSharedPreferences);
+        mDrm.requestLicenseStatus();
+
         MainController.create(this, new MainController.EventHandler() {
                 @Override
                 public void onDestroy() {
                     Settings.get().saveBubbleRestingPoint();
-                    CrashTracking.log("MainService.onCreate(): onDestroy() - post OnDestroyMainServiceEvent");
-                    MainApplication.postEvent(MainService.this, new OnDestroyMainServiceEvent());
                     stopSelf();
                     CrashTracking.log("MainService.onCreate(): onDestroy()");
                 }
@@ -160,13 +167,20 @@ public class MainService extends Service {
 
     @Override
     public void onDestroy() {
+        MainApplication.postEvent(MainService.this, new OnDestroyMainServiceEvent());
         MainApplication.unregisterForBus(this, this);
+        mDrm.onDestroy();
+        mDrm = null;
         unregisterReceiver(mScreenReceiver);
         unregisterReceiver(mDialogReceiver);
         unregisterReceiver(mBroadcastReceiver);
         MainController.destroy();
         CrashTracking.log("MainService.onDestroy()");
         super.onDestroy();
+
+        if (sInstance == this) {
+            sInstance = null;
+        }
     }
 
     private void cancelCurrentNotification() {
@@ -249,6 +263,22 @@ public class MainService extends Service {
 
         final Vector<String> urls = Settings.get().loadCurrentTabs();
         MainApplication.restoreLinks(event.mContext, urls.toArray(new String[urls.size()]));
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onCheckStateEvent(CheckStateEvent event) {
+        checkForProVersion();
+    }
+
+    public void checkForProVersion() {
+        if (DRM.isLicensed() == false) {
+            if (mDrm != null && mDrm.mProServiceBound == false) {
+                if (mDrm.bindProService(this)) {
+                    mDrm.requestLicenseStatus();
+                }
+            }
+        }
     }
 
     private static BroadcastReceiver mDialogReceiver = new BroadcastReceiver() {

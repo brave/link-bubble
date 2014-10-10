@@ -52,27 +52,28 @@ public class DRM {
     private Context mContext;
     private MainApplication.StateChangedEvent mStateChangedEvent = new MainApplication.StateChangedEvent();
 
-    DRM(Context context) {
+    DRM(Context context, SharedPreferences sharedPreferences) {
         Log.d(TAG, "DRM() init");
         mContext = context;
         Constant.DEVICE_ID = Constant.getSecureAndroidId(context);
-        mSharedPreferences = context.getSharedPreferences(Constant.DRM_SHARED_PREFERENCES_KEY, Context.MODE_PRIVATE);
+        mSharedPreferences = sharedPreferences;
         if (mSharedPreferences != null) {
             ServiceInfo serviceInfo = getProServiceInfo(context);
-            sLicenseState = serviceInfo != null ? decryptSharedPreferencesInt(LICENSE_KEY, LICENSE_UNKNOWN) : LICENSE_INVALID;
+            sLicenseState = serviceInfo != null ? decryptSharedPreferencesInt(mSharedPreferences, LICENSE_KEY, LICENSE_UNKNOWN)
+                    : LICENSE_INVALID;
         }
         MainApplication.registerForBus(context, this);
 
         boolean serviceBound = bindProService(context);
-        sLicenseState = serviceBound ? decryptSharedPreferencesInt(LICENSE_KEY, LICENSE_UNKNOWN) : LICENSE_INVALID;
-        mFirstInstallTime = decryptSharedPreferencesLong(FIRST_INSTALL_TIME_KEY, 0);
-        mUsageTimeLeft = decryptSharedPreferencesLong(USAGE_TIME_LEFT_KEY, 0);
+        sLicenseState = serviceBound ? decryptSharedPreferencesInt(mSharedPreferences, LICENSE_KEY, LICENSE_UNKNOWN) : LICENSE_INVALID;
+        mFirstInstallTime = decryptSharedPreferencesLong(mSharedPreferences, FIRST_INSTALL_TIME_KEY, 0);
+        mUsageTimeLeft = decryptSharedPreferencesLong(mSharedPreferences, USAGE_TIME_LEFT_KEY, 0);
 
         // DRM: Save the time the app was first installed
         if (mFirstInstallTime == 0) {
             mFirstInstallTime = System.currentTimeMillis();
             String encryptedFirstInstallTime = encryptLong(mFirstInstallTime);
-            saveToPreferences(FIRST_INSTALL_TIME_KEY, encryptedFirstInstallTime);
+            saveToPreferences(mSharedPreferences, FIRST_INSTALL_TIME_KEY, encryptedFirstInstallTime);
         }
     }
 
@@ -88,12 +89,12 @@ public class DRM {
         return null;
     }
 
-    private String getValuePrefix() {
+    static private String getValuePrefix() {
         return Constant.DEVICE_ID + "->:";
     }
 
-    int decryptSharedPreferencesInt(String key, int defaultValue) {
-        String encryptedValue = mSharedPreferences.getString(key, null);
+    static public int decryptSharedPreferencesInt(SharedPreferences sharedPreferences, String key, int defaultValue) {
+        String encryptedValue = sharedPreferences.getString(key, null);
         if (encryptedValue != null) {
             String decryptedValue = Encrypt.decryptIt(encryptedValue);
             if (decryptedValue.equals(encryptedValue) == false) {
@@ -111,12 +112,12 @@ public class DRM {
         return defaultValue;
     }
 
-    String encryptInt(int value) {
+    static public String encryptInt(int value) {
         return Encrypt.encryptIt(getValuePrefix() + value);
     }
 
-    long decryptSharedPreferencesLong(String key, long defaultValue) {
-        String encryptedValue = mSharedPreferences.getString(key, null);
+    static public long decryptSharedPreferencesLong(SharedPreferences sharedPreferences, String key, long defaultValue) {
+        String encryptedValue = sharedPreferences.getString(key, null);
         if (encryptedValue != null) {
             String decryptedValue = Encrypt.decryptIt(encryptedValue);
             if (decryptedValue.equals(encryptedValue) == false) {
@@ -134,14 +135,15 @@ public class DRM {
         return defaultValue;
     }
 
-    String encryptLong(long value) {
+    static public String encryptLong(long value) {
         return Encrypt.encryptIt(getValuePrefix() + value);
     }
 
-    void saveToPreferences(final String key, final String value) {
+    static public void saveToPreferences(final SharedPreferences sharedPreferences,
+                                         final String key, final String value) {
         new Thread("saveToPreferences") {
             public void run() {
-                mSharedPreferences.edit()
+                sharedPreferences.edit()
                         .putString(key, value)
                         .commit();
             }

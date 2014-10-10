@@ -12,6 +12,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
@@ -48,9 +49,9 @@ public class MainApplication extends Application {
     public static DatabaseHelper sDatabaseHelper;
     public static ConcurrentHashMap<String, String> sTitleHashMap = new ConcurrentHashMap<String, String>(64);
     public static Favicons sFavicons;
-    public static DRM sDrm;
     public static boolean sShowingAppPickerDialog = false;
     private static long sTrialStartTime = -1;
+    static SharedPreferences sDrmSharedPreferences;
 
     public IconCache mIconCache;
 
@@ -68,12 +69,12 @@ public class MainApplication extends Application {
 
         sDatabaseHelper = new DatabaseHelper(this);
 
+        sDrmSharedPreferences = getSharedPreferences(Constant.DRM_SHARED_PREFERENCES_KEY, Context.MODE_PRIVATE);
+
         Analytics.init(this);
 
         Favicons.attachToContext(this);
         recreateFaviconCache();
-
-        sDrm = new DRM(this);
 
         initTrialStartTime();
         CrashTracking.log("MainApplication.onCreate()");
@@ -90,7 +91,7 @@ public class MainApplication extends Application {
 
     private void initTrialStartTime() {
         try {
-            long cachedStartTime = sDrm.decryptSharedPreferencesLong(TRIAL_START_TIME, -1);
+            long cachedStartTime = DRM.decryptSharedPreferencesLong(sDrmSharedPreferences, TRIAL_START_TIME, -1);
             if (cachedStartTime != -1) {
                 sTrialStartTime = cachedStartTime;
                 TrialTimeStartTimeReceivedEvent event = new TrialTimeStartTimeReceivedEvent(sTrialStartTime);
@@ -121,8 +122,8 @@ public class MainApplication extends Application {
                         TrialTimeStartTimeReceivedEvent event = new TrialTimeStartTimeReceivedEvent(sTrialStartTime);
                         postEvent(MainApplication.this, event);
 
-                        String encryptedTrialStartTime = sDrm.encryptLong(sTrialStartTime);
-                        sDrm.saveToPreferences(TRIAL_START_TIME, encryptedTrialStartTime);
+                        String encryptedTrialStartTime = DRM.encryptLong(sTrialStartTime);
+                        DRM.saveToPreferences(sDrmSharedPreferences, TRIAL_START_TIME, encryptedTrialStartTime);
                     }
                 });
             }
@@ -158,15 +159,6 @@ public class MainApplication extends Application {
         return -1;
     }
 
-    public static void checkForProVersion(Context context) {
-        if (DRM.isLicensed() == false) {
-            if (sDrm != null && sDrm.mProServiceBound == false) {
-                if (sDrm.bindProService(context)) {
-                    sDrm.requestLicenseStatus();
-                }
-            }
-        }
-    }
 
     public Bus getBus() {
         return mBus;
@@ -190,9 +182,6 @@ public class MainApplication extends Application {
 
         sFavicons.close();
         sFavicons = null;
-
-        sDrm.onDestroy();
-        sDrm = null;
 
         super.onTerminate();
     }
