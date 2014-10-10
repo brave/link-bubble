@@ -58,13 +58,13 @@ public class DRM {
         Constant.DEVICE_ID = Constant.getSecureAndroidId(context);
         mSharedPreferences = sharedPreferences;
         if (mSharedPreferences != null) {
-            ServiceInfo serviceInfo = getProServiceInfo(context);
+            ServiceInfo serviceInfo = getProServiceInfo();
             sLicenseState = serviceInfo != null ? decryptSharedPreferencesInt(mSharedPreferences, LICENSE_KEY, LICENSE_UNKNOWN)
                     : LICENSE_INVALID;
         }
         MainApplication.registerForBus(context, this);
 
-        boolean serviceBound = bindProService(context);
+        boolean serviceBound = bindProService();
         sLicenseState = serviceBound ? decryptSharedPreferencesInt(mSharedPreferences, LICENSE_KEY, LICENSE_UNKNOWN) : LICENSE_INVALID;
         mFirstInstallTime = decryptSharedPreferencesLong(mSharedPreferences, FIRST_INSTALL_TIME_KEY, 0);
         mUsageTimeLeft = decryptSharedPreferencesLong(mSharedPreferences, USAGE_TIME_LEFT_KEY, 0);
@@ -77,10 +77,10 @@ public class DRM {
         }
     }
 
-    private ServiceInfo getProServiceInfo(Context context) {
+    private ServiceInfo getProServiceInfo() {
         final Intent mainIntent = new Intent(Constant.PRO_DRM_SERVICE_ACTION, null);
         mainIntent.setPackage(BuildConfig.PRO_PACKAGE_NAME);
-        List<ResolveInfo> services = context.getPackageManager().queryIntentServices(mainIntent, 0);
+        List<ResolveInfo> services = mContext.getPackageManager().queryIntentServices(mainIntent, 0);
         if (services != null && services.size() > 0) {
             Log.d(TAG, "getProServiceInfo() - " + services.get(0).serviceInfo.name);
             return services.get(0).serviceInfo;
@@ -151,17 +151,21 @@ public class DRM {
     }
 
     void onDestroy() {
+        if (mProServiceBound) {
+            mContext.unbindService(mProConnection);
+        }
+
         Log.d(TAG, "onDestroy()");
         MainApplication.unregisterForBus(mContext, this);
     }
 
-    public boolean bindProService(Context context) {
+    public boolean bindProService() {
         boolean serviceBound = false;
-        ServiceInfo serviceInfo = getProServiceInfo(context);
+        ServiceInfo serviceInfo = getProServiceInfo();
         if (serviceInfo != null) {
             Intent intent = new Intent();
             intent.setClassName(serviceInfo.packageName, serviceInfo.name);
-            serviceBound = context.bindService(intent, mProConnection, Context.BIND_AUTO_CREATE);
+            serviceBound = mContext.bindService(intent, mProConnection, Context.BIND_AUTO_CREATE);
             Log.d(TAG, "bindProService() - " + "try bind: serviceBound=" + serviceBound);
         }
         Log.d(TAG, "bindProService() - serviceBound:" + serviceBound);
