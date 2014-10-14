@@ -78,67 +78,11 @@ public abstract class WebRenderer {
     protected Controller mController;
     protected URL mUrl;
 
-    class RendererContextWrapper extends ContextWrapper {
-
-        public RendererContextWrapper(Context base) {
-            super(base);
-        }
-
-        @Override
-        public Resources.Theme getTheme() {
-            if (Constant.ACTIVITY_WEBVIEW_RENDERING && ExpandedActivity.get() != null) {
-                return ExpandedActivity.get().getTheme();
-            }
-            return super.getTheme();
-        }
-
-        @Override
-        public Object getSystemService(String name) {
-            if (Constant.ACTIVITY_WEBVIEW_RENDERING && ExpandedActivity.get() != null) {
-                return ExpandedActivity.get().getSystemService(name);
-            }
-            return super.getSystemService(name);
-        }
-
-        /*
-        @Override
-        public void startIntentSender(IntentSender intent,
-                                      Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags)
-                throws IntentSender.SendIntentException {
-            super.startIntentSender(intent, fillInIntent, flagsMask,
-                    flagsValues, extraFlags);
-        }
-
-        @Override
-        public void startIntentSender(IntentSender intent,
-                                      Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags,
-                                      Bundle options) throws IntentSender.SendIntentException {
-            super.startIntentSender(intent, fillInIntent, flagsMask,
-                    flagsValues, extraFlags, options);
-        }
-
-        @Override
-        public void startActivity(Intent intent) {
-            Log.e("blerg", "startActivity() " + intent.toString());
-            super.startActivity(intent);
-        }
-
-        @Override
-        public void startActivity(Intent intent, Bundle options) {
-            Log.e("blerg", "startActivity(i,o) " + intent.toString());
-            super.startActivity(intent, options);
-        }*/
-
-        public Resources getResources() {
-            return getBaseContext().getResources();
-        }
-    }
-
-    RendererContextWrapper mContext;
+    WebRendererContextWrapper mContext;
 
     WebRenderer(Context context, Controller controller, View webRendererPlaceholder) {
         super();
-        mContext = new RendererContextWrapper(context);
+        mContext = new WebRendererContextWrapper(context);
         mController = controller;
     }
 
