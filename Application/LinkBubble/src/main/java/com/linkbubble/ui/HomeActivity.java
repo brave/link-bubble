@@ -21,10 +21,8 @@ import android.widget.Toast;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
-import com.linkbubble.LicenseService;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
-import com.linkbubble.MainService;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.Analytics;
@@ -61,7 +59,7 @@ public class HomeActivity extends Activity {
 
         Analytics.trackScreenView(HomeActivity.class.getSimpleName());
 
-        LicenseService.register(this);
+        ((MainApplication)getApplicationContext()).registerDrmTracker(this);
 
         mActionButtonView = (Button)findViewById(R.id.big_white_button);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
@@ -288,7 +286,7 @@ public class HomeActivity extends Activity {
 
     @Override
     public void onDestroy() {
-        LicenseService.unregister(this);
+        ((MainApplication)getApplicationContext()).unregisterDrmTracker(this);
         MainApplication.unregisterForBus(this, this);
         super.onDestroy();
     }
@@ -302,7 +300,7 @@ public class HomeActivity extends Activity {
         configureForDrmState();
 
         Tamper.checkForTamper(getApplicationContext(), mTamListener);
-        MainApplication.postEvent(getApplicationContext(), new LicenseService.CheckStateEvent());
+        MainApplication.postEvent(getApplicationContext(), new MainApplication.CheckStateEvent());
 
         updateTimeTrialRemaining();
     }

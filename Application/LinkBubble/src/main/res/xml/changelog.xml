@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.4.6" versioncode="14600">
+        <change>BUG FIX: Stability/memory leak fixes.</change>
+    </release>
+
     <release version="1.4.5" versioncode="14500">
         <!--<change>IMPROVEMENT: Darken beneath the status bar when dragging a bubble (Android 4.4 and above).</change>-->
         <change>IMPROVEMENT: Use color on Settings dividers.</change>
