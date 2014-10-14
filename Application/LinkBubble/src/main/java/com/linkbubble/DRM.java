@@ -153,6 +153,7 @@ public class DRM {
     void onDestroy() {
         if (mProServiceBound) {
             mContext.unbindService(mProConnection);
+            Log.d(TAG, "unbindService()");
         }
 
         Log.d(TAG, "onDestroy()");
@@ -166,7 +167,6 @@ public class DRM {
             Intent intent = new Intent();
             intent.setClassName(serviceInfo.packageName, serviceInfo.name);
             serviceBound = mContext.bindService(intent, mProConnection, Context.BIND_AUTO_CREATE);
-            Log.d(TAG, "bindProService() - " + "try bind: serviceBound=" + serviceBound);
         }
         Log.d(TAG, "bindProService() - serviceBound:" + serviceBound);
         return serviceBound;
@@ -187,6 +187,8 @@ public class DRM {
     }
 
     private void setLicenseState(int licenseState) {
+
+        Log.d(TAG, "setLicenseState():" + licenseState);
 
         //long lastValidInstallTime = mLastValidInstallTime;
         long usageTimeLeft = mUsageTimeLeft;
