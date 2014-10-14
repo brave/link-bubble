@@ -425,6 +425,8 @@ public class CanvasView extends FrameLayout {
         if (mStatusBarCoverView != null) {
             MainController.removeRootWindow(mStatusBarCoverView);
         }
+
+        // Note: sometimes this element leaks. Seems to be result of this: http://goo.gl/Ite5F9
     }
 
     public void update(float dt) {
