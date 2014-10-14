@@ -118,7 +118,7 @@ public class MainService extends Service {
         Config.init(this);
         Settings.get().onOrientationChange();
 
-        LicenseService.register(this);
+        ((MainApplication)getApplicationContext()).registerDrmTracker(this);
 
         WebIconDatabase.getInstance().open(getDir("icons", MODE_PRIVATE).getPath());
 
@@ -167,7 +167,7 @@ public class MainService extends Service {
         unregisterReceiver(mDialogReceiver);
         unregisterReceiver(mBroadcastReceiver);
         MainController.destroy();
-        LicenseService.unregister(this);
+        ((MainApplication)getApplicationContext()).unregisterDrmTracker(this);
         CrashTracking.log("MainService.onDestroy()");
         super.onDestroy();
     }
