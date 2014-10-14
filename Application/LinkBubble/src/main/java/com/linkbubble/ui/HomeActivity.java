@@ -399,7 +399,10 @@ public class HomeActivity extends Activity {
     public void onStateChangedEvent(MainApplication.StateChangedEvent event) {
         configureForDrmState();
 
-        if (event.mOldState != DRM.LICENSE_VALID && event.mState == DRM.LICENSE_VALID && event.mDisplayedToast == false) {
+        if (event.mOldState != DRM.LICENSE_VALID
+                && event.mState == DRM.LICENSE_VALID
+                && event.mDisplayToast
+                && event.mDisplayedToast == false) {
             Toast.makeText(this, R.string.valid_license_detected, Toast.LENGTH_LONG).show();
             event.mDisplayedToast = true;
         }
