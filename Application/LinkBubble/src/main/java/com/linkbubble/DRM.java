@@ -57,15 +57,14 @@ public class DRM {
         mContext = context;
         Constant.DEVICE_ID = Constant.getSecureAndroidId(context);
         mSharedPreferences = sharedPreferences;
+        ServiceInfo serviceInfo = getProServiceInfo();
         if (mSharedPreferences != null) {
-            ServiceInfo serviceInfo = getProServiceInfo();
             sLicenseState = serviceInfo != null ? decryptSharedPreferencesInt(mSharedPreferences, LICENSE_KEY, LICENSE_UNKNOWN)
                     : LICENSE_INVALID;
         }
         MainApplication.registerForBus(context, this);
 
-        boolean serviceBound = bindProService();
-        sLicenseState = serviceBound ? decryptSharedPreferencesInt(mSharedPreferences, LICENSE_KEY, LICENSE_UNKNOWN) : LICENSE_INVALID;
+        sLicenseState = serviceInfo != null ? decryptSharedPreferencesInt(mSharedPreferences, LICENSE_KEY, LICENSE_UNKNOWN) : LICENSE_INVALID;
         mFirstInstallTime = decryptSharedPreferencesLong(mSharedPreferences, FIRST_INSTALL_TIME_KEY, 0);
         mUsageTimeLeft = decryptSharedPreferencesLong(mSharedPreferences, USAGE_TIME_LEFT_KEY, 0);
 
@@ -81,6 +80,18 @@ public class DRM {
         mStateChangedEvent.mDisplayToast = false;
         mStateChangedEvent.mDisplayedToast = false;
         MainApplication.postEvent(mContext, mStateChangedEvent);
+    }
+
+    void start() {
+        bindProService();
+        requestLicenseStatus();
+    }
+
+    void stop() {
+        if (mProServiceBound) {
+            mContext.unbindService(mProConnection);
+            Log.d(TAG, "unbindService()");
+        }
     }
 
     private ServiceInfo getProServiceInfo() {
@@ -157,10 +168,7 @@ public class DRM {
     }
 
     void onDestroy() {
-        if (mProServiceBound) {
-            mContext.unbindService(mProConnection);
-            Log.d(TAG, "unbindService()");
-        }
+        stop();
 
         Log.d(TAG, "onDestroy()");
         MainApplication.unregisterForBus(mContext, this);
