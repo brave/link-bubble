@@ -33,6 +33,8 @@ import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
+
 import org.mozilla.gecko.favicons.Favicons;
 
 import java.net.MalformedURLException;
@@ -52,6 +54,8 @@ public class MainApplication extends Application {
     public static boolean sShowingAppPickerDialog = false;
     private static long sTrialStartTime = -1;
     static SharedPreferences sDrmSharedPreferences;
+    private DRM mDrm;
+    private int mDrmTrackerCount;
 
     public IconCache mIconCache;
 
@@ -64,12 +68,16 @@ public class MainApplication extends Application {
 
         mBus = new Bus();
 
+        registerForBus(this, this);
+
         Settings.initModule(this);
         Prompt.initModule(this);
 
         sDatabaseHelper = new DatabaseHelper(this);
 
         sDrmSharedPreferences = getSharedPreferences(Constant.DRM_SHARED_PREFERENCES_KEY, Context.MODE_PRIVATE);
+        mDrm = new DRM(this, MainApplication.sDrmSharedPreferences);
+        mDrmTrackerCount = 0;
 
         Analytics.init(this);
 
@@ -78,6 +86,23 @@ public class MainApplication extends Application {
 
         initTrialStartTime();
         CrashTracking.log("MainApplication.onCreate()");
+    }
+
+
+    public void registerDrmTracker(Context context) {
+        mDrmTrackerCount++;
+        if (mDrmTrackerCount == 1) {
+            mDrm.start();
+        }
+        Log.d(DRM.TAG, "registerDrmTracker(): mDrmTrackerCount:" + mDrmTrackerCount + ", " + context.getClass().getSimpleName());
+    }
+
+    public void unregisterDrmTracker(Context context) {
+        mDrmTrackerCount--;
+        if (mDrmTrackerCount == 0) {
+            mDrm.stop();
+        }
+        Log.d(DRM.TAG, "unregisterDrmTracker(): mDrmTrackerCount:" + mDrmTrackerCount + ", " + context.getClass().getSimpleName());
     }
 
     static String TRIAL_START_TIME = "lb_trialStartTime";
@@ -562,6 +587,25 @@ public class MainApplication extends Application {
         public int mOldState;
         public boolean mDisplayToast;
         public boolean mDisplayedToast;
+    }
+
+    public static class CheckStateEvent {}
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onCheckStateEvent(CheckStateEvent event) {
+        checkForProVersion();
+    }
+
+    public void checkForProVersion() {
+        Log.d(DRM.TAG, "checkForProVersion()");
+        if (DRM.isLicensed() == false) {
+            if (mDrm != null && mDrm.mProServiceBound == false) {
+                if (mDrm.bindProService()) {
+                    mDrm.requestLicenseStatus();
+                }
+            }
+        }
     }
 
     /*

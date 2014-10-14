@@ -159,11 +159,6 @@
             </intent-filter>
         </service>
 
-        <service android:name="com.linkbubble.LicenseService"
-            android:label="License Service"
-            android:exported="false">
-        </service>
-
         <receiver android:name="com.linkbubble.util.PackageChangedBroadcastReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />

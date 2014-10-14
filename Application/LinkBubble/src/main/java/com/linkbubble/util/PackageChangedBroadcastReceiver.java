@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.util.Log;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.DRM;
-import com.linkbubble.LicenseService;
 import com.linkbubble.MainApplication;
 import com.linkbubble.Settings;
 
@@ -22,7 +21,7 @@ public class PackageChangedBroadcastReceiver extends BroadcastReceiver {
             }
 
             if (data != null && data.contains(BuildConfig.PRO_PACKAGE_NAME)) {
-                MainApplication.postEvent(context, new LicenseService.CheckStateEvent());
+                MainApplication.postEvent(context, new MainApplication.CheckStateEvent());
                 Log.d(DRM.TAG, "checkForProVersion() finished");
             }
         }
