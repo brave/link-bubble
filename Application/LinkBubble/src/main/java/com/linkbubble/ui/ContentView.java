@@ -546,10 +546,12 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onPageFinished(String urlAsString) {
-            CrashTracking.log("onPageFinished(), index:" + MainController.get().getTabIndex(mOwnerTabView));
             if (mLifeState != LifeState.Alive) {
                 return;
             }
+
+            Integer debugIndex = MainController.get() != null ? MainController.get().getTabIndex(mOwnerTabView) : null;
+            CrashTracking.log("onPageFinished(), " + (debugIndex != null ? "index:" + debugIndex : "<MainController.get() == null>"));
 
             // This should not be necessary, but unfortunately is.
             // Often when pressing Back, onPageFinished() is mistakenly called when progress is 0. #245
