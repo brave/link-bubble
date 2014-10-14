@@ -155,15 +155,6 @@ public class CanvasView extends FrameLayout {
                 consumeXOffset, consumeTargetY, consumeTractorBeamX, consumeTargetY);
         mTargets.add(rightConsumeTarget);
 
-        Settings.setConsumeBubblesChangedEventHandler(new Settings.ConsumeBubblesChangedEventHandler() {
-            @Override
-            public void onConsumeBubblesChanged() {
-                for (int i = 0; i < mTargets.size(); ++i) {
-                    mTargets.get(i).onConsumeBubblesChanged();
-                }
-            }
-        });
-
         applyAlpha();
 
         /*
@@ -403,6 +394,14 @@ public class CanvasView extends FrameLayout {
     public void onHideContentEvent(MainController.HideContentEvent event) {
         setContentView(null);
         mContentViewY = Config.mScreenHeight - Config.mContentOffset;
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onConsumeBubblesChanged(Settings.OnConsumeBubblesChangedEvent event) {
+        for (int i = 0; i < mTargets.size(); ++i) {
+            mTargets.get(i).onConsumeBubblesChanged();
+        }
     }
 
     private void fadeIn() {
