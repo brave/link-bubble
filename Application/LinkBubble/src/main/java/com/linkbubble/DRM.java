@@ -75,6 +75,12 @@ public class DRM {
             String encryptedFirstInstallTime = encryptLong(mFirstInstallTime);
             saveToPreferences(mSharedPreferences, FIRST_INSTALL_TIME_KEY, encryptedFirstInstallTime);
         }
+
+        mStateChangedEvent.mState = sLicenseState;
+        mStateChangedEvent.mOldState = LICENSE_UNKNOWN;
+        mStateChangedEvent.mDisplayToast = false;
+        mStateChangedEvent.mDisplayedToast = false;
+        MainApplication.postEvent(mContext, mStateChangedEvent);
     }
 
     private ServiceInfo getProServiceInfo() {
@@ -218,6 +224,8 @@ public class DRM {
 
             mStateChangedEvent.mState = licenseState;
             mStateChangedEvent.mOldState = sLicenseState;
+            mStateChangedEvent.mDisplayToast = true;
+            mStateChangedEvent.mDisplayedToast = false;
 
             sLicenseState = licenseState;
             mUsageTimeLeft = usageTimeLeft;
