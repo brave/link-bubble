@@ -62,10 +62,10 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        mBus = new Bus();
+
         Settings.initModule(this);
         Prompt.initModule(this);
-
-        mBus = new Bus();
 
         sDatabaseHelper = new DatabaseHelper(this);
 

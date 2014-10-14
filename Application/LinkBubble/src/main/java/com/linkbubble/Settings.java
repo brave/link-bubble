@@ -98,10 +98,6 @@ public class Settings {
     private static final String TERMS_ACCEPTED = "terms_accepted";
     private static final String LAST_FLUSH_WEBVIEW_CACHE_TIME = "last_flush_cache_time";
 
-    public interface ConsumeBubblesChangedEventHandler {
-        public void onConsumeBubblesChanged();
-    }
-
     public enum WebViewBatterySaveMode {
         Aggressive,
         Default,
@@ -122,11 +118,6 @@ public class Settings {
         mInstance = null;
     }
 
-    public static void setConsumeBubblesChangedEventHandler(ConsumeBubblesChangedEventHandler eh) {
-        Util.Assert(mInstance != null, "null instance");
-        mInstance.mConsumeBubblesChangedEventHandler = eh;
-    }
-
     /*
      *
      */
@@ -135,6 +126,8 @@ public class Settings {
     }
 
     private static Settings mInstance = null;
+
+    public static class OnConsumeBubblesChangedEvent {}
 
     private SharedPreferences mSharedPreferences;
     private Context mContext;
@@ -146,7 +139,6 @@ public class Settings {
     private ResolveInfo mYouTubeViewResolveInfo;
     public ResolveInfo mLinkBubbleEntryActivityResolveInfo;
     private boolean mCheckedForYouTubeResolveInfo = false;
-    private ConsumeBubblesChangedEventHandler mConsumeBubblesChangedEventHandler;
     private List<String> mIgnoreLinksFromPackageNames;
     private WebViewBatterySaveMode mWebViewBatterySaveMode;
     // The point to save
@@ -526,9 +518,7 @@ public class Settings {
         }
         editor.commit();
 
-        if (mConsumeBubblesChangedEventHandler != null) {
-            mConsumeBubblesChangedEventHandler.onConsumeBubblesChanged();
-        }
+        MainApplication.postEvent(mContext, new OnConsumeBubblesChangedEvent());
     }
 
     public String getConsumeBubbleLabel(Constant.BubbleAction action) {
