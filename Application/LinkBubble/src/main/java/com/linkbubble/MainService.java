@@ -255,7 +255,7 @@ public class MainService extends Service {
     }
 
 
-    private static BroadcastReceiver mDialogReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver mDialogReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent myIntent) {
             if (myIntent.getAction().equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)) {
@@ -264,7 +264,7 @@ public class MainService extends Service {
         }
     };
 
-    private static BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent myIntent) {
             if ( myIntent.getAction().equals( BCAST_CONFIGCHANGED ) ) {
@@ -273,7 +273,7 @@ public class MainService extends Service {
         }
     };
 
-    private static BroadcastReceiver mScreenReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver mScreenReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             MainController.get().updateScreenState(intent.getAction());
