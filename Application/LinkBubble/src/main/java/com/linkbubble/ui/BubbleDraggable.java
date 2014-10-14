@@ -582,6 +582,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
     public void destroy() {
         //setOnTouchListener(null);
+        setOnUpdateListener(null);  // prevent memory leak
         mDraggableHelper.destroy();
     }
 
