@@ -406,6 +406,7 @@ public class BubbleFlowView extends HorizontalScrollView {
     }
 
     public boolean expand(long time, final AnimationEventListener animationEventListener) {
+        CrashTracking.log("BubbleFlowView.expand(" + time + "), mIsExpanded:" + mIsExpanded);
         if (mIsExpanded) {
             return false;
         }
@@ -478,7 +479,7 @@ public class BubbleFlowView extends HorizontalScrollView {
     }
 
     public void collapse(long time, AnimationEventListener animationEventListener) {
-        CrashTracking.log("BubbleFlowView.collapse(): time:" + time);
+        CrashTracking.log("BubbleFlowView.collapse(): time:" + time + ", mIsExpanded:" + mIsExpanded);
         if (mIsExpanded == false) {
             return;
         }
@@ -536,12 +537,15 @@ public class BubbleFlowView extends HorizontalScrollView {
     }
 
     private AnimationEventListener mCollapseEndAnimationEventListener;
-    public void forceCollapseEnd() {
+    public boolean forceCollapseEnd() {
+        boolean result = false;
         if (mCollapseEndAnimationEventListener != null && mDoingCollapse) {
             mCollapseEndAnimationEventListener.onAnimationEnd(BubbleFlowView.this);
+            result = true;
         }
         mCollapseEndAnimationEventListener = null;
         mDoingCollapse = false;
+        return result;
     }
 
     boolean isExpanded() {
