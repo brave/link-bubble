@@ -281,7 +281,7 @@ class WebViewRenderer extends WebRenderer {
         public void onFetchHtml(String html) {
             if (html != null && html.isEmpty() == false) {
                 if (mBuildArticleContentTask == null) {
-                    mBuildArticleContentTask = ArticleContent.fetchArticleContent(mContext, getUrl().toString(), html,
+                    mBuildArticleContentTask = ArticleContent.fetchArticleContent(getUrl().toString(), html,
                             new ArticleContent.OnFinishedListener() {
                                 @Override
                                 public void onFinished(ArticleContent articleContent) {
