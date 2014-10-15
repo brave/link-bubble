@@ -48,16 +48,12 @@ public abstract class WebRenderer {
     }
 
     public enum Type {
-        DiffBot,
         Stub,
         WebView,
     };
 
     public static WebRenderer create(Type type, Context context, Controller controller, View webRendererPlaceholder, String TAG) {
         switch (type) {
-            case DiffBot:
-                return new DiffBotRenderer(context, controller, webRendererPlaceholder, TAG);
-
             case Stub:
                 return new StubRenderer(context, controller, webRendererPlaceholder, TAG);
 
