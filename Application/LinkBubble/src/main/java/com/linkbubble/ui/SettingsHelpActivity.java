@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
+import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.Analytics;
@@ -140,10 +141,6 @@ public class SettingsHelpActivity extends PreferenceActivity {
         private int mForceCrashCountdown = TAPS_TO_FORCE_A_CRASH;
         Toast mForceCrashToast;
 
-        void doCrash() {
-            throw new RuntimeException("Forced Profile Image Exception");
-        }
-
         void showCreditsDialog() {
             final View layout = View.inflate(getActivity(), R.layout.view_credits, null);
 
@@ -155,7 +152,7 @@ public class SettingsHelpActivity extends PreferenceActivity {
                     if (mForceCrashCountdown > 0) {
                         mForceCrashCountdown--;
                         if (mForceCrashCountdown == 0) {
-                            doCrash();
+                            MainController.doCrash();
                         } else if (mForceCrashCountdown > 0
                                 && mForceCrashCountdown < (TAPS_TO_FORCE_A_CRASH -2)) {
                             if (mForceCrashToast != null) {

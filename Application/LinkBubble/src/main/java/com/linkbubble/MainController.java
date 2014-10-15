@@ -1176,4 +1176,8 @@ public class MainController implements Choreographer.FrameCallback {
         TabView tab = mBubbleFlowDraggable.getCurrentTab();
         return tab;
     }
+
+    public static void doCrash() {
+        throw new RuntimeException("Forced Exception");
+    }
 }
