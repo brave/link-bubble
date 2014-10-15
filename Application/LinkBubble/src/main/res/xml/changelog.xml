@@ -2,7 +2,8 @@
 <changelog>
 
     <release version="1.4.6" versioncode="14600">
-        <change>BUG FIX: Stability/memory leak fixes.</change>
+        <change>BUG FIX: Page title is no longer cleared for certain URLs.</change>
+        <change>BUG FIX: Memory leak fixes. Excess battery usage issues should be largely resolved.</change>
     </release>
 
     <release version="1.4.5" versioncode="14500">
