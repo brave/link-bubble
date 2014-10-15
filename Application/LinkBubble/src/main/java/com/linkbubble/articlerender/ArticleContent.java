@@ -1,9 +1,9 @@
 package com.linkbubble.articlerender;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import com.linkbubble.R;
+
+import com.linkbubble.Config;
 import de.jetwick.snacktory.HtmlFetcher;
 import de.jetwick.snacktory.JResult;
 
@@ -27,13 +27,13 @@ public class ArticleContent {
         public void onFinished(ArticleContent articleContent);
     }
 
-    static public BuildContentTask fetchArticleContent(Context context, String url, String pageHtml, OnFinishedListener onFinishedListener) {
-        BuildContentTask task = new BuildContentTask(context, onFinishedListener);
+    static public BuildContentTask fetchArticleContent(String url, String pageHtml, OnFinishedListener onFinishedListener) {
+        BuildContentTask task = new BuildContentTask(onFinishedListener);
         task.execute(url, pageHtml);
         return task;
     }
 
-    public static ArticleContent extract(Context context, JResult result) {
+    public static ArticleContent extract(JResult result) {
         ArticleContent articleModeContent = new ArticleContent();
 
         String urlAsString = result.getCanonicalUrl();
@@ -52,12 +52,10 @@ public class ArticleContent {
             return articleModeContent;
         }
 
-        boolean isTablet = context.getResources().getBoolean(R.bool.is_tablet);
-
         String bodyHMargin;
         String titleTopMargin;
         String titleFontSize;
-        if (isTablet) {
+        if (Config.sIsTablet) {
             bodyHMargin = "24px";
             titleTopMargin = "32px";
             titleFontSize = "150%";
@@ -141,12 +139,10 @@ public class ArticleContent {
     //  * http://www.bostonglobe.com/sports/2014/04/28/the-donald-sterling-profile-not-pretty-picture/jZx4v3EWUFdLYh9c289ODL/story.html
 
     static public class BuildContentTask extends AsyncTask<String, JResult, JResult> {
-        Context mContext;
         OnFinishedListener mOnFinishedListener;
 
-        public BuildContentTask(Context context, OnFinishedListener onFetched) {
+        public BuildContentTask(OnFinishedListener onFetched) {
             super();
-            mContext = context;
             mOnFinishedListener = onFetched;
         }
 
@@ -172,7 +168,7 @@ public class ArticleContent {
                 return;
             }
 
-            ArticleContent articleContent = ArticleContent.extract(mContext, result);
+            ArticleContent articleContent = ArticleContent.extract(result);
 
             if (articleContent.mUrl == null || articleContent.mText.isEmpty()) {
                 mOnFinishedListener.onFinished(null);
