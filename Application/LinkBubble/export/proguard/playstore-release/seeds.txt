@@ -5022,6 +5022,8 @@ com.linkbubble.Constant$BubbleAction: com.linkbubble.Constant$BubbleAction[] val
 com.linkbubble.Constant$BubbleAction: com.linkbubble.Constant$BubbleAction valueOf(java.lang.String)
 com.linkbubble.MainApplication
 com.linkbubble.MainApplication: MainApplication()
+com.linkbubble.MainApplication: void onCheckStateEvent(com.linkbubble.MainApplication$CheckStateEvent)
+com.linkbubble.MainApplication$CheckStateEvent: MainApplication$CheckStateEvent()
 com.linkbubble.MainApplication$StateChangedEvent: MainApplication$StateChangedEvent()
 com.linkbubble.MainController: void onIncognitoModeChanged(com.linkbubble.ui.SettingsActivity$IncognitoModeChangedEvent)
 com.linkbubble.MainController: void onEndCollapseTransition(com.linkbubble.MainController$EndCollapseTransitionEvent)
@@ -5051,9 +5053,6 @@ com.linkbubble.MainService: MainService()
 com.linkbubble.MainService: void onShowDefaultNotificationEvent(com.linkbubble.MainService$ShowDefaultNotificationEvent)
 com.linkbubble.MainService: void onShowUnhideNotificationEvent(com.linkbubble.MainService$ShowUnhideNotificationEvent)
 com.linkbubble.MainService: void onReloadMainServiceEvent(com.linkbubble.MainService$ReloadMainServiceEvent)
-com.linkbubble.MainService$2: MainService$2()
-com.linkbubble.MainService$3: MainService$3()
-com.linkbubble.MainService$4: MainService$4()
 com.linkbubble.MainService$OnDestroyMainServiceEvent: MainService$OnDestroyMainServiceEvent()
 com.linkbubble.MainService$ShowDefaultNotificationEvent: MainService$ShowDefaultNotificationEvent()
 com.linkbubble.MainService$ShowUnhideNotificationEvent: MainService$ShowUnhideNotificationEvent()
@@ -5971,6 +5970,7 @@ com.linkbubble.Settings$LinkLoadTimeStatsUpdatedEvent: Settings$LinkLoadTimeStat
 com.linkbubble.Settings$LinkLoadType
 com.linkbubble.Settings$LinkLoadType: com.linkbubble.Settings$LinkLoadType[] values()
 com.linkbubble.Settings$LinkLoadType: com.linkbubble.Settings$LinkLoadType valueOf(java.lang.String)
+com.linkbubble.Settings$OnConsumeBubblesChangedEvent: Settings$OnConsumeBubblesChangedEvent()
 com.linkbubble.Settings$WebViewBatterySaveMode
 com.linkbubble.Settings$WebViewBatterySaveMode: com.linkbubble.Settings$WebViewBatterySaveMode[] values()
 com.linkbubble.Settings$WebViewBatterySaveMode: com.linkbubble.Settings$WebViewBatterySaveMode valueOf(java.lang.String)
@@ -6071,6 +6071,7 @@ com.linkbubble.ui.CanvasView: void onEndCollapseTransition(com.linkbubble.MainCo
 com.linkbubble.ui.CanvasView: void onOrientationChanged(com.linkbubble.MainController$OrientationChangedEvent)
 com.linkbubble.ui.CanvasView: void onBeginAnimateFinalTabAway(com.linkbubble.MainController$BeginAnimateFinalTabAwayEvent)
 com.linkbubble.ui.CanvasView: void onHideContentEvent(com.linkbubble.MainController$HideContentEvent)
+com.linkbubble.ui.CanvasView: void onConsumeBubblesChanged(com.linkbubble.Settings$OnConsumeBubblesChangedEvent)
 com.linkbubble.ui.CloseTabTargetView
 com.linkbubble.ui.CloseTabTargetView: CloseTabTargetView(android.content.Context)
 com.linkbubble.ui.CloseTabTargetView: CloseTabTargetView(android.content.Context,android.util.AttributeSet)
@@ -6237,22 +6238,6 @@ com.linkbubble.util.VerticalGestureListener: VerticalGestureListener()
 com.linkbubble.util.VerticalGestureListener$GestureDirection
 com.linkbubble.util.VerticalGestureListener$GestureDirection: com.linkbubble.util.VerticalGestureListener$GestureDirection[] values()
 com.linkbubble.util.VerticalGestureListener$GestureDirection: com.linkbubble.util.VerticalGestureListener$GestureDirection valueOf(java.lang.String)
-com.linkbubble.webrender.DiffBotRenderer$Article: java.lang.String mAuthor
-com.linkbubble.webrender.DiffBotRenderer$Article: java.lang.String mBody
-com.linkbubble.webrender.DiffBotRenderer$Article: java.lang.String mTitle
-com.linkbubble.webrender.DiffBotRenderer$Article: java.lang.String mType
-com.linkbubble.webrender.DiffBotRenderer$Article: java.lang.String mUrl
-com.linkbubble.webrender.DiffBotRenderer$Article: java.lang.String mResolvedUrl
-com.linkbubble.webrender.DiffBotRenderer$Article: java.lang.String mIconUrl
-com.linkbubble.webrender.DiffBotRenderer$Article: java.lang.String mHtml
-com.linkbubble.webrender.DiffBotRenderer$Article: java.lang.String mDate
-com.linkbubble.webrender.DiffBotRenderer$Article: java.util.List mImages
-com.linkbubble.webrender.DiffBotRenderer$Article: DiffBotRenderer$Article()
-com.linkbubble.webrender.DiffBotRenderer$Article$Image: boolean mPrimary
-com.linkbubble.webrender.DiffBotRenderer$Article$Image: java.lang.String mCaption
-com.linkbubble.webrender.DiffBotRenderer$Article$Image: java.lang.String mUrl
-com.linkbubble.webrender.DiffBotRenderer$Article$Image: DiffBotRenderer$Article$Image()
-com.linkbubble.webrender.DiffBotRenderer$DiffBotService: void getArticle(java.lang.String,retrofit.Callback)
 com.linkbubble.webrender.WebRenderer$Mode
 com.linkbubble.webrender.WebRenderer$Mode: com.linkbubble.webrender.WebRenderer$Mode[] values()
 com.linkbubble.webrender.WebRenderer$Mode: com.linkbubble.webrender.WebRenderer$Mode valueOf(java.lang.String)

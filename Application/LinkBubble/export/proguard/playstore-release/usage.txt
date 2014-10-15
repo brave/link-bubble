@@ -4706,6 +4706,7 @@ com.linkbubble.DRM:
     static final int LICENSE_UNKNOWN
     public static final int LICENSE_VALID
     static final int LICENSE_IGNORE_ERROR
+    171:175:void onDestroy()
 com.linkbubble.MainApplication:
     public static java.lang.String sLastLoadedUrl
     public static long sLastLoadedTime
@@ -4714,8 +4715,8 @@ com.linkbubble.MainController:
     private android.widget.TextView mTextView
     private static final int MAX_SAMPLE_COUNT
     private static final float MAX_VALID_TIME
-    1038:1039:public void switchToExpandedView()
-    1171:1171:public boolean isScreenOn()
+    1036:1037:public void switchToExpandedView()
+    1172:1172:public boolean isScreenOn()
 com.linkbubble.MainService:
     private static final java.lang.String BCAST_CONFIGCHANGED
 com.linkbubble.R$anim
@@ -4786,10 +4787,10 @@ com.linkbubble.Settings:
     private static final java.lang.String LAST_APP_REDIRECT_KEY_TIME
     private static final java.lang.String LAST_APP_REDIRECT_KEY_URL
     private static final int MAX_LAST_APP_REDIRECT_COUNT
-    663:663:public java.util.List getIgnoreLinksFromPackageNames()
-    741:741:public boolean checkForYouTubeEmbeds()
-    1277:1285:public boolean canFlushWebViewCache()
-    1289:1292:public void updateLastFlushWebViewCacheTime()
+    653:653:public java.util.List getIgnoreLinksFromPackageNames()
+    731:731:public boolean checkForYouTubeEmbeds()
+    1267:1275:public boolean canFlushWebViewCache()
+    1279:1282:public void updateLastFlushWebViewCacheTime()
 com.linkbubble.articlerender.ArticleContent:
     private static final java.lang.String TAG
 com.linkbubble.articlerender.ArticleRenderer:
@@ -4956,6 +4957,7 @@ com.linkbubble.util.PageInspector:
     private static final java.lang.String JS_TOUCH_ICON_CHECK
     private static final java.lang.String JS_FETCH_HTML
     private static final int MAX_FAVICON_ENTRIES
+com.linkbubble.util.SafeUrlSpan
 com.linkbubble.util.StatHat:
     private static final java.lang.String KEY
     private static final java.lang.String TAG
@@ -4976,12 +4978,9 @@ com.linkbubble.util.Util:
     529:534:public static void setLocale(android.content.Context,java.lang.String)
     628:635:public static java.lang.Integer getSystemActionBarHeight(android.content.Context)
     652:661:public static java.lang.Integer getSystemNavigationBarHeight(android.content.Context)
-com.linkbubble.webrender.DiffBotRenderer:
-    private static final java.lang.String TAG
-    private static final java.lang.String API_URL
 com.linkbubble.webrender.WebRenderer:
-    176:177:public void setUrl(java.net.URL)
-    180:180:public com.linkbubble.webrender.WebRenderer$Mode getMode()
+    116:117:public void setUrl(java.net.URL)
+    120:120:public com.linkbubble.webrender.WebRenderer$Mode getMode()
 com.linkbubble.webrender.WebViewRenderer:
     private static final java.lang.String BATTERY_SAVE_TAG
 com.squareup.otto.AnnotatedHandlerFinder:
