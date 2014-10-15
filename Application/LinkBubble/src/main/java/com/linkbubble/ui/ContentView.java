@@ -107,8 +107,6 @@ public class ContentView extends FrameLayout {
     private AlertDialog mLongPressAlertDialog;
     private long mInitialUrlLoadStartTime;
     private String mInitialUrlAsString;
-    private int mHeaderHeight;
-    private Path mTempPath = new Path();
 
     private Stack<URL> mUrlStack = new Stack<URL>();
     // We only want to handle this once per link. This prevents 3+ dialogs appearing for some links, which is a bad experience. #224
@@ -266,7 +264,6 @@ public class ContentView extends FrameLayout {
         }
 
         mOwnerTabView = ownerTabView;
-        mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.toolbar_header);
         mHandledAppPickerForCurrentUrl = hasShownAppPicker;
         mUsingLinkBubbleAsDefaultForCurrentUrl = false;
 
