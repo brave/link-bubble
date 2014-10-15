@@ -107,6 +107,7 @@ public class ContentView extends FrameLayout {
     private AlertDialog mLongPressAlertDialog;
     private long mInitialUrlLoadStartTime;
     private String mInitialUrlAsString;
+    private String mLoadingString;
 
     private Stack<URL> mUrlStack = new Stack<URL>();
     // We only want to handle this once per link. This prevents 3+ dialogs appearing for some links, which is a bad experience. #224
@@ -123,6 +124,8 @@ public class ContentView extends FrameLayout {
 
     public ContentView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
+        mLoadingString = getResources().getString(R.string.loading);
     }
 
     public long getTotalTrackedLoadTime() {
@@ -740,11 +743,25 @@ public class ContentView extends FrameLayout {
             Log.e(TAG, "onPageLoadComplete() - url: " + urlAsString);
 
             String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(urlAsString) : "";
-            MainApplication.saveUrlInHistory(getContext(), null, currentUrl.toString(), currentUrl.getHost(), title);
-            if (title == null) {    // if no title is set, display nothing rather than "Loading..." #265
-                mTitleTextView.setText(null);
+            if (TextUtils.isEmpty(title)) {
+                // Note: it's possible for title == null above, but there be a valid title in the following case:
+                // * title set for http://url.com/page?arg=1
+                // * urlAsString now changed to http://url.com/page, which isn't in sTitleHashMap
+                // In this case, if there's a valid title, keep using it.
+                if (mTitleTextView.getText() != null) {
+                    String currentTitle = mTitleTextView.getText().toString();
+                    if (currentTitle.equals(mLoadingString) == false) {
+                        title = currentTitle;
+                    }
+                }
+
+                // if no title is set, display nothing rather than "Loading..." #265
+                if (title == null) {
+                    mTitleTextView.setText(null);
+                }
             }
 
+            MainApplication.saveUrlInHistory(getContext(), null, currentUrl.toString(), currentUrl.getHost(), title);
             //mDelayedAutoContentDisplayLinkLoadedScheduled = true;
             //Log.d(TAG, "set mDelayedAutoContentDisplayLinkLoadedScheduled=" + mDelayedAutoContentDisplayLinkLoadedScheduled);
             postDelayed(mDelayedAutoContentDisplayLinkLoadedRunnable, Constant.AUTO_CONTENT_DISPLAY_DELAY);
@@ -1467,7 +1484,7 @@ public class ContentView extends FrameLayout {
     void updateUrlTitleAndText(String urlAsString) {
         String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(urlAsString) : null;
         if (title == null) {
-            title = getResources().getString(R.string.loading);
+            title = mLoadingString;
         }
         mTitleTextView.setText(title);
 
