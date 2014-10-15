@@ -32,6 +32,8 @@ public class Config {
 
     public static int sDensityDpi;
 
+    public static boolean sIsTablet;
+
     public static float ANIMATE_TO_SNAP_TIME = 0.1f;
     public static float CLOSE_ALL_BUBBLES_DELAY = 0.67f;
 
@@ -56,6 +58,8 @@ public class Config {
         mContentOffset = context.getResources().getDimensionPixelSize(R.dimen.content_offset);
 
         sDensityDpi = mDm.densityDpi;
+
+        sIsTablet = context.getResources().getBoolean(R.bool.is_tablet);
     }
 
     public static int getStatusBarHeight(Context context) {
