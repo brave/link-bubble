@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.4.7" versioncode="14700">
+        <change>BUG FIX: Fix tab icons displaying when Link Bubble is minimized (thanks @GeneralChops90).</change>
+    </release>
+
     <release version="1.4.6" versioncode="14600">
         <change>BUG FIX: Page title is no longer cleared for certain URLs.</change>
         <change>BUG FIX: Memory leak fixes. Excess battery usage issues should be largely resolved.</change>

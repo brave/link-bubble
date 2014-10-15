@@ -140,6 +140,10 @@ public class MainController implements Choreographer.FrameCallback {
                 //lp.alpha = 1.0f;
                 //mWindowManager.updateViewLayout(v, lp);
                 mWindowManager.addView(v, lp);
+                // Hack to ensure BubbleFlowDraggable doesn't display in Bubble mode, fix #457
+                if (v instanceof BubbleFlowView) {
+                    ((BubbleFlowView)v).forceCollapseEnd();
+                }
             }
             mRootWindowsVisible = true;
         }
@@ -1152,6 +1156,7 @@ public class MainController implements Choreographer.FrameCallback {
 
     void updateScreenState(String action) {
         //Log.d(SCREEN_LOCK_TAG, "---" + action);
+        CrashTracking.log("BubbleFlowView - updateScreenState(): " + action);
 
         if (action.equals(Intent.ACTION_SCREEN_OFF)) {
             mScreenOn = false;
