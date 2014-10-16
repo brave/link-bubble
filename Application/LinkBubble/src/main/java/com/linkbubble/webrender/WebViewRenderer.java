@@ -521,6 +521,12 @@ class WebViewRenderer extends WebRenderer {
                     result.cancel();
                 }
             });
+            mJsConfirmDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    mJsConfirmDialog = null;
+                }
+            });
             Util.showThemedDialog(mJsConfirmDialog);
             return true;
         }
@@ -551,6 +557,12 @@ class WebViewRenderer extends WebRenderer {
             mJsPromptDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 public void onCancel(DialogInterface dialog) {
                     result.cancel();
+                }
+            });
+            mJsPromptDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    mJsPromptDialog = null;
                 }
             });
             Util.showThemedDialog(mJsPromptDialog);
