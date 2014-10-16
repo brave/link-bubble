@@ -474,7 +474,7 @@ class WebViewRenderer extends WebRenderer {
         }
 
         @Override
-        public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+        public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
             mJsAlertDialog = new AlertDialog.Builder(mContext).create();
             mJsAlertDialog.setMessage(message);
             mJsAlertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
@@ -483,10 +483,16 @@ class WebViewRenderer extends WebRenderer {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
+                            result.confirm();
                         }
 
                     });
+            mJsAlertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    result.cancel();
+                }
+            });
             mJsAlertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialog) {
