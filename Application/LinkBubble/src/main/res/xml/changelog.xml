@@ -3,6 +3,7 @@
 
     <release version="1.4.7" versioncode="14700">
         <change>BUG FIX: Fix tab icons displaying when Link Bubble is minimized (thanks @GeneralChops90).</change>
+        <change>BUG FIX: Fix webpage scrolling becoming unresponsive after dismissing a JavaScript alert (thanks +Arpith Sharma).</change>
     </release>
 
     <release version="1.4.6" versioncode="14600">
