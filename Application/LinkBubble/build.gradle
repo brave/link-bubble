@@ -2,12 +2,12 @@ buildscript {
     repositories {
         mavenCentral()
         flatDir { dirs '../../../DexGuard/lib' }
-        maven { url 'http://download.crashlytics.com/maven' }
+        maven { url 'http://download.crashlytics.com/maven-staging' }
     }
     dependencies {
         classpath ':dexguard:'
         classpath 'com.android.tools.build:gradle:0.13.0'
-        classpath 'com.crashlytics.tools.gradle:crashlytics-gradle:1.+'
+        classpath 'com.crashlytics.tools.gradle:crashlytics-gradle:1.14.1'
     }
 }
 
@@ -15,7 +15,7 @@ buildscript {
 def versionMajor = 1
 def versionMinor = 4
 def versionPatch = 7
-def versionBuild = 0 // bump for dogfood builds, public betas, etc.
+def versionBuild = 1 // bump for dogfood builds, public betas, etc.
 
 if(buildMode == "dexguard") {
     apply plugin:'dexguard'
