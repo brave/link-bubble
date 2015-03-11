@@ -253,18 +253,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Bitmap result = null;
         SQLiteDatabase db = getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_FAVICON_CACHE, // a. table
-                FAVICON_FETCH_COLUMNS, // b. column names
-                " " + KEY_URL + " = ?", // c. selections
-                new String[] { faviconUrl }, // d. selections args
-                null, // e. group by
-                null, // f. having
-                null, // g. order by
-                null); // h. limit
+        try {
+            Cursor cursor = db.query(TABLE_FAVICON_CACHE, // a. table
+                    FAVICON_FETCH_COLUMNS, // b. column names
+                    " " + KEY_URL + " = ?", // c. selections
+                    new String[]{faviconUrl}, // d. selections args
+                    null, // e. group by
+                    null, // f. having
+                    null, // g. order by
+                    null); // h. limit
 
-        if (cursor != null) {
-            long idToDelete = -1;
-            try {
+            if (cursor != null) {
+                long idToDelete = -1;
                 if (cursor.getCount() > 0) {
                     cursor.moveToFirst();
 
@@ -280,14 +280,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         idToDelete = id;
                     }
                 }
-            } catch (IllegalStateException ex) {    // #302
-                CrashTracking.log("DatabaseHelper.getFavicon() IllegalStateException");
-            }
-            cursor.close();
+                cursor.close();
 
-            if (idToDelete > -1) {
-                deleteFavicon(idToDelete);
+                if (idToDelete > -1) {
+                    deleteFavicon(idToDelete);
+                }
             }
+        } catch (IllegalStateException ex) {    // #302
+            CrashTracking.log("DatabaseHelper.getFavicon() IllegalStateException");
         }
 
         db.close();
