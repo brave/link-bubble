@@ -129,4 +129,6 @@ public class Constant {
     public static final String DIFFBOT_KEY = "0f33cad70f2dcf3f9be136ed713c6e58";
 
     public static final String POCKET_PACKAGE_NAME = "com.ideashower.readitlater.pro";
+
+    public static final String ABOUT_BLANK_URI = "about:blank";
 }
