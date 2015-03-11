@@ -12,7 +12,6 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -405,7 +404,12 @@ public class ContentView extends FrameLayout {
         @Override
         public void onPageStarted(final String urlAsString, Bitmap favIcon) {
             Log.d(TAG, "onPageStarted() - " + urlAsString);
-            CrashTracking.log("onPageStarted(), index:" + MainController.get().getTabIndex(mOwnerTabView));
+            try {
+                CrashTracking.log("onPageStarted(), " + urlAsString + ", index:" + MainController.get().getTabIndex(mOwnerTabView));
+            } catch (NullPointerException npe) {
+                CrashTracking.log("onPageStarted(), " + urlAsString + ", index: no current MainController");
+                Log.e(TAG, npe.getLocalizedMessage(), npe);
+            }
 
             // Ensure that items opened in new tabs are redirected to a browser when not licensed, re #371, re #360
             if (mInitialUrlAsString.equals(Constant.NEW_TAB_URL) && DRM.allowProFeatures() == false) {
@@ -424,7 +428,9 @@ public class ContentView extends FrameLayout {
 
             String oldUrl = mWebRenderer.getUrl().toString();
 
-            if (updateUrl(urlAsString) == false) {
+            if (urlAsString.equals(Constant.ABOUT_BLANK_URI)) {
+                Log.d(TAG, "ignore " + urlAsString);
+            } else if (updateUrl(urlAsString) == false) {
                 List<ResolveInfo> apps = Settings.get().getAppsThatHandleUrl(urlAsString, getContext().getPackageManager());
                 boolean openedInApp = apps != null && apps.size() > 0 ? openInApp(apps.get(0), urlAsString) : false;
                 if (openedInApp == false) {
@@ -549,6 +555,11 @@ public class ContentView extends FrameLayout {
             if (mLifeState != LifeState.Alive) {
                 return;
             }
+            if (mIgnoreNextOnPageFinished) {
+                mIgnoreNextOnPageFinished = false;
+                Log.d(TAG, "onPageFinished() - ignoring because of mIgnoreNextOnPageFinished...");
+                return;
+            }
 
             Integer debugIndex = MainController.get() != null ? MainController.get().getTabIndex(mOwnerTabView) : null;
             CrashTracking.log("onPageFinished(), " + (debugIndex != null ? "index:" + debugIndex : "<MainController.get() == null>"));
@@ -594,9 +605,30 @@ public class ContentView extends FrameLayout {
             }
         }
 
+        // Hacky variables to get around version 40 of Android System WebView returning "about:blank"
+        // urls.
+        // * mIgnoreNextOnProgressChanged is necessary to ignore the 100 progress that comes in with a
+        //      null urlAsString.
+        // * mIgnoreNextOnPageFinished is necessary to ignore the ensuing onPageFinished() call.
+        //
+        // Both of these hacks combine to allow links to load correctly using WebView, and have the
+        // progress indicator display as expected.
+        boolean mIgnoreNextOnProgressChanged = false;
+        boolean mIgnoreNextOnPageFinished = false;
         @Override
         public void onProgressChanged(int progress, String urlAsString) {
-            //Log.d(TAG, "onProgressChanged() - progress:" + progress);
+            if (urlAsString == null) {
+                Log.d(TAG, "onProgressChanged(): ignore, no url");
+                mIgnoreNextOnProgressChanged = true;
+                return;
+            } else if (mIgnoreNextOnProgressChanged) {
+                Log.d(TAG, "onProgressChanged(): ignoring next value...");
+                mIgnoreNextOnProgressChanged = false;
+                mIgnoreNextOnPageFinished = true;
+                return;
+            }
+
+            Log.d(TAG, "onProgressChanged() - progress:" + progress + ", " + urlAsString);
 
             mCurrentProgress = progress;
 
@@ -1337,6 +1369,10 @@ public class ContentView extends FrameLayout {
     }
 
     private boolean updateUrl(String urlAsString) {
+        if (urlAsString.equals("about:blank")) {
+            Log.d(TAG, "updateUrl(): ignore url:" + urlAsString);
+            return true;
+        }
         if (urlAsString.equals(mWebRenderer.getUrl().toString()) == false) {
             try {
                 Log.d(TAG, "change url from " + mWebRenderer.getUrl() + " to " + urlAsString);
@@ -1416,8 +1452,8 @@ public class ContentView extends FrameLayout {
     }
 
     private boolean openInBrowser(String urlAsString, boolean canShowUndoPrompt) {
-        Log.d(TAG, "openInBrowser() - url:" + urlAsString);
-        CrashTracking.log("openInBrowser()");
+        Log.d(TAG, "ContentView.openInBrowser() - url:" + urlAsString);
+        CrashTracking.log("ContentView.openInBrowser()");
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(urlAsString));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
