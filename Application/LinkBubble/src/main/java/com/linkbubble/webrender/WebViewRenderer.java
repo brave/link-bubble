@@ -41,6 +41,7 @@ import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
 import com.squareup.otto.Subscribe;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 class WebViewRenderer extends WebRenderer {
@@ -404,8 +405,43 @@ class WebViewRenderer extends WebRenderer {
         }
 
         @Override
-        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-            handler.proceed();
+        public void onReceivedSslError(WebView webView, final SslErrorHandler handler, SslError error) {
+            handler.cancel();
+            /*
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            builder.setTitle(mContext.getString(R.string.warning));
+            String s = error.toString();
+            Log.d("blerg", s);
+            URL url;
+            try {
+                 url = new URL(error.getUrl());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                url = mUrl;
+            }
+            builder.setMessage(String.format(mContext.getString(R.string.untrusted_certificate), url.getHost()))
+                    .setCancelable(true)
+                    .setPositiveButton(mContext.getString(R.string.yes),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int id) {
+                                    handler.proceed();
+                                }
+                            })
+                    .setNegativeButton(mContext.getString(R.string.action_no_recommended),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int id) {
+                                    handler.cancel();
+                                }
+                            });
+            if (error.getPrimaryError() == SslError.SSL_UNTRUSTED) {
+                AlertDialog alert = builder.create();
+                alert.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                Util.showThemedDialog(alert);
+            } else {
+                handler.proceed();
+            }*/
         }
 
         @Override
