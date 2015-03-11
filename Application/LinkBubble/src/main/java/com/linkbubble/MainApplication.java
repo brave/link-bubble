@@ -385,7 +385,7 @@ public class MainApplication extends Application {
             CrashTracking.log("MainApplication.handleBubbleAction() action:" + action.toString() + ", consumePackageName:" + consumePackageName);
             String consumeName = Settings.get().getConsumeBubbleActivityClassName(action);
 
-            if (consumePackageName.equals(BuildConfig.PACKAGE_NAME) && consumeName.equals(Constant.SHARE_PICKER_NAME)) {
+            if (consumePackageName.equals(BuildConfig.APPLICATION_ID) && consumeName.equals(Constant.SHARE_PICKER_NAME)) {
                 AlertDialog alertDialog = ActionItem.getShareAlert(context, false, new ActionItem.OnActionItemSelectedListener() {
                     @Override
                     public void onSelected(ActionItem actionItem) {

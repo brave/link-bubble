@@ -161,7 +161,7 @@ public class EntryActivity extends Activity {
             if (recentTaskInfo.baseIntent != null
                     && recentTaskInfo.baseIntent.getComponent() != null) {
                 String packageName = recentTaskInfo.baseIntent.getComponent().getPackageName();
-                if (packageName.equals("android") == false && packageName.equals(BuildConfig.PACKAGE_NAME) == false) {
+                if (packageName.equals("android") == false && packageName.equals(BuildConfig.APPLICATION_ID) == false) {
                     return recentTaskInfo;
                 }
             }
