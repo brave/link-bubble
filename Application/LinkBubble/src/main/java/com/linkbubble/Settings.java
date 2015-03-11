@@ -246,7 +246,7 @@ public class Settings {
             for (ResolveInfo resolveInfo : resolveInfos) {
                 if (resolveInfo.activityInfo != null) {
                     String packageName = resolveInfo.activityInfo.packageName;
-                    if (packageName.equals(BuildConfig.PACKAGE_NAME) == false && packageName.contains(desiredPackageName)) {
+                    if (packageName.equals(BuildConfig.APPLICATION_ID) == false && packageName.contains(desiredPackageName)) {
                         setDefaultApp(url.toString(), resolveInfo, false);
                         return;
                     }
@@ -306,7 +306,7 @@ public class Settings {
             IntentFilter filter = resolveInfo.filter;
             if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
                 // Ignore LinkBubble from this list
-                if (resolveInfo.activityInfo.packageName.equals(BuildConfig.PACKAGE_NAME)) {
+                if (resolveInfo.activityInfo.packageName.equals(BuildConfig.APPLICATION_ID)) {
                     mLinkBubbleEntryActivityResolveInfo = resolveInfo;
                 } else if (Util.isValidBrowserPackageName(resolveInfo.activityInfo.packageName)) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -394,11 +394,11 @@ public class Settings {
         String rightConsumeBubblePackageName = mSharedPreferences.getString(PREFERENCE_RIGHT_CONSUME_BUBBLE_PACKAGE_NAME, null);
         if (rightConsumeBubblePackageName == null
                 || (rightConsumeBubblePackageName != null
-                    && !rightConsumeBubblePackageName.equals(BuildConfig.PACKAGE_NAME)
+                    && !rightConsumeBubblePackageName.equals(BuildConfig.APPLICATION_ID)
                     && !doesPackageExist(packageManager, rightConsumeBubblePackageName))) {
             setConsumeBubble(Constant.BubbleAction.ConsumeRight, Constant.ActionType.Share,
                     mContext.getResources().getString(R.string.share_picker_label),
-                    BuildConfig.PACKAGE_NAME, Constant.SHARE_PICKER_NAME);
+                    BuildConfig.APPLICATION_ID, Constant.SHARE_PICKER_NAME);
         }
     }
 

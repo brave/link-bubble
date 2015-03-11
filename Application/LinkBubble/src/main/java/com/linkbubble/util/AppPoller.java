@@ -74,13 +74,13 @@ public class AppPoller {
     // Add this equally nasty hack to ignore this one activity. Stops the Bubbles going into BubbleView mode without any input (see #179)
     private static final String[] IGNORE_ACTIVITIES = {"com.estrongs.android.pop/.app.InstallMonitorActivity",
             "com.ideashower.readitlater.pro/com.ideashower.readitlater.activity.AddActivity",
-            BuildConfig.PACKAGE_NAME + "/" + ExpandedActivity.class.getName(),
-            BuildConfig.PACKAGE_NAME + "/" + NotificationCloseAllActivity.class.getName(),
-            BuildConfig.PACKAGE_NAME + "/" + NotificationCloseTabActivity.class.getName(),
-            BuildConfig.PACKAGE_NAME + "/" + NotificationHideActivity.class.getName(),
-            BuildConfig.PACKAGE_NAME + "/" + NotificationUnhideActivity.class.getName(),
-            BuildConfig.PACKAGE_NAME + "/" + NotificationOpenTabActivity.class.getName(),
-            BuildConfig.PACKAGE_NAME + "/" + EntryActivity.class.getName()};
+            BuildConfig.APPLICATION_ID + "/" + ExpandedActivity.class.getName(),
+            BuildConfig.APPLICATION_ID + "/" + NotificationCloseAllActivity.class.getName(),
+            BuildConfig.APPLICATION_ID + "/" + NotificationCloseTabActivity.class.getName(),
+            BuildConfig.APPLICATION_ID + "/" + NotificationHideActivity.class.getName(),
+            BuildConfig.APPLICATION_ID + "/" + NotificationUnhideActivity.class.getName(),
+            BuildConfig.APPLICATION_ID + "/" + NotificationOpenTabActivity.class.getName(),
+            BuildConfig.APPLICATION_ID + "/" + EntryActivity.class.getName()};
     private boolean shouldIgnoreActivity(String flatComponentName) {
         for (String string : IGNORE_ACTIVITIES) {
             if (string.equals(flatComponentName)) {

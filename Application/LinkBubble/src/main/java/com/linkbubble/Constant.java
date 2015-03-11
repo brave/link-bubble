@@ -120,7 +120,7 @@ public class Constant {
     public static final String DATA_TRIAL_ENTRY = "Trial";
     public static final String DATA_TRIAL_EMAIL = "email";
 
-    public static final String WEBVIEW_DATABASE_LOCATION = "/data/data/" + BuildConfig.PACKAGE_NAME;
+    public static final String WEBVIEW_DATABASE_LOCATION = "/data/data/" + BuildConfig.APPLICATION_ID;
 
     public static final String USER_AGENT_CHROME_PHONE = "Mozilla/5.0 (Linux; Android 4.4.2; GT-I9505 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.114 Mobile Safari/537.36";
     public static final String USER_AGENT_CHROME_TABLET = "Mozilla/5.0 (Linux; Android 4.4.2; Nexus 7 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.48 Safari/537.36";

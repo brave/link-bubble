@@ -1269,7 +1269,7 @@ public class ContentView extends FrameLayout {
         for (AppForUrl appForUrl : mAppsForUrl) {
             if (appForUrl.mResolveInfo != null
                     && appForUrl.mResolveInfo.activityInfo != null
-                    && appForUrl.mResolveInfo.activityInfo.packageName.equals(BuildConfig.PACKAGE_NAME)) {
+                    && appForUrl.mResolveInfo.activityInfo.packageName.equals(BuildConfig.APPLICATION_ID)) {
                 containsLinkBubble = true;
                 break;
             }
