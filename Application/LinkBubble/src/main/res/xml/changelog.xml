@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.4.8" versioncode="14700">
+        <change>BUG FIX: Fix app when using Android System WebView v40 (on Android 5.0 or later).</change>
+        <change>BUG FIX: Stability fixes.</change>
+    </release>
+
     <release version="1.4.7" versioncode="14700">
         <change>BUG FIX: Fix tab icons displaying when Link Bubble is minimized (thanks @GeneralChops90).</change>
         <change>BUG FIX: Fix webpage scrolling becoming unresponsive after dismissing a JavaScript alert (thanks +Arpith Sharma).</change>
