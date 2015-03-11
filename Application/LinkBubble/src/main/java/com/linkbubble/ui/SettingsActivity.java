@@ -482,7 +482,7 @@ public class SettingsActivity extends PreferenceActivity {
                 if (defaultBrowserResolveInfo != null) {
                     String defaultBrowserPackageName = defaultBrowserResolveInfo.activityInfo != null ? defaultBrowserResolveInfo.activityInfo.packageName : null;
                     if (defaultBrowserPackageName != null
-                            && (defaultBrowserPackageName.equals(BuildConfig.PACKAGE_NAME)
+                            && (defaultBrowserPackageName.equals(BuildConfig.APPLICATION_ID)
                             || defaultBrowserPackageName.equals(BuildConfig.TAP_PATH_PACKAGE_NAME))) {
                         PreferenceCategory category = (PreferenceCategory) findPreference("preference_category_configuration");
                         category.removePreference(setDefaultBrowserPreference);
@@ -991,7 +991,7 @@ public class SettingsActivity extends PreferenceActivity {
 
                         @Override
                         public boolean addToList(String packageName) {
-                            if (packageName.equals(BuildConfig.PACKAGE_NAME)) {
+                            if (packageName.equals(BuildConfig.APPLICATION_ID)) {
                                 return false;
                             }
 

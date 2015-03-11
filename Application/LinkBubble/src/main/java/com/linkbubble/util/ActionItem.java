@@ -104,7 +104,7 @@ public class ActionItem {
             intent.setType("text/plain");
             List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, 0);
             for (ResolveInfo resolveInfo : resolveInfos) {
-                if (resolveInfo.activityInfo.packageName.equals(BuildConfig.PACKAGE_NAME) == false) {
+                if (resolveInfo.activityInfo.packageName.equals(BuildConfig.APPLICATION_ID) == false) {
                     actionItems.add(new ActionItem(Constant.ActionType.Share,
                             resources,
                             resolveInfo.loadLabel(packageManager).toString(),
@@ -122,7 +122,7 @@ public class ActionItem {
                     resources,
                     context.getString(R.string.share_picker_label),
                     context.getResources().getDrawable(R.drawable.ic_action_share),
-                    BuildConfig.PACKAGE_NAME,
+                    BuildConfig.APPLICATION_ID,
                     Constant.SHARE_PICKER_NAME));
         }
 

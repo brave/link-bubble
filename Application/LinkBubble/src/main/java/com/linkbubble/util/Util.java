@@ -312,7 +312,7 @@ public class Util {
     public static boolean isLinkBubbleResolveInfo(ResolveInfo resolveInfo) {
         if (resolveInfo != null
             && resolveInfo.activityInfo != null
-                && resolveInfo.activityInfo.packageName.equals(BuildConfig.PACKAGE_NAME)) {
+                && resolveInfo.activityInfo.packageName.equals(BuildConfig.APPLICATION_ID)) {
             return true;
         }
 
@@ -616,7 +616,7 @@ public class Util {
     }
 
     public static boolean isValidBrowserPackageName(String packageName) {
-        if (packageName.equals(BuildConfig.PACKAGE_NAME) || packageName.contains("com.digitalashes.tappath") || packageName.contains("com.linkbubble")) {
+        if (packageName.equals(BuildConfig.APPLICATION_ID) || packageName.contains("com.digitalashes.tappath") || packageName.contains("com.linkbubble")) {
             return false;
         }
         return true;

@@ -11,7 +11,7 @@ import com.linkbubble.util.CrashTracking;
 
 public class NotificationOpenTabActivity extends Activity {
 
-    public static final String EXTRA_DISMISS_NOTIFICATION = BuildConfig.PACKAGE_NAME + ".notification";
+    public static final String EXTRA_DISMISS_NOTIFICATION = BuildConfig.APPLICATION_ID + ".notification";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
