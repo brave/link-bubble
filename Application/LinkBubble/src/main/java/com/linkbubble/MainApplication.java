@@ -417,6 +417,8 @@ public class MainApplication extends Application {
                 result = true;
             } catch (ActivityNotFoundException ex) {
                 Toast.makeText(context, R.string.consume_activity_not_found, Toast.LENGTH_LONG).show();
+            } catch (SecurityException ex) {
+                Toast.makeText(context, R.string.consume_activity_security_exception, Toast.LENGTH_SHORT).show();
             }
         } else if (actionType == Constant.ActionType.View) {
             String consumePackageName = Settings.get().getConsumeBubblePackageName(action);

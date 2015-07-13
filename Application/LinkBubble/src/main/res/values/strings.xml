@@ -40,6 +40,7 @@
 
     <string name="share_invalid_data">Link Bubble us unable to share this item as it is not a valid URL.</string>
     <string name="consume_activity_not_found">Unable to find application. Consider changing bubble action via Settings.</string>
+    <string name="consume_activity_security_exception">Unable to share to external application.</string>
 
     <string name="upgrade">Upgrade</string>
     <string name="upgrade_to_pro">Upgrade to Pro</string>
