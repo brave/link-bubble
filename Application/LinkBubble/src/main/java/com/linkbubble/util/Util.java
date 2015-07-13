@@ -42,6 +42,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.regex.Pattern;
@@ -632,5 +633,26 @@ public class Util {
         } catch (Exception e) {}
 
         return result;
+    }
+
+    public static List<ResolveInfo> getLauncherAppForApplicationIds(Context context,
+                                                                    String applicationId) {
+        Intent intent = new Intent(Intent.ACTION_MAIN)
+                .addCategory(Intent.CATEGORY_LAUNCHER)
+                .setPackage(applicationId);
+        List<ResolveInfo> resolveInfos = context.getPackageManager().queryIntentActivities(intent, 0);
+        if (resolveInfos != null && resolveInfos.size() > 0) {
+            return resolveInfos;
+        }
+        return null;
+    }
+
+    public static ResolveInfo getLauncherAppForApplicationId(Context context,
+                                                             String applicationId) {
+        List<ResolveInfo> result = getLauncherAppForApplicationIds(context, applicationId);
+        if (result != null && result.size() > 0) {
+            return result.get(0);
+        }
+        return null;
     }
 }
