@@ -22,9 +22,11 @@
         android:key="preference_terms_of_service"
         android:title="@string/preference_terms_of_service_title"/>
 
+    <!--
     <Preference
         android:key="preference_say_thanks"
         android:title="@string/preference_say_thanks_title"
         android:summary="@string/preference_say_thanks_summary" />
+        -->
 
 </PreferenceScreen>
