@@ -4,13 +4,14 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.linkbubble.Config;
-import de.jetwick.snacktory.HtmlFetcher;
-import de.jetwick.snacktory.JResult;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import de.jetwick.snacktory.HtmlFetcher;
+import de.jetwick.snacktory.JResult;
 
 public class ArticleContent {
 

@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;

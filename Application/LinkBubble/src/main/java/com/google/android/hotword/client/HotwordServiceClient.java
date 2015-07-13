@@ -12,7 +12,6 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
 import android.util.Log;
-import android.view.WindowId;
 
 import com.google.android.hotword.service.IHotwordService;
 

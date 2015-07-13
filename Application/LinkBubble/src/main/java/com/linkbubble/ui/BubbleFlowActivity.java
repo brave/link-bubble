@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+
 import com.linkbubble.R;
 
 public class BubbleFlowActivity extends Activity {

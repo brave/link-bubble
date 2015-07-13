@@ -27,6 +27,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.linkbubble.Constant;
 import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
@@ -41,7 +42,6 @@ import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
 import com.squareup.otto.Subscribe;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 class WebViewRenderer extends WebRenderer {

@@ -2,6 +2,7 @@ package com.linkbubble.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
+
 import com.linkbubble.util.CrashTracking;
 
 public class DownloadHandlerActivity extends Activity {

@@ -8,12 +8,14 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
+
 import com.linkbubble.Constant;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.ScaleUpAnimHelper;
 import com.linkbubble.util.Util;
+
 import org.mozilla.gecko.favicons.Favicons;
 
 import java.net.MalformedURLException;
