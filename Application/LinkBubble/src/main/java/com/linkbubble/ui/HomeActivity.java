@@ -126,6 +126,8 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         MainApplication.registerForBus(this, this);
+
+        Settings.get().getBrowsers();
     }
 
     @Override
