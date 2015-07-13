@@ -283,6 +283,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             mUserAgentPreference = (ListPreference) findPreference(Settings.PREFERENCE_USER_AGENT);
 
+            /*
             Preference sayThanksPreference = findPreference("preference_say_thanks");
             if (sayThanksPreference != null) {
                 sayThanksPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -297,7 +298,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         return false;
                     }
                 });
-            }
+            }*/
 
             Preference getProPreference = findPreference("preference_get_pro");
             if (getProPreference != null) {
@@ -329,13 +330,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             if (DRM.isLicensed()) {
                 generalCategory.removePreference(getProPreference);
-                if (Settings.get().getSayThanksClicked()) {
-                    generalCategory.removePreference(sayThanksPreference);
-                }
-            } else {
-                generalCategory.removePreference(sayThanksPreference);
             }
-
 
             findPreference("preference_faq").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
