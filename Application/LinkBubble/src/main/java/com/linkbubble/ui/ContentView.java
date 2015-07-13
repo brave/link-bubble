@@ -661,7 +661,9 @@ public class ContentView extends FrameLayout {
         @Override
         public void onCloseWindow() {
             CrashTracking.log("WebRenderer.Controller.onCloseWindow()");
-            MainController.get().closeTab(mOwnerTabView, true, true);
+            if (MainController.get() != null) {
+                MainController.get().closeTab(mOwnerTabView, true, true);
+            }
         }
 
         @Override
@@ -831,10 +833,12 @@ public class ContentView extends FrameLayout {
         @Override
         public void onAppOpened() {
             CrashTracking.log("mOnOpenInAppButtonClickListener.onAppOpened()");
-            MainController.get().closeTab(mOwnerTabView, true, false);
-            // L_WATCH: L currently lacks getRecentTasks(), so minimize here
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                MainController.get().switchToBubbleView();
+            if (MainController.get() != null) {
+                MainController.get().closeTab(mOwnerTabView, true, false);
+                // L_WATCH: L currently lacks getRecentTasks(), so minimize here
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+                    MainController.get().switchToBubbleView();
+                }
             }
         }
 
@@ -986,7 +990,9 @@ public class ContentView extends FrameLayout {
 
                         case R.id.item_close_tab: {
                             CrashTracking.log("R.id.item_close_tab");
-                            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), true);
+                            if (MainController.get() != null) {
+                                MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), true);
+                            }
                             break;
                         }
 
@@ -1026,17 +1032,21 @@ public class ContentView extends FrameLayout {
     private void onDownloadStart(String urlAsString) {
         openInBrowser(urlAsString);
         CrashTracking.log("onDownloadStart()");
-        MainController.get().closeTab(mOwnerTabView, true, false);
-        // L_WATCH: L currently lacks getRecentTasks(), so minimize here
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-            MainController.get().switchToBubbleView();
+        if (MainController.get() != null) {
+            MainController.get().closeTab(mOwnerTabView, true, false);
+            // L_WATCH: L currently lacks getRecentTasks(), so minimize here
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+                MainController.get().switchToBubbleView();
+            }
         }
     }
 
     private boolean onBackPressed() {
         if (mUrlStack.size() == 0) {
             CrashTracking.log("onBackPressed() - closeTab()");
-            MainController.get().closeTab(mOwnerTabView, true, true);
+            if (MainController.get() != null) {
+                MainController.get().closeTab(mOwnerTabView, true, true);
+            }
             return true;
         } else {
             CrashTracking.log("onBackPressed() - go back");
