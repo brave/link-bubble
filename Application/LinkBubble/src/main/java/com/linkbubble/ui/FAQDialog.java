@@ -12,16 +12,17 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
 import com.linkbubble.R;
 import com.linkbubble.util.Util;
 
-import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
-import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
-
 import java.util.ArrayList;
 import java.util.Locale;
+
+import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
+import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 
 public class FAQDialog {

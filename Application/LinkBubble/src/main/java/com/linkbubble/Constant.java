@@ -1,7 +1,6 @@
 package com.linkbubble;
 
 import android.content.Context;
-import android.os.Build;
 
 public class Constant {
 

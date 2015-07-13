@@ -1,30 +1,20 @@
 package com.linkbubble.ui;
 
-import android.app.AlertDialog;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.linkbubble.BuildConfig;
-import com.linkbubble.Constant;
 import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
 

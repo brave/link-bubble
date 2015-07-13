@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.linkbubble.R;
 
 

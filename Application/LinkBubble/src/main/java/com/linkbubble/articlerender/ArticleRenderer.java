@@ -2,12 +2,10 @@ package com.linkbubble.articlerender;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.DownloadListener;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;

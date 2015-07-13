@@ -16,12 +16,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.squareup.picasso.Picasso;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

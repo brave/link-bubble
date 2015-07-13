@@ -24,6 +24,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
@@ -36,6 +37,7 @@ import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Subscribe;
+
 import org.mozilla.gecko.favicons.Favicons;
 import org.mozilla.gecko.favicons.LoadFaviconTask;
 import org.mozilla.gecko.favicons.OnFaviconLoadedListener;

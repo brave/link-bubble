@@ -1,22 +1,15 @@
 package com.linkbubble.util;
 
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 
 import com.linkbubble.BuildConfig;
-import com.linkbubble.Config;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.ui.Prompt;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class Tamper {
 

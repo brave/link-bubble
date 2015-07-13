@@ -1,20 +1,15 @@
 package com.linkbubble.ui;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
+
 import com.linkbubble.R;
 
 import java.net.URL;

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+
 import com.google.android.hotword.client.HotwordServiceClient;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;

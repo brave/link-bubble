@@ -3,7 +3,6 @@ package com.linkbubble.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.linkbubble.BuildConfig;
 import com.linkbubble.MainController;
