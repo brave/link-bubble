@@ -120,6 +120,7 @@ public class SettingsHelpActivity extends AppCompatPreferenceActivity {
                 }
             });
 
+            /*
             Preference sayThanksPreference = findPreference("preference_say_thanks");
             if (Settings.get().getSayThanksClicked()) {
                 sayThanksPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -136,7 +137,7 @@ public class SettingsHelpActivity extends AppCompatPreferenceActivity {
                 });
             } else {
                 rootPreferenceScreen.removePreference(sayThanksPreference);
-            }
+            }*/
 
         }
 
