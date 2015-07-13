@@ -16,6 +16,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -55,7 +56,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class SettingsActivity extends PreferenceActivity {
+public class SettingsActivity extends AppCompatPreferenceActivity {
 
     public static class IncognitoModeChangedEvent {
         public IncognitoModeChangedEvent(boolean value) {
@@ -66,7 +67,6 @@ public class SettingsActivity extends PreferenceActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         CrashTracking.init(this);
 
@@ -78,13 +78,15 @@ public class SettingsActivity extends PreferenceActivity {
         setContentView(R.layout.activity_settings);
         setTitle(R.string.title_settings);
 
-        // This is a bit messy, but setDisplayHomeAsUpEnabled() for the Home button press event to be received, so
-        // enable it but tell it not to draw. Then we can have L's nice looking Up button.
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        View view = Util.getActionBarUpView(this);
-        if (view != null) {
-            view.setVisibility(View.GONE);
-        }
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override

@@ -15,6 +15,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -30,7 +31,7 @@ import java.util.TreeMap;
  * This class exists solely because Android's PreferenceScreen implementation doesn't do anything
  * when the Up button is touched, and we need to go back in that case given our use of the Up button.
  */
-public class SettingsDefaultAppsActivity extends PreferenceActivity {
+public class SettingsDefaultAppsActivity extends AppCompatPreferenceActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +40,17 @@ public class SettingsDefaultAppsActivity extends PreferenceActivity {
         CrashTracking.init(this);
 
         setContentView(R.layout.activity_settings_default_apps);
-        setTitle(R.string.preference_more_title);
 
-        // This is a bit messy, but setDisplayHomeAsUpEnabled() for the Home button press event to be received, so
-        // enable it but tell it not to draw. Then we can have L's nice looking Up button.
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        View view = Util.getActionBarUpView(this);
-        if (view != null) {
-            view.setVisibility(View.GONE);
-        }
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.preference_default_apps_title);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override

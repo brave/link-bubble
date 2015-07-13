@@ -15,6 +15,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.linkbubble.BuildConfig;
+import com.linkbubble.Config;
 import com.linkbubble.DRM;
 import com.linkbubble.R;
 import com.linkbubble.util.Util;
@@ -72,7 +73,8 @@ public class SettingsBaseFragment extends PreferenceFragment {
             //getResources().getDrawableForDensity()
             Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
             ActivityManager activityManager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
-            int iconSize = activityManager.getLauncherLargeIconSize();
+            int iconSize = (int) (activityManager.getLauncherLargeIconSize() * .67f);
+            //int iconSize = getResources().getDimensionPixelSize(R.dimen.settings_icon_size);
             int w = bitmap.getWidth();
             int h = bitmap.getHeight();
             if (w == h) {
