@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    android:orientation="vertical"
+    tools:context=".HomeActivity"
+    android:background="@color/window_background">
 
-    <View
-        android:id="@+id/background"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/window_background"
-        />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:background="@drawable/action_bar_home_shadow"/>
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ToolbarTheme"/>
 
     <LinearLayout
         android:layout_height="match_parent"
@@ -79,4 +77,4 @@
 
     </LinearLayout>
 
-</merge>
+</LinearLayout>

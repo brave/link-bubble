@@ -5,15 +5,15 @@
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-                android:paddingLeft="9dp"
+                android:paddingLeft="16dp"
                 android:paddingBottom="4dp"
                 android:paddingTop="4dp"
-                android:paddingRight="9dp"
+                android:paddingRight="16dp"
     tools:context=".ui.HistoryActivity">
 
     <org.mozilla.gecko.widget.FaviconView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:id="@+id/favicon"
         android:scaleType="centerInside"
         android:src="@drawable/fallback_favicon"
@@ -23,7 +23,7 @@
                   android:orientation="vertical"
                   android:layout_width="0dip"
                   android:layout_height="wrap_content"
-                  android:paddingLeft="9dp"
+                  android:paddingLeft="24dp"
                   android:layout_weight="1">
         <com.linkbubble.ui.CondensedTextView
             android:layout_width="wrap_content"
