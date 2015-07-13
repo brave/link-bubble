@@ -43,12 +43,8 @@ public class Tamper {
         protected void onPostExecute(Boolean result) {
             if (result.booleanValue() == true && isCancelled() == false) {
                 String text = mContext.getResources().getString(R.string.tampered_apk);
-                Drawable icon = null;
                 final ResolveInfo storeResolveInfo = MainApplication.getStoreViewResolveInfo(mContext);
-                if (storeResolveInfo != null) {
-                    icon = storeResolveInfo.loadIcon(mContext.getPackageManager());
-                }
-                Prompt.show(text, icon, Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
+                Prompt.show(text, Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
                     @Override
                     public void onActionClick() {
                         MainApplication.openAppStore(mContext, BuildConfig.STORE_FREE_URL);

@@ -1507,15 +1507,12 @@ public class ContentView extends FrameLayout {
     private void showOpenInBrowserPrompt(int hasBrowserStringId, int noBrowserStringId, final String urlAsString) {
         String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
         String message;
-        Drawable drawable;
         if (defaultBrowserLabel != null) {
             message = String.format(getResources().getString(hasBrowserStringId), defaultBrowserLabel);
-            drawable = Settings.get().getDefaultBrowserIcon(getContext());
         } else {
             message = getResources().getString(noBrowserStringId);
-            drawable = null;
         }
-        Prompt.show(message, drawable, Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
+        Prompt.show(message, Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
             @Override
             public void onActionClick() {
                 if (urlAsString != null) {
