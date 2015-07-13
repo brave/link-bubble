@@ -28,10 +28,6 @@ import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.IconCache;
 import com.linkbubble.util.Util;
-import com.parse.GetCallback;
-import com.parse.Parse;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -85,7 +81,6 @@ public class MainApplication extends Application {
         Favicons.attachToContext(this);
         recreateFaviconCache();
 
-        initTrialStartTime();
         CrashTracking.log("MainApplication.onCreate()");
     }
 
@@ -106,96 +101,8 @@ public class MainApplication extends Application {
         Log.d(DRM.TAG, "unregisterDrmTracker(): mDrmTrackerCount:" + mDrmTrackerCount + ", " + context.getClass().getSimpleName());
     }
 
-    static String TRIAL_START_TIME = "lb_trialStartTime";
-
-    public static class TrialTimeStartTimeReceivedEvent {
-        public TrialTimeStartTimeReceivedEvent(long startTime) {
-            mStartTime = startTime;
-        }
-        public long mStartTime;
-    }
-
-    private void initTrialStartTime() {
-        try {
-            long cachedStartTime = DRM.decryptSharedPreferencesLong(sDrmSharedPreferences, TRIAL_START_TIME, -1);
-            if (cachedStartTime != -1) {
-                sTrialStartTime = cachedStartTime;
-                TrialTimeStartTimeReceivedEvent event = new TrialTimeStartTimeReceivedEvent(sTrialStartTime);
-                postEvent(MainApplication.this, event);
-                return;
-            }
-
-            final Account[] accounts = AccountManager.get(this).getAccounts();
-            final String defaultEmail = Util.getDefaultEmail(accounts);
-            if (defaultEmail != null) {
-                initParse();
-                ParseQuery<ParseObject> query = ParseQuery.getQuery(Constant.DATA_TRIAL_ENTRY);
-                query.whereEqualTo(Constant.DATA_TRIAL_EMAIL, defaultEmail);
-                query.getFirstInBackground(new GetCallback<ParseObject>() {
-                    @Override
-                    public void done(ParseObject parseObject, com.parse.ParseException e) {
-                        if (parseObject != null) {
-                            sTrialStartTime = parseObject.getCreatedAt().getTime();
-                            Log.d("Trial", "Additional run, sTrialStartTime:" + sTrialStartTime);
-                        } else {
-                            parseObject = new ParseObject(Constant.DATA_TRIAL_ENTRY);
-                            parseObject.put(Constant.DATA_TRIAL_EMAIL, defaultEmail);
-                            parseObject.saveInBackground();
-                            sTrialStartTime = System.currentTimeMillis();
-                            Log.d("Trial", "Initial run, sTrialStartTime:" + sTrialStartTime);
-                        }
-
-                        TrialTimeStartTimeReceivedEvent event = new TrialTimeStartTimeReceivedEvent(sTrialStartTime);
-                        postEvent(MainApplication.this, event);
-
-                        String encryptedTrialStartTime = DRM.encryptLong(sTrialStartTime);
-                        DRM.saveToPreferences(sDrmSharedPreferences, TRIAL_START_TIME, encryptedTrialStartTime);
-                    }
-                });
-            }
-        } catch (Exception ex) {
-        }
-    }
-
-    public static boolean isInTrialPeriod() {
-        if (sTrialStartTime == -1) {
-            return false;
-        }
-
-        long currentTimeMillis = System.currentTimeMillis();
-        long timeDelay = currentTimeMillis - sTrialStartTime;
-        if (timeDelay < Constant.TRIAL_TIME) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public static long getTrialTimeRemaining() {
-        if (sTrialStartTime == -1) {
-            return -1;
-        }
-
-        long currentTime = System.currentTimeMillis();
-        long endTrialTime = sTrialStartTime + Constant.TRIAL_TIME;
-        if (currentTime < endTrialTime) {
-            return endTrialTime - currentTime;
-        }
-
-        return -1;
-    }
-
-
     public Bus getBus() {
         return mBus;
-    }
-
-    boolean mParseInitialized = false;
-    public void initParse() {
-        if (mParseInitialized == false) {
-            Parse.initialize(this, "S0yKk7mPfPOlNnzCwQRorwiwYZvVlNgOu4Pp1Uu3", "t1O0d847aJbZf7dg1GjqJ7sAFgdShvGMhRiuoy87");
-            mParseInitialized = true;
-        }
     }
 
     /**
