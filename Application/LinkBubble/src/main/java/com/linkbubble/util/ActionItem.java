@@ -310,7 +310,7 @@ public class ActionItem {
             }
         });
 
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, resources.getString(R.string.activity_resolver_use_always), new DialogInterface.OnClickListener() {
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, resources.getString(R.string.activity_resolver_use_always), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 int selectedItem = (Integer)listView.getTag();
