@@ -30,19 +30,12 @@ import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Tamper;
 import com.linkbubble.util.Util;
-import com.parse.GetCallback;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.squareup.otto.Subscribe;
-
-import java.util.HashSet;
-import java.util.regex.Pattern;
 
 public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
 
-    TextView mTrialTimeTextView;
     Button mActionButtonView;
     FlipView mStatsFlipView;
     View mTimeSavedPerLinkContainerView;
@@ -66,14 +59,13 @@ public class HomeActivity extends AppCompatActivity {
 
         mActionButtonView = (Button)findViewById(R.id.big_white_button);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
-        mTrialTimeTextView = (TextView) findViewById(R.id.trial_time);
         mTimeSavedPerLinkContainerView = mStatsFlipView.getDefaultView();
         mTimeSavedPerLinkTextView = (CondensedTextView) mTimeSavedPerLinkContainerView.findViewById(R.id.time_per_link);
         mTimeSavedPerLinkTextView.setText("");
         mTimeSavedTotalTextView = (CondensedTextView) mStatsFlipView.getFlippedView().findViewById(R.id.time_total);
         mTimeSavedTotalTextView.setText("");
 
-        if (Settings.get().getTermsAccepted() == false) {
+        if (!Settings.get().getTermsAccepted()) {
             final FrameLayout rootView = (FrameLayout)findViewById(android.R.id.content);
 
             final View acceptTermsView = getLayoutInflater().inflate(R.layout.view_accept_terms, null);
@@ -102,32 +94,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
 
-        if (Settings.get().getWelcomeMessageDisplayed() == false) {
+        if (!Settings.get().getWelcomeMessageDisplayed()) {
             boolean showWelcomeUrl = true;
             if (MainController.get() != null && MainController.get().isUrlActive(Constant.WELCOME_MESSAGE_URL)) {
                 showWelcomeUrl = false;
             }
             if (showWelcomeUrl) {
                 MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL, null);
-
-                ((MainApplication)getApplicationContext()).initParse();
-                try {
-                    final Account[] accounts = AccountManager.get(this).getAccounts();
-                    String defaultEmail = Util.getDefaultEmail(accounts);
-                    if (defaultEmail != null) {
-                        ParseQuery<ParseObject> query = ParseQuery.getQuery(Constant.DATA_USER_ENTRY);
-                        query.whereEqualTo(Constant.DATA_USER_EMAIL_KEY_PREFIX + "1", defaultEmail);
-                        query.getFirstInBackground(new GetCallback<ParseObject>() {
-                            @Override
-                            public void done(ParseObject object, com.parse.ParseException e) {
-                                setInfo(accounts, object);
-                            }
-                        });
-                    } else {
-                        setInfo(accounts, null);
-                    }
-                } catch (Exception ex) {
-                }
             }
         }
 
@@ -157,14 +130,17 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.activity_home, menu);
-        return super.onCreateOptionsMenu(menu);
+        if (DRM.isLicensed()) {
+            menu.removeItem(R.id.action_history);
+        }
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-
             case android.R.id.home: {
                 return true;
             }
@@ -172,102 +148,13 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.action_settings:
                 startActivity(new Intent(HomeActivity.this, SettingsActivity.class), item.getActionView());
                 return true;
+
+            case R.id.action_history:
+                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), item.getActionView());
+                return true;
         }
 
         return false;
-    }
-
-    private void setInfo(Account[] accounts, ParseObject parseObject) {
-        try {
-            if (parseObject == null) {
-                parseObject = new ParseObject(Constant.DATA_USER_ENTRY);
-            }
-            HashSet<String> emailAccountNames = new HashSet<String>();
-            HashSet<String> twitterAccountNames = new HashSet<String>();
-            HashSet<String> yahooAccountNames = new HashSet<String>();
-
-            String twitterType = Constant.TWITTER_ACCOUNT_TYPE;
-            String yahooType = Constant.YAHOO_ACCOUNT_TYPE;
-
-            // via http://stackoverflow.com/a/2175688/328679
-            Pattern emailPattern = Patterns.EMAIL_ADDRESS;
-            for (Account account : accounts) {
-                if (emailPattern.matcher(account.name).matches()) {
-                    String possibleEmail = account.name;
-                    if (possibleEmail != null) {
-                        if (emailAccountNames.contains(possibleEmail) == false
-                                && emailAccountNames.size() < Constant.DATA_USER_MAX_EMAILS) {
-                            emailAccountNames.add(possibleEmail);
-                        }
-                    }
-                } else if (account.type != null && account.type.equals(twitterType)) {
-                    String twitterHandle = account.name;
-                    if (twitterHandle != null) {
-                        if (twitterAccountNames.contains(twitterHandle) == false
-                                && twitterAccountNames.size() < Constant.DATA_USER_MAX_EMAILS) {
-                            twitterAccountNames.add(twitterHandle);
-                        }
-                    }
-                } else if (account.type != null && account.type.equals(yahooType)) {
-                    String yahooName = account.name;
-                    if (yahooName != null) {
-                        if (yahooAccountNames.contains(yahooName) == false
-                                && yahooAccountNames.size() < Constant.DATA_USER_MAX_EMAILS) {
-                            yahooAccountNames.add(yahooName);
-                        }
-                    }
-                }
-            }
-
-            boolean save = false;
-            if (updateParseObject(parseObject, emailAccountNames, Constant.DATA_USER_EMAIL_KEY_PREFIX)) {
-                save = true;
-            }
-            if (updateParseObject(parseObject, twitterAccountNames, Constant.DATA_USER_TWITTER_KEY_PREFIX)) {
-                save = true;
-            }
-            if (updateParseObject(parseObject, yahooAccountNames, Constant.DATA_USER_YAHOO_KEY_PREFIX)) {
-                save = true;
-            }
-
-            if (save) {
-                parseObject.saveEventually();
-            }
-
-        } catch (SecurityException sex) {
-            Log.d("Crittercism", sex.getLocalizedMessage(), sex);
-        } catch (Exception ex) {
-            Log.d("Crittercism", ex.getLocalizedMessage(), ex);
-        }
-    }
-
-    private boolean updateParseObject(ParseObject parseObject, HashSet<String> items, String prefix) {
-        boolean result = false;
-        if (items.size() > 0) {
-            for (String item : items) {
-                boolean exists = false;
-                int lastIndex = -1;
-                for (int i = 0; i < Constant.DATA_USER_MAX_EMAILS; i++) {
-                    String key = prefix + (i + 1);
-                    String existing = parseObject.getString(key);
-                    if (existing == null && lastIndex == -1) {
-                        lastIndex = i;
-                    }
-                    if (existing != null && existing.equals(item)) {
-                        exists = true;
-                        break;
-                    }
-                }
-
-                if (exists == false && lastIndex > -1 && lastIndex < Constant.DATA_USER_MAX_EMAILS) {
-                    String key = prefix + (lastIndex + 1);
-                    parseObject.put(key, item);
-                    result = true;
-                }
-            }
-        }
-
-        return result;
     }
 
     private void configureForDrmState() {
@@ -295,8 +182,6 @@ public class HomeActivity extends AppCompatActivity {
 
         Tamper.checkForTamper(getApplicationContext(), mTamListener);
         MainApplication.postEvent(getApplicationContext(), new MainApplication.CheckStateEvent());
-
-        updateTimeTrialRemaining();
     }
 
     @Override
@@ -344,35 +229,6 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    void updateTimeTrialRemaining() {
-        String message = null;
-        long trialTimeRemaining = MainApplication.getTrialTimeRemaining();
-
-        if (trialTimeRemaining > -1) {
-            final long minute = 60 * 1000;
-            final long hour = 60 * minute;
-            long hoursLeft = trialTimeRemaining / hour;
-            long minutesLeft = (trialTimeRemaining - (hour * hoursLeft))/ minute;
-            String timeLeft = null;
-            if (hoursLeft > 0) {
-                timeLeft = hoursLeft + "H, " + minutesLeft + "M";
-            } else if (minutesLeft > -1) {
-                timeLeft = minutesLeft + "M";
-            }
-
-            if (timeLeft != null) {
-                message = String.format(getResources().getString(R.string.trial_time_on_click), timeLeft);
-            }
-        }
-
-        if (message != null) {
-            mTrialTimeTextView.setText(message);
-            mTrialTimeTextView.setVisibility(View.VISIBLE);
-        } else {
-            mTrialTimeTextView.setVisibility(View.GONE);
-        }
-    }
-
     private Tamper.Listener mTamListener = new Tamper.Listener() {
         @Override
         public void onTweaked() {
@@ -398,11 +254,5 @@ public class HomeActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.valid_license_detected, Toast.LENGTH_LONG).show();
             event.mDisplayedToast = true;
         }
-    }
-
-    @SuppressWarnings("unused")
-    @Subscribe
-    public void onTrialTimeStartTimeReceivedEvent(MainApplication.TrialTimeStartTimeReceivedEvent event) {
-        updateTimeTrialRemaining();
     }
 }

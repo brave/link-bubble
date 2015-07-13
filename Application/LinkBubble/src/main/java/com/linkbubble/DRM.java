@@ -39,7 +39,7 @@ public class DRM {
     }
 
     public static boolean allowProFeatures() {
-        return isLicensed() || MainApplication.isInTrialPeriod();
+        return isLicensed();
     }
 
     private static String LICENSE_KEY = "lb_licenseKey";
