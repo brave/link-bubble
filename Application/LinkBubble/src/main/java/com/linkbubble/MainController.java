@@ -960,9 +960,7 @@ public class MainController implements Choreographer.FrameCallback {
         tabView.mWasRestored = false;
         Prompt.show(message,
                 mContext.getResources().getString(R.string.action_undo).toUpperCase(),
-                mContext.getResources().getDrawable(R.drawable.ic_undobar_undo),
                 Prompt.LENGTH_SHORT,
-                false,
                 true,
                 new Prompt.OnPromptEventListener() {
                     @Override
