@@ -1,12 +1,14 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
 
         <item name="android:colorBackground">@android:color/white</item>
         <item name="android:windowBackground">@android:color/white</item>
+    </style>
 
+    <style name="AppTheme" parent="AppThemeBase">
         <item name="android:textColorHighlight">#99663399</item>
         <item name="android:textSelectHandleLeft">@drawable/apptheme_text_select_handle_left</item>
         <item name="android:textSelectHandleRight">@drawable/apptheme_text_select_handle_right</item>
@@ -30,8 +32,6 @@
         <item name="titleMarginStart">16dp</item>
     </style>
 
-    <style name="HomeTheme" parent="@style/AppTheme">
-    </style>
 
     <style name="ListSeparatorTextView">
         <item name="android:layout_width">match_parent</item>
