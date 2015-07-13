@@ -171,8 +171,7 @@ public class MainApplication extends Application {
             int urlCount = urls.size();
             if (urlCount > 0 && DRM.allowProFeatures()) {
                 String message = context.getResources().getQuantityString(R.plurals.restore_tabs_from_previous_session, urlCount, urlCount);
-                Drawable icon = context.getResources().getDrawable(R.drawable.ic_action_redo_white);
-                Prompt.show(message, icon, Prompt.LENGTH_SHORT, new Prompt.OnPromptEventListener() {
+                Prompt.show(message, Prompt.LENGTH_SHORT, new Prompt.OnPromptEventListener() {
 
                     boolean mOnActionClicked = false;
 
@@ -464,13 +463,8 @@ public class MainApplication extends Application {
     }
 
     public static void showUpgradePrompt(final Context context, String string, final String prompt) {
-        Drawable icon = null;
         final ResolveInfo storeResolveInfo = getStoreViewResolveInfo(context);
-        if (storeResolveInfo != null) {
-            icon = storeResolveInfo.loadIcon(context.getPackageManager());
-        }
-
-        Prompt.show(string, icon, Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
+        Prompt.show(string, Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
             @Override
             public void onActionClick() {
                 if (storeResolveInfo != null) {
