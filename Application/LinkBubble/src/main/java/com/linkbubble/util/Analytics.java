@@ -1,20 +1,12 @@
 package com.linkbubble.util;
 
 import android.app.Application;
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 
 public class Analytics {
 
     public static final String GA_PROPERTY_ID = "UA-49396039-1";
 
-    static Tracker sTracker;
-
     public static void init(Application application) {
-        GoogleAnalytics analytics = GoogleAnalytics.getInstance(application);
-        sTracker = analytics.newTracker(GA_PROPERTY_ID);
-        GoogleAnalytics.getInstance(application).setLocalDispatchPeriod(15);
     }
 
     private static final String CATEGORY = "Usage";
@@ -26,6 +18,7 @@ public class Analytics {
     public static final String OPENED_URL_FROM_HISTORY = "LinkBubble-History";
 
     public static void trackOpenUrl(String openedFromAppName) {
+        /*
         if (openedFromAppName != null) {
 
             sTracker.send(new HitBuilders.EventBuilder()
@@ -33,17 +26,18 @@ public class Analytics {
                     .setAction("URL opened from")
                     .setLabel(openedFromAppName)
                     .build());
-        }
+        }*/
     }
 
     public static void trackTimeSaved(long time) {
+        /*
         if (time > -1) {
             sTracker.send(new HitBuilders.TimingBuilder()
                     .setCategory(CATEGORY)
                     .setValue(time)
                     .setVariable("time saved")
                     .build());
-        }
+        }*/
     }
 
     public static final String UPGRADE_PROMPT_SINGLE_APP = "single_app";
@@ -60,7 +54,9 @@ public class Analytics {
     }
 
     public static void trackScreenView(String screenName) {
+        /*
         sTracker.setScreenName(screenName);
         sTracker.send(new HitBuilders.AppViewBuilder().build());
+        */
     }
 }

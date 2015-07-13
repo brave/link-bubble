@@ -2,42 +2,43 @@ buildscript {
     repositories {
         jcenter()
         flatDir { dirs '../../DexGuard/lib-6.1.10' }
-        maven { url 'http://download.crashlytics.com/maven' }
+        maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
         classpath ':dexguard:'
-        classpath 'com.android.tools.build:gradle:1.1.1'
-        classpath 'com.crashlytics.tools.gradle:crashlytics-gradle:1.14.7'
+        classpath 'com.android.tools.build:gradle:1.1.3'
+        classpath 'io.fabric.tools:gradle:1.19.0'
     }
 }
 
 // Manifest version information!
 def versionMajor = 1
-def versionMinor = 4
-def versionPatch = 8
+def versionMinor = 5
+def versionPatch = 0
 def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 apply plugin:'com.android.application'
-apply plugin: 'crashlytics'
 if(buildMode == "dexguard") {
     apply plugin: 'dexguard'
     println "*** Apply plugin -> DEXGUARD"
 }
 
+apply plugin: 'io.fabric'
+
 repositories {
     mavenCentral()
-    maven { url 'http://download.crashlytics.com/maven' }
+    maven { url 'https://maven.fabric.io/public' }
 }
 
 def gitSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
 def buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone("UTC"))
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 22
+    buildToolsVersion "22.0.0"
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 21
+        targetSdkVersion 22
 
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
@@ -93,10 +94,12 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:21.0.3'
-    compile 'com.google.android.gms:play-services-base:6.5.87'
+    compile 'com.android.support:support-v4:22.2.0'
+    compile 'com.google.android.gms:play-services-base:7.5.0'
     compile 'se.emilsjolander:stickylistheaders:2.1.2'
-    compile 'com.crashlytics.android:crashlytics:1.+'
+    compile('com.crashlytics.sdk.android:crashlytics:2.2.4@aar') {
+        transitive = true;
+    }
     compile 'com.squareup.retrofit:retrofit:1.5.0'
     compile files('libs/otto-1.3.4.jar')
     compile files('libs/picasso-2.1.1.jar')
