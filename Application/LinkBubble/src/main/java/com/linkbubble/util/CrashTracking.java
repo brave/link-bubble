@@ -6,10 +6,12 @@ import android.util.Log;
 import com.crashlytics.android.Crashlytics;
 import com.linkbubble.BuildConfig;
 
+import io.fabric.sdk.android.Fabric;
+
 public class CrashTracking {
 
     public static void init(Context context) {
-        Crashlytics.start(context);
+        Fabric.with(context, new Crashlytics());
     }
 
     public static void logHandledException(Throwable throwable) {
