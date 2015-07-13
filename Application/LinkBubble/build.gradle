@@ -95,6 +95,7 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:22.2.0'
+    compile "com.android.support:appcompat-v7:22.2.0"
     compile 'com.google.android.gms:play-services-base:7.5.0'
     compile 'se.emilsjolander:stickylistheaders:2.1.2'
     compile('com.crashlytics.sdk.android:crashlytics:2.2.4@aar') {
