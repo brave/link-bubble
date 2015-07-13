@@ -9,12 +9,14 @@ import android.support.v7.graphics.PaletteItem;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.FrameLayout;
+
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.Util;
 import com.squareup.picasso.Transformation;
+
 import org.mozilla.gecko.favicons.Favicons;
 import org.mozilla.gecko.favicons.LoadFaviconTask;
 import org.mozilla.gecko.favicons.OnFaviconLoadedListener;

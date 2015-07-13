@@ -13,6 +13,7 @@ import android.view.animation.Transformation;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
+
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.MainController;

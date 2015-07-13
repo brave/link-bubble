@@ -2,18 +2,10 @@ package com.linkbubble.webrender;
 
 
 import android.content.Context;
-import android.content.ContextWrapper;
-import android.content.Intent;
-import android.content.IntentSender;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
-import com.linkbubble.Constant;
 import com.linkbubble.articlerender.ArticleContent;
-import com.linkbubble.ui.ExpandedActivity;
 import com.linkbubble.util.YouTubeEmbedHelper;
 
 import java.net.MalformedURLException;

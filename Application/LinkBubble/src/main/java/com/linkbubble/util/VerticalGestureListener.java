@@ -3,6 +3,7 @@ package com.linkbubble.util;
 
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+
 import com.linkbubble.Config;
 
 public class VerticalGestureListener extends GestureDetector.SimpleOnGestureListener {

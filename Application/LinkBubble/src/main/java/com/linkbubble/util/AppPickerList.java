@@ -15,7 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import com.linkbubble.BuildConfig;
+
 import com.linkbubble.R;
 
 import java.util.ArrayList;

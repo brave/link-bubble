@@ -33,7 +33,6 @@ import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.ui.Prompt;
 
 import java.io.BufferedReader;
 import java.io.IOException;

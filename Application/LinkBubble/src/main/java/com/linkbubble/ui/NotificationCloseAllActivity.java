@@ -2,7 +2,6 @@ package com.linkbubble.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.linkbubble.MainController;
 import com.linkbubble.util.CrashTracking;

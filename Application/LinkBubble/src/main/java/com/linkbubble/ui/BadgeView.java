@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.MainController;

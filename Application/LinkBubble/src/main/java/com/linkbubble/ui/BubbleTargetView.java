@@ -1,9 +1,7 @@
 package com.linkbubble.ui;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
@@ -11,6 +9,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;

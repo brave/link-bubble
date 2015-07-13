@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
+
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.squareup.picasso.Picasso;

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+
 import com.linkbubble.BuildConfig;
 import com.linkbubble.MainController;
 import com.linkbubble.ui.EntryActivity;
