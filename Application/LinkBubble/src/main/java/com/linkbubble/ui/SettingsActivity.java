@@ -829,7 +829,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 }
             });
 
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getString(R.string.action_use_default), new DialogInterface.OnClickListener() {
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_use_default), new DialogInterface.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
