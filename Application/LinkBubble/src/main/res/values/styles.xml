@@ -6,6 +6,8 @@
 
         <item name="android:colorBackground">@android:color/white</item>
         <item name="android:windowBackground">@android:color/white</item>
+
+        <item name="android:listSeparatorTextViewStyle">@style/ListSeparatorTextView</item>
     </style>
 
     <style name="AppTheme" parent="AppThemeBase">
@@ -23,7 +25,7 @@
         <item name="android:listChoiceBackgroundIndicator">@drawable/apptheme_list_selector_holo_light</item>
         <item name="android:activatedBackgroundIndicator">@drawable/apptheme_activated_background_holo_light</item>
 
-        <item name="android:listSeparatorTextViewStyle">@style/ListSeparatorTextView</item>
+
     </style>
 
     <style name="ToolbarTheme" parent="Theme.AppCompat.NoActionBar">
