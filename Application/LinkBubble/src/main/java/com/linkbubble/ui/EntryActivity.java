@@ -5,6 +5,7 @@ import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -95,32 +96,25 @@ public class EntryActivity extends Activity {
             String openedFromAppName = null;
             boolean canLoadFromThisApp = true;
             if (Settings.get().isEnabled()) {
-                final ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-                List<ActivityManager.RecentTaskInfo> recentTasks = activityManager.getRecentTasks(16, ActivityManager.RECENT_WITH_EXCLUDED);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    openLink = true;
+                } else {
+                    final ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+                    List<ActivityManager.RecentTaskInfo> recentTasks = activityManager.getRecentTasks(16, ActivityManager.RECENT_WITH_EXCLUDED);
+                    if (recentTasks.size() > 0) {
+                        ActivityManager.RecentTaskInfo recentTaskInfo = getPreviousTaskInfo(recentTasks);
+                        if (recentTaskInfo != null) {
+                            ComponentName componentName = recentTaskInfo.baseIntent.getComponent();
+                            openedFromAppName = componentName.getPackageName();
 
-                if (recentTasks.size() > 0) {
-                    ActivityManager.RecentTaskInfo recentTaskInfo = getPreviousTaskInfo(recentTasks);
-                    ComponentName componentName = recentTaskInfo.baseIntent.getComponent();
-                    openedFromAppName = componentName.getPackageName();
-
-                    boolean isBlacklisted = false;
-                    /*
-                    List<Intent> browsers = Settings.get().getBrowsers();
-                    for (Intent browser : browsers) {
-                        if (componentName.getPackageName().equals(browser.getPackage())) {
-                            isBlacklisted = true;
-                            break;
+                            if (url.equals(Constant.TERMS_OF_SERVICE_URL)
+                                    || url.equals(Constant.PRIVACY_POLICY_URL)
+                                    || !Settings.get().ignoreLinkFromPackageName(componentName.getPackageName())) {
+                                openLink = true;
+                            }
+                        } else {
+                            openLink = true;
                         }
-                    }*/
-
-                    if (url.equals(Constant.TERMS_OF_SERVICE_URL) || url.equals(Constant.PRIVACY_POLICY_URL)) {
-                        canLoadFromThisApp = true;
-                    } else {
-                        canLoadFromThisApp = !Settings.get().ignoreLinkFromPackageName(componentName.getPackageName());
-                    }
-
-                    if (!isBlacklisted && canLoadFromThisApp) {
-                        openLink = true;
                     }
                 }
             }
