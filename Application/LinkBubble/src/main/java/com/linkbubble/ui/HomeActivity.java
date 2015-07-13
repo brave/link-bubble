@@ -2,11 +2,11 @@ package com.linkbubble.ui;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -38,7 +38,7 @@ import com.squareup.otto.Subscribe;
 import java.util.HashSet;
 import java.util.regex.Pattern;
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
 
@@ -49,14 +49,16 @@ public class HomeActivity extends Activity {
     CondensedTextView mTimeSavedPerLinkTextView;
     CondensedTextView mTimeSavedTotalTextView;
 
-    final Handler mHandler = new Handler();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CrashTracking.init(this);
 
         setContentView(R.layout.activity_home);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
 
         Analytics.trackScreenView(HomeActivity.class.getSimpleName());
 
@@ -155,13 +157,8 @@ public class HomeActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-
         getMenuInflater().inflate(R.menu.activity_home, menu);
-        if (DRM.isLicensed()) {
-            menu.removeItem(R.id.action_history);
-        }
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -174,10 +171,6 @@ public class HomeActivity extends Activity {
 
             case R.id.action_settings:
                 startActivity(new Intent(HomeActivity.this, SettingsActivity.class), item.getActionView());
-                return true;
-
-            case R.id.action_history:
-                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), item.getActionView());
                 return true;
         }
 

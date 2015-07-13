@@ -1,10 +1,11 @@
 <resources>
 
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <item name="android:actionBarStyle">@style/AppActionBar</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+
         <item name="android:colorBackground">@android:color/white</item>
         <item name="android:windowBackground">@android:color/white</item>
-
 
         <item name="android:textColorHighlight">#99663399</item>
         <item name="android:textSelectHandleLeft">@drawable/apptheme_text_select_handle_left</item>
@@ -23,27 +24,13 @@
         <item name="android:listSeparatorTextViewStyle">@style/ListSeparatorTextView</item>
     </style>
 
-    <style name="AppActionBar" parent="@android:style/Widget.Holo.ActionBar">
-        <item name="android:background">@color/color_primary</item>
-        <item name="android:titleTextStyle">@style/AppActionBarText</item>
-        <item name="android:height">@dimen/action_bar_height</item>
-        <!--<item name="android:homeAsUpIndicator">@drawable/ic_ab_back_holo_dark</item>-->
-        <item name="android:logo">@drawable/ic_up</item>
-    </style>
-
-    <style name="NoIconActionBar" parent="AppActionBar">
-        <item name="android:logo">@android:color/transparent</item>
-    </style>
-
-    <style name="AppActionBarText" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title.Inverse">
-        <item name="android:textSize">22dp</item>
-        <item name="android:textStyle">bold</item>
+    <style name="ToolbarTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="titleMarginStart">16dp</item>
     </style>
 
     <style name="HomeTheme" parent="@style/AppTheme">
-        <item name="android:actionBarStyle">@style/NoIconActionBar</item>
-        <item name="android:displayOptions">showTitle</item>
-        <item name="android:windowActionBarOverlay">false</item>
     </style>
 
     <style name="ListSeparatorTextView">

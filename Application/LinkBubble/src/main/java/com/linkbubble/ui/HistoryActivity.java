@@ -1,6 +1,5 @@
 package com.linkbubble.ui;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,6 +8,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -49,7 +50,8 @@ import java.util.Date;
 import java.util.List;
 
 
-public class HistoryActivity extends Activity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+public class HistoryActivity extends AppCompatActivity
+        implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     private TextView mMessageView;
     private ListView mListView;
@@ -71,16 +73,18 @@ public class HistoryActivity extends Activity implements AdapterView.OnItemClick
 
         setContentView(R.layout.activity_history);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         mMessageView = (TextView) findViewById(R.id.message_view);
         mListView = (ListView) findViewById(R.id.listview);
-
-        // This is a bit messy, but setDisplayHomeAsUpEnabled() for the Home button press event to be received, so
-        // enable it but tell it not to draw. Then we can have L's nice looking Up button.
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        View view = Util.getActionBarUpView(this);
-        if (view != null) {
-            view.setVisibility(View.GONE);
-        }
     }
 
     @Override
