@@ -167,6 +167,7 @@ public class ContentView extends FrameLayout {
         public void setDefaultFavicon();
         public void onCanGoBackChanged(boolean canGoBack);
         public boolean hasHighQualityFavicon();
+        void onThemeColor(Integer color);
     }
 
     @Override
@@ -277,11 +278,8 @@ public class ContentView extends FrameLayout {
         boolean darkTheme = Settings.get().getDarkThemeEnabled();
 
         mToolbarLayout = (LinearLayout) findViewById(R.id.content_toolbar);
-        mToolbarLayout.setBackgroundColor(Settings.get().getThemedContentViewColor());
         mTitleTextView = (CondensedTextView) findViewById(R.id.title_text);
-        mTitleTextView.setTextColor(Settings.get().getThemedTextColor());
         mUrlTextView = (CondensedTextView) findViewById(R.id.url_text);
-        mUrlTextView.setTextColor(Settings.get().getThemedTextColor());
 
         findViewById(R.id.content_text_container).setOnTouchListener(mOnTextContainerTouchListener);
 
@@ -336,6 +334,24 @@ public class ContentView extends FrameLayout {
         updateAppsForUrl(mWebRenderer.getUrl());
         Log.d(TAG, "load url: " + urlAsString);
         updateUrlTitleAndText(urlAsString);
+
+        updateColors(null);
+    }
+
+    void updateColors(Integer color) {
+        int textColor;
+        int bgColor;
+        if (color == null) {
+            textColor = Settings.get().getThemedTextColor();
+            bgColor = Settings.get().getThemedContentViewColor();
+        } else {
+            textColor = getResources().getColor(android.R.color.white);
+            bgColor = color;
+        }
+
+        mToolbarLayout.setBackgroundColor(bgColor);
+        mTitleTextView.setTextColor(textColor);
+        mUrlTextView.setTextColor(textColor);
     }
 
     WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {
@@ -673,8 +689,10 @@ public class ContentView extends FrameLayout {
 
         @Override
         public int getPageInspectFlags() {
-            int flags = PageInspector.INSPECT_DROP_DOWN | PageInspector.INSPECT_YOUTUBE;
-            if (mEventHandler.hasHighQualityFavicon() == false) {
+            int flags = PageInspector.INSPECT_DROP_DOWN
+                    | PageInspector.INSPECT_YOUTUBE
+                    | PageInspector.INSPECT_THEME_COLOR;
+            if (!mEventHandler.hasHighQualityFavicon()) {
                 flags |= PageInspector.INSPECT_TOUCH_ICON;
             }
             return flags;
@@ -724,6 +742,17 @@ public class ContentView extends FrameLayout {
                 public void run() {
                     showOpenInBrowserPrompt(R.string.unsupported_drop_down_default_browser,
                             R.string.unsupported_drop_down_no_default_browser, mWebRenderer.getUrl().toString());
+                }
+            });
+        }
+
+        @Override
+        public void onPagedInspectorThemeColorFound(final int color) {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    updateColors(color);
+                    mEventHandler.onThemeColor(color);
                 }
             });
         }

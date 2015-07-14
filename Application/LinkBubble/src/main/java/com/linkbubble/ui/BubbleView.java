@@ -79,7 +79,7 @@ public class BubbleView extends FrameLayout  {
     }
 
     private void setFavicon(Bitmap bitmap, String faviconUrl) {
-        mFavicon.updateImage(bitmap, faviconUrl);
+        mFavicon.updateImage(bitmap, faviconUrl, mThemeColor == null);
         mFavicon.setTag(faviconUrl);
     }
 
@@ -266,6 +266,16 @@ public class BubbleView extends FrameLayout  {
         return appliedFavicon;
     }
 
+    Integer mThemeColor;
+    public void onThemeColor(Integer color) {
+        mThemeColor = color;
+        mProgressIndicator.setColor(color);
+
+        if (mImitator != null) {
+            mImitator.onThemeColor(color);
+        }
+    }
+
     public void onProgressChanged(int progress) {
         showProgressBar(progress);
     }
@@ -296,6 +306,9 @@ public class BubbleView extends FrameLayout  {
 
         @Override
         public void onPaletteChange(Palette palette) {
+            if (mThemeColor != null) {
+                return;
+            }
             if (palette == null) {
                 mProgressIndicator.setColor(Settings.get().getThemedDefaultProgressColor());
                 return;
