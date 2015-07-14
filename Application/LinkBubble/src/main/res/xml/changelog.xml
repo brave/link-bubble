@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.5.0">
+        <change>IMPROVEMENT: Use Lollipop themed Snackbar prompt. This can be dismissed also by swiping.</change>
+    </release>
+
     <release version="1.4.8" versioncode="14700">
         <change>BUG FIX: Fix app when using Android System WebView v40 (on Android 5.0 or later).</change>
         <change>BUG FIX: Stability/security fixes.</change>
