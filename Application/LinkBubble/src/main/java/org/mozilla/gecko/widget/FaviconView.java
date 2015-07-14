@@ -287,7 +287,7 @@ public class FaviconView extends ImageView {
      * @param bitmap
      * @param key
      */
-    public void updateImage(Bitmap bitmap, String key) {
+    public void updateImage(Bitmap bitmap, String key, boolean updatePalette) {
         if (bitmap.getWidth() < Constant.DESIRED_FAVICON_SIZE) {
             mDrawOutline = true;
             setScaleType(ImageView.ScaleType.CENTER);
@@ -299,14 +299,16 @@ public class FaviconView extends ImageView {
             setScaleType(ScaleType.CENTER_INSIDE);
             setImageBitmap(bitmap);
         }
-        Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
-            @Override
-            public void onGenerated(Palette palette) {
-                if (mOnPaletteChangeListener != null) {
-                    mOnPaletteChangeListener.onPaletteChange(palette);
+        if (updatePalette) {
+            Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
+                @Override
+                public void onGenerated(Palette palette) {
+                    if (mOnPaletteChangeListener != null) {
+                        mOnPaletteChangeListener.onPaletteChange(palette);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     public Bitmap getBitmap() {

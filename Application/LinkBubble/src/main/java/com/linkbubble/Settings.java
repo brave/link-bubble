@@ -105,6 +105,12 @@ public class Settings {
         Off,
     }
 
+    enum ColorTheme {
+        Light,
+        Dark,
+        Palette,
+    }
+
     /*
 	 *
 	 */
@@ -135,13 +141,12 @@ public class Settings {
     private TreeMap<String, String> mDefaultAppsMap = new TreeMap<String, String>();
     private List<Intent> mBrowsers;
     private List<String> mBrowserPackageNames;
-    //private ComponentName mDownloadHandlerComponentName;
-    private Intent mDownloadQueryIntent = new Intent();
     private ResolveInfo mYouTubeViewResolveInfo;
     public ResolveInfo mLinkBubbleEntryActivityResolveInfo;
     private boolean mCheckedForYouTubeResolveInfo = false;
     private List<String> mIgnoreLinksFromPackageNames;
     private WebViewBatterySaveMode mWebViewBatterySaveMode;
+    private ColorTheme mColorTheme;
     // The point to save
     private Point mBubbleRestingPoint = new Point();
     // The point used as the return value. Required so we don't overwrite the desired point in landscape mode
@@ -187,6 +192,8 @@ public class Settings {
         loadIgnoreLinksFromPackageNames();
 
         setWebViewBatterySaveMode(mSharedPreferences.getString(PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE, "default"));
+
+        mColorTheme = ColorTheme.Palette;
     }
 
     private void checkForVersionUpgrade() {
@@ -1284,9 +1291,13 @@ public class Settings {
 
     public boolean getDarkThemeEnabled() {
         if (DRM.isLicensed()) {
-            return mSharedPreferences.getBoolean(PREFERENCE_THEME_DARK, false);
+            return mColorTheme == ColorTheme.Dark || mColorTheme == ColorTheme.Palette;
         }
         return false;
+    }
+
+    public ColorTheme getColorTheme() {
+        return mColorTheme;
     }
 
     public void setDarkThemeEnabled(boolean value) {
@@ -1316,7 +1327,7 @@ public class Settings {
     }
 
     public int getThemedContentViewColor() {
-        if(getDarkThemeEnabled()) {
+        if (getDarkThemeEnabled()) {
             return mContext.getResources().getColor(R.color.color_content_view_dark);
         }
         return mContext.getResources().getColor(R.color.color_content_view_light);

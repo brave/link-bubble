@@ -443,7 +443,7 @@ public class HistoryActivity extends AppCompatActivity
                 }
                 if (favicon != null) {
                     mFaviconSet = true;
-                    mFaviconImageView.updateImage(favicon, faviconURL);
+                    mFaviconImageView.updateImage(favicon, faviconURL, true);
                 }
             }
         };

@@ -20,11 +20,12 @@ public class PageInspector {
 
     private static final String TAG = "PageInspector";
 
-    public static final int INSPECT_DROP_DOWN = 1;
-    public static final int INSPECT_YOUTUBE = 2;
-    public static final int INSPECT_TOUCH_ICON = 4;
-    public static final int INSPECT_FETCH_HTML = 8;
-    public static final int INSPECT_ALL = INSPECT_DROP_DOWN | INSPECT_YOUTUBE | INSPECT_TOUCH_ICON;
+    public static final int INSPECT_DROP_DOWN = 0x01;
+    public static final int INSPECT_YOUTUBE = 0x02;
+    public static final int INSPECT_TOUCH_ICON = 0x04;
+    public static final int INSPECT_FETCH_HTML = 0x08;
+    public static final int INSPECT_THEME_COLOR = 0x10;
+    public static final int INSPECT_ALL = INSPECT_DROP_DOWN | INSPECT_YOUTUBE | INSPECT_TOUCH_ICON | INSPECT_THEME_COLOR;
 
     private static final String JS_VARIABLE = "LinkBubble";
     private static final String UNKNOWN_TAG = "unknown";        // the tag Chrome/WebView uses for unknown elements
@@ -84,6 +85,11 @@ public class PageInspector {
             "    }\n" +
             "}";
 
+    private static final String JS_THEME_COLOR_CHECK =
+        "{\n" +
+            JS_VARIABLE + ".onThemeColor(document.getElementsByTagName('meta')['theme-color'].getAttribute('content'));" +
+        "}";
+
     // https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
     // https://developers.google.com/chrome/mobile/docs/installtohomescreen
     private static final String JS_TOUCH_ICON_CHECK =
@@ -132,6 +138,7 @@ public class PageInspector {
         void onDropDownFound();
         void onDropDownWarningClick();
         void onFetchHtml(String html);
+        void onThemeColor(int color);
     }
 
     public PageInspector(Context context, WebView webView, OnItemFoundListener listener) {
@@ -160,6 +167,10 @@ public class PageInspector {
 
         if ((inspectFlags & INSPECT_FETCH_HTML) != 0) {
             jsEmbed += JS_FETCH_HTML;
+        }
+
+        if ((inspectFlags & INSPECT_THEME_COLOR) != 0) {
+            jsEmbed += JS_THEME_COLOR_CHECK;
         }
 
         jsEmbed += "})();";
@@ -289,6 +300,21 @@ public class PageInspector {
             if (mYouTubeEmbedHelper.onEmbeds(strings)) {
                 if (mOnItemFoundListener != null) {
                     mOnItemFoundListener.onYouTubeEmbeds();
+                }
+            }
+        }
+
+        @JavascriptInterface
+        public void onThemeColor(String string) {
+            Log.e("themecolor", "onThemeColor():" + string);
+            if (string != null) {
+                string = string.replace("#", "");
+                if (mOnItemFoundListener != null) {
+                    try {
+                        int color = Integer.parseInt(string, 16);
+                        color |= 0xff000000;
+                        mOnItemFoundListener.onThemeColor(color);
+                    } catch (NumberFormatException ignored) {}
                 }
             }
         }
