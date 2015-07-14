@@ -122,7 +122,7 @@ public class ActionItem {
             actionItems.add(new ActionItem(Constant.ActionType.Share,
                     resources,
                     context.getString(R.string.share_picker_label),
-                    context.getResources().getDrawable(R.drawable.ic_action_share),
+                    context.getResources().getDrawable(R.drawable.ic_share_grey600_24dp),
                     BuildConfig.APPLICATION_ID,
                     Constant.SHARE_PICKER_NAME));
         }

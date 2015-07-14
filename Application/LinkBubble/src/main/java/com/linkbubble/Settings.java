@@ -609,7 +609,7 @@ public class Settings {
             String name = getConsumeBubbleActivityClassName(action);
             if (packageName != null && name != null) {
                 if (name.equals(Constant.SHARE_PICKER_NAME)) {
-                    return mContext.getResources().getDrawable(whiteShareIcon ? R.drawable.ic_action_share_white : R.drawable.ic_action_share);
+                    return mContext.getResources().getDrawable(whiteShareIcon ? R.drawable.ic_share_white_24dp : R.drawable.ic_share_grey600_24dp);
                 }
                 ComponentName componentName = new ComponentName(packageName, name);
                 return packageManager.getActivityIcon(componentName);
@@ -1291,7 +1291,7 @@ public class Settings {
 
     public boolean getDarkThemeEnabled() {
         if (DRM.isLicensed()) {
-            return mColorTheme == ColorTheme.Dark || mColorTheme == ColorTheme.Palette;
+            return mColorTheme == ColorTheme.Dark;
         }
         return false;
     }
