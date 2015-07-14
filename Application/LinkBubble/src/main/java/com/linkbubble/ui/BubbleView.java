@@ -310,22 +310,26 @@ public class BubbleView extends FrameLayout  {
                 return;
             }
             if (palette == null) {
-                mProgressIndicator.setColor(Settings.get().getThemedDefaultProgressColor());
+                setProgressColor(Settings.get().getThemedDefaultProgressColor());
                 return;
             }
             if (palette.getVibrantSwatch() != null) {
-                mProgressIndicator.setColor(palette.getVibrantSwatch().getRgb());
+                setProgressColor(palette.getVibrantSwatch().getRgb());
             } else {
                 if (palette.getDarkMutedSwatch() != null) {
-                    mProgressIndicator.setColor(palette.getDarkMutedSwatch().getRgb());
+                    setProgressColor(palette.getDarkMutedSwatch().getRgb());
                 } else {
                     if (palette.getMutedSwatch() != null) {
-                        mProgressIndicator.setColor(palette.getMutedSwatch().getRgb());
+                        setProgressColor(palette.getMutedSwatch().getRgb());
                     } else {
-                        mProgressIndicator.setColor(Settings.get().getThemedDefaultProgressColor());
+                        setProgressColor(Settings.get().getThemedDefaultProgressColor());
                     }
                 }
             }
         }
     };
+
+    void setProgressColor(int color) {
+        mProgressIndicator.setColor(color);
+    }
 }
