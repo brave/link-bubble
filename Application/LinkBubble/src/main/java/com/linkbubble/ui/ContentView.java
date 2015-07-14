@@ -82,6 +82,7 @@ public class ContentView extends FrameLayout {
     private int mArticleNotificationId = -1;
     private TabView mOwnerTabView;
 
+    private View mCaretView;
     private CondensedTextView mTitleTextView;
     private CondensedTextView mUrlTextView;
     private ContentViewButton mShareButton;
@@ -259,9 +260,15 @@ public class ContentView extends FrameLayout {
     ArrayList<Drawable> mTintableDrawables = new ArrayList<>();
 
     private Drawable getTintableDrawable(@DrawableRes int resId) {
+        return getTintableDrawable(resId, true);
+    }
+
+    private Drawable getTintableDrawable(@DrawableRes int resId, boolean addToList) {
         Drawable d = getResources().getDrawable(resId);
         d = DrawableCompat.wrap(d);
-        mTintableDrawables.add(d);
+        if (addToList) {
+            mTintableDrawables.add(d);
+        }
         return d;
     }
 
@@ -295,7 +302,7 @@ public class ContentView extends FrameLayout {
 
         findViewById(R.id.content_text_container).setOnTouchListener(mOnTextContainerTouchListener);
 
-        findViewById(R.id.caret).setBackground(getResources().getDrawable(darkTheme ? R.drawable.content_view_caret_dark : R.drawable.content_view_caret_light));
+        mCaretView = findViewById(R.id.caret);
 
         mShareButton = (ContentViewButton)findViewById(R.id.share_button);
         mShareButton.setImageDrawable(getTintableDrawable(R.drawable.ic_share_white_24dp));
@@ -353,9 +360,14 @@ public class ContentView extends FrameLayout {
         if (color == null) {
             textColor = Settings.get().getThemedTextColor();
             bgColor = Settings.get().getThemedContentViewColor();
+            mCaretView.setBackground(getResources().getDrawable(Settings.get().getDarkThemeEnabled()
+                    ? R.drawable.content_view_caret_dark : R.drawable.content_view_caret_white));
         } else {
             textColor = getResources().getColor(android.R.color.white);
             bgColor = color;
+            Drawable d = getTintableDrawable(R.drawable.content_view_caret_white, false);
+            DrawableCompat.setTint(d, color);
+            mCaretView.setBackground(d);
         }
 
         mToolbarLayout.setBackgroundColor(bgColor);
@@ -365,6 +377,10 @@ public class ContentView extends FrameLayout {
         for (Drawable d : mTintableDrawables) {
             DrawableCompat.setTint(d, textColor);
         }
+    }
+
+    void setFaviconColor(Integer color) {
+        updateColors(color);
     }
 
     WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {

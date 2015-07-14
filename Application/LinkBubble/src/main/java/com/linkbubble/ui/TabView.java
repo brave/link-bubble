@@ -185,4 +185,10 @@ public class TabView extends BubbleView {
         mContentView.updateIncognitoMode(incognito);
     }
 
+    @Override
+    void setProgressColor(int color) {
+        super.setProgressColor(color);
+        mContentView.setFaviconColor(color);
+    }
+
 }

@@ -152,10 +152,24 @@ public class Settings {
     // The point used as the return value. Required so we don't overwrite the desired point in landscape mode
     private Point mTempBubbleRestingPoint = new Point();
 
+    static public int COLOR_TEXT_DARK;
+    static public int COLOR_TEXT_LIGHT;
+    static public int COLOR_CONTENT_VIEW_DARK;
+    static public int COLOR_CONTENT_VIEW_LIGHT;
+    static public int COLOR_PROGRESS_DARK;
+    static public int COLOR_PROGRESS_LIGHT;
+
     Settings(Context context) {
         mContext = context;
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
         //mDownloadHandlerComponentName = new ComponentName(mContext, DownloadHandlerActivity.class);
+
+        COLOR_TEXT_DARK  = mContext.getResources().getColor(R.color.color_text_dark);
+        COLOR_TEXT_LIGHT = mContext.getResources().getColor(R.color.color_text_light);
+        COLOR_CONTENT_VIEW_DARK = mContext.getResources().getColor(R.color.color_content_view_dark);
+        COLOR_CONTENT_VIEW_LIGHT = mContext.getResources().getColor(R.color.color_content_view_light);
+        COLOR_PROGRESS_DARK = mContext.getResources().getColor(R.color.color_progress_default_dark);
+        COLOR_PROGRESS_LIGHT = mContext.getResources().getColor(R.color.color_progress_default_light);
 
         checkForVersionUpgrade();
 
@@ -1321,22 +1335,22 @@ public class Settings {
 
     public int getThemedDefaultProgressColor() {
         if (getDarkThemeEnabled()) {
-            return mContext.getResources().getColor(R.color.color_progress_default_dark);
+            return COLOR_PROGRESS_DARK;
         }
-        return mContext.getResources().getColor(R.color.color_progress_default_light);
+        return COLOR_PROGRESS_LIGHT;
     }
 
     public int getThemedContentViewColor() {
         if (getDarkThemeEnabled()) {
-            return mContext.getResources().getColor(R.color.color_content_view_dark);
+            return COLOR_CONTENT_VIEW_DARK;
         }
-        return mContext.getResources().getColor(R.color.color_content_view_light);
+        return COLOR_CONTENT_VIEW_LIGHT;
     }
 
     public int getThemedTextColor() {
         if (getDarkThemeEnabled()) {
-            return mContext.getResources().getColor(R.color.color_text_dark);
+            return COLOR_TEXT_DARK;
         }
-        return mContext.getResources().getColor(R.color.color_text_light);
+        return COLOR_TEXT_LIGHT;
     }
 }

@@ -170,12 +170,23 @@
         android:background="@drawable/content_view_top_shadow"
         tools:ignore="ContentDescription"/>
 
-    <ImageView
-        android:layout_width="12dp"
-        android:layout_height="@dimen/toolbar_header"
-        android:id="@+id/caret"
-        android:layout_gravity="center_horizontal"
-        tools:ignore="ContentDescription"/>
+        <FrameLayout
+            android:layout_width="12dp"
+            android:layout_height="@dimen/toolbar_header">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/content_view_caret_shadow"
+                tools:ignore="ContentDescription"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/caret"
+                android:layout_gravity="center_horizontal"
+                tools:ignore="ContentDescription"/>
+        </FrameLayout>
+
 
     <ImageView
         android:layout_height="fill_parent"
