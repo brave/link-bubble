@@ -17,8 +17,10 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -254,9 +256,19 @@ public class ContentView extends FrameLayout {
         Util.showThemedDialog(alertDialog);
     }
 
+    ArrayList<Drawable> mTintableDrawables = new ArrayList<>();
+
+    private Drawable getTintableDrawable(@DrawableRes int resId) {
+        Drawable d = getResources().getDrawable(resId);
+        d = DrawableCompat.wrap(d);
+        mTintableDrawables.add(d);
+        return d;
+    }
+
     @SuppressLint("SetJavaScriptEnabled")
     void configure(String urlAsString, TabView ownerTabView, long urlLoadStartTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
         mLifeState = LifeState.Alive;
+        mTintableDrawables.clear();
 
         View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
         mWebRenderer = WebRenderer.create(WebRenderer.Type.WebView, getContext(), mWebRendererController, webRendererPlaceholder, TAG);
@@ -286,8 +298,7 @@ public class ContentView extends FrameLayout {
         findViewById(R.id.caret).setBackground(getResources().getDrawable(darkTheme ? R.drawable.content_view_caret_dark : R.drawable.content_view_caret_light));
 
         mShareButton = (ContentViewButton)findViewById(R.id.share_button);
-        mShareButton.setImageDrawable(
-                getResources().getDrawable(darkTheme ? R.drawable.ic_action_share_white : R.drawable.ic_action_share));
+        mShareButton.setImageDrawable(getTintableDrawable(R.drawable.ic_share_white_24dp));
         mShareButton.setOnClickListener(mOnShareButtonClickListener);
 
         mOpenInAppButton = (OpenInAppButton)findViewById(R.id.open_in_app_button);
@@ -297,8 +308,7 @@ public class ContentView extends FrameLayout {
         mOpenEmbedButton.setOnOpenEmbedClickListener(mOnOpenEmbedButtonClickListener);
 
         mReloadButton = (ContentViewButton)findViewById(R.id.reload_button);
-        mReloadButton.setImageDrawable(
-                getResources().getDrawable(darkTheme ? R.drawable.ic_action_reload_white : R.drawable.ic_action_reload));
+        mReloadButton.setImageDrawable(getTintableDrawable(R.drawable.ic_refresh_white_24dp));
         mReloadButton.setOnClickListener(mOnReloadButtonClickListener);
 
         mArticleModeButton = (ArticleModeButton)findViewById(R.id.article_mode_button);
@@ -306,8 +316,7 @@ public class ContentView extends FrameLayout {
         mArticleModeButton.setOnClickListener(mOnArticleModeButtonClickListener);
 
         mOverflowButton = (ContentViewButton)mToolbarLayout.findViewById(R.id.overflow_button);
-        mOverflowButton.setImageDrawable(
-                getResources().getDrawable(darkTheme ? R.drawable.ic_action_overflow_round_white : R.drawable.ic_action_overflow_round));
+        mOverflowButton.setImageDrawable(getTintableDrawable(R.drawable.ic_more_vert_white_24dp));
         mOverflowButton.setOnClickListener(mOnOverflowButtonClickListener);
 
         mRequestLocationShadow = findViewById(R.id.request_location_shadow);
@@ -352,6 +361,10 @@ public class ContentView extends FrameLayout {
         mToolbarLayout.setBackgroundColor(bgColor);
         mTitleTextView.setTextColor(textColor);
         mUrlTextView.setTextColor(textColor);
+
+        for (Drawable d : mTintableDrawables) {
+            DrawableCompat.setTint(d, textColor);
+        }
     }
 
     WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {
