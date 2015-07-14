@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/prompt"
-    style="@style/Prompt">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
-    <TextView
-        style="@style/PromptMessage"
-        android:id="@+id/prompt_message"
-        android:text="@string/restore_tabs_from_previous_session"
-        android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_gravity="left|center_vertical"/>
+    <LinearLayout
+        style="@style/Prompt"
+        android:id="@+id/prompt">
 
-    <TextView
-        android:id="@+id/prompt_button_text_view"
-        style="@style/PromptButtonTextView"
-        tools:text="UNDO"/>
-</LinearLayout>
+        <TextView
+            style="@style/PromptMessage"
+            android:id="@+id/prompt_message"
+            android:text="@string/restore_tabs_from_previous_session"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="left|center_vertical"/>
+
+        <TextView
+            android:id="@+id/prompt_button_text_view"
+            style="@style/PromptButtonTextView"
+            tools:text="UNDO"/>
+    </LinearLayout>
+
+</FrameLayout>

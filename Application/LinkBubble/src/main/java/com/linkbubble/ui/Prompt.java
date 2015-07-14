@@ -13,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
 import android.view.WindowManager;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -20,6 +23,7 @@ import android.widget.TextView;
 import com.linkbubble.Config;
 import com.linkbubble.R;
 import com.linkbubble.util.CrashTracking;
+import com.linkbubble.util.SwipeDismissTouchListener;
 import com.linkbubble.util.Util;
 
 public class Prompt {
@@ -46,6 +50,8 @@ public class Prompt {
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mLayoutParams;
 
+    int mSnackbarHeight;
+
     public static void initModule(Context context) {
         Util.Assert(sPrompt == null, "non-null instance");
         sPrompt = new Prompt(context);
@@ -63,11 +69,13 @@ public class Prompt {
     private Prompt(Context context) {
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 
+        mSnackbarHeight = context.getResources().getDimensionPixelSize(R.dimen.snackbar_height);
+
         LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mRootView = li.inflate(R.layout.view_prompt, null);
 
         mLayoutParams = new WindowManager.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
                 context.getResources().getDimensionPixelSize(R.dimen.snackbar_height),
                 WindowManager.LayoutParams.TYPE_SYSTEM_ALERT,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
@@ -113,12 +121,34 @@ public class Prompt {
 
         mBarView.setVisibility(View.VISIBLE);
         mBarAnimator.cancel();
-        mBarAnimator.alpha(1)
-                    .setDuration(mBarView.getResources().getInteger(android.R.integer.config_shortAnimTime))
-                    .setListener(null);
+        mBarAnimator.y(0)
+                .setDuration(mBarView.getResources().getInteger(android.R.integer.config_shortAnimTime))
+                .setInterpolator(new DecelerateInterpolator())
+                .setListener(null);
 
         mWindowManager.addView(mRootView, mLayoutParams);
         sIsShowing = true;
+
+        mBarView.setOnTouchListener(new SwipeDismissTouchListener(mBarView,
+                null,
+                new SwipeDismissTouchListener.DismissCallbacks() {
+                    @Override
+                    public boolean canDismiss(Object token) {
+                        mHideHandler.removeCallbacks(mHideRunnable);
+                        return true;
+                    }
+
+                    @Override
+                    public void onDismiss(View view, Object token) {
+                        hidePrompt(true);
+                    }
+
+                    @Override
+                    public void onReturn() {
+                        mHideHandler.removeCallbacks(mHideRunnable);
+                        mHideHandler.postDelayed(mHideRunnable, 1500);
+                    }
+                }));
     }
 
     private void hidePrompt(boolean immediate) {
@@ -126,7 +156,7 @@ public class Prompt {
         mBarAnimator.cancel();
         if (immediate) {
             mBarView.setVisibility(View.GONE);
-            mBarView.setAlpha(0);
+            mBarView.setY(mSnackbarHeight);
             if (sIsShowing) {
                 mWindowManager.removeViewImmediate(mRootView);
                 sIsShowing = false;
@@ -136,8 +166,9 @@ public class Prompt {
                 mListener = null;
             }
         } else {
-            mBarAnimator.alpha(0)
-                        .setDuration(mBarView.getResources().getInteger(android.R.integer.config_shortAnimTime))
+            mBarAnimator.y(mSnackbarHeight)
+                    .setDuration(mBarView.getResources().getInteger(android.R.integer.config_shortAnimTime))
+                    .setInterpolator(new AccelerateInterpolator())
                         .setListener(new AnimatorListenerAdapter() {
                             @Override
                             public void onAnimationEnd(Animator animation) {
