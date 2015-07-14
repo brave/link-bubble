@@ -295,6 +295,11 @@ class WebViewRenderer extends WebRenderer {
                 }
             }
         }
+
+        @Override
+        public void onThemeColor(int color) {
+            mController.onPagedInspectorThemeColorFound(color);
+        }
     };
 
     private boolean mDoDropDownCheck;

@@ -122,6 +122,11 @@ public class TabView extends BubbleView {
                 }
                 return false;
             }
+
+            @Override
+            public void onThemeColor(Integer color) {
+                TabView.this.onThemeColor(color);
+            }
         });
 
         setOnClickListener(new OnClickListener() {
