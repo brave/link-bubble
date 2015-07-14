@@ -35,7 +35,7 @@ public class DRM {
     static private int sLicenseState = DRM.LICENSE_UNKNOWN;
 
     public static boolean isLicensed() {
-        return sLicenseState == DRM.LICENSE_VALID;
+        return sLicenseState == DRM.LICENSE_VALID || BuildConfig.DEBUG;
     }
 
     public static boolean allowProFeatures() {
