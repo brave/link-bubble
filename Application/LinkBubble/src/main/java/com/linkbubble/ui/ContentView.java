@@ -1512,7 +1512,8 @@ public class ContentView extends FrameLayout {
         } else {
             message = getResources().getString(noBrowserStringId);
         }
-        Prompt.show(message, Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
+        Prompt.show(message, getResources().getString(android.R.string.ok),
+                Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
             @Override
             public void onActionClick() {
                 if (urlAsString != null) {

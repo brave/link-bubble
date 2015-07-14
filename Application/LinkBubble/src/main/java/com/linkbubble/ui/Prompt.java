@@ -162,8 +162,8 @@ public class Prompt {
         }
     };
 
-    public static void show(CharSequence text, int duration, OnPromptEventListener listener) {
-        show(text, null, duration, false, listener);
+    public static void show(CharSequence text, CharSequence buttonText, int duration, OnPromptEventListener listener) {
+        show(text, buttonText, duration, false, listener);
     }
 
     public static void show(CharSequence text, CharSequence buttonText, int duration, boolean forceSingleLine, OnPromptEventListener listener) {

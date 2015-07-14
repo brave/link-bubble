@@ -44,7 +44,8 @@ public class Tamper {
             if (result.booleanValue() == true && isCancelled() == false) {
                 String text = mContext.getResources().getString(R.string.tampered_apk);
                 final ResolveInfo storeResolveInfo = MainApplication.getStoreViewResolveInfo(mContext);
-                Prompt.show(text, Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
+                Prompt.show(text, mContext.getResources().getString(android.R.string.ok),
+                        Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
                     @Override
                     public void onActionClick() {
                         MainApplication.openAppStore(mContext, BuildConfig.STORE_FREE_URL);
