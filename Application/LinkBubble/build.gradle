@@ -96,7 +96,7 @@ android {
 dependencies {
     compile 'com.android.support:support-v4:22.2.0'
     compile "com.android.support:appcompat-v7:22.2.0"
-    compile 'com.google.android.gms:play-services-base:7.5.0'
+    compile 'com.android.support:palette-v7:22.2.0'
     compile 'se.emilsjolander:stickylistheaders:2.1.2'
     compile('com.crashlytics.sdk.android:crashlytics:2.2.4@aar') {
         transitive = true;
@@ -107,7 +107,6 @@ dependencies {
     compile files('libs/dexguard_util.jar')
     compile files('libs/jsoup-1.7.3.jar')
     compile files('libs/slf4j-android-1.5.8.jar')
-    compile files('libs/palette.jar')
     //compile project(':Libraries:ViewPagerIndicator:library')
 }
 
