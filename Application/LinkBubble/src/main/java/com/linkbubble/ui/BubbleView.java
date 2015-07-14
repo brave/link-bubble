@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v7.graphics.Palette;
-import android.support.v7.graphics.PaletteItem;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.FrameLayout;
@@ -297,17 +296,18 @@ public class BubbleView extends FrameLayout  {
 
         @Override
         public void onPaletteChange(Palette palette) {
-            PaletteItem item = palette.getVibrantColor();
-            if (item != null) {
-                mProgressIndicator.setColor(item.getRgb());
+            if (palette == null) {
+                mProgressIndicator.setColor(Settings.get().getThemedDefaultProgressColor());
+                return;
+            }
+            if (palette.getVibrantSwatch() != null) {
+                mProgressIndicator.setColor(palette.getVibrantSwatch().getRgb());
             } else {
-                item = palette.getDarkMutedColor();
-                if (item != null) {
-                    mProgressIndicator.setColor(item.getRgb());
+                if (palette.getDarkMutedSwatch() != null) {
+                    mProgressIndicator.setColor(palette.getDarkMutedSwatch().getRgb());
                 } else {
-                    item = palette.getMutedColor();
-                    if (item != null) {
-                        mProgressIndicator.setColor(item.getRgb());
+                    if (palette.getMutedSwatch() != null) {
+                        mProgressIndicator.setColor(palette.getMutedSwatch().getRgb());
                     } else {
                         mProgressIndicator.setColor(Settings.get().getThemedDefaultProgressColor());
                     }
