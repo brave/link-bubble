@@ -313,8 +313,8 @@ public class BubbleView extends FrameLayout  {
                 setProgressColor(Settings.get().getThemedDefaultProgressColor());
                 return;
             }
-            if (palette.getVibrantSwatch() != null) {
-                setProgressColor(palette.getVibrantSwatch().getRgb());
+            if (palette.getDarkVibrantSwatch() != null) {
+                setProgressColor(palette.getDarkVibrantSwatch().getRgb());
             } else {
                 if (palette.getDarkMutedSwatch() != null) {
                     setProgressColor(palette.getDarkMutedSwatch().getRgb());
@@ -322,7 +322,11 @@ public class BubbleView extends FrameLayout  {
                     if (palette.getMutedSwatch() != null) {
                         setProgressColor(palette.getMutedSwatch().getRgb());
                     } else {
-                        setProgressColor(Settings.get().getThemedDefaultProgressColor());
+                        if (palette.getVibrantSwatch() != null) {
+                            setProgressColor(palette.getVibrantSwatch().getRgb());
+                        } else {
+                            setProgressColor(Settings.get().getThemedDefaultProgressColor());
+                        }
                     }
                 }
             }
