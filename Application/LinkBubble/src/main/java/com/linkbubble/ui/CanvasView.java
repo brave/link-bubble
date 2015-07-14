@@ -102,13 +102,15 @@ public class CanvasView extends FrameLayout {
         Resources resources = getResources();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        mTopMaskView = new ImageView(context);
-        mTopMaskView.setImageResource(R.drawable.masked_background_half);
-        mTopMaskView.setScaleType(ImageView.ScaleType.FIT_XY);
-        FrameLayout.LayoutParams topMaskLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, canvasMaskHeight);
-        topMaskLP.gravity = Gravity.TOP;
-        mTopMaskView.setLayoutParams(topMaskLP);
-        addView(mTopMaskView);
+        if (Constant.TOP_CANVAS_MASK) {
+            mTopMaskView = new ImageView(context);
+            mTopMaskView.setImageResource(R.drawable.masked_background_half);
+            mTopMaskView.setScaleType(ImageView.ScaleType.FIT_XY);
+            FrameLayout.LayoutParams topMaskLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, canvasMaskHeight);
+            topMaskLP.gravity = Gravity.TOP;
+            mTopMaskView.setLayoutParams(topMaskLP);
+            addView(mTopMaskView);
+        }
 
         if (Constant.BOTTOM_CANVAS_MASK) {
             mBottomMaskView = new ImageView(context);
@@ -223,7 +225,9 @@ public class CanvasView extends FrameLayout {
             mStatusBarCoverView.setAlpha(mCurrentAlpha);
         }
 
-        mTopMaskView.setAlpha(mCurrentAlpha);
+        if (mTopMaskView != null) {
+            mTopMaskView.setAlpha(mCurrentAlpha);
+        }
         if (mBottomMaskView != null) {
             mBottomMaskView.setAlpha(mCurrentAlpha);
         }
