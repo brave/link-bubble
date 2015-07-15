@@ -77,7 +77,7 @@ public class Settings {
     public static final String PREFERENCE_CURRENT_TABS = "preference_current_bubbles";
     public static final String PREFERENCE_DEFAULT_APPS = "preference_default_apps";
     public static final String PREFERENCE_FALLBACK_REDIRECT_HOSTS = "preference_redirect_hosts";
-    public static final String PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT = "preference_google_accounts_redirect";
+    public static final String PREFERENCE_THEME_TOOLBAR = "preference_theme_toolbar";
 
     public static final String PREFERENCE_AUTO_ARTICLE_MODE = "preference_auto_article_mode";
     public static final String PREFERENCE_INCOGNITO_MODE = "preference_incognito";
@@ -149,7 +149,6 @@ public class Settings {
     private boolean mCheckedForYouTubeResolveInfo = false;
     private List<String> mIgnoreLinksFromPackageNames;
     private WebViewBatterySaveMode mWebViewBatterySaveMode;
-    private ColorTheme mColorTheme;
     // The point to save
     private Point mBubbleRestingPoint = new Point();
     // The point used as the return value. Required so we don't overwrite the desired point in landscape mode
@@ -215,8 +214,6 @@ public class Settings {
         HashSet<String> defaultRedirects = new HashSet<>();
         defaultRedirects.add("accounts.google.com");
         configureFallbackRedirectHosts(mSharedPreferences.getStringSet(PREFERENCE_FALLBACK_REDIRECT_HOSTS, defaultRedirects));
-
-        mColorTheme = ColorTheme.Palette;
     }
 
     private void checkForVersionUpgrade() {
@@ -1347,13 +1344,9 @@ public class Settings {
 
     public boolean getDarkThemeEnabled() {
         if (DRM.isLicensed()) {
-            return mColorTheme == ColorTheme.Dark;
+            return mSharedPreferences.getBoolean(PREFERENCE_THEME_DARK, false);
         }
         return false;
-    }
-
-    public ColorTheme getColorTheme() {
-        return mColorTheme;
     }
 
     public void setDarkThemeEnabled(boolean value) {
@@ -1394,5 +1387,10 @@ public class Settings {
             return COLOR_TEXT_DARK;
         }
         return COLOR_TEXT_LIGHT;
+    }
+
+    public boolean getThemeToolbar() {
+        return DRM.isLicensed()
+                && mSharedPreferences.getBoolean(PREFERENCE_THEME_TOOLBAR, false);
     }
 }

@@ -357,7 +357,7 @@ public class ContentView extends FrameLayout {
     void updateColors(Integer color) {
         int textColor;
         int bgColor;
-        if (color == null) {
+        if (color == null || !Settings.get().getThemeToolbar()) {
             textColor = Settings.get().getThemedTextColor();
             bgColor = Settings.get().getThemedContentViewColor();
             mCaretView.setBackground(getResources().getDrawable(Settings.get().getDarkThemeEnabled()
