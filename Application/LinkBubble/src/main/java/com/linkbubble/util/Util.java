@@ -19,6 +19,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.PaintDrawable;
 import android.net.Uri;
+import android.support.annotation.DrawableRes;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.DisplayMetrics;
 import android.util.Patterns;
 import android.util.TypedValue;
@@ -654,5 +656,11 @@ public class Util {
             return result.get(0);
         }
         return null;
+    }
+
+    static public Drawable getTintableDrawable(Context context, @DrawableRes int resId) {
+        Drawable d = context.getResources().getDrawable(resId);
+        d = DrawableCompat.wrap(d);
+        return d;
     }
 }

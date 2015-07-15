@@ -31,11 +31,11 @@ public class ArticleModeButton extends ContentViewButton {
     public void setState(State state) {
         switch (state) {
             case Article:
-                setImageDrawable(getResources().getDrawable(Settings.get().getDarkThemeEnabled() ? R.drawable.ic_action_list_white : R.drawable.ic_action_list));
+                setImageDrawable(getResources().getDrawable(R.drawable.ic_subject_white_24dp));
                 break;
 
             case Web:
-                setImageDrawable(getResources().getDrawable(Settings.get().getDarkThemeEnabled() ? R.drawable.ic_action_globe_white : R.drawable.ic_action_globe));
+                setImageDrawable(getResources().getDrawable(R.drawable.ic_public_white_24dp));
                 break;
         }
 
