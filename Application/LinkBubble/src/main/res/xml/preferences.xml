@@ -24,6 +24,12 @@
             android:summary="@string/preference_default_apps_summary"/>
 
         <Preference
+            android:key="preference_domains"
+            android:title="@string/preference_domains_title"
+            android:summary="@string/preference_domains_summary"
+            />
+
+        <Preference
             android:key="preference_left_consume_bubble"
             android:title="@string/preference_left_consume_bubble_title"
             />
