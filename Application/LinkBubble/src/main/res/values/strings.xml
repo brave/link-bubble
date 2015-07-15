@@ -113,6 +113,8 @@
     <string name="preference_theme_light_no_color">Light + neutral color</string>
     <string name="preference_theme_dark_color">Dark + icon color</string>
     <string name="preference_theme_dark_no_color">Dark + neutral color</string>
+    <string name="preference_theme_toolbar_title">Color toolbar</string>
+    <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
     <string name="preference_article_mode_title">Reading Mode (Beta)</string>
     <string name="preference_reading_mode_on_wear_title">Reading Mode on Wear</string>
     <string name="preference_article_mode_summary">Toggled via button on action bar</string>
@@ -203,6 +205,7 @@
     <string name="private_data_cleared">Private data cleared</string>
     <string name="private_data_cleared_reloading_current">Private data cleared. Reloading current bubbles…</string>
     <string name="user_agent_changed_reloading_current">User Agent changed. Reloading current bubbles…</string>
+    <string name="theme_toolbar_reloading_current">Color toolbar setting changed. Reloading current bubbles…</string>
     <string name="article_mode_changed_reloading_current">Reading Mode setting changed. Reloading current bubbles…</string>
     <string name="link_loaded_with_app">Loaded with %1$s</string>
     <string name="link_redirected">Redirected to %1$s</string>
