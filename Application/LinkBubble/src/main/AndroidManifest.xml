@@ -135,6 +135,17 @@
             android:theme="@style/AppTheme">
         </activity>
 
+        <activity android:name=".ui.SettingsDomainsActivity"
+            android:label="@string/preference_domains_title"
+            android:theme="@style/AppTheme">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
         <activity android:name=".ui.DefaultBrowserResetActivity" android:enabled="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

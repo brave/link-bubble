@@ -13,8 +13,12 @@
     <color name="color_primary_bright">#8c53c6</color>
     <color name="color_highlight">@color/lime_green</color>
     <color name="color_highlight_2">@color/moderate_yellow</color>
+    <color name="material_grey_600">#CBCBCB</color>
     <color name="text_color_primary">#fff</color>
     <color name="window_background">#fff</color>
+
+    <color name="settings_title">#212121</color>
+    <color name="settings_summary">#757575</color>
 
     <color name="color_light_theme">@android:color/white</color>
     <color name="color_dark_theme">#263238</color>
