@@ -77,11 +77,12 @@ public class SettingsBaseFragment extends PreferenceFragment {
             //int iconSize = getResources().getDimensionPixelSize(R.dimen.settings_icon_size);
             int w = bitmap.getWidth();
             int h = bitmap.getHeight();
-            if (w == h) {
-                if (w > iconSize) {
+            int largest = Math.max(w, h);
+            if (largest > 0) {
+                if (largest > iconSize) {
                     Bitmap b = Bitmap.createScaledBitmap(bitmap, iconSize, iconSize, true);
                     drawable = new BitmapDrawable(getResources(), b);
-                } else if (h < iconSize) {
+                } else if (largest < iconSize) {
                     Bitmap b = Bitmap.createScaledBitmap(bitmap, iconSize, iconSize, true);
                     drawable = new BitmapDrawable(getResources(), b);
                 }
