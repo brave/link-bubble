@@ -9,7 +9,8 @@
 
     <PreferenceCategory
         android:key="preference_category_other_apps"
-        android:title="@string/preference_category_other_apps" >
+        android:title="@string/preference_category_other_apps"
+        android:layout="@layout/preference_category_material">
 
         <Preference
             android:key="preference_default_apps_notice"
