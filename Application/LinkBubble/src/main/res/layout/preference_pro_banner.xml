@@ -17,7 +17,7 @@
         <ImageView
             android:layout_gravity="center"
             android:id="@android:id/icon"
-            android:paddingRight="@dimen/preference_item_padding_right"
+            android:paddingRight="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="48.0dip" />
