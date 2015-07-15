@@ -43,6 +43,14 @@
             android:key="preference_theme"
             />
 
+        <SwitchPreference
+            android:key="preference_theme_toolbar"
+            android:title="@string/preference_theme_toolbar_title"
+            android:summary="@string/preference_theme_toolbar_summary"
+            android:dependency="preference_theme"
+            android:defaultValue="false"
+            />
+
         <Preference
             android:key="preference_ignore_links_from"
             android:title="@string/preference_intercept_links_from_title"
@@ -93,7 +101,7 @@
             android:defaultValue="default"
             />
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="preference_incognito"
             android:title="@string/preference_incognito_title"
             android:summary="@string/preference_incognito_summary"

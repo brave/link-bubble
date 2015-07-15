@@ -2,6 +2,7 @@
 <changelog>
 
     <release version="1.5.0">
+        <change>NEW: Add ability to color the toolbar with a website's theme color/favicon color (Settings -> Color toolbar).</change>
         <change>NEW: Add "Domain redirects" customization, allowing you to define domains which, when loaded, will
             always be referred to your fallback browser (such as Chrome).</change>
         <change>IMPROVEMENT: Use Lollipop themed Snackbar prompt. This can be dismissed also by swiping.</change>
