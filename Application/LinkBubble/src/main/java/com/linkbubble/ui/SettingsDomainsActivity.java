@@ -3,6 +3,7 @@ package com.linkbubble.ui;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -14,15 +15,21 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.linkbubble.R;
+import com.linkbubble.Settings;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Set;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -95,6 +102,7 @@ public class SettingsDomainsActivity extends AppCompatActivity {
                                 try {
                                     URL url = new URL("http", host, "/");
                                     adapter.addDomain(url.getHost());
+                                    Settings.get().addFallbackRedirectHost(url.getHost());
                                     added = true;
                                 }
                                 catch(MalformedURLException e){
@@ -110,7 +118,16 @@ public class SettingsDomainsActivity extends AppCompatActivity {
                 })
                 .create()
                 .show();
+
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
+            }
+        }, 300);
     }
+    private Handler mHandler = new Handler();
 
     private Snackbar currentSnackbar;
     void showSnackbar(String message) {
@@ -243,8 +260,15 @@ public class SettingsDomainsActivity extends AppCompatActivity {
         Adapter(Context context) {
             this.context = context;
             items.add(new HeadingItem(context, getString(R.string.preference_redirects_title)));
-            items.add(new DomainItem(context, "accounts.google.com"));
-            items.add(new DomainItem(context, "facebook.com"));
+
+            Set<String> redirectHosts = Settings.get().getFallbackRedirectHosts();
+            if (redirectHosts.size() > 0) {
+                ArrayList<String> strings = new ArrayList<>(redirectHosts);
+                Collections.sort(strings);
+                for (String string : strings) {
+                    items.add(new DomainItem(context, string));
+                }
+            }
         }
 
         void addDomain(String host) {
@@ -297,6 +321,7 @@ public class SettingsDomainsActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 removeItem(item);
+                                Settings.get().removeFallbackRedirectHost(item.title);
                                 showSnackbar("Removed " + item.title + ".",
                                         getString(R.string.action_undo),
                                         new View.OnClickListener() {
@@ -304,6 +329,7 @@ public class SettingsDomainsActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(View v) {
                                                 addItem(item);
+                                                Settings.get().addFallbackRedirectHost(item.title);
                                             }
                                         });
                             }
