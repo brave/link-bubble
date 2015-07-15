@@ -137,7 +137,7 @@
         <item>Chrome Desktop</item>
     </string-array>
 
-    <string name="preference_domains_title">Domains</string>
+    <string name="preference_domains_title">Domain redirects</string>
     <string name="preference_domains_summary">Specify links to always load in your fallback browser.</string>
     <string name="preference_redirects_title">Redirect to fallback browser</string>
     <string name="preference_add_domain_title">Add domain</string>
