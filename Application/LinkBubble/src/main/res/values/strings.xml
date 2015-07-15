@@ -49,6 +49,7 @@
     <string name="upgrade_article_mode">Want to view links in Reading Mode?</string>
     <string name="upgrade_article_mode_wear">Want to view links on Android Wear devices via Reading Mode?</string>
     <string name="upgrade_theme">Want to use a different theme?</string>
+    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
     <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
         Load multiple tabs at once.\n •
         Change theme.\n •

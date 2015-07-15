@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center_vertical"
+    android:paddingLeft="@dimen/preference_item_padding_left"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:minHeight="?android:listPreferredItemHeight"
+    >
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="4dp"
+        android:minWidth="@dimen/preference_icon_minWidth">
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@android:id/icon"
+            android:paddingRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="48.0dip" />
+    </LinearLayout>
+    <RelativeLayout
+        android:paddingTop="6.0dip"
+        android:paddingRight="@dimen/preference_item_padding_right"
+        android:paddingBottom="6.0dip"
+        android:paddingLeft="4.0dip"
+        android:layout_width="0.0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0">
+        <TextView android:textAppearance="?android:textAppearanceMedium"
+                  android:ellipsize="marquee"
+                  android:id="@android:id/title"
+                  android:fadingEdge="horizontal"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textColor="#212121"
+                  android:singleLine="true" />
+        <TextView android:textAppearance="?android:textAppearanceSmall"
+                  android:textColor="?android:textColorSecondary"
+                  android:id="@android:id/summary"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:maxLines="4"
+                  android:layout_below="@android:id/title"
+                  android:layout_alignLeft="@android:id/title" />
+    </RelativeLayout>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:id="@android:id/widget_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="?android:scrollbarSize"
+            android:minWidth="@dimen/preference_ribbon_width" />
+        <ImageView
+            android:id="@+id/pro_banner"
+            android:layout_gravity="top|right|center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/preference_pro_ribbon" />
+    </FrameLayout>
+</LinearLayout>

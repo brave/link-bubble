@@ -13,10 +13,13 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
+import android.preference.SwitchPreference;
 import android.support.annotation.DrawableRes;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.Toolbar;
@@ -132,6 +135,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         private Preference mWebViewBatterySavePreference;
         private ListPreference mUserAgentPreference;
 
+        private Handler mHandler = new Handler();
+
         Drawable getTintedDrawable(@DrawableRes int drawable, int color) {
             Drawable d = getResources().getDrawable(drawable);
             d = DrawableCompat.wrap(d);
@@ -223,17 +228,38 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 showProBanner(mThemePreference);
             }
 
-            Preference themeToolbarPreference = findPreference("preference_theme_toolbar");
+            final SwitchPreference themeToolbarPreference = (SwitchPreference) findPreference("preference_theme_toolbar");
             themeToolbarPreference.setIcon(getTintedDrawable(R.drawable.ic_colorize_white_36dp, tintColor));
             themeToolbarPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    boolean value = (boolean) newValue;
+                    if (value && !DRM.isLicensed()) {
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                themeToolbarPreference.setChecked(false);
+                                upsellPro(R.string.upgrade_theme_toolbar);
+                            }
+                        }, 100);
+                        return true;
+                    }
                     if (MainController.get() != null && MainController.get().reloadAllTabs(getActivity())) {
                         Toast.makeText(getActivity(), R.string.theme_toolbar_reloading_current, Toast.LENGTH_SHORT).show();
                     }
                     return true;
                 }
             });
+            if (!DRM.isLicensed()) {
+                showProBanner(themeToolbarPreference);
+                themeToolbarPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                    @Override
+                    public boolean onPreferenceClick(Preference preference) {
+                        themeToolbarPreference.setChecked(false);
+                        return true;
+                    }
+                });
+            }
 
             Preference crashButton = findPreference("debug_crash");
             if (crashButton != null) {
