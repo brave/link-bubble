@@ -163,6 +163,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     return true;
                 }
             });
+            mWebViewBatterySavePreference.setIcon(getTintedDrawable(R.drawable.ic_battery_full_white_36dp, tintColor));
             updateWebViewBatterySaveSummary();
 
             Preference domainsPref = findPreference("preference_domains");
@@ -206,6 +207,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     }
                 });
             }
+            incognitoButton.setIcon(getTintedDrawable(R.drawable.ic_person_outline_white_36dp, tintColor));
 
             mThemePreference = findPreference("preference_theme");
             mThemePreference.setIcon(getTintedDrawable(R.drawable.ic_color_lens_white_36dp, tintColor));
@@ -298,13 +300,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         linkDoubleTapPreference.setSummary(Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.LinkDoubleTap));
         */
 
-            findPreference("preference_clear_browser_cache").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            Preference clearCachePref = findPreference("preference_clear_browser_cache");
+            clearCachePref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
 
                     return onClearBrowserCachePreferenceClick();
                 }
             });
+            clearCachePref.setIcon(getTintedDrawable(R.drawable.ic_delete_white_36dp, tintColor));
 
             mWebViewTextZoomPreference = findPreference(Settings.PREFERENCE_WEBVIEW_TEXT_ZOOM);
             mWebViewTextZoomPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -314,9 +318,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     return true;
                 }
             });
+            mWebViewTextZoomPreference.setIcon(getTintedDrawable(R.drawable.ic_pageview_white_36dp, tintColor));
             mWebViewTextZoomPreference.setSummary(Settings.get().getWebViewTextZoom() + "%");
 
             mUserAgentPreference = (ListPreference) findPreference(Settings.PREFERENCE_USER_AGENT);
+            mUserAgentPreference.setIcon(getTintedDrawable(R.drawable.ic_web_white_36dp, tintColor));
 
             /*
             Preference sayThanksPreference = findPreference("preference_say_thanks");
@@ -348,6 +354,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         return false;
                     }
                 });
+                getProPreference.setIcon(getTintedDrawable(R.drawable.ic_play_shopping_bag_white_36dp, tintColor));
             }
 
             Preference otherAppsPreference = findPreference("preference_my_other_apps");
@@ -362,12 +369,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     return false;
                 }
             });
+            otherAppsPreference.setIcon(getTintedDrawable(R.drawable.ic_shop_two_white_36dp, tintColor));
 
             if (DRM.isLicensed()) {
                 generalCategory.removePreference(getProPreference);
             }
 
-            findPreference("preference_faq").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            Preference faqPref = findPreference("preference_faq");
+            faqPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     FAQDialog dialog = new FAQDialog(getActivity());
@@ -375,6 +384,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     return true;
                 }
             });
+            faqPref.setIcon(getTintedDrawable(R.drawable.ic_question_answer_white_36dp, tintColor));
 
             findPreference("preference_default_apps").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -384,21 +394,25 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 }
             });
 
-            findPreference("preference_more").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    startActivity(new Intent(getActivity(), SettingsMoreActivity.class));
-                    return true;
+            Preference morePref = findPreference("preference_more");
+            morePref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                        @Override
+                        public boolean onPreferenceClick(Preference preference) {
+                            startActivity(new Intent(getActivity(), SettingsMoreActivity.class));
+                            return true;
                 }
             });
+            morePref.setIcon(getTintedDrawable(R.drawable.ic_more_horiz_white_36dp, tintColor));
 
-            findPreference("preference_help").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            Preference helpPref = findPreference("preference_help");
+            helpPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     startActivity(new Intent(getActivity(), SettingsHelpActivity.class));
                     return true;
                 }
             });
+            helpPref.setIcon(getTintedDrawable(R.drawable.ic_help_white_36dp, tintColor));
 
             Preference versionPreference = findPreference("preference_version");
             try {
@@ -417,6 +431,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     return true;
                 }
             });
+            versionPreference.setIcon(getTintedDrawable(R.drawable.ic_info_white_36dp, tintColor));
         }
 
         @Override
@@ -496,6 +511,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         return true;
                     }
                 });
+                setDefaultBrowserPreference.setIcon(getTintedDrawable(R.drawable.ic_warning_white_36dp,
+                        getResources().getColor(android.R.color.holo_orange_light)));
 
                 ResolveInfo defaultBrowserResolveInfo = Util.getDefaultBrowser(packageManager);
                 if (defaultBrowserResolveInfo != null) {
