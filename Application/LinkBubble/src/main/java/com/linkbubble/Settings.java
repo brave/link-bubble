@@ -29,7 +29,9 @@ import org.json.JSONObject;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.Vector;
 
@@ -74,6 +76,7 @@ public class Settings {
 
     public static final String PREFERENCE_CURRENT_TABS = "preference_current_bubbles";
     public static final String PREFERENCE_DEFAULT_APPS = "preference_default_apps";
+    public static final String PREFERENCE_FALLBACK_REDIRECT_HOSTS = "preference_redirect_hosts";
     public static final String PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT = "preference_google_accounts_redirect";
 
     public static final String PREFERENCE_AUTO_ARTICLE_MODE = "preference_auto_article_mode";
@@ -152,6 +155,8 @@ public class Settings {
     // The point used as the return value. Required so we don't overwrite the desired point in landscape mode
     private Point mTempBubbleRestingPoint = new Point();
 
+    private HashSet<String> mFallbackRedirectHosts = new HashSet<>();
+
     static public int COLOR_TEXT_DARK;
     static public int COLOR_TEXT_LIGHT;
     static public int COLOR_CONTENT_VIEW_DARK;
@@ -206,6 +211,10 @@ public class Settings {
         loadIgnoreLinksFromPackageNames();
 
         setWebViewBatterySaveMode(mSharedPreferences.getString(PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE, "default"));
+
+        HashSet<String> defaultRedirects = new HashSet<>();
+        defaultRedirects.add("accounts.google.com");
+        configureFallbackRedirectHosts(mSharedPreferences.getStringSet(PREFERENCE_FALLBACK_REDIRECT_HOSTS, defaultRedirects));
 
         mColorTheme = ColorTheme.Palette;
     }
@@ -763,12 +772,43 @@ public class Settings {
         editor.commit();
     }
 
-    public boolean redirectUrlToBrowser(String url, PackageManager packageManager) {
-        if (url.contains("accounts.google.com") && mSharedPreferences.getBoolean(PREFERENCE_GOOGLE_ACCOUNTS_REDIRECT, true)) {
-            return true;
+    void configureFallbackRedirectHosts(Set<String> items) {
+        if (items != null && items.size() > 0) {
+            // Make a copy to as documentation explicitly states not to trust the result
+            // of getStringSet() call. http://stackoverflow.com/a/19949833/328679
+            mFallbackRedirectHosts = new HashSet<>(items);
+        } else {
+            mFallbackRedirectHosts.clear();
         }
+    }
 
-        boolean result = false;
+    public void addFallbackRedirectHost(String host) {
+        mFallbackRedirectHosts.add(host);
+        saveFallbackRedirectHosts();
+    }
+
+    public void removeFallbackRedirectHost(String host) {
+        mFallbackRedirectHosts.remove(host);
+        saveFallbackRedirectHosts();
+    }
+
+    private void saveFallbackRedirectHosts() {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.remove(PREFERENCE_FALLBACK_REDIRECT_HOSTS);      // always remove. See http://stackoverflow.com/a/21401062/328679
+        if (mFallbackRedirectHosts.size() > 0) {
+            editor.putStringSet(PREFERENCE_FALLBACK_REDIRECT_HOSTS, mFallbackRedirectHosts);
+        }
+        editor.apply();
+    }
+
+    public Set<String> getFallbackRedirectHosts() {
+        return mFallbackRedirectHosts;
+    }
+
+    public boolean redirectUrlToBrowser(URL url) {
+        String host = url.getHost();
+        String hostAlt = host.contains("www.") ? host.replace("www.", "") : "www." + host;
+        return mFallbackRedirectHosts.contains(host) || mFallbackRedirectHosts.contains(hostAlt);
 
         /*
          * Temporarily enable DownloadHandlerActivity to see if it might be used to handle this URL. If so, redirect the
@@ -776,6 +816,8 @@ public class Settings {
          */
 
         /*
+        boolean result = false;
+
         packageManager.setComponentEnabledSetting(mDownloadHandlerComponentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
 
         mDownloadQueryIntent.setAction(Intent.ACTION_VIEW);
@@ -792,9 +834,9 @@ public class Settings {
         }
 
         packageManager.setComponentEnabledSetting(mDownloadHandlerComponentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
-        */
 
         return result;
+                */
     }
 
     public boolean getAutoArticleMode() {

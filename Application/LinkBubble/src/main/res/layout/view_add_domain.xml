@@ -28,6 +28,7 @@
             android:scrollHorizontally="true"
             android:gravity="fill_horizontal"
             android:selectAllOnFocus="true"
+            android:inputType="textWebEmailAddress"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:hint="@string/add_domain_hint"/>
 
