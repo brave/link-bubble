@@ -162,12 +162,14 @@ public class Settings {
     static public int COLOR_CONTENT_VIEW_LIGHT;
     static public int COLOR_PROGRESS_DARK;
     static public int COLOR_PROGRESS_LIGHT;
+    static public int COLOR_WHITE;
 
     Settings(Context context) {
         mContext = context;
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
         //mDownloadHandlerComponentName = new ComponentName(mContext, DownloadHandlerActivity.class);
 
+        COLOR_WHITE = mContext.getResources().getColor(android.R.color.white);
         COLOR_TEXT_DARK  = mContext.getResources().getColor(R.color.color_text_dark);
         COLOR_TEXT_LIGHT = mContext.getResources().getColor(R.color.color_text_light);
         COLOR_CONTENT_VIEW_DARK = mContext.getResources().getColor(R.color.color_content_view_dark);

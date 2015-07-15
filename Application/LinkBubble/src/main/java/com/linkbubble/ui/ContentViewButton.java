@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.linkbubble.R;
+import com.linkbubble.Settings;
 
 public class ContentViewButton extends FrameLayout {
 
@@ -111,5 +113,18 @@ public class ContentViewButton extends FrameLayout {
         }
 
         mImageView.setImageDrawable(drawable);
+    }
+
+    public void updateTheme(Integer color) {
+        Drawable d = mImageView.getDrawable();
+        if (d != null) {
+            int textColor;
+            if (color == null || !Settings.get().getThemeToolbar()) {
+                textColor = Settings.get().getThemedTextColor();
+            } else {
+                textColor = Settings.COLOR_WHITE;
+            }
+            DrawableCompat.setTint(d, textColor);
+        }
     }
 }

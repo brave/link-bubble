@@ -264,8 +264,7 @@ public class ContentView extends FrameLayout {
     }
 
     private Drawable getTintableDrawable(@DrawableRes int resId, boolean addToList) {
-        Drawable d = getResources().getDrawable(resId);
-        d = DrawableCompat.wrap(d);
+        Drawable d = Util.getTintableDrawable(this.getContext(), resId);
         if (addToList) {
             mTintableDrawables.add(d);
         }
@@ -293,8 +292,6 @@ public class ContentView extends FrameLayout {
         if (hasShownAppPicker) {
             mAppPickersUrls.add(urlAsString);
         }
-
-        boolean darkTheme = Settings.get().getDarkThemeEnabled();
 
         mToolbarLayout = (LinearLayout) findViewById(R.id.content_toolbar);
         mTitleTextView = (CondensedTextView) findViewById(R.id.title_text);
@@ -354,7 +351,9 @@ public class ContentView extends FrameLayout {
         updateColors(null);
     }
 
+    Integer themeColor;
     void updateColors(Integer color) {
+        themeColor = color;
         int textColor;
         int bgColor;
         if (color == null || !Settings.get().getThemeToolbar()) {
@@ -363,7 +362,7 @@ public class ContentView extends FrameLayout {
             mCaretView.setBackground(getResources().getDrawable(Settings.get().getDarkThemeEnabled()
                     ? R.drawable.content_view_caret_dark : R.drawable.content_view_caret_white));
         } else {
-            textColor = getResources().getColor(android.R.color.white);
+            textColor = Settings.COLOR_WHITE;
             bgColor = color;
             Drawable d = getTintableDrawable(R.drawable.content_view_caret_white, false);
             DrawableCompat.setTint(d, color);
@@ -377,6 +376,8 @@ public class ContentView extends FrameLayout {
         for (Drawable d : mTintableDrawables) {
             DrawableCompat.setTint(d, textColor);
         }
+
+        mArticleModeButton.updateTheme(color);
     }
 
     void setFaviconColor(Integer color) {
@@ -953,6 +954,7 @@ public class ContentView extends FrameLayout {
         @Override
         public void onClick(View v) {
             mArticleModeButton.toggleState();
+            mArticleModeButton.updateTheme(themeColor);
 
             ArticleContent articleContent = mWebRenderer.getArticleContent();
 
