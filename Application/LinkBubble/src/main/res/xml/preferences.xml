@@ -2,8 +2,9 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <PreferenceCategory
-        android:title="@string/preference_category_configuration"
-        android:key="preference_category_configuration">
+        android:title="@string/preference_category_configuration2"
+        android:key="preference_category_configuration"
+        android:layout="@layout/preference_category_material">
 
         <!--
         <SwitchPreference
@@ -65,7 +66,8 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/preference_category_browser">
+        android:title="@string/preference_category_browser"
+        android:layout="@layout/preference_category_material">
 
         <!--
         <PreferenceScreen
@@ -157,7 +159,7 @@
     <PreferenceCategory
         android:title="@string/preference_category_general"
         android:key="preference_category_general"
-        >
+        android:layout="@layout/preference_category_material">
 
         <!--
         <Preference
