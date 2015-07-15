@@ -36,8 +36,6 @@
     <Preference
         android:key="preference_ignore_links_from"
         android:title="@string/preference_intercept_links_from_title"
-        android:summary="@string/preference_intercept_links_from_disabled_for_L"
-        android:enabled="false"
         />
 
 </PreferenceScreen>

@@ -1,5 +1,8 @@
 package com.linkbubble.ui;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -11,13 +14,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.linkbubble.BuildConfig;
 import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.util.AppPickerList;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
 
 /*
  * This class exists solely because Android's PreferenceScreen implementation doesn't do anything
@@ -151,8 +161,90 @@ public class SettingsMoreActivity extends AppCompatPreferenceActivity {
 
             Preference interceptLinksFromPreference = findPreference(Settings.PREFERENCE_IGNORE_LINKS_FROM);
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
-                rootPreferenceScreen.removePreference(interceptLinksFromPreference);
+                interceptLinksFromPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                    @Override
+                    public boolean onPreferenceClick(Preference preference) {
+                        getDontInterceptLinksFromDialog(getActivity()).show();
+                        return true;
+                    }
+                });
+            } else {
+                interceptLinksFromPreference.setSummary(R.string.preference_intercept_links_from_disabled_for_L);
+                interceptLinksFromPreference.setEnabled(false);
             }
+        }
+
+        public AlertDialog getDontInterceptLinksFromDialog(final Context context) {
+            final List<String> browserPackageNames = Settings.get().getBrowserPackageNames();
+
+            final View layout = AppPickerList.createView(context,
+                    ((MainApplication) context.getApplicationContext()).mIconCache,
+                    AppPickerList.SelectionType.MultipleSelection, new AppPickerList.Initializer() {
+                        @Override
+                        public boolean setChecked(String packageName, String activityName) {
+                            return Settings.get().ignoreLinkFromPackageName(packageName) ? false : true;
+                        }
+
+                        @Override
+                        public boolean addToList(String packageName) {
+                            if (packageName.equals(BuildConfig.APPLICATION_ID)) {
+                                return false;
+                            }
+
+                            for (String browserPackageName : browserPackageNames) {
+                                if (browserPackageName.equals(packageName)) {
+                                    return false;
+                                }
+                            }
+
+                            return true;
+                        }
+                    });
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setView(layout);
+            builder.setIcon(Util.getAlertIcon(getActivity()));
+            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+
+                    ArrayList<String> ignorePackageNames = new ArrayList<String>();
+
+                    ArrayList<AppPickerList.AppInfo> results = AppPickerList.getUnselected(layout);
+                    if (results != null) {
+                        for (AppPickerList.AppInfo result : results) {
+                            ignorePackageNames.add(result.mPackageName);
+                        }
+                    }
+
+                    Settings.get().setIgnoreLinksFromPackageNames(ignorePackageNames);
+                }
+            });
+            builder.setTitle(R.string.preference_intercept_links_from_title);
+
+            return builder.create();
+        }
+    }
+
+
+    static class AppInfo {
+        String mActivityName;
+        String mPackageName;
+        String mDisplayName;
+        String mSortName;
+
+        AppInfo(String activityName, String packageName, String displayName) {
+            mActivityName = activityName;
+            mPackageName = packageName;
+            mDisplayName = displayName;
+            mSortName = displayName.toLowerCase(Locale.getDefault());
+        }
+    }
+
+
+    public static class AppInfoComparator implements Comparator<AppInfo> {
+        @Override
+        public int compare(AppInfo lhs, AppInfo rhs) {
+            return lhs.mSortName.compareTo(rhs.mSortName);
         }
     }
 
