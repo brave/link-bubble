@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
+import android.support.annotation.DrawableRes;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -129,9 +132,18 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         private Preference mWebViewBatterySavePreference;
         private ListPreference mUserAgentPreference;
 
+        Drawable getTintedDrawable(@DrawableRes int drawable, int color) {
+            Drawable d = getResources().getDrawable(drawable);
+            d = DrawableCompat.wrap(d);
+            DrawableCompat.setTint(d, color);
+            return d;
+        }
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+
+            int tintColor = getResources().getColor(R.color.color_primary);
 
             MainApplication app = (MainApplication) getActivity().getApplicationContext();
             Bus bus = app.getBus();
@@ -152,6 +164,16 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 }
             });
             updateWebViewBatterySaveSummary();
+
+            Preference domainsPref = findPreference("preference_domains");
+            domainsPref.setIcon(getTintedDrawable(R.drawable.ic_open_in_browser_white_36dp, tintColor));
+            domainsPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    startActivity(new Intent(getActivity(), SettingsDomainsActivity.class));
+                    return true;
+                }
+            });
 
             Preference interceptLinksFromPreference = findPreference(Settings.PREFERENCE_IGNORE_LINKS_FROM);
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
@@ -186,6 +208,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             }
 
             mThemePreference = findPreference("preference_theme");
+            mThemePreference.setIcon(getTintedDrawable(R.drawable.ic_color_lens_white_36dp, tintColor));
             mThemePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
@@ -486,18 +509,18 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             if (darkTheme) {
                 if (color) {
                     mThemePreference.setSummary(R.string.preference_theme_dark_color);
-                    setPreferenceIcon(mThemePreference, R.drawable.preference_theme_dark_color);
+                    //setPreferenceIcon(mThemePreference, R.drawable.preference_theme_dark_color);
                 } else {
                     mThemePreference.setSummary(R.string.preference_theme_dark_no_color);
-                    setPreferenceIcon(mThemePreference, R.drawable.preference_theme_dark_no_color);
+                    //setPreferenceIcon(mThemePreference, R.drawable.preference_theme_dark_no_color);
                 }
             } else {
                 if (color) {
                     mThemePreference.setSummary(R.string.preference_theme_light_color);
-                    setPreferenceIcon(mThemePreference, R.drawable.preference_theme_light_color);
+                    //setPreferenceIcon(mThemePreference, R.drawable.preference_theme_light_color);
                 } else {
                     mThemePreference.setSummary(R.string.preference_theme_light_no_color);
-                    setPreferenceIcon(mThemePreference, R.drawable.preference_theme_light_no_color);
+                    //setPreferenceIcon(mThemePreference, R.drawable.preference_theme_light_no_color);
                 }
             }
         }

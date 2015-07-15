@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:launcher="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/settings_item_height">
+
+    <include layout="@layout/view_settings_divider"/>
+
+    <ImageView
+        android:id="@+id/ribbon_image_view"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="right|top"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginRight="@dimen/start_icon_margin_right"
+            android:id="@+id/app_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_width="@dimen/start_icon_width"
+            android:layout_height="match_parent"
+             />
+
+        <LinearLayout
+            android:id="@+id/settings_text_container"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            >
+
+            <TextView
+                android:id="@+id/settings_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Title"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/settings_title"
+                />
+            <TextView
+                android:id="@+id/settings_summary"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Summary"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/settings_summary"
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginRight="@dimen/start_icon_margin_right"
+            android:id="@+id/remove_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_width="@dimen/start_icon_width"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_delete_grey600_24dp"
+            />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/default_margin"
+    android:paddingRight="@dimen/default_margin"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_margin="@dimen/default_margin_half"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="@string/add_domain_detail"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:scrollHorizontally="true"
+            android:gravity="fill_horizontal"
+            android:selectAllOnFocus="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:hint="@string/add_domain_hint"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+</LinearLayout>
