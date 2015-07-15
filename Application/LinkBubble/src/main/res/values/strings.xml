@@ -69,6 +69,7 @@
 
     <string name="preference_category_general">General</string>
     <string name="preference_category_configuration">App Controls</string>
+    <string name="preference_category_configuration2">Configuration</string>
     <string name="preference_category_browser">Browser</string>
     <string name="preference_enabled_title">Enabled</string>
     <string name="preference_auto_content_display_link_loaded_title">Auto expand</string>
