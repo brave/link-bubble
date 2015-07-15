@@ -496,7 +496,7 @@ public class ContentView extends FrameLayout {
 
             URL currentUrl = mWebRenderer.getUrl();
             updateAppsForUrl(Settings.get().getAppsThatHandleUrl(currentUrl.toString(), packageManager), currentUrl);
-            if (Settings.get().redirectUrlToBrowser(urlAsString, packageManager)) {
+            if (Settings.get().redirectUrlToBrowser(currentUrl)) {
                 if (openInBrowser(urlAsString)) {
                     String title = String.format(context.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
                     MainApplication.saveUrlInHistory(context, null, urlAsString, title);
