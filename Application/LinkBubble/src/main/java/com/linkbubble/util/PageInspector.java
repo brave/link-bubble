@@ -1,9 +1,11 @@
 package com.linkbubble.util;
 
-
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.util.Log;
+import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 
@@ -15,6 +17,9 @@ import com.squareup.picasso.Transformation;
 import java.lang.ref.WeakReference;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 public class PageInspector {
 
@@ -32,35 +37,25 @@ public class PageInspector {
 
     private static final String JS_DROP_DOWN_ITEM_CHECK =
             "{\n" +
-            "    var elems = document.getElementsByTagName('select'), i;\n"+
-            "    var disabledCount = 0;\n"+
-            "    for (i in elems) {\n"+
-            "      var elem = elems[i];\n"+
-            "      if (elem.disabled == false) {\n"+
-            "        elem.disabled = true;\n"+
-            "\n"+
-            "        var parent = elem.parentNode;\n"+
-            "        if (parent != null) {\n"+
-            "          var wrapper = document.createElement('div');\n"+
-            "          parent.replaceChild(wrapper, elem);\n"+
-            "          wrapper.appendChild(elem);\n"+
-            "\n"+
-            "          var newImage = document.createElement('img');\n"+
-            "          newImage.src = \"http://linkbubble.com/src/images/lb_warning_48.png\";\n"+
-            "          newImage.onclick = function() {\n"+
-            "             " + JS_VARIABLE + ".onDropDownWarningClick();\n"+
-            "          };\n"+
-            "          wrapper.appendChild(newImage)\n"+
-            "        }\n"+
-            "\n"+
-            "        disabledCount++;\n"+
-            "      }\n"+
-            "    }\n"+
-            "\n"+
-            "    if (disabledCount > 0) {\n" +
-            "      " + JS_VARIABLE + ".onDropDownFound();\n" +
-            "    }\n" +
-            "\n" +
+            "  window.__LINK_BUBBLE__ = window.__LINK_BUBBLE__ || {};\n" +
+            "  window.__LINK_BUBBLE__.lastSelectFocused = null;\n" +
+            "  window.__LINK_BUBBLE__.selectOption = function(value) {\n" +
+            "    window.__LINK_BUBBLE__.lastSelectFocused.value = value;\n" +
+            "  };\n" +
+            "  var els = document.querySelectorAll('select');\n" +
+            "  Array.prototype.forEach.call(els, function(select) {\n" +
+            "    select.addEventListener('click', function(e) {\n" +
+            "      e.preventDefault();\n" +
+            "      var sel = e.target;\n" +
+            "      window.__LINK_BUBBLE__.lastSelectFocused = e.target;\n" +
+            "      var keyAndValues = [];\n" +
+            "      for (var i = 0; i < sel.length; i++) {\n" +
+            "        keyAndValues.push(sel[i].text);\n" +
+            "        keyAndValues.push(sel[i].value);\n" +
+            "      }\n" +
+            "      " + JS_VARIABLE + ".onSelectElementInteract(JSON.stringify(keyAndValues));\n" +
+            "    });\n" +
+            "  });\n" +
             "}";
 
     private static final String JS_YOUTUBE_EMBED_CHECK =
@@ -121,6 +116,7 @@ public class PageInspector {
 
     private Context mContext;
     private String mWebViewUrl;
+    private WebView mWebView;
     private JSEmbedHandler mJSEmbedHandler;
     private YouTubeEmbedHelper mYouTubeEmbedHelper;
     private String mLastYouTubeEmbedResultString = null;
@@ -150,6 +146,7 @@ public class PageInspector {
 
     public void run(WebView webView, int inspectFlags) {
         mWebViewUrl = webView.getUrl();
+        mWebView = webView;
 
         String jsEmbed = "javascript:(function() {\n";
 
@@ -277,6 +274,42 @@ public class PageInspector {
                 Picasso.with(mContext).load(touchIconEntry.mUrl.toString()).transform(sTouchIconTransformation).fetch();
             }
 
+        }
+
+        @JavascriptInterface
+        public void onSelectElementInteract(String optionString) {
+            if (optionString == null || optionString.length() == 0) {
+                return;
+            }
+
+            Log.d(TAG, "onSelectElementInteract() - " + optionString);
+
+            final ArrayList<String> optionList = new ArrayList<String>();
+            try {
+                JSONArray optionArray = new JSONArray(optionString);
+                if (optionArray != null) {
+                    int len = optionArray.length();
+                    for (int i = 1; i < len; i += 2) {
+                        optionList.add(optionArray.get(i).toString());
+                    }
+                }
+            } catch(JSONException e) {
+                Log.d(TAG, "error parsing json");
+            }
+
+            AlertDialog dialog;
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            builder.setTitle("Select an option:");
+            builder.setSingleChoiceItems(optionList.toArray(new String[optionList.size()]), 0, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int position) {
+                    Log.d(TAG, "click position is - " + position);
+                    mWebView.loadUrl("javascript:__LINK_BUBBLE__.selectOption('" + optionList.get(position - 1) + "')");
+                }
+            });
+            dialog = builder.create();
+            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            dialog.show();
         }
 
         @JavascriptInterface
