@@ -20,6 +20,7 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
@@ -31,6 +32,7 @@ import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
+import io.fabric.sdk.android.Fabric;
 import org.mozilla.gecko.favicons.Favicons;
 
 import java.net.MalformedURLException;
@@ -60,6 +62,7 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
 
         mBus = new Bus();
 
