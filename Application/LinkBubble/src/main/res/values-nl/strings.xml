@@ -346,7 +346,7 @@ premiumfuncties (meerdere tabs, links onderscheppen vanuit elke app, etc.) van P
     <string name="requesting_location_message">%1$s vraagt naar je locatie. Toestaan?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[Door verder te gaan, erken je dat je de
-<a href="http://www.digitalashes.com/terms">voorwaarden</a> en het <a href="http://www.digitalashes.com/privacy">privacybeleid</a> van Digital Ashes accepteert.]]></string>
+<a href="http://www.linkbubble.com/terms">voorwaarden</a> en het <a href="http://www.linkbubble.com/privacy">privacybeleid</a> van Digital Ashes accepteert.]]></string>
 
     <string name="service_name">Link Bubble Renderer</string>
     <string name="notification_title">Link Bubble</string>
