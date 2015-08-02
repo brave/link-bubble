@@ -314,7 +314,7 @@ In futuro valuterò usi alternativi di rendering come FireFox, GeckoView e Chrom
 
     <string name="requesting_location_message">%1$s sta richiedendo informazioni sulla tua posizione. Consenti?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[Continuando, accetti i <a href="http://www.digitalashes.com/terms">termini</a> e la <a href="http://www.digitalashes.com/privacy">privacy policy</a> di Digital Ashes.]]></string>
+    <string name="accept_terms_and_privacy"><![CDATA[Continuando, accetti i <a href="http://www.linkbubble.com/terms">termini</a> e la <a href="http://www.linkbubble.com/privacy">privacy policy</a> di Digital Ashes.]]></string>
 
     <string name="service_name">Visualizzatore Link Bubble</string>
     <string name="notification_title">Link Bubble</string>

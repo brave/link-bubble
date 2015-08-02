@@ -324,7 +324,7 @@ Link Bubble.]]></string>
     <string name="requesting_location_message">%1$s запрашивает ваше местоположение. Разрешить?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[Продолжая, вы соглашаетесь с 
-<a href="http://www.digitalashes.com/terms">условиями</a> и <a href="http://www.digitalashes.com/privacy">политикой конфиденциальности</a> Digital Ashes.]]></string>
+<a href="http://www.linkbubble.com/terms">условиями</a> и <a href="http://www.linkbubble.com/privacy">политикой конфиденциальности</a> Digital Ashes.]]></string>
 
     <string name="service_name">Рендерер Link Bubble</string>
     <string name="notification_title">Link Bubble</string>

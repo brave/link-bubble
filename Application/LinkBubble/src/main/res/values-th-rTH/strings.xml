@@ -314,7 +314,7 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="requesting_location_message">%1$s ต้องการทราบตำแหน่งที่ตั้งของคุณ อนุญาต?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[ในการดำเนินการต่อ คุณได้รับทราบ
-<a href="http://www.digitalashes.com/terms">ข้อกำหนดการใช้งาน</a> และ <a href="http://www.digitalashes.com/privacy">นโยบายความเป็นส่วนตัว</a> ของ Digital Ashes]]></string>
+<a href="http://www.linkbubble.com/terms">ข้อกำหนดการใช้งาน</a> และ <a href="http://www.linkbubble.com/privacy">นโยบายความเป็นส่วนตัว</a> ของ Digital Ashes]]></string>
 
     <string name="service_name">เรนเดอร์ Link Bubble</string>
     <string name="notification_title">Link Bubble</string>

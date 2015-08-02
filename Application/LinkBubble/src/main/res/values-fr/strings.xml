@@ -323,7 +323,7 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="requesting_location_message">%1$s demande votre localisation. L\'autoriser ?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Digital Ashes
-    <a href="http://www.digitalashes.com/terms">terms</a> and <a href="http://www.digitalashes.com/privacy">privacy policy</a>.]]></string>
+    <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
 
     <string name="service_name">Moteur de rendu Link Bubble</string>
     <string name="notification_title">Link Bubble</string>

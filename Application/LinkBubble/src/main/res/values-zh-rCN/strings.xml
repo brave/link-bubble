@@ -324,7 +324,7 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="requesting_location_message">%1$s 正在请求您的位置。是否允许？</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Digital Ashes
-    <a href="http://www.digitalashes.com/terms">terms</a> and <a href="http://www.digitalashes.com/privacy">privacy policy</a>.]]></string>
+    <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
 
     <string name="service_name">Link Bubble 渲染器</string>
     <string name="notification_title">Link Bubble</string>
