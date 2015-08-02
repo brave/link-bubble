@@ -20,6 +20,9 @@ import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.squareup.otto.Subscribe;
 
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
+
 import java.util.Vector;
 
 /**
@@ -110,7 +113,7 @@ public class MainService extends Service {
         setTheme(Settings.get().getDarkThemeEnabled() ? R.style.MainServiceThemeDark : R.style.MainServiceThemeLight);
 
         super.onCreate();
-        CrashTracking.init(this);
+        Fabric.with(this, new Crashlytics());
         CrashTracking.log("MainService.onCreate()");
 
         showDefaultNotification();
