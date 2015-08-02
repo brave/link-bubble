@@ -99,7 +99,7 @@ versão grátis do Link Bubble. Atualizar pra versão Pro?</string>
     <string name="preference_version_title">Versão</string>
     <string name="preference_version_summary">O que tem de novo?</string>
 
-    <string name="preference_my_other_apps_title">Mais apps do Chris Lacy</string>
+    <string name="preference_my_other_apps_title">Mais apps do Link Bubble</string>
     <string name="preference_my_other_apps_summary">Curte Link Bubble? Por que então não confere meus outros aplicativos?</string>
 
     <string name="remove_default_title">Remover padrão?</string>
@@ -190,7 +190,7 @@ versão grátis do Link Bubble. Atualizar pra versão Pro?</string>
  e consumir links carregados por outros apps.</string>
     <string name="faq_translations_question">Quando você vai adicionar tradução de linguagens estrangeiras? Posso ajudar?</string>
     <string name="faq_translations_answer"><![CDATA[Eu espero adicionar suporte a tradução logo.<br/><br/>Quando eu fizer, eu irei com certeza avisar no Google+
-(+Chris Lacy) por ajuda nas traduções, então fique de olho no meu mural.]]></string>
+(+Link Bubble) por ajuda nas traduções, então fique de olho no meu mural.]]></string>
     <string name="faq_roadmap_question">Você publica um roadmap das próximas versões? [...]</string>
     <string name="faq_roadmap_answer">Por razões competitivas, a resposta para ambas as perguntas é não. Sinto muito. <br/><br/></string>
     <string name="faq_alternate_payment_question">Eu não tenho cartão de crédito e/ou não consigo comprar pelo Google Play. Como eu posso comprar o Pro?</string>
@@ -212,7 +212,7 @@ A função copiar só funciona quando você usa o navegador por uma atividade, m
     <string name="faq_translucent_status_bar_question">Por que o aplicativo não fica em cima da barra de status transparente?</string>
     <string name="faq_translucent_status_bar_answer">Infelizmente limitações do Android previnem isso.</string>
     <string name="faq_beta_programme_question">Existe algum programa beta? Como posso participar?</string>
-    <string name="faq_beta_programme_answer">Detalhes sobre o beta serão anunciados no futuro. Fique de olho no meu mural do Google+ (+Chris Lacy) para novidades.</string>
+    <string name="faq_beta_programme_answer">Detalhes sobre o beta serão anunciados no futuro. Fique de olho no meu mural do Google+ (+Link Bubble) para novidades.</string>
     <string name="faq_low_spec_performance_question">Por que o Link Bubble está lento no meu Nexus S / Galaxy S1 / Moto G celular?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble é um aplicativo que consome recursos intensos, e, consequentemente, aparelhos com especificações 
 menores pode ser que sofram ao executar o app. Atualizações futuras serão miradas em melhorar a performance, mas existe 
@@ -260,9 +260,9 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="trial_time_on_click">%1$s remaining of your 24 hour Link Bubble Pro trial.</string>
 
     <string name="credits_title">Créditos do Link Bubble</string>
-    <string name="credits_lacy_name">Chris Lacy</string>
-    <string name="credits_lacy_credit">Conceito, design e programação</string>
-    <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
+    <string name="credits_name">Link Bubble</string>
+    <string name="credits_credit">Conceito, design e programação</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <string name="content_description_button">Botão</string>
     <string name="content_description_target_icon">Bubble target icon</string>
@@ -270,7 +270,6 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="content_description_link_bubble_logo">Link Bubble logo</string>
     <string name="content_description_app_icon">Ícone do app</string>
     <string name="content_description_youtube_video_thumbnail">YouTube video thumbnail</string>
-    <string name="content_description_lacy_profile_image">Caneca feia do Chris Lacy</string>
     <string name="content_description_history">Histórico</string>
     <string name="content_description_settings">Configurações</string>
     <string name="content_description_can_go_back">Pode voltar</string>
@@ -279,7 +278,7 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="requesting_location_message">%1$s deseja saber a sua localização. Permitir?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
-    <a href="http://www.digitalashes.com/terms">terms</a> and <a href="http://www.digitalashes.com/privacy">privacy policy</a>.]]></string>
+    <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
 
     <string name="service_name">Renderizador do Link Bubble</string>
     <string name="notification_title">Link Bubble</string>

@@ -191,7 +191,7 @@ public class Settings {
             PackageManager packageManager = mContext.getPackageManager();
 
             configureDefaultApp(packageManager, "https://www.youtube.com/watch?v=_Aj-PRdU7xA", "com.google.android.youtube");
-            configureDefaultApp(packageManager, "https://plus.google.com/+ChrisLacy/posts/RdMoBbbjPUi", "com.google.android.apps.plus");
+            configureDefaultApp(packageManager, "https://plus.google.com/+LinkBubble/posts/RdMoBbbjPUi", "com.google.android.apps.plus");
             configureDefaultApp(packageManager, "https://play.google.com/store/apps/details?id=com.linkbubble.playstore&hl=en", "com.android.vending");
             configureDefaultApp(packageManager, "https://maps.google.com/maps/ms?msid=212078515518849153944.000434d59f7fc56a57668", "com.google.android.apps.maps");
             saveDefaultApps();

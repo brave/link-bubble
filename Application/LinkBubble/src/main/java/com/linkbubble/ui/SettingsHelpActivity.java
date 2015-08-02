@@ -148,29 +148,6 @@ public class SettingsHelpActivity extends AppCompatPreferenceActivity {
         void showCreditsDialog() {
             final View layout = View.inflate(getActivity(), R.layout.view_credits, null);
 
-            ImageView profileImage = (ImageView)layout.findViewById(R.id.lacy_icon);
-            profileImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    if (mForceCrashCountdown > 0) {
-                        mForceCrashCountdown--;
-                        if (mForceCrashCountdown == 0) {
-                            MainController.doCrash();
-                        } else if (mForceCrashCountdown > 0
-                                && mForceCrashCountdown < (TAPS_TO_FORCE_A_CRASH -2)) {
-                            if (mForceCrashToast != null) {
-                                mForceCrashToast.cancel();
-                            }
-                            mForceCrashToast = Toast.makeText(getActivity(),
-                                    "You are now " + mForceCrashCountdown + " step(s) away from FORCING A CRASH.",
-                                    Toast.LENGTH_SHORT);
-                            mForceCrashToast.show();
-                        }
-                    }
-                }
-            });
-
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setNegativeButton(android.R.string.ok, null);
             builder.setView(layout);

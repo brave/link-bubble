@@ -144,7 +144,7 @@ Appuyez dessus pour en retirer une.</string>
     <string name="preference_more_summary">\"OK, Google\", Reading Mode and more</string>
     <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
-    <string name="preference_my_other_apps_title">Plus d\'applications par Chris Lacy</string>
+    <string name="preference_my_other_apps_title">Plus d\'applications par Link Bubble</string>
     <string name="preference_my_other_apps_summary">Vous aimez Link Bubble ? Pourquoi ne pas jeter un coup d\'œil à mes autres applications ?</string>
 
     <string name="preference_ok_google_title">\"OK, Google\" voice activation</string>
@@ -241,7 +241,7 @@ Link Bubble suit ce standard.]]></string>
     <string name="faq_future_features_question">Allez-vous ajouter les signets, favoris, extensions etc.?</string>
     <string name="faq_future_features_answer">Ne jamais dire jamais, mais pour le moment Link Bubble est concentrée uniquement sur le fait d\'être la meilleure solution pour ouvrir et consommer des liens ouverts depuis d\'autres applications.</string>
     <string name="faq_translations_question">Can I help translate the app?</string>
-    <string name="faq_translations_answer"><![CDATA[J\'espère ajouter la traduction rapidement.<br/><br/>Quand je le ferai, je posterai un message sur Google+ (+Chris Lacy) pour de l\'aide avec la traduction, alors soyez sûrs de garder un oeil sur mon flux.]]></string>
+    <string name="faq_translations_answer"><![CDATA[J\'espère ajouter la traduction rapidement.<br/><br/>Quand je le ferai, je posterai un message sur Google+ (+Link Bubble) pour de l\'aide avec la traduction, alors soyez sûrs de garder un oeil sur mon flux.]]></string>
     <string name="faq_roadmap_question">Avez-vous une feuille de route ? Puis-je voter pour les fonctionnalités à venir ?</string>
     <string name="faq_roadmap_answer">Pour des raisons de concurrence, j\'ai peur que la réponse à ces deux questions soit \'non\'.<br/><br/></string>
     <string name="faq_alternate_payment_question">Je n\'ai pas de carte de crédit et/ou je ne peux pas acheter sur le Google Play. Comment puis-je acheter la version Pro?</string>
@@ -258,7 +258,7 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="faq_translucent_status_bar_question">Pourquoi l\'application ne dessine-t-elle pas par-dessus la barre de statut transparente ?</string>
     <string name="faq_translucent_status_bar_answer">Malheureusement des limitations systèmes d\'Android empêchent cela.</string>
     <string name="faq_beta_programme_question">Y a-t-il un programme bêta ? Comment puis-je le rejoindre ?</string>
-    <string name="faq_beta_programme_answer">Des détails sur le programme bêta seront annoncé au moment convenu. Gardez un œil sur mon profil Google+ (+Chris Lacy) pour les annonces.</string>
+    <string name="faq_beta_programme_answer">Des détails sur le programme bêta seront annoncé au moment convenu. Gardez un œil sur mon profil Google+ (+Link Bubble) pour les annonces.</string>
     <string name="faq_low_spec_performance_question">Pourquoi Link Bubble est-il si lent sur mon Nexus S / Galaxy S1 / Moto G ?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble est très gourmande en ressources et par conséquent les appareils disposant de specs plus basses peuvent avoir du mal à la faire tourner aussi bien que les terminaux plus puissant. De futures mises à jour vont essayer d\'améliorer les performances de Link Bubble mais il ne faut pas s\'attendre à des miracles.<br/><br/>Réponse technique: Au minimum, Link Bubble nécessite l\'utilisation d\'un Service et une WebView pour fonctionner. Il y a souvent plusieurs WebViews et de multiples Activités. Naturellement, l\'allocation de ces items (surtout les WebViews) consomme <i>beaucoup<i> de mémoire/ressources. Les appareils peu puissants disposent généralement de moins de mémoire que ce que Link Bubble nécessite et les performances seront affectées. Par exemple, le maximum d\'allocation mémoire sur le Nexus S est de 48Mb, comparé aux 192Mb sur le Nexus 5.]]></string>
     <string name="faq_crap_webview_question">Parfois les pages web n\'affichent pas correctement ou ne jouent pas les vidéos.</string>
@@ -295,9 +295,9 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="trial_time_on_click">%1$s restantes sur vos 24 heures d\'essai de Link Bubble Pro.</string>
 
     <string name="credits_title">Crédits de Link Bubble</string>
-    <string name="credits_lacy_name">Chris Lacy</string>
-    <string name="credits_lacy_credit">Concept, design et programmation</string>
-    <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
+    <string name="credits_name">Link Bubble</string>
+    <string name="credits_credit">Concept, design et programmation</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <!--
     <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
@@ -314,7 +314,6 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="content_description_link_bubble_logo">Logo Link Bubble</string>
     <string name="content_description_app_icon">Icône de l\'application</string>
     <string name="content_description_youtube_video_thumbnail">vignette de la vidéo YouTube</string>
-    <string name="content_description_lacy_profile_image">La face affreuse de Chris Lacy</string>
     <string name="content_description_history">Historique</string>
     <string name="content_description_settings">Paramètres</string>
     <string name="content_description_can_go_back">Pouvoir retourner en arrière</string>
@@ -322,8 +321,8 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
 
     <string name="requesting_location_message">%1$s demande votre localisation. L\'autoriser ?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Digital Ashes
-    <a href="http://www.digitalashes.com/terms">terms</a> and <a href="http://www.digitalashes.com/privacy">privacy policy</a>.]]></string>
+    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
+    <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
 
     <string name="service_name">Moteur de rendu Link Bubble</string>
     <string name="notification_title">Link Bubble</string>
