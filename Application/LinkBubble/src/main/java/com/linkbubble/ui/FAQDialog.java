@@ -103,7 +103,7 @@ public class FAQDialog {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == sBetaIndex) {
                     Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse("https://s3.amazonaws.com/linkbubble/link_bubble_beta.html"));
+                    i.setData(Uri.parse("http://linkbubble.com/device/link_bubble_beta.html"));
                     mActivity.startActivity(i);
                 } else if (position == sTransliationsIndex) {
                     Intent i = new Intent(Intent.ACTION_VIEW);
