@@ -289,7 +289,7 @@ używany w Androidzie WebView jest napisany w taki sposób, że elementy &lt;sel
     <string name="credits_title">Twórcy Link Bubble</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">Pomysł, projekt, programowanie</string>
-    <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <!--
     <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
@@ -314,7 +314,7 @@ używany w Androidzie WebView jest napisany w taki sposób, że elementy &lt;sel
 
     <string name="requesting_location_message">%1$s chce poznać Twoją lokalizację. Zezwolić?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[Kontynuując, potwierdzasz, że akceptujesz <a href="http://www.linkbubble.com/terms">warunki korzystania</a> i <a href="http://www.linkbubble.com/privacy">politykę prywatności</a> Digital Ashes.]]></string>
+    <string name="accept_terms_and_privacy"><![CDATA[Kontynuując, potwierdzasz, że akceptujesz <a href="http://www.linkbubble.com/terms">warunki korzystania</a> i <a href="http://www.linkbubble.com/privacy">politykę prywatności</a> Link Bubble.]]></string>
 
     <string name="service_name">Renderer Link Bubble</string>
     <string name="notification_title">Link Bubble</string>
