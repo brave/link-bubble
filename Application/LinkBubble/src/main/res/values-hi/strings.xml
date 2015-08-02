@@ -345,7 +345,7 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="requesting_location_message">%1$s आपकी लोकेशन मांग रहा हे। लोकेशन की जानकारी दे या नहीं?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Digital Ashes
-    <a href="http://www.digitalashes.com/terms">terms</a> and <a href="http://www.digitalashes.com/privacy">privacy policy</a>.]]></string>
+    <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
 
     <string name="service_name">लिंक बबल Renderer</string>
     <string name="notification_title">लिंक बबल </string>
