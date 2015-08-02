@@ -98,7 +98,7 @@ gratis version af Link Bubble. Opgrader til Pro?</string>
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">Hvad er nyt?</string>
 
-    <string name="preference_my_other_apps_title">Flere apps af Chris Lacy</string>
+    <string name="preference_my_other_apps_title">Flere apps af Link Bubble</string>
     <string name="preference_my_other_apps_summary">Synes du om Link Bubble? Hvorfor så ikke tjekke mine andre apps ud?</string>
 
     <string name="remove_default_title">Fjern standard?</string>
@@ -187,7 +187,7 @@ aktiver \"Ekstern browser\" eller fravælg \"Integreret browser\" eller lignende
 links fra andre apps.</string>
     <string name="faq_translations_question">Hvornår vil du tilføje oversættelser til andre sprog? Kan jeg hjælpe?</string>
     <string name="faq_translations_answer"><![CDATA[Jeg håber at tilføje oversættelse support snart.<br/><br/>Når jeg gør det, vil jeg helt sikkert lave et indlæg på Google+ 
-(+Chris Lacy) for at få hjælp med oversættelser, så sørg for at holde øje med mit feed.]]></string>
+(+Link Bubble) for at få hjælp med oversættelser, så sørg for at holde øje med mit feed.]]></string>
     <string name="faq_roadmap_question">Har du en køreplan for kommende funktioner? Kan jeg komme med foreslag til kommende funktioner?</string>
     <string name="faq_roadmap_answer">Af konkurrencemæssige årsager er svaret på begge spørgsmål \'nej\' desværre.<br/><br/></string>
     <string name="faq_alternate_payment_question">Jeg har ikke et kreditkort og/eller jeg kan ikke købe fra Google Play. Hvordan køber jeg Pro?</string>
@@ -208,7 +208,7 @@ indlæsning af dine favoritter, kan Chrome Bogmærker widget være meget nyttigt
     <string name="faq_translucent_status_bar_question">Why doesn\'t the app draw over the translucent status bar?</string>
     <string name="faq_translucent_status_bar_answer">Unfortunately Android system limitations prevent this.</string>
     <string name="faq_beta_programme_question">Is there a beta programme? How can I join?</string>
-    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Chris Lacy) feed for announcements.</string>
+    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Link Bubble) feed for announcements.</string>
     <string name="faq_low_spec_performance_question">Why does Link Bubble run slowly on my Nexus S / Galaxy S1 / Moto G class device?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble is a very resource intensive app, and consequently devices with lower specs
             can struggle to run the app as well as more powerful devices. Future updates will aim to improve Link Bubble\'s
@@ -256,8 +256,8 @@ indlæsning af dine favoritter, kan Chrome Bogmærker widget være meget nyttigt
     <string name="trial_time_on_click">%1$s tilbage af din 24 timers Link Bubble Pro trial.</string>
 
     <string name="credits_title">Link Bubble Credits</string>
-    <string name="credits_lacy_name">Chris Lacy</string>
-    <string name="credits_lacy_credit">Koncept, design og programmering</string>
+    <string name="credits_name">Link Bubble</string>
+    <string name="credits_credit">Koncept, design og programmering</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <string name="content_description_button">Knap</string>
@@ -266,7 +266,6 @@ indlæsning af dine favoritter, kan Chrome Bogmærker widget være meget nyttigt
     <string name="content_description_link_bubble_logo">Link Bubble logo</string>
     <string name="content_description_app_icon">App ikon</string>
     <string name="content_description_youtube_video_thumbnail">YouTube video thumbnail</string>
-    <string name="content_description_lacy_profile_image">Chris Lacy\'s fjæs</string>
     <string name="content_description_history">Historik</string>
     <string name="content_description_settings">Indstillinger</string>
     <string name="content_description_can_go_back">Can go back</string>

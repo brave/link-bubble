@@ -35,9 +35,6 @@ import java.util.List;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
-/**
- * Created by chrislacy on 5/1/2013.
- */
 public class ActionItem {
 
     String mLabel;

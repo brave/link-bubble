@@ -239,7 +239,7 @@
     <string name="faq_future_features_question">هل ستقوم بإضافة العلامات المرجعية,المفضلة,الإضافات,إلخ؟</string>
     <string name="faq_future_features_answer">لاتقول لا أبدا, لكن حاليا فقاعة العنوان أكثر تركيزا على أن يكون أفضل طريقة لتحميل العناوين و الحصول عليها من التطبيقات الأخرى.</string>
     <string name="faq_translations_question">Can I help translate the app?</string>
-    <string name="faq_translations_answer">أتمنى أن أضع الترجمة قريبا .عندما أفعلها,سوف أضع إعلان على القوقل بلس (Chris Lacy) للمساعدة في الترجمة ,لذلك ترقبوا . </string>
+    <string name="faq_translations_answer">أتمنى أن أضع الترجمة قريبا .عندما أفعلها,سوف أضع إعلان على القوقل بلس (Link Bubble) للمساعدة في الترجمة ,لذلك ترقبوا . </string>
     <string name="faq_roadmap_question">هل تنشر خارطة  المميزات المستقبلية؟ هل يمكنني  التصويت على   القادم من الميزات؟</string>
     <string name="faq_roadmap_answer">لأسباب تنافسية الجواب على السؤالين المطروحين للأسف لا.</string>
     <string name="faq_alternate_payment_question">لا أمتلك بطاقة إئتمانية أو لا أستطيع الشراء من البلاي ستور .كيف أستطيع شراء النسخة الإحترافية؟</string>
@@ -295,8 +295,7 @@
     <string name="trial_time_on_click">%1$s متبقي من ال24 ساعة للنسخة الإحترافية.</string>
 
     <string name="credits_title">شكر فقاعة العنوان</string>
-    <string name="credits_lacy_name">كريس ليسي</string>
-    <string name="credits_lacy_credit">مفهوم والتصميم والبرمجة</string>
+    <string name="credits_credit">مفهوم والتصميم والبرمجة</string>
 
     <!--
     <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
@@ -313,7 +312,6 @@
     <string name="content_description_link_bubble_logo">شعار فقاعة العنوان</string>
     <string name="content_description_app_icon">شعار التطبيق</string>
     <string name="content_description_youtube_video_thumbnail">فيديو يوتيوب المصغرة</string>
-    <string name="content_description_lacy_profile_image">كوب كريس ليسي القبيح</string>
     <string name="content_description_history">التاريخ</string>
     <string name="content_description_settings">الإعدادات</string>
     <string name="content_description_can_go_back">تستطيع العودة</string>

@@ -146,7 +146,7 @@ Chcete přejít na verzi Pro?</string>
     <string name="preference_more_summary">\"OK, Google\", Čtečka a a další</string>
     <string name="preference_show_undo_close_tab_title">Dotaz pro vrácení zavřené záložky</string>
 
-    <string name="preference_my_other_apps_title">Více aplikací od Chrise Lacyho</string>
+    <string name="preference_my_other_apps_title">Více aplikací od Link Bubble</string>
     <string name="preference_my_other_apps_summary">Líbí se vám Link Bubble? Podívejte se na mé další aplikace.</string>
 
     <string name="preference_ok_google_title">Hlasová aktivace pomocí \"OK, Google\"</string>
@@ -246,7 +246,7 @@ Poznámka: Extrahování obsahu ze stránky je nespolehlivý proces a nemusí v�
 aby co nejlépe načítal a zobrazoval odkazy z jiných aplikací.</string>
     <string name="faq_translations_question">Můžu pomoci s překladem aplikace?</string>
     <string name="faq_translations_answer"><![CDATA[Doufám, že podporu jazykových verzí přidám co nejdříve.<br/><br/>Až se tak stane, určitě o tom dám vědět na Google+
-(+Chris Lacy), abyste mi mohli s překladem pomoci. Takže mě pečlivě sledujte.]]></string>
+(+Link Bubble), abyste mi mohli s překladem pomoci. Takže mě pečlivě sledujte.]]></string>
     <string name="faq_roadmap_question">Zveřejníte roadmapu s chystanými funkcemi? Můžu o nových vychytávkách hlasovat?</string>
     <string name="faq_roadmap_answer">Z konkurenčních důvodů se bojím, že odpověď na obě otázky je  \'no\'.<br/><br/></string>
     <string name="faq_alternate_payment_question">Nemám platební kartu a/nebo nemůžu nakupovat aplikace v Google Play. Jak můžu získat verzi Pro?</string>
@@ -268,7 +268,7 @@ Rozhodně to není ideální, ale je to lepší než nechat aplikaci spadnout, c
     <string name="faq_translucent_status_bar_question">Proč se aplikace nepřekresluje přes průsvitný stavový řádek?</string>
     <string name="faq_translucent_status_bar_answer">Je to bohužel omezení samotného systému Android.</string>
     <string name="faq_beta_programme_question">Existuje nějaký beta program? Jak se do něj můžu zapojit?</string>
-    <string name="faq_beta_programme_answer">Podrobnosti týkající se beta programu budou oznámeny v nejbližší době. Sledujte můj profil na Google+ (+Chris Lacy), kde o něm určitě napíšu.</string>
+    <string name="faq_beta_programme_answer">Podrobnosti týkající se beta programu budou oznámeny v nejbližší době. Sledujte můj profil na Google+ (+Link Bubble), kde o něm určitě napíšu.</string>
     <string name="faq_low_spec_performance_question">Proč Link Bubble běží pomalu na zařízeních jako Nexus S, Galaxy S nebo Moto G?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble je velmi náročný na systémové prostředky, v důsledku toho nemohou zařízení se slabšími specifikacemi
 běžet stejně rychle jako výkonná zařízení. Chystané aktualizace zlepší výkon Link Bubble, 
@@ -315,8 +315,8 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
     <string name="trial_time_on_click">Zbývá %1$s z 24 hodin do vypršení trial verze Link Bubble Pro.</string>
 
     <string name="credits_title">Autoři Link Bubble</string>
-    <string name="credits_lacy_name">Chris Lacy</string>
-    <string name="credits_lacy_credit">Koncept, design a programování</string>
+    <string name="credits_name">Link Bubble</string>
+    <string name="credits_credit">Koncept, design a programování</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <!--
@@ -334,7 +334,6 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
     <string name="content_description_link_bubble_logo">Logo Link Bubble</string>
     <string name="content_description_app_icon">Ikona aplikace</string>
     <string name="content_description_youtube_video_thumbnail">Náhled videa z YouTube</string>
-    <string name="content_description_lacy_profile_image">Hnusný pohled Chrise Lacyho</string>
     <string name="content_description_history">Historie</string>
     <string name="content_description_settings">Nastavení</string>
     <string name="content_description_can_go_back">Můžete jít zpět</string>
