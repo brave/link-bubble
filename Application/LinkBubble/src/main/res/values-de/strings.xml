@@ -142,7 +142,7 @@ Unterstütze mich als Entwickler der App :)</string>
     <string name="preference_more_summary">\"OK, Google\", Lesemodus und mehr</string>
     <string name="preference_show_undo_close_tab_title">\"Tab geschlossen rückgängig machen\"-Toastnachricht</string>
 
-    <string name="preference_my_other_apps_title">Weitere Apps von Chris Lacy</string>
+    <string name="preference_my_other_apps_title">Weitere Apps von Link Bubble</string>
     <string name="preference_my_other_apps_summary">Gefällt dir Link Bubble? Warum schaust du dir dann nicht einmal meine anderen Apps an?</string>
 
     <string name="preference_ok_google_title">\"OK, Google\"-Sprachbefehl</string>
@@ -243,7 +243,7 @@ Link Bubble folgt diesem Standard.]]></string>
 Links von anderen Apps zu laden und sie zu betrachten,</string>
     <string name="faq_translations_question">Kann ich beim Übersetzen der App helfen?</string>
     <string name="faq_translations_answer"><![CDATA[Ich hoffe bald Übersetzungen zu unterstützen<br/><br/>Wenn der Zeitpunkt kommt, werde ich auf Google+
-(+Chris Lacy) nach Hilfe suchen, überprüfe also regelmäßig meine Seite.]]></string>
+(+Link Bubble) nach Hilfe suchen, überprüfe also regelmäßig meine Seite.]]></string>
     <string name="faq_roadmap_question">Veröffentlichst du eine Feature-Roadmap? Kann ich über kommende Features abstimmen?</string>
     <string name="faq_roadmap_answer">Aus Wettbewerbsgründen ist die Antwort auf beide Fragen leider \'nein\'.<br/><br/></string>
     <string name="faq_alternate_payment_question">Ich habe keine Kreditkarte und/oder kann nicht bei Googel Play einkaufen. Wie kann ich Pro erwerben?</string>
@@ -265,7 +265,7 @@ Die Kopieren-Funktion ist verfügbar, wenn Androids WebView von einer Aktivität
     <string name="faq_translucent_status_bar_question">Warum reicht die App nicht über die durchsichtige Statusleiste?</string>
     <string name="faq_translucent_status_bar_answer">Leider verhindern Einschränkungen des Android Systems, dass das funktioniert</string>
     <string name="faq_beta_programme_question">Gibt es ein Beta Programm? Kann ich beitreten?</string>
-    <string name="faq_beta_programme_answer">Details zum Beta-Programm werden zu gegebener Zeit bekannt gegeben. Behalte für Ankündigungen meinen Google+-Feed im Auge (Chris Lacy).</string>
+    <string name="faq_beta_programme_answer">Details zum Beta-Programm werden zu gegebener Zeit bekannt gegeben. Behalte für Ankündigungen meinen Google+-Feed im Auge (Link Bubble).</string>
     <string name="faq_low_spec_performance_question">Warum läuft Link Bubble auf meinem Gerät der Kategorie Nexus S / Galaxy S1 / Moto G langsam? </string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble ist eine sehr ressourcenintensive Anwendung, daher können schwächer ausgestattete Geräte ebenso wie leistungsstärkere Geräte Probleme haben, die App auszuführen. Künftige Updates werden darauf abzielen, die Performance zu verbessern, aber was daran verändert werden kann, ist begrenzt..<br/><br/>Technische Antwort: Als Minimum erfordert Link Bubble die Nutzung eines Dienstes und ein Webview, um zu funktionieren.
 Oft sind es mehrere Webviews und sogar mehrere Aktivitäten.
@@ -310,9 +310,9 @@ aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend 
     <string name="trial_time_on_click">Es sind noch %1$s von dem 24-Stunden-Test von Link Bubble Pro übrig.</string>
 
     <string name="credits_title">Link Bubble Credits</string>
-    <string name="credits_lacy_name">Chris Lacy</string>
-    <string name="credits_lacy_credit">Konzept, Design und Programmierung</string>
-    <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
+    <string name="credits_name">Link Bubble</string>
+    <string name="credits_credit">Konzept, Design und Programmierung</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <!--
     <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
@@ -329,7 +329,6 @@ aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend 
     <string name="content_description_link_bubble_logo">Link Bubble-Logo</string>
     <string name="content_description_app_icon">App-Icon</string>
     <string name="content_description_youtube_video_thumbnail">YouTube-Video Vorschaubild</string>
-    <string name="content_description_lacy_profile_image">Chris Lacy\'s hässliche Visage</string>
     <string name="content_description_history">Verlauf</string>
     <string name="content_description_settings">Einstellungen</string>
     <string name="content_description_can_go_back">Du kannst zurückkehren</string>
@@ -337,8 +336,8 @@ aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend 
 
     <string name="requesting_location_message">%1$s fordert deinen Standort an. Erlauben?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Digital Ashes
-    <a href="http://www.digitalashes.com/terms">terms</a> and <a href="http://www.digitalashes.com/privacy">privacy policy</a>.]]></string>
+    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
+    <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
 
     <string name="service_name">Link Bubble Renderer</string>
     <string name="notification_title">Link Bubble</string>
