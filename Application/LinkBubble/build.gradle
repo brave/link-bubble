@@ -6,7 +6,7 @@ buildscript {
     }
     dependencies {
         classpath ':dexguard:'
-        classpath 'com.android.tools.build:gradle:1.1.3'
+        classpath 'com.android.tools.build:gradle:1.2.3'
         classpath 'io.fabric.tools:gradle:1.19.0'
     }
 }
@@ -100,7 +100,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:22.2.0'
     compile 'com.android.support:design:22.2.0'
     compile 'se.emilsjolander:stickylistheaders:2.1.2'
-    compile('com.crashlytics.sdk.android:crashlytics:2.2.4@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.0@aar') {
         transitive = true;
     }
     compile 'com.squareup.retrofit:retrofit:1.5.0'
