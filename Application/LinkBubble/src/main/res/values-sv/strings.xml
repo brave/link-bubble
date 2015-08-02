@@ -262,7 +262,7 @@ Androids WebView har bara kopieringsfunktionalitet från en aktivitet men inte f
     <string name="credits_title">Link Bubble Credits</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">Koncept, design och programmering</string>
-    <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <string name="content_description_button">Button</string>
     <string name="content_description_target_icon">Bubble target icon</string>

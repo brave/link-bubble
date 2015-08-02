@@ -297,7 +297,7 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="credits_title">Crédits de Link Bubble</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">Concept, design et programmation</string>
-    <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <!--
     <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
@@ -322,7 +322,7 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
 
     <string name="requesting_location_message">%1$s demande votre localisation. L\'autoriser ?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Digital Ashes
+    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
     <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
 
     <string name="service_name">Moteur de rendu Link Bubble</string>

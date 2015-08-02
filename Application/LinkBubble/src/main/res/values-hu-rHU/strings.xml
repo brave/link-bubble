@@ -249,7 +249,7 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="credits_title">Link Bubble készítői</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">Ötlet, tervezés és programozás</string>
-    <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <string name="content_description_button">Gomb</string>
     <string name="content_description_target_icon">Bubble target icon</string>

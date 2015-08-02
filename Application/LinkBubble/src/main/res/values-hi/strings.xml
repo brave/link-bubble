@@ -318,7 +318,6 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="credits_title">लिंक बबल क्रेडिट्स </string>
     <string name="credits_lacy_name">क्रिस लेसी </string>
     <string name="credits_lacy_credit">कंसेप्ट, डिज़ाइन और प्रोग्रामिंग </string>
-    <string name="credits_app_copyright">कॉपीराइट 2014, डिजिटल एशेज / क्रिस लैसी .</string>
 
     <!--
     <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
@@ -344,7 +343,7 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
 
     <string name="requesting_location_message">%1$s आपकी लोकेशन मांग रहा हे। लोकेशन की जानकारी दे या नहीं?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Digital Ashes
+    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
     <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
 
     <string name="service_name">लिंक बबल Renderer</string>
