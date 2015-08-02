@@ -136,7 +136,7 @@
     <string name="preference_more_summary">\"OK, Google\", Modalità Lettura ed altro</string>
     <string name="preference_show_undo_close_tab_title">Finestra di annullamento chiusura scheda</string>
 
-    <string name="preference_my_other_apps_title">Altre app di Chris Lacy</string>
+    <string name="preference_my_other_apps_title">Altre app di Link Bubble</string>
     <string name="preference_my_other_apps_summary">Ti piace Link Bubble? Perchè non provi anche le mie altre app?</string>
 
     <string name="preference_ok_google_title">Attivazione vocale \"OK, Google\"</string>
@@ -229,7 +229,7 @@ Sii consapevole che questa icona compare soltanto dopo che il link è stato cari
     <string name="faq_future_features_answer">Mai dire mai, ma attualmente Link Bubble è focalizzato nell\'offrire un modo veloce per caricare i link da altre app.</string>
     <string name="faq_translations_question">Posso aiutare a tradurre l\'app?</string>
     <string name="faq_translations_answer"><![CDATA[Spero di aggiungere la traduzione presto.<br/><br/>Presto pubblicherò un post su Google+ 
-(+Chris Lacy) per chiedere aiuto per le traduzioni. Verifica i miei post.]]></string>
+(+Link Bubble) per chiedere aiuto per le traduzioni. Verifica i miei post.]]></string>
     <string name="faq_roadmap_question">Pubblicherai una roadmap con le funzioni future? Posso votare le funzioni future?</string>
     <string name="faq_roadmap_answer">Per non aiutare i miei concorrenti, la risposta ad entrambe le domande è \'no\', sono spiacente.<br/><br/></string>
     <string name="faq_alternate_payment_question">Io non ho una carta di credito e non posso comprare dal Google Play. Come posso comprare la versione Pro?</string>
@@ -247,7 +247,7 @@ la funzionalità di copia è possibile utilizzando una WebView da una Activity, 
     <string name="faq_translucent_status_bar_question">Perché l\'app non viene presentata anche sulla barra di stato traslucida?</string>
     <string name="faq_translucent_status_bar_answer">Sfortunatamente il sistema di limitazioni di Android previene questo.</string>
     <string name="faq_beta_programme_question">Esiste un programma beta? Posso unirmi?</string>
-    <string name="faq_beta_programme_answer">I dettagli del programma beta verranno annunciati a tempo debito. Controlla i mie posti su Google+ (+Chris Lacy) per i futuri annunci.</string>
+    <string name="faq_beta_programme_answer">I dettagli del programma beta verranno annunciati a tempo debito. Controlla i mie posti su Google+ (+Link Bubble) per i futuri annunci.</string>
     <string name="faq_low_spec_performance_question">Perchè Link Bubble è lento nel mio Nexus S/ Galaxy S1 / Moto G ?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble è un\'app che utilizza le risorse in modo intensivo, e questo implica che i device con caratteristiche hardware limitate faticano per ottenere le stesse prestazioni che si ottengono sui device più potenti. I futuri aggiornamenti cercheranno di migliorare le prestazioni, ma realisticamente non si può fare molto per migliorare questo aspetto.<br/><br/>Risposta tecnica: Link Bubble richiede almeno l\'uso di un Service e una WebView per poter funzionare. Spesso anche più WebView e più Activity sono presenti.
 L\'utilizzo di queste risorse (specialmente le WebView) richiede <i>tantissima</i> memoria. I device con poche risorse hardware generalmente hanno meno memoria di quella che Link Bubble richiederebbe per un corretto funzionamento, e quindi le performance sono carenti.
@@ -287,8 +287,8 @@ In futuro valuterò usi alternativi di rendering come FireFox, GeckoView e Chrom
     <string name="trial_time_on_click">Rimangono %1$s delle tue 24 ore di prova con Link Bubble Pro.</string>
 
     <string name="credits_title">Crediti su Link Bubble</string>
-    <string name="credits_lacy_name">Chris Lacy</string>
-    <string name="credits_lacy_credit">Idea, design e sviluppo</string>
+    <string name="credits_name">Link Bubble</string>
+    <string name="credits_credit">Idea, design e sviluppo</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <!--
@@ -306,7 +306,6 @@ In futuro valuterò usi alternativi di rendering come FireFox, GeckoView e Chrom
     <string name="content_description_link_bubble_logo">Logo Link Bubble</string>
     <string name="content_description_app_icon">Icona App</string>
     <string name="content_description_youtube_video_thumbnail">Miniatura video YouTube</string>
-    <string name="content_description_lacy_profile_image">La brutta tazza di Chris Lacy</string>
     <string name="content_description_history">Cronologia</string>
     <string name="content_description_settings">Impostazioni</string>
     <string name="content_description_can_go_back">Può tornare indietro</string>

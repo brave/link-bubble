@@ -98,7 +98,7 @@
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">What\'s new?</string>
 
-    <string name="preference_my_other_apps_title">More apps by Chris Lacy</string>
+    <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out my other apps?</string>
 
     <string name="remove_default_title">Remove default?</string>
@@ -189,7 +189,7 @@
             and consuming links loaded from other apps.</string>
     <string name="faq_translations_question">When will you add foreign language translations? Can I help?</string>
     <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
-            (+Chris Lacy) for help with translations, so be sure to keep an eye on my feed.]]></string>
+            (+Link Bubble) for help with translations, so be sure to keep an eye on my feed.]]></string>
     <string name="faq_roadmap_question">Do you publish a feature roadmap? Can I up-vote upcoming features?</string>
     <string name="faq_roadmap_answer">For competitive reasons, the answer to both of these questions is \'no\' I\'m afraid.<br/><br/></string>
     <string name="faq_alternate_payment_question">I don\'t have a credit card and/or I can\'t purchase from Google Play. How do I buy Pro?</string>
@@ -211,7 +211,7 @@
     <string name="faq_translucent_status_bar_question">Why doesn\'t the app draw over the translucent status bar?</string>
     <string name="faq_translucent_status_bar_answer">Unfortunately Android system limitations prevent this.</string>
     <string name="faq_beta_programme_question">Is there a beta programme? How can I join?</string>
-    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Chris Lacy) feed for announcements.</string>
+    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Link Bubble) feed for announcements.</string>
     <string name="faq_low_spec_performance_question">Why does Link Bubble run slowly on my Nexus S / Galaxy S1 / Moto G class device?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble is a very resource intensive app, and consequently devices with lower specs
             can struggle to run the app as well as more powerful devices. Future updates will aim to improve Link Bubble\'s
@@ -259,8 +259,8 @@
     <string name="trial_time_on_click">%1$s remaining of your 24 hour Link Bubble Pro trial.</string>
 
     <string name="credits_title">Link Bubble Credits</string>
-    <string name="credits_lacy_name">Chris Lacy</string>
-    <string name="credits_lacy_credit">Concept, design and programming</string>
+    <string name="credits_name">Link Bubble</string>
+    <string name="credits_credit">Concept, design and programming</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <string name="content_description_button">Button</string>
@@ -269,7 +269,6 @@
     <string name="content_description_link_bubble_logo">Link Bubble logo</string>
     <string name="content_description_app_icon">App icon</string>
     <string name="content_description_youtube_video_thumbnail">YouTube video thumbnail</string>
-    <string name="content_description_lacy_profile_image">Chris Lacy\'s ugly mug</string>
     <string name="content_description_history">History</string>
     <string name="content_description_settings">Settings</string>
     <string name="content_description_can_go_back">Can go back</string>

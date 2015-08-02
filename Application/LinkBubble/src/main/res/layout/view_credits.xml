@@ -15,14 +15,6 @@
         android:paddingTop="10dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/lacy_icon"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:padding="0dp"
-            android:src="@drawable/profile_thumb_lacy"
-            android:contentDescription="@string/content_description_lacy_profile_image"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,13 +25,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/credits_lacy_name"
+                android:text="@string/credits_name"
                 android:textSize="18sp"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/author_name"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/credits_lacy_credit"
+                android:text="@string/credits_credit"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="17sp"/>
 

@@ -147,7 +147,7 @@ public class SettingsHelpActivity extends AppCompatPreferenceActivity {
 
         void showCreditsDialog() {
             final View layout = View.inflate(getActivity(), R.layout.view_credits, null);
-            
+
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setNegativeButton(android.R.string.ok, null);
             builder.setView(layout);
