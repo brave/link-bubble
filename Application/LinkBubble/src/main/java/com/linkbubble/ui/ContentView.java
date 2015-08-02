@@ -641,7 +641,7 @@ public class ContentView extends FrameLayout {
         @Override
         public void onReceivedIcon(Bitmap bitmap) {
 
-            // Only pass this along if the page has finished loading (https://github.com/chrislacy/LinkBubble/issues/155).
+            // Only pass this along if the page has finished loading (https://github.com/brave/LinkBubble/issues/155).
             // This is to prevent passing a stale icon along when a redirect has already occurred. This shouldn't cause
             // too many ill-effects, because BitmapView attempts to load host/favicon.ico automatically anyway.
             if (mPageFinishedLoading) {
