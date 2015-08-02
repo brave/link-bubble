@@ -19,7 +19,6 @@ import com.google.android.vending.licensing.LicenseChecker;
 import com.google.android.vending.licensing.LicenseCheckerCallback;
 import com.google.android.vending.licensing.Policy;
 import com.google.android.vending.licensing.ServerManagedPolicy;
-import com.linkbubble.util.Tamper;
 
 import java.util.List;
 
@@ -124,11 +123,6 @@ public class MainActivity extends Activity {
         setLicenseState(licenseState, reason, -1);
     }
     void setLicenseState(int licenseState, final String reasonAsString, final int policyReason) {
-
-        if (Tamper.isTweaked(this)) {
-            licenseState = ProMessengerService.LICENSE_INVALID;
-        }
-    	
     	mLicenseState = licenseState;
 
     	if (isFinishing() == false) {
