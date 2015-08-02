@@ -298,7 +298,7 @@ Link Bubble.]]></string>
     <string name="credits_title">Разработчики Link Bubble</string>
     <string name="credits_lacy_name">Крис Лейси</string>
     <string name="credits_lacy_credit">Концепт, дизайн и программирование </string>
-    <string name="credits_app_copyright">Авторские права защищены: 2014, Digital Ashes / Крис Лейси.</string>
+    <string name="credits_app_copyright">Авторские права защищены: 2015, Link Bubble.</string>
 
     <!--
     <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
@@ -324,7 +324,7 @@ Link Bubble.]]></string>
     <string name="requesting_location_message">%1$s запрашивает ваше местоположение. Разрешить?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[Продолжая, вы соглашаетесь с 
-<a href="http://www.linkbubble.com/terms">условиями</a> и <a href="http://www.linkbubble.com/privacy">политикой конфиденциальности</a> Digital Ashes.]]></string>
+<a href="http://www.linkbubble.com/terms">условиями</a> и <a href="http://www.linkbubble.com/privacy">политикой конфиденциальности</a> Link Bubble.]]></string>
 
     <string name="service_name">Рендерер Link Bubble</string>
     <string name="notification_title">Link Bubble</string>

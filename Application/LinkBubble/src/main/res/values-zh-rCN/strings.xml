@@ -298,7 +298,7 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="credits_title">关于 Link Bubble</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">概念、设计及开发</string>
-    <string name="credits_app_copyright">版权所有 2014, Digital Ashes / Chris Lacy.</string>
+    <string name="credits_app_copyright">版权所有 2015, Link Bubble.</string>
 
     <!--
     <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
@@ -323,7 +323,7 @@ Link Bubble 亦遵循该标准。]]></string>
 
     <string name="requesting_location_message">%1$s 正在请求您的位置。是否允许？</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Digital Ashes
+    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
     <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
 
     <string name="service_name">Link Bubble 渲染器</string>
