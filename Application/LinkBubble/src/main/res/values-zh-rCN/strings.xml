@@ -143,7 +143,7 @@ accounts.google.com 链接</string>
     <string name="preference_more_summary">「OK, Google」、阅读模式及其他</string>
     <string name="preference_show_undo_close_tab_title">撤销关闭标签提示</string>
 
-    <string name="preference_my_other_apps_title">更多 Chris Lacy 开发的程序</string>
+    <string name="preference_my_other_apps_title">更多 Link Bubble 开发的程序</string>
     <string name="preference_my_other_apps_summary">喜欢 Link Bubble 吗？来看看我开发的其它应用程序吧。</string>
 
     <string name="preference_ok_google_title">「OK, Google」语音激活</string>
@@ -240,7 +240,7 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="faq_future_features_question">你会加入书签、收藏、扩展等功能吗？</string>
     <string name="faq_future_features_answer">不确定，但是目前 Link Bubble 只是专注于将载入和处理应用内链接做到最好。</string>
     <string name="faq_translations_question">我能帮助翻译本应用吗？</string>
-    <string name="faq_translations_answer"><![CDATA[我希望尽快加入多国语言的翻译。<br/><br/>当我需要帮助的时候，我会在 Google+ (+Chris Lacy) 上寻求帮助，所以请关注一下我分享的信息。]]></string>
+    <string name="faq_translations_answer"><![CDATA[我希望尽快加入多国语言的翻译。<br/><br/>当我需要帮助的时候，我会在 Google+ (+Link Bubble) 上寻求帮助，所以请关注一下我分享的信息。]]></string>
     <string name="faq_roadmap_question">你有公布功能路线图吗？我能给要更新的功能投票吗？</string>
     <string name="faq_roadmap_answer">因为竞争原因，恐怕这两个问题的答案都是否定的。<br/><br/></string>
     <string name="faq_alternate_payment_question">我没有信用卡并且/或者我不能在 Google Play 商店中购买。那我该怎么购买专业版？</string>
@@ -255,7 +255,7 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="faq_translucent_status_bar_question">为什么应用状态栏不是半透明的？</string>
     <string name="faq_translucent_status_bar_answer">很遗憾，Android 系统的局限不允许这么做。</string>
     <string name="faq_beta_programme_question">本应用有没有测试版？我怎么参与测试？</string>
-    <string name="faq_beta_programme_answer">测试版程序项目的细节会在适当的时候公布。关注我的 Google+ (+Chris Lacy) 获取公布信息。</string>
+    <string name="faq_beta_programme_answer">测试版程序项目的细节会在适当的时候公布。关注我的 Google+ (+Link Bubble) 获取公布信息。</string>
     <string name="faq_low_spec_performance_question">为什么 Link Bubble 在我的 Nexus S / Galaxy S1 / Moto G 等设备中运行缓慢？</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble 是一个大量消耗资源的应用，因此低端设备运行本应用会出现卡顿。未来的更新会以提高 Link Bubble 的性能为目标，但是现在实际上只能做这么多了。<br/><br/>技术上的回答：在最低限度 Link Bubble 需要运行一个服务（Service）和一个网络视图（WebView）来运行其功能。往往也存在多个网络视图（WebView）甚至多个活动（Activities）。
 自然，分配这些项目（特别是网络视图）消耗 <b>大量</b>的内存/资源。低端设备的可用内存通常比 Link Bubble 所需的要少，由于无用项目消除被频繁触发，性能就降低了。
@@ -296,9 +296,9 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="trial_time_on_click">您的 24 小时专业版试用期还有 %1$s 到期。</string>
 
     <string name="credits_title">关于 Link Bubble</string>
-    <string name="credits_lacy_name">Chris Lacy</string>
-    <string name="credits_lacy_credit">概念、设计及开发</string>
-    <string name="credits_app_copyright">版权所有 2014, Digital Ashes / Chris Lacy.</string>
+    <string name="credits_name">Link Bubble</string>
+    <string name="credits_credit">概念、设计及开发</string>
+    <string name="credits_app_copyright">版权所有 2015, Link Bubble.</string>
 
     <!--
     <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
@@ -315,7 +315,6 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="content_description_link_bubble_logo">Link Bubble 标志</string>
     <string name="content_description_app_icon">应用图标</string>
     <string name="content_description_youtube_video_thumbnail">YouTube 视频缩略图</string>
-    <string name="content_description_lacy_profile_image">Chris Lacy 的丑脸</string>
     <string name="content_description_history">历史记录</string>
     <string name="content_description_settings">设置</string>
     <string name="content_description_can_go_back">可以回去</string>
@@ -323,8 +322,8 @@ Link Bubble 亦遵循该标准。]]></string>
 
     <string name="requesting_location_message">%1$s 正在请求您的位置。是否允许？</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Digital Ashes
-    <a href="http://www.digitalashes.com/terms">terms</a> and <a href="http://www.digitalashes.com/privacy">privacy policy</a>.]]></string>
+    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
+    <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
 
     <string name="service_name">Link Bubble 渲染器</string>
     <string name="notification_title">Link Bubble</string>

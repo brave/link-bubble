@@ -95,7 +95,7 @@
     <string name="preference_version_title">Versión</string>
     <string name="preference_version_summary">¿Qué hay nuevo?</string>
 
-    <string name="preference_my_other_apps_title">Más aplicaciones de Chris Lacy</string>
+    <string name="preference_my_other_apps_title">Más aplicaciones de Link Bubble</string>
     <string name="preference_my_other_apps_summary">¿Te gusta Link Bubble?¿Por qué no echas un ojo a mis otras aplicaciones?</string>
 
     <string name="remove_default_title">¿Eliminar por defecto?</string>
@@ -185,7 +185,7 @@
             and consuming links loaded from other apps.</string>
     <string name="faq_translations_question">When will you add foreign language translations? Can I help?</string>
     <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
-            (+Chris Lacy) for help with translations, so be sure to keep an eye on my feed.]]></string>
+            (+Link Bubble) for help with translations, so be sure to keep an eye on my feed.]]></string>
     <string name="faq_roadmap_question">Do you publish a feature roadmap? Can I up-vote upcoming features?</string>
     <string name="faq_roadmap_answer">For competitive reasons, the answer to both of these questions is \'no\' I\'m afraid.<br/><br/></string>
     <string name="faq_alternate_payment_question">Yo no tengo tarjeta de crédito, No puedo comprar por la Google Play. Cómo compro la versión Pro?</string>
@@ -207,7 +207,7 @@
     <string name="faq_translucent_status_bar_question">Why doesn\'t the app draw over the translucent status bar?</string>
     <string name="faq_translucent_status_bar_answer">Desafortunadamente las limitaciones de Android previenen esto.</string>
     <string name="faq_beta_programme_question">¿Hay un programa beta?¿Cómo accedo a él?</string>
-    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Chris Lacy) feed for announcements.</string>
+    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Link Bubble) feed for announcements.</string>
     <string name="faq_low_spec_performance_question">¿Por qué Link Bubble puede ir despacio en mi teléfono tipo Nexus S / Galaxy S1 / Moto G ?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble is a very resource intensive app, and consequently devices with lower specs
             can struggle to run the app as well as more powerful devices. Future updates will aim to improve Link Bubble\'s
@@ -255,9 +255,9 @@
     <string name="trial_time_on_click">%1$s te quedan de tus 24 horas de prueba de  Link Bubble Pro</string>
 
     <string name="credits_title">Créditos de Link Bubble</string>
-    <string name="credits_lacy_name">Chris Lacy</string>
-    <string name="credits_lacy_credit">Concepto, diseño y programación</string>
-    <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
+    <string name="credits_name">Link Bubble</string>
+    <string name="credits_credit">Concepto, diseño y programación</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <string name="content_description_button">Button</string>
     <string name="content_description_target_icon">Bubble target icon</string>
@@ -265,7 +265,6 @@
     <string name="content_description_link_bubble_logo">Logo Link Bubble</string>
     <string name="content_description_app_icon">Icono de la app</string>
     <string name="content_description_youtube_video_thumbnail">YouTube video thumbnail</string>
-    <string name="content_description_lacy_profile_image">Chris Lacy\'s ugly mug</string>
     <string name="content_description_history">Historial</string>
     <string name="content_description_settings">Ajustes</string>
     <string name="content_description_can_go_back">Puedes volver atrás</string>
@@ -274,7 +273,7 @@
     <string name="requesting_location_message">%1$s está pidiendo ver tu locación. Permitir?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
-    <a href="http://www.digitalashes.com/terms">terms</a> and <a href="http://www.digitalashes.com/privacy">privacy policy</a>.]]></string>
+    <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
 
     <string name="service_name">Link Bubble Renderer</string>
     <string name="notification_title">Link Bubble</string>
