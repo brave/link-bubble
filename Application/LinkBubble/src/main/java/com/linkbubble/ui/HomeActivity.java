@@ -113,7 +113,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         if (Settings.get().debugAutoLoadUrl()) {
-            MainApplication.openLink(this, "https://s3.amazonaws.com/linkbubble/test.html", null);
+            MainApplication.openLink(this, "http://linkbubble.com/device/test.html", null);
             //MainApplication.openLink(getActivity(), "https://twitter.com/lokibartleby/status/412160702707539968", false);
         }
 
