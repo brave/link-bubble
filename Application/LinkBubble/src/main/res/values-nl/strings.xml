@@ -145,7 +145,7 @@ wordt ingesteld als je links laadt met Link Bubble.</string>
     <string name="preference_more_summary">\"OK, Google\", Leesmodus en meer</string>
     <string name="preference_show_undo_close_tab_title">Aanwijzing tab sluiten ongedaan maken</string>
 
-    <string name="preference_my_other_apps_title">Andere apps van Chris Lacy</string>
+    <string name="preference_my_other_apps_title">Andere apps van Link Bubble</string>
     <string name="preference_my_other_apps_summary">Vind je Link Bubble leuk? Probeer dan ook eens mijn andere apps.</string>
 
     <string name="preference_ok_google_title">\"OK, Google\" stemactivatie</string>
@@ -247,7 +247,7 @@ is er weinig wat hieraan gedaan kan worden.]]></string>
 om links van andere apps te laden en te verwerken.</string>
     <string name="faq_translations_question">Kan ik meehelpen deze app te vertalen?</string>
     <string name="faq_translations_answer"><![CDATA[Ik hoop binnenkort vertalingen te kunnen toevoegen.<br/><br/>Wanneer ik dat doe, zal ik zeker een oproep doen via Google+
-(+Chris Lacy) voor hulp bij de vertalingen, dus hou mijn feed in de gaten.]]></string>
+(+Link Bubble) voor hulp bij de vertalingen, dus hou mijn feed in de gaten.]]></string>
     <string name="faq_roadmap_question">Heb je een roadmap gepubliceerd? Kan ik stemmen voor toekomstige functies?</string>
     <string name="faq_roadmap_answer">Ik ben bang dat vanwege de concurrentie het antwoord op beide vragen \'nee\' is.</string>
     <string name="faq_alternate_payment_question">Ik heb geen creditcard en/of ik kan niet kopen op Google Play. Hoe koop ik Pro?</string>
@@ -269,7 +269,7 @@ De kopieerfunctionaliteit werkt bij het gebruiken van Android\'s WebView vanuit 
     <string name="faq_translucent_status_bar_question">Waarom tekent de app niet over de doorzichtige statusbalk?</string>
     <string name="faq_translucent_status_bar_answer">Door beperkingen van het Androidsysteem kan dit niet.</string>
     <string name="faq_beta_programme_question">Is er een beta-programma? Hoe kan ik meedoen?</string>
-    <string name="faq_beta_programme_answer">Details van het beta-programma zullen te zijner tijd worden aangekondigd. Houd mijn Google+ (+Chris Lacy)-feed in de gaten voor aankondigingen.</string>
+    <string name="faq_beta_programme_answer">Details van het beta-programma zullen te zijner tijd worden aangekondigd. Houd mijn Google+ (+Link Bubble)-feed in de gaten voor aankondigingen.</string>
     <string name="faq_low_spec_performance_question">Waarom draait Link Bubble langzaam op mijn Nexus S / Galaxy S1 / Moto G-klasse apparaat?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble is een app die veel vraagt van een apparaat, en daarom kunnen apparaten met minder goede specs moeite
 hebben om de app zo goed te draaien als meer krachtige apparaten. Toekomstige versies zullen proberen om de prestaties  van Link Bubble
@@ -318,9 +318,9 @@ premiumfuncties (meerdere tabs, links onderscheppen vanuit elke app, etc.) van P
     <string name="trial_time_on_click">%1$s resterend van je 24 uur Link Bubble Pro-proefperiode.</string>
 
     <string name="credits_title">Link Bubble credits</string>
-    <string name="credits_lacy_name">Chris Lacy</string>
-    <string name="credits_lacy_credit">Concept, ontwerp en programmeren</string>
-    <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
+    <string name="credits_name">Link Bubble</string>
+    <string name="credits_credit">Concept, ontwerp en programmeren</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <!--
     <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
@@ -337,7 +337,6 @@ premiumfuncties (meerdere tabs, links onderscheppen vanuit elke app, etc.) van P
     <string name="content_description_link_bubble_logo">Link Bubble-logo</string>
     <string name="content_description_app_icon">App-pictogram</string>
     <string name="content_description_youtube_video_thumbnail">YouTube-video-miniatuur</string>
-    <string name="content_description_lacy_profile_image">Chris Lacy\'s lelijke kop</string>
     <string name="content_description_history">Geschiedenis</string>
     <string name="content_description_settings">Instellingen</string>
     <string name="content_description_can_go_back">Terug gaan</string>
@@ -346,7 +345,7 @@ premiumfuncties (meerdere tabs, links onderscheppen vanuit elke app, etc.) van P
     <string name="requesting_location_message">%1$s vraagt naar je locatie. Toestaan?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[Door verder te gaan, erken je dat je de
-<a href="http://www.digitalashes.com/terms">voorwaarden</a> en het <a href="http://www.digitalashes.com/privacy">privacybeleid</a> van Digital Ashes accepteert.]]></string>
+<a href="http://www.linkbubble.com/terms">voorwaarden</a> en het <a href="http://www.linkbubble.com/privacy">privacybeleid</a> van Link Bubble accepteert.]]></string>
 
     <string name="service_name">Link Bubble Renderer</string>
     <string name="notification_title">Link Bubble</string>

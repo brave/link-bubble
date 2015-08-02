@@ -99,7 +99,7 @@
     <string name="preference_version_title">Verzió</string>
     <string name="preference_version_summary">Változások</string>
 
-    <string name="preference_my_other_apps_title">Még több Chris Lacy-től</string>
+    <string name="preference_my_other_apps_title">Még több Link Bubble-től</string>
     <string name="preference_my_other_apps_summary">Tetszik a Link Bubble? Nézd meg a többi app-omat</string>
 
     <string name="remove_default_title">Alapértelmezett eltávolítása?</string>
@@ -186,7 +186,7 @@ engedélyezd a\"Külső böngésző\" vagy kapcsold ki a\"beépített böngész�
     <string name="faq_future_features_question">Tervben van könyvjelzők, kedvencek, kiegészítők, stb. támogatása a jövőben?</string>
     <string name="faq_future_features_answer">Soha ne mondd, hogy soha, bár jelenleg a Link Bubble fő célja a linkek más app-okból való lehető legjobb betöltése és feldolgozása</string>
     <string name="faq_translations_question">Mikor lesznek más nyelvek is elérhetőek? Segíthetek?</string>
-    <string name="faq_translations_answer"><![CDATA[Tervezem a fordítások és más nyelvek támogatását.<br/><br/>Ha lesz, mindenképpen közzéteszem a felhívást a Google+-on (+Chris Lacy), ezért érdemes ott követni .]]></string>
+    <string name="faq_translations_answer"><![CDATA[Tervezem a fordítások és más nyelvek támogatását.<br/><br/>Ha lesz, mindenképpen közzéteszem a felhívást a Google+-on (+Link Bubble), ezért érdemes ott követni .]]></string>
     <string name="faq_roadmap_question">Ismerteted a jövőbeli, tervezett funkciókat? Lehet szavazni rájuk?</string>
     <string name="faq_roadmap_answer">A konkurencia miatt sajnos mindkét kérdésre NEM a válasz.<br/><br/></string>
     <string name="faq_alternate_payment_question">Nincs hitelkártyám / nem tudok a Google Play-ből vásárolni. Hogy vehetem meg a Pro-t?</string>
@@ -204,7 +204,7 @@ A másolás funkció csak mint tevékenység webnézetben lehetséges, mint szol
     <string name="faq_translucent_status_bar_question">Why doesn\'t the app draw over the translucent status bar?</string>
     <string name="faq_translucent_status_bar_answer">Sajnos az Android rendszer korlátozásai miatt ez nem lehetséges.</string>
     <string name="faq_beta_programme_question">Van beta program? Hogyan csatlakozhatok?</string>
-    <string name="faq_beta_programme_answer">A Béta program részletei később lesznek ismertek. Kövess a Google+ -on (+Chris Lacy) , hogy leghamarabb értesülj.</string>
+    <string name="faq_beta_programme_answer">A Béta program részletei később lesznek ismertek. Kövess a Google+ -on (+Link Bubble) , hogy leghamarabb értesülj.</string>
     <string name="faq_low_spec_performance_question">Miért fut lassan a Link Bubble olyan eszközökön, mint egy Nexus S / Galaxy S1 / Moto G ?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[A Link Bubble eléggé igénybe veszi az eszköz erőforrásait, ezért "gyengébb" készülékeken előfordulhat lassú működés, de akár egészen erős eszközökön is. Future updates will aim to improve Link Bubble\'s
 performance, but there is only so much that can realistically be done here.<br/><br/>Technical answer: At the bare minimum, Link Bubble requires the
@@ -247,9 +247,9 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="trial_time_on_click">%1$s van még hátra a Pro próbaverzióból.</string>
 
     <string name="credits_title">Link Bubble készítői</string>
-    <string name="credits_lacy_name">Chris Lacy</string>
-    <string name="credits_lacy_credit">Ötlet, tervezés és programozás</string>
-    <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
+    <string name="credits_name">Link Bubble</string>
+    <string name="credits_credit">Ötlet, tervezés és programozás</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <string name="content_description_button">Gomb</string>
     <string name="content_description_target_icon">Bubble target icon</string>
@@ -257,7 +257,6 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="content_description_link_bubble_logo">Link Bubble logo</string>
     <string name="content_description_app_icon">Alkalmazás ikon</string>
     <string name="content_description_youtube_video_thumbnail">YouTube video bélyegkép</string>
-    <string name="content_description_lacy_profile_image">Chris Lacy\'s ugly mug</string>
     <string name="content_description_history">History</string>
     <string name="content_description_settings">Settings</string>
     <string name="content_description_can_go_back">Can go back</string>
@@ -266,7 +265,7 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="requesting_location_message">%1$s szeretne hozzáférni a tartózkodási helyedhez. Engedélyezed?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
-    <a href="http://www.digitalashes.com/terms">terms</a> and <a href="http://www.digitalashes.com/privacy">privacy policy</a>.]]></string>
+    <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
 
     <string name="service_name">Link Bubble Renderer</string>
     <string name="notification_title">Link Bubble</string>

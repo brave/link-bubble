@@ -142,7 +142,7 @@
     <string name="preference_more_summary">\"OK, Google\", โหมดการอ่าน และอื่นๆ</string>
     <string name="preference_show_undo_close_tab_title">ปุ่มยกเลิกการปิดแท็บ</string>
 
-    <string name="preference_my_other_apps_title">แอปอื่นๆ จาก Chris Lacy</string>
+    <string name="preference_my_other_apps_title">แอปอื่นๆ จาก Link Bubble</string>
     <string name="preference_my_other_apps_summary">ชอบ Link Bubble? ทำไมไม่ลองแอปอื่นๆ ของผมดูล่ะ?</string>
 
     <string name="preference_ok_google_title">สั่งงานด้วยเสียง \"OK, Google\"</string>
@@ -234,7 +234,7 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="faq_future_features_answer">ไม่สามารถพูดว่าไม่ แต่ในตอนนี้ Link Bubble โฟกัสไปในเรื่องการเป็นช่องทางที่ดีที่สุดในการเปิดลิงก์จากแอปอื่น</string>
     <string name="faq_translations_question">ฉันสามารถช่วยแปลแอปนี้ได้ไหม?</string>
     <string name="faq_translations_answer"><![CDATA[ผมหวังว่าจะเพิ่มภาษาอื่นในแอปเร็วๆ นี้<br/><br/>เมื่อผมพร้อม ผมจะประกาศบน Google+ ของผม
-(+Chris Lacy) เพื่อรับนักแปล คุณแค่จับตามองโพสต์ของผมไว้ก็พอ]]></string>
+(+Link Bubble) เพื่อรับนักแปล คุณแค่จับตามองโพสต์ของผมไว้ก็พอ]]></string>
     <string name="faq_roadmap_question">คุณได้เผยแพร่แผนในอนาคตหรือไม่? ฉันสามารถโหวตคุณสมบัติใหม่ๆ ได้หรือเปล่า?</string>
     <string name="faq_roadmap_answer">เพราะเหตุผลเรื่องการแข่งขัน คำตอบของทั้งสองคำถามนี้คือ \'ไม่\' ผมกลัว<br/><br/></string>
     <string name="faq_alternate_payment_question">ฉันไม่มีบัตรเครดิตและ/หรือฉันไม่สามารถซื้อแอปจาก Google Play ได้ ฉันจะซื้อรุ่นโปรได้อย่างไร?</string>
@@ -249,7 +249,7 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="faq_translucent_status_bar_question">ทำไมแอปไม่วาดบนแถบสถานะแบบโปร่งใส?</string>
     <string name="faq_translucent_status_bar_answer">ข้อจำกัดของระบบแอนดรอยด์ป้องกันไม่ให้ใช้</string>
     <string name="faq_beta_programme_question">มีกลุ่มทดสอบหรือเปล่า? ฉันจะเข้าร่วมได้ยังไง?</string>
-    <string name="faq_beta_programme_answer">ข้อมูลเกี่ยวกับกลุ่มทดสอบจะประกาศเมื่อพร้อม จับตาดู Google+ ของผม (+Chris Lacy) ไว้ก็พอ</string>
+    <string name="faq_beta_programme_answer">ข้อมูลเกี่ยวกับกลุ่มทดสอบจะประกาศเมื่อพร้อม จับตาดู Google+ ของผม (+Link Bubble) ไว้ก็พอ</string>
     <string name="faq_low_spec_performance_question">ทำไม Link Bubble ทำงานช้าบนอุปกรณ์ระดับ Nexus S / Galaxy S1 / Moto G ?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble เป็นแอปที่ใช้ทรัพยากรของเครื่องเยอะมาก และทำให้แอปทำงานช้าบนเครื่องที่มีสเปคต่ำ การอัปเดตในอนาคตจะปรับปรุงเรื่องนี้ แต่อาจจะไม่ต่างจากปัจจุบันมากเท่าไหร่<br/><br/>คำตอบทางเทคนิค: ในการเริ่มต้น Link Bubble ใช้งานการบริการ (Service) และ WebView การจัดสรรกิจกรรมเหล่านี้ (โดยเฉพาะ WebView) กินทรัพยากรของเครื่องเป็นอย่างมาก โดยเฉพาะเมื่อเปิด WebView หลายหรือบ่อยครั้ง เครื่องสเปคต่ำจึงไม่มีทรัพยากรพอที่จะให้ Link Bubble ทำงาน]]></string>
     <string name="faq_crap_webview_question">บางครั้งหน้าเว็บแสดงไม่ถูกต้อง หรือวิดีโอไม่ยอมเล่น</string>
@@ -286,9 +286,9 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="trial_time_on_click">เหลือเวลา %1$s จาก 24 ชั่วโมงในการทดลองใช้รุ่นโปร</string>
 
     <string name="credits_title">เครดิตของ Link Bubble</string>
-    <string name="credits_lacy_name">Chris Lacy</string>
-    <string name="credits_lacy_credit">แนวคิด, ออกแบบ และพัฒนา</string>
-    <string name="credits_app_copyright">สงวนลิขสิทธิ์ 2014, Digital Ashes / Chris Lacy.</string>
+    <string name="credits_name">Link Bubble</string>
+    <string name="credits_credit">แนวคิด, ออกแบบ และพัฒนา</string>
+    <string name="credits_app_copyright">สงวนลิขสิทธิ์ 2015, Link Bubble</string>
 
     <!--
     <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
@@ -305,7 +305,6 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="content_description_link_bubble_logo">โลโก้ Link Bubble</string>
     <string name="content_description_app_icon">ไอคอนของแอป</string>
     <string name="content_description_youtube_video_thumbnail">ภาพตัวอย่างวิดีโอ YouTube</string>
-    <string name="content_description_lacy_profile_image">แก้วอันน่าเกลียดของ Chris Lacy</string>
     <string name="content_description_history">ประวัติ</string>
     <string name="content_description_settings">ตั้งค่า</string>
     <string name="content_description_can_go_back">ไม่สามารถย้อนกลับ</string>
@@ -314,7 +313,7 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="requesting_location_message">%1$s ต้องการทราบตำแหน่งที่ตั้งของคุณ อนุญาต?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[ในการดำเนินการต่อ คุณได้รับทราบ
-<a href="http://www.digitalashes.com/terms">ข้อกำหนดการใช้งาน</a> และ <a href="http://www.digitalashes.com/privacy">นโยบายความเป็นส่วนตัว</a> ของ Digital Ashes]]></string>
+<a href="http://www.linkbubble.com/terms">ข้อกำหนดการใช้งาน</a> และ <a href="http://www.linkbubble.com/privacy">นโยบายความเป็นส่วนตัว</a> ของ Link Bubble]]></string>
 
     <string name="service_name">เรนเดอร์ Link Bubble</string>
     <string name="notification_title">Link Bubble</string>
