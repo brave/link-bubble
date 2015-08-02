@@ -342,7 +342,7 @@
     <string name="credits_title">Link Bubble Credits</string>
     <string name="credits_lacy_name">Chris Lacy</string>
     <string name="credits_lacy_credit">Concept, design and programming</string>
-    <string name="credits_app_copyright">Copyright 2014, Digital Ashes / Chris Lacy.</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <!--
     <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
@@ -367,7 +367,7 @@
 
     <string name="requesting_location_message">%1$s is requesting your location. Allow?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Digital Ashes
+    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
     <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
 
     <string name="service_name">Link Bubble Renderer</string>
