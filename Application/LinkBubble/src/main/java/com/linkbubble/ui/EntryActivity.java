@@ -44,7 +44,6 @@ public class EntryActivity extends Activity {
         }
 
         super.onCreate(savedInstanceState);
-        CrashTracking.init(this);
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, true);
 

@@ -10,7 +10,6 @@ public class DownloadHandlerActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CrashTracking.init(this);
 
         /*
          * This activity doesn't actually do anything. It exists solely so that it's componentEnabled flag can be turned on
