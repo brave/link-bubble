@@ -54,4 +54,4 @@ Application/gradle/wrapper/gradle-wrapper.properties
 Application/LinkBubble/src/main/assets/crashlytics-build.properties
 
 # Crashlytics secret key file
-Application/LinkBubble/crashlytics.properties
+Application/LinkBubble/fabric.properties
