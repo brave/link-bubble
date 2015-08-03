@@ -45,7 +45,6 @@
 
     <string name="upgrade">升級</string>
     <string name="upgrade_to_pro">升級至專業版</string>
-    <string name="upgrade_ok_google">是否在要說出 \"OK, Google\" 之後啟動 Google Now？</string>
     <string name="upgrade_article_mode">想使用閱讀模式來檢視網頁嗎？</string>
     <string name="upgrade_article_mode_wear">想在 Android Wear 裝置上用閱讀模式來檢視網頁嗎？</string>
     <string name="upgrade_theme">想使用不同的佈景主題嗎？</string>
@@ -55,7 +54,6 @@
         Change theme.\n •
         Use Reading Mode.\n •
         Android Wear support.\n •
-        Use \"OK, Google\" voice activation.\n •
         Support us as we develop this app :)
         </string>
 
@@ -162,16 +160,10 @@
     <string name="preference_version_title">版本</string>
     <string name="preference_version_summary">多了什麼新東西？</string>
     <string name="preference_more_title">其他選項&#8230;</string>
-    <string name="preference_more_summary">\"OK, Google\"，閱讀模式及其他選項等</string>
     <string name="preference_show_undo_close_tab_title">復原已關閉分頁的提醒視窗</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">喜歡 Link Bubble 嗎？何不順便看看我的其他作品呢？</string>
-
-    <string name="preference_ok_google_title">\"OK, Google\" 語音操作</string>
-    <string name="preference_ok_google_summary">請檢視常見問題來取得進一步的詳細資訊</string>
-    <string name="preference_ok_google_summary_jelly_bean">需要 Android 4.4 以上版本</string>
-    <string name="preference_ok_google_summary_long">請注意：Google 並未在所有的裝置/語系上啟用這項功能。若在 Google Now 說出 \"OK, Google\" 沒有反應，也就無法在 Link Bubble 中使用。</string>
 
     <string name="remove_default_title">移除預設值？</string>
     <string name="remove_default_message">要移除以 %1$s 開啟 %2$s 連結的預設值嗎？

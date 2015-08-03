@@ -45,7 +45,6 @@
 
     <string name="upgrade">Uppgradera</string>
     <string name="upgrade_to_pro">Uppgradera till Pro</string>
-    <string name="upgrade_ok_google">Ladda Google Now genom att säga \"OK, Google\"?</string>
     <string name="upgrade_article_mode">Visa länkar i Läsläget</string>
     <string name="upgrade_article_mode_wear">Visa länkar på Android Wear-enheter via Läsläge?</string>
     <string name="upgrade_theme">Vill du använda ett annat tema?</string>
@@ -55,7 +54,6 @@
         Change theme.\n •
         Use Reading Mode.\n •
         Android Wear support.\n •
-        Use \"OK, Google\" voice activation.\n •
         Support us as we develop this app :)
         </string>
 
@@ -163,16 +161,10 @@ gratisversionen av Link Bubble. Uppgradera till Pro?</string>
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">Vad är nytt?</string>
     <string name="preference_more_title">More&#8230;</string>
-    <string name="preference_more_summary">\"OK, Google\", Reading Mode and more</string>
     <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">Gillar du Link Bubble? Varför inte kolla in mina andra appar?</string>
-
-    <string name="preference_ok_google_title">\"OK, Google\" voice activation</string>
-    <string name="preference_ok_google_summary">See FAQ for further detail</string>
-    <string name="preference_ok_google_summary_jelly_bean">Requires Android 4.4 or later</string>
-    <string name="preference_ok_google_summary_long">Note: Google haven\'t enabled this functionality for all devices/locales. If speaking \"OK, Google\" doesn\'t work for you in Google Now, it won\'t work in Link Bubble.</string>
 
     <string name="remove_default_title">Ta bort standard?</string>
     <string name="remove_default_message">Ta bort %1$s som standardapp för att ladda %2$s-länkar?\n\nNotera: du kan ange en ny standardapp

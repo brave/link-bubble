@@ -45,7 +45,6 @@
 
     <string name="upgrade">Upgraden</string>
     <string name="upgrade_to_pro">Upgraden naar Pro</string>
-    <string name="upgrade_ok_google">Wil je Google Now laden door \"OK, Google\" te zeggen?</string>
     <string name="upgrade_article_mode">Wil je links in Leesmodus bekijken?</string>
     <string name="upgrade_article_mode_wear">Wil je links op Android Wear-apparaten bekijken via Leesmodus?</string>
     <string name="upgrade_theme">Wil je een ander thema gebruiken?</string>
@@ -55,7 +54,6 @@
         Change theme.\n •
         Use Reading Mode.\n •
         Android Wear support.\n •
-        Use \"OK, Google\" voice activation.\n •
         Support us as we develop this app :)
         </string>
 
@@ -162,16 +160,10 @@ wordt ingesteld als je links laadt met Link Bubble.</string>
     <string name="preference_version_title">Versie</string>
     <string name="preference_version_summary">Wat is er nieuw?</string>
     <string name="preference_more_title">Meer&#8230;</string>
-    <string name="preference_more_summary">\"OK, Google\", Leesmodus en meer</string>
     <string name="preference_show_undo_close_tab_title">Aanwijzing tab sluiten ongedaan maken</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">Vind je Link Bubble leuk? Probeer dan ook eens mijn andere apps.</string>
-
-    <string name="preference_ok_google_title">\"OK, Google\" stemactivatie</string>
-    <string name="preference_ok_google_summary">Zie de FAQ voor verdere informatie</string>
-    <string name="preference_ok_google_summary_jelly_bean">Vereist Android 4.4 of later</string>
-    <string name="preference_ok_google_summary_long">Let op: Google heeft deze functionaliteit niet voor alle apparaten/landen ingeschakeld. Als \"OK, Google\" zeggen niet werkt in Google Now, zal het ook niet werken in Link Bubble.</string>
 
     <string name="remove_default_title">Standaard verwijderen?</string>
     <string name="remove_default_message">%1$s verwijderen als de standaardapp om %2$s-links mee te laden?\n\nLet op: je kan de volgende keer

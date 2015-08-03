@@ -5,7 +5,6 @@ import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -15,14 +14,12 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.google.android.hotword.client.HotwordServiceClient;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.MainService;
 import com.linkbubble.R;
-import com.linkbubble.Settings;
 import com.linkbubble.util.CrashTracking;
 import com.squareup.otto.Subscribe;
 
@@ -40,21 +37,11 @@ public class ExpandedActivity extends Activity {
     public static class MinimizeExpandedActivityEvent {};
 
     public static class ExpandedActivityReadyEvent {};
-
-    public static class EnableHotwordServiceEvent {
-        boolean mEnable;
-
-        EnableHotwordServiceEvent(boolean enable) {
-            mEnable = enable;
-        }
-    };
     
     private boolean mIsAlive = false;
     private boolean mIsShowing = false;
     private boolean mRegisteredForBus = false;
     private final Handler mHandler = new Handler();
-
-    private HotwordServiceClient mHotwordServiceClient;
 
     private LinearLayout mWebRendererContainer;
 
@@ -97,22 +84,6 @@ public class ExpandedActivity extends Activity {
         } else {
             rootView.setWillNotDraw(true);
         }
-
-        initHotwordService();
-    }
-
-    void initHotwordService() {
-        initHotwordService(Settings.get().getOkGoogleEnabled());
-    }
-
-    void initHotwordService(boolean enabled) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && enabled) {
-            try {
-                mHotwordServiceClient = new HotwordServiceClient(this);
-            } catch (Exception ex) {
-                // ignore if anything went wrong...
-            }
-        }
     }
 
     @Override
@@ -125,31 +96,6 @@ public class ExpandedActivity extends Activity {
     public void onActionModeFinished(ActionMode actionMode) {
         super.onActionModeFinished(actionMode);
         CrashTracking.log("onActionModeFinished()");
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-
-        //CrashTracking.log("onAttachedToWindow()");
-
-        if (mHotwordServiceClient != null) {
-            mHotwordServiceClient.onAttachedToWindow();
-            mHotwordServiceClient.requestHotwordDetection(true);
-        }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-
-        //Log.d(TAG, "onDetachedFromWindow()");
-
-        if (mHotwordServiceClient != null) {
-            mHotwordServiceClient.onDetachedFromWindow();
-            mHotwordServiceClient.requestHotwordDetection(false);
-        }
-
-        super.onDetachedFromWindow();
     }
 
     /*
@@ -219,10 +165,6 @@ public class ExpandedActivity extends Activity {
             minimize();
         }
 
-        if (mHotwordServiceClient != null) {
-            mHotwordServiceClient.requestHotwordDetection(true);
-        }
-
         if (Constant.ACTIVITY_WEBVIEW_RENDERING && mWebRendererContainer.getChildCount() == 0) {
             TabView current = MainController.get().getCurrentTab();
             if (current != null) {
@@ -236,10 +178,6 @@ public class ExpandedActivity extends Activity {
         CrashTracking.log("ExpandedActivity.onPause()");
         super.onPause();
         mIsShowing = false;
-
-        if (mHotwordServiceClient != null) {
-            mHotwordServiceClient.requestHotwordDetection(false);
-        }
     }
 
     @Override
@@ -336,17 +274,5 @@ public class ExpandedActivity extends Activity {
     @Subscribe
     public void OnOnDestroyMainServiceEvent(MainService.OnDestroyMainServiceEvent event) {
         finish();
-    }
-
-    @SuppressWarnings("unused")
-    @Subscribe
-    public void onEnableHotwordService(EnableHotwordServiceEvent event) {
-        if (event.mEnable && mHotwordServiceClient == null) {
-            initHotwordService(event.mEnable);
-        }
-        if (event.mEnable == false && mHotwordServiceClient != null) {
-            mHotwordServiceClient.requestHotwordDetection(false);
-            mHotwordServiceClient = null;
-        }
     }
 }

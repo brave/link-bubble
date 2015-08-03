@@ -45,7 +45,6 @@
 
     <string name="upgrade">升级</string>
     <string name="upgrade_to_pro">升级到专业版</string>
-    <string name="upgrade_ok_google">说出「OK, Google」，语音激活谷歌即时？</string>
     <string name="upgrade_article_mode">使用阅读模式查看链接吗？</string>
     <string name="upgrade_article_mode_wear">通过阅读模式在 Android 智能手表上查看链接吗？</string>
     <string name="upgrade_theme">想换一种主题试试？</string>
@@ -55,7 +54,6 @@
         Change theme.\n •
         Use Reading Mode.\n •
         Android Wear support.\n •
-        Use \"OK, Google\" voice activation.\n •
         Support us as we develop this app :)
         </string>
 
@@ -160,16 +158,10 @@ accounts.google.com 链接</string>
     <string name="preference_version_title">版本</string>
     <string name="preference_version_summary">更新日志</string>
     <string name="preference_more_title">更多&#8230;</string>
-    <string name="preference_more_summary">「OK, Google」、阅读模式及其他</string>
     <string name="preference_show_undo_close_tab_title">撤销关闭标签提示</string>
 
     <string name="preference_my_other_apps_title">开发者的其他应用程序</string>
     <string name="preference_my_other_apps_summary">喜欢 Link Bubble 吗？来看看我开发的其它应用程序吧。</string>
-
-    <string name="preference_ok_google_title">「OK, Google」语音激活</string>
-    <string name="preference_ok_google_summary">详细信息请查看常见问题</string>
-    <string name="preference_ok_google_summary_jelly_bean">需要 Android 4.4 及更新版本</string>
-    <string name="preference_ok_google_summary_long">请注意：谷歌并未在所有的设备/语系上启用本项功能。若在谷歌即时说出「OK, Google」命令，却没有反应，也就无法在 Link Bubble 中使用。</string>
 
     <string name="remove_default_title">移除默认？</string>
     <string name="remove_default_message">移除 %1$s 作为载入 %2$s 链接的默认程序的设置？\n\n备注：下次载入 %2$s 链接时可以选择一个新的默认程序。</string>

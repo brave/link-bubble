@@ -79,36 +79,6 @@ public class SettingsMoreActivity extends AppCompatPreferenceActivity {
 
             addPreferencesFromResource(R.xml.preferences_more);
 
-            PreferenceScreen rootPreferenceScreen = (PreferenceScreen) findPreference("preference_more_root");
-
-            final CheckBoxPreference okGooglePreference = (CheckBoxPreference) findPreference(Settings.KEY_OK_GOOGLE_PREFERENCE);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                if (DRM.isLicensed()) {
-                    okGooglePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                        @Override
-                        public boolean onPreferenceChange(Preference preference, Object newValue) {
-                            boolean checked = (Boolean) newValue;
-                            MainApplication.postEvent(getActivity(), new ExpandedActivity.EnableHotwordServiceEvent(checked));
-                            return true;
-                        }
-                    });
-                } else {
-                    showProBanner(okGooglePreference);
-                    okGooglePreference.setChecked(false);
-                    okGooglePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                        @Override
-                        public boolean onPreferenceClick(Preference preference) {
-                            okGooglePreference.setChecked(false);
-                            upsellPro(R.string.upgrade_ok_google);
-                            return true;
-                        }
-                    });
-                }
-            } else {
-                okGooglePreference.setSummary(R.string.preference_ok_google_summary_jelly_bean);
-                okGooglePreference.setEnabled(false);
-            }
-
             final CheckBoxPreference articleModeWearPreference = (CheckBoxPreference) findPreference(Settings.KEY_ARTICLE_MODE_ON_WEAR_PREFERENCE);
             if (DRM.isLicensed()) {
                 articleModeWearPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {

@@ -45,7 +45,6 @@
 
     <string name="upgrade">อัปเกรด</string>
     <string name="upgrade_to_pro">อัปเกรดเป็นรุ่นโปร</string>
-    <string name="upgrade_ok_google">ต้องการเรียกใช้งาน Google Now โดยพูด \"OK Google\"?</string>
     <string name="upgrade_article_mode">ต้องการดูลิงก์ในโหมดการอ่าน</string>
     <string name="upgrade_article_mode_wear">ต้องการดูลิงก์บนอุปกรณ์ Android Wear ผ่านโหมดการอ่าน?</string>
     <string name="upgrade_theme">ต้องการใช้ธีมที่แตกแต่ง?</string>
@@ -55,7 +54,6 @@
         Change theme.\n •
         Use Reading Mode.\n •
         Android Wear support.\n •
-        Use \"OK, Google\" voice activation.\n •
         Support us as we develop this app :)
         </string>
 
@@ -159,16 +157,10 @@
     <string name="preference_version_title">เวอร์ชัน</string>
     <string name="preference_version_summary">มีอะไรใหม่?</string>
     <string name="preference_more_title">เพิ่มเติม&#8230;</string>
-    <string name="preference_more_summary">\"OK, Google\", โหมดการอ่าน และอื่นๆ</string>
     <string name="preference_show_undo_close_tab_title">ปุ่มยกเลิกการปิดแท็บ</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">ชอบ Link Bubble? ทำไมไม่ลองแอปอื่นๆ ของผมดูล่ะ?</string>
-
-    <string name="preference_ok_google_title">สั่งงานด้วยเสียง \"OK, Google\"</string>
-    <string name="preference_ok_google_summary">อ่านคำถามที่พบบ่อยสำหรับข้อมูลเพิ่มเติม</string>
-    <string name="preference_ok_google_summary_jelly_bean">ต้องการแอนดรอยด์ 4.4 ขึ้นไป</string>
-    <string name="preference_ok_google_summary_long">หมายเหตุ: กูเกิลไม่ได้เปิดใช้งานคุณสมบัตินี้บนทุกอุปกรณ์/ประเทศ หากไม่สามารถใช้งาน \"OK Google\" บน Google Now ได้ บน Link Bubble ก็จะใช้งานไม่ได้เช่นกัน</string>
 
     <string name="remove_default_title">ล้างค่าเริ่มต้น?</string>
     <string name="remove_default_message">ลบ %1$s ออกจากแอปเริ่มต้นในการโหลดลิงก์ %2$s ?\n\nหมายเหตุ: คุณสามารถตั้งค่าแอปเริ่มต้นใหม่ได้เมื่อเปิดลิงก์ %2$s ครั้งหน้า</string>

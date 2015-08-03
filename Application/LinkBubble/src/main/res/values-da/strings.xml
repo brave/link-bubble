@@ -45,7 +45,6 @@
 
     <string name="upgrade">Opgrader</string>
     <string name="upgrade_to_pro">Opgrader til Pro</string>
-    <string name="upgrade_ok_google">Ønsker du at indlæse Google Nu ved at sige \"OK, Google \"?</string>
     <string name="upgrade_article_mode">Ønsker du at se links i Læse Tilstand?</string>
     <string name="upgrade_article_mode_wear">Ønsker du at se links på Android Wear via Læse Tilstand?</string>
     <string name="upgrade_theme">Ønsker du at bruge et andet tema?</string>
@@ -55,7 +54,6 @@
         Change theme.\n •
         Use Reading Mode.\n •
         Android Wear support.\n •
-        Use \"OK, Google\" voice activation.\n •
         Support us as we develop this app :)
         </string>
 
@@ -162,16 +160,10 @@ gratis version af Link Bubble. Opgrader til Pro?</string>
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">Hvad er nyt?</string>
     <string name="preference_more_title">Mere&#8230;</string>
-    <string name="preference_more_summary">\"OK, Google\", Læse Tilstand og mere</string>
     <string name="preference_show_undo_close_tab_title">Fortryd luk fane prompt</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">Synes du om Link Bubble? Hvorfor så ikke tjekke mine andre apps ud?</string>
-
-    <string name="preference_ok_google_title">\"OK, Google\" stemme aktivering</string>
-    <string name="preference_ok_google_summary">Se FAQ for yderligere detaljer</string>
-    <string name="preference_ok_google_summary_jelly_bean">Kræver Android 4.4 eller nyere</string>
-    <string name="preference_ok_google_summary_long">Bemærk: Google har ikke aktiveret denne funktionalitet for alle enheder/landestandarder. Hvis talt \"OK Google\" ikke fungerer i Google Nu, vil det heller ikke fungere i Link Bubble.</string>
 
     <string name="remove_default_title">Fjern standard?</string>
     <string name="remove_default_message">Fjern %1$s som standard app til at indlæse %2$s links med?\n\nBemærk: Du kan vælge en ny standard app, næste 

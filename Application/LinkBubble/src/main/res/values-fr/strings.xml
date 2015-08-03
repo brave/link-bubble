@@ -45,7 +45,6 @@
 
     <string name="upgrade">Mettre à niveau</string>
     <string name="upgrade_to_pro">Passer à la version Pro</string>
-    <string name="upgrade_ok_google">Want to load Google Now by speaking \"OK, Google\"?</string>
     <string name="upgrade_article_mode">Want to view links in Reading Mode?</string>
     <string name="upgrade_article_mode_wear">Want to view links on Android Wear devices via Reading Mode?</string>
     <string name="upgrade_theme">Want to use a different theme?</string>
@@ -55,7 +54,6 @@
         Change theme.\n •
         Use Reading Mode.\n •
         Android Wear support.\n •
-        Use \"OK, Google\" voice activation.\n •
         Support us as we develop this app :)
         </string>
 
@@ -160,16 +158,10 @@ Appuyez dessus pour en retirer une.</string>
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">Dernières nouveautés</string>
     <string name="preference_more_title">More&#8230;</string>
-    <string name="preference_more_summary">\"OK, Google\", Reading Mode and more</string>
     <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">Vous aimez Link Bubble ? Pourquoi ne pas jeter un coup d\'œil à mes autres applications ?</string>
-
-    <string name="preference_ok_google_title">\"OK, Google\" voice activation</string>
-    <string name="preference_ok_google_summary">See FAQ for further detail</string>
-    <string name="preference_ok_google_summary_jelly_bean">Requires Android 4.4 or later</string>
-    <string name="preference_ok_google_summary_long">Note: Google haven\'t enabled this functionality for all devices/locales. If speaking \"OK, Google\" doesn\'t work for you in Google Now, it won\'t work in Link Bubble.</string>
 
     <string name="remove_default_title">Retirer l\'action par défaut ?</string>
     <string name="remove_default_message">Retirer %1$s comme application par défaut pour l\'ouverture des liens %2$s ? \n\nNote: vous pourrez définir une nouvelle application par défaut la prochaine fois que vous ouvrirez un lien %2$s.</string>
