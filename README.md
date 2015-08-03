@@ -1,15 +1,16 @@
 # Link Bubble Browser
 
-##Install Instructions
+##Install instructions and setup
 
 `git clone git@github.com:brave/LinkBubble.git`
 
+Either install the [Crashlytics/Fabric Android Studio plugin](http://try.crashlytics.com/sdk-android/) or copy `Application/LinkBubble/fabric.properties.template` to `Application/LinkBubble/fabric.properties` and fill in the apiSecret.
 
-##Building LinkBubble Free
+##Building Link Bubble Free
 
 Open `./Application/` in Android Studio and build.
 
-##Building LinkBubble Pro
+##Building Link Bubble Pro
 
 Open `./ProKey/` in Android Studio and build.
 
