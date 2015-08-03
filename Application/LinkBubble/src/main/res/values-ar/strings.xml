@@ -31,11 +31,17 @@
     <string name="action_close_tab">إغلاق الفقاعة</string>
     <string name="action_stop">إيقاف</string>
     <string name="action_undo">Undo</string>
+    <string name="action_add">Add</string>
+    <string name="action_no_recommended">No (recommended)</string>
     <string name="share_via">مشاركة بواسطة..</string>
     <string name="not_set">Not set</string>
 
+    <string name="warning">Warning!</string>
+    <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
+
     <string name="share_invalid_data">Link Bubble غير قادر على مشاركة هذا المحتوى لأنه ليس رابطاً صحيحاً</string>
     <string name="consume_activity_not_found">غير قادر على إيجاد البرنامج. قم بتغيير عمل الـ bubble من الإعدادت</string>
+    <string name="consume_activity_security_exception">Unable to share to external application.</string>
 
     <string name="upgrade">Upgrade</string>
     <string name="upgrade_to_pro">Upgrade to Pro</string>
@@ -43,6 +49,7 @@
     <string name="upgrade_article_mode">Want to view links in Reading Mode?</string>
     <string name="upgrade_article_mode_wear">Want to view links on Android Wear devices via Reading Mode?</string>
     <string name="upgrade_theme">Want to use a different theme?</string>
+    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
     <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
         Load multiple tabs at once.\n •
         Change theme.\n •
@@ -63,6 +70,7 @@
 
     <string name="preference_category_general">عام</string>
     <string name="preference_category_configuration">خيارات التطبيق</string>
+    <string name="preference_category_configuration2">Configuration</string>
     <string name="preference_category_browser">المتصفح</string>
     <string name="preference_enabled_title">مفعّل</string>
     <string name="preference_auto_content_display_link_loaded_title">توسيع تلقائي</string>
@@ -84,11 +92,11 @@
     <string name="preference_google_account_redirect_title">إعادة التحويل لحسابات قوقل</string>
     <string name="preference_google_account_redirect_summary">إعادة توجيه العناوين من قوقل إلى المتصفح الإفتراضي</string>
     <string name="preference_set_default_browser_title">ضبط متصفح النظام الافتراضي</string>
-    <string name="preference_set_default_browser_summary">يجب ضبط Link Bubble ليكون المتصفح الافتراضي للنظام. اضغط للضبط.</string>
+    <string name="preference_set_default_browser_summary">Link Bubble must be the default system browser to work. Tap to configure.</string>
     <string name="preference_more">المزيد...</string>
     <string name="preference_intercept_links_from_title">اعترض الروابط من</string>
     <string name="preference_intercept_links_from_note">ملاحظة: حصر اعتراض الروابط من تطبيق واحد موجود فقط في النسخة المجانية من Link bubble. الترقية للنسخة الكاملة؟</string>
-    <string name="preference_intercept_links_from_disabled_for_L">Google have removed the API required for this functionality from L.</string>
+    <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
     <string name="preference_scan_for_youtube_embeds_title">تحقق من تضمينات اليوتيوب</string>
     <string name="preference_scan_for_youtube_embeds_summary">عرض إختصار لتشغيل الفيديوهات المتضمنة في برنامج اليوتيوب</string>
     <string name="preference_webview_battery_save_title">Battery Save Mode (Beta)</string>
@@ -103,6 +111,8 @@
     <string name="preference_theme_light_no_color">Light + neutral color</string>
     <string name="preference_theme_dark_color">Dark + icon color</string>
     <string name="preference_theme_dark_no_color">Dark + neutral color</string>
+    <string name="preference_theme_toolbar_title">Color toolbar</string>
+    <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
     <string name="preference_article_mode_title">Reading Mode (Beta)</string>
     <string name="preference_reading_mode_on_wear_title">Reading Mode on Wear</string>
     <string name="preference_article_mode_summary">Toggled via button on action bar</string>
@@ -127,6 +137,15 @@
         <item>سطح المكتب للكروم</item>
     </string-array>
 
+    <string name="preference_domains_title">Domain redirects</string>
+    <string name="preference_domains_summary">Specify links to always load in your fallback browser.</string>
+    <string name="preference_redirects_title">Redirect to fallback browser</string>
+    <string name="preference_add_domain_title">Add domain</string>
+    <string name="add_domain_hint">Url host</string>
+    <string name="add_domain_detail">Specify only the \'main\' portion of a website address. E.g.,
+        \"accounts.google.com\" or \"bbc.co.uk\".</string>
+    <string name="add_domain_error">Unable to add \"%1$s\", as it is not a valid URL host.</string>
+
     <string name="preference_help_title">مساعدة</string>
     <string name="preference_show_welcome_message_title">إظهار صفحة الترحيب</string>
     <string name="preference_credits_title">شكر</string>
@@ -143,7 +162,7 @@
     <string name="preference_more_summary">\"OK, Google\", Reading Mode and more</string>
     <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
-    <string name="preference_my_other_apps_title">المزيد من البرامج من كريس ليسي</string>
+    <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">أعجبك فقاة العنوان ؟لماذا لا ترى المزيد من البرامج؟</string>
 
     <string name="preference_ok_google_title">\"OK, Google\" voice activation</string>
@@ -153,13 +172,13 @@
 
     <string name="remove_default_title">حذف اللإفتراضي؟</string>
     <string name="remove_default_message">حذف %1$s من البرنامج الإفتراضي ليشغل العنوان باستخدام %2$s؟ ملاحظة:تستطيع ان تجعل برنامج إفتراضي جديد ليستخدم بالمرة القادمة اللتي تحمل فيها عنوان %2$s.</string>
-    <string name="long_press_unsupported_default_browser">نظام الأندرويد يمنع فقاعة العنوان من اختيار هذا البند.فتح العنوان باستخدام %1$s.</string>
-    <string name="long_press_unsupported_no_default_browser">نظام الأندرويد يمنع فقاعة العنوان من اختيار هذا البند.فتح العنوان باستخدام المتصفح.</string>
+    <string name="long_press_unsupported_default_browser">Unable to display this item. Open link in %1$s?</string>
+    <string name="long_press_unsupported_no_default_browser">Unable to display this item. Open link in a browser.</string>
     <string name="unsupported_scheme_default_browser">نوع هذا العنوان غير مدعوم حاليا .فتح الصفحة باستخدام %1$s؟</string>
     <string name="unsupported_scheme_no_default_browser">نوع هذا العنوان غير مدعوم حاليا .فتح الصفحة باستخدام المتصفح.</string>
     <string name="unsupported_scheme">نوع هذا العنوان غير مدعوم حاليا .</string>
-    <string name="unsupported_drop_down_default_browser">نظام الأندرويد يمنع استخدام العناصر المنزلة من ان تعمل في فقاعة العنوان.فتح بإستخدام %1$s؟</string>
-    <string name="unsupported_drop_down_no_default_browser">نظام الأندرويد يمنع استخدام العناصر المنزلة من ان تعمل في فقاعة العنوان.فتح بإستخدام المتصفح.</string>
+    <string name="unsupported_drop_down_default_browser">Unable to interact with this item. Open in %1$s?</string>
+    <string name="unsupported_drop_down_no_default_browser">Unable to interact with this item. Open link in a browser.</string>
 
     <string name="consume_category_view">استعراض العنوان</string>
     <string name="consume_category_share">إرسال/مشاركة العنوان</string>
@@ -183,6 +202,7 @@
     <string name="private_data_cleared">البيانات الخاصة أفرغت</string>
     <string name="private_data_cleared_reloading_current">البيانات الخاصة أفرغت.إعادة تحميل الفقاعات الحالية...</string>
     <string name="user_agent_changed_reloading_current">تم تغيير وكيل المستخدم إعادة تحميل الفقاعات الحالية</string>
+    <string name="theme_toolbar_reloading_current">Color toolbar setting changed. Reloading current bubbles…</string>
     <string name="article_mode_changed_reloading_current">Reading Mode setting changed. Reloading current bubbles…</string>
     <string name="link_loaded_with_app">حملت باستخدام %1$s</string>
     <string name="link_redirected">إعادة توجيه إلى %1$s</string>
@@ -239,7 +259,8 @@
     <string name="faq_future_features_question">هل ستقوم بإضافة العلامات المرجعية,المفضلة,الإضافات,إلخ؟</string>
     <string name="faq_future_features_answer">لاتقول لا أبدا, لكن حاليا فقاعة العنوان أكثر تركيزا على أن يكون أفضل طريقة لتحميل العناوين و الحصول عليها من التطبيقات الأخرى.</string>
     <string name="faq_translations_question">Can I help translate the app?</string>
-    <string name="faq_translations_answer">أتمنى أن أضع الترجمة قريبا .عندما أفعلها,سوف أضع إعلان على القوقل بلس (Link Bubble) للمساعدة في الترجمة ,لذلك ترقبوا . </string>
+    <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
+            (+Link Bubble) for help with translations, so be sure to keep an eye on my feed.]]></string>
     <string name="faq_roadmap_question">هل تنشر خارطة  المميزات المستقبلية؟ هل يمكنني  التصويت على   القادم من الميزات؟</string>
     <string name="faq_roadmap_answer">لأسباب تنافسية الجواب على السؤالين المطروحين للأسف لا.</string>
     <string name="faq_alternate_payment_question">لا أمتلك بطاقة إئتمانية أو لا أستطيع الشراء من البلاي ستور .كيف أستطيع شراء النسخة الإحترافية؟</string>
@@ -255,7 +276,7 @@
     <string name="faq_translucent_status_bar_question">لماذا لا يسمح البرنامج السحب فوق الشريط الشفاف للحالة؟</string>
     <string name="faq_translucent_status_bar_answer">للأسف نظام أندرويد يمنع هذا.</string>
     <string name="faq_beta_programme_question">هيل يوجد هناك نسخة أولية للبرنامج؟هل أستطيع الإنضمام؟</string>
-    <string name="faq_beta_programme_answer">سيتم الإعلان عن تفاصيل عن برنامج بيتا في الوقت المناسب. إبقاء العين على جوجل + (+ كريس لاسي) للإعلانات عن التفاصيل.</string>
+    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Link Bubble) feed for announcements.</string>
     <string name="faq_low_spec_performance_question">لماذا  فقاعة العنوان يشتغل ببطء على الجهاز فئة نيكسس S / جالاكسي S1 / موتو جي ؟</string>
     <string name="faq_low_spec_performance_answer">فقاعة العنوان هو تطبيق مكثف الموارد جدا، وبالتالي الأجهزة مع المواصفات أقل 
 يمكن النضال من أجل تشغيل التطبيق ليس  كالأجهزة الأكثر قوة. وتهدف التحديثات المستقبلية لتحسين أداء فقاعة العنوان.ولكن هناك فقط القليل لنستطبع فعله بواقعية هنا.</string>
@@ -272,12 +293,13 @@
     <string name="faq_change_default_browser_question">كيف يمكنني إزالة فقاعة العنوان كمتصفح إفتراضي؟</string>
     <string name="faq_change_default_browser_answer">إعدادات النظام>تطبيقات> المحملة> Link Bubble> إزالة الإفتراض</string>
     <string name="faq_pro_trial_question">كيف تعمل النسخة التجريبية من فقاعة العنوان الإحترافية؟</string>
-    <string name="faq_pro_trial_answer">في ال24 ساعة  الأولى من تحميل فقاعة العنوان ,مستخدمي النسخة المجنية سيستمتعون بجميع ميزات النسخة الإحترافية(تعدد النوافذ,إعتراض العناوين من أي تطبيق,إلخ).
--خلال هذا الوقت ستفتح لك جميع الخواص لجميع أجهزتك.
--هناك عداد تنازلي في أعلى يسار الشاشة الأساسية من فقاعة العنوان,تخبرك كم متبقي لك من الوقت لإنتهاء التجربة للنسخة اللإحترافية.
--الناس اللذين جربو فقاعة العنوا نسخة رقم 1.1 مؤهلين لهذه التجربة.
--لهدف التحقق ,تجربة النسخة الإحترافية مربوطة بإيميلك الشخصي.إذا لم يوجد إيميل على هذا الجهاز,مدة التجربة لن تكون موجودة.
--نأسف ,لكن لا يمكن تجديد مدة تجربتك الرجاء التمتع بجميع ميزات النسخة الإحترافية في ال24 ساعة الأولى بعد تحميل فقاعة العنوان. </string>
+    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
+        Pro\'s premium features.<br/>
+        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
+        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
+        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
+        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
+        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
     <string name="faq_report_bug_question">التبليغ عن خطأ</string>
     <string name="faq_report_bug_answer">اإيميل</string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -295,7 +317,9 @@
     <string name="trial_time_on_click">%1$s متبقي من ال24 ساعة للنسخة الإحترافية.</string>
 
     <string name="credits_title">شكر فقاعة العنوان</string>
+    <string name="credits_name">Link Bubble</string>
     <string name="credits_credit">مفهوم والتصميم والبرمجة</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <!--
     <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
@@ -319,8 +343,7 @@
 
     <string name="requesting_location_message">%1$s يطلب معرفة مكانك.السماح؟</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
-    <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
+    <string name="accept_terms_and_privacy">بالإستمرار,تعترف أنك تقبل فقاعة العنوان</string>
 
     <string name="service_name">فقاعة العنوان العارض</string>
     <string name="notification_title">فقاعة العنوان</string>

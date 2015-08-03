@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="download_activity_label">Yükleyici</string>
+    <string name="download_activity_label">Downloader</string>
     <string name="send_intent_label">Open with Link Bubble</string>
-    <string name="notification_summary">Açık olan tüm sekmeleri kapatmak için dokunun</string>
+    <string name="notification_summary">Touch to hide all open bubbles</string>
     <string name="notification_default_summary">Touch to Hide, expand to Close All</string>
     <string name="notification_unhide_summary">Touch to Unhide, expand to Close All</string>
     <string name="notification_action_close_all">Close All</string>
     <string name="notification_action_hide">Hide</string>
-    <string name="share_picker_label">Paylaşım Aracı</string>
+    <string name="share_picker_label">Share picker</string>
 
-    <string name="yes">Evet</string>
-    <string name="no">Hayır</string>
-    <string name="cancel">İptal</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancel</string>
 
-    <string name="action_ok">Tamam</string>
-    <string name="action_remove">Sil</string>
-    <string name="action_cancel">İptal et</string>
-    <string name="action_clear_data">Verileri temizle</string>
-    <string name="action_use_default">Varsayılan</string>
-    <string name="action_settings">Seçenekler</string>
-    <string name="action_help">Yardım</string>
-    <string name="action_reload_page">Yeniden yükle</string>
-    <string name="action_open_in_browser">%1$s saniyede açıldı</string>
-    <string name="action_open_in_new_bubble">Yeni sekmede aç</string>
-    <string name="action_upgrade_to_pro">★Pro\'ya yükselt★</string>
-    <string name="action_copy_to_clipboard">Linki kopyala</string>
-    <string name="action_share">Paylaş</string>
-    <string name="action_close_all">Tümünü kapat</string>
+    <string name="action_ok">OK</string>
+    <string name="action_remove">Remove</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_clear_data">Clear data</string>
+    <string name="action_use_default">Use default</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_help">Help</string>
+    <string name="action_reload_page">Reload</string>
+    <string name="action_open_in_browser">Open in %1$s</string>
+    <string name="action_open_in_new_bubble">Open in new bubble</string>
+    <string name="action_upgrade_to_pro">★Upgrade to Pro★</string>
+    <string name="action_copy_to_clipboard">Copy link</string>
+    <string name="action_share">Share</string>
+    <string name="action_close_all">Close all</string>
     <string name="action_close_tab">Close bubble</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Undo</string>
     <string name="action_add">Add</string>
     <string name="action_no_recommended">No (recommended)</string>
-    <string name="share_via">Paylaş...</string>
+    <string name="share_via">Share via…</string>
     <string name="not_set">Not set</string>
 
     <string name="warning">Warning!</string>
     <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
 
-    <string name="share_invalid_data">Link Bubble geçerli bir URL olmadığı için bu öğeyi paylaşamıyor.</string>
-    <string name="consume_activity_not_found">Uygulama bulunamıyor. Ayarlar ile baloncuk ayarlarını değiştirmeyi deneyin.</string>
+    <string name="share_invalid_data">Link Bubble us unable to share this item as it is not a valid URL.</string>
+    <string name="consume_activity_not_found">Unable to find application. Consider changing bubble action via Settings.</string>
     <string name="consume_activity_security_exception">Unable to share to external application.</string>
 
     <string name="upgrade">Upgrade</string>
@@ -62,45 +62,46 @@
     <string name="undo_close_tab_title">Closed %1$s</string>
     <string name="undo_close_tab_no_title">Closed tab</string>
 
-    <string name="pick_default_app">Varsayılan uygulamayı seç</string>
-    <string name="default_browser_set">Link Bubble varsayılan tarayıcı olarak ayarlandı.</string>
+    <string name="pick_default_app">Select default app</string>
+    <string name="default_browser_set">Link Bubble has been set as the default browser.</string>
     <string name="invalid_send_action">Valid link not found.</string>
     <string name="unable_to_launch_app">Unable to launch 3rd party application.</string>
-    <string name="clear_history">Geçmişi temizle</string>
+    <string name="clear_history">Clear history</string>
 
-    <string name="preference_category_general">Genel</string>
-    <string name="preference_category_configuration">Uygulama Kontrolleri</string>
+    <string name="preference_category_general">General</string>
+    <string name="preference_category_configuration">App Controls</string>
     <string name="preference_category_configuration2">Configuration</string>
-    <string name="preference_category_browser">Tarayıcı</string>
-    <string name="preference_enabled_title">Aktif</string>
-    <string name="preference_auto_content_display_link_loaded_title">Otomatik Genişlet</string>
-    <string name="preference_auto_content_display_link_loaded_summary">Her hangi bir baloncuk yüklenmesi bitince</string>
+    <string name="preference_category_browser">Browser</string>
+    <string name="preference_enabled_title">Enabled</string>
+    <string name="preference_auto_content_display_link_loaded_title">Auto expand</string>
+    <string name="preference_auto_content_display_link_loaded_summary">When any bubble has finished loading</string>
 
-    <string name="preference_left_consume_bubble_title">Sol baloncuk</string>
-    <string name="preference_right_consume_bubble_title">Sağ baloncuk</string>
+    <string name="preference_left_consume_bubble_title">Left bubble</string>
+    <string name="preference_right_consume_bubble_title">Right bubble</string>
     <string name="preference_double_tap_title">Link double tap</string>
-    <string name="preference_configure_bubble_title">Baloncuk ayarla</string>
-    <string name="preference_category_debug">Ayıkla</string>
-    <string name="preference_default_browser">Varsayılan yedek tarayıcı</string>
-    <string name="preference_category_redirect_to_browser">Yedek tarayıcıya yönlendir</string>
-    <string name="preference_category_fallback_browser">Varsayılan yedek tarayıcı</string>
-    <string name="preference_category_other_apps">Diğer uygulamalar</string>
-    <string name="preference_default_apps_title">Varsayılan uygulamalar</string>
+    <string name="preference_configure_bubble_title">Configure bubble</string>
+    <string name="preference_category_debug">Debug</string>
+    <string name="preference_default_browser">Default fallback browser</string>
+    <string name="preference_category_redirect_to_browser">Redirect to fallback browser</string>
+    <string name="preference_category_fallback_browser">Default fallback browser</string>
+    <string name="preference_category_other_apps">Other apps</string>
+    <string name="preference_default_apps_title">Default apps</string>
     <string name="preference_default_apps_summary">Fallback browser, url-specific apps</string>
     <string name="preference_default_apps_notice_summary">Used when one or more non-browser apps on your system can handle a
                     URL.\n\nTap to remove a default.</string>
     <string name="preference_default_apps_notice_no_defaults_summary">Used when one or more non-browser apps on your device can handle a URL,
                 you can configure the default app to load such links with.\n\nThe default app to use in this case is configured as
                 you load links with Link Bubble.</string>
-    <string name="preference_google_account_redirect_title">Google Hesap yönlendirmesi</string>
-    <string name="preference_google_account_redirect_summary">accounts.google.com linklerini varsayılan yedek tarayıcıya yönlendir</string>
-    <string name="preference_set_default_browser_title">Varsayılan sistem tarayıcısını ayarla</string>
+    <string name="preference_google_account_redirect_title">Google Account redirect</string>
+    <string name="preference_google_account_redirect_summary">Redirect accounts.google.com links to default fallback browser</string>
+    <string name="preference_set_default_browser_title">Set default system browser</string>
     <string name="preference_set_default_browser_summary">Link Bubble must be the default system browser to work. Tap to configure.</string>
-    <string name="preference_more">Devamı...</string>
-    <string name="preference_intercept_links_from_title">Linkleri şunlardan yakala</string>
-    <string name="preference_intercept_links_from_note">Not: Linklerin sadece bir programdan yakalanma kısıtlaması ücretsiz sürüm için geçerlidir. Pro\'ya yükselt?</string>
+    <string name="preference_more">More…</string>
+    <string name="preference_intercept_links_from_title">Intercept links from</string>
+    <string name="preference_intercept_links_from_note">Note: The restriction of intercepting links from just one app only exists with the
+        free version of Link Bubble. Upgrade to Pro?</string>
     <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
-    <string name="preference_scan_for_youtube_embeds_title">Youtube gömülü videolar için kontrol et</string>
+    <string name="preference_scan_for_youtube_embeds_title">Check for YouTube embeds</string>
     <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
     <string name="preference_webview_battery_save_title">Battery Save Mode (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Aggressive</string>
@@ -122,9 +123,9 @@
     <string name="preference_webview_text_zoom_title">Text zoom</string>
     <string name="preference_webview_text_zoom_note">Note: Current bubbles will be reloaded with the new text zoom applied after selecting \"OK\".</string>
     <string name="preference_webview_text_zoom_reloading_current">New text zoom level applied. Reloading current bubbles…</string>
-    <string name="preference_clear_browser_cache_title">Özel verileri temizle</string>
-    <string name="preference_clear_cache">Önbellek</string>
-    <string name="preference_clear_cookies">Çerezler</string>
+    <string name="preference_clear_browser_cache_title">Clear private data</string>
+    <string name="preference_clear_cache">Cache</string>
+    <string name="preference_clear_cookies">Cookies</string>
     <string name="preference_clear_favicons">Favicons</string>
     <string name="preference_clear_form_data">Form data</string>
     <string name="preference_clear_history">History</string>
@@ -329,7 +330,7 @@
 
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Question about the app? Try here.</string>
-    <string name="faq_section_general">Genel</string>
+    <string name="faq_section_general">General</string>
     <string name="faq_section_functionality">App functionality</string>
     <string name="faq_section_issues">Issues</string>
 

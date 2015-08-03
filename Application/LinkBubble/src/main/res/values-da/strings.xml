@@ -2,7 +2,12 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Downloader</string>
+    <string name="send_intent_label">Åbn med Link Bubble</string>
     <string name="notification_summary">Tryk for at skjule alle åbne bobler</string>
+    <string name="notification_default_summary">Tryk for at Skjule, udvid for at Lukke Alle</string>
+    <string name="notification_unhide_summary">Tryk for at Vise, udvid for at Lukke Alle</string>
+    <string name="notification_action_close_all">Luk Alle</string>
+    <string name="notification_action_hide">Skjul</string>
     <string name="share_picker_label">Del vælger</string>
 
     <string name="yes">Ja</string>
@@ -25,17 +30,46 @@
     <string name="action_close_all">Luk alle</string>
     <string name="action_close_tab">Luk boble</string>
     <string name="action_stop">Stop</string>
+    <string name="action_undo">Fortryd</string>
+    <string name="action_add">Add</string>
+    <string name="action_no_recommended">No (recommended)</string>
     <string name="share_via">Del via...</string>
+    <string name="not_set">Ikke indstillet</string>
+
+    <string name="warning">Warning!</string>
+    <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
 
     <string name="share_invalid_data">Link Bubble er ikke i stand til at dele dette, da det ikke er en gyldig URL.</string>
     <string name="consume_activity_not_found">Kan ikke finde applikationen. Overvej at ændre boble handling via indstillinger.</string>
+    <string name="consume_activity_security_exception">Unable to share to external application.</string>
+
+    <string name="upgrade">Opgrader</string>
+    <string name="upgrade_to_pro">Opgrader til Pro</string>
+    <string name="upgrade_ok_google">Ønsker du at indlæse Google Nu ved at sige \"OK, Google \"?</string>
+    <string name="upgrade_article_mode">Ønsker du at se links i Læse Tilstand?</string>
+    <string name="upgrade_article_mode_wear">Ønsker du at se links på Android Wear via Læse Tilstand?</string>
+    <string name="upgrade_theme">Ønsker du at bruge et andet tema?</string>
+    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
+    <string name="upgrade_from_settings_summary">Opgrader til Link Bubble Pro for at gøre dette og mere herunder:\n •
+Indlæs flere faner på én gang.\n •
+Ændre temaer.\n •
+Brug Læse Tilstand.\n •
+Android Wear support.\n •
+Brug \"OK, Google\" stemme kommandoer.\n •
+Støt mig, mens jeg udvikler denne app :)</string>
+
+    <string name="undo_close_tab_title">Lukkede %1$s</string>
+    <string name="undo_close_tab_no_title">Lukkede fane</string>
 
     <string name="pick_default_app">Vælg standard app</string>
     <string name="default_browser_set">Link Bubble er valgt som standardbrowser.</string>
+    <string name="invalid_send_action">Gyldigt link ikke fundet.</string>
+    <string name="unable_to_launch_app">Ikke i stand til at starte 3. parts applikation.</string>
     <string name="clear_history">Ryd historik</string>
 
     <string name="preference_category_general">Generelt</string>
     <string name="preference_category_configuration">App konfiguration</string>
+    <string name="preference_category_configuration2">Configuration</string>
     <string name="preference_category_browser">Browser</string>
     <string name="preference_enabled_title">Aktiveret</string>
     <string name="preference_auto_content_display_link_loaded_title">Udvid automatisk</string>
@@ -43,6 +77,7 @@
 
     <string name="preference_left_consume_bubble_title">Venstre boble</string>
     <string name="preference_right_consume_bubble_title">Højre boble</string>
+    <string name="preference_double_tap_title">Link dobbelt tryk</string>
     <string name="preference_configure_bubble_title">Konfigurer boble</string>
     <string name="preference_category_debug">Debug</string>
     <string name="preference_default_browser">Sekundær browser</string>
@@ -50,6 +85,7 @@
     <string name="preference_category_fallback_browser">Sekundær browser</string>
     <string name="preference_category_other_apps">Andre apps</string>
     <string name="preference_default_apps_title">Standard apps</string>
+    <string name="preference_default_apps_summary">Sekundær browser, url-specifikke apps</string>
     <string name="preference_default_apps_notice_summary">Bruges, når en eller flere ikke-browser apps på dit system kan håndtere en 
 URL.\n\nTryk at fjerne en standard.</string>
     <string name="preference_default_apps_notice_no_defaults_summary">Bruges, når en eller flere ikke-browser apps på din enhed kan håndtere en URL,
@@ -57,14 +93,31 @@ du kan konfigurere standard appen til at indlæse sådanne links med.\n\nDen sta
     <string name="preference_google_account_redirect_title">Google Konti omdirigering</string>
     <string name="preference_google_account_redirect_summary">Omdiriger accounts.google.com links til sekundær browser</string>
     <string name="preference_set_default_browser_title">Vælg standard system browser</string>
-    <string name="preference_set_default_browser_summary">Link Bubble skal vælges som standard system browser for at fungere. Tryk for at konfigurere.</string>
+    <string name="preference_set_default_browser_summary">Link Bubble must be the default system browser to work. Tap to configure.</string>
     <string name="preference_more">Mere...</string>
     <string name="preference_intercept_links_from_title">Opfang links fra</string>
     <string name="preference_intercept_links_from_note">Bemærk: Begrænsningen på at opfange links fra blot én app, kun findes med den 
 gratis version af Link Bubble. Opgrader til Pro?</string>
+    <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
     <string name="preference_scan_for_youtube_embeds_title">Check for YouTube videoer</string>
     <string name="preference_scan_for_youtube_embeds_summary">Vis genvej til at indlæse video(r) på YouTube appen.</string>
-
+    <string name="preference_webview_battery_save_title">Strømbesparingstilstand (Beta)</string>
+    <string name="preference_webview_battery_save_aggressive_title">Aggressiv</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Pause opdatering af web-sider, når Link Bubble er minimeret.\nSider igang med af indlæse vil afslutte indlæsning før pause.</string>
+    <string name="preference_webview_battery_save_default_title">Standard</string>
+    <string name="preference_webview_battery_save_default_summary">Pause opdatering af websider, når skærmen er slukket og genoptag når enheden er låst op.\nSider igang med af indlæse vil afslutte indlæsning før pause.</string>
+    <string name="preference_webview_battery_save_off_title">Fra</string>
+    <string name="preference_webview_battery_save_off_summary">Websider er altid aktive. Nyttig ved streaming af YouTube videoer og lignende.</string>
+    <string name="preference_theme_title">Tema</string>
+    <string name="preference_theme_light_color">Lys + ikon farve</string>
+    <string name="preference_theme_light_no_color">Lys + neutral farve</string>
+    <string name="preference_theme_dark_color">Mørk + ikon farve</string>
+    <string name="preference_theme_dark_no_color">Mørk + neutral farve</string>
+    <string name="preference_theme_toolbar_title">Color toolbar</string>
+    <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
+    <string name="preference_article_mode_title">Læse Tilstand (Beta)</string>
+    <string name="preference_reading_mode_on_wear_title">Læse Tilstand på Wear</string>
+    <string name="preference_article_mode_summary">Slås til via knap på action bar</string>
     <string name="preference_webview_text_zoom_title">Tekst zoom</string>
     <string name="preference_webview_text_zoom_note">Bemærk: Aktuelle bobler vil blive genindlæst med den nye tekst zoom \"OK\".</string>
     <string name="preference_webview_text_zoom_reloading_current">Ny tekst zoom niveau anvendt. Genindlæser nuværende bobler...</string>
@@ -77,13 +130,23 @@ gratis version af Link Bubble. Opgrader til Pro?</string>
     <string name="preference_clear_passwords">Adgangskoder</string>
     <string name="preference_incognito_title">Inkognito tilstand</string>
     <string name="preference_incognito_summary">Forhindre lagring af alle historik og cookies</string>
-    <string name="preference_user_agent_title">User Agent</string>
+    <string name="incognito_mode_changed_reloading_current">Inkognito indstilling ændret. Genindlæser nuværende bobler...</string>
+    <string name="preference_user_agent_title">Bruger agent</string>
     <string-array name="preference_user_agent_options">
         <item>Standard</item>
         <item>Chrome Mobil</item>
         <item>Chrome Tablet</item>
         <item>Chrome Computerversion</item>
     </string-array>
+
+    <string name="preference_domains_title">Domain redirects</string>
+    <string name="preference_domains_summary">Specify links to always load in your fallback browser.</string>
+    <string name="preference_redirects_title">Redirect to fallback browser</string>
+    <string name="preference_add_domain_title">Add domain</string>
+    <string name="add_domain_hint">Url host</string>
+    <string name="add_domain_detail">Specify only the \'main\' portion of a website address. E.g.,
+        \"accounts.google.com\" or \"bbc.co.uk\".</string>
+    <string name="add_domain_error">Unable to add \"%1$s\", as it is not a valid URL host.</string>
 
     <string name="preference_help_title">Hjælp</string>
     <string name="preference_show_welcome_message_title">Vis velkomst side</string>
@@ -97,20 +160,28 @@ gratis version af Link Bubble. Opgrader til Pro?</string>
     <string name="preference_get_pro_summary">Opgrader til Pro for flere funktioner</string>
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">Hvad er nyt?</string>
+    <string name="preference_more_title">Mere&#8230;</string>
+    <string name="preference_more_summary">\"OK, Google\", Læse Tilstand og mere</string>
+    <string name="preference_show_undo_close_tab_title">Fortryd luk fane prompt</string>
 
-    <string name="preference_my_other_apps_title">Flere apps af Link Bubble</string>
+    <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">Synes du om Link Bubble? Hvorfor så ikke tjekke mine andre apps ud?</string>
+
+    <string name="preference_ok_google_title">\"OK, Google\" stemme aktivering</string>
+    <string name="preference_ok_google_summary">Se FAQ for yderligere detaljer</string>
+    <string name="preference_ok_google_summary_jelly_bean">Kræver Android 4.4 eller nyere</string>
+    <string name="preference_ok_google_summary_long">Bemærk: Google har ikke aktiveret denne funktionalitet for alle enheder/landestandarder. Hvis talt \"OK Google\" ikke fungerer i Google Nu, vil det heller ikke fungere i Link Bubble.</string>
 
     <string name="remove_default_title">Fjern standard?</string>
     <string name="remove_default_message">Fjern %1$s som standard app til at indlæse %2$s links med?\n\nBemærk: Du kan vælge en ny standard app, næste 
 gang du indlæser et %2$s link.</string>
-    <string name="long_press_unsupported_default_browser">Android-systemets begrænsninger forhindrer Link Bubble, fra at vælge dette element.\nÅbn linket i %1$s?</string>
-    <string name="long_press_unsupported_no_default_browser">Android-systemets begrænsninger forhindrer Link Bubble, fra at vælge dette element.\nÅbn linket i en browser.</string>
+    <string name="long_press_unsupported_default_browser">Unable to display this item. Open link in %1$s?</string>
+    <string name="long_press_unsupported_no_default_browser">Unable to display this item. Open link in a browser.</string>
     <string name="unsupported_scheme_default_browser">Link typen understøttes ikke i øjeblikket. Åbn webside i %1$s?</string>
     <string name="unsupported_scheme_no_default_browser">Link typen understøttes ikke i øjeblikket. Åbn linket i en browser.</string>
     <string name="unsupported_scheme">Link typen understøttes ikke i øjeblikket.</string>
-    <string name="unsupported_drop_down_default_browser">Android-systemets begrænsninger forhindrer drop down elementer, fra at fungere i Link Bubble.\nÅbn i %1$s?</string>
-    <string name="unsupported_drop_down_no_default_browser">Android-systemets begrænsninger forhindrer drop down elementer, fra at fungere i Link Bubble.\nÅbn linket i en browser.</string>
+    <string name="unsupported_drop_down_default_browser">Unable to interact with this item. Open in %1$s?</string>
+    <string name="unsupported_drop_down_no_default_browser">Unable to interact with this item. Open link in a browser.</string>
 
     <string name="consume_category_view">Vis link</string>
     <string name="consume_category_share">Send/del link</string>
@@ -133,7 +204,9 @@ gang du indlæser et %2$s link.</string>
     <string name="history_already_empty">Historik allerede tom</string>
     <string name="private_data_cleared">Private data ryddet</string>
     <string name="private_data_cleared_reloading_current">Private data ryddet. Genindlæser nuværende bobler...</string>
-    <string name="user_agent_changed_reloading_current">User Agent ændret. Genindlæser nuværende bobler...</string>
+    <string name="user_agent_changed_reloading_current">Bruger Agent ændret. Genindlæser nuværende bobler...</string>
+    <string name="theme_toolbar_reloading_current">Color toolbar setting changed. Reloading current bubbles…</string>
+    <string name="article_mode_changed_reloading_current">Læse Tilstand indstilling ændret. Genindlæser nuværende bobler ...</string>
     <string name="link_loaded_with_app">Indlæst med %1$s</string>
     <string name="link_redirected">Omdirigeret til %1$s</string>
 
@@ -172,22 +245,28 @@ Link Bubble er en browser og Android browsere, har for længst etableret en stan
 enten at gå tilbage i webadressen stakken, eller hvis der ikke findes en stak, lukke den aktuelle side, når der trykkes på knappen Tilbage. 
 Link Bubble følger denne standard.]]></string>
     <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble opfanger ikke links!]]></string>
-    <string name="faq_app_internal_browser_answer"><![CDATA[Der er tre årsager til dette:<br/>
+    <string name="faq_app_internal_browser_answer"><![CDATA[Der er 3 årsager til dette:<br/>
 1). En anden browser end Link Bubble, er angivet som din standard system browser. Se 
-\"Indstil standard system browser \" i Link Bubble\'s Indstillinger for at ændre dette.<br/>
-2). Den gratis version af Link Bubble opfanger kun links fra en enkelt app. Se 
-\"Opfang links fra\" i Link Bubble\'s indstillinger for at se hvilke programmer det er, eller at ændre det. 
-Bemærk, at ved at opgradere til Link Bubble Pro, vil links blive opfanget fra alle ikke-browser apps.<br/>
-3). Apps såsom Talon, Reddit is Fun og andre har indbyggede browsere. Kontrollér indstillingerne i disse app og 
+\"Sæt standard system browser\" valgmuligheden i Link Bubble\'s Indstillinger for at ændre dette.<br/>
+2). Link Bubble er blevet konfigureret til ikke at opsnappe links fra din nuværende app. Se 
+\"Opfang links fra\" valgmuligheden i Link Bubble\'s indstillinger.<br/>
+3). Apps såsom Talon, Reddit is Fun og andre har indbyggede browsere, der åbner links. Kontrollér indstillingerne for disse apps og 
 aktiver \"Ekstern browser\" eller fravælg \"Integreret browser\" eller lignende.
-<br/><br/>Bemærk: Andre browser apps, såsom Chrome er hardcodede at indlæse links i sig selv, og dermed er Link Bubble ikke i stand at indlæse links fra andre browser apps.
+<br/><br/>Bemærk: Andre browser apps såsom Chrome er hårdtkodet til at indlæse links i sig selv og derfor er Link Bubble ikke i stand 
+at indlæse links fra andre browser apps.
 ]]></string>
+    <string name="faq_article_mode_question">Hvordan bruger jeg Læse TIlstand? Hvorfor nogle links ikke virker?</string>
+    <string name="faq_article_mode_answer"><![CDATA[For det første skal Læse Tilstand være aktiveret (Indstillinger -> App Konfiguration / Mere&#8230; -> Læse Tilstand (BETA)).<br/><br/>
+Når Læse Tilstand er tilgængelig for den aktuelle fane, vil ikonet Læse Tilstand vises på action baren (ved siden af ​​knappen Del).
+Vær opmærksom på at dette ikon først vises, når linket er indlæst og kun hvis Link Bubble kan udvinde Artikel Tilstand fra linket.<br/><br/>
+Bemærk: Udpakning af indhold fra internettet er en upålidelig proces og vil ikke altid fungere 100% præcist. I betragtning af den dynamiske og stadigt skiftende karakter af selve Internettet 
+er der ikke meget der kan gøres her.]]></string>
     <string name="faq_future_features_question">Vil du tilføje understøttelse af bogmærker, favoritter, udvidelser mv.?</string>
     <string name="faq_future_features_answer">Aldrig sige aldrig, men for nu er Link Bubble fokuseret udelukkende på, at være den bedst mulige måde for at indlæse 
 links fra andre apps.</string>
-    <string name="faq_translations_question">Hvornår vil du tilføje oversættelser til andre sprog? Kan jeg hjælpe?</string>
-    <string name="faq_translations_answer"><![CDATA[Jeg håber at tilføje oversættelse support snart.<br/><br/>Når jeg gør det, vil jeg helt sikkert lave et indlæg på Google+ 
-(+Link Bubble) for at få hjælp med oversættelser, så sørg for at holde øje med mit feed.]]></string>
+    <string name="faq_translations_question">Kan jeg hjælpe med at oversætte appen?</string>
+    <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
+            (+Link Bubble) for help with translations, so be sure to keep an eye on my feed.]]></string>
     <string name="faq_roadmap_question">Har du en køreplan for kommende funktioner? Kan jeg komme med foreslag til kommende funktioner?</string>
     <string name="faq_roadmap_answer">Af konkurrencemæssige årsager er svaret på begge spørgsmål \'nej\' desværre.<br/><br/></string>
     <string name="faq_alternate_payment_question">Jeg har ikke et kreditkort og/eller jeg kan ikke købe fra Google Play. Hvordan køber jeg Pro?</string>
@@ -197,44 +276,31 @@ betalingsmetoder vil forhåbentlig blive tilføjet i fremtiden (forudsat at de i
     <string name="faq_cant_type_url_answer"><![CDATA[Dette er helt efter hensigten. Link Bubble er designet til ikke at være en komplet erstatning for din browser, men i stedet til at indlæse og vise links fra andre apps så elegant, hjælpsomt og så hurtigt som muligt.<br/><br/>Hvis du ønsker at indlæse en ny URL i Link Bubble, 
 kan en søgning i Google Nu og indlæsning af resultatet med Link Bubble, være en fantastisk måde at gøre det.<br/><br/>For hurtig 
 indlæsning af dine favoritter, kan Chrome Bogmærker widget være meget nyttigt.]]></string>
-    <string name="faq_drop_down_items_question">Why don\'t drop down menus work?</string>
-    <string name="faq_drop_down_items_answer"><![CDATA[Unfortunately Android system limitations prevent this from working.<br/><br/>Technical answer:
-            Android\'s WebView hardcodes &lt;select&gt; elements to display via a Dialog, which cannot be launched from a Service. WebView does not provide a means of
-            overriding this behavior. Thus a hack has been added to simply disable drop down items from all pages in Link Bubble.
-            This is far from ideal, but it is certainly better than having the app crash, which is what happens otherwise :\\]]></string>
-    <string name="faq_copy_text_question">Why can\'t I copy text from a web page?</string>
-    <string name="faq_copy_text_answer"><![CDATA[Unfortunately Android system limitations prevent this from working.<br/><br/>Technical answer:
-            Copy functionality works when using Android\'s WebView from an Activity, but not from a Service (which Link Bubble uses).]]></string>
-    <string name="faq_translucent_status_bar_question">Why doesn\'t the app draw over the translucent status bar?</string>
-    <string name="faq_translucent_status_bar_answer">Unfortunately Android system limitations prevent this.</string>
-    <string name="faq_beta_programme_question">Is there a beta programme? How can I join?</string>
+    <string name="faq_drop_down_items_question">Hvorfor virker drop-down menuerne ikke?</string>
+    <string name="faq_drop_down_items_answer"><![CDATA[Desværre forhindrer Android systembegrænsninger dette i at fungere.<br/><br/>Teknisk svar: Android\'s hårdkodet WebView &lt;vælger&gt; elementer at vises, via en dialog, som ikke kan startes fra en tjeneste. WebView kan ikke tilsidesætte denne adfærd. Derfor er der tilføjet et hack, til at deaktivere drop-down elementer fra alle sider i Link Bubble. Dette er langt fra ideelt, men det er helt sikkert bedre end at have et app nedbrud, hvilket er, hvad der sker på anden vis :\\]]></string>
+    <string name="faq_copy_text_question">Hvorfor kan jeg ikke kopiere tekst fra en web side?</string>
+    <string name="faq_copy_text_answer"><![CDATA[Desværre forhindrer Android systembegrænsninger dette.<br/><br/>Tekinsk svar:
+Kopier funktionen virker, når du bruger Android\'s WebView fra en aktivitet, men ikke fra en Tjeneste (som Link Bubble bruger).]]></string>
+    <string name="faq_translucent_status_bar_question">Hvorfor går appen ikke ind over den gennemsigtige status linie?</string>
+    <string name="faq_translucent_status_bar_answer">Desværre forhindrer Android systembegrænsninger dette.</string>
+    <string name="faq_beta_programme_question">Er der et beta program? Hvordan kan jeg deltage?</string>
     <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Link Bubble) feed for announcements.</string>
-    <string name="faq_low_spec_performance_question">Why does Link Bubble run slowly on my Nexus S / Galaxy S1 / Moto G class device?</string>
-    <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble is a very resource intensive app, and consequently devices with lower specs
-            can struggle to run the app as well as more powerful devices. Future updates will aim to improve Link Bubble\'s
-            performance, but there is only so much that can realistically be done here.<br/><br/>Technical answer: At the bare minimum, Link Bubble requires the
-            use of a Service and a WebView in order to function. Often multiple WebViews and even multiple Activities are also present.
-            Naturally, allocating these items (especially the WebViews) consumes a <i>lot</i> of memory/resources. Lower spec devices generally
-            have less memory available than Link Bubble requires, and thus performance suffers as garbage collections are frequently triggered.
-            As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on the Nexus 5.]]></string>
-    <string name="faq_crap_webview_question">Sometimes webpages don\'t display correctly or videos don\'t play.</string>
-    <string name="faq_crap_webview_answer"><![CDATA[LinkBubble uses the standard Android WebView, but unfortunately it is sometimes unreliable.
-            Alternative web rendering methods such as FireFox\'s GeckoView and Chromium will likely be investigated going
-            forward.<br/><br/>In the event a webpage doesn\'t display correctly in Link Bubble, the easiest thing to do is just to load a traditional browser for that link.]]></string>
-    <string name="faq_ongoing_notificaion_question">Why does the ongoing notification always display when Link Bubble is running?</string>
-    <string name="faq_ongoing_notificaion_answer"><![CDATA[Unfortunately this ongoing notification is necessary to encourage the Android OS not to terminate
-            Link Bubble.]]></string>
-    <string name="faq_next_update_eta_question">When is the next update coming?</string>
-    <string name="faq_next_update_eta_answer"><![CDATA[When it\'s ready!<br/><br/>It\'s not feasible to be any more specific than that unfortunately
-            (even to provide a ballpark estimate).<br/><br/>The reality is, when estimates are given people often end up taking them as a
-            commitment, and can get upset if/when a release slips for whatever reason.]]></string>
+    <string name="faq_low_spec_performance_question">Hvorfor kører Link Bubble langsomt på min Nexus S / Galaxy S1 / Moto G - type enhed?</string>
+    <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble er en meget ressourcekrævende app, og dermed vil enheder med lavere specs kæmpe for at køre den app flydende. Fremtidige opdateringer vil sigte mod at forbedre Link Bubble\'s ydeevne, men realistisk set, er der ikke så meget der kan gøres her.<br/><br/>Teknisk svar: På et absolut minimum, kræver Link Bubble brugen af ​​en Service og en WebView for at fungere. Ofte er flere WebViews og flere Aktiviteter også til stede. Naturligvis forbruger disse poster (især WebViews) en <i>masse</i> hukommelse/ressourcer. Lavere spec enheder har generelt mindre hukommelse til rådighed end Link Bubble kræver, og det går derved ud over ydeevnen. Som et eksempel er max heap størrelsen på en Nexus S 48MB, og 192MB på Nexus 5.]]></string>
+    <string name="faq_crap_webview_question">Nogen gange vises websider ikke korrekt eller videoer vil ikke afspille.</string>
+    <string name="faq_crap_webview_answer"><![CDATA[LinkBubble bruger standard Android WebView, men desværre er det nogle gange upålideligt. 
+Alternativ web renderings metoder, såsom FireFox\'s GeckoView og Chromium vil sandsynligvis blive undersøgt fremadrettet.<br/><br/>I tilfælde af en webside ikke vises korrekt i Link Bubble, er den nemmeste løsning blot at indlæse den i en traditionel browser.]]></string>
+    <string name="faq_ongoing_notificaion_question">Hvorfor vises der en igangværende underretning, når Link Bubble kører?</string>
+    <string name="faq_ongoing_notificaion_answer"><![CDATA[Desværre er en igangværende underretning nødvendig, for ikke at Android OS skal afslutte Link Bubble.]]></string>
+    <string name="faq_next_update_eta_question">Hvornår kommer den næste opdatering?</string>
+    <string name="faq_next_update_eta_answer"><![CDATA[Når den er klar!<br/><br/>Det er ikke muligt at være mere specifik end det desværre (vil ikke engang give et skøn).<br/><br/>Virkeligheden er, når et skøn er givet, ender folk ofte med at tage det som giver, og kan blive kede af det, hvis/når en udgivelse udebliver uanset årsagen.]]></string>
     <string name="faq_close_quickly_question">Hvordan kan jeg hurtigt stoppe Link Bubble med at køre?</string>
-    <string name="faq_close_quickly_answer">Stryg ned fra toppen af skærmen for at åbne notifikations panelet og klik på \"Link Bubble\" notifikationen.</string>
+    <string name="faq_close_quickly_answer">Stryg ned fra toppen af skærmen for at åbne underretnings panelet og klik på \"Link Bubble\" underretningen.</string>
     <string name="faq_change_default_browser_question">Hvordan kan jeg fjerne Link Bubble som standardbrowser?</string>
     <string name="faq_change_default_browser_answer">Systemindstillinger -> Applikationer -> Downloads -> Link Bubble -> Ryd standarder.</string>
     <string name="faq_pro_trial_question">Hvordan fungerer Link Bubble Pro trial?</string>
     <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
-        Pro\'s premium features (multiple tabs, links being intercepted from any app, etc.).<br/>
+        Pro\'s premium features.<br/>
         • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
         • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
         • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
@@ -248,6 +314,7 @@ indlæsning af dine favoritter, kan Chrome Bogmærker widget være meget nyttigt
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Spørgsmål om appen? Prøv her.</string>
     <string name="faq_section_general">Generelt</string>
+    <string name="faq_section_functionality">App funktionalitet</string>
     <string name="faq_section_issues">Spørgsmål</string>
 
     <string name="activity_resolver_use_always">Altid</string>
@@ -260,6 +327,15 @@ indlæsning af dine favoritter, kan Chrome Bogmærker widget være meget nyttigt
     <string name="credits_credit">Koncept, design og programmering</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
+    <!--
+    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
+        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
+    <string name="restore_tabs_from_previous_session"></string>
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Gendan fanen fra tidligere session?</item>
+        <item quantity="other">Gendan %d faner fra tidligere session?</item>
+    </plurals>
+
     <string name="content_description_button">Knap</string>
     <string name="content_description_target_icon">Boble mål ikon</string>
     <string name="content_description_close_bubble_icon">Luk boble ikon</string>
@@ -268,27 +344,24 @@ indlæsning af dine favoritter, kan Chrome Bogmærker widget være meget nyttigt
     <string name="content_description_youtube_video_thumbnail">YouTube video thumbnail</string>
     <string name="content_description_history">Historik</string>
     <string name="content_description_settings">Indstillinger</string>
-    <string name="content_description_can_go_back">Can go back</string>
+    <string name="content_description_can_go_back">Kan gå tilbage</string>
     <string name="content_description_upgrade_to_pro">Opgrader til Pro</string>
 
-    <string name="requesting_location_message">%1$s is requesting your location. Allow?</string>
+    <string name="requesting_location_message">%1$s anmoder din placering. Tillad?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
-    <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
+    <string name="accept_terms_and_privacy"><![CDATA[Ved at fortsætte, anerkender du, at du accepterer Link Bubble\'s
+<a href="http://www.linkbubble.com/terms">vilkår</a> og <a href="http://www.linkbubble.com/privacy">fortrolighedspolitik</a>.]]></string>
 
     <string name="service_name">Link Bubble Renderer</string>
     <string name="notification_title">Link Bubble</string>
 
     <string name="pro_application_name">Link Bubble Pro</string>
-    <string name="pro_status_checking_license">Checking license…</string>
-	<string name="pro_status_buy">Unable to verify license.\n\nSome causes of this problem include:\n • There is no Internet connection.\n • This application has been tampered
-                            with.\n\nCheck your Internet connection, and if necessary, try installing the app from the Play Store again.</string>
-    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting me as I develop this project.</string>
-    <string name="pro_status_unlicensed">Google Play is reporting this copy of Link Bubble Pro is unlicensed.\n\nAssuming you have
-                            indeed purchased a copy of Link Bubble Pro, the most common reason for this is that email address used
-                            for your purchase is not configured with the Play Store on this device.</string>
+    <string name="pro_status_checking_license">Kontrollerer licens...</string>
+	<string name="pro_status_buy">Ikke i stand til at kontrollere licens.\n\nÅrsagerne til dette problem kan omfatte:\n • Ingen internet forbindelse.\n • Applikationen kan være blevet manipuleret.\n\nKontroller din internet forbindelse, og hvis det er nødvendigt, skal du prøve at installere appen fra Play Butik igen.</string>
+    <string name="pro_status_verified">Link Bubble Pro køb verificeret!\n\nMange tak for at støtte mig med at udvikle på dette projekt.</string>
+    <string name="pro_status_unlicensed">Google Play rapporterer at denne kopi af Link Bubble Pro er uden licens.\n\nForudsat du har købt en kopi af Link Bubble Pro, er den mest almindelige årsag til dette, at den email adresse du brugte til dit køb, ikke er konfigureret med Play Butik på denne enhed.</string>
 
-    <string name="pro_keep_installed">Note: you don\'t need to load Link Bubble Pro again, but you do need to keep it installed for verification purposes.\n\nThis app will be hidden throughout the system so it doesn\'t appear in your launcher(s).</string>
+    <string name="pro_keep_installed">Bemærk: Du behøver at indlæse Link Bubble Pro igen, men du skal holde det installeret til kontrolformål.\n\nDenne app vil være skjult i systemet, så den vises ikke i din launcher(e).</string>
 
     <string name="pro_action_load_app">Indlæs Link Bubble</string>
     <string name="pro_action_install_app">Installer Link Bubble</string>
@@ -296,50 +369,46 @@ indlæsning af dine favoritter, kan Chrome Bogmærker widget være meget nyttigt
     <string name="pro_action_retry">Prøv igen</string>
     <string name="pro_action_store">Play Butik</string>
 
-
-
     <string name="store_listing_title">Link Bubble</string>
-    <string name="store_listing_promo_text">Mobile browsing done right.</string>
-    <string name="store_listing_description_title">Link Bubble is an all-new browser designed and crafted solely with mobile devices in mind.</string>
-    <string name="store_listing_description_features">
-    Features include:
-    • When you click on a link in an app, Link Bubble loads that webpage in the background, leaving you free to keep using your current app rather than your precious time being wasted watching a page load. Once the page has fully loaded, it will animate on screen.
-    • Link Bubble\'s flick physics allow you to go from clicking a link to sharing a link or adding it to a service such as Pocket in little more than a second!
-    • Load multiple links from your current app at the same time (requires Pro).
-    • Gracefully handles links that redirect to other apps. No longer does clicking an Instagram link in Twitter redirect to a full screen browser before loading Instagram!
-    • Deep integration with the apps on your system.
-    • Locates embedded YouTube videos on web pages, and provides a shortcut to load those videos directly in the YouTube app.
-    • Handy stats that illustrate how much time you are saving by using Link Bubble.
-    </string>
-    <string name="store_listing_description_location_permission">Regarding the Location permission: This is required so that you might grant permission for a website to access your location (such as those with an embedded map). Link Bubble itself never accesses your location.</string>
+    <string name="store_listing_promo_text">Mobil browsing gjort på den rigtige måde.</string>
+    <string name="store_listing_description_title">Link Bubble er en helt ny browser fremstillet og designet udelukkende med mobile enheder i tankerne.</string>
+    <string name="store_listing_description_features">Funktionerne omfatter:
+• Når du klikker på et link i en app, åbner Link Bubble websiden i baggrunden, så du kan fortsætte med at bruge din nuværende app fremfor at bruge sin kostbare tid på at se en side indlæse. Når siden er helt indlæst, vil det animere på skærmen. 
+• Link Bubble\'s swipe fysik tillader dig at gå fra at klikke på et link, til at dele et link eller tilføje det til en tjeneste som Pocket, på lidt mere end et sekund!
+• Indlæs flere links fra din nuværende app på samme tid (kræver Pro).
+• Yndefuld håndtering af links, der omdirigerer til andre apps. Et klik på et Instagram link i Twitter, skal ikke længere omdirigeres til en fuld-skærms browser, for derefter at åbne Instagram!
+• Dyb integration med dine apps på dit system.
+• Lokaliserer indlejrede YouTube videoer på websider og giver en genvej til at indlæse disse videoer direkte i YouTube appen.
+• Smarte statistikker, som illustrerer hvor meget tid du sparer ved at bruge Link Bubble.</string>
+    <string name="store_listing_description_location_permission">Om placerings tilladelse: Dette er nødvendigt for, at du kan give tilladelse til en hjemmeside, for at få adgang til din placering (såsom dem med et indbygget kort). Link Bubble får aldrig selv adgang til din placering.</string>
 
     <string name="pro_store_listing_title">Link Bubble Pro</string>
-    <string name="pro_store_listing_description_title">Link Bubble Pro unlocks the full feature set of Link Bubble.</string>
-    <string name="pro_store_listing_description_features">
-    Upgrades include:
-    • Infinite number of tabs (free version is limited to just one tab).
-    • Load links from all apps on your device (free version intercepts links from just one app).
-    • Remove the upgrade incentives throughout the free version.
-    • Support me so I get to make more of these apps :)
-    </string>
+    <string name="pro_store_listing_description_title">Link Bubble Pro åbner for de fulde funktioner af Link Bubble.</string>
+    <string name="pro_store_listing_description_features">Opgradering omfatter:
+• Uendelig antal faner (gratis version er begrænset til kun én fane). 
+• Temaer
+• Ikke flere opgraderings henvisninger, som i gratis versionen.
+• Støt mig så jeg kan lave flere af denne slags apps :)</string>
 
     <string name="welcome_page_title">Velkommen til Link Bubble!</string>
-    <string name="welcome_page_trial_notice">Note: For the first 24 hours after first installing Link Bubble, you will have access to all of Link Bubble Pro\'s premium features as a one-time trial.</string>
-    <string name="welcome_page_intro_title">How does it work?</string>
-    <string name="welcome_page_intro_point_1">Click a link in an app.</string>
-    <string name="welcome_page_intro_point_2">A bubble will appear on the edge of the screen and the link will begin loading in the background. As soon as the page is loaded, it will be displayed.</string>
-    <string name="welcome_page_intro_end">It\'s that simple! With Link Bubble, you can keep using your current app rather than wasting your time watching links redirect and waiting for pages to load. What\'s not to love about that?</string>
-    <string name="welcome_page_more_title">Show me more!</string>
-    <string name="welcome_page_more_pocket_start">You can also quickly share a link or add it to an app such as Pocket:</string>
-    <string name="welcome_page_more_pocket_end">Looks both fun and useful right?</string>
-    <string name="welcome_page_more_also">Link Bubble also:</string>
-    <string name="welcome_page_more_point_1">Redirects links to a dedicated app (E.g., Instagram).</string>
-    <string name="welcome_page_more_point_2">Finds embedded videos so you can easily load them in the YouTube app.</string>
-    <string name="welcome_page_pro_intro">The free version gives you a taste of Link Bubble\'s power, but with Pro you can:</string>
-    <string name="welcome_page_pro_point_1">Load multiple bubbles at once.</string>
-    <string name="welcome_page_pro_point_2">Load links from all apps.</string>
-    <string name="welcome_page_pro_point_3">Help ensure I am able to write more apps in the future :)</string>
-    <string name="welcome_page_pro_end">Thanks, and enjoy the app!</string>
-    <string name="welcome_page_ps">PS. To close this bubble, either press the Back button or long press the bubble and flick it onto the Close bubble.</string>
+    <string name="welcome_page_trial_notice">Bemærk: De første 24 timer efter første installation af Link Bubble, vil du have adgang til alle Link Bubble Pro\'s premium funktioner som en engangs prøve.</string>
+    <string name="welcome_page_intro_title">Hvordan fungerer det?</string>
+    <string name="welcome_page_intro_point_1">Klik på et link i en app.</string>
+    <string name="welcome_page_intro_point_2">En boble vises på kanten af ​​skærmen og linket begynde at indlæse i baggrunden. Så snart siden er indlæst, vil det blive vist.</string>
+    <string name="welcome_page_intro_end">Det er så simpelt! Med Link Bubble, kan du fortsætte med at bruge din nuværende app, i stedet for at spilde din tid på at se links omdirigere og vente på at siderne indlæses. Det kan man da kun syntes om!</string>
+    <string name="welcome_page_more_title">Vis mig mere!</string>
+    <string name="welcome_page_more_pocket_start">Du kan også hurtigt dele et link eller tilføje det til en app såsom Pocket:</string>
+    <string name="welcome_page_more_pocket_end">Ser både sjovt og nyttigt ud ikke?</string>
+    <string name="welcome_page_more_also">Link Bubble kan også:</string>
+    <string name="welcome_page_more_point_1">Omdirigerer links til en dedikeret app (f.eks. Instagram).</string>
+    <string name="welcome_page_more_point_2">Finder indlejrede videoer, så du nemt kan indlæse dem i YouTube appen.</string>
+    <string name="welcome_page_pro_intro">Den gratis version giver dig en smag af Link Bubble\'s muligheder, men med Pro kan du:</string>
+    <string name="welcome_page_pro_point_1">Indlæse flere bobler på en gang.</string>
+    <string name="welcome_page_pro_point_2">Load links fra alle apps.</string>
+    <string name="welcome_page_pro_point_3">Hjælpe med at sikre, at jeg er i stand til at lave flere apps i fremtiden :)</string>
+    <string name="welcome_page_pro_end">Tak, og nyd appen!</string>
+    <string name="welcome_page_ps">PS. For at lukke denne boble, tryk enten på knappen Tilbage eller lav et langt tryk på boblen og træk den hen på Luk boble.</string>
+
+    <string name="duplicate_link_will_not_be_loaded">Link allerede indlæst. Ignorerer...</string>
 
 </resources>

@@ -4,8 +4,8 @@
     <string name="download_activity_label">Загрузчик</string>
     <string name="send_intent_label">Открыть в Link Bubble</string>
     <string name="notification_summary">Нажмите для закрытия всех пузырей</string>
-    <string name="notification_default_summary">Нажмите для скрытия, разверните для закрытия всех</string>
-    <string name="notification_unhide_summary">Нажмите, чтобы показать, разверните для закрытия всех</string>
+    <string name="notification_default_summary">Нажмите для скрытия, ↓ для закрытия всех</string>
+    <string name="notification_unhide_summary">Нажмите, чтобы показать, ↓ для закрытия всех</string>
     <string name="notification_action_close_all">Закрыть все</string>
     <string name="notification_action_hide">Скрыть</string>
     <string name="share_picker_label">Поделиться</string>
@@ -31,11 +31,17 @@
     <string name="action_close_tab">Закрыть пузырь</string>
     <string name="action_stop">Стоп</string>
     <string name="action_undo">Отмена</string>
+    <string name="action_add">Add</string>
+    <string name="action_no_recommended">No (recommended)</string>
     <string name="share_via">Поделиться</string>
     <string name="not_set">Не задано</string>
 
+    <string name="warning">Warning!</string>
+    <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
+
     <string name="share_invalid_data">Link Bubble не может поделиться контентом, поскольку это не является ссылкой.</string>
     <string name="consume_activity_not_found">Не удалось найти приложение. Попробуйте сменить умолчания в настройках.</string>
+    <string name="consume_activity_security_exception">Unable to share to external application.</string>
 
     <string name="upgrade">Улучшить</string>
     <string name="upgrade_to_pro">Улучшить до Pro</string>
@@ -43,6 +49,7 @@
     <string name="upgrade_article_mode">Хотите просматривать ссылки в режиме чтения?</string>
     <string name="upgrade_article_mode_wear">Хотите открывать ссылки на Android Wear в режиме чтения?</string>
     <string name="upgrade_theme">Хотите использовать различные темы?</string>
+    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
     <string name="upgrade_from_settings_summary">Улучшите до Link Bubble Pro, чтобы:\n •
 Открывать несколько ссылок одновременно.\n •
 Менять тему.\n •
@@ -62,6 +69,7 @@
 
     <string name="preference_category_general">Общие</string>
     <string name="preference_category_configuration">Управление приложением</string>
+    <string name="preference_category_configuration2">Configuration</string>
     <string name="preference_category_browser">Браузер</string>
     <string name="preference_enabled_title">Включён</string>
     <string name="preference_auto_content_display_link_loaded_title">Открывать автоматически</string>
@@ -84,11 +92,11 @@
     <string name="preference_google_account_redirect_title">Перенаправление Google Account</string>
     <string name="preference_google_account_redirect_summary">Перенаправлять ссылки accounts.google.com в резервный браузер</string>
     <string name="preference_set_default_browser_title">Установить браузер по умолчанию</string>
-    <string name="preference_set_default_browser_summary">Link Bubble должен быть браузером по умолчанию, чтобы правильно работать. Нажмите для настройки.</string>
+    <string name="preference_set_default_browser_summary">Link Bubble must be the default system browser to work. Tap to configure.</string>
     <string name="preference_more">Ещё...</string>
     <string name="preference_intercept_links_from_title">Перехватывать ссылки из</string>
     <string name="preference_intercept_links_from_note">Внимание: ограничение перехвата ссылок только из одного приложения отсутствует в Link Bubble Pro. Улучшить?</string>
-    <string name="preference_intercept_links_from_disabled_for_L">Необходимый для работы этой функции API был удалён из Android L.</string>
+    <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
     <string name="preference_scan_for_youtube_embeds_title">Искать встроенные видео YouTube</string>
     <string name="preference_scan_for_youtube_embeds_summary">Показывать кнопку для просмотра встроенных видео в приложении YouTube.</string>
     <string name="preference_webview_battery_save_title">Режим экономии батареи (Beta)</string>
@@ -99,10 +107,12 @@
     <string name="preference_webview_battery_save_off_title">Выключен</string>
     <string name="preference_webview_battery_save_off_summary">Страницы всегда активны. Удобно для прослушивания видео с YouTube и тому подобного.</string>
     <string name="preference_theme_title">Тема</string>
-    <string name="preference_theme_light_color">Светлая + цвет иконки</string>
-    <string name="preference_theme_light_no_color">Светлая + нейтр. цвет</string>
-    <string name="preference_theme_dark_color">Тёмная + цвет иконки</string>
-    <string name="preference_theme_dark_no_color">Тёмная + нейтр. цвет</string>
+    <string name="preference_theme_light_color">Светлая + цвет фавикона</string>
+    <string name="preference_theme_light_no_color">Светлая + нейтральный цвет</string>
+    <string name="preference_theme_dark_color">Тёмная + цвет фавикона</string>
+    <string name="preference_theme_dark_no_color">Тёмная + нейтральный цвет</string>
+    <string name="preference_theme_toolbar_title">Color toolbar</string>
+    <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
     <string name="preference_article_mode_title">Режим чтения (Beta)</string>
     <string name="preference_reading_mode_on_wear_title">Режим чтения для Wear</string>
     <string name="preference_article_mode_summary">Включается кнопкой в Action Bar</string>
@@ -127,6 +137,15 @@
         <item>Chrome (ПК)</item>
     </string-array>
 
+    <string name="preference_domains_title">Domain redirects</string>
+    <string name="preference_domains_summary">Specify links to always load in your fallback browser.</string>
+    <string name="preference_redirects_title">Redirect to fallback browser</string>
+    <string name="preference_add_domain_title">Add domain</string>
+    <string name="add_domain_hint">Url host</string>
+    <string name="add_domain_detail">Specify only the \'main\' portion of a website address. E.g.,
+        \"accounts.google.com\" or \"bbc.co.uk\".</string>
+    <string name="add_domain_error">Unable to add \"%1$s\", as it is not a valid URL host.</string>
+
     <string name="preference_help_title">Помощь</string>
     <string name="preference_show_welcome_message_title">Показать стартовую страницу</string>
     <string name="preference_credits_title">О разработчиках</string>
@@ -143,7 +162,7 @@
     <string name="preference_more_summary">\"OK, Google\", режим чтения и прочее</string>
     <string name="preference_show_undo_close_tab_title">Кнопка отмены закрытия пузыря</string>
 
-    <string name="preference_my_other_apps_title">Другие приложения от Криса Лейси</string>
+    <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">Нравится Link Bubble? Попробуйте другие мои приложения!</string>
 
     <string name="preference_ok_google_title">Команда \"OK, Google\"</string>
@@ -153,13 +172,13 @@
 
     <string name="remove_default_title">Сбросить умолчание?</string>
     <string name="remove_default_message">Не открывать ссылки вида %2$s с помощью %1$s?\n\nВнимание: вы можете выбрать новое умолчание, когда в следующий раз откроете ссылку вида %2$s.</string>
-    <string name="long_press_unsupported_default_browser">Ограничения Android не позволяют выбрать элемент.\nОткрыть ссылку в %1$s?</string>
-    <string name="long_press_unsupported_no_default_browser">Ограничения Android не позволяют выбрать элемент.\nОткройте ссылку в браузере.</string>
+    <string name="long_press_unsupported_default_browser">Unable to display this item. Open link in %1$s?</string>
+    <string name="long_press_unsupported_no_default_browser">Unable to display this item. Open link in a browser.</string>
     <string name="unsupported_scheme_default_browser">Ссылки такого типа не поддерживаются. Открыть страницу в %1$s?</string>
     <string name="unsupported_scheme_no_default_browser">Ссылки такого типа не поддерживаются. Откройте страницу в браузере.</string>
     <string name="unsupported_scheme">Ссылки такого типа не поддерживаются.</string>
-    <string name="unsupported_drop_down_default_browser">Ограничения Android не позволяют открывать выпадающие элементы в Link Bubble.\nОткрыть в %1$s?</string>
-    <string name="unsupported_drop_down_no_default_browser">Ограничения Android не позволяют открывать выпадающие элементы в Link Bubble.\nОткройте ссылку в браузере.</string>
+    <string name="unsupported_drop_down_default_browser">Unable to interact with this item. Open in %1$s?</string>
+    <string name="unsupported_drop_down_no_default_browser">Unable to interact with this item. Open link in a browser.</string>
 
     <string name="consume_category_view">Просмотреть ссылку</string>
     <string name="consume_category_share">Поделиться ссылкой</string>
@@ -184,6 +203,7 @@
     <string name="private_data_cleared">Личные данные очищены</string>
     <string name="private_data_cleared_reloading_current">Личные данные очищены. Перезагрузка текущих пузырей...</string>
     <string name="user_agent_changed_reloading_current">Изменён User Agent. Пузыри перезагружаются...</string>
+    <string name="theme_toolbar_reloading_current">Color toolbar setting changed. Reloading current bubbles…</string>
     <string name="article_mode_changed_reloading_current">Настройка режима чтения изменена. Пузыри перезагружаются...</string>
     <string name="link_loaded_with_app">Загружено в %1$s</string>
     <string name="link_redirected">Перенаправлено в %1$s</string>
@@ -238,7 +258,8 @@ Link Bubble следует тому же правилу.]]></string>
     <string name="faq_future_features_question">Будет ли добавлена поддержка закладок, избранного, расширений и прочего?</string>
     <string name="faq_future_features_answer">Не зарекаюсь, но пока что развитие Link Bubble направлено на как можно более комфортное и быстрое открытие ссылок из других приложений.</string>
     <string name="faq_translations_question">Могу ли я помочь с переводом?</string>
-    <string name="faq_translations_answer"><![CDATA[Да, как видите, переводы уже есть.<br/><br/>Разработчик не удалил этот пункт из FAQ, поскольку Link Bubble переведён ещё не на все языки. Вы можете помочь ему, связавшись с ним в Google+ (+Link Bubble).]]></string>
+    <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
+            (+Link Bubble) for help with translations, so be sure to keep an eye on my feed.]]></string>
     <string name="faq_roadmap_question">Есть ли в открытом доступе список ваших планов разработки? Могу ли я проголосовать за нужные функции?</string>
     <string name="faq_roadmap_answer">Из-за конкуренции ответ на оба вопроса, к сожалению, "нет".<br/><br/></string>
     <string name="faq_alternate_payment_question">У меня нет карточки и/или я не могу покупать приложения в Google Play. Как я могу купить Pro-версию?</string>
@@ -255,7 +276,7 @@ WebView Android заставляет элементы &lt;select&gt; отобр�
     <string name="faq_translucent_status_bar_question">Почему приложение не отображается под прозрачным системным интерфейсом?</string>
     <string name="faq_translucent_status_bar_answer">К сожалению, ограничения Android не позволяют этого.</string>
     <string name="faq_beta_programme_question">Существует ли программа бета-теста? Как мне присоединиться?</string>
-    <string name="faq_beta_programme_answer">Детали о бета-тестировании будут объявлены очень скоро. Следите за новостями на моей странице в Google+ (+Link Bubble).</string>
+    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Link Bubble) feed for announcements.</string>
     <string name="faq_low_spec_performance_question">Почему Link Bubble работает так медленно на моём устройстве класса Nexus S / Galaxy S1 / Moto G?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble очень требователен к ресурсам, поэтому производительность на слабых устройствах, так же как и на более мощных, может страдать. Обновления будут стремиться улучшить производительность Link Bubble, но многого с этим не сделаешь.<br/><br/>Технический ответ: Link Bubble требует использования Service и WebView для минимальной работы. Часто присутствуют несколько WebView и даже несколько Activity.
 Естественно, открытие всех элементов (особенно WebView) потребляет <i>много</i> памяти и ресурсов. Слабые устройства обычно обладают меньшим количеством памяти, чем того требует Link Bubble, поэтому страдает производительность, так как приходится часто вызывать сборщики мусора.
@@ -273,12 +294,13 @@ Link Bubble.]]></string>
     <string name="faq_change_default_browser_question">Как сменить стандартный браузер с Link Bubble на другой?</string>
     <string name="faq_change_default_browser_answer">Настройки -> Приложения -> Загруженные -> Link Bubble -> Сбросить значения по умолчанию.</string>
     <string name="faq_pro_trial_question">Как работает пробный режим Link Bubble Pro?</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• На первые 24 часа пользователи бесплатной версии Link Bubble получают доступ ко всем функциям, доступным в Pro-версии (несколько пузырей, открытие ссылкой из всех приложений, и так далее).<br/>
-• Во время этого единоразового пробного периода Pro-функции Link Bubble будут доступны на всех ваших устройствах.<br/>
-• Таймер в левом верхнем углу экрана будет показывать, сколько времени у вас ещё осталось.<br/>
-• Загрузившие Link Bubble до версии 1.1 также имеют доступ к пробному периоду.<br/>
-• в целях безопасности пробный период привязывается к вашему email. Если такового нет на устройстве, пробный период не будет доступен.<br/>
-• К сожалению, пробный период нельзя сбросить. Вы сможете пользоваться Pro-функциями только первые 24 часа после установки Link Bubble.]]></string>
+    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
+        Pro\'s premium features.<br/>
+        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
+        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
+        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
+        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
+        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
     <string name="faq_report_bug_question">Сообщить об ошибке</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -296,8 +318,9 @@ Link Bubble.]]></string>
     <string name="trial_time_on_click">Осталось %1$s от Вашей 24-часовой пробы Link Bubble Pro.</string>
 
     <string name="credits_title">Разработчики Link Bubble</string>
+    <string name="credits_name">Link Bubble</string>
     <string name="credits_credit">Концепт, дизайн и программирование </string>
-    <string name="credits_app_copyright">Авторские права защищены: 2015, Link Bubble.</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <!--
     <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.

@@ -4,8 +4,8 @@
     <string name="download_activity_label">Stahování</string>
     <string name="send_intent_label">Otevřít pomocí Link Bubble</string>
     <string name="notification_summary">Po kliknutí se schovají všechny otevřené bubliny</string>
-    <string name="notification_default_summary">Touch to Hide, expand to Close All</string>
-    <string name="notification_unhide_summary">Touch to Unhide, expand to Close All</string>
+    <string name="notification_default_summary">Kliknutím schovat, roztažením zavřít vše</string>
+    <string name="notification_unhide_summary">Kliknutím odkrýt, roztažením zavřít vše</string>
     <string name="notification_action_close_all">Zavřít vše</string>
     <string name="notification_action_hide">Schovat</string>
     <string name="share_picker_label">Další sdílení</string>
@@ -31,26 +31,32 @@
     <string name="action_close_tab">Zavřít bublinu</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Vrátit</string>
+    <string name="action_add">Add</string>
+    <string name="action_no_recommended">No (recommended)</string>
     <string name="share_via">Sdílet přes…</string>
     <string name="not_set">Nenastaven</string>
 
+    <string name="warning">Warning!</string>
+    <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
+
     <string name="share_invalid_data">Link Bubble nedokáže sdílet tuto položku, protože neobsahuje platný odkaz.</string>
     <string name="consume_activity_not_found">Nelze najít aplikaci. Zkuste v nastavení změnit chování bubliny.</string>
+    <string name="consume_activity_security_exception">Unable to share to external application.</string>
 
     <string name="upgrade">Upgrade</string>
     <string name="upgrade_to_pro">Přejít na verzi Pro</string>
-    <string name="upgrade_ok_google">Want to load Google Now by speaking \"OK, Google\"?</string>
+    <string name="upgrade_ok_google">Chcete načíst Google Now pomocí příkazu \"OK, Google\"?</string>
     <string name="upgrade_article_mode">Chcete odkazy otevírat ve Čtečce?</string>
     <string name="upgrade_article_mode_wear">Chcete odkazy otevírat na chytrých hodinkách Android Wear?</string>
     <string name="upgrade_theme">Chcete použít jiný motiv?</string>
-    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
-        Load multiple tabs at once.\n •
-        Change theme.\n •
-        Use Reading Mode.\n •
-        Android Wear support.\n •
-        Use \"OK, Google\" voice activation.\n •
-        Support me as I develop this app :)
-        </string>
+    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
+    <string name="upgrade_from_settings_summary">Přejdi na verzi Link Bubble Pro a budeš moci:\n •
+Načíst najednou více záložek.\n •
+Změnit motiv.\n •
+Používat Čtečku.\n •
+Používat Link Bubble na Androidu Wear.\n •
+Používat příkaz \"OK, Google\".\n •
+Podpořit mě v dalším vývoji aplikace. :)</string>
 
     <string name="undo_close_tab_title">Zavřeno %1$s</string>
     <string name="undo_close_tab_no_title">Zavřená záložka</string>
@@ -63,6 +69,7 @@
 
     <string name="preference_category_general">Obecné</string>
     <string name="preference_category_configuration">Ovládání aplikace</string>
+    <string name="preference_category_configuration2">Configuration</string>
     <string name="preference_category_browser">Prohlížeč</string>
     <string name="preference_enabled_title">Povoleno</string>
     <string name="preference_auto_content_display_link_loaded_title">Automatické otevření</string>
@@ -70,7 +77,7 @@
 
     <string name="preference_left_consume_bubble_title">Levá bublina</string>
     <string name="preference_right_consume_bubble_title">Pravá bublina</string>
-    <string name="preference_double_tap_title">Link double tap</string>
+    <string name="preference_double_tap_title">Dvojí kliknutí na odkaz</string>
     <string name="preference_configure_bubble_title">Nastavit bublinu</string>
     <string name="preference_category_debug">Ladit</string>
     <string name="preference_default_browser">Výchozí sekundární prohlížeč</string>
@@ -78,7 +85,7 @@
     <string name="preference_category_fallback_browser">Výchozí sekundární prohlížeč</string>
     <string name="preference_category_other_apps">Ostatní aplikace</string>
     <string name="preference_default_apps_title">Výchozí aplikace</string>
-    <string name="preference_default_apps_summary">Fallback browser, url-specific apps</string>
+    <string name="preference_default_apps_summary">Sekundární prohlížeč a jiné aplikace</string>
     <string name="preference_default_apps_notice_summary">Používá se, pokud ve vašem systému umí odkaz otevřít jedna nebo více aplikací kromě prohlížečů.\n\nPo kliknutí už nebudou výchozí.</string>
     <string name="preference_default_apps_notice_no_defaults_summary">Používá se, pokud ve vašem systému umí odkaz otevřít jedna nebo více aplikací kromě prohlížečů.
 Můžete si nastavit výchozí aplikaci pro otevírání takových odkazů.\n\nVýchozí aplikace je v tomto případě nastavena,
@@ -86,26 +93,28 @@ jakmile přes Link Bubble načtete odkazy.</string>
     <string name="preference_google_account_redirect_title">Přesměrování na účet Googlu</string>
     <string name="preference_google_account_redirect_summary">Přesměruje odkazy accounts.google.com do zvoleného sekundárního prohlížeče</string>
     <string name="preference_set_default_browser_title">Nastavit výchozí systémový prohlížeč</string>
-    <string name="preference_set_default_browser_summary">Link Bubble musí být nastaven jako výchozí systémový prohlížeč, aby mohl fungovat. Po kliknutí jej nastavíte.</string>
+    <string name="preference_set_default_browser_summary">Link Bubble must be the default system browser to work. Tap to configure.</string>
     <string name="preference_more">Více…</string>
     <string name="preference_intercept_links_from_title">Zpracovat odkazy z</string>
     <string name="preference_intercept_links_from_note">Poznámka: Zpracování odkazů jen z jedné aplikace je omezení pouze bezplatné verze Link Bubble. 
 Chcete přejít na verzi Pro?</string>
-    <string name="preference_intercept_links_from_disabled_for_L">Google have removed the API required for this functionality from L.</string>
+    <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
     <string name="preference_scan_for_youtube_embeds_title">Zkontrolovat náhledy z YouTube</string>
     <string name="preference_scan_for_youtube_embeds_summary">Zobrazit zkratky pro načítání vložených videí v aplikaci YouTube.</string>
     <string name="preference_webview_battery_save_title">Úsporný režim (beta)</string>
-    <string name="preference_webview_battery_save_aggressive_title">Aggressive</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Pause the updating of web pages when Link Bubble is minimized.\nPages in the process of loading will finish loading before pausing.</string>
+    <string name="preference_webview_battery_save_aggressive_title">Agresivní</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Zastav aktualizování stránek, když je Link Bubble minimalizovaný.\nStávající stránky se načtou do konce a až pak se proces zastaví.</string>
     <string name="preference_webview_battery_save_default_title">Výchozí</string>
-    <string name="preference_webview_battery_save_default_summary">Pause the updating of web pages when the screen is off and resume when your device is unlocked.\nPages in the process of loading will finish loading before pausing.</string>
-    <string name="preference_webview_battery_save_off_title">Off</string>
-    <string name="preference_webview_battery_save_off_summary">Web pages are always active. Useful when streaming YouTube videos and the like.</string>
+    <string name="preference_webview_battery_save_default_summary">Zastav aktualizování stránek, když je displej vypnutý, a pokračuj, když je zařízení opět odemknuté.\nStávající stránky se načtou do konce a až pak se proces zastaví.</string>
+    <string name="preference_webview_battery_save_off_title">Vypnout</string>
+    <string name="preference_webview_battery_save_off_summary">Webové stránky jsou vždy aktivní. Je to užitečné při přehrávání videí z YouTube apod.</string>
     <string name="preference_theme_title">Motiv</string>
     <string name="preference_theme_light_color">Světlý (barva podle ikonky)</string>
     <string name="preference_theme_light_no_color">Světlý (neutrální barva)</string>
     <string name="preference_theme_dark_color">Tmavý (barva podle ikonky)</string>
     <string name="preference_theme_dark_no_color">Tmavý (neutrální barva)</string>
+    <string name="preference_theme_toolbar_title">Color toolbar</string>
+    <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
     <string name="preference_article_mode_title">Čtečka (beta)</string>
     <string name="preference_reading_mode_on_wear_title">Čtečka na chytrých hodinkách</string>
     <string name="preference_article_mode_summary">Zapíná se tlačítkem na hlavním panelu</string>
@@ -121,7 +130,7 @@ Chcete přejít na verzi Pro?</string>
     <string name="preference_clear_passwords">Hesla</string>
     <string name="preference_incognito_title">Anonymní režim</string>
     <string name="preference_incognito_summary">Neukládá historii prohlížení ani cookies</string>
-    <string name="incognito_mode_changed_reloading_current">Incognito setting changed. Reloading current bubbles…</string>
+    <string name="incognito_mode_changed_reloading_current">Nastavení anonymního režimu změněno. Aktualizuji současné bubliny…</string>
     <string name="preference_user_agent_title">User Agent</string>
     <string-array name="preference_user_agent_options">
         <item>Výchozí</item>
@@ -129,6 +138,15 @@ Chcete přejít na verzi Pro?</string>
         <item>Chrome na tabletu</item>
         <item>Chrome na desktopu</item>
     </string-array>
+
+    <string name="preference_domains_title">Domain redirects</string>
+    <string name="preference_domains_summary">Specify links to always load in your fallback browser.</string>
+    <string name="preference_redirects_title">Redirect to fallback browser</string>
+    <string name="preference_add_domain_title">Add domain</string>
+    <string name="add_domain_hint">Url host</string>
+    <string name="add_domain_detail">Specify only the \'main\' portion of a website address. E.g.,
+        \"accounts.google.com\" or \"bbc.co.uk\".</string>
+    <string name="add_domain_error">Unable to add \"%1$s\", as it is not a valid URL host.</string>
 
     <string name="preference_help_title">Nápověda</string>
     <string name="preference_show_welcome_message_title">Ukázat uvítací stránku</string>
@@ -146,7 +164,7 @@ Chcete přejít na verzi Pro?</string>
     <string name="preference_more_summary">\"OK, Google\", Čtečka a a další</string>
     <string name="preference_show_undo_close_tab_title">Dotaz pro vrácení zavřené záložky</string>
 
-    <string name="preference_my_other_apps_title">Více aplikací od Link Bubble</string>
+    <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">Líbí se vám Link Bubble? Podívejte se na mé další aplikace.</string>
 
     <string name="preference_ok_google_title">Hlasová aktivace pomocí \"OK, Google\"</string>
@@ -157,13 +175,13 @@ Chcete přejít na verzi Pro?</string>
     <string name="remove_default_title">Vymazat výchozí?</string>
     <string name="remove_default_message">Vymazat %1$s jako výchozí aplikaci pro načítání odkazů %2$s?\n\nPoznámka: novou výchozí aplikaci můžete nastavit, 
 až příště načtete odkaz z %2$s.</string>
-    <string name="long_press_unsupported_default_browser">Omezení systému Android nedovolí Link Bubble, aby vybral tuto položku.\nOtevřít odkaz v %1$s?</string>
-    <string name="long_press_unsupported_no_default_browser">Omezení systému Android nedovolí Link Bubble, aby vybral tuto položku.\nOtevřít odkaz v prohlížeči.</string>
+    <string name="long_press_unsupported_default_browser">Unable to display this item. Open link in %1$s?</string>
+    <string name="long_press_unsupported_no_default_browser">Unable to display this item. Open link in a browser.</string>
     <string name="unsupported_scheme_default_browser">Tento typ odkazu zatím není podporován. Otevřít stránku v %1$s?</string>
     <string name="unsupported_scheme_no_default_browser">Tento typ odkazu zatím není podporován. Otevřít stránku v prohlížeči.</string>
     <string name="unsupported_scheme">Tento typ odkazu zatím není podporován.</string>
-    <string name="unsupported_drop_down_default_browser">Omezení systému Android nedovolí Link Bubble, aby zobrazil rozbalovací menu.\nOtevřít v %1$s?</string>
-    <string name="unsupported_drop_down_no_default_browser">Omezení systému Android nedovolí Link Bubble, aby zobrazil rozbalovací menu.\nOtevřít v odkaz v prohlížeči.</string>
+    <string name="unsupported_drop_down_default_browser">Unable to interact with this item. Open in %1$s?</string>
+    <string name="unsupported_drop_down_no_default_browser">Unable to interact with this item. Open link in a browser.</string>
 
     <string name="consume_category_view">Prohlédnout odkaz</string>
     <string name="consume_category_share">Odeslat/sdílet odkaz</string>
@@ -187,7 +205,8 @@ až příště načtete odkaz z %2$s.</string>
     <string name="private_data_cleared">Osobní data smazána</string>
     <string name="private_data_cleared_reloading_current">Osobní data smazána. Aktualizace stávajících bublin…</string>
     <string name="user_agent_changed_reloading_current">User Agent změněn. Aktualizace stávajících bublin…</string>
-    <string name="article_mode_changed_reloading_current">Reading Mode setting changed. Reloading current bubbles…</string>
+    <string name="theme_toolbar_reloading_current">Color toolbar setting changed. Reloading current bubbles…</string>
+    <string name="article_mode_changed_reloading_current">Nastavení Čtečky změněno. Aktualizuji současné bubliny…</string>
     <string name="link_loaded_with_app">Načteno s %1$s</string>
     <string name="link_redirected">Přesměrováno do %1$s</string>
 
@@ -226,16 +245,16 @@ Link Bubble je prohlížeč a prohlížeče na Androidu už dlouho používají 
 Pokud žádná předchozí stránka není, tlačítko Zpět stávající stránku zavře.
 Link Bubble se tímto standardem také řídí.]]></string>
     <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble neumí zpracovat odkazy!]]></string>
-    <string name="faq_app_internal_browser_answer"><![CDATA[There are 3 causes of this:<br/>
-            1). A browser other thank Link Bubble is set as your default system browser. See the
-            \"Set default system browser\" option in Link Bubble\'s Settings to change this.<br/>
-            2). Link Bubble has been configured not to intercept links from your current app. See the
-            \"Intercept links from\" option in Link Bubble\'s Settings.<br/>
-            3). Apps such as Talon, Reddit is Fun and others have inbuilt browsers that render links. Check the settings of that app and
-            enable \"External browser\" or deselect \"Integrated browser\" or similar.
-            <br/><br/>Note: other browser apps such as Chrome are hardcoded to load links in themselves, and thus Link Bubble is unable
-            to load links clicked from other browser apps.
-            ]]></string>
+    <string name="faq_app_internal_browser_answer"><![CDATA[K tomu existují tři příčiny:<br/>
+1). Jiný prohlížeč než Link Bubble je nastaven jako výchozí. Podívej se do nastavení
+\"Nastavit výchozí systémový prohlížeč\".<br/>
+2). Link Bubble nebyl nastaven, aby zpracovával odkazy ze současné aplikace. Podívej se do nastavení
+\"Zpracovat odkazy z\".<br/>
+3). Aplikace jako Talon, Reddit is Fun a další mají vlastní interní prohlížeče. Podívej se do jejich nastavení a aktivuj funkci
+ \"Externí prohlížeč\", nebo zruš funkci \"Interní prohlížeč\" či něco podobného.
+<br/><br/>Poznámka: Ostatní prohlížeče jako Chrome mají napevno nastaveno, že budou odkazy otevírat samy, 
+a proto Link Bubble nemůže zpracovat odkazy, na které klikneš v jiných prohlížečích.
+]]></string>
     <string name="faq_article_mode_question">Jak mám použít Čtečku? Proč některé odkazy nefungují?</string>
     <string name="faq_article_mode_answer"><![CDATA[Nejdříve se ujistěte, že máte Čtečku povolenou (Nastavení -> Ovládání aplikace / Více&#8230; -> Čtečka (beta)).<br/><br/>
 Pokud odteď bude Čtečka pro současnou záložku dostupná, ikona Čtečky se zobrazí na hlavním panelu (vedle tlačítka pro sdílení).
@@ -245,8 +264,8 @@ Poznámka: Extrahování obsahu ze stránky je nespolehlivý proces a nemusí v�
     <string name="faq_future_features_answer">Nikdy neříkej nikdy, ale zatím se Link Bubble soustřeďuje pouze na to, 
 aby co nejlépe načítal a zobrazoval odkazy z jiných aplikací.</string>
     <string name="faq_translations_question">Můžu pomoci s překladem aplikace?</string>
-    <string name="faq_translations_answer"><![CDATA[Doufám, že podporu jazykových verzí přidám co nejdříve.<br/><br/>Až se tak stane, určitě o tom dám vědět na Google+
-(+Link Bubble), abyste mi mohli s překladem pomoci. Takže mě pečlivě sledujte.]]></string>
+    <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
+            (+Link Bubble) for help with translations, so be sure to keep an eye on my feed.]]></string>
     <string name="faq_roadmap_question">Zveřejníte roadmapu s chystanými funkcemi? Můžu o nových vychytávkách hlasovat?</string>
     <string name="faq_roadmap_answer">Z konkurenčních důvodů se bojím, že odpověď na obě otázky je  \'no\'.<br/><br/></string>
     <string name="faq_alternate_payment_question">Nemám platební kartu a/nebo nemůžu nakupovat aplikace v Google Play. Jak můžu získat verzi Pro?</string>
@@ -268,7 +287,7 @@ Rozhodně to není ideální, ale je to lepší než nechat aplikaci spadnout, c
     <string name="faq_translucent_status_bar_question">Proč se aplikace nepřekresluje přes průsvitný stavový řádek?</string>
     <string name="faq_translucent_status_bar_answer">Je to bohužel omezení samotného systému Android.</string>
     <string name="faq_beta_programme_question">Existuje nějaký beta program? Jak se do něj můžu zapojit?</string>
-    <string name="faq_beta_programme_answer">Podrobnosti týkající se beta programu budou oznámeny v nejbližší době. Sledujte můj profil na Google+ (+Link Bubble), kde o něm určitě napíšu.</string>
+    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Link Bubble) feed for announcements.</string>
     <string name="faq_low_spec_performance_question">Proč Link Bubble běží pomalu na zařízeních jako Nexus S, Galaxy S nebo Moto G?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble je velmi náročný na systémové prostředky, v důsledku toho nemohou zařízení se slabšími specifikacemi
 běžet stejně rychle jako výkonná zařízení. Chystané aktualizace zlepší výkon Link Bubble, 
@@ -292,12 +311,13 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
     <string name="faq_change_default_browser_question">Jak můžu odstranit Link Bubble coby výchozí prohlížeč?</string>
     <string name="faq_change_default_browser_answer">Nastavení systému -> Aplikace -> Stažené -> Link Bubble -> Vymazat výchozí nastavení.</string>
     <string name="faq_pro_trial_question">Jak funguje trial verze Link Bubble Pro?</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• Prvních 24 hodin po nainstalování bude mít bezplatná verze Link Bubble dostupné všechny funkce prémiové edice Pro (více záložek, zpracování z více aplikací atd.).<br/>
-• Během této doby budou prémiové funkce Link Bubble Pro dostupné na všech vašich zařízeních.<br/>
-• Na hlavní stránce Link Bubble bude v levém horním rohu časovač, který ukáže, jak dlouho ještě trial verze poběží.<br/>
-• Trial verzi si mohou vyzkoušet i lidé, kteří Link Bubble používali před verzí 1.1.<br/>
-• Kvůli ověření platnosti je trial verze spojena s vaším e-mailem. Pokud se ve vašem zařízení žádní e-mailová adresa nenachází, zkušeností doba nebude dostupná.<br/>
-• Omlouvám se, ale vaše trial verze nemůže být znovu obnovena. Užijte si prémiových funkcí Pro prvních 24 hodin po instalaci Link Bubble.]]></string>
+    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
+        Pro\'s premium features.<br/>
+        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
+        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
+        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
+        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
+        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
     <string name="faq_report_bug_question">Nahlásit chybu</string>
     <string name="faq_report_bug_answer"><![CDATA[e-mail]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -342,7 +362,7 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
     <string name="requesting_location_message">%1$s chce znát vaši polohu. Souhlasíte?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[Pokračováním potvrzujete, že souhlasíte s
-<a href="http://www.linkbubble.com/terms">podmínkami služby</a> a <a href="http://www.linkbubble.com/privacy">zásadami ochrany soukromí</a> společnosti Link Bubble.]]></string>
+<a href="http://www.linkbubble.com/terms">podmínkami použití</a> a <a href="http://www.linkbubble.com/privacy">zásadami ochrany soukromí</a> aplikace Link Bubble.]]></string>
 
     <string name="service_name">Link Bubble Renderer</string>
     <string name="notification_title">Link Bubble</string>
@@ -379,13 +399,11 @@ při nákupu není nastavena v Play Store na tomto zařízení.</string>
 
     <string name="pro_store_listing_title">Link Bubble Pro</string>
     <string name="pro_store_listing_description_title">Verze Pro odemkne všechny funkce aplikace Link Bubble.</string>
-    <string name="pro_store_listing_description_features">
-    Upgrades include:
-    • Infinite number of tabs (free version is limited to just one tab).
-    • Theme selection
-    • Remove the upgrade incentives throughout the free version.
-    • Support me so I get to make more of these apps :)
-    </string>
+    <string name="pro_store_listing_description_features">Přechod na verzi Pro přinese:
+• Neomezený počet záložek (v bezplatné verzi jen jedna).
+• Volba motivů
+• Už vás nebudu otravovat s přechodem na Pro.
+• Podporu, abych mohl vytvářet další takové aplikace. :)</string>
 
     <string name="welcome_page_title">Vítejte v Link Bubble!</string>
     <string name="welcome_page_trial_notice">Poznámka: Prvních 24 hodin po první instalaci Link Bubble budete mít přístup ke všem prémiovým funkcím Link Bubble Pro.</string>
