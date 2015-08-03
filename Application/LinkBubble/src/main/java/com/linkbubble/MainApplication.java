@@ -523,12 +523,15 @@ public class MainApplication extends Application {
     private void checkStrings() {
         String blerg = "blerg";
         String[] langs = {"ar", "cs", "cs-rCZ", "da", "de", "es", "fr", "hi", "hu-rHU", "it", "ja-rJP", "nl", "pl-rPL",
-                "pt-rBR", "pt-rPT", "ru", "sv", "th", "th-rTH", "tr", "zh-rCN", "zh-rTW"};
+                "pt-rBR", "pt-rPT", "ru", "sv", "th", "th-rTH", "tr", "zh-rCN", "zh-rTW",
+                "af-rZA", "he", "id", "ko", "no", "sk-rSK", "tr-rCY", "zh-rHK" };
         for (String lang : langs) {
             Util.setLocale(this, lang);
             Log.e("langcheck", "setLocale():" + lang);
             Log.d("langcheck", String.format(getString(R.string.trial_time_on_click), blerg));
-            Log.d("langcheck", String.format(getString(R.string.remove_default_message), blerg, blerg, blerg));
+            Log.d("langcheck", String.format(getString(R.string.untrusted_certificate), blerg));
+            Log.d("langcheck", String.format(getString(R.string.add_domain_error), blerg));
+            Log.d("langcheck", String.format(getString(R.string.remove_default_message), blerg, blerg));
             Log.d("langcheck", String.format(getString(R.string.action_open_in_browser), blerg));
             Log.d("langcheck", String.format(getString(R.string.link_redirected), blerg));
             Log.d("langcheck", String.format(getString(R.string.long_press_unsupported_default_browser), blerg));
@@ -542,3 +545,8 @@ public class MainApplication extends Application {
         }
     } */
 }
+
+
+
+
+
