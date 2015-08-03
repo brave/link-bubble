@@ -9,11 +9,19 @@ buildscript {
 
 // Manifest version information!
 def versionMajor = 1
-def versionMinor = 1
+def versionMinor = 2
 def versionPatch = 0
 def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 apply plugin:'com.android.application'
+boolean isRelease = false;
+for (int i = 0; i < project.gradle.startParameter.taskNames.size(); i++) {
+    String item = project.gradle.startParameter.taskNames.get(i);
+    if (item.contains("Release")) {
+        isRelease = true;
+    }
+}
+
 
 repositories {
     mavenCentral()
@@ -49,14 +57,18 @@ android {
 
     signingConfigs {
         release {
-            //storeFile file(System.getenv("KEYSTORE_LOCATION"))
-            //keyAlias System.getenv("LINK_BUBBLE_KEY_ALIAS")
-            //storePassword System.getenv("KEYSTORE_PASSWORD")
-            //keyPassword System.getenv("LINK_BUBBLE_KEY_PASSWORD")
+            if (isRelease) {
+                storePassword System.getenv("LINK_BUBBLE_KEYSTORE_PASSWORD")
+                keyAlias System.getenv("LINK_BUBBLE_KEY_ALIAS")
+                keyPassword System.getenv("LINK_BUBBLE_KEY_PASSWORD")
+                storeFile file(System.getenv("LINK_BUBBLE_KEYSTORE_LOCATION"))
+            }
         }
     }
     buildTypes {
         release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
     }

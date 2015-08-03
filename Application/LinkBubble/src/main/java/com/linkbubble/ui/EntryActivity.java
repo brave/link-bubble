@@ -19,7 +19,6 @@ import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.CrashTracking;
-import com.linkbubble.util.Tamper;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -48,15 +47,6 @@ public class EntryActivity extends Activity {
         CrashTracking.init(this);
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, true);
-
-        Tamper.checkForTamper(getApplicationContext(), new Tamper.Listener() {
-            @Override
-            public void onTweaked() {
-                if (MainController.get() != null) {
-                    MainController.get().closeAllBubbles();
-                }
-            }
-        });
 
         if (isActionView || isActionSend) {
             boolean openLink = false;
