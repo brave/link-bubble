@@ -31,11 +31,17 @@
     <string name="action_close_tab">Fermer la bulle</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Défaire</string>
+    <string name="action_add">Add</string>
+    <string name="action_no_recommended">No (recommended)</string>
     <string name="share_via">Partager via…</string>
     <string name="not_set">Non défini</string>
 
+    <string name="warning">Warning!</string>
+    <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
+
     <string name="share_invalid_data">Link Bubble ne peut pas partager cet élément car ce n\'est pas une URL valide.</string>
     <string name="consume_activity_not_found">Impossible de trouver l\'application. Veuillez changer l\'action de la bulle dans les paramètres.</string>
+    <string name="consume_activity_security_exception">Unable to share to external application.</string>
 
     <string name="upgrade">Mettre à niveau</string>
     <string name="upgrade_to_pro">Passer à la version Pro</string>
@@ -43,6 +49,7 @@
     <string name="upgrade_article_mode">Want to view links in Reading Mode?</string>
     <string name="upgrade_article_mode_wear">Want to view links on Android Wear devices via Reading Mode?</string>
     <string name="upgrade_theme">Want to use a different theme?</string>
+    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
     <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
         Load multiple tabs at once.\n •
         Change theme.\n •
@@ -63,6 +70,7 @@
 
     <string name="preference_category_general">Général</string>
     <string name="preference_category_configuration">Contrôles de l\'application</string>
+    <string name="preference_category_configuration2">Configuration</string>
     <string name="preference_category_browser">Navigateur</string>
     <string name="preference_enabled_title">Activé</string>
     <string name="preference_auto_content_display_link_loaded_title">Agrandir automatiquement</string>
@@ -85,11 +93,11 @@ Appuyez dessus pour en retirer une.</string>
     <string name="preference_google_account_redirect_title">Redirection compte Google</string>
     <string name="preference_google_account_redirect_summary">Rediriger les liens accounts.google.com vers le navigateur par défaut.</string>
     <string name="preference_set_default_browser_title">Définir comme navigateur par défaut</string>
-    <string name="preference_set_default_browser_summary">Link Bubble doit être défini comme le navigateur par défaut du système pour fonctionner. Appuyer pour configurer.</string>
+    <string name="preference_set_default_browser_summary">Link Bubble must be the default system browser to work. Tap to configure.</string>
     <string name="preference_more">Plus…</string>
     <string name="preference_intercept_links_from_title">Intercepter les liens depuis</string>
     <string name="preference_intercept_links_from_note">À noter : la restriction selon laquelle l\'interception des liens ne fonctionne que depuis une seule application n\'existe que dans la version gratuite de Link Bubble. Passer à la version Pro ?</string>
-    <string name="preference_intercept_links_from_disabled_for_L">Google have removed the API required for this functionality from L.</string>
+    <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
     <string name="preference_scan_for_youtube_embeds_title">Vérifier les incrustations YouTube</string>
     <string name="preference_scan_for_youtube_embeds_summary">Afficher le raccourci pour charger les vidéos intégrées dans l\'application Youtube.</string>
     <string name="preference_webview_battery_save_title">Battery Save Mode (Beta)</string>
@@ -104,6 +112,8 @@ Appuyez dessus pour en retirer une.</string>
     <string name="preference_theme_light_no_color">Clair + couleurs neutres</string>
     <string name="preference_theme_dark_color">Sombre + icônes colorées</string>
     <string name="preference_theme_dark_no_color">Sombre + couleurs neutres</string>
+    <string name="preference_theme_toolbar_title">Color toolbar</string>
+    <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
     <string name="preference_article_mode_title">Mode lecture (Beta)</string>
     <string name="preference_reading_mode_on_wear_title">Reading Mode on Wear</string>
     <string name="preference_article_mode_summary">Toggled via button on action bar</string>
@@ -128,6 +138,15 @@ Appuyez dessus pour en retirer une.</string>
         <item>Chrome Bureau</item>
     </string-array>
 
+    <string name="preference_domains_title">Domain redirects</string>
+    <string name="preference_domains_summary">Specify links to always load in your fallback browser.</string>
+    <string name="preference_redirects_title">Redirect to fallback browser</string>
+    <string name="preference_add_domain_title">Add domain</string>
+    <string name="add_domain_hint">Url host</string>
+    <string name="add_domain_detail">Specify only the \'main\' portion of a website address. E.g.,
+        \"accounts.google.com\" or \"bbc.co.uk\".</string>
+    <string name="add_domain_error">Unable to add \"%1$s\", as it is not a valid URL host.</string>
+
     <string name="preference_help_title">Aide</string>
     <string name="preference_show_welcome_message_title">Afficher la page de bienvenue</string>
     <string name="preference_credits_title">Crédits</string>
@@ -144,7 +163,7 @@ Appuyez dessus pour en retirer une.</string>
     <string name="preference_more_summary">\"OK, Google\", Reading Mode and more</string>
     <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
-    <string name="preference_my_other_apps_title">Plus d\'applications par Link Bubble</string>
+    <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">Vous aimez Link Bubble ? Pourquoi ne pas jeter un coup d\'œil à mes autres applications ?</string>
 
     <string name="preference_ok_google_title">\"OK, Google\" voice activation</string>
@@ -154,13 +173,13 @@ Appuyez dessus pour en retirer une.</string>
 
     <string name="remove_default_title">Retirer l\'action par défaut ?</string>
     <string name="remove_default_message">Retirer %1$s comme application par défaut pour l\'ouverture des liens %2$s ? \n\nNote: vous pourrez définir une nouvelle application par défaut la prochaine fois que vous ouvrirez un lien %2$s.</string>
-    <string name="long_press_unsupported_default_browser">Des limitations d\'Android empêchent Link Bubble de sélectionner cet élément.\nOuvrir le lien dans %1$s ?</string>
-    <string name="long_press_unsupported_no_default_browser">Des limitations d\'Android empêchent Link Bubble de sélectionner cet élément.\nOuvrir le lien dans un navigateur ?</string>
+    <string name="long_press_unsupported_default_browser">Unable to display this item. Open link in %1$s?</string>
+    <string name="long_press_unsupported_no_default_browser">Unable to display this item. Open link in a browser.</string>
     <string name="unsupported_scheme_default_browser">Type de lien actuellement non compatible. Ouvrir la page dans %1$s ?</string>
     <string name="unsupported_scheme_no_default_browser">Type de lien actuellement non compatible. Ouvrir la page dans le navigateur ?</string>
     <string name="unsupported_scheme">Type de lien actuellement non compatible.</string>
-    <string name="unsupported_drop_down_default_browser">Les limitations du système Android empêche les menus déroulants de s\'ouvrir dans Link Bubble. \nOuvrir dans %1$s ?</string>
-    <string name="unsupported_drop_down_no_default_browser">Les limitations du système Android empêche les menus déroulants de s\'ouvrir dans Link Bubble. \nOuvrir dans le navigateur.</string>
+    <string name="unsupported_drop_down_default_browser">Unable to interact with this item. Open in %1$s?</string>
+    <string name="unsupported_drop_down_no_default_browser">Unable to interact with this item. Open link in a browser.</string>
 
     <string name="consume_category_view">Voir lien</string>
     <string name="consume_category_share">Envoyer ou partager le lien</string>
@@ -184,6 +203,7 @@ Appuyez dessus pour en retirer une.</string>
     <string name="private_data_cleared">Données privées effacées</string>
     <string name="private_data_cleared_reloading_current">Données privées effacées. Chargement de vos bulles actuelles...</string>
     <string name="user_agent_changed_reloading_current">Le User Agent a été modifié. Chargement de vos bulles actuelles...</string>
+    <string name="theme_toolbar_reloading_current">Color toolbar setting changed. Reloading current bubbles…</string>
     <string name="article_mode_changed_reloading_current">Reading Mode setting changed. Reloading current bubbles…</string>
     <string name="link_loaded_with_app">Chargé avec %1$s</string>
     <string name="link_redirected">Rediriger vers %1$s</string>
@@ -241,7 +261,8 @@ Link Bubble suit ce standard.]]></string>
     <string name="faq_future_features_question">Allez-vous ajouter les signets, favoris, extensions etc.?</string>
     <string name="faq_future_features_answer">Ne jamais dire jamais, mais pour le moment Link Bubble est concentrée uniquement sur le fait d\'être la meilleure solution pour ouvrir et consommer des liens ouverts depuis d\'autres applications.</string>
     <string name="faq_translations_question">Can I help translate the app?</string>
-    <string name="faq_translations_answer"><![CDATA[J\'espère ajouter la traduction rapidement.<br/><br/>Quand je le ferai, je posterai un message sur Google+ (+Link Bubble) pour de l\'aide avec la traduction, alors soyez sûrs de garder un oeil sur mon flux.]]></string>
+    <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
+            (+Link Bubble) for help with translations, so be sure to keep an eye on my feed.]]></string>
     <string name="faq_roadmap_question">Avez-vous une feuille de route ? Puis-je voter pour les fonctionnalités à venir ?</string>
     <string name="faq_roadmap_answer">Pour des raisons de concurrence, j\'ai peur que la réponse à ces deux questions soit \'non\'.<br/><br/></string>
     <string name="faq_alternate_payment_question">Je n\'ai pas de carte de crédit et/ou je ne peux pas acheter sur le Google Play. Comment puis-je acheter la version Pro?</string>
@@ -258,7 +279,7 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="faq_translucent_status_bar_question">Pourquoi l\'application ne dessine-t-elle pas par-dessus la barre de statut transparente ?</string>
     <string name="faq_translucent_status_bar_answer">Malheureusement des limitations systèmes d\'Android empêchent cela.</string>
     <string name="faq_beta_programme_question">Y a-t-il un programme bêta ? Comment puis-je le rejoindre ?</string>
-    <string name="faq_beta_programme_answer">Des détails sur le programme bêta seront annoncé au moment convenu. Gardez un œil sur mon profil Google+ (+Link Bubble) pour les annonces.</string>
+    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Link Bubble) feed for announcements.</string>
     <string name="faq_low_spec_performance_question">Pourquoi Link Bubble est-il si lent sur mon Nexus S / Galaxy S1 / Moto G ?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble est très gourmande en ressources et par conséquent les appareils disposant de specs plus basses peuvent avoir du mal à la faire tourner aussi bien que les terminaux plus puissant. De futures mises à jour vont essayer d\'améliorer les performances de Link Bubble mais il ne faut pas s\'attendre à des miracles.<br/><br/>Réponse technique: Au minimum, Link Bubble nécessite l\'utilisation d\'un Service et une WebView pour fonctionner. Il y a souvent plusieurs WebViews et de multiples Activités. Naturellement, l\'allocation de ces items (surtout les WebViews) consomme <i>beaucoup<i> de mémoire/ressources. Les appareils peu puissants disposent généralement de moins de mémoire que ce que Link Bubble nécessite et les performances seront affectées. Par exemple, le maximum d\'allocation mémoire sur le Nexus S est de 48Mb, comparé aux 192Mb sur le Nexus 5.]]></string>
     <string name="faq_crap_webview_question">Parfois les pages web n\'affichent pas correctement ou ne jouent pas les vidéos.</string>
@@ -272,12 +293,13 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="faq_change_default_browser_question">Comment puis-je supprimer Link Bubble comme navigateur par défaut ?</string>
     <string name="faq_change_default_browser_answer">Paramètres -> Applications -> Téléchargées -> Link Bubble -> Effacer les actions par défaut.</string>
     <string name="faq_pro_trial_question">Comment fonctionne l\'essai gratuit de Link Bubble Pro ?</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• Pendant les 24h suivant l\'installation de Link Bubble, les utilisateurs de la version non Pro de Link Bubble auront accès à toutes les fonctionnalités de la version Pro (plusieurs onglets, ouverture de liens depuis toutes les applications, etc.).<br/>
-• Pendant cette période d\'essai unique, les fonctionnalités de la version Pro de Link Bubble seront disponibles pour tous vos appareils.<br/>
-• Un compte à rebours s\'affiche en haut à gauche de la fenêtre principale de Link Bubble pour vous informer du temps restant pour l\'essai.<br/>
-• Les personnes ayant essayé Link Bubble avant la version 1.1 sont éligibles pour cette période d\'essai.<br/>
-• Pour la vérification, la version d\'essai Pro est liéée à votre adresse email. Si aucune adresse email est trouvée sur l\'appareil, l\'essai ne sera pas disponible.<br/>
-• Désolé, mais la période d\'essai ne peut pas être réinitialisée. Appréciez s\'il vous plait la totalité de la version Pro pendant les premières 24h après l\'installation de Link Bubble.]]></string>
+    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
+        Pro\'s premium features.<br/>
+        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
+        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
+        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
+        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
+        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
     <string name="faq_report_bug_question">Signaler un bogue</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -321,8 +343,8 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
 
     <string name="requesting_location_message">%1$s demande votre localisation. L\'autoriser ?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
-    <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
+    <string name="accept_terms_and_privacy"><![CDATA[Si vous continuez, vous acceptez les <a href="http://www.linkbubble.com/terms">conditions d\'utilisation</a> et la <a href="http://www.linkbubble.com/privacy">politique de confidentialité</a> de Link Bubble.]]>
+</string>
 
     <string name="service_name">Moteur de rendu Link Bubble</string>
     <string name="notification_title">Link Bubble</string>

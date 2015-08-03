@@ -2,7 +2,12 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">ダウンローダー</string>
+    <string name="send_intent_label">Open with Link Bubble</string>
     <string name="notification_summary">タップですべてのバブルを隠す</string>
+    <string name="notification_default_summary">Touch to Hide, expand to Close All</string>
+    <string name="notification_unhide_summary">Touch to Unhide, expand to Close All</string>
+    <string name="notification_action_close_all">Close All</string>
+    <string name="notification_action_hide">Hide</string>
     <string name="share_picker_label">シェアメニュー</string>
 
     <string name="yes">はい</string>
@@ -25,17 +30,47 @@
     <string name="action_close_all">すべて閉じる</string>
     <string name="action_close_tab">バブルを閉じる</string>
     <string name="action_stop">停止</string>
+    <string name="action_undo">Undo</string>
+    <string name="action_add">Add</string>
+    <string name="action_no_recommended">No (recommended)</string>
     <string name="share_via">シェア…</string>
+    <string name="not_set">Not set</string>
+
+    <string name="warning">Warning!</string>
+    <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
 
     <string name="share_invalid_data">有効なURLではないためリンクバブルはこのリンクをシェアできません</string>
     <string name="consume_activity_not_found">目標アプリケーションが見つかりません。設定からバブルアクションを変えることをオススメします。</string>
+    <string name="consume_activity_security_exception">Unable to share to external application.</string>
+
+    <string name="upgrade">Upgrade</string>
+    <string name="upgrade_to_pro">Upgrade to Pro</string>
+    <string name="upgrade_ok_google">Want to load Google Now by speaking \"OK, Google\"?</string>
+    <string name="upgrade_article_mode">Want to view links in Reading Mode?</string>
+    <string name="upgrade_article_mode_wear">Want to view links on Android Wear devices via Reading Mode?</string>
+    <string name="upgrade_theme">Want to use a different theme?</string>
+    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
+    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
+        Load multiple tabs at once.\n •
+        Change theme.\n •
+        Use Reading Mode.\n •
+        Android Wear support.\n •
+        Use \"OK, Google\" voice activation.\n •
+        Support me as I develop this app :)
+        </string>
+
+    <string name="undo_close_tab_title">Closed %1$s</string>
+    <string name="undo_close_tab_no_title">Closed tab</string>
 
     <string name="pick_default_app">デフォルトアプリを設定</string>
     <string name="default_browser_set">リンクバブルはデフォルトブラウザに設定されました。</string>
+    <string name="invalid_send_action">Valid link not found.</string>
+    <string name="unable_to_launch_app">Unable to launch 3rd party application.</string>
     <string name="clear_history">履歴クリア</string>
 
     <string name="preference_category_general">その他</string>
     <string name="preference_category_configuration">アプリ操作</string>
+    <string name="preference_category_configuration2">Configuration</string>
     <string name="preference_category_browser">ブラウザ</string>
     <string name="preference_enabled_title">有効</string>
     <string name="preference_auto_content_display_link_loaded_title">自動で開く</string>
@@ -43,6 +78,7 @@
 
     <string name="preference_left_consume_bubble_title">左のバブル</string>
     <string name="preference_right_consume_bubble_title">右のバブル</string>
+    <string name="preference_double_tap_title">Link double tap</string>
     <string name="preference_configure_bubble_title">バブルの設定</string>
     <string name="preference_category_debug">デバッグ</string>
     <string name="preference_default_browser">フォールバック用ブラウザ</string>
@@ -50,6 +86,7 @@
     <string name="preference_category_fallback_browser">フォールバック用ブラウザ</string>
     <string name="preference_category_other_apps">その他のアプリ</string>
     <string name="preference_default_apps_title">デフォルトアプリ設定</string>
+    <string name="preference_default_apps_summary">Fallback browser, url-specific apps</string>
     <string name="preference_default_apps_notice_summary">多数のアプリが該当されたURLを利用できる場合優先するアプリを設定できます。\n\nアイテムをタップしてデフォルト設定を削除できます。</string>
     <string name="preference_default_apps_notice_no_defaults_summary">Used when one or more non-browser apps on your device can handle a URL,
                 you can configure the default app to load such links with.\n\nThe default app to use in this case is configured as
@@ -57,13 +94,30 @@
     <string name="preference_google_account_redirect_title">Googleアカウント転送</string>
     <string name="preference_google_account_redirect_summary">accounts.google.comをフォールバック用ブラウザへ転送する</string>
     <string name="preference_set_default_browser_title">デフォルトブラウザを設定</string>
-    <string name="preference_set_default_browser_summary">リンクバブルの正常動作はデフォルトブラウザに設定されるのが前提です。タップして設定しましょう。</string>
+    <string name="preference_set_default_browser_summary">Link Bubble must be the default system browser to work. Tap to configure.</string>
     <string name="preference_more">その他…</string>
     <string name="preference_intercept_links_from_title">リンクの傍受先</string>
     <string name="preference_intercept_links_from_note">注意：リンクバブルのフリーバージョンでは1つのアプリのリンクしか傍受しません。リンクバブルをアップグレードしますか？</string>
+    <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
     <string name="preference_scan_for_youtube_embeds_title">YouTubeの嵌め込みフレームをチェック</string>
     <string name="preference_scan_for_youtube_embeds_summary">嵌め込み映像をYouTubeアプリで開くようなショートカットを表示</string>
-
+    <string name="preference_webview_battery_save_title">Battery Save Mode (Beta)</string>
+    <string name="preference_webview_battery_save_aggressive_title">Aggressive</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Pause the updating of web pages when Link Bubble is minimized.\nPages in the process of loading will finish loading before pausing.</string>
+    <string name="preference_webview_battery_save_default_title">Default</string>
+    <string name="preference_webview_battery_save_default_summary">Pause the updating of web pages when the screen is off and resume when your device is unlocked.\nPages in the process of loading will finish loading before pausing.</string>
+    <string name="preference_webview_battery_save_off_title">Off</string>
+    <string name="preference_webview_battery_save_off_summary">Web pages are always active. Useful when streaming YouTube videos and the like.</string>
+    <string name="preference_theme_title">Theme</string>
+    <string name="preference_theme_light_color">Light + icon color</string>
+    <string name="preference_theme_light_no_color">Light + neutral color</string>
+    <string name="preference_theme_dark_color">Dark + icon color</string>
+    <string name="preference_theme_dark_no_color">Dark + neutral color</string>
+    <string name="preference_theme_toolbar_title">Color toolbar</string>
+    <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
+    <string name="preference_article_mode_title">Reading Mode (Beta)</string>
+    <string name="preference_reading_mode_on_wear_title">Reading Mode on Wear</string>
+    <string name="preference_article_mode_summary">Toggled via button on action bar</string>
     <string name="preference_webview_text_zoom_title">文字ズーム</string>
     <string name="preference_webview_text_zoom_note">注意：これを設定するとすべてのバブルは新しい文字ズームを適されるべくリロードします。</string>
     <string name="preference_webview_text_zoom_reloading_current">新しい文字ズームが適用されました。すべてのバブルがリロードされます…</string>
@@ -76,6 +130,7 @@
     <string name="preference_clear_passwords">パスワード</string>
     <string name="preference_incognito_title">シークレットモード</string>
     <string name="preference_incognito_summary">履歴とCookiesを保存しない</string>
+    <string name="incognito_mode_changed_reloading_current">Incognito setting changed. Reloading current bubbles…</string>
     <string name="preference_user_agent_title">ユーザーエージェント</string>
     <string-array name="preference_user_agent_options">
         <item>デフォルト</item>
@@ -83,6 +138,15 @@
         <item>Chrome タブレット</item>
         <item>Chrome デスクトップ</item>
     </string-array>
+
+    <string name="preference_domains_title">Domain redirects</string>
+    <string name="preference_domains_summary">Specify links to always load in your fallback browser.</string>
+    <string name="preference_redirects_title">Redirect to fallback browser</string>
+    <string name="preference_add_domain_title">Add domain</string>
+    <string name="add_domain_hint">Url host</string>
+    <string name="add_domain_detail">Specify only the \'main\' portion of a website address. E.g.,
+        \"accounts.google.com\" or \"bbc.co.uk\".</string>
+    <string name="add_domain_error">Unable to add \"%1$s\", as it is not a valid URL host.</string>
 
     <string name="preference_help_title">ヘルプ</string>
     <string name="preference_show_welcome_message_title">ウェルカムページを表示</string>
@@ -96,19 +160,27 @@
     <string name="preference_get_pro_summary">Proへアップグレードしてさらなる機能を</string>
     <string name="preference_version_title">バージョン</string>
     <string name="preference_version_summary">更新履歴</string>
+    <string name="preference_more_title">More&#8230;</string>
+    <string name="preference_more_summary">\"OK, Google\", Reading Mode and more</string>
+    <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
-    <string name="preference_my_other_apps_title">Link Bubbleが提供するその他のアプリ</string>
+    <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">リンクバブルで捗ってますか？私が育て上げた他のアプリたちも試しては見ませんか？</string>
+
+    <string name="preference_ok_google_title">\"OK, Google\" voice activation</string>
+    <string name="preference_ok_google_summary">See FAQ for further detail</string>
+    <string name="preference_ok_google_summary_jelly_bean">Requires Android 4.4 or later</string>
+    <string name="preference_ok_google_summary_long">Note: Google haven\'t enabled this functionality for all devices/locales. If speaking \"OK, Google\" doesn\'t work for you in Google Now, it won\'t work in Link Bubble.</string>
 
     <string name="remove_default_title">デフォルト設定を削除？</string>
     <string name="remove_default_message">%1$s を %2$s のデフォルト設定から削除しますか？\n\n注意：今度%2$s でリンクを開く場合もう一回デフォルト設定を行えることができます</string>
-    <string name="long_press_unsupported_default_browser">システム制限によりリンクバブルはこのアイテムを選択できません。\n%1$s?のリンクを開きますか？</string>
-    <string name="long_press_unsupported_no_default_browser">システム制限によりリンクバブルはこのアイテムを選択できません。\nブラウザでリンクを開いてください。</string>
+    <string name="long_press_unsupported_default_browser">Unable to display this item. Open link in %1$s?</string>
+    <string name="long_press_unsupported_no_default_browser">Unable to display this item. Open link in a browser.</string>
     <string name="unsupported_scheme_default_browser">このリンクタイプはサポートされていません。%1$s で開きますか？</string>
     <string name="unsupported_scheme_no_default_browser">リンクタイプは現在サポートされていません。リンクをブラウザで開きます。</string>
     <string name="unsupported_scheme">リンクタイプは現在サポートされていません。</string>
-    <string name="unsupported_drop_down_default_browser">Android system limitations prevent drop down elements from working in Link Bubble.\nOpen in %1$s?</string>
-    <string name="unsupported_drop_down_no_default_browser">Android system limitations prevent drop down elements from working in Link Bubble.\nOpen the link in a browser.</string>
+    <string name="unsupported_drop_down_default_browser">Unable to interact with this item. Open in %1$s?</string>
+    <string name="unsupported_drop_down_no_default_browser">Unable to interact with this item. Open link in a browser.</string>
 
     <string name="consume_category_view">リンクを開く</string>
     <string name="consume_category_share">リンクの送信や共有</string>
@@ -132,6 +204,8 @@
     <string name="private_data_cleared">プライベートデータがクリアされました</string>
     <string name="private_data_cleared_reloading_current">プライベートデータがクリアされました。現在の bubble をリロード中です...</string>
     <string name="user_agent_changed_reloading_current">ユーザーエージェントが変更されました。現在の bubble をリロード中です...</string>
+    <string name="theme_toolbar_reloading_current">Color toolbar setting changed. Reloading current bubbles…</string>
+    <string name="article_mode_changed_reloading_current">Reading Mode setting changed. Reloading current bubbles…</string>
     <string name="link_loaded_with_app">%1$s で読み込みしました</string>
     <string name="link_redirected">%1$s にリダイレクトしました</string>
 
@@ -174,22 +248,27 @@
     <string name="faq_app_internal_browser_answer"><![CDATA[There are 3 causes of this:<br/>
             1). A browser other thank Link Bubble is set as your default system browser. See the
             \"Set default system browser\" option in Link Bubble\'s Settings to change this.<br/>
-            2). The free version of Link Bubble only intercepts links from a single app. See the
-            \"Intercept links from\" option in Link Bubble\'s Settings for which app this is or to change it.
-            Note that by upgrading to Link Bubble Pro, links will be intercepted from all non-browser apps.<br/>
+            2). Link Bubble has been configured not to intercept links from your current app. See the
+            \"Intercept links from\" option in Link Bubble\'s Settings.<br/>
             3). Apps such as Talon, Reddit is Fun and others have inbuilt browsers that render links. Check the settings of that app and
             enable \"External browser\" or deselect \"Integrated browser\" or similar.
             <br/><br/>Note: other browser apps such as Chrome are hardcoded to load links in themselves, and thus Link Bubble is unable
             to load links clicked from other browser apps.
             ]]></string>
+    <string name="faq_article_mode_question">How do I use Reading Mode? Why do some links not work?</string>
+    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode (BETA)).<br/><br/>
+            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
+            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
+            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
+            there is little than can be done here.]]></string>
     <string name="faq_future_features_question">Will you add support for bookmarks, favorites, extensions, etc.?</string>
     <string name="faq_future_features_answer">Never say never, but for now Link Bubble is focused solely on being the best possible way of loading
             and consuming links loaded from other apps.</string>
-    <string name="faq_translations_question">When will you add foreign language translations? Can I help?</string>
+    <string name="faq_translations_question">Can I help translate the app?</string>
     <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
             (+Link Bubble) for help with translations, so be sure to keep an eye on my feed.]]></string>
     <string name="faq_roadmap_question">Do you publish a feature roadmap? Can I up-vote upcoming features?</string>
-    <string name="faq_roadmap_answer">For competitive reasons, the answer to both of these questions is \'no\' I\'m afraid.<br/><br/></string>
+    <string name="faq_roadmap_answer">For competitive reasons, the answer to both of these questions is \'no\' I\'m afraid.</string>
     <string name="faq_alternate_payment_question">I don\'t have a credit card and/or I can\'t purchase from Google Play. How do I buy Pro?</string>
     <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble only supports purchases via Google Play at this time.<br/><br/>Additional
             payment methods will hopefully be added in the future (assuming they do not violate the Google Play Developer Program Policies).]]></string>
@@ -218,10 +297,10 @@
             Naturally, allocating these items (especially the WebViews) consumes a <i>lot</i> of memory/resources. Lower spec devices generally
             have less memory available than Link Bubble requires, and thus performance suffers as garbage collections are frequently triggered.
             As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on the Nexus 5.]]></string>
-    <string name="faq_crap_webview_question">Sometimes webpages don\'t display correctly or videos don\'t play.</string>
-    <string name="faq_crap_webview_answer"><![CDATA[LinkBubble uses the standard Android WebView, but unfortunately it is sometimes unreliable.
+    <string name="faq_crap_webview_question">Sometimes web pages don\'t display correctly or videos don\'t play.</string>
+    <string name="faq_crap_webview_answer"><![CDATA[Link Bubble uses the standard Android WebView, but unfortunately it is sometimes unreliable.
             Alternative web rendering methods such as FireFox\'s GeckoView and Chromium will likely be investigated going
-            forward.<br/><br/>In the event a webpage doesn\'t display correctly in Link Bubble, the easiest thing to do is just to load a traditional browser for that link.]]></string>
+            forward.<br/><br/>In the event a web page doesn\'t display correctly in Link Bubble, the easiest thing to do is just to load a traditional browser for that link.]]></string>
     <string name="faq_ongoing_notificaion_question">Why does the ongoing notification always display when Link Bubble is running?</string>
     <string name="faq_ongoing_notificaion_answer"><![CDATA[Unfortunately this ongoing notification is necessary to encourage the Android OS not to terminate
             Link Bubble.]]></string>
@@ -235,7 +314,7 @@
     <string name="faq_change_default_browser_answer">System Settings -> Apps -> Downloaded -> Link Bubble -> Clear defaults.</string>
     <string name="faq_pro_trial_question">How does the Link Bubble Pro trial work?</string>
     <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
-        Pro\'s premium features (multiple tabs, links being intercepted from any app, etc.).<br/>
+        Pro\'s premium features.<br/>
         • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
         • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
         • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
@@ -249,6 +328,7 @@
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">アプリについて質問がありますか？こちらを試して下さい。</string>
     <string name="faq_section_general">一般</string>
+    <string name="faq_section_functionality">App functionality</string>
     <string name="faq_section_issues">問題</string>
 
     <string name="activity_resolver_use_always">常時</string>
@@ -260,6 +340,15 @@
     <string name="credits_name">Link Bubble</string>
     <string name="credits_credit">コンセプト、デザインとプログラミング</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
+
+    <!--
+    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
+        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
+    <string name="restore_tabs_from_previous_session"></string>
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
+    </plurals>
 
     <string name="content_description_button">ボタン</string>
     <string name="content_description_target_icon">Bubble ターゲットアイコン</string>
@@ -297,14 +386,12 @@
     <string name="pro_action_retry">リトライ</string>
     <string name="pro_action_store">Play ストア</string>
 
-
-
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">モバイルブラウジング完了</string>
     <string name="store_listing_description_title">Link Bubble is an all-new browser designed and crafted solely with mobile devices in mind.</string>
     <string name="store_listing_description_features">
     Features include:
-    • When you click on a link in an app, Link Bubble loads that webpage in the background, leaving you free to keep using your current app rather than your precious time being wasted watching a page load. Once the page has fully loaded, it will animate on screen.
+    • When you click on a link in an app, Link Bubble loads that web page in the background, leaving you free to keep using your current app rather than your precious time being wasted watching a page load. Once the page has fully loaded, it will animate on screen.
     • Link Bubble\'s flick physics allow you to go from clicking a link to sharing a link or adding it to a service such as Pocket in little more than a second!
     • Load multiple links from your current app at the same time (requires Pro).
     • Gracefully handles links that redirect to other apps. No longer does clicking an Instagram link in Twitter redirect to a full screen browser before loading Instagram!
@@ -319,7 +406,7 @@
     <string name="pro_store_listing_description_features">
     Upgrades include:
     • Infinite number of tabs (free version is limited to just one tab).
-    • Load links from all apps on your device (free version intercepts links from just one app).
+    • Theme selection
     • Remove the upgrade incentives throughout the free version.
     • Support me so I get to make more of these apps :)
     </string>
@@ -342,5 +429,7 @@
     <string name="welcome_page_pro_point_3">将来的により多くのアプリケーションを確実に提供することができるよ :)</string>
     <string name="welcome_page_pro_end">ありがとうございます。アプリをお楽しみ下さい！</string>
     <string name="welcome_page_ps">PS. To close this bubble, either press the Back button or long press the bubble and flick it onto the Close bubble.</string>
+
+    <string name="duplicate_link_will_not_be_loaded">Link already loaded. Ignoring...</string>
 
 </resources>
