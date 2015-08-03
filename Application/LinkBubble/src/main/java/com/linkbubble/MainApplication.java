@@ -68,8 +68,6 @@ public class MainApplication extends Application {
 
         registerForBus(this, this);
 
-        CrashTracking.init(this);
-
         Settings.initModule(this);
         Prompt.initModule(this);
 

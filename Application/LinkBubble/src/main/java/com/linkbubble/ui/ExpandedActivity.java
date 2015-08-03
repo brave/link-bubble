@@ -64,7 +64,6 @@ public class ExpandedActivity extends Activity {
         CrashTracking.log("ExpandedActivity.onCreate()");
 
         super.onCreate(savedInstanceState);
-        CrashTracking.init(this);
 
         // Fixes #454
         if (MainController.get() == null || MainController.get().getActiveTabCount() == 0) {

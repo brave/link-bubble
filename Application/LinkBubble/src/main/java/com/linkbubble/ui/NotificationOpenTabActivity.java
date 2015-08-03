@@ -15,9 +15,7 @@ public class NotificationOpenTabActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        CrashTracking.init(this);
 
         MainController mainController = MainController.get();
 

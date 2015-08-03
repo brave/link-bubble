@@ -74,7 +74,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CrashTracking.init(this);
 
         MainApplication mainApplication = (MainApplication) getApplicationContext();
         if (mainApplication.mIconCache == null) {

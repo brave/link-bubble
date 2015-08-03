@@ -37,9 +37,7 @@ public class SettingsMoreActivity extends AppCompatPreferenceActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        CrashTracking.init(this);
 
         setContentView(R.layout.activity_settings_more);
 

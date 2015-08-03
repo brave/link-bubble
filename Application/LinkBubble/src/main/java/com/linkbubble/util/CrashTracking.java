@@ -10,10 +10,6 @@ import io.fabric.sdk.android.Fabric;
 
 public class CrashTracking {
 
-    public static void init(Context context) {
-        Fabric.with(context, new Crashlytics());
-    }
-
     public static void logHandledException(Throwable throwable) {
         Crashlytics.logException(throwable);
     }

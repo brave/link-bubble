@@ -44,7 +44,6 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CrashTracking.init(this);
 
         setContentView(R.layout.activity_home);
 
