@@ -50,13 +50,14 @@
     <string name="upgrade_article_mode_wear">ต้องการดูลิงก์บนอุปกรณ์ Android Wear ผ่านโหมดการอ่าน?</string>
     <string name="upgrade_theme">ต้องการใช้ธีมที่แตกแต่ง?</string>
     <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
-    <string name="upgrade_from_settings_summary">อัปเกรด Link Bubble เป็นรุ่นโปรเพื่อทำสิ่งเหล่านี้ และอักหลายอย่าง:\n •
-โหลดหลายลิงก์พริอมกัน\n •
-เปลี่ยนธีม\n •
-โหมดการอ่าน\n •
-รองรับ Android Wear\n •
-ใช้งานการสั่งด้วยเสียง \"OK, Google\"\n •
-สนับสนุนผมเหมือนที่ผมพัฒนาแอปนี้ :)</string>
+    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
+        Load multiple tabs at once.\n •
+        Change theme.\n •
+        Use Reading Mode.\n •
+        Android Wear support.\n •
+        Use \"OK, Google\" voice activation.\n •
+        Support us as we develop this app :)
+        </string>
 
     <string name="undo_close_tab_title">ปิด %1$s แล้ว</string>
     <string name="undo_close_tab_no_title">แท็บถูกปิดแล้ว</string>
@@ -341,7 +342,7 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="pro_application_name">Link Bubble โปร</string>
     <string name="pro_status_checking_license">กำลังตรวจสอบใบอนุญาต...</string>
 	<string name="pro_status_buy">ไม่สมารถตรวจสอบใบอนุญาต\n\nอาจเป็นเพราะ:\n • ไม่ได้เชื่อมต่ออินเทอร์เน็ต\n • แอปนี้ได้รับการดัดแปลง\n\nตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ และลองติดตั้งแอปจาก Play Store ใหม่อีกครั้ง</string>
-    <string name="pro_status_verified">ใบอนุญาต Link Bubble รุ่นโปรถูกตรวจสอบแล้ว!\n\nขอบคุณสำหรับการสนับสนุนผม เหมือนที่ผมพัฒนาโครงการนี้</string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
     <string name="pro_status_unlicensed">Google Play รายงานว่าแอปนี้เป็น Link Bubble รุ่นโปรปลอม\n\n หากคุณมั่นใจว่าได้ซื้อ Link Bubble รุ่นโปร เหตุผลที่เกิดขึ้นบ่อยคือบัญชีกูเกิลที่คุณใช้ซื้อแอป ไม่ได้เป็นบัญชีเดียวกันกับที่เชื่อมอยู่กับ Google Play ในเครื่องนี้</string>
 
     <string name="pro_keep_installed">หมายเหตุ: คุณไม่ต้องโหลด Link Bubble รุ่นโปรอีกครั้ง แต่คุณต้องติดตั้งไว้ตลอด\n\nแอปนี้จะถูกซ่อนจากระบบ และไม่ปรากฏในลันเชอร์ของคุณ</string>
@@ -367,11 +368,13 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
 
     <string name="pro_store_listing_title">Link Bubble โปร</string>
     <string name="pro_store_listing_description_title">Link Bubble รุ่นโปรปลดล็อกคุณสมบัติเพิ่มเติมของ Link Bubble</string>
-    <string name="pro_store_listing_description_features">ในการอัปเกรดประกอบไปด้วย:
-• แท็บไม่จำกัดจำนวน (รุ่นฟรีจำกัดเพียงหนึ่งแท็บ)
-• ปรับแต่งธีม
-• ลบป้ายเชิญชวนให้อัปเกรด
-• สนับสนุนผม ช่วยให้ผมได้พัฒนาแอปนี้ :)</string>
+    <string name="pro_store_listing_description_features">
+    Upgrades include:
+    • Infinite number of tabs (free version is limited to just one tab).
+    • Theme selection
+    • Remove the upgrade incentives throughout the free version.
+    • Support us so we get to make more of these apps :)
+    </string>
 
     <string name="welcome_page_title">ยินดีต้อนรับสู่ Link Bubble!</string>
     <string name="welcome_page_trial_notice">หมายเหตุ: ภายใน 24 ชั่วโมงหลังจากติดตั้ง Link Bubble ครั้งแรก คุณจะได้ทดลองใช้คุณสมบัติของ Link Bubble รุ่นโปรฟรี การทดลองใช้นี้จำกัดเพียงครั้งเดียวเท่านั้น</string>

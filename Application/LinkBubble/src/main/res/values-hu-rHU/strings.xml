@@ -56,7 +56,7 @@
         Use Reading Mode.\n •
         Android Wear support.\n •
         Use \"OK, Google\" voice activation.\n •
-        Support me as I develop this app :)
+        Support us as we develop this app :)
         </string>
 
     <string name="undo_close_tab_title">Bezárva %1$s</string>
@@ -363,7 +363,7 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="pro_application_name">Link Bubble Pro</string>
     <string name="pro_status_checking_license">Licensz ellenőrzése...</string>
 	<string name="pro_status_buy">Nem sikerült a licensz ellenőrzése.\n\nA probléma oka a következő lehet::\n • Nincs internet kapcsolat.\n • Megsérült az alkalmazás.\n\nEllenőrizd az internet kapcsolatot és ha szükséges, telepítsd újra az app-ot a Play Store-ból</string>
-    <string name="pro_status_verified">Link Bubble Pro vásárlás sikeres!\n\nA projekt fejlesztőjeként nagyon köszönöm a támogatást.</string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
     <string name="pro_status_unlicensed">A Google Play szerint ehhez a Link Bubble példányhoz nem tartozik licensz. Amennyiben valóban megvásároltad a Link Bubble Pro-t, nagy valószínűséggel a vásárláshoz használt email cím nincs ezen az eszközön a Play Store-hoz beállítva</string>
 
     <string name="pro_keep_installed">Note: you don\'t need to load Link Bubble Pro again, but you do need to keep it installed for verification purposes.\n\nThis app will be hidden throughout the system so it doesn\'t appear in your launcher(s).</string>
@@ -394,7 +394,7 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     • Infinite number of tabs (free version is limited to just one tab).
     • Theme selection
     • Remove the upgrade incentives throughout the free version.
-    • Support me so I get to make more of these apps :)
+    • Support us so we get to make more of these apps :)
     </string>
 
     <string name="welcome_page_title">Üdv a Link Bubble-ban!</string>

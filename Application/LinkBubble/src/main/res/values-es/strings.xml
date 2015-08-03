@@ -50,13 +50,14 @@
     <string name="upgrade_article_mode_wear">¿Quiere ver enlaces en dispositivos Android Wear en modo lectura?</string>
     <string name="upgrade_theme">¿Quiere usar un tema diferente?</string>
     <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
-    <string name="upgrade_from_settings_summary">Actualizar a Link Bubble Pro para obtener esto y más incluyendo:.\n • 
-Cargar múltiples ventanas de una vez.\n • 
-Cambiar tema.\n • 
-Usar modo lectura.\n • 
-Soporte Android Wear.\n • 
-Usar activación de voz "OK Google".\n • 
-Apoyarme como desarrollador de la aplicación :).\n • </string>
+    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
+        Load multiple tabs at once.\n •
+        Change theme.\n •
+        Use Reading Mode.\n •
+        Android Wear support.\n •
+        Use \"OK, Google\" voice activation.\n •
+        Support us as we develop this app :)
+        </string>
 
     <string name="undo_close_tab_title">Cerrada %1$s</string>
     <string name="undo_close_tab_no_title">Pestaña cerrada</string>
@@ -361,7 +362,7 @@ terminan tomándose como un compromiso, y pueden molestar si/cuando se postpone 
     <string name="pro_application_name">Link Bubble Pro</string>
     <string name="pro_status_checking_license">Comprobando licencia...</string>
 	<string name="pro_status_buy">incapaz de verificar licencia.\n\nVarias causas de este problema incluyendo:\n • No hay conexión a internet.\n • Esta aplicación ha sido manipulada.\n\nCompruebe su conexión a internet, y si es necesario, pruebe reinstalando de nuevo la aplicación desde Google Play.</string>
-    <string name="pro_status_verified">¡Compra de Link Bubble Pro verificada!\n\n Muchas gracias por apoyarme como desarrollador de este proyecto.</string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
     <string name="pro_status_unlicensed">Google Play dice que esta copia de Link Bubble Pro es pirata..\n\nAsumiendo que eres buena gente y que has comprado la aplicación, el error más común en estos casos es que la cuenta de correo con la que compraste la licencia, no esta configurada en la Play Store de este dispositivo.</string>
 
     <string name="pro_keep_installed">Nota: no necesita cargar Link Bubble Pro de nuevo, pero lo necesitará instalado para verificaciones futuras.\n\nEsta aplicación será ocultada del sistema y no aparecerá en su lanzador de aplicaciones.</string>
@@ -389,11 +390,13 @@ terminan tomándose como un compromiso, y pueden molestar si/cuando se postpone 
 
     <string name="pro_store_listing_title">Link Bubble Pro</string>
     <string name="pro_store_listing_description_title">Link Bubble Pro desbloquea todas las funciones de Link Bubble.</string>
-    <string name="pro_store_listing_description_features">Actualizar incluye:
-• Infinitas pestañas (la versión gratuita está limitada a solo una)
-• Selección de temas
-• Eliminar los mensajes animando a actualizar al usar la versión gratuita.
-• Apoyarme para poder hacer más aplicaciones de este tipo :)</string>
+    <string name="pro_store_listing_description_features">
+    Upgrades include:
+    • Infinite number of tabs (free version is limited to just one tab).
+    • Theme selection
+    • Remove the upgrade incentives throughout the free version.
+    • Support us so we get to make more of these apps :)
+    </string>
 
     <string name="welcome_page_title">¡Bienvenido a Link Bubble!</string>
     <string name="welcome_page_trial_notice">Nota: Durante las primeras 24 horas después de instalar Link Bubble, usted tendrá acceso a todas las funciones Link Bubble Pro como prueba.</string>

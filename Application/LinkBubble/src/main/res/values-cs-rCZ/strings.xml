@@ -50,13 +50,14 @@
     <string name="upgrade_article_mode_wear">Chcete odkazy otevírat na chytrých hodinkách Android Wear?</string>
     <string name="upgrade_theme">Chcete použít jiný motiv?</string>
     <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
-    <string name="upgrade_from_settings_summary">Přejdi na verzi Link Bubble Pro a budeš moci:\n •
-Načíst najednou více záložek.\n •
-Změnit motiv.\n •
-Používat Čtečku.\n •
-Používat Link Bubble na Androidu Wear.\n •
-Používat příkaz \"OK, Google\".\n •
-Podpořit mě v dalším vývoji aplikace. :)</string>
+    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
+        Load multiple tabs at once.\n •
+        Change theme.\n •
+        Use Reading Mode.\n •
+        Android Wear support.\n •
+        Use \"OK, Google\" voice activation.\n •
+        Support us as we develop this app :)
+        </string>
 
     <string name="undo_close_tab_title">Zavřeno %1$s</string>
     <string name="undo_close_tab_no_title">Zavřená záložka</string>
@@ -371,7 +372,7 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
     <string name="pro_status_checking_license">Ověřování licence…</string>
 	<string name="pro_status_buy">Licenci není možné ověřit.\n\nPříčinou může být\n • Nedostupné internetové připojení.\n • Touto aplikací bylo neoprávněně manipulováno.
 \n\nZkontrolujte internetové připojení, případně zkuste aplikaci znovu nainstalovat z Play Store.</string>
-    <string name="pro_status_verified">Aplikace Link Bubble Pro je zakoupena!\n\nMoc vám děkuji, že mě podporujete ve vývoji tohoto projektu.</string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
     <string name="pro_status_unlicensed">Google Play tvrdí, že této kopii Link Bubble Pro chybí licence.\n\nPředpokládám, že jste si
 Link Bubble Pro opravdu koupili, takže by důvodem mohlo být, že e-mailová adresa použitá 
 při nákupu není nastavena v Play Store na tomto zařízení.</string>
@@ -399,11 +400,13 @@ při nákupu není nastavena v Play Store na tomto zařízení.</string>
 
     <string name="pro_store_listing_title">Link Bubble Pro</string>
     <string name="pro_store_listing_description_title">Verze Pro odemkne všechny funkce aplikace Link Bubble.</string>
-    <string name="pro_store_listing_description_features">Přechod na verzi Pro přinese:
-• Neomezený počet záložek (v bezplatné verzi jen jedna).
-• Volba motivů
-• Už vás nebudu otravovat s přechodem na Pro.
-• Podporu, abych mohl vytvářet další takové aplikace. :)</string>
+    <string name="pro_store_listing_description_features">
+    Upgrades include:
+    • Infinite number of tabs (free version is limited to just one tab).
+    • Theme selection
+    • Remove the upgrade incentives throughout the free version.
+    • Support us so we get to make more of these apps :)
+    </string>
 
     <string name="welcome_page_title">Vítejte v Link Bubble!</string>
     <string name="welcome_page_trial_notice">Poznámka: Prvních 24 hodin po první instalaci Link Bubble budete mít přístup ke všem prémiovým funkcím Link Bubble Pro.</string>

@@ -50,13 +50,14 @@
     <string name="upgrade_article_mode_wear">想在 Android Wear 裝置上用閱讀模式來檢視網頁嗎？</string>
     <string name="upgrade_theme">想使用不同的佈景主題嗎？</string>
     <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
-    <string name="upgrade_from_settings_summary">升級至 Link Bubble Pro 即可使用，還包含以下功能：\n •
-一次讀取多個分頁。\n •
-可改變佈景主題。\n •
-可使用閱讀模式。\n •
-支援 Android Wear 裝置。\n •
-使用 \"OK, Google\" 語音操作。\n •
-更可支持我開發這個 app :)</string>
+    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
+        Load multiple tabs at once.\n •
+        Change theme.\n •
+        Use Reading Mode.\n •
+        Android Wear support.\n •
+        Use \"OK, Google\" voice activation.\n •
+        Support us as we develop this app :)
+        </string>
 
     <string name="undo_close_tab_title">已關閉 %1$s</string>
     <string name="undo_close_tab_no_title">已關閉分頁</string>
@@ -345,7 +346,7 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="pro_application_name">Link Bubble Pro</string>
     <string name="pro_status_checking_license">正在檢查授權…</string>
 	<string name="pro_status_buy">無法驗證授權。\n\n有可能是某些原因所導致：\n • 沒有網路連線。\n • 本程式已被竄改。\n\n請檢查您的網路連線，若有必要，請至 Play 商店重新下載程式。</string>
-    <string name="pro_status_verified">Link Bubble Pro 購買驗證成功！\n\n非常感謝您支持本專案。</string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
     <string name="pro_status_unlicensed">Google Play 回報此 Link Bubble Pro 為未經授權的版本。\n\n假若您真的購買了 Link Bubble Pro，那麼最可能的原因就是，您購買時使用的電子郵件與此裝置上 Play 商店所設定的不同。</string>
 
     <string name="pro_keep_installed">請注意：您不必再次開啟 Link Bubble Pro，但由於驗證需要，您需要保持已安裝狀態。\n\n這個程式會在系統中隱藏，所以不會在您的啟動器中顯示。</string>
@@ -371,11 +372,13 @@ Link Bubble 亦遵循此標準。]]></string>
 
     <string name="pro_store_listing_title">Link Bubble Pro</string>
     <string name="pro_store_listing_description_title">Link Bubble Pro 將會解鎖完整的功能。</string>
-    <string name="pro_store_listing_description_features">升級版包含以下優點：
-• 無限分頁數量 (免費版限制只能讀取一個分頁).
-• 可選擇佈景主題
-• 移除一天到晚叫你升級的訊息。
-• 支持我讓我開發更多的 apps :)</string>
+    <string name="pro_store_listing_description_features">
+    Upgrades include:
+    • Infinite number of tabs (free version is limited to just one tab).
+    • Theme selection
+    • Remove the upgrade incentives throughout the free version.
+    • Support us so we get to make more of these apps :)
+    </string>
 
     <string name="welcome_page_title">歡迎使用 Link Bubble！</string>
     <string name="welcome_page_trial_notice">請注意：在首次安裝 Link Bubble 的 24 小時內，您會擁有一次性的 Link Bubble Pro 完整功能試用權限。</string>

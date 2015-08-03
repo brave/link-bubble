@@ -56,7 +56,7 @@
         Use Reading Mode.\n •
         Android Wear support.\n •
         Use \"OK, Google\" voice activation.\n •
-        Support me as I develop this app :)
+        Support us as we develop this app :)
         </string>
 
     <string name="undo_close_tab_title">Closed %1$s</string>
@@ -374,7 +374,7 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="pro_status_checking_license">लाइसेंस चेक  कर रहा हे... </string>
 	<string name="pro_status_buy">लाइसेंस वेरीफाई नही हुआ।  \n\nइस प्रोब्ल्म के कुछ कारण:\n • इन्टरनेट कनेक्टेड नही हे।\n • इस ऐप के साथ छेड़खानी की गयी हे।
 \n\nअपने इन्टरनेट कनेक्शन की जाच करे और अगर फिर भी न हो तोह प्ले स्टोर से पुनः इनस्टॉल करे। </string>
-    <string name="pro_status_verified">लिंक बबल प्रो पकी खरीद वेरीफाई हो गयी हे। \n\nइस प्रोजेक्ट में आपकी मदद की में सराहना करता हु। </string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
     <string name="pro_status_unlicensed">गूगल प्ले स्टोर बता रहा हे की आपकी लिंक बबल ऐप फर्जी हे।
 \n\n अगर आपने वास्तव में लिंक बबल को ख़रीदा हे तो इसका सीधा सा कारण यह हो सकता हे 
 कि आपने जिस मेल एड्रेस से लिंक बबल ख़रीदा हे उससे आपने प्ले स्टोर पर लॉग इन नही किया हुआ हे।  </string>
@@ -407,7 +407,7 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     • Infinite number of tabs (free version is limited to just one tab).
     • Theme selection
     • Remove the upgrade incentives throughout the free version.
-    • Support me so I get to make more of these apps :)
+    • Support us so we get to make more of these apps :)
     </string>
 
     <string name="welcome_page_title">लिंक बबल में आपका स्वागत हे!</string>

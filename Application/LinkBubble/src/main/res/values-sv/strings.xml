@@ -50,13 +50,14 @@
     <string name="upgrade_article_mode_wear">Visa länkar på Android Wear-enheter via Läsläge?</string>
     <string name="upgrade_theme">Vill du använda ett annat tema?</string>
     <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
-    <string name="upgrade_from_settings_summary">Uppgradera till Link Bubble Pro för detta och mer inkluderande::\n •
-Ladda flera flikar samtidigt.\n •
-Byt tema.\n •
-Använd läsläge.\n •
-Android Wear-stöd.\n •
-Använd \"OK, Google\"-röstaktivering.\n •
-Stöd mig som utvecklar denan app :)</string>
+    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
+        Load multiple tabs at once.\n •
+        Change theme.\n •
+        Use Reading Mode.\n •
+        Android Wear support.\n •
+        Use \"OK, Google\" voice activation.\n •
+        Support us as we develop this app :)
+        </string>
 
     <string name="undo_close_tab_title">Stängd %1$s</string>
     <string name="undo_close_tab_no_title">Stängd flik</string>
@@ -375,7 +376,7 @@ att folk tar det som ett åtagande och blir upprörda när det dröjer av någon
     <string name="pro_status_checking_license">Kontrollerar licens...</string>
 	<string name="pro_status_buy">Kunde inte verifiera licens.\n\nNågra orsaker till detta problem är:\n • Det finns ingen internetanslutning.\n • Den här applikationen har 
 manipulerats.\n\nKontrollera din internetanslutning, och om nödvändigt, installera appen från Play Store igen.</string>
-    <string name="pro_status_verified">Link Bubble Pro-köp verifierat!\n\nTack så mycket för ditt stöd till utvecklingen av detta projekt.</string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
     <string name="pro_status_unlicensed">Google Play rapporterar att den här kopian av Link Bubble Pro är olicensierad.\n\nFörutsatt att du faktiskt 
 har köpt den kopia av Link Bubble Pro är den vanligaste orsaken till detta att den epostadress du använt
 till ditt köp inte är konfigurerad med Play Store på den här enheten.</string>
@@ -410,7 +411,7 @@ till ditt köp inte är konfigurerad med Play Store på den här enheten.</strin
     • Infinite number of tabs (free version is limited to just one tab).
     • Theme selection
     • Remove the upgrade incentives throughout the free version.
-    • Support me so I get to make more of these apps :)
+    • Support us so we get to make more of these apps :)
     </string>
 
     <string name="welcome_page_title">Welcome to Link Bubble!</string>

@@ -50,14 +50,14 @@
     <string name="upgrade_article_mode_wear">Chcete prehliadať na Android Wear v Reading móde?</string>
     <string name="upgrade_theme">Chcete použiť inú tému?</string>
     <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
-    <string name="upgrade_from_settings_summary">Upgrade na Link Bubble Pro pre toto a mnoho viac:\n •
-Načítanie viacerých bublín naraz.\n •
-Zmena témy.\n •
-Použitie Reading módu.\n •
-Podpora Android Wear.\n •
-Aktivácia\"OK, Google\" hlasom.\n •
-Podporíte ma ako developera tejto app :)
-</string>
+    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
+        Load multiple tabs at once.\n •
+        Change theme.\n •
+        Use Reading Mode.\n •
+        Android Wear support.\n •
+        Use \"OK, Google\" voice activation.\n •
+        Support us as we develop this app :)
+        </string>
 
     <string name="undo_close_tab_title">Zavreté %1$s</string>
     <string name="undo_close_tab_no_title">Zavretý tab</string>
@@ -374,7 +374,7 @@ Podporíte ma ako developera tejto app :)
     <string name="pro_status_checking_license">Checking license…</string>
 	<string name="pro_status_buy">Unable to verify license.\n\nSome causes of this problem include:\n • There is no Internet connection.\n • This application has been tampered
                             with.\n\nCheck your Internet connection, and if necessary, try installing the app from the Play Store again.</string>
-    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting me as I develop this project.</string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
     <string name="pro_status_unlicensed">Google Play is reporting this copy of Link Bubble Pro is unlicensed.\n\nAssuming you have
                             indeed purchased a copy of Link Bubble Pro, the most common reason for this is that email address used
                             for your purchase is not configured with the Play Store on this device.</string>
@@ -409,7 +409,7 @@ Podporíte ma ako developera tejto app :)
     • Infinite number of tabs (free version is limited to just one tab).
     • Theme selection
     • Remove the upgrade incentives throughout the free version.
-    • Support me so I get to make more of these apps :)
+    • Support us so we get to make more of these apps :)
     </string>
 
     <string name="welcome_page_title">Welcome to Link Bubble!</string>

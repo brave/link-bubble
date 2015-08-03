@@ -50,13 +50,14 @@
     <string name="upgrade_article_mode_wear">Chcesz wczytywać linki w trybie czytania na Android Wear?</string>
     <string name="upgrade_theme">Chcesz użyć innego motywu?</string>
     <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
-    <string name="upgrade_from_settings_summary">Linku Bubble Pro daje dostęp do wielu nowych funkcji, takich jak:\n •
-Wczytywanie wielu zakładek równocześnie\n •
-Zmiana motywu\n •
-Tryb czytania\n •
-Wsparcie Android Wear\n •
-Aktywacja komendą głosową \"OK, Google\"\n •
-Wsparcie twórcy w rozwijaniu nowych, wspaniałych aplikacji :)</string>
+    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
+        Load multiple tabs at once.\n •
+        Change theme.\n •
+        Use Reading Mode.\n •
+        Android Wear support.\n •
+        Use \"OK, Google\" voice activation.\n •
+        Support us as we develop this app :)
+        </string>
 
     <string name="undo_close_tab_title">Zamknięto %1$s</string>
     <string name="undo_close_tab_no_title">Zamknięto zakładkę</string>
@@ -342,7 +343,7 @@ używany w Androidzie WebView jest napisany w taki sposób, że elementy &lt;sel
     <string name="pro_application_name">Link Bubble Pro</string>
     <string name="pro_status_checking_license">Sprawdzam licencję...</string>
 	<string name="pro_status_buy">Nie udało się sprawdzić licencji.\n\nOto niektóre możliwe przyczyny:\n • Brak połączenia z internetem.\n • Aplikacja została nielegalnie zmodyfikowana.\n\nSprawdź połączenie z internetem i, jeśli to konieczne, na nowo zainstaluj aplikację Link Bubble ze Sklepu Play.</string>
-    <string name="pro_status_verified">Zweryfikowano zakup Link Bubble Pro!\n\nDziękuję Ci bardzo za wsparcie mnie i tego projektu.</string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
     <string name="pro_status_unlicensed">Według Sklepu Play ta kopia Link Bubble Pro nie jest licencjonowana.\n\nJeśli faktycznie zakupiłeś Link Bubble Pro, to najprawdopodobniej adres e-mail użyty do zakupu jest inny od tego podanego w sklepie Play.</string>
 
     <string name="pro_keep_installed">Uwaga: Nie musisz ponownie uruchamiać Link Bubble Pro, ale musi pozostać zainstalowana, aby aplikacja Link Bubble mogła sprawdzić licencję.\n\nAplikacja Link Bubble Pro zostanie jednak ukryta i nie będzie widoczna na siatce aplikacji.</string>
@@ -368,11 +369,13 @@ używany w Androidzie WebView jest napisany w taki sposób, że elementy &lt;sel
 
     <string name="pro_store_listing_title">Link Bubble Pro</string>
     <string name="pro_store_listing_description_title">Link Bubble Pro odblokowuje wszystkie funkcje aplikacji Link Bubble.</string>
-    <string name="pro_store_listing_description_features">Zakup wersji Pro oferuje między innymi następujące korzyści:
-Możliwość otwarcia równocześnie wielu zakładek (w wersji darmowej - tylko jedna)
-Możliwość zmiany motywu
-Usunięcie obecnych w darmowej wersji różnorakich zachęt do zakupu wersji Pro
-Wsparcie twórcy w rozwijaniu nowych, wspaniałych aplikacji :)</string>
+    <string name="pro_store_listing_description_features">
+    Upgrades include:
+    • Infinite number of tabs (free version is limited to just one tab).
+    • Theme selection
+    • Remove the upgrade incentives throughout the free version.
+    • Support us so we get to make more of these apps :)
+    </string>
 
     <string name="welcome_page_title">Witaj w Link Bubble!</string>
     <string name="welcome_page_trial_notice">Uwaga: Przez pierwsze 24 godziny od zainstalowania aplikacji Link Bubble, będziesz mieć dostęp do wszystkich funkcji Pro w ramach jednorazowego okresu próbnego. </string>

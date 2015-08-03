@@ -56,7 +56,7 @@
         Use Reading Mode.\n •
         Android Wear support.\n •
         Use \"OK, Google\" voice activation.\n •
-        Support me as I develop this app :)
+        Support us as we develop this app :)
         </string>
 
     <string name="undo_close_tab_title">Closed %1$s</string>
@@ -352,7 +352,7 @@
     <string name="pro_status_checking_license">التأكد من الرخصة...</string>
 	<string name="pro_status_buy">غير قادر على التحقق من الرخصة. وتشمل بعض أسباب هذه المشكلة لم يكن هناك اتصال الإنترنت. أو قد تم العبث هذا التطبيق 
 . تحقق من اتصالك بالإنترنت، وإذا لزم الأمر، حاول تثبيت التطبيق من البلاي ستور مرة أخرى.</string>
-    <string name="pro_status_verified">تم التحقق من شراء  فقاعة العنوان المحترفة شكرا جزيلا لدعمكم لي وأنا أقوم  بتطوير هذا المشروع.</string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
     <string name="pro_status_unlicensed">قوقل بلاي يقول أن هذه النسخة من  فقاعة العنوان المحترفة غير مرخصة . على افتراض أنك  
 بالفعل اشتريت نسخة من فقاعة العنوان المحترفة، والسبب الأكثر شيوعا لهذا هو أن عنوان البريد الإلكتروني المستخدم
 لعملية الشراء لم يتم ربطه مع البلاي ستور بهذا الجهاز.</string>
@@ -385,7 +385,7 @@
     • Infinite number of tabs (free version is limited to just one tab).
     • Theme selection
     • Remove the upgrade incentives throughout the free version.
-    • Support me so I get to make more of these apps :)
+    • Support us so we get to make more of these apps :)
     </string>
 
     <string name="welcome_page_title">مرحبا بك في فقاعة العنوان!</string>
