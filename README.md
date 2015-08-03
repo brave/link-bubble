@@ -41,6 +41,11 @@ The build process should take less than 1 minute.  Installing the app on a devic
 - Link Bubble Pro:  
   `adb install -r ./LinkBubblePro/build/outputs/apk/LinkBubblePro-playstore-release.apk`
 
+If you get an error about similar to:
+
+> Failure [INSTALL_PARSE_FAILED_INCONSISTENT_CERTIFICATES]
+
+Try uninstalling the application which already exists on your plugged in device.
 
 ##ADB
 
