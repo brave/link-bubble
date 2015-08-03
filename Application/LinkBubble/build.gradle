@@ -1,11 +1,9 @@
 buildscript {
     repositories {
         jcenter()
-        flatDir { dirs '../../DexGuard/lib-6.1.10' }
         maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
-        classpath ':dexguard:'
         classpath 'com.android.tools.build:gradle:1.2.3'
         classpath 'io.fabric.tools:gradle:1.19.0'
     }
@@ -18,12 +16,15 @@ def versionPatch = 0
 def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 apply plugin:'com.android.application'
-if(buildMode == "dexguard") {
-    apply plugin: 'dexguard'
-    println "*** Apply plugin -> DEXGUARD"
-}
-
 apply plugin: 'io.fabric'
+
+boolean isRelease = false;
+for (int i = 0; i < project.gradle.startParameter.taskNames.size(); i++) {
+    String item = project.gradle.startParameter.taskNames.get(i);
+    if (item.contains("Release")) {
+        isRelease = true;
+    }
+}
 
 repositories {
     mavenCentral()
@@ -35,7 +36,7 @@ def buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone(
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "22.0.0"
+    buildToolsVersion "22.0.1"
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 22
@@ -56,7 +57,7 @@ android {
             buildConfigField "String", "STORE_URL_PREFIX", "\"http://play.google.com/store/apps/details?id=\""
             buildConfigField "String", "STORE_FREE_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.playstore\""
             buildConfigField "String", "STORE_PRO_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.license.playstore\""
-            buildConfigField "String", "STORE_MY_OTHER_APPS_URL", "\"https://play.google.com/store/apps/developer?id=Link+Bubble\""
+            buildConfigField "String", "STORE_MY_OTHER_APPS_URL", "\"https://play.google.com/store/apps/developer?id=Chris+Lacy\""
             buildConfigField "String", "PRO_PACKAGE_NAME", "\"com.linkbubble.license.playstore\""
             buildConfigField "String", "TAP_PATH_PACKAGE_NAME", "\"com.digitalashes.tappath.playstore\""
         }
@@ -64,10 +65,10 @@ android {
 
     signingConfigs {
         release {
-            if(buildMode == "dexguard") {
-                storeFile file(System.getenv("KEYSTORE_LOCATION"))
+            if(isRelease) {
+                storeFile file(System.getenv("LINK_BUBBLE_KEYSTORE_LOCATION"))
+                storePassword System.getenv("LINK_BUBBLE_KEYSTORE_PASSWORD")
                 keyAlias System.getenv("LINK_BUBBLE_KEY_ALIAS")
-                storePassword System.getenv("KEYSTORE_PASSWORD")
                 keyPassword System.getenv("LINK_BUBBLE_KEY_PASSWORD")
             }
         }
@@ -76,14 +77,12 @@ android {
         debug {
             applicationIdSuffix '.dev'
             versionNameSuffix '-dev'
+            debuggable true
         }
 
         release {
-            if(buildMode == "dexguard") {
-                proguardFile getDefaultDexGuardFile('dexguard-release.pro')
-                proguardFile 'dexguard-project.txt'
-            }
-            proguardFile 'proguard-project.txt'
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
     }
@@ -108,7 +107,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.0'
     compile files('libs/otto-1.3.4.jar')
     compile files('libs/picasso-2.1.1.jar')
-    compile files('libs/dexguard_util.jar')
     compile files('libs/jsoup-1.7.3.jar')
     compile files('libs/slf4j-android-1.5.8.jar')
     //compile project(':Libraries:ViewPagerIndicator:library')

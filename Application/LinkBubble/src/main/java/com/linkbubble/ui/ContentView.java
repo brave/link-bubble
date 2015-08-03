@@ -155,7 +155,9 @@ public class ContentView extends FrameLayout {
         Drawable getIcon(Context context) {
             if (mIcon == null) {
                 // TODO: Handle OutOfMemory error
-                mIcon = mResolveInfo.loadIcon(context.getPackageManager());
+                if (mResolveInfo != null) {
+                    mIcon = mResolveInfo.loadIcon(context.getPackageManager());
+                }
             }
 
             return mIcon;
@@ -526,7 +528,9 @@ public class ContentView extends FrameLayout {
                             mHandledAppPickerForCurrentUrl == false && mAppPickersUrls.contains(urlAsString) == false) {
                         final ArrayList<ResolveInfo> resolveInfos = new ArrayList<ResolveInfo>();
                         for (AppForUrl appForUrl : mAppsForUrl) {
-                            resolveInfos.add(appForUrl.mResolveInfo);
+                            if (appForUrl.mResolveInfo != null) {
+                                resolveInfos.add(appForUrl.mResolveInfo);
+                            }
                         }
                         AlertDialog dialog = ActionItem.getActionItemPickerAlert(context, resolveInfos, R.string.pick_default_app,
                                 new ActionItem.OnActionItemDefaultSelectedListener() {

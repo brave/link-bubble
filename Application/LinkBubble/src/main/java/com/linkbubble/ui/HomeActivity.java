@@ -28,7 +28,6 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
-import com.linkbubble.util.Tamper;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Subscribe;
 
@@ -190,7 +189,6 @@ public class HomeActivity extends AppCompatActivity {
 
         configureForDrmState();
 
-        Tamper.checkForTamper(getApplicationContext(), mTamListener);
         MainApplication.postEvent(getApplicationContext(), new MainApplication.CheckStateEvent());
     }
 
@@ -238,13 +236,6 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
-    private Tamper.Listener mTamListener = new Tamper.Listener() {
-        @Override
-        public void onTweaked() {
-            finish();
-        }
-    };
 
     @SuppressWarnings("unused")
     @Subscribe
