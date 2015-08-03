@@ -31,11 +31,17 @@
     <string name="action_close_tab">बबल बंद करे </string>
     <string name="action_stop">बंद </string>
     <string name="action_undo">Undo</string>
+    <string name="action_add">Add</string>
+    <string name="action_no_recommended">No (recommended)</string>
     <string name="share_via">शेयर वाया </string>
     <string name="not_set">Not set</string>
 
+    <string name="warning">Warning!</string>
+    <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
+
     <string name="share_invalid_data">लिंक बबल इसे शेयर नही कर सकता क्युकि URL गलत हे </string>
     <string name="consume_activity_not_found">एप्लीकेशन नही मिली।  क्रपया सेटिंग  में जा कर बबल एक्शन चूज  करे </string>
+    <string name="consume_activity_security_exception">Unable to share to external application.</string>
 
     <string name="upgrade">Upgrade</string>
     <string name="upgrade_to_pro">Upgrade to Pro</string>
@@ -43,6 +49,7 @@
     <string name="upgrade_article_mode">Want to view links in Reading Mode?</string>
     <string name="upgrade_article_mode_wear">Want to view links on Android Wear devices via Reading Mode?</string>
     <string name="upgrade_theme">Want to use a different theme?</string>
+    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
     <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
         Load multiple tabs at once.\n •
         Change theme.\n •
@@ -63,6 +70,7 @@
 
     <string name="preference_category_general">जनरल </string>
     <string name="preference_category_configuration">एप्प कंट्रोल </string>
+    <string name="preference_category_configuration2">Configuration</string>
     <string name="preference_category_browser">ब्राउज़र </string>
     <string name="preference_enabled_title">इनेबल्ड</string>
     <string name="preference_auto_content_display_link_loaded_title">ऑटो एक्सपांड</string>
@@ -87,12 +95,12 @@
     <string name="preference_google_account_redirect_title">गूगल अकाउंट रीडरेक्ट</string>
     <string name="preference_google_account_redirect_summary">रीडरेक्ट accounts.google.com लिंक्स टू डिफ़ॉल्ट फालबैक ब्राउज़र</string>
     <string name="preference_set_default_browser_title">डिफ़ॉल्ट ब्राउज़र का चयन करे </string>
-    <string name="preference_set_default_browser_summary">लिंक बबल को काम करने के लिए  डिफ़ॉल्ट ब्राउज़र बनाना जरुरी हे. कॉन्फ़िगर करने के लिए टच करे.</string>
+    <string name="preference_set_default_browser_summary">Link Bubble must be the default system browser to work. Tap to configure.</string>
     <string name="preference_more">और... </string>
     <string name="preference_intercept_links_from_title">जह़ा से लिंक्स कों इंटरसेप्ट करे </string>
     <string name="preference_intercept_links_from_note">नोट: फ्री वर्जन सिर्फ एक लिंक को खोलने  के प्रतिबंध के साथ ही मौजूद है.
 ज्यादा  लिंक्स के लिये  प्रो वर्जन ले?</string>
-    <string name="preference_intercept_links_from_disabled_for_L">Google have removed the API required for this functionality from L.</string>
+    <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
     <string name="preference_scan_for_youtube_embeds_title">यूट्यूब एम्बेड्स  के लिए जाँच करें</string>
     <string name="preference_scan_for_youtube_embeds_summary">एम्बेडेड वीडियो को यूट्यूब ऐप  में चलने के लिये डिस्प्ले शॉर्टकट।</string>
     <string name="preference_webview_battery_save_title">Battery Save Mode (Beta)</string>
@@ -107,6 +115,8 @@
     <string name="preference_theme_light_no_color">Light + neutral color</string>
     <string name="preference_theme_dark_color">Dark + icon color</string>
     <string name="preference_theme_dark_no_color">Dark + neutral color</string>
+    <string name="preference_theme_toolbar_title">Color toolbar</string>
+    <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
     <string name="preference_article_mode_title">Reading Mode (Beta)</string>
     <string name="preference_reading_mode_on_wear_title">Reading Mode on Wear</string>
     <string name="preference_article_mode_summary">Toggled via button on action bar</string>
@@ -131,6 +141,15 @@
         <item>क्रोम डेस्कटॉप</item>
     </string-array>
 
+    <string name="preference_domains_title">Domain redirects</string>
+    <string name="preference_domains_summary">Specify links to always load in your fallback browser.</string>
+    <string name="preference_redirects_title">Redirect to fallback browser</string>
+    <string name="preference_add_domain_title">Add domain</string>
+    <string name="add_domain_hint">Url host</string>
+    <string name="add_domain_detail">Specify only the \'main\' portion of a website address. E.g.,
+        \"accounts.google.com\" or \"bbc.co.uk\".</string>
+    <string name="add_domain_error">Unable to add \"%1$s\", as it is not a valid URL host.</string>
+
     <string name="preference_help_title">मदद </string>
     <string name="preference_show_welcome_message_title">स्वागत पृष्ठ दिखाएँ</string>
     <string name="preference_credits_title">क्रेडिट</string>
@@ -147,7 +166,7 @@
     <string name="preference_more_summary">\"OK, Google\", Reading Mode and more</string>
     <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
-    <string name="preference_my_other_apps_title">च्रिस लेसी की अन्य एप्स </string>
+    <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">आपको लिंक बबल पसंद हें? क्यू ना आप मेरी दूसरी अप्स कों भी यूज़ करे। </string>
 
     <string name="preference_ok_google_title">\"OK, Google\" voice activation</string>
@@ -158,13 +177,13 @@
     <string name="remove_default_title">डिफ़ॉल्ट हटाये </string>
     <string name="remove_default_message">  %2$s लिंक्स के लिए  %1$s को डिफ़ॉल्ट ऐप से हटाये?\n\nनोट: जब आप अगली बार कोई %2$s लिंक खोलेंगे
  तब आप नयी डिफ़ॉल्ट ऐप का चयन कर सकते हे। </string>
-    <string name="long_press_unsupported_default_browser">एंड्राइड लिंक बबल को इस आइटम को सेलेक्ट करने की इजाजत नही देता हे। क्या  लिंक को इसके द्वारा खोले %1$s?</string>
-    <string name="long_press_unsupported_no_default_browser">एंड्राइड सिस्टम  लिंक बबल को इस आइटम को सेलेक्ट करने की इजाजत नही देता हे। लिंक को ब्राउज़र में देखे।</string>
+    <string name="long_press_unsupported_default_browser">Unable to display this item. Open link in %1$s?</string>
+    <string name="long_press_unsupported_no_default_browser">Unable to display this item. Open link in a browser.</string>
     <string name="unsupported_scheme_default_browser">इस प्रकार का लिंक अभी बबल सपोर्ट नही करता हे। क्या  पेज को इससे खोले %1$s?</string>
     <string name="unsupported_scheme_no_default_browser">इस प्रकार का लिंक अभी बबल सपोर्ट नही करता हे। लिंक को ब्राउज़र में देखे। </string>
     <string name="unsupported_scheme">इस प्रकार का लिंक अभी बबल सपोर्ट नही करता हे। </string>
-    <string name="unsupported_drop_down_default_browser">एंड्राइड सिस्टम लिंक बबल को ड्राप डाउन एलिमेंट्स के यूज़ की इजाजत नही देता हे।\n क्या  लिंक को देखे %1$s?</string>
-    <string name="unsupported_drop_down_no_default_browser">एंड्राइड सिस्टम लिंक बबल को ड्राप डाउन एलिमेंट्स के यूज़ की इजाजत नही देता हे।\nलिंक को ब्राउज़र में देखे।</string>
+    <string name="unsupported_drop_down_default_browser">Unable to interact with this item. Open in %1$s?</string>
+    <string name="unsupported_drop_down_no_default_browser">Unable to interact with this item. Open link in a browser.</string>
 
     <string name="consume_category_view">लिंक  देखे </string>
     <string name="consume_category_share">भेजे/शेयर करे </string>
@@ -188,6 +207,7 @@
     <string name="private_data_cleared">प्राइवेट डाटा हटा दिया गया </string>
     <string name="private_data_cleared_reloading_current">निजी डेटा को हटाया।  वर्तमान बबल पुन: लोड...</string>
     <string name="user_agent_changed_reloading_current">यूजर एजेंट बदला गया। रिलोडिंग बबल्स ... </string>
+    <string name="theme_toolbar_reloading_current">Color toolbar setting changed. Reloading current bubbles…</string>
     <string name="article_mode_changed_reloading_current">Reading Mode setting changed. Reloading current bubbles…</string>
     <string name="link_loaded_with_app">%1$s से लोड किया</string>
     <string name="link_redirected">%1$s पर भेजा </string>
@@ -249,8 +269,8 @@
     <string name="faq_future_features_question">क्या आप bookmarks, favourites, extentions आदि के लिए support देंगे?</string>
     <string name="faq_future_features_answer">नेवर से नेवर, लेकिन अभी के लिए लिंक बबल का लक्ष्य पूरी तरह से केवल दूसरी एप्स से लिंक्स को बेहतर ढंग से खोलना हे।</string>
     <string name="faq_translations_question">Can I help translate the app?</string>
-    <string name="faq_translations_answer"><![CDATA[मैं जल्द ही अनुवाद समर्थन जोड़ने की उम्मीद में हूँ. <br/> <br/> जब भी मैं करूँगा, मैं निश्चित रूप से Google+ (+Link Bubble) पर एक पोस्ट करूँगा।
-अनुवाद के साथ मदद के लिए है, मेरे फ़ीड पर नजर रखे.]]></string>
+    <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
+            (+Link Bubble) for help with translations, so be sure to keep an eye on my feed.]]></string>
     <string name="faq_roadmap_question">क्या आप आके के फीचर्स लो रोडमैप पब्लिश करते हे क्या? क्या में उनके लिए समर्थन (voting) कर सकता हु क्या?</string>
     <string name="faq_roadmap_answer">प्रतिस्पर्धी कारणों से, इन दोनों सवालों का जवाब \'\नहीं \' हे।<br/><br/></string>
     <string name="faq_alternate_payment_question">क्रेडिट कार्ड नही होने के कारन में गूगल प्ले से नही खरीद पा रहा हूँ। क्या कोई और तरीका हे प्रो वर्जन खरीदने का?</string>
@@ -268,7 +288,7 @@ Copy functionality works when using Android\'s WebView from an Activity, but not
     <string name="faq_translucent_status_bar_question">पारदर्शी उस बार के ऊपर एप क्यों नही आती?</string>
     <string name="faq_translucent_status_bar_answer">अभाग्यवश, एंड्राइड सिस्टम यह करने की इजाजत नजी देता हे। </string>
     <string name="faq_beta_programme_question">क्या इसका कोई बीटा प्रोग्राम हे? मै केसे ज्वाइन कर सकता हूँ?</string>
-    <string name="faq_beta_programme_answer">बीटा प्रोग्राम  की जानकारी जल्दी ही अनाउंस की जाएगी। मेरे गूगल+ (+Link Bubble) फीड पर नजर रखे। </string>
+    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Link Bubble) feed for announcements.</string>
     <string name="faq_low_spec_performance_question">लिंक बबल मेरी Nexus S /Galaxy S1/Moto G श्रेनि के मोबाइल्स पर धीरे क्यों चलता हे?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[लिंक बबल एक बहुत संसाधन गहन app है इसीलिए कम स्पेक्स वाले
  और अधिक शक्तिशाली उपकरण भी इसे चलाने के लिए संघर्ष कर सकते हैं. भविष्य में इसमें सुधर किया जाएगा लेकिन सुधार की भी एक सीमा होगी।
@@ -292,13 +312,13 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="faq_change_default_browser_answer">सिस्टम सेटिंग -> ऐप्स -> डाउनलोडेड -> लिंक बबल ->
 डिफ़ॉल्ट हटाये।</string>
     <string name="faq_pro_trial_question">लिंक बबल का प्रो ट्राइल केसे कार्य करता हे। </string>
-    <string name="faq_pro_trial_answer"><![CDATA[• लिंक बबल इन्स्टाल करने के बाद पहले 24 घंटे के लिए, गैर लिंक बुलबुला प्रो उपयोगकर्ता सभी फीचर उपयोग कर सकेंगे।
-लिंक बबल प्रो की  प्रीमियम की विशेषताएं (एकाधिक टैब, आदि)<br/> 
-• इस परीक्षण अवधि के दौरान, लिंक बबल प्रो के प्रीमियम सुविधाओं आपके सभी उपकरणों के लिए उपलब्ध हो जाएगी। <br/> 
-• लिंक बबल की मुख्य स्क्रीन के ऊपर कितना समय बचा हे ट्रेल के खत्म होने में वह एक घड़ी प्रदर्शित करती  है।<br/> 
-• 1.1 अद्यतन से पहले लिंक बबल को यूज़ करने वाले लोग इस ट्राइल के लिए पात्र हैं। <br/> 
-• वेरिफिकातियो के लिए, प्रो परीक्षण आपके ईमेल पते से जुड़ा हुआ है. यदि कोई ईमेल पता डिवाइस पर नहीं  पाया जाता है, तो ट्राइल उपलब्ध नहीं होगा।<br/> 
-• क्षमा करें, लेकिन आपके परीक्षण अवधि रिसेट नहीं कर सकते हैं।लिंक बबल प्रो ख़रीदे और सुविधाओं के पुरे उपयोग का आनंद लें.]]></string>
+    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
+        Pro\'s premium features.<br/>
+        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
+        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
+        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
+        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
+        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
     <string name="faq_report_bug_question">बग की रिपोर्ट करे। </string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -316,7 +336,9 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="trial_time_on_click">%1$s बाकी हे आपके 24 गंटे लिंक बबल ट्रायल में से। </string>
 
     <string name="credits_title">लिंक बबल क्रेडिट्स </string>
+    <string name="credits_name">Link Bubble</string>
     <string name="credits_credit">कंसेप्ट, डिज़ाइन और प्रोग्रामिंग </string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <!--
     <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
@@ -341,8 +363,8 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
 
     <string name="requesting_location_message">%1$s आपकी लोकेशन मांग रहा हे। लोकेशन की जानकारी दे या नहीं?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
-    <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
+    <string name="accept_terms_and_privacy"><![CDATA[आगे बढ़ने पर यह माना जाएगा की आप लिंक बबल की इन टर्म को मानते हे। 
+<a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
 
     <string name="service_name">लिंक बबल Renderer</string>
     <string name="notification_title">लिंक बबल </string>
