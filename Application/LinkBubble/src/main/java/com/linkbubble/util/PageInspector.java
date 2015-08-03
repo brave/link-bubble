@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.os.Handler;
 import android.util.Log;
 import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
@@ -38,20 +39,36 @@ public class PageInspector {
     private static final String JS_DROP_DOWN_ITEM_CHECK =
             "{\n" +
             "  window.__LINK_BUBBLE__ = window.__LINK_BUBBLE__ || {};\n" +
+            "  if (window.__LINK_BUBBLE__.selectOption) { return; }\n" +
             "  window.__LINK_BUBBLE__.lastSelectFocused = null;\n" +
-            "  window.__LINK_BUBBLE__.selectOption = function(value) {\n" +
-            "    window.__LINK_BUBBLE__.lastSelectFocused.value = value;\n" +
+            "  window.__LINK_BUBBLE__.selectOption = function(index) {\n" +
+            "    var select = window.__LINK_BUBBLE__.lastSelectFocused;\n" +
+            "    select.selectedIndex = index;\n" +
+            "    select.previousElementSibling.textContent = select[index].text;\n" +
             "  };\n" +
+            "  var positioningProps = ['float','position','width','height','left','top','margin-left','margin-top','padding-left','padding-top', 'border', 'background'];\n" +
             "  var els = document.querySelectorAll('select');\n" +
             "  Array.prototype.forEach.call(els, function(select) {\n" +
-            "    select.addEventListener('click', function(e) {\n" +
+            "    var mask = document.createElement('div');\n" +
+            "    mask.className = '__link_bubble__select_mask__';\n" +
+            "    mask.style.webkitAppearance = 'menulist';\n" +
+            "    var computedStyle = getComputedStyle(select);\n" +
+            "\n" +
+            "    for(var i in positioningProps){\n" +
+            "      var prop = positioningProps[i];\n" +
+            "      mask.style[prop] = computedStyle.getPropertyValue(prop);\n" +
+            "    }\n" +
+            "    select.parentNode.insertBefore(mask, select);\n" +
+            "    mask.textContent = select[0].text;\n" +
+            "    select.style.display = 'none';\n" +
+            "\n" +
+            "    mask.addEventListener('click', function(e) {\n" +
             "      e.preventDefault();\n" +
-            "      var sel = e.target;\n" +
-            "      window.__LINK_BUBBLE__.lastSelectFocused = e.target;\n" +
-            "      var keyAndValues = [];\n" +
-            "      for (var i = 0; i < sel.length; i++) {\n" +
-            "        keyAndValues.push(sel[i].text);\n" +
-            "        keyAndValues.push(sel[i].value);\n" +
+            "      window.__LINK_BUBBLE__.lastSelectFocused = select;\n" +
+            "      var keyAndValues = [select.selectedIndex];\n" +
+            "      for (var i = 0; i < select.length; i++) {\n" +
+            "        keyAndValues.push(select[i].text);\n" +
+            "        keyAndValues.push(select[i].value);\n" +
             "      }\n" +
             "      " + JS_VARIABLE + ".onSelectElementInteract(JSON.stringify(keyAndValues));\n" +
             "    });\n" +
@@ -117,6 +134,7 @@ public class PageInspector {
     private Context mContext;
     private String mWebViewUrl;
     private WebView mWebView;
+    private Handler mHandler;
     private JSEmbedHandler mJSEmbedHandler;
     private YouTubeEmbedHelper mYouTubeEmbedHelper;
     private String mLastYouTubeEmbedResultString = null;
@@ -139,6 +157,8 @@ public class PageInspector {
 
     public PageInspector(Context context, WebView webView, OnItemFoundListener listener) {
         mContext = context;
+        mWebView = webView;
+        mHandler = new Handler();
         mJSEmbedHandler = new JSEmbedHandler();
         mOnItemFoundListener = listener;
         webView.addJavascriptInterface(mJSEmbedHandler, JS_VARIABLE);
@@ -146,7 +166,6 @@ public class PageInspector {
 
     public void run(WebView webView, int inspectFlags) {
         mWebViewUrl = webView.getUrl();
-        mWebView = webView;
 
         String jsEmbed = "javascript:(function() {\n";
 
@@ -285,6 +304,7 @@ public class PageInspector {
             Log.d(TAG, "onSelectElementInteract() - " + optionString);
 
             final ArrayList<String> optionList = new ArrayList<String>();
+            int selectedIndex = 0;
             try {
                 JSONArray optionArray = new JSONArray(optionString);
                 if (optionArray != null) {
@@ -293,18 +313,26 @@ public class PageInspector {
                         optionList.add(optionArray.get(i).toString());
                     }
                 }
+                selectedIndex = Integer.parseInt(optionArray.get(0).toString());
             } catch(JSONException e) {
                 Log.d(TAG, "error parsing json");
             }
 
             AlertDialog dialog;
             AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-            builder.setTitle("Select an option:");
-            builder.setSingleChoiceItems(optionList.toArray(new String[optionList.size()]), 0, new DialogInterface.OnClickListener() {
+            builder.setSingleChoiceItems(optionList.toArray(new String[optionList.size()]), selectedIndex, new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int position) {
+                public void onClick(DialogInterface dialog, final int position) {
                     Log.d(TAG, "click position is - " + position);
-                    mWebView.loadUrl("javascript:__LINK_BUBBLE__.selectOption('" + optionList.get(position - 1) + "')");
+                    dialog.dismiss();
+
+                    mHandler.postDelayed(new Runnable() {
+
+                        public void run() {
+                            mWebView.loadUrl("javascript:__LINK_BUBBLE__.selectOption(" + position + ")");
+                        }
+
+                    }, 1);
                 }
             });
             dialog = builder.create();
