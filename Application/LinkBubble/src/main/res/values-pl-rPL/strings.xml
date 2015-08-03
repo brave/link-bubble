@@ -45,7 +45,6 @@
 
     <string name="upgrade">Wersja Pro</string>
     <string name="upgrade_to_pro">Kup wersję Pro</string>
-    <string name="upgrade_ok_google">Czy chcesz uruchamiać Google Now komendą \"OK, Google\"?</string>
     <string name="upgrade_article_mode">Czy chcesz wczytywać linki w trybie czytania?</string>
     <string name="upgrade_article_mode_wear">Chcesz wczytywać linki w trybie czytania na Android Wear?</string>
     <string name="upgrade_theme">Chcesz użyć innego motywu?</string>
@@ -55,7 +54,6 @@
         Change theme.\n •
         Use Reading Mode.\n •
         Android Wear support.\n •
-        Use \"OK, Google\" voice activation.\n •
         Support us as we develop this app :)
         </string>
 
@@ -159,16 +157,10 @@
     <string name="preference_version_title">Wersja</string>
     <string name="preference_version_summary">Co się zmieniło?</string>
     <string name="preference_more_title">Więcej&#8230;</string>
-    <string name="preference_more_summary">\"OK, Google\", Tryb czytania, i inne</string>
     <string name="preference_show_undo_close_tab_title">Monit o przywrócenie zamkniętego dymku</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">Podoba Ci się Link Bubble? Sprawdź inne moje aplikacje.</string>
-
-    <string name="preference_ok_google_title">Aktywacja komendą \"OK, Google\"</string>
-    <string name="preference_ok_google_summary">Więcej informacji znajduje się w FAQ</string>
-    <string name="preference_ok_google_summary_jelly_bean">Wymaga Androida 4.4 lub nowszego</string>
-    <string name="preference_ok_google_summary_long">Uwaga: Google nie włączyło tej funkcji dla wszystkich urządzeń i krajów. Jeśli komenda \"OK, Google\" nie działa wewnątrz Google Now, nie zadziała również w Link Bubble.</string>
 
     <string name="remove_default_title">Usunąć wartość domyślną?</string>
     <string name="remove_default_message">Czy chcesz przestać używać %1$s jako domyślnej aplikacji do otwierania linków %2$s?\n\nUwaga: Możesz ustawić nową domyślną aplikację, która uruchomi się, gdy następnym razem otworzysz link %2$s.</string>

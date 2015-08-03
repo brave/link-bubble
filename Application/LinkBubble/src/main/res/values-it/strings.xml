@@ -45,7 +45,6 @@
 
     <string name="upgrade">Aggiorna</string>
     <string name="upgrade_to_pro">Aggiorna alla versione Pro</string>
-    <string name="upgrade_ok_google">Vuoi caricare Google Now dicendo \"OK, Google\"?</string>
     <string name="upgrade_article_mode">Vuoi visualizzare i link in Modalità Lettura?</string>
     <string name="upgrade_article_mode_wear">Vuoi visualizzare i link in Modalità Lettura sui dispositivi Android Wear?</string>
     <string name="upgrade_theme">Vuoi utilizzare un tema diverso?</string>
@@ -55,7 +54,6 @@
         Change theme.\n •
         Use Reading Mode.\n •
         Android Wear support.\n •
-        Use \"OK, Google\" voice activation.\n •
         Support us as we develop this app :)
         </string>
 
@@ -159,16 +157,10 @@
     <string name="preference_version_title">Versione</string>
     <string name="preference_version_summary">Ultime novità</string>
     <string name="preference_more_title">Altro&#8230;</string>
-    <string name="preference_more_summary">\"OK, Google\", Modalità Lettura ed altro</string>
     <string name="preference_show_undo_close_tab_title">Finestra di annullamento chiusura scheda</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">Ti piace Link Bubble? Perchè non provi anche le mie altre app?</string>
-
-    <string name="preference_ok_google_title">Attivazione vocale \"OK, Google\"</string>
-    <string name="preference_ok_google_summary">Vedi le FAQ per ulteriori dettagli</string>
-    <string name="preference_ok_google_summary_jelly_bean">Richiede Android 4.4 o successivo</string>
-    <string name="preference_ok_google_summary_long">Nota: Google non ha abilitato questa funzionalità per tutti i dispositivi/paesi. Se dire \"OK, Google\" non funziona su Google Now, non funzionerà anche su Link Bubble.</string>
 
     <string name="remove_default_title">Rimuovi predefinito?</string>
     <string name="remove_default_message">Rimuovi %1$s come app predefinita con cui caricare collegamenti %2$s?\n\nNota: puoi impostare una nuova app predefinita la prossima volta che caricherai un link %2$s.</string>

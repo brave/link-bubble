@@ -45,7 +45,6 @@
 
     <string name="upgrade">Улучшить</string>
     <string name="upgrade_to_pro">Улучшить до Pro</string>
-    <string name="upgrade_ok_google">Хотите открывать Google Now командой \"OK, Google\"?</string>
     <string name="upgrade_article_mode">Хотите просматривать ссылки в режиме чтения?</string>
     <string name="upgrade_article_mode_wear">Хотите открывать ссылки на Android Wear в режиме чтения?</string>
     <string name="upgrade_theme">Хотите использовать различные темы?</string>
@@ -55,7 +54,6 @@
         Change theme.\n •
         Use Reading Mode.\n •
         Android Wear support.\n •
-        Use \"OK, Google\" voice activation.\n •
         Support us as we develop this app :)
         </string>
 
@@ -160,16 +158,10 @@
     <string name="preference_version_title">Версия</string>
     <string name="preference_version_summary">Что нового?</string>
     <string name="preference_more_title">Ещё&#8230;</string>
-    <string name="preference_more_summary">\"OK, Google\", режим чтения и прочее</string>
     <string name="preference_show_undo_close_tab_title">Кнопка отмены закрытия пузыря</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">Нравится Link Bubble? Попробуйте другие мои приложения!</string>
-
-    <string name="preference_ok_google_title">Команда \"OK, Google\"</string>
-    <string name="preference_ok_google_summary">Откройте FAQ для подробностей</string>
-    <string name="preference_ok_google_summary_jelly_bean">Требует Android 4.4+</string>
-    <string name="preference_ok_google_summary_long">Внимание: Google ещё не включила эту возможность для всех устройств / стран. Если команда \"OK, Google\" не работает в Google Now, она также не будет работать в Link Bubble.</string>
 
     <string name="remove_default_title">Сбросить умолчание?</string>
     <string name="remove_default_message">Не открывать ссылки вида %2$s с помощью %1$s?\n\nВнимание: вы можете выбрать новое умолчание, когда в следующий раз откроете ссылку вида %2$s.</string>

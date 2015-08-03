@@ -67,7 +67,6 @@ public class Settings {
     public static final String PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME = "preference_default_browser_package_name";
     public static final String PREFERENCE_DEFAULT_BROWSER_LABEL = "preference_default_browser_bubble_label";
 
-    public static final String KEY_OK_GOOGLE_PREFERENCE = "preference_ok_google";
     public static final String KEY_ARTICLE_MODE_PREFERENCE = "preference_article_mode";
     public static final String KEY_ARTICLE_MODE_ON_WEAR_PREFERENCE = "preference_reading_mode_on_wear";
 
@@ -1133,13 +1132,6 @@ public class Settings {
 
     public boolean debugAutoLoadUrl() {
         return mSharedPreferences.getBoolean("auto_load_url", false);
-    }
-
-    public boolean getOkGoogleEnabled() {
-        if (DRM.isLicensed() == false) {
-            return false;
-        }
-        return mSharedPreferences.getBoolean(KEY_OK_GOOGLE_PREFERENCE, false);
     }
 
     public boolean getArticleModeEnabled() {

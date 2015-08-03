@@ -45,7 +45,6 @@
 
     <string name="upgrade">Upgraden</string>
     <string name="upgrade_to_pro">Auf Pro aktualisieren</string>
-    <string name="upgrade_ok_google">Google Now durch aussprechen des \"OK, Google\"-Befehls öffnen?</string>
     <string name="upgrade_article_mode">Links im Lesemodus ansehen?</string>
     <string name="upgrade_article_mode_wear">Links auf Android-War-Geräten im Lesemodus ansehen?</string>
     <string name="upgrade_theme">Ein anderes Theme verwenden?</string>
@@ -55,7 +54,6 @@
         Change theme.\n •
         Use Reading Mode.\n •
         Android Wear support.\n •
-        Use \"OK, Google\" voice activation.\n •
         Support us as we develop this app :)
         </string>
 
@@ -159,16 +157,10 @@
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">Was ist neu?</string>
     <string name="preference_more_title">Mehr&#8230;</string>
-    <string name="preference_more_summary">\"OK, Google\", Lesemodus und mehr</string>
     <string name="preference_show_undo_close_tab_title">\"Tab geschlossen rückgängig machen\"-Toastnachricht</string>
 
     <string name="preference_my_other_apps_title">Mehr Apps von Link Bubble</string>
     <string name="preference_my_other_apps_summary">Gefällt dir Link Bubble? Warum schaust du dir dann nicht einmal meine anderen Apps an?</string>
-
-    <string name="preference_ok_google_title">\"OK, Google\"-Sprachbefehl</string>
-    <string name="preference_ok_google_summary">FAQ für weitere Details aufrufen</string>
-    <string name="preference_ok_google_summary_jelly_bean">Erfordert Android 4.4 oder neuer</string>
-    <string name="preference_ok_google_summary_long">Hinweis: Google hat diese Funktion nicht auf allen Geräten oder in allen Standorten aktiviert. Falls der \"OK, Google\"-Sprachbefehl für Sie auch in Google Now nicht funktioniert, wird er in Link Bubble ebenfalls nicht funktionieren.</string>
 
     <string name="remove_default_title">Standard entfernen?</string>
     <string name="remove_default_message">%1$s als die Standard-App zum Öffnen von Links aus %2$s entfernen?\n\nHinweis: Du kannst eine neue Standard-App festlegen, wenn du das nächste Mal einen Link aus %2$s öffnest.</string>

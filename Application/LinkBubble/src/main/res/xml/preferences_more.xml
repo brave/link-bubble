@@ -15,13 +15,6 @@
         android:title="@string/preference_reading_mode_on_wear_title"/>
 
     <CheckBoxPreference
-        android:key="preference_ok_google"
-        android:title="@string/preference_ok_google_title"
-        android:summary="@string/preference_ok_google_summary_long"
-        android:defaultValue="false"
-        />
-
-    <CheckBoxPreference
         android:key="preference_show_undo_close_tab_prompt"
         android:title="@string/preference_show_undo_close_tab_title"
         android:defaultValue="true"

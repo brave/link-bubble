@@ -45,7 +45,6 @@
 
     <string name="upgrade">Frissítés</string>
     <string name="upgrade_to_pro">Váltás Pro verzióra</string>
-    <string name="upgrade_ok_google">Google betöltése? Mondd, hogy  \"OK, Google\"!</string>
     <string name="upgrade_article_mode">Megnyissam olvasó módban?</string>
     <string name="upgrade_article_mode_wear">Megnyitod Android Wear-en olvasás módban?</string>
     <string name="upgrade_theme">Másik témát szeretnél?</string>
@@ -55,7 +54,6 @@
         Change theme.\n •
         Use Reading Mode.\n •
         Android Wear support.\n •
-        Use \"OK, Google\" voice activation.\n •
         Support us as we develop this app :)
         </string>
 
@@ -161,16 +159,10 @@
     <string name="preference_version_title">Verzió</string>
     <string name="preference_version_summary">Változások</string>
     <string name="preference_more_title">More&#8230;</string>
-    <string name="preference_more_summary">\"OK, Google\", Reading Mode and more</string>
     <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
     <string name="preference_my_other_apps_summary">Tetszik a Link Bubble? Nézd meg a többi app-omat</string>
-
-    <string name="preference_ok_google_title">\"OK, Google\" voice activation</string>
-    <string name="preference_ok_google_summary">See FAQ for further detail</string>
-    <string name="preference_ok_google_summary_jelly_bean">Andoid 4.4 verzió felett</string>
-    <string name="preference_ok_google_summary_long">Megjegyzés: Ez a funkció nem minden eszközön/területen elérhető. Ha az  \"OK, Google\" bemondása nem működik a Google Now-ban, nem fog működni Link Bubble-ban sem.</string>
 
     <string name="remove_default_title">Alapértelmezett eltávolítása?</string>
     <string name="remove_default_message">Eltávolítod a(z) %1$s alkalmazás alapértelmezését a %2$s típusú linket betöltéséhez. ?\n\nMegjegyzés: ezután beállíthatsz új alkalmazást %2$s linkek betöltéséhez.</string>
