@@ -8,6 +8,8 @@
         <change>IMPROVEMENT: Update appearance for material design.</change>
         <change>IMPROVEMENT: Use Lollipop themed Snackbar prompt. This can be dismissed also by swiping.</change>
         <change>REMOVED: "Google Account redirect" removed in favor of new "Domain redirects" functionality.</change>
+        <change>NEW: Translation support for Afrikaans - South Africa, Hebrew, Indonesian, Korean, Norwegian, Slovak, Turkish, Chinese - Hong Kong SAR.</change>
+        <change>NEW: Support for select elements.</change>
     </release>
 
     <release version="1.4.8" versioncode="14700">
