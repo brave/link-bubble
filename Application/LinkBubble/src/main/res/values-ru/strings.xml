@@ -50,13 +50,14 @@
     <string name="upgrade_article_mode_wear">Хотите открывать ссылки на Android Wear в режиме чтения?</string>
     <string name="upgrade_theme">Хотите использовать различные темы?</string>
     <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
-    <string name="upgrade_from_settings_summary">Улучшите до Link Bubble Pro, чтобы:\n •
-Открывать несколько ссылок одновременно.\n •
-Менять тему.\n •
-Использовать режим чтения.\n •
-Включить поддержку Android Wear.\n •
-Использовать команду \"OK, Google\".\n •
-Поддержать меня в разработке :)</string>
+    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
+        Load multiple tabs at once.\n •
+        Change theme.\n •
+        Use Reading Mode.\n •
+        Android Wear support.\n •
+        Use \"OK, Google\" voice activation.\n •
+        Support us as we develop this app :)
+        </string>
 
     <string name="undo_close_tab_title">Закрыто %1$s</string>
     <string name="undo_close_tab_no_title">Закрыт пузырь</string>
@@ -353,7 +354,7 @@ Link Bubble.]]></string>
     <string name="pro_application_name">Link Bubble Pro</string>
     <string name="pro_status_checking_license">Проверка лицензии...</string>
 	<string name="pro_status_buy">Не удалось проверить лицензию.\n\nВозможные причины:\n • Нет подключения к интернету.\n • Приложение было модифицировано.\n\nПроверьте подключение и попробуйте переустановить приложение из Google Play.</string>
-    <string name="pro_status_verified">Покупка Link Bubble Pro подтверждена! Большое спасибо за поддержку!</string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
     <string name="pro_status_unlicensed">Google Play сообщает, что эта копия Link Bubble Pro нелицензионна.\n\nЕсли вы действительно приобрели копию Link Bubble Pro, причиной может быть то, что для покупки использовался email, не настроенный на этом устройстве.</string>
 
     <string name="pro_keep_installed">Внимание: вам не нужно загружать Link Bubble Pro заново, но нужно иметь его на устройстве для проверки лицензии.\n\nЭто приложение будет скрыто в системе и не появится на ваших рабочих столах.</string>
@@ -379,11 +380,13 @@ Link Bubble.]]></string>
 
     <string name="pro_store_listing_title">Link Bubble Pro</string>
     <string name="pro_store_listing_description_title">Link Bubble Pro открывает все возможности Link Bubble.</string>
-    <string name="pro_store_listing_description_features">Улучшение включает:
-• Бесконечное количество пузырей (только один в бесплатной версии).
-• Выбор тем.
-• Скрытие предложений улучшить приложение до Pro.
-• Поддержку меня в разработке :)</string>
+    <string name="pro_store_listing_description_features">
+    Upgrades include:
+    • Infinite number of tabs (free version is limited to just one tab).
+    • Theme selection
+    • Remove the upgrade incentives throughout the free version.
+    • Support us so we get to make more of these apps :)
+    </string>
 
     <string name="welcome_page_title">Добро пожаловать в Link Bubble!</string>
     <string name="welcome_page_trial_notice">Внимание: первые 24 часа использования вам будут доступны все Pro-функции как единоразовый пробный период.</string>

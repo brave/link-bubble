@@ -56,7 +56,7 @@
         Use Reading Mode.\n •
         Android Wear support.\n •
         Use \"OK, Google\" voice activation.\n •
-        Support me as I develop this app :)
+        Support us as we develop this app :)
         </string>
 
     <string name="undo_close_tab_title">Closed %1$s</string>
@@ -373,7 +373,7 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="pro_status_checking_license">Checando licença...</string>
 	<string name="pro_status_buy">Unable to verify license.\n\nSome causes of this problem include:\n • There is no Internet connection.\n • This application has been tampered
                             with.\n\nCheck your Internet connection, and if necessary, try installing the app from the Play Store again.</string>
-    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting me as I develop this project.</string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
     <string name="pro_status_unlicensed">Google Play is reporting this copy of Link Bubble Pro is unlicensed.\n\nAssuming you have
                             indeed purchased a copy of Link Bubble Pro, the most common reason for this is that email address used
                             for your purchase is not configured with the Play Store on this device.</string>
@@ -408,7 +408,7 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     • Infinite number of tabs (free version is limited to just one tab).
     • Theme selection
     • Remove the upgrade incentives throughout the free version.
-    • Support me so I get to make more of these apps :)
+    • Support us so we get to make more of these apps :)
     </string>
 
     <string name="welcome_page_title">Bem vindo ao Link Bubble!</string>

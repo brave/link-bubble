@@ -50,13 +50,14 @@
     <string name="upgrade_article_mode_wear">通过阅读模式在 Android 智能手表上查看链接吗？</string>
     <string name="upgrade_theme">想换一种主题试试？</string>
     <string name="upgrade_theme_toolbar">是否要让工具栏主题色与网站主题色相匹配？</string>
-    <string name="upgrade_from_settings_summary">升级至 Link Bubble 专业版可以享受以下特性：\n
-• 同时加载多个泡泡\n
-• 更换主题\n
-• 使用阅读模式\n
-• 支持 Android 智能手表\n
-• 激活「OK, Google」语音指令\n
-• 支持我开发本应用 :)</string>
+    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
+        Load multiple tabs at once.\n •
+        Change theme.\n •
+        Use Reading Mode.\n •
+        Android Wear support.\n •
+        Use \"OK, Google\" voice activation.\n •
+        Support us as we develop this app :)
+        </string>
 
     <string name="undo_close_tab_title">已关闭「%1$s」</string>
     <string name="undo_close_tab_no_title">已关闭标签</string>
@@ -345,7 +346,7 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="pro_application_name">Link Bubble 专业版</string>
     <string name="pro_status_checking_license">正在校验许可...</string>
 	<string name="pro_status_buy">无法校验许可。\n\n产生此问题可能的原因包括：\n • 无网络链接。\n • 您安装的是盗版。\n\n检查您的网络连接，如果有必要的话，尝试在 Play 商店中重新安装。</string>
-    <string name="pro_status_verified">Link Bubble 专业版许可已通过校验！\n\n非常感谢您支持我开发本项目。</string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
     <string name="pro_status_unlicensed">Google Play 报告该 Link Bubble 专业版拷贝是未经许可的。\n\n如果您确实购买了 Link Bubble 专业版，那可能的原因是用于购买的电子邮箱地址并未在本设备上与 Play 商店中配置。</string>
 
     <string name="pro_keep_installed">注意：您不需要再次载入 Link Bubble 专业版。但是出于校验目的，您需要保持其安装。\n\n本应用会在系统中隐藏，所以它不会在您的启动器中显示。</string>
@@ -371,11 +372,13 @@ Link Bubble 亦遵循该标准。]]></string>
 
     <string name="pro_store_listing_title">Link Bubble 专业版</string>
     <string name="pro_store_listing_description_title">Link Bubble 专业版将会解锁所有功能。</string>
-    <string name="pro_store_listing_description_features">升级后您能获得以下特性：
-• 无限数量的泡泡（免费版限制只能同时存在一个页面）
-• 可选择主题
-• 移除频繁出现的「建议升级」的消息
-• 支持我让我开发更多优秀应用 :)</string>
+    <string name="pro_store_listing_description_features">
+    Upgrades include:
+    • Infinite number of tabs (free version is limited to just one tab).
+    • Theme selection
+    • Remove the upgrade incentives throughout the free version.
+    • Support us so we get to make more of these apps :)
+    </string>
 
     <string name="welcome_page_title">欢迎使用 Link Bubble！</string>
     <string name="welcome_page_trial_notice">注意：在第一次安装 Link Bubble 后的一整天内，你将有一次享受专业版的高级功能的体验。</string>

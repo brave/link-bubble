@@ -56,7 +56,7 @@
         Use Reading Mode.\n •
         Android Wear support.\n •
         Use \"OK, Google\" voice activation.\n •
-        Support me as I develop this app :)
+        Support us as we develop this app :)
         </string>
 
     <string name="undo_close_tab_title">Closed %1$s</string>
@@ -352,7 +352,7 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="pro_application_name">Link Bubble Pro</string>
     <string name="pro_status_checking_license">Vérification de la licence…</string>
 	<string name="pro_status_buy">Impossible de vérifier la licence.\n\nIl est possible que :\n• la connexion internet soit indisponible,\n• l\'application a été modifiée.\n\nVeuillez vérifier votre connexion à internet, et si nécessaire, veuillez installer à nouveau l\'application depuis le Play Store.</string>
-    <string name="pro_status_verified">Achat de Link Bubble Pro confirmé !\n\nJe vous remercie du soutien que vous m\'apportez à travers ce projet.</string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
     <string name="pro_status_unlicensed">Google Play rapporte que cette copie de Link Bubble est sans licence.\n\nEn partant du principe que vous avez effectivement acheté une copie de Link Bubble Pro, la plus fréquente raison pour ceci est que l\'email utilisé pour l\'achat n\'est pas configuré dans le Play Store sur cet appareil.</string>
 
     <string name="pro_keep_installed">Note : vous n\'avez pas besoin de charger Link Bubble Pro à nouveau, mais vous devez le garder installé à des fins de vérification.\n\nCette application sera cachée afin qu\'elle n’apparaisse pas dans votre lanceur d\'applications.</string>
@@ -383,7 +383,7 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     • Infinite number of tabs (free version is limited to just one tab).
     • Theme selection
     • Remove the upgrade incentives throughout the free version.
-    • Support me so I get to make more of these apps :)
+    • Support us so we get to make more of these apps :)
     </string>
 
     <string name="welcome_page_title">Bienvenue dans Link Bubble !</string>

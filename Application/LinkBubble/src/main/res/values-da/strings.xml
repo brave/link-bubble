@@ -50,13 +50,14 @@
     <string name="upgrade_article_mode_wear">Ønsker du at se links på Android Wear via Læse Tilstand?</string>
     <string name="upgrade_theme">Ønsker du at bruge et andet tema?</string>
     <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
-    <string name="upgrade_from_settings_summary">Opgrader til Link Bubble Pro for at gøre dette og mere herunder:\n •
-Indlæs flere faner på én gang.\n •
-Ændre temaer.\n •
-Brug Læse Tilstand.\n •
-Android Wear support.\n •
-Brug \"OK, Google\" stemme kommandoer.\n •
-Støt mig, mens jeg udvikler denne app :)</string>
+    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
+        Load multiple tabs at once.\n •
+        Change theme.\n •
+        Use Reading Mode.\n •
+        Android Wear support.\n •
+        Use \"OK, Google\" voice activation.\n •
+        Support us as we develop this app :)
+        </string>
 
     <string name="undo_close_tab_title">Lukkede %1$s</string>
     <string name="undo_close_tab_no_title">Lukkede fane</string>
@@ -358,7 +359,7 @@ Alternativ web renderings metoder, såsom FireFox\'s GeckoView og Chromium vil s
     <string name="pro_application_name">Link Bubble Pro</string>
     <string name="pro_status_checking_license">Kontrollerer licens...</string>
 	<string name="pro_status_buy">Ikke i stand til at kontrollere licens.\n\nÅrsagerne til dette problem kan omfatte:\n • Ingen internet forbindelse.\n • Applikationen kan være blevet manipuleret.\n\nKontroller din internet forbindelse, og hvis det er nødvendigt, skal du prøve at installere appen fra Play Butik igen.</string>
-    <string name="pro_status_verified">Link Bubble Pro køb verificeret!\n\nMange tak for at støtte mig med at udvikle på dette projekt.</string>
+    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
     <string name="pro_status_unlicensed">Google Play rapporterer at denne kopi af Link Bubble Pro er uden licens.\n\nForudsat du har købt en kopi af Link Bubble Pro, er den mest almindelige årsag til dette, at den email adresse du brugte til dit køb, ikke er konfigureret med Play Butik på denne enhed.</string>
 
     <string name="pro_keep_installed">Bemærk: Du behøver at indlæse Link Bubble Pro igen, men du skal holde det installeret til kontrolformål.\n\nDenne app vil være skjult i systemet, så den vises ikke i din launcher(e).</string>
@@ -384,11 +385,13 @@ Alternativ web renderings metoder, såsom FireFox\'s GeckoView og Chromium vil s
 
     <string name="pro_store_listing_title">Link Bubble Pro</string>
     <string name="pro_store_listing_description_title">Link Bubble Pro åbner for de fulde funktioner af Link Bubble.</string>
-    <string name="pro_store_listing_description_features">Opgradering omfatter:
-• Uendelig antal faner (gratis version er begrænset til kun én fane). 
-• Temaer
-• Ikke flere opgraderings henvisninger, som i gratis versionen.
-• Støt mig så jeg kan lave flere af denne slags apps :)</string>
+    <string name="pro_store_listing_description_features">
+    Upgrades include:
+    • Infinite number of tabs (free version is limited to just one tab).
+    • Theme selection
+    • Remove the upgrade incentives throughout the free version.
+    • Support us so we get to make more of these apps :)
+    </string>
 
     <string name="welcome_page_title">Velkommen til Link Bubble!</string>
     <string name="welcome_page_trial_notice">Bemærk: De første 24 timer efter første installation af Link Bubble, vil du have adgang til alle Link Bubble Pro\'s premium funktioner som en engangs prøve.</string>
