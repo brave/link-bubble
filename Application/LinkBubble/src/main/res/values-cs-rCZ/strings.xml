@@ -163,7 +163,7 @@ Chcete přejít na verzi Pro?</string>
     <string name="preference_show_undo_close_tab_title">Dotaz pro vrácení zavřené záložky</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
-    <string name="preference_my_other_apps_summary">Líbí se vám Link Bubble? Podívejte se na mé další aplikace.</string>
+    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
 
     <string name="remove_default_title">Vymazat výchozí?</string>
     <string name="remove_default_message">Vymazat %1$s jako výchozí aplikaci pro načítání odkazů %2$s?\n\nPoznámka: novou výchozí aplikaci můžete nastavit, 

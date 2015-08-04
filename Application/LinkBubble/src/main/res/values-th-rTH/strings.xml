@@ -31,24 +31,24 @@
     <string name="action_close_tab">ปิดหน้าต่าง</string>
     <string name="action_stop">หยุด</string>
     <string name="action_undo">เลิกทำ</string>
-    <string name="action_add">Add</string>
-    <string name="action_no_recommended">No (recommended)</string>
+    <string name="action_add">เพิ่ม</string>
+    <string name="action_no_recommended">ไม่ (แนะนำ)</string>
     <string name="share_via">แบ่งปันผ่าน...</string>
     <string name="not_set">ไม่ได้ตั้งค่า</string>
 
-    <string name="warning">Warning!</string>
-    <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
+    <string name="warning">ระวัง!</string>
+    <string name="untrusted_certificate">ใบรับรองของ %1$s ไม่น่าเชื่อถือ ดำเนินการต่อหรือไม่?</string>
 
     <string name="share_invalid_data">Link Bubble ไม่สามารถแบ่งปันสิ่งนี้เพราะมันไม่ใช่ URL ที่ถูกต้อง</string>
     <string name="consume_activity_not_found">ไม่พบแอป ลองเปลี่ยนตัวเลือกทางลัดผ่านการตั้งค่า</string>
-    <string name="consume_activity_security_exception">Unable to share to external application.</string>
+    <string name="consume_activity_security_exception">ไม่สามารถแบ่งปันไปยังแอปภายนอกได้</string>
 
     <string name="upgrade">อัปเกรด</string>
     <string name="upgrade_to_pro">อัปเกรดเป็นรุ่นโปร</string>
     <string name="upgrade_article_mode">ต้องการดูลิงก์ในโหมดการอ่าน</string>
     <string name="upgrade_article_mode_wear">ต้องการดูลิงก์บนอุปกรณ์ Android Wear ผ่านโหมดการอ่าน?</string>
     <string name="upgrade_theme">ต้องการใช้ธีมที่แตกแต่ง?</string>
-    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
+    <string name="upgrade_theme_toolbar">ต้องการปรับสีธีมแถบเครื่องมือให้ตรงกับสีธีมของเว็บไซต์?</string>
     <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
         Load multiple tabs at once.\n •
         Change theme.\n •
@@ -68,7 +68,7 @@
 
     <string name="preference_category_general">ทั่วไป</string>
     <string name="preference_category_configuration">ควบคุมแอป</string>
-    <string name="preference_category_configuration2">Configuration</string>
+    <string name="preference_category_configuration2">การตั้งค่า</string>
     <string name="preference_category_browser">เบราว์เซอร์</string>
     <string name="preference_enabled_title">เปิดใช้แล้ว</string>
     <string name="preference_auto_content_display_link_loaded_title">ขยายอัตโนมัติ</string>
@@ -90,12 +90,12 @@
     <string name="preference_google_account_redirect_title">ส่งต่อบัญชีกูเกิล</string>
     <string name="preference_google_account_redirect_summary">ส่งต่อลิงก์ accounts.google.com ไปยังเบราว์เซอร์สำรอง</string>
     <string name="preference_set_default_browser_title">ตั้งค่าเบราว์เซอร์เริ่มต้นของเครื่อง</string>
-    <string name="preference_set_default_browser_summary">Link Bubble must be the default system browser to work. Tap to configure.</string>
+    <string name="preference_set_default_browser_summary">Link Bubble ต้องถูกใช้เป็นเบราว์เซอร์หลักของเครื่องเพื่อใช้งาน แตะเพื่อตั้งค่า</string>
     <string name="preference_more">เพิ่มเติม</string>
     <string name="preference_intercept_links_from_title">เปิดลิงก์จาก</string>
     <string name="preference_intercept_links_from_note">หมายเหตุ: ในรุ่นฟรี Link Bubble จำกัดการเปิดลิงก์จากแอปเดียวเท่านั้น อัปเกรดเป็นรุ่นโปร?</string>
-    <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
-    <string name="preference_scan_for_youtube_embeds_title">ตรวจสอบวิดีโอ YouTube ที่ฝั่งอยู่</string>
+    <string name="preference_intercept_links_from_disabled_for_L">ตั้งแต่ Android 5.0 กูเกิลได้นำ API ที่เราต้องใช้เพื่อคุณสมบัตินี้ออก</string>
+    <string name="preference_scan_for_youtube_embeds_title">ตรวจสอบวิดีโอ YouTube ที่ฝังอยู่</string>
     <string name="preference_scan_for_youtube_embeds_summary">แสดงทางลัดเพื่อเปิดวิดีโอที่ฝังอยู่ในหน้าเว็บในแอป YouTube</string>
     <string name="preference_webview_battery_save_title">โหมดประหยัดพลังงาน (ทดสอบ)</string>
     <string name="preference_webview_battery_save_aggressive_title">แข็งขัน</string>
@@ -109,8 +109,8 @@
     <string name="preference_theme_light_no_color">สว่าง + สีมาตรฐาน</string>
     <string name="preference_theme_dark_color">มืด + สีไอคอน</string>
     <string name="preference_theme_dark_no_color">มืด + สีมาตรฐาน</string>
-    <string name="preference_theme_toolbar_title">Color toolbar</string>
-    <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
+    <string name="preference_theme_toolbar_title">เปลี่ยนสีแถบเครื่องมือ</string>
+    <string name="preference_theme_toolbar_summary">ให้ตรงกับธีมสีของเว็บไซต์/สีหลักของไอคอน</string>
     <string name="preference_article_mode_title">โหมดการอ่าน (ทดสอบ)</string>
     <string name="preference_reading_mode_on_wear_title">โหมดการอ่านบน Android Wear</string>
     <string name="preference_article_mode_summary">เปิด/ปิดผ่านปุ่มบนแถบคำสั่ง</string>
@@ -135,14 +135,14 @@
         <item>Chrome เดสก์ท็อป</item>
     </string-array>
 
-    <string name="preference_domains_title">Domain redirects</string>
-    <string name="preference_domains_summary">Specify links to always load in your fallback browser.</string>
-    <string name="preference_redirects_title">Redirect to fallback browser</string>
-    <string name="preference_add_domain_title">Add domain</string>
-    <string name="add_domain_hint">Url host</string>
-    <string name="add_domain_detail">Specify only the \'main\' portion of a website address. E.g.,
-        \"accounts.google.com\" or \"bbc.co.uk\".</string>
-    <string name="add_domain_error">Unable to add \"%1$s\", as it is not a valid URL host.</string>
+    <string name="preference_domains_title">รีไดเรคโดเมน</string>
+    <string name="preference_domains_summary">กำหนดลิงก์ที่ต้องการให้โหลดในเบราว์เซอร์สำรองเสมอ</string>
+    <string name="preference_redirects_title">ส่งต่อไปยังเบราว์เซอร์สำรอง</string>
+    <string name="preference_add_domain_title">เพิ่มโดเมน</string>
+    <string name="add_domain_hint">โฮส Url</string>
+    <string name="add_domain_detail">กำหนดเฉพาะ \'ส่วนหลัก\' ของที่อยู่เว็บไซต์เท่านั้น เช่น
+\"accounts.google.com\" หรือ \"bbc.co.uk\"</string>
+    <string name="add_domain_error">ไม่สามารถเพิ่ม \"%1$s\", เนื่องจาก URL ไม่ถูกต้อง</string>
 
     <string name="preference_help_title">ช่วยเหลือ</string>
     <string name="preference_show_welcome_message_title">แสดงหน้าต้อนรับ</string>
@@ -159,18 +159,18 @@
     <string name="preference_more_title">เพิ่มเติม&#8230;</string>
     <string name="preference_show_undo_close_tab_title">ปุ่มยกเลิกการปิดแท็บ</string>
 
-    <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
-    <string name="preference_my_other_apps_summary">ชอบ Link Bubble? ทำไมไม่ลองแอปอื่นๆ ของผมดูล่ะ?</string>
+    <string name="preference_my_other_apps_title">แอปเพิ่มเติมโดย Link Bubble</string>
+    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
 
     <string name="remove_default_title">ล้างค่าเริ่มต้น?</string>
     <string name="remove_default_message">ลบ %1$s ออกจากแอปเริ่มต้นในการโหลดลิงก์ %2$s ?\n\nหมายเหตุ: คุณสามารถตั้งค่าแอปเริ่มต้นใหม่ได้เมื่อเปิดลิงก์ %2$s ครั้งหน้า</string>
-    <string name="long_press_unsupported_default_browser">Unable to display this item. Open link in %1$s?</string>
-    <string name="long_press_unsupported_no_default_browser">Unable to display this item. Open link in a browser.</string>
+    <string name="long_press_unsupported_default_browser">ไม่สามารถแสดงสิ่งนี้ เปิดลิงก์ใน %1$s?</string>
+    <string name="long_press_unsupported_no_default_browser">ไม่สามารถแสดงสิ่งนี้ เปิดลิงก์ในเบราว์เซอร์</string>
     <string name="unsupported_scheme_default_browser">ยังไม่รองรับลิงก์ชนิดนี้ เปิดหน้านี้ใน %1$s?</string>
     <string name="unsupported_scheme_no_default_browser">ยังไม่รองรับลิงก์ชนิดนี้ เปิดหน้านี้ในเบราว์เซอร์อื่น</string>
     <string name="unsupported_scheme">ยังไม่รองรับลิงก์ชนิดนี้</string>
-    <string name="unsupported_drop_down_default_browser">Unable to interact with this item. Open in %1$s?</string>
-    <string name="unsupported_drop_down_no_default_browser">Unable to interact with this item. Open link in a browser.</string>
+    <string name="unsupported_drop_down_default_browser">ไม่สามารถโต้ตอบกับสิ่งนี้ เปิดลิงก์ใน %1$s?</string>
+    <string name="unsupported_drop_down_no_default_browser">ไม่สามารถโต้ตอบกับสิ่งนี้ เปิดลิงก์ในเบราว์เซอร์</string>
 
     <string name="consume_category_view">ดูลิงก์</string>
     <string name="consume_category_share">ส่ง/แบ่งปันลิงก์</string>
@@ -194,7 +194,7 @@
     <string name="private_data_cleared">ข้อมูลส่วนตัวถูกลบแล้ว</string>
     <string name="private_data_cleared_reloading_current">ข้อมูลส่วนตัวถูกลบแล้ว กำลังโหลดหน้าต่างที่เปิดอยู่ใหม่...</string>
     <string name="user_agent_changed_reloading_current">ตัวแทนผู้ใช้ได้ถูกเปลี่ยน กำลังโหลดหน้าต่างที่เปิดอยู่ใหม่...</string>
-    <string name="theme_toolbar_reloading_current">Color toolbar setting changed. Reloading current bubbles…</string>
+    <string name="theme_toolbar_reloading_current">การตั้งค่าสีแถบเครื่องมือถูกเปลี่ยน กำลังโหลดหน้าเว็บใหม่...</string>
     <string name="article_mode_changed_reloading_current">การตั้งค่าโหมดการอ่านถูกเปลี่ยน กำลังโหลดหน้าเว็บใหม่...</string>
     <string name="link_loaded_with_app">โหลดด้วย %1$s</string>
     <string name="link_redirected">ส่งต่อไปยัง %1$s</string>
@@ -246,8 +246,8 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="faq_future_features_question">คุณมีแผนที่จะรองรับบุ๊กมาร์ก, การชื่นชอบ, ส่วนเสริม ฯลฯ หรือไม่?</string>
     <string name="faq_future_features_answer">ไม่สามารถพูดว่าไม่ แต่ในตอนนี้ Link Bubble โฟกัสไปในเรื่องการเป็นช่องทางที่ดีที่สุดในการเปิดลิงก์จากแอปอื่น</string>
     <string name="faq_translations_question">ฉันสามารถช่วยแปลแอปนี้ได้ไหม?</string>
-    <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
-            (+Link Bubble) for help with translations, so be sure to keep an eye on my feed.]]></string>
+    <string name="faq_translations_answer"><![CDATA[ผมหวังว่าจะเพิ่มภาษาอื่นในแอปเร็วๆ นี้<br/><br/>เมื่อผมพร้อม ผมจะประกาศบน Google+ 
+(+Link Bubble) เพื่อรับนักแปล คุณแค่จับตามองโพสต์ของผมไว้ก็พอ]]></string>
     <string name="faq_roadmap_question">คุณได้เผยแพร่แผนในอนาคตหรือไม่? ฉันสามารถโหวตคุณสมบัติใหม่ๆ ได้หรือเปล่า?</string>
     <string name="faq_roadmap_answer">เพราะเหตุผลเรื่องการแข่งขัน คำตอบของทั้งสองคำถามนี้คือ \'ไม่\' ผมกลัว<br/><br/></string>
     <string name="faq_alternate_payment_question">ฉันไม่มีบัตรเครดิตและ/หรือฉันไม่สามารถซื้อแอปจาก Google Play ได้ ฉันจะซื้อรุ่นโปรได้อย่างไร?</string>
@@ -262,7 +262,7 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="faq_translucent_status_bar_question">ทำไมแอปไม่วาดบนแถบสถานะแบบโปร่งใส?</string>
     <string name="faq_translucent_status_bar_answer">ข้อจำกัดของระบบแอนดรอยด์ป้องกันไม่ให้ใช้</string>
     <string name="faq_beta_programme_question">มีกลุ่มทดสอบหรือเปล่า? ฉันจะเข้าร่วมได้ยังไง?</string>
-    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Link Bubble) feed for announcements.</string>
+    <string name="faq_beta_programme_answer">ข้อมูลเกี่ยวกับกลุ่มทดสอบจะประกาศเมื่อพร้อม จับตาดู Google+ (+Link Bubble) ไว้เพื่อรอประกาศ</string>
     <string name="faq_low_spec_performance_question">ทำไม Link Bubble ทำงานช้าบนอุปกรณ์ระดับ Nexus S / Galaxy S1 / Moto G ?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble เป็นแอปที่ใช้ทรัพยากรของเครื่องเยอะมาก และทำให้แอปทำงานช้าบนเครื่องที่มีสเปคต่ำ การอัปเดตในอนาคตจะปรับปรุงเรื่องนี้ แต่อาจจะไม่ต่างจากปัจจุบันมากเท่าไหร่<br/><br/>คำตอบทางเทคนิค: ในการเริ่มต้น Link Bubble ใช้งานการบริการ (Service) และ WebView การจัดสรรกิจกรรมเหล่านี้ (โดยเฉพาะ WebView) กินทรัพยากรของเครื่องเป็นอย่างมาก โดยเฉพาะเมื่อเปิด WebView หลายหรือบ่อยครั้ง เครื่องสเปคต่ำจึงไม่มีทรัพยากรพอที่จะให้ Link Bubble ทำงาน]]></string>
     <string name="faq_crap_webview_question">บางครั้งหน้าเว็บแสดงไม่ถูกต้อง หรือวิดีโอไม่ยอมเล่น</string>
@@ -276,13 +276,12 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="faq_change_default_browser_question">ฉันจะนำ Link Bubble ออกจากการเป็นเบราว์เซอร์หลักได้อย่างไร?</string>
     <string name="faq_change_default_browser_answer">ไปที่การตั้งค่าของเครื่อง -> แอป -> ดาวน์โหลด -> Link Bubble -> ล้างค่าเริ่มต้น</string>
     <string name="faq_pro_trial_question">การทดลองใช้ Link Bubble รุ่นโปรทำงานยังไง</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
-        Pro\'s premium features.<br/>
-        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
-        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
-        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
-        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
-        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
+    <string name="faq_pro_trial_answer"><![CDATA[• ภายใน 24 ชั่วโมงหลังจากติดตั้ง Link Bubble ผู้ที่ไม่ได้เป็นเจ้าของรุ่นโปร จะได้ใช้งานคุณสมบัติทั้งหมดของรุ่นโปร <br/>
+• ในระหว่างการทดลองใช้ครั้งเดียว คุณสมบัติของ Link Bubble รุ่นโปรสามารถใช้ได้บนทุกอุปกรณ์ของคุณ<br/>
+• ตัวนับเวลาจะปรากฏบนมุมบนซ้ายในหน้าหลักของ Link Bubble เพื่อบอกคุณว่าเหลือเวลาอีกเท่าไหร่<br/>
+• ผู้ใช้ที่ได้ลองใช้ Link Bubble ก่อนอัปเดตเป็นเวอร์ชัน 1.1 ก็สามารถทดลองใช้ได้<br/>
+• สำหรับการตรวจสอบ การทดลองใช้รุ่นโปรใช้ที่อยู่อีเมลของคุณ หากไม่พบที่อยู่อีเมลบนอุปกรณ์ คุณจะไม่สามารถทดลองใช้รุ่นโปรได้<br/>
+• ขออภัย แต่การทดลองใช้ไม่สามารถเริ่มใหม่ได้ กรุณาลองใช้คุณสมบัติรุ่นโปรภายใน 24 ชั่วโมงหลังจากคุณติดตั้ง Link Bubble]]></string>
     <string name="faq_report_bug_question">รายงานปัญหา</string>
     <string name="faq_report_bug_answer"><![CDATA[อีเมล]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -302,7 +301,7 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="credits_title">เครดิตของ Link Bubble</string>
     <string name="credits_name">Link Bubble</string>
     <string name="credits_credit">แนวคิด, ออกแบบ และพัฒนา</string>
-    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
+    <string name="credits_app_copyright">สงวนลิขสิทธิ์ 2015, Link Bubble</string>
 
     <!--
     <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
@@ -334,7 +333,7 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="pro_application_name">Link Bubble โปร</string>
     <string name="pro_status_checking_license">กำลังตรวจสอบใบอนุญาต...</string>
 	<string name="pro_status_buy">ไม่สมารถตรวจสอบใบอนุญาต\n\nอาจเป็นเพราะ:\n • ไม่ได้เชื่อมต่ออินเทอร์เน็ต\n • แอปนี้ได้รับการดัดแปลง\n\nตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ และลองติดตั้งแอปจาก Play Store ใหม่อีกครั้ง</string>
-    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
+    <string name="pro_status_verified">การซื้อ Link Bubble รุ่นโปรถูกตรวจสอบแล้ว!\n\nขอบคุณสำหรับการสนับสนุนเรา เหมือนที่เราพัฒนาโครงการนี้</string>
     <string name="pro_status_unlicensed">Google Play รายงานว่าแอปนี้เป็น Link Bubble รุ่นโปรปลอม\n\n หากคุณมั่นใจว่าได้ซื้อ Link Bubble รุ่นโปร เหตุผลที่เกิดขึ้นบ่อยคือบัญชีกูเกิลที่คุณใช้ซื้อแอป ไม่ได้เป็นบัญชีเดียวกันกับที่เชื่อมอยู่กับ Google Play ในเครื่องนี้</string>
 
     <string name="pro_keep_installed">หมายเหตุ: คุณไม่ต้องโหลด Link Bubble รุ่นโปรอีกครั้ง แต่คุณต้องติดตั้งไว้ตลอด\n\nแอปนี้จะถูกซ่อนจากระบบ และไม่ปรากฏในลันเชอร์ของคุณ</string>
@@ -360,13 +359,11 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
 
     <string name="pro_store_listing_title">Link Bubble โปร</string>
     <string name="pro_store_listing_description_title">Link Bubble รุ่นโปรปลดล็อกคุณสมบัติเพิ่มเติมของ Link Bubble</string>
-    <string name="pro_store_listing_description_features">
-    Upgrades include:
-    • Infinite number of tabs (free version is limited to just one tab).
-    • Theme selection
-    • Remove the upgrade incentives throughout the free version.
-    • Support us so we get to make more of these apps :)
-    </string>
+    <string name="pro_store_listing_description_features">ในการอัปเกรดประกอบไปด้วย:
+• แท็บไม่จำกัดจำนวน (รุ่นฟรีจำกัดเพียงหนึ่งแท็บ)
+• ปรับแต่งธีม
+• ลบป้ายเชิญชวนให้อัปเกรด
+• สนับสนุนเรา ช่วยให้เราได้พัฒนาแอปนี้ :)</string>
 
     <string name="welcome_page_title">ยินดีต้อนรับสู่ Link Bubble!</string>
     <string name="welcome_page_trial_notice">หมายเหตุ: ภายใน 24 ชั่วโมงหลังจากติดตั้ง Link Bubble ครั้งแรก คุณจะได้ทดลองใช้คุณสมบัติของ Link Bubble รุ่นโปรฟรี การทดลองใช้นี้จำกัดเพียงครั้งเดียวเท่านั้น</string>

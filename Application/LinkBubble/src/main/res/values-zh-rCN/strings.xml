@@ -161,7 +161,7 @@ accounts.google.com 链接</string>
     <string name="preference_show_undo_close_tab_title">撤销关闭标签提示</string>
 
     <string name="preference_my_other_apps_title">开发者的其他应用程序</string>
-    <string name="preference_my_other_apps_summary">喜欢 Link Bubble 吗？来看看我开发的其它应用程序吧。</string>
+    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
 
     <string name="remove_default_title">移除默认？</string>
     <string name="remove_default_message">移除 %1$s 作为载入 %2$s 链接的默认程序的设置？\n\n备注：下次载入 %2$s 链接时可以选择一个新的默认程序。</string>

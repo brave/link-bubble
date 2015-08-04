@@ -160,7 +160,7 @@
     <string name="preference_show_undo_close_tab_title">Finestra di annullamento chiusura scheda</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
-    <string name="preference_my_other_apps_summary">Ti piace Link Bubble? Perchè non provi anche le mie altre app?</string>
+    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
 
     <string name="remove_default_title">Rimuovi predefinito?</string>
     <string name="remove_default_message">Rimuovi %1$s come app predefinita con cui caricare collegamenti %2$s?\n\nNota: puoi impostare una nuova app predefinita la prossima volta che caricherai un link %2$s.</string>

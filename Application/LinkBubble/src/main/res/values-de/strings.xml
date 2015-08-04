@@ -160,7 +160,7 @@
     <string name="preference_show_undo_close_tab_title">\"Tab geschlossen rückgängig machen\"-Toastnachricht</string>
 
     <string name="preference_my_other_apps_title">Mehr Apps von Link Bubble</string>
-    <string name="preference_my_other_apps_summary">Gefällt dir Link Bubble? Warum schaust du dir dann nicht einmal meine anderen Apps an?</string>
+    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
 
     <string name="remove_default_title">Standard entfernen?</string>
     <string name="remove_default_message">%1$s als die Standard-App zum Öffnen von Links aus %2$s entfernen?\n\nHinweis: Du kannst eine neue Standard-App festlegen, wenn du das nächste Mal einen Link aus %2$s öffnest.</string>
@@ -359,7 +359,7 @@ aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend 
     <string name="pro_status_checking_license">Lizenz wird überprüft...</string>
 	<string name="pro_status_buy">Die Lizenz konnte nicht überprüft werden.\n\nMögliche Ursachen:\n • Es gibt keine Internetverbindung.\n • Diese Anwendung wurde
 verändert.\n\nÜberprüfe deine Internetverbindung und, falls notwendig, versuche die App über den Play Store zu installieren.</string>
-    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
+    <string name="pro_status_verified">Link Bubble Pro Kauf verifiziert!\n\nVielen Dank, dass du uns unterstützt, während wir an diesem Projekt arbeiten!</string>
     <string name="pro_status_unlicensed">Google Play meldet, dass diese Kopie von Link Bubble Pro nicht lizenziert ist. \n\nWenn du Link Bubble Pro gekauft 
 hast, ist die häufigste Ursache für dieses Problem, dass die für den Kauf verwendete Email Adresse
 nicht mit dem Play Store auf diesem Gerät konfiguriert ist.</string>
@@ -388,13 +388,11 @@ die Seite geladen ist. Sobald die Seite fertig geladen ist, wird es auf dem Bild
 
     <string name="pro_store_listing_title">Link bubble Pro</string>
     <string name="pro_store_listing_description_title">Link Bubble Pro schaltet sämtliche Features von Link Bubble frei.</string>
-    <string name="pro_store_listing_description_features">
-    Upgrades include:
-    • Infinite number of tabs (free version is limited to just one tab).
-    • Theme selection
-    • Remove the upgrade incentives throughout the free version.
-    • Support us so we get to make more of these apps :)
-    </string>
+    <string name="pro_store_listing_description_features">Upgrade beinhaltet:
+• Unendliche Anzahl an Tabs (kostenlose Version ist auf einen Tab beschränkt)
+• Theme-Auswahl
+• Upgrade-Hinweise aus der kostenlosen Version werden entfernt.
+• Unterstütze uns, damit wir mehr von diesen Apps entwickeln können :)</string>
 
     <string name="welcome_page_title">Willkommen bei Link Bubble!</string>
     <string name="welcome_page_trial_notice">Anmerkung: In den ersten 24 Stunden nach der Installation hast du im Rahmen eines einmaligen Tests Zugang zu allen Premium-Features von Link Bubble Pro.</string>
