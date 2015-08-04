@@ -1,0 +1,168 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <style type="text/css">
+            p.license {
+                background:grey;
+            }
+            body {
+                font-family: sans-serif;
+            }
+            pre {
+                background-color: #eeeeee;
+                padding: 1em;
+                white-space: pre-wrap;
+            }
+
+            #map-canvas {
+                height: 281px;
+                width: 500px;
+                margin: 0px;
+                padding: 0px
+              }
+
+        </style>
+        <title>LB HTML tests</title>
+
+<script>
+function onAlertShow()
+{
+    alert("Hello! I am an alert box!!");
+}
+
+function onNewTab() {
+    var win=window.open("http://www.google.com", '_blank');
+    win.focus();
+}
+
+function onConfirmShow() {
+    var r = confirm("Press a button!");
+    if (r == true) {
+        console.log("You pressed OK!");
+    } else {
+        console.log("You pressed Cancel");
+    }
+}
+
+function onPromptShow() {
+    var result=prompt("Please enter your name","Harry Potter");
+    if (result!=null) {
+        console.log("Prompt result:" + result);
+    //document.getElementById("demo").innerHTML=x;
+    }
+}
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+// Note: This example requires that you consent to location sharing when
+// prompted by your browser. If you see a blank space instead of the map, this
+// is probably because you have denied permission for location sharing.
+
+var map;
+
+function initialize() {
+  var mapOptions = {
+    zoom: 6
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+
+  // Try HTML5 geolocation
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = new google.maps.LatLng(position.coords.latitude,
+                                       position.coords.longitude);
+
+      var infowindow = new google.maps.InfoWindow({
+        map: map,
+        position: pos,
+        content: 'Location found using HTML5.'
+      });
+
+      map.setCenter(pos);
+    }, function() {
+      handleNoGeolocation(true);
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleNoGeolocation(false);
+  }
+}
+
+function handleNoGeolocation(errorFlag) {
+  if (errorFlag) {
+    var content = 'Error: The Geolocation service failed.';
+  } else {
+    var content = 'Error: Your browser doesn\'t support geolocation.';
+  }
+
+  var options = {
+    map: map,
+    position: new google.maps.LatLng(60, 105),
+    content: content
+  };
+
+  var infowindow = new google.maps.InfoWindow(options);
+  map.setCenter(options.position);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+
+    </head>
+    
+    <body>
+
+<h3>HTML tests</h3>
+
+<button onclick="onAlertShow()">Show Alert</button><br>
+<button onclick="onConfirmShow()">Show Confirm</button><br>
+<button onclick="onPromptShow()">Show Prompt</button><br><br>
+<button onclick="onNewTab()">Open URL in new tab</button><br><br>
+Click <a href="#" onclick="javascript:window.open('','_self').close();">HERE</a> to close the current tab<br><br>
+
+<form action="">
+<select name="cars">
+<option value="volvo">Volvo</option>
+<option value="saab">Saab</option>
+<option value="fiat">Fiat</option>
+<option value="audi">Audi</option>
+</select>
+</form><br><br>
+
+<form>
+<input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
+<input type="checkbox" name="vehicle" value="Car">I have a car 
+</form><br><br>
+
+Username: <input type="text" name="user">
+<br><br>
+
+<form>
+<input type="radio" name="sex" value="male">Male<br>
+<input type="radio" name="sex" value="female">Female
+</form><br><br>
+
+<a href="https://play.google.com/store/apps/details?id=com.chrislacy.actionlauncher.pro&hl=en">Action Launcher</a><br>
+<a href="https://play.google.com/store/apps/details?id=com.chrislacy.actionlauncher.pro&hl=en" target="_blank">Action Launcher</a> (new tab)<br>
+<a href="https://play.google.com/store/devices/details/Nexus_10_16GB?id=nexus_10_16gb&hl=en">Nexus 10</a><br><br><br>
+
+<a href="mailto:webmaster@example.com">Email test</a><br>
+<a href="tel:5551234567">Call (555)123-4567</a><br>
+<a href="callto:5551234567">Call (555)123-4567 [SKYPE]</a><br>
+<a href="im:username@gtalk.com">IM</a> (unsupported)<br><br><br>
+
+<iframe src="https://player.vimeo.com/video/91688685" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="https://vimeo.com/91688685">Fireside Chat: Android Design</a> from <a href="https://vimeo.com/accel">Accel Partners</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+
+<br><br><br>
+
+<div id="map-canvas" width="500" height="281"></div>
+
+  </body>
+</html>
