@@ -217,6 +217,13 @@ public class Settings {
         configureFallbackRedirectHosts(mSharedPreferences.getStringSet(PREFERENCE_FALLBACK_REDIRECT_HOSTS, defaultRedirects));
     }
 
+    public void onValidLicenseFound() {
+        mSharedPreferences.edit()
+                .putBoolean(PREFERENCE_THEME_TOOLBAR, true)
+                .putBoolean(KEY_ARTICLE_MODE_PREFERENCE, true)
+                .apply();
+    }
+
     private void checkForVersionUpgrade() {
         final String key = "lastUpgradeVersion";
         int lastUpgradeVersion = mSharedPreferences.getInt(key, -1);
