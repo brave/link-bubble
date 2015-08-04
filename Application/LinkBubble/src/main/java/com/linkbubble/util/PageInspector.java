@@ -99,7 +99,10 @@ public class PageInspector {
 
     private static final String JS_THEME_COLOR_CHECK =
         "{\n" +
-            JS_VARIABLE + ".onThemeColor(document.getElementsByTagName('meta')['theme-color'].getAttribute('content'));" +
+        "   var themeColorTag = document.getElementsByTagName('meta')['theme-color'];\n" +
+        "   if (themeColorTag) {\n" +
+              JS_VARIABLE + ".onThemeColor(themeColorTag.getAttribute('content'));" +
+        "   }\n" +
         "}";
 
     // https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
