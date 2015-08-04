@@ -162,7 +162,7 @@
     <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
-    <string name="preference_my_other_apps_summary">リンクバブルで捗ってますか？私が育て上げた他のアプリたちも試しては見ませんか？</string>
+    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
 
     <string name="remove_default_title">デフォルト設定を削除？</string>
     <string name="remove_default_message">%1$s を %2$s のデフォルト設定から削除しますか？\n\n注意：今度%2$s でリンクを開く場合もう一回デフォルト設定を行えることができます</string>

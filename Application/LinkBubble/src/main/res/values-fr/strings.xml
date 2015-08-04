@@ -161,7 +161,7 @@ Appuyez dessus pour en retirer une.</string>
     <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
-    <string name="preference_my_other_apps_summary">Vous aimez Link Bubble ? Pourquoi ne pas jeter un coup d\'œil à mes autres applications ?</string>
+    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
 
     <string name="remove_default_title">Retirer l\'action par défaut ?</string>
     <string name="remove_default_message">Retirer %1$s comme application par défaut pour l\'ouverture des liens %2$s ? \n\nNote: vous pourrez définir une nouvelle application par défaut la prochaine fois que vous ouvrirez un lien %2$s.</string>

@@ -160,7 +160,7 @@
     <string name="preference_show_undo_close_tab_title">Desactivar mensaje de pestaña cerrada</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
-    <string name="preference_my_other_apps_summary">¿Te gusta Link Bubble?¿Por qué no echas un ojo a mis otras aplicaciones?</string>
+    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
 
     <string name="remove_default_title">¿Eliminar por defecto?</string>
     <string name="remove_default_message">Elimina %1$s como app por defecto para cargar %2$s links que contengan?\n\nAviso: Podrás seleccionar otra app como principal cuando vuelvas a clickar en el link %2$s .</string>

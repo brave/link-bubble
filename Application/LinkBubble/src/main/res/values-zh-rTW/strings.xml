@@ -163,7 +163,7 @@
     <string name="preference_show_undo_close_tab_title">復原已關閉分頁的提醒視窗</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
-    <string name="preference_my_other_apps_summary">喜歡 Link Bubble 嗎？何不順便看看我的其他作品呢？</string>
+    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
 
     <string name="remove_default_title">移除預設值？</string>
     <string name="remove_default_message">要移除以 %1$s 開啟 %2$s 連結的預設值嗎？

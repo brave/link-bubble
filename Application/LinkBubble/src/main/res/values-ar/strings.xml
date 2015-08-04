@@ -160,7 +160,7 @@
     <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
-    <string name="preference_my_other_apps_summary">أعجبك فقاة العنوان ؟لماذا لا ترى المزيد من البرامج؟</string>
+    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
 
     <string name="remove_default_title">حذف اللإفتراضي؟</string>
     <string name="remove_default_message">حذف %1$s من البرنامج الإفتراضي ليشغل العنوان باستخدام %2$s؟ ملاحظة:تستطيع ان تجعل برنامج إفتراضي جديد ليستخدم بالمرة القادمة اللتي تحمل فيها عنوان %2$s.</string>

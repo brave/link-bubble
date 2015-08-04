@@ -5,8 +5,8 @@
     <string name="send_intent_label">פתיחה באמצעות Link Bubble</string>
     <string name="notification_summary">לחיצה להסתרת כל הבועות הפתוחות</string>
     <string name="notification_default_summary">לחיצה להסתרה, הרחבה לסגירת הכל</string>
-    <string name="notification_unhide_summary">Touch to Unhide, expand to Close All</string>
-    <string name="notification_action_close_all">Close All</string>
+    <string name="notification_unhide_summary">לחיצה להסתרה, הרחבה לסגירת הכל</string>
+    <string name="notification_action_close_all">סגירת הכל</string>
     <string name="notification_action_hide">הסתרה</string>
     <string name="share_picker_label">Share picker</string>
 
@@ -36,7 +36,7 @@
     <string name="share_via">שיתוף באמצעות...</string>
     <string name="not_set">לא נקבע</string>
 
-    <string name="warning">Warning!</string>
+    <string name="warning">אזהרה!</string>
     <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
 
     <string name="share_invalid_data">Link Bubble איננו יכול לשתף פריט זה מכיוון שהוא איננו כתובת אינטרנט תקפה.</string>
@@ -164,7 +164,7 @@
     <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
-    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out my other apps?</string>
+    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
 
     <string name="remove_default_title">הסרת ברירת מחדל?</string>
     <string name="remove_default_message">Remove %1$s as the default app to load %2$s links with?\n\nNote: you can set a new default app to use next

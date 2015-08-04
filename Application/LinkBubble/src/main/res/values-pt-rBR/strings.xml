@@ -4,8 +4,8 @@
     <string name="download_activity_label">Downloader</string>
     <string name="send_intent_label">Abrir com Link Bubble</string>
     <string name="notification_summary">Toque para esconder todas as bolhas abertas</string>
-    <string name="notification_default_summary">Touch to Hide, expand to Close All</string>
-    <string name="notification_unhide_summary">Touch to Unhide, expand to Close All</string>
+    <string name="notification_default_summary">Toque para esconder, expanda para fechar tudo.</string>
+    <string name="notification_unhide_summary">Toque para mostrar, expanda para fechar tudo.</string>
     <string name="notification_action_close_all">Fechar Todas</string>
     <string name="notification_action_hide">Ocultar</string>
     <string name="share_picker_label">Share picker</string>
@@ -31,24 +31,24 @@
     <string name="action_close_tab">Fechar bolha</string>
     <string name="action_stop">Parar</string>
     <string name="action_undo">Desfazer</string>
-    <string name="action_add">Add</string>
-    <string name="action_no_recommended">No (recommended)</string>
+    <string name="action_add">Adicionar</string>
+    <string name="action_no_recommended">Não (recomendado)</string>
     <string name="share_via">Compartilhar via...</string>
-    <string name="not_set">Not set</string>
+    <string name="not_set">Não selecionado</string>
 
-    <string name="warning">Warning!</string>
-    <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
+    <string name="warning">Atenção!</string>
+    <string name="untrusted_certificate">O certificado at %1$s não é confiável.</string>
 
     <string name="share_invalid_data">Não foi possível compartilhar esse item pois a URL não é valida.</string>
     <string name="consume_activity_not_found">Não foi possível encontrar o aplicativo. Considere alterar Bubble Action nas Configurações.</string>
-    <string name="consume_activity_security_exception">Unable to share to external application.</string>
+    <string name="consume_activity_security_exception">Impossível compartilhar para aplicação externa.</string>
 
     <string name="upgrade">Fazer upgrade</string>
     <string name="upgrade_to_pro">Atualize para Pro</string>
     <string name="upgrade_article_mode">Deseja ver links no modo leitura?</string>
-    <string name="upgrade_article_mode_wear">Want to view links on Android Wear devices via Reading Mode?</string>
+    <string name="upgrade_article_mode_wear">Deseja visualizar links no Android Wear através do modo leitura?</string>
     <string name="upgrade_theme">Deseja usar um tema diferente?</string>
-    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
+    <string name="upgrade_theme_toolbar">Deseja combinar o tema da barra de tarefas com a cor dos sites visitados?</string>
     <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
         Load multiple tabs at once.\n •
         Change theme.\n •
@@ -62,13 +62,13 @@
 
     <string name="pick_default_app">Selecione o aplicativo padrão</string>
     <string name="default_browser_set">Link Bubble foi definido como navegador padrão.</string>
-    <string name="invalid_send_action">Valid link not found.</string>
-    <string name="unable_to_launch_app">Unable to launch 3rd party application.</string>
+    <string name="invalid_send_action">Link válido não encontrado.</string>
+    <string name="unable_to_launch_app">Impossível iniciar aplicativo de terceiro.</string>
     <string name="clear_history">Apagar histórico</string>
 
     <string name="preference_category_general">Geral</string>
     <string name="preference_category_configuration">Configurações do aplicativo</string>
-    <string name="preference_category_configuration2">Configuration</string>
+    <string name="preference_category_configuration2">Configuração</string>
     <string name="preference_category_browser">Navegador</string>
     <string name="preference_enabled_title">Ativado</string>
     <string name="preference_auto_content_display_link_loaded_title">Auto expandir</string>
@@ -76,7 +76,7 @@
 
     <string name="preference_left_consume_bubble_title">Bolha da esquerda</string>
     <string name="preference_right_consume_bubble_title">Bolha da direita</string>
-    <string name="preference_double_tap_title">Link double tap</string>
+    <string name="preference_double_tap_title">Associar duplo toque</string>
     <string name="preference_configure_bubble_title">Configurar bolha</string>
     <string name="preference_category_debug">Debug</string>
     <string name="preference_default_browser">Navegador alternativo padrão</string>
@@ -90,12 +90,12 @@
     <string name="preference_google_account_redirect_title">Redirecionamento da Conta Google</string>
     <string name="preference_google_account_redirect_summary">Redirecionar accounts.google.com links para o navegador alternativo padrão</string>
     <string name="preference_set_default_browser_title">Escolha o navegador padrão do sistema</string>
-    <string name="preference_set_default_browser_summary">Link Bubble must be the default system browser to work. Tap to configure.</string>
+    <string name="preference_set_default_browser_summary">Link Bubble deve ser o navegador padrão para isso funcionar. Toque para configurar.</string>
     <string name="preference_more">Mais...</string>
     <string name="preference_intercept_links_from_title">Interceptar links de</string>
     <string name="preference_intercept_links_from_note">Nota: A restrição de interceptar links de só um aplicativo só existe na 
 versão grátis do Link Bubble. Atualizar pra versão Pro?</string>
-    <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
+    <string name="preference_intercept_links_from_disabled_for_L">Desde o Android 5.0, o Google removeu a API necessária a essa funcionalidade.</string>
     <string name="preference_scan_for_youtube_embeds_title">Verificar por YouTube vídeos incorporados</string>
     <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
     <string name="preference_webview_battery_save_title">Modo economia de bateria</string>
@@ -112,8 +112,8 @@ versão grátis do Link Bubble. Atualizar pra versão Pro?</string>
     <string name="preference_theme_dark_no_color">Escuro + cor neutra</string>
     <string name="preference_theme_toolbar_title">Color toolbar</string>
     <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
-    <string name="preference_article_mode_title">Reading Mode (Beta)</string>
-    <string name="preference_reading_mode_on_wear_title">Reading Mode on Wear</string>
+    <string name="preference_article_mode_title">Modo de leitura (beta)</string>
+    <string name="preference_reading_mode_on_wear_title">Modo de leitura no Android Wear.</string>
     <string name="preference_article_mode_summary">Toggled via button on action bar</string>
     <string name="preference_webview_text_zoom_title">Ampliar texto</string>
     <string name="preference_webview_text_zoom_note">Nota: As bolhas abertas serão recarregadas com o novo zoom de texto aplicado após selecionar \"OK\".</string>
@@ -161,7 +161,7 @@ versão grátis do Link Bubble. Atualizar pra versão Pro?</string>
     <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
-    <string name="preference_my_other_apps_summary">Curte Link Bubble? Por que então não confere meus outros aplicativos?</string>
+    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
 
     <string name="remove_default_title">Remover padrão?</string>
     <string name="remove_default_message">Remove %1$s as the default app to load %2$s links with?\n\nNote: you can set a new default app to use next

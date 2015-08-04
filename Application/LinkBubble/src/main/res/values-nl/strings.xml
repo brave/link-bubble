@@ -163,7 +163,7 @@ wordt ingesteld als je links laadt met Link Bubble.</string>
     <string name="preference_show_undo_close_tab_title">Aanwijzing tab sluiten ongedaan maken</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
-    <string name="preference_my_other_apps_summary">Vind je Link Bubble leuk? Probeer dan ook eens mijn andere apps.</string>
+    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
 
     <string name="remove_default_title">Standaard verwijderen?</string>
     <string name="remove_default_message">%1$s verwijderen als de standaardapp om %2$s-links mee te laden?\n\nLet op: je kan de volgende keer
