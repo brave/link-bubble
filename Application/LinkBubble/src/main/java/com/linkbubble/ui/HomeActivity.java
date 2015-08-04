@@ -103,8 +103,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         if (Settings.get().debugAutoLoadUrl()) {
-            MainApplication.openLink(this, "http://linkbubble.com/device/test.html", null);
-            //MainApplication.openLink(getActivity(), "https://twitter.com/lokibartleby/status/412160702707539968", false);
+            MainApplication.openLink(this, "file:///android_asset/test.html", null);
         }
 
         configureForDrmState();
