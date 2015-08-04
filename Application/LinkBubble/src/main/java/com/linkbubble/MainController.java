@@ -1077,12 +1077,13 @@ public class MainController implements Choreographer.FrameCallback {
             }
         }
 
-        if (event.mOldState != DRM.LICENSE_VALID
-                && event.mState == DRM.LICENSE_VALID
-                && event.mDisplayToast
-                && event.mDisplayedToast == false) {
-            Toast.makeText(mContext, R.string.valid_license_detected, Toast.LENGTH_LONG).show();
-            event.mDisplayedToast = true;
+        if (event.mOldState != DRM.LICENSE_VALID && event.mState == DRM.LICENSE_VALID) {
+            Settings.get().onValidLicenseFound();
+
+            if (event.mDisplayToast && !event.mDisplayedToast) {
+                Toast.makeText(mContext, R.string.valid_license_detected, Toast.LENGTH_LONG).show();
+                event.mDisplayedToast = true;
+            }
         }
     }
 

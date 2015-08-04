@@ -214,7 +214,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 showProBanner(mThemePreference);
             }
 
-            final SwitchPreference themeToolbarPreference = (SwitchPreference) findPreference("preference_theme_toolbar");
+            final SwitchPreference themeToolbarPreference = (SwitchPreference) findPreference(Settings.PREFERENCE_THEME_TOOLBAR);
+            themeToolbarPreference.setChecked(Settings.get().getThemeToolbar());
             themeToolbarPreference.setIcon(getTintedDrawable(R.drawable.ic_colorize_white_36dp, tintColor));
             themeToolbarPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
