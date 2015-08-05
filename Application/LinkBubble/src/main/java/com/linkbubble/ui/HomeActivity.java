@@ -136,8 +136,9 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        final Drawable x = getResources().getDrawable(android.R.drawable.presence_offline);
-        x.setBounds(0, -5, x.getIntrinsicWidth() + 20, x.getIntrinsicHeight() + 15);
+        final int clearButtonSize = getResources().getDimensionPixelSize(R.dimen.url_box_clear_button_size);
+        final Drawable clearButtonDrawable = getResources().getDrawable(R.drawable.ic_highlight_remove_grey600_24dp);
+        clearButtonDrawable.setBounds(0, 0, clearButtonSize, clearButtonSize);
         mUrlEntry.setCompoundDrawables(null, null, null, null);
         mUrlEntry.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -148,7 +149,7 @@ public class HomeActivity extends AppCompatActivity {
                 if (event.getAction() != MotionEvent.ACTION_UP) {
                     return false;
                 }
-                if (event.getX() > mUrlEntry.getWidth() - mUrlEntry.getPaddingRight() - x.getIntrinsicWidth()) {
+                if (event.getX() > mUrlEntry.getWidth() - mUrlEntry.getPaddingRight() - clearButtonSize) {
                     mUrlEntry.setText("");
                     mUrlEntry.setCompoundDrawables(null, null, null, null);
                 }
@@ -159,7 +160,7 @@ public class HomeActivity extends AppCompatActivity {
         mUrlEntry.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mUrlEntry.setCompoundDrawables(null, null, mUrlEntry.getText().toString().equals("") ? null : x, null);
+                mUrlEntry.setCompoundDrawables(null, null, mUrlEntry.getText().toString().equals("") ? null : clearButtonDrawable, null);
             }
 
             @Override

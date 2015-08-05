@@ -86,4 +86,7 @@
 
     <dimen name="default_padding">16dp</dimen>
 
+    <dimen name="url_box_clear_button_size">24dp</dimen>
+
+
 </resources>
