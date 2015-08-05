@@ -38,6 +38,7 @@ import android.widget.PopupMenu;
 
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
+import com.linkbubble.Constant.BubbleAction;
 import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
@@ -1109,7 +1110,7 @@ public class ContentView extends FrameLayout {
         if (mUrlStack.size() == 0) {
             CrashTracking.log("onBackPressed() - closeTab()");
             if (MainController.get() != null) {
-                MainController.get().closeTab(mOwnerTabView, true, true);
+                MainController.get().closeTab(mOwnerTabView, BubbleAction.BackButton, true, true);
             }
             return true;
         } else {
@@ -1155,14 +1156,14 @@ public class ContentView extends FrameLayout {
 
         String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
 
-        final String leftConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeLeft);
+        final String leftConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(BubbleAction.ConsumeLeft);
         if (leftConsumeBubbleLabel != null) {
             if (defaultBrowserLabel == null || defaultBrowserLabel.equals(leftConsumeBubbleLabel) == false) {
                 longClickSelections.add(leftConsumeBubbleLabel);
             }
         }
 
-        final String rightConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(Constant.BubbleAction.ConsumeRight);
+        final String rightConsumeBubbleLabel = Settings.get().getConsumeBubbleLabel(BubbleAction.ConsumeRight);
         if (rightConsumeBubbleLabel != null) {
             if (defaultBrowserLabel == null || defaultBrowserLabel.equals(rightConsumeBubbleLabel) == false) {
                 longClickSelections.add(rightConsumeBubbleLabel);
@@ -1198,9 +1199,9 @@ public class ContentView extends FrameLayout {
                 } else if (string.equals(shareLabel)) {
                     showSelectShareMethod(urlAsString, false);
                 } else if (leftConsumeBubbleLabel != null && string.equals(leftConsumeBubbleLabel)) {
-                    MainApplication.handleBubbleAction(getContext(), Constant.BubbleAction.ConsumeLeft, urlAsString, -1);
+                    MainApplication.handleBubbleAction(getContext(), BubbleAction.ConsumeLeft, urlAsString, -1);
                 } else if (rightConsumeBubbleLabel != null && string.equals(rightConsumeBubbleLabel)) {
-                    MainApplication.handleBubbleAction(getContext(), Constant.BubbleAction.ConsumeRight, urlAsString, -1);
+                    MainApplication.handleBubbleAction(getContext(), BubbleAction.ConsumeRight, urlAsString, -1);
                 //} else if (string.equals(copyLinkLabel)) {
                 //    MainApplication.copyLinkToClipboard(getContext(), urlAsString, R.string.link_copied_to_clipboard);
                 }

@@ -7,6 +7,7 @@ public class Constant {
     public enum BubbleAction {
         None,
         Close,
+        BackButton,
         ConsumeRight,
         ConsumeLeft,
         //LinkDoubleTap,

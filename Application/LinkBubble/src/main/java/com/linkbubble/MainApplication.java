@@ -21,6 +21,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
+import com.linkbubble.Constant.BubbleAction;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
@@ -288,7 +289,7 @@ public class MainApplication extends Application {
         return true;
     }
 
-    public static boolean handleBubbleAction(final Context context, Constant.BubbleAction action, final String urlAsString, long totalTrackedLoadTime) {
+    public static boolean handleBubbleAction(final Context context, BubbleAction action, final String urlAsString, long totalTrackedLoadTime) {
         Constant.ActionType actionType = Settings.get().getConsumeBubbleActionType(action);
         boolean result = false;
         if (actionType == Constant.ActionType.Share) {
@@ -334,7 +335,7 @@ public class MainApplication extends Application {
             CrashTracking.log("MainApplication.handleBubbleAction() action:" + action.toString() + ", consumePackageName:" + consumePackageName);
             result = MainApplication.loadIntent(context, consumePackageName,
                     Settings.get().getConsumeBubbleActivityClassName(action), urlAsString, -1, true);
-        } else if (action == Constant.BubbleAction.Close) {
+        } else if (action == BubbleAction.Close || action == BubbleAction.BackButton) {
             CrashTracking.log("MainApplication.handleBubbleAction() action:" + action.toString());
             result = true;
         }
@@ -342,11 +343,10 @@ public class MainApplication extends Application {
         if (result) {
             boolean hapticFeedbackEnabled = android.provider.Settings.System.getInt(context.getContentResolver(),
                     android.provider.Settings.System.HAPTIC_FEEDBACK_ENABLED, 0) != 0;
-            if (hapticFeedbackEnabled) {
+            if (hapticFeedbackEnabled && action != BubbleAction.BackButton) {
                 Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
                 if (vibrator.hasVibrator()) {
                     vibrator.vibrate(10);
-                    Log.d("blerg", "vibrate!");
                 }
             }
         }
