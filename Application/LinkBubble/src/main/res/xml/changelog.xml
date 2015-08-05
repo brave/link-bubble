@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.5.1">
+        <change>FIX: Closing a tab via the hardware Back button no longer triggers a device vibration twice.</change>
+    </release>
+
     <release version="1.5.0">
         <change>NEW: Add ability to color the toolbar with a website's theme color/favicon color (Settings -> Color toolbar).</change>
         <change>NEW: Add "Domain redirects" customization, allowing you to define domains which, when loaded, will
