@@ -5,16 +5,20 @@ import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -123,6 +127,41 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 }
                 return false;
+            }
+        });
+
+        final Drawable x = getResources().getDrawable(android.R.drawable.presence_offline);
+        x.setBounds(0, -5, x.getIntrinsicWidth() + 20, x.getIntrinsicHeight() + 15);
+        mUrlEntry.setCompoundDrawables(null, null, null, null);
+        mUrlEntry.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (mUrlEntry.getCompoundDrawables()[2] == null) {
+                    return false;
+                }
+                if (event.getAction() != MotionEvent.ACTION_UP) {
+                    return false;
+                }
+                if (event.getX() > mUrlEntry.getWidth() - mUrlEntry.getPaddingRight() - x.getIntrinsicWidth()) {
+                    mUrlEntry.setText("");
+                    mUrlEntry.setCompoundDrawables(null, null, null, null);
+                }
+                return false;
+            }
+        });
+
+        mUrlEntry.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mUrlEntry.setCompoundDrawables(null, null, mUrlEntry.getText().toString().equals("") ? null : x, null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
         });
 
