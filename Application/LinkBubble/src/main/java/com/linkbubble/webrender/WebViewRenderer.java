@@ -416,7 +416,7 @@ class WebViewRenderer extends WebRenderer {
             if (NetworkConnectivity.isConnected(mContext) == false) {
                 Log.d(TAG, "Not connected, will retry on connection.");
                 IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-                NetworkReceiver receiver = new NetworkReceiver(view);
+                NetworkReceiver receiver = new NetworkReceiver(WebViewRenderer.this);
                 mContext.registerReceiver(receiver, filter);
             }
             mController.onReceivedError();

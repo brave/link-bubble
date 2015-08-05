@@ -7,15 +7,17 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.webkit.WebView;
 
+import com.linkbubble.webrender.WebRenderer;
+
 /**
  * Created by kevin on 8/5/15.
  */
 public class NetworkReceiver extends BroadcastReceiver {
 
-    protected WebView mWebView;
+    protected WebRenderer mWebRenderer;
 
-    public NetworkReceiver(WebView view) {
-        mWebView = view;
+    public NetworkReceiver(WebRenderer webRenderer) {
+        mWebRenderer = webRenderer;
     }
 
     @Override
@@ -26,7 +28,7 @@ public class NetworkReceiver extends BroadcastReceiver {
 
         // If there is a connection reload the webivew.
         if (networkInfo != null) {
-            mWebView.reload();
+            mWebRenderer.reload();
             context.unregisterReceiver(this);
         }
     }
