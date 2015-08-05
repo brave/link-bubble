@@ -4,7 +4,9 @@ package com.linkbubble.webrender;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
 import android.net.http.SslError;
 import android.os.Handler;
 import android.os.Message;
@@ -37,6 +39,8 @@ import com.linkbubble.Settings;
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.ui.TabView;
 import com.linkbubble.util.Analytics;
+import com.linkbubble.util.NetworkConnectivity;
+import com.linkbubble.util.NetworkReceiver;
 import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
@@ -406,6 +410,15 @@ class WebViewRenderer extends WebRenderer {
 
         @Override
         public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            Log.d(TAG, "WebViewRenderer - onReceivedError() - " + description + " - " + failingUrl);
+
+            // Reload webviews once we have a connection.
+            if (NetworkConnectivity.isConnected(mContext) == false) {
+                Log.d(TAG, "Not connected, will retry on connection.");
+                IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+                NetworkReceiver receiver = new NetworkReceiver(view);
+                mContext.registerReceiver(receiver, filter);
+            }
             mController.onReceivedError();
         }
 
