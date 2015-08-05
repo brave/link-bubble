@@ -24,6 +24,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
 
+    LinearLayout mActivityLayout;
     EditText mUrlEntry;
     Button mActionButtonView;
     FlipView mStatsFlipView;
@@ -63,6 +65,7 @@ public class HomeActivity extends AppCompatActivity {
 
         ((MainApplication)getApplicationContext()).registerDrmTracker(this);
 
+        mActivityLayout = (LinearLayout)findViewById(R.id.activity_layout);
         mUrlEntry = (EditText)findViewById(R.id.url_entry);
         mActionButtonView = (Button)findViewById(R.id.big_white_button);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
@@ -124,6 +127,9 @@ public class HomeActivity extends AppCompatActivity {
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     String userInput = mUrlEntry.getText().toString().trim();
                     MainApplication.openLink(getApplicationContext(), userInput, null);
+                    mUrlEntry.setText("");
+                    // Focus on the activity layout to hide the caret.
+                    mActivityLayout.requestFocus();
                     return true;
                 }
                 return false;
