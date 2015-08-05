@@ -18,9 +18,21 @@
         android:theme="@style/ToolbarTheme"/>
 
     <LinearLayout
+        android:id="@+id/activity_layout"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusableInTouchMode="true">
+        <requestFocus />
+
+        <EditText
+            android:id="@+id/url_entry"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/url_entry_placeholder"
+            android:singleLine="true"
+            android:inputType="textUri" />
 
         <FrameLayout
             android:id="@+id/content"

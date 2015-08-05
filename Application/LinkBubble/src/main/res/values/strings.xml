@@ -196,6 +196,7 @@
 
     <string name="loading">Loading…</string>
 
+    <string name="url_entry_placeholder">Enter search terms or address</string>
     <string name="histroy_unread">Unread</string>
     <string name="histroy_all">All</string>
     <string name="history">History</string>

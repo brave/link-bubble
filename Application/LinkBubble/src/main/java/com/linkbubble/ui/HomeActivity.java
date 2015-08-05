@@ -2,6 +2,7 @@ package com.linkbubble.ui;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +12,13 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +39,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
 
+    EditText mUrlEntry;
     Button mActionButtonView;
     FlipView mStatsFlipView;
     View mTimeSavedPerLinkContainerView;
@@ -54,6 +59,7 @@ public class HomeActivity extends AppCompatActivity {
 
         ((MainApplication)getApplicationContext()).registerDrmTracker(this);
 
+        mUrlEntry = (EditText)findViewById(R.id.url_entry);
         mActionButtonView = (Button)findViewById(R.id.big_white_button);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
         mTimeSavedPerLinkContainerView = mStatsFlipView.getDefaultView();
@@ -107,6 +113,28 @@ public class HomeActivity extends AppCompatActivity {
 
         configureForDrmState();
 
+        mUrlEntry.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    String userInput = mUrlEntry.getText().toString().trim();
+                    MainApplication.openLink(getApplicationContext(), userInput, null);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        mUrlEntry.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+
         mActionButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,6 +152,11 @@ public class HomeActivity extends AppCompatActivity {
         MainApplication.registerForBus(this, this);
 
         Settings.get().getBrowsers();
+    }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     @Override
