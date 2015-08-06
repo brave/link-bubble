@@ -165,6 +165,17 @@ class WebViewRenderer extends WebRenderer {
     }
 
     @Override
+    public String getUserAgentString() {
+        return mWebView.getSettings().getUserAgentString();
+    }
+
+    @Override
+    public void setUserAgentString(String userAgentString) {
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setUserAgentString(userAgentString);
+    }
+
+    @Override
     public void loadUrl(URL url, Mode mode) {
         String urlAsString = url.toString();
         Log.d(TAG, "loadUrl() - " + urlAsString);

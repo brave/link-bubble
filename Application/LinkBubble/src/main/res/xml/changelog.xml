@@ -2,6 +2,7 @@
 <changelog>
 
     <release version="1.5.1">
+        <change>NEW: In bubble request desktop site option.</change>
         <change>NEW: Bubbles loaded while not connected to the internet will now be automatically loaded once an internet connection is detected.</change>
         <change>FIX: Closing a tab via the hardware Back button no longer triggers a device vibration twice.</change>
     </release>
