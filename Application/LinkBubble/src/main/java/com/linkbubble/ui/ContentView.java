@@ -1057,7 +1057,8 @@ public class ContentView extends FrameLayout {
                                 newUserAgentString = Constant.USER_AGENT_CHROME_DESKTOP;
                             } else {
                                 String defaultUserAgentString = Settings.get().getUserAgentString();
-                                if (defaultUserAgentString != null) {
+                                if (defaultUserAgentString != null
+                                        && !defaultUserAgentString.equals(Constant.USER_AGENT_CHROME_DESKTOP)) {
                                     newUserAgentString = defaultUserAgentString;
                                 } else {
                                     newUserAgentString = Util.getDefaultUserAgentString(getContext());
