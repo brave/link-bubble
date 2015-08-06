@@ -172,6 +172,10 @@ public class BubbleFlowView extends HorizontalScrollView {
         int centerIndex = getCenterIndex();
         int insertAtIndex = insertNextToCenterItem ? centerIndex + 1 : mViews.size();
 
+        if (view.getParent() != null) {
+            ((ViewGroup)view.getParent()).removeView(view);
+        }
+
         FrameLayout.LayoutParams lp = new LayoutParams(mItemWidth, mItemHeight, Gravity.TOP|Gravity.LEFT);
         lp.leftMargin = mEdgeMargin + insertAtIndex * mItemWidth;
         mContent.addView(view, lp);
