@@ -65,4 +65,13 @@ class StubRenderer extends WebRenderer {
     public YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper() {
         return null;
     }
+
+    @Override
+    public String getUserAgentString() {
+        return null;
+    }
+
+    @Override
+    public void setUserAgentString(String userAgentString) {
+    }
 }
