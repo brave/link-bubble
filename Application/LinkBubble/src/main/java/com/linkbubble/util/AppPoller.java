@@ -18,6 +18,8 @@ import com.linkbubble.ui.NotificationHideActivity;
 import com.linkbubble.ui.NotificationOpenTabActivity;
 import com.linkbubble.ui.NotificationUnhideActivity;
 
+import java.util.List;
+
 
 public class AppPoller {
 
@@ -50,9 +52,12 @@ public class AppPoller {
     public void beginAppPolling() {
         if (mCurrentAppFlatComponentName == null) {
             ActivityManager am = (ActivityManager)mContext.getSystemService(Activity.ACTIVITY_SERVICE);
-            ComponentName componentName = am.getRunningTasks(1).get(0).topActivity;
-            mCurrentAppFlatComponentName = componentName.flattenToShortString();
-            Log.d(TAG, "beginAppPolling() - current app:" + mCurrentAppFlatComponentName);
+            List<ActivityManager.RunningTaskInfo> runningTasks = am.getRunningTasks(1);
+            if (runningTasks != null && runningTasks.size() > 0) {
+                ComponentName componentName = runningTasks.get(0).topActivity;
+                mCurrentAppFlatComponentName = componentName.flattenToShortString();
+                Log.d(TAG, "beginAppPolling() - current app:" + mCurrentAppFlatComponentName);
+            }
         }
 
         mNextAppFirstRunningTime = -1;
