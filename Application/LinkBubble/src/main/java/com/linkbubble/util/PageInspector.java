@@ -36,8 +36,9 @@ public class PageInspector {
     private static final String JS_VARIABLE = "LinkBubble";
     private static final String UNKNOWN_TAG = "unknown";        // the tag Chrome/WebView uses for unknown elements
 
+    // Workaround for selects not working: https://code.google.com/p/chromium/issues/detail?id=390553
     private static final String JS_DROP_DOWN_ITEM_CHECK =
-            "{\n" +
+            "{(function() {\n" +
             "  window.__LINK_BUBBLE__ = window.__LINK_BUBBLE__ || {};\n" +
             "  if (window.__LINK_BUBBLE__.selectOption) { return; }\n" +
             "  window.__LINK_BUBBLE__.lastSelectFocused = null;\n" +
@@ -47,33 +48,65 @@ public class PageInspector {
             "    select.previousElementSibling.textContent = select[index].text;\n" +
             "  };\n" +
             "  var positioningProps = ['float','position','width','height','left','top','margin-left','margin-top','padding-left','padding-top', 'border', 'background'];\n" +
-            "  var els = document.querySelectorAll('select');\n" +
-            "  Array.prototype.forEach.call(els, function(select) {\n" +
-            "    var mask = document.createElement('div');\n" +
-            "    mask.className = '__link_bubble__select_mask__';\n" +
-            "    mask.style.webkitAppearance = 'menulist';\n" +
-            "    var computedStyle = getComputedStyle(select);\n" +
-            "\n" +
-            "    for(var i in positioningProps){\n" +
-            "      var prop = positioningProps[i];\n" +
-            "      mask.style[prop] = computedStyle.getPropertyValue(prop);\n" +
-            "    }\n" +
-            "    select.parentNode.insertBefore(mask, select);\n" +
-            "    mask.textContent = select[0].text;\n" +
-            "    select.style.display = 'none';\n" +
-            "\n" +
-            "    mask.addEventListener('click', function(e) {\n" +
-            "      e.preventDefault();\n" +
-            "      window.__LINK_BUBBLE__.lastSelectFocused = select;\n" +
-            "      var keyAndValues = [select.selectedIndex];\n" +
-            "      for (var i = 0; i < select.length; i++) {\n" +
-            "        keyAndValues.push(select[i].text);\n" +
-            "        keyAndValues.push(select[i].value);\n" +
+            "  var els = document.getElementsByTagName('select');\n" +
+            "  function maskSelects() {\n" +
+            "    /* Remove all previous select masks if the next element is not a select any longer. */\n" +
+            "    Array.prototype.forEach.call(document.querySelectorAll('.__link_bubble__select_mask__'), function(mask) {\n" +
+            "      if (mask.nextElementSibling && mask.nextElementSibling.nodeName.toLowerCase() === 'select') { return; };\n" +
+            "      mask.parentNode.removeChild(mask);\n" +
+            "    });\n" +
+            "    \n" +
+            "    Array.prototype.forEach.call(els, function(select) {\n" +
+            "      var mask = select.previousElementSibling;" +
+            "      /* Insert and style for new selects */\n" +
+            "      if (!mask || mask.className !== '__link_bubble__select_mask__') {\n" +
+            "        mask = document.createElement('div');\n" +
+            "        mask.className = '__link_bubble__select_mask__';\n" +
+            "        mask.style.webkitAppearance = 'menulist';\n" +
+            "        var computedStyle = getComputedStyle(select);\n" +
+            "        \n" +
+            "        for(var i in positioningProps){\n" +
+            "          var prop = positioningProps[i];\n" +
+            "          mask.style[prop] = computedStyle.getPropertyValue(prop);\n" +
+            "        }\n" +
+            "        select.parentNode.insertBefore(mask, select);\n" +
+            "        select.style.display = 'none';\n" +
+            "        \n" +
+            "        mask.addEventListener('click', function(e) {\n" +
+            "          e.preventDefault();\n" +
+            "          window.__LINK_BUBBLE__.lastSelectFocused = select;\n" +
+            "          var keyAndValues = [select.selectedIndex];\n" +
+            "          for (var i = 0; i < select.length; i++) {\n" +
+            "            keyAndValues.push(select[i].text);\n" +
+            "            keyAndValues.push(select[i].value);\n" +
+            "          }\n" +
+            "          " + JS_VARIABLE + ".onSelectElementInteract(JSON.stringify(keyAndValues));\n" +
+            "        });\n" +
             "      }\n" +
-            "      " + JS_VARIABLE + ".onSelectElementInteract(JSON.stringify(keyAndValues));\n" +
+            "      mask.textContent = select[select.selectedIndex].text;\n" +
+            "    });\n" +
+            "  }\n" +
+            "  /* Mask all selects when the script is injected. */\n" +
+            "  maskSelects();\n" +
+            "  /* Use a mutation observer for dynamic selects added after page load. */\n" +
+            "  MutationObserver = window.MutationObserver || window.WebKitMutationObserver;\n" +
+            "  var observer = new MutationObserver(function(mutations) {\n" +
+            "    mutations.forEach(function(mutation) {\n" +
+            "      var changed = false;\n" +
+            "      var allChangedNodes = [].slice.call(mutation.addedNodes).concat([].slice.call(mutation.removedNodes));\n" +
+            "      allChangedNodes.forEach(function(changedNode) {\n" +
+            "        if ((changedNode.querySelector && changedNode.querySelector('select')) || changedNode.nodeName.toLowerCase() === 'select') {\n" +
+            "          changed = true;\n" +
+            "        }\n" +
+            "      });\n" +
+            "      if (changed) {\n" +
+            "        maskSelects();\n" +
+            "      }\n" +
             "    });\n" +
             "  });\n" +
-            "}";
+            "  var config = {attributes: false, childList: true, characterData: false, subtree: true};\n" +
+            "  observer.observe(document.body, config);\n" +
+            "}());}";
 
     private static final String JS_YOUTUBE_EMBED_CHECK =
             "{\n" +
