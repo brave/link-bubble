@@ -1006,9 +1006,9 @@ public class ContentView extends FrameLayout {
                         String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
             }
 
-            MenuItem requestDesktopSite = mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_request_desktop_site, Menu.NONE, resources.getString(R.string.action_request_desktop_site));
-            requestDesktopSite.setCheckable(true);
-            requestDesktopSite.setChecked(mWebRenderer.getUserAgentString() == Constant.USER_AGENT_CHROME_DESKTOP);
+            final MenuItem requestDesktopSite = mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_request_desktop_site, Menu.NONE, resources.getString(R.string.action_request_desktop_site))
+                    .setCheckable(true)
+                    .setChecked(mWebRenderer.getUserAgentString().equals(Constant.USER_AGENT_CHROME_DESKTOP));
 
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_copy_link, Menu.NONE, resources.getString(R.string.action_copy_to_clipboard));
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_close_tab, Menu.NONE, resources.getString(R.string.action_close_tab));
@@ -1050,22 +1050,18 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_request_desktop_site: {
-                            String defaultUserAgentString = Settings.get().getUserAgentString();
-                            String currentuserAgentString = mWebRenderer.getUserAgentString();
-                            String newUserAgentString = null;
-
-                            // If the current user agent is desktop, we want to flip it.
-                            if (currentuserAgentString == Constant.USER_AGENT_CHROME_DESKTOP) {
-                                // Check if user has explicitly set the default to one of Phone or Tablet.
-                                // If so, we want to set the non desktop version to that.
-                                // Otherwise, fallback to Config setting.
-                                if (defaultUserAgentString != Constant.USER_AGENT_CHROME_DESKTOP && defaultUserAgentString != null) {
+                            String newUserAgentString;
+                            // This looks backwards, but is correct, as isChecked() isn't true until
+                            // after onMenuItemClick() is called.
+                            if (!requestDesktopSite.isChecked()) {
+                                newUserAgentString = Constant.USER_AGENT_CHROME_DESKTOP;
+                            } else {
+                                String defaultUserAgentString = Settings.get().getUserAgentString();
+                                if (defaultUserAgentString != null) {
                                     newUserAgentString = defaultUserAgentString;
                                 } else {
-                                    newUserAgentString = Config.sIsTablet ? Constant.USER_AGENT_CHROME_TABLET : Constant.USER_AGENT_CHROME_PHONE;
+                                    newUserAgentString = Util.getDefaultUserAgentString(getContext());
                                 }
-                            } else {
-                                newUserAgentString = Constant.USER_AGENT_CHROME_DESKTOP;
                             }
 
                             mWebRenderer.setUserAgentString(newUserAgentString);
