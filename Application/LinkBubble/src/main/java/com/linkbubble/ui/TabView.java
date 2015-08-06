@@ -147,7 +147,7 @@ public class TabView extends BubbleView {
                 URL currentUrl = mContentView.getUrl();
                 if (currentUrl != null) {
                     String currentFaviconUrl = Util.getDefaultFaviconUrl(currentUrl);
-                    if (faviconURL.equals(currentFaviconUrl)) {
+                    if (faviconURL != null && faviconURL.equals(currentFaviconUrl)) {
                         return true;
                     }
                     //Log.d("blerg", "Ignoring favicon " + faviconURL + " in favor of " + currentFaviconUrl);

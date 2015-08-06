@@ -12,7 +12,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.linkbubble.MainApplication;
+import com.linkbubble.MainService;
 import com.linkbubble.R;
+import com.linkbubble.util.NetworkConnectivity;
+
 import org.mozilla.gecko.favicons.cache.FaviconCache;
 import org.mozilla.gecko.util.NonEvictingLruCache;
 import org.mozilla.gecko.util.ThreadUtils;
@@ -41,6 +46,7 @@ public class Favicons {
     public static final int LOADED       = 1;
     public static final int FLAG_PERSIST = 2;
     public static final int FLAG_SCALE   = 4;
+    public static final int FLAG_OFFLINE_NO_CACHE = 8;
 
     protected static Context sContext;
 
@@ -143,6 +149,11 @@ public class Favicons {
 
         // If it's something we can't even figure out a default URL for, just give up.
         if (cacheURL == null) {
+            return dispatchResult(pageURL, null, sDefaultFavicon, listener);
+        }
+
+        // If the device is offline, display the default favicon until the page reloads.
+        if ((flags & FLAG_OFFLINE_NO_CACHE) != 0 && NetworkConnectivity.isConnected(sContext) == false) {
             return dispatchResult(pageURL, null, sDefaultFavicon, listener);
         }
 

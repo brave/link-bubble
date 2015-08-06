@@ -117,6 +117,7 @@ public class BubbleView extends FrameLayout  {
 
         //int flags = (tab.isPrivate() || tab.getErrorType() != Tab.ErrorType.NONE) ? 0 : LoadFaviconTask.FLAG_PERSIST;
         int flags = Settings.get().isIncognitoMode() ? 0 : LoadFaviconTask.FLAG_PERSIST;
+        flags |= Favicons.FLAG_OFFLINE_NO_CACHE;
         String faviconUrl = Util.getDefaultFaviconUrl(mUrl);
         int faviconLoadIdBefore = mFaviconLoadId;
         int id = MainApplication.sFavicons.getFaviconForSize(mUrl.toString(), faviconUrl, Integer.MAX_VALUE, flags, mOnFaviconLoadedListener);
