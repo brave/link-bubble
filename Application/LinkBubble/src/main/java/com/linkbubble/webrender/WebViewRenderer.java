@@ -629,7 +629,13 @@ class WebViewRenderer extends WebRenderer {
             // Call the old version of this function for backwards compatability.
             //onConsoleMessage(consoleMessage.message(), consoleMessage.lineNumber(),
             //        consoleMessage.sourceId());
-            Log.d("Console", consoleMessage.message());
+            String message ;
+            if (consoleMessage == null) {
+                message = "(null)";
+            } else {
+                message = consoleMessage.message();
+            }
+            Log.d("Console", message );
             return false;
         }
 
