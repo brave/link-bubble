@@ -73,8 +73,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             @Override
             public void onCenterItemLongClicked(BubbleFlowView sender, View view) {
                 if (view instanceof TabView) {
-                    //shrink(Constant.BUBBLE_ANIM_TIME);
-                    MainController.get().startDraggingFromContentView();
+                    MainController mainController = MainController.get();
+                    if (mainController.getActiveTabCount() != 0) {
+                        mainController.startDraggingFromContentView();
+                    }
                 }
             }
 
