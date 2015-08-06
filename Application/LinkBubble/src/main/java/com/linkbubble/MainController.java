@@ -927,10 +927,14 @@ public class MainController implements Choreographer.FrameCallback {
             MainApplication.postEvent(mContext, mMinimizeExpandedActivityEvent);
         }
 
-        if (canShowUndoPrompt && Settings.get().getShowUndoCloseTab()) {
-            showClosePrompt(tabView);
+        if (tabView == null) {
+            CrashTracking.logHandledException(new RuntimeException("tabView = null"));
         } else {
-            destroyTabOnDelay(tabView);
+            if (canShowUndoPrompt && Settings.get().getShowUndoCloseTab()) {
+                showClosePrompt(tabView);
+            } else {
+                destroyTabOnDelay(tabView);
+            }
         }
 
         return getActiveTabCount() > 0;
