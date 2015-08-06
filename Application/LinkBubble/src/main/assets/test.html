@@ -26,7 +26,6 @@
 
         </style>
         <title>LB HTML tests</title>
-
 <script>
 function onAlertShow()
 {
@@ -55,8 +54,44 @@ function onPromptShow() {
     }
 }
 
-</script>
+window.addEventListener('load', function() {
 
+  // Handle dynamic select elements.
+  var selectContainer = document.getElementById('async-selects');
+  var addLink = document.getElementById('add-select');
+  addLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    var newSelect = document.createElement('form');
+    newSelect.innerHTML = `<select name="cars">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="fiat">Fiat</option>
+        <option value="audi">Audi</option>
+      </select>
+      <br>
+      <a class="remove-select" href="#"> Remove only select</a> | <a class="remove-select-form" href="#"> Remove select wrapper</a>
+      <br><br>`
+    selectContainer.appendChild(newSelect);
+  });
+
+  document.body.addEventListener('click', function(e) {
+    var current = e.target;
+    if (current.className == 'remove-select-form') {
+      e.preventDefault();
+      while( current && current.parentNode && current.nodeName.toLowerCase() !== 'form') {
+        current = current.parentNode;
+      }
+      current.parentNode.removeChild(current);
+    } else if (current.className == 'remove-select') {
+      e.preventDefault();
+      var parent = current.parentNode;
+      parent.removeChild(parent.querySelector('select'));
+    }
+  });
+
+});
+
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script>
 // Note: This example requires that you consent to location sharing when
@@ -134,7 +169,12 @@ Click <a href="#" onclick="javascript:window.open('','_self').close();">HERE</a>
 <option value="fiat">Fiat</option>
 <option value="audi">Audi</option>
 </select>
-</form><br><br>
+<br><br>
+</form>
+
+<div id="async-selects"></div>
+<a href="#" id="add-select">+ Add Async Select Control</a>
+<br><br>
 
 <form>
 <input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
