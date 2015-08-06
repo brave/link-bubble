@@ -299,10 +299,14 @@ public class ActionItem {
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, resources.getString(R.string.activity_resolver_use_once), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                int selectedItem = (Integer)listView.getTag();
-                ActionItem actionItem = actionItems.get(selectedItem);
-                if (onActionItemDefaultSelectedListener != null) {
-                    onActionItemDefaultSelectedListener.onSelected(actionItem, false);
+                try {
+                    int selectedItem = (Integer) listView.getTag();
+                    ActionItem actionItem = actionItems.get(selectedItem);
+                    if (onActionItemDefaultSelectedListener != null) {
+                        onActionItemDefaultSelectedListener.onSelected(actionItem, false);
+                    }
+                } catch (NullPointerException npe) {
+                    CrashTracking.logHandledException(npe);
                 }
             }
         });
@@ -310,10 +314,14 @@ public class ActionItem {
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, resources.getString(R.string.activity_resolver_use_always), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                int selectedItem = (Integer)listView.getTag();
-                ActionItem actionItem = actionItems.get(selectedItem);
-                if (onActionItemDefaultSelectedListener != null) {
-                    onActionItemDefaultSelectedListener.onSelected(actionItem, true);
+                try {
+                    int selectedItem = (Integer) listView.getTag();
+                    ActionItem actionItem = actionItems.get(selectedItem);
+                    if (onActionItemDefaultSelectedListener != null) {
+                        onActionItemDefaultSelectedListener.onSelected(actionItem, true);
+                    }
+                } catch (NullPointerException npe) {
+                    CrashTracking.logHandledException(npe);
                 }
             }
         });
