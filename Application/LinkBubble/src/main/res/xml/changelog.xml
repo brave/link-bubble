@@ -4,6 +4,7 @@
     <release version="1.5.1">
         <change>NEW: Bubbles loaded while not connected to the internet will now be automatically loaded once an internet connection is detected.</change>
         <change>FIX: Closing a tab via the hardware Back button no longer triggers a device vibration twice.</change>
+        <change>FIX: Fixed an occasional crash when focusing on drop down elements.</change>
     </release>
 
     <release version="1.5.0">
