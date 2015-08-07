@@ -95,6 +95,10 @@ public abstract class WebRenderer {
 
     public abstract YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper();
 
+    public abstract String getUserAgentString();
+
+    public abstract void setUserAgentString(String userAgentString);
+
     public void onPageLoadComplete() {}
 
     public URL getUrl() {
