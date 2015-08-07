@@ -19,6 +19,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.PaintDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.DisplayMetrics;
@@ -26,6 +27,8 @@ import android.util.Patterns;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,6 +42,7 @@ import com.linkbubble.Settings;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Constructor;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -662,5 +666,27 @@ public class Util {
         Drawable d = context.getResources().getDrawable(resId);
         d = DrawableCompat.wrap(d);
         return d;
+    }
+
+    /**
+     * From http://stackoverflow.com/a/5261472/328679
+     */
+    public static String getDefaultUserAgentString(Context context) {
+        if (Build.VERSION.SDK_INT >= 17) {
+            return WebSettings.getDefaultUserAgent(context);
+        }
+
+        try {
+            Constructor<WebSettings> constructor = WebSettings.class.getDeclaredConstructor(Context.class, WebView.class);
+            constructor.setAccessible(true);
+            try {
+                WebSettings settings = constructor.newInstance(context, null);
+                return settings.getUserAgentString();
+            } finally {
+                constructor.setAccessible(false);
+            }
+        } catch (Exception e) {
+            return Config.sIsTablet ? Constant.USER_AGENT_CHROME_TABLET : Constant.USER_AGENT_CHROME_PHONE;
+        }
     }
 }

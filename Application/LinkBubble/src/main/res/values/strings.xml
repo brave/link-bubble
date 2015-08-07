@@ -23,6 +23,7 @@
     <string name="action_help">Help</string>
     <string name="action_reload_page">Reload</string>
     <string name="action_open_in_browser">Open in %1$s</string>
+    <string name="action_request_desktop_site">Request desktop site</string>
     <string name="action_open_in_new_bubble">Open in new bubble</string>
     <string name="action_upgrade_to_pro">★Upgrade to Pro★</string>
     <string name="action_copy_to_clipboard">Copy link</string>

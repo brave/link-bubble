@@ -37,6 +37,7 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 
 import com.linkbubble.BuildConfig;
+import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.Constant.BubbleAction;
 import com.linkbubble.DRM;
@@ -1004,6 +1005,11 @@ public class ContentView extends FrameLayout {
                 mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
                         String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
             }
+
+            final MenuItem requestDesktopSite = mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_request_desktop_site, Menu.NONE, resources.getString(R.string.action_request_desktop_site))
+                    .setCheckable(true)
+                    .setChecked(mWebRenderer.getUserAgentString().equals(Constant.USER_AGENT_CHROME_DESKTOP));
+
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_copy_link, Menu.NONE, resources.getString(R.string.action_copy_to_clipboard));
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_close_tab, Menu.NONE, resources.getString(R.string.action_close_tab));
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_settings, Menu.NONE, resources.getString(R.string.action_settings));
@@ -1040,6 +1046,27 @@ public class ContentView extends FrameLayout {
 
                         case R.id.item_open_in_browser: {
                             openInBrowser(mWebRenderer.getUrl().toString(), true);
+                            break;
+                        }
+
+                        case R.id.item_request_desktop_site: {
+                            String newUserAgentString;
+                            // This looks backwards, but is correct, as isChecked() isn't true until
+                            // after onMenuItemClick() is called.
+                            if (!requestDesktopSite.isChecked()) {
+                                newUserAgentString = Constant.USER_AGENT_CHROME_DESKTOP;
+                            } else {
+                                String defaultUserAgentString = Settings.get().getUserAgentString();
+                                if (defaultUserAgentString != null
+                                        && !defaultUserAgentString.equals(Constant.USER_AGENT_CHROME_DESKTOP)) {
+                                    newUserAgentString = defaultUserAgentString;
+                                } else {
+                                    newUserAgentString = Util.getDefaultUserAgentString(getContext());
+                                }
+                            }
+
+                            mWebRenderer.setUserAgentString(newUserAgentString);
+                            mWebRenderer.reload();
                             break;
                         }
 
