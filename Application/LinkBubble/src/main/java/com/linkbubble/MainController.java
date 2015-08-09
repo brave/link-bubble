@@ -908,6 +908,13 @@ public class MainController implements Choreographer.FrameCallback {
 
     public boolean closeTab(TabView tabView, Constant.BubbleAction action, boolean animateOff, boolean canShowUndoPrompt) {
 
+        // If the tab is already closing, do nothing. Otherwise we could end up in a weird state,
+        // where we attempt to show multiple prompts and crashing upon tab restore.
+        if (tabView.mIsClosing == true) {
+            CrashTracking.log("Ignoring duplicate tabView close request");
+            return false;
+        }
+        tabView.mIsClosing = true;
 
         boolean contentViewShowing = contentViewShowing();
         CrashTracking.log("MainController.closeTab(): action:" + action.toString() + ", contentViewShowing:" + contentViewShowing
@@ -970,6 +977,7 @@ public class MainController implements Choreographer.FrameCallback {
                     @Override
                     public void onActionClick() {
                         if (tabView.mWasRestored == false) {
+                            tabView.mIsClosing = false;
                             restoreTab(tabView);
                             tabView.getContentView().onRestored();
                         }
