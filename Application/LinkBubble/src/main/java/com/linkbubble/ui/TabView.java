@@ -28,6 +28,7 @@ public class TabView extends BubbleView {
     private ScaleUpAnimHelper mBackIndicatorAnimHelper;
 
     public boolean mWasRestored;
+    public boolean mIsClosing;
 
     public TabView(Context context) {
         this(context, null);
