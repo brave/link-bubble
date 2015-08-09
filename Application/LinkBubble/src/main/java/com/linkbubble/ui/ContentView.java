@@ -465,6 +465,7 @@ public class ContentView extends FrameLayout {
             // Ensure that items opened in new tabs are redirected to a browser when not licensed, re #371, re #360
             if (mInitialUrlAsString.equals(Constant.NEW_TAB_URL) && DRM.allowProFeatures() == false) {
                 MainApplication.showUpgradePrompt(getContext(), R.string.upgrade_incentive_one_link, Analytics.UPGRADE_PROMPT_SINGLE_TAB_REDIRECT);
+                CrashTracking.log("ContentView.onPageStarted() - not licensed");
                 openInBrowser(urlAsString);
                 return;
             }
@@ -485,6 +486,7 @@ public class ContentView extends FrameLayout {
                 List<ResolveInfo> apps = Settings.get().getAppsThatHandleUrl(urlAsString, getContext().getPackageManager());
                 boolean openedInApp = apps != null && apps.size() > 0 ? openInApp(apps.get(0), urlAsString) : false;
                 if (openedInApp == false) {
+                    CrashTracking.log("ContentView.onPageStarted() - openedInApp == false");
                     openInBrowser(urlAsString);
                 }
                 return;
@@ -502,6 +504,7 @@ public class ContentView extends FrameLayout {
             URL currentUrl = mWebRenderer.getUrl();
             updateAppsForUrl(Settings.get().getAppsThatHandleUrl(currentUrl.toString(), packageManager), currentUrl);
             if (Settings.get().redirectUrlToBrowser(currentUrl)) {
+                CrashTracking.log("ContentView.onPageStarted() - url redirects to browser");
                 if (openInBrowser(urlAsString)) {
                     String title = String.format(context.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
                     MainApplication.saveUrlInHistory(context, null, urlAsString, title);
@@ -1045,6 +1048,7 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_open_in_browser: {
+                            CrashTracking.log("ContentView.setOnMenuItemClickListener() - open in browser clicked");
                             openInBrowser(mWebRenderer.getUrl().toString(), true);
                             break;
                         }
@@ -1122,8 +1126,8 @@ public class ContentView extends FrameLayout {
     };
 
     private void onDownloadStart(String urlAsString) {
-        openInBrowser(urlAsString);
         CrashTracking.log("onDownloadStart()");
+        openInBrowser(urlAsString);
         if (MainController.get() != null) {
             MainController.get().closeTab(mOwnerTabView, true, false);
             // L_WATCH: L currently lacks getRecentTasks(), so minimize here
@@ -1218,6 +1222,7 @@ public class ContentView extends FrameLayout {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CrashTracking.log("ContentView listView.setOnItemClickListener");
                 String string = longClickSelections.get(position);
                 if (string.equals(openInNewBubbleLabel)) {
                     MainController.get().openUrl(urlAsString, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_TAB);
@@ -1609,6 +1614,7 @@ public class ContentView extends FrameLayout {
             @Override
             public void onActionClick() {
                 if (urlAsString != null) {
+                    CrashTracking.log("ContentView.showOpenInBrowserPrompt() - onActionClick()");
                     openInBrowser(urlAsString);
                 }
             }
