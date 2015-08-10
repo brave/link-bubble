@@ -23,6 +23,7 @@
     <string name="action_help">Help</string>
     <string name="action_reload_page">Vernieuwen</string>
     <string name="action_open_in_browser">Openen in %1$s</string>
+    <string name="action_request_desktop_site">Request desktop site</string>
     <string name="action_open_in_new_bubble">Openen in nieuwe bubbel</string>
     <string name="action_upgrade_to_pro">★Upgraden naar Pro★</string>
     <string name="action_copy_to_clipboard">Link kopiëren</string>
@@ -31,31 +32,30 @@
     <string name="action_close_tab">Bubbel sluiten</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Ongedaan maken</string>
-    <string name="action_add">Add</string>
-    <string name="action_no_recommended">No (recommended)</string>
+    <string name="action_add">Toevoegen</string>
+    <string name="action_no_recommended">Nee</string>
     <string name="share_via">Delen via...</string>
     <string name="not_set">Niet ingesteld</string>
 
-    <string name="warning">Warning!</string>
-    <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
+    <string name="warning">Waarschuwing!</string>
+    <string name="untrusted_certificate">Het certificaat van %1$s wordt niet vertrouwd. Toch doorgaan?</string>
 
     <string name="share_invalid_data">Link Bubble kan dit item niet delen, omdat de URL ongeldig is.</string>
-    <string name="consume_activity_not_found">Kan applicatie niet vinden. Overweeg de bubbel-actie te wijzigen via Instellingen</string>
-    <string name="consume_activity_security_exception">Unable to share to external application.</string>
+    <string name="consume_activity_not_found">Kan app niet vinden. Overweeg de bubbelactie te wijzigen via Instellingen.</string>
+    <string name="consume_activity_security_exception">Kan niet delen met externe app.</string>
 
     <string name="upgrade">Upgraden</string>
     <string name="upgrade_to_pro">Upgraden naar Pro</string>
     <string name="upgrade_article_mode">Wil je links in Leesmodus bekijken?</string>
     <string name="upgrade_article_mode_wear">Wil je links op Android Wear-apparaten bekijken via Leesmodus?</string>
     <string name="upgrade_theme">Wil je een ander thema gebruiken?</string>
-    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
-    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
-        Load multiple tabs at once.\n •
-        Change theme.\n •
-        Use Reading Mode.\n •
-        Android Wear support.\n •
-        Support us as we develop this app :)
-        </string>
+    <string name="upgrade_theme_toolbar">Taakbalk mee laten kleuren met de themakleur van websites?</string>
+    <string name="upgrade_from_settings_summary">Upgrade naar Link Bubble Pro om dit en meer te kunnen doen:\n •
+Meerdere tabs tegelijk laden.\n •
+Thema wijzigen.\n •
+Leesmodus gebruiken.\n •
+Android Wear-ondersteuning.\n •
+Ons ondersteunen bij het maken van deze app :)</string>
 
     <string name="undo_close_tab_title">Gesloten: %1$s</string>
     <string name="undo_close_tab_no_title">Tab gesloten</string>
@@ -68,7 +68,7 @@
 
     <string name="preference_category_general">Algemeen</string>
     <string name="preference_category_configuration">Besturing app</string>
-    <string name="preference_category_configuration2">Configuration</string>
+    <string name="preference_category_configuration2">Configuratie</string>
     <string name="preference_category_browser">Browser</string>
     <string name="preference_enabled_title">Ingeschakeld</string>
     <string name="preference_auto_content_display_link_loaded_title">Automatisch openen</string>
@@ -93,11 +93,11 @@ wordt ingesteld als je links laadt met Link Bubble.</string>
     <string name="preference_google_account_redirect_title">Google Account redirect</string>
     <string name="preference_google_account_redirect_summary">Stuur accounts.google.com-links door naar de standaard terugvalbrowser</string>
     <string name="preference_set_default_browser_title">Stel standaard systeembrowser in</string>
-    <string name="preference_set_default_browser_summary">Link Bubble must be the default system browser to work. Tap to configure.</string>
+    <string name="preference_set_default_browser_summary">Link Bubble moet de standaard systeembrowser zijn om te kunnen werken. Tik om te configureren.</string>
     <string name="preference_more">Meer...</string>
     <string name="preference_intercept_links_from_title">Links onderscheppen van</string>
     <string name="preference_intercept_links_from_note">Let op: de beperking voor het onderscheppen van links van slechts één app bestaat alleen in de gratis versie van Link Bubble. Upgraden naar Pro?</string>
-    <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
+    <string name="preference_intercept_links_from_disabled_for_L">Vanaf Android 5.0 heeft Google de API verwijderd die nodig is voor deze functionaliteit.</string>
     <string name="preference_scan_for_youtube_embeds_title">Ingesloten YouTube-videos herkennen</string>
     <string name="preference_scan_for_youtube_embeds_summary">Snelkoppeling weergeven om ingesloten video(\'s) te laden in de YouTube-app.</string>
     <string name="preference_webview_battery_save_title">Batterij-spaarstand (beta)</string>
@@ -112,9 +112,9 @@ wordt ingesteld als je links laadt met Link Bubble.</string>
     <string name="preference_theme_light_no_color">Licht + neutrale kleur</string>
     <string name="preference_theme_dark_color">Donker + icoonkleur</string>
     <string name="preference_theme_dark_no_color">Donker + neutrale kleur</string>
-    <string name="preference_theme_toolbar_title">Color toolbar</string>
-    <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
-    <string name="preference_article_mode_title">Leesmodus (beta)</string>
+    <string name="preference_theme_toolbar_title">Taakbalk kleuren</string>
+    <string name="preference_theme_toolbar_summary">Om aan te sluiten bij de themakleur/icoonhoofdkleur van een website.</string>
+    <string name="preference_article_mode_title">Reading Mode</string>
     <string name="preference_reading_mode_on_wear_title">Leesmodus op Wear</string>
     <string name="preference_article_mode_summary">In/uitschakelen met knop op actiebalk</string>
     <string name="preference_webview_text_zoom_title">Tekstzoom</string>
@@ -138,14 +138,14 @@ wordt ingesteld als je links laadt met Link Bubble.</string>
         <item>Chrome desktop</item>
     </string-array>
 
-    <string name="preference_domains_title">Domain redirects</string>
-    <string name="preference_domains_summary">Specify links to always load in your fallback browser.</string>
-    <string name="preference_redirects_title">Redirect to fallback browser</string>
-    <string name="preference_add_domain_title">Add domain</string>
-    <string name="add_domain_hint">Url host</string>
-    <string name="add_domain_detail">Specify only the \'main\' portion of a website address. E.g.,
-        \"accounts.google.com\" or \"bbc.co.uk\".</string>
-    <string name="add_domain_error">Unable to add \"%1$s\", as it is not a valid URL host.</string>
+    <string name="preference_domains_title">Doorsturen per domein</string>
+    <string name="preference_domains_summary">Links opgeven die altijd in de terugvalbrowser laden.</string>
+    <string name="preference_redirects_title">Doorsturen naar terugvalbrowser</string>
+    <string name="preference_add_domain_title">Domein toevoegen</string>
+    <string name="add_domain_hint">URL-host</string>
+    <string name="add_domain_detail">Geef alleen het  \'hoofd\'-onderdeel van van een webadres. Bijvoorbeeld,
+\"accounts.google.com\" or \"bbc.co.uk\".</string>
+    <string name="add_domain_error">Kan \"%1$s\" niet toevoegen, omdat het geen geldige URL-host is.</string>
 
     <string name="preference_help_title">Help</string>
     <string name="preference_show_welcome_message_title">Welkomstpagina tonen</string>
@@ -162,19 +162,19 @@ wordt ingesteld als je links laadt met Link Bubble.</string>
     <string name="preference_more_title">Meer&#8230;</string>
     <string name="preference_show_undo_close_tab_title">Aanwijzing tab sluiten ongedaan maken</string>
 
-    <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
-    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
+    <string name="preference_my_other_apps_title">Meer apps van Link Bubble</string>
+    <string name="preference_my_other_apps_summary">Bevalt Link Bubble? Bekijk dan ook onze andere apps!</string>
 
     <string name="remove_default_title">Standaard verwijderen?</string>
     <string name="remove_default_message">%1$s verwijderen als de standaardapp om %2$s-links mee te laden?\n\nLet op: je kan de volgende keer
 dat je een %2$s-link laadt een nieuwe standaardapp instellen.</string>
-    <string name="long_press_unsupported_default_browser">Unable to display this item. Open link in %1$s?</string>
-    <string name="long_press_unsupported_no_default_browser">Unable to display this item. Open link in a browser.</string>
+    <string name="long_press_unsupported_default_browser">Kan dit item niet weergeven. Link openen in %1$s?</string>
+    <string name="long_press_unsupported_no_default_browser">Kan dit item niet weergeven. Link openen in een browser.</string>
     <string name="unsupported_scheme_default_browser">Link-type wordt momenteel niet ondersteund. Webpagina openen in %1$s?</string>
     <string name="unsupported_scheme_no_default_browser">Link-type wordt momenteel niet ondersteund. Open de link in een browser.</string>
     <string name="unsupported_scheme">Link-type wordt momenteel niet ondersteund.</string>
-    <string name="unsupported_drop_down_default_browser">Unable to interact with this item. Open in %1$s?</string>
-    <string name="unsupported_drop_down_no_default_browser">Unable to interact with this item. Open link in a browser.</string>
+    <string name="unsupported_drop_down_default_browser">Kan niet omgaan met dit item. Link openen in %1$s?</string>
+    <string name="unsupported_drop_down_no_default_browser">Kan niet omgaan met dit item. Link openen in een browser.</string>
 
     <string name="consume_category_view">Link bekijken</string>
     <string name="consume_category_share">Link verzenden/delen</string>
@@ -198,7 +198,7 @@ dat je een %2$s-link laadt een nieuwe standaardapp instellen.</string>
     <string name="private_data_cleared">Privégegevens gewist</string>
     <string name="private_data_cleared_reloading_current">Privégegevens gewist. Huidige bubbels herladen...</string>
     <string name="user_agent_changed_reloading_current">User Agent veranderd. Huidige bubbels herladen…</string>
-    <string name="theme_toolbar_reloading_current">Color toolbar setting changed. Reloading current bubbles…</string>
+    <string name="theme_toolbar_reloading_current">Taakbalk kleuren-instelling gewijzigd. Huidige bubbels herladen...</string>
     <string name="article_mode_changed_reloading_current">Leesmodus-instelling gewijzigd. Alle huidige bubbels herladen...</string>
     <string name="link_loaded_with_app">Geladen met %1$s</string>
     <string name="link_redirected">Doorgestuurd naar %1$s</string>
@@ -207,7 +207,7 @@ dat je een %2$s-link laadt een nieuwe standaardapp instellen.</string>
     <string name="upgrade_incentive_one_link">Je hebt Link Bubble Pro nodig om meer dan één bubbel tegelijk te laden. Upgraden naar Pro?</string>
     <string name="valid_license_detected">Geldige Link Bubble Pro-licentie gevonden.\nBedankt voor het ondersteunen van dit project, en veel plezier met de app :)</string>
 
-    <string name="bubble_link_copied_to_clipboard">Bubbel-link gekopieerd naar klembord.</string>
+    <string name="bubble_link_copied_to_clipboard">Bubbellink gekopieerd naar klembord.</string>
     <string name="link_copied_to_clipboard">Link gekopieerd naar klembord.</string>
 
     <string name="stat_saves_you">bespaart je</string>
@@ -250,17 +250,17 @@ schakel \"Externe browser\" in of zet \"Geïntegreerde browser\" uit, of iets de
 waarop in andere browserapps wordt geklikt.
 ]]></string>
     <string name="faq_article_mode_question">Hoe gebruik ik Leesmodus? Waarom werkt het niet voor sommige links?</string>
-    <string name="faq_article_mode_answer"><![CDATA[Ten eerste, zorg dat Leesmodus is ingeschakeld (Instellingen -> Besturing app  / Meer&#8230; -> Leesmodus (beta)).<br/><br/>
-Daarna zal, als Leesmodus beschikbaar is voor de huidige tab, het Leesmodus-pictogram zichtbaar zijn op de actiebalk (naast de Delen-knop).
-Bedenk dat dit pictogram alleen verschijnt als de link klaar is met laden, en alleen als Link Bubble er in slaagt inhoud voor Leesmodus eruit te halen.<br/><br/>
-Let op: Inhoud van het web extraheren is geen betrouwbare procedure, en werkt mogelijk niet 100% accuraat. Gezien het dynamische en immer veranderende karakter van het web zelf,
-is er weinig wat hieraan gedaan kan worden.]]></string>
+    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
+            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
+            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
+            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
+            there is little than can be done here.]]></string>
     <string name="faq_future_features_question">Ga je ondersteuning inbouwen voor bladwijzers, favorieten, extensies, enzovoort?</string>
     <string name="faq_future_features_answer">Zeg nooit nooit, maar op dit moment is Link Bubble alleen gericht op het zijn van de best mogelijke manier
 om links van andere apps te laden en te verwerken.</string>
     <string name="faq_translations_question">Kan ik meehelpen deze app te vertalen?</string>
-    <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
-            (+Link Bubble) for help with translations, so be sure to keep an eye on my feed.]]></string>
+    <string name="faq_translations_answer"><![CDATA[Ik hoop binnenkort vertalingen te kunnen toevoegen.<br/><br/>Wanneer ik dat doe, zal ik zeker een oproep doen via Google+
+(+Link Bubble) voor hulp bij de vertalingen, dus hou mijn feed in de gaten.]]></string>
     <string name="faq_roadmap_question">Heb je een roadmap gepubliceerd? Kan ik stemmen voor toekomstige functies?</string>
     <string name="faq_roadmap_answer">Ik ben bang dat vanwege de concurrentie het antwoord op beide vragen \'nee\' is.</string>
     <string name="faq_alternate_payment_question">Ik heb geen creditcard en/of ik kan niet kopen op Google Play. Hoe koop ik Pro?</string>
@@ -282,7 +282,7 @@ De kopieerfunctionaliteit werkt bij het gebruiken van Android\'s WebView vanuit 
     <string name="faq_translucent_status_bar_question">Waarom tekent de app niet over de doorzichtige statusbalk?</string>
     <string name="faq_translucent_status_bar_answer">Door beperkingen van het Androidsysteem kan dit niet.</string>
     <string name="faq_beta_programme_question">Is er een beta-programma? Hoe kan ik meedoen?</string>
-    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Link Bubble) feed for announcements.</string>
+    <string name="faq_beta_programme_answer">Details van het beta-programma zullen te zijner tijd worden aangekondigd. Houd mijn Google+ (+Link Bubble)-feed in de gaten voor aankondigingen.</string>
     <string name="faq_low_spec_performance_question">Waarom draait Link Bubble langzaam op mijn Nexus S / Galaxy S1 / Moto G-klasse apparaat?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble is een app die veel vraagt van een apparaat, en daarom kunnen apparaten met minder goede specs moeite
 hebben om de app zo goed te draaien als meer krachtige apparaten. Toekomstige versies zullen proberen om de prestaties  van Link Bubble
@@ -307,13 +307,13 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="faq_change_default_browser_question">Hoe kan ik Link Bubble weghalen als standaardbrowser?</string>
     <string name="faq_change_default_browser_answer">Systeeminstellingen -> Apps -> Gedownload -> Link Bubble -> Standaardwaarden wissen.</string>
     <string name="faq_pro_trial_question">Hoe werkt de Link Bubble Pro-proefperiode?</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
-        Pro\'s premium features.<br/>
-        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
-        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
-        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
-        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
-        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
+    <string name="faq_pro_trial_answer"><![CDATA[• De eerste 24 uur na de installatie van Link Bubble, hebben niet-Link Bubble Pro-gebruikers toegang tot alle
+premiumfuncties van Pro.<br/>
+• Tijdens deze eenmalige proefperiode zullen de functies van Link Bubble Pro beschikbaar zijn op al je apparaten.<br/>
+• Linksbovenaan op het hoofdscherm van Link Bubble staat een timer, waarmee je kunt zien hoeveel tijd er nog over is van de proefperiode.<br/>
+• Mensen die Link Bubble hebben geprobeerd vóór de 1.1-update kunnen meedoen aan de proefperiode.<br/>
+• Ter verificatie is de Pro-proefperiode gekoppeld aan je e-mailadres. Als er geen e-mailadres wordt gevonden op je apparaat, zal de proefperiode niet beschikbaar zijn.<br/>
+• Helaas kan de proefperiode niet teruggezet worden. Je kunt genieten van volledige toegang tot de Pro-functies in de eerste 24 uur na installatie van Link Bubble.]]></string>
     <string name="faq_report_bug_question">Een bug melden</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -345,8 +345,8 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     </plurals>
 
     <string name="content_description_button">Knop</string>
-    <string name="content_description_target_icon">Bubbel doel-pictogram</string>
-    <string name="content_description_close_bubble_icon">Bubbel sluiten-pictogram</string>
+    <string name="content_description_target_icon">Bubbeldoelpictogram</string>
+    <string name="content_description_close_bubble_icon">Bubbelsluitenpictogram</string>
     <string name="content_description_link_bubble_logo">Link Bubble-logo</string>
     <string name="content_description_app_icon">App-pictogram</string>
     <string name="content_description_youtube_video_thumbnail">YouTube-video-miniatuur</string>
@@ -367,7 +367,7 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="pro_status_checking_license">Licentie controleren...</string>
 	<string name="pro_status_buy">Kan de licentie niet verifiëren.\n\nMogelijke oorzaken van dit probleem zijn:\n • Er is geen internetverbinding.\n • Er is geknoeid met dit
 programma.\n\nControleer je internetverbinding, en probeer indien nodig de app opnieuw te installeren vanuit de Play Store.</string>
-    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
+    <string name="pro_status_verified">Aankoop van Link Bubble Pro geverifieerd!\n\nHartelijk bedankt voor het ondersteunen van ons bij het ontwikkelen van dit project.</string>
     <string name="pro_status_unlicensed">Google Play meldt dat dit exemplaar van Link Bubble Pro geen licentie heeft.\n\nErvan uitgaande dat je
 inderdaad een exemplaar van Link Bubble Pro hebt aangeschaft, is de meest voorkomende reden hiervoor dat het bij de aanschaf gebruikte
 e-mailadres niet is geconfigureerd met de Play Store op dit apparaat.</string>
@@ -395,13 +395,11 @@ e-mailadres niet is geconfigureerd met de Play Store op dit apparaat.</string>
 
     <string name="pro_store_listing_title">Link Bubble Pro</string>
     <string name="pro_store_listing_description_title">Link Bubble Pro ontsluit alle mogelijkheden van Link Bubble.</string>
-    <string name="pro_store_listing_description_features">
-    Upgrades include:
-    • Infinite number of tabs (free version is limited to just one tab).
-    • Theme selection
-    • Remove the upgrade incentives throughout the free version.
-    • Support us so we get to make more of these apps :)
-    </string>
+    <string name="pro_store_listing_description_features">Upgrades bevatten:
+• Onbeperkt aantal tabs (gratis versie is beperkt tot slechts een tab).
+• Themaselectie
+• Weghalen van de upgrade-prikkels die in de gratis versie zitten.
+• Ondersteuning van ons zodat we meer van deze apps kunnen maken :)</string>
 
     <string name="welcome_page_title">Welkom bij Link Bubble!</string>
     <string name="welcome_page_trial_notice">Let op: tijdens de eerste 24 uur na de installatie van Link Bubble heb je toegang tot alle premiumfuncties van Link Bubble Pro, als een eenmalige proefperiode.</string>
