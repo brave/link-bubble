@@ -27,6 +27,7 @@
     <string name="action_open_in_new_bubble">Open in new bubble</string>
     <string name="action_upgrade_to_pro">★Upgrade to Pro★</string>
     <string name="action_copy_to_clipboard">Copy link</string>
+    <string name="action_save_image">Save image</string>
     <string name="action_share">Share</string>
     <string name="action_close_all">Close all</string>
     <string name="action_close_tab">Close bubble</string>
@@ -36,6 +37,8 @@
     <string name="action_no_recommended">No (recommended)</string>
     <string name="share_via">Share via…</string>
     <string name="not_set">Not set</string>
+
+    <string name="error_saving_image">Error saving image.</string>
 
     <string name="warning">Warning!</string>
     <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
