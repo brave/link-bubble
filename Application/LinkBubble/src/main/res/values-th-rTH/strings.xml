@@ -23,6 +23,7 @@
     <string name="action_help">ช่วยเหลือ</string>
     <string name="action_reload_page">โหลดใหม่</string>
     <string name="action_open_in_browser">เปิดใน %1$s</string>
+    <string name="action_request_desktop_site">Request desktop site</string>
     <string name="action_open_in_new_bubble">เปิดในหน้าต่างใหม่</string>
     <string name="action_upgrade_to_pro">★อัปเกรดเป็นรุ่นโปร★</string>
     <string name="action_copy_to_clipboard">คัดลอกลิงก์</string>
@@ -49,13 +50,12 @@
     <string name="upgrade_article_mode_wear">ต้องการดูลิงก์บนอุปกรณ์ Android Wear ผ่านโหมดการอ่าน?</string>
     <string name="upgrade_theme">ต้องการใช้ธีมที่แตกแต่ง?</string>
     <string name="upgrade_theme_toolbar">ต้องการปรับสีธีมแถบเครื่องมือให้ตรงกับสีธีมของเว็บไซต์?</string>
-    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
-        Load multiple tabs at once.\n •
-        Change theme.\n •
-        Use Reading Mode.\n •
-        Android Wear support.\n •
-        Support us as we develop this app :)
-        </string>
+    <string name="upgrade_from_settings_summary">อัปเกรดเป็น Link Bubble Pro เพื่อเปิดใช้คุณสมบัตินี้ และรวมไปถึง:\n •
+โหลดหลายแท็บพร้อมกัน\n •
+เปลี่ยนธีม\n •
+ใช้งานโหมดการอ่าน\n •
+รองรับ Android Wear\n •
+สนับสนุนเรา เหมือนที่เราพัฒนาแอปนี้ :)</string>
 
     <string name="undo_close_tab_title">ปิด %1$s แล้ว</string>
     <string name="undo_close_tab_no_title">แท็บถูกปิดแล้ว</string>
@@ -111,7 +111,7 @@
     <string name="preference_theme_dark_no_color">มืด + สีมาตรฐาน</string>
     <string name="preference_theme_toolbar_title">เปลี่ยนสีแถบเครื่องมือ</string>
     <string name="preference_theme_toolbar_summary">ให้ตรงกับธีมสีของเว็บไซต์/สีหลักของไอคอน</string>
-    <string name="preference_article_mode_title">โหมดการอ่าน (ทดสอบ)</string>
+    <string name="preference_article_mode_title">Reading Mode</string>
     <string name="preference_reading_mode_on_wear_title">โหมดการอ่านบน Android Wear</string>
     <string name="preference_article_mode_summary">เปิด/ปิดผ่านปุ่มบนแถบคำสั่ง</string>
     <string name="preference_webview_text_zoom_title">ขนาดตัวอักษร</string>
@@ -160,7 +160,7 @@
     <string name="preference_show_undo_close_tab_title">ปุ่มยกเลิกการปิดแท็บ</string>
 
     <string name="preference_my_other_apps_title">แอปเพิ่มเติมโดย Link Bubble</string>
-    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
+    <string name="preference_my_other_apps_summary">ชอบ Link Bubble? ทำไมไม่ลองดูแอปอื่นๆ จากเราดูล่ะ?</string>
 
     <string name="remove_default_title">ล้างค่าเริ่มต้น?</string>
     <string name="remove_default_message">ลบ %1$s ออกจากแอปเริ่มต้นในการโหลดลิงก์ %2$s ?\n\nหมายเหตุ: คุณสามารถตั้งค่าแอปเริ่มต้นใหม่ได้เมื่อเปิดลิงก์ %2$s ครั้งหน้า</string>
@@ -239,10 +239,11 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
 <br/><br/>หมายเหตุ: แอปเบราว์เซอร์อื่นๆ เช่น Chrome มีการบังคับให้เปิดลิงก์ภายในตัวเอง นี่คือเหตุผลที่ Link Bubble ไม่สามารถเปิดลิงก์จากแอปเบราว์เซอร์อื่น
 ]]></string>
     <string name="faq_article_mode_question">ฉันจะใช้งานโหมดการอ่านได้อย่างไร, ทำไมบางลิงก์ถึงใช้งานไม่ได้</string>
-    <string name="faq_article_mode_answer"><![CDATA[อย่างแรก ดูให้แน่ใจว่าโหมดการอ่านได้ถูกเปิดใช้แล้ว (ตั้งค่า -> การควบคุมและอื่นๆ&#8230; -> โหมดการอ่าน (ทดสอบ))<br/><br/>
-หลังจากนั้น เมื่อโหมดการอ่านพร้อมใช้งาน ปุ่มโหมดการอ่านจะปรากฏขึ้นบนแถบคำสั่ง (ข้างปุ่มแบ่งปัน)
-โปรดทำความเข้าใจก่อนว่าปุ่มโหมดการอ่านจะแสดงเมื่อลิงก์ถูกโหลดเสร็จแล้ว และ Link Bubble ได้ประมวลผลโหมดการอ่านจากหน้าเว็บเสร็จแล้วเท่านั้น<br/><br/>
-หมายเหตุ: การประมวลผลโหมดการอ่านจากหน้าเว็บไม่สามารถไว้ใจได้ และอาจไม่สำเร็จ 100% เพราะแต่ละเว็บมีรูปแบบไม่เหมือนกัน]]></string>
+    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
+            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
+            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
+            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
+            there is little than can be done here.]]></string>
     <string name="faq_future_features_question">คุณมีแผนที่จะรองรับบุ๊กมาร์ก, การชื่นชอบ, ส่วนเสริม ฯลฯ หรือไม่?</string>
     <string name="faq_future_features_answer">ไม่สามารถพูดว่าไม่ แต่ในตอนนี้ Link Bubble โฟกัสไปในเรื่องการเป็นช่องทางที่ดีที่สุดในการเปิดลิงก์จากแอปอื่น</string>
     <string name="faq_translations_question">ฉันสามารถช่วยแปลแอปนี้ได้ไหม?</string>

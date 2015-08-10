@@ -23,6 +23,7 @@
     <string name="action_help">Segítség</string>
     <string name="action_reload_page">Újratöltés</string>
     <string name="action_open_in_browser">Megnyitás %1$s alkalzamásban</string>
+    <string name="action_request_desktop_site">Request desktop site</string>
     <string name="action_open_in_new_bubble">Megnyitás új buborékban</string>
     <string name="action_upgrade_to_pro">★Frissítés Pro verzióra★</string>
     <string name="action_copy_to_clipboard">Link másolása</string>
@@ -113,7 +114,7 @@
     <string name="preference_theme_dark_no_color">Sötét + semleges szín</string>
     <string name="preference_theme_toolbar_title">Color toolbar</string>
     <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
-    <string name="preference_article_mode_title">Olvasó mód (Beta)</string>
+    <string name="preference_article_mode_title">Reading Mode</string>
     <string name="preference_reading_mode_on_wear_title">Wear olvasó mód</string>
     <string name="preference_article_mode_summary">Toggled via button on action bar</string>
     <string name="preference_webview_text_zoom_title">Szöveg nagyítás</string>
@@ -248,7 +249,7 @@
             to load links clicked from other browser apps.
             ]]></string>
     <string name="faq_article_mode_question">Hogyan működik az olvasó mód? Bizonyos oldalak nem működnek</string>
-    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode (BETA)).<br/><br/>
+    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
             From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
             Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
             Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,

@@ -23,6 +23,7 @@
     <string name="action_help">Aiuto</string>
     <string name="action_reload_page">Ricarica</string>
     <string name="action_open_in_browser">Apri su %1$s</string>
+    <string name="action_request_desktop_site">Request desktop site</string>
     <string name="action_open_in_new_bubble">Apri in una nuova bolla</string>
     <string name="action_upgrade_to_pro">★Aggiorna alla versione Pro★</string>
     <string name="action_copy_to_clipboard">Copia collegamento</string>
@@ -31,24 +32,24 @@
     <string name="action_close_tab">Chiudi la bolla</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Annulla</string>
-    <string name="action_add">Add</string>
-    <string name="action_no_recommended">No (recommended)</string>
+    <string name="action_add">Aggiungi</string>
+    <string name="action_no_recommended">No (raccomandato)</string>
     <string name="share_via">Condividi tramite...</string>
     <string name="not_set">Non impostato</string>
 
-    <string name="warning">Warning!</string>
-    <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
+    <string name="warning">Attenzione!</string>
+    <string name="untrusted_certificate">Il certificato a %1$s non è fidato. Procedere comunque?</string>
 
     <string name="share_invalid_data">Link Bubble non è in grado di condividere questo elemento, non essendo un URL valido.</string>
     <string name="consume_activity_not_found">Impossibile trovare l\'applicazione. Considera di cambiare l\'azione della bolla nelle Impostazioni.</string>
-    <string name="consume_activity_security_exception">Unable to share to external application.</string>
+    <string name="consume_activity_security_exception">Impossibile condividere con un\'applicazione esterna</string>
 
     <string name="upgrade">Aggiorna</string>
     <string name="upgrade_to_pro">Aggiorna alla versione Pro</string>
     <string name="upgrade_article_mode">Vuoi visualizzare i link in Modalità Lettura?</string>
     <string name="upgrade_article_mode_wear">Vuoi visualizzare i link in Modalità Lettura sui dispositivi Android Wear?</string>
     <string name="upgrade_theme">Vuoi utilizzare un tema diverso?</string>
-    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
+    <string name="upgrade_theme_toolbar">Vuoi che la barra degli strumenti abbia lo stesso colore del sito?</string>
     <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
         Load multiple tabs at once.\n •
         Change theme.\n •
@@ -109,9 +110,9 @@
     <string name="preference_theme_light_no_color">Chiaro + colore neutrale</string>
     <string name="preference_theme_dark_color">Scuro + colore icona</string>
     <string name="preference_theme_dark_no_color">Scuro + colore neutrale</string>
-    <string name="preference_theme_toolbar_title">Color toolbar</string>
+    <string name="preference_theme_toolbar_title">Colore barra degli strumenti</string>
     <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
-    <string name="preference_article_mode_title">Modalità Lettura (Beta)</string>
+    <string name="preference_article_mode_title">Reading Mode</string>
     <string name="preference_reading_mode_on_wear_title">Modalità Lettura su Wear</string>
     <string name="preference_article_mode_summary">Attivato dal bottone nella action bar</string>
     <string name="preference_webview_text_zoom_title">Grandezza del testo</string>
@@ -135,7 +136,7 @@
         <item>Chrome Desktop</item>
     </string-array>
 
-    <string name="preference_domains_title">Domain redirects</string>
+    <string name="preference_domains_title">Reindirizzamento dominio</string>
     <string name="preference_domains_summary">Specify links to always load in your fallback browser.</string>
     <string name="preference_redirects_title">Redirect to fallback browser</string>
     <string name="preference_add_domain_title">Add domain</string>
@@ -159,7 +160,7 @@
     <string name="preference_more_title">Altro&#8230;</string>
     <string name="preference_show_undo_close_tab_title">Finestra di annullamento chiusura scheda</string>
 
-    <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
+    <string name="preference_my_other_apps_title">Altre app tramite Link Bubble</string>
     <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
 
     <string name="remove_default_title">Rimuovi predefinito?</string>
@@ -169,7 +170,7 @@
     <string name="unsupported_scheme_default_browser">Questo tipo di link non è attualmente supportato. Apri il link in %1$s?</string>
     <string name="unsupported_scheme_no_default_browser">Questo tipo di link non è attualmente supportato. Apri il link con un browser.</string>
     <string name="unsupported_scheme">Tipo di link non supportato.</string>
-    <string name="unsupported_drop_down_default_browser">Unable to interact with this item. Open in %1$s?</string>
+    <string name="unsupported_drop_down_default_browser">Impossibile interagire con quest\'oggetto. Aprirlo con %1$s?</string>
     <string name="unsupported_drop_down_no_default_browser">Unable to interact with this item. Open link in a browser.</string>
 
     <string name="consume_category_view">Visualizza collegamento</string>
@@ -241,9 +242,11 @@ Link Bubble segue questo standard.]]></string>
 3). App come Talon, Reddit is Fun e altre hanno un browser interno che carica i link. Controlla nelle impostazioni di quell\'app e abilita \"Browser esterno\" o deseleziona \"Browser integrato browser\" o simili.
 <br/><br/>Nota: altri browser come Chrome sono scritti per caricare link dentro loro stessi, Link Bubble non può caricare link aperti con altri browser]]></string>
     <string name="faq_article_mode_question">Come utilizzo la Modalità Lettura? Perché non funziona con alcuni link?</string>
-    <string name="faq_article_mode_answer"><![CDATA[Per prima cosa, assicurati che la Modalità Lettura sia abilitata (Impostazioni -> Controlli App / Altro&#8230; -> Modalità Lettura (BETA)).<br/><br/>
-A questo punto, quando la Modalità Lettura è disponibile per la scheda corrente, l\'icona relativa verrà mostrata nell\'action bar (accanto al pulsante Condividi).
-Sii consapevole che questa icona compare soltanto dopo che il link è stato caricato, a solos e Link Bubble ha estratto con successo il contenuto per la Modalità Articolo dal link.<br/><br/> Nota: L\'estrazione del contenuto dalla pagina web è un processo inaffidabile e potrebbe non funzionare accuratamente al 100%. Data la natura dinamica e mutevole del web, c\'è poco che può essere fatto quì.]]></string>
+    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
+            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
+            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
+            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
+            there is little than can be done here.]]></string>
     <string name="faq_future_features_question">Aggiungerai un supporto per segnalibri, preferiti, estensioni, eccetera... ?</string>
     <string name="faq_future_features_answer">Mai dire mai, ma attualmente Link Bubble è focalizzato nell\'offrire un modo veloce per caricare i link da altre app.</string>
     <string name="faq_translations_question">Posso aiutare a tradurre l\'app?</string>

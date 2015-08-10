@@ -23,6 +23,7 @@
     <string name="action_help">Nápověda</string>
     <string name="action_reload_page">Načíst znovu</string>
     <string name="action_open_in_browser">Otevřít v %1$s</string>
+    <string name="action_request_desktop_site">Request desktop site</string>
     <string name="action_open_in_new_bubble">Otevřít v nové bublině</string>
     <string name="action_upgrade_to_pro">★Přejít na verzi Pro★</string>
     <string name="action_copy_to_clipboard">Zkopírovat odkaz</string>
@@ -114,7 +115,7 @@ Chcete přejít na verzi Pro?</string>
     <string name="preference_theme_dark_no_color">Tmavý (neutrální barva)</string>
     <string name="preference_theme_toolbar_title">Color toolbar</string>
     <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
-    <string name="preference_article_mode_title">Čtečka (beta)</string>
+    <string name="preference_article_mode_title">Reading Mode</string>
     <string name="preference_reading_mode_on_wear_title">Čtečka na chytrých hodinkách</string>
     <string name="preference_article_mode_summary">Zapíná se tlačítkem na hlavním panelu</string>
     <string name="preference_webview_text_zoom_title">Velikost textu</string>
@@ -249,10 +250,11 @@ Link Bubble se tímto standardem také řídí.]]></string>
 a proto Link Bubble nemůže zpracovat odkazy, na které klikneš v jiných prohlížečích.
 ]]></string>
     <string name="faq_article_mode_question">Jak mám použít Čtečku? Proč některé odkazy nefungují?</string>
-    <string name="faq_article_mode_answer"><![CDATA[Nejdříve se ujistěte, že máte Čtečku povolenou (Nastavení -> Ovládání aplikace / Více&#8230; -> Čtečka (beta)).<br/><br/>
-Pokud odteď bude Čtečka pro současnou záložku dostupná, ikona Čtečky se zobrazí na hlavním panelu (vedle tlačítka pro sdílení).
-Uvědomte si, že tato ikona se zobrazí až poté, co se odkaz celý načte, a to pouze tehdy, pokud Link Bubble úspěšně vyextrahuje obsah z odkazované stránky.<br/><br/>
-Poznámka: Extrahování obsahu ze stránky je nespolehlivý proces a nemusí vždy funguje 100% přesně. Kvůli dynamické a stále se měnící povaze webových stránek toho asi více nezmůžeme.]]></string>
+    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
+            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
+            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
+            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
+            there is little than can be done here.]]></string>
     <string name="faq_future_features_question">Přidáte podporu pro záložky, oblíbené položky, rozšíření apod.?</string>
     <string name="faq_future_features_answer">Nikdy neříkej nikdy, ale zatím se Link Bubble soustřeďuje pouze na to, 
 aby co nejlépe načítal a zobrazoval odkazy z jiných aplikací.</string>
