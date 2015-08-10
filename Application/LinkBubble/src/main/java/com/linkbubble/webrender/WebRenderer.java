@@ -28,7 +28,7 @@ public abstract class WebRenderer {
         public void onReceivedIcon(Bitmap bitmap);
         public void onProgressChanged(int progress, String urlAsString);
         public boolean onBackPressed();
-        public void onUrlLongClick(String url);
+        public void onUrlLongClick(String url, int type);
         public void onShowBrowserPrompt();
         public void onCloseWindow();
         public void onGeolocationPermissionsShowPrompt(String origin, GetGeolocationCallback callback);

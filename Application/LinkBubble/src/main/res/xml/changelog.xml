@@ -2,6 +2,7 @@
 <changelog>
 
     <release version="1.5.2">
+        <change>NEW: Added an option to download images from the context menu after a long press. This requires us to ask for the permissions to write to external storage.</change>
         <change>BUG FIX: Fixed text color for light colored theme backgrounds.</change>
     </release>
 
