@@ -105,7 +105,7 @@ public class PageInspector {
             "    });\n" +
             "  });\n" +
             "  var config = {attributes: false, childList: true, characterData: false, subtree: true};\n" +
-            "  observer.observe(document.body, config);\n" +
+            "  observer.observe(document, config);\n" +
             "})();\n";
 
     private static final String JS_YOUTUBE_EMBED_CHECK =
