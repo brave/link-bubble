@@ -23,6 +23,7 @@
     <string name="action_help">Aide</string>
     <string name="action_reload_page">Recharger</string>
     <string name="action_open_in_browser">Ouvrir dans %1$s</string>
+    <string name="action_request_desktop_site">Request desktop site</string>
     <string name="action_open_in_new_bubble">Ouvrir dans une nouvelle bulle</string>
     <string name="action_upgrade_to_pro">★Passer à la version Pro★</string>
     <string name="action_copy_to_clipboard">Copier le lien</string>
@@ -31,8 +32,8 @@
     <string name="action_close_tab">Fermer la bulle</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Défaire</string>
-    <string name="action_add">Add</string>
-    <string name="action_no_recommended">No (recommended)</string>
+    <string name="action_add">Ajouter</string>
+    <string name="action_no_recommended">Non (recommandé)</string>
     <string name="share_via">Partager via…</string>
     <string name="not_set">Non défini</string>
 
@@ -101,18 +102,18 @@ Appuyez dessus pour en retirer une.</string>
     <string name="preference_webview_battery_save_title">Battery Save Mode (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Aggressive</string>
     <string name="preference_webview_battery_save_aggressive_summary">Pause the updating of web pages when Link Bubble is minimized.\nPages in the process of loading will finish loading before pausing.</string>
-    <string name="preference_webview_battery_save_default_title">Default</string>
+    <string name="preference_webview_battery_save_default_title">Par défaut</string>
     <string name="preference_webview_battery_save_default_summary">Pause the updating of web pages when the screen is off and resume when your device is unlocked.\nPages in the process of loading will finish loading before pausing.</string>
     <string name="preference_webview_battery_save_off_title">Off</string>
     <string name="preference_webview_battery_save_off_summary">Web pages are always active. Useful when streaming YouTube videos and the like.</string>
-    <string name="preference_theme_title">Theme</string>
+    <string name="preference_theme_title">Thème</string>
     <string name="preference_theme_light_color">Clair + icônes colorées</string>
     <string name="preference_theme_light_no_color">Clair + couleurs neutres</string>
     <string name="preference_theme_dark_color">Sombre + icônes colorées</string>
     <string name="preference_theme_dark_no_color">Sombre + couleurs neutres</string>
     <string name="preference_theme_toolbar_title">Color toolbar</string>
     <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
-    <string name="preference_article_mode_title">Mode lecture (Beta)</string>
+    <string name="preference_article_mode_title">Reading Mode</string>
     <string name="preference_reading_mode_on_wear_title">Reading Mode on Wear</string>
     <string name="preference_article_mode_summary">Toggled via button on action bar</string>
     <string name="preference_webview_text_zoom_title">Zoom du texte</string>
@@ -139,7 +140,7 @@ Appuyez dessus pour en retirer une.</string>
     <string name="preference_domains_title">Domain redirects</string>
     <string name="preference_domains_summary">Specify links to always load in your fallback browser.</string>
     <string name="preference_redirects_title">Redirect to fallback browser</string>
-    <string name="preference_add_domain_title">Add domain</string>
+    <string name="preference_add_domain_title">Ajouter un domaine</string>
     <string name="add_domain_hint">Url host</string>
     <string name="add_domain_detail">Specify only the \'main\' portion of a website address. E.g.,
         \"accounts.google.com\" or \"bbc.co.uk\".</string>
@@ -157,7 +158,7 @@ Appuyez dessus pour en retirer une.</string>
     <string name="preference_get_pro_summary">Passer à la version Pro pour plus de fonctionnalités.</string>
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">Dernières nouveautés</string>
-    <string name="preference_more_title">More&#8230;</string>
+    <string name="preference_more_title">Plus&#8230;</string>
     <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
 
     <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
@@ -245,14 +246,14 @@ Link Bubble suit ce standard.]]></string>
             to load links clicked from other browser apps.
             ]]></string>
     <string name="faq_article_mode_question">How do I use Reading Mode? Why do some links not work?</string>
-    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode (BETA)).<br/><br/>
+    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
             From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
             Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
             Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
             there is little than can be done here.]]></string>
     <string name="faq_future_features_question">Allez-vous ajouter les signets, favoris, extensions etc.?</string>
     <string name="faq_future_features_answer">Ne jamais dire jamais, mais pour le moment Link Bubble est concentrée uniquement sur le fait d\'être la meilleure solution pour ouvrir et consommer des liens ouverts depuis d\'autres applications.</string>
-    <string name="faq_translations_question">Can I help translate the app?</string>
+    <string name="faq_translations_question">Puis-je aider à traduire l\'application ?</string>
     <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
             (+Link Bubble) for help with translations, so be sure to keep an eye on my feed.]]></string>
     <string name="faq_roadmap_question">Avez-vous une feuille de route ? Puis-je voter pour les fonctionnalités à venir ?</string>

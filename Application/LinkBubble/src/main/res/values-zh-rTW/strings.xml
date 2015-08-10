@@ -23,6 +23,7 @@
     <string name="action_help">說明</string>
     <string name="action_reload_page">重新載入</string>
     <string name="action_open_in_browser">以 %1$s 開啟</string>
+    <string name="action_request_desktop_site">Request desktop site</string>
     <string name="action_open_in_new_bubble">在新的氣泡中開啟</string>
     <string name="action_upgrade_to_pro">★升級至專業版★</string>
     <string name="action_copy_to_clipboard">複製連結</string>
@@ -31,31 +32,30 @@
     <string name="action_close_tab">關閉氣泡</string>
     <string name="action_stop">停止</string>
     <string name="action_undo">復原</string>
-    <string name="action_add">Add</string>
-    <string name="action_no_recommended">No (recommended)</string>
+    <string name="action_add">新增</string>
+    <string name="action_no_recommended">取消 (建議選項)</string>
     <string name="share_via">分享至…</string>
     <string name="not_set">尚未設定</string>
 
-    <string name="warning">Warning!</string>
-    <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
+    <string name="warning">警告！</string>
+    <string name="untrusted_certificate">%1$s 的憑證有安全疑慮。要繼續嗎？</string>
 
     <string name="share_invalid_data">Link Bubble 無法分享這個無效的 URL。</string>
     <string name="consume_activity_not_found">無法找到該應用程式，請至設定中修改。</string>
-    <string name="consume_activity_security_exception">Unable to share to external application.</string>
+    <string name="consume_activity_security_exception">無法分享至外部應用程式。</string>
 
     <string name="upgrade">升級</string>
     <string name="upgrade_to_pro">升級至專業版</string>
     <string name="upgrade_article_mode">想使用閱讀模式來檢視網頁嗎？</string>
     <string name="upgrade_article_mode_wear">想在 Android Wear 裝置上用閱讀模式來檢視網頁嗎？</string>
     <string name="upgrade_theme">想使用不同的佈景主題嗎？</string>
-    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
-    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
-        Load multiple tabs at once.\n •
-        Change theme.\n •
-        Use Reading Mode.\n •
-        Android Wear support.\n •
-        Support us as we develop this app :)
-        </string>
+    <string name="upgrade_theme_toolbar">想讓工具列的主題配色與網站相符嗎？</string>
+    <string name="upgrade_from_settings_summary">升級至 Link Bubble Pro 即可享有這項功能，以及：:\n •
+一次讀取多個分頁。\n •
+更改佈景主題。n •
+可使用閱讀模式。\n •
+支援 Android Wear 。\n •
+支持我們開發這款 app :)</string>
 
     <string name="undo_close_tab_title">已關閉 %1$s</string>
     <string name="undo_close_tab_no_title">已關閉分頁</string>
@@ -68,7 +68,7 @@
 
     <string name="preference_category_general">一般</string>
     <string name="preference_category_configuration">程式控制</string>
-    <string name="preference_category_configuration2">Configuration</string>
+    <string name="preference_category_configuration2">設定</string>
     <string name="preference_category_browser">瀏覽器</string>
     <string name="preference_enabled_title">啟用</string>
     <string name="preference_auto_content_display_link_loaded_title">自動展開</string>
@@ -93,11 +93,11 @@
     <string name="preference_google_account_redirect_title">重新導向 Google 帳號</string>
     <string name="preference_google_account_redirect_summary">將 accounts.google.com 的連結重新導向至預設備援瀏覽器</string>
     <string name="preference_set_default_browser_title">設為系統預設的瀏覽器</string>
-    <string name="preference_set_default_browser_summary">Link Bubble must be the default system browser to work. Tap to configure.</string>
+    <string name="preference_set_default_browser_summary">Link Bubble 必須設系統預設的瀏覽器才能運作。請點此設定。</string>
     <string name="preference_more">更多…</string>
     <string name="preference_intercept_links_from_title">擷取連結</string>
     <string name="preference_intercept_links_from_note">請注意：免費版的 Link Bubble 只能從一個程式中擷取連結。要升級至專業版嗎？ </string>
-    <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
+    <string name="preference_intercept_links_from_disabled_for_L">自 Android 5.0 開始，Google 移除了這項功能所需的 API。</string>
     <string name="preference_scan_for_youtube_embeds_title">檢查 YouTube 的嵌入式影片</string>
     <string name="preference_scan_for_youtube_embeds_summary">顯示以 YouTube 程式讀取內嵌影片的按鈕。</string>
     <string name="preference_webview_battery_save_title">省電模式 (Beta)</string>
@@ -112,9 +112,9 @@
     <string name="preference_theme_light_no_color">白色 + 無色彩</string>
     <string name="preference_theme_dark_color">黑色 + 圖示色彩</string>
     <string name="preference_theme_dark_no_color">黑色 + 無色彩</string>
-    <string name="preference_theme_toolbar_title">Color toolbar</string>
-    <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
-    <string name="preference_article_mode_title">閱讀模式 (Beta)</string>
+    <string name="preference_theme_toolbar_title">工具列色彩</string>
+    <string name="preference_theme_toolbar_summary">套用網站的主題色彩或網站圖示的顏色</string>
+    <string name="preference_article_mode_title">Reading Mode</string>
     <string name="preference_reading_mode_on_wear_title">Wear 裝置的閱讀模式</string>
     <string name="preference_article_mode_summary">使用動作欄的按鈕切換</string>
     <string name="preference_webview_text_zoom_title">文字縮放</string>
@@ -129,7 +129,7 @@
     <string name="preference_clear_passwords">密碼</string>
     <string name="preference_incognito_title">無痕模式</string>
     <string name="preference_incognito_summary">防止儲存所有的歷史紀錄及 cookies</string>
-    <string name="incognito_mode_changed_reloading_current">已變更無痕模式設定。重新載入目前的氣泡…</string>
+    <string name="incognito_mode_changed_reloading_current">已變更無痕模式設定。重新載入氣泡中…</string>
     <string name="preference_user_agent_title">使用者代理</string>
     <string-array name="preference_user_agent_options">
         <item>預設值</item>
@@ -138,14 +138,13 @@
         <item>桌面版 Chrome</item>
     </string-array>
 
-    <string name="preference_domains_title">Domain redirects</string>
-    <string name="preference_domains_summary">Specify links to always load in your fallback browser.</string>
-    <string name="preference_redirects_title">Redirect to fallback browser</string>
-    <string name="preference_add_domain_title">Add domain</string>
-    <string name="add_domain_hint">Url host</string>
-    <string name="add_domain_detail">Specify only the \'main\' portion of a website address. E.g.,
-        \"accounts.google.com\" or \"bbc.co.uk\".</string>
-    <string name="add_domain_error">Unable to add \"%1$s\", as it is not a valid URL host.</string>
+    <string name="preference_domains_title">特殊網域設定</string>
+    <string name="preference_domains_summary">指定以備援瀏覽器開啟的特定連結</string>
+    <string name="preference_redirects_title">重新導向至備援瀏覽器</string>
+    <string name="preference_add_domain_title">新增網域</string>
+    <string name="add_domain_hint">主機位置</string>
+    <string name="add_domain_detail">只能填入網址的「主要」部份。如：\"accounts.google.com\" 或者 \"bbc.co.uk\"。</string>
+    <string name="add_domain_error">無法新增 \"%1$s\"，看起來是個無效的主機位置。</string>
 
     <string name="preference_help_title">說明</string>
     <string name="preference_show_welcome_message_title">顯示歡迎頁面</string>
@@ -162,19 +161,19 @@
     <string name="preference_more_title">其他選項&#8230;</string>
     <string name="preference_show_undo_close_tab_title">復原已關閉分頁的提醒視窗</string>
 
-    <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
-    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
+    <string name="preference_my_other_apps_title">其他由 Link Bubble 製作的 app</string>
+    <string name="preference_my_other_apps_summary">喜歡 Link Bubble 嗎？何不看看其他的作品呢？</string>
 
     <string name="remove_default_title">移除預設值？</string>
     <string name="remove_default_message">要移除以 %1$s 開啟 %2$s 連結的預設值嗎？
 \n\n請注意：您下次載入 %2$s 連結時可設定新的預設程式。</string>
-    <string name="long_press_unsupported_default_browser">Unable to display this item. Open link in %1$s?</string>
-    <string name="long_press_unsupported_no_default_browser">Unable to display this item. Open link in a browser.</string>
+    <string name="long_press_unsupported_default_browser">無法顯示此項目。要在 %1$s 中開啟嗎？</string>
+    <string name="long_press_unsupported_no_default_browser">無法顯示此項目。請在瀏覽器中開啟。</string>
     <string name="unsupported_scheme_default_browser">目前不支援這種連結，要在 %1$s 中打開網頁嗎？</string>
     <string name="unsupported_scheme_no_default_browser">目前不支援這種連結，請在瀏覽器中開啟。</string>
     <string name="unsupported_scheme">目前不支援這種連結。</string>
-    <string name="unsupported_drop_down_default_browser">Unable to interact with this item. Open in %1$s?</string>
-    <string name="unsupported_drop_down_no_default_browser">Unable to interact with this item. Open link in a browser.</string>
+    <string name="unsupported_drop_down_default_browser">無法操作此項目。要在 %1$s? 中開啟嗎？</string>
+    <string name="unsupported_drop_down_no_default_browser">無法操作此項目。請在瀏覽器中開啟。</string>
 
     <string name="consume_category_view">檢視連結</string>
     <string name="consume_category_share">傳送/分享連結</string>
@@ -198,8 +197,8 @@
     <string name="private_data_cleared">已清除隱私資料</string>
     <string name="private_data_cleared_reloading_current">已清除隱私資料。重新載入氣泡中…</string>
     <string name="user_agent_changed_reloading_current">已變更使用者代理。重新載入氣泡中…</string>
-    <string name="theme_toolbar_reloading_current">Color toolbar setting changed. Reloading current bubbles…</string>
-    <string name="article_mode_changed_reloading_current">已變更閱讀模式設定。重新載入目前的氣泡…</string>
+    <string name="theme_toolbar_reloading_current">已變更工具列色彩設定。重新載入氣泡中…</string>
+    <string name="article_mode_changed_reloading_current">已變更閱讀模式設定。重新載入氣泡中…</string>
     <string name="link_loaded_with_app">已用 %1$s 讀取</string>
     <string name="link_redirected">已重新導向至 %1$s</string>
 
@@ -244,15 +243,16 @@ Link Bubble 亦遵循此標準。]]></string>
 <br/><br/>請注意：像 Chrome 這類的瀏覽器都會在程式中寫死，只能使用它們本身來載入網頁，故 Link Bubble 無法讀取在其他瀏覽器中點擊的連結。
 ]]></string>
     <string name="faq_article_mode_question">我要如何使用閱讀模式？為什麼有些連結沒辦法用？</string>
-    <string name="faq_article_mode_answer"><![CDATA[首先，請確定閱讀模式是啟用的 (設定 -> 程式控制 / 其他選項&#8230; -> 閱讀模式 (BETA))。<br/><br/>
-完成之後，當閱讀模式可在目前分頁使用時，操作欄上會顯示閱讀模式的按鈕 (就在分享按鈕旁邊)。
-該按鈕只會在連結載入完畢後，且 Link Bubble 成功地摘錄出文章內容時出現。<br/><br/>
-請注意：在網頁上摘錄內容的過程是太不可靠的，且不見得 100% 準確。對於動態甚至千變萬化的網頁而言，只能盡量做到這樣了。]]></string>
+    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
+            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
+            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
+            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
+            there is little than can be done here.]]></string>
     <string name="faq_future_features_question">你會加入書籤、收藏及套件之類的功能嗎？</string>
     <string name="faq_future_features_answer">這很難說，不過目前 Link Bubble 想要先把程式內載入、閱讀的工作做到最好。</string>
     <string name="faq_translations_question">我可以協助翻譯這個 app 嗎？</string>
-    <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
-            (+Link Bubble) for help with translations, so be sure to keep an eye on my feed.]]></string>
+    <string name="faq_translations_answer"><![CDATA[我希望能盡快地加入各語系的翻譯。<br/><br/>到時候我會PO在 Google+
+(+Link Bubble) 上面來尋求翻譯，所以請隨時注意我的動態。]]></string>
     <string name="faq_roadmap_question">你會發布未來功能的藍圖嗎？我能不能替即將到來的新功能投票呢？</string>
     <string name="faq_roadmap_answer">出於競爭考量，我想這兩個問題的答案都是「不」。<br/><br/></string>
     <string name="faq_alternate_payment_question">我沒有信用卡或無法在 Play 商店上購買，要怎麼升級至專業版？</string>
@@ -266,7 +266,7 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="faq_translucent_status_bar_question">為什麼這個程式不能蓋過半透明的狀態列？</string>
     <string name="faq_translucent_status_bar_answer">受限於系統本身的限制。</string>
     <string name="faq_beta_programme_question">有推出 beta 版的計劃嗎？我要怎麼加入呢？</string>
-    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Link Bubble) feed for announcements.</string>
+    <string name="faq_beta_programme_answer">Beta 版程式會在適當的時候公布。請隨時注意我的 Google+ (+Link Bubble) 公告。</string>
     <string name="faq_low_spec_performance_question">為什麼 Link Bubble 在 Nexus S / Galaxy S1 / Moto G 這種等級的裝置上跑得這麼慢？</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble 是一款比較吃資源的程式，硬體規格較低的裝置可能會顯得比較吃力。未來更新的重點會放在改進 Link Bubble 的效能，但實際上能做的並不多。<br/><br/>從技術層面來說就是：在最低限度下，Link Bubble 需要一個 Service 及一個 WebView 來運作。而同時存在多個 WebView 甚至是多個 Activity 也是常有的事。一般來說，配置這些物件 (特別是 WebView)  會消耗<i>大量的</i>記憶體/資源。對於硬體規格較低的裝置而言，可用記憶體通常比 Link Bubble 所需要的要來得少，因此頻繁地觸發垃圾收集 (garbage collection) 就會影響效能。舉個例子，Nexus S 上的最大記憶體配置是 48MB，而 Nexus 5 的是 192 MB。]]></string>
     <string name="faq_crap_webview_question">有些網頁無法正常顯示或影片無法正常播放。</string>
@@ -280,13 +280,12 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="faq_change_default_browser_question">怎麼移除 Link Bubble 本身的預設瀏覽器設定？</string>
     <string name="faq_change_default_browser_answer">系統設定 -> 應用程式 -> 已下載 -> Link Bubble -> 清除預設值。</string>
     <string name="faq_pro_trial_question">Link Bubble Pro 的試用期是怎麼算的？</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
-        Pro\'s premium features.<br/>
-        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
-        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
-        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
-        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
-        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
+    <string name="faq_pro_trial_answer"><![CDATA[• 在首次安裝 Link Bubble 的前 24 小時，非 Link Bubble Pro 的用戶可以存取所有專業版功能的權限。<br/>
+• 在這一次性的試用期間內，Link Bubble Pro 的進階功能可在您的所有裝置上使用。<br/>
+• Link Bubble 主畫面的左上角會顯示計時器，告訴您還剩多少時間可以試用。<br/>
+• 在 Link Bubble 1.1 版更新之前安裝的用戶同樣可以試用。<br/>
+• 由於驗證需要，專業版試用會被連結至您的電子郵件位置。若在該裝置上找不到電子郵件位置，將無法試用。<br/>
+• 很遺憾，試用期限無法重設。請在安裝 Link Bubble 後的 24 小時內盡情享受專業版的所有功能。]]></string>
     <string name="faq_report_bug_question">回報 bug</string>
     <string name="faq_report_bug_answer"><![CDATA[電子郵件]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -338,7 +337,7 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="pro_application_name">Link Bubble Pro</string>
     <string name="pro_status_checking_license">正在檢查授權…</string>
 	<string name="pro_status_buy">無法驗證授權。\n\n有可能是某些原因所導致：\n • 沒有網路連線。\n • 本程式已被竄改。\n\n請檢查您的網路連線，若有必要，請至 Play 商店重新下載程式。</string>
-    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
+    <string name="pro_status_verified">Link Bubble Pro 購買驗證成功！\n\n非常感謝您支持我們開發本專案。</string>
     <string name="pro_status_unlicensed">Google Play 回報此 Link Bubble Pro 為未經授權的版本。\n\n假若您真的購買了 Link Bubble Pro，那麼最可能的原因就是，您購買時使用的電子郵件與此裝置上 Play 商店所設定的不同。</string>
 
     <string name="pro_keep_installed">請注意：您不必再次開啟 Link Bubble Pro，但由於驗證需要，您需要保持已安裝狀態。\n\n這個程式會在系統中隱藏，所以不會在您的啟動器中顯示。</string>
@@ -364,13 +363,11 @@ Link Bubble 亦遵循此標準。]]></string>
 
     <string name="pro_store_listing_title">Link Bubble Pro</string>
     <string name="pro_store_listing_description_title">Link Bubble Pro 將會解鎖完整的功能。</string>
-    <string name="pro_store_listing_description_features">
-    Upgrades include:
-    • Infinite number of tabs (free version is limited to just one tab).
-    • Theme selection
-    • Remove the upgrade incentives throughout the free version.
-    • Support us so we get to make more of these apps :)
-    </string>
+    <string name="pro_store_listing_description_features">升級版包含以下優點：
+• 無限分頁數量 (免費版限制只能讀取一個分頁).
+• 可選擇佈景主題
+• 移除一天到晚叫你升級的訊息。
+• 支持我們開發更多的 apps :)</string>
 
     <string name="welcome_page_title">歡迎使用 Link Bubble！</string>
     <string name="welcome_page_trial_notice">請注意：在首次安裝 Link Bubble 的 24 小時內，您會擁有一次性的 Link Bubble Pro 完整功能試用權限。</string>
