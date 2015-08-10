@@ -23,6 +23,7 @@
     <string name="action_help">帮助</string>
     <string name="action_reload_page">重新载入</string>
     <string name="action_open_in_browser">在 %1$s 中打开</string>
+    <string name="action_request_desktop_site">Request desktop site</string>
     <string name="action_open_in_new_bubble">在新的泡泡中打开</string>
     <string name="action_upgrade_to_pro">★升级到专业版★</string>
     <string name="action_copy_to_clipboard">复制链接</string>
@@ -49,13 +50,12 @@
     <string name="upgrade_article_mode_wear">通过阅读模式在 Android 智能手表上查看链接吗？</string>
     <string name="upgrade_theme">想换一种主题试试？</string>
     <string name="upgrade_theme_toolbar">是否要让工具栏主题色与网站主题色相匹配？</string>
-    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
-        Load multiple tabs at once.\n •
-        Change theme.\n •
-        Use Reading Mode.\n •
-        Android Wear support.\n •
-        Support us as we develop this app :)
-        </string>
+    <string name="upgrade_from_settings_summary">升级至 Link Bubble 专业版可以享受以下特性：\n
+• 同时加载多个泡泡\n
+• 更换主题\n
+• 使用阅读模式\n
+• 支持 Android 智能手表\n
+• 支持我们开发本应用 :)</string>
 
     <string name="undo_close_tab_title">已关闭「%1$s」</string>
     <string name="undo_close_tab_no_title">已关闭标签</string>
@@ -112,7 +112,7 @@ accounts.google.com 链接</string>
     <string name="preference_theme_dark_no_color">暗底+中性色边框</string>
     <string name="preference_theme_toolbar_title">色彩工具栏</string>
     <string name="preference_theme_toolbar_summary">匹配网站的主题色与图标高亮色</string>
-    <string name="preference_article_mode_title">阅读模式（测试功能）</string>
+    <string name="preference_article_mode_title">Reading Mode</string>
     <string name="preference_reading_mode_on_wear_title">智能手表阅读模式</string>
     <string name="preference_article_mode_summary">通过操作栏按钮切换</string>
     <string name="preference_webview_text_zoom_title">文字缩放</string>
@@ -161,7 +161,7 @@ accounts.google.com 链接</string>
     <string name="preference_show_undo_close_tab_title">撤销关闭标签提示</string>
 
     <string name="preference_my_other_apps_title">开发者的其他应用程序</string>
-    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
+    <string name="preference_my_other_apps_summary">喜欢 Link Bubble 吗？来看看我们开发的其他应用吧。</string>
 
     <string name="remove_default_title">移除默认？</string>
     <string name="remove_default_message">移除 %1$s 作为载入 %2$s 链接的默认程序的设置？\n\n备注：下次载入 %2$s 链接时可以选择一个新的默认程序。</string>
@@ -241,10 +241,11 @@ Link Bubble 亦遵循该标准。]]></string>
 <br/><br/>请注意：像 Chrome 这类的浏览器都会在程式中写死，只能使用它自身来载入网页，故 Link Bubble 无法读取在其他浏览器中点击的连结。
 ]]></string>
     <string name="faq_article_mode_question">我该如何使用阅读模式？为什么许多链接无法使用阅读模式？</string>
-    <string name="faq_article_mode_answer"><![CDATA[首先，请确定阅读模式是启用的（设置 -> 应用控制 -> 更多 -> 阅读模式（测试功能））。<br/><br/>
-确定开启之后，当阅读模式在目前页面可用时，操作栏上会显示阅读模式的按钮（分享按钮左侧）。
-该按钮只会在网页载入完毕后，且 Link Bubble 成功地显示出文章内容时才会出现。<br/><br/>
-请注意：在网页上摘录内容的过程并不是 100% 准确。对于动态甚至千变万化的网页而言，只能尽量做到这样了。]]></string>
+    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
+            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
+            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
+            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
+            there is little than can be done here.]]></string>
     <string name="faq_future_features_question">你会加入书签、收藏、扩展等功能吗？</string>
     <string name="faq_future_features_answer">不确定，但是目前 Link Bubble 只是专注于将载入和处理应用内链接做到最好。</string>
     <string name="faq_translations_question">我能帮助翻译本应用吗？</string>
@@ -338,7 +339,7 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="pro_application_name">Link Bubble 专业版</string>
     <string name="pro_status_checking_license">正在校验许可...</string>
 	<string name="pro_status_buy">无法校验许可。\n\n产生此问题可能的原因包括：\n • 无网络链接。\n • 您安装的是盗版。\n\n检查您的网络连接，如果有必要的话，尝试在 Play 商店中重新安装。</string>
-    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
+    <string name="pro_status_verified">Link Bubble专业版购买已证实！\n\n非常感谢您支持我们开发这个项目。</string>
     <string name="pro_status_unlicensed">Google Play 报告该 Link Bubble 专业版拷贝是未经许可的。\n\n如果您确实购买了 Link Bubble 专业版，那可能的原因是用于购买的电子邮箱地址并未在本设备上与 Play 商店中配置。</string>
 
     <string name="pro_keep_installed">注意：您不需要再次载入 Link Bubble 专业版。但是出于校验目的，您需要保持其安装。\n\n本应用会在系统中隐藏，所以它不会在您的启动器中显示。</string>
@@ -364,13 +365,11 @@ Link Bubble 亦遵循该标准。]]></string>
 
     <string name="pro_store_listing_title">Link Bubble 专业版</string>
     <string name="pro_store_listing_description_title">Link Bubble 专业版将会解锁所有功能。</string>
-    <string name="pro_store_listing_description_features">
-    Upgrades include:
-    • Infinite number of tabs (free version is limited to just one tab).
-    • Theme selection
-    • Remove the upgrade incentives throughout the free version.
-    • Support us so we get to make more of these apps :)
-    </string>
+    <string name="pro_store_listing_description_features">升级后您能获得以下特性：
+• 无限数量的泡泡（免费版限制只能同时存在一个页面）
+• 可选择主题
+• 移除频繁出现的「建议升级」的消息
+• 支持我让我们开发更多优秀应用 :)</string>
 
     <string name="welcome_page_title">欢迎使用 Link Bubble！</string>
     <string name="welcome_page_trial_notice">注意：在第一次安装 Link Bubble 后的一整天内，你将有一次享受专业版的高级功能的体验。</string>

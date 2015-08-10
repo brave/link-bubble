@@ -23,6 +23,7 @@
     <string name="action_help">Hjælp</string>
     <string name="action_reload_page">Genindlæs</string>
     <string name="action_open_in_browser">Åbn i %1$s</string>
+    <string name="action_request_desktop_site">Request desktop site</string>
     <string name="action_open_in_new_bubble">Åbn i ny boble</string>
     <string name="action_upgrade_to_pro">★Opgrader til Pro★</string>
     <string name="action_copy_to_clipboard">Kopiér link</string>
@@ -114,7 +115,7 @@ gratis version af Link Bubble. Opgrader til Pro?</string>
     <string name="preference_theme_dark_no_color">Mørk + neutral farve</string>
     <string name="preference_theme_toolbar_title">Color toolbar</string>
     <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
-    <string name="preference_article_mode_title">Læse Tilstand (Beta)</string>
+    <string name="preference_article_mode_title">Reading Mode</string>
     <string name="preference_reading_mode_on_wear_title">Læse Tilstand på Wear</string>
     <string name="preference_article_mode_summary">Slås til via knap på action bar</string>
     <string name="preference_webview_text_zoom_title">Tekst zoom</string>
@@ -249,11 +250,11 @@ aktiver \"Ekstern browser\" eller fravælg \"Integreret browser\" eller lignende
 at indlæse links fra andre browser apps.
 ]]></string>
     <string name="faq_article_mode_question">Hvordan bruger jeg Læse TIlstand? Hvorfor nogle links ikke virker?</string>
-    <string name="faq_article_mode_answer"><![CDATA[For det første skal Læse Tilstand være aktiveret (Indstillinger -> App Konfiguration / Mere&#8230; -> Læse Tilstand (BETA)).<br/><br/>
-Når Læse Tilstand er tilgængelig for den aktuelle fane, vil ikonet Læse Tilstand vises på action baren (ved siden af ​​knappen Del).
-Vær opmærksom på at dette ikon først vises, når linket er indlæst og kun hvis Link Bubble kan udvinde Artikel Tilstand fra linket.<br/><br/>
-Bemærk: Udpakning af indhold fra internettet er en upålidelig proces og vil ikke altid fungere 100% præcist. I betragtning af den dynamiske og stadigt skiftende karakter af selve Internettet 
-er der ikke meget der kan gøres her.]]></string>
+    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
+            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
+            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
+            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
+            there is little than can be done here.]]></string>
     <string name="faq_future_features_question">Vil du tilføje understøttelse af bogmærker, favoritter, udvidelser mv.?</string>
     <string name="faq_future_features_answer">Aldrig sige aldrig, men for nu er Link Bubble fokuseret udelukkende på, at være den bedst mulige måde for at indlæse 
 links fra andre apps.</string>

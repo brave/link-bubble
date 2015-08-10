@@ -23,6 +23,7 @@
     <string name="action_help">Hjälp</string>
     <string name="action_reload_page">Ladda om</string>
     <string name="action_open_in_browser">Öppna med %1$s</string>
+    <string name="action_request_desktop_site">Request desktop site</string>
     <string name="action_open_in_new_bubble">Öppna i ny bubbla</string>
     <string name="action_upgrade_to_pro">★Uppgradera till Pro★</string>
     <string name="action_copy_to_clipboard">Kopiera länk</string>
@@ -31,31 +32,30 @@
     <string name="action_close_tab">Stäng bubbla</string>
     <string name="action_stop">Stoppa</string>
     <string name="action_undo">Ångra</string>
-    <string name="action_add">Add</string>
-    <string name="action_no_recommended">No (recommended)</string>
+    <string name="action_add">Lägg till</string>
+    <string name="action_no_recommended">Nej (rekommenderad)</string>
     <string name="share_via">Dela via...</string>
     <string name="not_set">Ej angivet</string>
 
-    <string name="warning">Warning!</string>
-    <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
+    <string name="warning">Varning!</string>
+    <string name="untrusted_certificate">Certifikatet vid %1$s är inte betrott. Fortsätta ändå?</string>
 
     <string name="share_invalid_data">Link Bubble kan inte dela detta objekt eftersom det inte är en giltig URL.</string>
     <string name="consume_activity_not_found">Kan inte hitta applikationen. Ändra bubbelhandling i Inställningar.</string>
-    <string name="consume_activity_security_exception">Unable to share to external application.</string>
+    <string name="consume_activity_security_exception">Det går inte att dela till extern applikation.</string>
 
     <string name="upgrade">Uppgradera</string>
     <string name="upgrade_to_pro">Uppgradera till Pro</string>
     <string name="upgrade_article_mode">Visa länkar i Läsläget</string>
     <string name="upgrade_article_mode_wear">Visa länkar på Android Wear-enheter via Läsläge?</string>
     <string name="upgrade_theme">Vill du använda ett annat tema?</string>
-    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
-    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
-        Load multiple tabs at once.\n •
-        Change theme.\n •
-        Use Reading Mode.\n •
-        Android Wear support.\n •
-        Support us as we develop this app :)
-        </string>
+    <string name="upgrade_theme_toolbar">Vill du anpassa utseendet för verktygsfältet så det matchar temats färger för webbsidor?</string>
+    <string name="upgrade_from_settings_summary">Uppgradera till Link Bubble Pro för detta och mer inkluderande::\n •
+Ladda flera flikar samtidigt.\n •
+Byt tema.\n •
+Använd läsläge.\n •
+Android Wear-stöd.\n •
+Stöd oss som utvecklar denna app :)</string>
 
     <string name="undo_close_tab_title">Stängd %1$s</string>
     <string name="undo_close_tab_no_title">Stängd flik</string>
@@ -68,7 +68,7 @@
 
     <string name="preference_category_general">Allmänt</string>
     <string name="preference_category_configuration">Appkontroller</string>
-    <string name="preference_category_configuration2">Configuration</string>
+    <string name="preference_category_configuration2">Inställningar</string>
     <string name="preference_category_browser">Webbläsare</string>
     <string name="preference_enabled_title">Aktiverad</string>
     <string name="preference_auto_content_display_link_loaded_title">Autoexpandera</string>
@@ -93,31 +93,31 @@ du laddar länkar med Link Bubble.</string>
     <string name="preference_google_account_redirect_title">Google-konto omdirigering</string>
     <string name="preference_google_account_redirect_summary">Omdirigera accounts.google.com länkar till standard reservwebbläsare</string>
     <string name="preference_set_default_browser_title">Sätt standard systemwebbläsare</string>
-    <string name="preference_set_default_browser_summary">Link Bubble must be the default system browser to work. Tap to configure.</string>
+    <string name="preference_set_default_browser_summary">Link Bubble måste vara satt till förvald systemwebbläsare för att fungera. Tryck för att konfigurera.</string>
     <string name="preference_more">Mer...</string>
     <string name="preference_intercept_links_from_title">Fånga upp länkar från</string>
     <string name="preference_intercept_links_from_note">Notera: Begränsningen att fånga upp länkar från en enda app bara finns med i 
 gratisversionen av Link Bubble. Uppgradera till Pro?</string>
-    <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
+    <string name="preference_intercept_links_from_disabled_for_L">Från och med Android 5.0 har Google tagit bort API:et som krävs för denna funktion.</string>
     <string name="preference_scan_for_youtube_embeds_title">Kolla efter YouTube-inbäddningar</string>
     <string name="preference_scan_for_youtube_embeds_summary">Visa genväg för att ladda inbäddad video i YouTube-appen.</string>
-    <string name="preference_webview_battery_save_title">Battery Save Mode (Beta)</string>
-    <string name="preference_webview_battery_save_aggressive_title">Aggressive</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Pause the updating of web pages when Link Bubble is minimized.\nPages in the process of loading will finish loading before pausing.</string>
-    <string name="preference_webview_battery_save_default_title">Default</string>
-    <string name="preference_webview_battery_save_default_summary">Pause the updating of web pages when the screen is off and resume when your device is unlocked.\nPages in the process of loading will finish loading before pausing.</string>
-    <string name="preference_webview_battery_save_off_title">Off</string>
-    <string name="preference_webview_battery_save_off_summary">Web pages are always active. Useful when streaming YouTube videos and the like.</string>
-    <string name="preference_theme_title">Theme</string>
-    <string name="preference_theme_light_color">Light + icon color</string>
-    <string name="preference_theme_light_no_color">Light + neutral color</string>
-    <string name="preference_theme_dark_color">Dark + icon color</string>
-    <string name="preference_theme_dark_no_color">Dark + neutral color</string>
-    <string name="preference_theme_toolbar_title">Color toolbar</string>
-    <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
-    <string name="preference_article_mode_title">Reading Mode (Beta)</string>
-    <string name="preference_reading_mode_on_wear_title">Reading Mode on Wear</string>
-    <string name="preference_article_mode_summary">Toggled via button on action bar</string>
+    <string name="preference_webview_battery_save_title">Batterisparläge (Beta)</string>
+    <string name="preference_webview_battery_save_aggressive_title">Aggresivt</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Stoppa uppdateringen av hemsidan när Link Bubble är minimerat.\nSidor som laddas kommer att laddas färdigt innan de stoppas.</string>
+    <string name="preference_webview_battery_save_default_title">Standard</string>
+    <string name="preference_webview_battery_save_default_summary">Stoppa uppdateringen av hemsidor när skärmen är avstängd och återuppta när enheten låses upp.\nSidorna som håller på att läsas in laddas färdigt innan de stoppas.</string>
+    <string name="preference_webview_battery_save_off_title">Av</string>
+    <string name="preference_webview_battery_save_off_summary">Hemsidorna är alltid aktiva. Användbart vid strömning av t ex YouTube-filmer.</string>
+    <string name="preference_theme_title">Tema</string>
+    <string name="preference_theme_light_color">Ljus + ikonfärg</string>
+    <string name="preference_theme_light_no_color">Ljus + neutral färg</string>
+    <string name="preference_theme_dark_color">Mörk + ikonfärg</string>
+    <string name="preference_theme_dark_no_color">Mörk + neutral färg</string>
+    <string name="preference_theme_toolbar_title">Färg verktygsfält</string>
+    <string name="preference_theme_toolbar_summary">För att matcha en webbsidas temafärg/markerad ikonfärg.</string>
+    <string name="preference_article_mode_title">Reading Mode</string>
+    <string name="preference_reading_mode_on_wear_title">Läsläge på Wear</string>
+    <string name="preference_article_mode_summary">Växla via knapp på actionbar</string>
     <string name="preference_webview_text_zoom_title">Textzoom</string>
     <string name="preference_webview_text_zoom_note">Notera: Nuvarande bubblor kommer laddas om med den nya textzoomen efter att du valt \"OK\".</string>
     <string name="preference_webview_text_zoom_reloading_current">Ny textzoomnivå applicerad. Laddar om nuvarande bubblor...</string>
@@ -130,7 +130,7 @@ gratisversionen av Link Bubble. Uppgradera till Pro?</string>
     <string name="preference_clear_passwords">Lösenord</string>
     <string name="preference_incognito_title">Inkognitoläge</string>
     <string name="preference_incognito_summary">Hindrar lagring av all historik och cookies</string>
-    <string name="incognito_mode_changed_reloading_current">Incognito setting changed. Reloading current bubbles…</string>
+    <string name="incognito_mode_changed_reloading_current">Inkognitoinställning ändrad. Laddar om nuvarande bubblor...</string>
     <string name="preference_user_agent_title">Användaragent</string>
     <string-array name="preference_user_agent_options">
         <item>Standard</item>
@@ -139,14 +139,14 @@ gratisversionen av Link Bubble. Uppgradera till Pro?</string>
         <item>Chrome Desktop</item>
     </string-array>
 
-    <string name="preference_domains_title">Domain redirects</string>
-    <string name="preference_domains_summary">Specify links to always load in your fallback browser.</string>
-    <string name="preference_redirects_title">Redirect to fallback browser</string>
-    <string name="preference_add_domain_title">Add domain</string>
-    <string name="add_domain_hint">Url host</string>
-    <string name="add_domain_detail">Specify only the \'main\' portion of a website address. E.g.,
-        \"accounts.google.com\" or \"bbc.co.uk\".</string>
-    <string name="add_domain_error">Unable to add \"%1$s\", as it is not a valid URL host.</string>
+    <string name="preference_domains_title">Domän omdirigering</string>
+    <string name="preference_domains_summary">Specificera länkar att alltid lada i din reservwebbläsare.</string>
+    <string name="preference_redirects_title">Omdirigera till reservwebbläsare</string>
+    <string name="preference_add_domain_title">Lägg till domän</string>
+    <string name="add_domain_hint">Url-värd</string>
+    <string name="add_domain_detail">Specificera endast \'huvud\'-delen av en webbsidas adress. Dvs,
+\"accounts.google.com\" eller \"bbc.co.uk\". </string>
+    <string name="add_domain_error">Link Bubble kan inte lägga till \"%1$s\", eftersom det inte är en giltig URL-värd.</string>
 
     <string name="preference_help_title">Hjälp</string>
     <string name="preference_show_welcome_message_title">Visa välkomstsida</string>
@@ -160,22 +160,22 @@ gratisversionen av Link Bubble. Uppgradera till Pro?</string>
     <string name="preference_get_pro_summary">Uppgradera till Pro för fler funktioner.</string>
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">Vad är nytt?</string>
-    <string name="preference_more_title">More&#8230;</string>
-    <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
+    <string name="preference_more_title">Mer&#8230;</string>
+    <string name="preference_show_undo_close_tab_title">Fråga om ångra stäng flik</string>
 
-    <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
-    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
+    <string name="preference_my_other_apps_title">Fler appar av Link Bubble</string>
+    <string name="preference_my_other_apps_summary">Gillar du Link Bubble? Varför inte kolla in våra andra appar?</string>
 
     <string name="remove_default_title">Ta bort standard?</string>
     <string name="remove_default_message">Ta bort %1$s som standardapp för att ladda %2$s-länkar?\n\nNotera: du kan ange en ny standardapp
 nästa gång du laddar en %2$s-länk </string>
-    <string name="long_press_unsupported_default_browser">Unable to display this item. Open link in %1$s?</string>
-    <string name="long_press_unsupported_no_default_browser">Unable to display this item. Open link in a browser.</string>
+    <string name="long_press_unsupported_default_browser">Lyckades inte visa detta objekt. Öppna länk i %1$s?</string>
+    <string name="long_press_unsupported_no_default_browser">Lyckades inte visa detta objekt. Öppna länk i en webbläsare.</string>
     <string name="unsupported_scheme_default_browser">Länktypen stöds för närvarande inte. Öppna webbsidan i %1$s?</string>
     <string name="unsupported_scheme_no_default_browser">Länktypen stöds för närvarande inte. Öppna webbsidan i en webbläsare.</string>
     <string name="unsupported_scheme">Länktypen stöds för närvarande inte.</string>
-    <string name="unsupported_drop_down_default_browser">Unable to interact with this item. Open in %1$s?</string>
-    <string name="unsupported_drop_down_no_default_browser">Unable to interact with this item. Open link in a browser.</string>
+    <string name="unsupported_drop_down_default_browser">Lyckades inte interagera detta objekt. Öppna länk i %1$s?</string>
+    <string name="unsupported_drop_down_no_default_browser">Lyckades inte interagera detta objekt. Öppna länk i en webbläsare.</string>
 
     <string name="consume_category_view">Se länk</string>
     <string name="consume_category_share">Skicka/dela länk</string>
@@ -199,8 +199,8 @@ nästa gång du laddar en %2$s-länk </string>
     <string name="private_data_cleared">Privat data rensad</string>
     <string name="private_data_cleared_reloading_current">Privat data rensad. Laddar om nuvarande bubblor...</string>
     <string name="user_agent_changed_reloading_current">User Agent ändrad. Laddar om nuvarande bubblor...</string>
-    <string name="theme_toolbar_reloading_current">Color toolbar setting changed. Reloading current bubbles…</string>
-    <string name="article_mode_changed_reloading_current">Reading Mode setting changed. Reloading current bubbles…</string>
+    <string name="theme_toolbar_reloading_current">Verktygsfält för färginställningar har ändrats. Laddar om nuvarande bubblor...</string>
+    <string name="article_mode_changed_reloading_current">Inställning för läsläge har ändrats. Laddar om nuvarande bubblor...</string>
     <string name="link_loaded_with_app">Laddad med %1$s</string>
     <string name="link_redirected">Omdirigerad till %1$s</string>
 
@@ -240,18 +240,17 @@ Link Bubble är en webbläsare, och Android-webbläsare har sedan länge etabler
 antingen gå tillbaka i URL-historiken, eller om historik saknas, stänga den nuvarande fliken när man trycker på bakåtknappen.
 Link Bubble följer denna standard.]]></string>
     <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble fångar inte upp länkar!]]></string>
-    <string name="faq_app_internal_browser_answer"><![CDATA[There are 3 causes of this:<br/>
-            1). A browser other thank Link Bubble is set as your default system browser. See the
-            \"Set default system browser\" option in Link Bubble\'s Settings to change this.<br/>
-            2). Link Bubble has been configured not to intercept links from your current app. See the
-            \"Intercept links from\" option in Link Bubble\'s Settings.<br/>
-            3). Apps such as Talon, Reddit is Fun and others have inbuilt browsers that render links. Check the settings of that app and
-            enable \"External browser\" or deselect \"Integrated browser\" or similar.
-            <br/><br/>Note: other browser apps such as Chrome are hardcoded to load links in themselves, and thus Link Bubble is unable
-            to load links clicked from other browser apps.
-            ]]></string>
+    <string name="faq_app_internal_browser_answer"><![CDATA[Det finns tre orsaker till detta:<br/>\n
+1). En annan webbläsare än Link Bubble är satt som systemets standardwebbläsare.
+Se \n\"Ange standardwebbläsare"-valet i Link Bubbles inställningar för att ändra detta.<br/>\n
+2). Gratisversionen av Link Bubble fångar endast upp länkar från en enda app.\n
+Se \"Fånga länkar från\"-valet i Link Bubbles inställningar för att se vilken app det är eller för att ändra den.
+Notera att genom att uppgradera till Link Bubble Pro kommer länkar att fångas upp från alla ickewebbläsarappar.<br/>\n
+3). Appar såsom Talon, Reddit is Fun och andra har inbyggda webbläsare som renderar länkar. Kontrollera appens inställningar
+och aktivera \"Extern webbläsare\" eller välj bort \"Intern webbläsare\" eller liknande.\n<br/><br/>Notera: andra webbläsare såsom Chrome är hårdkodade att ladda länkar i sig själva och därför kommer Link Bubble
+inte kunna öppna länkar från dessa.\n]]></string>
     <string name="faq_article_mode_question">How do I use Reading Mode? Why do some links not work?</string>
-    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode (BETA)).<br/><br/>
+    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
             From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
             Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
             Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
