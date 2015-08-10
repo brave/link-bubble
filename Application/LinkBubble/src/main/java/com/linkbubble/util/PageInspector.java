@@ -38,7 +38,7 @@ public class PageInspector {
 
     // Workaround for selects not working: https://code.google.com/p/chromium/issues/detail?id=390553
     private static final String JS_DROP_DOWN_ITEM_CHECK =
-            "{(function() {\n" +
+            "(function() {\n" +
             "  window.__LINK_BUBBLE__ = window.__LINK_BUBBLE__ || {};\n" +
             "  if (window.__LINK_BUBBLE__.selectOption) { return; }\n" +
             "  window.__LINK_BUBBLE__.lastSelectFocused = null;\n" +
@@ -106,10 +106,10 @@ public class PageInspector {
             "  });\n" +
             "  var config = {attributes: false, childList: true, characterData: false, subtree: true};\n" +
             "  observer.observe(document.body, config);\n" +
-            "}());}";
+            "})();\n";
 
     private static final String JS_YOUTUBE_EMBED_CHECK =
-            "{\n" +
+            "(function() {\n" +
             "    var elems = document.getElementsByTagName('*'), i;\n" +
             "    var resultArray = null;\n" +
             "    var resultCount = 0;\n" +
@@ -128,20 +128,20 @@ public class PageInspector {
             "    if (resultCount > 0) {\n" +
             "       " + JS_VARIABLE + ".onYouTubeEmbeds(resultArray.toString());\n" +
             "    }\n" +
-            "}";
+            "})();\n";
 
     private static final String JS_THEME_COLOR_CHECK =
-        "{\n" +
+        "(function() {\n" +
         "   var themeColorTag = document.getElementsByTagName('meta')['theme-color'];\n" +
         "   if (themeColorTag) {\n" +
               JS_VARIABLE + ".onThemeColor(themeColorTag.getAttribute('content'));" +
         "   }\n" +
-        "}";
+        "})();\n";
 
     // https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
     // https://developers.google.com/chrome/mobile/docs/installtohomescreen
     private static final String JS_TOUCH_ICON_CHECK =
-            "{\n" +
+            "(function() {\n" +
             "  var links = document.head.getElementsByTagName('link');\n" +
             "  var linksArray = null;\n" +
             "  var linksCount = 0;\n" +
@@ -161,11 +161,13 @@ public class PageInspector {
             "  if (linksCount > 0) {" +
             "  " + JS_VARIABLE + ".onTouchIconLinks(linksArray.toString());\n" +
             "  }\n" +
-            "}";
+            "})();\n";
 
     private static final String JS_FETCH_HTML =
-            "javascript:window." + JS_VARIABLE + ".fetchHtml" +
-                    "('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');";
+            "(function() {\n" +
+            "  window." + JS_VARIABLE + ".fetchHtml" +
+                    "('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');\n" +
+            "})();\n";
 
     private Context mContext;
     private String mWebViewUrl;
