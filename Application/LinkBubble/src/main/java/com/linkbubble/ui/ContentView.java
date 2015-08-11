@@ -271,30 +271,46 @@ public class ContentView extends FrameLayout {
         Util.showThemedDialog(alertDialog);
     }
 
-    private void saveImage(final String urlAsString) {
-        try {
-            URL url = new URL(urlAsString);
-            InputStream is = (InputStream) url.getContent();
-            byte[] buffer = new byte[8192];
-            int bytesRead;
-            ByteArrayOutputStream output = new ByteArrayOutputStream();
-            while ((bytesRead = is.read(buffer)) != -1) {
-                output.write(buffer, 0, bytesRead);
+    private class DownloadImageTask extends AsyncTask<String, Integer, Boolean> {
+
+        protected Boolean doInBackground(String... urls) {
+            try {
+                URL url = new URL(urls[0]);
+                InputStream is = (InputStream) url.getContent();
+                byte[] buffer = new byte[8192];
+                int bytesRead;
+                ByteArrayOutputStream output = new ByteArrayOutputStream();
+                while ((bytesRead = is.read(buffer)) != -1) {
+                    output.write(buffer, 0, bytesRead);
+                }
+
+                File path = Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_PICTURES);
+                File imagePath = new File(path, "savedimage.png");
+                FileOutputStream fos = new FileOutputStream(imagePath);
+                fos.write(output.toByteArray());
+                fos.flush();
+                fos.close();
+                return true;
+            } catch (IOException e) {
+                CrashTracking.logHandledException(e);
+                return false;
             }
-
-            File path = Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES);
-            File imagePath = new File(path, "savedimage.png");
-            FileOutputStream fos = new FileOutputStream(imagePath);
-            fos.write(output.toByteArray());
-            fos.flush();
-            fos.close();
-
-        } catch (Exception e) {
-            CrashTracking.logHandledException(e);
-            Resources resources = getResources();
-            showErrorPrompt(resources.getString(R.string.error_saving_image));
         }
+
+        protected void onProgressUpdate(Integer... progress) {
+        }
+
+        protected void onPostExecute(Boolean result) {
+            if (!result) {
+                Resources resources = getResources();
+                showErrorPrompt(resources.getString(R.string.error_saving_image));
+            }
+        }
+    }
+
+    private void saveImage(final String urlAsString) {
+        new DownloadImageTask().execute(urlAsString);
     }
 
     ArrayList<Drawable> mTintableDrawables = new ArrayList<>();
