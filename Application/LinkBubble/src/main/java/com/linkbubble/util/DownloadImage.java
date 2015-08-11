@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
+import android.widget.Toast;
 
 import com.linkbubble.MainController;
 import com.linkbubble.R;
@@ -38,6 +39,7 @@ public class DownloadImage {
 
     public void download() {
         Log.d(TAG, "downloading image: " + mUrlAsString);
+        Toast.makeText(mContext, R.string.notice_download_started, Toast.LENGTH_LONG).show();
         new DownloadImageTask().execute(mUrlAsString);
     }
 
