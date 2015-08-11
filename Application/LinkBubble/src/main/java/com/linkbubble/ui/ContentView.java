@@ -12,6 +12,7 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -20,6 +21,7 @@ import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -366,7 +368,12 @@ public class ContentView extends FrameLayout {
             mCaretView.setBackground(getResources().getDrawable(Settings.get().getDarkThemeEnabled()
                     ? R.drawable.content_view_caret_dark : R.drawable.content_view_caret_white));
         } else {
-            textColor = Settings.COLOR_WHITE;
+            // Calculate text color based on contrast with background:
+            // https://24ways.org/2010/calculating-color-contrast/
+            int yiq = (Color.red(color) * 299 +
+                    Color.green(color) * 587 + Color.blue(color) * 114) / 1000;
+            textColor = yiq >= 128 ? Settings.COLOR_BLACK : Settings.COLOR_WHITE;
+
             bgColor = color;
             Drawable d = getTintableDrawable(R.drawable.content_view_caret_white, false);
             DrawableCompat.setTint(d, color);

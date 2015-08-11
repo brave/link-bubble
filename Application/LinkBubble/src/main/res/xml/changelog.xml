@@ -2,7 +2,7 @@
 <changelog>
 
     <release version="1.5.2">
-        <change></change>
+        <change>BUG FIX: Fixed text color for light colored theme backgrounds.</change>
     </release>
 
     <release version="1.5.1">
