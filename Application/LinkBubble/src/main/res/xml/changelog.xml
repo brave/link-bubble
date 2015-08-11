@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.5.2">
+        <change></change>
+    </release>
+
     <release version="1.5.1">
         <change>NEW: In bubble request desktop site option.</change>
         <change>NEW: Bubbles loaded while not connected to the internet will now be automatically loaded once an internet connection is detected.</change>
