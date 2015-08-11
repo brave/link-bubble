@@ -97,6 +97,10 @@ public class DownloadImage {
                         Environment.DIRECTORY_DOWNLOADS);
                 String fileExtenstion = MimeTypeMap.getFileExtensionFromUrl(urls[0]);
                 String name = URLUtil.guessFileName(urls[0], null, fileExtenstion);
+
+                // Prefix the filename with the date to attempt to prevent overwriting of existing files.
+                name = System.currentTimeMillis() + name;
+
                 imagePath = new File(path, name);
                 FileOutputStream fos = new FileOutputStream(imagePath);
                 fos.write(output.toByteArray());
