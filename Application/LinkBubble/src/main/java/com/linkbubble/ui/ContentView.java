@@ -32,6 +32,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.MimeTypeMap;
+import android.webkit.URLUtil;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -123,6 +125,7 @@ public class ContentView extends FrameLayout {
     private long mInitialUrlLoadStartTime;
     private String mInitialUrlAsString;
     private String mLoadingString;
+    private Context mContext;
 
     private Stack<URL> mUrlStack = new Stack<URL>();
     // We only want to handle this once per link. This prevents 3+ dialogs appearing for some links, which is a bad experience. #224
@@ -140,6 +143,7 @@ public class ContentView extends FrameLayout {
     public ContentView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
+        mContext = context;
         mLoadingString = getResources().getString(R.string.loading);
     }
 
@@ -272,7 +276,7 @@ public class ContentView extends FrameLayout {
     }
 
     private class DownloadImageTask extends AsyncTask<String, Integer, Boolean> {
-
+        File imagePath;
         protected Boolean doInBackground(String... urls) {
             try {
                 URL url = new URL(urls[0]);
@@ -286,7 +290,9 @@ public class ContentView extends FrameLayout {
 
                 File path = Environment.getExternalStoragePublicDirectory(
                         Environment.DIRECTORY_PICTURES);
-                File imagePath = new File(path, "savedimage.png");
+                String fileExtenstion = MimeTypeMap.getFileExtensionFromUrl(urls[0]);
+                String name = URLUtil.guessFileName(urls[0], null, fileExtenstion);
+                imagePath = new File(path, name);
                 FileOutputStream fos = new FileOutputStream(imagePath);
                 fos.write(output.toByteArray());
                 fos.flush();
@@ -302,9 +308,16 @@ public class ContentView extends FrameLayout {
         }
 
         protected void onPostExecute(Boolean result) {
-            if (!result) {
-                Resources resources = getResources();
-                showErrorPrompt(resources.getString(R.string.error_saving_image));
+            Resources resources = getResources();
+            if (result) {
+                // Fire an intent to scan for the gallery.
+                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                Uri contentUri = Uri.fromFile(imagePath);
+                mediaScanIntent.setData(contentUri);
+                mContext.sendBroadcast(mediaScanIntent);
+                simplePrompt(resources.getString(R.string.image_saved));
+            } else {
+                simplePrompt(resources.getString(R.string.error_saving_image));
             }
         }
     }
@@ -1666,7 +1679,7 @@ public class ContentView extends FrameLayout {
         return false;
     }
 
-    private void showErrorPrompt(String message) {
+    private void simplePrompt(String message) {
         Prompt.show(message, getResources().getString(android.R.string.ok),
                 Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
                     @Override
