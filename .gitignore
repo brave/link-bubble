@@ -55,3 +55,7 @@ Application/LinkBubble/src/main/assets/crashlytics-build.properties
 
 # Crashlytics secret key file
 Application/LinkBubble/fabric.properties
+
+# release builds
+dist
+build-release.sh
