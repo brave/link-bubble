@@ -39,6 +39,7 @@
     <string name="not_set">Not set</string>
 
     <string name="error_saving_image">Error saving image.</string>
+    <string name="image_saved">Image downloaded.</string>
 
     <string name="warning">Warning!</string>
     <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
