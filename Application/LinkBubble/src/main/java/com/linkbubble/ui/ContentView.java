@@ -16,7 +16,9 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.v4.app.NotificationCompat;
@@ -30,6 +32,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.MimeTypeMap;
+import android.webkit.URLUtil;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -56,6 +61,11 @@ import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.webrender.WebRenderer;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -115,6 +125,7 @@ public class ContentView extends FrameLayout {
     private long mInitialUrlLoadStartTime;
     private String mInitialUrlAsString;
     private String mLoadingString;
+    private Context mContext;
 
     private Stack<URL> mUrlStack = new Stack<URL>();
     // We only want to handle this once per link. This prevents 3+ dialogs appearing for some links, which is a bad experience. #224
@@ -132,6 +143,7 @@ public class ContentView extends FrameLayout {
     public ContentView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
+        mContext = context;
         mLoadingString = getResources().getString(R.string.loading);
     }
 
@@ -261,6 +273,57 @@ public class ContentView extends FrameLayout {
             }
         });
         Util.showThemedDialog(alertDialog);
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Integer, Boolean> {
+        File imagePath;
+        protected Boolean doInBackground(String... urls) {
+            try {
+                URL url = new URL(urls[0]);
+                InputStream is = (InputStream) url.getContent();
+                byte[] buffer = new byte[8192];
+                int bytesRead;
+                ByteArrayOutputStream output = new ByteArrayOutputStream();
+                while ((bytesRead = is.read(buffer)) != -1) {
+                    output.write(buffer, 0, bytesRead);
+                }
+
+                File path = Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_PICTURES);
+                String fileExtenstion = MimeTypeMap.getFileExtensionFromUrl(urls[0]);
+                String name = URLUtil.guessFileName(urls[0], null, fileExtenstion);
+                imagePath = new File(path, name);
+                FileOutputStream fos = new FileOutputStream(imagePath);
+                fos.write(output.toByteArray());
+                fos.flush();
+                fos.close();
+                return true;
+            } catch (IOException e) {
+                CrashTracking.logHandledException(e);
+                return false;
+            }
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+        }
+
+        protected void onPostExecute(Boolean result) {
+            Resources resources = getResources();
+            if (result) {
+                // Fire an intent to scan for the gallery.
+                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                Uri contentUri = Uri.fromFile(imagePath);
+                mediaScanIntent.setData(contentUri);
+                mContext.sendBroadcast(mediaScanIntent);
+                simplePrompt(resources.getString(R.string.image_saved));
+            } else {
+                simplePrompt(resources.getString(R.string.error_saving_image));
+            }
+        }
+    }
+
+    private void saveImage(final String urlAsString) {
+        new DownloadImageTask().execute(urlAsString);
     }
 
     ArrayList<Drawable> mTintableDrawables = new ArrayList<>();
@@ -711,8 +774,8 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
-        public void onUrlLongClick(String url) {
-            ContentView.this.onUrlLongClick(url);
+        public void onUrlLongClick(String url, int type) {
+            ContentView.this.onUrlLongClick(url, type);
         }
 
         @Override
@@ -938,8 +1001,8 @@ public class ContentView extends FrameLayout {
     ArticleRenderer.Controller mArticleModeController = new ArticleRenderer.Controller() {
 
         @Override
-        public void onUrlLongClick(String url) {
-            ContentView.this.onUrlLongClick(url);
+        public void onUrlLongClick(String url, int type) {
+            ContentView.this.onUrlLongClick(url, type);
         }
 
         @Override
@@ -1184,7 +1247,7 @@ public class ContentView extends FrameLayout {
 
     }
 
-    private void onUrlLongClick(final String urlAsString) {
+    private void onUrlLongClick(final String urlAsString, int type) {
         Resources resources = getResources();
 
         final ArrayList<String> longClickSelections = new ArrayList<String>();
@@ -1223,6 +1286,12 @@ public class ContentView extends FrameLayout {
             longClickSelections.add(1, openInBrowserLabel);
         }
 
+        final String saveImageLabel = resources.getString(R.string.action_save_image);
+        if (type == WebView.HitTestResult.IMAGE_TYPE ||
+                type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
+            longClickSelections.add(saveImageLabel);
+        }
+
         ListView listView = new ListView(getContext());
         listView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,
                 longClickSelections.toArray(new String[0])));
@@ -1237,6 +1306,8 @@ public class ContentView extends FrameLayout {
                     openInBrowser(urlAsString);
                 } else if (string.equals(shareLabel)) {
                     showSelectShareMethod(urlAsString, false);
+                } else if (string.equals(saveImageLabel)) {
+                    saveImage(urlAsString);
                 } else if (leftConsumeBubbleLabel != null && string.equals(leftConsumeBubbleLabel)) {
                     MainApplication.handleBubbleAction(getContext(), BubbleAction.ConsumeLeft, urlAsString, -1);
                 } else if (rightConsumeBubbleLabel != null && string.equals(rightConsumeBubbleLabel)) {
@@ -1606,6 +1677,18 @@ public class ContentView extends FrameLayout {
         }
 
         return false;
+    }
+
+    private void simplePrompt(String message) {
+        Prompt.show(message, getResources().getString(android.R.string.ok),
+                Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
+                    @Override
+                    public void onActionClick() {
+                    }
+                    @Override
+                    public void onClose() {
+                    }
+                });
     }
 
     private void showOpenInBrowserPrompt(int hasBrowserStringId, int noBrowserStringId, final String urlAsString) {

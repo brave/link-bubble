@@ -21,7 +21,7 @@ import com.squareup.otto.Subscribe;
 public class ArticleRenderer {
 
     public interface Controller {
-        public void onUrlLongClick(String url);
+        public void onUrlLongClick(String url, int type);
         public void onDownloadStart(String urlAsString);
         public boolean onBackPressed();
         public void onShowBrowserPrompt();
@@ -121,6 +121,7 @@ public class ArticleRenderer {
             WebView.HitTestResult hitTestResult = mWebView.getHitTestResult();
             //Log.d(TAG, "onLongClick type: " + hitTestResult.getType());
             switch (hitTestResult.getType()) {
+                case WebView.HitTestResult.IMAGE_TYPE:
                 case WebView.HitTestResult.SRC_ANCHOR_TYPE:
                 case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: {
                     final String url = hitTestResult.getExtra();
@@ -128,7 +129,7 @@ public class ArticleRenderer {
                         return false;
                     }
 
-                    mController.onUrlLongClick(url);
+                    mController.onUrlLongClick(url, hitTestResult.getType());
                     return true;
                 }
 

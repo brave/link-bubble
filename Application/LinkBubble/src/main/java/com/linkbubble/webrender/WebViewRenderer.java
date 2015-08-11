@@ -350,8 +350,9 @@ class WebViewRenderer extends WebRenderer {
         @Override
         public boolean onLongClick(View v) {
             WebView.HitTestResult hitTestResult = mWebView.getHitTestResult();
-            //Log.d(TAG, "onLongClick type: " + hitTestResult.getType());
+            Log.d(TAG, "onLongClick type: " + hitTestResult.getType());
             switch (hitTestResult.getType()) {
+                case WebView.HitTestResult.IMAGE_TYPE:
                 case WebView.HitTestResult.SRC_ANCHOR_TYPE:
                 case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: {
                     final String url = hitTestResult.getExtra();
@@ -359,7 +360,7 @@ class WebViewRenderer extends WebRenderer {
                         return false;
                     }
 
-                    mController.onUrlLongClick(url);
+                    mController.onUrlLongClick(url, hitTestResult.getType());
                     return true;
                 }
 
