@@ -9,4 +9,4 @@ ADB Idea: A useful plugin for working with android apps: https://github.com/pbre
 
 ## Incrementing the patch number
 
-Before and after each feature landing be sure to increment the versionPatch number within build.gradle. This number should be reset to zero after a minor or major version bump (typically during a release). The patch number is reported to crashlytics and can help pinpoint what commits caused a crash, and to the beta community.
+Before each release be sure to increment the versionPatch number within build.gradle. This number should be reset to zero after a minor or major version bump (typically during a release). The patch number is reported to crashlytics and can help pinpoint what commits caused a crash, and to the beta community.
