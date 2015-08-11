@@ -26,6 +26,17 @@ If you get an error about similar to:
 
 Try uninstalling the application which already exists on your plugged in device.
 
+##Telling getlocalization.com about new strings
+
+1. Periodically upload the file `./Application/LinkBubble/src/main/res/values/strings.xml` to [getlocalization.com](https://www.getlocalization.com/LinkBubble/files/).  getlocalization.com will determine which strings are new
+2. When prompted on getlocalization.com, press the mark for retranslation (or keep existing) for changed strings.
+
+##Getting new translated strings from getlocalization.com
+
+1. Run `babel-node scripts/updateTranslations.js username password` to pull down the translated xml files.
+2. Commit and push your change.
+
+
 ##ADB
 
 If you don't have `adb` in your path add it to your `~/.bash_profile` or similar file:
