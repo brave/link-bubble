@@ -175,7 +175,7 @@ public class MainApplication extends Application {
                 String message = context.getResources().getQuantityString(R.plurals.restore_tabs_from_previous_session, urlCount, urlCount);
                 Prompt.show(message,
                         context.getResources().getString(android.R.string.ok),
-                        Prompt.LENGTH_SHORT,
+                        Prompt.LENGTH_LONG,
                         new Prompt.OnPromptEventListener() {
 
                     boolean mOnActionClicked = false;
