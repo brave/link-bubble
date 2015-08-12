@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.http.SslError;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -23,6 +24,7 @@ import android.webkit.GeolocationPermissions;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -497,6 +499,13 @@ class WebViewRenderer extends WebRenderer {
 
 
     WebChromeClient mWebChromeClient = new WebChromeClient() {
+        @Override
+        public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback,
+                                         FileChooserParams fileChooserParams) {
+            MainController.get().startFileBrowser(fileChooserParams.getAcceptTypes(), filePathCallback);
+            return true;
+        }
+
         @Override
         public void onReceivedTitle(WebView webView, String title) {
             mController.onReceivedTitle(webView.getUrl(), title);

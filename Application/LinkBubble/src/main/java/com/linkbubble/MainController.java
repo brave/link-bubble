@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.webkit.ValueCallback;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -882,6 +883,11 @@ public class MainController implements Choreographer.FrameCallback {
                 mBubbleDraggable.switchToExpandedView();
             }
         }
+    }
+
+    public void startFileBrowser(String[] acceptTypes, ValueCallback<Uri[]> filePathCallback) {
+        MainApplication.postEvent(mContext,
+                new ExpandedActivity.ShowFileBrowserEvent(acceptTypes, filePathCallback));
     }
 
     public boolean closeTab(int notificationId) {
