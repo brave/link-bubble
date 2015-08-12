@@ -134,7 +134,9 @@ public class Prompt {
                 new SwipeDismissTouchListener.DismissCallbacks() {
                     @Override
                     public boolean canDismiss(Object token) {
+                        // If the user taps, start the delay over for a long length period
                         mHideHandler.removeCallbacks(mHideRunnable);
+                        mHideHandler.postDelayed(mHideRunnable, Prompt.LENGTH_LONG);
                         return true;
                     }
 
