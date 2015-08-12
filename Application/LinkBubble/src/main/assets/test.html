@@ -62,15 +62,15 @@ window.addEventListener('load', function() {
   addLink.addEventListener('click', function(e) {
     e.preventDefault();
     var newSelect = document.createElement('form');
-    newSelect.innerHTML = `<select name="cars">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="fiat">Fiat</option>
-        <option value="audi">Audi</option>
-      </select>
-      <br>
-      <a class="remove-select" href="#"> Remove only select</a> | <a class="remove-select-form" href="#"> Remove select wrapper</a>
-      <br><br>`
+    newSelect.innerHTML = '<select name="cars">\
+        <option value="volvo">Volvo</option>\
+        <option value="saab">Saab</option>\
+        <option value="fiat">Fiat</option>\
+        <option value="audi">Audi</option>\
+      </select>\
+      <br>\
+      <a class="remove-select" href="#"> Remove only select</a> | <a class="remove-select-form" href="#"> Remove select wrapper</a>\
+      <br><br>';
     selectContainer.appendChild(newSelect);
   });
 
