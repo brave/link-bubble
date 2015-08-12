@@ -242,7 +242,6 @@ public class ExpandedActivity extends Activity {
             }
             mFilePathCallback.onReceiveValue(results);
             mFilePathCallback = null;
-            registerForBus();
             MainController.get().switchToExpandedView();
         }
     }
@@ -285,29 +284,38 @@ public class ExpandedActivity extends Activity {
         }
     }
 
-    void showFileBrowser(String[] acceptTypes, ValueCallback<Uri[]> filePathCallback) {
-        // For some reason startActivityForResult will not work when the Otto bus is in use.
-        // Unregistering it and restoring it after the started activity returns makes it work.
-        unregisterForBus();
+    void showFileBrowser(final String[] acceptTypes, ValueCallback<Uri[]> filePathCallback) {
         MainController.get().switchToBubbleView();
         mFilePathCallback = filePathCallback;
-        Intent i = new Intent(Intent.ACTION_GET_CONTENT);
-        i.addCategory(Intent.CATEGORY_OPENABLE);
 
-        // Android intents wants mime types, filepickers can specify
-        // mime types or file types, filter out the file types.
-        ArrayList<String> filteredList = new ArrayList<>();
-        for (String acceptType : acceptTypes) {
-            if (acceptType.contains("/")) {
-                filteredList.add(acceptType);
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+                        i.addCategory(Intent.CATEGORY_OPENABLE);
+
+                        // Android intents wants mime types, filepickers can specify
+                        // mime types or file types, filter out the file types.
+                        ArrayList<String> filteredList = new ArrayList<>();
+                        for (String acceptType : acceptTypes) {
+                            if (acceptType.contains("/")) {
+                                filteredList.add(acceptType);
+                            }
+                        }
+                        if (filteredList.size() == 0) {
+                            i.setType("*/*");
+                        } else {
+                            i.setType(StringUtil.join(filteredList, ","));
+                        }
+                        startActivityForResult(Intent.createChooser(i, "File Chooser"), FILECHOOSER_RESULTCODE);
+                    }
+                });
             }
-        }
-        if (filteredList.size() == 0) {
-            i.setType("*/*");
-        } else {
-            i.setType(StringUtil.join(filteredList, ","));
-        }
-        startActivityForResult(Intent.createChooser(i, "File Chooser"), FILECHOOSER_RESULTCODE);
+        };
+        new Thread(runnable).start();
     }
 
     void delayedMinimize() {
