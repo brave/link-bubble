@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.util.Base64;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
@@ -84,13 +85,24 @@ public class DownloadImage {
         File imagePath;
         protected Boolean doInBackground(String... urls) {
             try {
-                URL url = new URL(urls[0]);
-                InputStream is = (InputStream) url.getContent();
-                byte[] buffer = new byte[8192];
-                int bytesRead;
+                byte[] buffer;
                 ByteArrayOutputStream output = new ByteArrayOutputStream();
-                while ((bytesRead = is.read(buffer)) != -1) {
-                    output.write(buffer, 0, bytesRead);
+
+                // If the URL is a data url we need to decode it.
+                if (URLUtil.isDataUrl(urls[0])) {
+                    String[] parts = urls[0].split("base64,");
+                    String encoded = parts[1];
+                    buffer = Base64.decode(encoded, Base64.DEFAULT);
+                    output.write(buffer, 0, buffer.length);
+                } else {
+                    // For a normal image download we just read the image from the URL.
+                    URL url = new URL(urls[0]);
+                    InputStream is = (InputStream) url.getContent();
+                    buffer = new byte[8192];
+                    int bytesRead;
+                    while ((bytesRead = is.read(buffer)) != -1) {
+                        output.write(buffer, 0, bytesRead);
+                    }
                 }
 
                 File path = Environment.getExternalStoragePublicDirectory(
