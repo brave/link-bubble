@@ -5,12 +5,15 @@ import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -23,6 +26,10 @@ import com.linkbubble.R;
 import com.linkbubble.util.CrashTracking;
 import com.squareup.otto.Subscribe;
 
+import org.jsoup.helper.StringUtil;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ExpandedActivity extends Activity {
@@ -36,6 +43,23 @@ public class ExpandedActivity extends Activity {
 
     public static class MinimizeExpandedActivityEvent {};
 
+    public static class ShowFileBrowserEvent {
+        public ValueCallback<Uri[]> getFilePathCallback() {
+            return mFilePathCallback;
+        }
+
+        public String[] getAcceptTypes() {
+            return mAcceptTypes;
+        }
+
+        public ValueCallback<Uri[]> mFilePathCallback;
+        public String[] mAcceptTypes;
+        public ShowFileBrowserEvent(String[] acceptTypes, ValueCallback<Uri[]> filePathCallback) {
+            mFilePathCallback = filePathCallback;
+            mAcceptTypes = acceptTypes;
+        }
+    };
+
     public static class ExpandedActivityReadyEvent {};
     
     private boolean mIsAlive = false;
@@ -44,6 +68,9 @@ public class ExpandedActivity extends Activity {
     private final Handler mHandler = new Handler();
 
     private LinearLayout mWebRendererContainer;
+
+    private ValueCallback<Uri[]> mFilePathCallback;
+    private final static int FILECHOOSER_RESULTCODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +94,7 @@ public class ExpandedActivity extends Activity {
 
         getActionBar().hide();
 
-        MainApplication.registerForBus(this, this);
-        mRegisteredForBus = true;
+        registerForBus();
 
         FrameLayout rootView = (FrameLayout) findViewById(R.id.expanded_root);
 
@@ -128,10 +154,7 @@ public class ExpandedActivity extends Activity {
             sInstance = null;
         }
 
-        if (mRegisteredForBus) {
-            MainApplication.unregisterForBus(this, this);
-            mRegisteredForBus = false;
-        }
+        unregisterForBus();
     }
 
     @Override
@@ -192,6 +215,37 @@ public class ExpandedActivity extends Activity {
         delayedMinimize();
     }
 
+    protected void registerForBus() {
+      MainApplication.registerForBus(this, this);
+      mRegisteredForBus = true;
+    }
+
+    protected void unregisterForBus() {
+      if (mRegisteredForBus) {
+        MainApplication.unregisterForBus(this, this);
+        mRegisteredForBus = false;
+      }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        // check that the response is a good one
+        if (requestCode == FILECHOOSER_RESULTCODE) {
+            Uri[] results = new Uri[0];
+            if(resultCode==Activity.RESULT_OK) {
+                if (intent != null) {
+                    String dataString = intent.getDataString();
+                    if (dataString != null) {
+                        results = new Uri[]{Uri.parse(dataString)};
+                    }
+                }
+            }
+            mFilePathCallback.onReceiveValue(results);
+            mFilePathCallback = null;
+            MainController.get().switchToExpandedView();
+        }
+    }
+
     void minimize() {
         if (mIsAlive == false) {
             return;
@@ -230,6 +284,40 @@ public class ExpandedActivity extends Activity {
         }
     }
 
+    void showFileBrowser(final String[] acceptTypes, ValueCallback<Uri[]> filePathCallback) {
+        MainController.get().switchToBubbleView();
+        mFilePathCallback = filePathCallback;
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+                        i.addCategory(Intent.CATEGORY_OPENABLE);
+
+                        // Android intents wants mime types, filepickers can specify
+                        // mime types or file types, filter out the file types.
+                        ArrayList<String> filteredList = new ArrayList<>();
+                        for (String acceptType : acceptTypes) {
+                            if (acceptType.contains("/")) {
+                                filteredList.add(acceptType);
+                            }
+                        }
+                        if (filteredList.size() == 0) {
+                            i.setType("*/*");
+                        } else {
+                            i.setType(StringUtil.join(filteredList, ","));
+                        }
+                        startActivityForResult(Intent.createChooser(i, "File Chooser"), FILECHOOSER_RESULTCODE);
+                    }
+                });
+            }
+        };
+        new Thread(runnable).start();
+    }
+
     void delayedMinimize() {
         // Kill the activity to ensure it is not alive in the event a link is intercepted,
         // thus displaying the ugly UI for a few frames
@@ -262,6 +350,12 @@ public class ExpandedActivity extends Activity {
     @Subscribe
     public void onMinimizeExpandedActivity(MinimizeExpandedActivityEvent e) {
         minimize();
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onShowFileBrowserEvent(ShowFileBrowserEvent e) {
+        showFileBrowser(e.getAcceptTypes(), e.getFilePathCallback());
     }
 
     @SuppressWarnings("unused")
