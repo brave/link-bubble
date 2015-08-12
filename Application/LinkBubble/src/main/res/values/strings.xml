@@ -179,7 +179,7 @@
     <string name="long_press_unsupported_default_browser">Unable to display this item. Open link in %1$s?</string>
     <string name="long_press_unsupported_no_default_browser">Unable to display this item. Open link in a browser.</string>
     <string name="unsupported_scheme_default_browser">Link type currently not supported. Open web page in %1$s?</string>
-    <string name="unsupported_scheme_no_default_browser">Link type currently not supported. Open the link a browser.</string>
+    <string name="unsupported_scheme_no_default_browser">Link type currently not supported. Open the link in a browser.</string>
     <string name="unsupported_scheme">Link type currently not supported.</string>
     <string name="unsupported_drop_down_default_browser">Unable to interact with this item. Open in %1$s?</string>
     <string name="unsupported_drop_down_no_default_browser">Unable to interact with this item. Open link in a browser.</string>
