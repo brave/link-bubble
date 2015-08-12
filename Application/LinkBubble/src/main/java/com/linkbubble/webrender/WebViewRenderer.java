@@ -101,6 +101,7 @@ class WebViewRenderer extends WebRenderer {
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setDomStorageEnabled(true);
         webSettings.setGeolocationEnabled(true);
         webSettings.setSupportZoom(true);
         webSettings.setTextZoom(Settings.get().getWebViewTextZoom());
