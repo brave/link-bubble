@@ -15,6 +15,7 @@
     <string name="cancel">Cancelar</string>
 
     <string name="action_ok">OK</string>
+    <string name="action_open">Open</string>
     <string name="action_remove">Remover</string>
     <string name="action_cancel">Cancelar</string>
     <string name="action_clear_data">Limpar Informação</string>
@@ -23,10 +24,11 @@
     <string name="action_help">Ajuda</string>
     <string name="action_reload_page">Recarregar</string>
     <string name="action_open_in_browser">Abrir no %1$s</string>
-    <string name="action_request_desktop_site">Request desktop site</string>
+    <string name="action_request_desktop_site">Solicitar site para desktop</string>
     <string name="action_open_in_new_bubble">Abrir em uma nova bolha</string>
     <string name="action_upgrade_to_pro">★Upgrade para versão Pro★</string>
     <string name="action_copy_to_clipboard">Copiar Link</string>
+    <string name="action_save_image">Save image</string>
     <string name="action_share">Compartilhar</string>
     <string name="action_close_all">Fechar todas</string>
     <string name="action_close_tab">Fechar bolha</string>
@@ -36,6 +38,10 @@
     <string name="action_no_recommended">Não (recomendado)</string>
     <string name="share_via">Compartilhar via...</string>
     <string name="not_set">Não selecionado</string>
+
+    <string name="error_saving_image">Error saving image.</string>
+    <string name="image_saved">Image downloaded.</string>
+    <string name="notice_download_started">Download started.</string>
 
     <string name="warning">Atenção!</string>
     <string name="untrusted_certificate">O certificado at %1$s não é confiável.</string>
@@ -50,13 +56,12 @@
     <string name="upgrade_article_mode_wear">Deseja visualizar links no Android Wear através do modo leitura?</string>
     <string name="upgrade_theme">Deseja usar um tema diferente?</string>
     <string name="upgrade_theme_toolbar">Deseja combinar o tema da barra de tarefas com a cor dos sites visitados?</string>
-    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
-        Load multiple tabs at once.\n •
-        Change theme.\n •
-        Use Reading Mode.\n •
-        Android Wear support.\n •
-        Support us as we develop this app :)
-        </string>
+    <string name="upgrade_from_settings_summary">Atualize o Link Bubble Pro para ter isso e muito mais, incluindo:\n •
+Carregar múltiplas abas simultâneas.\n •
+Mudar o tema.\n •
+Usar o Modo Leitura.\n •
+Suporte ao Android Wear.\n •
+Nos apoiar no desenvolvimento deste app :)</string>
 
     <string name="undo_close_tab_title">Fechado %1$s</string>
     <string name="undo_close_tab_no_title">Aba fechada</string>
@@ -113,7 +118,7 @@ versão grátis do Link Bubble. Atualizar pra versão Pro?</string>
     <string name="preference_theme_dark_no_color">Escuro + cor neutra</string>
     <string name="preference_theme_toolbar_title">Colorir barra de ferramentas</string>
     <string name="preference_theme_toolbar_summary">Para combinar com uma cor de destaque ou tema de um site.</string>
-    <string name="preference_article_mode_title">Reading Mode</string>
+    <string name="preference_article_mode_title">Modo Leitura</string>
     <string name="preference_reading_mode_on_wear_title">Modo de leitura no Android Wear.</string>
     <string name="preference_article_mode_summary">Ativado via botão na barra de ações</string>
     <string name="preference_webview_text_zoom_title">Ampliar texto</string>
@@ -236,7 +241,7 @@ versão grátis do Link Bubble. Atualizar pra versão Pro?</string>
             Link Bubble is a browser, and Android browsers have a long since established standard of
             either going back in the URL stack, or if no such stack exists, closing the current page when the Back button is pressed.
             Link Bubble follows this standard.]]></string>
-    <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble isn\'t intercepting links!]]></string>
+    <string name="faq_app_internal_browser_question"><![CDATA[O Link Bubble não está interceptando links!]]></string>
     <string name="faq_app_internal_browser_answer"><![CDATA[There are 3 causes of this:<br/>
             1). A browser other thank Link Bubble is set as your default system browser. See the
             \"Set default system browser\" option in Link Bubble\'s Settings to change this.<br/>
@@ -301,17 +306,9 @@ alternativos como o GeckoView do Firefox e Chromium que serão investigados no f
  ser mais específico (nem para estimar uma data).<br/><br/>A realidade é que, quando as estimativas são dadas, as 
 pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por quaisquer motivos.]]></string>
     <string name="faq_close_quickly_question">Como eu posso fazer o Link Bubble parar de funcionar?</string>
-    <string name="faq_close_quickly_answer">Swipe from the top of the screen to open the notifications pane and click the \"Link Bubble\" notification.</string>
+    <string name="faq_close_quickly_answer">Deslize a partir topo da tela para abrir o painel de notificações e clique em \"Link Bubble\".</string>
     <string name="faq_change_default_browser_question">Como eu posso remover o Link Bubble como navegador principal?</string>
     <string name="faq_change_default_browser_answer">Configurações do Sistema -> Apps -> Baixados -> Link Bubble -> Apagar padrão.</string>
-    <string name="faq_pro_trial_question">Como funciona a versão teste do Link Bubble Pro?</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
-        Pro\'s premium features.<br/>
-        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
-        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
-        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
-        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
-        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
     <string name="faq_report_bug_question">Relate um bug</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -325,8 +322,6 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
 
     <string name="activity_resolver_use_always">Sempre</string>
     <string name="activity_resolver_use_once">Somente uma vez</string>
-
-    <string name="trial_time_on_click">Restando %1$s das 24 horas de teste do Link Bubble Pro.</string>
 
     <string name="credits_title">Créditos do Link Bubble</string>
     <string name="credits_name">Link Bubble</string>
@@ -363,12 +358,12 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
 
     <string name="pro_application_name">Link Bubble Pro</string>
     <string name="pro_status_checking_license">Checando licença...</string>
-	<string name="pro_status_buy">Unable to verify license.\n\nSome causes of this problem include:\n • There is no Internet connection.\n • This application has been tampered
-                            with.\n\nCheck your Internet connection, and if necessary, try installing the app from the Play Store again.</string>
+	<string name="pro_status_buy">Erro ao verificar licença.\n\nAlgumas causas podem ser:\n • Não há conexão com a internet.\n • Este aplicativo foi adulterado.
+\n\nVerifique sua conexão, se necessário, tente instalar o aplicativo pela Play Store novamente.</string>
     <string name="pro_status_verified">Compra do Link Bubble Pro confirmada!\n\nMuito obrigado por nos apoiar no desenvolvimento deste projeto.</string>
     <string name="pro_status_unlicensed">A Google Play está relatando que esta cópia do Link Bubble Pro não está licenciada.\n\nSupondo que você realmente comprou o Link Bubble Pro, a principal causa é você estar usando um endereço de e-mail diferente do da compra.</string>
 
-    <string name="pro_keep_installed">Note: you don\'t need to load Link Bubble Pro again, but you do need to keep it installed for verification purposes.\n\nThis app will be hidden throughout the system so it doesn\'t appear in your launcher(s).</string>
+    <string name="pro_keep_installed">Nota: você não precisa abrir o Link Bubble Pro de novo, mas ele deve permanecer instalado para verificações periódicas.\n\nEste app será ocultado da gaveta do seu launcher.</string>
 
     <string name="pro_action_load_app">Carregar Link Bubble</string>
     <string name="pro_action_install_app">Instalar Link Bubble</string>
@@ -402,11 +397,10 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     </string>
 
     <string name="welcome_page_title">Bem vindo ao Link Bubble!</string>
-    <string name="welcome_page_trial_notice">Note: For the first 24 hours after first installing Link Bubble, you will have access to all of Link Bubble Pro\'s premium features as a one-time trial.</string>
     <string name="welcome_page_intro_title">Como ele funciona?</string>
     <string name="welcome_page_intro_point_1">Clique num link em um app.</string>
-    <string name="welcome_page_intro_point_2">A bubble will appear on the edge of the screen and the link will begin loading in the background. As soon as the page is loaded, it will be displayed.</string>
-    <string name="welcome_page_intro_end">It\'s that simple! With Link Bubble, you can keep using your current app rather than wasting your time watching links redirect and waiting for pages to load. What\'s not to love about that?</string>
+    <string name="welcome_page_intro_point_2">Uma bolha irá aparecer no canto da tela e o link será carregado em segundo plano. Assim que a página for carregada, será exibida.</string>
+    <string name="welcome_page_intro_end">É simples! Com o Link Bubble, você pode continuar o que está fazendo ao invés de ficar olhando sua página carregar. Como não amar isso?</string>
     <string name="welcome_page_more_title">Me mostre mais!</string>
     <string name="welcome_page_more_pocket_start">Você também pode compartilhar rapidamente um link ou adicionar em apps como o Pocket:</string>
     <string name="welcome_page_more_pocket_end">Parece útil e divertido não é mesmo?</string>
@@ -418,7 +412,7 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="welcome_page_pro_point_2">Carregar links de todos os apps.</string>
     <string name="welcome_page_pro_point_3">Ajude a garantir que eu possa escrever mais apps no futuro :)</string>
     <string name="welcome_page_pro_end">Obrigado, e aproveite o app!</string>
-    <string name="welcome_page_ps">PS. To close this bubble, either press the Back button or long press the bubble and flick it onto the Close bubble.</string>
+    <string name="welcome_page_ps">PS. Para fechar esta bolha, pressione o botão Voltar ou aperte e segure na bolha e arraste até a bolha Fechar.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Link já carregado. Ignorando...</string>
 

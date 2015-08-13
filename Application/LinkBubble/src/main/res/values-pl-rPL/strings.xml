@@ -15,6 +15,7 @@
     <string name="cancel">Anuluj</string>
 
     <string name="action_ok">OK</string>
+    <string name="action_open">Open</string>
     <string name="action_remove">Usuń</string>
     <string name="action_cancel">Anuluj</string>
     <string name="action_clear_data">Usuń dane</string>
@@ -27,6 +28,7 @@
     <string name="action_open_in_new_bubble">Otwórz w nowym dymku</string>
     <string name="action_upgrade_to_pro">★Kup wersję Pro★</string>
     <string name="action_copy_to_clipboard">Skopiuj link</string>
+    <string name="action_save_image">Save image</string>
     <string name="action_share">Udostępnij</string>
     <string name="action_close_all">Zamknij wszystko</string>
     <string name="action_close_tab">Zamknij dymek</string>
@@ -36,6 +38,10 @@
     <string name="action_no_recommended">Nie (zalecane)</string>
     <string name="share_via">Udostępnij przez...</string>
     <string name="not_set">Nie ustawiono</string>
+
+    <string name="error_saving_image">Error saving image.</string>
+    <string name="image_saved">Image downloaded.</string>
+    <string name="notice_download_started">Download started.</string>
 
     <string name="warning">Uwaga!</string>
     <string name="untrusted_certificate">Certyfikat z %1$s nie jest zaufany. Czy kontynuować?</string>
@@ -276,13 +282,6 @@ używany w Androidzie WebView jest napisany w taki sposób, że elementy &lt;sel
     <string name="faq_close_quickly_answer">Ściągnij w dół pasek powiadomień i dotknij powiadomienia \"Link Bubble\".</string>
     <string name="faq_change_default_browser_question">Jak mogę przestać używać Link Bubble jako domyślnej przeglądarki?</string>
     <string name="faq_change_default_browser_answer">Ustawienia (systemu) -> Aplikacje -> Pobrane -> Link Bubble -> Wyczyść domyślne.</string>
-    <string name="faq_pro_trial_question">Jakie są ograniczenia darmowej wersji Link Bubble?</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• Przez pierwsze 24 godziny od zainstalowania aplikacji Link Bubble, każdy użytkownik będzie miał dostęp do wszystkich funkcji Pro.<br/>
-• Podczas tego jednorazowego okresu próbnego, funkcje Pro będą dostępne na wszystkich Twoich urządzeniach.<br/>
-• Na ekranie głównym Link Bubble wyświetlany będzie licznik, informujący o tym, ile czasu pozostało do zakończenia okresu próbnego.<br/>
-• Użytkownicy, którzy zainstalowali Link Bubble zanim opublikowałem wersję 1.1, uzyskają dostęp do okresu próbnego.<br/>
-• Ze względu na konieczność weryfikacji, okres próbny Link Bubble jest powiązany z Twoim adresem e-mail. Jeśli nie zostanie wykryty żaden adres e-mail, nie będzie możliwe skorzystanie z okresu próbnego.<br/>
-• Przykro mi, ale okresu próbnego nie można zresetować. Darmowy dostęp do funkcji Link Bubble Pro będzie możliwy wyłącznie przez pierwsze 24 godziny po instalacji.]]></string>
     <string name="faq_report_bug_question">Zgłoś błąd</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -296,8 +295,6 @@ używany w Androidzie WebView jest napisany w taki sposób, że elementy &lt;sel
 
     <string name="activity_resolver_use_always">Zawsze</string>
     <string name="activity_resolver_use_once">Tylko raz</string>
-
-    <string name="trial_time_on_click">Z Twojego 24-godzinnego okresu próbnego Link Bubble Pro pozostało: %1$s.</string>
 
     <string name="credits_title">Twórcy Link Bubble</string>
     <string name="credits_name">Link Bubble</string>
@@ -367,7 +364,6 @@ Usunięcie obecnych w darmowej wersji różnorakich zachęt do zakupu wersji Pro
 Wsparcie twórców w rozwijaniu nowych, wspaniałych aplikacji :)</string>
 
     <string name="welcome_page_title">Witaj w Link Bubble!</string>
-    <string name="welcome_page_trial_notice">Uwaga: Przez pierwsze 24 godziny od zainstalowania aplikacji Link Bubble, będziesz mieć dostęp do wszystkich funkcji Pro w ramach jednorazowego okresu próbnego. </string>
     <string name="welcome_page_intro_title">Jak to działa?</string>
     <string name="welcome_page_intro_point_1">Kliknij link w dowolnej aplikacji.</string>
     <string name="welcome_page_intro_point_2">Na krawędzi ekranu pojawi się dymek, a strona zacznie wczytywać się w tle. Kiedy załaduje się w całości, będzie ją można wyświetlić.</string>

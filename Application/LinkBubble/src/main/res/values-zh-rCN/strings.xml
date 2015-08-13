@@ -15,6 +15,7 @@
     <string name="cancel">取消</string>
 
     <string name="action_ok">确定</string>
+    <string name="action_open">Open</string>
     <string name="action_remove">删除</string>
     <string name="action_cancel">取消</string>
     <string name="action_clear_data">清除数据</string>
@@ -27,6 +28,7 @@
     <string name="action_open_in_new_bubble">在新的泡泡中打开</string>
     <string name="action_upgrade_to_pro">★升级到专业版★</string>
     <string name="action_copy_to_clipboard">复制链接</string>
+    <string name="action_save_image">Save image</string>
     <string name="action_share">分享</string>
     <string name="action_close_all">全部关闭</string>
     <string name="action_close_tab">关闭泡泡</string>
@@ -36,6 +38,10 @@
     <string name="action_no_recommended">否（推荐）</string>
     <string name="share_via">分享页面，通过</string>
     <string name="not_set">尚未设置</string>
+
+    <string name="error_saving_image">Error saving image.</string>
+    <string name="image_saved">Image downloaded.</string>
+    <string name="notice_download_started">Download started.</string>
 
     <string name="warning">警告！</string>
     <string name="untrusted_certificate">%1$s 的证书不被信任。确定仍然继续吗？</string>
@@ -281,13 +287,6 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="faq_close_quickly_answer">从屏幕顶部下拉打开通知面板，点击 Link Bubble 通知。</string>
     <string name="faq_change_default_browser_question">如何取消 Link Bubble 作为默认浏览器的设置？</string>
     <string name="faq_change_default_browser_answer">系统设置 -> 应用 -> 已下载 -> Link Bubble -> 清除默认设置。</string>
-    <string name="faq_pro_trial_question">Link Bubble 专业版试用期是如何运作的？</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• 在安装 Link Bubble 后的头一天内，未购买 Link Bubble 专业版的用户也能享受专业版的特性。<br/>
-• 在首次试用期内，您可以在您的设备上享受所有专业版的特性。<br/>
-• 在 Link Bubble 主屏的左上角将会显示试用期剩余的可用时间。<br/>
-• 所有在升级到 Link Bubble 1.1 之前使用的用户都有资格享用试用期。<br/>
-• 为了对身份进行校验，专业版试用期与您的邮箱会进行关联。如果在设备上未找到邮箱地址，那么您将无法试用专业版。<br/>
-• 试用期仅能享受一次，请在获得专业版试用资格后的一天内尽情享用专业版的特性吧。]]></string>
     <string name="faq_report_bug_question">回报错误</string>
     <string name="faq_report_bug_answer"><![CDATA[电子邮箱]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -301,8 +300,6 @@ Link Bubble 亦遵循该标准。]]></string>
 
     <string name="activity_resolver_use_always">总是</string>
     <string name="activity_resolver_use_once">仅一次</string>
-
-    <string name="trial_time_on_click">您的 24 小时专业版试用期还有 %1$s 到期。</string>
 
     <string name="credits_title">关于 Link Bubble</string>
     <string name="credits_name">链接泡泡</string>
@@ -372,7 +369,6 @@ Link Bubble 亦遵循该标准。]]></string>
 • 支持我让我们开发更多优秀应用 :)</string>
 
     <string name="welcome_page_title">欢迎使用 Link Bubble！</string>
-    <string name="welcome_page_trial_notice">注意：在第一次安装 Link Bubble 后的一整天内，你将有一次享受专业版的高级功能的体验。</string>
     <string name="welcome_page_intro_title">它是如何运作的？</string>
     <string name="welcome_page_intro_point_1">在一个应用中点击链接。</string>
     <string name="welcome_page_intro_point_2">泡泡将出现在屏幕边缘并与后台加载。在加载完成后，泡泡自动会显示。</string>

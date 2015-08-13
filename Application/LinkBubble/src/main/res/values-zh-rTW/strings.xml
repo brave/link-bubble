@@ -15,6 +15,7 @@
     <string name="cancel">取消</string>
 
     <string name="action_ok">確定</string>
+    <string name="action_open">Open</string>
     <string name="action_remove">移除</string>
     <string name="action_cancel">取消</string>
     <string name="action_clear_data">清除資料</string>
@@ -23,10 +24,11 @@
     <string name="action_help">說明</string>
     <string name="action_reload_page">重新載入</string>
     <string name="action_open_in_browser">以 %1$s 開啟</string>
-    <string name="action_request_desktop_site">Request desktop site</string>
+    <string name="action_request_desktop_site">使用桌面版網站</string>
     <string name="action_open_in_new_bubble">在新的氣泡中開啟</string>
     <string name="action_upgrade_to_pro">★升級至專業版★</string>
     <string name="action_copy_to_clipboard">複製連結</string>
+    <string name="action_save_image">Save image</string>
     <string name="action_share">分享</string>
     <string name="action_close_all">全部關閉</string>
     <string name="action_close_tab">關閉氣泡</string>
@@ -36,6 +38,10 @@
     <string name="action_no_recommended">取消 (建議選項)</string>
     <string name="share_via">分享至…</string>
     <string name="not_set">尚未設定</string>
+
+    <string name="error_saving_image">Error saving image.</string>
+    <string name="image_saved">Image downloaded.</string>
+    <string name="notice_download_started">Download started.</string>
 
     <string name="warning">警告！</string>
     <string name="untrusted_certificate">%1$s 的憑證有安全疑慮。要繼續嗎？</string>
@@ -114,7 +120,7 @@
     <string name="preference_theme_dark_no_color">黑色 + 無色彩</string>
     <string name="preference_theme_toolbar_title">工具列色彩</string>
     <string name="preference_theme_toolbar_summary">套用網站的主題色彩或網站圖示的顏色</string>
-    <string name="preference_article_mode_title">Reading Mode</string>
+    <string name="preference_article_mode_title">閱讀模式</string>
     <string name="preference_reading_mode_on_wear_title">Wear 裝置的閱讀模式</string>
     <string name="preference_article_mode_summary">使用動作欄的按鈕切換</string>
     <string name="preference_webview_text_zoom_title">文字縮放</string>
@@ -243,11 +249,10 @@ Link Bubble 亦遵循此標準。]]></string>
 <br/><br/>請注意：像 Chrome 這類的瀏覽器都會在程式中寫死，只能使用它們本身來載入網頁，故 Link Bubble 無法讀取在其他瀏覽器中點擊的連結。
 ]]></string>
     <string name="faq_article_mode_question">我要如何使用閱讀模式？為什麼有些連結沒辦法用？</string>
-    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
-            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
-            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
-            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
-            there is little than can be done here.]]></string>
+    <string name="faq_article_mode_answer"><![CDATA[首先，請確定閱讀模式是啟用的 (設定 -> 程式控制 / 其他選項&#8230; -> 閱讀模式)。<br/><br/>
+完成之後，當閱讀模式可在目前分頁使用時，操作欄上會顯示閱讀模式的按鈕 (就在分享按鈕旁邊)。
+該按鈕只會在連結載入完畢後，且 Link Bubble 成功地摘錄出文章內容時出現。<br/><br/>
+請注意：在網頁上摘錄內容的過程是太不可靠的，且不見得 100% 準確。對於動態甚至千變萬化的網頁而言，只能盡量做到這樣了。]]></string>
     <string name="faq_future_features_question">你會加入書籤、收藏及套件之類的功能嗎？</string>
     <string name="faq_future_features_answer">這很難說，不過目前 Link Bubble 想要先把程式內載入、閱讀的工作做到最好。</string>
     <string name="faq_translations_question">我可以協助翻譯這個 app 嗎？</string>
@@ -279,13 +284,6 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="faq_close_quickly_answer">將螢幕上方的通知面板下拉，點擊 "Link Bubble" 那項即可。</string>
     <string name="faq_change_default_browser_question">怎麼移除 Link Bubble 本身的預設瀏覽器設定？</string>
     <string name="faq_change_default_browser_answer">系統設定 -> 應用程式 -> 已下載 -> Link Bubble -> 清除預設值。</string>
-    <string name="faq_pro_trial_question">Link Bubble Pro 的試用期是怎麼算的？</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• 在首次安裝 Link Bubble 的前 24 小時，非 Link Bubble Pro 的用戶可以存取所有專業版功能的權限。<br/>
-• 在這一次性的試用期間內，Link Bubble Pro 的進階功能可在您的所有裝置上使用。<br/>
-• Link Bubble 主畫面的左上角會顯示計時器，告訴您還剩多少時間可以試用。<br/>
-• 在 Link Bubble 1.1 版更新之前安裝的用戶同樣可以試用。<br/>
-• 由於驗證需要，專業版試用會被連結至您的電子郵件位置。若在該裝置上找不到電子郵件位置，將無法試用。<br/>
-• 很遺憾，試用期限無法重設。請在安裝 Link Bubble 後的 24 小時內盡情享受專業版的所有功能。]]></string>
     <string name="faq_report_bug_question">回報 bug</string>
     <string name="faq_report_bug_answer"><![CDATA[電子郵件]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -299,8 +297,6 @@ Link Bubble 亦遵循此標準。]]></string>
 
     <string name="activity_resolver_use_always">一律採用</string>
     <string name="activity_resolver_use_once">僅限一次</string>
-
-    <string name="trial_time_on_click">您的 Link Bubble Pro 試用期還剩下 %1$s。</string>
 
     <string name="credits_title">關於 Link Bubble</string>
     <string name="credits_name">Link Bubble</string>
@@ -370,7 +366,6 @@ Link Bubble 亦遵循此標準。]]></string>
 • 支持我們開發更多的 apps :)</string>
 
     <string name="welcome_page_title">歡迎使用 Link Bubble！</string>
-    <string name="welcome_page_trial_notice">請注意：在首次安裝 Link Bubble 的 24 小時內，您會擁有一次性的 Link Bubble Pro 完整功能試用權限。</string>
     <string name="welcome_page_intro_title">這是如何運作的？</string>
     <string name="welcome_page_intro_point_1">在程式中點擊一個連結。</string>
     <string name="welcome_page_intro_point_2">螢幕邊會出現一個氣泡，之後該連結會在背景載入。連結載入完畢便會顯示。</string>

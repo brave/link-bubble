@@ -15,6 +15,7 @@
     <string name="cancel">ביטול</string>
 
     <string name="action_ok">אישור</string>
+    <string name="action_open">Open</string>
     <string name="action_remove">הסרה</string>
     <string name="action_cancel">ביטול</string>
     <string name="action_clear_data">ניקוי המידע</string>
@@ -27,6 +28,7 @@
     <string name="action_open_in_new_bubble">פתיחה בבועה חדשה</string>
     <string name="action_upgrade_to_pro">★שדרוג לפרו★</string>
     <string name="action_copy_to_clipboard">העתקת קישור</string>
+    <string name="action_save_image">Save image</string>
     <string name="action_share">שיתוף</string>
     <string name="action_close_all">סגירת הכל</string>
     <string name="action_close_tab">סגירת הבועה</string>
@@ -36,6 +38,10 @@
     <string name="action_no_recommended">No (recommended)</string>
     <string name="share_via">שיתוף באמצעות...</string>
     <string name="not_set">לא נקבע</string>
+
+    <string name="error_saving_image">Error saving image.</string>
+    <string name="image_saved">Image downloaded.</string>
+    <string name="notice_download_started">Download started.</string>
 
     <string name="warning">אזהרה!</string>
     <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
@@ -308,14 +314,6 @@
     <string name="faq_close_quickly_answer">Swipe from the top of the screen to open the notifications pane and click the \"Link Bubble\" notification.</string>
     <string name="faq_change_default_browser_question">How can I remove Link Bubble as the default browser?</string>
     <string name="faq_change_default_browser_answer">System Settings -> Apps -> Downloaded -> Link Bubble -> Clear defaults.</string>
-    <string name="faq_pro_trial_question">How does the Link Bubble Pro trial work?</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
-        Pro\'s premium features.<br/>
-        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
-        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
-        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
-        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
-        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
     <string name="faq_report_bug_question">Report a bug</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -329,8 +327,6 @@
 
     <string name="activity_resolver_use_always">Always</string>
     <string name="activity_resolver_use_once">Just once</string>
-
-    <string name="trial_time_on_click">%1$s remaining of your 24 hour Link Bubble Pro trial.</string>
 
     <string name="credits_title">Link Bubble Credits</string>
     <string name="credits_name">Link Bubble</string>
@@ -408,7 +404,6 @@
     </string>
 
     <string name="welcome_page_title">ברוך הבא ל-Link Bubble!</string>
-    <string name="welcome_page_trial_notice">Note: For the first 24 hours after first installing Link Bubble, you will have access to all of Link Bubble Pro\'s premium features as a one-time trial.</string>
     <string name="welcome_page_intro_title">כיצד זה עובד?</string>
     <string name="welcome_page_intro_point_1">Click a link in an app.</string>
     <string name="welcome_page_intro_point_2">A bubble will appear on the edge of the screen and the link will begin loading in the background. As soon as the page is loaded, it will be displayed.</string>

@@ -1,144 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="download_activity_label">Gestor de Transferências</string>
-    <string name="send_intent_label">Open with Link Bubble</string>
-    <string name="notification_summary">Tocar para esconder todas as bolhas</string>
-    <string name="notification_default_summary">Touch to Hide, expand to Close All</string>
-    <string name="notification_unhide_summary">Touch to Unhide, expand to Close All</string>
-    <string name="notification_action_close_all">Close All</string>
-    <string name="notification_action_hide">Hide</string>
-    <string name="share_picker_label">Menu de Partilha</string>
+    <string name="download_activity_label">Allalaadija</string>
+    <string name="send_intent_label">Ava Link Bubble-ga</string>
+    <string name="notification_summary">Koputa kõikide avatud mullide peitmiseks</string>
+    <string name="notification_default_summary">Koputa peitmiseks, laienda kõikide sulgemiseks</string>
+    <string name="notification_unhide_summary">Koputa kuvamiseks, laienda kõikide sulgemiseks</string>
+    <string name="notification_action_close_all">Sulge kõik</string>
+    <string name="notification_action_hide">Peida</string>
+    <string name="share_picker_label">Jagamisvalija</string>
 
-    <string name="yes">Sim</string>
-    <string name="no">Não</string>
-    <string name="cancel">Cancelar</string>
+    <string name="yes">Jah</string>
+    <string name="no">Ei</string>
+    <string name="cancel">Loobu</string>
 
     <string name="action_ok">OK</string>
     <string name="action_open">Open</string>
-    <string name="action_remove">Remover</string>
-    <string name="action_cancel">Cancelar</string>
-    <string name="action_clear_data">Limpar dados</string>
-    <string name="action_use_default">Usar opção por defeito</string>
-    <string name="action_settings">Definições</string>
-    <string name="action_help">Ajuda</string>
-    <string name="action_reload_page">Recarregar</string>
-    <string name="action_open_in_browser">Abrir no %1$s</string>
-    <string name="action_request_desktop_site">Request desktop site</string>
-    <string name="action_open_in_new_bubble">Abrir em nova bolha</string>
-    <string name="action_upgrade_to_pro">★Atualizar para Pro★</string>
-    <string name="action_copy_to_clipboard">Copiar ligação</string>
+    <string name="action_remove">Eemalda</string>
+    <string name="action_cancel">Loobu</string>
+    <string name="action_clear_data">Tühjenda andmed</string>
+    <string name="action_use_default">Kasuta vaikimisi</string>
+    <string name="action_settings">Seaded</string>
+    <string name="action_help">Abi</string>
+    <string name="action_reload_page">Laadi uuesti</string>
+    <string name="action_open_in_browser">Ava rakenduses %1$s</string>
+    <string name="action_request_desktop_site">Taotle töölauasaiti</string>
+    <string name="action_open_in_new_bubble">Ava uues mullis</string>
+    <string name="action_upgrade_to_pro">★Täienda Prole★</string>
+    <string name="action_copy_to_clipboard">Kopeeri link</string>
     <string name="action_save_image">Save image</string>
-    <string name="action_share">Partilhar</string>
-    <string name="action_close_all">Fechar todas</string>
-    <string name="action_close_tab">Close bubble</string>
-    <string name="action_stop">Stop</string>
-    <string name="action_undo">Undo</string>
-    <string name="action_add">Add</string>
-    <string name="action_no_recommended">No (recommended)</string>
-    <string name="share_via">Partilhar via...</string>
-    <string name="not_set">Not set</string>
+    <string name="action_share">Jaga</string>
+    <string name="action_close_all">Sulge kõik</string>
+    <string name="action_close_tab">Sulge mull</string>
+    <string name="action_stop">Peata</string>
+    <string name="action_undo">Võta tagasi</string>
+    <string name="action_add">Lisa</string>
+    <string name="action_no_recommended">Ei (soovitatav)</string>
+    <string name="share_via">Jaga rakendusega...</string>
+    <string name="not_set">Pole määratud</string>
 
     <string name="error_saving_image">Error saving image.</string>
     <string name="image_saved">Image downloaded.</string>
     <string name="notice_download_started">Download started.</string>
 
-    <string name="warning">Warning!</string>
-    <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
+    <string name="warning">Hoiatus!</string>
+    <string name="untrusted_certificate">%1$s sertifikaat pole usaldusväärne. Jätkad siiski?</string>
 
-    <string name="share_invalid_data">Link Bubble não consegue partilhar este elemento porque não é um URL válido.</string>
-    <string name="consume_activity_not_found">Unable to find application. Consider changing bubble action via Settings.</string>
-    <string name="consume_activity_security_exception">Unable to share to external application.</string>
+    <string name="share_invalid_data">Link Bubble ei ole võimeline seda üksust jagama kuna see ei ole sobiv URL.</string>
+    <string name="consume_activity_not_found">Rakendust ei leitud. Kaalu mulli tegevuse vahetamist seadetes.</string>
+    <string name="consume_activity_security_exception">Välisele rakendusele ei suudetud jagada.</string>
 
-    <string name="upgrade">Upgrade</string>
-    <string name="upgrade_to_pro">Upgrade to Pro</string>
-    <string name="upgrade_article_mode">Want to view links in Reading Mode?</string>
-    <string name="upgrade_article_mode_wear">Want to view links on Android Wear devices via Reading Mode?</string>
-    <string name="upgrade_theme">Want to use a different theme?</string>
-    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
-    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
-        Load multiple tabs at once.\n •
-        Change theme.\n •
-        Use Reading Mode.\n •
-        Android Wear support.\n •
-        Support us as we develop this app :)
-        </string>
+    <string name="upgrade">Täienda</string>
+    <string name="upgrade_to_pro">Täienda Prole</string>
+    <string name="upgrade_article_mode">Soovid vaadata linke lugemisrežiimis?</string>
+    <string name="upgrade_article_mode_wear">Soovid vaadata linke Android Wear seadmetes lugemisrežiimiga?</string>
+    <string name="upgrade_theme">Soovid kasutada teistsugust teemat?</string>
+    <string name="upgrade_theme_toolbar">Soovid muuta tööriistariba värvi, et see vastaks veebisaitide värviga?</string>
+    <string name="upgrade_from_settings_summary">Täienda Link Bubble Prole et teha neid ja muudki, sealhulgas:\n •
+laadida mitu kaarti korraga\n •
+muuta teemat\n •
+kasutada lugemisrežiimi\n •
+lubada Android Wear tugi\n •
+toetada meid selle rakenduse arendamisel :)</string>
 
-    <string name="undo_close_tab_title">Closed %1$s</string>
-    <string name="undo_close_tab_no_title">Closed tab</string>
+    <string name="undo_close_tab_title">%1$s on suletud</string>
+    <string name="undo_close_tab_no_title">Kaart on suletud</string>
 
-    <string name="pick_default_app">Select default app</string>
-    <string name="default_browser_set">Link Bubble has been set as the default browser.</string>
-    <string name="invalid_send_action">Valid link not found.</string>
-    <string name="unable_to_launch_app">Unable to launch 3rd party application.</string>
-    <string name="clear_history">Clear history</string>
+    <string name="pick_default_app">Vali vaikerakenduseks</string>
+    <string name="default_browser_set">Link Bubble on seatud vaikebrauseriks.</string>
+    <string name="invalid_send_action">Sobivat linki ei leitud.</string>
+    <string name="unable_to_launch_app">3. osapoole rakendust ei suudetud avada.</string>
+    <string name="clear_history">Tühjenda ajalugu</string>
 
-    <string name="preference_category_general">General</string>
-    <string name="preference_category_configuration">App Controls</string>
-    <string name="preference_category_configuration2">Configuration</string>
-    <string name="preference_category_browser">Browser</string>
-    <string name="preference_enabled_title">Enabled</string>
-    <string name="preference_auto_content_display_link_loaded_title">Auto expand</string>
-    <string name="preference_auto_content_display_link_loaded_summary">When any bubble has finished loading</string>
+    <string name="preference_category_general">Üldine</string>
+    <string name="preference_category_configuration">Rakenduse juhtimine</string>
+    <string name="preference_category_configuration2">Seadistus</string>
+    <string name="preference_category_browser">Brauser</string>
+    <string name="preference_enabled_title">Lubatud</string>
+    <string name="preference_auto_content_display_link_loaded_title">Automaatne laiendamine</string>
+    <string name="preference_auto_content_display_link_loaded_summary">Kui mõni mull on lõpetanud laadimise</string>
 
-    <string name="preference_left_consume_bubble_title">Left bubble</string>
-    <string name="preference_right_consume_bubble_title">Right bubble</string>
-    <string name="preference_double_tap_title">Link double tap</string>
-    <string name="preference_configure_bubble_title">Configure bubble</string>
-    <string name="preference_category_debug">Debug</string>
-    <string name="preference_default_browser">Default fallback browser</string>
-    <string name="preference_category_redirect_to_browser">Redirect to fallback browser</string>
-    <string name="preference_category_fallback_browser">Default fallback browser</string>
-    <string name="preference_category_other_apps">Other apps</string>
-    <string name="preference_default_apps_title">Default apps</string>
-    <string name="preference_default_apps_summary">Fallback browser, url-specific apps</string>
-    <string name="preference_default_apps_notice_summary">Used when one or more non-browser apps on your system can handle a
-                    URL.\n\nTap to remove a default.</string>
-    <string name="preference_default_apps_notice_no_defaults_summary">Used when one or more non-browser apps on your device can handle a URL,
-                you can configure the default app to load such links with.\n\nThe default app to use in this case is configured as
-                you load links with Link Bubble.</string>
-    <string name="preference_google_account_redirect_title">Google Account redirect</string>
-    <string name="preference_google_account_redirect_summary">Redirect accounts.google.com links to default fallback browser</string>
-    <string name="preference_set_default_browser_title">Set default system browser</string>
-    <string name="preference_set_default_browser_summary">Link Bubble must be the default system browser to work. Tap to configure.</string>
-    <string name="preference_more">More…</string>
-    <string name="preference_intercept_links_from_title">Intercept links from</string>
-    <string name="preference_intercept_links_from_note">Note: The restriction of intercepting links from just one app only exists with the
-        free version of Link Bubble. Upgrade to Pro?</string>
-    <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
-    <string name="preference_scan_for_youtube_embeds_title">Check for YouTube embeds</string>
-    <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
-    <string name="preference_webview_battery_save_title">Battery Save Mode (Beta)</string>
-    <string name="preference_webview_battery_save_aggressive_title">Aggressive</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Pause the updating of web pages when Link Bubble is minimized.\nPages in the process of loading will finish loading before pausing.</string>
-    <string name="preference_webview_battery_save_default_title">Default</string>
-    <string name="preference_webview_battery_save_default_summary">Pause the updating of web pages when the screen is off and resume when your device is unlocked.\nPages in the process of loading will finish loading before pausing.</string>
-    <string name="preference_webview_battery_save_off_title">Off</string>
-    <string name="preference_webview_battery_save_off_summary">Web pages are always active. Useful when streaming YouTube videos and the like.</string>
-    <string name="preference_theme_title">Theme</string>
-    <string name="preference_theme_light_color">Light + icon color</string>
-    <string name="preference_theme_light_no_color">Light + neutral color</string>
-    <string name="preference_theme_dark_color">Dark + icon color</string>
-    <string name="preference_theme_dark_no_color">Dark + neutral color</string>
-    <string name="preference_theme_toolbar_title">Color toolbar</string>
-    <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
-    <string name="preference_article_mode_title">Reading Mode</string>
-    <string name="preference_reading_mode_on_wear_title">Reading Mode on Wear</string>
-    <string name="preference_article_mode_summary">Toggled via button on action bar</string>
-    <string name="preference_webview_text_zoom_title">Text zoom</string>
-    <string name="preference_webview_text_zoom_note">Note: Current bubbles will be reloaded with the new text zoom applied after selecting \"OK\".</string>
-    <string name="preference_webview_text_zoom_reloading_current">New text zoom level applied. Reloading current bubbles…</string>
-    <string name="preference_clear_browser_cache_title">Clear private data</string>
-    <string name="preference_clear_cache">Cache</string>
-    <string name="preference_clear_cookies">Cookies</string>
-    <string name="preference_clear_favicons">Favicons</string>
-    <string name="preference_clear_form_data">Form data</string>
-    <string name="preference_clear_history">History</string>
-    <string name="preference_clear_passwords">Passwords</string>
-    <string name="preference_incognito_title">Incognito Mode</string>
-    <string name="preference_incognito_summary">Prevent storing all history and cookies</string>
-    <string name="incognito_mode_changed_reloading_current">Incognito setting changed. Reloading current bubbles…</string>
-    <string name="preference_user_agent_title">User Agent</string>
+    <string name="preference_left_consume_bubble_title">Vasak mull</string>
+    <string name="preference_right_consume_bubble_title">Parem mull</string>
+    <string name="preference_double_tap_title">Lingi topeltkoputus</string>
+    <string name="preference_configure_bubble_title">Seadista mulli</string>
+    <string name="preference_category_debug">Silumine</string>
+    <string name="preference_default_browser">Erandite vaikebrauser</string>
+    <string name="preference_category_redirect_to_browser">Suuna erandite brauserisse</string>
+    <string name="preference_category_fallback_browser">Erandite vaikebrauser</string>
+    <string name="preference_category_other_apps">Teised rakendused</string>
+    <string name="preference_default_apps_title">Vaikimisi rakendused</string>
+    <string name="preference_default_apps_summary">Erandibrauser, URLi-põhised rakendused</string>
+    <string name="preference_default_apps_notice_summary">Kasutatakse, kui üks või rohkem mitte-brauser rakendust sinu seadmes 
+võivad hallata URLi.\n\nKoputa, et eemaldada vaikeväärtus.</string>
+    <string name="preference_default_apps_notice_no_defaults_summary">Kasutatakse, kui üks või rohkem mitte-brauser rakendust sinu seadmes võivad hallata URLi, sa võid seadistada nende avamiseks vaikerakenduse.\n\nVaikimisi rakendus sel juhul kasutamiseks on seadistatud, kui laed linke Link Bubble\'ga.</string>
+    <string name="preference_google_account_redirect_title">Google\'i kasutaja ümbersuunamine</string>
+    <string name="preference_google_account_redirect_summary">Suuna accounts.google.com lingid erandite vaikebrauserisse</string>
+    <string name="preference_set_default_browser_title">Määra vaikimisi süsteemibrauseriks</string>
+    <string name="preference_set_default_browser_summary">Link Bubble tuleb toimimiseks seada vaikimisi süsteemibrauseriks. Koputa, et seadistada.</string>
+    <string name="preference_more">Veel...</string>
+    <string name="preference_intercept_links_from_title">Kasuta rakenduses</string>
+    <string name="preference_intercept_links_from_note">Märkus: Ühes rakenduses kasutamise piirang on ainult Link Bubble tasuta versioonil. 
+Täiendad Prole?</string>
+    <string name="preference_intercept_links_from_disabled_for_L">Alates Androidi versioonist 5.0 on Google eemaldanud seda funktsiooni võimaldava API.</string>
+    <string name="preference_scan_for_youtube_embeds_title">Kontrolli YouTube lehesiseseid videoid</string>
+    <string name="preference_scan_for_youtube_embeds_summary">Kuva otsetee lehesiseste videote laadimiseks YouTube rakenduses.</string>
+    <string name="preference_webview_battery_save_title">Akusäästurežiim (beeta)</string>
+    <string name="preference_webview_battery_save_aggressive_title">Agressivne</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Peata veebilehtede laadimine, kui Link Bubble on minimeeritud.\nLaadimisprotsessis lehed lõpetavad laadimise enne peatamist.</string>
+    <string name="preference_webview_battery_save_default_title">Vaikimisi</string>
+    <string name="preference_webview_battery_save_default_summary">Peata veebilehtede laadimine, kui ekraan on väljas ja jätka, kui seadme lukk on avatud.\nLaadimisprotsessis lehed lõpetavad laadimise enne peatamist.</string>
+    <string name="preference_webview_battery_save_off_title">Väljas</string>
+    <string name="preference_webview_battery_save_off_summary">Veebilehed on alati aktiivsed. Kasulik näiteks YouTube videote ülekandmisel.</string>
+    <string name="preference_theme_title">Teema</string>
+    <string name="preference_theme_light_color">Hele + ikoonivärv</string>
+    <string name="preference_theme_light_no_color">Hele + neutraalne värv</string>
+    <string name="preference_theme_dark_color">Tume + ikoonivärv</string>
+    <string name="preference_theme_dark_no_color">Tume + neutraalne värv</string>
+    <string name="preference_theme_toolbar_title">Värvi tööriistariba</string>
+    <string name="preference_theme_toolbar_summary">Et see vastaks veebilehe põhivärvile/ikooni esiletoodud värvile.</string>
+    <string name="preference_article_mode_title">Lugemisrežiim</string>
+    <string name="preference_reading_mode_on_wear_title">Lugemisrežiim Wear\'is</string>
+    <string name="preference_article_mode_summary">Lülitatud nupu kaudu tegumiribal</string>
+    <string name="preference_webview_text_zoom_title">Teksti suurendus</string>
+    <string name="preference_webview_text_zoom_note">Märkus: Praegused mullid taaslaetakse uue teksti suurendusega pärast \"OK\" vajutamist.</string>
+    <string name="preference_webview_text_zoom_reloading_current">Uus teksti suurendustase rakendatud. Laadin mullid uuesti...</string>
+    <string name="preference_clear_browser_cache_title">Tühjenda privaatsed andmed</string>
+    <string name="preference_clear_cache">Vahemälu</string>
+    <string name="preference_clear_cookies">Küpsised</string>
+    <string name="preference_clear_favicons">Favicon\'id</string>
+    <string name="preference_clear_form_data">Väljade andmed</string>
+    <string name="preference_clear_history">Ajalugu</string>
+    <string name="preference_clear_passwords">Paroolid</string>
+    <string name="preference_incognito_title">Inkognito režiim</string>
+    <string name="preference_incognito_summary">Väldi ajaloo ja küpsiste salvestamist</string>
+    <string name="incognito_mode_changed_reloading_current">Inkognito seade muudetud. Laadin mullid uuesti...</string>
+    <string name="preference_user_agent_title">Kasutajaagent</string>
     <string-array name="preference_user_agent_options">
         <item>Default</item>
         <item>Chrome Phone</item>
@@ -146,94 +143,94 @@
         <item>Chrome Desktop</item>
     </string-array>
 
-    <string name="preference_domains_title">Domain redirects</string>
-    <string name="preference_domains_summary">Specify links to always load in your fallback browser.</string>
-    <string name="preference_redirects_title">Redirect to fallback browser</string>
-    <string name="preference_add_domain_title">Add domain</string>
-    <string name="add_domain_hint">Url host</string>
-    <string name="add_domain_detail">Specify only the \'main\' portion of a website address. E.g.,
-        \"accounts.google.com\" or \"bbc.co.uk\".</string>
-    <string name="add_domain_error">Unable to add \"%1$s\", as it is not a valid URL host.</string>
+    <string name="preference_domains_title">Domeeni ümbersuunamised</string>
+    <string name="preference_domains_summary">Määra lingid, mis avanevad alati su erandibrauseris</string>
+    <string name="preference_redirects_title">Suuna erandite brauserisse</string>
+    <string name="preference_add_domain_title">Lisa domeen</string>
+    <string name="add_domain_hint">URL host</string>
+    <string name="add_domain_detail">Määra ainult veebilehe \"põhiosa\". 
+Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
+    <string name="add_domain_error">Ei saa lisada \"%1$s\", kuna see ei ole sobiv URL host.</string>
 
-    <string name="preference_help_title">Help</string>
-    <string name="preference_show_welcome_message_title">Show welcome page</string>
-    <string name="preference_credits_title">Credits</string>
-    <string name="preference_osl_title">Open source licenses</string>
-    <string name="preference_privacy_policy_title">Privacy Policy</string>
-    <string name="preference_terms_of_service_title">Terms of Service</string>
-    <string name="preference_say_thanks_title">Say thanks!</string>
-    <string name="preference_say_thanks_summary">Enjoying Link Bubble? Please consider leaving a Play Store review.</string>
+    <string name="preference_help_title">Abi</string>
+    <string name="preference_show_welcome_message_title">Kuva tervitusleht</string>
+    <string name="preference_credits_title">Autorid</string>
+    <string name="preference_osl_title">Avatud lähtekoodiga litsensid</string>
+    <string name="preference_privacy_policy_title">Privaatsuseeskirjad</string>
+    <string name="preference_terms_of_service_title">Teenusetingimused</string>
+    <string name="preference_say_thanks_title">Täna meid!</string>
+    <string name="preference_say_thanks_summary">Naudid Link Bubble\'it? Palun kaalu Play poe arvustuse kirjutamist.</string>
     <string name="preference_get_pro_title">Link Bubble Pro</string>
-    <string name="preference_get_pro_summary">Upgrade to Pro for more features.</string>
-    <string name="preference_version_title">Version</string>
-    <string name="preference_version_summary">What\'s new?</string>
-    <string name="preference_more_title">More&#8230;</string>
-    <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
+    <string name="preference_get_pro_summary">Täienda Prole rohkemate funktsioonide saamiseks</string>
+    <string name="preference_version_title">Versioon</string>
+    <string name="preference_version_summary">Mis on uut?</string>
+    <string name="preference_more_title">Veel&#8230;</string>
+    <string name="preference_show_undo_close_tab_title">Kaardi sulgemise tagasivõtmise valik</string>
 
-    <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
-    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
+    <string name="preference_my_other_apps_title">Rohkem rakendusi Link Bubble poolt</string>
+    <string name="preference_my_other_apps_summary">Meeldib Link Bubble? Miks mitte vaadata ka meie teisi rakendusi?</string>
 
-    <string name="remove_default_title">Remove default?</string>
-    <string name="remove_default_message">Remove %1$s as the default app to load %2$s links with?\n\nNote: you can set a new default app to use next
-                                            time you load a %2$s link.</string>
-    <string name="long_press_unsupported_default_browser">Unable to display this item. Open link in %1$s?</string>
-    <string name="long_press_unsupported_no_default_browser">Unable to display this item. Open link in a browser.</string>
-    <string name="unsupported_scheme_default_browser">Link type currently not supported. Open web page in %1$s?</string>
-    <string name="unsupported_scheme_no_default_browser">Link type currently not supported. Open the link in a browser.</string>
-    <string name="unsupported_scheme">Link type currently not supported.</string>
-    <string name="unsupported_drop_down_default_browser">Unable to interact with this item. Open in %1$s?</string>
-    <string name="unsupported_drop_down_no_default_browser">Unable to interact with this item. Open link in a browser.</string>
+    <string name="remove_default_title">Eemaldad vaikeväärtuse?</string>
+    <string name="remove_default_message">Eemaldad %1$s vaikerakendusena %2$s laadimiseks?\n\nMärkus: sa võid seada uue vaikerakenduse, mida kasutada järgmine kord kui laed %2$s linki.
+</string>
+    <string name="long_press_unsupported_default_browser">Ei saa seda üksust kuvada. Avad lingi rakenduses %1$s?</string>
+    <string name="long_press_unsupported_no_default_browser">Ei saa seda üksust kuvada. Ava link brauseris.</string>
+    <string name="unsupported_scheme_default_browser">Lingitüüp ei ole hetkel toetatud. Avad veebilehe rakenduses %1$s?</string>
+    <string name="unsupported_scheme_no_default_browser">Lingitüüp ei ole hetkel toetatud. Ava link brauseris.</string>
+    <string name="unsupported_scheme">Lingitüüp ei ole hetkel toetatud.</string>
+    <string name="unsupported_drop_down_default_browser">Ei saa seda üksust kasutada. Avad rakenduses %1$s?</string>
+    <string name="unsupported_drop_down_no_default_browser">Ei saa seda üksust kasutada. Ava link brauseris.</string>
 
-    <string name="consume_category_view">View link</string>
-    <string name="consume_category_share">Send/share link</string>
+    <string name="consume_category_view">Vaata linki</string>
+    <string name="consume_category_share">Saada/jaga linki</string>
 
-    <string name="title_settings">Settings</string>
+    <string name="title_settings">Seaded</string>
 
-    <string name="title_youtube_embed_to_load">Select video to play</string>
-    <string name="loading_youtube_embed_info">Fetching info about YouTube videos…</string>
-    <string name="youtube_embed_error_title">Oops</string>
-    <string name="youtube_embed_error_summary">Unable to retrieve info about YouTube videos at this time. Please try again later.</string>
+    <string name="title_youtube_embed_to_load">Vali esitamiseks video</string>
+    <string name="loading_youtube_embed_info">Hangin infot YouTube videote kohta...</string>
+    <string name="youtube_embed_error_title">Ups</string>
+    <string name="youtube_embed_error_summary">Ei saanud hankida infot YouTube videote kohta. Palun proovi hiljem uuesti.</string>
 
-    <string name="loading">Loading…</string>
+    <string name="loading">Laadimine...</string>
 
-    <string name="histroy_unread">Unread</string>
-    <string name="histroy_all">All</string>
-    <string name="history">History</string>
-    <string name="erase_all_history_title">Erase all?</string>
-    <string name="erase_all_history_message">Erase your entire Link Bubble browsing history?</string>
-    <string name="empty">Empty</string>
-    <string name="history_already_empty">History already empty</string>
-    <string name="private_data_cleared">Private data cleared</string>
-    <string name="private_data_cleared_reloading_current">Private data cleared. Reloading current bubbles…</string>
-    <string name="user_agent_changed_reloading_current">User Agent changed. Reloading current bubbles…</string>
-    <string name="theme_toolbar_reloading_current">Color toolbar setting changed. Reloading current bubbles…</string>
-    <string name="article_mode_changed_reloading_current">Reading Mode setting changed. Reloading current bubbles…</string>
-    <string name="link_loaded_with_app">Loaded with %1$s</string>
-    <string name="link_redirected">Redirected to %1$s</string>
+    <string name="histroy_unread">Lugemata</string>
+    <string name="histroy_all">Kõik</string>
+    <string name="history">Ajalugu</string>
+    <string name="erase_all_history_title">Kustutad kõik?</string>
+    <string name="erase_all_history_message">Kustutad kogu oma Link Bubble sirvimisajaloo?</string>
+    <string name="empty">Tühi</string>
+    <string name="history_already_empty">Ajalugu on juba tühi</string>
+    <string name="private_data_cleared">Privaatsed andmed on kustutatud</string>
+    <string name="private_data_cleared_reloading_current">Privaatsed andmed on kustutatud. Laadin mullid uuesti...</string>
+    <string name="user_agent_changed_reloading_current">Kasutajaagent muudetud. Laadin mullid uuesti...</string>
+    <string name="theme_toolbar_reloading_current">Tööriistariba värvi seade muudetud. Laadin mullid uuesti...</string>
+    <string name="article_mode_changed_reloading_current">Lugemisrežiimi seade muudetud. Laadin mullid uuesti...</string>
+    <string name="link_loaded_with_app">Laaditud %1$s abil</string>
+    <string name="link_redirected">Suunatud rakendusse %1$s</string>
 
-    <string name="tampered_apk">Your copy of Link Bubble has been illegally modified and thus will not work reliably. Please reinstall from the Play Store.</string>
-    <string name="upgrade_incentive_one_link">Link Bubble Pro is required to load more than one bubble at a time. Upgrade to Pro?</string>
-    <string name="valid_license_detected">Valid Link Bubble Pro license detected.\nThank you for supporting this project, and enjoy the app :)</string>
+    <string name="tampered_apk">Sinu Link Bubble rakendus on illegaalselt muudetud ja seetõttu ei tööta stabiilselt. Palun taasinstalli see Play poest.</string>
+    <string name="upgrade_incentive_one_link">Link Bubble Pro on vajalik, et laadida rohkem kui ühte mulli samal ajal. Täiendad Prole?</string>
+    <string name="valid_license_detected">Sobiv Link Bubble Pro litsents tuvastatud.\nTäname projekti toetamise eest, naudi rakendust :)</string>
 
-    <string name="bubble_link_copied_to_clipboard">Bubble link copied to clipboard.</string>
-    <string name="link_copied_to_clipboard">Link copied to clipboard.</string>
+    <string name="bubble_link_copied_to_clipboard">Mulli link kopeeritud lõikelauale.</string>
+    <string name="link_copied_to_clipboard">Link kopeeritud lõikelauale.</string>
 
-    <string name="stat_saves_you">saves you</string>
-    <string name="stat_has_saved_you">has saved you</string>
-    <string name="stat_so_far">so far</string>
-    <string name="stat_per_link">per link</string>
-    <string name="time_seconds">seconds</string>
-    <string name="time_minutes">minutes</string>
-    <string name="time_hours">hours</string>
+    <string name="stat_saves_you">säästab sul</string>
+    <string name="stat_has_saved_you">on säästnud sul</string>
+    <string name="stat_so_far">siiani</string>
+    <string name="stat_per_link">lingi kohta</string>
+    <string name="time_seconds">sekundit</string>
+    <string name="time_minutes">minutit</string>
+    <string name="time_hours">tundi</string>
 
-    <string name="confirm_title">Confirm</string>
+    <string name="confirm_title">Kinnita</string>
 
-    <string name="no_default_browser">No default browser found on the system.</string>
+    <string name="no_default_browser">Selles seadmes puudub vaikebrauser.</string>
 
-    <string name="title_changelog">Change log</string>
-    <string name="changelog_close">Close</string>
+    <string name="title_changelog">Muutuste logi</string>
+    <string name="changelog_close">Sulge</string>
 
-    <string name="faq_close_tab_question">How can I quickly close a tab?</string>
+    <string name="faq_close_tab_question">Kuidas saan ma kiiresti kaarti sulgeda?</string>
     <string name="faq_close_tab_answer">Pressing the hardware Back button is the fastest way. Flicking a tab onto the Close button is another good way.</string>
     <string name="faq_back_button_minimize_question">I think pressing the Back button should minimize the browser!</string>
     <string name="faq_back_button_minimize_answer"><![CDATA[Minimizing Link Bubble when the hardware Back button is pressed is not feasible.
@@ -328,7 +325,7 @@
     <string name="activity_resolver_use_always">Always</string>
     <string name="activity_resolver_use_once">Just once</string>
 
-    <string name="credits_title">Link Bubble Credits</string>
+    <string name="credits_title">Link Bubble autorid</string>
     <string name="credits_name">Link Bubble</string>
     <string name="credits_credit">Concept, design and programming</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>

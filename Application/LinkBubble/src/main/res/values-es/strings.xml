@@ -15,6 +15,7 @@
     <string name="cancel">Cancelar</string>
 
     <string name="action_ok">OK</string>
+    <string name="action_open">Open</string>
     <string name="action_remove">Eliminar</string>
     <string name="action_cancel">Cancelar</string>
     <string name="action_clear_data">Borrar datos</string>
@@ -27,6 +28,7 @@
     <string name="action_open_in_new_bubble">Abrir en una nueva burbuja</string>
     <string name="action_upgrade_to_pro">★Conviértete en Pro★</string>
     <string name="action_copy_to_clipboard">Copiar enlace</string>
+    <string name="action_save_image">Save image</string>
     <string name="action_share">Compartir</string>
     <string name="action_close_all">Cerrar todas</string>
     <string name="action_close_tab">Cerrar burbuja</string>
@@ -36,6 +38,10 @@
     <string name="action_no_recommended">No (recomendado)</string>
     <string name="share_via">Compartir a través de...</string>
     <string name="not_set">No establecido</string>
+
+    <string name="error_saving_image">Error saving image.</string>
+    <string name="image_saved">Image downloaded.</string>
+    <string name="notice_download_started">Download started.</string>
 
     <string name="warning">¡Advertencia!</string>
     <string name="untrusted_certificate">El certificado en %1$s no es de confianza. ¿Continuar de todas formas?</string>
@@ -294,14 +300,6 @@ terminan tomándose como un compromiso, y pueden molestar si/cuando se postpone 
     <string name="faq_close_quickly_answer">Deslice desde la zona superior de la pantalla para abrir el panel de notificaciones y pulse la notificación de \"Link Bubble\" </string>
     <string name="faq_change_default_browser_question">¿Cómo puedo hacer que Link Bubble deje de ser el navegador por defecto?</string>
     <string name="faq_change_default_browser_answer">Ajustes del sistema -> Aplicaciones -> Descargadas -> Link Bubble -> Borrar por defecto.</string>
-    <string name="faq_pro_trial_question">¿Cómo funciona el periodo de prueba de Link Bubble Pro?</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• Por las primeras 24 horas luego de instalar Link Bubble, los usuarios sin Link Bubble Pro tendrán acceso a todas 
-las características premium de la versión Pro.<br/>
-• Durante este único período de prueba. Las características premium de Link Bubble Pro estarán disponibles para todos tus dispositivos.<br/>
-• Se muestra un temporizador en la esquina superior izquierda de la pantalla principal de Link Bubble, informando cuánto tiempo de prueba resta.<br/>
-• Las personas que probaron Link Bubble antes de la actualización 1.1 califican para el período de prueba.<br/>
-• Con el propósito de verificar, el período de prueba de la versión Pro está enlazado a tu dirección de correo electrónico. Si no se encuentra una dirección de correo electrónico en el dispositivo, el período de prueba no estará disponible.<br/>
-• Lo siento, pero tu período de prueba no puede ser restablecido. Por favor disfruta el acceso a las características de la versión Pro en las primeras 24 horas desde la instalación de Link Bubble.]]></string>
     <string name="faq_report_bug_question">Reportar un fallo</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -315,8 +313,6 @@ las características premium de la versión Pro.<br/>
 
     <string name="activity_resolver_use_always">Siempre</string>
     <string name="activity_resolver_use_once">Solo una vez</string>
-
-    <string name="trial_time_on_click">%1$s te quedan de tus 24 horas de prueba de  Link Bubble Pro</string>
 
     <string name="credits_title">Créditos de Link Bubble</string>
     <string name="credits_name">Link Bubble</string>
@@ -387,7 +383,6 @@ y la <a href="http://www.linkbubble.com/privacy">política de privacidad</a> de 
 • Apoyarnos para poder hacer más aplicaciones de este tipo :)</string>
 
     <string name="welcome_page_title">¡Bienvenido a Link Bubble!</string>
-    <string name="welcome_page_trial_notice">Nota: Durante las primeras 24 horas después de instalar Link Bubble, usted tendrá acceso a todas las funciones Link Bubble Pro como prueba.</string>
     <string name="welcome_page_intro_title">¿Cómo funcionan?</string>
     <string name="welcome_page_intro_point_1">Presiona un Link en alguna aplicación.</string>
     <string name="welcome_page_intro_point_2">Una burbuja aparecerá en el borde de la pantalla y el Link cargará en el fondo. Tan pronto que la página esté cargada, Se mostrará.</string>

@@ -15,6 +15,7 @@
     <string name="cancel">Abbrechen</string>
 
     <string name="action_ok">OK</string>
+    <string name="action_open">Open</string>
     <string name="action_remove">Entfernen</string>
     <string name="action_cancel">Abbrechen</string>
     <string name="action_clear_data">Daten löschen</string>
@@ -23,10 +24,11 @@
     <string name="action_help">Hilfe</string>
     <string name="action_reload_page">Neu laden</string>
     <string name="action_open_in_browser">In %1$s öffnen</string>
-    <string name="action_request_desktop_site">Request desktop site</string>
+    <string name="action_request_desktop_site">Desktop-Version</string>
     <string name="action_open_in_new_bubble">In neuer Blase öffnen</string>
     <string name="action_upgrade_to_pro">★Auf Pro aktualisieren★</string>
     <string name="action_copy_to_clipboard">Link kopieren</string>
+    <string name="action_save_image">Save image</string>
     <string name="action_share">Teilen</string>
     <string name="action_close_all">Alle schließen</string>
     <string name="action_close_tab">Blase schließen</string>
@@ -36,6 +38,10 @@
     <string name="action_no_recommended">Nein (empfohlen)</string>
     <string name="share_via">Teilen über...</string>
     <string name="not_set">Nicht festgelegt</string>
+
+    <string name="error_saving_image">Error saving image.</string>
+    <string name="image_saved">Image downloaded.</string>
+    <string name="notice_download_started">Download started.</string>
 
     <string name="warning">Warnung!</string>
     <string name="untrusted_certificate">Das Zertifikat in %1$s ist nicht vertrauenswürdig. Trotzdem fortfahren?</string>
@@ -111,7 +117,7 @@ Unterstütz uns als Entwickler der App :)</string>
     <string name="preference_theme_dark_no_color">Dunkel + Neutrale Farbe</string>
     <string name="preference_theme_toolbar_title">Farbe Toolbar</string>
     <string name="preference_theme_toolbar_summary">An das Thema/Icon Highlightfarbe einer Website anpassen.</string>
-    <string name="preference_article_mode_title">Reading Mode</string>
+    <string name="preference_article_mode_title">Lesemodus (Beta)</string>
     <string name="preference_reading_mode_on_wear_title">Lesemodus auf Wear</string>
     <string name="preference_article_mode_summary">Über Schaltfläche in der Aktionsleiste steuerbar</string>
     <string name="preference_webview_text_zoom_title">Text-Skalierung</string>
@@ -246,11 +252,11 @@ aktiviere \"Externer Browser\" oder deaktiviere \"Integrierter Browser\" oder ei
 Link Bubble nicht möglich Links zu laden, die in anderen Browser Apps angeklickt werden.
 ]]></string>
     <string name="faq_article_mode_question">Wie verwende ich den Lesemodus? Warum funktionieren manche Links nicht?</string>
-    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
-            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
-            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
-            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
-            there is little than can be done here.]]></string>
+    <string name="faq_article_mode_answer"><![CDATA[Stelle zuerst sicher, dass der Lesemodus eingeschaltet ist. (Einstellungen -> App Einstellungen / More&#8230; -> Lesemodus (BETA)).<br/><br/>
+Danach wird das Symbol für den Lesemodus in der Action-Bar erscheinen, wenn dieser für den aktuellen Tab verfügbar ist (neben dem Teilen Symbol).
+Beachte, dass das Symbol nur erscheint, wenn der Link fertig geladen wurde, und Link Bubble erfolgreich Inhalte für den Artikelmodus in dem Link finden konnte.<br/><br/>
+Hinweis: Inhalte aus dem Netz zu extrahieren ist ein unzuverlässiger Prozess und funktioniert möglicherweise nicht zu 100% richtig. Das liegt daran, dass sich das Web ständig ändert und dynamisch ist,
+Daran kann kaum etwas geändert werden.]]></string>
     <string name="faq_future_features_question">Wirst du eine Unterstützung für Lesezeichen, Favoriten, Erweiterungen, usw. hinzufügen?</string>
     <string name="faq_future_features_answer">Sag niemals nie, aber im Moment konzentriert sich Link Bubble darauf die bestmögliche Art
 Links von anderen Apps zu laden und sie zu betrachten,</string>
@@ -299,13 +305,6 @@ aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend 
     <string name="faq_close_quickly_answer">Wische vom oberen Rand des Bilschirms nach unten um die Benachrichtigungsanzeige zu öffnen und klicke auf die \"Link Bubble\" Benachrichtigung.</string>
     <string name="faq_change_default_browser_question">Wie kann ich Link Bubble als Standardbrowser entfernen?</string>
     <string name="faq_change_default_browser_answer">Systemeinstellungen -> Apps -> Heruntergeladen -> Link Bubble -> Aktionen auf Standard zurücksetzen</string>
-    <string name="faq_pro_trial_question">Wie funktioniert die Link Bubble Pro Testversion?</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• Die ersten 24 Stunden, nachdem Link Bubble installiert wurde, können Nutzer, die Link Bubble Pro nicht besitzen auf alle Pro Features zugreifen.<br/>
-• Während dieser einmaligen Zeitspanne können die Features von Link Bubble Pro auf allen Ihren Geräten genutzt werden.<br/>
-• Ein Timer links-oben im Hauptfenster von Link Bubble informiert SIe darüber, wie viel Zeit von ihrer Testversion noch verbleibt. <br/>
-•Nutzer die Link Bubble vor dem Update auf Version 1.1 installiert haben dürfen diese Testversion ebenfalls nutzen.<br/>
-• Zu Überprüfungszwecken wird die Testversion mit Ihrer Email Adresse verknüpft. Falls keine Email Adresse auf Ihrem Gerät gefunden werden kann, ist die Testversion nicht verfügbar.<br/>
-•Entschuldigung, aber Ihre Testzeit kann nicht zurückgesetzt werden. Genießen Sie den vollen Zugriff auf alle Pro Features in den ersten 24 Stunden nachdem Sie Link Bubble installiert haben.]]></string>
     <string name="faq_report_bug_question">Einen Fehler melden</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -319,8 +318,6 @@ aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend 
 
     <string name="activity_resolver_use_always">Immer</string>
     <string name="activity_resolver_use_once">Nur einmal</string>
-
-    <string name="trial_time_on_click">Es sind noch %1$s von dem 24-Stunden-Test von Link Bubble Pro übrig.</string>
 
     <string name="credits_title">Link Bubble Credits</string>
     <string name="credits_name">Link Bubble</string>
@@ -395,7 +392,6 @@ die Seite geladen ist. Sobald die Seite fertig geladen ist, wird es auf dem Bild
 • Unterstütze uns, damit wir mehr von diesen Apps entwickeln können :)</string>
 
     <string name="welcome_page_title">Willkommen bei Link Bubble!</string>
-    <string name="welcome_page_trial_notice">Anmerkung: In den ersten 24 Stunden nach der Installation hast du im Rahmen eines einmaligen Tests Zugang zu allen Premium-Features von Link Bubble Pro.</string>
     <string name="welcome_page_intro_title">Wie funktioniert es?</string>
     <string name="welcome_page_intro_point_1">Klicke einen Link in einer App.</string>
     <string name="welcome_page_intro_point_2">Eine Blase wird am Rand des Bildschirms auftauchen und der Link wird im Hintergrund zu laden beginnen. Sobald die Seite geladen ist wird sie angezeigt.</string>
