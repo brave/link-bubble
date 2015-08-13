@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.util.Base64;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
@@ -21,6 +22,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by kevin on 8/11/15.
@@ -84,19 +88,54 @@ public class DownloadImage {
         File imagePath;
         protected Boolean doInBackground(String... urls) {
             try {
-                URL url = new URL(urls[0]);
-                InputStream is = (InputStream) url.getContent();
-                byte[] buffer = new byte[8192];
-                int bytesRead;
+                String fileExtenstion;
+                String name;
+                String sUrl = urls[0];
+                byte[] buffer;
                 ByteArrayOutputStream output = new ByteArrayOutputStream();
-                while ((bytesRead = is.read(buffer)) != -1) {
-                    output.write(buffer, 0, bytesRead);
+
+                // If the URL is a base64 encoded URL, we need to decode it.
+                if (URLUtil.isDataUrl(sUrl)) {
+                    String[] parts = sUrl.split(",");
+                    String encoded = parts[1];
+
+                    // Find the extension from the data URI.
+                    String extension = "";
+                    if (parts[0].toLowerCase().contains("image/")) {
+                        Pattern pattern = Pattern.compile("image/([a-zA-Z]*)");
+                        Matcher matcher = pattern.matcher(parts[0]);
+                        matcher.find();
+                        extension = matcher.group(1);
+                    }
+                    name = "dataimage" + extension;
+
+                    if (sUrl.toLowerCase().contains(";base64")) {
+                        buffer = Base64.decode(encoded, Base64.DEFAULT);
+                        output.write(buffer, 0, buffer.length);
+                        output.close();
+                    } else {
+                        buffer = Uri.decode(encoded).getBytes();
+                        output.write(buffer, 0, buffer.length);
+                        output.close();
+                    }
+
+                } else {
+                    // For a normal image download we just read the image from the URL.
+                    fileExtenstion = MimeTypeMap.getFileExtensionFromUrl(sUrl);
+                    name = URLUtil.guessFileName(sUrl, null, fileExtenstion);
+
+                    URL url = new URL(sUrl);
+                    InputStream is = (InputStream) url.getContent();
+                    buffer = new byte[8192];
+                    int bytesRead;
+                    while ((bytesRead = is.read(buffer)) != -1) {
+                        output.write(buffer, 0, bytesRead);
+                    }
+                    output.close();
                 }
 
                 File path = Environment.getExternalStoragePublicDirectory(
                         Environment.DIRECTORY_DOWNLOADS);
-                String fileExtenstion = MimeTypeMap.getFileExtensionFromUrl(urls[0]);
-                String name = URLUtil.guessFileName(urls[0], null, fileExtenstion);
 
                 // Prefix the filename with the date to attempt to prevent overwriting of existing files.
                 name = System.currentTimeMillis() + name;
