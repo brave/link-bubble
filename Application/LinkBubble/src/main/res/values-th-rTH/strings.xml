@@ -15,7 +15,7 @@
     <string name="cancel">ยกเลิก</string>
 
     <string name="action_ok">ตกลง</string>
-    <string name="action_open">Open</string>
+    <string name="action_open">เปิด</string>
     <string name="action_remove">ลบออก</string>
     <string name="action_cancel">ยกเลิก</string>
     <string name="action_clear_data">ล้างข้อมูล</string>
@@ -28,7 +28,7 @@
     <string name="action_open_in_new_bubble">เปิดในหน้าต่างใหม่</string>
     <string name="action_upgrade_to_pro">★อัปเกรดเป็นรุ่นโปร★</string>
     <string name="action_copy_to_clipboard">คัดลอกลิงก์</string>
-    <string name="action_save_image">Save image</string>
+    <string name="action_save_image">บันทึกรูปภาพ</string>
     <string name="action_share">แบ่งปัน</string>
     <string name="action_close_all">ปิดทั้งหมด</string>
     <string name="action_close_tab">ปิดหน้าต่าง</string>
@@ -39,9 +39,9 @@
     <string name="share_via">แบ่งปันผ่าน...</string>
     <string name="not_set">ไม่ได้ตั้งค่า</string>
 
-    <string name="error_saving_image">Error saving image.</string>
-    <string name="image_saved">Image downloaded.</string>
-    <string name="notice_download_started">Download started.</string>
+    <string name="error_saving_image">ผิดพลาดในการบันทึกรูปภาพ</string>
+    <string name="image_saved">ดาวน์โหลดรูปภาพแล้ว</string>
+    <string name="notice_download_started">เริ่มต้นดาวน์โหลดแล้ว</string>
 
     <string name="warning">ระวัง!</string>
     <string name="untrusted_certificate">ใบรับรองของ %1$s ไม่น่าเชื่อถือ ดำเนินการต่อหรือไม่?</string>

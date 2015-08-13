@@ -15,7 +15,7 @@
     <string name="cancel">Cancelar</string>
 
     <string name="action_ok">OK</string>
-    <string name="action_open">Open</string>
+    <string name="action_open">Abrir</string>
     <string name="action_remove">Remover</string>
     <string name="action_cancel">Cancelar</string>
     <string name="action_clear_data">Limpar Informação</string>
@@ -28,7 +28,7 @@
     <string name="action_open_in_new_bubble">Abrir em uma nova bolha</string>
     <string name="action_upgrade_to_pro">★Upgrade para versão Pro★</string>
     <string name="action_copy_to_clipboard">Copiar Link</string>
-    <string name="action_save_image">Save image</string>
+    <string name="action_save_image">Salvar imagem</string>
     <string name="action_share">Compartilhar</string>
     <string name="action_close_all">Fechar todas</string>
     <string name="action_close_tab">Fechar bolha</string>
@@ -39,9 +39,9 @@
     <string name="share_via">Compartilhar via...</string>
     <string name="not_set">Não selecionado</string>
 
-    <string name="error_saving_image">Error saving image.</string>
-    <string name="image_saved">Image downloaded.</string>
-    <string name="notice_download_started">Download started.</string>
+    <string name="error_saving_image">Erro salvando imagem.</string>
+    <string name="image_saved">A imagem foi salva.</string>
+    <string name="notice_download_started">Download iniciado.</string>
 
     <string name="warning">Atenção!</string>
     <string name="untrusted_certificate">O certificado at %1$s não é confiável.</string>
@@ -384,17 +384,15 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     • Locates embedded YouTube videos on web pages, and provides a shortcut to load those videos directly in the YouTube app.
     • Handy stats that illustrate how much time you are saving by using Link Bubble.
     </string>
-    <string name="store_listing_description_location_permission">Regarding the Location permission: This is required so that you might grant permission for a website to access your location (such as those with an embedded map). Link Bubble itself never accesses your location.</string>
+    <string name="store_listing_description_location_permission">A respeito da permissão de Localização: Isso é exigido para que você possa conceder permissão a sites que solicitem sua localização (como aqueles que usam mapas). O Link Bubble mesmo, nunca acessa sua localização.</string>
 
     <string name="pro_store_listing_title">Link Bubble Pro</string>
     <string name="pro_store_listing_description_title">O Link Bubble Pro desbloqueia todas as funções do Link Bubble.</string>
-    <string name="pro_store_listing_description_features">
-    Upgrades include:
-    • Infinite number of tabs (free version is limited to just one tab).
-    • Theme selection
-    • Remove the upgrade incentives throughout the free version.
-    • Support us so we get to make more of these apps :)
-    </string>
+    <string name="pro_store_listing_description_features">O upgrade inclui:
+• Número ilimitado de abas abertas (na versão gratuita o limite é 1).
+• Seleção de tema
+• Remove as mensagens incentivando a compra da versão paga.
+• Apoia nosso trabalho no desenvolvimento de mais apps legais :)</string>
 
     <string name="welcome_page_title">Bem vindo ao Link Bubble!</string>
     <string name="welcome_page_intro_title">Como ele funciona?</string>

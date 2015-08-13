@@ -15,7 +15,7 @@
     <string name="cancel">Отмена</string>
 
     <string name="action_ok">ОК</string>
-    <string name="action_open">Open</string>
+    <string name="action_open">Открыть</string>
     <string name="action_remove">Сбросить</string>
     <string name="action_cancel">Отмена</string>
     <string name="action_clear_data">Очистить данные</string>
@@ -28,7 +28,7 @@
     <string name="action_open_in_new_bubble">Открыть в новом пузыре</string>
     <string name="action_upgrade_to_pro">★Улучшить до Pro★</string>
     <string name="action_copy_to_clipboard">Копировать ссылку</string>
-    <string name="action_save_image">Save image</string>
+    <string name="action_save_image">Сохранить изображение</string>
     <string name="action_share">Поделиться</string>
     <string name="action_close_all">Закрыть все</string>
     <string name="action_close_tab">Закрыть пузырь</string>
@@ -39,9 +39,9 @@
     <string name="share_via">Поделиться</string>
     <string name="not_set">Не задано</string>
 
-    <string name="error_saving_image">Error saving image.</string>
-    <string name="image_saved">Image downloaded.</string>
-    <string name="notice_download_started">Download started.</string>
+    <string name="error_saving_image">Ошибка сохранения.</string>
+    <string name="image_saved">Изображение сохранено.</string>
+    <string name="notice_download_started">Начинается загрузка.</string>
 
     <string name="warning">Внимание!</string>
     <string name="untrusted_certificate">Небезопасный сертификат. Продолжить?</string>
