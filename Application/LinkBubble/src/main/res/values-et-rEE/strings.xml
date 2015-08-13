@@ -15,7 +15,7 @@
     <string name="cancel">Loobu</string>
 
     <string name="action_ok">OK</string>
-    <string name="action_open">Open</string>
+    <string name="action_open">Ava</string>
     <string name="action_remove">Eemalda</string>
     <string name="action_cancel">Loobu</string>
     <string name="action_clear_data">Tühjenda andmed</string>
@@ -28,7 +28,7 @@
     <string name="action_open_in_new_bubble">Ava uues mullis</string>
     <string name="action_upgrade_to_pro">★Täienda Prole★</string>
     <string name="action_copy_to_clipboard">Kopeeri link</string>
-    <string name="action_save_image">Save image</string>
+    <string name="action_save_image">Salvesta pilt</string>
     <string name="action_share">Jaga</string>
     <string name="action_close_all">Sulge kõik</string>
     <string name="action_close_tab">Sulge mull</string>
@@ -39,9 +39,9 @@
     <string name="share_via">Jaga rakendusega...</string>
     <string name="not_set">Pole määratud</string>
 
-    <string name="error_saving_image">Error saving image.</string>
-    <string name="image_saved">Image downloaded.</string>
-    <string name="notice_download_started">Download started.</string>
+    <string name="error_saving_image">Pildi salvestamisel tekkis viga</string>
+    <string name="image_saved">Pilt allalaaditud.</string>
+    <string name="notice_download_started">Allalaadimine alustatud.</string>
 
     <string name="warning">Hoiatus!</string>
     <string name="untrusted_certificate">%1$s sertifikaat pole usaldusväärne. Jätkad siiski?</string>
@@ -137,10 +137,10 @@ Täiendad Prole?</string>
     <string name="incognito_mode_changed_reloading_current">Inkognito seade muudetud. Laadin mullid uuesti...</string>
     <string name="preference_user_agent_title">Kasutajaagent</string>
     <string-array name="preference_user_agent_options">
-        <item>Default</item>
-        <item>Chrome Phone</item>
-        <item>Chrome Tablet</item>
-        <item>Chrome Desktop</item>
+        <item>Vaikimisi</item>
+        <item>Chrome telefonis</item>
+        <item>Chrome tahvelarvutis</item>
+        <item>Chrome töölaual</item>
     </string-array>
 
     <string name="preference_domains_title">Domeeni ümbersuunamised</string>
@@ -231,8 +231,8 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
     <string name="changelog_close">Sulge</string>
 
     <string name="faq_close_tab_question">Kuidas saan ma kiiresti kaarti sulgeda?</string>
-    <string name="faq_close_tab_answer">Pressing the hardware Back button is the fastest way. Flicking a tab onto the Close button is another good way.</string>
-    <string name="faq_back_button_minimize_question">I think pressing the Back button should minimize the browser!</string>
+    <string name="faq_close_tab_answer">Riistvaralise tagasinupu vajutamine on kiireim viis. Kaardi viskamine sulgemisnupule on teine hea viis.</string>
+    <string name="faq_back_button_minimize_question">Ma arvan, et tagasinupp peaks brauseri minimeerima!</string>
     <string name="faq_back_button_minimize_answer"><![CDATA[Minimizing Link Bubble when the hardware Back button is pressed is not feasible.
             Consider the following case:<br/>
             1). example.com/page1 is loaded in the first tab.<br/>
@@ -311,23 +311,23 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
     <string name="faq_close_quickly_answer">Swipe from the top of the screen to open the notifications pane and click the \"Link Bubble\" notification.</string>
     <string name="faq_change_default_browser_question">How can I remove Link Bubble as the default browser?</string>
     <string name="faq_change_default_browser_answer">System Settings -> Apps -> Downloaded -> Link Bubble -> Clear defaults.</string>
-    <string name="faq_report_bug_question">Report a bug</string>
+    <string name="faq_report_bug_question">Teavita veast</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
     <string name="faq_feature_request_answer">I have a lot of </string> -->
 
-    <string name="faq_title">FAQ</string>
-    <string name="preference_faq_summary">Question about the app? Try here.</string>
-    <string name="faq_section_general">General</string>
-    <string name="faq_section_functionality">App functionality</string>
-    <string name="faq_section_issues">Issues</string>
+    <string name="faq_title">KKK</string>
+    <string name="preference_faq_summary">Küsimusi rakenduse kohta? Proovi siin.</string>
+    <string name="faq_section_general">Üldine</string>
+    <string name="faq_section_functionality">Rakenduse funktsionaalsus</string>
+    <string name="faq_section_issues">Probleemid</string>
 
-    <string name="activity_resolver_use_always">Always</string>
-    <string name="activity_resolver_use_once">Just once</string>
+    <string name="activity_resolver_use_always">Alati</string>
+    <string name="activity_resolver_use_once">Ainult korra</string>
 
     <string name="credits_title">Link Bubble autorid</string>
     <string name="credits_name">Link Bubble</string>
-    <string name="credits_credit">Concept, design and programming</string>
+    <string name="credits_credit">Kontseptsioon, disain ja programeerimine</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <!--
@@ -339,18 +339,18 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
         <item quantity="other">Restore %d tabs from previous session?</item>
     </plurals>
 
-    <string name="content_description_button">Button</string>
+    <string name="content_description_button">Nupp</string>
     <string name="content_description_target_icon">Bubble target icon</string>
-    <string name="content_description_close_bubble_icon">Close bubble icon</string>
+    <string name="content_description_close_bubble_icon">Sulge mulliikoon</string>
     <string name="content_description_link_bubble_logo">Link Bubble logo</string>
-    <string name="content_description_app_icon">App icon</string>
-    <string name="content_description_youtube_video_thumbnail">YouTube video thumbnail</string>
-    <string name="content_description_history">History</string>
-    <string name="content_description_settings">Settings</string>
-    <string name="content_description_can_go_back">Can go back</string>
-    <string name="content_description_upgrade_to_pro">Upgrade to Pro</string>
+    <string name="content_description_app_icon">Rakenduse ikoon</string>
+    <string name="content_description_youtube_video_thumbnail">YouTube video pisipilt</string>
+    <string name="content_description_history">Ajalugu</string>
+    <string name="content_description_settings">Seaded</string>
+    <string name="content_description_can_go_back">Võib minna tagasi</string>
+    <string name="content_description_upgrade_to_pro">Täienda Prole</string>
 
-    <string name="requesting_location_message">%1$s is requesting your location. Allow?</string>
+    <string name="requesting_location_message">%1$s soovib su asukohta. Lubad?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Link Bubble
     <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
@@ -369,11 +369,11 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
 
     <string name="pro_keep_installed">Note: you don\'t need to load Link Bubble Pro again, but you do need to keep it installed for verification purposes.\n\nThis app will be hidden throughout the system so it doesn\'t appear in your launcher(s).</string>
 
-    <string name="pro_action_load_app">Load Link Bubble</string>
-    <string name="pro_action_install_app">Install Link Bubble</string>
-    <string name="pro_action_buy">Buy App</string>
-    <string name="pro_action_retry">Retry</string>
-    <string name="pro_action_store">Play Store</string>
+    <string name="pro_action_load_app">Laadi Link Bubble</string>
+    <string name="pro_action_install_app">Installi Link Bubble</string>
+    <string name="pro_action_buy">Osta rakendus</string>
+    <string name="pro_action_retry">Proovi uuesti</string>
+    <string name="pro_action_store">Play pood</string>
 
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Mobile browsing done right.</string>
@@ -400,15 +400,15 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
     • Support us so we get to make more of these apps :)
     </string>
 
-    <string name="welcome_page_title">Welcome to Link Bubble!</string>
-    <string name="welcome_page_intro_title">How does it work?</string>
-    <string name="welcome_page_intro_point_1">Click a link in an app.</string>
+    <string name="welcome_page_title">Tere tulemast Link Bubble\'sse!</string>
+    <string name="welcome_page_intro_title">Kuidas see töötab?</string>
+    <string name="welcome_page_intro_point_1">Klõpsa mõnes rakenduses lingile.</string>
     <string name="welcome_page_intro_point_2">A bubble will appear on the edge of the screen and the link will begin loading in the background. As soon as the page is loaded, it will be displayed.</string>
     <string name="welcome_page_intro_end">It\'s that simple! With Link Bubble, you can keep using your current app rather than wasting your time watching links redirect and waiting for pages to load. What\'s not to love about that?</string>
-    <string name="welcome_page_more_title">Show me more!</string>
+    <string name="welcome_page_more_title">Näita mulle veel!</string>
     <string name="welcome_page_more_pocket_start">You can also quickly share a link or add it to an app such as Pocket:</string>
     <string name="welcome_page_more_pocket_end">Looks both fun and useful right?</string>
-    <string name="welcome_page_more_also">Link Bubble also:</string>
+    <string name="welcome_page_more_also">Link Bubble lisaks:</string>
     <string name="welcome_page_more_point_1">Redirects links to a dedicated app (E.g., Instagram).</string>
     <string name="welcome_page_more_point_2">Finds embedded videos so you can easily load them in the YouTube app.</string>
     <string name="welcome_page_pro_intro">The free version gives you a taste of Link Bubble\'s power, but with Pro you can:</string>
@@ -418,6 +418,6 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
     <string name="welcome_page_pro_end">Thanks, and enjoy the app!</string>
     <string name="welcome_page_ps">PS. To close this bubble, either press the Back button or long press the bubble and flick it onto the Close bubble.</string>
 
-    <string name="duplicate_link_will_not_be_loaded">Link already loaded. Ignoring...</string>
+    <string name="duplicate_link_will_not_be_loaded">Link on juba laetud. Ignoreerin...</string>
 
 </resources>

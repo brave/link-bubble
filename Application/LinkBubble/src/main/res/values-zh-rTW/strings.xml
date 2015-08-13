@@ -15,7 +15,7 @@
     <string name="cancel">取消</string>
 
     <string name="action_ok">確定</string>
-    <string name="action_open">Open</string>
+    <string name="action_open">開啟</string>
     <string name="action_remove">移除</string>
     <string name="action_cancel">取消</string>
     <string name="action_clear_data">清除資料</string>
@@ -28,7 +28,7 @@
     <string name="action_open_in_new_bubble">在新的氣泡中開啟</string>
     <string name="action_upgrade_to_pro">★升級至專業版★</string>
     <string name="action_copy_to_clipboard">複製連結</string>
-    <string name="action_save_image">Save image</string>
+    <string name="action_save_image">儲存圖片</string>
     <string name="action_share">分享</string>
     <string name="action_close_all">全部關閉</string>
     <string name="action_close_tab">關閉氣泡</string>
@@ -39,9 +39,9 @@
     <string name="share_via">分享至…</string>
     <string name="not_set">尚未設定</string>
 
-    <string name="error_saving_image">Error saving image.</string>
-    <string name="image_saved">Image downloaded.</string>
-    <string name="notice_download_started">Download started.</string>
+    <string name="error_saving_image">儲存圖片時出現問題。</string>
+    <string name="image_saved">已下載圖片。</string>
+    <string name="notice_download_started">已開始下載。</string>
 
     <string name="warning">警告！</string>
     <string name="untrusted_certificate">%1$s 的憑證有安全疑慮。要繼續嗎？</string>

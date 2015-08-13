@@ -15,7 +15,7 @@
     <string name="cancel">Annuleren</string>
 
     <string name="action_ok">OK</string>
-    <string name="action_open">Open</string>
+    <string name="action_open">Openen</string>
     <string name="action_remove">Verwijderen</string>
     <string name="action_cancel">Annuleren</string>
     <string name="action_clear_data">Gegevens wissen</string>
@@ -24,11 +24,11 @@
     <string name="action_help">Help</string>
     <string name="action_reload_page">Vernieuwen</string>
     <string name="action_open_in_browser">Openen in %1$s</string>
-    <string name="action_request_desktop_site">Request desktop site</string>
+    <string name="action_request_desktop_site">Desktopversie opvragen</string>
     <string name="action_open_in_new_bubble">Openen in nieuwe bubbel</string>
     <string name="action_upgrade_to_pro">★Upgraden naar Pro★</string>
     <string name="action_copy_to_clipboard">Link kopiëren</string>
-    <string name="action_save_image">Save image</string>
+    <string name="action_save_image">Afbeelding opslaan</string>
     <string name="action_share">Delen</string>
     <string name="action_close_all">Alles sluiten</string>
     <string name="action_close_tab">Bubbel sluiten</string>
@@ -39,9 +39,9 @@
     <string name="share_via">Delen via...</string>
     <string name="not_set">Niet ingesteld</string>
 
-    <string name="error_saving_image">Error saving image.</string>
-    <string name="image_saved">Image downloaded.</string>
-    <string name="notice_download_started">Download started.</string>
+    <string name="error_saving_image">Fout bij het opslaan van de afbeelding</string>
+    <string name="image_saved">Afbeelding opgeslagen</string>
+    <string name="notice_download_started">Download gestart</string>
 
     <string name="warning">Waarschuwing!</string>
     <string name="untrusted_certificate">Het certificaat van %1$s wordt niet vertrouwd. Toch doorgaan?</string>
@@ -120,7 +120,7 @@ wordt ingesteld als je links laadt met Link Bubble.</string>
     <string name="preference_theme_dark_no_color">Donker + neutrale kleur</string>
     <string name="preference_theme_toolbar_title">Taakbalk kleuren</string>
     <string name="preference_theme_toolbar_summary">Om aan te sluiten bij de themakleur/icoonhoofdkleur van een website.</string>
-    <string name="preference_article_mode_title">Reading Mode</string>
+    <string name="preference_article_mode_title">Leesmodus</string>
     <string name="preference_reading_mode_on_wear_title">Leesmodus op Wear</string>
     <string name="preference_article_mode_summary">In/uitschakelen met knop op actiebalk</string>
     <string name="preference_webview_text_zoom_title">Tekstzoom</string>
@@ -256,11 +256,7 @@ schakel \"Externe browser\" in of zet \"Geïntegreerde browser\" uit, of iets de
 waarop in andere browserapps wordt geklikt.
 ]]></string>
     <string name="faq_article_mode_question">Hoe gebruik ik Leesmodus? Waarom werkt het niet voor sommige links?</string>
-    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
-            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
-            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
-            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
-            there is little than can be done here.]]></string>
+    <string name="faq_article_mode_answer"><![CDATA[Ten eerste, zorg dat Leesmodus is ingeschakeld (Instellingen -> Besturing app / Meer&#8230; -> Leesmodus).<br/><br/> Daarna zal, als Leesmodus beschikbaar is voor de huidige tab, het Leesmodus-pictogram zichtbaar zijn op de actiebalk (naast de Delen-knop). Bedenk dat dit pictogram alleen verschijnt als de link klaar is met laden, en alleen als Link Bubble er in slaagt inhoud voor Leesmodus eruit te halen.<br/><br/> Let op: Inhoud van het web extraheren is geen betrouwbare procedure, en werkt mogelijk niet 100% accuraat. Gezien het dynamische en immer veranderende karakter van het web zelf, is er weinig wat hieraan gedaan kan worden.]]></string>
     <string name="faq_future_features_question">Ga je ondersteuning inbouwen voor bladwijzers, favorieten, extensies, enzovoort?</string>
     <string name="faq_future_features_answer">Zeg nooit nooit, maar op dit moment is Link Bubble alleen gericht op het zijn van de best mogelijke manier
 om links van andere apps te laden en te verwerken.</string>
