@@ -30,6 +30,7 @@
     <dimen name="settings_icon_size">32dp</dimen>
 
     <dimen name="snackbar_height">64dp</dimen>
+    <dimen name="home_activity_bottom_margin">64dp</dimen>
 
     <dimen name="back_indicator_size">16dp</dimen>
     <dimen name="badge_size">24dp</dimen>
