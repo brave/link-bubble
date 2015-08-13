@@ -114,8 +114,15 @@ public class AppPoller {
                     }
 
                     ActivityManager am = (ActivityManager)mContext.getSystemService(Activity.ACTIVITY_SERVICE);
+
                     //Log.d(TAG, "Checking current tasks...");
-                    ComponentName componentName = am.getRunningTasks(1).get(0).topActivity;
+                    List<ActivityManager.RunningTaskInfo> runningTasks = am.getRunningTasks(1);
+                    if (runningTasks.isEmpty()) {
+                        CrashTracking.log(TAG + ": No running tasks!");
+                        break;
+                    }
+
+                    ComponentName componentName = runningTasks.get(0).topActivity;
                     String appFlatComponentName = componentName.flattenToShortString();
                     if (appFlatComponentName != null
                             && mCurrentAppFlatComponentName != null
