@@ -15,6 +15,7 @@
     <string name="cancel">Annulla</string>
 
     <string name="action_ok">OK</string>
+    <string name="action_open">Open</string>
     <string name="action_remove">Rimuovi</string>
     <string name="action_cancel">Annulla</string>
     <string name="action_clear_data">Elimina dati</string>
@@ -27,6 +28,7 @@
     <string name="action_open_in_new_bubble">Apri in una nuova bolla</string>
     <string name="action_upgrade_to_pro">★Aggiorna alla versione Pro★</string>
     <string name="action_copy_to_clipboard">Copia collegamento</string>
+    <string name="action_save_image">Save image</string>
     <string name="action_share">Condividi</string>
     <string name="action_close_all">Chiudi tutto</string>
     <string name="action_close_tab">Chiudi la bolla</string>
@@ -36,6 +38,10 @@
     <string name="action_no_recommended">No (raccomandato)</string>
     <string name="share_via">Condividi tramite...</string>
     <string name="not_set">Non impostato</string>
+
+    <string name="error_saving_image">Error saving image.</string>
+    <string name="image_saved">Image downloaded.</string>
+    <string name="notice_download_started">Download started.</string>
 
     <string name="warning">Attenzione!</string>
     <string name="untrusted_certificate">Il certificato a %1$s non è fidato. Procedere comunque?</string>
@@ -285,14 +291,6 @@ In futuro valuterò usi alternativi di rendering come FireFox, GeckoView e Chrom
     <string name="faq_close_quickly_answer">Scorri dall\'alto dello schermo per aprire il pannello delle notifiche e clicka la notifica \"Link Bubble\".</string>
     <string name="faq_change_default_browser_question">Come posso rimuovere l\'impostazione di Link Bubble come browser predefinito?</string>
     <string name="faq_change_default_browser_answer">Impostazioni di sistema -> Applicazioni -> Scaricate -> Link Bubble -> Elimina predefiniti.</string>
-    <string name="faq_pro_trial_question">Come funziona Link Bubble Pro Trial?</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
-        Pro\'s premium features.<br/>
-        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
-        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
-        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
-        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
-        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
     <string name="faq_report_bug_question">Riporta un errore</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -306,8 +304,6 @@ In futuro valuterò usi alternativi di rendering come FireFox, GeckoView e Chrom
 
     <string name="activity_resolver_use_always">Sempre</string>
     <string name="activity_resolver_use_once">Una sola volta</string>
-
-    <string name="trial_time_on_click">Rimangono %1$s delle tue 24 ore di prova con Link Bubble Pro.</string>
 
     <string name="credits_title">Crediti su Link Bubble</string>
     <string name="credits_name">Link Bubble</string>
@@ -378,7 +374,6 @@ In futuro valuterò usi alternativi di rendering come FireFox, GeckoView e Chrom
     </string>
 
     <string name="welcome_page_title">Benvenuto in Link Bubble!</string>
-    <string name="welcome_page_trial_notice">Nota: Per le prime 24 ore dopo la prima installazione di Link Bubble, avrai accesso a tutte le funzionalità Premium di Link Bubble Pro come periodo di prova una-tantum.</string>
     <string name="welcome_page_intro_title">Come funziona?</string>
     <string name="welcome_page_intro_point_1">Clicca un link in una app.</string>
     <string name="welcome_page_intro_point_2">Una bolla apparirà lungo il bordo dello schermo e il link sarà caricato in background. Quando la pagina è caricata, verrà visualizzata.</string>

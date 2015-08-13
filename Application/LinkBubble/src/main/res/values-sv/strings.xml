@@ -15,6 +15,7 @@
     <string name="cancel">Avbryt</string>
 
     <string name="action_ok">OK</string>
+    <string name="action_open">Open</string>
     <string name="action_remove">Ta bort</string>
     <string name="action_cancel">Avbryt</string>
     <string name="action_clear_data">Rensa data</string>
@@ -27,6 +28,7 @@
     <string name="action_open_in_new_bubble">Öppna i ny bubbla</string>
     <string name="action_upgrade_to_pro">★Uppgradera till Pro★</string>
     <string name="action_copy_to_clipboard">Kopiera länk</string>
+    <string name="action_save_image">Save image</string>
     <string name="action_share">Dela</string>
     <string name="action_close_all">Stäng alla</string>
     <string name="action_close_tab">Stäng bubbla</string>
@@ -36,6 +38,10 @@
     <string name="action_no_recommended">Nej (rekommenderad)</string>
     <string name="share_via">Dela via...</string>
     <string name="not_set">Ej angivet</string>
+
+    <string name="error_saving_image">Error saving image.</string>
+    <string name="image_saved">Image downloaded.</string>
+    <string name="notice_download_started">Download started.</string>
 
     <string name="warning">Varning!</string>
     <string name="untrusted_certificate">Certifikatet vid %1$s är inte betrott. Fortsätta ändå?</string>
@@ -306,14 +312,6 @@ att folk tar det som ett åtagande och blir upprörda när det dröjer av någon
     <string name="faq_close_quickly_answer">Svep från toppen av skärmen för att öppna notifieringsfältet och klicka på \"Link Bubble\"-notifieringen.</string>
     <string name="faq_change_default_browser_question">Hur kan jag ta bort Link Bubble som standardwebbläsare?</string>
     <string name="faq_change_default_browser_answer">Systeminställningar -> Appar -> Hämtade -> Link Bubble -> Rensa standardinställningar</string>
-    <string name="faq_pro_trial_question">Hur fungerar Link Bubble Pro trial?</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
-        Pro\'s premium features.<br/>
-        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
-        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
-        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
-        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
-        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
     <string name="faq_report_bug_question">Rapportera en bug</string>
     <string name="faq_report_bug_answer"><![CDATA[epost]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -327,8 +325,6 @@ att folk tar det som ett åtagande och blir upprörda när det dröjer av någon
 
     <string name="activity_resolver_use_always">Alltid</string>
     <string name="activity_resolver_use_once">Bara en gång</string>
-
-    <string name="trial_time_on_click">%1$s återstår av din 24-timmars Link Bubble Pro testversion.</string>
 
     <string name="credits_title">Link Bubble Credits</string>
     <string name="credits_name">Link Bubble</string>
@@ -406,7 +402,6 @@ till ditt köp inte är konfigurerad med Play Store på den här enheten.</strin
     </string>
 
     <string name="welcome_page_title">Welcome to Link Bubble!</string>
-    <string name="welcome_page_trial_notice">Note: For the first 24 hours after first installing Link Bubble, you will have access to all of Link Bubble Pro\'s premium features as a one-time trial.</string>
     <string name="welcome_page_intro_title">How does it work?</string>
     <string name="welcome_page_intro_point_1">Click a link in an app.</string>
     <string name="welcome_page_intro_point_2">A bubble will appear on the edge of the screen and the link will begin loading in the background. As soon as the page is loaded, it will be displayed.</string>

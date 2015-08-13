@@ -35,7 +35,6 @@ public class FAQDialog {
     static int sFAQSize = 0;
 
     static String[] sFAQEntry = {
-        "faq_pro_trial",
         "faq_app_internal_browser",
         "faq_close_tab",
         "faq_article_mode",
