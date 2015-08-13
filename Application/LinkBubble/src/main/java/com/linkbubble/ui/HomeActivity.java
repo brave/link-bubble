@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -126,7 +127,8 @@ public class HomeActivity extends AppCompatActivity {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     String userInput = mUrlEntry.getText().toString().trim();
-                    MainApplication.openLink(getApplicationContext(), userInput, null);
+                    String formattedUrl = URLUtil.guessUrl(userInput);
+                    MainApplication.openLink(getApplicationContext(), formattedUrl, null);
                     mUrlEntry.setText("");
                     // Focus on the activity layout to hide the caret.
                     mActivityLayout.requestFocus();
