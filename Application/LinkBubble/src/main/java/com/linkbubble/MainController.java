@@ -915,6 +915,7 @@ public class MainController implements Choreographer.FrameCallback {
     public boolean closeTab(TabView tabView, Constant.BubbleAction action, boolean animateOff, boolean canShowUndoPrompt) {
 
         if (tabView == null) {
+            CrashTracking.log("closeTab attempt on null tabView");
             return false;
         }
 
