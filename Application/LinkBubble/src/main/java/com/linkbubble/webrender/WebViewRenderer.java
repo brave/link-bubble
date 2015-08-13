@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.http.SslError;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -370,7 +371,17 @@ class WebViewRenderer extends WebRenderer {
                 case WebView.HitTestResult.UNKNOWN_TYPE:
                 default:
                     if (Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
-                        mController.onShowBrowserPrompt();
+                        Message msg = new Message();
+                        msg.setTarget(new Handler() {
+                            @Override
+                            public void handleMessage(Message msg) {
+                                Bundle b = msg.getData();
+                                if (b != null && b.getString("url") != null) {
+                                    mController.onShowBrowserPrompt();
+                                }
+                            }
+                        });
+                        mWebView.requestFocusNodeHref(msg);
                     }
                     return false;
             }
