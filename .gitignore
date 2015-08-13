@@ -1,5 +1,5 @@
-# files for the dex VM
-*.dex
+# Node scripts
+node_modules/
 
 # Java class files
 *.class

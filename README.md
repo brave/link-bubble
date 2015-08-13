@@ -33,8 +33,9 @@ Try uninstalling the application which already exists on your plugged in device.
 
 ##Getting new translated strings from getlocalization.com
 
-1. Run `babel-node scripts/updateTranslations.js username password` to pull down the translated xml files.
-2. Commit and push your change.
+1. Install npm dependencies with `npm install`.
+2. Run `npm run translate <username> <password>` to pull down the translated xml files.
+3. Commit and push your change.
 
 
 ##ADB
