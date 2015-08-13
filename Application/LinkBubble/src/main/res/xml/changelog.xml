@@ -5,6 +5,7 @@
         <change>NEW: Added an option to download images from the context menu after a long press. This requires us to ask for the permissions to write to external storage.</change>
         <change>NEW: Ability to upload files via HTML file picker inputs. This requires us to ask for the permissions to read from external storage.</change>
         <change>BUG FIX: Fixed text color for light colored theme backgrounds.</change>
+        <change>BUG FIX: Fixed previously broken functionality with various websites and image galleries.</change>
     </release>
 
     <release version="1.5.1">
