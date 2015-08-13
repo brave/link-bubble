@@ -15,6 +15,7 @@
     <string name="cancel">निरस्त</string>
 
     <string name="action_ok">ओके</string>
+    <string name="action_open">Open</string>
     <string name="action_remove">हटायें</string>
     <string name="action_cancel">निरस्त</string>
     <string name="action_clear_data">Limpiar datos</string>
@@ -27,6 +28,7 @@
     <string name="action_open_in_new_bubble">नये बबल में खोलें</string>
     <string name="action_upgrade_to_pro">★अपग्रेड टू प्रो ★</string>
     <string name="action_copy_to_clipboard">कोपी लिंक </string>
+    <string name="action_save_image">Save image</string>
     <string name="action_share">शेयर</string>
     <string name="action_close_all">सभी बंद करे </string>
     <string name="action_close_tab">बबल बंद करे </string>
@@ -36,6 +38,10 @@
     <string name="action_no_recommended">No (recommended)</string>
     <string name="share_via">शेयर वाया </string>
     <string name="not_set">Not set</string>
+
+    <string name="error_saving_image">Error saving image.</string>
+    <string name="image_saved">Image downloaded.</string>
+    <string name="notice_download_started">Download started.</string>
 
     <string name="warning">Warning!</string>
     <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
@@ -304,14 +310,6 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="faq_change_default_browser_question">मैं डिफ़ॉल्ट ब्राउज़र के रूप में कैसे लिंक बबल को केसे हटाऊ ?</string>
     <string name="faq_change_default_browser_answer">सिस्टम सेटिंग -> ऐप्स -> डाउनलोडेड -> लिंक बबल ->
 डिफ़ॉल्ट हटाये।</string>
-    <string name="faq_pro_trial_question">लिंक बबल का प्रो ट्राइल केसे कार्य करता हे। </string>
-    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
-        Pro\'s premium features.<br/>
-        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
-        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
-        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
-        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
-        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
     <string name="faq_report_bug_question">बग की रिपोर्ट करे। </string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -325,8 +323,6 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
 
     <string name="activity_resolver_use_always">हमेशा </string>
     <string name="activity_resolver_use_once">सिर्फ एक बार </string>
-
-    <string name="trial_time_on_click">%1$s बाकी हे आपके 24 गंटे लिंक बबल ट्रायल में से। </string>
 
     <string name="credits_title">लिंक बबल क्रेडिट्स </string>
     <string name="credits_name">Link Bubble</string>
@@ -404,7 +400,6 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     </string>
 
     <string name="welcome_page_title">लिंक बबल में आपका स्वागत हे!</string>
-    <string name="welcome_page_trial_notice"><![CDATA[• लिंक बबल इन्स्टाल करने के बाद पहले 24 घंटे के लिए, गैर लिंक बुलबुला प्रो उपयोगकर्ता सभी फीचर उपयोग कर सकेंगे।]]></string>
     <string name="welcome_page_intro_title">यह केसे काम करता हे?</string>
     <string name="welcome_page_intro_point_1">किसी भी ऐप  में कोई लिंक पर क्लिक करे। </string>
     <string name="welcome_page_intro_point_2">एक बब्ल स्क्रीन की साइड में दिखाई देगा और आपका लिंक लोड होने लगेगा बैकग्राउंड में। जब लिंक लोड हो जाएगा तब स्क्रीन पर दिखाई देगा। </string>

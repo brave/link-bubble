@@ -15,6 +15,7 @@
     <string name="cancel">Отмена</string>
 
     <string name="action_ok">ОК</string>
+    <string name="action_open">Open</string>
     <string name="action_remove">Сбросить</string>
     <string name="action_cancel">Отмена</string>
     <string name="action_clear_data">Очистить данные</string>
@@ -23,10 +24,11 @@
     <string name="action_help">Помощь</string>
     <string name="action_reload_page">Обновить</string>
     <string name="action_open_in_browser">Открыть в %1$s</string>
-    <string name="action_request_desktop_site">Request desktop site</string>
+    <string name="action_request_desktop_site">Запросить десктопную версию</string>
     <string name="action_open_in_new_bubble">Открыть в новом пузыре</string>
     <string name="action_upgrade_to_pro">★Улучшить до Pro★</string>
     <string name="action_copy_to_clipboard">Копировать ссылку</string>
+    <string name="action_save_image">Save image</string>
     <string name="action_share">Поделиться</string>
     <string name="action_close_all">Закрыть все</string>
     <string name="action_close_tab">Закрыть пузырь</string>
@@ -36,6 +38,10 @@
     <string name="action_no_recommended">Нет (рекомендуется)</string>
     <string name="share_via">Поделиться</string>
     <string name="not_set">Не задано</string>
+
+    <string name="error_saving_image">Error saving image.</string>
+    <string name="image_saved">Image downloaded.</string>
+    <string name="notice_download_started">Download started.</string>
 
     <string name="warning">Внимание!</string>
     <string name="untrusted_certificate">Небезопасный сертификат. Продолжить?</string>
@@ -112,7 +118,7 @@
     <string name="preference_theme_dark_no_color">Тёмная + нейтральный цвет</string>
     <string name="preference_theme_toolbar_title">Окрашивать тулбар</string>
     <string name="preference_theme_toolbar_summary">Подбирать цвет в зависимости от темы сайта.</string>
-    <string name="preference_article_mode_title">Reading Mode</string>
+    <string name="preference_article_mode_title">Режим чтения</string>
     <string name="preference_reading_mode_on_wear_title">Режим чтения для Wear</string>
     <string name="preference_article_mode_summary">Включается кнопкой в Action Bar</string>
     <string name="preference_webview_text_zoom_title">Увеличение текста</string>
@@ -244,11 +250,10 @@ Link Bubble следует тому же правилу.]]></string>
 <br/><br/>Внимание: другие браузеры, такие как Chrome, открывают ссылки только в самом себе, поэтому Link Bubble не может открывать ссылки из других браузеров.
 ]]></string>
     <string name="faq_article_mode_question">Как использовать режим чтения? Почему некоторые ссылки не работают?</string>
-    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
-            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
-            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
-            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
-            there is little than can be done here.]]></string>
+    <string name="faq_article_mode_answer"><![CDATA[В первую очередь убедитесь, что режим чтения включён (Настройки -> Управление приложением / Ещё&#8230; -> Режим чтения).<br/><br/>
+После этого убедитесь, что режим чтения доступен для выбранного пузыря, иконка появится в Action Bar (рядом с иконкой Поделиться).
+Имейте в виду, что иконка появляется только после того, как страница полностью загрузится, и только если Link Bubble удалось извлечь контент для режима чтения.<br/><br/>
+Внимание: Извлечение контента из страниц – ненадёжный процесс, и он не может работать со стопроцентной точностью. Поскольку страницы постоянно меняются и развиваются, тут мало что можно сделать.]]> </string>
     <string name="faq_future_features_question">Будет ли добавлена поддержка закладок, избранного, расширений и прочего?</string>
     <string name="faq_future_features_answer">Не зарекаюсь, но пока что развитие Link Bubble направлено на как можно более комфортное и быстрое открытие ссылок из других приложений.</string>
     <string name="faq_translations_question">Могу ли я помочь с переводом?</string>
@@ -286,13 +291,6 @@ Link Bubble.]]></string>
     <string name="faq_close_quickly_answer">Откройте панель уведомлений и нажмите на уведомление Link Bubble.</string>
     <string name="faq_change_default_browser_question">Как сменить стандартный браузер с Link Bubble на другой?</string>
     <string name="faq_change_default_browser_answer">Настройки -> Приложения -> Загруженные -> Link Bubble -> Сбросить значения по умолчанию.</string>
-    <string name="faq_pro_trial_question">Как работает пробный режим Link Bubble Pro?</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• На первые 24 часа пользователи бесплатной версии Link Bubble получают доступ ко всем функциям, доступным в Pro-версии.<br/>
-• Во время этого единоразового пробного периода Pro-функции Link Bubble будут доступны на всех ваших устройствах.<br/>
-• Таймер в левом верхнем углу экрана будет показывать, сколько времени у вас ещё осталось.<br/>
-• Загрузившие Link Bubble до версии 1.1 также имеют доступ к пробному периоду.<br/>
-• В целях безопасности пробный период привязывается к вашему email. Если такового нет на устройстве, пробный период не будет доступен.<br/>
-• К сожалению, пробный период нельзя сбросить. Вы сможете пользоваться Pro-функциями только первые 24 часа после установки Link Bubble.]]></string>
     <string name="faq_report_bug_question">Сообщить об ошибке</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -306,8 +304,6 @@ Link Bubble.]]></string>
 
     <string name="activity_resolver_use_always">Всегда</string>
     <string name="activity_resolver_use_once">Только сейчас</string>
-
-    <string name="trial_time_on_click">Осталось %1$s от Вашей 24-часовой пробы Link Bubble Pro.</string>
 
     <string name="credits_title">Разработчики Link Bubble</string>
     <string name="credits_name">Link Bubble</string>
@@ -378,7 +374,6 @@ Link Bubble.]]></string>
 • Поддержку команды в разработке :)</string>
 
     <string name="welcome_page_title">Добро пожаловать в Link Bubble!</string>
-    <string name="welcome_page_trial_notice">Внимание: первые 24 часа использования вам будут доступны все Pro-функции как единоразовый пробный период.</string>
     <string name="welcome_page_intro_title">Как это работает?</string>
     <string name="welcome_page_intro_point_1">Нажмите на ссылку в приложении.</string>
     <string name="welcome_page_intro_point_2">Пузырь появится на краю экрана и ссылка начнет загружаться в фоне. Как только страница загрузится, она отобразится.</string>

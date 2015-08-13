@@ -15,6 +15,7 @@
     <string name="cancel">Zrušit</string>
 
     <string name="action_ok">OK</string>
+    <string name="action_open">Open</string>
     <string name="action_remove">Odstranit</string>
     <string name="action_cancel">Zrušit</string>
     <string name="action_clear_data">Smazat data</string>
@@ -23,33 +24,38 @@
     <string name="action_help">Nápověda</string>
     <string name="action_reload_page">Načíst znovu</string>
     <string name="action_open_in_browser">Otevřít v %1$s</string>
-    <string name="action_request_desktop_site">Request desktop site</string>
+    <string name="action_request_desktop_site">Vyžádat verzi webu pro PC</string>
     <string name="action_open_in_new_bubble">Otevřít v nové bublině</string>
     <string name="action_upgrade_to_pro">★Přejít na verzi Pro★</string>
     <string name="action_copy_to_clipboard">Zkopírovat odkaz</string>
+    <string name="action_save_image">Save image</string>
     <string name="action_share">Sdílet</string>
     <string name="action_close_all">Zavřít vše</string>
     <string name="action_close_tab">Zavřít bublinu</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Vrátit</string>
-    <string name="action_add">Add</string>
-    <string name="action_no_recommended">No (recommended)</string>
+    <string name="action_add">Přidat</string>
+    <string name="action_no_recommended">Ne (doporučeno)</string>
     <string name="share_via">Sdílet přes…</string>
     <string name="not_set">Nenastaven</string>
 
-    <string name="warning">Warning!</string>
-    <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
+    <string name="error_saving_image">Error saving image.</string>
+    <string name="image_saved">Image downloaded.</string>
+    <string name="notice_download_started">Download started.</string>
+
+    <string name="warning">Varování!</string>
+    <string name="untrusted_certificate">Certifikát na %1$s není důvěryhodný. Přesto pokračovat?</string>
 
     <string name="share_invalid_data">Link Bubble nedokáže sdílet tuto položku, protože neobsahuje platný odkaz.</string>
     <string name="consume_activity_not_found">Nelze najít aplikaci. Zkuste v nastavení změnit chování bubliny.</string>
-    <string name="consume_activity_security_exception">Unable to share to external application.</string>
+    <string name="consume_activity_security_exception">Nelze sdílet do externí aplikace.</string>
 
     <string name="upgrade">Upgrade</string>
     <string name="upgrade_to_pro">Přejít na verzi Pro</string>
     <string name="upgrade_article_mode">Chcete odkazy otevírat ve Čtečce?</string>
     <string name="upgrade_article_mode_wear">Chcete odkazy otevírat na chytrých hodinkách Android Wear?</string>
     <string name="upgrade_theme">Chcete použít jiný motiv?</string>
-    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
+    <string name="upgrade_theme_toolbar">Chcete obarvit lištu, aby pasovala na barvy obsažené na webové stránce?</string>
     <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
         Load multiple tabs at once.\n •
         Change theme.\n •
@@ -305,14 +311,6 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
     <string name="faq_close_quickly_answer">Panel s notifikacemi otevřete táhnutím prstu shora obrazovky a pak kliknete na notifikace \"Link Bubble\".</string>
     <string name="faq_change_default_browser_question">Jak můžu odstranit Link Bubble coby výchozí prohlížeč?</string>
     <string name="faq_change_default_browser_answer">Nastavení systému -> Aplikace -> Stažené -> Link Bubble -> Vymazat výchozí nastavení.</string>
-    <string name="faq_pro_trial_question">Jak funguje trial verze Link Bubble Pro?</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
-        Pro\'s premium features.<br/>
-        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
-        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
-        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
-        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
-        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
     <string name="faq_report_bug_question">Nahlásit chybu</string>
     <string name="faq_report_bug_answer"><![CDATA[e-mail]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -326,8 +324,6 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
 
     <string name="activity_resolver_use_always">Vždy</string>
     <string name="activity_resolver_use_once">Pouze jednou</string>
-
-    <string name="trial_time_on_click">Zbývá %1$s z 24 hodin do vypršení trial verze Link Bubble Pro.</string>
 
     <string name="credits_title">Autoři Link Bubble</string>
     <string name="credits_name">Link Bubble</string>
@@ -403,7 +399,6 @@ při nákupu není nastavena v Play Store na tomto zařízení.</string>
     </string>
 
     <string name="welcome_page_title">Vítejte v Link Bubble!</string>
-    <string name="welcome_page_trial_notice">Poznámka: Prvních 24 hodin po první instalaci Link Bubble budete mít přístup ke všem prémiovým funkcím Link Bubble Pro.</string>
     <string name="welcome_page_intro_title">Jak to funguje?</string>
     <string name="welcome_page_intro_point_1">Klikněte na odkaz v aplikaci.</string>
     <string name="welcome_page_intro_point_2">Na okraji obrazovky se objeví bublina a odkaz se načítá na pozadí. Jakmile bude stránka načtena, bublina se stránkou se rozbalí.</string>

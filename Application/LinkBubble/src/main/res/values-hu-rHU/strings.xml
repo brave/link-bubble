@@ -15,6 +15,7 @@
     <string name="cancel">Törlés</string>
 
     <string name="action_ok">OK</string>
+    <string name="action_open">Open</string>
     <string name="action_remove">Eltávolítod?</string>
     <string name="action_cancel">Megszakítás</string>
     <string name="action_clear_data">Adat(ok) törlése</string>
@@ -27,6 +28,7 @@
     <string name="action_open_in_new_bubble">Megnyitás új buborékban</string>
     <string name="action_upgrade_to_pro">★Frissítés Pro verzióra★</string>
     <string name="action_copy_to_clipboard">Link másolása</string>
+    <string name="action_save_image">Save image</string>
     <string name="action_share">Megosztás</string>
     <string name="action_close_all">Összes bezárása</string>
     <string name="action_close_tab">Buborék bezárása</string>
@@ -36,6 +38,10 @@
     <string name="action_no_recommended">No (recommended)</string>
     <string name="share_via">Megosztás ezzel</string>
     <string name="not_set">Not set</string>
+
+    <string name="error_saving_image">Error saving image.</string>
+    <string name="image_saved">Image downloaded.</string>
+    <string name="notice_download_started">Download started.</string>
 
     <string name="warning">Warning!</string>
     <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
@@ -296,14 +302,6 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="faq_close_quickly_answer">Húzd le az értesítési területet és kattints a \"Link Bubble\" értesítésre.</string>
     <string name="faq_change_default_browser_question">Hogy tudom beállítani, hogy ne a Link Bubble legyen az alapértelmezett böngésző?</string>
     <string name="faq_change_default_browser_answer">Rendszerbeállítások -> Alkalmazások-> Letöltött-> Link Bubble -> Alapértelmezés törlése.</string>
-    <string name="faq_pro_trial_question">Hogy működik a Link Bubble Pro próba verziója?</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• For the first 24 hours after Link Bubble is installed, non-Link Bubble Pro users will have access to all of
-        Pro\'s premium features.<br/>
-        • During this one-time trial period, Link Bubble Pro\'s premium features will be available for all of your devices.<br/>
-        • A timer displays on the top-left of Link Bubble\'s main screen, informing you how much time remains in your trial.<br/>
-        • People who tried Link Bubble before the 1.1 update are eligible for the trial period.<br/>
-        • For verification purposes, the Pro trial is linked to your email address. If no email address is found on the device, the trial period won\'t be available.<br/>
-        • Sorry, but your trial period can\'t be reset. Please enjoy full access to Pro\'s features in the first 24 hours after installing Link Bubble.]]></string>
     <string name="faq_report_bug_question">Hiba jelentése</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -317,8 +315,6 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
 
     <string name="activity_resolver_use_always">Mindig</string>
     <string name="activity_resolver_use_once">Csak egyszer</string>
-
-    <string name="trial_time_on_click">%1$s van még hátra a Pro próbaverzióból.</string>
 
     <string name="credits_title">Link Bubble készítői</string>
     <string name="credits_name">Link Bubble</string>
@@ -391,7 +387,6 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     </string>
 
     <string name="welcome_page_title">Üdv a Link Bubble-ban!</string>
-    <string name="welcome_page_trial_notice">Note: For the first 24 hours after first installing Link Bubble, you will have access to all of Link Bubble Pro\'s premium features as a one-time trial.</string>
     <string name="welcome_page_intro_title">Hogyan működik?</string>
     <string name="welcome_page_intro_point_1">Kattints egy link-re egy alkalmazásban</string>
     <string name="welcome_page_intro_point_2">A képernyő szélén megjelenik egy buborék és benne betöltődik a link. Amint betöltődött, megjelenik a kívánt oldal.</string>

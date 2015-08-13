@@ -15,6 +15,7 @@
     <string name="cancel">ยกเลิก</string>
 
     <string name="action_ok">ตกลง</string>
+    <string name="action_open">Open</string>
     <string name="action_remove">ลบออก</string>
     <string name="action_cancel">ยกเลิก</string>
     <string name="action_clear_data">ล้างข้อมูล</string>
@@ -23,10 +24,11 @@
     <string name="action_help">ช่วยเหลือ</string>
     <string name="action_reload_page">โหลดใหม่</string>
     <string name="action_open_in_browser">เปิดใน %1$s</string>
-    <string name="action_request_desktop_site">Request desktop site</string>
+    <string name="action_request_desktop_site">ขอไซต์สำหรับเดสก์ท็อป</string>
     <string name="action_open_in_new_bubble">เปิดในหน้าต่างใหม่</string>
     <string name="action_upgrade_to_pro">★อัปเกรดเป็นรุ่นโปร★</string>
     <string name="action_copy_to_clipboard">คัดลอกลิงก์</string>
+    <string name="action_save_image">Save image</string>
     <string name="action_share">แบ่งปัน</string>
     <string name="action_close_all">ปิดทั้งหมด</string>
     <string name="action_close_tab">ปิดหน้าต่าง</string>
@@ -36,6 +38,10 @@
     <string name="action_no_recommended">ไม่ (แนะนำ)</string>
     <string name="share_via">แบ่งปันผ่าน...</string>
     <string name="not_set">ไม่ได้ตั้งค่า</string>
+
+    <string name="error_saving_image">Error saving image.</string>
+    <string name="image_saved">Image downloaded.</string>
+    <string name="notice_download_started">Download started.</string>
 
     <string name="warning">ระวัง!</string>
     <string name="untrusted_certificate">ใบรับรองของ %1$s ไม่น่าเชื่อถือ ดำเนินการต่อหรือไม่?</string>
@@ -111,7 +117,7 @@
     <string name="preference_theme_dark_no_color">มืด + สีมาตรฐาน</string>
     <string name="preference_theme_toolbar_title">เปลี่ยนสีแถบเครื่องมือ</string>
     <string name="preference_theme_toolbar_summary">ให้ตรงกับธีมสีของเว็บไซต์/สีหลักของไอคอน</string>
-    <string name="preference_article_mode_title">Reading Mode</string>
+    <string name="preference_article_mode_title">โหมดการอ่าน</string>
     <string name="preference_reading_mode_on_wear_title">โหมดการอ่านบน Android Wear</string>
     <string name="preference_article_mode_summary">เปิด/ปิดผ่านปุ่มบนแถบคำสั่ง</string>
     <string name="preference_webview_text_zoom_title">ขนาดตัวอักษร</string>
@@ -239,11 +245,10 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
 <br/><br/>หมายเหตุ: แอปเบราว์เซอร์อื่นๆ เช่น Chrome มีการบังคับให้เปิดลิงก์ภายในตัวเอง นี่คือเหตุผลที่ Link Bubble ไม่สามารถเปิดลิงก์จากแอปเบราว์เซอร์อื่น
 ]]></string>
     <string name="faq_article_mode_question">ฉันจะใช้งานโหมดการอ่านได้อย่างไร, ทำไมบางลิงก์ถึงใช้งานไม่ได้</string>
-    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
-            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
-            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
-            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
-            there is little than can be done here.]]></string>
+    <string name="faq_article_mode_answer"><![CDATA[อย่างแรก ดูให้แน่ใจว่าโหมดการอ่านได้ถูกเปิดใช้แล้ว (ตั้งค่า -> การควบคุมและอื่นๆ&#8230; -> โหมดการอ่าน)<br/><br/>
+หลังจากนั้น เมื่อโหมดการอ่านพร้อมใช้งาน ปุ่มโหมดการอ่านจะปรากฏขึ้นบนแถบคำสั่ง (ข้างปุ่มแบ่งปัน)
+โปรดทำความเข้าใจก่อนว่าปุ่มโหมดการอ่านจะแสดงเมื่อลิงก์ถูกโหลดเสร็จแล้ว และ Link Bubble ได้ประมวลผลโหมดการอ่านจากหน้าเว็บเสร็จแล้วเท่านั้น<br/><br/>
+หมายเหตุ: การประมวลผลโหมดการอ่านจากหน้าเว็บไม่สามารถไว้ใจได้ และอาจไม่สำเร็จ 100% เพราะแต่ละเว็บมีรูปแบบไม่เหมือนกัน]]></string>
     <string name="faq_future_features_question">คุณมีแผนที่จะรองรับบุ๊กมาร์ก, การชื่นชอบ, ส่วนเสริม ฯลฯ หรือไม่?</string>
     <string name="faq_future_features_answer">ไม่สามารถพูดว่าไม่ แต่ในตอนนี้ Link Bubble โฟกัสไปในเรื่องการเป็นช่องทางที่ดีที่สุดในการเปิดลิงก์จากแอปอื่น</string>
     <string name="faq_translations_question">ฉันสามารถช่วยแปลแอปนี้ได้ไหม?</string>
@@ -276,13 +281,6 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="faq_close_quickly_answer">ลากจากด้านบนสุดของเครื่องเพื่อเปิดหน้าแจ้งเตือน และแตะการแจ้งเตือนของ \"Link Bubble\"</string>
     <string name="faq_change_default_browser_question">ฉันจะนำ Link Bubble ออกจากการเป็นเบราว์เซอร์หลักได้อย่างไร?</string>
     <string name="faq_change_default_browser_answer">ไปที่การตั้งค่าของเครื่อง -> แอป -> ดาวน์โหลด -> Link Bubble -> ล้างค่าเริ่มต้น</string>
-    <string name="faq_pro_trial_question">การทดลองใช้ Link Bubble รุ่นโปรทำงานยังไง</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• ภายใน 24 ชั่วโมงหลังจากติดตั้ง Link Bubble ผู้ที่ไม่ได้เป็นเจ้าของรุ่นโปร จะได้ใช้งานคุณสมบัติทั้งหมดของรุ่นโปร <br/>
-• ในระหว่างการทดลองใช้ครั้งเดียว คุณสมบัติของ Link Bubble รุ่นโปรสามารถใช้ได้บนทุกอุปกรณ์ของคุณ<br/>
-• ตัวนับเวลาจะปรากฏบนมุมบนซ้ายในหน้าหลักของ Link Bubble เพื่อบอกคุณว่าเหลือเวลาอีกเท่าไหร่<br/>
-• ผู้ใช้ที่ได้ลองใช้ Link Bubble ก่อนอัปเดตเป็นเวอร์ชัน 1.1 ก็สามารถทดลองใช้ได้<br/>
-• สำหรับการตรวจสอบ การทดลองใช้รุ่นโปรใช้ที่อยู่อีเมลของคุณ หากไม่พบที่อยู่อีเมลบนอุปกรณ์ คุณจะไม่สามารถทดลองใช้รุ่นโปรได้<br/>
-• ขออภัย แต่การทดลองใช้ไม่สามารถเริ่มใหม่ได้ กรุณาลองใช้คุณสมบัติรุ่นโปรภายใน 24 ชั่วโมงหลังจากคุณติดตั้ง Link Bubble]]></string>
     <string name="faq_report_bug_question">รายงานปัญหา</string>
     <string name="faq_report_bug_answer"><![CDATA[อีเมล]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -296,8 +294,6 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
 
     <string name="activity_resolver_use_always">ทุกครั้ง</string>
     <string name="activity_resolver_use_once">ครั้งเดียว</string>
-
-    <string name="trial_time_on_click">เหลือเวลา %1$s จาก 24 ชั่วโมงในการทดลองใช้รุ่นโปร</string>
 
     <string name="credits_title">เครดิตของ Link Bubble</string>
     <string name="credits_name">Link Bubble</string>
@@ -367,7 +363,6 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
 • สนับสนุนเรา ช่วยให้เราได้พัฒนาแอปนี้ :)</string>
 
     <string name="welcome_page_title">ยินดีต้อนรับสู่ Link Bubble!</string>
-    <string name="welcome_page_trial_notice">หมายเหตุ: ภายใน 24 ชั่วโมงหลังจากติดตั้ง Link Bubble ครั้งแรก คุณจะได้ทดลองใช้คุณสมบัติของ Link Bubble รุ่นโปรฟรี การทดลองใช้นี้จำกัดเพียงครั้งเดียวเท่านั้น</string>
     <string name="welcome_page_intro_title">ทำงานยังไง?</string>
     <string name="welcome_page_intro_point_1">คลิกลิงก์ในแอป</string>
     <string name="welcome_page_intro_point_2">หน้าต่างใหม่จะปรากฏขึ้นบนขอบหน้าจอและลิงก์จะถูกโหลดในพื้นหลัง หน้าเว็บจะแสดงหลังจากโหลดเสร็จ</string>

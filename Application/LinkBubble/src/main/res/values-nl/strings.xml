@@ -15,6 +15,7 @@
     <string name="cancel">Annuleren</string>
 
     <string name="action_ok">OK</string>
+    <string name="action_open">Open</string>
     <string name="action_remove">Verwijderen</string>
     <string name="action_cancel">Annuleren</string>
     <string name="action_clear_data">Gegevens wissen</string>
@@ -27,6 +28,7 @@
     <string name="action_open_in_new_bubble">Openen in nieuwe bubbel</string>
     <string name="action_upgrade_to_pro">★Upgraden naar Pro★</string>
     <string name="action_copy_to_clipboard">Link kopiëren</string>
+    <string name="action_save_image">Save image</string>
     <string name="action_share">Delen</string>
     <string name="action_close_all">Alles sluiten</string>
     <string name="action_close_tab">Bubbel sluiten</string>
@@ -36,6 +38,10 @@
     <string name="action_no_recommended">Nee</string>
     <string name="share_via">Delen via...</string>
     <string name="not_set">Niet ingesteld</string>
+
+    <string name="error_saving_image">Error saving image.</string>
+    <string name="image_saved">Image downloaded.</string>
+    <string name="notice_download_started">Download started.</string>
 
     <string name="warning">Waarschuwing!</string>
     <string name="untrusted_certificate">Het certificaat van %1$s wordt niet vertrouwd. Toch doorgaan?</string>
@@ -306,14 +312,6 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="faq_close_quickly_answer">Veeg vanaf de bovenkant van het scherm om het meldingenscherm te openen, en klik op de \"Link Bubble\"-melding.</string>
     <string name="faq_change_default_browser_question">Hoe kan ik Link Bubble weghalen als standaardbrowser?</string>
     <string name="faq_change_default_browser_answer">Systeeminstellingen -> Apps -> Gedownload -> Link Bubble -> Standaardwaarden wissen.</string>
-    <string name="faq_pro_trial_question">Hoe werkt de Link Bubble Pro-proefperiode?</string>
-    <string name="faq_pro_trial_answer"><![CDATA[• De eerste 24 uur na de installatie van Link Bubble, hebben niet-Link Bubble Pro-gebruikers toegang tot alle
-premiumfuncties van Pro.<br/>
-• Tijdens deze eenmalige proefperiode zullen de functies van Link Bubble Pro beschikbaar zijn op al je apparaten.<br/>
-• Linksbovenaan op het hoofdscherm van Link Bubble staat een timer, waarmee je kunt zien hoeveel tijd er nog over is van de proefperiode.<br/>
-• Mensen die Link Bubble hebben geprobeerd vóór de 1.1-update kunnen meedoen aan de proefperiode.<br/>
-• Ter verificatie is de Pro-proefperiode gekoppeld aan je e-mailadres. Als er geen e-mailadres wordt gevonden op je apparaat, zal de proefperiode niet beschikbaar zijn.<br/>
-• Helaas kan de proefperiode niet teruggezet worden. Je kunt genieten van volledige toegang tot de Pro-functies in de eerste 24 uur na installatie van Link Bubble.]]></string>
     <string name="faq_report_bug_question">Een bug melden</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
     <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
@@ -327,8 +325,6 @@ premiumfuncties van Pro.<br/>
 
     <string name="activity_resolver_use_always">Altijd</string>
     <string name="activity_resolver_use_once">Eén keer</string>
-
-    <string name="trial_time_on_click">%1$s resterend van je 24 uur Link Bubble Pro-proefperiode.</string>
 
     <string name="credits_title">Link Bubble credits</string>
     <string name="credits_name">Link Bubble</string>
@@ -402,7 +398,6 @@ e-mailadres niet is geconfigureerd met de Play Store op dit apparaat.</string>
 • Ondersteuning van ons zodat we meer van deze apps kunnen maken :)</string>
 
     <string name="welcome_page_title">Welkom bij Link Bubble!</string>
-    <string name="welcome_page_trial_notice">Let op: tijdens de eerste 24 uur na de installatie van Link Bubble heb je toegang tot alle premiumfuncties van Link Bubble Pro, als een eenmalige proefperiode.</string>
     <string name="welcome_page_intro_title">Hoe werkt het?</string>
     <string name="welcome_page_intro_point_1">Klik op een link in een app.</string>
     <string name="welcome_page_intro_point_2">Een bubbel verschijnt aan de rand van het scherm en de link begint met laden op de achtergrond. Zodra de pagina is geladen, zal deze worden getoond.</string>
