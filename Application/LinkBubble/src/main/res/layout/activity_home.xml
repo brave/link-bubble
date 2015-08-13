@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|bottom"
             android:id="@+id/action_button_container"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="@dimen/home_activity_bottom_margin">
 
             <View
                 android:layout_width="214dp"
