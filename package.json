@@ -1,0 +1,26 @@
+{
+  "name": "link-bubble",
+  "version": "0.0.0",
+  "description": "Link Bubble Browser",
+  "scripts": {
+    "translate": "babel-node scripts/updateTranslations.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/brave/link-bubble.git"
+  },
+  "author": "The Link Bubble Team <support@linkbubble.com>",
+  "licenses": [
+    {
+      "type": "MPL",
+      "version": "2.0",
+      "url": "http://mozilla.org/MPL/2.0/"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/brave/link-bubble/issues"
+  },
+  "devDependencies": {
+    "babel": "^5.8.21"
+  }
+}
