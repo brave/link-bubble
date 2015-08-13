@@ -118,7 +118,7 @@ public class AppPoller {
                     //Log.d(TAG, "Checking current tasks...");
                     List<ActivityManager.RunningTaskInfo> runningTasks = am.getRunningTasks(1);
                     if (runningTasks.isEmpty()) {
-                        Log.d(TAG, "No running tasks!");
+                        CrashTracking.log(TAG + ": No running tasks!");
                         break;
                     }
 
