@@ -3,6 +3,7 @@ package com.linkbubble.util;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.util.Log;
@@ -15,6 +16,12 @@ import com.linkbubble.Constant;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -35,139 +42,6 @@ public class PageInspector {
 
     private static final String JS_VARIABLE = "LinkBubble";
     private static final String UNKNOWN_TAG = "unknown";        // the tag Chrome/WebView uses for unknown elements
-
-    // Workaround for selects not working: https://code.google.com/p/chromium/issues/detail?id=390553
-    private static final String JS_DROP_DOWN_ITEM_CHECK =
-            "(function() {\n" +
-            "  window.__LINK_BUBBLE__ = window.__LINK_BUBBLE__ || {};\n" +
-            "  if (window.__LINK_BUBBLE__.selectOption) { return; }\n" +
-            "  window.__LINK_BUBBLE__.lastSelectFocused = null;\n" +
-            "  window.__LINK_BUBBLE__.selectOption = function(index) {\n" +
-            "    var select = window.__LINK_BUBBLE__.lastSelectFocused;\n" +
-            "    select.selectedIndex = index;\n" +
-            "    select.previousElementSibling.textContent = select[index].text;\n" +
-            "  };\n" +
-            "  var positioningProps = ['float','position','width','height','left','top','margin-left','margin-top','padding-left','padding-top', 'border', 'background'];\n" +
-            "  var els = document.getElementsByTagName('select');\n" +
-            "  function maskSelects() {\n" +
-            "    /* Remove all previous select masks if the next element is not a select any longer. */\n" +
-            "    Array.prototype.forEach.call(document.querySelectorAll('.__link_bubble__select_mask__'), function(mask) {\n" +
-            "      if (mask.nextElementSibling && mask.nextElementSibling.nodeName.toLowerCase() === 'select') { return; };\n" +
-            "      mask.parentNode.removeChild(mask);\n" +
-            "    });\n" +
-            "    \n" +
-            "    Array.prototype.forEach.call(els, function(select) {\n" +
-            "      var mask = select.previousElementSibling;" +
-            "      /* Insert and style for new selects */\n" +
-            "      if (!mask || mask.className !== '__link_bubble__select_mask__') {\n" +
-            "        mask = document.createElement('div');\n" +
-            "        mask.className = '__link_bubble__select_mask__';\n" +
-            "        mask.style.webkitAppearance = 'menulist';\n" +
-            "        var computedStyle = getComputedStyle(select);\n" +
-            "        \n" +
-            "        for(var i in positioningProps){\n" +
-            "          var prop = positioningProps[i];\n" +
-            "          mask.style[prop] = computedStyle.getPropertyValue(prop);\n" +
-            "        }\n" +
-            "        select.parentNode.insertBefore(mask, select);\n" +
-            "        select.style.display = 'none';\n" +
-            "        \n" +
-            "        mask.addEventListener('click', function(e) {\n" +
-            "          e.preventDefault();\n" +
-            "          window.__LINK_BUBBLE__.lastSelectFocused = select;\n" +
-            "          var keyAndValues = [select.selectedIndex];\n" +
-            "          for (var i = 0; i < select.length; i++) {\n" +
-            "            keyAndValues.push(select[i].text);\n" +
-            "            keyAndValues.push(select[i].value);\n" +
-            "          }\n" +
-            "          " + JS_VARIABLE + ".onSelectElementInteract(JSON.stringify(keyAndValues));\n" +
-            "        });\n" +
-            "      }\n" +
-            "      mask.textContent = select[select.selectedIndex].text;\n" +
-            "    });\n" +
-            "  }\n" +
-            "  /* Mask all selects when the script is injected. */\n" +
-            "  maskSelects();\n" +
-            "  /* Use a mutation observer for dynamic selects added after page load. */\n" +
-            "  MutationObserver = window.MutationObserver || window.WebKitMutationObserver;\n" +
-            "  var observer = new MutationObserver(function(mutations) {\n" +
-            "    mutations.forEach(function(mutation) {\n" +
-            "      var changed = false;\n" +
-            "      var allChangedNodes = [].slice.call(mutation.addedNodes).concat([].slice.call(mutation.removedNodes));\n" +
-            "      allChangedNodes.forEach(function(changedNode) {\n" +
-            "        if ((changedNode.querySelector && changedNode.querySelector('select')) || changedNode.nodeName.toLowerCase() === 'select') {\n" +
-            "          changed = true;\n" +
-            "        }\n" +
-            "      });\n" +
-            "      if (changed) {\n" +
-            "        maskSelects();\n" +
-            "      }\n" +
-            "    });\n" +
-            "  });\n" +
-            "  var config = {attributes: false, childList: true, characterData: false, subtree: true};\n" +
-            "  observer.observe(document, config);\n" +
-            "})();\n";
-
-    private static final String JS_YOUTUBE_EMBED_CHECK =
-            "(function() {\n" +
-            "    var elems = document.getElementsByTagName('*'), i;\n" +
-            "    var resultArray = null;\n" +
-            "    var resultCount = 0;\n" +
-            "    for (i in elems) {\n" +
-            "       var elem = elems[i];\n" +
-            "       if (elem.src != null && elem.src.indexOf(\"" + Config.YOUTUBE_EMBED_PREFIX + "\") != -1) {\n" +
-            //"           //console.log(\"found embed: \" + elem.src);\n" +
-            "           if (resultArray == null) {\n" +
-            "               resultArray = new Array();\n" +
-            //"           console.log(\"allocate array\");\n" +
-            "           }\n" +
-            "           resultArray[resultCount] = elem.src;\n" +
-            "           resultCount++;\n" +
-            "       }\n" +
-            "    }\n" +
-            "    if (resultCount > 0) {\n" +
-            "       " + JS_VARIABLE + ".onYouTubeEmbeds(resultArray.toString());\n" +
-            "    }\n" +
-            "})();\n";
-
-    private static final String JS_THEME_COLOR_CHECK =
-        "(function() {\n" +
-        "   var themeColorTag = document.getElementsByTagName('meta')['theme-color'];\n" +
-        "   if (themeColorTag) {\n" +
-              JS_VARIABLE + ".onThemeColor(themeColorTag.getAttribute('content'));" +
-        "   }\n" +
-        "})();\n";
-
-    // https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
-    // https://developers.google.com/chrome/mobile/docs/installtohomescreen
-    private static final String JS_TOUCH_ICON_CHECK =
-            "(function() {\n" +
-            "  var links = document.head.getElementsByTagName('link');\n" +
-            "  var linksArray = null;\n" +
-            "  var linksCount = 0;\n" +
-            "  for(var link in links){\n" +
-            "      if(links.hasOwnProperty(link)){\n" +
-            "          var l = links[link];\n" +
-            "          if (l.rel != null && l.rel.indexOf(\"apple-touch-icon\") != -1) {\n" +
-            "            if (linksArray == null) {\n" +
-            "              linksArray = new Array();\n" +
-            "            }\n" +
-            "            var s = \"@@@\" + l.rel + \",\" + l.href + \",\" + l.sizes + \"###\";\n" +
-            "            linksArray[linksCount] = s;\n" +
-            "            linksCount++;\n" +
-            "          }\n" +
-            "      }\n" +
-            "  }\n" +
-            "  if (linksCount > 0) {" +
-            "  " + JS_VARIABLE + ".onTouchIconLinks(linksArray.toString());\n" +
-            "  }\n" +
-            "})();\n";
-
-    private static final String JS_FETCH_HTML =
-            "(function() {\n" +
-            "  window." + JS_VARIABLE + ".fetchHtml" +
-                    "('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');\n" +
-            "})();\n";
 
     private Context mContext;
     private String mWebViewUrl;
@@ -208,28 +82,59 @@ public class PageInspector {
         String jsEmbed = "javascript:(function() {\n";
 
         if ((inspectFlags & INSPECT_DROP_DOWN) != 0 && Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
-            jsEmbed += JS_DROP_DOWN_ITEM_CHECK;
+            jsEmbed += getFileContents("SelectElements");
         }
 
         if ((inspectFlags & INSPECT_TOUCH_ICON) != 0) {
-            jsEmbed += JS_TOUCH_ICON_CHECK;
+            jsEmbed += getFileContents("TouchIcon");
         }
 
         if ((inspectFlags & INSPECT_YOUTUBE) != 0) {
-            jsEmbed += JS_YOUTUBE_EMBED_CHECK;
+            jsEmbed += getFileContents("YouTube");
         }
 
         if ((inspectFlags & INSPECT_FETCH_HTML) != 0) {
-            jsEmbed += JS_FETCH_HTML;
+            jsEmbed += getFileContents("FetchContent");
         }
 
         if ((inspectFlags & INSPECT_THEME_COLOR) != 0) {
-            jsEmbed += JS_THEME_COLOR_CHECK;
+            jsEmbed += getFileContents("ThemeColor");
         }
 
         jsEmbed += "})();";
 
         webView.loadUrl(jsEmbed);
+    }
+
+    public String getFileContents(String pageScript) {
+        pageScript = "pagescripts/" + pageScript + ".js";
+        AssetManager assetManager = mContext.getResources().getAssets();
+        InputStream inputStream = null;
+        final StringBuilder stringBuilder = new StringBuilder();
+
+        try {
+            inputStream = assetManager.open(pageScript);
+
+            final BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+            boolean done = false;
+
+            while (!done) {
+                final String line = reader.readLine();
+                done = (line == null);
+
+                if (line != null) {
+                    stringBuilder.append(line);
+                }
+            }
+
+            reader.close();
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return stringBuilder.toString();
     }
 
     public void reset() {
@@ -367,7 +272,7 @@ public class PageInspector {
                     mHandler.postDelayed(new Runnable() {
 
                         public void run() {
-                            mWebView.loadUrl("javascript:__LINK_BUBBLE__.selectOption(" + position + ")");
+                            mWebView.loadUrl("javascript:LinkBubble.selectOption(" + position + ")");
                         }
 
                     }, 1);
