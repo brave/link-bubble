@@ -914,6 +914,11 @@ public class MainController implements Choreographer.FrameCallback {
 
     public boolean closeTab(TabView tabView, Constant.BubbleAction action, boolean animateOff, boolean canShowUndoPrompt) {
 
+        if (tabView == null) {
+            CrashTracking.log("closeTab attempt on null tabView");
+            return false;
+        }
+
         // If the tab is already closing, do nothing. Otherwise we could end up in a weird state,
         // where we attempt to show multiple prompts and crashing upon tab restore.
         if (tabView.mIsClosing == true) {
