@@ -26,6 +26,8 @@ import java.lang.ref.WeakReference;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -39,6 +41,9 @@ public class PageInspector {
     public static final int INSPECT_FETCH_HTML = 0x08;
     public static final int INSPECT_THEME_COLOR = 0x10;
     public static final int INSPECT_ALL = INSPECT_DROP_DOWN | INSPECT_YOUTUBE | INSPECT_TOUCH_ICON | INSPECT_THEME_COLOR;
+
+    final HashMap<String, String> mScriptCache =
+            new HashMap<String, String>(10);
 
     private static final String JS_VARIABLE = "LinkBubble";
     private static final String UNKNOWN_TAG = "unknown";        // the tag Chrome/WebView uses for unknown elements
@@ -107,13 +112,18 @@ public class PageInspector {
     }
 
     public String getFileContents(String pageScript) {
-        pageScript = "pagescripts/" + pageScript + ".js";
+        String cacheScript = mScriptCache.get(pageScript);
+        if (cacheScript != null) {
+            return cacheScript;
+        }
+
+        String fullPageScript = "pagescripts/" + pageScript + ".js";
         AssetManager assetManager = mContext.getResources().getAssets();
         InputStream inputStream = null;
         final StringBuilder stringBuilder = new StringBuilder();
 
         try {
-            inputStream = assetManager.open(pageScript);
+            inputStream = assetManager.open(fullPageScript);
 
             final BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
@@ -134,6 +144,7 @@ public class PageInspector {
             e.printStackTrace();
         }
 
+        mScriptCache.put(pageScript, stringBuilder.toString());
         return stringBuilder.toString();
     }
 
