@@ -44,7 +44,7 @@
     <string name="notice_download_started">Download iniciado.</string>
 
     <string name="warning">Atenção!</string>
-    <string name="untrusted_certificate">O certificado at %1$s não é confiável.</string>
+    <string name="untrusted_certificate">O certificado em %1$s não é confiável. Continuar assim mesmo?</string>
 
     <string name="share_invalid_data">Não foi possível compartilhar esse item pois a URL não é valida.</string>
     <string name="consume_activity_not_found">Não foi possível encontrar o aplicativo. Considere alterar Bubble Action nas Configurações.</string>

@@ -15,7 +15,7 @@
     <string name="cancel">Anuluj</string>
 
     <string name="action_ok">OK</string>
-    <string name="action_open">Open</string>
+    <string name="action_open">Otwórz</string>
     <string name="action_remove">Usuń</string>
     <string name="action_cancel">Anuluj</string>
     <string name="action_clear_data">Usuń dane</string>
@@ -24,11 +24,11 @@
     <string name="action_help">Pomoc</string>
     <string name="action_reload_page">Odśwież</string>
     <string name="action_open_in_browser">Otwórz w %1$s</string>
-    <string name="action_request_desktop_site">Request desktop site</string>
+    <string name="action_request_desktop_site">Zażądaj wersji na komputer</string>
     <string name="action_open_in_new_bubble">Otwórz w nowym dymku</string>
     <string name="action_upgrade_to_pro">★Kup wersję Pro★</string>
     <string name="action_copy_to_clipboard">Skopiuj link</string>
-    <string name="action_save_image">Save image</string>
+    <string name="action_save_image">Zapisz obraz</string>
     <string name="action_share">Udostępnij</string>
     <string name="action_close_all">Zamknij wszystko</string>
     <string name="action_close_tab">Zamknij dymek</string>
@@ -39,9 +39,9 @@
     <string name="share_via">Udostępnij przez...</string>
     <string name="not_set">Nie ustawiono</string>
 
-    <string name="error_saving_image">Error saving image.</string>
-    <string name="image_saved">Image downloaded.</string>
-    <string name="notice_download_started">Download started.</string>
+    <string name="error_saving_image">Nie udało się zapisać obrazu.</string>
+    <string name="image_saved">Pobrano obraz.</string>
+    <string name="notice_download_started">Rozpoczęto pobieranie.</string>
 
     <string name="warning">Uwaga!</string>
     <string name="untrusted_certificate">Certyfikat z %1$s nie jest zaufany. Czy kontynuować?</string>
@@ -117,7 +117,7 @@ Wsparcie twórców w rozwijaniu nowych, wspaniałych aplikacji :)</string>
     <string name="preference_theme_dark_no_color">Ciemny + kolor neutralny</string>
     <string name="preference_theme_toolbar_title">Kolor paska</string>
     <string name="preference_theme_toolbar_summary">Aby pasował do kolorystyki witryny albo koloru podświetlenia ikony.</string>
-    <string name="preference_article_mode_title">Reading Mode</string>
+    <string name="preference_article_mode_title">Tryb czytania</string>
     <string name="preference_reading_mode_on_wear_title">Tryb czytania przez Wear</string>
     <string name="preference_article_mode_summary">Przełącznik na pasku zadań</string>
     <string name="preference_webview_text_zoom_title">Rozmiar czcionki</string>
@@ -245,11 +245,10 @@ Link Bubble działa w zgodzie z tym standardem.]]></string>
 <br/><br/>Uwaga: przeglądarki takie jak Chrome są zakodowane w taki sposób, by zawsze same wczytywać linki. Link Bubble nie jest w stanie przechwytywać linków z innych przeglądarek.
 ]]></string>
     <string name="faq_article_mode_question">Jak korzystać z trybu czytania? Czemu nie działa na niektórych stronach?</string>
-    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
-            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
-            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
-            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
-            there is little than can be done here.]]></string>
+    <string name="faq_article_mode_answer"><![CDATA[Po pierwsze, upewnij się, że tryb czytania jest włączony (Ustawienia -> Sterowanie / Więcej&#8230; -> Tryb czytania.<br/><br/>
+Po włączeniu, jeśli w danej zakładce możliwe jest przejście w tryb czytania, na pasku zadań zostanie wyświetlona odpowiednia ikona (na lewo od ikony udostępniania).
+Co ważne, ikona ta pojawia się tylko po całkowitym wczytaniu danej strony, i tylko jeśli aplikacji Link Bubble uda się skutecznie wczytać całą treść w trybie artykułu.<br/><br/>
+Uwaga: Wczytywanie treści ze strony jest niedokładnym procesem, który może nie powieść się w 100%. Ze względu na nieustannie zmieniającą się naturę sieci, niewiele można na to poradzić.]]></string>
     <string name="faq_future_features_question">Czy pojawi się możliwość korzystania z zakładek, ulubionych stron, wtyczek itd.?</string>
     <string name="faq_future_features_answer">Być może w odległej przyszłości. Na razie koncentruję się na tym, żeby Link Bubble była najlepszą metodą wczytywania linków z innych aplikacji.</string>
     <string name="faq_translations_question">Czy mogę pomóc w tłumaczeniu aplikacji?</string>
