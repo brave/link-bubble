@@ -15,7 +15,7 @@
     <string name="cancel">Abbrechen</string>
 
     <string name="action_ok">OK</string>
-    <string name="action_open">Open</string>
+    <string name="action_open">Öffnen</string>
     <string name="action_remove">Entfernen</string>
     <string name="action_cancel">Abbrechen</string>
     <string name="action_clear_data">Daten löschen</string>
@@ -28,7 +28,7 @@
     <string name="action_open_in_new_bubble">In neuer Blase öffnen</string>
     <string name="action_upgrade_to_pro">★Auf Pro aktualisieren★</string>
     <string name="action_copy_to_clipboard">Link kopieren</string>
-    <string name="action_save_image">Save image</string>
+    <string name="action_save_image">Bild speichern</string>
     <string name="action_share">Teilen</string>
     <string name="action_close_all">Alle schließen</string>
     <string name="action_close_tab">Blase schließen</string>
@@ -39,9 +39,9 @@
     <string name="share_via">Teilen über...</string>
     <string name="not_set">Nicht festgelegt</string>
 
-    <string name="error_saving_image">Error saving image.</string>
-    <string name="image_saved">Image downloaded.</string>
-    <string name="notice_download_started">Download started.</string>
+    <string name="error_saving_image">Fehler beim Speichern des Bildes.</string>
+    <string name="image_saved">Bild heruntergeladen.</string>
+    <string name="notice_download_started">Download wurde gestartet.</string>
 
     <string name="warning">Warnung!</string>
     <string name="untrusted_certificate">Das Zertifikat in %1$s ist nicht vertrauenswürdig. Trotzdem fortfahren?</string>
