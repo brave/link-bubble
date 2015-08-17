@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.5.3">
+        <change></change>
+    </release>
+
     <release version="1.5.2">
         <change>NEW: Added an option to download images from the context menu after a long press. This requires us to ask for the permissions to write to external storage.</change>
         <change>NEW: Ability to upload files via HTML file picker inputs. This requires us to ask for the permissions to read from external storage.</change>
