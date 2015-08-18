@@ -44,5 +44,7 @@ If you don't have `adb` in your path add it to your `~/.bash_profile` or similar
 
 `export PATH=/Users/<your-username>/Library/Android/sdk/platform-tools:$PATH`
 
+- **Installing an apk onto your device:**  
+  `adb install -r ./LinkBubble/build/outputs/apk/LinkBubble-playstore-release.apk`
 - **Getting a list of devices:**
   `adb devices`
