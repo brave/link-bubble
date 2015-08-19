@@ -41,7 +41,6 @@ public class FAQDialog {
         "faq_next_update_eta",
         "faq_beta_programme",
         "faq_translations",
-        "faq_alternate_payment",
 
         "faq_back_button_minimize",
         "faq_cant_type_url",
@@ -58,10 +57,10 @@ public class FAQDialog {
         "faq_report_bug",
     };
 
-    static int sBetaIndex = 5;
-    static int sTransliationsIndex = 6;
-    static int sFunctionalityIndex = 8;
-    static int sIssuesIndex = 12;
+    static int sBetaIndex = 4;
+    static int sTransliationsIndex = 5;
+    static int sFunctionalityIndex = 6;
+    static int sIssuesIndex = 16;
 
 	public FAQDialog(Activity context) {
         if (sQuestionStringIds == null) {

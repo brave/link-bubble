@@ -110,9 +110,6 @@ public class EntryActivity extends Activity {
             }
 
             if (canLoadFromThisApp == false) {
-                //if (Util.randInt(0, 30) == 20) {
-                //    MainApplication.showUpgradePrompt(this, R.string.upgrade_incentive_one_app, Analytics.UPGRADE_PROMPT_SINGLE_APP);
-                //}
                 MainApplication.openInBrowser(this, intent, true);
             } else if (openLink) {
                 MainApplication.checkRestoreCurrentTabs(this);

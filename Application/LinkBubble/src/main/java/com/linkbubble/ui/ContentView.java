@@ -41,7 +41,6 @@ import android.widget.PopupMenu;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
 import com.linkbubble.Constant.BubbleAction;
-import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
@@ -473,14 +472,6 @@ public class ContentView extends FrameLayout {
             } catch (NullPointerException npe) {
                 CrashTracking.log("onPageStarted(), " + urlAsString + ", index: no current MainController");
                 Log.e(TAG, npe.getLocalizedMessage(), npe);
-            }
-
-            // Ensure that items opened in new tabs are redirected to a browser when not licensed, re #371, re #360
-            if (mInitialUrlAsString.equals(Constant.NEW_TAB_URL) && DRM.allowProFeatures() == false) {
-                MainApplication.showUpgradePrompt(getContext(), R.string.upgrade_incentive_one_link, Analytics.UPGRADE_PROMPT_SINGLE_TAB_REDIRECT);
-                CrashTracking.log("ContentView.onPageStarted() - not licensed");
-                openInBrowser(urlAsString);
-                return;
             }
 
             if (mLifeState != LifeState.Alive) {
@@ -1008,9 +999,6 @@ public class ContentView extends FrameLayout {
             final Context context = getContext();
             mOverflowPopupMenu = new PopupMenu(context, mOverflowButton);
             Resources resources = context.getResources();
-            if (DRM.isLicensed() == false) {
-                mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_upgrade_to_pro, Menu.NONE, resources.getString(R.string.action_upgrade_to_pro));
-            }
             if (mCurrentProgress != 100) {
                 mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_stop, Menu.NONE, resources.getString(R.string.action_stop));
             }
@@ -1033,15 +1021,6 @@ public class ContentView extends FrameLayout {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     switch (item.getItemId()) {
-                        case R.id.item_upgrade_to_pro: {
-                            Intent intent = MainApplication.getStoreIntent(context, BuildConfig.STORE_PRO_URL);
-                            if (intent != null) {
-                                context.startActivity(intent);
-                                MainController.get().switchToBubbleView();
-                            }
-                            break;
-                        }
-
                         case R.id.item_reload_page: {
                             CrashTracking.log("R.id.item_reload_page");
                             mWebRenderer.resetPageInspector();

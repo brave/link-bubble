@@ -117,26 +117,6 @@ public class SettingsHelpActivity extends AppCompatPreferenceActivity {
                     return true;
                 }
             });
-
-            /*
-            Preference sayThanksPreference = findPreference("preference_say_thanks");
-            if (Settings.get().getSayThanksClicked()) {
-                sayThanksPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                    @Override
-                    public boolean onPreferenceClick(Preference preference) {
-                        Intent intent = MainApplication.getStoreIntent(getActivity(), BuildConfig.STORE_FREE_URL);
-                        if (intent != null) {
-                            startActivity(intent);
-                            Settings.get().setSayThanksClicked(true);
-                            return true;
-                        }
-                        return false;
-                    }
-                });
-            } else {
-                rootPreferenceScreen.removePreference(sayThanksPreference);
-            }*/
-
         }
 
         private static int TAPS_TO_FORCE_A_CRASH = 7;

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="item_upgrade_to_pro" type="id"/>
     <item name="item_open_in_browser" type="id"/>
     <item name="item_request_desktop_site" type="id"/>
     <item name="item_settings" type="id"/>
