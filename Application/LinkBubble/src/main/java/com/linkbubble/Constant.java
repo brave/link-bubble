@@ -86,8 +86,6 @@ public class Constant {
         return flavor;
     }
 
-    public static final String DRM_SHARED_PREFERENCES_KEY = "com.linkbubble.license";
-
     public static String DEVICE_ID = "<unset>";
     public static String getValidDeviceId() {
         if (DEVICE_ID.equals("<unset>") || DEVICE_ID == null || DEVICE_ID.length() < 4) {
@@ -103,8 +101,6 @@ public class Constant {
         }
         return sSecureAndroidId;
     }
-
-    public static final String  PRO_DRM_SERVICE_ACTION = "linkbubble.license.PRO_SERVICE";
 
     // String to represent the group all the notifications will be a part of
     public static final String NOTIFICATION_GROUP_KEY_ARTICLES = "group_key_articles";

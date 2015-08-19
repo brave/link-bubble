@@ -43,7 +43,6 @@ import android.widget.Toast;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
-import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.MainService;
@@ -210,9 +209,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 }
             });
             updateThemeSummary();
-            if (DRM.isLicensed() == false) {
-                showProBanner(mThemePreference);
-            }
 
             final SwitchPreference themeToolbarPreference = (SwitchPreference) findPreference(Settings.PREFERENCE_THEME_TOOLBAR);
             themeToolbarPreference.setChecked(Settings.get().getThemeToolbar());
@@ -220,33 +216,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             themeToolbarPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    boolean value = (boolean) newValue;
-                    if (value && !DRM.isLicensed()) {
-                        mHandler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                themeToolbarPreference.setChecked(false);
-                                upsellPro(R.string.upgrade_theme_toolbar);
-                            }
-                        }, 100);
-                        return true;
-                    }
                     if (MainController.get() != null && MainController.get().reloadAllTabs(getActivity())) {
                         Toast.makeText(getActivity(), R.string.theme_toolbar_reloading_current, Toast.LENGTH_SHORT).show();
                     }
                     return true;
                 }
             });
-            if (!DRM.isLicensed()) {
-                showProBanner(themeToolbarPreference);
-                themeToolbarPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                    @Override
-                    public boolean onPreferenceClick(Preference preference) {
-                        themeToolbarPreference.setChecked(false);
-                        return true;
-                    }
-                });
-            }
 
             Preference crashButton = findPreference("debug_crash");
             if (crashButton != null) {
@@ -337,39 +312,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             mUserAgentPreference = (ListPreference) findPreference(Settings.PREFERENCE_USER_AGENT);
             mUserAgentPreference.setIcon(getTintedDrawable(R.drawable.ic_web_white_36dp, tintColor));
 
-            /*
-            Preference sayThanksPreference = findPreference("preference_say_thanks");
-            if (sayThanksPreference != null) {
-                sayThanksPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                    @Override
-                    public boolean onPreferenceClick(Preference preference) {
-                        Intent intent = MainApplication.getStoreIntent(getActivity(), BuildConfig.STORE_FREE_URL);
-                        if (intent != null) {
-                            startActivity(intent);
-                            Settings.get().setSayThanksClicked(true);
-                            return true;
-                        }
-                        return false;
-                    }
-                });
-            }*/
-
-            Preference getProPreference = findPreference("preference_get_pro");
-            if (getProPreference != null) {
-                getProPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                    @Override
-                    public boolean onPreferenceClick(Preference preference) {
-                        Intent intent = MainApplication.getStoreIntent(getActivity(), BuildConfig.STORE_PRO_URL);
-                        if (intent != null) {
-                            startActivity(intent);
-                            return true;
-                        }
-                        return false;
-                    }
-                });
-                getProPreference.setIcon(getTintedDrawable(R.drawable.ic_play_shopping_bag_white_36dp, tintColor));
-            }
-
             Preference otherAppsPreference = findPreference("preference_my_other_apps");
             otherAppsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -383,10 +325,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 }
             });
             otherAppsPreference.setIcon(getTintedDrawable(R.drawable.ic_shop_two_white_36dp, tintColor));
-
-            if (DRM.isLicensed()) {
-                generalCategory.removePreference(getProPreference);
-            }
 
             Preference faqPref = findPreference("preference_faq");
             faqPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -597,14 +535,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             builder.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     if (adapter.mSelectedIndex != startSelectedIndex) {
-                        if (DRM.isLicensed() == false) {
-                            upsellPro(R.string.upgrade_theme);
-                            Settings.get().setDarkThemeEnabled(false);
-                            Settings.get().setColoredProgressIndicator(true);
-                            updateThemeSummary();
-                            return;
-                        }
-
                         switch (adapter.mSelectedIndex) {
                             case THEME_LIGHT_COLOR:
                                 Settings.get().setDarkThemeEnabled(false);

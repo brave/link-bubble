@@ -271,9 +271,6 @@
             (+Link Bubble) for help with translations, so be sure to keep an eye on my feed.]]></string>
     <string name="faq_roadmap_question">Do you publish a feature roadmap? Can I up-vote upcoming features?</string>
     <string name="faq_roadmap_answer">For competitive reasons, the answer to both of these questions is \'no\' I\'m afraid.</string>
-    <string name="faq_alternate_payment_question">I don\'t have a credit card and/or I can\'t purchase from Google Play. How do I buy Pro?</string>
-    <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble only supports purchases via Google Play at this time.<br/><br/>Additional
-            payment methods will hopefully be added in the future (assuming they do not violate the Google Play Developer Program Policies).]]></string>
     <string name="faq_cant_type_url_question">Why can\'t I type the name of the link I want to visit?</string>
     <string name="faq_cant_type_url_answer"><![CDATA[This is entirely as intended. Link Bubble is designed not to be a complete replacement for your browser, but to instead be used to
             load and display links from other apps as elegantly, helpfully and as quickly as possible.<br/><br/>If you want to load a new url in Link Bubble,

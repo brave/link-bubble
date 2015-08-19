@@ -55,10 +55,8 @@ android {
 
             buildConfigField "String", "STORE_PACKAGE", "\"com.android.vending\""
             buildConfigField "String", "STORE_URL_PREFIX", "\"http://play.google.com/store/apps/details?id=\""
-            buildConfigField "String", "STORE_FREE_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.playstore\""
-            buildConfigField "String", "STORE_PRO_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.license.playstore\""
+            buildConfigField "String", "STORE_URL", "\"http://play.google.com/store/apps/details?id=com.linkbubble.playstore\""
             buildConfigField "String", "STORE_MY_OTHER_APPS_URL", "\"https://play.google.com/store/apps/developer?id=Link+Bubble\""
-            buildConfigField "String", "PRO_PACKAGE_NAME", "\"com.linkbubble.license.playstore\""
             buildConfigField "String", "TAP_PATH_PACKAGE_NAME", "\"com.digitalashes.tappath.playstore\""
         }
     }

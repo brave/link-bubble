@@ -685,16 +685,6 @@ public class MainController implements Choreographer.FrameCallback {
             return null;
         }
 
-        if (doLicenseCheck && !DRM.allowProFeatures() && getActiveTabCount() > 0) {
-            if (urlAsString.equals(Constant.NEW_TAB_URL) == false
-                && urlAsString.equals(Constant.PRIVACY_POLICY_URL) == false
-                && urlAsString.equals(Constant.TERMS_OF_SERVICE_URL) == false) {
-                MainApplication.showUpgradePrompt(mContext, R.string.upgrade_incentive_one_link, Analytics.UPGRADE_PROMPT_SINGLE_TAB_OPEN_URL);
-                MainApplication.openInBrowser(mContext, urlAsString, true);
-                return null;
-            }
-        }
-
         URL url;
         try {
             url = new URL(urlAsString);
@@ -1097,15 +1087,6 @@ public class MainController implements Choreographer.FrameCallback {
         if (urls.size() > 0) {
             for (String url : urls) {
                 MainApplication.openLink(mContext, url, null);
-            }
-        }
-
-        if (event.mOldState != DRM.LICENSE_VALID && event.mState == DRM.LICENSE_VALID) {
-            Settings.get().onValidLicenseFound();
-
-            if (event.mDisplayToast && !event.mDisplayedToast) {
-                Toast.makeText(mContext, R.string.valid_license_detected, Toast.LENGTH_LONG).show();
-                event.mDisplayedToast = true;
             }
         }
     }
