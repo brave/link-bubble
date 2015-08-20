@@ -51,7 +51,6 @@ public class FAQDialog {
         "faq_change_default_browser",
         "faq_crap_webview",
         "faq_low_spec_performance",
-        "faq_drop_down_items",
         "faq_copy_text",
 
         "faq_report_bug",
@@ -60,7 +59,7 @@ public class FAQDialog {
     static int sBetaIndex = 4;
     static int sTransliationsIndex = 5;
     static int sFunctionalityIndex = 6;
-    static int sIssuesIndex = 16;
+    static int sIssuesIndex = 15;
 
 	public FAQDialog(Activity context) {
         if (sQuestionStringIds == null) {

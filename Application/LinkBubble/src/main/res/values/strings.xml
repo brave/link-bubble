@@ -261,11 +261,6 @@
             load and display links from other apps as elegantly, helpfully and as quickly as possible.<br/><br/>If you want to load a new url in Link Bubble,
             searching for a page via Google Now and loading the result with Link Bubble is a great way of doing so.<br/><br/>For quickly
             loading your favorites, I find the Chrome Bookmarks widget very helpful.]]></string>
-    <string name="faq_drop_down_items_question">Why don\'t drop down menus work?</string>
-    <string name="faq_drop_down_items_answer"><![CDATA[Unfortunately Android system limitations prevent this from working.<br/><br/>Technical answer:
-            Android\'s WebView hardcodes &lt;select&gt; elements to display via a Dialog, which cannot be launched from a Service. WebView does not provide a means of
-            overriding this behavior. Thus a hack has been added to simply disable drop down items from all pages in Link Bubble.
-            This is far from ideal, but it is certainly better than having the app crash, which is what happens otherwise :\\]]></string>
     <string name="faq_copy_text_question">Why can\'t I copy text from a web page?</string>
     <string name="faq_copy_text_answer"><![CDATA[Unfortunately Android system limitations prevent this from working.<br/><br/>Technical answer:
             Copy functionality works when using Android\'s WebView from an Activity, but not from a Service (which Link Bubble uses).]]></string>
