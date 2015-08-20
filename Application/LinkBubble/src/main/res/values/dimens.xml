@@ -83,8 +83,6 @@
     <dimen name="preference_icon_minWidth">0.0dip</dimen>
     <dimen name="preference_ribbon_width">48.0dip</dimen>
 
-    <dimen name="upgrade_to_pro_dialog_padding">8dp</dimen>
-
     <dimen name="default_padding">16dp</dimen>
 
 </resources>

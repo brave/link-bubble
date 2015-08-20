@@ -10,10 +10,6 @@ Either install the [Crashlytics/Fabric Android Studio plugin](http://try.crashly
 
 Open `./Application/` in Android Studio and build.
 
-##Building Link Bubble Pro
-
-Open `./ProKey/` in Android Studio and build.
-
 ##Building release build
 
 Copy `build-release.sh.template` to `build-release.sh`.
@@ -37,6 +33,7 @@ Try uninstalling the application which already exists on your plugged in device.
 2. Run `npm run translate <username> <password>` to pull down the translated xml files.
 3. Commit and push your change.
 
+Remember to uncomment `checkStrings` from `MainApplication` and call it in `onCreate` to make sure the pulled files don't cause crashes with format specifiers.
 
 ##ADB
 

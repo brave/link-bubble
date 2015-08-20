@@ -86,12 +86,7 @@ public class MainService extends Service {
                         if (urlAsString != null && !urlAsString.equals(Constant.WELCOME_MESSAGE_URL)) {
                             boolean setAsCurrentTab = false;
                             if (startOpenTabCount == 0) {
-                                if (DRM.allowProFeatures()) {
-                                    setAsCurrentTab = i == urls.length - 1;
-                                } else {
-                                    // If not using Pro features, only 1 tab is allowed, so ensure the first is set as current
-                                    setAsCurrentTab = i == 0;
-                                }
+                                setAsCurrentTab = i == urls.length - 1;
                             }
 
                             mainController.openUrl(urlAsString, urlLoadStartTime, setAsCurrentTab, Analytics.OPENED_URL_FROM_RESTORE, true);
@@ -120,8 +115,6 @@ public class MainService extends Service {
 
         Config.init(this);
         Settings.get().onOrientationChange();
-
-        ((MainApplication)getApplicationContext()).registerDrmTracker(this);
 
         WebIconDatabase.getInstance().open(getDir("icons", MODE_PRIVATE).getPath());
 
@@ -170,7 +163,6 @@ public class MainService extends Service {
         unregisterReceiver(mDialogReceiver);
         unregisterReceiver(mBroadcastReceiver);
         MainController.destroy();
-        ((MainApplication)getApplicationContext()).unregisterDrmTracker(this);
         CrashTracking.log("MainService.onDestroy()");
         super.onDestroy();
     }
