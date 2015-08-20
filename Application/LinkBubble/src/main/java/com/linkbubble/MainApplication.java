@@ -448,7 +448,6 @@ public class MainApplication extends Application {
         for (String lang : langs) {
             Util.setLocale(this, lang);
             Log.e("langcheck", "setLocale():" + lang);
-            Log.d("langcheck", String.format(getString(R.string.trial_time_on_click), blerg));
             Log.d("langcheck", String.format(getString(R.string.untrusted_certificate), blerg));
             Log.d("langcheck", String.format(getString(R.string.add_domain_error), blerg));
             Log.d("langcheck", String.format(getString(R.string.remove_default_message), blerg, blerg));
