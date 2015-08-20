@@ -10,10 +10,6 @@ Either install the [Crashlytics/Fabric Android Studio plugin](http://try.crashly
 
 Open `./Application/` in Android Studio and build.
 
-##Building Link Bubble Pro
-
-Open `./ProKey/` in Android Studio and build.
-
 ##Building release build
 
 Copy `build-release.sh.template` to `build-release.sh`.
