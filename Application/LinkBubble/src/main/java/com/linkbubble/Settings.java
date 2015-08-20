@@ -157,6 +157,8 @@ public class Settings {
 
     static public int COLOR_TEXT_DARK;
     static public int COLOR_TEXT_LIGHT;
+    static public int COLOR_LINK_DARK;
+    static public int COLOR_LINK_LIGHT;
     static public int COLOR_CONTENT_VIEW_DARK;
     static public int COLOR_CONTENT_VIEW_LIGHT;
     static public int COLOR_PROGRESS_DARK;
@@ -173,6 +175,8 @@ public class Settings {
         COLOR_BLACK = mContext.getResources().getColor(android.R.color.black);
         COLOR_TEXT_DARK  = mContext.getResources().getColor(R.color.color_text_dark);
         COLOR_TEXT_LIGHT = mContext.getResources().getColor(R.color.color_text_light);
+        COLOR_LINK_DARK  = mContext.getResources().getColor(R.color.color_link_dark);
+        COLOR_LINK_LIGHT = mContext.getResources().getColor(R.color.color_link_light);
         COLOR_CONTENT_VIEW_DARK = mContext.getResources().getColor(R.color.color_content_view_dark);
         COLOR_CONTENT_VIEW_LIGHT = mContext.getResources().getColor(R.color.color_content_view_light);
         COLOR_PROGRESS_DARK = mContext.getResources().getColor(R.color.color_progress_default_dark);
@@ -1373,6 +1377,12 @@ public class Settings {
         return COLOR_TEXT_LIGHT;
     }
 
+    public int getThemedLinkColor() {
+        if (getDarkThemeEnabled()) {
+            return COLOR_LINK_DARK;
+        }
+        return COLOR_LINK_LIGHT;
+    }
     public boolean getThemeToolbar() {
         return mSharedPreferences.getBoolean(PREFERENCE_THEME_TOOLBAR, true);
     }

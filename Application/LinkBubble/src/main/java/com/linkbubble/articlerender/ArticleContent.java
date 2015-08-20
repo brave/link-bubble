@@ -1,9 +1,15 @@
 package com.linkbubble.articlerender;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.linkbubble.Config;
+import com.linkbubble.R;
+import com.linkbubble.Settings;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -66,14 +72,19 @@ public class ArticleContent {
             titleFontSize = "130%";
         }
 
+        String textColor =  String.format("#%06X", 0xFFFFFF & Settings.get().getThemedTextColor());
+        String bgColor =  String.format("#%06X", 0xFFFFFF & Settings.get().getThemedContentViewColor());
+        String linkColor =  String.format("#%06X", 0xFFFFFF & Settings.get().getThemedLinkColor());
+
         String headHtml =
                 "  <head>\n" +
                         "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n" +
                         "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, height=device-height\"/>\n" +
                         "    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>\n" +
                         "    <style type=\"text/css\">\n" +
-                        "      p, div { font-family: 'Roboto', sans-serif; font-size: 16px; color:#333; line-height: 160%; }\n" +
-                        "      a { text-decoration: none; }\n" +
+                        "      body { background-color: " + bgColor + "; color: " + textColor + ";}\n" +
+                        "      p, div { font-family: 'Roboto', sans-serif; font-size: 16px; line-height: 160%;}\n" +
+                        "      a { text-decoration: none; color: " + linkColor + "}\n" +
                         "      #lbInfo { width:100%; min-height:28px; margin:0 auto; padding-bottom: 20px;}\n" +
                         "      #lbInfoL { float:left; width:70%; }\n" +
                         "      #lbInfoR { float:right; width:30%; }\n" +
