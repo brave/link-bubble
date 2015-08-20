@@ -32,7 +32,6 @@ public abstract class WebRenderer {
         public void onShowBrowserPrompt();
         public void onCloseWindow();
         public void onGeolocationPermissionsShowPrompt(String origin, GetGeolocationCallback callback);
-        public int getPageInspectFlags();
         public void onPageInspectorYouTubeEmbedFound();
         public void onPageInspectorTouchIconLoaded(Bitmap bitmap, String pageUrl);
         public void onPageInspectorDropDownWarningClick();

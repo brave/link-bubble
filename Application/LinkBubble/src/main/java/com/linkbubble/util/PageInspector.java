@@ -35,13 +35,6 @@ public class PageInspector {
 
     private static final String TAG = "PageInspector";
 
-    public static final int INSPECT_DROP_DOWN = 0x01;
-    public static final int INSPECT_YOUTUBE = 0x02;
-    public static final int INSPECT_TOUCH_ICON = 0x04;
-    public static final int INSPECT_FETCH_HTML = 0x08;
-    public static final int INSPECT_THEME_COLOR = 0x10;
-    public static final int INSPECT_ALL = INSPECT_DROP_DOWN | INSPECT_YOUTUBE | INSPECT_TOUCH_ICON | INSPECT_THEME_COLOR;
-
     final HashMap<String, String> mScriptCache =
             new HashMap<String, String>(10);
 
@@ -66,8 +59,6 @@ public class PageInspector {
     public interface OnItemFoundListener {
         void onYouTubeEmbeds();
         void onTouchIconLoaded(Bitmap bitmap, String pageUrl);
-        void onDropDownFound();
-        void onDropDownWarningClick();
         void onFetchHtml(String html);
         void onThemeColor(int color);
     }
@@ -81,33 +72,25 @@ public class PageInspector {
         webView.addJavascriptInterface(mJSEmbedHandler, JS_VARIABLE);
     }
 
-    public void run(WebView webView, int inspectFlags) {
+    public void run(WebView webView, boolean fetchContent) {
         mWebViewUrl = webView.getUrl();
 
         String jsEmbed = "javascript:(function() {\n";
 
-        if ((inspectFlags & INSPECT_DROP_DOWN) != 0 && Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
-            jsEmbed += getFileContents("SelectElements");
-        }
+        jsEmbed += "var shouldFetchContent = " + fetchContent + ";\n";
 
-        if ((inspectFlags & INSPECT_TOUCH_ICON) != 0) {
-            jsEmbed += getFileContents("TouchIcon");
-        }
+        jsEmbed += getFileContents("SelectElements");
 
-        if ((inspectFlags & INSPECT_YOUTUBE) != 0) {
-            jsEmbed += getFileContents("YouTube");
-        }
+        jsEmbed += getFileContents("TouchIcon");
 
-        if ((inspectFlags & INSPECT_FETCH_HTML) != 0) {
-            jsEmbed += getFileContents("FetchContent");
-        }
+        jsEmbed += getFileContents("YouTube");
 
-        if ((inspectFlags & INSPECT_THEME_COLOR) != 0) {
-            jsEmbed += getFileContents("ThemeColor");
-        }
+        jsEmbed += getFileContents("FetchContent");
+
+        jsEmbed += getFileContents("ThemeColor");
 
         jsEmbed += "})();";
-
+        
         webView.loadUrl(jsEmbed);
     }
 
@@ -331,20 +314,6 @@ public class PageInspector {
                         mOnItemFoundListener.onThemeColor(color);
                     } catch (NumberFormatException ignored) {}
                 }
-            }
-        }
-
-        @JavascriptInterface
-        public void onDropDownFound() {
-            if (mOnItemFoundListener != null) {
-                mOnItemFoundListener.onDropDownFound();
-            }
-        }
-
-        @JavascriptInterface
-        public void onDropDownWarningClick() {
-            if (mOnItemFoundListener != null) {
-                mOnItemFoundListener.onDropDownWarningClick();
             }
         }
 
