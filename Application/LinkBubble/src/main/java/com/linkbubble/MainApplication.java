@@ -51,9 +51,6 @@ public class MainApplication extends Application {
     public static Favicons sFavicons;
     public static boolean sShowingAppPickerDialog = false;
     private static long sTrialStartTime = -1;
-    static SharedPreferences sDrmSharedPreferences;
-    private DRM mDrm;
-    private int mDrmTrackerCount;
 
     public IconCache mIconCache;
 
@@ -74,33 +71,12 @@ public class MainApplication extends Application {
 
         sDatabaseHelper = new DatabaseHelper(this);
 
-        sDrmSharedPreferences = getSharedPreferences(Constant.DRM_SHARED_PREFERENCES_KEY, Context.MODE_PRIVATE);
-        mDrm = new DRM(this, MainApplication.sDrmSharedPreferences);
-        mDrmTrackerCount = 0;
-
         Analytics.init(this);
 
         Favicons.attachToContext(this);
         recreateFaviconCache();
 
         CrashTracking.log("MainApplication.onCreate()");
-    }
-
-
-    public void registerDrmTracker(Context context) {
-        mDrmTrackerCount++;
-        if (mDrmTrackerCount == 1) {
-            mDrm.start();
-        }
-        Log.d(DRM.TAG, "registerDrmTracker(): mDrmTrackerCount:" + mDrmTrackerCount + ", " + context.getClass().getSimpleName());
-    }
-
-    public void unregisterDrmTracker(Context context) {
-        mDrmTrackerCount--;
-        if (mDrmTrackerCount == 0) {
-            mDrm.stop();
-        }
-        Log.d(DRM.TAG, "unregisterDrmTracker(): mDrmTrackerCount:" + mDrmTrackerCount + ", " + context.getClass().getSimpleName());
     }
 
     public Bus getBus() {
@@ -171,7 +147,7 @@ public class MainApplication extends Application {
         if (MainController.get() == null) {
             final Vector<String> urls = Settings.get().loadCurrentTabs();
             int urlCount = urls.size();
-            if (urlCount > 0 && DRM.allowProFeatures()) {
+            if (urlCount > 0) {
                 String message = context.getResources().getQuantityString(R.plurals.restore_tabs_from_previous_session, urlCount, urlCount);
                 Prompt.show(message,
                         context.getResources().getString(android.R.string.ok),
@@ -408,21 +384,6 @@ public class MainApplication extends Application {
         }
     }
 
-    public static ResolveInfo getStoreViewResolveInfo(Context context) {
-        PackageManager packageManager = context.getPackageManager();
-        Intent queryIntent = new Intent();
-        queryIntent.setAction(Intent.ACTION_VIEW);
-        queryIntent.setData(Uri.parse(BuildConfig.STORE_PRO_URL));
-        List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(queryIntent, PackageManager.GET_RESOLVED_FILTER);
-        for (ResolveInfo resolveInfo : resolveInfos) {
-            if (resolveInfo.activityInfo != null && resolveInfo.activityInfo.packageName.contains(BuildConfig.STORE_PACKAGE)) {
-                return resolveInfo;
-            }
-        }
-
-        return null;
-    }
-
     public static Intent getStoreIntent(Context context, String storeProUrl) {
         PackageManager manager = context.getPackageManager();
         Intent intent = new Intent();
@@ -462,34 +423,6 @@ public class MainApplication extends Application {
         }
     }
 
-    public static void showUpgradePrompt(final Context context, int stringId, String prompt) {
-        showUpgradePrompt(context, context.getResources().getString(stringId), prompt);
-    }
-
-    public static void showUpgradePrompt(final Context context, String string, final String prompt) {
-        final ResolveInfo storeResolveInfo = getStoreViewResolveInfo(context);
-        Prompt.show(string, context.getResources().getString(android.R.string.ok),
-                Prompt.LENGTH_LONG, new Prompt.OnPromptEventListener() {
-            @Override
-            public void onActionClick() {
-                if (storeResolveInfo != null) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(BuildConfig.STORE_PRO_URL));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.setClassName(storeResolveInfo.activityInfo.packageName, storeResolveInfo.activityInfo.name);
-                    context.startActivity(intent);
-                    Analytics.trackUpgradePromptClicked(prompt);
-                }
-            }
-
-            @Override
-            public void onClose() {
-
-            }
-        });
-        Analytics.trackUpgradePromptDisplayed(prompt);
-    }
-
     // DRM state
     public static class StateChangedEvent {
         public int mState;
@@ -503,18 +436,7 @@ public class MainApplication extends Application {
     @SuppressWarnings("unused")
     @Subscribe
     public void onCheckStateEvent(CheckStateEvent event) {
-        checkForProVersion();
-    }
 
-    public void checkForProVersion() {
-        Log.d(DRM.TAG, "checkForProVersion()");
-        if (DRM.isLicensed() == false) {
-            if (mDrm != null && mDrm.mProServiceBound == false) {
-                if (mDrm.bindProService()) {
-                    mDrm.requestLicenseStatus();
-                }
-            }
-        }
     }
 
     /*
@@ -526,7 +448,6 @@ public class MainApplication extends Application {
         for (String lang : langs) {
             Util.setLocale(this, lang);
             Log.e("langcheck", "setLocale():" + lang);
-            Log.d("langcheck", String.format(getString(R.string.trial_time_on_click), blerg));
             Log.d("langcheck", String.format(getString(R.string.untrusted_certificate), blerg));
             Log.d("langcheck", String.format(getString(R.string.add_domain_error), blerg));
             Log.d("langcheck", String.format(getString(R.string.remove_default_message), blerg, blerg));

@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
-import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
@@ -51,8 +50,6 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Analytics.trackScreenView(HomeActivity.class.getSimpleName());
-
-        ((MainApplication)getApplicationContext()).registerDrmTracker(this);
 
         mActionButtonView = (Button)findViewById(R.id.big_white_button);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
@@ -105,19 +102,10 @@ public class HomeActivity extends AppCompatActivity {
             MainApplication.openLink(this, "file:///android_asset/test.html", null);
         }
 
-        configureForDrmState();
-
         mActionButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (DRM.isLicensed()) {
-                    startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v);
-                } else {
-                    Intent intent = MainApplication.getStoreIntent(HomeActivity.this, BuildConfig.STORE_PRO_URL);
-                    if (intent != null) {
-                        startActivity(intent);
-                    }
-                }
+                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v);
             }
         });
 
@@ -130,9 +118,6 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.activity_home, menu);
-        if (DRM.isLicensed()) {
-            menu.removeItem(R.id.action_history);
-        }
         return true;
     }
 
@@ -146,26 +131,13 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.action_settings:
                 startActivity(new Intent(HomeActivity.this, SettingsActivity.class), item.getActionView());
                 return true;
-
-            case R.id.action_history:
-                startActivity(new Intent(HomeActivity.this, HistoryActivity.class), item.getActionView());
-                return true;
         }
 
         return false;
     }
 
-    private void configureForDrmState() {
-        if (DRM.isLicensed()) {
-            mActionButtonView.setText(R.string.history);
-        } else {
-            mActionButtonView.setText(R.string.action_upgrade_to_pro);
-        }
-    }
-
     @Override
     public void onDestroy() {
-        ((MainApplication)getApplicationContext()).unregisterDrmTracker(this);
         MainApplication.unregisterForBus(this, this);
         super.onDestroy();
     }
@@ -175,8 +147,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onResume();
 
         updateLinkLoadTimeStats();
-
-        configureForDrmState();
 
         MainApplication.postEvent(getApplicationContext(), new MainApplication.CheckStateEvent());
     }
@@ -230,19 +200,5 @@ public class HomeActivity extends AppCompatActivity {
     @Subscribe
     public void onLinkLoadTimeStatsUpdatedEvent(Settings.LinkLoadTimeStatsUpdatedEvent event) {
         updateLinkLoadTimeStats();
-    }
-
-    @SuppressWarnings("unused")
-    @Subscribe
-    public void onStateChangedEvent(MainApplication.StateChangedEvent event) {
-        configureForDrmState();
-
-        if (event.mOldState != DRM.LICENSE_VALID
-                && event.mState == DRM.LICENSE_VALID
-                && event.mDisplayToast
-                && event.mDisplayedToast == false) {
-            Toast.makeText(this, R.string.valid_license_detected, Toast.LENGTH_LONG).show();
-            event.mDisplayedToast = true;
-        }
     }
 }

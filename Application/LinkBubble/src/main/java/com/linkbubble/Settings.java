@@ -219,13 +219,6 @@ public class Settings {
         configureFallbackRedirectHosts(mSharedPreferences.getStringSet(PREFERENCE_FALLBACK_REDIRECT_HOSTS, defaultRedirects));
     }
 
-    public void onValidLicenseFound() {
-        mSharedPreferences.edit()
-                .putBoolean(PREFERENCE_THEME_TOOLBAR, true)
-                .putBoolean(KEY_ARTICLE_MODE_PREFERENCE, true)
-                .apply();
-    }
-
     private void checkForVersionUpgrade() {
         final String key = "lastUpgradeVersion";
         int lastUpgradeVersion = mSharedPreferences.getInt(key, -1);
@@ -1144,16 +1137,10 @@ public class Settings {
     }
 
     public boolean getArticleModeEnabled() {
-        if (DRM.isLicensed() == false) {
-            return false;
-        }
-        return mSharedPreferences.getBoolean(KEY_ARTICLE_MODE_PREFERENCE, false);
+        return mSharedPreferences.getBoolean(KEY_ARTICLE_MODE_PREFERENCE, true);
     }
 
     public boolean getArticleModeOnWearEnabled() {
-        if (DRM.isLicensed() == false) {
-            return false;
-        }
         return mSharedPreferences.getBoolean(KEY_ARTICLE_MODE_ON_WEAR_PREFERENCE, false);
     }
 
@@ -1346,10 +1333,7 @@ public class Settings {
     }
 
     public boolean getDarkThemeEnabled() {
-        if (DRM.isLicensed()) {
-            return mSharedPreferences.getBoolean(PREFERENCE_THEME_DARK, false);
-        }
-        return false;
+        return mSharedPreferences.getBoolean(PREFERENCE_THEME_DARK, false);
     }
 
     public void setDarkThemeEnabled(boolean value) {
@@ -1359,10 +1343,7 @@ public class Settings {
     }
 
     public boolean getColoredProgressIndicator() {
-        if (DRM.isLicensed()) {
-            return mSharedPreferences.getBoolean(PREFERENCE_COLORED_PROGRESS_INDICATOR, true);
-        }
-        return true;
+        return mSharedPreferences.getBoolean(PREFERENCE_COLORED_PROGRESS_INDICATOR, true);
     }
 
     public void setColoredProgressIndicator(boolean value) {
@@ -1393,7 +1374,6 @@ public class Settings {
     }
 
     public boolean getThemeToolbar() {
-        return DRM.isLicensed()
-                && mSharedPreferences.getBoolean(PREFERENCE_THEME_TOOLBAR, false);
+        return mSharedPreferences.getBoolean(PREFERENCE_THEME_TOOLBAR, true);
     }
 }

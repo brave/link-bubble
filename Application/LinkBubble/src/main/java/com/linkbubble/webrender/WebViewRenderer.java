@@ -34,7 +34,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.linkbubble.Constant;
-import com.linkbubble.DRM;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
@@ -112,7 +111,7 @@ class WebViewRenderer extends WebRenderer {
         webSettings.setDisplayZoomControls(false);
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setUseWideViewPort(true);
-        webSettings.setSupportMultipleWindows(DRM.allowProFeatures() ? true : false);
+        webSettings.setSupportMultipleWindows(true);
         webSettings.setGeolocationDatabasePath(Constant.WEBVIEW_DATABASE_LOCATION);
         webSettings.setSavePassword(false);
 

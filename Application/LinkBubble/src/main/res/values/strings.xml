@@ -26,7 +26,6 @@
     <string name="action_open_in_browser">Open in %1$s</string>
     <string name="action_request_desktop_site">Request desktop site</string>
     <string name="action_open_in_new_bubble">Open in new bubble</string>
-    <string name="action_upgrade_to_pro">★Upgrade to Pro★</string>
     <string name="action_copy_to_clipboard">Copy link</string>
     <string name="action_save_image">Save image</string>
     <string name="action_share">Share</string>
@@ -51,18 +50,8 @@
     <string name="consume_activity_security_exception">Unable to share to external application.</string>
 
     <string name="upgrade">Upgrade</string>
-    <string name="upgrade_to_pro">Upgrade to Pro</string>
-    <string name="upgrade_article_mode">Want to view links in Reading Mode?</string>
-    <string name="upgrade_article_mode_wear">Want to view links on Android Wear devices via Reading Mode?</string>
     <string name="upgrade_theme">Want to use a different theme?</string>
     <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
-    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
-        Load multiple tabs at once.\n •
-        Change theme.\n •
-        Use Reading Mode.\n •
-        Android Wear support.\n •
-        Support us as we develop this app :)
-        </string>
 
     <string name="undo_close_tab_title">Closed %1$s</string>
     <string name="undo_close_tab_no_title">Closed tab</string>
@@ -103,8 +92,6 @@
     <string name="preference_set_default_browser_summary">Link Bubble must be the default system browser to work. Tap to configure.</string>
     <string name="preference_more">More…</string>
     <string name="preference_intercept_links_from_title">Intercept links from</string>
-    <string name="preference_intercept_links_from_note">Note: The restriction of intercepting links from just one app only exists with the
-        free version of Link Bubble. Upgrade to Pro?</string>
     <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
     <string name="preference_scan_for_youtube_embeds_title">Check for YouTube embeds</string>
     <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
@@ -163,8 +150,6 @@
     <string name="preference_terms_of_service_title">Terms of Service</string>
     <string name="preference_say_thanks_title">Say thanks!</string>
     <string name="preference_say_thanks_summary">Enjoying Link Bubble? Please consider leaving a Play Store review.</string>
-    <string name="preference_get_pro_title">Link Bubble Pro</string>
-    <string name="preference_get_pro_summary">Upgrade to Pro for more features.</string>
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">What\'s new?</string>
     <string name="preference_more_title">More&#8230;</string>
@@ -212,8 +197,6 @@
     <string name="link_redirected">Redirected to %1$s</string>
 
     <string name="tampered_apk">Your copy of Link Bubble has been illegally modified and thus will not work reliably. Please reinstall from the Play Store.</string>
-    <string name="upgrade_incentive_one_link">Link Bubble Pro is required to load more than one bubble at a time. Upgrade to Pro?</string>
-    <string name="valid_license_detected">Valid Link Bubble Pro license detected.\nThank you for supporting this project, and enjoy the app :)</string>
 
     <string name="bubble_link_copied_to_clipboard">Bubble link copied to clipboard.</string>
     <string name="link_copied_to_clipboard">Link copied to clipboard.</string>
@@ -271,7 +254,6 @@
             (+Link Bubble) for help with translations, so be sure to keep an eye on my feed.]]></string>
     <string name="faq_roadmap_question">Do you publish a feature roadmap? Can I up-vote upcoming features?</string>
     <string name="faq_roadmap_answer">For competitive reasons, the answer to both of these questions is \'no\' I\'m afraid.</string>
-    <string name="faq_alternate_payment_question">I don\'t have a credit card and/or I can\'t purchase from Google Play. How do I buy Pro?</string>
     <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble only supports purchases via Google Play at this time.<br/><br/>Additional
             payment methods will hopefully be added in the future (assuming they do not violate the Google Play Developer Program Policies).]]></string>
     <string name="faq_cant_type_url_question">Why can\'t I type the name of the link I want to visit?</string>
@@ -279,11 +261,6 @@
             load and display links from other apps as elegantly, helpfully and as quickly as possible.<br/><br/>If you want to load a new url in Link Bubble,
             searching for a page via Google Now and loading the result with Link Bubble is a great way of doing so.<br/><br/>For quickly
             loading your favorites, I find the Chrome Bookmarks widget very helpful.]]></string>
-    <string name="faq_drop_down_items_question">Why don\'t drop down menus work?</string>
-    <string name="faq_drop_down_items_answer"><![CDATA[Unfortunately Android system limitations prevent this from working.<br/><br/>Technical answer:
-            Android\'s WebView hardcodes &lt;select&gt; elements to display via a Dialog, which cannot be launched from a Service. WebView does not provide a means of
-            overriding this behavior. Thus a hack has been added to simply disable drop down items from all pages in Link Bubble.
-            This is far from ideal, but it is certainly better than having the app crash, which is what happens otherwise :\\]]></string>
     <string name="faq_copy_text_question">Why can\'t I copy text from a web page?</string>
     <string name="faq_copy_text_answer"><![CDATA[Unfortunately Android system limitations prevent this from working.<br/><br/>Technical answer:
             Copy functionality works when using Android\'s WebView from an Activity, but not from a Service (which Link Bubble uses).]]></string>
@@ -351,7 +328,6 @@
     <string name="content_description_history">History</string>
     <string name="content_description_settings">Settings</string>
     <string name="content_description_can_go_back">Can go back</string>
-    <string name="content_description_upgrade_to_pro">Upgrade to Pro</string>
 
     <string name="requesting_location_message">%1$s is requesting your location. Allow?</string>
 
@@ -361,23 +337,6 @@
     <string name="service_name">Link Bubble Renderer</string>
     <string name="notification_title">Link Bubble</string>
 
-    <string name="pro_application_name">Link Bubble Pro</string>
-    <string name="pro_status_checking_license">Checking license…</string>
-	<string name="pro_status_buy">Unable to verify license.\n\nSome causes of this problem include:\n • There is no Internet connection.\n • This application has been tampered
-                            with.\n\nCheck your Internet connection, and if necessary, try installing the app from the Play Store again.</string>
-    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
-    <string name="pro_status_unlicensed">Google Play is reporting this copy of Link Bubble Pro is unlicensed.\n\nAssuming you have
-                            indeed purchased a copy of Link Bubble Pro, the most common reason for this is that email address used
-                            for your purchase is not configured with the Play Store on this device.</string>
-
-    <string name="pro_keep_installed">Note: you don\'t need to load Link Bubble Pro again, but you do need to keep it installed for verification purposes.\n\nThis app will be hidden throughout the system so it doesn\'t appear in your launcher(s).</string>
-
-    <string name="pro_action_load_app">Load Link Bubble</string>
-    <string name="pro_action_install_app">Install Link Bubble</string>
-    <string name="pro_action_buy">Buy App</string>
-    <string name="pro_action_retry">Retry</string>
-    <string name="pro_action_store">Play Store</string>
-
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Mobile browsing done right.</string>
     <string name="store_listing_description_title">Link Bubble is an all-new browser designed and crafted solely with mobile devices in mind.</string>
@@ -385,23 +344,13 @@
     Features include:
     • When you click on a link in an app, Link Bubble loads that web page in the background, leaving you free to keep using your current app rather than your precious time being wasted watching a page load. Once the page has fully loaded, it will animate on screen.
     • Link Bubble\'s flick physics allow you to go from clicking a link to sharing a link or adding it to a service such as Pocket in little more than a second!
-    • Load multiple links from your current app at the same time (requires Pro).
+    • Load multiple links from your current app at the same time.
     • Gracefully handles links that redirect to other apps. No longer does clicking an Instagram link in Twitter redirect to a full screen browser before loading Instagram!
     • Deep integration with the apps on your system.
     • Locates embedded YouTube videos on web pages, and provides a shortcut to load those videos directly in the YouTube app.
     • Handy stats that illustrate how much time you are saving by using Link Bubble.
     </string>
     <string name="store_listing_description_location_permission">Regarding the Location permission: This is required so that you might grant permission for a website to access your location (such as those with an embedded map). Link Bubble itself never accesses your location.</string>
-
-    <string name="pro_store_listing_title">Link Bubble Pro</string>
-    <string name="pro_store_listing_description_title">Link Bubble Pro unlocks the full feature set of Link Bubble.</string>
-    <string name="pro_store_listing_description_features">
-    Upgrades include:
-    • Infinite number of tabs (free version is limited to just one tab).
-    • Theme selection
-    • Remove the upgrade incentives throughout the free version.
-    • Support us so we get to make more of these apps :)
-    </string>
 
     <string name="welcome_page_title">Welcome to Link Bubble!</string>
     <string name="welcome_page_intro_title">How does it work?</string>
@@ -414,11 +363,8 @@
     <string name="welcome_page_more_also">Link Bubble also:</string>
     <string name="welcome_page_more_point_1">Redirects links to a dedicated app (E.g., Instagram).</string>
     <string name="welcome_page_more_point_2">Finds embedded videos so you can easily load them in the YouTube app.</string>
-    <string name="welcome_page_pro_intro">The free version gives you a taste of Link Bubble\'s power, but with Pro you can:</string>
-    <string name="welcome_page_pro_point_1">Load multiple bubbles at once.</string>
-    <string name="welcome_page_pro_point_2">Load links from all apps.</string>
-    <string name="welcome_page_pro_point_3">Help ensure I am able to write more apps in the future :)</string>
-    <string name="welcome_page_pro_end">Thanks, and enjoy the app!</string>
+    <string name="welcome_page_more_point_3">Load unlimited bubbles at once.</string>
+    <string name="welcome_page_more_point_4">Load links from all apps.</string>
     <string name="welcome_page_ps">PS. To close this bubble, either press the Back button or long press the bubble and flick it onto the Close bubble.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Link already loaded. Ignoring...</string>

@@ -49,7 +49,7 @@
             android:title="@string/preference_theme_toolbar_title"
             android:summary="@string/preference_theme_toolbar_summary"
             android:dependency="preference_theme"
-            android:defaultValue="false"
+            android:defaultValue="true"
             />
 
         <Preference
@@ -161,11 +161,6 @@
             android:title="@string/preference_say_thanks_title"
             android:summary="@string/preference_say_thanks_summary" />
             -->
-
-        <Preference
-            android:key="preference_get_pro"
-            android:title="@string/preference_get_pro_title"
-            android:summary="@string/preference_get_pro_summary" />
 
         <Preference
             android:key="preference_faq"

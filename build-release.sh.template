@@ -5,9 +5,6 @@ export LINK_BUBBLE_KEY_ALIAS='linkbubble'
 export LINK_BUBBLE_KEY_PASSWORD='key-password'
 cd ./Application
 ./gradlew assemblePlaystoreRelease
-cd ../ProKey
-./gradlew assemblePlaystoreRelease
 cd ../
 mkdir -p dist
 cp Application/LinkBubble/build/outputs/apk/LinkBubble-playstore-release.apk dist/
-cp ProKey/LinkBubblePro/build/outputs/apk/LinkBubblePro-playstore-release.apk dist/
