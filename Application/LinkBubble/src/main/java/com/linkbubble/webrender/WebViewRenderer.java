@@ -73,6 +73,8 @@ class WebViewRenderer extends WebRenderer {
     private ArticleContent.BuildContentTask mBuildArticleContentTask;
     private ArticleContent mArticleContent;
 
+    private static NetworkReceiver mLastNetworkReceiver = null;
+
     public WebViewRenderer(Context context, Controller controller, View webRendererPlaceholder, String tag) {
         super(context, controller, webRendererPlaceholder);
 
@@ -441,9 +443,17 @@ class WebViewRenderer extends WebRenderer {
             // Reload webviews once we have a connection.
             if (NetworkConnectivity.isConnected(mContext) == false) {
                 Log.d(TAG, "Not connected, will retry on connection.");
+
+                // We only reload a single webview at a time, so if there is a previous receiver, we unregister it.
+                if (mLastNetworkReceiver != null) {
+                    mContext.unregisterReceiver(mLastNetworkReceiver);
+                    mLastNetworkReceiver = null;
+                }
+
                 IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
                 NetworkReceiver receiver = new NetworkReceiver(WebViewRenderer.this);
                 mContext.registerReceiver(receiver, filter);
+                mLastNetworkReceiver = receiver;
             }
             mController.onReceivedError();
         }

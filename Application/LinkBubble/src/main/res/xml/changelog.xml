@@ -2,7 +2,7 @@
 <changelog>
 
     <release version="1.5.3">
-        <change></change>
+        <change>IMPROVEMENT: Offline bubble reloading will now only reload the most recent bubble. This is to reduce memory usage while also improving loading speed and stability.</change>
     </release>
 
     <release version="1.5.2">
