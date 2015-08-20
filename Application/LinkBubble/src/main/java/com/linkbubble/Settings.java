@@ -1374,6 +1374,6 @@ public class Settings {
     }
 
     public boolean getThemeToolbar() {
-        return mSharedPreferences.getBoolean(PREFERENCE_THEME_TOOLBAR, false);
+        return mSharedPreferences.getBoolean(PREFERENCE_THEME_TOOLBAR, true);
     }
 }

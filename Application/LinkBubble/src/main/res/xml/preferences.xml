@@ -49,7 +49,7 @@
             android:title="@string/preference_theme_toolbar_title"
             android:summary="@string/preference_theme_toolbar_summary"
             android:dependency="preference_theme"
-            android:defaultValue="false"
+            android:defaultValue="true"
             />
 
         <Preference
