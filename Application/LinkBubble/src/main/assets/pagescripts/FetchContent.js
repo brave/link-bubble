@@ -1,3 +1,5 @@
 (function() {
-	window.LinkBubble.fetchHtml(document.documentElement.outerHTML);
+    if (shouldFetchContent) {
+        window.LinkBubble.fetchHtml(document.documentElement.outerHTML);
+    }
 })();

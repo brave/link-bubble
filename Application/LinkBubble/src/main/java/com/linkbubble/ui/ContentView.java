@@ -730,17 +730,6 @@ public class ContentView extends FrameLayout {
             showAllowLocationDialog(origin, callback);
         }
 
-        @Override
-        public int getPageInspectFlags() {
-            int flags = PageInspector.INSPECT_DROP_DOWN
-                    | PageInspector.INSPECT_YOUTUBE
-                    | PageInspector.INSPECT_THEME_COLOR;
-            if (!mEventHandler.hasHighQualityFavicon()) {
-                flags |= PageInspector.INSPECT_TOUCH_ICON;
-            }
-            return flags;
-        }
-
         private Handler mHandler = new Handler();
         private Runnable mUpdateOpenInAppRunnable = null;
 
