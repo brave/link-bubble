@@ -24,6 +24,8 @@
     <color name="color_dark_theme">#263238</color>
     <color name="color_text_light">#555555</color>
     <color name="color_text_dark">@android:color/white</color>
+    <color name="color_link_light">#0000EE</color>
+    <color name="color_link_dark">#B3D1FF</color>
     <color name="color_content_view_light">@color/color_light_theme</color>
     <color name="color_content_view_dark">@color/color_dark_theme</color>
     <color name="color_progress_default_light">#999</color>

@@ -3,6 +3,7 @@
 
     <release version="1.6.0">
         <change>NEW: Link Bubble is now fully free! Enjoy unlimited bubbles and all pro features for free.</change>
+        <change>NEW: Themes now also apply to reading mode.</change>
         <change>IMPROVEMENT: Offline bubble reloading will now only reload the most recent bubble. This is to reduce memory usage while also improving loading speed and stability.</change>
     </release>
 
