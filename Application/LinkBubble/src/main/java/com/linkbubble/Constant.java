@@ -56,9 +56,6 @@ public class Constant {
     // so we can determine when this is occurring, and not pollute the history. #280
     public static final String NEW_TAB_URL = "http://ishouldbeusedbutneverseen55675.com";
 
-    // Check the page every 1 seconds for the presence of drop down items. #270
-    public static final int DROP_DOWN_CHECK_TIME = 1000;
-
     public static final int AUTO_CONTENT_DISPLAY_DELAY = 200;
 
     public static final int TOUCH_ICON_MAX_SIZE = 256;
