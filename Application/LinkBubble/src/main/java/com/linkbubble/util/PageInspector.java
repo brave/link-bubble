@@ -35,8 +35,7 @@ public class PageInspector {
 
     private static final String TAG = "PageInspector";
 
-    final HashMap<String, String> mScriptCache =
-            new HashMap<String, String>(10);
+    String mScriptCache = null;
 
     private static final String JS_VARIABLE = "LinkBubble";
     private static final String UNKNOWN_TAG = "unknown";        // the tag Chrome/WebView uses for unknown elements
@@ -75,31 +74,30 @@ public class PageInspector {
     public void run(WebView webView, boolean fetchContent) {
         mWebViewUrl = webView.getUrl();
 
-        String jsEmbed = "javascript:(function() {\n";
+        if (mScriptCache == null) {
+            mScriptCache = getFileContents("SelectElements");
 
-        jsEmbed += "var shouldFetchContent = " + fetchContent + ";\n";
+            mScriptCache += getFileContents("TouchIcon");
 
-        jsEmbed += getFileContents("SelectElements");
+            mScriptCache += getFileContents("YouTube");
 
-        jsEmbed += getFileContents("TouchIcon");
+            mScriptCache += getFileContents("FetchContent");
 
-        jsEmbed += getFileContents("YouTube");
+            mScriptCache += getFileContents("ThemeColor");
+        }
 
-        jsEmbed += getFileContents("FetchContent");
+        // Combine the file cache with our script configuration.
+        // Currently the only configuration we have is a flag whether or not we should fetch page content.
+        // This is used only when reading mode is enabled, and is used to display content.
+        // TODO: This config should probably be ripped out in favor of doing this operation on demand.
+        String jsEmbed = "javascript:(function(shouldFetchContent) {\n";
+        jsEmbed += mScriptCache;
+        jsEmbed += "}(\" + fetchContent + \"));";
 
-        jsEmbed += getFileContents("ThemeColor");
-
-        jsEmbed += "})();";
-        
         webView.loadUrl(jsEmbed);
     }
 
     public String getFileContents(String pageScript) {
-        String cacheScript = mScriptCache.get(pageScript);
-        if (cacheScript != null) {
-            return cacheScript;
-        }
-
         String fullPageScript = "pagescripts/" + pageScript + ".js";
         AssetManager assetManager = mContext.getResources().getAssets();
         InputStream inputStream = null;
@@ -127,7 +125,6 @@ public class PageInspector {
             e.printStackTrace();
         }
 
-        mScriptCache.put(pageScript, stringBuilder.toString());
         return stringBuilder.toString();
     }
 
