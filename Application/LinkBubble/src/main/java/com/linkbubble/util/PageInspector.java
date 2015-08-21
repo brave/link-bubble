@@ -13,6 +13,8 @@ import android.webkit.WebView;
 
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
+import com.linkbubble.Settings;
+import com.linkbubble.articlerender.ArticleContent;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -35,15 +37,7 @@ public class PageInspector {
 
     private static final String TAG = "PageInspector";
 
-    public static final int INSPECT_DROP_DOWN = 0x01;
-    public static final int INSPECT_YOUTUBE = 0x02;
-    public static final int INSPECT_TOUCH_ICON = 0x04;
-    public static final int INSPECT_FETCH_HTML = 0x08;
-    public static final int INSPECT_THEME_COLOR = 0x10;
-    public static final int INSPECT_ALL = INSPECT_DROP_DOWN | INSPECT_YOUTUBE | INSPECT_TOUCH_ICON | INSPECT_THEME_COLOR;
-
-    final HashMap<String, String> mScriptCache =
-            new HashMap<String, String>(10);
+    String mScriptCache = null;
 
     private static final String JS_VARIABLE = "LinkBubble";
     private static final String UNKNOWN_TAG = "unknown";        // the tag Chrome/WebView uses for unknown elements
@@ -66,8 +60,6 @@ public class PageInspector {
     public interface OnItemFoundListener {
         void onYouTubeEmbeds();
         void onTouchIconLoaded(Bitmap bitmap, String pageUrl);
-        void onDropDownFound();
-        void onDropDownWarningClick();
         void onFetchHtml(String html);
         void onThemeColor(int color);
     }
@@ -81,42 +73,29 @@ public class PageInspector {
         webView.addJavascriptInterface(mJSEmbedHandler, JS_VARIABLE);
     }
 
-    public void run(WebView webView, int inspectFlags) {
+    public void run(WebView webView) {
         mWebViewUrl = webView.getUrl();
 
-        String jsEmbed = "javascript:(function() {\n";
+        if (mScriptCache == null) {
+            mScriptCache = "javascript:(function() {\n";
 
-        if ((inspectFlags & INSPECT_DROP_DOWN) != 0 && Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
-            jsEmbed += getFileContents("SelectElements");
+            mScriptCache += getFileContents("SelectElements");
+
+            mScriptCache += getFileContents("TouchIcon");
+
+            mScriptCache += getFileContents("YouTube");
+
+            mScriptCache += getFileContents("FetchContent");
+
+            mScriptCache += getFileContents("ThemeColor");
+
+            mScriptCache += "}());";
         }
 
-        if ((inspectFlags & INSPECT_TOUCH_ICON) != 0) {
-            jsEmbed += getFileContents("TouchIcon");
-        }
-
-        if ((inspectFlags & INSPECT_YOUTUBE) != 0) {
-            jsEmbed += getFileContents("YouTube");
-        }
-
-        if ((inspectFlags & INSPECT_FETCH_HTML) != 0) {
-            jsEmbed += getFileContents("FetchContent");
-        }
-
-        if ((inspectFlags & INSPECT_THEME_COLOR) != 0) {
-            jsEmbed += getFileContents("ThemeColor");
-        }
-
-        jsEmbed += "})();";
-
-        webView.loadUrl(jsEmbed);
+        webView.loadUrl(mScriptCache);
     }
 
     public String getFileContents(String pageScript) {
-        String cacheScript = mScriptCache.get(pageScript);
-        if (cacheScript != null) {
-            return cacheScript;
-        }
-
         String fullPageScript = "pagescripts/" + pageScript + ".js";
         AssetManager assetManager = mContext.getResources().getAssets();
         InputStream inputStream = null;
@@ -144,7 +123,6 @@ public class PageInspector {
             e.printStackTrace();
         }
 
-        mScriptCache.put(pageScript, stringBuilder.toString());
         return stringBuilder.toString();
     }
 
@@ -335,23 +313,18 @@ public class PageInspector {
         }
 
         @JavascriptInterface
-        public void onDropDownFound() {
-            if (mOnItemFoundListener != null) {
-                mOnItemFoundListener.onDropDownFound();
-            }
-        }
-
-        @JavascriptInterface
-        public void onDropDownWarningClick() {
-            if (mOnItemFoundListener != null) {
-                mOnItemFoundListener.onDropDownWarningClick();
-            }
-        }
-
-        @JavascriptInterface
-        public void fetchHtml(String html) {
+        public void fetchHtml(String html, String windowUrl) {
             //Log.d(TAG, "fetchHtml() - " + html);
-            if (mOnItemFoundListener != null) {
+
+            boolean fetchPageHtml = false;
+            try {
+                URL currentUrl = new URL(windowUrl);
+                fetchPageHtml = (Settings.get().getArticleModeEnabled() || Settings.get().getArticleModeOnWearEnabled())
+                        && ArticleContent.tryForArticleContent(currentUrl);
+            } catch (MalformedURLException e) {
+            }
+
+            if (fetchPageHtml == true && mOnItemFoundListener != null) {
                 mOnItemFoundListener.onFetchHtml(html);
             }
         }

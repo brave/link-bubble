@@ -64,6 +64,7 @@ class WebViewRenderer extends WebRenderer {
     private AlertDialog mJsPromptDialog;
     private PageInspector mPageInspector;
     private int mCheckForEmbedsCount;
+    private int mRunPageScripts = 0;
     private int mCurrentProgress;
     private boolean mPauseOnComplete;
     private Boolean mIsDestroyed = false;
@@ -79,7 +80,6 @@ class WebViewRenderer extends WebRenderer {
 
         mHandler = new Handler();
         TAG = tag;
-        mDoDropDownCheck = true;
 
         mWebView = new WebView(mContext);
         mWebView.setLayoutParams(webRendererPlaceholder.getLayoutParams());
@@ -250,11 +250,7 @@ class WebViewRenderer extends WebRenderer {
     @Override
     public void onPageLoadComplete() {
         super.onPageLoadComplete();
-
-        mHandler.postDelayed(mDropDownCheckRunnable, Constant.DROP_DOWN_CHECK_TIME);
     }
-
-
 
     @Override
     public void resetPageInspector() {
@@ -262,13 +258,8 @@ class WebViewRenderer extends WebRenderer {
     }
 
     @Override
-    public void runPageInspector(boolean fetchHtml) {
-        int flags = mController.getPageInspectFlags();
-        if (fetchHtml && mBuildArticleContentTask == null) {
-            flags |= PageInspector.INSPECT_FETCH_HTML;
-            Log.d("Article", "runPageInspector() - fetchHtml");
-        }
-        mPageInspector.run(mWebView, flags);
+    public void runPageInspector() {
+        mPageInspector.run(mWebView);
     }
 
     @Override
@@ -286,16 +277,6 @@ class WebViewRenderer extends WebRenderer {
         @Override
         public void onTouchIconLoaded(Bitmap bitmap, String pageUrl) {
             mController.onPageInspectorTouchIconLoaded(bitmap, pageUrl);
-        }
-
-        @Override
-        public void onDropDownFound() {
-            mDoDropDownCheck = false;
-        }
-
-        @Override
-        public void onDropDownWarningClick() {
-            mController.onPageInspectorDropDownWarningClick();
         }
 
         @Override
@@ -319,19 +300,6 @@ class WebViewRenderer extends WebRenderer {
         @Override
         public void onThemeColor(int color) {
             mController.onPagedInspectorThemeColorFound(color);
-        }
-    };
-
-    private boolean mDoDropDownCheck;
-    private Runnable mDropDownCheckRunnable = new Runnable() {
-        @Override
-        public void run() {
-            synchronized (mIsDestroyed) {
-                if (mIsDestroyed == false && mDoDropDownCheck) {
-                    // Check for YouTube as well to fix issues where sometimes embeds are not found.
-                    mPageInspector.run(mWebView, PageInspector.INSPECT_DROP_DOWN | PageInspector.INSPECT_YOUTUBE);
-                }
-            }
         }
     };
 
@@ -428,10 +396,6 @@ class WebViewRenderer extends WebRenderer {
                 }
             }
 
-            if (viaInput) {
-                mDoDropDownCheck = true;
-            }
-
             return mController.shouldOverrideUrlLoading(urlAsString, viaInput);
         }
 
@@ -499,7 +463,6 @@ class WebViewRenderer extends WebRenderer {
 
         @Override
         public void onPageStarted(WebView view, String urlAsString, Bitmap favIcon) {
-            mDoDropDownCheck = true;
             mController.onPageStarted(urlAsString, favIcon);
         }
 
@@ -542,21 +505,10 @@ class WebViewRenderer extends WebRenderer {
             mCurrentProgress = progress;
             mController.onProgressChanged(progress, webView.getUrl());
 
-            // At 60%, the page is more often largely viewable, but waiting for background shite to finish which can
-            // take many, many seconds, even on a strong connection. Thus, do a check for embeds now to prevent the button
-            // not being updated until 100% is reached, which feels too slow as a user.
-            if (progress >= 60) {
-                if (mCheckForEmbedsCount == 0) {
-                    mCheckForEmbedsCount = 1;
-                    mPageInspector.reset();
-
-                    Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                    mPageInspector.run(webView, mController.getPageInspectFlags());
-                } else if (mCheckForEmbedsCount == 1 && progress >= 80) {
-                    mCheckForEmbedsCount = 2;
-                    Log.d(TAG, "onProgressChanged() - checkForYouTubeEmbeds() - progress:" + progress + ", mCheckForEmbedsCount:" + mCheckForEmbedsCount);
-                    mPageInspector.run(webView, mController.getPageInspectFlags());
-                }
+            // Inject page scripts after there has been some progress, otherwise they get injected into an empty page.
+            if (mCurrentProgress >= 60 && mRunPageScripts == 0) {
+                mRunPageScripts = 1;
+                mPageInspector.run(webView);
             }
 
             if (mCurrentProgress == 100 && mPauseOnComplete) {
