@@ -64,6 +64,7 @@ class WebViewRenderer extends WebRenderer {
     private AlertDialog mJsPromptDialog;
     private PageInspector mPageInspector;
     private int mCheckForEmbedsCount;
+    private int mRunPageScripts = 0;
     private int mCurrentProgress;
     private boolean mPauseOnComplete;
     private Boolean mIsDestroyed = false;
@@ -257,8 +258,8 @@ class WebViewRenderer extends WebRenderer {
     }
 
     @Override
-    public void runPageInspector(boolean fetchHtml) {
-        mPageInspector.run(mWebView, fetchHtml);
+    public void runPageInspector() {
+        mPageInspector.run(mWebView);
     }
 
     @Override
@@ -503,6 +504,12 @@ class WebViewRenderer extends WebRenderer {
         public void onProgressChanged(WebView webView, int progress) {
             mCurrentProgress = progress;
             mController.onProgressChanged(progress, webView.getUrl());
+
+            // Inject page scripts after there has been some progress, otherwise they get injected into an empty page.
+            if (mCurrentProgress >= 60 && mRunPageScripts == 0) {
+                mRunPageScripts = 1;
+                mPageInspector.run(webView);
+            }
 
             if (mCurrentProgress == 100 && mPauseOnComplete) {
                 mHandler.postDelayed(mCheckForPauseRunnable, 3000);
