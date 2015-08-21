@@ -90,7 +90,7 @@ public abstract class WebRenderer {
 
     public abstract void resetPageInspector();
 
-    public void runPageInspector(boolean fetchHtml) {}
+    public void runPageInspector() {}
 
     public abstract YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper();
 

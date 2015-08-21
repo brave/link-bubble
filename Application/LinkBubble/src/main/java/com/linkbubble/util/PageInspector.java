@@ -13,6 +13,8 @@ import android.webkit.WebView;
 
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
+import com.linkbubble.Settings;
+import com.linkbubble.articlerender.ArticleContent;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -71,11 +73,13 @@ public class PageInspector {
         webView.addJavascriptInterface(mJSEmbedHandler, JS_VARIABLE);
     }
 
-    public void run(WebView webView, boolean fetchContent) {
+    public void run(WebView webView) {
         mWebViewUrl = webView.getUrl();
 
         if (mScriptCache == null) {
-            mScriptCache = getFileContents("SelectElements");
+            mScriptCache = "javascript:(function() {\n";
+
+            mScriptCache += getFileContents("SelectElements");
 
             mScriptCache += getFileContents("TouchIcon");
 
@@ -84,17 +88,11 @@ public class PageInspector {
             mScriptCache += getFileContents("FetchContent");
 
             mScriptCache += getFileContents("ThemeColor");
+
+            mScriptCache += "}());";
         }
 
-        // Combine the file cache with our script configuration.
-        // Currently the only configuration we have is a flag whether or not we should fetch page content.
-        // This is used only when reading mode is enabled, and is used to display content.
-        // TODO: This config should probably be ripped out in favor of doing this operation on demand.
-        String jsEmbed = "javascript:(function(shouldFetchContent) {\n";
-        jsEmbed += mScriptCache;
-        jsEmbed += "}(\" + fetchContent + \"));";
-
-        webView.loadUrl(jsEmbed);
+        webView.loadUrl(mScriptCache);
     }
 
     public String getFileContents(String pageScript) {
@@ -315,9 +313,18 @@ public class PageInspector {
         }
 
         @JavascriptInterface
-        public void fetchHtml(String html) {
+        public void fetchHtml(String html, String windowUrl) {
             //Log.d(TAG, "fetchHtml() - " + html);
-            if (mOnItemFoundListener != null) {
+
+            boolean fetchPageHtml = false;
+            try {
+                URL currentUrl = new URL(windowUrl);
+                fetchPageHtml = (Settings.get().getArticleModeEnabled() || Settings.get().getArticleModeOnWearEnabled())
+                        && ArticleContent.tryForArticleContent(currentUrl);
+            } catch (MalformedURLException e) {
+            }
+
+            if (fetchPageHtml == true && mOnItemFoundListener != null) {
                 mOnItemFoundListener.onFetchHtml(html);
             }
         }

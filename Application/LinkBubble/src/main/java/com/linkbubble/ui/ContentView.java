@@ -823,11 +823,7 @@ public class ContentView extends FrameLayout {
             }
         }
 
-        boolean fetchPageHtml = (Settings.get().getArticleModeEnabled() || Settings.get().getArticleModeOnWearEnabled())
-                                    && ArticleContent.tryForArticleContent(currentUrl);
-        Log.d("Article", "fetchPageHtml:" + fetchPageHtml);
-        // Always check again at 100%
-        mWebRenderer.runPageInspector(fetchPageHtml);
+        mWebRenderer.runPageInspector();
 
         if (equalUrl) {
             updateAppsForUrl(currentUrl);
