@@ -155,16 +155,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int result = -1;
         SQLiteDatabase db = getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_LINK_HISTORY, // a. table
-                                    LINK_HISTORY_COLUMNS, // b. column names
-                                    " " + KEY_URL + " = ?", // c. selections
-                                    new String[] { String.valueOf(url) }, // d. selections args
-                                    null, // e. group by
-                                    null, // f. having
-                                    " " + KEY_TIME + " DESC", // g. order by
-                                    null); // h. limit
-
         try {
+            Cursor cursor = db.query(TABLE_LINK_HISTORY, // a. table
+                                        LINK_HISTORY_COLUMNS, // b. column names
+                                        " " + KEY_URL + " = ?", // c. selections
+                                        new String[] { String.valueOf(url) }, // d. selections args
+                                        null, // e. group by
+                                        null, // f. having
+                                        " " + KEY_TIME + " DESC", // g. order by
+                                        null); // h. limit
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
 
@@ -177,6 +176,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 }
             }
         } catch (IllegalStateException ex) {
+            CrashTracking.log("DatabaseHelper.getRecentHistoryRecordId() IllegalStateException");
         }
 
         db.close();
