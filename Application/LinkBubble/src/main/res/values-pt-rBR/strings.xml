@@ -262,8 +262,6 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="faq_change_default_browser_answer">Configurações do Sistema -> Apps -> Baixados -> Link Bubble -> Apagar padrão.</string>
     <string name="faq_report_bug_question">Relate um bug</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">Perguntas Frequentes</string>
     <string name="preference_faq_summary">Perguntas sobre o aplicativo? Comece aqui.</string>
@@ -279,8 +277,6 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="credits_credit">Conceito, design e programação</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Restaurar abas da sessão anterior?</item>

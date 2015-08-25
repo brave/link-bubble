@@ -259,8 +259,6 @@
     <string name="faq_change_default_browser_answer">إعدادات النظام>تطبيقات> المحملة> Link Bubble> إزالة الإفتراض</string>
     <string name="faq_report_bug_question">التبليغ عن خطأ</string>
     <string name="faq_report_bug_answer">اإيميل</string>
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">أسئلة شائعة</string>
     <string name="preference_faq_summary">أسئلة حول البرنامج؟جرب هنا.</string>
@@ -276,8 +274,6 @@
     <string name="credits_credit">مفهوم والتصميم والبرمجة</string>
     <!-- untranslated string: credits_app_copyright -->
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Restore tab from previous session?</item>

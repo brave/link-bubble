@@ -274,8 +274,6 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
 डिफ़ॉल्ट हटाये।</string>
     <string name="faq_report_bug_question">बग की रिपोर्ट करे। </string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">अक्सर पूछे जाने वाले प्रश्न और उनके जवाब</string>
     <string name="preference_faq_summary">कोई प्रश्न ? यहाँ जाये। </string>
@@ -291,8 +289,6 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="credits_credit">कंसेप्ट, डिज़ाइन और प्रोग्रामिंग </string>
     <!-- untranslated string: credits_app_copyright -->
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Restore tab from previous session?</item>

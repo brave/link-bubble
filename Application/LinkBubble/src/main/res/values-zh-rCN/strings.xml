@@ -267,8 +267,6 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="faq_change_default_browser_answer">系统设置 -> 应用 -> 已下载 -> Link Bubble -> 清除默认设置。</string>
     <string name="faq_report_bug_question">回报错误</string>
     <string name="faq_report_bug_answer"><![CDATA[电子邮箱]]></string>
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">常见问题</string>
     <string name="preference_faq_summary">关于应用有问题？到这里看看。</string>
@@ -284,8 +282,6 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="credits_credit">概念、设计及开发</string>
     <string name="credits_app_copyright">Link Bubble 版权所有</string>
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">从之前的会话中恢复泡泡？</item>

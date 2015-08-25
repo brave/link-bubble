@@ -268,8 +268,6 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="faq_change_default_browser_answer">系統設定 -> 應用程式 -> 已下載 -> Link Bubble -> 清除預設值。</string>
     <string name="faq_report_bug_question">回報 bug</string>
     <string name="faq_report_bug_answer"><![CDATA[電子郵件]]></string>
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">常見問題</string>
     <string name="preference_faq_summary">對本程式有疑問嗎？請到這裡看看吧。</string>
@@ -285,8 +283,6 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="credits_credit">概念，設計及程式設計</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">要還原上次作業階段的分頁嗎？</item>

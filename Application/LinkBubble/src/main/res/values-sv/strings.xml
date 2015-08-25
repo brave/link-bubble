@@ -287,8 +287,6 @@ att folk tar det som ett åtagande och blir upprörda när det dröjer av någon
     <string name="faq_change_default_browser_answer">Systeminställningar -> Appar -> Hämtade -> Link Bubble -> Rensa standardinställningar</string>
     <string name="faq_report_bug_question">Rapportera en bug</string>
     <string name="faq_report_bug_answer"><![CDATA[epost]]></string>
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Frågor gällande appen? Försök här.</string>
@@ -304,8 +302,6 @@ att folk tar det som ett åtagande och blir upprörda när det dröjer av någon
     <string name="credits_credit">Koncept, design och programmering</string>
     <!-- untranslated string: credits_app_copyright -->
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Restore tab from previous session?</item>

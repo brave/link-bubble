@@ -264,8 +264,6 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="faq_change_default_browser_answer">ไปที่การตั้งค่าของเครื่อง -> แอป -> ดาวน์โหลด -> Link Bubble -> ล้างค่าเริ่มต้น</string>
     <string name="faq_report_bug_question">รายงานปัญหา</string>
     <string name="faq_report_bug_answer"><![CDATA[อีเมล]]></string>
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">คำถามที่พบบ่อย</string>
     <string name="preference_faq_summary">มีคำถามเกี่ยวกับแอปนี้? ลองดูที่นี่สิ</string>
@@ -281,8 +279,6 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="credits_credit">แนวคิด, ออกแบบ และพัฒนา</string>
     <string name="credits_app_copyright">สงวนลิขสิทธิ์ 2015, Link Bubble</string>
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">เรียกคืนแท็บจากการใช้งานที่ผ่านมา?</item>

@@ -293,8 +293,6 @@
     <string name="faq_change_default_browser_answer">System Settings -> Apps -> Downloaded -> Link Bubble -> Clear defaults.</string>
     <string name="faq_report_bug_question">Report a bug</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
-    <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
-    <string name="faq_feature_request_answer">I have a lot of </string> -->
 
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Question about the app? Try here.</string>
@@ -310,9 +308,6 @@
     <string name="credits_credit">Concept, design and programming</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    <!--
-    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
-        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
     <string name="restore_tabs_from_previous_session"></string>
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Restore tab from previous session?</item>

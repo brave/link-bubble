@@ -289,8 +289,6 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="faq_change_default_browser_answer">Systeeminstellingen -> Apps -> Gedownload -> Link Bubble -> Standaardwaarden wissen.</string>
     <string name="faq_report_bug_question">Een bug melden</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Vragen over de app? Probeer het hier.</string>
@@ -306,8 +304,6 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="credits_credit">Concept, ontwerp en programmeren</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Tab van vorige sessie terugplaatsen?</item>

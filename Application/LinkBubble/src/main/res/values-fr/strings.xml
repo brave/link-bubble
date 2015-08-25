@@ -257,8 +257,6 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="faq_change_default_browser_answer">Paramètres -> Applications -> Téléchargées -> Link Bubble -> Effacer les actions par défaut.</string>
     <string name="faq_report_bug_question">Signaler un bogue</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Une question sur l\'application ? Essayez ici.</string>
@@ -274,8 +272,6 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="credits_credit">Concept, design et programmation</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Restore tab from previous session?</item>
