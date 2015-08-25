@@ -26,7 +26,6 @@
     <string name="action_open_in_browser">เปิดใน %1$s</string>
     <string name="action_request_desktop_site">ขอไซต์สำหรับเดสก์ท็อป</string>
     <string name="action_open_in_new_bubble">เปิดในหน้าต่างใหม่</string>
-    <string name="action_upgrade_to_pro">★อัปเกรดเป็นรุ่นโปร★</string>
     <string name="action_copy_to_clipboard">คัดลอกลิงก์</string>
     <string name="action_save_image">บันทึกรูปภาพ</string>
     <string name="action_share">แบ่งปัน</string>
@@ -51,17 +50,8 @@
     <string name="consume_activity_security_exception">ไม่สามารถแบ่งปันไปยังแอปภายนอกได้</string>
 
     <string name="upgrade">อัปเกรด</string>
-    <string name="upgrade_to_pro">อัปเกรดเป็นรุ่นโปร</string>
-    <string name="upgrade_article_mode">ต้องการดูลิงก์ในโหมดการอ่าน</string>
-    <string name="upgrade_article_mode_wear">ต้องการดูลิงก์บนอุปกรณ์ Android Wear ผ่านโหมดการอ่าน?</string>
     <string name="upgrade_theme">ต้องการใช้ธีมที่แตกแต่ง?</string>
     <string name="upgrade_theme_toolbar">ต้องการปรับสีธีมแถบเครื่องมือให้ตรงกับสีธีมของเว็บไซต์?</string>
-    <string name="upgrade_from_settings_summary">อัปเกรดเป็น Link Bubble Pro เพื่อเปิดใช้คุณสมบัตินี้ และรวมไปถึง:\n •
-โหลดหลายแท็บพร้อมกัน\n •
-เปลี่ยนธีม\n •
-ใช้งานโหมดการอ่าน\n •
-รองรับ Android Wear\n •
-สนับสนุนเรา เหมือนที่เราพัฒนาแอปนี้ :)</string>
 
     <string name="undo_close_tab_title">ปิด %1$s แล้ว</string>
     <string name="undo_close_tab_no_title">แท็บถูกปิดแล้ว</string>
@@ -99,7 +89,6 @@
     <string name="preference_set_default_browser_summary">Link Bubble ต้องถูกใช้เป็นเบราว์เซอร์หลักของเครื่องเพื่อใช้งาน แตะเพื่อตั้งค่า</string>
     <string name="preference_more">เพิ่มเติม</string>
     <string name="preference_intercept_links_from_title">เปิดลิงก์จาก</string>
-    <string name="preference_intercept_links_from_note">หมายเหตุ: ในรุ่นฟรี Link Bubble จำกัดการเปิดลิงก์จากแอปเดียวเท่านั้น อัปเกรดเป็นรุ่นโปร?</string>
     <string name="preference_intercept_links_from_disabled_for_L">ตั้งแต่ Android 5.0 กูเกิลได้นำ API ที่เราต้องใช้เพื่อคุณสมบัตินี้ออก</string>
     <string name="preference_scan_for_youtube_embeds_title">ตรวจสอบวิดีโอ YouTube ที่ฝังอยู่</string>
     <string name="preference_scan_for_youtube_embeds_summary">แสดงทางลัดเพื่อเปิดวิดีโอที่ฝังอยู่ในหน้าเว็บในแอป YouTube</string>
@@ -158,8 +147,6 @@
     <string name="preference_terms_of_service_title">ข้อกำหนดในการให้บริการ</string>
     <string name="preference_say_thanks_title">บอกขอบคุณ!</string>
     <string name="preference_say_thanks_summary">ชอบ Link Bubble? เขียนรีวิวให้เราบน Play Store</string>
-    <string name="preference_get_pro_title">Link Bubble โปร</string>
-    <string name="preference_get_pro_summary">อัปเกรดเป็นรุ่นโปรเพื่อคุณสมบัติเพิ่มเติม</string>
     <string name="preference_version_title">เวอร์ชัน</string>
     <string name="preference_version_summary">มีอะไรใหม่?</string>
     <string name="preference_more_title">เพิ่มเติม&#8230;</string>
@@ -206,8 +193,6 @@
     <string name="link_redirected">ส่งต่อไปยัง %1$s</string>
 
     <string name="tampered_apk">คุณใช้งาน Link Bubble ที่คัดลอกมาและถูกแก้ไขอย่างผิดกฎหมาย ดังนั้นแอปจะไม่ทำงานอย่างถูกต้อง กรุณาติดตั้งแอปใหม่อีกครั้งจาก Play Store</string>
-    <string name="upgrade_incentive_one_link">ต้องใช้ Link Bubble รุ่นโปรเพื่อเปิดหลายหน้าต่างในเวลาเดียวกัน อัปเกรดเป็นรุ่นโปร?</string>
-    <string name="valid_license_detected">ตรวจพบใบอนุญาต Link Bubble รุ่นโปรที่ถูกต้อง\nขอบคุณสำหรับการสนับสนุนโครงการนี้ และขอให้สนุกกับแอป :)</string>
 
     <string name="bubble_link_copied_to_clipboard">คัดลอกลิงก์ไปยังคลิปบอร์ดแล้ว</string>
     <string name="link_copied_to_clipboard">คัดลอกลิงก์ไปยังคลิปบอร์ดแล้ว</string>
@@ -256,13 +241,9 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
 (+Link Bubble) เพื่อรับนักแปล คุณแค่จับตามองโพสต์ของผมไว้ก็พอ]]></string>
     <string name="faq_roadmap_question">คุณได้เผยแพร่แผนในอนาคตหรือไม่? ฉันสามารถโหวตคุณสมบัติใหม่ๆ ได้หรือเปล่า?</string>
     <string name="faq_roadmap_answer">เพราะเหตุผลเรื่องการแข่งขัน คำตอบของทั้งสองคำถามนี้คือ \'ไม่\' ผมกลัว<br/><br/></string>
-    <string name="faq_alternate_payment_question">ฉันไม่มีบัตรเครดิตและ/หรือฉันไม่สามารถซื้อแอปจาก Google Play ได้ ฉันจะซื้อรุ่นโปรได้อย่างไร?</string>
     <string name="faq_alternate_payment_answer"><![CDATA[ในเวลานี้ Link Bubble รุ่นโปรสามารถซื้อได้จาก Google Play เท่านั้น<br/><br/>ช่องทางการซื้อเพิ่มเติมอาจเพิ่มเข้ามาในอนาคต (ถ้ามันไม่ละเมิดข้อกำหนดสำหรับนักพัฒนาของ Google Play)]]></string>
     <string name="faq_cant_type_url_question">ทำไมฉันจึงไม่สามารถพิมพ์ลิงก์ที่ต้องการเปิดได้โดยตรง?</string>
     <string name="faq_cant_type_url_answer"><![CDATA[นี่เป็นสิ่งที่ผมตั้งใจ. Link Bubble ไม่ได้ถูกออกแบบมาเพื่อเป็นตัวแทนของเบราว์เซอร์คุณแบบสมบูรณ์, แต่ถูกออกแบบมาเพื่อใช้เปิดลิงก์จากแอปต่างๆ ได้อย่างสะดวกและรวดเร็ว<br/><br/>หากคุณต้องการเปิดลิงก์ใหม่ใน Link Bubble ค้นหาเว็บที่ต้องการผ่านแอปกูเกิล แล้วโหลดหน้านั้นผ่าน Link Bubble ก็เป็นทางเลือกที่เยี่ยม<br/><br/>สำหรับการเปิดหน้าเว็บที่คุณเปิดบ่อย ผมคิดว่าวิตเจ็ตบุ๊กมาร์กของ Chrome นั้นช่วยได้มากทีเดียว]]></string>
-    <string name="faq_drop_down_items_question">ทำไมตัวเลือกแบบเลื่อนลง (drop down) ถึงไม่สามารถใช้งานได้?</string>
-    <string name="faq_drop_down_items_answer"><![CDATA[ข้อจำกัดของระบบแอนดรอยด์ป้องกันไม่ให้ใช้งานเมนูตัวเลือกแบบเลื่อนลงทำงาน<br/><br/>คำตอบทางเทคนิค:
-โค้ด &lt;select&gt; ใน WebView ของแอนดรอยด์ออกแบบมาให้เปิดเป็นไดอะล็อก ซึ่งไม่สามารถเรียกใช้จากบริการ (Service) และไม่มีวิธีที่จะเรียกใช้ได้ ดังนั้นจึงต้องปิดใช้เมนูตัวเลือกแบบเลื่อนลงใน Link Bubble นี่เป็นสิ่งที่ผมไม่อยากให้เกิด แต่ก็ยังดีกว่าแอปปิดตัวเองหรือมีปัญหาอย่างอื่น :\\]]></string>
     <string name="faq_copy_text_question">ทำไมฉันถึงไม่สามารถคัดลอกข้อความจากหน้าเว็บ?</string>
     <string name="faq_copy_text_answer"><![CDATA[ข้อจำกัดของระบบแอนดรอยด์ป้องกันไม่ให้ทำได้<br/><br/>คำตอบทางเทคนิค: การคัดลอกจะใช้ได้เมื่อใช้ WebView ของแอนดรอยด์ผ่านกิจกรรม (Activity) แต่ไม่สามารถใช้ได้ผ่านบริการ (Service) (ซึ่ง Link Bubble ใช้)]]></string>
     <string name="faq_translucent_status_bar_question">ทำไมแอปไม่วาดบนแถบสถานะแบบโปร่งใส?</string>
@@ -283,8 +264,8 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="faq_change_default_browser_answer">ไปที่การตั้งค่าของเครื่อง -> แอป -> ดาวน์โหลด -> Link Bubble -> ล้างค่าเริ่มต้น</string>
     <string name="faq_report_bug_question">รายงานปัญหา</string>
     <string name="faq_report_bug_answer"><![CDATA[อีเมล]]></string>
-    <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
-    <string name="faq_feature_request_answer">I have a lot of </string> -->
+    <!--<!-- untranslated string: faq_feature_request_question -->
+    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">คำถามที่พบบ่อย</string>
     <string name="preference_faq_summary">มีคำถามเกี่ยวกับแอปนี้? ลองดูที่นี่สิ</string>
@@ -301,9 +282,8 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="credits_app_copyright">สงวนลิขสิทธิ์ 2015, Link Bubble</string>
 
     <!--
-    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
-        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
-    <string name="restore_tabs_from_previous_session"></string>
+    <!-- untranslated string: restore_tabs_from_previous_session -->-->
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">เรียกคืนแท็บจากการใช้งานที่ผ่านมา?</item>
         <item quantity="other"> เรียกคืน %d แท็บจากการใช้งานที่ผ่านมา?</item>
@@ -318,7 +298,6 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="content_description_history">ประวัติ</string>
     <string name="content_description_settings">ตั้งค่า</string>
     <string name="content_description_can_go_back">ไม่สามารถย้อนกลับ</string>
-    <string name="content_description_upgrade_to_pro">อัปเกรดเป็นรุ่นโปร</string>
 
     <string name="requesting_location_message">%1$s ต้องการทราบตำแหน่งที่ตั้งของคุณ อนุญาต?</string>
 
@@ -327,40 +306,11 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="service_name">เรนเดอร์ Link Bubble</string>
     <string name="notification_title">Link Bubble</string>
 
-    <string name="pro_application_name">Link Bubble โปร</string>
-    <string name="pro_status_checking_license">กำลังตรวจสอบใบอนุญาต...</string>
-	<string name="pro_status_buy">ไม่สมารถตรวจสอบใบอนุญาต\n\nอาจเป็นเพราะ:\n • ไม่ได้เชื่อมต่ออินเทอร์เน็ต\n • แอปนี้ได้รับการดัดแปลง\n\nตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ และลองติดตั้งแอปจาก Play Store ใหม่อีกครั้ง</string>
-    <string name="pro_status_verified">การซื้อ Link Bubble รุ่นโปรถูกตรวจสอบแล้ว!\n\nขอบคุณสำหรับการสนับสนุนเรา เหมือนที่เราพัฒนาโครงการนี้</string>
-    <string name="pro_status_unlicensed">Google Play รายงานว่าแอปนี้เป็น Link Bubble รุ่นโปรปลอม\n\n หากคุณมั่นใจว่าได้ซื้อ Link Bubble รุ่นโปร เหตุผลที่เกิดขึ้นบ่อยคือบัญชีกูเกิลที่คุณใช้ซื้อแอป ไม่ได้เป็นบัญชีเดียวกันกับที่เชื่อมอยู่กับ Google Play ในเครื่องนี้</string>
-
-    <string name="pro_keep_installed">หมายเหตุ: คุณไม่ต้องโหลด Link Bubble รุ่นโปรอีกครั้ง แต่คุณต้องติดตั้งไว้ตลอด\n\nแอปนี้จะถูกซ่อนจากระบบ และไม่ปรากฏในลันเชอร์ของคุณ</string>
-
-    <string name="pro_action_load_app">โหลด Link Bubble</string>
-    <string name="pro_action_install_app">ติดตั้ง Link Bubble</string>
-    <string name="pro_action_buy">ซื้อแอป</string>
-    <string name="pro_action_retry">ลองอีกครั้ง</string>
-    <string name="pro_action_store">Play Store</string>
-
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">ทางที่ใช่ในการเปิดเว็บบนมือถือ</string>
     <string name="store_listing_description_title">Link Bubble คือเบราว์เซอร์โฉมใหม่ที่ออกแบบและสร้างขึ้นมาเพื่อผู้ที่มีโทรศัพท์มือถืออยู่ในใจ</string>
-    <string name="store_listing_description_features">คุณสมบัติ:
-• เมื่อคุณเปิดลิงก์ในแอป Link Bubble จะโหลดหน้าเว็บนั้นในพื้นหลัง ให้อิสระกับคุณใช้แอปที่เปิดอยู่ต่อ เพื่อให้คุณไม่ต้องทิ้งเวลาให้เสียเปล่าระหว่างรอโหลด และเมื่อเว็บถูกโหลดเรียบร้อยคุณก็สามารถเปิดดูได้ทันที
-• การปัดของ Link Bubble ทำให้คุณสะดวกกว่าเมื่อต้องการแบ่งปันลิงก์หรือเก็บไว้อ่านทีหลังในบริการอย่าง Pocket นเวลาไม่กี่วินาที!
-• โหลดหลายลิงก์จากแอปที่เปิดอยู่ในเวลาเดียวกัน (ต้องการรุ่นโปร)
-• ตรวจจับลิงก์ที่เปิดด้วยแอปอื่นได้ ไม่ต้องเปิดลิงก์ Instagram ในแอปทวิตเตอร์ แล้วสลับไปเบราว์เซอร์เต็มจอ แล้วสลับไปยัง Instagram อีกต่อไป!
-• ประสานร่วมอย่างล้ำลึกกับแอปนเครื่องของคุณ
-• ตรวจสอบวิดีโอ YouTube ในหน้าเว็บ แล้วสร้างทางลัดเพื่อเปิดวิดีโอเหล่านั้นในแอป YouTube โดยตรง
-• ตรวจสอบว่า Link Bubble ช่วยคุณประหยัดเวลาไปได้เท่าไหร่</string>
+    <!-- untranslated string: store_listing_description_features -->
     <string name="store_listing_description_location_permission">อธิบายเพิ่มเติมเกี่ยวกับสิทธิ์ตรวจสอบตำแหน่ง: สิทธิ์นี้จำเป็นต้องใช้เมื่อคุณเปิดเว็บที่มีการขอใช้ตำแหน่ง (เช่นเว็บที่มีแผนที่อยู่) ตัว Link Bubble เองจะไม่เก็บตำแหน่งของคุณเด็ดขาด</string>
-
-    <string name="pro_store_listing_title">Link Bubble โปร</string>
-    <string name="pro_store_listing_description_title">Link Bubble รุ่นโปรปลดล็อกคุณสมบัติเพิ่มเติมของ Link Bubble</string>
-    <string name="pro_store_listing_description_features">ในการอัปเกรดประกอบไปด้วย:
-• แท็บไม่จำกัดจำนวน (รุ่นฟรีจำกัดเพียงหนึ่งแท็บ)
-• ปรับแต่งธีม
-• ลบป้ายเชิญชวนให้อัปเกรด
-• สนับสนุนเรา ช่วยให้เราได้พัฒนาแอปนี้ :)</string>
 
     <string name="welcome_page_title">ยินดีต้อนรับสู่ Link Bubble!</string>
     <string name="welcome_page_intro_title">ทำงานยังไง?</string>
@@ -373,11 +323,8 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="welcome_page_more_also">Link Bubble ยังสามารถ:</string>
     <string name="welcome_page_more_point_1">ส่งต่อลิงก์ไปยังแอปของมัน (เช่น Instagram)</string>
     <string name="welcome_page_more_point_2">ค้นหาวิดีโอที่ฝังอยู่ ทำให้คุณสามารถดูมันในแอป YouTube ได้อย่างง่ายดาย</string>
-    <string name="welcome_page_pro_intro">ในรุ่นฟรีคุณจะได้เห็นพลังของ Link Bubble แต่ในรุ่นโปรคุณสามารถ</string>
-    <string name="welcome_page_pro_point_1">โหลดหลายหน้าเว็บพร้อมกัน</string>
-    <string name="welcome_page_pro_point_2">เปิดลิงก์จากทุกแอป</string>
-    <string name="welcome_page_pro_point_3">และแน่นอน ผมจะเพิ่มคุณสมบัติใหม่ๆ เพิ่มในอนาคต :)</string>
-    <string name="welcome_page_pro_end">ขอบคุณ และขอให้สนุกกับแอป!</string>
+    <!-- untranslated string: welcome_page_more_point_3 -->
+    <string name="welcome_page_more_point_4">เปิดลิงก์จากทุกแอป</string>
     <string name="welcome_page_ps">ปล. ในการปิดหน้าต่าง คุณสามารถใช้การกดปุ่มย้อนกลับ หรือกดค้างบนไอคอนหน้าต่าง แล้วโยนมันไปยังปุ่มปิด</string>
 
     <string name="duplicate_link_will_not_be_loaded">ลิงก์ถูกโหลดอยู่แล้ว กำลังละทิ้ง...</string>

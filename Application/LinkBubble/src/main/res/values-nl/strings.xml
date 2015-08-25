@@ -26,7 +26,6 @@
     <string name="action_open_in_browser">Openen in %1$s</string>
     <string name="action_request_desktop_site">Desktopversie opvragen</string>
     <string name="action_open_in_new_bubble">Openen in nieuwe bubbel</string>
-    <string name="action_upgrade_to_pro">★Upgraden naar Pro★</string>
     <string name="action_copy_to_clipboard">Link kopiëren</string>
     <string name="action_save_image">Afbeelding opslaan</string>
     <string name="action_share">Delen</string>
@@ -51,17 +50,8 @@
     <string name="consume_activity_security_exception">Kan niet delen met externe app.</string>
 
     <string name="upgrade">Upgraden</string>
-    <string name="upgrade_to_pro">Upgraden naar Pro</string>
-    <string name="upgrade_article_mode">Wil je links in Leesmodus bekijken?</string>
-    <string name="upgrade_article_mode_wear">Wil je links op Android Wear-apparaten bekijken via Leesmodus?</string>
     <string name="upgrade_theme">Wil je een ander thema gebruiken?</string>
     <string name="upgrade_theme_toolbar">Taakbalk mee laten kleuren met de themakleur van websites?</string>
-    <string name="upgrade_from_settings_summary">Upgrade naar Link Bubble Pro om dit en meer te kunnen doen:\n •
-Meerdere tabs tegelijk laden.\n •
-Thema wijzigen.\n •
-Leesmodus gebruiken.\n •
-Android Wear-ondersteuning.\n •
-Ons ondersteunen bij het maken van deze app :)</string>
 
     <string name="undo_close_tab_title">Gesloten: %1$s</string>
     <string name="undo_close_tab_no_title">Tab gesloten</string>
@@ -102,7 +92,6 @@ wordt ingesteld als je links laadt met Link Bubble.</string>
     <string name="preference_set_default_browser_summary">Link Bubble moet de standaard systeembrowser zijn om te kunnen werken. Tik om te configureren.</string>
     <string name="preference_more">Meer...</string>
     <string name="preference_intercept_links_from_title">Links onderscheppen van</string>
-    <string name="preference_intercept_links_from_note">Let op: de beperking voor het onderscheppen van links van slechts één app bestaat alleen in de gratis versie van Link Bubble. Upgraden naar Pro?</string>
     <string name="preference_intercept_links_from_disabled_for_L">Vanaf Android 5.0 heeft Google de API verwijderd die nodig is voor deze functionaliteit.</string>
     <string name="preference_scan_for_youtube_embeds_title">Ingesloten YouTube-videos herkennen</string>
     <string name="preference_scan_for_youtube_embeds_summary">Snelkoppeling weergeven om ingesloten video(\'s) te laden in de YouTube-app.</string>
@@ -161,8 +150,6 @@ wordt ingesteld als je links laadt met Link Bubble.</string>
     <string name="preference_terms_of_service_title">Algemene voorwaarden</string>
     <string name="preference_say_thanks_title">Zeg dankjewel!</string>
     <string name="preference_say_thanks_summary">Waardeer je Link Bubble? Misschien wil je dan een review achterlaten in de Play Store.</string>
-    <string name="preference_get_pro_title">Link Bubble Pro</string>
-    <string name="preference_get_pro_summary">Upgrade naar Pro voor meer functies.</string>
     <string name="preference_version_title">Versie</string>
     <string name="preference_version_summary">Wat is er nieuw?</string>
     <string name="preference_more_title">Meer&#8230;</string>
@@ -210,8 +197,6 @@ dat je een %2$s-link laadt een nieuwe standaardapp instellen.</string>
     <string name="link_redirected">Doorgestuurd naar %1$s</string>
 
     <string name="tampered_apk">Dit exemplaar van Link Bubble is illegaal aangepast en zal dus niet betrouwbaar werken. Installeer opnieuw vanuit de Play Store.</string>
-    <string name="upgrade_incentive_one_link">Je hebt Link Bubble Pro nodig om meer dan één bubbel tegelijk te laden. Upgraden naar Pro?</string>
-    <string name="valid_license_detected">Geldige Link Bubble Pro-licentie gevonden.\nBedankt voor het ondersteunen van dit project, en veel plezier met de app :)</string>
 
     <string name="bubble_link_copied_to_clipboard">Bubbellink gekopieerd naar klembord.</string>
     <string name="link_copied_to_clipboard">Link gekopieerd naar klembord.</string>
@@ -265,7 +250,6 @@ om links van andere apps te laden en te verwerken.</string>
 (+Link Bubble) voor hulp bij de vertalingen, dus hou mijn feed in de gaten.]]></string>
     <string name="faq_roadmap_question">Heb je een roadmap gepubliceerd? Kan ik stemmen voor toekomstige functies?</string>
     <string name="faq_roadmap_answer">Ik ben bang dat vanwege de concurrentie het antwoord op beide vragen \'nee\' is.</string>
-    <string name="faq_alternate_payment_question">Ik heb geen creditcard en/of ik kan niet kopen op Google Play. Hoe koop ik Pro?</string>
     <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble ondersteunt op dit moment alleen aanschaf via Google Play.<br/><br/>Aanvullende
 betaalmogelijkheden worden hopelijk in de toekomst aangeboden (voor zover ze de Google Play Developer Program Policies niet schenden).]]></string>
     <string name="faq_cant_type_url_question">Waarom kan ik niet de naam van de link die ik wil bezoeken invoeren?</string>
@@ -273,11 +257,6 @@ betaalmogelijkheden worden hopelijk in de toekomst aangeboden (voor zover ze de 
 links van andere apps te laden en weer te geven zo elegant, behulpzaam en snel als mogelijk.<br/><br/>Als je een nieuwe url in Link Bubble wilt laden,
 is het zoeken naar een pagina via Google Now en het laden van het resultaar met Link Bubble een goede methode.<br/><br/>Voor het snel
 laden van je favorieten, vind ik het Chrome Bookmarks-widget erg handig.]]></string>
-    <string name="faq_drop_down_items_question">Waarom werken drop-downmenu\'s niet?</string>
-    <string name="faq_drop_down_items_answer"><![CDATA[Door beperkingen van het Androidsysteem werkt dit helaas niet.<br/><br/>Technisch antwoord:
-Android\'s WebView programmeerd dat &lt;select&gt;-elementen worden getoond met een Dialoog, die niet kan worden geopend vanuit een Service. WebView biedt geen methode om
-dit gedrag te veranderen. Daarom is een hack gebruikt om dropdowns gewoon uit te schakelen op alle pagina\'s in Link Bubble.
-Dit is verre van ideaal, maar zeker te verkiezen boven het laten crashen van de app, wat anders zou gebeuren :\\]]></string>
     <string name="faq_copy_text_question">Waarom kan ik geen tekst kopiëren van een webpagina?</string>
     <string name="faq_copy_text_answer"><![CDATA[Door beperkingen van het Androidsysteem werkt dit helaas niet.<br/><br/>Technisch antwoord:
 De kopieerfunctionaliteit werkt bij het gebruiken van Android\'s WebView vanuit een Activity, maar niet vanuit een Service (wat Link Bubble gebruikt).]]></string>
@@ -310,8 +289,8 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="faq_change_default_browser_answer">Systeeminstellingen -> Apps -> Gedownload -> Link Bubble -> Standaardwaarden wissen.</string>
     <string name="faq_report_bug_question">Een bug melden</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
-    <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
-    <string name="faq_feature_request_answer">I have a lot of </string> -->
+    <!--<!-- untranslated string: faq_feature_request_question -->
+    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Vragen over de app? Probeer het hier.</string>
@@ -328,9 +307,8 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <!--
-    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
-        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
-    <string name="restore_tabs_from_previous_session"></string>
+    <!-- untranslated string: restore_tabs_from_previous_session -->-->
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Tab van vorige sessie terugplaatsen?</item>
         <item quantity="other">%d tabs van vorige sessie terugplaatsen?</item>
@@ -345,7 +323,6 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="content_description_history">Geschiedenis</string>
     <string name="content_description_settings">Instellingen</string>
     <string name="content_description_can_go_back">Terug gaan</string>
-    <string name="content_description_upgrade_to_pro">Upgraden naar pro</string>
 
     <string name="requesting_location_message">%1$s vraagt naar je locatie. Toestaan?</string>
 
@@ -355,43 +332,11 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="service_name">Link Bubble Renderer</string>
     <string name="notification_title">Link Bubble</string>
 
-    <string name="pro_application_name">Link Bubble Pro</string>
-    <string name="pro_status_checking_license">Licentie controleren...</string>
-	<string name="pro_status_buy">Kan de licentie niet verifiëren.\n\nMogelijke oorzaken van dit probleem zijn:\n • Er is geen internetverbinding.\n • Er is geknoeid met dit
-programma.\n\nControleer je internetverbinding, en probeer indien nodig de app opnieuw te installeren vanuit de Play Store.</string>
-    <string name="pro_status_verified">Aankoop van Link Bubble Pro geverifieerd!\n\nHartelijk bedankt voor het ondersteunen van ons bij het ontwikkelen van dit project.</string>
-    <string name="pro_status_unlicensed">Google Play meldt dat dit exemplaar van Link Bubble Pro geen licentie heeft.\n\nErvan uitgaande dat je
-inderdaad een exemplaar van Link Bubble Pro hebt aangeschaft, is de meest voorkomende reden hiervoor dat het bij de aanschaf gebruikte
-e-mailadres niet is geconfigureerd met de Play Store op dit apparaat.</string>
-
-    <string name="pro_keep_installed">Let op: je hoeft Link Bubble Pro niet opnieuw te laden, maar je moet het wel geïnstalleerd houden ten behoeve van verificatie.\n\nDeze app zal worden verborgen in het systeem zodat het niet verschijnt op je startscherm(en).</string>
-
-    <string name="pro_action_load_app">Link Bubble laden</string>
-    <string name="pro_action_install_app">Link Bubble installeren</string>
-    <string name="pro_action_buy">App kopen</string>
-    <string name="pro_action_retry">Opnieuw</string>
-    <string name="pro_action_store">Play Store</string>
-
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Mobiel browsen zoals het zou moeten.</string>
     <string name="store_listing_description_title">Link Bubble is een geheel nieuwe browser, ontworpen en gemaakt met alleen mobiele apparaten in gedachten.</string>
-    <string name="store_listing_description_features">Functies zijn onder meer:
-• Wanneer je klikt op een link in een app, laadt Link Bubble die webpagina op de achtergrond, zodat je vrij bent om je huidige app te blijven gebruiken in plaats van je kostbare tijd te verspillen aan het kijken naar een ladende pagina. Zodra de pagina volledig is geladen. zal deze op het scherm verschijnen.
-• Met Link Bubble\'s veegbewegingen kun je in weinig minder dan een seconde vanaf het klikken op een link, deze link delen of de link toevoegen aan een dienst als Pocket!
-• Laad meerdere links tegelijkertijd vanuit je huidige app op hetzelfde moment (vereist Pro).
-• Slim omgaan met links die doorverwijzen naar andere apps. Niet langer krijg je na het klikken op een Instagram-link in Twitter eerst een volledige browser voordat Instagram opent!
-• Diepe integratie met de apps op je systeem.
-• Vind ingesloten YouTube-video\'s op webpagina\'s, en bied een snelkoppeling om die video\'s direct in de YouTube-app te laden. 
-• Handige statistieken die laten zien hoeveel tijd je bespaart door Link Bubble te gebruiken.</string>
+    <!-- untranslated string: store_listing_description_features -->
     <string name="store_listing_description_location_permission">Wat betreft de toestemming voor Locatie: dit is nodig, omdat je mogelijk toestemming wil geven aan een website om je locatie te zien (bijvoorbeeld in het geval van een ingebouwde kaart). Link Bubble zelf kijkt nooit naar je locatie.</string>
-
-    <string name="pro_store_listing_title">Link Bubble Pro</string>
-    <string name="pro_store_listing_description_title">Link Bubble Pro ontsluit alle mogelijkheden van Link Bubble.</string>
-    <string name="pro_store_listing_description_features">Upgrades bevatten:
-• Onbeperkt aantal tabs (gratis versie is beperkt tot slechts een tab).
-• Themaselectie
-• Weghalen van de upgrade-prikkels die in de gratis versie zitten.
-• Ondersteuning van ons zodat we meer van deze apps kunnen maken :)</string>
 
     <string name="welcome_page_title">Welkom bij Link Bubble!</string>
     <string name="welcome_page_intro_title">Hoe werkt het?</string>
@@ -404,11 +349,8 @@ e-mailadres niet is geconfigureerd met de Play Store op dit apparaat.</string>
     <string name="welcome_page_more_also">Link Bubble kan ook:</string>
     <string name="welcome_page_more_point_1">Links doorsturen naar een specifieke app (bijv. Instagram).</string>
     <string name="welcome_page_more_point_2">Ingesloten video\'s vinden zodat je deze makkelijk in de YouTube-app kan laden.</string>
-    <string name="welcome_page_pro_intro">De gratis versie laat zien wat er mogelijk is met Link Bubble, maar met Pro kan je:</string>
-    <string name="welcome_page_pro_point_1">Meerdere bubbels tegelijkertijd laden.</string>
-    <string name="welcome_page_pro_point_2">Links uit alle apps laden.</string>
-    <string name="welcome_page_pro_point_3">Ervoor zorgen dat ik meer apps kan maken in de toekomst :)</string>
-    <string name="welcome_page_pro_end">Bedankt, en veel plezier met de app!</string>
+    <!-- untranslated string: welcome_page_more_point_3 -->
+    <string name="welcome_page_more_point_4">Links uit alle apps laden.</string>
     <string name="welcome_page_ps">PS. Deze bubbel kun je sluiten door op de Terug-knop te drukken, of door lang te drukken op de bubbel en deze bovenop de Sluit-bubbel te vegen.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Link al geladen. Negeren...</string>

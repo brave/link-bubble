@@ -15,7 +15,7 @@
     <string name="cancel">取消</string>
 
     <string name="action_ok">确定</string>
-    <string name="action_open">Open</string>
+    <!-- untranslated string: action_open -->
     <string name="action_remove">删除</string>
     <string name="action_cancel">取消</string>
     <string name="action_clear_data">清除数据</string>
@@ -24,11 +24,10 @@
     <string name="action_help">帮助</string>
     <string name="action_reload_page">重新载入</string>
     <string name="action_open_in_browser">在 %1$s 中打开</string>
-    <string name="action_request_desktop_site">Request desktop site</string>
+    <!-- untranslated string: action_request_desktop_site -->
     <string name="action_open_in_new_bubble">在新的泡泡中打开</string>
-    <string name="action_upgrade_to_pro">★升级到专业版★</string>
     <string name="action_copy_to_clipboard">复制链接</string>
-    <string name="action_save_image">Save image</string>
+    <!-- untranslated string: action_save_image -->
     <string name="action_share">分享</string>
     <string name="action_close_all">全部关闭</string>
     <string name="action_close_tab">关闭泡泡</string>
@@ -39,9 +38,9 @@
     <string name="share_via">分享页面，通过</string>
     <string name="not_set">尚未设置</string>
 
-    <string name="error_saving_image">Error saving image.</string>
-    <string name="image_saved">Image downloaded.</string>
-    <string name="notice_download_started">Download started.</string>
+    <!-- untranslated string: error_saving_image -->
+    <!-- untranslated string: image_saved -->
+    <!-- untranslated string: notice_download_started -->
 
     <string name="warning">警告！</string>
     <string name="untrusted_certificate">%1$s 的证书不被信任。确定仍然继续吗？</string>
@@ -51,17 +50,8 @@
     <string name="consume_activity_security_exception">无法分享至外部应用程序</string>
 
     <string name="upgrade">升级</string>
-    <string name="upgrade_to_pro">升级到专业版</string>
-    <string name="upgrade_article_mode">使用阅读模式查看链接吗？</string>
-    <string name="upgrade_article_mode_wear">通过阅读模式在 Android 智能手表上查看链接吗？</string>
     <string name="upgrade_theme">想换一种主题试试？</string>
     <string name="upgrade_theme_toolbar">是否要让工具栏主题色与网站主题色相匹配？</string>
-    <string name="upgrade_from_settings_summary">升级至 Link Bubble 专业版可以享受以下特性：\n
-• 同时加载多个泡泡\n
-• 更换主题\n
-• 使用阅读模式\n
-• 支持 Android 智能手表\n
-• 支持我们开发本应用 :)</string>
 
     <string name="undo_close_tab_title">已关闭「%1$s」</string>
     <string name="undo_close_tab_no_title">已关闭标签</string>
@@ -100,7 +90,6 @@ accounts.google.com 链接</string>
     <string name="preference_set_default_browser_summary">Link Bubble必须被设为系统默认浏览器才能正常工作。点击配置。</string>
     <string name="preference_more">更多...</string>
     <string name="preference_intercept_links_from_title">接管链接</string>
-    <string name="preference_intercept_links_from_note">注意：免费版 Link Bubble 限制为只能在一个应用中接管链接。要升级到专业版解除该限制吗？</string>
     <string name="preference_intercept_links_from_disabled_for_L">谷歌在 Android 5.0 中移除了本功能所需的 API</string>
     <string name="preference_scan_for_youtube_embeds_title">检查 YouTube 嵌入式视频</string>
     <string name="preference_scan_for_youtube_embeds_summary">在 YouTube 应用中加载嵌入式视频。</string>
@@ -118,7 +107,7 @@ accounts.google.com 链接</string>
     <string name="preference_theme_dark_no_color">暗底+中性色边框</string>
     <string name="preference_theme_toolbar_title">色彩工具栏</string>
     <string name="preference_theme_toolbar_summary">匹配网站的主题色与图标高亮色</string>
-    <string name="preference_article_mode_title">Reading Mode</string>
+    <!-- untranslated string: preference_article_mode_title -->
     <string name="preference_reading_mode_on_wear_title">智能手表阅读模式</string>
     <string name="preference_article_mode_summary">通过操作栏按钮切换</string>
     <string name="preference_webview_text_zoom_title">文字缩放</string>
@@ -159,8 +148,6 @@ accounts.google.com 链接</string>
     <string name="preference_terms_of_service_title">服务条款</string>
     <string name="preference_say_thanks_title">表示感谢！</string>
     <string name="preference_say_thanks_summary">喜欢 Link Bubble 吗？请在 Play 商店中留下反馈。</string>
-    <string name="preference_get_pro_title">Link Bubble 专业版</string>
-    <string name="preference_get_pro_summary">升级到专业版以获取更多功能。</string>
     <string name="preference_version_title">版本</string>
     <string name="preference_version_summary">更新日志</string>
     <string name="preference_more_title">更多&#8230;</string>
@@ -207,8 +194,6 @@ accounts.google.com 链接</string>
     <string name="link_redirected">重定向至 %1$s</string>
 
     <string name="tampered_apk">您的 Link Bubble 已被非法修改，因此无法可靠运行。请到 Play 商店重新安装。</string>
-    <string name="upgrade_incentive_one_link">同时加载多个泡泡需要专业版 Link Bubble。要升级到专业版吗？</string>
-    <string name="valid_license_detected">已通过校验专业版许可。\n感谢您支持本项目，祝您使用愉快：）</string>
 
     <string name="bubble_link_copied_to_clipboard">泡泡的链接已复制到剪贴板。</string>
     <string name="link_copied_to_clipboard">链接已复制到剪贴板。</string>
@@ -247,23 +232,16 @@ Link Bubble 亦遵循该标准。]]></string>
 <br/><br/>请注意：像 Chrome 这类的浏览器都会在程式中写死，只能使用它自身来载入网页，故 Link Bubble 无法读取在其他浏览器中点击的连结。
 ]]></string>
     <string name="faq_article_mode_question">我该如何使用阅读模式？为什么许多链接无法使用阅读模式？</string>
-    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
-            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
-            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
-            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
-            there is little than can be done here.]]></string>
+    <!-- untranslated string: faq_article_mode_answer -->
     <string name="faq_future_features_question">你会加入书签、收藏、扩展等功能吗？</string>
     <string name="faq_future_features_answer">不确定，但是目前 Link Bubble 只是专注于将载入和处理应用内链接做到最好。</string>
     <string name="faq_translations_question">我能帮助翻译本应用吗？</string>
     <string name="faq_translations_answer"><![CDATA[我希望尽快加入多国语言的翻译。<br/><br/>当我需要帮助的时候，我会在 Google+ (+Link Bubble) 上寻求帮助，所以请关注我分享的信息。]]></string>
     <string name="faq_roadmap_question">你有公布功能路线图吗？我能给要更新的功能投票吗？</string>
     <string name="faq_roadmap_answer">因为竞争原因，恐怕这两个问题的答案都是否定的。<br/><br/></string>
-    <string name="faq_alternate_payment_question">我没有信用卡并且/或者我不能在 Google Play 商店中购买。那我该怎么购买专业版？</string>
     <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble 目前仅支持通过 Google Play 购买。<br/><br/>希望以后会增加更多途径（如果它们不会违背 Google Play 开发者项目条例的话）。]]></string>
     <string name="faq_cant_type_url_question">为什么我不能直接输入我想要浏览的链接地址？</string>
     <string name="faq_cant_type_url_answer"><![CDATA[这是本意。Link Bubble 的初衷并不是为了完全替代您的浏览器，恰恰相反，它是为了尽快地载入并将网页呈现给你。<br/><br/>如果你想要通过 Link Bubble 打开新链接的话，先从谷歌即时中搜索然后再用 Link Bubble 载入倒也是个不错的办法。<br/><br/>如果想要快速加载您的收藏，我觉得 Chrome 书签的小部件很好用。]]></string>
-    <string name="faq_drop_down_items_question">为什么下拉菜单无法正常工作？</string>
-    <string name="faq_drop_down_items_answer"><![CDATA[很遗憾，Android 系统的的局限不允许这么做。<br/><br/>技术上的回答： Android 的网络视图将元素硬编码以通过一个对话窗显示，而这不能从一个服务启动。网页视图并不提供一个重新定义的方式。 因此在 Link Bubble 中加入了一个框架来简单地禁止所有页面的下拉项目。 这可能不理想，但是肯定比不这样导致程序崩溃要好得多。:\\]]></string>
     <string name="faq_copy_text_question">为什么我不能在页面中复制文本？</string>
     <string name="faq_copy_text_answer"><![CDATA[很遗憾，Android 系统的的局限不允许这么做。<br/><br/>技术上的回答：
 在一个活动中使用 Android 网络视图时复制功能能正常工作，但是服务却不行（而 Link Bubble 用的就是服务）。]]></string>
@@ -289,8 +267,8 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="faq_change_default_browser_answer">系统设置 -> 应用 -> 已下载 -> Link Bubble -> 清除默认设置。</string>
     <string name="faq_report_bug_question">回报错误</string>
     <string name="faq_report_bug_answer"><![CDATA[电子邮箱]]></string>
-    <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
-    <string name="faq_feature_request_answer">I have a lot of </string> -->
+    <!--<!-- untranslated string: faq_feature_request_question -->
+    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">常见问题</string>
     <string name="preference_faq_summary">关于应用有问题？到这里看看。</string>
@@ -307,9 +285,8 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="credits_app_copyright">Link Bubble 版权所有</string>
 
     <!--
-    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
-        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
-    <string name="restore_tabs_from_previous_session"></string>
+    <!-- untranslated string: restore_tabs_from_previous_session -->-->
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">从之前的会话中恢复泡泡？</item>
         <item quantity="other">从之前的会话中恢复 %d 个泡泡？</item>
@@ -324,7 +301,6 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="content_description_history">历史记录</string>
     <string name="content_description_settings">设置</string>
     <string name="content_description_can_go_back">可以回去</string>
-    <string name="content_description_upgrade_to_pro">升级到专业版</string>
 
     <string name="requesting_location_message">%1$s 正在请求您的位置。是否允许？</string>
 
@@ -333,40 +309,11 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="service_name">Link Bubble 渲染器</string>
     <string name="notification_title">Link Bubble</string>
 
-    <string name="pro_application_name">Link Bubble 专业版</string>
-    <string name="pro_status_checking_license">正在校验许可...</string>
-	<string name="pro_status_buy">无法校验许可。\n\n产生此问题可能的原因包括：\n • 无网络链接。\n • 您安装的是盗版。\n\n检查您的网络连接，如果有必要的话，尝试在 Play 商店中重新安装。</string>
-    <string name="pro_status_verified">Link Bubble专业版购买已证实！\n\n非常感谢您支持我们开发这个项目。</string>
-    <string name="pro_status_unlicensed">Google Play 报告该 Link Bubble 专业版拷贝是未经许可的。\n\n如果您确实购买了 Link Bubble 专业版，那可能的原因是用于购买的电子邮箱地址并未在本设备上与 Play 商店中配置。</string>
-
-    <string name="pro_keep_installed">注意：您不需要再次载入 Link Bubble 专业版。但是出于校验目的，您需要保持其安装。\n\n本应用会在系统中隐藏，所以它不会在您的启动器中显示。</string>
-
-    <string name="pro_action_load_app">加载 Link Bubble</string>
-    <string name="pro_action_install_app">安装 Link Bubble</string>
-    <string name="pro_action_buy">购买应用</string>
-    <string name="pro_action_retry">重试</string>
-    <string name="pro_action_store">Play 商店</string>
-
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">移动浏览已正确加载。</string>
     <string name="store_listing_description_title">Link Bubble 是一个独具匠心、潜心制作的用于移动设备的浏览器。</string>
-    <string name="store_listing_description_features">特性包括：
-• 当你在一个应用内点击链接，Link Bubble 会在后台载入它，你将可以继续使用当前的应用，而会让你宝贵的时间浪费在等待页面载入。加载完毕后，会有动画提示。
-• Link Bubble 的滑动功能允许你点指一瞬间完成链接分享，或者加入 Pocket 等服务。
-• 在一个应用内同时载入多个链接。（需要专业版）
-• 漂亮的处理定向应用的链接。再也不会出现在 Twitter 里点击 Instagram 链接，先跳转到浏览器然后打开应用的情况了！
-• 与系统内应用深度整合。
-• 定位页面中的 YouTube 嵌入式视频，并能直接在 YouTube 应用中载入视频。
-• 可以在统计中查看通过 Link Bubble 为您省下的时间。</string>
+    <!-- untranslated string: store_listing_description_features -->
     <string name="store_listing_description_location_permission">关于位置权限：您可能个要授予一个网站获取您位置的权限（例如嵌入地图的网页），本权限在此时需要。Link Bubble 本身不会获取您的位置。</string>
-
-    <string name="pro_store_listing_title">Link Bubble 专业版</string>
-    <string name="pro_store_listing_description_title">Link Bubble 专业版将会解锁所有功能。</string>
-    <string name="pro_store_listing_description_features">升级后您能获得以下特性：
-• 无限数量的泡泡（免费版限制只能同时存在一个页面）
-• 可选择主题
-• 移除频繁出现的「建议升级」的消息
-• 支持我让我们开发更多优秀应用 :)</string>
 
     <string name="welcome_page_title">欢迎使用 Link Bubble！</string>
     <string name="welcome_page_intro_title">它是如何运作的？</string>
@@ -379,11 +326,8 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="welcome_page_more_also">Link Bubble 也可以：</string>
     <string name="welcome_page_more_point_1">重定向链接到特定应用（例如 Instagram）</string>
     <string name="welcome_page_more_point_2">查找页面内嵌入式视频并在 YouTube 应用中加载。</string>
-    <string name="welcome_page_pro_intro">免费版 Link Bubble 让您体验到它的强大之处，但它不仅仅如此，专业版更可以让您：</string>
-    <string name="welcome_page_pro_point_1">同时加载多个泡泡</string>
-    <string name="welcome_page_pro_point_2">从所有应用中加载链接</string>
-    <string name="welcome_page_pro_point_3">帮助我确保在将来能够开发出更多的应用：）</string>
-    <string name="welcome_page_pro_end">感谢您的使用！</string>
+    <!-- untranslated string: welcome_page_more_point_3 -->
+    <string name="welcome_page_more_point_4">从所有应用中加载链接</string>
     <string name="welcome_page_ps">注：若要关闭本泡泡，请按返回键或长按泡泡并拖动到屏幕底部的关闭泡泡中。</string>
 
     <string name="duplicate_link_will_not_be_loaded">已加载该链接，忽略本次点击操作。</string>

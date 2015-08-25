@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="download_activity_label">Gestor de descàrregues</string>
+    <string name="send_intent_label">Obre amb Link Bubble</string>
+    <string name="notification_summary">Prem per amagar totes les bombolles obertes</string>
+    <string name="notification_default_summary">Prem per amagar, expandeix per tancar totes</string>
+    <string name="notification_unhide_summary">Prem per mostrar, expandeix per tancar totes</string>
+    <string name="notification_action_close_all">Tanca totes</string>
+    <string name="notification_action_hide">Amaga</string>
+    <string name="share_picker_label">Selector de compartir</string>
+
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancel·la</string>
+
+    <string name="action_ok">D\'acord</string>
+    <string name="action_open">Obre</string>
+    <string name="action_remove">Esborra</string>
+    <string name="action_cancel">Cancel·la</string>
+    <string name="action_clear_data">Esborra dades</string>
+    <string name="action_use_default">Per defecte</string>
+    <string name="action_settings">Configuració</string>
+    <string name="action_help">Ajuda</string>
+    <string name="action_reload_page">Torna a carregar</string>
+    <string name="action_open_in_browser">Obre amb %1$s</string>
+    <string name="action_request_desktop_site">Sol·licita versió d\'escriptori</string>
+    <string name="action_open_in_new_bubble">Obre en una nova bombolla</string>
+    <string name="action_copy_to_clipboard">Copia enllaç</string>
+    <string name="action_save_image">Guarda la imatge</string>
+    <string name="action_share">Comparteix</string>
+    <string name="action_close_all">Tanca totes</string>
+    <string name="action_close_tab">Tanca la bombolla</string>
+    <string name="action_stop">Atura</string>
+    <string name="action_undo">Desfés</string>
+    <string name="action_add">Afegeix</string>
+    <string name="action_no_recommended">No (recomanat)</string>
+    <string name="share_via">Comparteix via...</string>
+    <string name="not_set">No determinat</string>
+
+    <string name="error_saving_image">Error en guardar la imatge</string>
+    <string name="image_saved">Imatge descarregada.</string>
+    <string name="notice_download_started">Descàrrega començada.</string>
+
+    <string name="warning">Atenció!</string>
+    <string name="untrusted_certificate">El certificat a %1$s no és de fiar. Continuar igualment?</string>
+
+    <string name="share_invalid_data">Link Bubble no pot compartir aquest ítem perquè no és una URL vàlida.</string>
+    <string name="consume_activity_not_found">No es pot trobar l\'aplicació. Considera canviar l\'acció de la bombolla a la configuració.</string>
+    <string name="consume_activity_security_exception">No es pot compartir a l\'aplicació externa.</string>
+
+    <string name="upgrade">Actualitza</string>
+    <string name="upgrade_theme">Vols fer servir un tema diferent?</string>
+    <string name="upgrade_theme_toolbar">Vols que la barra d\'eines agafi el color de les pàgines?</string>
+
+    <string name="undo_close_tab_title">S\'ha tancat %1$s</string>
+    <string name="undo_close_tab_no_title">Pestanya tancada</string>
+
+    <string name="pick_default_app">Selecciona app per defecte</string>
+    <string name="default_browser_set">Link Bubble no ha sigut escollida com a navegador per defecte.</string>
+    <string name="invalid_send_action">Enllaç vàlid no trobat.</string>
+    <string name="unable_to_launch_app">No s\'ha pogut posar en marxa l\'aplicació de tercers.</string>
+    <string name="clear_history">Esborra l\'historial</string>
+
+    <string name="preference_category_general">General</string>
+    <string name="preference_category_configuration">Controls de la app</string>
+    <string name="preference_category_configuration2">Configuració</string>
+    <string name="preference_category_browser">Navegador</string>
+    <string name="preference_enabled_title">Habilitat</string>
+    <string name="preference_auto_content_display_link_loaded_title">Expandeix automàticament</string>
+    <string name="preference_auto_content_display_link_loaded_summary">Quan qualsevol bombolla s\'hagi acabat de carregar</string>
+
+    <string name="preference_left_consume_bubble_title">Bombolla esquerra</string>
+    <string name="preference_right_consume_bubble_title">Bombolla dreta</string>
+    <string name="preference_double_tap_title">Doble clic a un enllaç</string>
+    <string name="preference_configure_bubble_title">Configura bombolla</string>
+    <string name="preference_category_debug">Depura</string>
+    <string name="preference_default_browser">Navegador secundari</string>
+    <string name="preference_category_redirect_to_browser">Redirigeix al navegador secundari</string>
+    <string name="preference_category_fallback_browser">Navegador secundari per defecte</string>
+    <string name="preference_category_other_apps">Altres aplicacions</string>
+    <string name="preference_default_apps_title">Aplicacions per defecte</string>
+    <string name="preference_default_apps_summary">Navegador secundari, apps amb URL específic</string>
+    <string name="preference_default_apps_notice_summary">Es fan servir quan una o més aplicacions (a part de navegadors) en el vostre sistema
+poden gestionar una URL.\n\nPrem per esborrar-ne una.</string>
+    <string name="preference_default_apps_notice_no_defaults_summary">Es fan servir quan una o més aplicacions (a part de navegadors) en el vostre sistema
+poden gestionar una URL, pots configurar l\'aplicació per defecte per carregar aquests enllaços.
+\n\nL\'app per defecte per fer servir en aquest cas és configurada quan carregues enllaços amb Link Bubble.</string>
+    <string name="preference_google_account_redirect_title">Redirecció a Google Account</string>
+    <string name="preference_google_account_redirect_summary">Redirecciona enllaços d\'accounts.google.com al navegador secundari</string>
+    <string name="preference_set_default_browser_title">Escull navegador secundari predeterminat</string>
+    <string name="preference_set_default_browser_summary">Link Bubble ha de ser el navegador predeterminat del sistema perquè funcioni. Prem per configurar-ho.</string>
+    <string name="preference_more">Més...</string>
+    <string name="preference_intercept_links_from_title">Intercepta enllaços de</string>
+    <string name="preference_intercept_links_from_disabled_for_L">Des d\'Android 5.0, Google ha eliminat l\'API necessària per aquesta funcionalitat.</string>
+    <string name="preference_scan_for_youtube_embeds_title">Busca vídeos de YouTube</string>
+    <string name="preference_scan_for_youtube_embeds_summary">Mostra drecera per carregar vídeos incrustats a la app de YouTube.</string>
+    <string name="preference_webview_battery_save_title">Mode d\'estalvi de bateria (Beta)</string>
+    <string name="preference_webview_battery_save_aggressive_title">Agressiu</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Pausa la càrrega de pàgines web quan Link Bubble estigui minimitzat.\nPàgines en procés de càrrega la finalitzaran abans de pausar.</string>
+    <string name="preference_webview_battery_save_default_title">Per defecte</string>
+    <string name="preference_webview_battery_save_default_summary">Pausa la càrrega de pàgines web quan la pantalla s\'apagui i continua quan es torni a engegar.\nPàgines en procés de càrrega la finalitzaran abans de pausar.</string>
+    <string name="preference_webview_battery_save_off_title">Apagat</string>
+    <string name="preference_webview_battery_save_off_summary">Les pàgines estan sempre actives. Útil en escoltar YouTube vídeos i similars.</string>
+    <string name="preference_theme_title">Tema</string>
+    <string name="preference_theme_light_color">Clar + color d\'icona</string>
+    <string name="preference_theme_light_no_color">Clar + color neutral</string>
+    <string name="preference_theme_dark_color">Fosc + color d\'icona</string>
+    <string name="preference_theme_dark_no_color">Fosc + color neutral</string>
+    <string name="preference_theme_toolbar_title">Barra d\'eines de color</string>
+    <string name="preference_theme_toolbar_summary">Agafa el color del tema o icona de la pàgina per a la barra d\'eines.</string>
+    <string name="preference_article_mode_title">Mode de lectura</string>
+    <string name="preference_reading_mode_on_wear_title">Mode de lectura en Wear</string>
+    <string name="preference_article_mode_summary">Canviat amb un botó en la barra d\'accions</string>
+    <string name="preference_webview_text_zoom_title">Zoom del text</string>
+    <string name="preference_webview_text_zoom_note">Nota: Bombolles actuals es tornaran a carregar amb el nou zoom de text quan seleccioni \"OK\".</string>
+    <string name="preference_webview_text_zoom_reloading_current">Nou nivell de zoom de text aplicat. Tornant a carregar bombolles actuals...</string>
+    <string name="preference_clear_browser_cache_title">Esborra dades privades</string>
+    <string name="preference_clear_cache">Cache</string>
+    <string name="preference_clear_cookies">Galetes</string>
+    <string name="preference_clear_favicons">Favicons</string>
+    <string name="preference_clear_form_data">Dades de formulari</string>
+    <string name="preference_clear_history">Historial</string>
+    <string name="preference_clear_passwords">Contrasenyes </string>
+    <string name="preference_incognito_title">Mode incògnit</string>
+    <string name="preference_incognito_summary">Evita guardar res d\'historial ni galetes</string>
+    <string name="incognito_mode_changed_reloading_current">Configuració d\'incògnit canviada. Tornant a carregar bombolles actuals...</string>
+    <string name="preference_user_agent_title">Agent d\'usuari</string>
+    <string-array name="preference_user_agent_options">
+        <item>Per defecte</item>
+        <item>Mòbil Chrome</item>
+        <item>Tauleta Chrome</item>
+        <item>Escriptori Chrome</item>
+    </string-array>
+
+    <string name="preference_domains_title">Redireccions de domini</string>
+    <string name="preference_domains_summary">Especifica enllaços perquè sempre es carreguin en el navegador secundari.</string>
+    <string name="preference_redirects_title">Redirigeix al navegador secundari</string>
+    <string name="preference_add_domain_title">Afegeix domini</string>
+    <string name="add_domain_hint">Enllaç</string>
+    <string name="add_domain_detail">Especifica només la part \'principal\' d\'una adreça web. P. ex.
+\"accounts.google.com\" o \"bbc.co.uk\".</string>
+    <string name="add_domain_error">No es pot afegir \"%1$s\", ja que no és un enllaç vàlid.</string>
+
+    <string name="preference_help_title">Ajuda</string>
+    <string name="preference_show_welcome_message_title">Mostra la pàgina de benvinguda</string>
+    <string name="preference_credits_title">Crèdits</string>
+    <string name="preference_osl_title">Llicències de codi obert</string>
+    <string name="preference_privacy_policy_title">Política de privacitat</string>
+    <string name="preference_terms_of_service_title">Condicions de servei</string>
+    <string name="preference_say_thanks_title">Digues gràcies!</string>
+    <string name="preference_say_thanks_summary">Gaudint de Link Bubble? Si us plau, consideri deixar una ressenya a la Play Store.</string>
+    <string name="preference_version_title">Versió</string>
+    <string name="preference_version_summary">Què hi ha de nou?</string>
+    <string name="preference_more_title">Més&#8230;</string>
+    <string name="preference_show_undo_close_tab_title">Avís de desfer tancament</string>
+
+    <string name="preference_my_other_apps_title">Més apps de Link Bubble</string>
+    <string name="preference_my_other_apps_summary">T\'agrada Link Bubble? Per què no proves les nostres altres aplicacions?</string>
+
+    <string name="remove_default_title">Esborra predeterminat?</string>
+    <!-- untranslated string: remove_default_message -->
+    <string name="long_press_unsupported_default_browser">No es pot mostrat aquest element. Obrir enllaç amb %1$s?</string>
+    <string name="long_press_unsupported_no_default_browser">No es pot mostrat aquest element. Obrir enllaç en un navegador?</string>
+    <string name="unsupported_scheme_default_browser">Tipus d\'enllaç actualment incompatible. Obrir pàgina amb %1$s?</string>
+    <string name="unsupported_scheme_no_default_browser">Tipus d\'enllaç actualment incompatible. Obrir enllaç en un navegador?</string>
+    <string name="unsupported_scheme">Tipus d\'enllaç actualment incompatible.</string>
+    <string name="unsupported_drop_down_default_browser">No es pot interaccionar amb aquest element. Obrir en %1$s?</string>
+    <string name="unsupported_drop_down_no_default_browser">No es pot interaccionar amb aquest element. Obrir enllaç en un navegador?</string>
+
+    <string name="consume_category_view">Mostra enllaç</string>
+    <string name="consume_category_share">Envia/comparteix l\'enllaç</string>
+
+    <string name="title_settings">Configuració</string>
+
+    <string name="title_youtube_embed_to_load">Escull vídeo a mostrar</string>
+    <string name="loading_youtube_embed_info">Preparant la informació sobre els vídeos de YouTube...</string>
+    <string name="youtube_embed_error_title">Ostres</string>
+    <string name="youtube_embed_error_summary">No es pot trobar la informació sobre els vídeos de YouTube ara mateix. Si us plau, torna-ho a provar més tard.</string>
+
+    <string name="loading">Carregant...</string>
+
+    <string name="histroy_unread">No llegit</string>
+    <string name="histroy_all">Tot</string>
+    <string name="history">Historial</string>
+    <string name="erase_all_history_title">Esborrar tot?</string>
+    <string name="erase_all_history_message">Vol esborrar tot l\'historial de navegació a Link Bubble?</string>
+    <string name="empty">Buit</string>
+    <string name="history_already_empty">L\'historial ja està buit</string>
+    <string name="private_data_cleared">Dades privades esborrades</string>
+    <string name="private_data_cleared_reloading_current">Dades privades esborrades. Tornant a carregar bombolles actuals...</string>
+    <string name="user_agent_changed_reloading_current">Agent d\'usuari canviat. Tornant a carregar bombolles actuals...</string>
+    <string name="theme_toolbar_reloading_current">Configuració de color de la barra d\'eines canviada. Tornant a carregar bombolles actuals...</string>
+    <string name="article_mode_changed_reloading_current">Configuració del model lectura canviada. Tornant a carregar bombolles actuals...</string>
+    <string name="link_loaded_with_app">Carregat amb %1$s</string>
+    <string name="link_redirected">Redirigint a %1$s</string>
+
+    <!-- untranslated string: tampered_apk -->
+
+    <string name="bubble_link_copied_to_clipboard">Enllaç de la bombolla copiat al porta-retalls.</string>
+    <string name="link_copied_to_clipboard">Enllaç copiat al porta-retalls.</string>
+
+    <string name="stat_saves_you">t\'estalvia</string>
+    <string name="stat_has_saved_you">t\'ha estalviat</string>
+    <string name="stat_so_far">fins ara</string>
+    <string name="stat_per_link">per enllaç</string>
+    <string name="time_seconds">segons</string>
+    <string name="time_minutes">minuts</string>
+    <string name="time_hours">hores</string>
+
+    <string name="confirm_title">Confirma</string>
+
+    <string name="no_default_browser">No s\'ha trobat navegador predeterminat en el vostre sistema.</string>
+
+    <string name="title_changelog">Registre de canvis</string>
+    <string name="changelog_close">Tanca</string>
+
+    <!-- untranslated string: faq_close_tab_question -->
+    <!-- untranslated string: faq_close_tab_answer -->
+    <!-- untranslated string: faq_back_button_minimize_question -->
+    <!-- untranslated string: faq_back_button_minimize_answer -->
+    <!-- untranslated string: faq_app_internal_browser_question -->
+    <!-- untranslated string: faq_app_internal_browser_answer -->
+    <!-- untranslated string: faq_article_mode_question -->
+    <!-- untranslated string: faq_article_mode_answer -->
+    <!-- untranslated string: faq_future_features_question -->
+    <!-- untranslated string: faq_future_features_answer -->
+    <!-- untranslated string: faq_translations_question -->
+    <!-- untranslated string: faq_translations_answer -->
+    <!-- untranslated string: faq_roadmap_question -->
+    <!-- untranslated string: faq_roadmap_answer -->
+    <!-- untranslated string: faq_alternate_payment_answer -->
+    <!-- untranslated string: faq_cant_type_url_question -->
+    <!-- untranslated string: faq_cant_type_url_answer -->
+    <!-- untranslated string: faq_copy_text_question -->
+    <!-- untranslated string: faq_copy_text_answer -->
+    <!-- untranslated string: faq_translucent_status_bar_question -->
+    <!-- untranslated string: faq_translucent_status_bar_answer -->
+    <!-- untranslated string: faq_beta_programme_question -->
+    <!-- untranslated string: faq_beta_programme_answer -->
+    <!-- untranslated string: faq_low_spec_performance_question -->
+    <!-- untranslated string: faq_low_spec_performance_answer -->
+    <!-- untranslated string: faq_crap_webview_question -->
+    <!-- untranslated string: faq_crap_webview_answer -->
+    <!-- untranslated string: faq_ongoing_notificaion_question -->
+    <!-- untranslated string: faq_ongoing_notificaion_answer -->
+    <!-- untranslated string: faq_next_update_eta_question -->
+    <!-- untranslated string: faq_next_update_eta_answer -->
+    <!-- untranslated string: faq_close_quickly_question -->
+    <!-- untranslated string: faq_close_quickly_answer -->
+    <!-- untranslated string: faq_change_default_browser_question -->
+    <!-- untranslated string: faq_change_default_browser_answer -->
+    <!-- untranslated string: faq_report_bug_question -->
+    <!-- untranslated string: faq_report_bug_answer -->
+    <!--<!-- untranslated string: faq_feature_request_question -->
+    <!-- untranslated string: faq_feature_request_answer --> -->
+
+    <string name="faq_title">Preguntes freqüents</string>
+    <string name="preference_faq_summary">Preguntes sobre la app? Prova aquí</string>
+    <string name="faq_section_general">General</string>
+    <string name="faq_section_functionality">Funcionalitat de l\'aplicació</string>
+    <string name="faq_section_issues">Problemes</string>
+
+    <string name="activity_resolver_use_always">Sempre</string>
+    <string name="activity_resolver_use_once">Només una vegada</string>
+
+    <string name="credits_title">Crèdits de Link Bubble</string>
+    <string name="credits_name">Link Bubble</string>
+    <!-- untranslated string: credits_credit -->
+    <!-- untranslated string: credits_app_copyright -->
+
+    <!--
+    <!-- untranslated string: restore_tabs_from_previous_session -->-->
+    <!-- untranslated string: restore_tabs_from_previous_session -->
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Restaura pestanya de la sessió anterior?</item>
+        <item quantity="other">Restaura %d pestanyes de la sessió anterior?</item>
+    </plurals>
+
+    <string name="content_description_button">Botó</string>
+    <!-- untranslated string: content_description_target_icon -->
+    <string name="content_description_close_bubble_icon">Tanca la icona de la bombolla</string>
+    <string name="content_description_link_bubble_logo">Logo de Link Bubble</string>
+    <string name="content_description_app_icon">Icona de l\'aplicació</string>
+    <!-- untranslated string: content_description_youtube_video_thumbnail -->
+    <string name="content_description_history">Historial</string>
+    <string name="content_description_settings">Configuració</string>
+    <!-- untranslated string: content_description_can_go_back -->
+
+    <string name="requesting_location_message">%1$s està demanat la teva ubicació. Permetre?</string>
+
+    <!-- untranslated string: accept_terms_and_privacy -->
+
+    <!-- untranslated string: service_name -->
+    <string name="notification_title">Link Bubble</string>
+
+    <string name="store_listing_title">Link Bubble</string>
+    <string name="store_listing_promo_text">Navegació mòbil com hauria de ser.</string>
+    <string name="store_listing_description_title">Link Bubble és un navegador nou pensat i dissenyat completament per mòbils.</string>
+    <!-- untranslated string: store_listing_description_features -->
+    <!-- untranslated string: store_listing_description_location_permission -->
+
+    <string name="welcome_page_title">Benvingut/da a Link Bubble!</string>
+    <string name="welcome_page_intro_title">Com funciona?</string>
+    <string name="welcome_page_intro_point_1">Prem en un enllaç dins l\'app.</string>
+    <!-- untranslated string: welcome_page_intro_point_2 -->
+    <!-- untranslated string: welcome_page_intro_end -->
+    <!-- untranslated string: welcome_page_more_title -->
+    <!-- untranslated string: welcome_page_more_pocket_start -->
+    <!-- untranslated string: welcome_page_more_pocket_end -->
+    <!-- untranslated string: welcome_page_more_also -->
+    <!-- untranslated string: welcome_page_more_point_1 -->
+    <!-- untranslated string: welcome_page_more_point_2 -->
+    <!-- untranslated string: welcome_page_more_point_3 -->
+    <!-- untranslated string: welcome_page_more_point_4 -->
+    <string name="welcome_page_ps">PD: Per tancar aquesta bombolla, premi el botó d\'endarrera o premi la bombolla i arrossegui-la a la bombolla te tancar.</string>
+
+    <string name="duplicate_link_will_not_be_loaded">Enllaç ja carregat. Ignorant...</string>
+
+</resources>

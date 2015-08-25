@@ -15,7 +15,7 @@
     <string name="cancel">Cancelar</string>
 
     <string name="action_ok">OK</string>
-    <string name="action_open">Open</string>
+    <string name="action_open">Abrir</string>
     <string name="action_remove">Eliminar</string>
     <string name="action_cancel">Cancelar</string>
     <string name="action_clear_data">Borrar datos</string>
@@ -24,11 +24,10 @@
     <string name="action_help">Ayuda</string>
     <string name="action_reload_page">Cargar de nuevo</string>
     <string name="action_open_in_browser">Abrir en %1$s</string>
-    <string name="action_request_desktop_site">Request desktop site</string>
+    <string name="action_request_desktop_site">Ver como ordenador</string>
     <string name="action_open_in_new_bubble">Abrir en una nueva burbuja</string>
-    <string name="action_upgrade_to_pro">★Conviértete en Pro★</string>
     <string name="action_copy_to_clipboard">Copiar enlace</string>
-    <string name="action_save_image">Save image</string>
+    <string name="action_save_image">Guardar imagen</string>
     <string name="action_share">Compartir</string>
     <string name="action_close_all">Cerrar todas</string>
     <string name="action_close_tab">Cerrar burbuja</string>
@@ -39,9 +38,9 @@
     <string name="share_via">Compartir a través de...</string>
     <string name="not_set">No establecido</string>
 
-    <string name="error_saving_image">Error saving image.</string>
-    <string name="image_saved">Image downloaded.</string>
-    <string name="notice_download_started">Download started.</string>
+    <string name="error_saving_image">Error al guardar la imagen.</string>
+    <string name="image_saved">Imagen descargada.</string>
+    <string name="notice_download_started">Descarga iniciada.</string>
 
     <string name="warning">¡Advertencia!</string>
     <string name="untrusted_certificate">El certificado en %1$s no es de confianza. ¿Continuar de todas formas?</string>
@@ -51,17 +50,8 @@
     <string name="consume_activity_security_exception">No se pudo compartir con la aplicación externa.</string>
 
     <string name="upgrade">Actualizar</string>
-    <string name="upgrade_to_pro">Actualizar a Pro</string>
-    <string name="upgrade_article_mode">¿Quieres ver los enlaces en Modo Lectura?</string>
-    <string name="upgrade_article_mode_wear">¿Quieres ver los enlaces en dispositivos Android Wear por medio del Modo Lectura?</string>
     <string name="upgrade_theme">¿Quieres usar un tema distinto?</string>
     <string name="upgrade_theme_toolbar">¿Quieres aplicar un color de tema a la barra de herramientas para que coincida con el color del tema de los sitios web?</string>
-    <string name="upgrade_from_settings_summary">Actualiza a Link Bubble Pro para hacer esto y más incluyendo:\n •
-Cargar varias pestañas al mismo tiempo.\n •
-Cambiar el tema.\n •
-Usar el Modo Lectura.\n •
-Soporte para Android Wear.\n •
-Apóyanos a medida que desarrollamos esta aplicación :)</string>
 
     <string name="undo_close_tab_title">Cerrada %1$s</string>
     <string name="undo_close_tab_no_title">Pestaña cerrada</string>
@@ -99,7 +89,6 @@ Apóyanos a medida que desarrollamos esta aplicación :)</string>
     <string name="preference_set_default_browser_summary">Link Bubble debe ser el navegador predeterminado del sistema para que funcione. Toca para configurar.</string>
     <string name="preference_more">Más...</string>
     <string name="preference_intercept_links_from_title">Intervenir links de:</string>
-    <string name="preference_intercept_links_from_note">Aviso: La restricción para abrir links desde una única app solo existe con la versión gratis de Link Bubble. ¿Volverse Pro?</string>
     <string name="preference_intercept_links_from_disabled_for_L">A partir de Android 5.0, Google ha eliminado la API requerida para esta funcionalidad.</string>
     <string name="preference_scan_for_youtube_embeds_title">Comprueba los vídeos de Youtube incrustados</string>
     <string name="preference_scan_for_youtube_embeds_summary">Muestra un atajo para reproducir los videos incrustados de Youtube</string>
@@ -117,7 +106,7 @@ Apóyanos a medida que desarrollamos esta aplicación :)</string>
     <string name="preference_theme_dark_no_color">Oscuro + color neutro</string>
     <string name="preference_theme_toolbar_title">Color de barra de herramientas</string>
     <string name="preference_theme_toolbar_summary">Coincidir el color del tema del sitio web con el color de icono de resaltado.</string>
-    <string name="preference_article_mode_title">Reading Mode</string>
+    <string name="preference_article_mode_title">Modo lectura</string>
     <string name="preference_reading_mode_on_wear_title">Modo lectura en Android Wear</string>
     <string name="preference_article_mode_summary">Seleccionar con botón en la barra de acciones</string>
     <string name="preference_webview_text_zoom_title">Aumento del texto</string>
@@ -158,8 +147,6 @@ Apóyanos a medida que desarrollamos esta aplicación :)</string>
     <string name="preference_terms_of_service_title">Términos del servicio</string>
     <string name="preference_say_thanks_title">Da las gracias!</string>
     <string name="preference_say_thanks_summary">¿Disfrutas con Link Bubble? Por favor considera dejar una valoración en la tienda de aplicaciones. </string>
-    <string name="preference_get_pro_title">Link Bubble Pro</string>
-    <string name="preference_get_pro_summary">Conviértete en Pro para obtener más.</string>
     <string name="preference_version_title">Versión</string>
     <string name="preference_version_summary">¿Qué hay nuevo?</string>
     <string name="preference_more_title">Más&#8230;</string>
@@ -206,8 +193,6 @@ Apóyanos a medida que desarrollamos esta aplicación :)</string>
     <string name="link_redirected">Redirigido a %1$s</string>
 
     <string name="tampered_apk">Tu copia de Link Bubble ha sido modificado ilegalmente, por ese caso no podrá funcionar correctamente. Por favor reinstale la aplicación de la Play Store.</string>
-    <string name="upgrade_incentive_one_link">Se necesita Link Bubble Pro para cargar más de una pestaña al mismo tiempo. Desea mejorar a Pro?</string>
-    <string name="valid_license_detected">Se detectó una licencia de Link Bubble Pro. Gracias por ayudar este proyecto, Disfruta de la aplicación :)</string>
 
     <string name="bubble_link_copied_to_clipboard">Bubble link copiada en el portapapeles.</string>
     <string name="link_copied_to_clipboard">Link copiado al portapapeles </string>
@@ -249,11 +234,11 @@ y activa \"Exploradores externos"\ , desactiva \"Explorador integrado"\ o simila
 <br/><br/>Nota: otros exploradores como Chrome tienen integrada la función de interceptar enlaces por sí mismos, por lo que Link Bubble es incapaz de interceptar links lanzados desde exploradores con dicha función.
 ]]></string>
     <string name="faq_article_mode_question">¿Cómo uso el Modo lectura? ¿Por qué algunos enlaces no funcionan?</string>
-    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
-            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
-            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
-            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
-            there is little than can be done here.]]></string>
+    <string name="faq_article_mode_answer"><![CDATA[En primer lugar, asegúrese que el Modo lectura está habilitado (Ajustes -> Controles de App / Más&#8230; -> Modo lectura).<br/><br/>
+A partir de ese momento, cuando el Modo lectura esté disponible para la pestaña actual, se mostrará el icono de Modo lectura en la barra de acción (junto al botón Compartir).
+Tenga en cuenta que ese icono sólo aparece luego que la carga de un enlace ha finalizado, y sólo si Link Bubble ha extraído con éxito el contenido para Modo artículo del enlace.<br/><br/>
+Nota: Extraer contenido de la Web es un proceso poco fiable, y puede no funcionar con una precisión del 100%. Dada la naturaleza dinámica y cambiante de la Web por sí misma,
+hay poco que se pueda hacer aquí.]]></string>
     <string name="faq_future_features_question">¿Añadiras soporte para marcadores, favoritos, extensiones, etc...?</string>
     <string name="faq_future_features_answer">Nunca digas nunca jamás, pero por ahora Link Bubble está centrado solamente en ser la mejor forma posible de cargar y consumir enlaces cargados desde otras aplicaciones.</string>
     <string name="faq_translations_question">¿Puedo ayudar a traducir la aplicación?</string>
@@ -261,15 +246,9 @@ y activa \"Exploradores externos"\ , desactiva \"Explorador integrado"\ o simila
 (+Link Bubble) para ayudar con las traducciones, por lo que estate atento a mi perfil.]]></string>
     <string name="faq_roadmap_question">¿Publicarás una hoja de ruta para las nuevas características? ¿Puedo votar por próximas características?</string>
     <string name="faq_roadmap_answer">Por motivos competitivos, la respuesta a ambas es \'no\' Tengo miedo</string>
-    <string name="faq_alternate_payment_question">Yo no tengo tarjeta de crédito, No puedo comprar por la Google Play. Cómo compro la versión Pro?</string>
     <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble solo soporta compras vía Google Play por el momento.<br/><br/>Métodos de pago opcionales serán con suerte añadidos en un futuro (asumiendo que ellos no violen las políticas de desarrollo en Google Play).]]></string>
     <string name="faq_cant_type_url_question">¿Por qué no puedo introducir el nombre de un enlace que quiero visitar?</string>
     <string name="faq_cant_type_url_answer"><![CDATA[Esto es enteramente intencionado. Link Bubble no está diseñado para ser un reemplazo completo de tu explorador, sino para ser usado para cargar y mostrar enlaces de otras páginas elegante, útil y tan rápidamente como sea posible.<br/><br/>Si quiere cargar una nueva url en Link Bubble, buscańdo por una pagina en Google Now y cargando el resultado en Link Bubble es una gran forma de hacerlo.<br/><br/>Para cargar rápido tus favoritos, he encontrado el widget Chrome Bookmarks muy útil.]]></string>
-    <string name="faq_drop_down_items_question">¿Por qué no funcionan los menús desplegables?</string>
-    <string name="faq_drop_down_items_answer"><![CDATA[Desafortunadamente las limitación del sistema Android hace que esto no funcione.<br/><br/>Respuesta técnica:
-El WebView de Android integra &lt;select&gt; elementos para mostrar via Dialog, el cual no puede ser lanzado desde un servicio. WebView no provee una forma de evitar 
-este comportamiendo. Por lo tanto un hack ha sido añadido simplemente desactivando artículos desplegables en todas las páginas de Link Bubble.
-Esto está lejos de ser ideal, pero es ciertamente mejor que tener un crash en la aplicación, lo que ocurriría de no hacerlo. :\\]]></string>
     <string name="faq_copy_text_question">¿Por qué no puedo copiar texto de una página web?</string>
     <string name="faq_copy_text_answer"><![CDATA[Desafortunadamente las limitaciones del sistema Android evita que esto funcione.<br/><br/>Respuesta técnica:
 La funcionalidad de copia funciona cuando se usa WebView de Android desde una Activity, pero no desde un Servicio (que es lo que Link Bubble usa).]]></string>
@@ -302,8 +281,8 @@ terminan tomándose como un compromiso, y pueden molestar si/cuando se postpone 
     <string name="faq_change_default_browser_answer">Ajustes del sistema -> Aplicaciones -> Descargadas -> Link Bubble -> Borrar por defecto.</string>
     <string name="faq_report_bug_question">Reportar un fallo</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
-    <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
-    <string name="faq_feature_request_answer">I have a lot of </string> -->
+    <!--<!-- untranslated string: faq_feature_request_question -->
+    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">¿Alguna duda sobre la aplicación? Mira aquí</string>
@@ -320,9 +299,8 @@ terminan tomándose como un compromiso, y pueden molestar si/cuando se postpone 
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <!--
-    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
-        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
-    <string name="restore_tabs_from_previous_session"></string>
+    <!-- untranslated string: restore_tabs_from_previous_session -->-->
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">¿Restaurar pestaña de la sesión anterior?</item>
         <item quantity="other">¿Restaurar %d pestañas de la sesión anterior?</item>
@@ -337,7 +315,6 @@ terminan tomándose como un compromiso, y pueden molestar si/cuando se postpone 
     <string name="content_description_history">Historial</string>
     <string name="content_description_settings">Ajustes</string>
     <string name="content_description_can_go_back">Puedes volver atrás</string>
-    <string name="content_description_upgrade_to_pro">Conviértete en Pro</string>
 
     <string name="requesting_location_message">%1$s está pidiendo ver tu locación. Permitir?</string>
 
@@ -347,40 +324,11 @@ y la <a href="http://www.linkbubble.com/privacy">política de privacidad</a> de 
     <string name="service_name">Renderizador Link Bubble</string>
     <string name="notification_title">Link Bubble</string>
 
-    <string name="pro_application_name">Link Bubble Pro</string>
-    <string name="pro_status_checking_license">Comprobando licencia...</string>
-	<string name="pro_status_buy">incapaz de verificar licencia.\n\nVarias causas de este problema incluyendo:\n • No hay conexión a internet.\n • Esta aplicación ha sido manipulada.\n\nCompruebe su conexión a internet, y si es necesario, pruebe reinstalando de nuevo la aplicación desde Google Play.</string>
-    <string name="pro_status_verified">¡Compra de Link Bubble Pro verificada!\n\nMuchísimas gracias por apoyarnos a medida que desarrollamos este proyecto.</string>
-    <string name="pro_status_unlicensed">Google Play dice que esta copia de Link Bubble Pro es pirata..\n\nAsumiendo que eres buena gente y que has comprado la aplicación, el error más común en estos casos es que la cuenta de correo con la que compraste la licencia, no esta configurada en la Play Store de este dispositivo.</string>
-
-    <string name="pro_keep_installed">Nota: no necesita cargar Link Bubble Pro de nuevo, pero lo necesitará instalado para verificaciones futuras.\n\nEsta aplicación será ocultada del sistema y no aparecerá en su lanzador de aplicaciones.</string>
-
-    <string name="pro_action_load_app">Cargando Link Bubble</string>
-    <string name="pro_action_install_app">Instala Link Bubble</string>
-    <string name="pro_action_buy">Comprar app</string>
-    <string name="pro_action_retry">Atrás </string>
-    <string name="pro_action_store">Play Store</string>
-
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Navegación web con el móvil bien hecha!</string>
     <string name="store_listing_description_title">Link Bubble es un nuevo explorador diseñado y creado solamente con dispositivos móviles en mente.</string>
-    <string name="store_listing_description_features">Las características incluyen:
-• Cuando haces clic en un link en una aplicació, Link Bubble carga esa página web en segundo plano, permitiéndote seguir usando tu aplicación actual así no malgastas tu preciado tiempo viendo una página cargar. Una vez que la página cargue por completo, se mostrará una animación en pantalla.
-• ¡La física de los gestos de Link Bubble te permiten desde hacer clic un link hasta compartirlo o agregar un servicio como Pocket en poco más de un segundo!
-• Cargar varios links de tu aplicación actual al mismo tiempo (requiere la versión Pro).
-• Maneja con gracia los links que redireccionan a otras aplicaciones. ¡El clic a un link de Instagram en Twitter ya no te redirecciona a un navegador de pantalla completa antes de cargar Instagram!
-• Una profunda integración con las aplicaciones en tu sistema.
-• Ubica los links de vídeos de YouTube incrustados en páginas web, y brinda un atajo para cargar esos vídeos directamente en la aplicación YouTube.
-• Estadísticas prácticas que ilustran cuánto tiempo ahorraste usando Link Bubble.</string>
+    <!-- untranslated string: store_listing_description_features -->
     <string name="store_listing_description_location_permission">A propósito de los permisos de Localización: Esto es requerido para que usted puede dar permisos de localización a ciertas webs y accedan a su localización (como todas aquellas que integran mapas). Link Bubble en sí misma nunca accede a su localización</string>
-
-    <string name="pro_store_listing_title">Link Bubble Pro</string>
-    <string name="pro_store_listing_description_title">Link Bubble Pro desbloquea todas las funciones de Link Bubble.</string>
-    <string name="pro_store_listing_description_features">Actualizar incluye:
-• Pestañas infinitas (la versión gratuita está limitada a sólo una)
-• Selección de temas
-• Eliminar los mensajes animando a actualizar al usar la versión gratuita.
-• Apoyarnos para poder hacer más aplicaciones de este tipo :)</string>
 
     <string name="welcome_page_title">¡Bienvenido a Link Bubble!</string>
     <string name="welcome_page_intro_title">¿Cómo funcionan?</string>
@@ -393,11 +341,8 @@ y la <a href="http://www.linkbubble.com/privacy">política de privacidad</a> de 
     <string name="welcome_page_more_also">Link Bubble también:</string>
     <string name="welcome_page_more_point_1">Redirige enlaces a una aplicación dedicada (p.ej. Instagram).</string>
     <string name="welcome_page_more_point_2">Busca vídeos encrustados para que se abran fácilmente en la aplicación YouTube.</string>
-    <string name="welcome_page_pro_intro">La versión gratuita te dejará probar el poder de Link Bubble, pero con la versión Pro puedes:</string>
-    <string name="welcome_page_pro_point_1">Cargar múltiples burbujas a la vez.</string>
-    <string name="welcome_page_pro_point_2">Cargar enlaces de todas las aplicaciones.</string>
-    <string name="welcome_page_pro_point_3">Ayuda a asegurar que pueda hacer más aplicaciones en el futuro :)</string>
-    <string name="welcome_page_pro_end">Gracias, y disfruta de la aplicación!</string>
+    <string name="welcome_page_more_point_3">Cargar burbujas ilimitadas a la vez.</string>
+    <string name="welcome_page_more_point_4">Cargar enlaces de todas las aplicaciones.</string>
     <string name="welcome_page_ps">PD. Para cerrar la burbuja, pulsa el botón Volver o manten pulsado la burbuja y llevarlo a la burbuja de Cierre.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Enlace ya cargado. Ignorando...</string>
