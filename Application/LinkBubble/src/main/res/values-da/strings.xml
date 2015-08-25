@@ -274,8 +274,6 @@ Alternativ web renderings metoder, såsom FireFox\'s GeckoView og Chromium vil s
     <string name="faq_change_default_browser_answer">Systemindstillinger -> Applikationer -> Downloads -> Link Bubble -> Ryd standarder.</string>
     <string name="faq_report_bug_question">Rapporter en fejl</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Spørgsmål om appen? Prøv her.</string>
@@ -291,8 +289,6 @@ Alternativ web renderings metoder, såsom FireFox\'s GeckoView og Chromium vil s
     <string name="credits_credit">Koncept, design og programmering</string>
     <!-- untranslated string: credits_app_copyright -->
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Gendan fanen fra tidligere session?</item>

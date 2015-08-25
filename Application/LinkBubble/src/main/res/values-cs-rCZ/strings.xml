@@ -284,8 +284,6 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
     <string name="faq_change_default_browser_answer">Nastavení systému -> Aplikace -> Stažené -> Link Bubble -> Vymazat výchozí nastavení.</string>
     <string name="faq_report_bug_question">Nahlásit chybu</string>
     <string name="faq_report_bug_answer"><![CDATA[e-mail]]></string>
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Máte k aplikaci nějaké dotazy? Zkuste to tady.</string>
@@ -301,8 +299,6 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
     <string name="credits_credit">Koncept, design a programování</string>
     <!-- untranslated string: credits_app_copyright -->
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Obnovit naposledy otevřené záložky?</item>

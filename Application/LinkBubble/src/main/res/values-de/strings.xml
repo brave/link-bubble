@@ -286,8 +286,6 @@ aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend 
     <string name="faq_change_default_browser_answer">Systemeinstellungen -> Apps -> Heruntergeladen -> Link Bubble -> Aktionen auf Standard zurücksetzen</string>
     <string name="faq_report_bug_question">Einen Fehler melden</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Fragen zur App? Versuch es hier.</string>
@@ -303,8 +301,6 @@ aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend 
     <string name="credits_credit">Konzept, Design und Programmierung</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Tab aus vorheriger Sitzung wiederherstellen?</item>

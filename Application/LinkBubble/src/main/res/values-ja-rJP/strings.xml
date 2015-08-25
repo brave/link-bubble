@@ -248,8 +248,6 @@
     <!-- untranslated string: faq_change_default_browser_answer -->
     <string name="faq_report_bug_question">バグを報告</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">アプリについて質問がありますか？こちらを試して下さい。</string>
@@ -265,8 +263,6 @@
     <string name="credits_credit">コンセプト、デザインとプログラミング</string>
     <!-- untranslated string: credits_app_copyright -->
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Restore tab from previous session?</item>

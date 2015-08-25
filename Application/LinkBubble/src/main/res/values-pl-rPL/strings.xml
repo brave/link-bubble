@@ -264,8 +264,6 @@ Uwaga: Wczytywanie treści ze strony jest niedokładnym procesem, który może n
     <string name="faq_change_default_browser_answer">Ustawienia (systemu) -> Aplikacje -> Pobrane -> Link Bubble -> Wyczyść domyślne.</string>
     <string name="faq_report_bug_question">Zgłoś błąd</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Masz pytanie dotyczące tej aplikacji? Najpierw zajrzyj tutaj.</string>
@@ -281,8 +279,6 @@ Uwaga: Wczytywanie treści ze strony jest niedokładnym procesem, który może n
     <string name="credits_credit">Pomysł, projekt, programowanie</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Przywrócić zakładkę z poprzedniej sesji?</item>

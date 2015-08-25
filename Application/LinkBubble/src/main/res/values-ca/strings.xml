@@ -252,8 +252,6 @@ poden gestionar una URL, pots configurar l\'aplicació per defecte per carregar 
     <!-- untranslated string: faq_change_default_browser_answer -->
     <!-- untranslated string: faq_report_bug_question -->
     <!-- untranslated string: faq_report_bug_answer -->
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">Preguntes freqüents</string>
     <string name="preference_faq_summary">Preguntes sobre la app? Prova aquí</string>
@@ -269,8 +267,6 @@ poden gestionar una URL, pots configurar l\'aplicació per defecte per carregar 
     <!-- untranslated string: credits_credit -->
     <!-- untranslated string: credits_app_copyright -->
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Restaura pestanya de la sessió anterior?</item>

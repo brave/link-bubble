@@ -254,8 +254,6 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="faq_change_default_browser_answer">Rendszerbeállítások -> Alkalmazások-> Letöltött-> Link Bubble -> Alapértelmezés törlése.</string>
     <string name="faq_report_bug_question">Hiba jelentése</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">GYIK</string>
     <string name="preference_faq_summary">Kérdésed van az alkalmással kapcsolatban? Katt ide</string>
@@ -271,8 +269,6 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="credits_credit">Ötlet, tervezés és programozás</string>
     <!-- untranslated string: credits_app_copyright -->
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Restore tab from previous session?</item>

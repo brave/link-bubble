@@ -274,8 +274,6 @@ Link Bubble.]]></string>
     <string name="faq_change_default_browser_answer">Настройки -> Приложения -> Загруженные -> Link Bubble -> Сбросить значения по умолчанию.</string>
     <string name="faq_report_bug_question">Сообщить об ошибке</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
-    <!--<!-- untranslated string: faq_feature_request_question -->
-    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Есть вопросы? Посмотрите здесь.</string>
@@ -291,8 +289,6 @@ Link Bubble.]]></string>
     <string name="credits_credit">Концепт, дизайн и программирование </string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    <!--
-    <!-- untranslated string: restore_tabs_from_previous_session -->-->
     <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Восстановить пузырь из предыдущей сессии?</item>
