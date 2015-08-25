@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.6.1">
+        <change></change>
+    </release>
+
     <release version="1.6.0">
         <change>NEW: Link Bubble is now fully free! Enjoy unlimited bubbles and all pro features for free.</change>
         <change>NEW: Themes now also apply to reading mode.</change>
