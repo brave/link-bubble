@@ -26,7 +26,6 @@
     <string name="action_open_in_browser">Открыть в %1$s</string>
     <string name="action_request_desktop_site">Запросить десктопную версию</string>
     <string name="action_open_in_new_bubble">Открыть в новом пузыре</string>
-    <string name="action_upgrade_to_pro">★Улучшить до Pro★</string>
     <string name="action_copy_to_clipboard">Копировать ссылку</string>
     <string name="action_save_image">Сохранить изображение</string>
     <string name="action_share">Поделиться</string>
@@ -51,17 +50,8 @@
     <string name="consume_activity_security_exception">Не удалось поделиться.</string>
 
     <string name="upgrade">Улучшить</string>
-    <string name="upgrade_to_pro">Улучшить до Pro</string>
-    <string name="upgrade_article_mode">Хотите просматривать ссылки в режиме чтения?</string>
-    <string name="upgrade_article_mode_wear">Хотите открывать ссылки на Android Wear в режиме чтения?</string>
     <string name="upgrade_theme">Хотите использовать различные темы?</string>
     <string name="upgrade_theme_toolbar">Хотите, чтобы тулбар менял свой цвет в зависимости от темы сайта?</string>
-    <string name="upgrade_from_settings_summary">Улучшите до Link Bubble Pro, чтобы:\n •
-Открывать несколько ссылок одновременно.\n •
-Менять тему.\n •
-Использовать режим чтения.\n •
-Включить поддержку Android Wear.\n •
-Поддержать нас в разработке :)</string>
 
     <string name="undo_close_tab_title">Закрыто %1$s</string>
     <string name="undo_close_tab_no_title">Закрыт пузырь</string>
@@ -100,7 +90,6 @@
     <string name="preference_set_default_browser_summary">Link Bubble должен быть браузером по умолчанию, чтобы правильно работать. Нажмите для настройки.</string>
     <string name="preference_more">Ещё...</string>
     <string name="preference_intercept_links_from_title">Перехватывать ссылки из</string>
-    <string name="preference_intercept_links_from_note">Внимание: ограничение перехвата ссылок только из одного приложения отсутствует в Link Bubble Pro. Улучшить?</string>
     <string name="preference_intercept_links_from_disabled_for_L">В Android 5.0+ необходимый для работы этой функции API больше не поддерживается.</string>
     <string name="preference_scan_for_youtube_embeds_title">Искать встроенные видео YouTube</string>
     <string name="preference_scan_for_youtube_embeds_summary">Показывать кнопку для просмотра встроенных видео в приложении YouTube.</string>
@@ -159,8 +148,6 @@
     <string name="preference_terms_of_service_title">Условия использования</string>
     <string name="preference_say_thanks_title">Сказать спасибо</string>
     <string name="preference_say_thanks_summary">Нравится Link Bubble? Пожалуйста, оставьте отзыв в Google Play.</string>
-    <string name="preference_get_pro_title">Link Bubble Pro</string>
-    <string name="preference_get_pro_summary">Улучшите до Pro, чтобы получить больше функций.</string>
     <string name="preference_version_title">Версия</string>
     <string name="preference_version_summary">Что нового?</string>
     <string name="preference_more_title">Ещё&#8230;</string>
@@ -208,8 +195,6 @@
     <string name="link_redirected">Перенаправлено в %1$s</string>
 
     <string name="tampered_apk">Ваша копия Link Bubble была нелегально модифицирована и не будет работать правильно. Пожалуйста, переустановите приложение из Google Play.</string>
-    <string name="upgrade_incentive_one_link">Чтобы открывать более одного пузыря, требуется Link Bubble Pro. Купить Pro версию?</string>
-    <string name="valid_license_detected">Обнаружена лицензионная версия Link Bubble Pro.\nСпасибо за поддержку, приятной работы :)</string>
 
     <string name="bubble_link_copied_to_clipboard">Ссылка пузыря скопирована в буфер обмена.</string>
     <string name="link_copied_to_clipboard">Ссылка скопирована в буфер обмена.</string>
@@ -260,14 +245,10 @@ Link Bubble следует тому же правилу.]]></string>
     <string name="faq_translations_answer"><![CDATA[Да, как видите, переводы уже есть.<br/><br/>Похоже, разработчик не удалил этот пункт из FAQ, поскольку Link Bubble переведён ещё не на все языки. Вы можете помочь ему, связавшись с ним в Google+ (+Link Bubble).]]></string>
     <string name="faq_roadmap_question">Есть ли в открытом доступе список ваших планов разработки? Могу ли я проголосовать за нужные функции?</string>
     <string name="faq_roadmap_answer">Из-за конкуренции ответ на оба вопроса, к сожалению, "нет".<br/><br/></string>
-    <string name="faq_alternate_payment_question">У меня нет карточки и/или я не могу покупать приложения в Google Play. Как я могу купить Pro-версию?</string>
     <string name="faq_alternate_payment_answer"><![CDATA[Пока что Link Bubble поддерживает только покупки через Google Play.<br/><br/>Возможно, новые способы будут добавлены в будущем (при условии, что они не нарушают Правила Разработчиков Google Play).]]></string>
     <string name="faq_cant_type_url_question">Почему я не могу ввести ссылку, по которой хочу перейти?</string>
     <string name="faq_cant_type_url_answer"><![CDATA[Так и задумано. Link Bubble не призван полностью заменять ваш браузер, фокусируясь на на открытии и показе ссылок из других ссылок.<br/><br/>Если вы хотите открыть ссылку в Link Bubble,
 вы можете ввести её в Google Now и открыть результат в Link Bubble.<br/><br/>Для закладок я рекомендую использовать виджет с закладками Chrome.]]></string>
-    <string name="faq_drop_down_items_question">Почему не работают выпадающие меню?</string>
-    <string name="faq_drop_down_items_answer"><![CDATA[К сожалению, ограничения Android не дают им работать.<br/><br/>Технический ответ:
-WebView Android заставляет элементы &lt;select&gt; отображаться как Dialog, что не может быть вызвано из Service. WebView не предоставляет возможности обойти это. Поэтому был добавлен хак, который просто отключает все выпадающие меню на всех страницах в Link Bubble. Это не идеальное решение, но оно точно лучше, чем падение приложения, которое происходит в другом случае. :\\]]></string>
     <string name="faq_copy_text_question">Почему я не могу скопировать текст с веб-страницы?</string>
     <string name="faq_copy_text_answer"><![CDATA[К сожалению, ограничения Android не позволяют этого.<br/><br/>Технический ответ:
 Копирование работает, если WebView находится в Activity, но не в Service (что использует Link Bubble).]]></string>
@@ -293,8 +274,8 @@ Link Bubble.]]></string>
     <string name="faq_change_default_browser_answer">Настройки -> Приложения -> Загруженные -> Link Bubble -> Сбросить значения по умолчанию.</string>
     <string name="faq_report_bug_question">Сообщить об ошибке</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
-    <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
-    <string name="faq_feature_request_answer">I have a lot of </string> -->
+    <!--<!-- untranslated string: faq_feature_request_question -->
+    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Есть вопросы? Посмотрите здесь.</string>
@@ -311,9 +292,8 @@ Link Bubble.]]></string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <!--
-    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
-        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
-    <string name="restore_tabs_from_previous_session"></string>
+    <!-- untranslated string: restore_tabs_from_previous_session -->-->
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Восстановить пузырь из предыдущей сессии?</item>
         <item quantity="other">Восстановить %d пузырей из предыдущей сессии?</item>
@@ -328,7 +308,6 @@ Link Bubble.]]></string>
     <string name="content_description_history">История</string>
     <string name="content_description_settings">Настройки</string>
     <string name="content_description_can_go_back">Можно вернуться</string>
-    <string name="content_description_upgrade_to_pro">Купить Pro версию</string>
 
     <string name="requesting_location_message">%1$s запрашивает ваше местоположение. Разрешить?</string>
 
@@ -338,40 +317,11 @@ Link Bubble.]]></string>
     <string name="service_name">Рендерер Link Bubble</string>
     <string name="notification_title">Link Bubble</string>
 
-    <string name="pro_application_name">Link Bubble Pro</string>
-    <string name="pro_status_checking_license">Проверка лицензии...</string>
-	<string name="pro_status_buy">Не удалось проверить лицензию.\n\nВозможные причины:\n • Нет подключения к интернету.\n • Приложение было модифицировано.\n\nПроверьте подключение и попробуйте переустановить приложение из Google Play.</string>
-    <string name="pro_status_verified">Покупка Link Bubble Pro подтверждена! Большое спасибо за поддержку!</string>
-    <string name="pro_status_unlicensed">Google Play сообщает, что эта копия Link Bubble Pro нелицензионна.\n\nЕсли вы действительно приобрели копию Link Bubble Pro, причиной может быть то, что для покупки использовался email, не настроенный на этом устройстве.</string>
-
-    <string name="pro_keep_installed">Внимание: вам не нужно загружать Link Bubble Pro заново, но нужно иметь его на устройстве для проверки лицензии.\n\nЭто приложение будет скрыто в системе и не появится на ваших рабочих столах.</string>
-
-    <string name="pro_action_load_app">Загрузить Link Bubble</string>
-    <string name="pro_action_install_app">Установить Link Bubble</string>
-    <string name="pro_action_buy">Купить приложение</string>
-    <string name="pro_action_retry">Попробуйте снова</string>
-    <string name="pro_action_store">Магазин Play</string>
-
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Правильный мобильный браузер.</string>
     <string name="store_listing_description_title">Link Bubble – абсолютно новый браузер, сделанный для исключительного удобства использования на мобильных устройствах.</string>
-    <string name="store_listing_description_features">Возможности:
-• Когда вы открываете ссылку, Link Bubble загружает страницу в фоне, а вы можете продолжать использовать своё приложение, а не смотреть, как загружается страница. Страница откроется, когда будет полностью загружена.
-• Пузыри Link Bubble позволяют вам всего за секунду открыть ссылку и тут же отправить её в Pocket или любое другое приложение!
-• Загружайте несколько ссылок одновременно (требует Pro).
-• Изящно обрабатывает ссылки, которые направляют в другие приложения. Вам больше не придётся наблюдать пустой экран браузера, чтобы открыть фото из ленты Твиттера в Instagram!
-• Глубокая интеграция с приложениями системы.
-• Находит встроенные видео на страницах и даёт возможность открыть их в приложении YouTube.
-• Удобная статистика, показывающая, сколько времени вам уже помог сэкономить Link Bubble.</string>
+    <string name="store_listing_description_features">\nВозможности:\n • Когда вы нажимаете на ссылку в приложении, Link Bubble загружает эту веб-страницу в фоне, позволяя вам продолжать использовать ваше текущее приложение вместо того, чтобы тратить ваше драгоценное время в ожидании загрузки страницы. Как только страница будет полностью загружена, она визуально отобразится анимацией на экране.\n • Продвинутая физика Link Bubble позволяет вам чуть больше чем за секунду открыть ссылку и поделиться ей или добавить её в Pocket или любой другой сервис!\n • Загружайте несколько ссылок из вашего текущего приложения одновременно.\n • Link Bubble изящно обрабатывает ссылки, которые перенаправляют в другие приложения. Нажатие на ссылку из Instagram в Twitter больше не будет открывать полноэкранный браузер, прежде чем открыть ссылку в приложении Instagram!\n • Глубокая интеграция с вашими системными приложениями.\n • Находит встроенные видео с YouTube на веб-страницах и даёт возможность с помощью ярлыка открыть их прямо в приложении YouTube.\n • Удобная статистика, наглядно иллюстрирующая, сколько времени вы сэкономили, используя Link Bubble.</string>
     <string name="store_listing_description_location_permission">По поводу разрешения о местоположении: это необходимо, чтобы вы могли дать доступ к вашему местоположению веб-сайтам (например, встроенным картам). Link Bubble никогда не использует ваше местоположение.</string>
-
-    <string name="pro_store_listing_title">Link Bubble Pro</string>
-    <string name="pro_store_listing_description_title">Link Bubble Pro открывает все возможности Link Bubble.</string>
-    <string name="pro_store_listing_description_features">Улучшение включает:
-• Бесконечное количество пузырей (только один в бесплатной версии).
-• Выбор тем.
-• Скрытие предложений улучшить приложение до Pro.
-• Поддержку команды в разработке :)</string>
 
     <string name="welcome_page_title">Добро пожаловать в Link Bubble!</string>
     <string name="welcome_page_intro_title">Как это работает?</string>
@@ -384,11 +334,8 @@ Link Bubble.]]></string>
     <string name="welcome_page_more_also">Link Bubble также:</string>
     <string name="welcome_page_more_point_1">Направляет ссылки в нужное приложение (например, Instagram).</string>
     <string name="welcome_page_more_point_2">Находит встроенные видео на странице, чтобы вы могли легко открыть их в приложении YouTube.</string>
-    <string name="welcome_page_pro_intro">Бесплатная версия даёт вам попробовать возможности Link Bubble, но с Pro версией вы можете:</string>
-    <string name="welcome_page_pro_point_1">Открывать несколько пузырей одновременно.</string>
-    <string name="welcome_page_pro_point_2">Загружать ссылки из всех приложений</string>
-    <string name="welcome_page_pro_point_3">Также вы помогаете мне написать ещё больше приложений в будущем :)</string>
-    <string name="welcome_page_pro_end">Спасибо, наслаждайтесь приложением!</string>
+    <string name="welcome_page_more_point_3">Открывайте неограниченное количество пузырей одновременно.</string>
+    <string name="welcome_page_more_point_4">Загружать ссылки из всех приложений</string>
     <string name="welcome_page_ps">P.S. Чтобы закрыть пузырь, нажмите кнопку Назад или смахните его вниз на пузырь закрытия.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Ссылка уже загружена. Пропуск...</string>

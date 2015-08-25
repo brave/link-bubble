@@ -2,11 +2,11 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Letöltő</string>
-    <string name="send_intent_label">Open with Link Bubble</string>
+    <!-- untranslated string: send_intent_label -->
     <string name="notification_summary">Az összes nyitott buborék elrejtéséhez érintsd meg itt</string>
-    <string name="notification_default_summary">Touch to Hide, expand to Close All</string>
-    <string name="notification_unhide_summary">Touch to Unhide, expand to Close All</string>
-    <string name="notification_action_close_all">Close All</string>
+    <!-- untranslated string: notification_default_summary -->
+    <!-- untranslated string: notification_unhide_summary -->
+    <!-- untranslated string: notification_action_close_all -->
     <string name="notification_action_hide">Elrejt</string>
     <string name="share_picker_label">Megosztás kiválasztása</string>
 
@@ -15,7 +15,7 @@
     <string name="cancel">Törlés</string>
 
     <string name="action_ok">OK</string>
-    <string name="action_open">Open</string>
+    <!-- untranslated string: action_open -->
     <string name="action_remove">Eltávolítod?</string>
     <string name="action_cancel">Megszakítás</string>
     <string name="action_clear_data">Adat(ok) törlése</string>
@@ -24,45 +24,34 @@
     <string name="action_help">Segítség</string>
     <string name="action_reload_page">Újratöltés</string>
     <string name="action_open_in_browser">Megnyitás %1$s alkalzamásban</string>
-    <string name="action_request_desktop_site">Request desktop site</string>
+    <!-- untranslated string: action_request_desktop_site -->
     <string name="action_open_in_new_bubble">Megnyitás új buborékban</string>
-    <string name="action_upgrade_to_pro">★Frissítés Pro verzióra★</string>
     <string name="action_copy_to_clipboard">Link másolása</string>
-    <string name="action_save_image">Save image</string>
+    <!-- untranslated string: action_save_image -->
     <string name="action_share">Megosztás</string>
     <string name="action_close_all">Összes bezárása</string>
     <string name="action_close_tab">Buborék bezárása</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Visszavonás</string>
-    <string name="action_add">Add</string>
-    <string name="action_no_recommended">No (recommended)</string>
+    <!-- untranslated string: action_add -->
+    <!-- untranslated string: action_no_recommended -->
     <string name="share_via">Megosztás ezzel</string>
-    <string name="not_set">Not set</string>
+    <!-- untranslated string: not_set -->
 
-    <string name="error_saving_image">Error saving image.</string>
-    <string name="image_saved">Image downloaded.</string>
-    <string name="notice_download_started">Download started.</string>
+    <!-- untranslated string: error_saving_image -->
+    <!-- untranslated string: image_saved -->
+    <!-- untranslated string: notice_download_started -->
 
-    <string name="warning">Warning!</string>
-    <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
+    <!-- untranslated string: warning -->
+    <!-- untranslated string: untrusted_certificate -->
 
     <string name="share_invalid_data">A Link Bubble nem tudja ezt megosztani - érvénytelen az URL</string>
     <string name="consume_activity_not_found">Nem találom az alkalmazást. Változtasd meg a beállításokban</string>
-    <string name="consume_activity_security_exception">Unable to share to external application.</string>
+    <!-- untranslated string: consume_activity_security_exception -->
 
     <string name="upgrade">Frissítés</string>
-    <string name="upgrade_to_pro">Váltás Pro verzióra</string>
-    <string name="upgrade_article_mode">Megnyissam olvasó módban?</string>
-    <string name="upgrade_article_mode_wear">Megnyitod Android Wear-en olvasás módban?</string>
     <string name="upgrade_theme">Másik témát szeretnél?</string>
-    <string name="upgrade_theme_toolbar">Want to theme the toolbar to match the theme color of websites?</string>
-    <string name="upgrade_from_settings_summary">Upgrade to Link Bubble Pro to do this and more including:\n •
-        Load multiple tabs at once.\n •
-        Change theme.\n •
-        Use Reading Mode.\n •
-        Android Wear support.\n •
-        Support us as we develop this app :)
-        </string>
+    <!-- untranslated string: upgrade_theme_toolbar -->
 
     <string name="undo_close_tab_title">Bezárva %1$s</string>
     <string name="undo_close_tab_no_title">Bezárt fül</string>
@@ -75,7 +64,7 @@
 
     <string name="preference_category_general">Általános</string>
     <string name="preference_category_configuration">Alkalmazás használata</string>
-    <string name="preference_category_configuration2">Configuration</string>
+    <!-- untranslated string: preference_category_configuration2 -->
     <string name="preference_category_browser">Böngésző</string>
     <string name="preference_enabled_title">Bekapcsolva</string>
     <string name="preference_auto_content_display_link_loaded_title">Automata átméretezés</string>
@@ -91,26 +80,23 @@
     <string name="preference_category_fallback_browser">Alapértelmezett "mentesítő" böngésző</string>
     <string name="preference_category_other_apps">Egyéb alkalmazások</string>
     <string name="preference_default_apps_title">Alapértelmezett alkalmazások</string>
-    <string name="preference_default_apps_summary">Fallback browser, url-specific apps</string>
+    <!-- untranslated string: preference_default_apps_summary -->
     <string name="preference_default_apps_notice_summary">Akkor választható, ha egynél több nem böngésző alkalmazás is tud URL-t kezelni.\n\nKatt ide az alapértelmezett eltávolításához.</string>
-    <string name="preference_default_apps_notice_no_defaults_summary">Used when one or more non-browser apps on your device can handle a URL,
-                you can configure the default app to load such links with.\n\nThe default app to use in this case is configured as
-                you load links with Link Bubble.</string>
+    <!-- untranslated string: preference_default_apps_notice_no_defaults_summary -->
     <string name="preference_google_account_redirect_title">Átirányítás Google fiókba</string>
     <string name="preference_google_account_redirect_summary">accounts.google.com linkek átirányítása a "tartalék" böngészőbe</string>
     <string name="preference_set_default_browser_title">Alapértelmezett böngésző beállítása</string>
-    <string name="preference_set_default_browser_summary">Link Bubble must be the default system browser to work. Tap to configure.</string>
+    <!-- untranslated string: preference_set_default_browser_summary -->
     <string name="preference_more">Több</string>
     <string name="preference_intercept_links_from_title">Linkek fogadása innen:</string>
-    <string name="preference_intercept_links_from_note">Megjegyzés: Csak az ingyenes verzióban korlátozott a linkek fogadása egy alkalmazásra. Frissítesz Pro verzióra? </string>
-    <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
+    <!-- untranslated string: preference_intercept_links_from_disabled_for_L -->
     <string name="preference_scan_for_youtube_embeds_title">Ellenőrizze a beágyazott YouTube videókat</string>
     <string name="preference_scan_for_youtube_embeds_summary">Parancsikon megjelenítése, amivel beágyazott YouTube videó(ka)t lehet lejátszani</string>
     <string name="preference_webview_battery_save_title">Energiatakarékos mód (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Agresszív</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Pause the updating of web pages when Link Bubble is minimized.\nPages in the process of loading will finish loading before pausing.</string>
+    <!-- untranslated string: preference_webview_battery_save_aggressive_summary -->
     <string name="preference_webview_battery_save_default_title">Alapértelmezett</string>
-    <string name="preference_webview_battery_save_default_summary">Pause the updating of web pages when the screen is off and resume when your device is unlocked.\nPages in the process of loading will finish loading before pausing.</string>
+    <!-- untranslated string: preference_webview_battery_save_default_summary -->
     <string name="preference_webview_battery_save_off_title">Ki</string>
     <string name="preference_webview_battery_save_off_summary">A web oldalak mindig aktívak. Ez YouTube streameknél lehet például fontos</string>
     <string name="preference_theme_title">Téma</string>
@@ -118,11 +104,11 @@
     <string name="preference_theme_light_no_color">Világos + semleges szín</string>
     <string name="preference_theme_dark_color">Sötét + ikon szín</string>
     <string name="preference_theme_dark_no_color">Sötét + semleges szín</string>
-    <string name="preference_theme_toolbar_title">Color toolbar</string>
-    <string name="preference_theme_toolbar_summary">To match a website\'s theme color/icon highlight color.</string>
-    <string name="preference_article_mode_title">Reading Mode</string>
+    <!-- untranslated string: preference_theme_toolbar_title -->
+    <!-- untranslated string: preference_theme_toolbar_summary -->
+    <!-- untranslated string: preference_article_mode_title -->
     <string name="preference_reading_mode_on_wear_title">Wear olvasó mód</string>
-    <string name="preference_article_mode_summary">Toggled via button on action bar</string>
+    <!-- untranslated string: preference_article_mode_summary -->
     <string name="preference_webview_text_zoom_title">Szöveg nagyítás</string>
     <string name="preference_webview_text_zoom_note">Megjegyzés: a jelenlegi buborékok újratöltődnek az új nagyítással az OK megnyomása után </string>
     <string name="preference_webview_text_zoom_reloading_current">Az új szöveg nagyítás beállítva. Jelenlegi buborékok újratöltése...</string>
@@ -135,7 +121,7 @@
     <string name="preference_clear_passwords">Jelszavak</string>
     <string name="preference_incognito_title">Inkognitó mód</string>
     <string name="preference_incognito_summary">Nem tárolja az előzményeket és a cookie-kat</string>
-    <string name="incognito_mode_changed_reloading_current">Incognito setting changed. Reloading current bubbles…</string>
+    <!-- untranslated string: incognito_mode_changed_reloading_current -->
     <string name="preference_user_agent_title">HTTP kliens mód</string>
     <string-array name="preference_user_agent_options">
         <item>Alapértelmezett</item>
@@ -144,14 +130,13 @@
         <item>Chrome asztali gép</item>
     </string-array>
 
-    <string name="preference_domains_title">Domain redirects</string>
-    <string name="preference_domains_summary">Specify links to always load in your fallback browser.</string>
-    <string name="preference_redirects_title">Redirect to fallback browser</string>
-    <string name="preference_add_domain_title">Add domain</string>
-    <string name="add_domain_hint">Url host</string>
-    <string name="add_domain_detail">Specify only the \'main\' portion of a website address. E.g.,
-        \"accounts.google.com\" or \"bbc.co.uk\".</string>
-    <string name="add_domain_error">Unable to add \"%1$s\", as it is not a valid URL host.</string>
+    <!-- untranslated string: preference_domains_title -->
+    <!-- untranslated string: preference_domains_summary -->
+    <!-- untranslated string: preference_redirects_title -->
+    <!-- untranslated string: preference_add_domain_title -->
+    <!-- untranslated string: add_domain_hint -->
+    <!-- untranslated string: add_domain_detail -->
+    <!-- untranslated string: add_domain_error -->
 
     <string name="preference_help_title">Segítség</string>
     <string name="preference_show_welcome_message_title">Üdvözlő képernyő mutatása</string>
@@ -161,25 +146,23 @@
     <string name="preference_terms_of_service_title">Felhasználás feltételei</string>
     <string name="preference_say_thanks_title">Köszönet nyilvánítás!</string>
     <string name="preference_say_thanks_summary">Tetszik a Link Bubble? Érdékeld a Play Store-ban, kérlek!</string>
-    <string name="preference_get_pro_title">Link Bubble Pro</string>
-    <string name="preference_get_pro_summary">Vedd meg a Pro-t még több funkció eléréséhez</string>
     <string name="preference_version_title">Verzió</string>
     <string name="preference_version_summary">Változások</string>
-    <string name="preference_more_title">More&#8230;</string>
-    <string name="preference_show_undo_close_tab_title">Undo close tab prompt</string>
+    <!-- untranslated string: preference_more_title -->
+    <!-- untranslated string: preference_show_undo_close_tab_title -->
 
-    <string name="preference_my_other_apps_title">More apps by Link Bubble</string>
-    <string name="preference_my_other_apps_summary">Like Link Bubble? Why not check out our other apps?</string>
+    <!-- untranslated string: preference_my_other_apps_title -->
+    <!-- untranslated string: preference_my_other_apps_summary -->
 
     <string name="remove_default_title">Alapértelmezett eltávolítása?</string>
     <string name="remove_default_message">Eltávolítod a(z) %1$s alkalmazás alapértelmezését a %2$s típusú linket betöltéséhez. ?\n\nMegjegyzés: ezután beállíthatsz új alkalmazást %2$s linkek betöltéséhez.</string>
-    <string name="long_press_unsupported_default_browser">Unable to display this item. Open link in %1$s?</string>
-    <string name="long_press_unsupported_no_default_browser">Unable to display this item. Open link in a browser.</string>
+    <!-- untranslated string: long_press_unsupported_default_browser -->
+    <!-- untranslated string: long_press_unsupported_no_default_browser -->
     <string name="unsupported_scheme_default_browser">Nem támogatott link típus. Megnyitás ebben:  %1$s?</string>
     <string name="unsupported_scheme_no_default_browser">A link típusa nem támogatott. Megnyitás böngészőben.</string>
     <string name="unsupported_scheme">Nem támogatott link típus</string>
-    <string name="unsupported_drop_down_default_browser">Unable to interact with this item. Open in %1$s?</string>
-    <string name="unsupported_drop_down_no_default_browser">Unable to interact with this item. Open link in a browser.</string>
+    <!-- untranslated string: unsupported_drop_down_default_browser -->
+    <!-- untranslated string: unsupported_drop_down_no_default_browser -->
 
     <string name="consume_category_view">Link megtekintése</string>
     <string name="consume_category_share">Link megosztása/küldése</string>
@@ -203,14 +186,12 @@
     <string name="private_data_cleared">Személyes adatok törölve</string>
     <string name="private_data_cleared_reloading_current">Személyes adatok törölve. Buborékok újratöltése...</string>
     <string name="user_agent_changed_reloading_current">HTTP kliens típusa megváltozott. Jelenlegi buborékok újratöltése...</string>
-    <string name="theme_toolbar_reloading_current">Color toolbar setting changed. Reloading current bubbles…</string>
+    <!-- untranslated string: theme_toolbar_reloading_current -->
     <string name="article_mode_changed_reloading_current">Olvasási mód beállítása megváltozott. Jelenlegi buborék újratöltése</string>
     <string name="link_loaded_with_app">Betöltve %1$s alkalmazással</string>
     <string name="link_redirected">Átirányítva %1$s alkalmazásba</string>
 
     <string name="tampered_apk">A Link Bubble alkalmazás megsérült vagy illegálisan módosítva lett, ezért nem fog megfelelően működni. Telepítsd újra a Play Store-ból</string>
-    <string name="upgrade_incentive_one_link">Egyszerre több buborék használata csak a Link Bubble Pro verziójában lehetséges. Frissítés Pro-ra?</string>
-    <string name="valid_license_detected">Érvényes Link Bubble Pro licensz. \n Köszi, a támogatást és sok sikert az app-hoz!</string>
 
     <string name="bubble_link_copied_to_clipboard">Buborék link a vágólapra másolva</string>
     <string name="link_copied_to_clipboard">Link a vágólapra másolva</string>
@@ -233,56 +214,27 @@
     <string name="faq_close_tab_question">Hogy tudok gyorsan bezárni egy fület?</string>
     <string name="faq_close_tab_answer">A vissza gomb megnyomása a leggyorsabb, de ráhúzhatsz egy buborékot a Bezárás gombra is</string>
     <string name="faq_back_button_minimize_question">A Vissza Gomb megnyomása tudomásommal háttérbe küldi a böngészőt</string>
-    <string name="faq_back_button_minimize_answer"><![CDATA[Minimizing Link Bubble when the hardware Back button is pressed is not feasible.
-            Consider the following case:<br/>
-            1). example.com/page1 is loaded in the first tab.<br/>
-            2). You click a link on this page, and load example.com/page2 in the same tab.<br/>
-            3). You now want to go back to the link in step 1.<br/><br/>
-            How do you do this if pressing the hardware Back button minimizes Link Bubble? Pressing the tiny back indicator on the
-            tab itself is not feasible.<br/><br/>
-            Link Bubble is a browser, and Android browsers have a long since established standard of
-            either going back in the URL stack, or if no such stack exists, closing the current page when the Back button is pressed.
-            Link Bubble follows this standard.]]></string>
+    <!-- untranslated string: faq_back_button_minimize_answer -->
     <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble nem fogadja a linkeket]]></string>
-    <string name="faq_app_internal_browser_answer"><![CDATA[There are 3 causes of this:<br/>
-            1). A browser other thank Link Bubble is set as your default system browser. See the
-            \"Set default system browser\" option in Link Bubble\'s Settings to change this.<br/>
-            2). Link Bubble has been configured not to intercept links from your current app. See the
-            \"Intercept links from\" option in Link Bubble\'s Settings.<br/>
-            3). Apps such as Talon, Reddit is Fun and others have inbuilt browsers that render links. Check the settings of that app and
-            enable \"External browser\" or deselect \"Integrated browser\" or similar.
-            <br/><br/>Note: other browser apps such as Chrome are hardcoded to load links in themselves, and thus Link Bubble is unable
-            to load links clicked from other browser apps.
-            ]]></string>
+    <!-- untranslated string: faq_app_internal_browser_answer -->
     <string name="faq_article_mode_question">Hogyan működik az olvasó mód? Bizonyos oldalak nem működnek</string>
-    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
-            From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
-            Be aware that this icon only appears after the link has finished loading, and only if Link Bubble successfully extracted content for Article Mode from the link.<br/><br/>
-            Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
-            there is little than can be done here.]]></string>
+    <!-- untranslated string: faq_article_mode_answer -->
     <string name="faq_future_features_question">Tervben van könyvjelzők, kedvencek, kiegészítők, stb. támogatása a jövőben?</string>
     <string name="faq_future_features_answer">Soha ne mondd, hogy soha, bár jelenleg a Link Bubble fő célja a linkek más app-okból való lehető legjobb betöltése és feldolgozása</string>
     <string name="faq_translations_question">Segíthetek az alkalmazás fordításában?</string>
-    <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
-            (+Link Bubble) for help with translations, so be sure to keep an eye on my feed.]]></string>
+    <!-- untranslated string: faq_translations_answer -->
     <string name="faq_roadmap_question">Ismerteted a jövőbeli, tervezett funkciókat? Lehet szavazni rájuk?</string>
     <string name="faq_roadmap_answer">A konkurencia miatt sajnos mindkét kérdésre NEM a válasz.<br/><br/></string>
-    <string name="faq_alternate_payment_question">Nincs hitelkártyám / nem tudok a Google Play-ből vásárolni. Hogy vehetem meg a Pro-t?</string>
     <string name="faq_alternate_payment_answer"><![CDATA[A Link Bubble jelenleg csak a Google Play Store-ból vásárolható meg.<br/><br/>Talán lesznek további fizetési módok is a jövőben (amennyiben ezek nem ellentétesek a Google Play Developer Program Alapelveivel).]]></string>
     <string name="faq_cant_type_url_question">Miért nem írhatom be a linket manuálisan?</string>
     <string name="faq_cant_type_url_answer"><![CDATA[Ez szándékosan van így. Link Bubble nem kívánja helyettesíteni a teljes böngészőt, hanem linkek gyors, elegáns, korszerű megnyitására szolgál egy forradalmian új, eddig ismeretlen formában.<br/><br/>Ha egy oldalt szeretnél megnyitni a Link Bubble-ben, keress rá a Google Now-ban és töltsd be például onnan.<br/><br/>Kedvencek gyors betöltéséhez a Chrome könyvjelző widget-et ajánlom leginkább.]]></string>
-    <string name="faq_drop_down_items_question">Miért nem működnek a legördülő menük?</string>
-    <string name="faq_drop_down_items_answer"><![CDATA[Unfortunately Android system limitations prevent this from working.<br/><br/>Technical answer:
-            Android\'s WebView hardcodes &lt;select&gt; elements to display via a Dialog, which cannot be launched from a Service. WebView does not provide a means of
-            overriding this behavior. Thus a hack has been added to simply disable drop down items from all pages in Link Bubble.
-            This is far from ideal, but it is certainly better than having the app crash, which is what happens otherwise :\\]]></string>
     <string name="faq_copy_text_question">Miért nem tudok szöveget kimásolni egy oldalról?</string>
     <string name="faq_copy_text_answer"><![CDATA[Sajnos, az Android rendszer korlátozásai miatt nem lehetséges ez.<br/><br/>Technikai válasz:
 A másolás funkció csak mint tevékenység webnézetben lehetséges, mint szolgáltatás nem (amit a Link Bubble használna).]]></string>
-    <string name="faq_translucent_status_bar_question">Why doesn\'t the app draw over the translucent status bar?</string>
+    <!-- untranslated string: faq_translucent_status_bar_question -->
     <string name="faq_translucent_status_bar_answer">Sajnos az Android rendszer korlátozásai miatt ez nem lehetséges.</string>
     <string name="faq_beta_programme_question">Van beta program? Hogyan csatlakozhatok?</string>
-    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Link Bubble) feed for announcements.</string>
+    <!-- untranslated string: faq_beta_programme_answer -->
     <string name="faq_low_spec_performance_question">Miért fut lassan a Link Bubble olyan eszközökön, mint egy Nexus S / Galaxy S1 / Moto G ?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[A Link Bubble eléggé igénybe veszi az eszköz erőforrásait, ezért "gyengébb" készülékeken előfordulhat lassú működés, de akár egészen erős eszközökön is. Future updates will aim to improve Link Bubble\'s
 performance, but there is only so much that can realistically be done here.<br/><br/>Technical answer: At the bare minimum, Link Bubble requires the
@@ -291,9 +243,7 @@ Naturally, allocating these items (especially the WebViews) consumes a <i>lot</i
 have less memory available than Link Bubble requires, and thus performance suffers as garbage collections are frequently triggered.
 As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on the Nexus 5.]]></string>
     <string name="faq_crap_webview_question">Néha bizonyos weblapok nem jelennek meg jól vagy bizonyos videók nem játszódnak le.</string>
-    <string name="faq_crap_webview_answer"><![CDATA[Link Bubble uses the standard Android WebView, but unfortunately it is sometimes unreliable.
-            Alternative web rendering methods such as FireFox\'s GeckoView and Chromium will likely be investigated going
-            forward.<br/><br/>In the event a web page doesn\'t display correctly in Link Bubble, the easiest thing to do is just to load a traditional browser for that link.]]></string>
+    <!-- untranslated string: faq_crap_webview_answer -->
     <string name="faq_ongoing_notificaion_question">Miért látszik folyamatosan az értesítés, ha fut a Link Bubble?</string>
     <string name="faq_ongoing_notificaion_answer"><![CDATA[Sajnos az állandó értesítés ahhoz szükséges, hogy az Android rendszer ne zárja be a Link Bubble-t.]]></string>
     <string name="faq_next_update_eta_question">Mikor jön a következő frissítés?</string>
@@ -304,34 +254,33 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="faq_change_default_browser_answer">Rendszerbeállítások -> Alkalmazások-> Letöltött-> Link Bubble -> Alapértelmezés törlése.</string>
     <string name="faq_report_bug_question">Hiba jelentése</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
-    <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
-    <string name="faq_feature_request_answer">I have a lot of </string> -->
+    <!--<!-- untranslated string: faq_feature_request_question -->
+    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">GYIK</string>
     <string name="preference_faq_summary">Kérdésed van az alkalmással kapcsolatban? Katt ide</string>
     <string name="faq_section_general">Általános</string>
-    <string name="faq_section_functionality">App functionality</string>
+    <!-- untranslated string: faq_section_functionality -->
     <string name="faq_section_issues">Problémák</string>
 
     <string name="activity_resolver_use_always">Mindig</string>
     <string name="activity_resolver_use_once">Csak egyszer</string>
 
     <string name="credits_title">Link Bubble készítői</string>
-    <string name="credits_name">Link Bubble</string>
+    <!-- untranslated string: credits_name -->
     <string name="credits_credit">Ötlet, tervezés és programozás</string>
-    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
+    <!-- untranslated string: credits_app_copyright -->
 
     <!--
-    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
-        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
-    <string name="restore_tabs_from_previous_session"></string>
+    <!-- untranslated string: restore_tabs_from_previous_session -->-->
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Restore tab from previous session?</item>
         <item quantity="other">Restore %d tabs from previous session?</item>
     </plurals>
 
     <string name="content_description_button">Gomb</string>
-    <string name="content_description_target_icon">Bubble target icon</string>
+    <!-- untranslated string: content_description_target_icon -->
     <string name="content_description_close_bubble_icon">Buborék bezárása ikon</string>
     <string name="content_description_link_bubble_logo">Link Bubble logo</string>
     <string name="content_description_app_icon">Alkalmazás ikon</string>
@@ -339,7 +288,6 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="content_description_history">Előzmények</string>
     <string name="content_description_settings">Beállítások</string>
     <string name="content_description_can_go_back">vissza lehet lépni</string>
-    <string name="content_description_upgrade_to_pro">Frissítés Pro-ra</string>
 
     <string name="requesting_location_message">%1$s szeretne hozzáférni a tartózkodási helyedhez. Engedélyezed?</string>
 
@@ -349,61 +297,27 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="service_name">Link Bubble Renderer</string>
     <string name="notification_title">Link Bubble</string>
 
-    <string name="pro_application_name">Link Bubble Pro</string>
-    <string name="pro_status_checking_license">Licensz ellenőrzése...</string>
-	<string name="pro_status_buy">Nem sikerült a licensz ellenőrzése.\n\nA probléma oka a következő lehet::\n • Nincs internet kapcsolat.\n • Megsérült az alkalmazás.\n\nEllenőrizd az internet kapcsolatot és ha szükséges, telepítsd újra az app-ot a Play Store-ból</string>
-    <string name="pro_status_verified">Link Bubble Pro purchase verified!\n\nThank you so much for supporting us as we develop this project.</string>
-    <string name="pro_status_unlicensed">A Google Play szerint ehhez a Link Bubble példányhoz nem tartozik licensz. Amennyiben valóban megvásároltad a Link Bubble Pro-t, nagy valószínűséggel a vásárláshoz használt email cím nincs ezen az eszközön a Play Store-hoz beállítva</string>
-
-    <string name="pro_keep_installed">Note: you don\'t need to load Link Bubble Pro again, but you do need to keep it installed for verification purposes.\n\nThis app will be hidden throughout the system so it doesn\'t appear in your launcher(s).</string>
-
-    <string name="pro_action_load_app">Link Bubble betöltése</string>
-    <string name="pro_action_install_app">Link Bubble telepítése</string>
-    <string name="pro_action_buy">Alkalmazás megvásárlása</string>
-    <string name="pro_action_retry">Újrapróbál</string>
-    <string name="pro_action_store">Play Store</string>
-
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Böngészés mobilon - ahogyan még nem láttad</string>
     <string name="store_listing_description_title">Link Bubble egy teljesen új (mini)böngésző, amiben a mobil eszköz maga a figyelem központja.</string>
-    <string name="store_listing_description_features">Íme, néhány funkció:
-• Ha rákattintasz egy linkre, a Link Bubble betölti azt a háttérben, és ezalatt tovább használhatod az aktuális alkalmazást, nem kell időt pazarolni arra, hogy betöltődjön az oldal. Ha az oldal betöltődött, animáció jelzi a buborékban.
-• Link Bubble\-lel egy pöcköléssel, pillanatok alatt megoszthatsz egy linket, vagy hozzáadhatod későbbi olvasásra, például Pocket-ba!
-• egy app-ból több link megnyitása egyszerre ( Pro verzió szükséges).
-• Nagyszerűen kezeli az olyan linkeket, amik hajlamosak más appokat elindítani. Többé nem indul el az Instagram egy böngészőben, ha egy twit-ben egy Instagram linkre kattintasz!
-• Szoros integráció a rendszer-alkalmazásokkal.
-• A beágyazott Youtube videókat is kezelei weblapokon és közvetlen Youtube linket ajánl fel hozzá.
-• Statisztikák, amiből láthatod, mennyi időt spórolt már meg a Link Bubble.</string>
-    <string name="store_listing_description_location_permission">Regarding the Location permission: This is required so that you might grant permission for a website to access your location (such as those with an embedded map). Link Bubble itself never accesses your location.</string>
-
-    <string name="pro_store_listing_title">Link Bubble Pro</string>
-    <string name="pro_store_listing_description_title">Link Bubble Pro engedélyezi a Link Bubble összes funkcióját.</string>
-    <string name="pro_store_listing_description_features">
-    Upgrades include:
-    • Infinite number of tabs (free version is limited to just one tab).
-    • Theme selection
-    • Remove the upgrade incentives throughout the free version.
-    • Support us so we get to make more of these apps :)
-    </string>
+    <!-- untranslated string: store_listing_description_features -->
+    <!-- untranslated string: store_listing_description_location_permission -->
 
     <string name="welcome_page_title">Üdv a Link Bubble-ban!</string>
     <string name="welcome_page_intro_title">Hogyan működik?</string>
     <string name="welcome_page_intro_point_1">Kattints egy link-re egy alkalmazásban</string>
     <string name="welcome_page_intro_point_2">A képernyő szélén megjelenik egy buborék és benne betöltődik a link. Amint betöltődött, megjelenik a kívánt oldal.</string>
-    <string name="welcome_page_intro_end">It\'s that simple! With Link Bubble, you can keep using your current app rather than wasting your time watching links redirect and waiting for pages to load. What\'s not to love about that?</string>
+    <!-- untranslated string: welcome_page_intro_end -->
     <string name="welcome_page_more_title">Többet akarok, még még...</string>
     <string name="welcome_page_more_pocket_start">Villámgyorsan meg is oszthatsz hivatkozásokat, vagy a Pocket-hez vagy más alkalmazásokhoz adhatod</string>
     <string name="welcome_page_more_pocket_end">Na, ez elég komoly, hasznos és jól is néz ki, nem?</string>
     <string name="welcome_page_more_also">A Link Bubble továbbá:</string>
     <string name="welcome_page_more_point_1">Átirányítja a hivatkozásokat a megfelelő app-ba (pl. Instagram)</string>
     <string name="welcome_page_more_point_2">Felismeri a beágyazott videókat és segít, hogy könnyen megnézhesd a Youtube-on</string>
-    <string name="welcome_page_pro_intro">Az ingyenes verzióban egy kis ízelítőt kaphatsz mit is tud a Link Bubble, a Pro verzióban viszont:</string>
-    <string name="welcome_page_pro_point_1">Egyszerre több hivatkozást is be lehet tölteni</string>
-    <string name="welcome_page_pro_point_2">Minden alkalmazásból "elkaphatsz" linkeket</string>
-    <string name="welcome_page_pro_point_3">Segíts, hogy még több alkalmazást írhassak a jövőben</string>
-    <string name="welcome_page_pro_end">Köszi és jó szórakozást a Link Bubble-hez</string>
+    <!-- untranslated string: welcome_page_more_point_3 -->
+    <string name="welcome_page_more_point_4">Minden alkalmazásból "elkaphatsz" linkeket</string>
     <string name="welcome_page_ps">UI: ezen buborék bezárásához nyomd meg a Vissza gombot, vagy húzd a buborékot a Bezárás gombra</string>
 
-    <string name="duplicate_link_will_not_be_loaded">Link already loaded. Ignoring...</string>
+    <!-- untranslated string: duplicate_link_will_not_be_loaded -->
 
 </resources>

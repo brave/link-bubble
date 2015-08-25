@@ -26,7 +26,6 @@
     <string name="action_open_in_browser">以 %1$s 開啟</string>
     <string name="action_request_desktop_site">使用桌面版網站</string>
     <string name="action_open_in_new_bubble">在新的氣泡中開啟</string>
-    <string name="action_upgrade_to_pro">★升級至專業版★</string>
     <string name="action_copy_to_clipboard">複製連結</string>
     <string name="action_save_image">儲存圖片</string>
     <string name="action_share">分享</string>
@@ -51,17 +50,8 @@
     <string name="consume_activity_security_exception">無法分享至外部應用程式。</string>
 
     <string name="upgrade">升級</string>
-    <string name="upgrade_to_pro">升級至專業版</string>
-    <string name="upgrade_article_mode">想使用閱讀模式來檢視網頁嗎？</string>
-    <string name="upgrade_article_mode_wear">想在 Android Wear 裝置上用閱讀模式來檢視網頁嗎？</string>
     <string name="upgrade_theme">想使用不同的佈景主題嗎？</string>
     <string name="upgrade_theme_toolbar">想讓工具列的主題配色與網站相符嗎？</string>
-    <string name="upgrade_from_settings_summary">升級至 Link Bubble Pro 即可享有這項功能，以及：:\n •
-一次讀取多個分頁。\n •
-更改佈景主題。n •
-可使用閱讀模式。\n •
-支援 Android Wear 。\n •
-支持我們開發這款 app :)</string>
 
     <string name="undo_close_tab_title">已關閉 %1$s</string>
     <string name="undo_close_tab_no_title">已關閉分頁</string>
@@ -102,7 +92,6 @@
     <string name="preference_set_default_browser_summary">Link Bubble 必須設系統預設的瀏覽器才能運作。請點此設定。</string>
     <string name="preference_more">更多…</string>
     <string name="preference_intercept_links_from_title">擷取連結</string>
-    <string name="preference_intercept_links_from_note">請注意：免費版的 Link Bubble 只能從一個程式中擷取連結。要升級至專業版嗎？ </string>
     <string name="preference_intercept_links_from_disabled_for_L">自 Android 5.0 開始，Google 移除了這項功能所需的 API。</string>
     <string name="preference_scan_for_youtube_embeds_title">檢查 YouTube 的嵌入式影片</string>
     <string name="preference_scan_for_youtube_embeds_summary">顯示以 YouTube 程式讀取內嵌影片的按鈕。</string>
@@ -160,8 +149,6 @@
     <string name="preference_terms_of_service_title">服務條款</string>
     <string name="preference_say_thanks_title">表達謝意！</string>
     <string name="preference_say_thanks_summary">喜歡 Link Bubble 嗎？請移步至 Play 商店留下感想。</string>
-    <string name="preference_get_pro_title">Link Bubble Pro</string>
-    <string name="preference_get_pro_summary">升級至專業版取得更多功能。</string>
     <string name="preference_version_title">版本</string>
     <string name="preference_version_summary">多了什麼新東西？</string>
     <string name="preference_more_title">其他選項&#8230;</string>
@@ -209,8 +196,6 @@
     <string name="link_redirected">已重新導向至 %1$s</string>
 
     <string name="tampered_apk">您的 Link Bubble 已被非法修改，因此無法正常運作。請從 Play 商店重新下載。</string>
-    <string name="upgrade_incentive_one_link">需要 Link Bubble Pro 才能一次讀取多個氣泡。要升級至專業版嗎？</string>
-    <string name="valid_license_detected">已偵測到有效的 Link Bubble Pro 授權。\n感謝您支持本專案，盡情享受吧 :)</string>
 
     <string name="bubble_link_copied_to_clipboard">已將氣泡的連結複製到剪貼簿。</string>
     <string name="link_copied_to_clipboard">已將連結複製到剪貼簿。</string>
@@ -260,12 +245,9 @@ Link Bubble 亦遵循此標準。]]></string>
 (+Link Bubble) 上面來尋求翻譯，所以請隨時注意我的動態。]]></string>
     <string name="faq_roadmap_question">你會發布未來功能的藍圖嗎？我能不能替即將到來的新功能投票呢？</string>
     <string name="faq_roadmap_answer">出於競爭考量，我想這兩個問題的答案都是「不」。<br/><br/></string>
-    <string name="faq_alternate_payment_question">我沒有信用卡或無法在 Play 商店上購買，要怎麼升級至專業版？</string>
     <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble 目前只支援從 Google Play 上購買。<br/><br/>未來可能會新增其他的付費方式 (前提是他們不會違反 Google Play 開發人員計劃政策)。]]></string>
     <string name="faq_cant_type_url_question">為什麼我不能輸入想要開啟的網址？</string>
     <string name="faq_cant_type_url_answer"><![CDATA[故意設計成這樣的。Link Bubble 並不是要設計來取代你的瀏覽器，只是要用來載入並顯示在其他程式中開啟的連結，並盡可能地做到優雅、快速且實用。<br/><br/>如果您想要在 Link Bubble 中開啟新的網址，透過 Google Now 搜尋並以 Link Bubble 開啟搜尋結果也是個不錯的方式。<br/><br/>若要快速開啟您的最愛，我想 Chrome 的書籤小工具會非常有用。]]></string>
-    <string name="faq_drop_down_items_question">為什麼下拉式選單不能用？</string>
-    <string name="faq_drop_down_items_answer"><![CDATA[Android 系統本身的限制阻止了這項功能的運作。<br/><br/>從技術層面來說就是：Android 的 WebView 將 &lt;select&gt; 元素寫死了，偏偏這只能透過 Dialog 來顯示，而不能讓一個 Service 來啟動。WebView 又不提供複寫這個行為的方法。因此只好加入了一段程式來停用 Link Bubble 中的下拉式物件。這樣雖然不太理想，但也總比程式當掉來得好多了 :\\]]></string>
     <string name="faq_copy_text_question">為什麼我不能從網頁上複製文字？</string>
     <string name="faq_copy_text_answer"><![CDATA[Android 系統本身的限制阻止了這項功能的運作。<br/><br/>從技術層面來說就是：一個 Activity 可以在 Android 的 WebView 使用 Copy 功能，但 Service 卻不能這麼做 (而 Link Bubble 採用後者)。]]></string>
     <string name="faq_translucent_status_bar_question">為什麼這個程式不能蓋過半透明的狀態列？</string>
@@ -286,8 +268,8 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="faq_change_default_browser_answer">系統設定 -> 應用程式 -> 已下載 -> Link Bubble -> 清除預設值。</string>
     <string name="faq_report_bug_question">回報 bug</string>
     <string name="faq_report_bug_answer"><![CDATA[電子郵件]]></string>
-    <!--<string name="faq_feature_request_question">Can I make a feature request?</string>
-    <string name="faq_feature_request_answer">I have a lot of </string> -->
+    <!--<!-- untranslated string: faq_feature_request_question -->
+    <!-- untranslated string: faq_feature_request_answer --> -->
 
     <string name="faq_title">常見問題</string>
     <string name="preference_faq_summary">對本程式有疑問嗎？請到這裡看看吧。</string>
@@ -304,9 +286,8 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     <!--
-    <string name="restore_tabs_from_previous_session">Link Bubble didn\'t exit cleanly last time.
-        This was likely the result of a web page you were loading causing a crash.\n\nRestore tabs from previous session?</string>-->
-    <string name="restore_tabs_from_previous_session"></string>
+    <!-- untranslated string: restore_tabs_from_previous_session -->-->
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">要還原上次作業階段的分頁嗎？</item>
         <item quantity="other">要還原上次作業階段的 %d 個分頁嗎？</item>
@@ -321,7 +302,6 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="content_description_history">歷史紀錄</string>
     <string name="content_description_settings">設定</string>
     <string name="content_description_can_go_back">可回上一頁</string>
-    <string name="content_description_upgrade_to_pro">升級至專業版</string>
 
     <string name="requesting_location_message">%1$s 想要取得您的位置。要允許嗎？</string>
 
@@ -330,40 +310,11 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="service_name">Link Bubble 渲染器</string>
     <string name="notification_title">Link Bubble</string>
 
-    <string name="pro_application_name">Link Bubble Pro</string>
-    <string name="pro_status_checking_license">正在檢查授權…</string>
-	<string name="pro_status_buy">無法驗證授權。\n\n有可能是某些原因所導致：\n • 沒有網路連線。\n • 本程式已被竄改。\n\n請檢查您的網路連線，若有必要，請至 Play 商店重新下載程式。</string>
-    <string name="pro_status_verified">Link Bubble Pro 購買驗證成功！\n\n非常感謝您支持我們開發本專案。</string>
-    <string name="pro_status_unlicensed">Google Play 回報此 Link Bubble Pro 為未經授權的版本。\n\n假若您真的購買了 Link Bubble Pro，那麼最可能的原因就是，您購買時使用的電子郵件與此裝置上 Play 商店所設定的不同。</string>
-
-    <string name="pro_keep_installed">請注意：您不必再次開啟 Link Bubble Pro，但由於驗證需要，您需要保持已安裝狀態。\n\n這個程式會在系統中隱藏，所以不會在您的啟動器中顯示。</string>
-
-    <string name="pro_action_load_app">讀取 Link Bubble</string>
-    <string name="pro_action_install_app">安裝 Link Bubble</string>
-    <string name="pro_action_buy">購買程式</string>
-    <string name="pro_action_retry">重試</string>
-    <string name="pro_action_store">Play 商店</string>
-
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">正確的行動瀏覽方式。</string>
     <string name="store_listing_description_title">Link Bubble 是專為行動裝置打造的全新瀏覽器。</string>
-    <string name="store_listing_description_features">包括以下功能：
-• 當您在某個程式中點擊了連結，Link Bubble 就會在背景讀取該網頁，您可以在該程式中繼續瀏覽，而不必浪費寶貴的時間發呆等網頁載入。一旦網頁載入完畢，會顯示動畫提醒。
-• Link Bubble 的滑動功能可讓您瞬間分享連結或加入 Pocket 等服務！
-• 可同時從目前的程式中讀取多個連結 (需要專業版)。
-• 優雅地處理其他程式中的重新導向連結。在 Twitter 中點選 Instagram 的連結時，不用再傻傻地看著瀏覽器開啟、跳轉，最後才啟動程式！
-• 與系統內的應用程式高度整合。
-• 找出網頁中內嵌的 YouTube 影片，提供直接在 YouTube 程式中播放的功能。
-• 統計功能會說明 Link Bubble 為您省下了多少時間。</string>
+    <!-- untranslated string: store_listing_description_features -->
     <string name="store_listing_description_location_permission">關於位置權限：您可能會授權網站來取得位置資訊 (像是內嵌地圖的網站)，這時就會用到。Link Bubble 本身並不會存取您的位置資訊。</string>
-
-    <string name="pro_store_listing_title">Link Bubble Pro</string>
-    <string name="pro_store_listing_description_title">Link Bubble Pro 將會解鎖完整的功能。</string>
-    <string name="pro_store_listing_description_features">升級版包含以下優點：
-• 無限分頁數量 (免費版限制只能讀取一個分頁).
-• 可選擇佈景主題
-• 移除一天到晚叫你升級的訊息。
-• 支持我們開發更多的 apps :)</string>
 
     <string name="welcome_page_title">歡迎使用 Link Bubble！</string>
     <string name="welcome_page_intro_title">這是如何運作的？</string>
@@ -376,11 +327,8 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="welcome_page_more_also">Link Bubble 還可以：</string>
     <string name="welcome_page_more_point_1">將連結重新導向至專用的程式 (如 Instagram)。</string>
     <string name="welcome_page_more_point_2">找出內嵌的影片讓您直接以 YouTube 程式播放。</string>
-    <string name="welcome_page_pro_intro">免費版供您初探 Link Bubble 的強大威力，而擁有專業版之後您就可以：</string>
-    <string name="welcome_page_pro_point_1">一次讀取多個氣泡。</string>
-    <string name="welcome_page_pro_point_2">從所有程式中讀取連結。</string>
-    <string name="welcome_page_pro_point_3">您的幫助可以讓我在未來開發更多的程式 :)</string>
-    <string name="welcome_page_pro_end">非常感謝，請盡情享受這支程式吧！</string>
+    <!-- untranslated string: welcome_page_more_point_3 -->
+    <string name="welcome_page_more_point_4">從所有程式中讀取連結。</string>
     <string name="welcome_page_ps">PS. 若要關閉這個氣泡，按下返回鍵或按住氣泡將其拖動至關閉用的氣泡即可。</string>
 
     <string name="duplicate_link_will_not_be_loaded">已讀取此連結。忽略重複點擊…</string>
