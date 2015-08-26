@@ -83,8 +83,12 @@ public class DraggableHelper {
     private OvershootInterpolator mOvershootInterpolatorMedium = new OvershootInterpolator(1.5f);
     private OvershootInterpolator mOvershootInterpolatorLarge = new OvershootInterpolator(2.0f);
 
-    private Vector<InternalMoveEvent> mMoveEventPool = new Vector<InternalMoveEvent>();
-    private Vector<InternalMoveEvent> mMoveEvents = new Vector<InternalMoveEvent>();
+    private final int MAX_MOVE_EVENTS = 100;
+
+    // mMoveEvents stores a circular array of events, keeping only the most recent 100 events
+    private InternalMoveEvent[] mMoveEvents = new InternalMoveEvent[MAX_MOVE_EVENTS];
+    private int mMoveEventStartingPos = 0;
+    private int mMoveEventSize = 0;
     private FlingTracker mFlingTracker = null;
     private float mStartTouchXRaw;
     private float mStartTouchYRaw;
@@ -106,24 +110,26 @@ public class DraggableHelper {
         mWindowManagerParams = windowManagerParams;
         mOnTouchActionEventListener = onTouchEventListener;
 
+        for (int i = 0; i < mMoveEvents.length; i++) {
+            mMoveEvents[i] = new InternalMoveEvent(0, 0, 0);
+        }
+
         if (setOnTouchListener) {
             mView.setOnTouchListener(mOnTouchListener);
         }
     }
 
     private void addMoveEvent(float x, float y, long t) {
-        InternalMoveEvent me = null;
-
-        if (mMoveEventPool.size() > 0) {
-            me = mMoveEventPool.lastElement();
-            mMoveEventPool.removeElementAt(mMoveEventPool.size()-1);
+        if (mMoveEventSize == MAX_MOVE_EVENTS) {
+            mMoveEventStartingPos = (mMoveEventStartingPos + 1) % MAX_MOVE_EVENTS;
+        } else {
+            mMoveEventSize++;
         }
 
-        if (me == null) {
-            me = new InternalMoveEvent(x, y, t);
-        }
-
-        mMoveEvents.add(me);
+        InternalMoveEvent em = mMoveEvents[(mMoveEventSize - 1 + mMoveEventStartingPos) % MAX_MOVE_EVENTS];
+        em.mX = x;
+        em.mY = y;
+        em.mTime = t;
     }
 
     public boolean onTouchActionDown(MotionEvent event) {
@@ -134,10 +140,8 @@ public class DraggableHelper {
         mTouchEvent.rawX = mStartTouchXRaw;
         mTouchEvent.rawY = mStartTouchYRaw;
 
-        for (InternalMoveEvent e : mMoveEvents) {
-            mMoveEventPool.add(e);
-        }
-        mMoveEvents.clear();
+        mMoveEventStartingPos = 0;
+        mMoveEventSize = 0;
 
         addMoveEvent(mStartTouchXRaw, mStartTouchYRaw, event.getEventTime());
 
@@ -187,22 +191,22 @@ public class DraggableHelper {
         mReleaseEvent.rawX = event.getRawX();
         mReleaseEvent.rawY = event.getRawY();
 
-        if (mMoveEvents.size() > 0) {
-            float firstMs = mMoveEvents.get(0).mTime;
+        if (mMoveEventSize > 0) {
+            float firstMs = mMoveEvents[mMoveEventStartingPos].mTime;
 
-            for (int i = 0; i < mMoveEvents.size(); ++i) {
-                InternalMoveEvent me = mMoveEvents.get(i);
+            for (int i = 0; i < mMoveEventSize; ++i) {
+                InternalMoveEvent me = mMoveEvents[(mMoveEventStartingPos + i) % MAX_MOVE_EVENTS];
                 float ms = me.mTime - firstMs;
             }
         }
 
-        int moveEventCount = mMoveEvents.size();
+        int moveEventCount = mMoveEventSize;
         if (moveEventCount > 2) {
-            InternalMoveEvent lastME = mMoveEvents.lastElement();
+            InternalMoveEvent lastME = mMoveEvents[(mMoveEventStartingPos + mMoveEventSize - 1) % MAX_MOVE_EVENTS];
             InternalMoveEvent refME = null;
 
             for (int i = moveEventCount - 1; i >= 0; --i) {
-                InternalMoveEvent me = mMoveEvents.get(i);
+                InternalMoveEvent me = mMoveEvents[(mMoveEventStartingPos + i) % MAX_MOVE_EVENTS];
 
                 if (lastME.mTime == me.mTime)
                     continue;
