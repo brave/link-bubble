@@ -54,6 +54,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     private boolean mAnimActive;
     private Mode mMode;
     private float mTimeOnSnapTarget;
+    private Circle mCircle;
 
     public BubbleDraggable(Context context) {
         this(context, null);
@@ -400,6 +401,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         mBadgeView = (BadgeView) findViewById(R.id.badge_view);
         mBadgeView.hide();
         mBadgeView.setVisibility(View.GONE);
+        mCircle = new Circle(0, 0, 1);
 
         int bubbleSize = getResources().getDimensionPixelSize(R.dimen.bubble_size);
 
@@ -458,8 +460,8 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                         // c = null, t = 1              wasn't snapping, is snap -> anim in
                         // c = 1, t = 1                 was snapping, is snapping -> NO move
 
-                        Circle c = new Circle(targetX + Config.mBubbleWidth * 0.5f, targetY + Config.mBubbleHeight * 0.5f, Config.mBubbleWidth * 0.5f);
-                        BubbleTargetView tv = mCanvasView.getSnapTarget(c, 1.0f);
+                        mCircle.Update(targetX + Config.mBubbleWidth * 0.5f, targetY + Config.mBubbleHeight * 0.5f, Config.mBubbleWidth * 0.5f);
+                        BubbleTargetView tv = mCanvasView.getSnapTarget(mCircle, 1.0f);
 
                         if (mCurrentSnapTarget == null) {
                             if (tv == null) {
