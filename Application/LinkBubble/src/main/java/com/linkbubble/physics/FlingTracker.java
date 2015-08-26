@@ -9,7 +9,10 @@ public class FlingTracker {
     static final boolean DEBUG = false;
     final int MAX_EVENTS = 8;
     final float DECAY = 0.75f;
-    ArrayDeque<MotionEventCopy> mEventBuf = new ArrayDeque<MotionEventCopy>(MAX_EVENTS);
+
+    private int mEventBufSize = 0;
+    private int mEventBufPos = 0;
+    MotionEventCopy[] mEventBuf = new MotionEventCopy[MAX_EVENTS];
     float mVX, mVY = 0;
     private static class MotionEventCopy {
         public MotionEventCopy(float x2, float y2, long eventTime) {
@@ -21,12 +24,21 @@ public class FlingTracker {
         public long t;
     }
     public FlingTracker() {
+        for (int i = 0; i < mEventBuf.length; ++i) {
+            mEventBuf[i] = new MotionEventCopy(0, 0, 0);
+        }
     }
     public void addMovement(MotionEvent event) {
-        if (mEventBuf.size() == MAX_EVENTS) {
-            mEventBuf.remove();
+        if (mEventBufSize == MAX_EVENTS) {
+            mEventBufPos = (mEventBufPos + 1) % MAX_EVENTS;
+        } else {
+            mEventBufSize++;
         }
-        mEventBuf.add(new MotionEventCopy(event.getX(), event.getY(), event.getEventTime()));
+
+        MotionEventCopy me = mEventBuf[(mEventBufSize - 1 + mEventBufPos) % MAX_EVENTS];
+        me.x = event.getX();
+        me.y = event.getY();
+        me.t = event.getEventTime();
     }
     public void computeCurrentVelocity(long timebase) {
         //if (FlingTracker.DEBUG) {
@@ -38,9 +50,8 @@ public class FlingTracker {
         int j = 0;
         float totalweight = 0f;
         float weight = 10f;
-        for (final Iterator<MotionEventCopy> iter = mEventBuf.descendingIterator();
-             iter.hasNext();) {
-            final MotionEventCopy event = iter.next();
+        for (int x = 0; x < mEventBufSize; x++) {
+            MotionEventCopy event = mEventBuf[(MAX_EVENTS + mEventBufSize  + mEventBufPos - 1 - x) % MAX_EVENTS];
             if (last != null) {
                 final float dt = (float) (event.t - last.t) / timebase;
                 if (dt == 0) {
@@ -82,7 +93,8 @@ public class FlingTracker {
         return mVY;
     }
     public void recycle() {
-        mEventBuf.clear();
+        mEventBufSize = 0;
+        mEventBufPos = 0;
     }
 
     static FlingTracker sTracker;

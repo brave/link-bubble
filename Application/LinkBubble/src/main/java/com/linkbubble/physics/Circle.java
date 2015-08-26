@@ -9,6 +9,10 @@ public class Circle {
     public float mRadius;
 
     public Circle(float x, float y, float r) {
+        Update(x, y, r);
+    }
+
+    public void Update(float x, float y, float r) {
         mX = x;
         mY = y;
         mRadius = r;
