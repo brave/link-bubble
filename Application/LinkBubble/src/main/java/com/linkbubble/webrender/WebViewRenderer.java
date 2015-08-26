@@ -409,7 +409,11 @@ class WebViewRenderer extends WebRenderer {
 
                 // We only reload a single webview at a time, so if there is a previous receiver, we unregister it.
                 if (mLastNetworkReceiver != null) {
-                    mContext.unregisterReceiver(mLastNetworkReceiver);
+                    try {
+                        mContext.unregisterReceiver(mLastNetworkReceiver);
+                    } catch(Exception e) {
+                        Log.d(TAG, "Could not unregister existing network receiver.");
+                    }
                     mLastNetworkReceiver = null;
                 }
 
