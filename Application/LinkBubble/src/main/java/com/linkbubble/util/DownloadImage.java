@@ -147,7 +147,7 @@ public class DownloadImage {
                 fos.close();
                 return true;
             } catch (IOException e) {
-                CrashTracking.logHandledException(e);
+                CrashTracking.log(e.getMessage());
                 return false;
             }
         }
