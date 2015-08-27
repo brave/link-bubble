@@ -2,7 +2,7 @@
 <changelog>
 
     <release version="1.6.1">
-        <change></change>
+        <change>FIX: Addressed a few small crashes for improved stability.</change>
     </release>
 
     <release version="1.6.0">
