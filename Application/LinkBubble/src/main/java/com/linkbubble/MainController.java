@@ -179,6 +179,7 @@ public class MainController implements Choreographer.FrameCallback {
     private ScreenOnEvent mScreenOnEvent = new ScreenOnEvent();
     private ScreenOffEvent mScreenOffEvent = new ScreenOffEvent();
     private boolean mScreenOn = true;
+    private java.util.Timer mTimer = null;
 
     private static class OpenUrlInfo {
         String mUrlAsString;
@@ -407,7 +408,21 @@ public class MainController implements Choreographer.FrameCallback {
             return;
         }
 
-        saveCurrentTabs();
+        // Debounce the saving call so we don't attempt to save after every concurrent page load, causing potential problems with the database connection.
+        if (mTimer != null) {
+            mTimer.cancel();
+            mTimer.purge();
+        }
+
+        mTimer = new java.util.Timer();
+        java.util.TimerTask tt = new java.util.TimerTask() {
+            @Override
+            public void run() {
+                mTimer = null;
+                saveCurrentTabs();
+            };
+        };
+        mTimer.schedule(tt, 200);
     }
 
     public void autoContentDisplayLinkLoaded(TabView tab) {
