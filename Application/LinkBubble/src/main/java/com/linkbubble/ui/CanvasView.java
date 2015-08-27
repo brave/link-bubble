@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -252,6 +253,16 @@ public class CanvasView extends FrameLayout {
 
     private void setContentView(TabView bubble) {
         if (mContentView != null) {
+
+            // The webview can throw an exception when trying to remove focus inside of removeView.
+            // To prevent a crash we try to manually unfocus first, within a try/catch to reset ViewGroup::mFocused.
+            // Prevents crash: https://fabric.io/brave6/android/apps/com.linkbubble.playstore/issues/55dccdeee0d514e5d640ab55
+            try {
+                mContentView.clearFocus();
+            } catch(Exception e) {
+                Log.d("CanvasView", "handled exception while clearing focus");
+            }
+
             removeView(mContentView);
             mContentView.setAlpha(1.0f);
             mCurrentAlphaContentView = 1.0f;
