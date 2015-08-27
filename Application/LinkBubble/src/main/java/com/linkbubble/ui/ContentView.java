@@ -1322,6 +1322,14 @@ public class ContentView extends FrameLayout {
                     boolean alreadyAdded = false;
                     for (int i = 0; i < mAppsForUrl.size(); i++) {
                         AppForUrl existing = mAppsForUrl.get(i);
+
+                        // In certain situations mResolveInfo is null, likely because we can't find the app.
+                        // One possibility is that this happens when the app is currently being updated through the play store.
+                        // Prevents crash: https://fabric.io/brave6/android/apps/com.linkbubble.playstore/issues/55dcee53e0d514e5d6413e8d
+                        if (existing.mResolveInfo == null) {
+                            continue;
+                        }
+
                         if (existing.mResolveInfo.activityInfo.packageName.equals(resolveInfoToAdd.activityInfo.packageName)
                                 && existing.mResolveInfo.activityInfo.name.equals(resolveInfoToAdd.activityInfo.name)) {
                             alreadyAdded = true;
