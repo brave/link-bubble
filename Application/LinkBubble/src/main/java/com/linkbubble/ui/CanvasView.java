@@ -29,6 +29,8 @@ import java.util.Vector;
 
 public class CanvasView extends FrameLayout {
 
+    private static final String TAG = "CanvasView";
+
     private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
 
     private Vector<BubbleTargetView> mTargets = new Vector<BubbleTargetView>();
@@ -234,6 +236,13 @@ public class CanvasView extends FrameLayout {
         }
 
         if (!mEnabled || (mCurrentAlpha == 0.0f && mContentViewY == (int)(mTargetY))) {
+
+            try {
+                clearFocus();
+            } catch(Exception e) {
+                Log.d(TAG, "handled exception while clearing focus");
+            }
+
             setVisibility(GONE);
             if (mStatusBarCoverView != null) {
                 mStatusBarCoverView.setVisibility(GONE);
@@ -260,7 +269,7 @@ public class CanvasView extends FrameLayout {
             try {
                 mContentView.clearFocus();
             } catch(Exception e) {
-                Log.d("CanvasView", "handled exception while clearing focus");
+                Log.d(TAG, "handled exception while clearing focus");
             }
 
             removeView(mContentView);
