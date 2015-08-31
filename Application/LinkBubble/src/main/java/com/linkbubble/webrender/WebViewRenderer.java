@@ -352,7 +352,7 @@ class WebViewRenderer extends WebRenderer {
                         });
                         mWebView.requestFocusNodeHref(msg);
                     }
-                    return false;
+                    return true;
             }
         }
     };
