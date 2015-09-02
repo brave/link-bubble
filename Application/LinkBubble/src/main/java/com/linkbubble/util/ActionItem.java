@@ -306,6 +306,9 @@ public class ActionItem {
                         onActionItemDefaultSelectedListener.onSelected(actionItem, false);
                     }
                 } catch (NullPointerException npe) {
+                    // XXX: ResolveInfos returning null in M preview releases.
+                    // See if we can remove this try/catch when M in final, but for now handle the crash.
+                    // Implemented in: 89b785a911f734e6ce6b0ecd1b7cb0ff75e88c25
                     CrashTracking.logHandledException(npe);
                 }
             }
@@ -321,6 +324,9 @@ public class ActionItem {
                         onActionItemDefaultSelectedListener.onSelected(actionItem, true);
                     }
                 } catch (NullPointerException npe) {
+                    // XXX: ResolveInfos returning null in M preview releases.
+                    // See if we can remove this try/catch when M in final, but for now handle the crash.
+                    // Implemented in: 89b785a911f734e6ce6b0ecd1b7cb0ff75e88c25
                     CrashTracking.logHandledException(npe);
                 }
             }
