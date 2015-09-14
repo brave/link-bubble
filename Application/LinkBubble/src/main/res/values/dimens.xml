@@ -36,6 +36,7 @@
     <dimen name="badge_size">24dp</dimen>
     <dimen name="badge_margin">2dp</dimen>
     <dimen name="bubble_size">64dp</dimen>
+    <dimen name="bubble_size_small">40dp</dimen>
     <dimen name="bubble_icon_size">60dp</dimen>
     <dimen name="bubble_icon_stroke_size">1px</dimen>
     <dimen name="bubble_favicon_size">30dp</dimen>

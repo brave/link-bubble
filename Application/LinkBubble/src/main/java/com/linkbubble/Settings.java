@@ -73,6 +73,8 @@ public class Settings {
     public static final String PREFERENCE_THEME_DARK = "preference_theme_dark";
     public static final String PREFERENCE_COLORED_PROGRESS_INDICATOR = "preference_colored_progress_indicator";
 
+    public static final String PREFERENCE_BUBBLE_SIZE = "preference_bubble_size";
+
     public static final String PREFERENCE_CURRENT_TABS = "preference_current_bubbles";
     public static final String PREFERENCE_DEFAULT_APPS = "preference_default_apps";
     public static final String PREFERENCE_FALLBACK_REDIRECT_HOSTS = "preference_redirect_hosts";
@@ -1353,6 +1355,16 @@ public class Settings {
     public void setColoredProgressIndicator(boolean value) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putBoolean(PREFERENCE_COLORED_PROGRESS_INDICATOR, value);
+        editor.commit();
+    }
+
+    public int getBubbleSize() {
+        return mSharedPreferences.getInt(PREFERENCE_BUBBLE_SIZE, 1);
+    }
+
+    public void setBubbleSize(int value) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putInt(PREFERENCE_BUBBLE_SIZE, value);
         editor.commit();
     }
 

@@ -130,6 +130,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
         private Preference mWebViewTextZoomPreference;
         private Preference mThemePreference;
+        private Preference mBubbleSizePreference;
         private Preference mWebViewBatterySavePreference;
         private ListPreference mUserAgentPreference;
 
@@ -222,6 +223,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     return true;
                 }
             });
+
+            mBubbleSizePreference = findPreference("preference_bubble_size");
+            mBubbleSizePreference.setIcon(getTintedDrawable(R.drawable.ic_bubble_size, tintColor));
+            mBubbleSizePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Util.showThemedDialog(getBubbleSizeDialog());
+                    return true;
+                }
+            });
+            updateBubbleSizeSummary();
 
             Preference crashButton = findPreference("debug_crash");
             if (crashButton != null) {
@@ -505,6 +517,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             }
         }
 
+        void updateBubbleSizeSummary() {
+            int bubbleSize = Settings.get().getBubbleSize();
+            if (bubbleSize == 0) {
+                mBubbleSizePreference.setSummary(R.string.preference_bubble_size_small);
+            } else {
+                mBubbleSizePreference.setSummary(R.string.preference_bubble_size_normal);
+            }
+        }
+
         AlertDialog getThemeDialog() {
             final String lightColor = getString(R.string.preference_theme_light_color);
             final String lightNoColor = getString(R.string.preference_theme_light_no_color);
@@ -565,6 +586,132 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             builder.setTitle(R.string.preference_theme_title);
 
             return builder.create();
+        }
+
+        private static final int BUBBLE_SIZE_SMALL = 0;
+        private static final int BUBBLE_SIZE_NORMAL = 1;
+
+        AlertDialog getBubbleSizeDialog() {
+            final String bubbleSizeSmall = getString(R.string.preference_bubble_size_small);
+            final String bubbleSizeNormal = getString(R.string.preference_bubble_size_normal);
+
+            final ArrayList<String> items = new ArrayList<String>();
+            items.add(bubbleSizeSmall);
+            items.add(bubbleSizeNormal);
+
+            final int startSelectedIndex = Settings.get().getBubbleSize();
+
+            final PreferenceBubbleSizeAdapter adapter = new PreferenceBubbleSizeAdapter(getActivity(),
+                    R.layout.view_preference_bubble_size,
+                    startSelectedIndex,
+                    items.toArray(new String[0]));
+
+            final ListView listView = new ListView(getActivity());
+            listView.setAdapter(adapter);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setView(listView);
+            builder.setIcon(Util.getAlertIcon(getActivity()));
+            builder.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    if (adapter.mSelectedIndex != startSelectedIndex) {
+                        switch (adapter.mSelectedIndex) {
+                            case BUBBLE_SIZE_SMALL:
+                                Settings.get().setBubbleSize(BUBBLE_SIZE_SMALL);
+                                break;
+                            case BUBBLE_SIZE_NORMAL:
+                                Settings.get().setBubbleSize(BUBBLE_SIZE_NORMAL);
+                                break;
+                        }
+
+                        updateBubbleSizeSummary();
+
+                        if (MainController.get() != null && MainController.get().reloadAllTabs(getActivity())) {
+                            Toast.makeText(getActivity(), R.string.bubble_size_changed_reloading_current, Toast.LENGTH_SHORT).show();
+
+                        }
+                        MainApplication.postEvent(getActivity(), new MainService.ReloadMainServiceEvent(getActivity()));
+                    }
+                }
+            });
+            builder.setTitle(R.string.preference_bubble_size);
+
+            return builder.create();
+        }
+
+        private static class PreferenceBubbleSizeAdapter extends ArrayAdapter<String> {
+
+            Context mContext;
+            int mLayoutResourceId;
+            int mSelectedIndex;
+
+            public PreferenceBubbleSizeAdapter(Context context, int layoutResourceId, int initialSelectedIndex, String[] data) {
+                super(context, layoutResourceId, data);
+                mLayoutResourceId = layoutResourceId;
+                mContext = context;
+                mSelectedIndex = initialSelectedIndex;
+            }
+
+            @Override
+            public View getView(final int position, View convertView, ViewGroup parent) {
+
+                if (convertView==null) {
+                    LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    convertView = inflater.inflate(mLayoutResourceId, parent, false);
+                }
+
+                TextView label = (TextView) convertView.findViewById(R.id.label);
+                ImageView icon = (ImageView) convertView.findViewById(R.id.icon);
+                final RadioButton radioButton = (RadioButton) convertView.findViewById(R.id.radio_button);
+
+                switch (position) {
+                    case BUBBLE_SIZE_SMALL:
+                        label.setText(mContext.getString(R.string.preference_bubble_size_small));
+                        icon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_bubble_size));
+                        break;
+                    case BUBBLE_SIZE_NORMAL:
+                        label.setText(mContext.getString(R.string.preference_bubble_size_normal));
+                        icon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_bubble_size));
+                        break;
+                    default:
+                        break;
+                }
+                convertView.setTag(position);
+                convertView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        radioButton.setChecked(true);
+                        mSelectedIndex = position;
+                        PreferenceBubbleSizeAdapter.this.notifyDataSetChanged();
+                    }
+                });
+                convertView.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        switch (event.getAction()) {
+                            // Pass event along to radio button so UI visually updates
+                            case MotionEvent.ACTION_DOWN:
+                            case MotionEvent.ACTION_UP: {
+                                radioButton.onTouchEvent(event);
+                                return true;
+                            }
+                        }
+                        return false;
+                    }
+                });
+                radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            mSelectedIndex = position;
+                            PreferenceBubbleSizeAdapter.this.notifyDataSetChanged();
+                        }
+                    }
+                });
+
+                radioButton.setChecked(position == mSelectedIndex);
+                return convertView;
+            }
         }
 
         private static class PreferenceThemeAdapter extends ArrayAdapter<String> {

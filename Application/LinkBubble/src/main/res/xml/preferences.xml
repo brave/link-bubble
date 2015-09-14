@@ -53,6 +53,11 @@
             />
 
         <Preference
+            android:title="@string/preference_bubble_size"
+            android:key="preference_bubble_size"
+            />
+
+        <Preference
             android:key="preference_more"
             android:title="@string/preference_more_title"
             />

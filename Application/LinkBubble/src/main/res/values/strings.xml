@@ -95,6 +95,9 @@
     <string name="preference_intercept_links_from_disabled_for_L">As of Android 5.0, Google have removed the API required for this functionality.</string>
     <string name="preference_scan_for_youtube_embeds_title">Check for YouTube embeds</string>
     <string name="preference_scan_for_youtube_embeds_summary">Display shortcut to load embedded video(s) in the YouTube app.</string>
+    <string name="preference_bubble_size">Bubble Size</string>
+    <string name="preference_bubble_size_small">Small Bubbles</string>
+    <string name="preference_bubble_size_normal">Normal Bubbles</string>
     <string name="preference_webview_battery_save_title">Battery Save Mode (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Aggressive</string>
     <string name="preference_webview_battery_save_aggressive_summary">Pause the updating of web pages when Link Bubble is minimized.\nPages in the process of loading will finish loading before pausing.</string>
@@ -193,6 +196,7 @@
     <string name="user_agent_changed_reloading_current">User Agent changed. Reloading current bubbles…</string>
     <string name="theme_toolbar_reloading_current">Color toolbar setting changed. Reloading current bubbles…</string>
     <string name="article_mode_changed_reloading_current">Reading Mode setting changed. Reloading current bubbles…</string>
+    <string name="bubble_size_changed_reloading_current">Bubble size changed. Reloading current bubbles…</string>
     <string name="link_loaded_with_app">Loaded with %1$s</string>
     <string name="link_redirected">Redirected to %1$s</string>
 

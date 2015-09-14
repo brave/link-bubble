@@ -403,7 +403,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         mBadgeView.setVisibility(View.GONE);
         mCircle = new Circle(0, 0, 1);
 
-        int bubbleSize = getResources().getDimensionPixelSize(R.dimen.bubble_size);
+        int bubbleSize = (int) Config.mBubbleWidth;
 
         WindowManager.LayoutParams windowManagerParams = new WindowManager.LayoutParams();
         windowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;

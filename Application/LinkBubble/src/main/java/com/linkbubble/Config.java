@@ -41,7 +41,8 @@ public class Config {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         wm.getDefaultDisplay().getMetrics(mDm);
 
-        mBubbleWidth = mBubbleHeight = context.getResources().getDimensionPixelSize(R.dimen.bubble_size);
+        int bubbleSize = Settings.get().getBubbleSize();
+        mBubbleWidth = mBubbleHeight = context.getResources().getDimensionPixelSize(bubbleSize == 0 ? R.dimen.bubble_size_small : R.dimen.bubble_size);
 
         mScreenCenterX = (int) (mDm.widthPixels * 0.5f);
         mScreenHeight = mDm.heightPixels - getStatusBarHeight(context);
