@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.linkbubble.Config;
 import com.linkbubble.R;
 
 import java.net.URL;
@@ -44,7 +45,7 @@ public class ProgressIndicator extends FrameLayout {
         mProgress = 0;
 
         mProgressArcView = new ProgressArcView(getContext());
-        int bubbleProgressSize = getResources().getDimensionPixelSize(R.dimen.bubble_progress_size);
+        int bubbleProgressSize = (int) Config.mBubbleWidth - getResources().getDimensionPixelSize(R.dimen.bubble_progress_size_offset);
         FrameLayout.LayoutParams arcLP = new LayoutParams(bubbleProgressSize, bubbleProgressSize);
         arcLP.gravity = Gravity.CENTER;
         addView(mProgressArcView, arcLP);
@@ -101,7 +102,7 @@ public class ProgressIndicator extends FrameLayout {
             mPaint.setColor(mColor);
             mPaint.setStrokeWidth(strokeWidth);
 
-            int size = resources.getDimensionPixelSize(R.dimen.bubble_progress_size) - strokeWidth;
+            int size = (int) Config.mBubbleWidth - resources.getDimensionPixelSize(R.dimen.bubble_progress_size_offset) - strokeWidth;
             float offset = (float)(strokeWidth)/2.f;
             mOval = new RectF(offset, offset, size+offset, size+offset);
 

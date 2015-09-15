@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import com.linkbubble.Config;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 
@@ -32,7 +33,7 @@ public class ProgressIndicatorView extends ImageView {
         }
 
         mProgressDrawable = new ProgressIndicatorDrawable(Settings.get().getThemedDefaultProgressColor(),
-                getResources().getDimensionPixelSize(R.dimen.bubble_progress_size),
+                (int) Config.mBubbleWidth - getResources().getDimensionPixelSize(R.dimen.bubble_progress_size_offset),
                 getResources().getDimensionPixelSize(R.dimen.bubble_progress_stroke));
         setImageDrawable(mProgressDrawable);
     }

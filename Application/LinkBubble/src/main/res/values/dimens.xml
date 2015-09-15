@@ -43,7 +43,11 @@
     <dimen name="bubble_pager_item_width">72dp</dimen>
     <dimen name="bubble_pager_item_height">@dimen/bubble_size</dimen>
     <dimen name="bubble_pager_height">@dimen/bubble_pager_item_height</dimen>
-    <dimen name="bubble_progress_size">57.5dp</dimen>
+
+    <!-- An offset size from the outer diameter of the bubble to draw the circulat progress indicator.
+         We use an offset instead of an absolute value because we can support multiple bubble sizes.
+    -->
+    <dimen name="bubble_progress_size_offset">4dp</dimen>
     <dimen name="bubble_progress_stroke">2dp</dimen>
     <dimen name="content_offset">59dp</dimen>
     <dimen name="stat_height">200dp</dimen>
