@@ -333,7 +333,7 @@ class WebViewRenderer extends WebRenderer {
                         return false;
                     }
 
-                    mController.onUrlLongClick(url, hitTestResult.getType());
+                    mController.onUrlLongClick(mWebView, url, hitTestResult.getType());
                     return true;
                 }
 
