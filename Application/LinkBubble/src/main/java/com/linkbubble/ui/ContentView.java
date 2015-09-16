@@ -17,7 +17,9 @@ import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.DrawableRes;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
@@ -708,8 +710,8 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
-        public void onUrlLongClick(String url, int type) {
-            ContentView.this.onUrlLongClick(url, type);
+        public void onUrlLongClick(WebView webView, String url, int type) {
+            ContentView.this.onUrlLongClick(webView, url, type);
         }
 
         @Override
@@ -920,8 +922,8 @@ public class ContentView extends FrameLayout {
     ArticleRenderer.Controller mArticleModeController = new ArticleRenderer.Controller() {
 
         @Override
-        public void onUrlLongClick(String url, int type) {
-            ContentView.this.onUrlLongClick(url, type);
+        public void onUrlLongClick(WebView webView, String url, int type) {
+            ContentView.this.onUrlLongClick(webView, url, type);
         }
 
         @Override
@@ -1154,7 +1156,7 @@ public class ContentView extends FrameLayout {
 
     }
 
-    private void onUrlLongClick(final String urlAsString, int type) {
+    private void onUrlLongClick(final WebView webView, final String urlAsString, final int type) {
         Resources resources = getResources();
 
         final ArrayList<String> longClickSelections = new ArrayList<String>();
@@ -1184,8 +1186,14 @@ public class ContentView extends FrameLayout {
 
         Collections.sort(longClickSelections);
 
-        final String openInNewBubbleLabel = resources.getString(R.string.action_open_in_new_bubble);
-        longClickSelections.add(0, openInNewBubbleLabel);
+        final String openLinkInNewBubbleLabel= resources.getString(R.string.action_open_link_in_new_bubble);
+        final String openImageInNewBubbleLabel  = resources.getString(R.string.action_open_image_in_new_bubble);
+        if (type == WebView.HitTestResult.IMAGE_TYPE || type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
+            longClickSelections.add(0, openImageInNewBubbleLabel);
+        }
+        if (type == WebView.HitTestResult.SRC_ANCHOR_TYPE || type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
+            longClickSelections.add(0, openLinkInNewBubbleLabel);
+        }
 
         final String openInBrowserLabel = defaultBrowserLabel != null ?
                 String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel) : null;
@@ -1207,7 +1215,19 @@ public class ContentView extends FrameLayout {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 CrashTracking.log("ContentView listView.setOnItemClickListener");
                 String string = longClickSelections.get(position);
-                if (string.equals(openInNewBubbleLabel)) {
+                if (string.equals(openLinkInNewBubbleLabel) && type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
+                    Message msg = new Message();
+                    msg.setTarget(new Handler() {
+                        @Override
+                        public void handleMessage(Message msg) {
+                            Bundle b = msg.getData();
+                            if (b != null && b.getString("url") != null) {
+                                MainController.get().openUrl(b.getString("url"), System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_TAB);
+                            }
+                        }
+                    });
+                    webView.requestFocusNodeHref(msg);
+                } if (string.equals(openLinkInNewBubbleLabel) || string.equals(openImageInNewBubbleLabel)) {
                     MainController.get().openUrl(urlAsString, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_TAB);
                 } else if (openInBrowserLabel != null && string.equals(openInBrowserLabel)) {
                     openInBrowser(urlAsString);
