@@ -21,7 +21,7 @@ import com.squareup.otto.Subscribe;
 public class ArticleRenderer {
 
     public interface Controller {
-        public void onUrlLongClick(String url, int type);
+        public void onUrlLongClick(WebView webView, String url, int type);
         public void onDownloadStart(String urlAsString);
         public boolean onBackPressed();
         public void onShowBrowserPrompt();
@@ -129,7 +129,7 @@ public class ArticleRenderer {
                         return false;
                     }
 
-                    mController.onUrlLongClick(url, hitTestResult.getType());
+                    mController.onUrlLongClick(mWebView, url, hitTestResult.getType());
                     return true;
                 }
 

@@ -4,6 +4,7 @@ package com.linkbubble.webrender;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.View;
+import android.webkit.WebView;
 
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.util.YouTubeEmbedHelper;
@@ -28,7 +29,7 @@ public abstract class WebRenderer {
         public void onReceivedIcon(Bitmap bitmap);
         public void onProgressChanged(int progress, String urlAsString);
         public boolean onBackPressed();
-        public void onUrlLongClick(String url, int type);
+        public void onUrlLongClick(WebView webView, String url, int type);
         public void onShowBrowserPrompt();
         public void onCloseWindow();
         public void onGeolocationPermissionsShowPrompt(String origin, GetGeolocationCallback callback);

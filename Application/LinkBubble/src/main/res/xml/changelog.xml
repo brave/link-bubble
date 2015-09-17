@@ -2,6 +2,7 @@
 <changelog>
 
     <release version="1.6.1">
+        <change>NEW: Long pressing on image links now gives you the option of opening the image or the link address in a new bubble.</change>
         <change>FIX: Addressed a few small crashes for improved stability.</change>
     </release>
 
