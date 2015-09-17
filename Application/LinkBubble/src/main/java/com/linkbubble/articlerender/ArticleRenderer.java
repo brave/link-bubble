@@ -23,7 +23,7 @@ public class ArticleRenderer {
     public interface Controller {
         public void onUrlLongClick(WebView webView, String url, int type);
         public void onDownloadStart(String urlAsString);
-        public boolean onBackPressed();
+        public boolean onBackPressed(WebView webView);
         public void onShowBrowserPrompt();
         public void onFirstPageLoadStarted();
     }
@@ -149,7 +149,7 @@ public class ArticleRenderer {
             if (event.getAction() == KeyEvent.ACTION_DOWN && mIsDestroyed == false) {
                 switch (keyCode) {
                     case KeyEvent.KEYCODE_BACK: {
-                        return mController.onBackPressed();
+                        return mController.onBackPressed(mWebView);
                     }
                 }
             }
