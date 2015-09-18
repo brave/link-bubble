@@ -23,12 +23,12 @@ public abstract class WebRenderer {
         public void onLoadUrl(String urlAsString);      // may or may not be called
         public void onReceivedError();
         public void onPageStarted(String urlAsString, Bitmap favIcon);
-        public void onPageFinished(String urlAsString);
+        public void onPageFinished(WebView webView, String urlAsString);
         public void onDownloadStart(String urlAsString);
         public void onReceivedTitle(String url, String title);
         public void onReceivedIcon(Bitmap bitmap);
         public void onProgressChanged(int progress, String urlAsString);
-        public boolean onBackPressed();
+        public boolean onBackPressed(WebView webView);
         public void onUrlLongClick(WebView webView, String url, int type);
         public void onShowBrowserPrompt();
         public void onCloseWindow();
