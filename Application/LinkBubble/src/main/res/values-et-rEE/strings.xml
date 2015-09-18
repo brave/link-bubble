@@ -217,38 +217,38 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
     <string name="faq_close_tab_question">Kuidas saan ma kiiresti kaarti sulgeda?</string>
     <string name="faq_close_tab_answer">Riistvaralise tagasinupu vajutamine on kiireim viis. Kaardi viskamine sulgemisnupule on teine hea viis.</string>
     <string name="faq_back_button_minimize_question">Ma arvan, et tagasinupp peaks brauseri minimeerima!</string>
-    <!-- untranslated string: faq_back_button_minimize_answer -->
-    <!-- untranslated string: faq_app_internal_browser_question -->
-    <!-- untranslated string: faq_app_internal_browser_answer -->
-    <!-- untranslated string: faq_article_mode_question -->
-    <!-- untranslated string: faq_article_mode_answer -->
-    <!-- untranslated string: faq_future_features_question -->
-    <!-- untranslated string: faq_future_features_answer -->
-    <!-- untranslated string: faq_translations_question -->
-    <!-- untranslated string: faq_translations_answer -->
-    <!-- untranslated string: faq_roadmap_question -->
-    <!-- untranslated string: faq_roadmap_answer -->
-    <!-- untranslated string: faq_alternate_payment_answer -->
-    <!-- untranslated string: faq_cant_type_url_question -->
-    <!-- untranslated string: faq_cant_type_url_answer -->
-    <!-- untranslated string: faq_copy_text_question -->
-    <!-- untranslated string: faq_copy_text_answer -->
-    <!-- untranslated string: faq_translucent_status_bar_question -->
-    <!-- untranslated string: faq_translucent_status_bar_answer -->
-    <!-- untranslated string: faq_beta_programme_question -->
-    <!-- untranslated string: faq_beta_programme_answer -->
-    <!-- untranslated string: faq_low_spec_performance_question -->
-    <!-- untranslated string: faq_low_spec_performance_answer -->
-    <!-- untranslated string: faq_crap_webview_question -->
-    <!-- untranslated string: faq_crap_webview_answer -->
-    <!-- untranslated string: faq_ongoing_notificaion_question -->
-    <!-- untranslated string: faq_ongoing_notificaion_answer -->
-    <!-- untranslated string: faq_next_update_eta_question -->
-    <!-- untranslated string: faq_next_update_eta_answer -->
-    <!-- untranslated string: faq_close_quickly_question -->
-    <!-- untranslated string: faq_close_quickly_answer -->
-    <!-- untranslated string: faq_change_default_browser_question -->
-    <!-- untranslated string: faq_change_default_browser_answer -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <string name="faq_report_bug_question">Teavita veast</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
 
@@ -264,16 +264,16 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
     <string name="credits_title">Link Bubble autorid</string>
     <string name="credits_name">Link Bubble</string>
     <string name="credits_credit">Kontseptsioon, disain ja programeerimine</string>
-    <!-- untranslated string: credits_app_copyright -->
+    
 
-    <!-- untranslated string: restore_tabs_from_previous_session -->
+    
     <plurals name="restore_tabs_from_previous_session">
-        <item quantity="one">Restore tab from previous session?</item>
-        <item quantity="other">Restore %d tabs from previous session?</item>
+        <item quantity="one">Taastad kaardi eelmisest sessioonist?</item>
+        <item quantity="other">Taastad %d kaarti eelmisest sessioonist?</item>
     </plurals>
 
     <string name="content_description_button">Nupp</string>
-    <!-- untranslated string: content_description_target_icon -->
+    
     <string name="content_description_close_bubble_icon">Sulge mulliikoon</string>
     <string name="content_description_link_bubble_logo">Link Bubble logo</string>
     <string name="content_description_app_icon">Rakenduse ikoon</string>
@@ -284,31 +284,31 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
 
     <string name="requesting_location_message">%1$s soovib su asukohta. Lubad?</string>
 
-    <!-- untranslated string: accept_terms_and_privacy -->
+    
 
-    <!-- untranslated string: service_name -->
+    <string name="service_name">Link Bubble renderdaja</string>
     <string name="notification_title">Link Bubble</string>
 
     <string name="store_listing_title">Link Bubble</string>
-    <!-- untranslated string: store_listing_promo_text -->
-    <!-- untranslated string: store_listing_description_title -->
-    <!-- untranslated string: store_listing_description_features -->
-    <!-- untranslated string: store_listing_description_location_permission -->
+    <string name="store_listing_promo_text">Korralik mobiilne sirvimine.</string>
+    
+    
+    
 
     <string name="welcome_page_title">Tere tulemast Link Bubble\'sse!</string>
     <string name="welcome_page_intro_title">Kuidas see töötab?</string>
     <string name="welcome_page_intro_point_1">Klõpsa mõnes rakenduses lingile.</string>
-    <!-- untranslated string: welcome_page_intro_point_2 -->
-    <!-- untranslated string: welcome_page_intro_end -->
+    
+    
     <string name="welcome_page_more_title">Näita mulle veel!</string>
-    <!-- untranslated string: welcome_page_more_pocket_start -->
-    <!-- untranslated string: welcome_page_more_pocket_end -->
+    
+    
     <string name="welcome_page_more_also">Link Bubble lisaks:</string>
-    <!-- untranslated string: welcome_page_more_point_1 -->
-    <!-- untranslated string: welcome_page_more_point_2 -->
-    <!-- untranslated string: welcome_page_more_point_3 -->
-    <!-- untranslated string: welcome_page_more_point_4 -->
-    <!-- untranslated string: welcome_page_ps -->
+    
+    
+    <string name="welcome_page_more_point_3">Laadi lõpmatuid mulle ühekorraga.</string>
+    <string name="welcome_page_more_point_4">Laadi linke kõikidest rakendustest.</string>
+    
 
     <string name="duplicate_link_will_not_be_loaded">Link on juba laetud. Ignoreerin...</string>
 
