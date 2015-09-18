@@ -162,6 +162,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <button onclick="onNewTab()">Open URL in new tab</button><br><br>
 Click <a href="#" onclick="javascript:window.open('','_self').close();">HERE</a> to close the current tab<br><br>
 
+<p>target="_blank" link. Verify that back button works in the newly opened page. It should be able to navigate back after clicking a link, and close the bubble.</p>
+<p><a target="_blank" rel="external" href="#">Tap to open example page in a new bubble.</a></p>
+
+<p>Verify that back button works after 301 test page.</p>
+<p><a href="https://jigsaw.w3.org/HTTP/300/">301 redirect test page</a></p>
 
 <form action="">
 <select name="cars">
