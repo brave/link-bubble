@@ -283,7 +283,7 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="credits_credit">概念，設計及程式設計</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    <!-- untranslated string: restore_tabs_from_previous_session -->
+    
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">要還原上次作業階段的分頁嗎？</item>
         <item quantity="other">要還原上次作業階段的 %d 個分頁嗎？</item>
@@ -309,7 +309,14 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">正確的行動瀏覽方式。</string>
     <string name="store_listing_description_title">Link Bubble 是專為行動裝置打造的全新瀏覽器。</string>
-    <!-- untranslated string: store_listing_description_features -->
+    <string name="store_listing_description_features">包括以下功能：
+• 當您在某個程式中點擊了連結，Link Bubble 就會在背景讀取該網頁，您可以在該程式中繼續瀏覽，而不必浪費寶貴的時間發呆等網頁載入。一旦網頁載入完畢，會顯示動畫提醒。
+• Link Bubble 的滑動功能可讓您瞬間分享連結或加入 Pocket 等服務！
+• 可同時從目前的程式中讀取多個連結。
+• 優雅地處理其他程式中的重新導向連結。在 Twitter 中點選 Instagram 的連結時，不用再傻傻地看著瀏覽器開啟、跳轉，最後才啟動程式！
+• 與系統內的應用程式高度整合。
+• 找出網頁中內嵌的 YouTube 影片，提供直接在 YouTube 程式中播放的功能。
+• 統計功能會說明 Link Bubble 為您省下了多少時間。</string>
     <string name="store_listing_description_location_permission">關於位置權限：您可能會授權網站來取得位置資訊 (像是內嵌地圖的網站)，這時就會用到。Link Bubble 本身並不會存取您的位置資訊。</string>
 
     <string name="welcome_page_title">歡迎使用 Link Bubble！</string>
@@ -323,7 +330,7 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="welcome_page_more_also">Link Bubble 還可以：</string>
     <string name="welcome_page_more_point_1">將連結重新導向至專用的程式 (如 Instagram)。</string>
     <string name="welcome_page_more_point_2">找出內嵌的影片讓您直接以 YouTube 程式播放。</string>
-    <!-- untranslated string: welcome_page_more_point_3 -->
+    <string name="welcome_page_more_point_3">可一次讀取多個氣泡。</string>
     <string name="welcome_page_more_point_4">從所有程式中讀取連結。</string>
     <string name="welcome_page_ps">PS. 若要關閉這個氣泡，按下返回鍵或按住氣泡將其拖動至關閉用的氣泡即可。</string>
 
