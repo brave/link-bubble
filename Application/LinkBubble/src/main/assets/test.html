@@ -24,6 +24,30 @@
                 padding: 0px
               }
 
+            ol {
+                counter-reset: item;
+            }
+
+            li {
+                display: block;
+                margin-bottom: 20px;
+            }
+
+            li:before {
+                content: counters(item, ".") " ";
+                counter-increment: item;
+                display: block;
+                position: relative;
+                top: 17px;
+                left: -30px;
+            }
+
+            li h2 {
+                margin: 0 0 10px 0;
+                padding: 0;
+                line-height: 20px;
+            }
+
         </style>
         <title>LB HTML tests</title>
 <script>
@@ -154,81 +178,143 @@ google.maps.event.addDomListener(window, 'load', initialize);
     
     <body>
 
-<h3>HTML tests</h3>
+<h1>HTML Test Cases</h1>
 
-<button onclick="onAlertShow()">Show Alert</button><br>
-<button onclick="onConfirmShow()">Show Confirm</button><br>
-<button onclick="onPromptShow()">Show Prompt</button><br><br>
-<button onclick="onNewTab()">Open URL in new tab</button><br><br>
-Click <a href="#" onclick="javascript:window.open('','_self').close();">HERE</a> to close the current tab<br><br>
+<ol>
+    <li>
+        <h2>Prompt Tests</h2>
+        <ol>
+            <li>
+                Alert should be able to be displayed and be dismissed.<br>
+                <button onclick="onAlertShow()">Show Alert</button>
+            </li>
+            <li>
+                Confirm should be able to be displayed and be dismissed.<br>
+                <button onclick="onConfirmShow()">Show Confirm</button>
+            </li>
+            <li>
+                Prompt should be able to be displayed and be dismissed.<br>
+                <button onclick="onPromptShow()">Show Prompt</button>
+            </li>
+        </ol>
+    </li>
+    <li>
+        <h2>Navigation Tests</h2>
+        <ol>
+            <li>
+                A new bubble should open up.<br>
+                <button onclick="onNewTab()">Open URL in new tab</button>
+            </li>
+            <li>
+                <a href="#" onclick="javascript:window.open('','_self').close();">Click here to close the current bubble after opening.</a>
+            </li>
+            <li>
+                target="_blank" link. Verify that back button works in the newly opened page. It should be able to navigate back after clicking a link, and close the bubble.<br>
+                <a target="_blank" rel="external" href="#">Tap to open example page in a new bubble.</a>
+            </li>
+            <li>
+                Verify that back button works after 301 test page.<br>
+                <a href="https://jigsaw.w3.org/HTTP/300/">301 redirect test page</a>
+            </li>
+        </ol>
+    </li>
+    <li>
+        <h2>Form Controls</h2>
+        <ol>
+            <li>
+                file picker: <input type="file">
+            </li>
+            <li>
+                png file picker: <input type="file" name="pic" accept=".png">
+            </li>
+            <li>
+                Image file picker: <input type="file" name="pic" accept="image/*">
+            </li>
+            <li>
+                Select controls:<br>
+                <form action="">
+                    <select name="cars">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                    <br><br>
+                </form>
 
-<p>target="_blank" link. Verify that back button works in the newly opened page. It should be able to navigate back after clicking a link, and close the bubble.</p>
-<p><a target="_blank" rel="external" href="#">Tap to open example page in a new bubble.</a></p>
+                <div id="async-selects"></div>
+                <a href="#" id="add-select">+ Add Async Select Control</a>
+                <br><br>
+            </li>
+            <li>
+                Checkboxes:<br>
+                <form>
+                    <input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
+                    <input type="checkbox" name="vehicle" value="Car">I have a car
+                </form>
+            </li>
+            <li>
+                Text Input: <input type="text" name="user">
+            </li>
+            <li>
+                Radio Controls:
+                <form>
+                    <input type="radio" name="sex" value="male">Male<br>
+                    <input type="radio" name="sex" value="female">Female
+                </form>
+            </li>
+        </ol>
+    </li>
+    <li>
+        <h2>Context Menu</h2>
+        <ol>
+            <li>
+                Percent encoded image, long press -> save image<br>
+                <img height="100" width="100" src="data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%0A%00%00%00%0A%08%02%00%00%00%02PX%EA%00%00%00%19tEXtSoftware%00Adobe%20ImageReadyq%C9e%3C%00%00%03%24iTXtXML%3Acom.adobe.xmp%00%00%00%00%00%3C%3Fxpacket%20begin%3D%22%EF%BB%BF%22%20id%3D%22W5M0MpCehiHzreSzNTczkc9d%22%3F%3E%20%3Cx%3Axmpmeta%20xmlns%3Ax%3D%22adobe%3Ans%3Ameta%2F%22%20x%3Axmptk%3D%22Adobe%20XMP%20Core%205.3-c011%2066.145661%2C%202012%2F02%2F06-14%3A56%3A27%20%20%20%20%20%20%20%20%22%3E%20%3Crdf%3ARDF%20xmlns%3Ardf%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%22%3E%20%3Crdf%3ADescription%20rdf%3Aabout%3D%22%22%20xmlns%3Axmp%3D%22http%3A%2F%2Fns.adobe.com%2Fxap%2F1.0%2F%22%20xmlns%3AxmpMM%3D%22http%3A%2F%2Fns.adobe.com%2Fxap%2F1.0%2Fmm%2F%22%20xmlns%3AstRef%3D%22http%3A%2F%2Fns.adobe.com%2Fxap%2F1.0%2FsType%2FResourceRef%23%22%20xmp%3ACreatorTool%3D%22Adobe%20Photoshop%20CS6%20%28Macintosh%29%22%20xmpMM%3AInstanceID%3D%22xmp.iid%3AECBA5D79397D11E5BD3CFC26E00B9326%22%20xmpMM%3ADocumentID%3D%22xmp.did%3AECBA5D7A397D11E5BD3CFC26E00B9326%22%3E%20%3CxmpMM%3ADerivedFrom%20stRef%3AinstanceID%3D%22xmp.iid%3AECBA5D77397D11E5BD3CFC26E00B9326%22%20stRef%3AdocumentID%3D%22xmp.did%3AECBA5D78397D11E5BD3CFC26E00B9326%22%2F%3E%20%3C%2Frdf%3ADescription%3E%20%3C%2Frdf%3ARDF%3E%20%3C%2Fx%3Axmpmeta%3E%20%3C%3Fxpacket%20end%3D%22r%22%3F%3E%FA%15%14%02%00%00%00%15IDATx%DAb%FC%CF%80%0F01%8CJc%01%00%01%06%00A%2C%01%13n%CF%E7%B5%00%00%00%00IEND%AEB%60%82">
+            </li>
+            <li>
+                Base64 encoded image, long press -> save image<br>
+                <img height="100" width="100" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFQ0JBNUQ3OTM5N0QxMUU1QkQzQ0ZDMjZFMDBCOTMyNiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFQ0JBNUQ3QTM5N0QxMUU1QkQzQ0ZDMjZFMDBCOTMyNiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkVDQkE1RDc3Mzk3RDExRTVCRDNDRkMyNkUwMEI5MzI2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkVDQkE1RDc4Mzk3RDExRTVCRDNDRkMyNkUwMEI5MzI2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8++hUUAgAAABVJREFUeNpi/M+ADzAxjEpjAQABBgBBLAETbs/ntQAAAABJRU5ErkJggg==">
+            </li>
+            <li>
+                Normal image, long press -> save image<br>
+                <img src="http://i.imgur.com/RhiESSg.jpg" height="300">
+            </li>
+            <li>
+                Image wrapped with a link. You should be able to open both the image URL or the href in a new bubble.<br>
+                <a href="http://brave.com"><img src="http://i.imgur.com/RhiESSg.jpg" height="300"></a>
+            </li>
+        </ol>
+    </li>
+    <li>
+        <h2>Link Tests</h2>
+        <ol>
+            <li>
+                <a href="https://play.google.com/store/apps/details?id=com.chrislacy.actionlauncher.pro&hl=en" target="_blank">Action Launcher</a> (new tab)<br>
+                <a href="https://play.google.com/store/apps/details?id=com.chrislacy.actionlauncher.pro&hl=en">Action Launcher</a><br>
+                <a href="https://play.google.com/store/devices/details/Nexus_10_16GB?id=nexus_10_16gb&hl=en">Nexus 10</a><br><br><br>
 
-<p>Verify that back button works after 301 test page.</p>
-<p><a href="https://jigsaw.w3.org/HTTP/300/">301 redirect test page</a></p>
+                <a href="mailto:webmaster@example.com">Email test</a><br>
+                <a href="tel:5551234567">Call (555)123-4567</a><br>
+                <a href="callto:5551234567">Call (555)123-4567 [SKYPE]</a><br>
+                <a href="im:username@gtalk.com">IM</a> (unsupported)<br>
+                <a href="javascript:window.open('http://www.linkbubble.com');">JavaScript URL</a><br>
+            </li>
+        </ol>
+    </li>
+    <li>
+        <h2>Map Test</h2>
+        <ol>
+            <li>
+                Should Render:
+                <div id="map-canvas" width="500" height="281"></div>
+            </li>
+        </ol>
+    </li>
+</ol>
 
-<form action="">
-<select name="cars">
-<option value="volvo">Volvo</option>
-<option value="saab">Saab</option>
-<option value="fiat">Fiat</option>
-<option value="audi">Audi</option>
-</select>
-<br><br>
-</form>
-
-file picker: <input type="file"><br>
-png file picker: <input type="file" name="pic" accept=".png"><br>
-Image file picker: <input type="file" name="pic" accept="image/*"><br>
-<br><br>
-
-<div id="async-selects"></div>
-<a href="#" id="add-select">+ Add Async Select Control</a>
-<br><br>
-
-<form>
-<input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
-<input type="checkbox" name="vehicle" value="Car">I have a car 
-</form><br><br>
-
-Username: <input type="text" name="user">
-<br><br>
-
-<form>
-<input type="radio" name="sex" value="male">Male<br>
-<input type="radio" name="sex" value="female">Female
-</form><br><br>
-
-<a href="https://play.google.com/store/apps/details?id=com.chrislacy.actionlauncher.pro&hl=en">Action Launcher</a><br>
-<a href="https://play.google.com/store/apps/details?id=com.chrislacy.actionlauncher.pro&hl=en" target="_blank">Action Launcher</a> (new tab)<br>
-<a href="https://play.google.com/store/devices/details/Nexus_10_16GB?id=nexus_10_16gb&hl=en">Nexus 10</a><br><br><br>
-
-<a href="mailto:webmaster@example.com">Email test</a><br>
-<a href="tel:5551234567">Call (555)123-4567</a><br>
-<a href="callto:5551234567">Call (555)123-4567 [SKYPE]</a><br>
-<a href="im:username@gtalk.com">IM</a> (unsupported)<br>
-<a href="javascript:window.open('http://www.linkbubble.com');">JavaScript URL</a><br>
-<br><br>
-
-<p>Percent encoded image, long press -> save image</p>
-<img height="100" width="100" src="data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%0A%00%00%00%0A%08%02%00%00%00%02PX%EA%00%00%00%19tEXtSoftware%00Adobe%20ImageReadyq%C9e%3C%00%00%03%24iTXtXML%3Acom.adobe.xmp%00%00%00%00%00%3C%3Fxpacket%20begin%3D%22%EF%BB%BF%22%20id%3D%22W5M0MpCehiHzreSzNTczkc9d%22%3F%3E%20%3Cx%3Axmpmeta%20xmlns%3Ax%3D%22adobe%3Ans%3Ameta%2F%22%20x%3Axmptk%3D%22Adobe%20XMP%20Core%205.3-c011%2066.145661%2C%202012%2F02%2F06-14%3A56%3A27%20%20%20%20%20%20%20%20%22%3E%20%3Crdf%3ARDF%20xmlns%3Ardf%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%22%3E%20%3Crdf%3ADescription%20rdf%3Aabout%3D%22%22%20xmlns%3Axmp%3D%22http%3A%2F%2Fns.adobe.com%2Fxap%2F1.0%2F%22%20xmlns%3AxmpMM%3D%22http%3A%2F%2Fns.adobe.com%2Fxap%2F1.0%2Fmm%2F%22%20xmlns%3AstRef%3D%22http%3A%2F%2Fns.adobe.com%2Fxap%2F1.0%2FsType%2FResourceRef%23%22%20xmp%3ACreatorTool%3D%22Adobe%20Photoshop%20CS6%20%28Macintosh%29%22%20xmpMM%3AInstanceID%3D%22xmp.iid%3AECBA5D79397D11E5BD3CFC26E00B9326%22%20xmpMM%3ADocumentID%3D%22xmp.did%3AECBA5D7A397D11E5BD3CFC26E00B9326%22%3E%20%3CxmpMM%3ADerivedFrom%20stRef%3AinstanceID%3D%22xmp.iid%3AECBA5D77397D11E5BD3CFC26E00B9326%22%20stRef%3AdocumentID%3D%22xmp.did%3AECBA5D78397D11E5BD3CFC26E00B9326%22%2F%3E%20%3C%2Frdf%3ADescription%3E%20%3C%2Frdf%3ARDF%3E%20%3C%2Fx%3Axmpmeta%3E%20%3C%3Fxpacket%20end%3D%22r%22%3F%3E%FA%15%14%02%00%00%00%15IDATx%DAb%FC%CF%80%0F01%8CJc%01%00%01%06%00A%2C%01%13n%CF%E7%B5%00%00%00%00IEND%AEB%60%82">
-
-<p>Base64 encoded image, long press -> save image</p>
-<img height="100" width="100" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFQ0JBNUQ3OTM5N0QxMUU1QkQzQ0ZDMjZFMDBCOTMyNiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFQ0JBNUQ3QTM5N0QxMUU1QkQzQ0ZDMjZFMDBCOTMyNiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkVDQkE1RDc3Mzk3RDExRTVCRDNDRkMyNkUwMEI5MzI2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkVDQkE1RDc4Mzk3RDExRTVCRDNDRkMyNkUwMEI5MzI2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8++hUUAgAAABVJREFUeNpi/M+ADzAxjEpjAQABBgBBLAETbs/ntQAAAABJRU5ErkJggg==">
-
-
-<p>Normal image, long press -> save image</p>
-<img src="http://i.imgur.com/RhiESSg.jpg" height="300">
-
-<p>Image wrapped with a link. You should be able to open both the image URL or the href in a new bubble.</p>
-<a href="http://brave.com"><img src="http://i.imgur.com/RhiESSg.jpg" height="300"></a>
-
+<!--
 <iframe src="https://player.vimeo.com/video/91688685" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="https://vimeo.com/91688685">Fireside Chat: Android Design</a> from <a href="https://vimeo.com/accel">Accel Partners</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-
-<br><br><br>
-
-<div id="map-canvas" width="500" height="281"></div>
-
+-->
   </body>
 </html>
