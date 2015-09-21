@@ -4,8 +4,8 @@
     <string name="download_activity_label">Téléchargeur</string>
     <string name="send_intent_label">Ouvrir avec Link Bubble</string>
     <string name="notification_summary">Appuyez pour masquer toutes les bulles ouvertes</string>
-    
-    
+    <!-- untranslated string: notification_default_summary -->
+    <!-- untranslated string: notification_unhide_summary -->
     <string name="notification_action_close_all">Tout fermer</string>
     <string name="notification_action_hide">Cacher</string>
     <string name="share_picker_label">Choix de l\'outil de partage</string>
@@ -15,7 +15,7 @@
     <string name="cancel">Annuler</string>
 
     <string name="action_ok">OK</string>
-    
+    <!-- untranslated string: action_open -->
     <string name="action_remove">Retirer</string>
     <string name="action_cancel">Annuler</string>
     <string name="action_clear_data">Effacer les données</string>
@@ -24,10 +24,10 @@
     <string name="action_help">Aide</string>
     <string name="action_reload_page">Recharger</string>
     <string name="action_open_in_browser">Ouvrir dans %1$s</string>
-    
+    <!-- untranslated string: action_request_desktop_site -->
     <string name="action_open_in_new_bubble">Ouvrir dans une nouvelle bulle</string>
     <string name="action_copy_to_clipboard">Copier le lien</string>
-    
+    <!-- untranslated string: action_save_image -->
     <string name="action_share">Partager</string>
     <string name="action_close_all">Tout fermer</string>
     <string name="action_close_tab">Fermer la bulle</string>
@@ -38,28 +38,28 @@
     <string name="share_via">Partager via…</string>
     <string name="not_set">Non défini</string>
 
-    
-    
-    
+    <!-- untranslated string: error_saving_image -->
+    <!-- untranslated string: image_saved -->
+    <!-- untranslated string: notice_download_started -->
 
-    
-    
+    <!-- untranslated string: warning -->
+    <!-- untranslated string: untrusted_certificate -->
 
     <string name="share_invalid_data">Link Bubble ne peut pas partager cet élément car ce n\'est pas une URL valide.</string>
     <string name="consume_activity_not_found">Impossible de trouver l\'application. Veuillez changer l\'action de la bulle dans les paramètres.</string>
-    
+    <!-- untranslated string: consume_activity_security_exception -->
 
     <string name="upgrade">Mettre à niveau</string>
-    
-    
+    <!-- untranslated string: upgrade_theme -->
+    <!-- untranslated string: upgrade_theme_toolbar -->
 
-    
-    
+    <!-- untranslated string: undo_close_tab_title -->
+    <!-- untranslated string: undo_close_tab_no_title -->
 
     <string name="pick_default_app">Sélectionnez l\'application par défaut</string>
     <string name="default_browser_set">Link Bubble a été définie comme navigateur par défaut.</string>
-    
-    
+    <!-- untranslated string: invalid_send_action -->
+    <!-- untranslated string: unable_to_launch_app -->
     <string name="clear_history">Nettoyer l\'historique</string>
 
     <string name="preference_category_general">Général</string>
@@ -72,7 +72,7 @@
 
     <string name="preference_left_consume_bubble_title">Bulle de gauche</string>
     <string name="preference_right_consume_bubble_title">Bulle de droite</string>
-    
+    <!-- untranslated string: preference_double_tap_title -->
     <string name="preference_configure_bubble_title">Configurer la bulle</string>
     <string name="preference_category_debug">Débogage</string>
     <string name="preference_default_browser">Navigateur de repli par défaut</string>
@@ -80,36 +80,36 @@
     <string name="preference_category_fallback_browser">Navigateur de repli par défaut</string>
     <string name="preference_category_other_apps">Autres applications</string>
     <string name="preference_default_apps_title">Applications par défaut</string>
-    
+    <!-- untranslated string: preference_default_apps_summary -->
     <string name="preference_default_apps_notice_summary">Utilisé lorsqu\'une ou plusieurs applications hors navigateurs peuvent traiter une URL.\n\n
 Appuyez dessus pour en retirer une.</string>
     <string name="preference_default_apps_notice_no_defaults_summary">Utilisé lorsqu\'une ou plusieurs applications hors navigateurs peuvent traiter une URL, vous pouvez configurer l\'application chargeant ces liens par défaut.\n\nL\'application par défaut à utiliser dans ce cas est configurée lorsque vous chargez des liens avec Link Bubble.</string>
     <string name="preference_google_account_redirect_title">Redirection compte Google</string>
     <string name="preference_google_account_redirect_summary">Rediriger les liens accounts.google.com vers le navigateur par défaut.</string>
     <string name="preference_set_default_browser_title">Définir comme navigateur par défaut</string>
-    
+    <!-- untranslated string: preference_set_default_browser_summary -->
     <string name="preference_more">Plus…</string>
     <string name="preference_intercept_links_from_title">Intercepter les liens depuis</string>
-    
+    <!-- untranslated string: preference_intercept_links_from_disabled_for_L -->
     <string name="preference_scan_for_youtube_embeds_title">Vérifier les incrustations YouTube</string>
     <string name="preference_scan_for_youtube_embeds_summary">Afficher le raccourci pour charger les vidéos intégrées dans l\'application Youtube.</string>
-    
+    <!-- untranslated string: preference_webview_battery_save_title -->
     <string name="preference_webview_battery_save_aggressive_title">Aggressif</string>
-    
+    <!-- untranslated string: preference_webview_battery_save_aggressive_summary -->
     <string name="preference_webview_battery_save_default_title">Par défaut</string>
-    
+    <!-- untranslated string: preference_webview_battery_save_default_summary -->
     <string name="preference_webview_battery_save_off_title">Off</string>
-    
+    <!-- untranslated string: preference_webview_battery_save_off_summary -->
     <string name="preference_theme_title">Thème</string>
     <string name="preference_theme_light_color">Clair + icônes colorées</string>
     <string name="preference_theme_light_no_color">Clair + couleurs neutres</string>
     <string name="preference_theme_dark_color">Sombre + icônes colorées</string>
     <string name="preference_theme_dark_no_color">Sombre + couleurs neutres</string>
-    
-    
+    <!-- untranslated string: preference_theme_toolbar_title -->
+    <!-- untranslated string: preference_theme_toolbar_summary -->
     <string name="preference_article_mode_title">Mode lecture</string>
-    
-    
+    <!-- untranslated string: preference_reading_mode_on_wear_title -->
+    <!-- untranslated string: preference_article_mode_summary -->
     <string name="preference_webview_text_zoom_title">Zoom du texte</string>
     <string name="preference_webview_text_zoom_note">À noter : Les bulles actuelles vont être rechargées avec le nouveau zoom choisir après avoir appuyé sur « OK ».</string>
     <string name="preference_webview_text_zoom_reloading_current">Nouveau zoom de texte appliqué. Rechargement des bulles…</string>
@@ -122,7 +122,7 @@ Appuyez dessus pour en retirer une.</string>
     <string name="preference_clear_passwords">Mot de passe</string>
     <string name="preference_incognito_title">Mode incognito</string>
     <string name="preference_incognito_summary">Empêcher le stockage de l\'historique et des cookies</string>
-    
+    <!-- untranslated string: incognito_mode_changed_reloading_current -->
     <string name="preference_user_agent_title">User Agent</string>
     <string-array name="preference_user_agent_options">
         <item>Par défaut</item>
@@ -131,13 +131,13 @@ Appuyez dessus pour en retirer une.</string>
         <item>Chrome Bureau</item>
     </string-array>
 
-    
-    
-    
+    <!-- untranslated string: preference_domains_title -->
+    <!-- untranslated string: preference_domains_summary -->
+    <!-- untranslated string: preference_redirects_title -->
     <string name="preference_add_domain_title">Ajouter un domaine</string>
-    
-    
-    
+    <!-- untranslated string: add_domain_hint -->
+    <!-- untranslated string: add_domain_detail -->
+    <!-- untranslated string: add_domain_error -->
 
     <string name="preference_help_title">Aide</string>
     <string name="preference_show_welcome_message_title">Afficher la page de bienvenue</string>
@@ -150,20 +150,20 @@ Appuyez dessus pour en retirer une.</string>
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">Dernières nouveautés</string>
     <string name="preference_more_title">Plus&#8230;</string>
-    
+    <!-- untranslated string: preference_show_undo_close_tab_title -->
 
-    
-    
+    <!-- untranslated string: preference_my_other_apps_title -->
+    <!-- untranslated string: preference_my_other_apps_summary -->
 
     <string name="remove_default_title">Retirer l\'action par défaut ?</string>
     <string name="remove_default_message">Retirer %1$s comme application par défaut pour l\'ouverture des liens %2$s ? \n\nNote: vous pourrez définir une nouvelle application par défaut la prochaine fois que vous ouvrirez un lien %2$s.</string>
-    
-    
+    <!-- untranslated string: long_press_unsupported_default_browser -->
+    <!-- untranslated string: long_press_unsupported_no_default_browser -->
     <string name="unsupported_scheme_default_browser">Type de lien actuellement non compatible. Ouvrir la page dans %1$s ?</string>
     <string name="unsupported_scheme_no_default_browser">Type de lien actuellement non compatible. Ouvrir la page dans le navigateur ?</string>
     <string name="unsupported_scheme">Type de lien actuellement non compatible.</string>
-    
-    
+    <!-- untranslated string: unsupported_drop_down_default_browser -->
+    <!-- untranslated string: unsupported_drop_down_no_default_browser -->
 
     <string name="consume_category_view">Voir lien</string>
     <string name="consume_category_share">Envoyer ou partager le lien</string>
@@ -187,8 +187,8 @@ Appuyez dessus pour en retirer une.</string>
     <string name="private_data_cleared">Données privées effacées</string>
     <string name="private_data_cleared_reloading_current">Données privées effacées. Chargement de vos bulles actuelles...</string>
     <string name="user_agent_changed_reloading_current">Le User Agent a été modifié. Chargement de vos bulles actuelles...</string>
-    
-    
+    <!-- untranslated string: theme_toolbar_reloading_current -->
+    <!-- untranslated string: article_mode_changed_reloading_current -->
     <string name="link_loaded_with_app">Chargé avec %1$s</string>
     <string name="link_redirected">Rediriger vers %1$s</string>
 
@@ -224,13 +224,13 @@ Comment pouvez-vous le faire si un clic sur le bouton Retour minimise Link Bubbl
 Link Bubble est un navigateur et les navigateurs Android ont pour standard établi le fait soit de revenir en arrière dans la chaîne des URL, soit, si une telle chaîne n\'existe pas, de fermer la page actuelle quand le bouton Retour est pressé.
 Link Bubble suit ce standard.]]></string>
     <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble n\'intercepte pas de liens!]]></string>
-    
-    
-    
+    <!-- untranslated string: faq_app_internal_browser_answer -->
+    <!-- untranslated string: faq_article_mode_question -->
+    <!-- untranslated string: faq_article_mode_answer -->
     <string name="faq_future_features_question">Allez-vous ajouter les signets, favoris, extensions etc.?</string>
     <string name="faq_future_features_answer">Ne jamais dire jamais, mais pour le moment Link Bubble est concentrée uniquement sur le fait d\'être la meilleure solution pour ouvrir et consommer des liens ouverts depuis d\'autres applications.</string>
     <string name="faq_translations_question">Puis-je aider à traduire l\'application ?</string>
-    
+    <!-- untranslated string: faq_translations_answer -->
     <string name="faq_roadmap_question">Avez-vous une feuille de route ? Puis-je voter pour les fonctionnalités à venir ?</string>
     <string name="faq_roadmap_answer">Pour des raisons de concurrence, j\'ai peur que la réponse à ces deux questions soit \'non\'.<br/><br/></string>
     <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble ne supporte que les achats via Google Play pour le moment.<br/><br/>Des méthodes additionnelles de paiement seront peut-être ajoutées dans le futur (en présumant qu\'elles ne violent pas les conditions d\'utilisation Google Play Developper Program)]]></string>
@@ -242,7 +242,7 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="faq_translucent_status_bar_question">Pourquoi l\'application ne dessine-t-elle pas par-dessus la barre de statut transparente ?</string>
     <string name="faq_translucent_status_bar_answer">Malheureusement des limitations systèmes d\'Android empêchent cela.</string>
     <string name="faq_beta_programme_question">Y a-t-il un programme bêta ? Comment puis-je le rejoindre ?</string>
-    
+    <!-- untranslated string: faq_beta_programme_answer -->
     <string name="faq_low_spec_performance_question">Pourquoi Link Bubble est-il si lent sur mon Nexus S / Galaxy S1 / Moto G ?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble est très gourmande en ressources et par conséquent les appareils disposant de specs plus basses peuvent avoir du mal à la faire tourner aussi bien que les terminaux plus puissant. De futures mises à jour vont essayer d\'améliorer les performances de Link Bubble mais il ne faut pas s\'attendre à des miracles.<br/><br/>Réponse technique: Au minimum, Link Bubble nécessite l\'utilisation d\'un Service et une WebView pour fonctionner. Il y a souvent plusieurs WebViews et de multiples Activités. Naturellement, l\'allocation de ces items (surtout les WebViews) consomme <i>beaucoup<i> de mémoire/ressources. Les appareils peu puissants disposent généralement de moins de mémoire que ce que Link Bubble nécessite et les performances seront affectées. Par exemple, le maximum d\'allocation mémoire sur le Nexus S est de 48Mb, comparé aux 192Mb sur le Nexus 5.]]></string>
     <string name="faq_crap_webview_question">Parfois les pages web n\'affichent pas correctement ou ne jouent pas les vidéos.</string>
@@ -272,10 +272,10 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="credits_credit">Concept, design et programmation</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
-        
-        
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
     </plurals>
 
     <string name="content_description_button">Bouton</string>
@@ -299,7 +299,7 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">La navigation web sur mobiles telle qu\'elle devrait l\'être.</string>
     <string name="store_listing_description_title">Link Bubble est un tout nouveau navigateur web conçu et créé dans l\'optique d\'être utilisé sur des appareils mobiles.</string>
-    
+    <!-- untranslated string: store_listing_description_features -->
     <string name="store_listing_description_location_permission">Concernant la permission de localisation : cela est requis pour les pages web demandant un accès à votre position (comme celles avec une carte intégrée). Link Bubble en lui-même n’accédera jamais à votre position.</string>
 
     <string name="welcome_page_title">Bienvenue dans Link Bubble !</string>
@@ -313,10 +313,10 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="welcome_page_more_also">Link Bubble c\'est aussi:</string>
     <string name="welcome_page_more_point_1">La redirection vers une application dédiée (par exemple Instagram).</string>
     <string name="welcome_page_more_point_2">La recherche de vidéos incrustées que vous pourrez facilement ouvrir dans l\'application YouTube.</string>
-    
+    <!-- untranslated string: welcome_page_more_point_3 -->
     <string name="welcome_page_more_point_4">Charger des liens depuis toutes les applications.</string>
     <string name="welcome_page_ps">PS: Pour fermer cette bulle, appuyez sur le bouton retour ou maintenez appuyé sur la bulle et posez la sur Fermer la bulle.</string>
 
-    
+    <!-- untranslated string: duplicate_link_will_not_be_loaded -->
 
 </resources>

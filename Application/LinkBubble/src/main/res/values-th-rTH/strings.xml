@@ -279,7 +279,7 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="credits_credit">แนวคิด, ออกแบบ และพัฒนา</string>
     <string name="credits_app_copyright">สงวนลิขสิทธิ์ 2015, Link Bubble</string>
 
-    
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">เรียกคืนแท็บจากการใช้งานที่ผ่านมา?</item>
         <item quantity="other"> เรียกคืน %d แท็บจากการใช้งานที่ผ่านมา?</item>
@@ -305,14 +305,7 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">ทางที่ใช่ในการเปิดเว็บบนมือถือ</string>
     <string name="store_listing_description_title">Link Bubble คือเบราว์เซอร์โฉมใหม่ที่ออกแบบและสร้างขึ้นมาเพื่อผู้ที่มีโทรศัพท์มือถืออยู่ในใจ</string>
-    <string name="store_listing_description_features">คุณสมบัติ:
-• เมื่อคุณเปิดลิงก์ในแอป, Link Bubble จะโหลดหน้าเว็บนั้นในพื้นหลัง ให้อิสระกับคุณใช้แอปที่เปิดอยู่ต่อ เพื่อให้คุณไม่ต้องทิ้งเวลาให้เสียเปล่าระหว่างรอโหลด และเมื่อเว็บถูกโหลดเรียบร้อยคุณก็สามารถเปิดดูได้ทันที
-• การปัดของ Link Bubble ทำให้คุณสะดวกกว่าเมื่อต้องการแบ่งปันลิงก์หรือเก็บไว้อ่านทีหลังในบริการอย่าง Pocket ในเวลาไม่กี่วินาที!
-• โหลดหลายลิงก์จากแอปที่เปิดอยู่ในเวลาเดียวกัน
-• ตรวจจับลิงก์ที่เปิดด้วยแอปอื่นได้ ไม่ต้องเปิดลิงก์ Instagram ในแอปทวิตเตอร์ แล้วสลับไปเบราว์เซอร์เต็มจอ แล้วสลับไปยัง Instagram อีกต่อไป!
-• ประสานร่วมอย่างล้ำลึกกับแอปนเครื่องของคุณ
-• ตรวจหาวิดีโอ YouTube ที่ถูกฝังไว้ในหน้าเว็บ และเพิ่มทางลัดเพื่อโหลดวิดีโอเหล่านั้นในแอป YouTube โดยตรง
-• สถิติซึ่งจะแสดงเวลาที่คุณไม่ต้องเสียไปโดยการใช้ Link Bubble</string>
+    <!-- untranslated string: store_listing_description_features -->
     <string name="store_listing_description_location_permission">อธิบายเพิ่มเติมเกี่ยวกับสิทธิ์ตรวจสอบตำแหน่ง: สิทธิ์นี้จำเป็นต้องใช้เมื่อคุณเปิดเว็บที่มีการขอใช้ตำแหน่ง (เช่นเว็บที่มีแผนที่อยู่) ตัว Link Bubble เองจะไม่เก็บตำแหน่งของคุณเด็ดขาด</string>
 
     <string name="welcome_page_title">ยินดีต้อนรับสู่ Link Bubble!</string>
@@ -326,7 +319,7 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="welcome_page_more_also">Link Bubble ยังสามารถ:</string>
     <string name="welcome_page_more_point_1">ส่งต่อลิงก์ไปยังแอปของมัน (เช่น Instagram)</string>
     <string name="welcome_page_more_point_2">ค้นหาวิดีโอที่ฝังอยู่ ทำให้คุณสามารถดูมันในแอป YouTube ได้อย่างง่ายดาย</string>
-    <string name="welcome_page_more_point_3">โหลดหน้าเว็บพร้อมกันโดยไม่มีขีดจำกัด</string>
+    <!-- untranslated string: welcome_page_more_point_3 -->
     <string name="welcome_page_more_point_4">เปิดลิงก์จากทุกแอป</string>
     <string name="welcome_page_ps">ปล. ในการปิดหน้าต่าง คุณสามารถใช้การกดปุ่มย้อนกลับ หรือกดค้างบนไอคอนหน้าต่าง แล้วโยนมันไปยังปุ่มปิด</string>
 

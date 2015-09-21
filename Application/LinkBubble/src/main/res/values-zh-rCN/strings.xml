@@ -15,7 +15,7 @@
     <string name="cancel">取消</string>
 
     <string name="action_ok">确定</string>
-    
+    <!-- untranslated string: action_open -->
     <string name="action_remove">删除</string>
     <string name="action_cancel">取消</string>
     <string name="action_clear_data">清除数据</string>
@@ -24,10 +24,10 @@
     <string name="action_help">帮助</string>
     <string name="action_reload_page">重新载入</string>
     <string name="action_open_in_browser">在 %1$s 中打开</string>
-    
+    <!-- untranslated string: action_request_desktop_site -->
     <string name="action_open_in_new_bubble">在新的泡泡中打开</string>
     <string name="action_copy_to_clipboard">复制链接</string>
-    
+    <!-- untranslated string: action_save_image -->
     <string name="action_share">分享</string>
     <string name="action_close_all">全部关闭</string>
     <string name="action_close_tab">关闭泡泡</string>
@@ -38,9 +38,9 @@
     <string name="share_via">分享页面，通过</string>
     <string name="not_set">尚未设置</string>
 
-    
-    
-    
+    <!-- untranslated string: error_saving_image -->
+    <!-- untranslated string: image_saved -->
+    <!-- untranslated string: notice_download_started -->
 
     <string name="warning">警告！</string>
     <string name="untrusted_certificate">%1$s 的证书不被信任。确定仍然继续吗？</string>
@@ -107,7 +107,7 @@ accounts.google.com 链接</string>
     <string name="preference_theme_dark_no_color">暗底+中性色边框</string>
     <string name="preference_theme_toolbar_title">色彩工具栏</string>
     <string name="preference_theme_toolbar_summary">匹配网站的主题色与图标高亮色</string>
-    
+    <!-- untranslated string: preference_article_mode_title -->
     <string name="preference_reading_mode_on_wear_title">智能手表阅读模式</string>
     <string name="preference_article_mode_summary">通过操作栏按钮切换</string>
     <string name="preference_webview_text_zoom_title">文字缩放</string>
@@ -232,7 +232,7 @@ Link Bubble 亦遵循该标准。]]></string>
 <br/><br/>请注意：像 Chrome 这类的浏览器都会在程式中写死，只能使用它自身来载入网页，故 Link Bubble 无法读取在其他浏览器中点击的连结。
 ]]></string>
     <string name="faq_article_mode_question">我该如何使用阅读模式？为什么许多链接无法使用阅读模式？</string>
-    
+    <!-- untranslated string: faq_article_mode_answer -->
     <string name="faq_future_features_question">你会加入书签、收藏、扩展等功能吗？</string>
     <string name="faq_future_features_answer">不确定，但是目前 Link Bubble 只是专注于将载入和处理应用内链接做到最好。</string>
     <string name="faq_translations_question">我能帮助翻译本应用吗？</string>
@@ -282,7 +282,7 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="credits_credit">概念、设计及开发</string>
     <string name="credits_app_copyright">Link Bubble 版权所有</string>
 
-    
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">从之前的会话中恢复泡泡？</item>
         <item quantity="other">从之前的会话中恢复 %d 个泡泡？</item>
@@ -308,7 +308,7 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">移动浏览已正确加载。</string>
     <string name="store_listing_description_title">Link Bubble 是一个独具匠心、潜心制作的用于移动设备的浏览器。</string>
-    
+    <!-- untranslated string: store_listing_description_features -->
     <string name="store_listing_description_location_permission">关于位置权限：您可能个要授予一个网站获取您位置的权限（例如嵌入地图的网页），本权限在此时需要。Link Bubble 本身不会获取您的位置。</string>
 
     <string name="welcome_page_title">欢迎使用 Link Bubble！</string>
@@ -322,7 +322,7 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="welcome_page_more_also">Link Bubble 也可以：</string>
     <string name="welcome_page_more_point_1">重定向链接到特定应用（例如 Instagram）</string>
     <string name="welcome_page_more_point_2">查找页面内嵌入式视频并在 YouTube 应用中加载。</string>
-    
+    <!-- untranslated string: welcome_page_more_point_3 -->
     <string name="welcome_page_more_point_4">从所有应用中加载链接</string>
     <string name="welcome_page_ps">注：若要关闭本泡泡，请按返回键或长按泡泡并拖动到屏幕底部的关闭泡泡中。</string>
 

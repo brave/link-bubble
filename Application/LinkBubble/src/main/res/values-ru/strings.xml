@@ -289,7 +289,7 @@ Link Bubble.]]></string>
     <string name="credits_credit">Концепт, дизайн и программирование </string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Восстановить пузырь из предыдущей сессии?</item>
         <item quantity="other">Восстановить %d пузырей из предыдущей сессии?</item>

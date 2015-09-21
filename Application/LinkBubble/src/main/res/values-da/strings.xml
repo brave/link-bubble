@@ -15,7 +15,7 @@
     <string name="cancel">Fortryd</string>
 
     <string name="action_ok">OK</string>
-    
+    <!-- untranslated string: action_open -->
     <string name="action_remove">Fjern</string>
     <string name="action_cancel">Fortryd</string>
     <string name="action_clear_data">Ryd data</string>
@@ -24,34 +24,34 @@
     <string name="action_help">Hjælp</string>
     <string name="action_reload_page">Genindlæs</string>
     <string name="action_open_in_browser">Åbn i %1$s</string>
-    
+    <!-- untranslated string: action_request_desktop_site -->
     <string name="action_open_in_new_bubble">Åbn i ny boble</string>
     <string name="action_copy_to_clipboard">Kopiér link</string>
-    
+    <!-- untranslated string: action_save_image -->
     <string name="action_share">Del</string>
     <string name="action_close_all">Luk alle</string>
     <string name="action_close_tab">Luk boble</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Fortryd</string>
-    
-    
+    <!-- untranslated string: action_add -->
+    <!-- untranslated string: action_no_recommended -->
     <string name="share_via">Del via...</string>
     <string name="not_set">Ikke indstillet</string>
 
-    
-    
-    
+    <!-- untranslated string: error_saving_image -->
+    <!-- untranslated string: image_saved -->
+    <!-- untranslated string: notice_download_started -->
 
-    
-    
+    <!-- untranslated string: warning -->
+    <!-- untranslated string: untrusted_certificate -->
 
     <string name="share_invalid_data">Link Bubble er ikke i stand til at dele dette, da det ikke er en gyldig URL.</string>
     <string name="consume_activity_not_found">Kan ikke finde applikationen. Overvej at ændre boble handling via indstillinger.</string>
-    
+    <!-- untranslated string: consume_activity_security_exception -->
 
     <string name="upgrade">Opgrader</string>
     <string name="upgrade_theme">Ønsker du at bruge et andet tema?</string>
-    
+    <!-- untranslated string: upgrade_theme_toolbar -->
 
     <string name="undo_close_tab_title">Lukkede %1$s</string>
     <string name="undo_close_tab_no_title">Lukkede fane</string>
@@ -64,7 +64,7 @@
 
     <string name="preference_category_general">Generelt</string>
     <string name="preference_category_configuration">App konfiguration</string>
-    
+    <!-- untranslated string: preference_category_configuration2 -->
     <string name="preference_category_browser">Browser</string>
     <string name="preference_enabled_title">Aktiveret</string>
     <string name="preference_auto_content_display_link_loaded_title">Udvid automatisk</string>
@@ -88,10 +88,10 @@ du kan konfigurere standard appen til at indlæse sådanne links med.\n\nDen sta
     <string name="preference_google_account_redirect_title">Google Konti omdirigering</string>
     <string name="preference_google_account_redirect_summary">Omdiriger accounts.google.com links til sekundær browser</string>
     <string name="preference_set_default_browser_title">Vælg standard system browser</string>
-    
+    <!-- untranslated string: preference_set_default_browser_summary -->
     <string name="preference_more">Mere...</string>
     <string name="preference_intercept_links_from_title">Opfang links fra</string>
-    
+    <!-- untranslated string: preference_intercept_links_from_disabled_for_L -->
     <string name="preference_scan_for_youtube_embeds_title">Check for YouTube videoer</string>
     <string name="preference_scan_for_youtube_embeds_summary">Vis genvej til at indlæse video(r) på YouTube appen.</string>
     <string name="preference_webview_battery_save_title">Strømbesparingstilstand (Beta)</string>
@@ -106,9 +106,9 @@ du kan konfigurere standard appen til at indlæse sådanne links med.\n\nDen sta
     <string name="preference_theme_light_no_color">Lys + neutral farve</string>
     <string name="preference_theme_dark_color">Mørk + ikon farve</string>
     <string name="preference_theme_dark_no_color">Mørk + neutral farve</string>
-    
-    
-    
+    <!-- untranslated string: preference_theme_toolbar_title -->
+    <!-- untranslated string: preference_theme_toolbar_summary -->
+    <!-- untranslated string: preference_article_mode_title -->
     <string name="preference_reading_mode_on_wear_title">Læse Tilstand på Wear</string>
     <string name="preference_article_mode_summary">Slås til via knap på action bar</string>
     <string name="preference_webview_text_zoom_title">Tekst zoom</string>
@@ -132,13 +132,13 @@ du kan konfigurere standard appen til at indlæse sådanne links med.\n\nDen sta
         <item>Chrome Computerversion</item>
     </string-array>
 
-    
-    
-    
-    
-    
-    
-    
+    <!-- untranslated string: preference_domains_title -->
+    <!-- untranslated string: preference_domains_summary -->
+    <!-- untranslated string: preference_redirects_title -->
+    <!-- untranslated string: preference_add_domain_title -->
+    <!-- untranslated string: add_domain_hint -->
+    <!-- untranslated string: add_domain_detail -->
+    <!-- untranslated string: add_domain_error -->
 
     <string name="preference_help_title">Hjælp</string>
     <string name="preference_show_welcome_message_title">Vis velkomst side</string>
@@ -153,19 +153,19 @@ du kan konfigurere standard appen til at indlæse sådanne links med.\n\nDen sta
     <string name="preference_more_title">Mere&#8230;</string>
     <string name="preference_show_undo_close_tab_title">Fortryd luk fane prompt</string>
 
-    
-    
+    <!-- untranslated string: preference_my_other_apps_title -->
+    <!-- untranslated string: preference_my_other_apps_summary -->
 
     <string name="remove_default_title">Fjern standard?</string>
     <string name="remove_default_message">Fjern %1$s som standard app til at indlæse %2$s links med?\n\nBemærk: Du kan vælge en ny standard app, næste 
 gang du indlæser et %2$s link.</string>
-    
-    
+    <!-- untranslated string: long_press_unsupported_default_browser -->
+    <!-- untranslated string: long_press_unsupported_no_default_browser -->
     <string name="unsupported_scheme_default_browser">Link typen understøttes ikke i øjeblikket. Åbn webside i %1$s?</string>
     <string name="unsupported_scheme_no_default_browser">Link typen understøttes ikke i øjeblikket. Åbn linket i en browser.</string>
     <string name="unsupported_scheme">Link typen understøttes ikke i øjeblikket.</string>
-    
-    
+    <!-- untranslated string: unsupported_drop_down_default_browser -->
+    <!-- untranslated string: unsupported_drop_down_no_default_browser -->
 
     <string name="consume_category_view">Vis link</string>
     <string name="consume_category_share">Send/del link</string>
@@ -189,7 +189,7 @@ gang du indlæser et %2$s link.</string>
     <string name="private_data_cleared">Private data ryddet</string>
     <string name="private_data_cleared_reloading_current">Private data ryddet. Genindlæser nuværende bobler...</string>
     <string name="user_agent_changed_reloading_current">Bruger Agent ændret. Genindlæser nuværende bobler...</string>
-    
+    <!-- untranslated string: theme_toolbar_reloading_current -->
     <string name="article_mode_changed_reloading_current">Læse Tilstand indstilling ændret. Genindlæser nuværende bobler ...</string>
     <string name="link_loaded_with_app">Indlæst med %1$s</string>
     <string name="link_redirected">Omdirigeret til %1$s</string>
@@ -238,12 +238,12 @@ aktiver \"Ekstern browser\" eller fravælg \"Integreret browser\" eller lignende
 at indlæse links fra andre browser apps.
 ]]></string>
     <string name="faq_article_mode_question">Hvordan bruger jeg Læse TIlstand? Hvorfor nogle links ikke virker?</string>
-    
+    <!-- untranslated string: faq_article_mode_answer -->
     <string name="faq_future_features_question">Vil du tilføje understøttelse af bogmærker, favoritter, udvidelser mv.?</string>
     <string name="faq_future_features_answer">Aldrig sige aldrig, men for nu er Link Bubble fokuseret udelukkende på, at være den bedst mulige måde for at indlæse 
 links fra andre apps.</string>
     <string name="faq_translations_question">Kan jeg hjælpe med at oversætte appen?</string>
-    
+    <!-- untranslated string: faq_translations_answer -->
     <string name="faq_roadmap_question">Har du en køreplan for kommende funktioner? Kan jeg komme med foreslag til kommende funktioner?</string>
     <string name="faq_roadmap_answer">Af konkurrencemæssige årsager er svaret på begge spørgsmål \'nej\' desværre.<br/><br/></string>
     <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble understøtter kun køb via Google Play på dette tidspunkt.<br/><br/>Yderligere 
@@ -258,7 +258,7 @@ Kopier funktionen virker, når du bruger Android\'s WebView fra en aktivitet, me
     <string name="faq_translucent_status_bar_question">Hvorfor går appen ikke ind over den gennemsigtige status linie?</string>
     <string name="faq_translucent_status_bar_answer">Desværre forhindrer Android systembegrænsninger dette.</string>
     <string name="faq_beta_programme_question">Er der et beta program? Hvordan kan jeg deltage?</string>
-    
+    <!-- untranslated string: faq_beta_programme_answer -->
     <string name="faq_low_spec_performance_question">Hvorfor kører Link Bubble langsomt på min Nexus S / Galaxy S1 / Moto G - type enhed?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble er en meget ressourcekrævende app, og dermed vil enheder med lavere specs kæmpe for at køre den app flydende. Fremtidige opdateringer vil sigte mod at forbedre Link Bubble\'s ydeevne, men realistisk set, er der ikke så meget der kan gøres her.<br/><br/>Teknisk svar: På et absolut minimum, kræver Link Bubble brugen af ​​en Service og en WebView for at fungere. Ofte er flere WebViews og flere Aktiviteter også til stede. Naturligvis forbruger disse poster (især WebViews) en <i>masse</i> hukommelse/ressourcer. Lavere spec enheder har generelt mindre hukommelse til rådighed end Link Bubble kræver, og det går derved ud over ydeevnen. Som et eksempel er max heap størrelsen på en Nexus S 48MB, og 192MB på Nexus 5.]]></string>
     <string name="faq_crap_webview_question">Nogen gange vises websider ikke korrekt eller videoer vil ikke afspille.</string>
@@ -285,11 +285,11 @@ Alternativ web renderings metoder, såsom FireFox\'s GeckoView og Chromium vil s
     <string name="activity_resolver_use_once">Kun én gang</string>
 
     <string name="credits_title">Link Bubble Credits</string>
-    
+    <!-- untranslated string: credits_name -->
     <string name="credits_credit">Koncept, design og programmering</string>
-    
+    <!-- untranslated string: credits_app_copyright -->
 
-    
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Gendan fanen fra tidligere session?</item>
         <item quantity="other">Gendan %d faner fra tidligere session?</item>
@@ -316,7 +316,7 @@ Alternativ web renderings metoder, såsom FireFox\'s GeckoView og Chromium vil s
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Mobil browsing gjort på den rigtige måde.</string>
     <string name="store_listing_description_title">Link Bubble er en helt ny browser fremstillet og designet udelukkende med mobile enheder i tankerne.</string>
-    
+    <!-- untranslated string: store_listing_description_features -->
     <string name="store_listing_description_location_permission">Om placerings tilladelse: Dette er nødvendigt for, at du kan give tilladelse til en hjemmeside, for at få adgang til din placering (såsom dem med et indbygget kort). Link Bubble får aldrig selv adgang til din placering.</string>
 
     <string name="welcome_page_title">Velkommen til Link Bubble!</string>
@@ -330,7 +330,7 @@ Alternativ web renderings metoder, såsom FireFox\'s GeckoView og Chromium vil s
     <string name="welcome_page_more_also">Link Bubble kan også:</string>
     <string name="welcome_page_more_point_1">Omdirigerer links til en dedikeret app (f.eks. Instagram).</string>
     <string name="welcome_page_more_point_2">Finder indlejrede videoer, så du nemt kan indlæse dem i YouTube appen.</string>
-    
+    <!-- untranslated string: welcome_page_more_point_3 -->
     <string name="welcome_page_more_point_4">Load links fra alle apps.</string>
     <string name="welcome_page_ps">PS. For at lukke denne boble, tryk enten på knappen Tilbage eller lav et langt tryk på boblen og træk den hen på Luk boble.</string>
 

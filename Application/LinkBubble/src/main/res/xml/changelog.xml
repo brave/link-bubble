@@ -2,12 +2,12 @@
 <changelog>
 
     <release version="1.6.2">
-        <change></change>
+        <change>BUG FIX: Fix for missing translations as per our last release.</change>
     </release>
 
     <release version="1.6.1">
         <change>NEW: Long pressing on image links now gives you the option of opening the image or the link address in a new bubble.</change>
-        <change>FIX: Back button handling has been refactored to fix a few cases where pressing the back button would close the bubble.</change>
+        <change>BUG FIX: Back button handling has been refactored to fix a few cases where pressing the back button would close the bubble.</change>
     </release>
 
     <release version="1.6.0">

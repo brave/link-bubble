@@ -279,7 +279,7 @@ Uwaga: Wczytywanie treści ze strony jest niedokładnym procesem, który może n
     <string name="credits_credit">Pomysł, projekt, programowanie</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Przywrócić zakładkę z poprzedniej sesji?</item>
         <item quantity="other">Przywrócić zakładki (%d) z poprzedniej sesji?</item>
