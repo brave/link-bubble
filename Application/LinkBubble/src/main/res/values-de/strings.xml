@@ -301,7 +301,7 @@ aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend 
     <string name="credits_credit">Konzept, Design und Programmierung</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Tab aus vorheriger Sitzung wiederherstellen?</item>
         <item quantity="other">%d Tabs aus der vorherigen Sitzung wiederherstellen?</item>
@@ -328,15 +328,7 @@ aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend 
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Mobiles Browsen auf die richtige Art.</string>
     <string name="store_listing_description_title">Link Bubble ist ein komplett neuer Browser, der einzig und allein für mobile Geräte entwickelt und designet wurde.</string>
-    <string name="store_listing_description_features">Merkmale sind:
-• Wenn du in einer App auf einen Link klickst, wird dieser von Link Bubble im Hintergrund geladen, was dir ermöglicht, deine momentane Anwendung weiter zu benutzen, statt deine Zeit damit zu verschwenden, dass du warten musst, bis
-die Seite geladen ist. Sobald die Seite fertig geladen ist, wird es auf dem Bildschirm angezeigt.
-• Link Bubble\'s \"Schnipps-Physik\" erlaubt es dir einen Link in nur etwas mehr als einer Sekunde anzuklicken und ihn zu einem Service, wie zu Beispiel Pocket, hinzuzufügen!
-• Lade mehrere Links von deiner momentanen Anwendung auf einmal (erfordert Pro).
-• Umgehe auf elegante Weise Links, die dich zu anderen Apps weiterleiten. Verhindere, dass ein Link in Twitter dich zuerst zu einem Browser im Vollbildmodus führt und erst danach Instagram geladen wird! 
-• Tiefe Integration mit den Apps auf deinem System.
-• Findet eingebettete YouTube Videos auf Webseiten und bietet eine Abkürzung, um diese direkt in der YouTube App zu starten.
-• Nützliche Statistiken, die veranschaulichen, wie viel Zeit du dadurch eingespart hast, dass du Link Bubble verwendest.</string>
+    <!-- untranslated string: store_listing_description_features -->
     <string name="store_listing_description_location_permission">Bezüglich der Standort-Berechtigung: Das ist erforderlich, damit du einer Webseite erlauben kannst, deinen Standort zu benutzen (wie etwa bei einer eingebundenen Karte). Link Bubble selbst wird niemals auf deinen Standort zugreifen.</string>
 
     <string name="welcome_page_title">Willkommen bei Link Bubble!</string>
@@ -350,7 +342,7 @@ die Seite geladen ist. Sobald die Seite fertig geladen ist, wird es auf dem Bild
     <string name="welcome_page_more_also">Link Bubble auch:</string>
     <string name="welcome_page_more_point_1">Leitet Links zu einer festgelegten App (z. B. Instagram) weiter.</string>
     <string name="welcome_page_more_point_2">Erkennt eingebettete Videos, so dass du sie einfach in der YouTube-App laden kannst.</string>
-    <string name="welcome_page_more_point_3">Mehrere Bubbles auf einmal laden.</string>
+    <!-- untranslated string: welcome_page_more_point_3 -->
     <string name="welcome_page_more_point_4">Lade Links von allen Apps.</string>
     <string name="welcome_page_ps">PS: Um diese Bubble zu schließen, drücke entweder die Zurück-Schaltfläche oder halte die Bubble gedrückt und verschiebe sie auf die "Schließen"-Bubble.</string>
 

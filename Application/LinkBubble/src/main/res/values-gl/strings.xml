@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    
-    <string name="send_intent_label">Abrir con Link Bubble</string>
-    <string name="notification_summary">Toca para agochar todas as burbullas abertas</string>
-    
-    
-    
-    <string name="notification_action_hide">Agochar</string>
-    
+    <!-- untranslated string: download_activity_label -->
+    <!-- untranslated string: send_intent_label -->
+    <!-- untranslated string: notification_summary -->
+    <!-- untranslated string: notification_default_summary -->
+    <!-- untranslated string: notification_unhide_summary -->
+    <!-- untranslated string: notification_action_close_all -->
+    <!-- untranslated string: notification_action_hide -->
+    <!-- untranslated string: share_picker_label -->
 
     <string name="yes">Si</string>
     <string name="no">Non</string>
@@ -18,20 +18,20 @@
     <string name="action_open">Abrir</string>
     <string name="action_remove">Eliminar</string>
     <string name="action_cancel">Cancelar</string>
-    <string name="action_clear_data">Limpar datos</string>
-    
+    <!-- untranslated string: action_clear_data -->
+    <!-- untranslated string: action_use_default -->
     <string name="action_settings">Axustes</string>
     <string name="action_help">Axuda</string>
-    <string name="action_reload_page">Volver cargar</string>
-    
-    
-    <string name="action_open_in_new_bubble">Abrir nunha nova burbulla</string>
+    <!-- untranslated string: action_reload_page -->
+    <!-- untranslated string: action_open_in_browser -->
+    <!-- untranslated string: action_request_desktop_site -->
+    <!-- untranslated string: action_open_in_new_bubble -->
     <string name="action_copy_to_clipboard">Copiar ligazón</string>
     <string name="action_save_image">Gardar imaxe</string>
     <string name="action_share">Compartir</string>
-    
-    <string name="action_close_tab">Pechar burbulla</string>
-    
+    <!-- untranslated string: action_close_all -->
+    <!-- untranslated string: action_close_tab -->
+    <!-- untranslated string: action_stop -->
     <string name="action_undo">Desfacer</string>
     <string name="action_add">Engadir</string>
     <string name="action_no_recommended">Non (recomendado)</string>
@@ -43,86 +43,86 @@
     <string name="notice_download_started">Descarga iniciada.</string>
 
     <string name="warning">Aviso!</string>
-    
+    <!-- untranslated string: untrusted_certificate -->
 
-    
-    
-    
+    <!-- untranslated string: share_invalid_data -->
+    <!-- untranslated string: consume_activity_not_found -->
+    <!-- untranslated string: consume_activity_security_exception -->
 
     <string name="upgrade">Actualizar</string>
-    
-    
+    <!-- untranslated string: upgrade_theme -->
+    <!-- untranslated string: upgrade_theme_toolbar -->
 
-    
-    
+    <!-- untranslated string: undo_close_tab_title -->
+    <!-- untranslated string: undo_close_tab_no_title -->
 
-    
-    
-    
-    
-    <string name="clear_history">Limpar historial</string>
+    <!-- untranslated string: pick_default_app -->
+    <!-- untranslated string: default_browser_set -->
+    <!-- untranslated string: invalid_send_action -->
+    <!-- untranslated string: unable_to_launch_app -->
+    <!-- untranslated string: clear_history -->
 
     <string name="preference_category_general">Xeral</string>
-    
+    <!-- untranslated string: preference_category_configuration -->
     <string name="preference_category_configuration2">Configuración</string>
     <string name="preference_category_browser">Navegador</string>
-    
-    
-    
+    <!-- untranslated string: preference_enabled_title -->
+    <!-- untranslated string: preference_auto_content_display_link_loaded_title -->
+    <!-- untranslated string: preference_auto_content_display_link_loaded_summary -->
 
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="preference_category_other_apps">Outras aplicacións</string>
-    <string name="preference_default_apps_title">Aplicacións predefinidas</string>
-    
-    
-    
-    
-    
-    
-    
+    <!-- untranslated string: preference_left_consume_bubble_title -->
+    <!-- untranslated string: preference_right_consume_bubble_title -->
+    <!-- untranslated string: preference_double_tap_title -->
+    <!-- untranslated string: preference_configure_bubble_title -->
+    <!-- untranslated string: preference_category_debug -->
+    <!-- untranslated string: preference_default_browser -->
+    <!-- untranslated string: preference_category_redirect_to_browser -->
+    <!-- untranslated string: preference_category_fallback_browser -->
+    <!-- untranslated string: preference_category_other_apps -->
+    <!-- untranslated string: preference_default_apps_title -->
+    <!-- untranslated string: preference_default_apps_summary -->
+    <!-- untranslated string: preference_default_apps_notice_summary -->
+    <!-- untranslated string: preference_default_apps_notice_no_defaults_summary -->
+    <!-- untranslated string: preference_google_account_redirect_title -->
+    <!-- untranslated string: preference_google_account_redirect_summary -->
+    <!-- untranslated string: preference_set_default_browser_title -->
+    <!-- untranslated string: preference_set_default_browser_summary -->
     <string name="preference_more">Máis...</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <!-- untranslated string: preference_intercept_links_from_title -->
+    <!-- untranslated string: preference_intercept_links_from_disabled_for_L -->
+    <!-- untranslated string: preference_scan_for_youtube_embeds_title -->
+    <!-- untranslated string: preference_scan_for_youtube_embeds_summary -->
+    <!-- untranslated string: preference_webview_battery_save_title -->
+    <!-- untranslated string: preference_webview_battery_save_aggressive_title -->
+    <!-- untranslated string: preference_webview_battery_save_aggressive_summary -->
+    <!-- untranslated string: preference_webview_battery_save_default_title -->
+    <!-- untranslated string: preference_webview_battery_save_default_summary -->
+    <!-- untranslated string: preference_webview_battery_save_off_title -->
+    <!-- untranslated string: preference_webview_battery_save_off_summary -->
     <string name="preference_theme_title">Tema</string>
-    
-    
-    
-    
-    
-    
-    <string name="preference_article_mode_title">Modo lectura</string>
-    
-    
-    
-    
-    
-    
+    <!-- untranslated string: preference_theme_light_color -->
+    <!-- untranslated string: preference_theme_light_no_color -->
+    <!-- untranslated string: preference_theme_dark_color -->
+    <!-- untranslated string: preference_theme_dark_no_color -->
+    <!-- untranslated string: preference_theme_toolbar_title -->
+    <!-- untranslated string: preference_theme_toolbar_summary -->
+    <!-- untranslated string: preference_article_mode_title -->
+    <!-- untranslated string: preference_reading_mode_on_wear_title -->
+    <!-- untranslated string: preference_article_mode_summary -->
+    <!-- untranslated string: preference_webview_text_zoom_title -->
+    <!-- untranslated string: preference_webview_text_zoom_note -->
+    <!-- untranslated string: preference_webview_text_zoom_reloading_current -->
+    <!-- untranslated string: preference_clear_browser_cache_title -->
     <string name="preference_clear_cache">Caché</string>
-    
+    <!-- untranslated string: preference_clear_cookies -->
     <string name="preference_clear_favicons">Faviconas</string>
-    
-    
+    <!-- untranslated string: preference_clear_form_data -->
+    <!-- untranslated string: preference_clear_history -->
     <string name="preference_clear_passwords">Contrasinais</string>
     <string name="preference_incognito_title">Modo incógnito</string>
-    
-    
-    
+    <!-- untranslated string: preference_incognito_summary -->
+    <!-- untranslated string: incognito_mode_changed_reloading_current -->
+    <!-- untranslated string: preference_user_agent_title -->
     <string-array name="preference_user_agent_options">
         <item>Default</item>
         <item>Chrome Phone</item>
@@ -130,183 +130,183 @@
         <item>Chrome Desktop</item>
     </string-array>
 
-    
-    
-    
+    <!-- untranslated string: preference_domains_title -->
+    <!-- untranslated string: preference_domains_summary -->
+    <!-- untranslated string: preference_redirects_title -->
     <string name="preference_add_domain_title">Engadir dominio</string>
-    
-    
-    
+    <!-- untranslated string: add_domain_hint -->
+    <!-- untranslated string: add_domain_detail -->
+    <!-- untranslated string: add_domain_error -->
 
     <string name="preference_help_title">Axuda</string>
     <string name="preference_show_welcome_message_title">Mostrar páxina de benvida</string>
     <string name="preference_credits_title">Créditos</string>
-    
+    <!-- untranslated string: preference_osl_title -->
     <string name="preference_privacy_policy_title">Política de privacidade</string>
-    
-    
-    
+    <!-- untranslated string: preference_terms_of_service_title -->
+    <!-- untranslated string: preference_say_thanks_title -->
+    <!-- untranslated string: preference_say_thanks_summary -->
     <string name="preference_version_title">Versión</string>
-    <string name="preference_version_summary">Novidades</string>
-    <string name="preference_more_title">Máis&#8230;</string>
-    
+    <!-- untranslated string: preference_version_summary -->
+    <!-- untranslated string: preference_more_title -->
+    <!-- untranslated string: preference_show_undo_close_tab_title -->
 
-    
-    
+    <!-- untranslated string: preference_my_other_apps_title -->
+    <!-- untranslated string: preference_my_other_apps_summary -->
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <!-- untranslated string: remove_default_title -->
+    <!-- untranslated string: remove_default_message -->
+    <!-- untranslated string: long_press_unsupported_default_browser -->
+    <!-- untranslated string: long_press_unsupported_no_default_browser -->
+    <!-- untranslated string: unsupported_scheme_default_browser -->
+    <!-- untranslated string: unsupported_scheme_no_default_browser -->
+    <!-- untranslated string: unsupported_scheme -->
+    <!-- untranslated string: unsupported_drop_down_default_browser -->
+    <!-- untranslated string: unsupported_drop_down_no_default_browser -->
 
-    
-    
+    <!-- untranslated string: consume_category_view -->
+    <!-- untranslated string: consume_category_share -->
 
-    <string name="title_settings">Axustes</string>
+    <!-- untranslated string: title_settings -->
 
-    <string name="title_youtube_embed_to_load">Seleccionar vídeo para reproducir</string>
-    
-    <string name="youtube_embed_error_title">Vaites!</string>
-    
+    <!-- untranslated string: title_youtube_embed_to_load -->
+    <!-- untranslated string: loading_youtube_embed_info -->
+    <!-- untranslated string: youtube_embed_error_title -->
+    <!-- untranslated string: youtube_embed_error_summary -->
 
     <string name="loading">A cargar...</string>
 
     <string name="histroy_unread">Sen ler</string>
-    
-    <string name="history">Historial</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <!-- untranslated string: histroy_all -->
+    <!-- untranslated string: history -->
+    <!-- untranslated string: erase_all_history_title -->
+    <!-- untranslated string: erase_all_history_message -->
+    <!-- untranslated string: empty -->
+    <!-- untranslated string: history_already_empty -->
+    <!-- untranslated string: private_data_cleared -->
+    <!-- untranslated string: private_data_cleared_reloading_current -->
+    <!-- untranslated string: user_agent_changed_reloading_current -->
+    <!-- untranslated string: theme_toolbar_reloading_current -->
+    <!-- untranslated string: article_mode_changed_reloading_current -->
+    <!-- untranslated string: link_loaded_with_app -->
+    <!-- untranslated string: link_redirected -->
 
-    
+    <!-- untranslated string: tampered_apk -->
 
-    
-    
+    <!-- untranslated string: bubble_link_copied_to_clipboard -->
+    <!-- untranslated string: link_copied_to_clipboard -->
 
-    
-    
-    
-    
-    <string name="time_seconds">segundos</string>
-    <string name="time_minutes">minutos</string>
-    <string name="time_hours">horas</string>
+    <!-- untranslated string: stat_saves_you -->
+    <!-- untranslated string: stat_has_saved_you -->
+    <!-- untranslated string: stat_so_far -->
+    <!-- untranslated string: stat_per_link -->
+    <!-- untranslated string: time_seconds -->
+    <!-- untranslated string: time_minutes -->
+    <!-- untranslated string: time_hours -->
 
-    <string name="confirm_title">Confirmar</string>
+    <!-- untranslated string: confirm_title -->
 
-    <string name="no_default_browser">Ningún navegador predefinido no sistema.</string>
+    <!-- untranslated string: no_default_browser -->
 
-    
-    <string name="changelog_close">Pechar</string>
+    <!-- untranslated string: title_changelog -->
+    <!-- untranslated string: changelog_close -->
 
-    <string name="faq_close_tab_question">Como podo pechar rapidamente unha burbulla?</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="faq_beta_programme_question">Hai un programa en fase beta? Como podo unirme?</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="faq_report_bug_question">Informar dun erro</string>
-    
+    <!-- untranslated string: faq_close_tab_question -->
+    <!-- untranslated string: faq_close_tab_answer -->
+    <!-- untranslated string: faq_back_button_minimize_question -->
+    <!-- untranslated string: faq_back_button_minimize_answer -->
+    <!-- untranslated string: faq_app_internal_browser_question -->
+    <!-- untranslated string: faq_app_internal_browser_answer -->
+    <!-- untranslated string: faq_article_mode_question -->
+    <!-- untranslated string: faq_article_mode_answer -->
+    <!-- untranslated string: faq_future_features_question -->
+    <!-- untranslated string: faq_future_features_answer -->
+    <!-- untranslated string: faq_translations_question -->
+    <!-- untranslated string: faq_translations_answer -->
+    <!-- untranslated string: faq_roadmap_question -->
+    <!-- untranslated string: faq_roadmap_answer -->
+    <!-- untranslated string: faq_alternate_payment_answer -->
+    <!-- untranslated string: faq_cant_type_url_question -->
+    <!-- untranslated string: faq_cant_type_url_answer -->
+    <!-- untranslated string: faq_copy_text_question -->
+    <!-- untranslated string: faq_copy_text_answer -->
+    <!-- untranslated string: faq_translucent_status_bar_question -->
+    <!-- untranslated string: faq_translucent_status_bar_answer -->
+    <!-- untranslated string: faq_beta_programme_question -->
+    <!-- untranslated string: faq_beta_programme_answer -->
+    <!-- untranslated string: faq_low_spec_performance_question -->
+    <!-- untranslated string: faq_low_spec_performance_answer -->
+    <!-- untranslated string: faq_crap_webview_question -->
+    <!-- untranslated string: faq_crap_webview_answer -->
+    <!-- untranslated string: faq_ongoing_notificaion_question -->
+    <!-- untranslated string: faq_ongoing_notificaion_answer -->
+    <!-- untranslated string: faq_next_update_eta_question -->
+    <!-- untranslated string: faq_next_update_eta_answer -->
+    <!-- untranslated string: faq_close_quickly_question -->
+    <!-- untranslated string: faq_close_quickly_answer -->
+    <!-- untranslated string: faq_change_default_browser_question -->
+    <!-- untranslated string: faq_change_default_browser_answer -->
+    <!-- untranslated string: faq_report_bug_question -->
+    <!-- untranslated string: faq_report_bug_answer -->
 
-    <string name="faq_title">FAQ</string>
-    
-    <string name="faq_section_general">Xeral</string>
-    
-    
+    <!-- untranslated string: faq_title -->
+    <!-- untranslated string: preference_faq_summary -->
+    <!-- untranslated string: faq_section_general -->
+    <!-- untranslated string: faq_section_functionality -->
+    <!-- untranslated string: faq_section_issues -->
 
     <string name="activity_resolver_use_always">Sempre</string>
-    
+    <!-- untranslated string: activity_resolver_use_once -->
 
-    
-    <string name="credits_name">Link Bubble</string>
-    <string name="credits_credit">Concepto, deseño e programación</string>
-    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
+    <!-- untranslated string: credits_title -->
+    <!-- untranslated string: credits_name -->
+    <!-- untranslated string: credits_credit -->
+    <!-- untranslated string: credits_app_copyright -->
 
-    
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
-        
-        
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
     </plurals>
 
-    
-    
-    
-    
-    
-    
-    <string name="content_description_history">Historial</string>
-    <string name="content_description_settings">Axustes</string>
-    
+    <!-- untranslated string: content_description_button -->
+    <!-- untranslated string: content_description_target_icon -->
+    <!-- untranslated string: content_description_close_bubble_icon -->
+    <!-- untranslated string: content_description_link_bubble_logo -->
+    <!-- untranslated string: content_description_app_icon -->
+    <!-- untranslated string: content_description_youtube_video_thumbnail -->
+    <!-- untranslated string: content_description_history -->
+    <!-- untranslated string: content_description_settings -->
+    <!-- untranslated string: content_description_can_go_back -->
 
-    
+    <!-- untranslated string: requesting_location_message -->
 
-    
+    <!-- untranslated string: accept_terms_and_privacy -->
 
-    
-    <string name="notification_title">Link Bubble</string>
+    <!-- untranslated string: service_name -->
+    <!-- untranslated string: notification_title -->
 
-    <string name="store_listing_title">Link Bubble</string>
-    
-    
-    
-    
+    <!-- untranslated string: store_listing_title -->
+    <!-- untranslated string: store_listing_promo_text -->
+    <!-- untranslated string: store_listing_description_title -->
+    <!-- untranslated string: store_listing_description_features -->
+    <!-- untranslated string: store_listing_description_location_permission -->
 
-    
-    
-    
-    
-    
-    <string name="welcome_page_more_title">Mostrarme máis!</string>
-    
-    
-    
-    
-    
-    
-    
-    
+    <!-- untranslated string: welcome_page_title -->
+    <!-- untranslated string: welcome_page_intro_title -->
+    <!-- untranslated string: welcome_page_intro_point_1 -->
+    <!-- untranslated string: welcome_page_intro_point_2 -->
+    <!-- untranslated string: welcome_page_intro_end -->
+    <!-- untranslated string: welcome_page_more_title -->
+    <!-- untranslated string: welcome_page_more_pocket_start -->
+    <!-- untranslated string: welcome_page_more_pocket_end -->
+    <!-- untranslated string: welcome_page_more_also -->
+    <!-- untranslated string: welcome_page_more_point_1 -->
+    <!-- untranslated string: welcome_page_more_point_2 -->
+    <!-- untranslated string: welcome_page_more_point_3 -->
+    <!-- untranslated string: welcome_page_more_point_4 -->
+    <!-- untranslated string: welcome_page_ps -->
 
-    
+    <!-- untranslated string: duplicate_link_will_not_be_loaded -->
 
 </resources>

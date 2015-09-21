@@ -18,7 +18,7 @@
     <string name="action_open">Abrir</string>
     <string name="action_remove">Remover</string>
     <string name="action_cancel">Cancelar</string>
-    <string name="action_clear_data">Limpar dados</string>
+    <string name="action_clear_data">Limpar Informação</string>
     <string name="action_use_default">Usar padrão</string>
     <string name="action_settings">Configurações</string>
     <string name="action_help">Ajuda</string>
@@ -26,7 +26,7 @@
     <string name="action_open_in_browser">Abrir no %1$s</string>
     <string name="action_request_desktop_site">Solicitar site para desktop</string>
     <string name="action_open_in_new_bubble">Abrir em uma nova bolha</string>
-    <string name="action_copy_to_clipboard">Copiar link</string>
+    <string name="action_copy_to_clipboard">Copiar Link</string>
     <string name="action_save_image">Salvar imagem</string>
     <string name="action_share">Compartilhar</string>
     <string name="action_close_all">Fechar todas</string>
@@ -215,40 +215,22 @@
     <string name="faq_close_tab_question">Como eu consigo fechar rapidamente uma aba?</string>
     <string name="faq_close_tab_answer">Apertando o botão de Voltar do celular é o jeito mais rápido. Arrastar a aba até o botão de Fechar também é uma ótima ideia.</string>
     <string name="faq_back_button_minimize_question">Eu acho que apertar o botão de Voltar deveria minimizar o navegador!</string>
-    <string name="faq_back_button_minimize_answer"><![CDATA[Minimizar o aplicativo usando o botão físico Voltar não é possível.
-Considere o seguinte caso:<br/>
-1). exemplo.com/pagina1 é carregada na primeira aba.<br/>
-2). Você clica num link nesta página, e carrega exemplo.com/pagina2 na mesma aba.<br/>
-3). Agora quer voltar para o link da página 1.<br/><br/>
-Como você faria isso se o botão Voltar minimizasse o Link Bubble? Pressionar o botão de voltar na própria aba não é possível.<br/><br/>
-O Link Bubble é um navegador, e navegadores Android browsers tem um padrão estabelecido de voltar páginas ao apertar Voltar. O Link Bubble segue esse padrão.]]></string>
+    <!-- untranslated string: faq_back_button_minimize_answer -->
     <string name="faq_app_internal_browser_question"><![CDATA[O Link Bubble não está interceptando links!]]></string>
-    <string name="faq_app_internal_browser_answer"><![CDATA[Existem 3 para isso:<br/>
-1). Um navegador diferente do Link Bubble está definido como padrão. Veja
-\"Definir navegador padrão\" nas configurações do Link Bubble para mudar isso.<br/>
-2). O Link Bubble foi configurado para não interceptar links deste app. Veja
-\"Interceptar links de\" nas configurações do Link Bubble.<br/>
-3). Apps tais como Talon, Reddit e outros, têm um navegador embutido. Verifique as configurações daquele app e ative a opção \"Navegador externo\" ou desmarque \"Navegador embutido\" ou outra opção parecida.
-<br/><br/>Nota: alguns navegadores como o Chrome são programados para abrir certos links direto neles, e nesse caso o Link Bubble não pode ser usado.
-]]></string>
+    <!-- untranslated string: faq_app_internal_browser_answer -->
     <string name="faq_article_mode_question">Como uso o Modo Leitura? Porquê alguns links não funcionam?</string>
-    <string name="faq_article_mode_answer"><![CDATA[Primeiramente, certifique-se de que o Modo Leitura esteja ativado (Configurações - / Mais&#8230; -> Modo Leitura).<br/><br/>
-Daí em diante, quando o modo leitura estiver disponível, o ícone será exibido na barra de ações (perto do botão Compartilhar).
-Saiba que o modo leitura só ficará disponível após o carregamento total da página e se Link Bubble conseguir extrair o conteúdo no modo artigo.<br/><br/>
-Nota: Extrair conteúdo da web é um processo complicado. Devido à natureza da web de estar sempre em mudança, não é garantido o funcionamento em 100% dos casos e não há muito que possa ser feito quanto a isso.]]></string>
+    <!-- untranslated string: faq_article_mode_answer -->
     <string name="faq_future_features_question">Quando você vai adicionar suporte a favoritos, extensões, etc?</string>
     <string name="faq_future_features_answer">Nunca diga nunca, mas por enquanto o Link Bubble é focado somente em ser o melhor jeito possível de carregar
  e consumir links carregados por outros apps.</string>
     <string name="faq_translations_question">Posso ajudar a traduzir o aplicativo?</string>
-    <string name="faq_translations_answer"><![CDATA[Eu espero que seja adicionado suporte para tradução logo.<br/><br/>Quando eu fizer, eu irei com certeza avisar no Google+
-(+Link Bubble) por ajuda nas traduções, então fique de olho no meu mural.]]></string>
+    <!-- untranslated string: faq_translations_answer -->
     <string name="faq_roadmap_question">Você publica um roadmap das próximas versões? [...]</string>
     <string name="faq_roadmap_answer">Por razões competitivas, a resposta para ambas as perguntas é não. Sinto muito. <br/><br/></string>
     <string name="faq_alternate_payment_answer"><![CDATA[Por enquanto, Link Bubble só suporta compras pelo Google Play.<br/><br/>Formas adicionais de pagamento talvez sejam adicionadas no futuro (desde que não violem as regras do Google Play Developer Program).]]>
 </string>
     <string name="faq_cant_type_url_question">Por que eu não posso digitar o nome do link que eu quero visitar?</string>
-    <string name="faq_cant_type_url_answer"><![CDATA[Isso é intencional. O Link Bubble foi projetado não para ser um substituto completo para o navegador padrão, mas para abrir links de outros apps com elegância e praticidade, também tão rápido quanto possível.<br/><br/>Se você quer abrir uma nova URL no Link Bubble,
-buscar uma página no Google Now e carregá-la no Link Bubble é um bom jeito de fazer isso.<br/><br/>Para carregar favoritos rapidamente, acho o Chrome Bookmarks Widget muito útil.]]></string>
+    <!-- untranslated string: faq_cant_type_url_answer -->
     <string name="faq_copy_text_question">Por que eu não posso copiar texto de um site?</string>
     <string name="faq_copy_text_answer"><![CDATA[Infelizmente as limitações do Android impedem que isso funcione.<br/><br/>Resposta técnica:
 A função copiar só funciona quando você usa o navegador por uma atividade, mas não de um serviço (que é o que o Link Bubble usa).]]></string>
@@ -269,7 +251,7 @@ items (especialmente visualização da web) consome <i>muita</i> memória/recurs
 alternativos como o GeckoView do Firefox e Chromium que serão investigados no futuro como uma possibilidade.<br/>
 <br/>Caso uma página não seja mostrada corretamente, a coisa mais fácil a se fazer é abrir o link no navegador padrão.]]></string>
     <string name="faq_ongoing_notificaion_question">Por que aparece uma notificação sempre que o Link Bubble está funcionando?</string>
-    <string name="faq_ongoing_notificaion_answer"><![CDATA[Infelizmente essa notificação em andamento é necessária para evitar que o sistema Android não mate o processo do Link Bubble.]]></string>
+    <!-- untranslated string: faq_ongoing_notificaion_answer -->
     <string name="faq_next_update_eta_question">Quando vai chegar a próxima atualização?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[Quando estiver pronta!<br/><br/>Infelizmente não tenho como
  ser mais específico (nem para estimar uma data).<br/><br/>A realidade é que, quando as estimativas são dadas, as 
@@ -295,7 +277,7 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="credits_credit">Conceito, design e programação</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Restaurar abas da sessão anterior?</item>
         <item quantity="other">Restaurar %d abas da sessão anterior?</item>
@@ -313,7 +295,7 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
 
     <string name="requesting_location_message">%1$s deseja saber a sua localização. Permitir?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[Continuando, você entende e aceita os <a href="http://www.linkbubble.com/terms">termos</a> e a <a href="http://www.linkbubble.com/privacy">política de privacidade</a> do Link Bubble.]]></string>
+    <!-- untranslated string: accept_terms_and_privacy -->
 
     <string name="service_name">Renderizador do Link Bubble</string>
     <string name="notification_title">Link Bubble</string>
@@ -321,14 +303,7 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Navegação móvel feita do jeito certo.</string>
     <string name="store_listing_description_title">Link Bubble é um navegador totalmente novo desenhado e aprimorado somente com dispositivos moveis em mente.</string>
-    <string name="store_listing_description_features">Funções incluem:
-• Quando você clica em um link, o Link Bubble carrega a página em segundo plano, te deixando livre para continuar navegando no app poupando seu tempo vendo uma página carregando. Uma vez carregada o popup será animado.
-• A dinâmica do Link Bubble permite que você compartilhe um conteúdo ou adicione um serviço como o Pocket em pouco mais de um segundo!
-• Carregar vários links simultaneamente.
-• Carregar lindamente links que redirecionam para outros apps. Chega de clicar num link do Instagram no Twitter e ser direcionado para um navegador antes de abrir o Instagram!
-• Integração profunda com os apps do sistema.
-• Identifica links de vídeos do YouTube nas páginas, e cria um atalho para assistir o vídeo direto no app do YouTube.
-• Estatísticas que ilustram o quanto de tempo você economizou usando o Link Bubble.</string>
+    <!-- untranslated string: store_listing_description_features -->
     <string name="store_listing_description_location_permission">A respeito da permissão de Localização: Isso é exigido para que você possa conceder permissão a sites que solicitem sua localização (como aqueles que usam mapas). O Link Bubble mesmo, nunca acessa sua localização.</string>
 
     <string name="welcome_page_title">Bem vindo ao Link Bubble!</string>
@@ -342,7 +317,7 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="welcome_page_more_also">Link Bubble também:</string>
     <string name="welcome_page_more_point_1">Redireciona links para o app dedicado (por exemplo, Instagram).</string>
     <string name="welcome_page_more_point_2">Encontra facilmente vídeos embutidos, assim você pode assisti-los facilmente no app do YouTube. </string>
-    <string name="welcome_page_more_point_3">Carregar múltiplas bolhas de uma vez.</string>
+    <!-- untranslated string: welcome_page_more_point_3 -->
     <string name="welcome_page_more_point_4">Carregar links de todos os apps.</string>
     <string name="welcome_page_ps">PS. Para fechar esta bolha, pressione o botão Voltar ou aperte e segure na bolha e arraste até a bolha Fechar.</string>
 

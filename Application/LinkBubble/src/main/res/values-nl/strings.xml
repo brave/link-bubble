@@ -304,7 +304,7 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="credits_credit">Concept, ontwerp en programmeren</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Tab van vorige sessie terugplaatsen?</item>
         <item quantity="other">%d tabs van vorige sessie terugplaatsen?</item>
@@ -331,7 +331,7 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Mobiel browsen zoals het zou moeten.</string>
     <string name="store_listing_description_title">Link Bubble is een geheel nieuwe browser, ontworpen en gemaakt met alleen mobiele apparaten in gedachten.</string>
-    
+    <!-- untranslated string: store_listing_description_features -->
     <string name="store_listing_description_location_permission">Wat betreft de toestemming voor Locatie: dit is nodig, omdat je mogelijk toestemming wil geven aan een website om je locatie te zien (bijvoorbeeld in het geval van een ingebouwde kaart). Link Bubble zelf kijkt nooit naar je locatie.</string>
 
     <string name="welcome_page_title">Welkom bij Link Bubble!</string>
@@ -345,7 +345,7 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="welcome_page_more_also">Link Bubble kan ook:</string>
     <string name="welcome_page_more_point_1">Links doorsturen naar een specifieke app (bijv. Instagram).</string>
     <string name="welcome_page_more_point_2">Ingesloten video\'s vinden zodat je deze makkelijk in de YouTube-app kan laden.</string>
-    
+    <!-- untranslated string: welcome_page_more_point_3 -->
     <string name="welcome_page_more_point_4">Links uit alle apps laden.</string>
     <string name="welcome_page_ps">PS. Deze bubbel kun je sluiten door op de Terug-knop te drukken, of door lang te drukken op de bubbel en deze bovenop de Sluit-bubbel te vegen.</string>
 

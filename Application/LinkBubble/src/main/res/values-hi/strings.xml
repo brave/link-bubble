@@ -2,12 +2,12 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">डाऊनलोडर</string>
-    
+    <!-- untranslated string: send_intent_label -->
     <string name="notification_summary">बबल्स को हाईड करने क लिए टच करें </string>
-    
-    
-    
-    
+    <!-- untranslated string: notification_default_summary -->
+    <!-- untranslated string: notification_unhide_summary -->
+    <!-- untranslated string: notification_action_close_all -->
+    <!-- untranslated string: notification_action_hide -->
     <string name="share_picker_label">शेयर पीकर</string>
 
     <string name="yes">हाँ</string>
@@ -15,7 +15,7 @@
     <string name="cancel">निरस्त</string>
 
     <string name="action_ok">ओके</string>
-    
+    <!-- untranslated string: action_open -->
     <string name="action_remove">हटायें</string>
     <string name="action_cancel">निरस्त</string>
     <string name="action_clear_data">Limpiar datos</string>
@@ -24,47 +24,47 @@
     <string name="action_help">मदद</string>
     <string name="action_reload_page">रीलोड </string>
     <string name="action_open_in_browser">%1$s में खोले </string>
-    
+    <!-- untranslated string: action_request_desktop_site -->
     <string name="action_open_in_new_bubble">नये बबल में खोलें</string>
     <string name="action_copy_to_clipboard">कोपी लिंक </string>
-    
+    <!-- untranslated string: action_save_image -->
     <string name="action_share">शेयर</string>
     <string name="action_close_all">सभी बंद करे </string>
     <string name="action_close_tab">बबल बंद करे </string>
     <string name="action_stop">बंद </string>
-    
-    
-    
+    <!-- untranslated string: action_undo -->
+    <!-- untranslated string: action_add -->
+    <!-- untranslated string: action_no_recommended -->
     <string name="share_via">शेयर वाया </string>
-    
+    <!-- untranslated string: not_set -->
 
-    
-    
-    
+    <!-- untranslated string: error_saving_image -->
+    <!-- untranslated string: image_saved -->
+    <!-- untranslated string: notice_download_started -->
 
-    
-    
+    <!-- untranslated string: warning -->
+    <!-- untranslated string: untrusted_certificate -->
 
     <string name="share_invalid_data">लिंक बबल इसे शेयर नही कर सकता क्युकि URL गलत हे </string>
     <string name="consume_activity_not_found">एप्लीकेशन नही मिली।  क्रपया सेटिंग  में जा कर बबल एक्शन चूज  करे </string>
-    
+    <!-- untranslated string: consume_activity_security_exception -->
 
-    
-    
-    
+    <!-- untranslated string: upgrade -->
+    <!-- untranslated string: upgrade_theme -->
+    <!-- untranslated string: upgrade_theme_toolbar -->
 
-    
-    
+    <!-- untranslated string: undo_close_tab_title -->
+    <!-- untranslated string: undo_close_tab_no_title -->
 
     <string name="pick_default_app">डिफ़ॉल्ट एप्प  सलेक्ट  करे</string>
     <string name="default_browser_set">लिंक बबल अब डिफ़ॉल्ट ब्राउज़र हे </string>
-    
-    
+    <!-- untranslated string: invalid_send_action -->
+    <!-- untranslated string: unable_to_launch_app -->
     <string name="clear_history">हिस्ट्री मिटाये </string>
 
     <string name="preference_category_general">जनरल </string>
     <string name="preference_category_configuration">एप्प कंट्रोल </string>
-    
+    <!-- untranslated string: preference_category_configuration2 -->
     <string name="preference_category_browser">ब्राउज़र </string>
     <string name="preference_enabled_title">इनेबल्ड</string>
     <string name="preference_auto_content_display_link_loaded_title">ऑटो एक्सपांड</string>
@@ -72,7 +72,7 @@
 
     <string name="preference_left_consume_bubble_title">बाया बबल </string>
     <string name="preference_right_consume_bubble_title">दया </string>
-    
+    <!-- untranslated string: preference_double_tap_title -->
     <string name="preference_configure_bubble_title">कॉन्फ़िगर बबल </string>
     <string name="preference_category_debug">डिबग </string>
     <string name="preference_default_browser">डिफ़ॉल्ट फालबैक ब्राउज़र </string>
@@ -80,7 +80,7 @@
     <string name="preference_category_fallback_browser">डिफ़ॉल्ट फालबैक ब्राउज़र</string>
     <string name="preference_category_other_apps">ओर एप्स </string>
     <string name="preference_default_apps_title">डिफ़ॉल्ट ऐप्स </string>
-    
+    <!-- untranslated string: preference_default_apps_summary -->
     <string name="preference_default_apps_notice_summary">जब एक या ज्यादा नॉन-ब्रोव्सेर ऐप्स URL का यूज़ कर सकती हे \n \n 
 डिफ़ॉल्ट को हटाने के लिए टच करे </string>
     <string name="preference_default_apps_notice_no_defaults_summary">जब एक या ज्यादा नॉन-ब्रोव्सेर ऐप्स URL का यूज़ कर सकती हे, 
@@ -89,29 +89,29 @@
     <string name="preference_google_account_redirect_title">गूगल अकाउंट रीडरेक्ट</string>
     <string name="preference_google_account_redirect_summary">रीडरेक्ट accounts.google.com लिंक्स टू डिफ़ॉल्ट फालबैक ब्राउज़र</string>
     <string name="preference_set_default_browser_title">डिफ़ॉल्ट ब्राउज़र का चयन करे </string>
-    
+    <!-- untranslated string: preference_set_default_browser_summary -->
     <string name="preference_more">और... </string>
     <string name="preference_intercept_links_from_title">जह़ा से लिंक्स कों इंटरसेप्ट करे </string>
-    
+    <!-- untranslated string: preference_intercept_links_from_disabled_for_L -->
     <string name="preference_scan_for_youtube_embeds_title">यूट्यूब एम्बेड्स  के लिए जाँच करें</string>
     <string name="preference_scan_for_youtube_embeds_summary">एम्बेडेड वीडियो को यूट्यूब ऐप  में चलने के लिये डिस्प्ले शॉर्टकट।</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <!-- untranslated string: preference_webview_battery_save_title -->
+    <!-- untranslated string: preference_webview_battery_save_aggressive_title -->
+    <!-- untranslated string: preference_webview_battery_save_aggressive_summary -->
+    <!-- untranslated string: preference_webview_battery_save_default_title -->
+    <!-- untranslated string: preference_webview_battery_save_default_summary -->
+    <!-- untranslated string: preference_webview_battery_save_off_title -->
+    <!-- untranslated string: preference_webview_battery_save_off_summary -->
+    <!-- untranslated string: preference_theme_title -->
+    <!-- untranslated string: preference_theme_light_color -->
+    <!-- untranslated string: preference_theme_light_no_color -->
+    <!-- untranslated string: preference_theme_dark_color -->
+    <!-- untranslated string: preference_theme_dark_no_color -->
+    <!-- untranslated string: preference_theme_toolbar_title -->
+    <!-- untranslated string: preference_theme_toolbar_summary -->
+    <!-- untranslated string: preference_article_mode_title -->
+    <!-- untranslated string: preference_reading_mode_on_wear_title -->
+    <!-- untranslated string: preference_article_mode_summary -->
     <string name="preference_webview_text_zoom_title">टेक्स्ट ज़ूम</string>
     <string name="preference_webview_text_zoom_note">नोट: वर्तमान बबबल्स  \ "ठीक \" का चयन करने के बाद नये टेक्स्ट ज़ूम के साथ रीलोड होंगे।</string>
     <string name="preference_webview_text_zoom_reloading_current">नया टेक्स्ट ज़ूम लेवल सेट हो गया हे। बबल्स रीलोड हो रहे हे… </string>
@@ -124,7 +124,7 @@
     <string name="preference_clear_passwords">पासवर्ड्स </string>
     <string name="preference_incognito_title">गुप्त मोड</string>
     <string name="preference_incognito_summary">हिस्ट्री और कूकीज स्टोर ना करे </string>
-    
+    <!-- untranslated string: incognito_mode_changed_reloading_current -->
     <string name="preference_user_agent_title">उपभोक्ता </string>
     <string-array name="preference_user_agent_options">
         <item>डिफ़ॉल्ट </item>
@@ -133,13 +133,13 @@
         <item>क्रोम डेस्कटॉप</item>
     </string-array>
 
-    
-    
-    
-    
-    
-    
-    
+    <!-- untranslated string: preference_domains_title -->
+    <!-- untranslated string: preference_domains_summary -->
+    <!-- untranslated string: preference_redirects_title -->
+    <!-- untranslated string: preference_add_domain_title -->
+    <!-- untranslated string: add_domain_hint -->
+    <!-- untranslated string: add_domain_detail -->
+    <!-- untranslated string: add_domain_error -->
 
     <string name="preference_help_title">मदद </string>
     <string name="preference_show_welcome_message_title">स्वागत पृष्ठ दिखाएँ</string>
@@ -151,22 +151,22 @@
     <string name="preference_say_thanks_summary">लिंक बबल आपको उपयोगी लगा ? क्रपा करके प्ले स्टोर में आपका मूल्यवान रिव्यु लिखे। </string>
     <string name="preference_version_title">वर्जन </string>
     <string name="preference_version_summary">इसमें  नया क्या हे?</string>
-    
-    
+    <!-- untranslated string: preference_more_title -->
+    <!-- untranslated string: preference_show_undo_close_tab_title -->
 
-    
-    
+    <!-- untranslated string: preference_my_other_apps_title -->
+    <!-- untranslated string: preference_my_other_apps_summary -->
 
     <string name="remove_default_title">डिफ़ॉल्ट हटाये </string>
     <string name="remove_default_message">  %2$s लिंक्स के लिए  %1$s को डिफ़ॉल्ट ऐप से हटाये?\n\nनोट: जब आप अगली बार कोई %2$s लिंक खोलेंगे
  तब आप नयी डिफ़ॉल्ट ऐप का चयन कर सकते हे। </string>
-    
-    
+    <!-- untranslated string: long_press_unsupported_default_browser -->
+    <!-- untranslated string: long_press_unsupported_no_default_browser -->
     <string name="unsupported_scheme_default_browser">इस प्रकार का लिंक अभी बबल सपोर्ट नही करता हे। क्या  पेज को इससे खोले %1$s?</string>
     <string name="unsupported_scheme_no_default_browser">इस प्रकार का लिंक अभी बबल सपोर्ट नही करता हे। लिंक को ब्राउज़र में देखे। </string>
     <string name="unsupported_scheme">इस प्रकार का लिंक अभी बबल सपोर्ट नही करता हे। </string>
-    
-    
+    <!-- untranslated string: unsupported_drop_down_default_browser -->
+    <!-- untranslated string: unsupported_drop_down_no_default_browser -->
 
     <string name="consume_category_view">लिंक  देखे </string>
     <string name="consume_category_share">भेजे/शेयर करे </string>
@@ -190,8 +190,8 @@
     <string name="private_data_cleared">प्राइवेट डाटा हटा दिया गया </string>
     <string name="private_data_cleared_reloading_current">निजी डेटा को हटाया।  वर्तमान बबल पुन: लोड...</string>
     <string name="user_agent_changed_reloading_current">यूजर एजेंट बदला गया। रिलोडिंग बबल्स ... </string>
-    
-    
+    <!-- untranslated string: theme_toolbar_reloading_current -->
+    <!-- untranslated string: article_mode_changed_reloading_current -->
     <string name="link_loaded_with_app">%1$s से लोड किया</string>
     <string name="link_redirected">%1$s पर भेजा </string>
 
@@ -231,13 +231,13 @@
 
 </string>
     <string name="faq_app_internal_browser_question"><![CDATA[लिंक बबल ने लिंक्स को इंतर्सेप्त नही किया!]]></string>
-    
-    
-    
+    <!-- untranslated string: faq_app_internal_browser_answer -->
+    <!-- untranslated string: faq_article_mode_question -->
+    <!-- untranslated string: faq_article_mode_answer -->
     <string name="faq_future_features_question">क्या आप bookmarks, favourites, extentions आदि के लिए support देंगे?</string>
     <string name="faq_future_features_answer">नेवर से नेवर, लेकिन अभी के लिए लिंक बबल का लक्ष्य पूरी तरह से केवल दूसरी एप्स से लिंक्स को बेहतर ढंग से खोलना हे।</string>
-    
-    
+    <!-- untranslated string: faq_translations_question -->
+    <!-- untranslated string: faq_translations_answer -->
     <string name="faq_roadmap_question">क्या आप आके के फीचर्स लो रोडमैप पब्लिश करते हे क्या? क्या में उनके लिए समर्थन (voting) कर सकता हु क्या?</string>
     <string name="faq_roadmap_answer">प्रतिस्पर्धी कारणों से, इन दोनों सवालों का जवाब \'\नहीं \' हे।<br/><br/></string>
     <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble solo soporta compras via Google Play en este momento.<br/><br/>Metodos adicionales de pago seran añadidos en un futuro (asumiendo que no violan las Politicas del Programa de Desarrolladores de Google Play).]]></string>
@@ -249,7 +249,7 @@ Copy functionality works when using Android\'s WebView from an Activity, but not
     <string name="faq_translucent_status_bar_question">पारदर्शी उस बार के ऊपर एप क्यों नही आती?</string>
     <string name="faq_translucent_status_bar_answer">अभाग्यवश, एंड्राइड सिस्टम यह करने की इजाजत नजी देता हे। </string>
     <string name="faq_beta_programme_question">क्या इसका कोई बीटा प्रोग्राम हे? मै केसे ज्वाइन कर सकता हूँ?</string>
-    
+    <!-- untranslated string: faq_beta_programme_answer -->
     <string name="faq_low_spec_performance_question">लिंक बबल मेरी Nexus S /Galaxy S1/Moto G श्रेनि के मोबाइल्स पर धीरे क्यों चलता हे?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[लिंक बबल एक बहुत संसाधन गहन app है इसीलिए कम स्पेक्स वाले
  और अधिक शक्तिशाली उपकरण भी इसे चलाने के लिए संघर्ष कर सकते हैं. भविष्य में इसमें सुधर किया जाएगा लेकिन सुधार की भी एक सीमा होगी।
@@ -278,21 +278,21 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="faq_title">अक्सर पूछे जाने वाले प्रश्न और उनके जवाब</string>
     <string name="preference_faq_summary">कोई प्रश्न ? यहाँ जाये। </string>
     <string name="faq_section_general">जनरल </string>
-    
+    <!-- untranslated string: faq_section_functionality -->
     <string name="faq_section_issues">समस्याए </string>
 
     <string name="activity_resolver_use_always">हमेशा </string>
     <string name="activity_resolver_use_once">सिर्फ एक बार </string>
 
     <string name="credits_title">लिंक बबल क्रेडिट्स </string>
-    
+    <!-- untranslated string: credits_name -->
     <string name="credits_credit">कंसेप्ट, डिज़ाइन और प्रोग्रामिंग </string>
-    
+    <!-- untranslated string: credits_app_copyright -->
 
-    
+    <!-- untranslated string: restore_tabs_from_previous_session -->
     <plurals name="restore_tabs_from_previous_session">
-        
-        
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
     </plurals>
 
     <string name="content_description_button">बटन</string>
@@ -317,7 +317,7 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="store_listing_title">लिंक बबल </string>
     <string name="store_listing_promo_text">मोबाइल ब्राउज़िंग सही से हुई। </string>
     <string name="store_listing_description_title">लिंक बबल एक अदभुत ब्राउज़र हे जिसे मोबाइल दिवाइजेज को ध्यान में रखकर बनाया गया हे। </string>
-    
+    <!-- untranslated string: store_listing_description_features -->
     <string name="store_listing_description_location_permission">लोकेशन परमिशन को रेंडर करना: इसकी जरुरत इसलिए हे ताकि आप जो वेबसाइट चला रहे हे उसे आपकी लोकेशन की जानकारी दी जा सके। (जेसे की एम्बेडेड मैप्स वाली वेबसाइट) लिंक बबल खुद आपकी लोकेशन जानकारी का उपयोग नही करता हे। </string>
 
     <string name="welcome_page_title">लिंक बबल में आपका स्वागत हे!</string>
@@ -331,10 +331,10 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="welcome_page_more_also">लिंक बबल से ये भी: </string>
     <string name="welcome_page_more_point_1">किसी भी चयनित ऐप से लिंक को रेदिरेक्ट करे (जेसे की Instagram)</string>
     <string name="welcome_page_more_point_2">एम्बेडेड विडियो को खोजे ताकि सीधे यू ट्यूब ऐप में चला सके। </string>
-    
+    <!-- untranslated string: welcome_page_more_point_3 -->
     <string name="welcome_page_more_point_4">सभी ऐप्स से लिंक्स लोड करे। </string>
     <string name="welcome_page_ps">अनुलेख। बबल्स को बंद करने के दो तरीके हे। या तोह बेक बटन दबाये या फिर बबल को दबा रखते हुए बंद करने वाले बबल तक घसीटे। </string>
 
-    
+    <!-- untranslated string: duplicate_link_will_not_be_loaded -->
 
 </resources>
