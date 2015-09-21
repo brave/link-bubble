@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.6.2">
+        <change></change>
+    </release>
+
     <release version="1.6.1">
         <change>NEW: Long pressing on image links now gives you the option of opening the image or the link address in a new bubble.</change>
         <change>FIX: Back button handling has been refactored to fix a few cases where pressing the back button would close the bubble.</change>
