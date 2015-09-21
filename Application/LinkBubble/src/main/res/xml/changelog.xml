@@ -2,7 +2,7 @@
 <changelog>
 
     <release version="1.6.2">
-        <change>BUG FIX: Fix for missing translations as per our last release.</change>
+        <change>BUG FIX: Fix for missing translations which occasionally caused crashes for non-English builds..</change>
     </release>
 
     <release version="1.6.1">
