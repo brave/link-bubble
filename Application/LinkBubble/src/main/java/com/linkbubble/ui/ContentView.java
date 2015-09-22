@@ -117,6 +117,7 @@ public class ContentView extends FrameLayout {
     private String mInitialUrlAsString;
     private String mLoadingString;
     private Context mContext;
+    private String mCurrentUrl;
 
     // We only want to handle this once per link. This prevents 3+ dialogs appearing for some links, which is a bad experience. #224
     private boolean mHandledAppPickerForCurrentUrl = false;
@@ -405,6 +406,11 @@ public class ContentView extends FrameLayout {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView webView, String urlAsString) {
+            if(mCurrentUrl != null && urlAsString != null && urlAsString.equals(mCurrentUrl)) {
+                webView.goBack();
+                return true;
+            }
+
             if (mLifeState != LifeState.Alive) {
                 return true;
             }
@@ -438,6 +444,7 @@ public class ContentView extends FrameLayout {
             removeCallbacks(mDelayedAutoContentDisplayLinkLoadedRunnable);
 
             updateAndLoadUrl(urlAsString);
+            mCurrentUrl = urlAsString;
             return true;
         }
 
