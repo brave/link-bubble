@@ -353,7 +353,7 @@ class WebViewRenderer extends WebRenderer {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView wView, final String urlAsString) {
-            return mController.shouldOverrideUrlLoading(urlAsString, wView.canGoBack());
+            return mController.shouldOverrideUrlLoading(wView, urlAsString);
         }
 
 
