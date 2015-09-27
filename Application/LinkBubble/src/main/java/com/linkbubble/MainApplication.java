@@ -106,10 +106,10 @@ public class MainApplication extends Application {
     }
 
     public static void openLink(Context context, String url, String openedFromAppName) {
-        openLink(context, url, false, true, openedFromAppName);
+        openLink(context, url, false, openedFromAppName);
     }
 
-    public static boolean openLink(Context context, String url, boolean checkLastAppLoad, boolean doLicenseCheck, String openedFromAppName) {
+    public static boolean openLink(Context context, String url, boolean checkLastAppLoad, String openedFromAppName) {
         long time = System.currentTimeMillis();
 
         context = context.getApplicationContext();
@@ -133,7 +133,6 @@ public class MainApplication extends Application {
         Intent serviceIntent = new Intent(context, MainService.class);
         serviceIntent.putExtra("cmd", "open");
         serviceIntent.putExtra("url", url);
-        serviceIntent.putExtra("doLicenseCheck", doLicenseCheck);
         serviceIntent.putExtra("start_time", time);
         serviceIntent.putExtra("openedFromAppName", openedFromAppName);
         context.startService(serviceIntent);

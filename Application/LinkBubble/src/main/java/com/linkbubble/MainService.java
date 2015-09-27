@@ -71,9 +71,8 @@ public class MainService extends Service {
         if (cmd.compareTo("open") == 0) {
             String url = intent.getStringExtra("url");
             if (url != null) {
-                boolean doLicenseCheck = intent.getBooleanExtra("doLicenseCheck", true);
                 String openedFromAppName = intent.getStringExtra("openedFromAppName");
-                mainController.openUrl(url, urlLoadStartTime, true, openedFromAppName, doLicenseCheck);
+                mainController.openUrl(url, urlLoadStartTime, true, openedFromAppName);
             }
         } else if (cmd.compareTo("restore") == 0) {
             if (!mRestoreComplete) {
@@ -89,7 +88,7 @@ public class MainService extends Service {
                                 setAsCurrentTab = i == urls.length - 1;
                             }
 
-                            mainController.openUrl(urlAsString, urlLoadStartTime, setAsCurrentTab, Analytics.OPENED_URL_FROM_RESTORE, true);
+                            mainController.openUrl(urlAsString, urlLoadStartTime, setAsCurrentTab, Analytics.OPENED_URL_FROM_RESTORE);
                         }
                     }
                 }
