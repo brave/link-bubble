@@ -53,7 +53,6 @@ import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.DownloadImage;
-import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.webrender.WebRenderer;
 
@@ -117,6 +116,7 @@ public class ContentView extends FrameLayout {
     private String mInitialUrlAsString;
     private String mLoadingString;
     private Context mContext;
+    private Stack<URL> mUrlStack = new Stack<URL>();
 
     // We only want to handle this once per link. This prevents 3+ dialogs appearing for some links, which is a bad experience. #224
     private boolean mHandledAppPickerForCurrentUrl = false;
@@ -427,7 +427,6 @@ public class ContentView extends FrameLayout {
 
             Log.d(TAG, "shouldOverrideUrlLoading() - url:" + urlAsString);
             URL currentUrl = mWebRenderer.getUrl();
-            mEventHandler.onCanGoBackChanged(webView.canGoBack());
             mHandledAppPickerForCurrentUrl = false;
             mUsingLinkBubbleAsDefaultForCurrentUrl = false;
 
@@ -617,7 +616,6 @@ public class ContentView extends FrameLayout {
                 Log.d(TAG, "onPageFinished() - ignoring because of mIgnoreNextOnPageFinished...");
                 return;
             }
-            mEventHandler.onCanGoBackChanged(webView.canGoBack());
 
             Integer debugIndex = MainController.get() != null ? MainController.get().getTabIndex(mOwnerTabView) : null;
             CrashTracking.log("onPageFinished(), " + (debugIndex != null ? "index:" + debugIndex : "<MainController.get() == null>"));
@@ -807,6 +805,16 @@ public class ContentView extends FrameLayout {
         // Check exact equality first for common case to avoid an allocation.
         URL currentUrl = mWebRenderer.getUrl();
         boolean equalUrl = currentUrl.toString().equals(urlAsString);
+
+        // If the page is our target URL, we then add it onto the stack.
+        // This avoids adding 301 redirect URLs onto the URL stack.
+        Integer size = mUrlStack.size();
+        if (equalUrl && mPageFinishedIgnoredUrl == null &&
+                (size == 0 || (size > 0 && mUrlStack.get(size-1) != currentUrl))) {
+            Log.d(TAG, "pushing url onto stack " + currentUrl);
+            mUrlStack.push(currentUrl);
+            mEventHandler.onCanGoBackChanged(mUrlStack.size() > 1);
+        }
 
         if (!equalUrl) {
             try {
@@ -1113,7 +1121,12 @@ public class ContentView extends FrameLayout {
     }
 
     private boolean onBackPressed(WebView webView) {
-        if (webView.canGoBack() == false) {
+        if (mUrlStack.size() <= 1) {
+            // If there is an item in the stack, remove it.
+            if (mUrlStack.size() > 0) {
+                mUrlStack.pop();
+            }
+
             CrashTracking.log("onBackPressed() - closeTab()");
             mEventHandler.onCanGoBackChanged(false);
             if (MainController.get() != null) {
@@ -1125,22 +1138,21 @@ public class ContentView extends FrameLayout {
             mWebRenderer.stopLoading();
             String urlBefore = mWebRenderer.getUrl().toString();
 
-            webView.goBack();
-            String previousUrlAsString = webView.getUrl();
-            mEventHandler.onCanGoBackChanged(webView.canGoBack());
+            mUrlStack.pop();
+            URL previousUrl = mUrlStack.get(mUrlStack.size()-1);
+            String previousUrlAsString = previousUrl.toString();
+            mEventHandler.onCanGoBackChanged(mUrlStack.size() > 1);
+
             mHandledAppPickerForCurrentUrl = false;
             mUsingLinkBubbleAsDefaultForCurrentUrl = false;
-            Log.d(TAG, "Go back: " + urlBefore + " -> " + mWebRenderer.getUrl());
+            updateAndLoadUrl(previousUrlAsString);
+
+            Log.d(TAG, "Go back: " + urlBefore + " -> " + mWebRenderer.getUrl() + ", urlStack.size():" + mUrlStack.size());
             updateUrlTitleAndText(previousUrlAsString);
 
             mEventHandler.onPageLoading(mWebRenderer.getUrl());
 
-            try {
-                URL url = new URL(previousUrlAsString);
-                updateAppsForUrl(null, url);
-            } catch(MalformedURLException e) {
-                Log.d(TAG, "Error parsing URL" + previousUrlAsString);
-            }
+            updateAppsForUrl(null, previousUrl);
             configureOpenInAppButton();
             configureArticleModeButton();
 
