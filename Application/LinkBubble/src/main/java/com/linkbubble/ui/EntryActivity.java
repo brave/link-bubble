@@ -122,7 +122,7 @@ public class EntryActivity extends Activity {
                     }
                 }
 
-                MainApplication.openLink(this, url, true, showedWelcomeUrl ? false : true, openedFromAppName);
+                MainApplication.openLink(this, url, true, openedFromAppName);
             } else {
                 MainApplication.openInBrowser(this, intent, true);
             }

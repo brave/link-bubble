@@ -686,12 +686,8 @@ public class MainController implements Choreographer.FrameCallback {
         return false;
     }
 
-    public TabView openUrl(final String urlAsString, long urlLoadStartTime, final boolean setAsCurrentTab, String openedFromAppName) {
-        return openUrl(urlAsString, urlLoadStartTime, setAsCurrentTab, openedFromAppName, true);
-    }
-
     public TabView openUrl(final String urlAsString, long urlLoadStartTime, final boolean setAsCurrentTab,
-                           String openedFromAppName, boolean doLicenseCheck) {
+                           String openedFromAppName) {
 
         Analytics.trackOpenUrl(openedFromAppName);
 
