@@ -404,7 +404,7 @@ public class ContentView extends FrameLayout {
     WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {
 
         @Override
-        public boolean shouldOverrideUrlLoading(WebView webView, String urlAsString) {
+        public boolean shouldOverrideUrlLoading(String urlAsString, boolean canGoBack) {
             if (mLifeState != LifeState.Alive) {
                 return true;
             }
@@ -427,7 +427,7 @@ public class ContentView extends FrameLayout {
 
             Log.d(TAG, "shouldOverrideUrlLoading() - url:" + urlAsString);
             URL currentUrl = mWebRenderer.getUrl();
-            mEventHandler.onCanGoBackChanged(webView.canGoBack());
+            mEventHandler.onCanGoBackChanged(canGoBack);
             mHandledAppPickerForCurrentUrl = false;
             mUsingLinkBubbleAsDefaultForCurrentUrl = false;
 
