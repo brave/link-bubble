@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.6.4">
+        <change></change>
+    </release>
+
     <release version="1.6.3">
         <change>BUG FIX: Redirected links from applications should close in a single back button press again. We're going back to the previous back button behavior for the time being.</change>
     </release>
