@@ -118,6 +118,7 @@ public class ContentView extends FrameLayout {
     private String mLoadingString;
     private Context mContext;
 
+    private Stack<URL> mUrlStack = new Stack<URL>();
     // We only want to handle this once per link. This prevents 3+ dialogs appearing for some links, which is a bad experience. #224
     private boolean mHandledAppPickerForCurrentUrl = false;
     private boolean mUsingLinkBubbleAsDefaultForCurrentUrl = false;
@@ -404,7 +405,7 @@ public class ContentView extends FrameLayout {
     WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {
 
         @Override
-        public boolean shouldOverrideUrlLoading(String urlAsString, boolean canGoBack) {
+        public boolean shouldOverrideUrlLoading(String urlAsString, boolean viaUserInput) {
             if (mLifeState != LifeState.Alive) {
                 return true;
             }
@@ -426,10 +427,14 @@ public class ContentView extends FrameLayout {
             }
 
             Log.d(TAG, "shouldOverrideUrlLoading() - url:" + urlAsString);
-            URL currentUrl = mWebRenderer.getUrl();
-            mEventHandler.onCanGoBackChanged(canGoBack);
-            mHandledAppPickerForCurrentUrl = false;
-            mUsingLinkBubbleAsDefaultForCurrentUrl = false;
+            if (viaUserInput) {
+                URL currentUrl = mWebRenderer.getUrl();
+                mUrlStack.push(currentUrl);
+                mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
+                Log.d(TAG, "[urlstack] push:" + currentUrl.toString() + ", urlStack.size():" + mUrlStack.size());// + ", delta:" + touchUpTimeDelta);
+                mHandledAppPickerForCurrentUrl = false;
+                mUsingLinkBubbleAsDefaultForCurrentUrl = false;
+            }
 
             //if (mDelayedAutoContentDisplayLinkLoadedScheduled) {
             //    mDelayedAutoContentDisplayLinkLoadedScheduled = false;
@@ -608,7 +613,7 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
-        public void onPageFinished(WebView webView, String urlAsString) {
+        public void onPageFinished(String urlAsString) {
             if (mLifeState != LifeState.Alive) {
                 return;
             }
@@ -617,7 +622,6 @@ public class ContentView extends FrameLayout {
                 Log.d(TAG, "onPageFinished() - ignoring because of mIgnoreNextOnPageFinished...");
                 return;
             }
-            mEventHandler.onCanGoBackChanged(webView.canGoBack());
 
             Integer debugIndex = MainController.get() != null ? MainController.get().getTabIndex(mOwnerTabView) : null;
             CrashTracking.log("onPageFinished(), " + (debugIndex != null ? "index:" + debugIndex : "<MainController.get() == null>"));
@@ -701,8 +705,8 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
-        public boolean onBackPressed(WebView webView) {
-            return ContentView.this.onBackPressed(webView);
+        public boolean onBackPressed() {
+            return ContentView.this.onBackPressed();
         }
 
         @Override
@@ -928,8 +932,8 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
-        public boolean onBackPressed(WebView webView) {
-            return ContentView.this.onBackPressed(webView);
+        public boolean onBackPressed() {
+            return ContentView.this.onBackPressed();
         }
 
         @Override
@@ -1112,10 +1116,9 @@ public class ContentView extends FrameLayout {
         }
     }
 
-    private boolean onBackPressed(WebView webView) {
-        if (webView.canGoBack() == false) {
+    private boolean onBackPressed() {
+        if (mUrlStack.size() == 0) {
             CrashTracking.log("onBackPressed() - closeTab()");
-            mEventHandler.onCanGoBackChanged(false);
             if (MainController.get() != null) {
                 MainController.get().closeTab(mOwnerTabView, BubbleAction.BackButton, true, true);
             }
@@ -1125,22 +1128,18 @@ public class ContentView extends FrameLayout {
             mWebRenderer.stopLoading();
             String urlBefore = mWebRenderer.getUrl().toString();
 
-            webView.goBack();
-            String previousUrlAsString = webView.getUrl();
-            mEventHandler.onCanGoBackChanged(webView.canGoBack());
+            URL previousUrl = mUrlStack.pop();
+            String previousUrlAsString = previousUrl.toString();
+            mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
             mHandledAppPickerForCurrentUrl = false;
             mUsingLinkBubbleAsDefaultForCurrentUrl = false;
-            Log.d(TAG, "Go back: " + urlBefore + " -> " + mWebRenderer.getUrl());
+            updateAndLoadUrl(previousUrlAsString);
+            Log.d(TAG, "[urlstack] Go back: " + urlBefore + " -> " + mWebRenderer.getUrl() + ", urlStack.size():" + mUrlStack.size());
             updateUrlTitleAndText(previousUrlAsString);
 
             mEventHandler.onPageLoading(mWebRenderer.getUrl());
 
-            try {
-                URL url = new URL(previousUrlAsString);
-                updateAppsForUrl(null, url);
-            } catch(MalformedURLException e) {
-                Log.d(TAG, "Error parsing URL" + previousUrlAsString);
-            }
+            updateAppsForUrl(null, previousUrl);
             configureOpenInAppButton();
             configureArticleModeButton();
 
