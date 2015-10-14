@@ -66,8 +66,10 @@ import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.webrender.WebRenderer;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -83,6 +85,7 @@ public class ContentView extends FrameLayout {
     private static final String TAG = "UrlLoad";
     private static final String HTTP_PREFIX = "http://";
     private static final String HTTPS_PREFIX = "https://";
+    private static final String DUCK_DUCK_SEARCH_ENGINE = "https://duckduckgo.com/";
 
     private static int sNextArticleNotificationId = 1111;
 
@@ -410,7 +413,13 @@ public class ContentView extends FrameLayout {
         if (Patterns.WEB_URL.matcher(strUrlWithPrefix).matches()) {
             LoadWebPage(strUrlWithPrefix);
         } else {
-            //do nothing for now, have to do a search engine start
+            //made the search using duck duck go, have to change it after
+            try {
+                String strQuery = DUCK_DUCK_SEARCH_ENGINE + "?q=" + URLEncoder.encode(strUrl, "UTF-8");
+                LoadWebPage(strQuery);
+            } catch (IOException ioe) {
+                //to do
+            }
         }
 
         mToolbarLayout.bringToFront();
