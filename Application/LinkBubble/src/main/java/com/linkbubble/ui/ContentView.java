@@ -445,9 +445,6 @@ public class ContentView extends FrameLayout {
         }
 
         mToolbarLayout.setBackgroundColor(bgColor);
-        findViewById(R.id.content_edit_url).setBackgroundColor(bgColor);
-        metUrl.setTextColor(textColor);
-        metUrl.setHintTextColor(textColor);
         mTitleTextView.setTextColor(textColor);
         mUrlTextView.setTextColor(textColor);
 
