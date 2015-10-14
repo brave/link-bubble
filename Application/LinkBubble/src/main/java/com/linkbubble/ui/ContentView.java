@@ -329,6 +329,12 @@ public class ContentView extends FrameLayout {
         metUrl = (AutoCompleteTextView) findViewById(R.id.autocomplete_top500websites);
         metUrl.setText(urlAsString);
         metUrl.addTextChangedListener(murlTextWatcher);
+        metUrl.setOnFocusChangeListener(murlOnFocusChangeListener);
+
+        //set an adapter for search URL control for top 500 websites
+        String[] top500websites = getResources().getStringArray(R.array.top500websites);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, top500websites);
+        metUrl.setAdapter(adapter);
 
         mbtUrlClear = (ImageButton) findViewById(R.id.search_url_clear);
         mbtUrlClear.setOnClickListener(mbtClearUrlClicked);
@@ -932,6 +938,20 @@ public class ContentView extends FrameLayout {
         }
     };
 
+    OnFocusChangeListener murlOnFocusChangeListener = new OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View view, boolean b) {
+            if (!b) {
+                //show the toolbar again if lost focus and hide the soft keyboard
+                findViewById(R.id.content_toolbar).bringToFront();
+
+                InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(metUrl.getWindowToken(),
+                        InputMethodManager.RESULT_UNCHANGED_SHOWN);
+            }
+        }
+    };
+
     TextWatcher murlTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -957,9 +977,12 @@ public class ContentView extends FrameLayout {
     OnClickListener mOnURLEnterClicked = new OnClickListener() {
         @Override
         public void onClick(View view) {
+            metUrl.setText(mWebRenderer.getUrl().toString());
             //bring the search URL layout on top
             findViewById(R.id.content_edit_url).bringToFront();
 
+            //request the focus for the search URL control
+            metUrl.requestFocus();
             //show the soft keyboard
             InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(metUrl, InputMethodManager.SHOW_IMPLICIT);
