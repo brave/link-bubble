@@ -31,9 +31,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -103,6 +105,9 @@ public class ContentView extends FrameLayout {
     private LinearLayout mToolbarLayout;
     private EventHandler mEventHandler;
     private int mCurrentProgress = 0;
+
+    //search URL functionality
+    private AutoCompleteTextView metUrl;
 
     private boolean mPageFinishedLoading;
     private LifeState mLifeState = LifeState.Init;
@@ -310,7 +315,15 @@ public class ContentView extends FrameLayout {
         mTitleTextView = (CondensedTextView) findViewById(R.id.title_text);
         mUrlTextView = (CondensedTextView) findViewById(R.id.url_text);
 
+        //set on click listeners to show the search URL control
+        mTitleTextView.setOnClickListener(mOnURLEnterClicked);
+        mUrlTextView.setOnClickListener(mOnURLEnterClicked);
+
         findViewById(R.id.content_text_container).setOnTouchListener(mOnTextContainerTouchListener);
+
+        //set the current URL to the search URL
+        metUrl = (AutoCompleteTextView) findViewById(R.id.autocomplete_top500websites);
+        metUrl.setText(urlAsString);
 
         mCaretView = findViewById(R.id.caret);
 
@@ -899,6 +912,18 @@ public class ContentView extends FrameLayout {
         @Override
         public void onClick(View v) {
             showSelectShareMethod(mWebRenderer.getUrl().toString(), true);
+        }
+    };
+
+    OnClickListener mOnURLEnterClicked = new OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            //bring the search URL layout on top
+            findViewById(R.id.content_edit_url).bringToFront();
+
+            //show the soft keyboard
+            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(metUrl, InputMethodManager.SHOW_IMPLICIT);
         }
     };
 

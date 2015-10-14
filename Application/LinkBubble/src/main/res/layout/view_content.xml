@@ -11,6 +11,43 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_header"/>
 
+    <FrameLayout
+        android:id="@+id/content_edit_url"
+        android:focusable="true"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/toolbar_height"
+        android:layout_marginTop="@dimen/toolbar_header"
+        android:background="#ffffffff">
+
+        <AutoCompleteTextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/autocomplete_top500websites"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/search_url_height"
+            android:singleLine="true"
+            android:background="@null"
+            android:layout_marginRight="80px"
+            android:layout_marginLeft="5dp"
+            android:hint="@string/edit_url"
+            android:layout_alignParentLeft="true"
+            android:imeOptions="actionGo"
+            android:completionThreshold="1"
+            android:dropDownHeight="500dp"
+            android:inputType="textUri"
+            android:layout_gravity="center_vertical"/>
+
+        <ImageButton android:id="@+id/search_url_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/search_url_height"
+            android:layout_marginRight="40px"
+            android:src="@drawable/search_url_close"
+            android:background="?android:selectableItemBackground"
+            android:layout_alignParentRight = "true"
+            android:baselineAlignBottom="false"
+            android:clickable="true"
+            android:layout_gravity="right|center_vertical" />
+    </FrameLayout>
+
     <LinearLayout
         android:id="@+id/content_toolbar"
         android:orientation="horizontal"
