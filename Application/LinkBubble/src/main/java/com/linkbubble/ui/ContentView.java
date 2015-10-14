@@ -29,10 +29,13 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.widget.AdapterView;
@@ -44,6 +47,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
@@ -77,6 +81,8 @@ import java.util.Stack;
 public class ContentView extends FrameLayout {
 
     private static final String TAG = "UrlLoad";
+    private static final String HTTP_PREFIX = "http://";
+    private static final String HTTPS_PREFIX = "https://";
 
     private static int sNextArticleNotificationId = 1111;
 
@@ -330,6 +336,8 @@ public class ContentView extends FrameLayout {
         metUrl.setText(urlAsString);
         metUrl.addTextChangedListener(murlTextWatcher);
         metUrl.setOnFocusChangeListener(murlOnFocusChangeListener);
+        metUrl.setOnItemClickListener(murlOnItemClickListener);
+        metUrl.setOnEditorActionListener(murlActionListener);
 
         //set an adapter for search URL control for top 500 websites
         String[] top500websites = getResources().getStringArray(R.array.top500websites);
@@ -391,6 +399,28 @@ public class ContentView extends FrameLayout {
         updateColors(null);
     }
 
+    private void WorkWithURL(String strUrl) {
+
+        metUrl.dismissDropDown();
+
+        String strUrlWithPrefix = strUrl;
+        if (!strUrl.startsWith(HTTP_PREFIX) && !strUrl.startsWith(HTTPS_PREFIX))
+            strUrlWithPrefix = HTTP_PREFIX + strUrl;
+
+        if (Patterns.WEB_URL.matcher(strUrlWithPrefix).matches()) {
+            LoadWebPage(strUrlWithPrefix);
+        } else {
+            //do nothing for now, have to do a search engine start
+        }
+
+        mToolbarLayout.bringToFront();
+    }
+
+    private void LoadWebPage(String strUrl) {
+        updateAndLoadUrl(strUrl);
+    }
+
+
     Integer themeColor;
     void updateColors(Integer color) {
         themeColor = color;
@@ -417,6 +447,7 @@ public class ContentView extends FrameLayout {
         mToolbarLayout.setBackgroundColor(bgColor);
         findViewById(R.id.content_edit_url).setBackgroundColor(bgColor);
         metUrl.setTextColor(textColor);
+        metUrl.setHintTextColor(textColor);
         mTitleTextView.setTextColor(textColor);
         mUrlTextView.setTextColor(textColor);
 
@@ -949,6 +980,37 @@ public class ContentView extends FrameLayout {
                 imm.hideSoftInputFromWindow(metUrl.getWindowToken(),
                         InputMethodManager.RESULT_UNCHANGED_SHOWN);
             }
+        }
+    };
+
+    AdapterView.OnItemClickListener murlOnItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            //hide the soft keyboard
+            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(metUrl.getWindowToken(),
+                    InputMethodManager.RESULT_UNCHANGED_SHOWN);
+
+            String strUrl = adapterView.getItemAtPosition(i).toString();
+
+            WorkWithURL(strUrl);
+        }
+    };
+
+    TextView.OnEditorActionListener murlActionListener = new TextView.OnEditorActionListener() {
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_GO) {
+                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(metUrl.getWindowToken(),
+                        InputMethodManager.RESULT_UNCHANGED_SHOWN);
+
+                String strUrl = metUrl.getText().toString();
+
+                WorkWithURL(strUrl);
+            }
+
+            return false;
         }
     };
 
