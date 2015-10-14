@@ -413,12 +413,12 @@ public class ContentView extends FrameLayout {
         if (Patterns.WEB_URL.matcher(strUrlWithPrefix).matches()) {
             LoadWebPage(strUrlWithPrefix);
         } else {
-            //made the search using duck duck go, have to change it after
+            // Made the search using duck duck go, have to change it after
             try {
                 String strQuery = DUCK_DUCK_SEARCH_ENGINE + "?q=" + URLEncoder.encode(strUrl, "UTF-8");
                 LoadWebPage(strQuery);
             } catch (IOException ioe) {
-                //to do
+                Log.e(TAG, ioe.getMessage(), ioe);
             }
         }
 
