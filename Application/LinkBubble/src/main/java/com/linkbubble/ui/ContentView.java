@@ -1042,6 +1042,7 @@ public class ContentView extends FrameLayout {
 
             //request the focus for the search URL control
             metUrl.requestFocus();
+            metUrl.selectAll();
             //show the soft keyboard
             InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(metUrl, InputMethodManager.SHOW_IMPLICIT);
