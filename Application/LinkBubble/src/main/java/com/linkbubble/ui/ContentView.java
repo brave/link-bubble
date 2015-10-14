@@ -406,6 +406,7 @@ public class ContentView extends FrameLayout {
 
         metUrl.dismissDropDown();
 
+        strUrl = strUrl.trim();
         String strUrlWithPrefix = strUrl;
         if (!strUrl.startsWith(HTTP_PREFIX) && !strUrl.startsWith(HTTPS_PREFIX))
             strUrlWithPrefix = HTTP_PREFIX + strUrl;
