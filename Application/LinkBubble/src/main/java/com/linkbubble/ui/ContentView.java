@@ -973,6 +973,7 @@ public class ContentView extends FrameLayout {
         public void onClick(View v) {
             metUrl.setText("");
             mbtUrlClear.setEnabled(false);
+            mbtUrlClear.getBackground().setAlpha(50);
         }
     };
 
@@ -1036,9 +1037,11 @@ public class ContentView extends FrameLayout {
         public void afterTextChanged(Editable editable) {
             if (metUrl.getText().toString().length() != 0) {
                 mbtUrlClear.setEnabled(true);
+                mbtUrlClear.getBackground().setAlpha(255);
             }
             else {
                 mbtUrlClear.setEnabled(false);
+                mbtUrlClear.getBackground().setAlpha(50);
             }
         }
     };
