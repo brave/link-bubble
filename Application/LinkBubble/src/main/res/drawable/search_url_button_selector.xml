@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_enabled="false" android:drawable="@drawable/search_url_close_disabled" />
-    <item android:state_enabled="true" android:drawable="@drawable/search_url_close" />
+    <item android:drawable="@drawable/ic_highlight_remove_grey600_24dp" />
 </selector>

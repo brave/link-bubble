@@ -38,7 +38,7 @@
 
         <ImageButton android:id="@+id/search_url_clear"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/search_url_height"
+            android:layout_height="wrap_content"
             android:layout_marginRight="40px"
             android:background="@drawable/search_url_button_selector"
             android:layout_alignParentRight = "true"
