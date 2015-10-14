@@ -24,7 +24,9 @@ import android.support.annotation.DrawableRes;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Menu;
@@ -38,6 +40,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
@@ -108,6 +111,7 @@ public class ContentView extends FrameLayout {
 
     //search URL functionality
     private AutoCompleteTextView metUrl;
+    private ImageButton mbtUrlClear;
 
     private boolean mPageFinishedLoading;
     private LifeState mLifeState = LifeState.Init;
@@ -324,6 +328,10 @@ public class ContentView extends FrameLayout {
         //set the current URL to the search URL
         metUrl = (AutoCompleteTextView) findViewById(R.id.autocomplete_top500websites);
         metUrl.setText(urlAsString);
+        metUrl.addTextChangedListener(murlTextWatcher);
+
+        mbtUrlClear = (ImageButton) findViewById(R.id.search_url_clear);
+        mbtUrlClear.setOnClickListener(mbtClearUrlClicked);
 
         mCaretView = findViewById(R.id.caret);
 
@@ -401,6 +409,8 @@ public class ContentView extends FrameLayout {
         }
 
         mToolbarLayout.setBackgroundColor(bgColor);
+        findViewById(R.id.content_edit_url).setBackgroundColor(bgColor);
+        metUrl.setTextColor(textColor);
         mTitleTextView.setTextColor(textColor);
         mUrlTextView.setTextColor(textColor);
 
@@ -912,6 +922,35 @@ public class ContentView extends FrameLayout {
         @Override
         public void onClick(View v) {
             showSelectShareMethod(mWebRenderer.getUrl().toString(), true);
+        }
+    };
+
+    OnClickListener mbtClearUrlClicked = new View.OnClickListener() {
+        public void onClick(View v) {
+            metUrl.setText("");
+            mbtUrlClear.setEnabled(false);
+        }
+    };
+
+    TextWatcher murlTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            if (metUrl.getText().toString().length() != 0) {
+                mbtUrlClear.setEnabled(true);
+            }
+            else {
+                mbtUrlClear.setEnabled(false);
+            }
         }
     };
 
