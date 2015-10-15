@@ -47,6 +47,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -62,6 +63,24 @@ public class Util {
             throw new AssertionError(message);
         }
     }
+
+    public static String[] whitelistedBrowsers = {
+        "org.mozilla.firefox",
+        "org.mozilla.firefox_beta",
+        "com.android.chrome",
+        "com.opera.browser",
+        "com.opera.mini.native",
+        "com.opera.browser.beta",
+        "com.opera.mini.native.beta",
+        "com.chrome.dev",
+        "com.chrome.beta",
+        "com.ksmobile.cb",
+        "com.UCMobile.intl",
+        "mobi.mgeek.TunnyBrowser",
+        "com.explore.web.browser",
+        "com.ghostery.android.ghostery",
+        "org.adblockplus.browser"
+    };
 
     public static float clamp(float v0, float v, float v1) {
         return Math.max(v0, Math.min(v, v1));
@@ -599,7 +618,8 @@ public class Util {
         if (packageName.equals(BuildConfig.APPLICATION_ID) || packageName.contains("com.digitalashes.tappath") || packageName.contains("com.linkbubble")) {
             return false;
         }
-        return true;
+
+        return Arrays.asList(whitelistedBrowsers).contains(packageName);
     }
 
     public static Integer getSystemActionBarHeight(Context context) {
