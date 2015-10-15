@@ -216,11 +216,13 @@ public class MainApplication extends Application {
     }
 
     public static boolean loadIntent(Context context, String packageName, String className, String urlAsString, long urlLoadStartTime, boolean toastOnError) {
+
         Intent openIntent = new Intent(Intent.ACTION_VIEW);
-        openIntent.setClassName(packageName, className);
-        openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        openIntent.setData(Uri.parse(urlAsString));
+
         try {
+            openIntent.setClassName(packageName, className);
+            openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            openIntent.setData(Uri.parse(urlAsString));
             context.startActivity(openIntent);
             //Log.d(TAG, "redirect to app: " + resolveInfo.loadLabel(context.getPackageManager()) + ", url:" + url);
             if (urlLoadStartTime > -1) {
@@ -228,7 +230,8 @@ public class MainApplication extends Application {
             }
             CrashTracking.log("MainApplication.loadIntent()");
             return true;
-        } catch (SecurityException ex) {
+        } catch (Exception ex) {
+            // We want to catch SecurityException || ActivityNotFoundException
             openIntent = new Intent(Intent.ACTION_VIEW);
             openIntent.setPackage(packageName);
             openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);

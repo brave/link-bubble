@@ -6,12 +6,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,27 +73,27 @@ public class ActionItem {
 
     private static ArrayList<ActionItem> getActionItems(Context context, boolean viewItems, boolean sendItems, boolean sharePicker) {
         final ArrayList<ActionItem> actionItems = new ArrayList<ActionItem>();
-
         PackageManager packageManager = context.getPackageManager();
         Resources resources = context.getResources();
 
         if (viewItems) {
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("http://www.fdasfjsadfdsfas.com"));        // Something stupid that no non-browser app will handle
-            List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities (intent, PackageManager.GET_RESOLVED_FILTER);
-            for (ResolveInfo resolveInfo : resolveInfos) {
-                IntentFilter filter = resolveInfo.filter;
-                if (filter != null && filter.hasAction(Intent.ACTION_VIEW) && filter.hasCategory(Intent.CATEGORY_BROWSABLE)) {
-                    // Ignore LinkBubble from this list
-                    if (Util.isValidBrowserPackageName(resolveInfo.activityInfo.packageName)) {
-                        actionItems.add(new ActionItem(Constant.ActionType.View,
-                                resources,
-                                resolveInfo.loadLabel(packageManager).toString(),
-                                resolveInfo.loadIcon(packageManager),
-                                resolveInfo.activityInfo.packageName,
-                                resolveInfo.activityInfo.name));
-                    }
+            List<ApplicationInfo> packages = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
+            for (ApplicationInfo packageInfo : packages) {
+
+                // Filter out system apps.
+                Intent eachIntent = packageManager.getLaunchIntentForPackage(packageInfo.packageName);
+                if (eachIntent == null) {
+                    continue;
+                }
+
+                // Ignore LinkBubble from this list
+                if (Util.isValidBrowserPackageName(packageInfo.packageName)) {
+                    actionItems.add(new ActionItem(Constant.ActionType.View,
+                            resources,
+                            packageInfo.loadLabel(packageManager).toString(),
+                            packageInfo.loadIcon(packageManager),
+                            packageInfo.packageName,
+                            packageInfo.name));
                 }
             }
         }
