@@ -67,6 +67,8 @@ public class Util {
     public static String[] whitelistedBrowsers = {
         "org.mozilla.firefox",
         "org.mozilla.firefox_beta",
+        "org.mozilla.fennec_aurora",
+        "org.mozilla.fennec",
         "com.android.chrome",
         "com.opera.browser",
         "com.opera.mini.native",
