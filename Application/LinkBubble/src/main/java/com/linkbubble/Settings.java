@@ -640,6 +640,11 @@ public class Settings {
                 }
                 ComponentName componentName = new ComponentName(packageName, name);
                 return packageManager.getActivityIcon(componentName);
+            } else if(packageName != null) {
+                // Try rendering the icon if we only have a packageName.
+                ApplicationInfo app = packageManager.getApplicationInfo(packageName, 0);
+                Drawable icon = packageManager.getApplicationIcon(app);
+                return icon;
             }
         } catch (OutOfMemoryError ex) {
         } catch (PackageManager.NameNotFoundException e) {
