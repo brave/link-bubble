@@ -28,6 +28,8 @@ import android.webkit.SslErrorHandler;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
@@ -38,6 +40,7 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.adblock.TrackingProtectionList;
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.ui.TabView;
 import com.linkbubble.util.Analytics;
@@ -397,6 +400,29 @@ class WebViewRenderer extends WebRenderer {
             }
 
             return mController.shouldOverrideUrlLoading(urlAsString, viaInput);
+        }
+
+        @Override
+        public WebResourceResponse shouldInterceptRequest (WebView view, String urlStr) {
+
+            final WebResourceResponse allowRequest = null;
+            if (!Settings.get().isTrackingProtectionEnabled()) {
+                return allowRequest;
+            }
+
+            String host;
+            try {
+                host = new URL(urlStr).getHost();
+            } catch (Exception e) {
+                return allowRequest;
+            }
+
+            if (TrackingProtectionList.shouldBlockHost(host)) {
+                // Just return a blank bad resource;
+                return new WebResourceResponse("text/html", "UTF-8", null);
+            } else {
+                return allowRequest;
+            }
         }
 
         @Override
