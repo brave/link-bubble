@@ -26,6 +26,13 @@
         android:summary="@string/preference_auto_content_display_link_loaded_summary"
         />
 
+    <CheckBoxPreference
+        android:key="preference_trackingprotection"
+        android:title="@string/preference_trackingprotection_title"
+        android:summary="@string/preference_trackingprotection_summary"
+        android:defaultValue="false"
+        />
+
     <Preference
         android:key="preference_ignore_links_from"
         android:title="@string/preference_intercept_links_from_title"
