@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.6.5">
+        <change></change>
+    </release>
+
     <release version="1.6.4">
         <change>BUG FIX: Android M compatibility fixes for the fallback browser and left/right bubble pickers. We now display popular browsers which are installed on the device in the application picker.</change>
     </release>
