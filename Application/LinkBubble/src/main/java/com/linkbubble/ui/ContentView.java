@@ -534,8 +534,16 @@ public class ContentView extends FrameLayout {
                         }
                     }
                 } else {
-                    boolean isOnlyLinkBubble = mAppsForUrl.size() == 1 ? Util.isLinkBubbleResolveInfo(mAppsForUrl.get(0).mResolveInfo) : false;
-                    if (isOnlyLinkBubble == false && MainApplication.sShowingAppPickerDialog == false &&
+                    boolean isLinkBubblePresent = false;
+                    //boolean isLinkBubblePresent = mAppsForUrl.size() == 1 ? Util.isLinkBubbleResolveInfo(mAppsForUrl.get(0).mResolveInfo) : false;
+                    for (AppForUrl info : mAppsForUrl) {
+                        if (info.mResolveInfo.activityInfo.packageName.startsWith("com.linkbubble.playstore")) {
+                            isLinkBubblePresent = true;
+                            break;
+                        }
+                    }
+
+                    if (isLinkBubblePresent == false && MainApplication.sShowingAppPickerDialog == false &&
                             mHandledAppPickerForCurrentUrl == false && mAppPickersUrls.contains(urlAsString) == false) {
                         final ArrayList<ResolveInfo> resolveInfos = new ArrayList<ResolveInfo>();
                         for (AppForUrl appForUrl : mAppsForUrl) {
