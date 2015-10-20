@@ -737,7 +737,15 @@ public class MainController implements Choreographer.FrameCallback {
                     return null;
                 }
             } else {
-                showAppPicker = true;
+                // If LinkBubble is a valid resolve target, do not show other options to open the content.
+                for (ResolveInfo info : resolveInfos) {
+                    if (info.activityInfo.packageName.startsWith("com.linkbubble.playstore")) {
+                        showAppPicker = false;
+                        break;
+                    } else {
+                        showAppPicker = true;
+                    }
+                }
             }
         }
 
