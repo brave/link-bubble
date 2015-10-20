@@ -2,7 +2,7 @@
 <changelog>
 
     <release version="1.6.5">
-        <change></change>
+        <change>BUG FIX: Remove app picker dialog in most cases after opening a bubble. This may negatively interfere with default app selections for a while, but we're working on a fix for that. Thanks for your patience.</change>
     </release>
 
     <release version="1.6.4">
