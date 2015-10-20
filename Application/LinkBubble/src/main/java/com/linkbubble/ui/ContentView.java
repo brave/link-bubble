@@ -537,6 +537,13 @@ public class ContentView extends FrameLayout {
                     boolean isLinkBubblePresent = false;
                     //boolean isLinkBubblePresent = mAppsForUrl.size() == 1 ? Util.isLinkBubbleResolveInfo(mAppsForUrl.get(0).mResolveInfo) : false;
                     for (AppForUrl info : mAppsForUrl) {
+
+                        // Handle crash: https://fabric.io/brave6/android/apps/com.linkbubble.playstore/issues/562667c7f5d3a7f76bf16a4c
+                        if (info.mResolveInfo == null || info.mResolveInfo.activityInfo == null) {
+                            CrashTracking.log("onPageStarted() Null resolveInfo when getting default for app: " + info);
+                            continue;
+                        }
+
                         if (info.mResolveInfo.activityInfo.packageName.startsWith("com.linkbubble.playstore")) {
                             isLinkBubblePresent = true;
                             break;
