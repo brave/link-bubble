@@ -40,6 +40,7 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.adblock.ABPFilterParser;
 import com.linkbubble.adblock.TrackingProtectionList;
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.ui.TabView;
@@ -407,27 +408,19 @@ class WebViewRenderer extends WebRenderer {
             return mController.shouldOverrideUrlLoading(urlAsString, viaInput);
         }
 
+
         @Override
         public WebResourceResponse shouldInterceptRequest (WebView view, String urlStr) {
-
-            final WebResourceResponse allowRequest = null;
-            if (!Settings.get().isTrackingProtectionEnabled()) {
-                return allowRequest;
-            }
-
-            String host;
-            try {
-                host = new URL(urlStr).getHost();
-            } catch (Exception e) {
-                return allowRequest;
-            }
-
-            if (TrackingProtectionList.shouldBlockHost(host)) {
-                // Just return a blank bad resource;
+            if (mController.shouldTrackingProtectionBlockUrl(urlStr) ||
+                    mController.shouldAdBlockUrl(urlStr)) {
+                // Unfortunately the deprecated API that we're targetting doesn't have a better
+                // way to block this. Once we upgrade our target then we can use a better override
+                // which allows us to set a response code.
                 return new WebResourceResponse("text/html", "UTF-8", null);
-            } else {
-                return allowRequest;
             }
+
+            // Allow the request as usual
+            return null;
         }
 
         @Override
