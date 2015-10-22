@@ -37,7 +37,10 @@ enum FilterOption {
 };
 
 class Filter {
+<<<<<<< HEAD
 friend class ABPFilterParser;
+=======
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
 public:
   Filter();
   ~Filter();
@@ -55,10 +58,13 @@ public:
   bool containsDomain(const char *domain, bool anti = false) const;
   int getDomainCount(bool anti = false) const;
 
+<<<<<<< HEAD
   // Holds true if the filter should not free memory because for example it was loaded
   // from a large buffer somewhere else via the serialize and deserialize functions.
   bool borrowedData;
 
+=======
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
   FilterType filterType;
   FilterOption filterOption;
   FilterOption antiFilterOption;

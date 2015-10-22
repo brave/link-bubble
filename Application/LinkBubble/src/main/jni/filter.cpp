@@ -3,13 +3,23 @@
 #include <string.h>
 
 #define DISABLE_REGEX
+<<<<<<< HEAD
+=======
+
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
 #ifndef DISABLE_REGEX
 #include <string>
 #include <regex>
 #endif
 
+<<<<<<< HEAD
 Filter::Filter() :
   borrowedData(false),
+=======
+using namespace std;
+
+Filter::Filter() :
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
   filterType(FTNoFilterType),
   filterOption(FONoFilterOption),
   antiFilterOption(FONoFilterOption),
@@ -19,9 +29,12 @@ Filter::Filter() :
 }
 
 Filter::~Filter() {
+<<<<<<< HEAD
   if (borrowedData) {
     return;
   }
+=======
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
   if (data) {
     delete[] data;
   }
@@ -403,7 +416,11 @@ bool Filter::matches(const char *input, FilterOption contextOption, const char *
   if (filterType & FTRegex) {
 #ifndef DISABLE_REGEX
     std::smatch m;
+<<<<<<< HEAD
     std::regex e (data, std::regex_constants::extended);
+=======
+    std::regex e (data);
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
     return std::regex_search(std::string(input), m, e);
 #else
     return false;

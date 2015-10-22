@@ -1,5 +1,6 @@
 #include "ABPFilterParser.h"
 #include <string.h>
+<<<<<<< HEAD
 #include <stdio.h>
 
 #ifdef PERF_STATS
@@ -15,6 +16,8 @@ using namespace std;
 #include <functional>
 #include "badFingerprints.h"
 #endif
+=======
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
 
 const int maxLineLength = 2048;
 const char *separatorCharacters = ":?/=^";
@@ -27,6 +30,7 @@ enum FilterParseState {
   FPData
 };
 
+<<<<<<< HEAD
 static const int fingerprintSize = 8;
 #ifndef DISABLE_REGEX
 static const char* fingerprintRegexs[2] = {
@@ -101,6 +105,8 @@ bool getFingerprint(char *buffer, const char *input) {
 #endif
 }
 
+=======
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
 bool isSeparatorChar(char c) {
   const char *p = separatorCharacters;
   while (*p != 0) {
@@ -123,6 +129,7 @@ int findFirstSeparatorChar(const char *input, const char *end) {
   return -1;
 }
 
+<<<<<<< HEAD
 void parseFilter(const char *input, Filter &f, BloomFilter *bloomFilter, BloomFilter *exceptionBloomFilter) {
   const char *end = input;
   while (*end != '\0') end++;
@@ -131,14 +138,28 @@ void parseFilter(const char *input, Filter &f, BloomFilter *bloomFilter, BloomFi
 
 // Not currently multithreaded safe due to the static buffer named 'data'
 void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *bloomFilter, BloomFilter *exceptionBloomFilter) {
+=======
+void parseFilter(const char *input, Filter &f) {
+  const char *end = input;
+  while (*end != '\0') end++;
+  parseFilter(input, end, f);
+}
+
+// Not currently multithreaded safe due to the static buffer named 'data'
+void parseFilter(const char *input, const char *end, Filter &f) {
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
   FilterParseState parseState = FPStart;
   const char *p = input;
   char data[maxLineLength];
   memset(data, 0, sizeof data);
   int i = 0;
 
+<<<<<<< HEAD
   bool earlyBreak = false;
   while (p != end && !earlyBreak) {
+=======
+  while (p != end) {
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
     // Check for the filter being too long
     if ((p - input) >= maxLineLength - 1) {
       return;
@@ -149,7 +170,10 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
       f.filterType = static_cast<FilterType>(f.filterType | FTLeftAnchored);
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
     switch (*p) {
       case '|':
         if (parseState == FPStart || parseState == FPPastWhitespace) {
@@ -224,8 +248,16 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
 
       case '$':
         f.parseOptions(p + 1);
+<<<<<<< HEAD
         earlyBreak = true;
         continue;
+=======
+        data[i] = '\0';
+        f.data = new char[i + 1];
+        memcpy(f.data, data, i + 1);
+        return;
+
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
       case '#':
         if (*(p+1) == '#') {
           // TODO
@@ -254,6 +286,7 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
   data[i] = '\0';
   f.data = new char[i + 1];
   memcpy(f.data, data, i + 1);
+<<<<<<< HEAD
 
 #ifndef DISABLE_REGEX
   char fingerprintBuffer[fingerprintSize + 1];
@@ -269,6 +302,8 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
     }
   }
 #endif
+=======
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
 }
 
 
@@ -276,6 +311,7 @@ ABPFilterParser::ABPFilterParser() : filters(nullptr),
   htmlRuleFilters(nullptr),
   exceptionFilters(nullptr),
   noFingerprintFilters(nullptr),
+<<<<<<< HEAD
   noFingerprintExceptionFilters(nullptr),
   numFilters(0),
   numHtmlRuleFilters(0),
@@ -288,6 +324,12 @@ ABPFilterParser::ABPFilterParser() : filters(nullptr),
   numExceptionFalsePositives(0),
   numBloomFilterSaves(0),
   numExceptionBloomFilterSaves(0) {
+=======
+  numFilters(0),
+  numHtmlRuleFilters(0),
+  numExceptionFilters(0),
+  numNoFingerprintFilters(0) {
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
 }
 
 ABPFilterParser::~ABPFilterParser() {
@@ -303,6 +345,7 @@ ABPFilterParser::~ABPFilterParser() {
   if (noFingerprintFilters) {
    delete[] noFingerprintFilters;
   }
+<<<<<<< HEAD
   if (noFingerprintExceptionFilters) {
     delete[] noFingerprintExceptionFilters;
   }
@@ -312,6 +355,8 @@ ABPFilterParser::~ABPFilterParser() {
   if (exceptionBloomFilter) {
     delete exceptionBloomFilter;
   }
+=======
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
 }
 
 bool ABPFilterParser::hasMatchingFilters(Filter *filter, int &numFilters, const char *input, FilterOption contextOption, const char *contextDomain) {
@@ -324,6 +369,7 @@ bool ABPFilterParser::hasMatchingFilters(Filter *filter, int &numFilters, const 
   return false;
 }
 
+<<<<<<< HEAD
 #ifdef PERF_STATS
 void discoverMatchingPrefix(const char *str, BloomFilter *bloomFilter, int prefixLen = fingerprintSize) {
   char sz[32];
@@ -448,10 +494,21 @@ void ABPFilterParser::initExceptionBloomFilter(const char *buffer, int len) {
   if (len > 0) {
     exceptionBloomFilter = new BloomFilter(buffer, len);
   }
+=======
+bool ABPFilterParser::matches(const char *input, FilterOption contextOption, const char *contextDomain) {
+  if (hasMatchingFilters(filters, numFilters, input, contextOption, contextDomain)) {
+    if (hasMatchingFilters(exceptionFilters, numExceptionFilters, input, contextOption, contextDomain)) {
+      return false;
+    }
+    return true;
+  }
+  return false;
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
 }
 
 // Parses the filter data into a few collections of filters and enables efficent querying
 bool ABPFilterParser::parse(const char *input) {
+<<<<<<< HEAD
 #ifndef DISABLE_REGEX
   // If the user is parsing and we have regex support,
   // then we can determine the fingerprints for the bloom filter.
@@ -464,6 +521,8 @@ bool ABPFilterParser::parse(const char *input) {
   }
 #endif
 
+=======
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
   const char *p = input;
   const char *lineStart = p;
 
@@ -471,7 +530,10 @@ bool ABPFilterParser::parse(const char *input) {
   int newNumHtmlRuleFilters = 0;
   int newNumExceptionFilters = 0;
   int newNumNoFingerprintFilters = 0;
+<<<<<<< HEAD
   int newNumNoFingerprintExceptionFilters = 0;
+=======
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
 
   // Parsing does 2 passes, one just to determine the type of information we'll need to setup.
   // Note that the library will be used on a variety of builds so sometimes we won't even have STL
@@ -482,11 +544,15 @@ bool ABPFilterParser::parse(const char *input) {
       parseFilter(lineStart, p, f);
       switch(f.filterType & FTListTypesMask) {
         case FTException:
+<<<<<<< HEAD
           if (getFingerprint(nullptr, f.data)) {
             newNumExceptionFilters++;
           } else {
             newNumNoFingerprintExceptionFilters++;
           }
+=======
+          newNumExceptionFilters++;
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
           break;
         case FTElementHiding:
           newNumHtmlRuleFilters++;
@@ -499,11 +565,16 @@ bool ABPFilterParser::parse(const char *input) {
           // No need to store comments
           break;
         default:
+<<<<<<< HEAD
           if (getFingerprint(nullptr, f.data)) {
             newNumFilters++;
           } else {
             newNumNoFingerprintFilters++;
           }
+=======
+          // TODO: check if no fingerprint and if so update numNoFingerprintFilters
+          newNumFilters++;
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
           break;
       }
       lineStart = p + 1;
@@ -517,11 +588,14 @@ bool ABPFilterParser::parse(const char *input) {
   };
 
 
+<<<<<<< HEAD
 #ifdef PERF_STATS
   cout << "Num no fingerprint filters: " << numNoFingerprintFilters << endl;
   cout << "Num no fingerprint exception filters: " << numNoFingerprintExceptionFilters << endl;
 #endif
 
+=======
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
   Filter *newFilters = new Filter[newNumFilters + numFilters];
   Filter *newHtmlRuleFilters = new Filter[newNumHtmlRuleFilters + numHtmlRuleFilters];
   Filter *newExceptionFilters = new Filter[newNumExceptionFilters + numExceptionFilters];
@@ -562,6 +636,7 @@ bool ABPFilterParser::parse(const char *input) {
   numHtmlRuleFilters += newNumHtmlRuleFilters;
   numExceptionFilters += newNumExceptionFilters;
   numNoFingerprintFilters += newNumNoFingerprintFilters;
+<<<<<<< HEAD
   numNoFingerprintExceptionFilters += newNumNoFingerprintExceptionFilters;
 
   // Adjust the new member list pointers
@@ -569,7 +644,10 @@ bool ABPFilterParser::parse(const char *input) {
   htmlRuleFilters = newHtmlRuleFilters;
   exceptionFilters = newExceptionFilters;
   noFingerprintFilters = newNoFingerprintFilters;
+<<<<<<< HEAD
   noFingerprintExceptionFilters = newNoFingerprintExceptionFilters;
+=======
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
 
   p = input;
   lineStart = p;
@@ -577,6 +655,7 @@ bool ABPFilterParser::parse(const char *input) {
   while (true) {
     if (*p == '\n' || *p == '\0') {
       Filter f;
+<<<<<<< HEAD
       parseFilter(lineStart, p, f, bloomFilter, exceptionBloomFilter);
       switch(f.filterType & FTListTypesMask) {
         case FTException:
@@ -587,6 +666,13 @@ bool ABPFilterParser::parse(const char *input) {
             (*curNoFingerprintExceptionFilters).swap(f);
             curNoFingerprintExceptionFilters++;
           }
+=======
+      parseFilter(lineStart, p, f);
+      switch(f.filterType & FTListTypesMask) {
+        case FTException:
+          (*curExceptionFilters).swap(f);
+          curExceptionFilters++;
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
           break;
         case FTElementHiding:
         case FTElementHidingException:
@@ -598,6 +684,7 @@ bool ABPFilterParser::parse(const char *input) {
           // No need to store
           break;
         default:
+<<<<<<< HEAD
           if (getFingerprint(nullptr, f.data)) {
             (*curFilters).swap(f);
             curFilters++;
@@ -605,6 +692,11 @@ bool ABPFilterParser::parse(const char *input) {
             (*curNoFingerprintFilters).swap(f);
             curNoFingerprintFilters++;
           }
+=======
+          // TODO: check if no fingerprint here and update noFingerprintFilters instead
+          (*curFilters).swap(f);
+          curFilters++;
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
           break;
       }
       lineStart = p + 1;
@@ -620,6 +712,7 @@ bool ABPFilterParser::parse(const char *input) {
   return true;
 }
 
+<<<<<<< HEAD
 // Fills the specified buffer if specified, returns the number of characters written or needed
 int serializeFilters(char * buffer, Filter *f, int numFilters) {
   char sz[256];
@@ -772,3 +865,5 @@ void ABPFilterParser::deserialize(char *buffer) {
   initExceptionBloomFilter(buffer + pos, exceptionBloomFilterSize);
   pos += exceptionBloomFilterSize;
 }
+=======
+>>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
