@@ -102,6 +102,8 @@ bool getFingerprint(char *buffer, const char *input) {
 }
 
 
+=======
+>>>>>>> b5da48e... Add Ad Block Plus C++ filter library and JNI integration code
 bool isSeparatorChar(char c) {
   const char *p = separatorCharacters;
   while (*p != 0) {
@@ -149,7 +151,6 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
       parseState = FPData;
       f.filterType = static_cast<FilterType>(f.filterType | FTLeftAnchored);
     }
-
 
     switch (*p) {
       case '|':
