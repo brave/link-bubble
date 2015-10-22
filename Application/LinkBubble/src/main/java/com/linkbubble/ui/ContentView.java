@@ -60,6 +60,8 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.adblock.ABPFilterParser;
+import com.linkbubble.adblock.TrackingProtectionList;
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.articlerender.ArticleRenderer;
 import com.linkbubble.util.ActionItem;
@@ -169,6 +171,7 @@ public class ContentView extends FrameLayout {
 
         mContext = context;
         mLoadingString = getResources().getString(R.string.loading);
+        mABPParser.init();
     }
 
     public long getTotalTrackedLoadTime() {
@@ -544,6 +547,34 @@ public class ContentView extends FrameLayout {
     }
 
     WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {
+
+        @Override
+        public boolean shouldAdBlockUrl(String urlStr) {
+            if (!Settings.get().isAdBlockEnabled()) {
+                return false;
+            }
+            return mABPParser.shouldBlock(urlStr);
+        }
+
+        @Override
+        public boolean shouldTrackingProtectionBlockUrl(String urlStr) {
+            if (!Settings.get().isTrackingProtectionEnabled()) {
+                return false;
+            }
+            String host;
+            try {
+                host = new URL(urlStr).getHost();
+            } catch (Exception e) {
+                return false;
+            }
+
+            if (TrackingProtectionList.shouldBlockHost(host)) {
+                // Just return a blank bad resource;
+                return true;
+            }
+
+            return false;
+        }
 
         @Override
         public boolean shouldOverrideUrlLoading(String urlAsString, boolean viaUserInput) {
