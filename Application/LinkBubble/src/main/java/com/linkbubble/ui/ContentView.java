@@ -156,6 +156,8 @@ public class ContentView extends FrameLayout {
     private boolean mApplyAutoSuggestionToUrlString = true;
     private boolean mSetTheRealUrlString = true;
     private boolean mFirstTimeUrlTyped = true;
+    private ABPFilterParser mABPParser = new ABPFilterParser();
+
 
     public ContentView(Context context) {
         this(context, null);
@@ -170,6 +172,7 @@ public class ContentView extends FrameLayout {
 
         mContext = context;
         mLoadingString = getResources().getString(R.string.loading);
+        mABPParser.init();
     }
 
     public long getTotalTrackedLoadTime() {
