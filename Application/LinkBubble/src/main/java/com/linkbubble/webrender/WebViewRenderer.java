@@ -74,6 +74,8 @@ class WebViewRenderer extends WebRenderer {
     private boolean mPauseOnComplete;
     private Boolean mIsDestroyed = false;
     private boolean mRegisteredForBus;
+    private boolean mTrackingProtectionEnabled = false;
+    private boolean mAdblockEnabled = false;
 
     private ArticleContent.BuildContentTask mBuildArticleContentTask;
     private ArticleContent mArticleContent;
@@ -191,6 +193,9 @@ class WebViewRenderer extends WebRenderer {
     @Override
     public void loadUrl(URL url, Mode mode) {
         mHost = url.getHost();
+        mTrackingProtectionEnabled = Settings.get().isTrackingProtectionEnabled();
+        mAdblockEnabled = Settings.get().isAdBlockEnabled();
+
         String urlAsString = url.toString();
         Log.d(TAG, "loadUrl() - " + urlAsString);
 
@@ -413,8 +418,10 @@ class WebViewRenderer extends WebRenderer {
 
         @Override
         public WebResourceResponse shouldInterceptRequest (WebView view, String urlStr) {
-            if (mController.shouldTrackingProtectionBlockUrl(mHost, urlStr) ||
-                    mController.shouldAdBlockUrl(urlStr)) {
+
+            if (mTrackingProtectionEnabled &&
+                    mController.shouldTrackingProtectionBlockUrl(mHost, urlStr) ||
+                    mAdblockEnabled && mController.shouldAdBlockUrl(urlStr)) {
                 // Unfortunately the deprecated API that we're targetting doesn't have a better
                 // way to block this. Once we upgrade our target then we can use a better override
                 // which allows us to set a response code.

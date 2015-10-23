@@ -550,17 +550,11 @@ public class ContentView extends FrameLayout {
 
         @Override
         public boolean shouldAdBlockUrl(String urlStr) {
-            if (!Settings.get().isAdBlockEnabled()) {
-                return false;
-            }
             return mABPParser.shouldBlock(urlStr);
         }
 
         @Override
         public boolean shouldTrackingProtectionBlockUrl(String baseHost, String urlStr) {
-            if (!Settings.get().isTrackingProtectionEnabled()) {
-                return false;
-            }
             String host;
             try {
                 host = new URL(urlStr).getHost();
