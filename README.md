@@ -24,20 +24,11 @@ Try uninstalling the application which already exists on your plugged in device.
 
 ##Installing the NDK
 
-The following describes steps for installing the NDK on your system. It is specific to OS X, if you use another operating system the steps will be slightly different.
+Android Studio has an easy way to download and link to the NDK.
 
-1. Download the NDK from: http://developer.android.com/ndk/downloads/index.html and select the appropriate package for your operating system
-2. cd `~/Downloads`
-3. Add execute permissions: `chmod a+x ./android-ndk-r10e-darwin-x86_64.bin`
-4. Execute the binary: `./android-ndk-r10e-darwin-x86_64.bin`
-5. This will extract a folder named something like `android-ndk-r10e/`
-6. Move this folder to `~/Library/Android/ndk`
-7. Edit your `local.properties` file in Android studio to point to the NDK location. An example `local.properties` looks like this:
+In the menu navigate to File, Project Structure. Click the 'Download Android NDK' link. This should download and unzip the NDK, as well as link it inside of local.properties.
 
-```
-sdk.dir=/Users/bbondy/Library/Android/sdk
-ndk.dir=/Users/bbondy/Library/Android/ndk
-```
+If you are not using Android Studio, reference this commit: https://github.com/brave/link-bubble/commit/0fa9f58286e0679ec5772e19b995d6a508907691
 
 ##Telling getlocalization.com about new strings
 
