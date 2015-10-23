@@ -63,6 +63,7 @@ class WebViewRenderer extends WebRenderer {
     private View mTouchInterceptorView;
     private long mLastWebViewTouchUpTime = -1;
     private String mLastWebViewTouchDownUrl;
+    private String mHost;
     private AlertDialog mJsAlertDialog;
     private AlertDialog mJsConfirmDialog;
     private AlertDialog mJsPromptDialog;
@@ -186,6 +187,7 @@ class WebViewRenderer extends WebRenderer {
 
     @Override
     public void loadUrl(URL url, Mode mode) {
+        mHost = url.getHost();
         String urlAsString = url.toString();
         Log.d(TAG, "loadUrl() - " + urlAsString);
 
@@ -406,7 +408,7 @@ class WebViewRenderer extends WebRenderer {
 
         @Override
         public WebResourceResponse shouldInterceptRequest (WebView view, String urlStr) {
-            if (mController.shouldTrackingProtectionBlockUrl(urlStr) ||
+            if (mController.shouldTrackingProtectionBlockUrl(mHost, urlStr) ||
                     mController.shouldAdBlockUrl(urlStr)) {
                 // Unfortunately the deprecated API that we're targetting doesn't have a better
                 // way to block this. Once we upgrade our target then we can use a better override
