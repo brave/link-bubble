@@ -557,7 +557,7 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
-        public boolean shouldTrackingProtectionBlockUrl(String urlStr) {
+        public boolean shouldTrackingProtectionBlockUrl(String baseHost, String urlStr) {
             if (!Settings.get().isTrackingProtectionEnabled()) {
                 return false;
             }
@@ -568,7 +568,7 @@ public class ContentView extends FrameLayout {
                 return false;
             }
 
-            if (TrackingProtectionList.shouldBlockHost(host)) {
+            if (TrackingProtectionList.shouldBlockHost(baseHost, host)) {
                 // Just return a blank bad resource;
                 return true;
             }
