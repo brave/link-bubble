@@ -8,7 +8,7 @@ Either install the [Crashlytics/Fabric Android Studio plugin](http://try.crashly
 
 ##Building Link Bubble Free
 
-Open `./Application/` in Android Studio and build.
+Open `./Application/` in Android Studio and build.  You'll need the NDK installed if you don't already have it, instructions below.
 
 ##Building release build
 
@@ -21,6 +21,23 @@ If you get an error about similar to:
 > Failure [INSTALL_PARSE_FAILED_INCONSISTENT_CERTIFICATES]
 
 Try uninstalling the application which already exists on your plugged in device.
+
+##Installing the NDK
+
+The following describes steps for installing the NDK on your system. It is specific to OS X, if you use another operating system the steps will be slightly different.
+
+1. Download the NDK from: http://developer.android.com/ndk/downloads/index.html and select the appropriate package for your operating system
+2. cd `~/Downloads`
+3. Add execute permissions: `chmod a+x ./android-ndk-r10e-darwin-x86_64.bin`
+4. Execute the binary: `./android-ndk-r10e-darwin-x86_64.bin`
+5. This will extract a folder named something like `android-ndk-r10e/`
+6. Move this folder to `~/Library/Android/ndk`
+7. Edit your `local.properties` file in Android studio to point to the NDK location. An example `local.properties` looks like this:
+
+```
+sdk.dir=/Users/bbondy/Library/Android/sdk
+ndk.dir=/Users/bbondy/Library/Android/ndk
+```
 
 ##Telling getlocalization.com about new strings
 
