@@ -1,9 +1,8 @@
 let fs = require('fs');
 let path = require('path');
-let child_process = require('child_process');
 var https = require('https');
 
-if (process.argv.length != 4) {
+if (process.argv.length !== 4) {
   console.error('usage: babel-node udpateTranslations.js <username> <password>');
   process.exit(0);
 }
@@ -17,7 +16,7 @@ const request = (path) => {
       host: 'api.getlocalization.com',
       path,
       method: 'GET',
-      auth: `${username}:${password}`,
+      auth: `${username}:${password}`
     }, function (res) {
       res.setEncoding('utf8');
       let body = '';
@@ -59,7 +58,7 @@ requestTranslations().then(translations => {
       // Android calls: en-US -> en-rUS
       let filename = translation.iana_code.split('-').join('-r');
       let toPath = `./Application/LinkBubble/src/main/res/values-${filename}`;
-       if (!fs.existsSync(toPath)) {
+      if (!fs.existsSync(toPath)) {
         fs.mkdirSync(toPath);
       }
 
