@@ -14,7 +14,7 @@ extern "C" {
  * Signature: ()Ljava/lang/void;
  */
 JNIEXPORT void JNICALL Java_com_linkbubble_adblock_ABPFilterParser_init
-  (JNIEnv *, jobject);
+  (JNIEnv *, jobject, jbyteArray);
 
 /*
  * Class:     com_linkbubble_adblock_ABPFilterParser
@@ -22,7 +22,7 @@ JNIEXPORT void JNICALL Java_com_linkbubble_adblock_ABPFilterParser_init
  * Signature: ()Ljava/lang/String;
  */
 JNIEXPORT jboolean JNICALL Java_com_linkbubble_adblock_ABPFilterParser_shouldBlock
-        (JNIEnv *, jobject, jstring);
+        (JNIEnv *, jobject, jstring, jstring);
 
 #ifdef __cplusplus
 }
