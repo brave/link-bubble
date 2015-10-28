@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.linkbubble.Constant.BubbleAction;
+import com.linkbubble.adblock.ABPFilterParser;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
@@ -52,6 +53,8 @@ public class MainApplication extends Application {
     public static boolean sShowingAppPickerDialog = false;
     private static long sTrialStartTime = -1;
 
+    private ABPFilterParser mABPParser = null;
+
     public IconCache mIconCache;
 
     public static String sLastLoadedUrl;
@@ -81,6 +84,15 @@ public class MainApplication extends Application {
 
     public Bus getBus() {
         return mBus;
+    }
+
+    public ABPFilterParser getABPParser() {
+        // Lazy load ABPFilterParser so that if it is disabled we don't even read the binary data
+        // to initialize the library.
+        if (mABPParser == null) {
+            mABPParser = new ABPFilterParser(this);
+        }
+        return mABPParser;
     }
 
     /**

@@ -19,7 +19,8 @@ public abstract class WebRenderer {
     }
 
     public interface Controller {
-        public boolean shouldAdBlockUrl(String urlStr);
+        public boolean
+        shouldAdBlockUrl(String baseHost, String urlStr);
         public boolean shouldTrackingProtectionBlockUrl(String baseHost, String urlStr);
         public boolean shouldOverrideUrlLoading(String urlAsString, boolean viaUserInput);
         public void onLoadUrl(String urlAsString);      // may or may not be called
