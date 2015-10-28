@@ -3,15 +3,13 @@
 #include <string.h>
 
 #define DISABLE_REGEX
-
 #ifndef DISABLE_REGEX
 #include <string>
 #include <regex>
 #endif
 
-using namespace std;
-
 Filter::Filter() :
+  borrowedData(false),
   filterType(FTNoFilterType),
   filterOption(FONoFilterOption),
   antiFilterOption(FONoFilterOption),
@@ -21,6 +19,9 @@ Filter::Filter() :
 }
 
 Filter::~Filter() {
+  if (borrowedData) {
+    return;
+  }
   if (data) {
     delete[] data;
   }
@@ -402,7 +403,7 @@ bool Filter::matches(const char *input, FilterOption contextOption, const char *
   if (filterType & FTRegex) {
 #ifndef DISABLE_REGEX
     std::smatch m;
-    std::regex e (data);
+    std::regex e (data, std::regex_constants::extended);
     return std::regex_search(std::string(input), m, e);
 #else
     return false;
