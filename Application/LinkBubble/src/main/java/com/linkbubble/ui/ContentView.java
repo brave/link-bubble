@@ -60,7 +60,6 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.adblock.ABPFilterParser;
 import com.linkbubble.adblock.TrackingProtectionList;
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.articlerender.ArticleRenderer;
@@ -158,8 +157,6 @@ public class ContentView extends FrameLayout {
     private boolean mSetTheRealUrlString = true;
     private boolean mFirstTimeUrlTyped = true;
 
-    private ABPFilterParser mABPParser = new ABPFilterParser();
-
     public ContentView(Context context) {
         this(context, null);
     }
@@ -173,7 +170,6 @@ public class ContentView extends FrameLayout {
 
         mContext = context;
         mLoadingString = getResources().getString(R.string.loading);
-        mABPParser.init();
     }
 
     public long getTotalTrackedLoadTime() {
@@ -567,7 +563,7 @@ public class ContentView extends FrameLayout {
             if (TrackingProtectionList.shouldBlockHost(baseHost, host)) {
                 // Just return a blank bad resource;
                 return true;
-            }
+        }
 
             return false;
         }
