@@ -60,7 +60,6 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.adblock.ABPFilterParser;
 import com.linkbubble.adblock.TrackingProtectionList;
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.articlerender.ArticleRenderer;
@@ -147,7 +146,7 @@ public class ContentView extends FrameLayout {
     // We only want to handle this once per link. This prevents 3+ dialogs appearing for some links, which is a bad experience. #224
     private boolean mHandledAppPickerForCurrentUrl = false;
     private boolean mUsingLinkBubbleAsDefaultForCurrentUrl = false;
-
+    
     private SearchURLCustomAdapter mAdapter;
     private SearchURLSuggestions mFirstSuggestedItem;
 
@@ -171,7 +170,6 @@ public class ContentView extends FrameLayout {
 
         mContext = context;
         mLoadingString = getResources().getString(R.string.loading);
-        mABPParser.init();
     }
 
     public long getTotalTrackedLoadTime() {
@@ -549,8 +547,9 @@ public class ContentView extends FrameLayout {
     WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {
 
         @Override
-        public boolean shouldAdBlockUrl(String urlStr) {
-            return mABPParser.shouldBlock(urlStr);
+        public boolean shouldAdBlockUrl(String baseHost, String urlStr) {
+            MainApplication app = (MainApplication) mContext.getApplicationContext();
+            return app.getABPParser().shouldBlock(baseHost, urlStr);
         }
 
         @Override
@@ -565,7 +564,7 @@ public class ContentView extends FrameLayout {
             if (TrackingProtectionList.shouldBlockHost(baseHost, host)) {
                 // Just return a blank bad resource;
                 return true;
-            }
+        }
 
             return false;
         }
