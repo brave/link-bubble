@@ -4,14 +4,18 @@
 
 #define DISABLE_REGEX
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
+=======
+>>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
 #ifndef DISABLE_REGEX
 #include <string>
 #include <regex>
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 Filter::Filter() :
   borrowedData(false),
@@ -20,6 +24,10 @@ using namespace std;
 
 Filter::Filter() :
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
+=======
+Filter::Filter() :
+  borrowedData(false),
+>>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
   filterType(FTNoFilterType),
   filterOption(FONoFilterOption),
   antiFilterOption(FONoFilterOption),
@@ -30,11 +38,17 @@ Filter::Filter() :
 
 Filter::~Filter() {
 <<<<<<< HEAD
+<<<<<<< HEAD
   if (borrowedData) {
     return;
   }
 =======
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
+=======
+  if (borrowedData) {
+    return;
+  }
+>>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
   if (data) {
     delete[] data;
   }
@@ -417,10 +431,14 @@ bool Filter::matches(const char *input, FilterOption contextOption, const char *
 #ifndef DISABLE_REGEX
     std::smatch m;
 <<<<<<< HEAD
+<<<<<<< HEAD
     std::regex e (data, std::regex_constants::extended);
 =======
     std::regex e (data);
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
+=======
+    std::regex e (data, std::regex_constants::extended);
+>>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
     return std::regex_search(std::string(input), m, e);
 #else
     return false;

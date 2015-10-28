@@ -1,11 +1,18 @@
 #pragma once
 
 #include <math.h>
+<<<<<<< HEAD
 #include <stdint.h>
 #include "hashFn.h"
 #include "base.h"
 
 extern HashFn defaultHashFns[5];
+=======
+#include "hashFn.h"
+#include "base.h"
+
+extern HashFn defaultHashFns[3];
+>>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
 /**
  * Implements a Bloom Filter using Rabin Karp for char* buffer lookups
  */
@@ -53,7 +60,11 @@ public:
 
 private:
   HashFn *hashFns;
+<<<<<<< HEAD
   uint64_t *lastHashes;
+=======
+  unsigned int *lastHashes;
+>>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
   int numHashFns;
   unsigned int byteBufferSize;
   unsigned int bitBufferSize;
@@ -70,5 +81,9 @@ private:
    * @param lastCharCode if specified, it will pass the last char code
    *  to the hashing function for a faster computation. Must be called with lastHashes.
    */
+<<<<<<< HEAD
   void getHashesForCharCodes(const char *input, int inputLen, uint64_t *lastHashes, uint64_t *newHashes, unsigned char lastCharCode);
+=======
+  void getHashesForCharCodes(const char *input, int inputLen, unsigned int *lastHashes, unsigned int *newHashes, unsigned char lastCharCode);
+>>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
 };

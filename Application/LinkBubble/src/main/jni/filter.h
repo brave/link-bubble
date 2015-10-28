@@ -38,9 +38,13 @@ enum FilterOption {
 
 class Filter {
 <<<<<<< HEAD
+<<<<<<< HEAD
 friend class ABPFilterParser;
 =======
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
+=======
+friend class ABPFilterParser;
+>>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
 public:
   Filter();
   ~Filter();
@@ -59,12 +63,18 @@ public:
   int getDomainCount(bool anti = false) const;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
   // Holds true if the filter should not free memory because for example it was loaded
   // from a large buffer somewhere else via the serialize and deserialize functions.
   bool borrowedData;
 
+<<<<<<< HEAD
 =======
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
+=======
+>>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
   FilterType filterType;
   FilterOption filterOption;
   FilterOption antiFilterOption;
