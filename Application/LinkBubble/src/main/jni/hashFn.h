@@ -13,7 +13,7 @@ public:
     // See the abracadabra example: https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm
     return (lastHash - lastCharCode * pow(p, len - 1)) * p + input[len - 1];
   }
-
+    
   virtual uint64_t operator()(const char *input, int len) {
     uint64_t total = 0;
     for (int i = 0; i < len; i++) {

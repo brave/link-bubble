@@ -2,11 +2,14 @@
 #include <string.h>
 #include <stdio.h>
 
+<<<<<<< HEAD
 #ifdef PERF_STATS
 #include <iostream>
 using namespace std;
 #endif
 
+=======
+>>>>>>> f63b515... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
 #define DISABLE_REGEX
 #ifndef DISABLE_REGEX
 #include <string>
@@ -27,8 +30,13 @@ enum FilterParseState {
   FPData
 };
 
+<<<<<<< HEAD
 static const int fingerprintSize = 8;
 #ifndef DISABLE_REGEX
+=======
+#ifndef DISABLE_REGEX
+static const int fingerprintSize = 8;
+>>>>>>> f63b515... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
 static const char* fingerprintRegexs[2] = {
   ".*([./&_\\-=a-zA-Z0-9]{8})\\$?.*",
   "([./&_\\-=a-zA-Z0-9]{8})\\$?.*",
@@ -79,9 +87,12 @@ bool getFingerprint(char *buffer, const char *input) {
     if (buffer) {
       std::string curMatch = m[1];
       strcpy(buffer, curMatch.c_str());
+<<<<<<< HEAD
 #ifdef PERF_STATS
     cout << "extracted buffer: " << buffer << endl;
 #endif
+=======
+>>>>>>> f63b515... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
     }
     return true;
   }
@@ -102,8 +113,11 @@ bool getFingerprint(char *buffer, const char *input) {
 }
 
 
+<<<<<<< HEAD
 =======
 >>>>>>> b5da48e... Add Ad Block Plus C++ filter library and JNI integration code
+=======
+>>>>>>> f63b515... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
 bool isSeparatorChar(char c) {
   const char *p = separatorCharacters;
   while (*p != 0) {
@@ -260,6 +274,7 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
 #ifndef DISABLE_REGEX
   char fingerprintBuffer[fingerprintSize + 1];
   fingerprintBuffer[fingerprintSize] = '\0';
+<<<<<<< HEAD
   if (getFingerprint(fingerprintBuffer, f.data)) {
     if (exceptionBloomFilter && f.filterType & FTException) {
       exceptionBloomFilter->add(fingerprintBuffer);
@@ -269,6 +284,13 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
 #endif
       bloomFilter->add(fingerprintBuffer);
     }
+=======
+  getFingerprint(fingerprintBuffer, f.data);
+  if (exceptionBloomFilter && f.filterType & FTException) {
+    exceptionBloomFilter->add(fingerprintBuffer);
+  } else if (bloomFilter) {
+    bloomFilter->add(fingerprintBuffer);
+>>>>>>> f63b515... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
   }
 #endif
 }
@@ -283,6 +305,7 @@ ABPFilterParser::ABPFilterParser() : filters(nullptr),
   numHtmlRuleFilters(0),
   numExceptionFilters(0),
   numNoFingerprintFilters(0),
+<<<<<<< HEAD
   numNoFingerprintExceptionFilters(0),
   bloomFilter(nullptr),
   exceptionBloomFilter(nullptr),
@@ -290,6 +313,10 @@ ABPFilterParser::ABPFilterParser() : filters(nullptr),
   numExceptionFalsePositives(0),
   numBloomFilterSaves(0),
   numExceptionBloomFilterSaves(0) {
+=======
+  bloomFilter(nullptr),
+  exceptionBloomFilter(nullptr) {
+>>>>>>> f63b515... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
 }
 
 ABPFilterParser::~ABPFilterParser() {
@@ -305,9 +332,12 @@ ABPFilterParser::~ABPFilterParser() {
   if (noFingerprintFilters) {
    delete[] noFingerprintFilters;
   }
+<<<<<<< HEAD
   if (noFingerprintExceptionFilters) {
     delete[] noFingerprintExceptionFilters;
   }
+=======
+>>>>>>> f63b515... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
   if (bloomFilter) {
     delete bloomFilter;
   }
@@ -326,6 +356,7 @@ bool ABPFilterParser::hasMatchingFilters(Filter *filter, int &numFilters, const 
   return false;
 }
 
+<<<<<<< HEAD
 #ifdef PERF_STATS
 void discoverMatchingPrefix(const char *str, BloomFilter *bloomFilter, int prefixLen = fingerprintSize) {
   char sz[32];
@@ -338,6 +369,17 @@ void discoverMatchingPrefix(const char *str, BloomFilter *bloomFilter, int prefi
     } else {
       // memcpy(sz, str + i, prefixLen);
       // cout <<  "Good fingerprint: " << sz;
+=======
+bool ABPFilterParser::matches(const char *input, FilterOption contextOption, const char *contextDomain) {
+  bool hasMatch = hasMatchingFilters(noFingerprintFilters, numNoFingerprintFilters, input, contextOption, contextDomain);
+  if (!hasMatch) {
+    hasMatch = hasMatchingFilters(filters, numFilters, input, contextOption, contextDomain);
+  }
+
+  if (hasMatch) {
+    if (hasMatchingFilters(exceptionFilters, numExceptionFilters, input, contextOption, contextDomain)) {
+      return false;
+>>>>>>> f63b515... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
     }
   }
 }
@@ -410,6 +452,20 @@ void ABPFilterParser::initExceptionBloomFilter(const char *buffer, int len) {
   if (len > 0) {
     exceptionBloomFilter = new BloomFilter(buffer, len);
   }
+}
+
+void ABPFilterParser::initBloomFilter(const char *buffer, int len) {
+  if (bloomFilter) {
+    delete bloomFilter;
+  }
+  bloomFilter = new BloomFilter(buffer, len);
+
+}
+void ABPFilterParser::initExceptionBloomFilter(const char *buffer, int len) {
+  if (exceptionBloomFilter) {
+    delete exceptionBloomFilter;
+  }
+  exceptionBloomFilter = new BloomFilter(buffer, len);
 }
 
 // Parses the filter data into a few collections of filters and enables efficent querying
@@ -625,6 +681,7 @@ int serializeFilters(char * buffer, Filter *f, int numFilters) {
 }
 
 // Returns a newly allocated buffer, caller must manually delete[] the buffer
+<<<<<<< HEAD
 char * ABPFilterParser::serialize(int &totalSize, bool ignoreHTMLFilters) {
   totalSize = 0;
   int adjustedNumHTMLFilters = ignoreHTMLFilters ? 0 : numHtmlRuleFilters;
@@ -637,6 +694,18 @@ char * ABPFilterParser::serialize(int &totalSize, bool ignoreHTMLFilters) {
     serializeFilters(nullptr, htmlRuleFilters, adjustedNumHTMLFilters) +
     serializeFilters(nullptr, noFingerprintFilters, numNoFingerprintFilters) +
     serializeFilters(nullptr, noFingerprintExceptionFilters, numNoFingerprintExceptionFilters);
+=======
+char * ABPFilterParser::serialize(int &totalSize) {
+  totalSize = 0;
+
+  // Get the number of bytes that we'll need
+  char sz[512];
+  totalSize += sprintf(sz, "%x,%x,%x,%x,%x,%x", numFilters, numExceptionFilters, numHtmlRuleFilters, numNoFingerprintFilters, bloomFilter ? bloomFilter->getByteBufferSize() : 0, exceptionBloomFilter ? exceptionBloomFilter->getByteBufferSize() : 0);
+  totalSize += serializeFilters(nullptr, filters, numFilters) +
+    serializeFilters(nullptr, exceptionFilters, numExceptionFilters) +
+    serializeFilters(nullptr, htmlRuleFilters, numHtmlRuleFilters) +
+    serializeFilters(nullptr, noFingerprintFilters, numNoFingerprintFilters);
+>>>>>>> f63b515... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
   totalSize += bloomFilter ? bloomFilter->getByteBufferSize() : 0;
   totalSize += exceptionBloomFilter ? exceptionBloomFilter->getByteBufferSize() : 0;
 

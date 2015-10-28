@@ -6,6 +6,7 @@
 #include "base.h"
 
 extern HashFn defaultHashFns[5];
+
 /**
  * Implements a Bloom Filter using Rabin Karp for char* buffer lookups
  */
