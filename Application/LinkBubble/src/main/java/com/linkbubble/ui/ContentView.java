@@ -71,6 +71,7 @@ import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.webrender.WebRenderer;
 import com.linkbubble.db.HistoryRecord;
+import com.linkbubble.adblock.ABPFilterParser;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -158,7 +159,6 @@ public class ContentView extends FrameLayout {
     private boolean mFirstTimeUrlTyped = true;
     private ABPFilterParser mABPParser = new ABPFilterParser();
 
-
     public ContentView(Context context) {
         this(context, null);
     }
@@ -172,7 +172,6 @@ public class ContentView extends FrameLayout {
 
         mContext = context;
         mLoadingString = getResources().getString(R.string.loading);
-        mABPParser.init();
     }
 
     public long getTotalTrackedLoadTime() {
