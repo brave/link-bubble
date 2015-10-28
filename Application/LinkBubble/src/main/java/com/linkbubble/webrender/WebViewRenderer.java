@@ -416,7 +416,7 @@ class WebViewRenderer extends WebRenderer {
 
             if (mTrackingProtectionEnabled &&
                     mController.shouldTrackingProtectionBlockUrl(mHost, urlStr) ||
-                    mAdblockEnabled && mController.shouldAdBlockUrl(urlStr)) {
+                    mAdblockEnabled && mController.shouldAdBlockUrl(mHost, urlStr)) {
                 // Unfortunately the deprecated API that we're targetting doesn't have a better
                 // way to block this. Once we upgrade our target then we can use a better override
                 // which allows us to set a response code.
