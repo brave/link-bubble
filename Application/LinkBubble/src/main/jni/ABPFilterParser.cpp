@@ -40,12 +40,17 @@ enum FilterParseState {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const int fingerprintSize = 8;
 #ifndef DISABLE_REGEX
 =======
 #ifndef DISABLE_REGEX
 static const int fingerprintSize = 8;
 >>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
+=======
+static const int fingerprintSize = 8;
+#ifndef DISABLE_REGEX
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
 static const char* fingerprintRegexs[2] = {
   ".*([./&_\\-=a-zA-Z0-9]{8})\\$?.*",
   "([./&_\\-=a-zA-Z0-9]{8})\\$?.*",
@@ -183,11 +188,16 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
   int i = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   bool earlyBreak = false;
   while (p != end && !earlyBreak) {
 =======
   while (p != end) {
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
+=======
+  bool earlyBreak = false;
+  while (p != end && !earlyBreak) {
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
     // Check for the filter being too long
     if ((p - input) >= maxLineLength - 1) {
       return;
@@ -199,9 +209,13 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
+=======
+
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
     switch (*p) {
       case '|':
         if (parseState == FPStart || parseState == FPPastWhitespace) {
@@ -277,6 +291,7 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
       case '$':
         f.parseOptions(p + 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
         earlyBreak = true;
         continue;
 =======
@@ -286,6 +301,10 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
         return;
 
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
+=======
+        earlyBreak = true;
+        continue;
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
       case '#':
         if (*(p+1) == '#') {
           // TODO
@@ -353,6 +372,7 @@ ABPFilterParser::ABPFilterParser() : filters(nullptr),
   exceptionFilters(nullptr),
   noFingerprintFilters(nullptr),
 <<<<<<< HEAD
+<<<<<<< HEAD
   noFingerprintExceptionFilters(nullptr),
   numFilters(0),
   numHtmlRuleFilters(0),
@@ -366,6 +386,9 @@ ABPFilterParser::ABPFilterParser() : filters(nullptr),
   numBloomFilterSaves(0),
   numExceptionBloomFilterSaves(0) {
 =======
+=======
+  noFingerprintExceptionFilters(nullptr),
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
   numFilters(0),
   numHtmlRuleFilters(0),
   numExceptionFilters(0),
@@ -374,6 +397,7 @@ ABPFilterParser::ABPFilterParser() : filters(nullptr),
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
 =======
   numNoFingerprintFilters(0),
+  numNoFingerprintExceptionFilters(0),
   bloomFilter(nullptr),
   exceptionBloomFilter(nullptr) {
 >>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
@@ -394,11 +418,17 @@ ABPFilterParser::~ABPFilterParser() {
   }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   if (noFingerprintExceptionFilters) {
     delete[] noFingerprintExceptionFilters;
   }
 =======
 >>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
+=======
+  if (noFingerprintExceptionFilters) {
+    delete[] noFingerprintExceptionFilters;
+  }
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
   if (bloomFilter) {
     delete bloomFilter;
   }
@@ -549,33 +579,65 @@ void ABPFilterParser::initExceptionBloomFilter(const char *buffer, int len) {
   }
 =======
 bool ABPFilterParser::matches(const char *input, FilterOption contextOption, const char *contextDomain) {
+  // We always have to check noFingerprintFilters because the bloom filter opt cannot be used for them
   bool hasMatch = hasMatchingFilters(noFingerprintFilters, numNoFingerprintFilters, input, contextOption, contextDomain);
+  // If no noFingerprintFilters were hit, check the bloom filter substring fingerprint for the normal
+  // filter list.   If no substring exists for the input then we know for sure the URL should not be blocked.
+  if (!hasMatch && bloomFilter && !bloomFilter->substringExists(input, fingerprintSize)) {
+    return false;
+  }
+
+  // We need to check the filters list manually because there is either a match or a false positive
   if (!hasMatch) {
     hasMatch = hasMatchingFilters(filters, numFilters, input, contextOption, contextDomain);
   }
 
-  if (hasMatch) {
-    if (hasMatchingFilters(exceptionFilters, numExceptionFilters, input, contextOption, contextDomain)) {
-      return false;
-    }
+  // If there's still no match after checking the block filters, then no need to try to block this
+  // because there is a false positive.
+  if (!hasMatch) {
+    return false;
+  }
+
+  // If there's a matching no fingerprint exception then we can just return right away because we shouldn't block
+  if (hasMatchingFilters(noFingerprintExceptionFilters, numNoFingerprintExceptionFilters, input, contextOption, contextDomain)) {
+    return false;
+  }
+
+  // Now that we have a matching rule, we should check if no exception rule hits, if none hits, we should block
+  if (exceptionBloomFilter && !exceptionBloomFilter->substringExists(input, fingerprintSize)) {
     return true;
   }
+<<<<<<< HEAD
   return false;
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
+=======
+
+  // No bloom filter exception rule hit so it's either a false positive or a match, check to make sure
+  if (hasMatchingFilters(exceptionFilters, numExceptionFilters, input, contextOption, contextDomain)) {
+    // False positive on the exception filter list
+    return false;
+  }
+
+  // Exception list confirmed we have an exception
+  return true;
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
 }
 
 void ABPFilterParser::initBloomFilter(const char *buffer, int len) {
   if (bloomFilter) {
     delete bloomFilter;
   }
-  bloomFilter = new BloomFilter(buffer, len);
-
+  if (len > 0) {
+    bloomFilter = new BloomFilter(buffer, len);
+  }
 }
 void ABPFilterParser::initExceptionBloomFilter(const char *buffer, int len) {
   if (exceptionBloomFilter) {
     delete exceptionBloomFilter;
   }
-  exceptionBloomFilter = new BloomFilter(buffer, len);
+  if (len > 0) {
+    exceptionBloomFilter = new BloomFilter(buffer, len);
+  }
 }
 
 // Parses the filter data into a few collections of filters and enables efficent querying
@@ -609,9 +671,13 @@ bool ABPFilterParser::parse(const char *input) {
   int newNumExceptionFilters = 0;
   int newNumNoFingerprintFilters = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
   int newNumNoFingerprintExceptionFilters = 0;
 =======
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
+=======
+  int newNumNoFingerprintExceptionFilters = 0;
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
 
   // Parsing does 2 passes, one just to determine the type of information we'll need to setup.
   // Note that the library will be used on a variety of builds so sometimes we won't even have STL
@@ -623,14 +689,20 @@ bool ABPFilterParser::parse(const char *input) {
       switch(f.filterType & FTListTypesMask) {
         case FTException:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
           if (getFingerprint(nullptr, f.data)) {
             newNumExceptionFilters++;
           } else {
             newNumNoFingerprintExceptionFilters++;
           }
+<<<<<<< HEAD
 =======
           newNumExceptionFilters++;
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
+=======
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
           break;
         case FTElementHiding:
           newNumHtmlRuleFilters++;
@@ -721,6 +793,9 @@ bool ABPFilterParser::parse(const char *input) {
   numExceptionFilters += newNumExceptionFilters;
   numNoFingerprintFilters += newNumNoFingerprintFilters;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
   numNoFingerprintExceptionFilters += newNumNoFingerprintExceptionFilters;
 
   // Adjust the new member list pointers
@@ -729,9 +804,13 @@ bool ABPFilterParser::parse(const char *input) {
   exceptionFilters = newExceptionFilters;
   noFingerprintFilters = newNoFingerprintFilters;
 <<<<<<< HEAD
+<<<<<<< HEAD
   noFingerprintExceptionFilters = newNoFingerprintExceptionFilters;
 =======
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
+=======
+  noFingerprintExceptionFilters = newNoFingerprintExceptionFilters;
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
 
   p = input;
   lineStart = p;
@@ -739,6 +818,7 @@ bool ABPFilterParser::parse(const char *input) {
   while (true) {
     if (*p == '\n' || *p == '\0') {
       Filter f;
+<<<<<<< HEAD
 <<<<<<< HEAD
       parseFilter(lineStart, p, f, bloomFilter, exceptionBloomFilter);
       switch(f.filterType & FTListTypesMask) {
@@ -757,6 +837,18 @@ bool ABPFilterParser::parse(const char *input) {
           (*curExceptionFilters).swap(f);
           curExceptionFilters++;
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
+=======
+      parseFilter(lineStart, p, f, bloomFilter, exceptionBloomFilter);
+      switch(f.filterType & FTListTypesMask) {
+        case FTException:
+          if (getFingerprint(nullptr, f.data)) {
+            (*curExceptionFilters).swap(f);
+            curExceptionFilters++;
+          } else {
+            (*curNoFingerprintExceptionFilters).swap(f);
+            curNoFingerprintExceptionFilters++;
+          }
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
           break;
         case FTElementHiding:
         case FTElementHidingException:
@@ -850,6 +942,7 @@ int serializeFilters(char * buffer, Filter *f, int numFilters) {
 
 // Returns a newly allocated buffer, caller must manually delete[] the buffer
 <<<<<<< HEAD
+<<<<<<< HEAD
 char * ABPFilterParser::serialize(int &totalSize, bool ignoreHTMLFilters) {
   totalSize = 0;
   int adjustedNumHTMLFilters = ignoreHTMLFilters ? 0 : numHtmlRuleFilters;
@@ -870,10 +963,15 @@ char * ABPFilterParser::serialize(int &totalSize, bool ignoreHTMLFilters) {
   totalSize += sprintf(sz, "%x,%x,%x,%x,%x,%x,%x", numFilters, numExceptionFilters, adjustedNumHTMLFilters, numNoFingerprintFilters, numNoFingerprintExceptionFilters, bloomFilter ? bloomFilter->getByteBufferSize() : 0, exceptionBloomFilter ? exceptionBloomFilter->getByteBufferSize() : 0);
 =======
 char * ABPFilterParser::serialize(int &totalSize) {
+=======
+char * ABPFilterParser::serialize(int &totalSize, bool ignoreHTMLFilters) {
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
   totalSize = 0;
+  int adjustedNumHTMLFilters = ignoreHTMLFilters ? 0 : numHtmlRuleFilters;
 
   // Get the number of bytes that we'll need
   char sz[512];
+<<<<<<< HEAD
   totalSize += sprintf(sz, "%x,%x,%x,%x,%x,%x", numFilters, numExceptionFilters, numHtmlRuleFilters, numNoFingerprintFilters, bloomFilter ? bloomFilter->getByteBufferSize() : 0, exceptionBloomFilter ? exceptionBloomFilter->getByteBufferSize() : 0);
 >>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
   totalSize += serializeFilters(nullptr, filters, numFilters) +
@@ -884,6 +982,14 @@ char * ABPFilterParser::serialize(int &totalSize) {
     serializeFilters(nullptr, noFingerprintExceptionFilters, numNoFingerprintExceptionFilters);
 =======
 >>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
+=======
+  totalSize += sprintf(sz, "%x,%x,%x,%x,%x,%x,%x", numFilters, numExceptionFilters, adjustedNumHTMLFilters, numNoFingerprintFilters, numNoFingerprintExceptionFilters, bloomFilter ? bloomFilter->getByteBufferSize() : 0, exceptionBloomFilter ? exceptionBloomFilter->getByteBufferSize() : 0);
+  totalSize += serializeFilters(nullptr, filters, numFilters) +
+    serializeFilters(nullptr, exceptionFilters, numExceptionFilters) +
+    serializeFilters(nullptr, htmlRuleFilters, adjustedNumHTMLFilters) +
+    serializeFilters(nullptr, noFingerprintFilters, numNoFingerprintFilters) +
+    serializeFilters(nullptr, noFingerprintExceptionFilters, numNoFingerprintExceptionFilters);
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
   totalSize += bloomFilter ? bloomFilter->getByteBufferSize() : 0;
   totalSize += exceptionBloomFilter ? exceptionBloomFilter->getByteBufferSize() : 0;
 
@@ -898,6 +1004,7 @@ char * ABPFilterParser::serialize(int &totalSize) {
   pos += serializeFilters(buffer + pos, filters, numFilters);
   pos += serializeFilters(buffer + pos, exceptionFilters, numExceptionFilters);
 <<<<<<< HEAD
+<<<<<<< HEAD
   pos += serializeFilters(buffer + pos, htmlRuleFilters, adjustedNumHTMLFilters);
   pos += serializeFilters(buffer + pos, noFingerprintFilters, numNoFingerprintFilters);
   pos += serializeFilters(buffer + pos, noFingerprintExceptionFilters, numNoFingerprintExceptionFilters);
@@ -905,6 +1012,11 @@ char * ABPFilterParser::serialize(int &totalSize) {
   pos += serializeFilters(buffer + pos, htmlRuleFilters, numHtmlRuleFilters);
   pos += serializeFilters(buffer + pos, noFingerprintFilters, numNoFingerprintFilters);
 >>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
+=======
+  pos += serializeFilters(buffer + pos, htmlRuleFilters, adjustedNumHTMLFilters);
+  pos += serializeFilters(buffer + pos, noFingerprintFilters, numNoFingerprintFilters);
+  pos += serializeFilters(buffer + pos, noFingerprintExceptionFilters, numNoFingerprintExceptionFilters);
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
   if (bloomFilter) {
     memcpy(buffer + pos, bloomFilter->getBuffer(), bloomFilter->getByteBufferSize());
     pos += bloomFilter->getByteBufferSize();
@@ -956,10 +1068,14 @@ void ABPFilterParser::deserialize(char *buffer) {
   int bloomFilterSize = 0, exceptionBloomFilterSize = 0;
   int pos = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
   sscanf(buffer + pos, "%x,%x,%x,%x,%x,%x,%x", &numFilters, &numExceptionFilters, &numHtmlRuleFilters, &numNoFingerprintFilters, &numNoFingerprintExceptionFilters, &bloomFilterSize, &exceptionBloomFilterSize);
 =======
   sscanf(buffer + pos, "%x,%x,%x,%x,%x,%x", &numFilters, &numExceptionFilters, &numHtmlRuleFilters, &numNoFingerprintFilters, &bloomFilterSize, &exceptionBloomFilterSize);
 >>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
+=======
+  sscanf(buffer + pos, "%x,%x,%x,%x,%x,%x,%x", &numFilters, &numExceptionFilters, &numHtmlRuleFilters, &numNoFingerprintFilters, &numNoFingerprintExceptionFilters, &bloomFilterSize, &exceptionBloomFilterSize);
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
   pos += strlen(buffer + pos) + 1;
 
   filters = new Filter[numFilters];
@@ -967,14 +1083,19 @@ void ABPFilterParser::deserialize(char *buffer) {
   htmlRuleFilters = new Filter[numHtmlRuleFilters];
   noFingerprintFilters = new Filter[numNoFingerprintFilters];
 <<<<<<< HEAD
+<<<<<<< HEAD
   noFingerprintExceptionFilters = new Filter[numNoFingerprintExceptionFilters];
 =======
 >>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
+=======
+  noFingerprintExceptionFilters = new Filter[numNoFingerprintExceptionFilters];
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
 
   pos += deserializeFilters(buffer + pos, filters, numFilters);
   pos += deserializeFilters(buffer + pos, exceptionFilters, numExceptionFilters);
   pos += deserializeFilters(buffer + pos, htmlRuleFilters, numHtmlRuleFilters);
   pos += deserializeFilters(buffer + pos, noFingerprintFilters, numNoFingerprintFilters);
+<<<<<<< HEAD
 <<<<<<< HEAD
   pos += deserializeFilters(buffer + pos, noFingerprintExceptionFilters, numNoFingerprintExceptionFilters);
 
@@ -986,8 +1107,13 @@ void ABPFilterParser::deserialize(char *buffer) {
 =======
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
 =======
+=======
+  pos += deserializeFilters(buffer + pos, noFingerprintExceptionFilters, numNoFingerprintExceptionFilters);
+>>>>>>> d3819e0... Fix no fingerprint exception filter checks
 
   initBloomFilter(buffer + pos, bloomFilterSize);
+  pos += bloomFilterSize;
   initExceptionBloomFilter(buffer + pos, exceptionBloomFilterSize);
+  pos += exceptionBloomFilterSize;
 }
 >>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
