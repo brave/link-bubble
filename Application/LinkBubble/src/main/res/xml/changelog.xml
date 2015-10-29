@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.6.7">
+        <change></change>
+    </release>
+
     <release version="1.6.6">
         <change>BUG FIX: Fix an occasional crash when opening Link Bubble.</change>
         <change>REMOVED: Unused GET_ACCOUNTS permission.</change>
