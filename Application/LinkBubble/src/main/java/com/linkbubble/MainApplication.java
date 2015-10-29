@@ -1,7 +1,5 @@
 package com.linkbubble;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.content.ActivityNotFoundException;
