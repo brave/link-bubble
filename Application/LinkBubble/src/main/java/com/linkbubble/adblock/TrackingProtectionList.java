@@ -10,15 +10,6 @@ public class TrackingProtectionList {
     static HashSet<String> disconnectDomains = new HashSet<String>(Arrays.asList(elems));
 
     public static Boolean shouldBlockHost(String baseHost, String host) {
-        // Never block for hosts which are not third party to the baseHost
-        if (host.length() == baseHost.length() && host.equalsIgnoreCase(baseHost)) {
-            return false;
-        } else if(host.length() > baseHost.length() &&
-            host.charAt(host.length() - baseHost.length() - 1) == '.' &&
-            host.substring(host.length() - baseHost.length()).equalsIgnoreCase(baseHost)) {
-            return false;
-        }
-
         String[] domainParts = host.split(Pattern.quote("."));
         if (domainParts.length <= 1) {
             return false;
