@@ -22,8 +22,8 @@ enum FilterParseState {
   FPData
 };
 
-#ifndef DISABLE_REGEX
 static const int fingerprintSize = 8;
+#ifndef DISABLE_REGEX
 static const char* fingerprintRegexs[2] = {
   ".*([./&_\\-=a-zA-Z0-9]{8})\\$?.*",
   "([./&_\\-=a-zA-Z0-9]{8})\\$?.*",
@@ -130,7 +130,8 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
   memset(data, 0, sizeof data);
   int i = 0;
 
-  while (p != end) {
+  bool earlyBreak = false;
+  while (p != end && !earlyBreak) {
     // Check for the filter being too long
     if ((p - input) >= maxLineLength - 1) {
       return;
@@ -140,6 +141,7 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
       parseState = FPData;
       f.filterType = static_cast<FilterType>(f.filterType | FTLeftAnchored);
     }
+
 
     switch (*p) {
       case '|':
@@ -215,11 +217,8 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
 
       case '$':
         f.parseOptions(p + 1);
-        data[i] = '\0';
-        f.data = new char[i + 1];
-        memcpy(f.data, data, i + 1);
-        return;
-
+        earlyBreak = true;
+        continue;
       case '#':
         if (*(p+1) == '#') {
           // TODO
@@ -266,10 +265,12 @@ ABPFilterParser::ABPFilterParser() : filters(nullptr),
   htmlRuleFilters(nullptr),
   exceptionFilters(nullptr),
   noFingerprintFilters(nullptr),
+  noFingerprintExceptionFilters(nullptr),
   numFilters(0),
   numHtmlRuleFilters(0),
   numExceptionFilters(0),
   numNoFingerprintFilters(0),
+  numNoFingerprintExceptionFilters(0),
   bloomFilter(nullptr),
   exceptionBloomFilter(nullptr) {
 }
@@ -286,6 +287,9 @@ ABPFilterParser::~ABPFilterParser() {
   }
   if (noFingerprintFilters) {
    delete[] noFingerprintFilters;
+  }
+  if (noFingerprintExceptionFilters) {
+    delete[] noFingerprintExceptionFilters;
   }
   if (bloomFilter) {
     delete bloomFilter;
@@ -306,32 +310,60 @@ bool ABPFilterParser::hasMatchingFilters(Filter *filter, int &numFilters, const 
 }
 
 bool ABPFilterParser::matches(const char *input, FilterOption contextOption, const char *contextDomain) {
+  // We always have to check noFingerprintFilters because the bloom filter opt cannot be used for them
   bool hasMatch = hasMatchingFilters(noFingerprintFilters, numNoFingerprintFilters, input, contextOption, contextDomain);
+  // If no noFingerprintFilters were hit, check the bloom filter substring fingerprint for the normal
+  // filter list.   If no substring exists for the input then we know for sure the URL should not be blocked.
+  if (!hasMatch && bloomFilter && !bloomFilter->substringExists(input, fingerprintSize)) {
+    return false;
+  }
+
+  // We need to check the filters list manually because there is either a match or a false positive
   if (!hasMatch) {
     hasMatch = hasMatchingFilters(filters, numFilters, input, contextOption, contextDomain);
   }
 
-  if (hasMatch) {
-    if (hasMatchingFilters(exceptionFilters, numExceptionFilters, input, contextOption, contextDomain)) {
-      return false;
-    }
+  // If there's still no match after checking the block filters, then no need to try to block this
+  // because there is a false positive.
+  if (!hasMatch) {
+    return false;
+  }
+
+  // If there's a matching no fingerprint exception then we can just return right away because we shouldn't block
+  if (hasMatchingFilters(noFingerprintExceptionFilters, numNoFingerprintExceptionFilters, input, contextOption, contextDomain)) {
+    return false;
+  }
+
+  // Now that we have a matching rule, we should check if no exception rule hits, if none hits, we should block
+  if (exceptionBloomFilter && !exceptionBloomFilter->substringExists(input, fingerprintSize)) {
     return true;
   }
-  return false;
+
+  // No bloom filter exception rule hit so it's either a false positive or a match, check to make sure
+  if (hasMatchingFilters(exceptionFilters, numExceptionFilters, input, contextOption, contextDomain)) {
+    // False positive on the exception filter list
+    return false;
+  }
+
+  // Exception list confirmed we have an exception
+  return true;
 }
 
 void ABPFilterParser::initBloomFilter(const char *buffer, int len) {
   if (bloomFilter) {
     delete bloomFilter;
   }
-  bloomFilter = new BloomFilter(buffer, len);
-
+  if (len > 0) {
+    bloomFilter = new BloomFilter(buffer, len);
+  }
 }
 void ABPFilterParser::initExceptionBloomFilter(const char *buffer, int len) {
   if (exceptionBloomFilter) {
     delete exceptionBloomFilter;
   }
-  exceptionBloomFilter = new BloomFilter(buffer, len);
+  if (len > 0) {
+    exceptionBloomFilter = new BloomFilter(buffer, len);
+  }
 }
 
 // Parses the filter data into a few collections of filters and enables efficent querying
@@ -355,6 +387,7 @@ bool ABPFilterParser::parse(const char *input) {
   int newNumHtmlRuleFilters = 0;
   int newNumExceptionFilters = 0;
   int newNumNoFingerprintFilters = 0;
+  int newNumNoFingerprintExceptionFilters = 0;
 
   // Parsing does 2 passes, one just to determine the type of information we'll need to setup.
   // Note that the library will be used on a variety of builds so sometimes we won't even have STL
@@ -365,7 +398,11 @@ bool ABPFilterParser::parse(const char *input) {
       parseFilter(lineStart, p, f);
       switch(f.filterType & FTListTypesMask) {
         case FTException:
-          newNumExceptionFilters++;
+          if (getFingerprint(nullptr, f.data)) {
+            newNumExceptionFilters++;
+          } else {
+            newNumNoFingerprintExceptionFilters++;
+          }
           break;
         case FTElementHiding:
           newNumHtmlRuleFilters++;
@@ -400,30 +437,35 @@ bool ABPFilterParser::parse(const char *input) {
   Filter *newHtmlRuleFilters = new Filter[newNumHtmlRuleFilters + numHtmlRuleFilters];
   Filter *newExceptionFilters = new Filter[newNumExceptionFilters + numExceptionFilters];
   Filter *newNoFingerprintFilters = new Filter[newNumNoFingerprintFilters + numNoFingerprintFilters];
+  Filter *newNoFingerprintExceptionFilters = new Filter[newNumNoFingerprintExceptionFilters + numNoFingerprintExceptionFilters];
 
   memset(newFilters, 0, sizeof(Filter) * (newNumFilters + numFilters));
   memset(newHtmlRuleFilters, 0, sizeof(Filter) * (newNumHtmlRuleFilters + numHtmlRuleFilters));
   memset(newExceptionFilters, 0, sizeof(Filter) * (newNumExceptionFilters + numExceptionFilters));
   memset(newNoFingerprintFilters, 0, sizeof(Filter) * (newNumNoFingerprintFilters + numNoFingerprintFilters));
+  memset(newNoFingerprintExceptionFilters, 0, sizeof(Filter) * (newNumNoFingerprintExceptionFilters + numNoFingerprintExceptionFilters));
 
   Filter *curFilters = newFilters;
   Filter *curHtmlRuleFilters = newHtmlRuleFilters;
   Filter *curExceptionFilters = newExceptionFilters;
   Filter *curNoFingerprintFilters = newNoFingerprintFilters;
+  Filter *curNoFingerprintExceptionFilters = newNoFingerprintExceptionFilters;
 
   // If we've had a parse before copy the old data into the new data structure
-  if (filters || htmlRuleFilters || exceptionFilters || noFingerprintFilters) {
+  if (filters || htmlRuleFilters || exceptionFilters || noFingerprintFilters || noFingerprintExceptionFilters) {
     // Copy the old data in
     memcpy(newFilters, filters, sizeof(Filter) * numFilters);
     memcpy(newHtmlRuleFilters, htmlRuleFilters, sizeof(Filter) * numHtmlRuleFilters);
     memcpy(newExceptionFilters, exceptionFilters, sizeof(Filter) * numExceptionFilters);
     memcpy(newNoFingerprintFilters, noFingerprintFilters, sizeof(Filter) * (numNoFingerprintFilters));
+    memcpy(newNoFingerprintExceptionFilters, noFingerprintExceptionFilters, sizeof(Filter) * (numNoFingerprintExceptionFilters));
 
     // Adjust the current pointers to be just after the copied in data
     curFilters += numFilters;
     curHtmlRuleFilters += numHtmlRuleFilters;
     curExceptionFilters += numExceptionFilters;
     curNoFingerprintFilters += numNoFingerprintFilters;
+    curNoFingerprintExceptionFilters += numNoFingerprintExceptionFilters;
   }
 
   // And finally update with the new counts
@@ -431,12 +473,14 @@ bool ABPFilterParser::parse(const char *input) {
   numHtmlRuleFilters += newNumHtmlRuleFilters;
   numExceptionFilters += newNumExceptionFilters;
   numNoFingerprintFilters += newNumNoFingerprintFilters;
+  numNoFingerprintExceptionFilters += newNumNoFingerprintExceptionFilters;
 
   // Adjust the new member list pointers
   filters = newFilters;
   htmlRuleFilters = newHtmlRuleFilters;
   exceptionFilters = newExceptionFilters;
   noFingerprintFilters = newNoFingerprintFilters;
+  noFingerprintExceptionFilters = newNoFingerprintExceptionFilters;
 
   p = input;
   lineStart = p;
@@ -444,11 +488,16 @@ bool ABPFilterParser::parse(const char *input) {
   while (true) {
     if (*p == '\n' || *p == '\0') {
       Filter f;
-      parseFilter(lineStart, p, f);
+      parseFilter(lineStart, p, f, bloomFilter, exceptionBloomFilter);
       switch(f.filterType & FTListTypesMask) {
         case FTException:
-          (*curExceptionFilters).swap(f);
-          curExceptionFilters++;
+          if (getFingerprint(nullptr, f.data)) {
+            (*curExceptionFilters).swap(f);
+            curExceptionFilters++;
+          } else {
+            (*curNoFingerprintExceptionFilters).swap(f);
+            curNoFingerprintExceptionFilters++;
+          }
           break;
         case FTElementHiding:
         case FTElementHidingException:
@@ -525,16 +574,18 @@ int serializeFilters(char * buffer, Filter *f, int numFilters) {
 }
 
 // Returns a newly allocated buffer, caller must manually delete[] the buffer
-char * ABPFilterParser::serialize(int &totalSize) {
+char * ABPFilterParser::serialize(int &totalSize, bool ignoreHTMLFilters) {
   totalSize = 0;
+  int adjustedNumHTMLFilters = ignoreHTMLFilters ? 0 : numHtmlRuleFilters;
 
   // Get the number of bytes that we'll need
   char sz[512];
-  totalSize += sprintf(sz, "%x,%x,%x,%x,%x,%x", numFilters, numExceptionFilters, numHtmlRuleFilters, numNoFingerprintFilters, bloomFilter ? bloomFilter->getByteBufferSize() : 0, exceptionBloomFilter ? exceptionBloomFilter->getByteBufferSize() : 0);
+  totalSize += sprintf(sz, "%x,%x,%x,%x,%x,%x,%x", numFilters, numExceptionFilters, adjustedNumHTMLFilters, numNoFingerprintFilters, numNoFingerprintExceptionFilters, bloomFilter ? bloomFilter->getByteBufferSize() : 0, exceptionBloomFilter ? exceptionBloomFilter->getByteBufferSize() : 0);
   totalSize += serializeFilters(nullptr, filters, numFilters) +
     serializeFilters(nullptr, exceptionFilters, numExceptionFilters) +
-    serializeFilters(nullptr, htmlRuleFilters, numHtmlRuleFilters) +
-    serializeFilters(nullptr, noFingerprintFilters, numNoFingerprintFilters);
+    serializeFilters(nullptr, htmlRuleFilters, adjustedNumHTMLFilters) +
+    serializeFilters(nullptr, noFingerprintFilters, numNoFingerprintFilters) +
+    serializeFilters(nullptr, noFingerprintExceptionFilters, numNoFingerprintExceptionFilters);
   totalSize += bloomFilter ? bloomFilter->getByteBufferSize() : 0;
   totalSize += exceptionBloomFilter ? exceptionBloomFilter->getByteBufferSize() : 0;
 
@@ -548,8 +599,9 @@ char * ABPFilterParser::serialize(int &totalSize) {
   pos += strlen(sz) + 1;
   pos += serializeFilters(buffer + pos, filters, numFilters);
   pos += serializeFilters(buffer + pos, exceptionFilters, numExceptionFilters);
-  pos += serializeFilters(buffer + pos, htmlRuleFilters, numHtmlRuleFilters);
+  pos += serializeFilters(buffer + pos, htmlRuleFilters, adjustedNumHTMLFilters);
   pos += serializeFilters(buffer + pos, noFingerprintFilters, numNoFingerprintFilters);
+  pos += serializeFilters(buffer + pos, noFingerprintExceptionFilters, numNoFingerprintExceptionFilters);
   if (bloomFilter) {
     memcpy(buffer + pos, bloomFilter->getBuffer(), bloomFilter->getByteBufferSize());
     pos += bloomFilter->getByteBufferSize();
@@ -600,19 +652,23 @@ int deserializeFilters(char *buffer, Filter *f, int numFilters) {
 void ABPFilterParser::deserialize(char *buffer) {
   int bloomFilterSize = 0, exceptionBloomFilterSize = 0;
   int pos = 0;
-  sscanf(buffer + pos, "%x,%x,%x,%x,%x,%x", &numFilters, &numExceptionFilters, &numHtmlRuleFilters, &numNoFingerprintFilters, &bloomFilterSize, &exceptionBloomFilterSize);
+  sscanf(buffer + pos, "%x,%x,%x,%x,%x,%x,%x", &numFilters, &numExceptionFilters, &numHtmlRuleFilters, &numNoFingerprintFilters, &numNoFingerprintExceptionFilters, &bloomFilterSize, &exceptionBloomFilterSize);
   pos += strlen(buffer + pos) + 1;
 
   filters = new Filter[numFilters];
   exceptionFilters = new Filter[numExceptionFilters];
   htmlRuleFilters = new Filter[numHtmlRuleFilters];
   noFingerprintFilters = new Filter[numNoFingerprintFilters];
+  noFingerprintExceptionFilters = new Filter[numNoFingerprintExceptionFilters];
 
   pos += deserializeFilters(buffer + pos, filters, numFilters);
   pos += deserializeFilters(buffer + pos, exceptionFilters, numExceptionFilters);
   pos += deserializeFilters(buffer + pos, htmlRuleFilters, numHtmlRuleFilters);
   pos += deserializeFilters(buffer + pos, noFingerprintFilters, numNoFingerprintFilters);
+  pos += deserializeFilters(buffer + pos, noFingerprintExceptionFilters, numNoFingerprintExceptionFilters);
 
   initBloomFilter(buffer + pos, bloomFilterSize);
+  pos += bloomFilterSize;
   initExceptionBloomFilter(buffer + pos, exceptionBloomFilterSize);
+  pos += exceptionBloomFilterSize;
 }
