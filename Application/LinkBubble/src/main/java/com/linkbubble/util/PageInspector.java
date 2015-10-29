@@ -13,6 +13,7 @@ import android.webkit.WebView;
 
 import com.linkbubble.Config;
 import com.linkbubble.Constant;
+import com.linkbubble.MainController;
 import com.linkbubble.Settings;
 import com.linkbubble.articlerender.ArticleContent;
 import com.squareup.picasso.Picasso;
@@ -79,7 +80,9 @@ public class PageInspector {
         if (mScriptCache == null) {
             mScriptCache = "javascript:(function() {\n";
 
-            mScriptCache += getFileContents("SelectElements");
+            if (!MainController.get().hasStableWebViewForSelects(mContext)) {
+                mScriptCache += getFileContents("SelectElements");
+            }
 
             mScriptCache += getFileContents("TouchIcon");
 
