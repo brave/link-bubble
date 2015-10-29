@@ -403,7 +403,6 @@ public class ContentView extends FrameLayout {
     void setFaviconColor(Integer color) {
         updateColors(color);
     }
-
     WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {
 
         @Override
@@ -413,19 +412,11 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
-        public boolean shouldTrackingProtectionBlockUrl(String baseHost, String urlStr) {
-            String host;
-            try {
-                host = new URL(urlStr).getHost();
-            } catch (Exception e) {
-                return false;
-            }
-
+        public boolean shouldTrackingProtectionBlockUrl(String baseHost, String host) {
             if (TrackingProtectionList.shouldBlockHost(baseHost, host)) {
                 // Just return a blank bad resource;
                 return true;
-        }
-
+            }
             return false;
         }
 

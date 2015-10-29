@@ -190,6 +190,9 @@ class WebViewRenderer extends WebRenderer {
     @Override
     public void loadUrl(URL url, Mode mode) {
         mHost = url.getHost();
+        if (mHost.startsWith("www.")) {
+            mHost = mHost.substring(4);
+        }
         mTrackingProtectionEnabled = Settings.get().isTrackingProtectionEnabled();
         mAdblockEnabled = Settings.get().isAdBlockEnabled();
 
@@ -226,6 +229,9 @@ class WebViewRenderer extends WebRenderer {
                 break;
 
             case Web:
+                // In case the user changes adblock / TP settings and reloads the current bubble
+                mTrackingProtectionEnabled = Settings.get().isTrackingProtectionEnabled();
+                mAdblockEnabled = Settings.get().isAdBlockEnabled();
                 mWebView.reload();
                 break;
         }
@@ -413,9 +419,33 @@ class WebViewRenderer extends WebRenderer {
 
         @Override
         public WebResourceResponse shouldInterceptRequest (WebView view, String urlStr) {
+            // null signifies allowing the request
+            WebResourceResponse allowRequest = null;
+
+            // Quickly check to see if no checks are needed because ad blocking and tracking
+            // protection are not enabled.
+            if (!mTrackingProtectionEnabled && !mAdblockEnabled) {
+                return allowRequest;
+            }
+
+            String host;
+            try {
+                host = new URL(urlStr).getHost();
+            } catch (Exception e) {
+                return allowRequest;
+            }
+
+            // Never block for hosts which are not third party to the baseHost
+            if (host.length() == mHost.length() && host.equalsIgnoreCase(mHost)) {
+                return null;
+            } else if(host.length() > mHost.length() &&
+                    host.charAt(host.length() - mHost.length() - 1) == '.' &&
+                    host.substring(host.length() - mHost.length()).equalsIgnoreCase(mHost)) {
+                return allowRequest;
+            }
 
             if (mTrackingProtectionEnabled &&
-                    mController.shouldTrackingProtectionBlockUrl(mHost, urlStr) ||
+                    mController.shouldTrackingProtectionBlockUrl(mHost, host) ||
                     mAdblockEnabled && mController.shouldAdBlockUrl(mHost, urlStr)) {
                 // Unfortunately the deprecated API that we're targetting doesn't have a better
                 // way to block this. Once we upgrade our target then we can use a better override
@@ -423,8 +453,7 @@ class WebViewRenderer extends WebRenderer {
                 return new WebResourceResponse("text/html", "UTF-8", null);
             }
 
-            // Allow the request as usual
-            return null;
+            return allowRequest;
         }
 
         @Override
