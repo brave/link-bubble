@@ -5,6 +5,7 @@ import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.PixelFormat;
@@ -653,6 +654,29 @@ public class MainController implements Choreographer.FrameCallback {
             return;
         }
         switchToBubbleView();
+    }
+
+    // Before this version select elements would crash WebView in a background service
+    public static final long STABLE_SELECT_WEBVIEW_VERSIONCODE = 249007650;
+    private long mVersionNumber = 0;
+
+    public long getWebviewVersion(Context context) {
+        if (mVersionNumber != 0) {
+            return mVersionNumber;
+        }
+
+        PackageManager pm = context.getPackageManager();
+        try {
+            PackageInfo pi = pm.getPackageInfo("com.google.android.webview", 0);
+            mVersionNumber =  pi.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            mVersionNumber = -1;
+        }
+        return mVersionNumber;
+    }
+
+    public boolean hasStableWebViewForSelects(Context context) {
+        return getWebviewVersion(context) >= STABLE_SELECT_WEBVIEW_VERSIONCODE;
     }
 
     public void onOrientationChanged() {

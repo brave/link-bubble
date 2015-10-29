@@ -2,7 +2,7 @@
 <changelog>
 
     <release version="1.6.7">
-        <change></change>
+        <change>IMPROVEMENT: Uses built in drop downs for devices with stable WebViews.</change>
     </release>
 
     <release version="1.6.6">
