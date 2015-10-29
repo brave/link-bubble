@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "description": "Link Bubble Browser",
   "scripts": {
-    "translate": "babel-node scripts/updateTranslations.js",
-    "lint": "standard scripts/* Application/LinkBubble/src/main/assets/pagescripts/*"
+    "translate": "babel-node scripts/updateTranslations.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +21,6 @@
     "url": "https://github.com/brave/link-bubble/issues"
   },
   "devDependencies": {
-    "babel": "^5.8.21",
-    "standard": "^5.3.1"
+    "babel": "^5.8.21"
   }
 }
