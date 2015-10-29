@@ -1,6 +1,5 @@
 package com.linkbubble.util;
 
-import android.accounts.Account;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ComponentName;
@@ -371,18 +370,6 @@ public class Util {
         int index = parent.indexOfChild(viewToReplace);
         parent.removeView(viewToReplace);
         parent.addView(replaceWith, index);
-    }
-
-    static public String getDefaultEmail(Account[] accounts) {
-        Pattern emailPattern = Patterns.EMAIL_ADDRESS;
-        for (Account account : accounts) {
-            if (emailPattern.matcher(account.name).matches()) {
-                if (account.name != null) {
-                    return account.name;
-                }
-            }
-        }
-        return null;
     }
 
     private static int sIconWidth = -1;

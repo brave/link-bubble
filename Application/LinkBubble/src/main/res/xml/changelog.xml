@@ -3,6 +3,7 @@
 
     <release version="1.6.6">
         <change>BUG FIX: Fix an occasional crash when opening Link Bubble.</change>
+        <change>REMOVED: Unused GET_ACCOUNTS permission.</change>
     </release>
 
     <release version="1.6.5">
