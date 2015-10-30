@@ -30,6 +30,12 @@ public:
 
   BloomFilter *bloomFilter;
   BloomFilter *exceptionBloomFilter;
+
+  // Stats kept for matching
+  unsigned int numFalsePositives;
+  unsigned int numExceptionFalsePositives;
+  unsigned int numBloomFilterSaves;
+  unsigned int numExceptionBloomFilterSaves;
 protected:
   // Determines if a passed in array of filter pointers matches for any of the input
   bool hasMatchingFilters(Filter *filter, int &numFilters, const char *input, FilterOption contextOption, const char *contextDomain);

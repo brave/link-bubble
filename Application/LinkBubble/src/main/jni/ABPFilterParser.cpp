@@ -2,6 +2,11 @@
 #include <string.h>
 #include <stdio.h>
 
+#ifdef PERF_STATS
+#include <iostream>
+using namespace std;
+#endif
+
 #define DISABLE_REGEX
 #ifndef DISABLE_REGEX
 #include <string>
@@ -74,6 +79,9 @@ bool getFingerprint(char *buffer, const char *input) {
     if (buffer) {
       std::string curMatch = m[1];
       strcpy(buffer, curMatch.c_str());
+#ifdef PERF_STATS
+    cout << "extracted buffer: " << buffer << endl;
+#endif
     }
     return true;
   }
@@ -251,11 +259,15 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
 #ifndef DISABLE_REGEX
   char fingerprintBuffer[fingerprintSize + 1];
   fingerprintBuffer[fingerprintSize] = '\0';
-  getFingerprint(fingerprintBuffer, f.data);
-  if (exceptionBloomFilter && f.filterType & FTException) {
-    exceptionBloomFilter->add(fingerprintBuffer);
-  } else if (bloomFilter) {
-    bloomFilter->add(fingerprintBuffer);
+  if (getFingerprint(fingerprintBuffer, f.data)) {
+    if (exceptionBloomFilter && f.filterType & FTException) {
+      exceptionBloomFilter->add(fingerprintBuffer);
+    } else if (bloomFilter) {
+#ifdef PERF_STATS
+      cout << "add fingerprint: " << fingerprintBuffer << endl;
+#endif
+      bloomFilter->add(fingerprintBuffer);
+    }
   }
 #endif
 }
@@ -272,7 +284,11 @@ ABPFilterParser::ABPFilterParser() : filters(nullptr),
   numNoFingerprintFilters(0),
   numNoFingerprintExceptionFilters(0),
   bloomFilter(nullptr),
-  exceptionBloomFilter(nullptr) {
+  exceptionBloomFilter(nullptr),
+  numFalsePositives(0),
+  numExceptionFalsePositives(0),
+  numBloomFilterSaves(0),
+  numExceptionBloomFilterSaves(0) {
 }
 
 ABPFilterParser::~ABPFilterParser() {
@@ -309,12 +325,30 @@ bool ABPFilterParser::hasMatchingFilters(Filter *filter, int &numFilters, const 
   return false;
 }
 
+#ifdef PERF_STATS
+void discoverMatchingPrefix(const char *str, BloomFilter *bloomFilter, int prefixLen = fingerprintSize) {
+  char sz[32];
+  memset(sz, 0, sizeof(sz));
+  int strLen = strlen(str);
+  for (int i = 0; i < strLen - prefixLen + 1; i++) {
+    if (bloomFilter->exists(str + i, prefixLen)) {
+      memcpy(sz, str + i, prefixLen);
+      cout <<  "Bad fingerprint: " << sz << endl;
+    } else {
+      // memcpy(sz, str + i, prefixLen);
+      // cout <<  "Good fingerprint: " << sz;
+    }
+  }
+}
+#endif
+
 bool ABPFilterParser::matches(const char *input, FilterOption contextOption, const char *contextDomain) {
   // We always have to check noFingerprintFilters because the bloom filter opt cannot be used for them
   bool hasMatch = hasMatchingFilters(noFingerprintFilters, numNoFingerprintFilters, input, contextOption, contextDomain);
   // If no noFingerprintFilters were hit, check the bloom filter substring fingerprint for the normal
   // filter list.   If no substring exists for the input then we know for sure the URL should not be blocked.
   if (!hasMatch && bloomFilter && !bloomFilter->substringExists(input, fingerprintSize)) {
+    numBloomFilterSaves++;
     return false;
   }
 
@@ -326,6 +360,11 @@ bool ABPFilterParser::matches(const char *input, FilterOption contextOption, con
   // If there's still no match after checking the block filters, then no need to try to block this
   // because there is a false positive.
   if (!hasMatch) {
+    numFalsePositives++;
+#ifdef PERF_STATS
+    cout << "false positive for input: " << input << endl;
+    discoverMatchingPrefix(input, bloomFilter);
+#endif
     return false;
   }
 
@@ -336,12 +375,18 @@ bool ABPFilterParser::matches(const char *input, FilterOption contextOption, con
 
   // Now that we have a matching rule, we should check if no exception rule hits, if none hits, we should block
   if (exceptionBloomFilter && !exceptionBloomFilter->substringExists(input, fingerprintSize)) {
+    numExceptionBloomFilterSaves++;
     return true;
   }
 
   // No bloom filter exception rule hit so it's either a false positive or a match, check to make sure
   if (hasMatchingFilters(exceptionFilters, numExceptionFilters, input, contextOption, contextDomain)) {
     // False positive on the exception filter list
+    numExceptionFalsePositives++;
+#ifdef PERF_STATS
+    cout << "exception false positive for input: " << input << endl;
+    discoverMatchingPrefix(input, exceptionBloomFilter);
+#endif
     return false;
   }
 
@@ -432,6 +477,11 @@ bool ABPFilterParser::parse(const char *input) {
     p++;
   };
 
+
+#ifdef PERF_STATS
+  cout << "Num no fingerprint filters: " << numNoFingerprintFilters << endl;
+  cout << "Num no fingerprint exception filters: " << numNoFingerprintExceptionFilters << endl;
+#endif
 
   Filter *newFilters = new Filter[newNumFilters + numFilters];
   Filter *newHtmlRuleFilters = new Filter[newNumHtmlRuleFilters + numHtmlRuleFilters];
