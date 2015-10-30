@@ -9,10 +9,13 @@
 using namespace std;
 #endif
 
+<<<<<<< HEAD
 =======
 #include <stdio.h>
 
 >>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
+=======
+>>>>>>> 5a3b73f... Various tweaks to increase perf of bloom filter / rabin-karp hashing
 #define DISABLE_REGEX
 #ifndef DISABLE_REGEX
 #include <string>
@@ -102,11 +105,17 @@ bool getFingerprint(char *buffer, const char *input) {
       std::string curMatch = m[1];
       strcpy(buffer, curMatch.c_str());
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef PERF_STATS
     cout << "extracted buffer: " << buffer << endl;
 #endif
 =======
 >>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
+=======
+#ifdef PERF_STATS
+    cout << "extracted buffer: " << buffer << endl;
+#endif
+>>>>>>> 5a3b73f... Various tweaks to increase perf of bloom filter / rabin-karp hashing
     }
     return true;
   }
@@ -342,6 +351,9 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
   char fingerprintBuffer[fingerprintSize + 1];
   fingerprintBuffer[fingerprintSize] = '\0';
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 5a3b73f... Various tweaks to increase perf of bloom filter / rabin-karp hashing
   if (getFingerprint(fingerprintBuffer, f.data)) {
     if (exceptionBloomFilter && f.filterType & FTException) {
       exceptionBloomFilter->add(fingerprintBuffer);
@@ -351,6 +363,7 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
 #endif
       bloomFilter->add(fingerprintBuffer);
     }
+<<<<<<< HEAD
   }
 #endif
 =======
@@ -361,6 +374,8 @@ void parseFilter(const char *input, const char *end, Filter &f, BloomFilter *blo
     exceptionBloomFilter->add(fingerprintBuffer);
   } else if (bloomFilter) {
     bloomFilter->add(fingerprintBuffer);
+=======
+>>>>>>> 5a3b73f... Various tweaks to increase perf of bloom filter / rabin-karp hashing
   }
 #endif
 >>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
@@ -399,8 +414,16 @@ ABPFilterParser::ABPFilterParser() : filters(nullptr),
   numNoFingerprintFilters(0),
   numNoFingerprintExceptionFilters(0),
   bloomFilter(nullptr),
+<<<<<<< HEAD
   exceptionBloomFilter(nullptr) {
 >>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
+=======
+  exceptionBloomFilter(nullptr),
+  numFalsePositives(0),
+  numExceptionFalsePositives(0),
+  numBloomFilterSaves(0),
+  numExceptionBloomFilterSaves(0) {
+>>>>>>> 5a3b73f... Various tweaks to increase perf of bloom filter / rabin-karp hashing
 }
 
 ABPFilterParser::~ABPFilterParser() {
@@ -453,6 +476,9 @@ bool ABPFilterParser::hasMatchingFilters(Filter *filter, int &numFilters, const 
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 5a3b73f... Various tweaks to increase perf of bloom filter / rabin-karp hashing
 #ifdef PERF_STATS
 void discoverMatchingPrefix(const char *str, BloomFilter *bloomFilter, int prefixLen = fingerprintSize) {
   char sz[32];
@@ -470,6 +496,7 @@ void discoverMatchingPrefix(const char *str, BloomFilter *bloomFilter, int prefi
 }
 #endif
 
+<<<<<<< HEAD
 bool ABPFilterParser::matches(const char *input, FilterOption contextOption, const char *contextDomain) {
   // We always have to check noFingerprintFilters because the bloom filter opt cannot be used for them
   bool hasMatch = hasMatchingFilters(noFingerprintFilters, numNoFingerprintFilters, input, contextOption, contextDomain);
@@ -493,6 +520,8 @@ bool ABPFilterParser::matches(const char *input, FilterOption contextOption, con
 }
 #endif
 
+=======
+>>>>>>> 5a3b73f... Various tweaks to increase perf of bloom filter / rabin-karp hashing
 bool ABPFilterParser::matches(const char *input, FilterOption contextOption, const char *contextDomain) {
   // We always have to check noFingerprintFilters because the bloom filter opt cannot be used for them
   bool hasMatch = hasMatchingFilters(noFingerprintFilters, numNoFingerprintFilters, input, contextOption, contextDomain);
@@ -745,13 +774,19 @@ bool ABPFilterParser::parse(const char *input) {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 5a3b73f... Various tweaks to increase perf of bloom filter / rabin-karp hashing
 #ifdef PERF_STATS
   cout << "Num no fingerprint filters: " << numNoFingerprintFilters << endl;
   cout << "Num no fingerprint exception filters: " << numNoFingerprintExceptionFilters << endl;
 #endif
 
+<<<<<<< HEAD
 =======
 >>>>>>> eb19c89... Add Ad Block Plus C++ filter library and JNI integration code
+=======
+>>>>>>> 5a3b73f... Various tweaks to increase perf of bloom filter / rabin-karp hashing
   Filter *newFilters = new Filter[newNumFilters + numFilters];
   Filter *newHtmlRuleFilters = new Filter[newNumHtmlRuleFilters + numHtmlRuleFilters];
   Filter *newExceptionFilters = new Filter[newNumExceptionFilters + numExceptionFilters];

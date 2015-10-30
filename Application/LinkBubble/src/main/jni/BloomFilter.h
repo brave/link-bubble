@@ -2,6 +2,7 @@
 
 #include <math.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <stdint.h>
 #include "hashFn.h"
 #include "base.h"
@@ -13,6 +14,13 @@ extern HashFn defaultHashFns[5];
 
 extern HashFn defaultHashFns[3];
 >>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
+=======
+#include <stdint.h>
+#include "hashFn.h"
+#include "base.h"
+
+extern HashFn defaultHashFns[5];
+>>>>>>> 5a3b73f... Various tweaks to increase perf of bloom filter / rabin-karp hashing
 /**
  * Implements a Bloom Filter using Rabin Karp for char* buffer lookups
  */
@@ -61,10 +69,14 @@ public:
 private:
   HashFn *hashFns;
 <<<<<<< HEAD
+<<<<<<< HEAD
   uint64_t *lastHashes;
 =======
   unsigned int *lastHashes;
 >>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
+=======
+  uint64_t *lastHashes;
+>>>>>>> 5a3b73f... Various tweaks to increase perf of bloom filter / rabin-karp hashing
   int numHashFns;
   unsigned int byteBufferSize;
   unsigned int bitBufferSize;
@@ -82,8 +94,12 @@ private:
    *  to the hashing function for a faster computation. Must be called with lastHashes.
    */
 <<<<<<< HEAD
+<<<<<<< HEAD
   void getHashesForCharCodes(const char *input, int inputLen, uint64_t *lastHashes, uint64_t *newHashes, unsigned char lastCharCode);
 =======
   void getHashesForCharCodes(const char *input, int inputLen, unsigned int *lastHashes, unsigned int *newHashes, unsigned char lastCharCode);
 >>>>>>> d4fb680... Update ABPFilterParser w/ BloomFilter + Rabin-Karp
+=======
+  void getHashesForCharCodes(const char *input, int inputLen, uint64_t *lastHashes, uint64_t *newHashes, unsigned char lastCharCode);
+>>>>>>> 5a3b73f... Various tweaks to increase perf of bloom filter / rabin-karp hashing
 };
