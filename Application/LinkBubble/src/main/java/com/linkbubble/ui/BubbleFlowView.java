@@ -132,12 +132,12 @@ public class BubbleFlowView extends HorizontalScrollView {
                         mBubbleFlowListener.onCenterItemLongClicked(BubbleFlowView.this, mTouchView);
                     }
                 }
-            }
 
-            // Check mContent rather than mViews, because it's possible for mViews to be empty yet mContent have a child
-            // (e.g, in the instance the final Bubble is animating off screen).
-            if (mContent.getChildCount() > 0) {
-                result = true;
+                // Check mContent rather than mViews, because it's possible for mViews to be empty yet mContent have a child
+                // (e.g, in the instance the final Bubble is animating off screen).
+                if (mContent.getChildCount() > 0) {
+                    result = true;
+                }
             }
             return result;
         }
