@@ -2,6 +2,7 @@
 #include <string.h>
 
 HashFn defaultHashFns[5] = {HashFn(13), HashFn(17), HashFn(31), HashFn(41), HashFn(53)};
+
 using namespace std;
 
 BloomFilter::BloomFilter(unsigned int bitsPerElement, unsigned int estimatedNumElements, HashFn *hashFns, int numHashFns) :

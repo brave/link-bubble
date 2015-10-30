@@ -324,12 +324,30 @@ bool ABPFilterParser::hasMatchingFilters(Filter *filter, int &numFilters, const 
   return false;
 }
 
+#ifdef PERF_STATS
+void discoverMatchingPrefix(const char *str, BloomFilter *bloomFilter, int prefixLen = fingerprintSize) {
+  char sz[32];
+  memset(sz, 0, sizeof(sz));
+  int strLen = strlen(str);
+  for (int i = 0; i < strLen - prefixLen + 1; i++) {
+    if (bloomFilter->exists(str + i, prefixLen)) {
+      memcpy(sz, str + i, prefixLen);
+      cout <<  "Bad fingerprint: " << sz << endl;
+    } else {
+      // memcpy(sz, str + i, prefixLen);
+      // cout <<  "Good fingerprint: " << sz;
+    }
+  }
+}
+#endif
+
 bool ABPFilterParser::matches(const char *input, FilterOption contextOption, const char *contextDomain) {
   // We always have to check noFingerprintFilters because the bloom filter opt cannot be used for them
   bool hasMatch = hasMatchingFilters(noFingerprintFilters, numNoFingerprintFilters, input, contextOption, contextDomain);
   // If no noFingerprintFilters were hit, check the bloom filter substring fingerprint for the normal
   // filter list.   If no substring exists for the input then we know for sure the URL should not be blocked.
   if (!hasMatch && bloomFilter && !bloomFilter->substringExists(input, fingerprintSize)) {
+    numBloomFilterSaves++;
     return false;
   }
 
