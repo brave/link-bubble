@@ -1,7 +1,7 @@
 #include "BloomFilter.h"
 #include <string.h>
 
-HashFn defaultHashFns[3] = {HashFn(2), HashFn(3), HashFn(5)};
+HashFn defaultHashFns[5] = {HashFn(13), HashFn(17), HashFn(31), HashFn(41), HashFn(53)};
 
 using namespace std;
 
@@ -9,7 +9,7 @@ BloomFilter::BloomFilter(unsigned int bitsPerElement, unsigned int estimatedNumE
     hashFns(nullptr), numHashFns(0), byteBufferSize(0), buffer(nullptr) {
   this->hashFns = hashFns;
   this->numHashFns = numHashFns;
-  lastHashes = new unsigned int[numHashFns];
+  lastHashes = new uint64_t[numHashFns];
   byteBufferSize = bitsPerElement * estimatedNumElements / 8 + 1;
   bitBufferSize = byteBufferSize * 8;
   buffer = new char[byteBufferSize];
@@ -21,7 +21,7 @@ BloomFilter::BloomFilter(const char *buffer, int byteBufferSize, HashFn *hashFns
     hashFns(nullptr), numHashFns(0), byteBufferSize(0), buffer(nullptr) {
   this->hashFns = hashFns;
   this->numHashFns = numHashFns;
-  lastHashes = new unsigned int[numHashFns];
+  lastHashes = new uint64_t[numHashFns];
   this->byteBufferSize = byteBufferSize;
   bitBufferSize = byteBufferSize * 8;
   this->buffer = new char[byteBufferSize];
@@ -35,6 +35,9 @@ BloomFilter::~BloomFilter() {
   if (lastHashes) {
     delete[] lastHashes;
   }
+}
+
+void BloomFilter::print() {
 }
 
 void BloomFilter::setBit(unsigned int bitLocation) {
@@ -67,7 +70,7 @@ bool BloomFilter::exists(const char *sz) {
   return exists(sz, strlen(sz));
 }
 
-void BloomFilter::getHashesForCharCodes(const char *input, int inputLen, unsigned int *lastHashes, unsigned int *newHashes, unsigned char lastCharCode) {
+void BloomFilter::getHashesForCharCodes(const char *input, int inputLen, uint64_t *lastHashes, uint64_t *newHashes, unsigned char lastCharCode) {
   for (int i = 0; i < numHashFns; i++) {
     if (lastHashes) {
       *(newHashes + i) = hashFns[i](input, inputLen, lastCharCode, *(lastHashes+i));
