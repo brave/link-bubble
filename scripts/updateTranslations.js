@@ -62,6 +62,10 @@ requestTranslations().then(translations => {
         fs.mkdirSync(toPath);
       }
 
+      // Regex to remove empty translation nodes.
+      // Without this it's possible to end up with empty <plural> elements which cause android to crash.
+      fileData = fileData.replace(/<plurals[^\/>][^>]*>([\s\r\n])*?<\/plurals>/g, '');
+
       toPath = path.join(toPath, translation.master_file);
       fs.writeFileSync(toPath, fileData);
     }
