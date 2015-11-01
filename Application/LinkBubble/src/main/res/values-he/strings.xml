@@ -8,14 +8,14 @@
     <string name="notification_unhide_summary">לחיצה להסתרה, הרחבה לסגירת הכל</string>
     <string name="notification_action_close_all">סגירת הכל</string>
     <string name="notification_action_hide">הסתרה</string>
-    <!-- untranslated string: share_picker_label -->
+    
 
     <string name="yes">כן</string>
     <string name="no">לא</string>
     <string name="cancel">ביטול</string>
 
     <string name="action_ok">אישור</string>
-    <!-- untranslated string: action_open -->
+    
     <string name="action_remove">הסרה</string>
     <string name="action_cancel">ביטול</string>
     <string name="action_clear_data">ניקוי המידע</string>
@@ -24,47 +24,49 @@
     <string name="action_help">עזרה</string>
     <string name="action_reload_page">טעינה מחודשת</string>
     <string name="action_open_in_browser">פתיחה באמצעות %1$s</string>
-    <!-- untranslated string: action_request_desktop_site -->
+    
     <string name="action_open_in_new_bubble">פתיחה בבועה חדשה</string>
+    
+    
     <string name="action_copy_to_clipboard">העתקת קישור</string>
-    <!-- untranslated string: action_save_image -->
+    
     <string name="action_share">שיתוף</string>
     <string name="action_close_all">סגירת הכל</string>
     <string name="action_close_tab">סגירת הבועה</string>
     <string name="action_stop">עצירה</string>
-    <!-- untranslated string: action_undo -->
-    <!-- untranslated string: action_add -->
-    <!-- untranslated string: action_no_recommended -->
+    
+    
+    
     <string name="share_via">שיתוף באמצעות...</string>
     <string name="not_set">לא נקבע</string>
 
-    <!-- untranslated string: error_saving_image -->
-    <!-- untranslated string: image_saved -->
-    <!-- untranslated string: notice_download_started -->
+    
+    
+    
 
     <string name="warning">אזהרה!</string>
-    <!-- untranslated string: untrusted_certificate -->
+    
 
     <string name="share_invalid_data">Link Bubble איננו יכול לשתף פריט זה מכיוון שהוא איננו כתובת אינטרנט תקפה.</string>
     <string name="consume_activity_not_found">לא ניתן למצוא אפליקציה. תשקלו לשנות פעולת בועה דרך ההגדרות.</string>
-    <!-- untranslated string: consume_activity_security_exception -->
+    
 
     <string name="upgrade">שדרוג</string>
     <string name="upgrade_theme">רוצים להשתמש בערכת נושא שונה?</string>
-    <!-- untranslated string: upgrade_theme_toolbar -->
+    
 
-    <!-- untranslated string: undo_close_tab_title -->
+    
     <string name="undo_close_tab_no_title">לשונית שנסגרה</string>
 
     <string name="pick_default_app">בחירת אפליקציית ברירת מחדל</string>
     <string name="default_browser_set">Link Bubble נקבע כדפדפן ברירת מחדל.</string>
     <string name="invalid_send_action">לא נמצא קישור תקף.</string>
-    <!-- untranslated string: unable_to_launch_app -->
+    
     <string name="clear_history">ניקוי ההיסטוריה</string>
 
     <string name="preference_category_general">כללי</string>
     <string name="preference_category_configuration">בקרי אפליקציה</string>
-    <!-- untranslated string: preference_category_configuration2 -->
+    
     <string name="preference_category_browser">דפדפן</string>
     <string name="preference_enabled_title">מאופשר</string>
     <string name="preference_auto_content_display_link_loaded_title">הרחבה אוטומטית</string>
@@ -72,57 +74,57 @@
 
     <string name="preference_left_consume_bubble_title">בועה שמאלית</string>
     <string name="preference_right_consume_bubble_title">בועה ימינית</string>
-    <!-- untranslated string: preference_double_tap_title -->
+    
     <string name="preference_configure_bubble_title">הגדרת בועה</string>
     <string name="preference_category_debug">דיבג</string>
-    <!-- untranslated string: preference_default_browser -->
-    <!-- untranslated string: preference_category_redirect_to_browser -->
-    <!-- untranslated string: preference_category_fallback_browser -->
+    
+    
+    
     <string name="preference_category_other_apps">אפליקציות אחרות</string>
     <string name="preference_default_apps_title">אפליקציות ברירת מחדל</string>
-    <!-- untranslated string: preference_default_apps_summary -->
-    <!-- untranslated string: preference_default_apps_notice_summary -->
-    <!-- untranslated string: preference_default_apps_notice_no_defaults_summary -->
-    <!-- untranslated string: preference_google_account_redirect_title -->
-    <!-- untranslated string: preference_google_account_redirect_summary -->
-    <!-- untranslated string: preference_set_default_browser_title -->
-    <!-- untranslated string: preference_set_default_browser_summary -->
+    
+    
+    
+    
+    
+    
+    
     <string name="preference_more">עוד...</string>
-    <!-- untranslated string: preference_intercept_links_from_title -->
-    <!-- untranslated string: preference_intercept_links_from_disabled_for_L -->
-    <!-- untranslated string: preference_scan_for_youtube_embeds_title -->
-    <!-- untranslated string: preference_scan_for_youtube_embeds_summary -->
+    
+    
+    
+    
     <string name="preference_webview_battery_save_title">מצב חיסכון בסוללה (ניסיוני)</string>
     <string name="preference_webview_battery_save_aggressive_title">אגרסיבי</string>
-    <!-- untranslated string: preference_webview_battery_save_aggressive_summary -->
+    
     <string name="preference_webview_battery_save_default_title">ברירת מחדל</string>
-    <!-- untranslated string: preference_webview_battery_save_default_summary -->
-    <!-- untranslated string: preference_webview_battery_save_off_title -->
-    <!-- untranslated string: preference_webview_battery_save_off_summary -->
-    <!-- untranslated string: preference_theme_title -->
+    
+    
+    
+    
     <string name="preference_theme_light_color">בהיר + צבע אייקון</string>
     <string name="preference_theme_light_no_color">בהיר + צבע ניטרלי</string>
     <string name="preference_theme_dark_color">כהה + צבע אייקון</string>
     <string name="preference_theme_dark_no_color">כהה + צבע ניטרלי</string>
-    <!-- untranslated string: preference_theme_toolbar_title -->
-    <!-- untranslated string: preference_theme_toolbar_summary -->
-    <!-- untranslated string: preference_article_mode_title -->
-    <!-- untranslated string: preference_reading_mode_on_wear_title -->
-    <!-- untranslated string: preference_article_mode_summary -->
+    
+    
+    
+    
+    
     <string name="preference_webview_text_zoom_title">זום לטקסט</string>
-    <!-- untranslated string: preference_webview_text_zoom_note -->
-    <!-- untranslated string: preference_webview_text_zoom_reloading_current -->
+    
+    
     <string name="preference_clear_browser_cache_title">ניקוי מידע פרטי</string>
     <string name="preference_clear_cache">מטמון</string>
     <string name="preference_clear_cookies">עוגיות</string>
     <string name="preference_clear_favicons">אייקוני מועדפים</string>
-    <!-- untranslated string: preference_clear_form_data -->
+    
     <string name="preference_clear_history">היסטוריה</string>
     <string name="preference_clear_passwords">סיסמאות</string>
-    <!-- untranslated string: preference_incognito_title -->
-    <!-- untranslated string: preference_incognito_summary -->
-    <!-- untranslated string: incognito_mode_changed_reloading_current -->
-    <!-- untranslated string: preference_user_agent_title -->
+    
+    
+    
+    
     <string-array name="preference_user_agent_options">
         <item>ברירת מחדל</item>
         <item>Chrome טלפון</item>
@@ -130,39 +132,39 @@
         <item>Chrome שולחני</item>
     </string-array>
 
-    <!-- untranslated string: preference_domains_title -->
-    <!-- untranslated string: preference_domains_summary -->
-    <!-- untranslated string: preference_redirects_title -->
-    <!-- untranslated string: preference_add_domain_title -->
-    <!-- untranslated string: add_domain_hint -->
-    <!-- untranslated string: add_domain_detail -->
-    <!-- untranslated string: add_domain_error -->
+    
+    
+    
+    
+    
+    
+    
 
     <string name="preference_help_title">עזרה</string>
-    <!-- untranslated string: preference_show_welcome_message_title -->
-    <!-- untranslated string: preference_credits_title -->
-    <!-- untranslated string: preference_osl_title -->
-    <!-- untranslated string: preference_privacy_policy_title -->
+    
+    
+    
+    
     <string name="preference_terms_of_service_title">תנאי שירות</string>
     <string name="preference_say_thanks_title">אמרו תודה!</string>
-    <!-- untranslated string: preference_say_thanks_summary -->
+    
     <string name="preference_version_title">גרסה</string>
-    <!-- untranslated string: preference_version_summary -->
-    <!-- untranslated string: preference_more_title -->
-    <!-- untranslated string: preference_show_undo_close_tab_title -->
+    
+    
+    
 
-    <!-- untranslated string: preference_my_other_apps_title -->
-    <!-- untranslated string: preference_my_other_apps_summary -->
+    
+    
 
     <string name="remove_default_title">הסרת ברירת מחדל?</string>
-    <!-- untranslated string: remove_default_message -->
-    <!-- untranslated string: long_press_unsupported_default_browser -->
-    <!-- untranslated string: long_press_unsupported_no_default_browser -->
-    <!-- untranslated string: unsupported_scheme_default_browser -->
+    
+    
+    
+    
     <string name="unsupported_scheme_no_default_browser">סוג הקישור איננו נתמך כרגע. פתיחת עמוד אינטרנט באמצעות הדפדפן</string>
     <string name="unsupported_scheme">סוג הקישור איננו נתמך כרגע.</string>
-    <!-- untranslated string: unsupported_drop_down_default_browser -->
-    <!-- untranslated string: unsupported_drop_down_no_default_browser -->
+    
+    
 
     <string name="consume_category_view">צפייה בקישור</string>
     <string name="consume_category_share">שליחה/שיתוף הקישור</string>
@@ -170,9 +172,9 @@
     <string name="title_settings">הגדרות</string>
 
     <string name="title_youtube_embed_to_load">בחירת וידאו לניגון</string>
-    <!-- untranslated string: loading_youtube_embed_info -->
+    
     <string name="youtube_embed_error_title">אופס</string>
-    <!-- untranslated string: youtube_embed_error_summary -->
+    
 
     <string name="loading">מעלה...</string>
 
@@ -180,133 +182,130 @@
     <string name="histroy_all">הכל</string>
     <string name="history">היסטוריה</string>
     <string name="erase_all_history_title">למחוק הכל?</string>
-    <!-- untranslated string: erase_all_history_message -->
+    
     <string name="empty">ריק</string>
     <string name="history_already_empty">היסטוריה כבר ריקה</string>
     <string name="private_data_cleared">מידע פרטי נוקה</string>
-    <!-- untranslated string: private_data_cleared_reloading_current -->
-    <!-- untranslated string: user_agent_changed_reloading_current -->
-    <!-- untranslated string: theme_toolbar_reloading_current -->
-    <!-- untranslated string: article_mode_changed_reloading_current -->
-    <!-- untranslated string: link_loaded_with_app -->
-    <!-- untranslated string: link_redirected -->
+    
+    
+    
+    
+    
+    
 
-    <!-- untranslated string: tampered_apk -->
+    
 
-    <!-- untranslated string: bubble_link_copied_to_clipboard -->
+    
     <string name="link_copied_to_clipboard">קישור הועתק ללוח הכתיבה.</string>
 
-    <!-- untranslated string: stat_saves_you -->
+    
     <string name="stat_has_saved_you">נחסכו לכם</string>
     <string name="stat_so_far">עד כה</string>
-    <!-- untranslated string: stat_per_link -->
+    
     <string name="time_seconds">שניות</string>
     <string name="time_minutes">דקות</string>
     <string name="time_hours">שעות</string>
 
-    <!-- untranslated string: confirm_title -->
+    
 
-    <!-- untranslated string: no_default_browser -->
+    
 
     <string name="title_changelog">רשימת שינויים</string>
     <string name="changelog_close">סגירה</string>
 
-    <!-- untranslated string: faq_close_tab_question -->
-    <!-- untranslated string: faq_close_tab_answer -->
-    <!-- untranslated string: faq_back_button_minimize_question -->
-    <!-- untranslated string: faq_back_button_minimize_answer -->
-    <!-- untranslated string: faq_app_internal_browser_question -->
-    <!-- untranslated string: faq_app_internal_browser_answer -->
-    <!-- untranslated string: faq_article_mode_question -->
-    <!-- untranslated string: faq_article_mode_answer -->
-    <!-- untranslated string: faq_future_features_question -->
-    <!-- untranslated string: faq_future_features_answer -->
-    <!-- untranslated string: faq_translations_question -->
-    <!-- untranslated string: faq_translations_answer -->
-    <!-- untranslated string: faq_roadmap_question -->
-    <!-- untranslated string: faq_roadmap_answer -->
-    <!-- untranslated string: faq_alternate_payment_answer -->
-    <!-- untranslated string: faq_cant_type_url_question -->
-    <!-- untranslated string: faq_cant_type_url_answer -->
-    <!-- untranslated string: faq_copy_text_question -->
-    <!-- untranslated string: faq_copy_text_answer -->
-    <!-- untranslated string: faq_translucent_status_bar_question -->
-    <!-- untranslated string: faq_translucent_status_bar_answer -->
-    <!-- untranslated string: faq_beta_programme_question -->
-    <!-- untranslated string: faq_beta_programme_answer -->
-    <!-- untranslated string: faq_low_spec_performance_question -->
-    <!-- untranslated string: faq_low_spec_performance_answer -->
-    <!-- untranslated string: faq_crap_webview_question -->
-    <!-- untranslated string: faq_crap_webview_answer -->
-    <!-- untranslated string: faq_ongoing_notificaion_question -->
-    <!-- untranslated string: faq_ongoing_notificaion_answer -->
-    <!-- untranslated string: faq_next_update_eta_question -->
-    <!-- untranslated string: faq_next_update_eta_answer -->
-    <!-- untranslated string: faq_close_quickly_question -->
-    <!-- untranslated string: faq_close_quickly_answer -->
-    <!-- untranslated string: faq_change_default_browser_question -->
-    <!-- untranslated string: faq_change_default_browser_answer -->
-    <!-- untranslated string: faq_report_bug_question -->
-    <!-- untranslated string: faq_report_bug_answer -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-    <!-- untranslated string: faq_title -->
-    <!-- untranslated string: preference_faq_summary -->
-    <!-- untranslated string: faq_section_general -->
-    <!-- untranslated string: faq_section_functionality -->
-    <!-- untranslated string: faq_section_issues -->
+    
+    
+    
+    
+    
 
-    <!-- untranslated string: activity_resolver_use_always -->
-    <!-- untranslated string: activity_resolver_use_once -->
+    
+    
 
-    <!-- untranslated string: credits_title -->
-    <!-- untranslated string: credits_name -->
-    <!-- untranslated string: credits_credit -->
-    <!-- untranslated string: credits_app_copyright -->
+    
+    
+    
+    
 
-    <!-- untranslated string: restore_tabs_from_previous_session -->
-    <plurals name="restore_tabs_from_previous_session">
-        <item quantity="one">Restore tab from previous session?</item>
-        <item quantity="other">Restore %d tabs from previous session?</item>
-    </plurals>
+    
+    
 
     <string name="content_description_button">כפתור</string>
-    <!-- untranslated string: content_description_target_icon -->
-    <!-- untranslated string: content_description_close_bubble_icon -->
+    
+    
     <string name="content_description_link_bubble_logo">לוגו Link Bubble</string>
     <string name="content_description_app_icon">אייקון אפליקציה</string>
-    <!-- untranslated string: content_description_youtube_video_thumbnail -->
+    
     <string name="content_description_history">היסטוריה</string>
     <string name="content_description_settings">הגדרות</string>
-    <!-- untranslated string: content_description_can_go_back -->
+    
 
-    <!-- untranslated string: requesting_location_message -->
+    
 
-    <!-- untranslated string: accept_terms_and_privacy -->
+    
 
-    <!-- untranslated string: service_name -->
-    <!-- untranslated string: notification_title -->
+    
+    
 
     <string name="store_listing_title">Link Bubble</string>
-    <!-- untranslated string: store_listing_promo_text -->
-    <!-- untranslated string: store_listing_description_title -->
-    <!-- untranslated string: store_listing_description_features -->
-    <!-- untranslated string: store_listing_description_location_permission -->
+    
+    
+    
+    
 
     <string name="welcome_page_title">ברוך הבא ל-Link Bubble!</string>
     <string name="welcome_page_intro_title">כיצד זה עובד?</string>
-    <!-- untranslated string: welcome_page_intro_point_1 -->
-    <!-- untranslated string: welcome_page_intro_point_2 -->
-    <!-- untranslated string: welcome_page_intro_end -->
+    
+    
+    
     <string name="welcome_page_more_title">הצג לי עוד!</string>
-    <!-- untranslated string: welcome_page_more_pocket_start -->
-    <!-- untranslated string: welcome_page_more_pocket_end -->
-    <!-- untranslated string: welcome_page_more_also -->
-    <!-- untranslated string: welcome_page_more_point_1 -->
-    <!-- untranslated string: welcome_page_more_point_2 -->
-    <!-- untranslated string: welcome_page_more_point_3 -->
-    <!-- untranslated string: welcome_page_more_point_4 -->
-    <!-- untranslated string: welcome_page_ps -->
+    
+    
+    
+    
+    
+    
+    
+    
 
-    <!-- untranslated string: duplicate_link_will_not_be_loaded -->
+    
 
 </resources>

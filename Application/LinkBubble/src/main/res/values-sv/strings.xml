@@ -15,7 +15,7 @@
     <string name="cancel">Avbryt</string>
 
     <string name="action_ok">OK</string>
-    <!-- untranslated string: action_open -->
+    
     <string name="action_remove">Ta bort</string>
     <string name="action_cancel">Avbryt</string>
     <string name="action_clear_data">Rensa data</string>
@@ -24,10 +24,12 @@
     <string name="action_help">Hjälp</string>
     <string name="action_reload_page">Ladda om</string>
     <string name="action_open_in_browser">Öppna med %1$s</string>
-    <!-- untranslated string: action_request_desktop_site -->
+    
     <string name="action_open_in_new_bubble">Öppna i ny bubbla</string>
+    
+    
     <string name="action_copy_to_clipboard">Kopiera länk</string>
-    <!-- untranslated string: action_save_image -->
+    
     <string name="action_share">Dela</string>
     <string name="action_close_all">Stäng alla</string>
     <string name="action_close_tab">Stäng bubbla</string>
@@ -38,9 +40,9 @@
     <string name="share_via">Dela via...</string>
     <string name="not_set">Ej angivet</string>
 
-    <!-- untranslated string: error_saving_image -->
-    <!-- untranslated string: image_saved -->
-    <!-- untranslated string: notice_download_started -->
+    
+    
+    
 
     <string name="warning">Varning!</string>
     <string name="untrusted_certificate">Certifikatet vid %1$s är inte betrott. Fortsätta ändå?</string>
@@ -109,7 +111,7 @@ du laddar länkar med Link Bubble.</string>
     <string name="preference_theme_dark_no_color">Mörk + neutral färg</string>
     <string name="preference_theme_toolbar_title">Färg verktygsfält</string>
     <string name="preference_theme_toolbar_summary">För att matcha en webbsidas temafärg/markerad ikonfärg.</string>
-    <!-- untranslated string: preference_article_mode_title -->
+    
     <string name="preference_reading_mode_on_wear_title">Läsläge på Wear</string>
     <string name="preference_article_mode_summary">Växla via knapp på actionbar</string>
     <string name="preference_webview_text_zoom_title">Textzoom</string>
@@ -239,13 +241,13 @@ Notera att genom att uppgradera till Link Bubble Pro kommer länkar att fångas 
 3). Appar såsom Talon, Reddit is Fun och andra har inbyggda webbläsare som renderar länkar. Kontrollera appens inställningar
 och aktivera \"Extern webbläsare\" eller välj bort \"Intern webbläsare\" eller liknande.\n<br/><br/>Notera: andra webbläsare såsom Chrome är hårdkodade att ladda länkar i sig själva och därför kommer Link Bubble
 inte kunna öppna länkar från dessa.\n]]></string>
-    <!-- untranslated string: faq_article_mode_question -->
-    <!-- untranslated string: faq_article_mode_answer -->
+    
+    
     <string name="faq_future_features_question">Kommer du lägga till stöd för bokmärken, favoriter, tillägg, etc.?</string>
     <string name="faq_future_features_answer">Man ska aldrig säga aldrig, men för tillfället fokuserar Link Bubble helt på att vara det bästa möjliga sättet
 att ladda och konsumera länkar laddade från andra appar.</string>
-    <!-- untranslated string: faq_translations_question -->
-    <!-- untranslated string: faq_translations_answer -->
+    
+    
     <string name="faq_roadmap_question">Publicerar du en funktionsfärdplan? Kan jag rösta upp kommande funktioner?</string>
     <string name="faq_roadmap_answer">Av konkurrensskäl är svaret på båda frågorna \'nej\' är jag rädd.<br/><br/></string>
     <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble har bara stöd för köp genom Google Play för tillfället.<br/><br/>Ytterligare
@@ -261,7 +263,7 @@ Androids WebView har bara kopieringsfunktionalitet från en aktivitet men inte f
     <string name="faq_translucent_status_bar_question">Varför ritar inte appen över det genomskinliga statusfältet?</string>
     <string name="faq_translucent_status_bar_answer">Tyvärr förhindrar systembegränsningar i Android detta.</string>
     <string name="faq_beta_programme_question">Finns det något betaprogram? Hur kan jag gå med i det?</string>
-    <!-- untranslated string: faq_beta_programme_answer -->
+    
     <string name="faq_low_spec_performance_question">Varför går Link Bubble så långsamt på min Nexus S / Galaxy S1 / Moto G-typ av enhet?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble är en väldigt resurskrävande app och därmed kan enheter med lägre specifikationer 
 kämpa för att köra appen lika bra som mer kraftfulla enheter. Framtida uppdateringar kommer försöka förbättra Link Bubbles
@@ -291,22 +293,19 @@ att folk tar det som ett åtagande och blir upprörda när det dröjer av någon
     <string name="faq_title">FAQ</string>
     <string name="preference_faq_summary">Frågor gällande appen? Försök här.</string>
     <string name="faq_section_general">Allmänt</string>
-    <!-- untranslated string: faq_section_functionality -->
+    
     <string name="faq_section_issues">Problem</string>
 
     <string name="activity_resolver_use_always">Alltid</string>
     <string name="activity_resolver_use_once">Bara en gång</string>
 
-    <!-- untranslated string: credits_title -->
-    <!-- untranslated string: credits_name -->
+    
+    
     <string name="credits_credit">Koncept, design och programmering</string>
-    <!-- untranslated string: credits_app_copyright -->
+    
 
-    <!-- untranslated string: restore_tabs_from_previous_session -->
-    <plurals name="restore_tabs_from_previous_session">
-        <item quantity="one">Restore tab from previous session?</item>
-        <item quantity="other">Restore %d tabs from previous session?</item>
-    </plurals>
+    
+    
 
     <string name="content_description_button">Knapp</string>
     <string name="content_description_target_icon">Bubbelmålikon</string>
@@ -326,27 +325,27 @@ att folk tar det som ett åtagande och blir upprörda när det dröjer av någon
     <string name="service_name">Link Bubble Renderer</string>
     <string name="notification_title">Link Bubble</string>
 
-    <!-- untranslated string: store_listing_title -->
-    <!-- untranslated string: store_listing_promo_text -->
-    <!-- untranslated string: store_listing_description_title -->
-    <!-- untranslated string: store_listing_description_features -->
-    <!-- untranslated string: store_listing_description_location_permission -->
+    
+    
+    
+    
+    
 
-    <!-- untranslated string: welcome_page_title -->
-    <!-- untranslated string: welcome_page_intro_title -->
-    <!-- untranslated string: welcome_page_intro_point_1 -->
-    <!-- untranslated string: welcome_page_intro_point_2 -->
-    <!-- untranslated string: welcome_page_intro_end -->
-    <!-- untranslated string: welcome_page_more_title -->
-    <!-- untranslated string: welcome_page_more_pocket_start -->
-    <!-- untranslated string: welcome_page_more_pocket_end -->
-    <!-- untranslated string: welcome_page_more_also -->
-    <!-- untranslated string: welcome_page_more_point_1 -->
-    <!-- untranslated string: welcome_page_more_point_2 -->
-    <!-- untranslated string: welcome_page_more_point_3 -->
-    <!-- untranslated string: welcome_page_more_point_4 -->
-    <!-- untranslated string: welcome_page_ps -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-    <!-- untranslated string: duplicate_link_will_not_be_loaded -->
+    
 
 </resources>
