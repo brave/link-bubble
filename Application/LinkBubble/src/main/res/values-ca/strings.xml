@@ -26,6 +26,8 @@
     <string name="action_open_in_browser">Obre amb %1$s</string>
     <string name="action_request_desktop_site">Sol·licita versió d\'escriptori</string>
     <string name="action_open_in_new_bubble">Obre en una nova bombolla</string>
+    
+    
     <string name="action_copy_to_clipboard">Copia enllaç</string>
     <string name="action_save_image">Guarda la imatge</string>
     <string name="action_share">Comparteix</string>
@@ -159,7 +161,7 @@ poden gestionar una URL, pots configurar l\'aplicació per defecte per carregar 
     <string name="preference_my_other_apps_summary">T\'agrada Link Bubble? Per què no proves les nostres altres aplicacions?</string>
 
     <string name="remove_default_title">Esborra predeterminat?</string>
-    <!-- untranslated string: remove_default_message -->
+    
     <string name="long_press_unsupported_default_browser">No es pot mostrat aquest element. Obrir enllaç amb %1$s?</string>
     <string name="long_press_unsupported_no_default_browser">No es pot mostrat aquest element. Obrir enllaç en un navegador?</string>
     <string name="unsupported_scheme_default_browser">Tipus d\'enllaç actualment incompatible. Obrir pàgina amb %1$s?</string>
@@ -195,7 +197,7 @@ poden gestionar una URL, pots configurar l\'aplicació per defecte per carregar 
     <string name="link_loaded_with_app">Carregat amb %1$s</string>
     <string name="link_redirected">Redirigint a %1$s</string>
 
-    <!-- untranslated string: tampered_apk -->
+    
 
     <string name="bubble_link_copied_to_clipboard">Enllaç de la bombolla copiat al porta-retalls.</string>
     <string name="link_copied_to_clipboard">Enllaç copiat al porta-retalls.</string>
@@ -215,43 +217,43 @@ poden gestionar una URL, pots configurar l\'aplicació per defecte per carregar 
     <string name="title_changelog">Registre de canvis</string>
     <string name="changelog_close">Tanca</string>
 
-    <!-- untranslated string: faq_close_tab_question -->
-    <!-- untranslated string: faq_close_tab_answer -->
-    <!-- untranslated string: faq_back_button_minimize_question -->
-    <!-- untranslated string: faq_back_button_minimize_answer -->
-    <!-- untranslated string: faq_app_internal_browser_question -->
-    <!-- untranslated string: faq_app_internal_browser_answer -->
-    <!-- untranslated string: faq_article_mode_question -->
-    <!-- untranslated string: faq_article_mode_answer -->
-    <!-- untranslated string: faq_future_features_question -->
-    <!-- untranslated string: faq_future_features_answer -->
-    <!-- untranslated string: faq_translations_question -->
-    <!-- untranslated string: faq_translations_answer -->
-    <!-- untranslated string: faq_roadmap_question -->
-    <!-- untranslated string: faq_roadmap_answer -->
-    <!-- untranslated string: faq_alternate_payment_answer -->
-    <!-- untranslated string: faq_cant_type_url_question -->
-    <!-- untranslated string: faq_cant_type_url_answer -->
-    <!-- untranslated string: faq_copy_text_question -->
-    <!-- untranslated string: faq_copy_text_answer -->
-    <!-- untranslated string: faq_translucent_status_bar_question -->
-    <!-- untranslated string: faq_translucent_status_bar_answer -->
-    <!-- untranslated string: faq_beta_programme_question -->
-    <!-- untranslated string: faq_beta_programme_answer -->
-    <!-- untranslated string: faq_low_spec_performance_question -->
-    <!-- untranslated string: faq_low_spec_performance_answer -->
-    <!-- untranslated string: faq_crap_webview_question -->
-    <!-- untranslated string: faq_crap_webview_answer -->
-    <!-- untranslated string: faq_ongoing_notificaion_question -->
-    <!-- untranslated string: faq_ongoing_notificaion_answer -->
-    <!-- untranslated string: faq_next_update_eta_question -->
-    <!-- untranslated string: faq_next_update_eta_answer -->
-    <!-- untranslated string: faq_close_quickly_question -->
-    <!-- untranslated string: faq_close_quickly_answer -->
-    <!-- untranslated string: faq_change_default_browser_question -->
-    <!-- untranslated string: faq_change_default_browser_answer -->
-    <!-- untranslated string: faq_report_bug_question -->
-    <!-- untranslated string: faq_report_bug_answer -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     <string name="faq_title">Preguntes freqüents</string>
     <string name="preference_faq_summary">Preguntes sobre la app? Prova aquí</string>
@@ -264,51 +266,51 @@ poden gestionar una URL, pots configurar l\'aplicació per defecte per carregar 
 
     <string name="credits_title">Crèdits de Link Bubble</string>
     <string name="credits_name">Link Bubble</string>
-    <!-- untranslated string: credits_credit -->
-    <!-- untranslated string: credits_app_copyright -->
+    
+    
 
-    <!-- untranslated string: restore_tabs_from_previous_session -->
+    
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Restaura pestanya de la sessió anterior?</item>
         <item quantity="other">Restaura %d pestanyes de la sessió anterior?</item>
     </plurals>
 
     <string name="content_description_button">Botó</string>
-    <!-- untranslated string: content_description_target_icon -->
+    
     <string name="content_description_close_bubble_icon">Tanca la icona de la bombolla</string>
     <string name="content_description_link_bubble_logo">Logo de Link Bubble</string>
     <string name="content_description_app_icon">Icona de l\'aplicació</string>
-    <!-- untranslated string: content_description_youtube_video_thumbnail -->
+    
     <string name="content_description_history">Historial</string>
     <string name="content_description_settings">Configuració</string>
-    <!-- untranslated string: content_description_can_go_back -->
+    
 
     <string name="requesting_location_message">%1$s està demanat la teva ubicació. Permetre?</string>
 
-    <!-- untranslated string: accept_terms_and_privacy -->
+    
 
-    <!-- untranslated string: service_name -->
+    
     <string name="notification_title">Link Bubble</string>
 
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Navegació mòbil com hauria de ser.</string>
     <string name="store_listing_description_title">Link Bubble és un navegador nou pensat i dissenyat completament per mòbils.</string>
-    <!-- untranslated string: store_listing_description_features -->
-    <!-- untranslated string: store_listing_description_location_permission -->
+    
+    
 
     <string name="welcome_page_title">Benvingut/da a Link Bubble!</string>
     <string name="welcome_page_intro_title">Com funciona?</string>
     <string name="welcome_page_intro_point_1">Prem en un enllaç dins l\'app.</string>
-    <!-- untranslated string: welcome_page_intro_point_2 -->
-    <!-- untranslated string: welcome_page_intro_end -->
-    <!-- untranslated string: welcome_page_more_title -->
-    <!-- untranslated string: welcome_page_more_pocket_start -->
-    <!-- untranslated string: welcome_page_more_pocket_end -->
-    <!-- untranslated string: welcome_page_more_also -->
-    <!-- untranslated string: welcome_page_more_point_1 -->
-    <!-- untranslated string: welcome_page_more_point_2 -->
-    <!-- untranslated string: welcome_page_more_point_3 -->
-    <!-- untranslated string: welcome_page_more_point_4 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <string name="welcome_page_ps">PD: Per tancar aquesta bombolla, premi el botó d\'endarrera o premi la bombolla i arrossegui-la a la bombolla te tancar.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Enllaç ja carregat. Ignorant...</string>

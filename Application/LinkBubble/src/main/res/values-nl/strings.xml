@@ -26,6 +26,8 @@
     <string name="action_open_in_browser">Openen in %1$s</string>
     <string name="action_request_desktop_site">Desktopversie opvragen</string>
     <string name="action_open_in_new_bubble">Openen in nieuwe bubbel</string>
+    <string name="action_open_link_in_new_bubble">Link openen in nieuwe bubbel</string>
+    <string name="action_open_image_in_new_bubble">Afbeelding openen in nieuwe bubbel</string>
     <string name="action_copy_to_clipboard">Link kopiëren</string>
     <string name="action_save_image">Afbeelding opslaan</string>
     <string name="action_share">Delen</string>
@@ -304,7 +306,7 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="credits_credit">Concept, ontwerp en programmeren</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    <!-- untranslated string: restore_tabs_from_previous_session -->
+    
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Tab van vorige sessie terugplaatsen?</item>
         <item quantity="other">%d tabs van vorige sessie terugplaatsen?</item>
@@ -331,7 +333,14 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Mobiel browsen zoals het zou moeten.</string>
     <string name="store_listing_description_title">Link Bubble is een geheel nieuwe browser, ontworpen en gemaakt met alleen mobiele apparaten in gedachten.</string>
-    <!-- untranslated string: store_listing_description_features -->
+    <string name="store_listing_description_features">Functies zijn onder meer:
+• Wanneer je klikt op een link in een app, laadt Link Bubble die webpagina op de achtergrond, zodat je vrij bent om je huidige app te blijven gebruiken in plaats van je kostbare tijd te verspillen aan het kijken naar een ladende pagina. Zodra de pagina volledig is geladen. zal deze op het scherm verschijnen.
+• Met Link Bubble\'s veegbewegingen kun je in weinig minder dan een seconde vanaf het klikken op een link, deze link delen of de link toevoegen aan een dienst als Pocket!
+• Laad meerdere links tegelijkertijd vanuit je huidige app op hetzelfde moment.
+• Slim omgaan met links die doorverwijzen naar andere apps. Niet langer krijg je na het klikken op een Instagram-link in Twitter eerst een volledige browser voordat Instagram opent!
+• Diepe integratie met de apps op je systeem.
+• Vind ingesloten YouTube-video\'s op webpagina\'s, en bied een snelkoppeling om die video\'s direct in de YouTube-app te laden. 
+• Handige statistieken die laten zien hoeveel tijd je bespaart door Link Bubble te gebruiken.</string>
     <string name="store_listing_description_location_permission">Wat betreft de toestemming voor Locatie: dit is nodig, omdat je mogelijk toestemming wil geven aan een website om je locatie te zien (bijvoorbeeld in het geval van een ingebouwde kaart). Link Bubble zelf kijkt nooit naar je locatie.</string>
 
     <string name="welcome_page_title">Welkom bij Link Bubble!</string>
@@ -345,7 +354,7 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="welcome_page_more_also">Link Bubble kan ook:</string>
     <string name="welcome_page_more_point_1">Links doorsturen naar een specifieke app (bijv. Instagram).</string>
     <string name="welcome_page_more_point_2">Ingesloten video\'s vinden zodat je deze makkelijk in de YouTube-app kan laden.</string>
-    <!-- untranslated string: welcome_page_more_point_3 -->
+    <string name="welcome_page_more_point_3">Onbeperkt bubbels tegelijkertijd laden.</string>
     <string name="welcome_page_more_point_4">Links uit alle apps laden.</string>
     <string name="welcome_page_ps">PS. Deze bubbel kun je sluiten door op de Terug-knop te drukken, of door lang te drukken op de bubbel en deze bovenop de Sluit-bubbel te vegen.</string>
 

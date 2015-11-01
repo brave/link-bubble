@@ -26,6 +26,8 @@
     <string name="action_open_in_browser">Открыть в %1$s</string>
     <string name="action_request_desktop_site">Запросить десктопную версию</string>
     <string name="action_open_in_new_bubble">Открыть в новом пузыре</string>
+    <string name="action_open_link_in_new_bubble">Открыть ссылку в новом пузыре</string>
+    <string name="action_open_image_in_new_bubble">Открыть картинку в новом пузыре</string>
     <string name="action_copy_to_clipboard">Копировать ссылку</string>
     <string name="action_save_image">Сохранить изображение</string>
     <string name="action_share">Поделиться</string>
@@ -289,7 +291,7 @@ Link Bubble.]]></string>
     <string name="credits_credit">Концепт, дизайн и программирование </string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    <!-- untranslated string: restore_tabs_from_previous_session -->
+    
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Восстановить пузырь из предыдущей сессии?</item>
         <item quantity="other">Восстановить %d пузырей из предыдущей сессии?</item>
