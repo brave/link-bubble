@@ -26,6 +26,8 @@
     <string name="action_open_in_browser">Otwórz w %1$s</string>
     <string name="action_request_desktop_site">Zażądaj wersji na komputer</string>
     <string name="action_open_in_new_bubble">Otwórz w nowym dymku</string>
+    <string name="action_open_link_in_new_bubble">Otwórz link w nowym dymku</string>
+    <string name="action_open_image_in_new_bubble">Otwórz obraz w nowym dymku</string>
     <string name="action_copy_to_clipboard">Skopiuj link</string>
     <string name="action_save_image">Zapisz obraz</string>
     <string name="action_share">Udostępnij</string>
@@ -279,7 +281,7 @@ Uwaga: Wczytywanie treści ze strony jest niedokładnym procesem, który może n
     <string name="credits_credit">Pomysł, projekt, programowanie</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    <!-- untranslated string: restore_tabs_from_previous_session -->
+    
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">Przywrócić zakładkę z poprzedniej sesji?</item>
         <item quantity="other">Przywrócić zakładki (%d) z poprzedniej sesji?</item>
