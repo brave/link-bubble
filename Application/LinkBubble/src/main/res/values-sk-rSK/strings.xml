@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- untranslated string: download_activity_label -->
+    
     <string name="send_intent_label">Otvoriť s Link Bubble</string>
     <string name="notification_summary">Stlač pre skrytie všetkých otvorených bublín</string>
     <string name="notification_default_summary">Stlač pre skrytie, roztiahni pre zavretie všetkých</string>
@@ -15,7 +15,7 @@
     <string name="cancel">Zrušiť</string>
 
     <string name="action_ok">OK</string>
-    <!-- untranslated string: action_open -->
+    
     <string name="action_remove">Vymazať</string>
     <string name="action_cancel">Zrušiť</string>
     <string name="action_clear_data">Vymazať dáta</string>
@@ -24,34 +24,36 @@
     <string name="action_help">Pomoc</string>
     <string name="action_reload_page">Obnoviť</string>
     <string name="action_open_in_browser">Otvoriť v %1$s</string>
-    <!-- untranslated string: action_request_desktop_site -->
+    
     <string name="action_open_in_new_bubble">Otvoriť v novej bubline</string>
+    
+    
     <string name="action_copy_to_clipboard">Skopírovať link</string>
-    <!-- untranslated string: action_save_image -->
+    
     <string name="action_share">Zdieľať</string>
     <string name="action_close_all">Zavrieť všetky</string>
     <string name="action_close_tab">Zavrieť bublinu</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Späť</string>
-    <!-- untranslated string: action_add -->
-    <!-- untranslated string: action_no_recommended -->
+    
+    
     <string name="share_via">Zdieľať...</string>
     <string name="not_set">Nenastavené</string>
 
-    <!-- untranslated string: error_saving_image -->
-    <!-- untranslated string: image_saved -->
-    <!-- untranslated string: notice_download_started -->
+    
+    
+    
 
-    <!-- untranslated string: warning -->
-    <!-- untranslated string: untrusted_certificate -->
+    
+    
 
     <string name="share_invalid_data">Link Bubble toto nedokáže zdieľať (neplatná URL)</string>
-    <!-- untranslated string: consume_activity_not_found -->
-    <!-- untranslated string: consume_activity_security_exception -->
+    
+    
 
     <string name="upgrade">Upgrade</string>
     <string name="upgrade_theme">Chcete použiť inú tému?</string>
-    <!-- untranslated string: upgrade_theme_toolbar -->
+    
 
     <string name="undo_close_tab_title">Zavreté %1$s</string>
     <string name="undo_close_tab_no_title">Zavretý tab</string>
@@ -64,7 +66,7 @@
 
     <string name="preference_category_general">Všeobecné</string>
     <string name="preference_category_configuration">Ovládanie app</string>
-    <!-- untranslated string: preference_category_configuration2 -->
+    
     <string name="preference_category_browser">Prehliadač</string>
     <string name="preference_enabled_title">Zapnutý</string>
     <string name="preference_auto_content_display_link_loaded_title">Auto roztiahnutie</string>
@@ -72,7 +74,7 @@
 
     <string name="preference_left_consume_bubble_title">Ľavá bublina</string>
     <string name="preference_right_consume_bubble_title">Pravá bublina</string>
-    <!-- untranslated string: preference_double_tap_title -->
+    
     <string name="preference_configure_bubble_title">Upraviť bublinu</string>
     <string name="preference_category_debug">Debug</string>
     <string name="preference_default_browser">Predvolený prehliadač</string>
@@ -82,47 +84,47 @@
     <string name="preference_default_apps_title">Predvolené aplikácie</string>
     <string name="preference_default_apps_summary">Predvolený prehliadač, URL-špecifické aplikácie</string>
     <string name="preference_default_apps_notice_summary">Použitý keď jedna alebo viac aplikácii vo vašom systéme dokážu otvoriť URL.\n\nKlikni pre odstránenie predvoleného.</string>
-    <!-- untranslated string: preference_default_apps_notice_no_defaults_summary -->
-    <!-- untranslated string: preference_google_account_redirect_title -->
-    <!-- untranslated string: preference_google_account_redirect_summary -->
+    
+    
+    
     <string name="preference_set_default_browser_title">Zvoľ predvolený systémový prehliadač</string>
-    <!-- untranslated string: preference_set_default_browser_summary -->
+    
     <string name="preference_more">Viac...</string>
     <string name="preference_intercept_links_from_title">Prijímaj linky z aplikácii</string>
-    <!-- untranslated string: preference_intercept_links_from_disabled_for_L -->
-    <!-- untranslated string: preference_scan_for_youtube_embeds_title -->
-    <!-- untranslated string: preference_scan_for_youtube_embeds_summary -->
-    <!-- untranslated string: preference_webview_battery_save_title -->
-    <!-- untranslated string: preference_webview_battery_save_aggressive_title -->
-    <!-- untranslated string: preference_webview_battery_save_aggressive_summary -->
-    <!-- untranslated string: preference_webview_battery_save_default_title -->
-    <!-- untranslated string: preference_webview_battery_save_default_summary -->
-    <!-- untranslated string: preference_webview_battery_save_off_title -->
-    <!-- untranslated string: preference_webview_battery_save_off_summary -->
-    <!-- untranslated string: preference_theme_title -->
-    <!-- untranslated string: preference_theme_light_color -->
-    <!-- untranslated string: preference_theme_light_no_color -->
-    <!-- untranslated string: preference_theme_dark_color -->
-    <!-- untranslated string: preference_theme_dark_no_color -->
-    <!-- untranslated string: preference_theme_toolbar_title -->
-    <!-- untranslated string: preference_theme_toolbar_summary -->
-    <!-- untranslated string: preference_article_mode_title -->
-    <!-- untranslated string: preference_reading_mode_on_wear_title -->
-    <!-- untranslated string: preference_article_mode_summary -->
-    <!-- untranslated string: preference_webview_text_zoom_title -->
-    <!-- untranslated string: preference_webview_text_zoom_note -->
-    <!-- untranslated string: preference_webview_text_zoom_reloading_current -->
-    <!-- untranslated string: preference_clear_browser_cache_title -->
-    <!-- untranslated string: preference_clear_cache -->
-    <!-- untranslated string: preference_clear_cookies -->
-    <!-- untranslated string: preference_clear_favicons -->
-    <!-- untranslated string: preference_clear_form_data -->
-    <!-- untranslated string: preference_clear_history -->
-    <!-- untranslated string: preference_clear_passwords -->
-    <!-- untranslated string: preference_incognito_title -->
-    <!-- untranslated string: preference_incognito_summary -->
-    <!-- untranslated string: incognito_mode_changed_reloading_current -->
-    <!-- untranslated string: preference_user_agent_title -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <string-array name="preference_user_agent_options">
         <item>Default</item>
         <item>Chrome Phone</item>
@@ -130,183 +132,180 @@
         <item>Chrome Desktop</item>
     </string-array>
 
-    <!-- untranslated string: preference_domains_title -->
-    <!-- untranslated string: preference_domains_summary -->
-    <!-- untranslated string: preference_redirects_title -->
-    <!-- untranslated string: preference_add_domain_title -->
-    <!-- untranslated string: add_domain_hint -->
-    <!-- untranslated string: add_domain_detail -->
-    <!-- untranslated string: add_domain_error -->
+    
+    
+    
+    
+    
+    
+    
 
-    <!-- untranslated string: preference_help_title -->
-    <!-- untranslated string: preference_show_welcome_message_title -->
-    <!-- untranslated string: preference_credits_title -->
-    <!-- untranslated string: preference_osl_title -->
-    <!-- untranslated string: preference_privacy_policy_title -->
-    <!-- untranslated string: preference_terms_of_service_title -->
-    <!-- untranslated string: preference_say_thanks_title -->
-    <!-- untranslated string: preference_say_thanks_summary -->
-    <!-- untranslated string: preference_version_title -->
-    <!-- untranslated string: preference_version_summary -->
-    <!-- untranslated string: preference_more_title -->
-    <!-- untranslated string: preference_show_undo_close_tab_title -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-    <!-- untranslated string: preference_my_other_apps_title -->
-    <!-- untranslated string: preference_my_other_apps_summary -->
+    
+    
 
-    <!-- untranslated string: remove_default_title -->
-    <!-- untranslated string: remove_default_message -->
-    <!-- untranslated string: long_press_unsupported_default_browser -->
-    <!-- untranslated string: long_press_unsupported_no_default_browser -->
-    <!-- untranslated string: unsupported_scheme_default_browser -->
-    <!-- untranslated string: unsupported_scheme_no_default_browser -->
-    <!-- untranslated string: unsupported_scheme -->
-    <!-- untranslated string: unsupported_drop_down_default_browser -->
-    <!-- untranslated string: unsupported_drop_down_no_default_browser -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-    <!-- untranslated string: consume_category_view -->
-    <!-- untranslated string: consume_category_share -->
+    
+    
 
-    <!-- untranslated string: title_settings -->
+    
 
-    <!-- untranslated string: title_youtube_embed_to_load -->
-    <!-- untranslated string: loading_youtube_embed_info -->
-    <!-- untranslated string: youtube_embed_error_title -->
-    <!-- untranslated string: youtube_embed_error_summary -->
+    
+    
+    
+    
 
-    <!-- untranslated string: loading -->
+    
 
-    <!-- untranslated string: histroy_unread -->
-    <!-- untranslated string: histroy_all -->
-    <!-- untranslated string: history -->
-    <!-- untranslated string: erase_all_history_title -->
-    <!-- untranslated string: erase_all_history_message -->
-    <!-- untranslated string: empty -->
-    <!-- untranslated string: history_already_empty -->
-    <!-- untranslated string: private_data_cleared -->
-    <!-- untranslated string: private_data_cleared_reloading_current -->
-    <!-- untranslated string: user_agent_changed_reloading_current -->
-    <!-- untranslated string: theme_toolbar_reloading_current -->
-    <!-- untranslated string: article_mode_changed_reloading_current -->
-    <!-- untranslated string: link_loaded_with_app -->
-    <!-- untranslated string: link_redirected -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-    <!-- untranslated string: tampered_apk -->
+    
 
-    <!-- untranslated string: bubble_link_copied_to_clipboard -->
-    <!-- untranslated string: link_copied_to_clipboard -->
+    
+    
 
-    <!-- untranslated string: stat_saves_you -->
-    <!-- untranslated string: stat_has_saved_you -->
-    <!-- untranslated string: stat_so_far -->
-    <!-- untranslated string: stat_per_link -->
-    <!-- untranslated string: time_seconds -->
-    <!-- untranslated string: time_minutes -->
-    <!-- untranslated string: time_hours -->
+    
+    
+    
+    
+    
+    
+    
 
-    <!-- untranslated string: confirm_title -->
+    
 
-    <!-- untranslated string: no_default_browser -->
+    
 
-    <!-- untranslated string: title_changelog -->
-    <!-- untranslated string: changelog_close -->
+    
+    
 
-    <!-- untranslated string: faq_close_tab_question -->
-    <!-- untranslated string: faq_close_tab_answer -->
-    <!-- untranslated string: faq_back_button_minimize_question -->
-    <!-- untranslated string: faq_back_button_minimize_answer -->
-    <!-- untranslated string: faq_app_internal_browser_question -->
-    <!-- untranslated string: faq_app_internal_browser_answer -->
-    <!-- untranslated string: faq_article_mode_question -->
-    <!-- untranslated string: faq_article_mode_answer -->
-    <!-- untranslated string: faq_future_features_question -->
-    <!-- untranslated string: faq_future_features_answer -->
-    <!-- untranslated string: faq_translations_question -->
-    <!-- untranslated string: faq_translations_answer -->
-    <!-- untranslated string: faq_roadmap_question -->
-    <!-- untranslated string: faq_roadmap_answer -->
-    <!-- untranslated string: faq_alternate_payment_answer -->
-    <!-- untranslated string: faq_cant_type_url_question -->
-    <!-- untranslated string: faq_cant_type_url_answer -->
-    <!-- untranslated string: faq_copy_text_question -->
-    <!-- untranslated string: faq_copy_text_answer -->
-    <!-- untranslated string: faq_translucent_status_bar_question -->
-    <!-- untranslated string: faq_translucent_status_bar_answer -->
-    <!-- untranslated string: faq_beta_programme_question -->
-    <!-- untranslated string: faq_beta_programme_answer -->
-    <!-- untranslated string: faq_low_spec_performance_question -->
-    <!-- untranslated string: faq_low_spec_performance_answer -->
-    <!-- untranslated string: faq_crap_webview_question -->
-    <!-- untranslated string: faq_crap_webview_answer -->
-    <!-- untranslated string: faq_ongoing_notificaion_question -->
-    <!-- untranslated string: faq_ongoing_notificaion_answer -->
-    <!-- untranslated string: faq_next_update_eta_question -->
-    <!-- untranslated string: faq_next_update_eta_answer -->
-    <!-- untranslated string: faq_close_quickly_question -->
-    <!-- untranslated string: faq_close_quickly_answer -->
-    <!-- untranslated string: faq_change_default_browser_question -->
-    <!-- untranslated string: faq_change_default_browser_answer -->
-    <!-- untranslated string: faq_report_bug_question -->
-    <!-- untranslated string: faq_report_bug_answer -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-    <!-- untranslated string: faq_title -->
-    <!-- untranslated string: preference_faq_summary -->
-    <!-- untranslated string: faq_section_general -->
-    <!-- untranslated string: faq_section_functionality -->
-    <!-- untranslated string: faq_section_issues -->
+    
+    
+    
+    
+    
 
-    <!-- untranslated string: activity_resolver_use_always -->
-    <!-- untranslated string: activity_resolver_use_once -->
+    
+    
 
-    <!-- untranslated string: credits_title -->
-    <!-- untranslated string: credits_name -->
-    <!-- untranslated string: credits_credit -->
-    <!-- untranslated string: credits_app_copyright -->
+    
+    
+    
+    
 
-    <!-- untranslated string: restore_tabs_from_previous_session -->
-    <plurals name="restore_tabs_from_previous_session">
-        <item quantity="one">Restore tab from previous session?</item>
-        <item quantity="other">Restore %d tabs from previous session?</item>
-    </plurals>
+    
+    
 
-    <!-- untranslated string: content_description_button -->
-    <!-- untranslated string: content_description_target_icon -->
-    <!-- untranslated string: content_description_close_bubble_icon -->
-    <!-- untranslated string: content_description_link_bubble_logo -->
-    <!-- untranslated string: content_description_app_icon -->
-    <!-- untranslated string: content_description_youtube_video_thumbnail -->
-    <!-- untranslated string: content_description_history -->
-    <!-- untranslated string: content_description_settings -->
-    <!-- untranslated string: content_description_can_go_back -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-    <!-- untranslated string: requesting_location_message -->
+    
 
-    <!-- untranslated string: accept_terms_and_privacy -->
+    
 
-    <!-- untranslated string: service_name -->
-    <!-- untranslated string: notification_title -->
+    
+    
 
-    <!-- untranslated string: store_listing_title -->
-    <!-- untranslated string: store_listing_promo_text -->
-    <!-- untranslated string: store_listing_description_title -->
-    <!-- untranslated string: store_listing_description_features -->
-    <!-- untranslated string: store_listing_description_location_permission -->
+    
+    
+    
+    
+    
 
-    <!-- untranslated string: welcome_page_title -->
-    <!-- untranslated string: welcome_page_intro_title -->
-    <!-- untranslated string: welcome_page_intro_point_1 -->
-    <!-- untranslated string: welcome_page_intro_point_2 -->
-    <!-- untranslated string: welcome_page_intro_end -->
-    <!-- untranslated string: welcome_page_more_title -->
-    <!-- untranslated string: welcome_page_more_pocket_start -->
-    <!-- untranslated string: welcome_page_more_pocket_end -->
-    <!-- untranslated string: welcome_page_more_also -->
-    <!-- untranslated string: welcome_page_more_point_1 -->
-    <!-- untranslated string: welcome_page_more_point_2 -->
-    <!-- untranslated string: welcome_page_more_point_3 -->
-    <!-- untranslated string: welcome_page_more_point_4 -->
-    <!-- untranslated string: welcome_page_ps -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-    <!-- untranslated string: duplicate_link_will_not_be_loaded -->
+    
 
 </resources>

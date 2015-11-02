@@ -26,6 +26,8 @@
     <string name="action_open_in_browser">Abrir en %1$s</string>
     <string name="action_request_desktop_site">Ver como ordenador</string>
     <string name="action_open_in_new_bubble">Abrir en una nueva burbuja</string>
+    <string name="action_open_link_in_new_bubble">Abrir enlace en nueva burbuja</string>
+    <string name="action_open_image_in_new_bubble">Abrir imagen en nueva burbuja</string>
     <string name="action_copy_to_clipboard">Copiar enlace</string>
     <string name="action_save_image">Guardar imagen</string>
     <string name="action_share">Compartir</string>
@@ -296,7 +298,7 @@ terminan tomándose como un compromiso, y pueden molestar si/cuando se postpone 
     <string name="credits_credit">Concepto, diseño y programación</string>
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
-    <!-- untranslated string: restore_tabs_from_previous_session -->
+    
     <plurals name="restore_tabs_from_previous_session">
         <item quantity="one">¿Restaurar pestaña de la sesión anterior?</item>
         <item quantity="other">¿Restaurar %d pestañas de la sesión anterior?</item>
@@ -323,7 +325,14 @@ y la <a href="http://www.linkbubble.com/privacy">política de privacidad</a> de 
     <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Navegación web con el móvil bien hecha!</string>
     <string name="store_listing_description_title">Link Bubble es un nuevo explorador diseñado y creado solamente con dispositivos móviles en mente.</string>
-    <!-- untranslated string: store_listing_description_features -->
+    <string name="store_listing_description_features">Las características incluyen:
+• Cuando haces clic en un enlace en una aplicación, Link Bubble carga esa página web en segundo plano, permitiéndote seguir usando tu aplicación actual así no malgastas tu preciado tiempo viendo una página cargar. Una vez que la página cargue por completo, se mostrará una animación en pantalla.
+• ¡La física de los gestos de Link Bubble te permite desde hacer clic un enlace hasta compartirlo o agregar un servicio como Pocket en poco más de un segundo!
+• Cargar varios enlaces de tu aplicación actual al mismo tiempo.
+• Maneja con gracia los enlaces que redireccionan a otras aplicaciones. ¡El clic a un enlace de Instagram en Twitter ya no te redirecciona a un navegador de pantalla completa antes de cargar Instagram!
+• Una profunda integración con las aplicaciones en tu sistema.
+• Ubica los enlaces de vídeos de YouTube incrustados en páginas web, y brinda un atajo para cargar esos vídeos directamente en la aplicación YouTube.
+• Estadísticas prácticas que ilustran cuánto tiempo ahorraste usando Link Bubble.</string>
     <string name="store_listing_description_location_permission">A propósito de los permisos de Localización: Esto es requerido para que usted puede dar permisos de localización a ciertas webs y accedan a su localización (como todas aquellas que integran mapas). Link Bubble en sí misma nunca accede a su localización</string>
 
     <string name="welcome_page_title">¡Bienvenido a Link Bubble!</string>

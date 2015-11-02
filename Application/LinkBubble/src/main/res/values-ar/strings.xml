@@ -2,12 +2,12 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">المحمّل</string>
-    <!-- untranslated string: send_intent_label -->
+    
     <string name="notification_summary">اضغط لإخفاء كل bubbles المفتوحة</string>
-    <!-- untranslated string: notification_default_summary -->
-    <!-- untranslated string: notification_unhide_summary -->
-    <!-- untranslated string: notification_action_close_all -->
-    <!-- untranslated string: notification_action_hide -->
+    
+    
+    
+    
     <string name="share_picker_label">نافذة المشاركة</string>
 
     <string name="yes">نعم</string>
@@ -15,7 +15,7 @@
     <string name="cancel">إلغاء</string>
 
     <string name="action_ok">موافق</string>
-    <!-- untranslated string: action_open -->
+    
     <string name="action_remove">حذف</string>
     <string name="action_cancel">إلغاء</string>
     <string name="action_clear_data">حذف البيانات</string>
@@ -24,47 +24,49 @@
     <string name="action_help">مساعدة</string>
     <string name="action_reload_page">تحديث الصفحة</string>
     <string name="action_open_in_browser">فتح في %1$s</string>
-    <!-- untranslated string: action_request_desktop_site -->
+    
     <string name="action_open_in_new_bubble">افتح في bubble جديدة</string>
+    
+    
     <string name="action_copy_to_clipboard">انسخ الرابط</string>
-    <!-- untranslated string: action_save_image -->
+    
     <string name="action_share">مشاركة</string>
     <string name="action_close_all">أغلق الكل</string>
     <string name="action_close_tab">إغلاق الفقاعة</string>
     <string name="action_stop">إيقاف</string>
-    <!-- untranslated string: action_undo -->
-    <!-- untranslated string: action_add -->
-    <!-- untranslated string: action_no_recommended -->
+    
+    
+    
     <string name="share_via">مشاركة بواسطة..</string>
-    <!-- untranslated string: not_set -->
+    
 
-    <!-- untranslated string: error_saving_image -->
-    <!-- untranslated string: image_saved -->
-    <!-- untranslated string: notice_download_started -->
+    
+    
+    
 
-    <!-- untranslated string: warning -->
-    <!-- untranslated string: untrusted_certificate -->
+    
+    
 
     <string name="share_invalid_data">Link Bubble غير قادر على مشاركة هذا المحتوى لأنه ليس رابطاً صحيحاً</string>
     <string name="consume_activity_not_found">غير قادر على إيجاد البرنامج. قم بتغيير عمل الـ bubble من الإعدادت</string>
-    <!-- untranslated string: consume_activity_security_exception -->
+    
 
-    <!-- untranslated string: upgrade -->
-    <!-- untranslated string: upgrade_theme -->
-    <!-- untranslated string: upgrade_theme_toolbar -->
+    
+    
+    
 
-    <!-- untranslated string: undo_close_tab_title -->
-    <!-- untranslated string: undo_close_tab_no_title -->
+    
+    
 
     <string name="pick_default_app">اختر تطبيق افتراضي</string>
     <string name="default_browser_set">تم تعيين Link Bubble المتصفح الافتراضي</string>
-    <!-- untranslated string: invalid_send_action -->
-    <!-- untranslated string: unable_to_launch_app -->
+    
+    
     <string name="clear_history">امسح التاريخ</string>
 
     <string name="preference_category_general">عام</string>
     <string name="preference_category_configuration">خيارات التطبيق</string>
-    <!-- untranslated string: preference_category_configuration2 -->
+    
     <string name="preference_category_browser">المتصفح</string>
     <string name="preference_enabled_title">مفعّل</string>
     <string name="preference_auto_content_display_link_loaded_title">توسيع تلقائي</string>
@@ -72,7 +74,7 @@
 
     <string name="preference_left_consume_bubble_title">bubble اليسرى</string>
     <string name="preference_right_consume_bubble_title">bubble اليمنى</string>
-    <!-- untranslated string: preference_double_tap_title -->
+    
     <string name="preference_configure_bubble_title">إعداد الفقاعة</string>
     <string name="preference_category_debug">عالج</string>
     <string name="preference_default_browser">المتصفح الإفتراضي المختار</string>
@@ -80,35 +82,35 @@
     <string name="preference_category_fallback_browser">المتصفح الإفتراضي المختار</string>
     <string name="preference_category_other_apps">التطبيقات الأخرى</string>
     <string name="preference_default_apps_title">التطبيقات الافتراضية</string>
-    <!-- untranslated string: preference_default_apps_summary -->
+    
     <string name="preference_default_apps_notice_summary">يستخدم عندما يكون هناك على جهازك تطبيق أو أكثر من تطبيق (غير المتصفحات) يمكنها معالجة رابط.\n\nاضغط على تطبيق لحذفه.</string>
     <string name="preference_default_apps_notice_no_defaults_summary">يستخدم عندما يكون هناك على جهازك تطبيق أو أكثر من تطبيق (غير المتصفحات) يمكنها معالجة رابط. يمكنك اختيار التطبيق الافتراضي لتحميل مثل هذه الروابط.\n\n في مثل هذه الحالات، يتم اختيار التطبيق الافتراضي كلما قمت بفتح الوابط باستخدام Link Bubble</string>
     <string name="preference_google_account_redirect_title">إعادة التحويل لحسابات قوقل</string>
     <string name="preference_google_account_redirect_summary">إعادة توجيه العناوين من قوقل إلى المتصفح الإفتراضي</string>
     <string name="preference_set_default_browser_title">ضبط متصفح النظام الافتراضي</string>
-    <!-- untranslated string: preference_set_default_browser_summary -->
+    
     <string name="preference_more">المزيد...</string>
     <string name="preference_intercept_links_from_title">اعترض الروابط من</string>
-    <!-- untranslated string: preference_intercept_links_from_disabled_for_L -->
+    
     <string name="preference_scan_for_youtube_embeds_title">تحقق من تضمينات اليوتيوب</string>
     <string name="preference_scan_for_youtube_embeds_summary">عرض إختصار لتشغيل الفيديوهات المتضمنة في برنامج اليوتيوب</string>
-    <!-- untranslated string: preference_webview_battery_save_title -->
-    <!-- untranslated string: preference_webview_battery_save_aggressive_title -->
-    <!-- untranslated string: preference_webview_battery_save_aggressive_summary -->
-    <!-- untranslated string: preference_webview_battery_save_default_title -->
-    <!-- untranslated string: preference_webview_battery_save_default_summary -->
-    <!-- untranslated string: preference_webview_battery_save_off_title -->
-    <!-- untranslated string: preference_webview_battery_save_off_summary -->
-    <!-- untranslated string: preference_theme_title -->
-    <!-- untranslated string: preference_theme_light_color -->
-    <!-- untranslated string: preference_theme_light_no_color -->
-    <!-- untranslated string: preference_theme_dark_color -->
-    <!-- untranslated string: preference_theme_dark_no_color -->
-    <!-- untranslated string: preference_theme_toolbar_title -->
-    <!-- untranslated string: preference_theme_toolbar_summary -->
-    <!-- untranslated string: preference_article_mode_title -->
-    <!-- untranslated string: preference_reading_mode_on_wear_title -->
-    <!-- untranslated string: preference_article_mode_summary -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <string name="preference_webview_text_zoom_title">حجم النص</string>
     <string name="preference_webview_text_zoom_note">ملاحظة:الفقاعات الحالية سوف يعاد تحميلها بحجم النص الجديد  بعد إختيار "نعم".</string>
     <string name="preference_webview_text_zoom_reloading_current">حجم النص الجديد طبق.إعادة تحميل الفقاعات الحالية.</string>
@@ -121,7 +123,7 @@
     <string name="preference_clear_passwords">كلمات السر</string>
     <string name="preference_incognito_title">وضع التصفح المتخفي</string>
     <string name="preference_incognito_summary">منع تخزين التاريخ والكوكيز</string>
-    <!-- untranslated string: incognito_mode_changed_reloading_current -->
+    
     <string name="preference_user_agent_title">وكيل المستخدم</string>
     <string-array name="preference_user_agent_options">
         <item>إفتراضي</item>
@@ -130,13 +132,13 @@
         <item>سطح المكتب للكروم</item>
     </string-array>
 
-    <!-- untranslated string: preference_domains_title -->
-    <!-- untranslated string: preference_domains_summary -->
-    <!-- untranslated string: preference_redirects_title -->
-    <!-- untranslated string: preference_add_domain_title -->
-    <!-- untranslated string: add_domain_hint -->
-    <!-- untranslated string: add_domain_detail -->
-    <!-- untranslated string: add_domain_error -->
+    
+    
+    
+    
+    
+    
+    
 
     <string name="preference_help_title">مساعدة</string>
     <string name="preference_show_welcome_message_title">إظهار صفحة الترحيب</string>
@@ -148,21 +150,21 @@
     <string name="preference_say_thanks_summary">مستمتع بإستخدام فقاعة العنوان؟الرجاء وضع رأيكم في البلاي ستور.</string>
     <string name="preference_version_title">نسخة</string>
     <string name="preference_version_summary">ما هو الجديد؟</string>
-    <!-- untranslated string: preference_more_title -->
-    <!-- untranslated string: preference_show_undo_close_tab_title -->
+    
+    
 
-    <!-- untranslated string: preference_my_other_apps_title -->
-    <!-- untranslated string: preference_my_other_apps_summary -->
+    
+    
 
     <string name="remove_default_title">حذف اللإفتراضي؟</string>
     <string name="remove_default_message">حذف %1$s من البرنامج الإفتراضي ليشغل العنوان باستخدام %2$s؟ ملاحظة:تستطيع ان تجعل برنامج إفتراضي جديد ليستخدم بالمرة القادمة اللتي تحمل فيها عنوان %2$s.</string>
-    <!-- untranslated string: long_press_unsupported_default_browser -->
-    <!-- untranslated string: long_press_unsupported_no_default_browser -->
+    
+    
     <string name="unsupported_scheme_default_browser">نوع هذا العنوان غير مدعوم حاليا .فتح الصفحة باستخدام %1$s؟</string>
     <string name="unsupported_scheme_no_default_browser">نوع هذا العنوان غير مدعوم حاليا .فتح الصفحة باستخدام المتصفح.</string>
     <string name="unsupported_scheme">نوع هذا العنوان غير مدعوم حاليا .</string>
-    <!-- untranslated string: unsupported_drop_down_default_browser -->
-    <!-- untranslated string: unsupported_drop_down_no_default_browser -->
+    
+    
 
     <string name="consume_category_view">استعراض العنوان</string>
     <string name="consume_category_share">إرسال/مشاركة العنوان</string>
@@ -186,8 +188,8 @@
     <string name="private_data_cleared">البيانات الخاصة أفرغت</string>
     <string name="private_data_cleared_reloading_current">البيانات الخاصة أفرغت.إعادة تحميل الفقاعات الحالية...</string>
     <string name="user_agent_changed_reloading_current">تم تغيير وكيل المستخدم إعادة تحميل الفقاعات الحالية</string>
-    <!-- untranslated string: theme_toolbar_reloading_current -->
-    <!-- untranslated string: article_mode_changed_reloading_current -->
+    
+    
     <string name="link_loaded_with_app">حملت باستخدام %1$s</string>
     <string name="link_redirected">إعادة توجيه إلى %1$s</string>
 
@@ -222,13 +224,13 @@
 كيف تستطيع العودة للعنوان السابق إذا كان زر الخلف يغلق الفقاعة؟الضغط على علامة الخلف بالمتصفح غير ظاهرة.
 فقاعة العنوان هو متصفح,ويتبع أساسيات المتصفحات في الأندرويد إذا تم ضغط زر الخلف ولا يوجد هناك عناوين سابقة بنفس الصفحة سوف يتم إغلاق المتصفح.</string>
     <string name="faq_app_internal_browser_question">فقاعة العنوان لا يقوم بإعتراض العناوين</string>
-    <!-- untranslated string: faq_app_internal_browser_answer -->
-    <!-- untranslated string: faq_article_mode_question -->
-    <!-- untranslated string: faq_article_mode_answer -->
+    
+    
+    
     <string name="faq_future_features_question">هل ستقوم بإضافة العلامات المرجعية,المفضلة,الإضافات,إلخ؟</string>
     <string name="faq_future_features_answer">لاتقول لا أبدا, لكن حاليا فقاعة العنوان أكثر تركيزا على أن يكون أفضل طريقة لتحميل العناوين و الحصول عليها من التطبيقات الأخرى.</string>
-    <!-- untranslated string: faq_translations_question -->
-    <!-- untranslated string: faq_translations_answer -->
+    
+    
     <string name="faq_roadmap_question">هل تنشر خارطة  المميزات المستقبلية؟ هل يمكنني  التصويت على   القادم من الميزات؟</string>
     <string name="faq_roadmap_answer">لأسباب تنافسية الجواب على السؤالين المطروحين للأسف لا.</string>
     <string name="faq_alternate_payment_answer">فقاعة العنوان حاليا يدعم فقط الشراء عن طريق القوقل بلاي.نأمل إضافة طرق أخرى للشراء في المستقبل بشرط ألا تخالف سياسة مطوري قوقل بلاي.</string>
@@ -241,7 +243,7 @@
     <string name="faq_translucent_status_bar_question">لماذا لا يسمح البرنامج السحب فوق الشريط الشفاف للحالة؟</string>
     <string name="faq_translucent_status_bar_answer">للأسف نظام أندرويد يمنع هذا.</string>
     <string name="faq_beta_programme_question">هيل يوجد هناك نسخة أولية للبرنامج؟هل أستطيع الإنضمام؟</string>
-    <!-- untranslated string: faq_beta_programme_answer -->
+    
     <string name="faq_low_spec_performance_question">لماذا  فقاعة العنوان يشتغل ببطء على الجهاز فئة نيكسس S / جالاكسي S1 / موتو جي ؟</string>
     <string name="faq_low_spec_performance_answer">فقاعة العنوان هو تطبيق مكثف الموارد جدا، وبالتالي الأجهزة مع المواصفات أقل 
 يمكن النضال من أجل تشغيل التطبيق ليس  كالأجهزة الأكثر قوة. وتهدف التحديثات المستقبلية لتحسين أداء فقاعة العنوان.ولكن هناك فقط القليل لنستطبع فعله بواقعية هنا.</string>
@@ -263,22 +265,19 @@
     <string name="faq_title">أسئلة شائعة</string>
     <string name="preference_faq_summary">أسئلة حول البرنامج؟جرب هنا.</string>
     <string name="faq_section_general">عام</string>
-    <!-- untranslated string: faq_section_functionality -->
+    
     <string name="faq_section_issues">مشاكل</string>
 
     <string name="activity_resolver_use_always">دائما</string>
     <string name="activity_resolver_use_once">مرة واحدة</string>
 
     <string name="credits_title">شكر فقاعة العنوان</string>
-    <!-- untranslated string: credits_name -->
+    
     <string name="credits_credit">مفهوم والتصميم والبرمجة</string>
-    <!-- untranslated string: credits_app_copyright -->
+    
 
-    <!-- untranslated string: restore_tabs_from_previous_session -->
-    <plurals name="restore_tabs_from_previous_session">
-        <item quantity="one">Restore tab from previous session?</item>
-        <item quantity="other">Restore %d tabs from previous session?</item>
-    </plurals>
+    
+    
 
     <string name="content_description_button">زر</string>
     <string name="content_description_target_icon">أيقونة فقاعة الهدف</string>
@@ -300,7 +299,7 @@
     <string name="store_listing_title">فقاعة العنوان</string>
     <string name="store_listing_promo_text">تصفح الجوال بالطريقة الصحيحة.</string>
     <string name="store_listing_description_title">فقاعة العنوان هو متصفح جديد مصمم خصيصا للأجهزة المحمولة.</string>
-    <!-- untranslated string: store_listing_description_features -->
+    
     <string name="store_listing_description_location_permission">بشأن الإذن للموقع: هذا مطلوب حتى يتسنى لك  منح الإذن لموقع على شبكة الانترنت للوصول إلى الموقع الخاص بك (مثل تلك التي تتضمن خريطة لموقع معين).  فقاعة العنوان نفسه لايدخل  إلى الموقع الخاص بك أبدا.</string>
 
     <string name="welcome_page_title">مرحبا بك في فقاعة العنوان!</string>
@@ -314,10 +313,10 @@
     <string name="welcome_page_more_also">فقاعة العنوان أيضا:</string>
     <string name="welcome_page_more_point_1">يعيد تحويل العناوين إلى تطبيق معين مثل الإنستقرام.</string>
     <string name="welcome_page_more_point_2">يجد فيديوهات مضمنة لتستطيع تحميلهم بسهولة في تطبيق اليوتيوب.</string>
-    <!-- untranslated string: welcome_page_more_point_3 -->
+    
     <string name="welcome_page_more_point_4">يحمل العناوين من عدة تطبيقات.</string>
     <string name="welcome_page_ps">ملاحظة:لإغلاق الفقاعة,إما قم بضغط زر الخلف أو قم بسحب الفقاعة إلى زر الإغلاق.</string>
 
-    <!-- untranslated string: duplicate_link_will_not_be_loaded -->
+    
 
 </resources>
