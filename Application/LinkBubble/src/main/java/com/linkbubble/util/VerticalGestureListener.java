@@ -19,6 +19,9 @@ public class VerticalGestureListener extends GestureDetector.SimpleOnGestureList
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        if (e1 == null ||  e2 == null) {
+            return false;
+        }
         mLastGestureDirection = GestureDirection.None;
         //final int SWIPE_MIN_DISTANCE = 50;
         final int SWIPE_MIN_DISTANCE = 5;
