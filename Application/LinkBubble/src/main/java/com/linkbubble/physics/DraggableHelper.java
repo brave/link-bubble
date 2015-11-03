@@ -38,6 +38,8 @@ public class DraggableHelper {
     public static class MoveEvent {
         public int dx;
         public int dy;
+        public float rawX;
+        public float rawY;
     }
 
     public static class ReleaseEvent {
@@ -173,6 +175,8 @@ public class DraggableHelper {
 
         mMoveEvent.dx = deltaX;
         mMoveEvent.dy = deltaY;
+        mMoveEvent.rawX = touchXRaw;
+        mMoveEvent.rawY = touchYRaw;
         if (mOnTouchActionEventListener != null) {
             mOnTouchActionEventListener.onActionMove(mMoveEvent);
         }
@@ -308,10 +312,14 @@ public class DraggableHelper {
     }
 
     public void setExactPos(int x, int y) {
+        if ( mWindowManagerParams.x == x && mWindowManagerParams.y == y) {
+            return;
+        }
         mWindowManagerParams.x = x;
         mWindowManagerParams.y = y;
         mTargetX = x;
         mTargetY = y;
+
         if (mAlive) {
             MainController.updateRootWindowLayout(mView, mWindowManagerParams);
         }
@@ -400,9 +408,11 @@ public class DraggableHelper {
             int x = (int) (mInitialX + (mTargetX - mInitialX) * interpolatedFraction);
             int y = (int) (mInitialY + (mTargetY - mInitialY) * interpolatedFraction);
 
-            mWindowManagerParams.x = x;
-            mWindowManagerParams.y = y;
-            MainController.updateRootWindowLayout(mView, mWindowManagerParams);
+            if ( mWindowManagerParams.x != x || mWindowManagerParams.y != y) {
+                mWindowManagerParams.x = x;
+                mWindowManagerParams.y = y;
+                MainController.updateRootWindowLayout(mView, mWindowManagerParams);
+            }
 
             MainController.get().scheduleUpdate();
 

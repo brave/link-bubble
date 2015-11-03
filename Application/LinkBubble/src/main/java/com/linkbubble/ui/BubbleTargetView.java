@@ -62,21 +62,12 @@ public class BubbleTargetView extends FrameLayout {
         Bottom
     }
 
-    private Interpolator mInterpolator;
     private LinearInterpolator mLinearInterpolator = new LinearInterpolator();
     private OvershootInterpolator mOvershootInterpolator = new OvershootInterpolator(1.5f);
-    private int mInitialX;
-    private int mInitialY;
-    private int mTargetX;
-    private int mTargetY;
-    private float mAnimPeriod;
-    private float mAnimTime;
-    private boolean mEnableMove;
     private boolean mIsSnapping;
     private boolean mIsLongHovering;
     private static boolean sEnableTractor;
     private float mTimeSinceSnapping;
-    private float mTransitionTimeLeft;
 
     private final float TRANSITION_TIME = 0.15f;
 
@@ -130,31 +121,13 @@ public class BubbleTargetView extends FrameLayout {
         return 0;
     }
 
-    public void setTargetCenter(int x, int y, float t, Interpolator interpolator) {
-        setTargetPos((int) (x - mSnapWidth * 0.5f), (int) (y - mSnapHeight * 0.5f), t, interpolator);
+    public void setTargetCenter(int x, int y) {
+        setTargetPos((int) (x - mSnapWidth * 0.5f), (int) (y - mSnapHeight * 0.5f));
     }
 
-    public void setTargetPos(int x, int y, float t, Interpolator interpolator) {
-        if (x != mTargetX || y != mTargetY) {
-
-            // Add a bit of time for the overshoot testing.
-            if (t > 0.0f && interpolator == Interpolator.Overshoot) {
-                t += 0.3f;
-            }
-
-            mInterpolator = interpolator;
-
-            mInitialX = mCanvasLayoutParams.leftMargin;
-            mInitialY = mCanvasLayoutParams.topMargin;
-
-            mTargetX = x;
-            mTargetY = y;
-
-            mAnimPeriod = t;
-            mAnimTime = 0.0f;
-
-            MainController.get().scheduleUpdate();
-        }
+    public void setTargetPos(int x, int y) {
+        mCanvasLayoutParams.leftMargin = x;
+        mCanvasLayoutParams.topMargin = y;
     }
 
     public void onConsumeBubblesChanged() {
@@ -178,9 +151,7 @@ public class BubbleTargetView extends FrameLayout {
                       int defaultY, VerticalAnchor vAnchor, int maxOffsetX, int maxOffsetY,
                       int tractorOffsetX, int tractorOffsetY) {
         mCanvasView = canvasView;
-        mEnableMove = false;
         mAction = action;
-        mInterpolator = Interpolator.Linear;
 
         mHAnchor = hAnchor;
         mVAnchor = vAnchor;
@@ -302,14 +273,12 @@ public class BubbleTargetView extends FrameLayout {
 
     public void beginSnapping() {
         mIsSnapping = true;
-        mAnimPeriod = 0.0f;
-        mAnimTime = 0.0f;
     }
 
     public void endSnapping() {
         mIsSnapping = false;
         mTimeSinceSnapping = 0.0f;
-        setTargetPos(mCanvasLayoutParams.leftMargin, mCanvasLayoutParams.topMargin, 0.0f, Interpolator.Linear);
+        setTargetPos(mCanvasLayoutParams.leftMargin, mCanvasLayoutParams.topMargin);
     }
 
     public void beginLongHovering() {
@@ -332,128 +301,42 @@ public class BubbleTargetView extends FrameLayout {
     @Subscribe
     public void onBeginBubbleDrag(MainController.BeginBubbleDragEvent e) {
         setVisibility(VISIBLE);
-        mEnableMove = true;
         mIsSnapping = false;
-        mAnimPeriod = 0.0f;
-        mAnimTime = 0.0f;
-        mTransitionTimeLeft = TRANSITION_TIME;
         mTimeSinceSnapping = 1000.0f;
-        mInterpolator = Interpolator.Linear;
+
+        mSnapCircle.mX = (0.5f + getXPos());
+        mSnapCircle.mY = Util.clamp(0, 0.5f + getYPos() + mMaxOffsetY, Config.mScreenHeight - mDefaultCircle.mRadius);
+
+        mDefaultCircle.mX = mSnapCircle.mX;
+        mDefaultCircle.mY = mSnapCircle.mY;
+
+        int x = (int) (0.5f + mDefaultCircle.mX - mDefaultCircle.mRadius);
+        int y = (int) (0.5f + mDefaultCircle.mY - mDefaultCircle.mRadius);
+
+        setTargetPos(x, y);
         MainController.get().scheduleUpdate();
     }
 
     @SuppressWarnings("unused")
     @Subscribe
     public void onEndBubbleDragEvent(MainController.EndBubbleDragEvent e) {
-        mEnableMove = false;
+        setVisibility(GONE);
         mIsSnapping = false;
-        mAnimPeriod = 0.0f;
-        mAnimTime = 0.0f;
-        setTargetPos(mHomeX, mHomeY, TRANSITION_TIME, Interpolator.Linear);
+        setTargetPos(mHomeX, mHomeY);
     }
 
     @SuppressWarnings("unused")
     @Subscribe
     public void onDraggableBubbleMovedEvent(MainController.DraggableBubbleMovedEvent e) {
-        if (mEnableMove) {
-
-            if (!sEnableTractor) {
-                int xMaxOffset = mMaxOffsetX;
-                int yMaxOffset = mMaxOffsetY;
-
-                int x0 = (int) (0.5f + getXPos() - xMaxOffset - Config.mBubbleWidth * 0.5f);
-                int x1 = (int) (0.5f + getXPos() + xMaxOffset - Config.mBubbleWidth * 0.5f);
-
-                int xt;
-                float xc = (x0 + x1) * 0.5f;
-                float xf;
-
-                if (xc < 0.3f * Config.mScreenWidth) {
-                    xf = 2.0f * Util.clamp(0.0f, (float)e.mX / (Config.mScreenWidth - Config.mBubbleWidth), 0.5f);
-                } else if (xc > 0.7f * Config.mScreenWidth) {
-                    xf = 2.0f * Util.clamp(0.0f, -0.5f + (float)e.mX / (Config.mScreenWidth - Config.mBubbleWidth), 0.5f);
-                } else {
-                    xf = Util.clamp(0.0f, e.mX / (Config.mScreenWidth - Config.mBubbleWidth), 1.0f);
-                }
-
-                xt = x0 + (int) (0.5f + (x1 - x0) * xf);
-
-                int targetX = Util.clamp(x0, xt, x1);
-                mSnapCircle.mX = targetX + Config.mBubbleWidth * 0.5f;
-
-                int y0 = (int) (0.5f + getYPos() - yMaxOffset - Config.mBubbleHeight * 0.5f);
-                int y1 = (int) (0.5f + getYPos() + yMaxOffset - Config.mBubbleHeight * 0.5f);
-                int targetY = Util.clamp(y0, e.mY, y1);
-                mSnapCircle.mY = targetY + Config.mBubbleHeight * 0.5f;
-
-                mSnapCircle.mY = Util.clamp(0, mSnapCircle.mY, Config.mScreenHeight - mDefaultCircle.mRadius);
-
-                mDefaultCircle.mX = mSnapCircle.mX;
-                mDefaultCircle.mY = mSnapCircle.mY;
-
-                int x = (int) (0.5f + mDefaultCircle.mX - mDefaultCircle.mRadius);
-                int y = (int) (0.5f + mDefaultCircle.mY - mDefaultCircle.mRadius);
-
-                float d = Util.distance(x, y, mCanvasLayoutParams.leftMargin, mCanvasLayoutParams.topMargin);
-
-                float v = Config.mScreenWidth;      // Move 'screenWidth' pixels / second
-                float t = d / v;
-
-                float remainingTime = Math.max(t, mTransitionTimeLeft);
-
-                Interpolator in = Interpolator.Overshoot;
-                if (mTransitionTimeLeft > 0.0f) {
-                    remainingTime = mTransitionTimeLeft;
-                    in = Interpolator.Linear;
-                }
-
-                setTargetPos(x, y, remainingTime, in);
-            }
-        }
     }
 
     public void update(float dt) {
         if (!mIsSnapping) {
             mTimeSinceSnapping += dt;
         }
-
-        if (mTransitionTimeLeft > 0.0f) {
-            mTransitionTimeLeft -= dt;
-        }
-
-        if (mAnimTime < mAnimPeriod) {
-            Util.Assert(mAnimPeriod > 0.0f, "mAnimPeriod:" + mAnimPeriod);
-
-            mAnimTime = Util.clamp(0.0f, mAnimTime + dt, mAnimPeriod);
-
-            float tf = mAnimTime / mAnimPeriod;
-            float interpolatedFraction;
-
-            if (mInterpolator == Interpolator.Linear) {
-                interpolatedFraction = mLinearInterpolator.getInterpolation(tf);
-            } else {
-                interpolatedFraction = mOvershootInterpolator.getInterpolation(tf);
-            }
-            //Util.Assert(interpolatedFraction >= 0.0f && interpolatedFraction <= 1.0f);
-
-            int x = (int) (mInitialX + (mTargetX - mInitialX) * interpolatedFraction);
-            int y = (int) (mInitialY + (mTargetY - mInitialY) * interpolatedFraction);
-
-            mCanvasLayoutParams.leftMargin = x;
-            mCanvasLayoutParams.topMargin = y;
-            mCanvasView.updateViewLayout(this, mCanvasLayoutParams);
-
-            MainController.get().scheduleUpdate();
-        } else if (!mEnableMove) {
-            setVisibility(GONE);
-        }
     }
 
     public void OnOrientationChanged() {
-        mTransitionTimeLeft = 0.0f;
-        mAnimTime = 0.0f;
-        mAnimPeriod = 0.0f;
-
         mSnapCircle.mX = getXPos();
         mSnapCircle.mY = getYPos();
 
