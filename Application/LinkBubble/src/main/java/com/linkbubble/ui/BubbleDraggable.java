@@ -209,7 +209,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             targetX = (int) intBubbleX;
             targetY = (int) intBubbleY;
 
-            tv.setTargetCenter(mTractorBeamIntersectionPoint.x, mTractorBeamIntersectionPoint.y, intTime * 0.8f, BubbleTargetView.Interpolator.Linear);
+            tv.setTargetCenter(mTractorBeamIntersectionPoint.x, mTractorBeamIntersectionPoint.y);
 
         } else {
             if (animType != DraggableHelper.AnimationType.Linear) {
@@ -443,8 +443,8 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             @Override
             public void onActionMove(DraggableHelper.MoveEvent e) {
                 if (mTouchDown) {
-                    int targetX = mTouchInitialX + e.dx;
-                    int targetY = mTouchInitialY + e.dy;
+                    int targetX = targetX = (int) (e.rawX - Config.mBubbleWidth * 0.5);
+                    int targetY = (int) (e.rawY - Config.mBubbleHeight);
 
                     targetX = Util.clamp(Config.mBubbleSnapLeftX, targetX, Config.mBubbleSnapRightX);
                     targetY = Util.clamp(Config.mBubbleMinY, targetY, Config.mBubbleMaxY);
@@ -465,7 +465,11 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
                         if (mCurrentSnapTarget == null) {
                             if (tv == null) {
-                                setTargetPos(targetX, targetY, 0.0f, DraggableHelper.AnimationType.DistanceProportion, null);
+                                // For normal dragging just set the position exactly instead of using
+                                // an animation.  Animations call MainController.updateRootWindowLayout
+                                // on each update which is slow, we don't want that slowness while dragging.
+                                mDraggableHelper.clearTargetPos();
+                                mDraggableHelper.setExactPos(targetX, targetY);
                             } else {
                                 tv.beginSnapping();
                                 mCurrentSnapTarget = tv;
@@ -624,11 +628,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
         mDraggableBubbleMovedEvent.mX = x;
         mDraggableBubbleMovedEvent.mY = y;
-        MainApplication.postEvent(getContext(), mDraggableBubbleMovedEvent);
-
-        if (mOnUpdateListener != null) {
-            mOnUpdateListener.onUpdate(this, dt);
-        }
     }
 
     @Override
