@@ -64,6 +64,9 @@ public class Util {
     }
 
     public static String[] whitelistedBrowsers = {
+        "com.boatbrowser.free",
+        "com.boatbrowser.tablet",
+        "com.boatgo.browser",
         "org.mozilla.firefox",
         "org.mozilla.firefox_beta",
         "org.mozilla.fennec_aurora",
