@@ -502,40 +502,11 @@ public class BubbleFlowView extends HorizontalScrollView {
             return;
         }
         View centerView = mViews.get(centerIndex);
-        mCollapseEndAnimationEventListener = null;
-        for (int i = 0; i < size; i++) {
-            View view = mViews.get(i);
-            if (centerView != view) {
-                int xOffset = (int) (centerView.getX() - ((i * mItemWidth) + mEdgeMargin));
-                TranslateAnimation anim = new TranslateAnimation(0, xOffset, 0, 0);
-                anim.setDuration(time);
-                anim.setFillAfter(true);
-                if (mCollapseEndAnimationEventListener == null) {
-                    mCollapseEndAnimationEventListener = animationEventListener;
-                    anim.setAnimationListener(new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
 
-                        }
-
-                        @Override
-                        public void onAnimationEnd(Animation animation) {
-                            forceCollapseEnd();
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
-                        }
-                    });
-                }
-                view.startAnimation(anim);
-            }
-        }
-
-        if (centerIndex == 0 && mViews.size() == 1) {
-            if (animationEventListener != null) {
-                animationEventListener.onAnimationEnd(this);
-            }
+        // There was previously a collapse animation to match the expand animation, but for
+        // perf reasons it was removed so that it wouldn't need to track the currently dragging bubble.
+        if (animationEventListener != null) {
+          animationEventListener.onAnimationEnd(this);
         }
 
         bringTabViewToFront(centerView);
