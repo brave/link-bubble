@@ -5,6 +5,7 @@
         <change>IMPROVEMENT: Optimized bubble dragging performance.</change>
         <change>IMPROVEMENT: Optimized battery usage for expanded and at rest bubbles.</change>
         <change>IMPROVEMENT: Uses built in drop downs for devices with stable WebViews.</change>
+        <change>BUG FIX: Dragging bubble sometimes showed wrong favicon.</change>
     </release>
 
     <release version="1.6.6">
