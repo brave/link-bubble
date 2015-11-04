@@ -4,6 +4,7 @@
     <release version="1.6.7">
         <change>IMPROVEMENT: Optimized battery usage for expanded and at rest bubbles.</change>
         <change>IMPROVEMENT: Uses built in drop downs for devices with stable WebViews.</change>
+        <change>BUG FIX: Add additional browsers to the possible fallback browser option.</change>
     </release>
 
     <release version="1.6.6">
