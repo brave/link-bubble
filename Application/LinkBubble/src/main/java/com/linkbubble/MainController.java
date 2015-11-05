@@ -133,6 +133,7 @@ public class MainController implements Choreographer.FrameCallback {
         MainController mc = get();
         if (mc.mRootWindowsVisible && mc.mRootViews.contains(v)) {
             mc.mWindowManager.updateViewLayout(v, lp);
+
         }
     }
 
