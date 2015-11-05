@@ -215,7 +215,7 @@ public class FaviconView extends ImageView {
         }
 
         // Reassigning the same bitmap? Don't bother.
-        if (mUnscaledBitmap == bitmap || mDrawOutline == false) {
+        if (mUnscaledBitmap == bitmap && mIconKey == key|| mDrawOutline == false) {
             return;
         }
         mUnscaledBitmap = bitmap;

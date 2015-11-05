@@ -301,15 +301,15 @@ public class CanvasView extends FrameLayout {
     private void showContentView() {
         if (mContentView != null) {
             mCurrentAlphaContentView = 1.0f;
-            mTargetAlphaContentView = 1.0f;
             mContentView.setAlpha(1.0f);
+            applyAlpha();
         }
     }
 
     private void hideContentView() {
         //Util.Assert(mContentView != null);
-        mCurrentAlphaContentView = mContentView != null ? mContentView.getAlpha() : 1.f;
-        mTargetAlphaContentView = 0.0f;
+        mCurrentAlphaContentView = 0;
+        applyAlpha();
         MainController.get().scheduleUpdate();
     }
 
@@ -425,12 +425,14 @@ public class CanvasView extends FrameLayout {
     }
 
     private void fadeIn() {
-        mTargetAlpha = mMaxAlpha;
+        mCurrentAlpha = mMaxAlpha;
+        applyAlpha();
         MainController.get().scheduleUpdate();
     }
 
     private void fadeOut() {
-        mTargetAlpha = 0.0f;
+        mCurrentAlpha = 0;
+        applyAlpha();
         MainController.get().scheduleUpdate();
     }
 
@@ -474,23 +476,6 @@ public class CanvasView extends FrameLayout {
             mAnimTime += dt;
         }
 
-        if (mCurrentAlpha < mTargetAlpha) {
-            mCurrentAlpha = Util.clamp(0.0f, mCurrentAlpha + mAlphaDelta * dt, mMaxAlpha);
-            MainController.get().scheduleUpdate();
-        } else if (mCurrentAlpha > mTargetAlpha) {
-            mCurrentAlpha = Util.clamp(0.0f, mCurrentAlpha - mAlphaDelta * dt, mMaxAlpha);
-            MainController.get().scheduleUpdate();
-        }
-
-        if (mCurrentAlphaContentView < mTargetAlphaContentView) {
-            mCurrentAlphaContentView = Util.clamp(0.0f, mCurrentAlphaContentView + mAlphaDelta * dt, 1.0f);
-            MainController.get().scheduleUpdate();
-        } else if (mCurrentAlphaContentView > mTargetAlphaContentView) {
-            mCurrentAlphaContentView = Util.clamp(0.0f, mCurrentAlphaContentView - mAlphaDelta * dt, 1.0f);
-            MainController.get().scheduleUpdate();
-        }
-
-        applyAlpha();
 
         for (int i=0 ; i < mTargets.size() ; ++i) {
             mTargets.get(i).update(dt);

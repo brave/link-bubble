@@ -69,8 +69,7 @@ public class CloseTabTargetView extends BubbleTargetView {
                     .scaleY(1f)
                     .setDuration(ANIM_DURATION)
                     .setInterpolator(mInterpolator)
-                    .setListener(null)
-                    .start();
+                    .setListener(null);
     }
 
     @Override
@@ -81,8 +80,7 @@ public class CloseTabTargetView extends BubbleTargetView {
                 .scaleY(MIN_SCALE)
                 .setDuration(ANIM_DURATION)
                 .setInterpolator(mInterpolator)
-                .setListener(mHideCloseAllViewListener)
-                .start();
+                .setListener(mHideCloseAllViewListener);
 
         super.endLongHovering();
     }

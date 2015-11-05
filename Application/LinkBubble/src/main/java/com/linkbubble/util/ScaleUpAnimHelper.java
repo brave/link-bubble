@@ -39,8 +39,7 @@ public class ScaleUpAnimHelper {
         mView.animate().alpha(mAlpha).scaleX(1f).scaleY(1f)
                 .setDuration(duration)
                 .setInterpolator(new AnticipateOvershootInterpolator())
-                .setListener(mShowListener)
-                .start();
+                .setListener(mShowListener);
 
     }
 
@@ -48,8 +47,7 @@ public class ScaleUpAnimHelper {
         mView.animate().alpha(0.f).scaleX(0.33f).scaleY(0.33f)
                 .setDuration(500)
                 .setInterpolator(new AnticipateOvershootInterpolator())
-                .setListener(mHideListener)
-                .start();
+                .setListener(mHideListener);
     }
 
 
