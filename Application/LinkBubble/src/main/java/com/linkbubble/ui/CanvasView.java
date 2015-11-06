@@ -225,14 +225,17 @@ public class CanvasView extends FrameLayout {
         Util.Assert(mCurrentAlpha >= 0.0f && mCurrentAlpha <= 1.0f, "alpha out of range: " + mCurrentAlpha);
 
         if (mStatusBarCoverView != null) {
-            mStatusBarCoverView.setAlpha(mCurrentAlpha);
+            //mStatusBarCoverView.setAlpha(mCurrentAlpha);
+            mStatusBarCoverView.animate().alpha(mCurrentAlpha).setDuration(Constant.CANVAS_FADE_ANIM_TIME);
         }
 
         if (mTopMaskView != null) {
-            mTopMaskView.setAlpha(mCurrentAlpha);
+            //mTopMaskView.setAlpha(mCurrentAlpha);
+            mTopMaskView.animate().alpha(mCurrentAlpha).setDuration(Constant.CANVAS_FADE_ANIM_TIME);
         }
         if (mBottomMaskView != null) {
-            mBottomMaskView.setAlpha(mCurrentAlpha);
+            ///mBottomMaskView.setAlpha(mCurrentAlpha);
+            mBottomMaskView.animate().alpha(mCurrentAlpha).setDuration(Constant.CANVAS_FADE_ANIM_TIME);
         }
 
         if (!mEnabled || (mCurrentAlpha == 0.0f && mContentViewY == (int)(mTargetY))) {
@@ -256,7 +259,7 @@ public class CanvasView extends FrameLayout {
 
         if (mContentView != null) {
             Util.Assert(mCurrentAlphaContentView >= 0.0f && mCurrentAlphaContentView <= 1.0f, "mCurrentAlphaContentView out of range:" + mCurrentAlphaContentView);
-            mContentView.setAlpha(mCurrentAlphaContentView);
+            mContentView.animate().alpha(mCurrentAlphaContentView).setDuration(Constant.CANVAS_FADE_ANIM_TIME);
         }
     }
 

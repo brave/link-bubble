@@ -44,6 +44,8 @@ public class Constant {
     public static final int BUBBLE_ANIM_TIME = 550;
     public static final int BUBBLE_FLOW_ANIM_TIME = 333;
     public static final int BUBBLE_SLIDE_ON_SCREEN_TIME = BUBBLE_FLOW_ANIM_TIME;
+    public static final int CANVAS_FADE_ANIM_TIME  = BUBBLE_FLOW_ANIM_TIME;
+    public static final int TARGET_BUBBLE_APPEAR_TIME  = 150;
 
     public static final float BUBBLE_MODE_ALPHA = 1.f;
 
