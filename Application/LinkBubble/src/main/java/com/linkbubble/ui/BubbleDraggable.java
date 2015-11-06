@@ -465,11 +465,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
                         if (mCurrentSnapTarget == null) {
                             if (tv == null) {
-                                // For normal dragging just set the position exactly instead of using
-                                // an animation.  Animations call MainController.updateRootWindowLayout
-                                // on each update which is slow, we don't want that slowness while dragging.
-                                mDraggableHelper.clearTargetPos();
-                                mDraggableHelper.setExactPos(targetX, targetY);
+                                setTargetPos(targetX, targetY, 0.0f, DraggableHelper.AnimationType.DistanceProportion, null);
                             } else {
                                 tv.beginSnapping();
                                 mCurrentSnapTarget = tv;
