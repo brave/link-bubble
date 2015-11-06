@@ -56,6 +56,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         super(context, attrs, defStyle);
     }
 
+    public boolean isDragging() {
+        return false;
+    }
+
     public void configure(EventHandler eventHandler)  {
         mBubbleFlowWidth = Config.mScreenWidth;
         mBubbleFlowHeight = getResources().getDimensionPixelSize(R.dimen.bubble_pager_height);

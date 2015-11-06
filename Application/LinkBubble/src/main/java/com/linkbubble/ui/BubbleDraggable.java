@@ -578,7 +578,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     public void slideOnScreen(int x0, int y0, int targetX, int targetY, int targetTime) {
         setExactPos(x0, y0);
         if (targetX != x0 || targetY != y0) {
-            setTargetPos(targetX, targetY, (float)targetTime / 1000.f, DraggableHelper.AnimationType.LargeOvershoot, null);
+            setTargetPos(targetX, targetY, (float) targetTime / 1000.f, DraggableHelper.AnimationType.LargeOvershoot, null);
         }
         CrashTracking.log("BubbleDraggable.slideOnScreen()");
     }
@@ -628,6 +628,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
         mDraggableBubbleMovedEvent.mX = x;
         mDraggableBubbleMovedEvent.mY = y;
+
+        if (mOnUpdateListener != null) {
+            mOnUpdateListener.onUpdate(BubbleDraggable.this, 0);
+        }
     }
 
     @Override

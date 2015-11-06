@@ -381,7 +381,9 @@ public class MainController implements Choreographer.FrameCallback {
         mBubbleDraggable.setOnUpdateListener(new BubbleDraggable.OnUpdateListener() {
             @Override
             public void onUpdate(Draggable draggable, float dt) {
-                mBubbleFlowDraggable.syncWithBubble(draggable);
+                if (!draggable.isDragging()) {
+                    mBubbleFlowDraggable.syncWithBubble(draggable);
+                }
             }
         });
 
