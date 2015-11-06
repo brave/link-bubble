@@ -300,7 +300,13 @@ public class BubbleTargetView extends FrameLayout {
     @SuppressWarnings("unused")
     @Subscribe
     public void onBeginBubbleDrag(MainController.BeginBubbleDragEvent e) {
-        setVisibility(VISIBLE);
+        postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setVisibility(VISIBLE);
+            }
+        }, Constant.TARGET_BUBBLE_APPEAR_TIME);
+
         mIsSnapping = false;
         mTimeSinceSnapping = 1000.0f;
 
@@ -320,7 +326,13 @@ public class BubbleTargetView extends FrameLayout {
     @SuppressWarnings("unused")
     @Subscribe
     public void onEndBubbleDragEvent(MainController.EndBubbleDragEvent e) {
-        setVisibility(GONE);
+        postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setVisibility(GONE);
+            }
+        }, Constant.TARGET_BUBBLE_APPEAR_TIME);
+
         mIsSnapping = false;
         setTargetPos(mHomeX, mHomeY);
     }
