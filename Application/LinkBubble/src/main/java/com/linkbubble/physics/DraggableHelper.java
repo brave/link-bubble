@@ -332,7 +332,8 @@ public class DraggableHelper {
         if (x != mTargetX || y != mTargetY) {
 
             if (type == AnimationType.DistanceProportion) {
-                float maxTime = 0.02f;
+                // Something > 0.016 will have a high likelihood of causing < 60fps
+                float maxTime = 0.005f;
                 float maxDistance = 50.0f;
 
                 float d = Util.distance(x, y, mWindowManagerParams.x, mWindowManagerParams.y);
