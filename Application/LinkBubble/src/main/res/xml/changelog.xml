@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.6.8">
+        <change></change>
+    </release>
 
     <release version="1.6.7">
         <change>IMPROVEMENT: Optimized bubble dragging performance.</change>
