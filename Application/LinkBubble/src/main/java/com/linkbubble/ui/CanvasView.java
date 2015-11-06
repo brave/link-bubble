@@ -238,7 +238,7 @@ public class CanvasView extends FrameLayout {
             mBottomMaskView.animate().alpha(mCurrentAlpha).setDuration(Constant.CANVAS_FADE_ANIM_TIME);
         }
 
-        if (!mEnabled || (mCurrentAlpha == 0.0f && mContentViewY == (int)(mTargetY))) {
+        if (!mEnabled || mCurrentAlpha == 0.0f) {
 
             try {
                 clearFocus();
