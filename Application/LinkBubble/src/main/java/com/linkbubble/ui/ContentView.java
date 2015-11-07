@@ -1014,7 +1014,7 @@ public class ContentView extends FrameLayout {
 
             final MenuItem requestDesktopSite = mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_request_desktop_site, Menu.NONE, resources.getString(R.string.action_request_desktop_site))
                     .setCheckable(true)
-                    .setChecked(mWebRenderer.getUserAgentString().equals(Constant.USER_AGENT_CHROME_DESKTOP));
+                    .setChecked(mWebRenderer.getUserAgentString(mContext).equals(Constant.USER_AGENT_CHROME_DESKTOP));
 
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_copy_link, Menu.NONE, resources.getString(R.string.action_copy_to_clipboard));
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_close_tab, Menu.NONE, resources.getString(R.string.action_close_tab));

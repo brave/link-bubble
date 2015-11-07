@@ -67,7 +67,7 @@ class StubRenderer extends WebRenderer {
     }
 
     @Override
-    public String getUserAgentString() {
+    public String getUserAgentString(Context context) {
         return null;
     }
 
