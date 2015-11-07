@@ -170,7 +170,10 @@ class WebViewRenderer extends WebRenderer {
     }
 
     @Override
-    public String getUserAgentString() {
+    public String getUserAgentString(Context context) {
+        if (mWebView.getSettings() == null) {
+            return Util.getDefaultUserAgentString(context);
+        }
         return mWebView.getSettings().getUserAgentString();
     }
 
