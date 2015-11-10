@@ -1,5 +1,6 @@
 package com.linkbubble.ui;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -37,25 +38,10 @@ public class CanvasView extends FrameLayout {
     private ImageView mTopMaskView;
     private ImageView mBottomMaskView;
 
-    private final float mMaxAlpha = 1.0f;
-    private final float mFadeTime = 0.3f;
-    private final float mAlphaDelta = mMaxAlpha / mFadeTime;
-    //private final float mAlphaDelta = 1.33f * (mMaxAlpha / (Constant.BUBBLE_ANIM_TIME / 1000.f));
-
-    private float mCurrentAlpha = 0.0f;
-    private float mTargetAlpha = 0.0f;
-
-    private float mCurrentAlphaContentView = 1.0f;
-    private float mTargetAlphaContentView = 1.0f;
-
-    private float mAnimTime;
-    private float mAnimPeriod;
-    private float mInitialY;
-    private float mTargetY;
-
-    private int mContentViewY;
-
-    private boolean mEnabled;
+    boolean mExpanded;
+    boolean mDragging;
+    int mTargetAlpha;
+    int mContentViewTargetAlpha;
 
     private ContentView mContentView;
 
@@ -76,9 +62,6 @@ public class CanvasView extends FrameLayout {
 
         MainApplication.registerForBus(context, this);
 
-        mEnabled = true;
-        mContentViewY = Config.mScreenHeight - Config.mContentOffset;
-        mTargetY = mContentViewY;
         int canvasMaskHeight = getResources().getDimensionPixelSize(R.dimen.canvas_mask_height);
 
         if (Constant.COVER_STATUS_BAR) {
@@ -156,33 +139,7 @@ public class CanvasView extends FrameLayout {
                 consumeXOffset, consumeTargetY, consumeTractorBeamX, consumeTargetY);
         mTargets.add(rightConsumeTarget);
 
-        applyAlpha();
-
-        /*
-        int statusBarHeight = Util.getSystemStatusBarHeight(context);
-        int navBarHeight = Util.getSystemNavigationBarHeight(context);
-
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        Display display = wm.getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int width = size.x;
-        int height = size.y;
-        Log.d("blerg", "height:" + height + ", statusBarHeight:" + statusBarHeight + ", navBarHeight:" + navBarHeight);
-
-        mWindowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
-        mWindowManagerParams.x = 0;
-        mWindowManagerParams.y = -statusBarHeight;
-        mWindowManagerParams.height = height;//WindowManager.LayoutParams.MATCH_PARENT;
-        mWindowManagerParams.width = WindowManager.LayoutParams.MATCH_PARENT;
-        mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
-        mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-                | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
-                | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
-        mWindowManagerParams.format = PixelFormat.TRANSPARENT;
-        */
+        setVisibility(GONE);
 
         mWindowManagerParams.gravity = Gravity.TOP | Gravity.LEFT;
         mWindowManagerParams.x = 0;
@@ -221,45 +178,139 @@ public class CanvasView extends FrameLayout {
         }
     }
 
-    private void applyAlpha() {
-        Util.Assert(mCurrentAlpha >= 0.0f && mCurrentAlpha <= 1.0f, "alpha out of range: " + mCurrentAlpha);
-
+    private void applyAlpha(final int targetAlpha) {
+        mTargetAlpha = targetAlpha;
+        setVisibility(VISIBLE);
         if (mStatusBarCoverView != null) {
-            //mStatusBarCoverView.setAlpha(mCurrentAlpha);
-            mStatusBarCoverView.animate().alpha(mCurrentAlpha).setDuration(Constant.CANVAS_FADE_ANIM_TIME);
+            mStatusBarCoverView.setVisibility(VISIBLE);
+            mStatusBarCoverView.animate().alpha(targetAlpha).setDuration(Constant.CANVAS_FADE_ANIM_TIME).setListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if (mStatusBarCoverView != null) {
+                        if (targetAlpha == 0) {
+                            mStatusBarCoverView.setVisibility(GONE);
+                            mStatusBarCoverView.setAlpha(0);
+                        }
+                    }
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+                }
+            });
         }
 
         if (mTopMaskView != null) {
-            //mTopMaskView.setAlpha(mCurrentAlpha);
-            mTopMaskView.animate().alpha(mCurrentAlpha).setDuration(Constant.CANVAS_FADE_ANIM_TIME);
+            mTopMaskView.setVisibility(VISIBLE);
+            mTopMaskView.animate().alpha(targetAlpha).setDuration(Constant.CANVAS_FADE_ANIM_TIME).setListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if (mTopMaskView != null) {
+                        if (targetAlpha == 0) {
+                            mTopMaskView.setVisibility(GONE);
+                            mTopMaskView.setAlpha(0);
+                        }
+                    }
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+                }
+            });
         }
         if (mBottomMaskView != null) {
+            //mBottomMaskView.setVisibility(VISIBLE);
             ///mBottomMaskView.setAlpha(mCurrentAlpha);
-            mBottomMaskView.animate().alpha(mCurrentAlpha).setDuration(Constant.CANVAS_FADE_ANIM_TIME);
+            mBottomMaskView.animate().alpha(targetAlpha).setDuration(Constant.CANVAS_FADE_ANIM_TIME).setListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if (mBottomMaskView != null) {
+                        if (targetAlpha == 0) {
+                            mBottomMaskView.setVisibility(GONE);
+                            mBottomMaskView.setAlpha(0);
+                        }
+                    }
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+                }
+            });
         }
+        applyContentViewAlpha(mTargetAlpha);
+    }
 
-        if (!mEnabled || mCurrentAlpha == 0.0f) {
-
-            try {
-                clearFocus();
-            } catch(Exception e) {
-                Log.d(TAG, "handled exception while clearing focus");
-            }
-
-            setVisibility(GONE);
-            if (mStatusBarCoverView != null) {
-                mStatusBarCoverView.setVisibility(GONE);
-            }
-        } else {
-            setVisibility(VISIBLE);
-            if (mStatusBarCoverView != null) {
-                mStatusBarCoverView.setVisibility(VISIBLE);
-            }
-        }
-
+    private void applyContentViewAlpha(final int targetAlpha) {
+        mContentViewTargetAlpha = targetAlpha;
         if (mContentView != null) {
-            Util.Assert(mCurrentAlphaContentView >= 0.0f && mCurrentAlphaContentView <= 1.0f, "mCurrentAlphaContentView out of range:" + mCurrentAlphaContentView);
-            mContentView.animate().alpha(mCurrentAlphaContentView).setDuration(Constant.CANVAS_FADE_ANIM_TIME);
+            mContentView.animate().cancel();
+            mContentView.setVisibility(VISIBLE);
+            setVisibility(VISIBLE);
+            if (mContentViewTargetAlpha != 0 && !mExpanded) {
+                mContentView.setAlpha(0f);
+            }
+            mContentView.animate().alpha(targetAlpha).setDuration(Constant.CANVAS_FADE_ANIM_TIME).setListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if (mContentView != null) {
+                        if (mContentViewTargetAlpha == 0) {
+                            mContentView.setAlpha(0f);
+                            mContentView.setVisibility(GONE);
+                        } else {
+                            mContentView.setAlpha(1f);
+                            mContentView.setVisibility(VISIBLE);
+                        }
+                    }
+                    // If we also have target alpha 0 then hide the view so clicks behind will work.
+                    if (mTargetAlpha == 0 && !mDragging) {
+                        setVisibility(GONE);
+                    }
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+                }
+            });
+
+            if (targetAlpha == 0) {
+                try {
+                    clearFocus();
+                } catch (Exception e) {
+                    Log.d(TAG, "handled exception while clearing focus");
+                }
+            }
         }
     }
 
@@ -276,9 +327,9 @@ public class CanvasView extends FrameLayout {
             }
 
             removeView(mContentView);
-            mContentView.setAlpha(1.0f);
-            mCurrentAlphaContentView = 1.0f;
-            mTargetAlphaContentView = 1.0f;
+            if (mExpanded) {
+                applyContentViewAlpha(1);
+            }
             mContentView.onCurrentContentViewChanged(false);
         }
 
@@ -297,23 +348,15 @@ public class CanvasView extends FrameLayout {
             addView(mContentView, p);
             mContentView.onCurrentContentViewChanged(true);
             mContentView.requestFocus();
-            mContentView.setTranslationY(mContentViewY);
         }
     }
 
     private void showContentView() {
-        if (mContentView != null) {
-            mCurrentAlphaContentView = 1.0f;
-            mContentView.setAlpha(1.0f);
-            applyAlpha();
-        }
+        applyContentViewAlpha(1);
     }
 
     private void hideContentView() {
-        //Util.Assert(mContentView != null);
-        mCurrentAlphaContentView = 0;
-        applyAlpha();
-        MainController.get().scheduleUpdate();
+        applyContentViewAlpha(0);
     }
 
     @SuppressWarnings("unused")
@@ -325,22 +368,30 @@ public class CanvasView extends FrameLayout {
     @SuppressWarnings("unused")
     @Subscribe
     public void onBeginBubbleDrag(MainController.BeginBubbleDragEvent e) {
-        fadeIn();
-        if (mBottomMaskView != null) {
-            mBottomMaskView.setVisibility(VISIBLE);
-        }
-        mContentViewY = Config.mScreenHeight - Config.mContentOffset;
-        hideContentView();
-        MainController.get().showBadge(false);
-        if (mContentView != null) {
-            mContentView.onBeginBubbleDrag();
+        mDragging = true;
+        if (mExpanded) {
+            fadeOut();
+        } else {
+            setVisibility(VISIBLE);
+            fadeIn();
+            if (mBottomMaskView != null) {
+                mBottomMaskView.setVisibility(VISIBLE);
+            }
+            hideContentView();
+            MainController.get().showBadge(false);
+            if (mContentView != null) {
+                mContentView.onBeginBubbleDrag();
+            }
         }
     }
 
     @SuppressWarnings("unused")
     @Subscribe
     public void onEndBubbleDragEvent(MainController.EndBubbleDragEvent e) {
+        mDragging = false;
+        mExpanded = false;
         fadeOut();
+        setVisibility(GONE);
         MainController.get().showBadge(true);
         MainApplication.postEvent(getContext(), mMinimizeExpandedActivityEvent);
     }
@@ -348,17 +399,10 @@ public class CanvasView extends FrameLayout {
     @SuppressWarnings("unused")
     @Subscribe
     public void onBeginCollapseTransition(MainController.BeginCollapseTransitionEvent e) {
+        mExpanded = false;
         if (mContentView != null) {
             mContentView.onAnimateOffscreen();
-            mAnimPeriod = e.mPeriod;
-            mAnimTime = 0.0f;
-            mInitialY = mContentViewY;
-            mTargetY = Config.mScreenHeight - Config.mContentOffset;
-            MainController.get().scheduleUpdate();
             fadeOut();
-        } else {
-            mAnimPeriod = 0.0f;
-            mAnimTime = 0.0f;
         }
 
         MainApplication.postEvent(getContext(), mMinimizeExpandedActivityEvent);
@@ -367,19 +411,12 @@ public class CanvasView extends FrameLayout {
     @SuppressWarnings("unused")
     @Subscribe
     public void onBeginExpandTransition(MainController.BeginExpandTransitionEvent e) {
+        mExpanded = true;
         fadeIn();
 
         if (mContentView != null) {
-            showContentView();
             mContentView.onAnimateOnScreen();
-            mAnimPeriod = e.mPeriod;
-            mAnimTime = 0.0f;
-            mInitialY = mContentViewY;
-            mTargetY = 0.0f;
-            MainController.get().scheduleUpdate();
-        } else {
-            mAnimPeriod = 0.0f;
-            mAnimTime = 0.0f;
+            showContentView();
         }
     }
 
@@ -416,7 +453,6 @@ public class CanvasView extends FrameLayout {
     @Subscribe
     public void onHideContentEvent(MainController.HideContentEvent event) {
         setContentView(null);
-        mContentViewY = Config.mScreenHeight - Config.mContentOffset;
     }
 
     @SuppressWarnings("unused")
@@ -428,15 +464,11 @@ public class CanvasView extends FrameLayout {
     }
 
     private void fadeIn() {
-        mCurrentAlpha = mMaxAlpha;
-        applyAlpha();
-        MainController.get().scheduleUpdate();
+        applyAlpha(1);
     }
 
     private void fadeOut() {
-        mCurrentAlpha = 0;
-        applyAlpha();
-        MainController.get().scheduleUpdate();
+        applyAlpha(0);
     }
 
     public void destroy() {
@@ -455,31 +487,6 @@ public class CanvasView extends FrameLayout {
     }
 
     public void update(float dt) {
-
-        boolean updateAnimTime;
-        if (Constant.DYNAMIC_ANIM_STEP) {
-            updateAnimTime = mAnimPeriod > 0.0f;
-        } else {
-            updateAnimTime = mAnimPeriod > 0.0f && mAnimTime <= mAnimPeriod;
-        }
-
-        if (updateAnimTime) {
-            float t = Util.clamp(0.0f, mAnimTime / mAnimPeriod, 1.0f);
-            mContentViewY = (int) (mInitialY + (mTargetY - mInitialY) * t);
-            if (mContentView != null) {
-                mContentView.setTranslationY(mContentViewY);
-            }
-            if (mAnimTime < mAnimPeriod) {
-                MainController.get().scheduleUpdate();
-            } else if (mTargetY == 0.0f) {
-                if (mBottomMaskView != null) {
-                    mBottomMaskView.setVisibility(GONE);
-                }
-            }
-            mAnimTime += dt;
-        }
-
-
         for (int i=0 ; i < mTargets.size() ; ++i) {
             mTargets.get(i).update(dt);
         }
