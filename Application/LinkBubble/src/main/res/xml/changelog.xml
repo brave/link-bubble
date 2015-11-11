@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
     <release version="1.6.8">
-        <change></change>
+        <change>IMPROVEMENT: Flick tracking improvements.</change>
     </release>
 
     <release version="1.6.7">
