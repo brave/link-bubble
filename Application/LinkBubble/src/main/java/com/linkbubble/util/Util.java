@@ -83,6 +83,7 @@ public class Util {
         "mobi.mgeek.TunnyBrowser",
         "com.explore.web.browser",
         "com.ghostery.android.ghostery",
+        "jp.ddo.pigsty.HabitBrowser",
         "org.adblockplus.browser"
     };
 
