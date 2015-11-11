@@ -2,6 +2,7 @@
 <changelog>
     <release version="1.6.8">
         <change>IMPROVEMENT: Flick tracking improvements.</change>
+        <change>IMPROVEMENT: Tweaked some animations for better performance around collapsing and expanding bubbles.</change>
     </release>
 
     <release version="1.6.7">
