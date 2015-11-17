@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
+import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -21,6 +22,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
@@ -71,9 +73,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Set;
 import java.util.Stack;
 
@@ -86,6 +91,10 @@ public class ContentView extends FrameLayout {
     private static final String HTTP_PREFIX = "http://";
     private static final String HTTPS_PREFIX = "https://";
     private static final String DUCK_DUCK_SEARCH_ENGINE = "https://duckduckgo.com/";
+    private static final String GOOGLE_SEARCH_ENGINE = "http://www.google.com/";
+    private static final String YAHOO_SEARCH_ENGINE = "http://search.yahoo.com/";
+    private static final String AMAZON_SEARCH_ENGINE = "http://www.amazon.com/";
+    private static final String TOP_500_PREPEND = "Visit ";
 
     private static int sNextArticleNotificationId = 1111;
 
@@ -140,6 +149,9 @@ public class ContentView extends FrameLayout {
     // We only want to handle this once per link. This prevents 3+ dialogs appearing for some links, which is a bad experience. #224
     private boolean mHandledAppPickerForCurrentUrl = false;
     private boolean mUsingLinkBubbleAsDefaultForCurrentUrl = false;
+
+    private SearchURLCustomAdapter mAdapter;
+    private SearchURLSuggestions mFirstSuggestedItem;
 
     public ContentView(Context context) {
         this(context, null);
@@ -344,8 +356,27 @@ public class ContentView extends FrameLayout {
 
         //set an adapter for search URL control for top 500 websites
         String[] top500websites = getResources().getStringArray(R.array.top500websites);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, top500websites);
-        metUrl.setAdapter(adapter);
+        List<SearchURLSuggestions> suggestionsList = new ArrayList<SearchURLSuggestions>();
+        for (int i = 0; i < top500websites.length; i++) {
+            SearchURLSuggestions suggestion = new SearchURLSuggestions();
+            suggestion.Name = top500websites[i];
+            suggestion.Value = TOP_500_PREPEND + suggestion.Name;
+            suggestion.EngineToUse = SearchURLSuggestions.SearchEngine.NONE;
+            suggestionsList.add(suggestion);
+        }
+        mAdapter = new SearchURLCustomAdapter(getContext(), android.R.layout.simple_list_item_1, suggestionsList);
+        //
+        metUrl.setAdapter(mAdapter);
+
+        mAdapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                if (mAdapter.getCount() > 0) {
+                    mFirstSuggestedItem = (SearchURLSuggestions)mAdapter.getItem(0);
+                }
+            }
+        });
 
         mbtUrlClear = (ImageButton) findViewById(R.id.search_url_clear);
         mbtUrlClear.setOnClickListener(mbtClearUrlClicked);
@@ -402,7 +433,7 @@ public class ContentView extends FrameLayout {
         updateColors(null);
     }
 
-    private void WorkWithURL(String strUrl) {
+    private void WorkWithURL(String strUrl, SearchURLSuggestions.SearchEngine selectedSearchEngine) {
 
         metUrl.dismissDropDown();
 
@@ -411,12 +442,39 @@ public class ContentView extends FrameLayout {
         if (!strUrl.startsWith(HTTP_PREFIX) && !strUrl.startsWith(HTTPS_PREFIX))
             strUrlWithPrefix = HTTP_PREFIX + strUrl;
 
-        if (Patterns.WEB_URL.matcher(strUrlWithPrefix).matches()) {
+        if (SearchURLSuggestions.SearchEngine.NONE == selectedSearchEngine && Patterns.WEB_URL.matcher(strUrlWithPrefix).matches()) {
             LoadWebPage(strUrlWithPrefix);
-        } else {
-            // Made the search using duck duck go, have to change it after
+        } else if (SearchURLSuggestions.SearchEngine.DUCKDUCKGO == selectedSearchEngine) {
+            // Made the search using duck duck go
             try {
                 String strQuery = DUCK_DUCK_SEARCH_ENGINE + "?q=" + URLEncoder.encode(strUrl, "UTF-8");
+                LoadWebPage(strQuery);
+            } catch (IOException ioe) {
+                Log.e(TAG, ioe.getMessage(), ioe);
+            }
+        }
+        else if (SearchURLSuggestions.SearchEngine.GOOGLE == selectedSearchEngine) {
+            // Made the search using google
+            try {
+                String strQuery = GOOGLE_SEARCH_ENGINE + "search?q=" + URLEncoder.encode(strUrl, "UTF-8");
+                LoadWebPage(strQuery);
+            } catch (IOException ioe) {
+                Log.e(TAG, ioe.getMessage(), ioe);
+            }
+        }
+        else if (SearchURLSuggestions.SearchEngine.YAHOO == selectedSearchEngine) {
+            // Made the search using yahoo
+            try {
+                String strQuery = YAHOO_SEARCH_ENGINE + "search?p=" + URLEncoder.encode(strUrl, "UTF-8");
+                LoadWebPage(strQuery);
+            } catch (IOException ioe) {
+                Log.e(TAG, ioe.getMessage(), ioe);
+            }
+        }
+        else if (SearchURLSuggestions.SearchEngine.AMAZON == selectedSearchEngine) {
+            // Made the search using amazon
+            try {
+                String strQuery = AMAZON_SEARCH_ENGINE + "s/field-keywords=" + URLEncoder.encode(strUrl, "UTF-8");
                 LoadWebPage(strQuery);
             } catch (IOException ioe) {
                 Log.e(TAG, ioe.getMessage(), ioe);
@@ -999,9 +1057,9 @@ public class ContentView extends FrameLayout {
             imm.hideSoftInputFromWindow(metUrl.getWindowToken(),
                     InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
-            String strUrl = adapterView.getItemAtPosition(i).toString();
+            SearchURLSuggestions urlSuggestion = (SearchURLSuggestions)adapterView.getItemAtPosition(i);
 
-            WorkWithURL(strUrl);
+            WorkWithURL(urlSuggestion.Name, urlSuggestion.EngineToUse);
         }
     };
 
@@ -1013,9 +1071,11 @@ public class ContentView extends FrameLayout {
                 imm.hideSoftInputFromWindow(metUrl.getWindowToken(),
                         InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
-                String strUrl = metUrl.getText().toString();
+                if (null != mFirstSuggestedItem) {
+                    String strUrl = mFirstSuggestedItem.Name;
 
-                WorkWithURL(strUrl);
+                    WorkWithURL(strUrl, mFirstSuggestedItem.EngineToUse);
+                }
             }
 
             return false;
