@@ -660,8 +660,12 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     // Before this version select elements would crash WebView in a background service
-    public static final long STABLE_SELECT_WEBVIEW_VERSIONCODE = 249007650;
-    private long mVersionNumber = 0;
+    // STABLE_SELECT_WEBVIEW_VERSIONCODE used to be set to 249007650 because drop downs
+    // worked on some devices but not all.  For example it works on a Samsung Galaxy S4 but not
+    // on Nexus 6P.  Hopefully the next update will work across all devices.
+    public static final long STABLE_SELECT_WEBVIEW_VERSIONCODE = Long.MAX_VALUE;
+
+    static private long mVersionNumber = 0;
 
     public long getWebviewVersion(Context context) {
         if (mVersionNumber != 0) {
