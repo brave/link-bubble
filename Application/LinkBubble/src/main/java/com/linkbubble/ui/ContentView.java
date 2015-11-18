@@ -14,6 +14,7 @@ import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -30,6 +31,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.KeyEvent;
@@ -348,6 +350,52 @@ public class ContentView extends FrameLayout {
 
         //set the current URL to the search URL
         metUrl = (AutoCompleteTextView) findViewById(R.id.autocomplete_top500websites);
+
+        //to do debug
+        /*Rect screenSize = new Rect();
+
+        final Context context = getContext();
+        WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getRectSize(screenSize);
+        // screen width
+        int screenWidth = screenSize.width();
+
+        // set DropDownView width
+        metUrl.setDropDownWidth(screenWidth - dropDownPadding * 2);*/
+
+
+        /*final View dropDownAnchor = findViewById(metUrl.getDropDownAnchor());
+        if (dropDownAnchor != null) {
+            dropDownAnchor.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+                @Override
+                public void onLayoutChange(View v, int left, int top, int right, int bottom,
+                                           int oldLeft, int oldTop, int oldRight, int oldBottom) {
+
+                    // calculate width of DropdownView
+
+
+                    int point[] = new int[2];
+                    dropDownAnchor.getLocationOnScreen(point);
+                    // x coordinate of DropDownView
+                    int dropDownPadding = point[0] + metUrl.getDropDownHorizontalOffset();
+
+                    Rect screenSize = new Rect();
+
+                    final Context context = getContext();
+                    WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+                    wm.getDefaultDisplay().getRectSize(screenSize);
+                    // screen width
+                    int screenWidth = screenSize.width();
+
+                    // set DropDownView width
+                    metUrl.setDropDownWidth(1560);
+                    //metUrl.setDropDownWidth(screenWidth - dropDownPadding * 2);
+                }
+            });
+        }*/
+        //
+
+        metUrl.setDropDownWidth(getResources().getDisplayMetrics().widthPixels);
         metUrl.setText(urlAsString);
         metUrl.addTextChangedListener(murlTextWatcher);
         metUrl.setOnFocusChangeListener(murlOnFocusChangeListener);
@@ -375,6 +423,20 @@ public class ContentView extends FrameLayout {
                 if (mAdapter.getCount() > 0) {
                     mFirstSuggestedItem = (SearchURLSuggestions)mAdapter.getItem(0);
                 }
+                DisplayMetrics metrics = getContext().getResources().getDisplayMetrics();
+                int pixels = 0;
+                if (mAdapter.getCount() > 5) {
+                    float dp = 265f;
+                    float fpixels = metrics.density * dp;
+                    pixels = (int) (fpixels + 0.5f);
+                }
+                else {
+                    float dp = 53f;
+                    float fpixels = metrics.density * dp;
+                    pixels = (int) (fpixels + 0.5f) * mAdapter.getCount();
+                }
+
+                metUrl.setDropDownHeight(pixels);
             }
         });
 
@@ -433,7 +495,7 @@ public class ContentView extends FrameLayout {
         updateColors(null);
     }
 
-    private void WorkWithURL(String strUrl, SearchURLSuggestions.SearchEngine selectedSearchEngine) {
+    private void WorkWithURL(String strUrl, SearchURLSuggestions.SearchEngine selectedSearchEngine, boolean fromGoAction) {
 
         metUrl.dismissDropDown();
 
@@ -444,6 +506,10 @@ public class ContentView extends FrameLayout {
 
         if (SearchURLSuggestions.SearchEngine.NONE == selectedSearchEngine && Patterns.WEB_URL.matcher(strUrlWithPrefix).matches()) {
             LoadWebPage(strUrlWithPrefix);
+        } else if (SearchURLSuggestions.SearchEngine.NONE == selectedSearchEngine && fromGoAction) {
+            if (null != mFirstSuggestedItem) {
+                WorkWithURL(strUrl, mFirstSuggestedItem.EngineToUse, false);
+            }
         } else if (SearchURLSuggestions.SearchEngine.DUCKDUCKGO == selectedSearchEngine) {
             // Made the search using duck duck go
             try {
@@ -1059,7 +1125,7 @@ public class ContentView extends FrameLayout {
 
             SearchURLSuggestions urlSuggestion = (SearchURLSuggestions)adapterView.getItemAtPosition(i);
 
-            WorkWithURL(urlSuggestion.Name, urlSuggestion.EngineToUse);
+            WorkWithURL(urlSuggestion.Name, urlSuggestion.EngineToUse, false);
         }
     };
 
@@ -1074,7 +1140,7 @@ public class ContentView extends FrameLayout {
                 if (null != mFirstSuggestedItem) {
                     String strUrl = mFirstSuggestedItem.Name;
 
-                    WorkWithURL(strUrl, mFirstSuggestedItem.EngineToUse);
+                    WorkWithURL(strUrl, SearchURLSuggestions.SearchEngine.NONE, true);
                 }
             }
 
