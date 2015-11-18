@@ -27,14 +27,17 @@
             android:singleLine="true"
             android:background="@null"
             android:layout_marginRight="150px"
-            android:layout_marginLeft="5dp"
+            android:paddingLeft="5dp"
             android:hint="@string/edit_url"
             android:layout_alignParentLeft="true"
             android:imeOptions="actionGo"
             android:completionThreshold="1"
-            android:dropDownHeight="500dp"
+            android:dropDownWidth="match_parent"
+            android:dropDownAnchor="@+id/content_edit_url"
+            android:dropDownSelector="?android:attr/listChoiceBackgroundIndicator"
             android:inputType="textUri"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:textIsSelectable="true"/>
 
         <ImageButton android:id="@+id/search_url_clear"
             android:layout_width="wrap_content"

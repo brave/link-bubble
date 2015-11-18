@@ -15,7 +15,6 @@ import java.util.List;
 
 
 public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
-
     private static final String SEARCH_FOR_PREPEND = "Search for ";
     private static final String SEARCH_WITH = " with ";
     private static final String SEARCH_ON = " on ";
