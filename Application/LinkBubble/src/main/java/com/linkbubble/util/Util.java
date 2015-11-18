@@ -84,7 +84,10 @@ public class Util {
         "com.explore.web.browser",
         "com.ghostery.android.ghostery",
         "jp.ddo.pigsty.HabitBrowser",
-        "org.adblockplus.browser"
+        "org.adblockplus.browser",
+        "com.apusapps.browser",
+        "com.apusapps.browser.turbo",
+        "com.onedepth.search"
     };
 
     public static float clamp(float v0, float v, float v1) {
