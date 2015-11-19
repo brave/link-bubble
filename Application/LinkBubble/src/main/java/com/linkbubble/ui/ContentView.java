@@ -155,6 +155,9 @@ public class ContentView extends FrameLayout {
     private SearchURLCustomAdapter mAdapter;
     private SearchURLSuggestions mFirstSuggestedItem;
 
+    private float mOneRowAutoSuggestionsSize = 53f;
+    private int mRowsToShowOnAutoSuggestions = 5;
+
     public ContentView(Context context) {
         this(context, null);
     }
@@ -408,7 +411,8 @@ public class ContentView extends FrameLayout {
         for (int i = 0; i < top500websites.length; i++) {
             SearchURLSuggestions suggestion = new SearchURLSuggestions();
             suggestion.Name = top500websites[i];
-            suggestion.Value = TOP_500_PREPEND + suggestion.Name;
+            suggestion.Value = TOP_500_PREPEND + "<font color=" + SearchURLCustomAdapter.CONSTRAINT_TEXT_COLOR + ">" +
+                    suggestion.Name + "</font>";
             suggestion.EngineToUse = SearchURLSuggestions.SearchEngine.NONE;
             suggestionsList.add(suggestion);
         }
@@ -425,13 +429,13 @@ public class ContentView extends FrameLayout {
                 }
                 DisplayMetrics metrics = getContext().getResources().getDisplayMetrics();
                 int pixels = 0;
-                if (mAdapter.getCount() > 5) {
-                    float dp = 265f;
+                if (mAdapter.getCount() > mRowsToShowOnAutoSuggestions) {
+                    float dp = mOneRowAutoSuggestionsSize * mRowsToShowOnAutoSuggestions;
                     float fpixels = metrics.density * dp;
                     pixels = (int) (fpixels + 0.5f);
                 }
                 else {
-                    float dp = 53f;
+                    float dp = mOneRowAutoSuggestionsSize;
                     float fpixels = metrics.density * dp;
                     pixels = (int) (fpixels + 0.5f) * mAdapter.getCount();
                 }
