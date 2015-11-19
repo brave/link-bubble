@@ -158,6 +158,10 @@ public class ContentView extends FrameLayout {
     private float mOneRowAutoSuggestionsSize = 53f;
     private int mRowsToShowOnAutoSuggestions = 5;
 
+    private boolean mApplyAutoSuggestionToUrlString = true;
+    private boolean mSetTheRealUrlString = true;
+    private boolean mFirstTimeUrlTyped = true;
+
     public ContentView(Context context) {
         this(context, null);
     }
@@ -400,6 +404,7 @@ public class ContentView extends FrameLayout {
 
         metUrl.setDropDownWidth(getResources().getDisplayMetrics().widthPixels);
         metUrl.setText(urlAsString);
+        mFirstTimeUrlTyped = true;
         metUrl.addTextChangedListener(murlTextWatcher);
         metUrl.setOnFocusChangeListener(murlOnFocusChangeListener);
         metUrl.setOnItemClickListener(murlOnItemClickListener);
@@ -417,32 +422,11 @@ public class ContentView extends FrameLayout {
             suggestionsList.add(suggestion);
         }
         mAdapter = new SearchURLCustomAdapter(getContext(), android.R.layout.simple_list_item_1, suggestionsList);
+        mAdapter.mRealUrlBarConstraint = urlAsString;
         //
         metUrl.setAdapter(mAdapter);
 
-        mAdapter.registerDataSetObserver(new DataSetObserver() {
-            @Override
-            public void onChanged() {
-                super.onChanged();
-                if (mAdapter.getCount() > 0) {
-                    mFirstSuggestedItem = (SearchURLSuggestions)mAdapter.getItem(0);
-                }
-                DisplayMetrics metrics = getContext().getResources().getDisplayMetrics();
-                int pixels = 0;
-                if (mAdapter.getCount() > mRowsToShowOnAutoSuggestions) {
-                    float dp = mOneRowAutoSuggestionsSize * mRowsToShowOnAutoSuggestions;
-                    float fpixels = metrics.density * dp;
-                    pixels = (int) (fpixels + 0.5f);
-                }
-                else {
-                    float dp = mOneRowAutoSuggestionsSize;
-                    float fpixels = metrics.density * dp;
-                    pixels = (int) (fpixels + 0.5f) * mAdapter.getCount();
-                }
-
-                metUrl.setDropDownHeight(pixels);
-            }
-        });
+        mAdapter.registerDataSetObserver(mDataSetObserver);
 
         mbtUrlClear = (ImageButton) findViewById(R.id.search_url_clear);
         mbtUrlClear.setOnClickListener(mbtClearUrlClicked);
@@ -1152,20 +1136,83 @@ public class ContentView extends FrameLayout {
         }
     };
 
+    DataSetObserver mDataSetObserver = new DataSetObserver() {
+        @Override
+        public void onChanged() {
+            super.onChanged();
+            if (mAdapter.getCount() > 0) {
+                mFirstSuggestedItem = (SearchURLSuggestions)mAdapter.getItem(0);
+            }
+            DisplayMetrics metrics = getContext().getResources().getDisplayMetrics();
+            int pixels = 0;
+            if (mAdapter.getCount() > mRowsToShowOnAutoSuggestions) {
+                float dp = mOneRowAutoSuggestionsSize * mRowsToShowOnAutoSuggestions;
+                float fpixels = metrics.density * dp;
+                pixels = (int) (fpixels + 0.5f);
+            }
+            else {
+                float dp = mOneRowAutoSuggestionsSize;
+                float fpixels = metrics.density * dp;
+                pixels = (int) (fpixels + 0.5f) * mAdapter.getCount();
+            }
+
+            metUrl.setDropDownHeight(pixels);
+
+            //set an autosuggestion
+            String urlText = metUrl.getText().toString();
+            if (mApplyAutoSuggestionToUrlString && 0 != urlText.length() && null != mFirstSuggestedItem &&
+                    SearchURLSuggestions.SearchEngine.NONE == mFirstSuggestedItem.EngineToUse) {
+                String suggestedString = mFirstSuggestedItem.Name;
+                String stringToAppend = "";
+                if (suggestedString.length() > urlText.length()) {
+                    stringToAppend = suggestedString.substring(urlText.length());
+                    String toCompare = suggestedString.substring(0, urlText.length());
+                    if (toCompare.equals(urlText)) {
+                        mSetTheRealUrlString = false;
+                        metUrl.setText(urlText + stringToAppend);
+                        mSetTheRealUrlString = true;
+                        metUrl.setSelection(urlText.length(), urlText.length() + stringToAppend.length());
+                    }
+                }
+            }
+        }
+    };
+
     TextWatcher murlTextWatcher = new TextWatcher() {
+        private String mBeforeTextString;
+        private boolean mApplyAutoSuggestion = true;
+
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            mBeforeTextString = metUrl.getText().toString();
         }
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            String urlText = metUrl.getText().toString();
+            if (!mFirstTimeUrlTyped &&
+                    (urlText.equals(mAdapter.mRealUrlBarConstraint) || mAdapter.mRealUrlBarConstraint.length() > urlText.length())) {
+                mApplyAutoSuggestion = false;
+            }
+            else {
+                mApplyAutoSuggestion = true;
+            }
+            if (mSetTheRealUrlString) {
+                mAdapter.mRealUrlBarConstraint = urlText;
+            }
+            mFirstTimeUrlTyped = false;
         }
 
         @Override
         public void afterTextChanged(Editable editable) {
-            if (metUrl.getText().toString().length() != 0) {
+            String urlText = metUrl.getText().toString();
+            if (/*mBeforeTextString.length() > urlText.length() && *//*urlText.length() != 1 && */!mApplyAutoSuggestion) {
+                mApplyAutoSuggestionToUrlString = false;
+            }
+            else {
+                mApplyAutoSuggestionToUrlString = true;
+            }
+            if (urlText.length() != 0) {
                 mbtUrlClear.setEnabled(true);
                 mbtUrlClear.getBackground().setAlpha(255);
             }
@@ -1180,6 +1227,7 @@ public class ContentView extends FrameLayout {
         @Override
         public void onClick(View view) {
             metUrl.setText(mWebRenderer.getUrl().toString());
+            mFirstTimeUrlTyped = true;
             //bring the search URL layout on top
             findViewById(R.id.content_edit_url).bringToFront();
 
