@@ -1,6 +1,7 @@
 package com.linkbubble.ui;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,9 @@ import java.util.List;
 
 
 public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
+
+    public static final String CONSTRAINT_TEXT_COLOR = "'#A349A4'";
+
     private static final String SEARCH_FOR_PREPEND = "Search for ";
     private static final String SEARCH_WITH = " with ";
     private static final String SEARCH_ON = " on ";
@@ -52,16 +56,20 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
                 SearchURLSuggestions searchSuggestion2 = new SearchURLSuggestions();
                 SearchURLSuggestions searchSuggestion3 = new SearchURLSuggestions();
                 SearchURLSuggestions searchSuggestion4 = new SearchURLSuggestions();
-                searchSuggestion1.Value = SEARCH_FOR_PREPEND + "\"" + constraint + "\"" + SEARCH_WITH + SEARCH_DUCK_DUCK_GO;
+                searchSuggestion1.Value = SEARCH_FOR_PREPEND + "\"" + "<font color=" + CONSTRAINT_TEXT_COLOR + ">" + constraint +
+                        "</font>" + "\"" + SEARCH_WITH + SEARCH_DUCK_DUCK_GO;
                 searchSuggestion1.Name = constraint.toString();
                 searchSuggestion1.EngineToUse = SearchURLSuggestions.SearchEngine.DUCKDUCKGO;
-                searchSuggestion2.Value = SEARCH_FOR_PREPEND + "\"" + constraint + "\"" + SEARCH_WITH + SEARCH_GOOGLE;
+                searchSuggestion2.Value = SEARCH_FOR_PREPEND + "\"" + "<font color=" + CONSTRAINT_TEXT_COLOR + ">" + constraint +
+                        "</font>" + "\"" + SEARCH_WITH + SEARCH_GOOGLE;
                 searchSuggestion2.Name = constraint.toString();
                 searchSuggestion2.EngineToUse = SearchURLSuggestions.SearchEngine.GOOGLE;
-                searchSuggestion3.Value = SEARCH_FOR_PREPEND + "\"" + constraint + "\"" + SEARCH_WITH + SEARCH_YAHOO;
+                searchSuggestion3.Value = SEARCH_FOR_PREPEND + "\"" + "<font color=" + CONSTRAINT_TEXT_COLOR + ">" + constraint +
+                        "</font>" + "\"" + SEARCH_WITH + SEARCH_YAHOO;
                 searchSuggestion3.Name = constraint.toString();
                 searchSuggestion3.EngineToUse = SearchURLSuggestions.SearchEngine.YAHOO;
-                searchSuggestion4.Value = SEARCH_FOR_PREPEND + "\"" + constraint + "\"" + SEARCH_ON + SEARCH_AMAZON;
+                searchSuggestion4.Value = SEARCH_FOR_PREPEND + "\"" + "<font color=" + CONSTRAINT_TEXT_COLOR + ">" + constraint +
+                        "</font>" + "\"" + SEARCH_ON + SEARCH_AMAZON;
                 searchSuggestion4.Name = constraint.toString();
                 searchSuggestion4.EngineToUse = SearchURLSuggestions.SearchEngine.AMAZON;
 
@@ -106,7 +114,7 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
 
         TextView name = (TextView) view;
         SearchURLSuggestions suggestion = getItem(position);
-        name.setText(suggestion.Value);
+        name.setText(Html.fromHtml(suggestion.Value));
 
         return view;
     }
