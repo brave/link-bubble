@@ -19,6 +19,8 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
 
     public static final String CONSTRAINT_TEXT_COLOR = "'#A349A4'";
 
+    public String mRealUrlBarConstraint = "";
+
     private static final String SEARCH_FOR_PREPEND = "Search for ";
     private static final String SEARCH_WITH = " with ";
     private static final String SEARCH_ON = " on ";
@@ -38,9 +40,10 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
         }
 
         @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
+        protected FilterResults performFiltering(CharSequence constraintInCome) {
             FilterResults results = new FilterResults();
 
+            String constraint = mRealUrlBarConstraint;
             if (constraint != null && constraint.length() != 0) {
                 ArrayList<SearchURLSuggestions> suggestions = new ArrayList<SearchURLSuggestions>();
                 for (SearchURLSuggestions suggestion : mSuggestions) {
