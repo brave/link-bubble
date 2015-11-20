@@ -90,13 +90,6 @@ import java.util.Stack;
 public class ContentView extends FrameLayout {
 
     private static final String TAG = "UrlLoad";
-    private static final String HTTP_PREFIX = "http://";
-    private static final String HTTPS_PREFIX = "https://";
-    private static final String DUCK_DUCK_SEARCH_ENGINE = "https://duckduckgo.com/";
-    private static final String GOOGLE_SEARCH_ENGINE = "http://www.google.com/";
-    private static final String YAHOO_SEARCH_ENGINE = "http://search.yahoo.com/";
-    private static final String AMAZON_SEARCH_ENGINE = "http://www.amazon.com/";
-    private static final String TOP_500_PREPEND = "Visit ";
 
     private static int sNextArticleNotificationId = 1111;
 
@@ -129,7 +122,7 @@ public class ContentView extends FrameLayout {
     private EventHandler mEventHandler;
     private int mCurrentProgress = 0;
 
-    //search URL functionality
+    // Search URL functionality
     private AutoCompleteTextView metUrl;
     private ImageButton mbtUrlClear;
 
@@ -349,58 +342,14 @@ public class ContentView extends FrameLayout {
         mTitleTextView = (CondensedTextView) findViewById(R.id.title_text);
         mUrlTextView = (CondensedTextView) findViewById(R.id.url_text);
 
-        //set on click listeners to show the search URL control
+        // Set on click listeners to show the search URL control
         mTitleTextView.setOnClickListener(mOnURLEnterClicked);
         mUrlTextView.setOnClickListener(mOnURLEnterClicked);
 
         findViewById(R.id.content_text_container).setOnTouchListener(mOnTextContainerTouchListener);
 
-        //set the current URL to the search URL
+        // Set the current URL to the search URL
         metUrl = (AutoCompleteTextView) findViewById(R.id.autocomplete_top500websites);
-
-        //to do debug
-        /*Rect screenSize = new Rect();
-
-        final Context context = getContext();
-        WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
-        wm.getDefaultDisplay().getRectSize(screenSize);
-        // screen width
-        int screenWidth = screenSize.width();
-
-        // set DropDownView width
-        metUrl.setDropDownWidth(screenWidth - dropDownPadding * 2);*/
-
-
-        /*final View dropDownAnchor = findViewById(metUrl.getDropDownAnchor());
-        if (dropDownAnchor != null) {
-            dropDownAnchor.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-                @Override
-                public void onLayoutChange(View v, int left, int top, int right, int bottom,
-                                           int oldLeft, int oldTop, int oldRight, int oldBottom) {
-
-                    // calculate width of DropdownView
-
-
-                    int point[] = new int[2];
-                    dropDownAnchor.getLocationOnScreen(point);
-                    // x coordinate of DropDownView
-                    int dropDownPadding = point[0] + metUrl.getDropDownHorizontalOffset();
-
-                    Rect screenSize = new Rect();
-
-                    final Context context = getContext();
-                    WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
-                    wm.getDefaultDisplay().getRectSize(screenSize);
-                    // screen width
-                    int screenWidth = screenSize.width();
-
-                    // set DropDownView width
-                    metUrl.setDropDownWidth(1560);
-                    //metUrl.setDropDownWidth(screenWidth - dropDownPadding * 2);
-                }
-            });
-        }*/
-        //
 
         metUrl.setDropDownWidth(getResources().getDisplayMetrics().widthPixels);
         metUrl.setText(urlAsString);
@@ -410,14 +359,14 @@ public class ContentView extends FrameLayout {
         metUrl.setOnItemClickListener(murlOnItemClickListener);
         metUrl.setOnEditorActionListener(murlActionListener);
 
-        //set an adapter for search URL control for top 500 websites
+        // Set an adapter for search URL control for top 500 websites
         String[] top500websites = getResources().getStringArray(R.array.top500websites);
         List<SearchURLSuggestions> suggestionsList = new ArrayList<SearchURLSuggestions>();
         for (int i = 0; i < top500websites.length; i++) {
             SearchURLSuggestions suggestion = new SearchURLSuggestions();
             suggestion.Name = top500websites[i];
-            suggestion.Value = TOP_500_PREPEND + "<font color=" + SearchURLCustomAdapter.CONSTRAINT_TEXT_COLOR + ">" +
-                    suggestion.Name + "</font>";
+            suggestion.Value = getContext().getString(R.string.top_500_prepend) + " <font color=" +
+                    getContext().getString(R.string.url_bar_constraint_text_color) + ">" + suggestion.Name + "</font>";
             suggestion.EngineToUse = SearchURLSuggestions.SearchEngine.NONE;
             suggestionsList.add(suggestion);
         }
@@ -489,8 +438,9 @@ public class ContentView extends FrameLayout {
 
         strUrl = strUrl.trim();
         String strUrlWithPrefix = strUrl;
-        if (!strUrl.startsWith(HTTP_PREFIX) && !strUrl.startsWith(HTTPS_PREFIX))
-            strUrlWithPrefix = HTTP_PREFIX + strUrl;
+        if (!strUrl.startsWith(getContext().getString(R.string.http_prefix)) &&
+                !strUrl.startsWith(getContext().getString(R.string.https_prefix)))
+            strUrlWithPrefix = getContext().getString(R.string.http_prefix) + strUrl;
 
         if (SearchURLSuggestions.SearchEngine.NONE == selectedSearchEngine && Patterns.WEB_URL.matcher(strUrlWithPrefix).matches()) {
             LoadWebPage(strUrlWithPrefix);
@@ -499,36 +449,36 @@ public class ContentView extends FrameLayout {
                 WorkWithURL(strUrl, mFirstSuggestedItem.EngineToUse, false);
             }
         } else if (SearchURLSuggestions.SearchEngine.DUCKDUCKGO == selectedSearchEngine) {
-            // Made the search using duck duck go
+            // Make the search using duck duck go
             try {
-                String strQuery = DUCK_DUCK_SEARCH_ENGINE + "?q=" + URLEncoder.encode(strUrl, "UTF-8");
+                String strQuery = getContext().getString(R.string.duck_duck_search_engine) + URLEncoder.encode(strUrl, "UTF-8");
                 LoadWebPage(strQuery);
             } catch (IOException ioe) {
                 Log.e(TAG, ioe.getMessage(), ioe);
             }
         }
         else if (SearchURLSuggestions.SearchEngine.GOOGLE == selectedSearchEngine) {
-            // Made the search using google
+            // Make the search using google
             try {
-                String strQuery = GOOGLE_SEARCH_ENGINE + "search?q=" + URLEncoder.encode(strUrl, "UTF-8");
+                String strQuery = getContext().getString(R.string.google_search_engine) + URLEncoder.encode(strUrl, "UTF-8");
                 LoadWebPage(strQuery);
             } catch (IOException ioe) {
                 Log.e(TAG, ioe.getMessage(), ioe);
             }
         }
         else if (SearchURLSuggestions.SearchEngine.YAHOO == selectedSearchEngine) {
-            // Made the search using yahoo
+            // Make the search using yahoo
             try {
-                String strQuery = YAHOO_SEARCH_ENGINE + "search?p=" + URLEncoder.encode(strUrl, "UTF-8");
+                String strQuery = getContext().getString(R.string.yahoo_search_engine) + URLEncoder.encode(strUrl, "UTF-8");
                 LoadWebPage(strQuery);
             } catch (IOException ioe) {
                 Log.e(TAG, ioe.getMessage(), ioe);
             }
         }
         else if (SearchURLSuggestions.SearchEngine.AMAZON == selectedSearchEngine) {
-            // Made the search using amazon
+            // Make the search using amazon
             try {
-                String strQuery = AMAZON_SEARCH_ENGINE + "s/field-keywords=" + URLEncoder.encode(strUrl, "UTF-8");
+                String strQuery = getContext().getString(R.string.amazon_search_engine) + URLEncoder.encode(strUrl, "UTF-8");
                 LoadWebPage(strQuery);
             } catch (IOException ioe) {
                 Log.e(TAG, ioe.getMessage(), ioe);
@@ -1043,7 +993,7 @@ public class ContentView extends FrameLayout {
                     }
                 }
 
-                // if no title is set, display nothing rather than "Loading..." #265
+                // If no title is set, display nothing rather than "Loading..." #265
                 if (title == null) {
                     mTitleTextView.setText(null);
                 }
@@ -1093,7 +1043,7 @@ public class ContentView extends FrameLayout {
         @Override
         public void onFocusChange(View view, boolean b) {
             if (!b) {
-                //show the toolbar again if lost focus and hide the soft keyboard
+                // Show the toolbar again if lost focus and hide the soft keyboard
                 findViewById(R.id.content_toolbar).bringToFront();
 
                 InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -1106,7 +1056,7 @@ public class ContentView extends FrameLayout {
     AdapterView.OnItemClickListener murlOnItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            //hide the soft keyboard
+            // Hide the soft keyboard
             InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(metUrl.getWindowToken(),
                     InputMethodManager.RESULT_UNCHANGED_SHOWN);
@@ -1158,7 +1108,7 @@ public class ContentView extends FrameLayout {
 
             metUrl.setDropDownHeight(pixels);
 
-            //set an autosuggestion
+            // Set an autosuggestion
             String urlText = metUrl.getText().toString();
             if (mApplyAutoSuggestionToUrlString && 0 != urlText.length() && null != mFirstSuggestedItem &&
                     SearchURLSuggestions.SearchEngine.NONE == mFirstSuggestedItem.EngineToUse) {
@@ -1206,7 +1156,7 @@ public class ContentView extends FrameLayout {
         @Override
         public void afterTextChanged(Editable editable) {
             String urlText = metUrl.getText().toString();
-            if (/*mBeforeTextString.length() > urlText.length() && *//*urlText.length() != 1 && */!mApplyAutoSuggestion) {
+            if (!mApplyAutoSuggestion) {
                 mApplyAutoSuggestionToUrlString = false;
             }
             else {
@@ -1228,13 +1178,13 @@ public class ContentView extends FrameLayout {
         public void onClick(View view) {
             metUrl.setText(mWebRenderer.getUrl().toString());
             mFirstTimeUrlTyped = true;
-            //bring the search URL layout on top
+            // Bring the search URL layout on top
             findViewById(R.id.content_edit_url).bringToFront();
 
             //request the focus for the search URL control
             metUrl.requestFocus();
             metUrl.selectAll();
-            //show the soft keyboard
+            // Show the soft keyboard
             InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(metUrl, InputMethodManager.SHOW_IMPLICIT);
         }

@@ -367,5 +367,19 @@
     <string name="duplicate_link_will_not_be_loaded">Link already loaded. Ignoring...</string>
 
     <string name="edit_url">Search or enter address</string>
+    <string name="http_prefix">http://</string>
+    <string name="https_prefix">https://</string>
+    <string name="duck_duck_search_engine">https://duckduckgo.com/?q=</string>
+    <string name="google_search_engine">http://www.google.com/search?q=</string>
+    <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
+    <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>
+    <string name="top_500_prepend">Visit</string>
+    <string name="url_bar_constraint_text_color">\'#A349A4\'</string>
+    <string name="search_for_with">Search for \"%1$s\" with %2$s</string>
+    <string name="search_for_on">Search for \"%1$s\" on %2$s</string>
+    <string name="duck_duck_go">Duck Duck Go</string>
+    <string name="google">Google</string>
+    <string name="yahoo">Yahoo</string>
+    <string name="amazon">Amazon</string>
 
 </resources>

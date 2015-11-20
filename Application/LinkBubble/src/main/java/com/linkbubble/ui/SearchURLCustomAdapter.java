@@ -17,17 +17,7 @@ import java.util.List;
 
 public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
 
-    public static final String CONSTRAINT_TEXT_COLOR = "'#A349A4'";
-
     public String mRealUrlBarConstraint = "";
-
-    private static final String SEARCH_FOR_PREPEND = "Search for ";
-    private static final String SEARCH_WITH = " with ";
-    private static final String SEARCH_ON = " on ";
-    private static final String SEARCH_DUCK_DUCK_GO = "Duck Duck Go";
-    private static final String SEARCH_GOOGLE = "Google";
-    private static final String SEARCH_YAHOO = "Yahoo";
-    private static final String SEARCH_AMAZON = "Amazon";
 
     private LayoutInflater layoutInflater;
     List<SearchURLSuggestions> mSuggestions;
@@ -54,25 +44,29 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
                 }
 
 
-                //for search engines
+                // For search engines
                 SearchURLSuggestions searchSuggestion1 = new SearchURLSuggestions();
                 SearchURLSuggestions searchSuggestion2 = new SearchURLSuggestions();
                 SearchURLSuggestions searchSuggestion3 = new SearchURLSuggestions();
                 SearchURLSuggestions searchSuggestion4 = new SearchURLSuggestions();
-                searchSuggestion1.Value = SEARCH_FOR_PREPEND + "\"" + "<font color=" + CONSTRAINT_TEXT_COLOR + ">" + constraint +
-                        "</font>" + "\"" + SEARCH_WITH + SEARCH_DUCK_DUCK_GO;
+                searchSuggestion1.Value = String.format(getContext().getString(R.string.search_for_with), "<font color=" +
+                        getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint +
+                        "</font>", getContext().getString(R.string.duck_duck_go));
                 searchSuggestion1.Name = constraint.toString();
                 searchSuggestion1.EngineToUse = SearchURLSuggestions.SearchEngine.DUCKDUCKGO;
-                searchSuggestion2.Value = SEARCH_FOR_PREPEND + "\"" + "<font color=" + CONSTRAINT_TEXT_COLOR + ">" + constraint +
-                        "</font>" + "\"" + SEARCH_WITH + SEARCH_GOOGLE;
+                searchSuggestion2.Value = String.format(getContext().getString(R.string.search_for_with), "<font color=" +
+                        getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint +
+                        "</font>", getContext().getString(R.string.google));
                 searchSuggestion2.Name = constraint.toString();
                 searchSuggestion2.EngineToUse = SearchURLSuggestions.SearchEngine.GOOGLE;
-                searchSuggestion3.Value = SEARCH_FOR_PREPEND + "\"" + "<font color=" + CONSTRAINT_TEXT_COLOR + ">" + constraint +
-                        "</font>" + "\"" + SEARCH_WITH + SEARCH_YAHOO;
+                searchSuggestion3.Value = String.format(getContext().getString(R.string.search_for_with), "<font color=" +
+                        getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint +
+                        "</font>", getContext().getString(R.string.yahoo));
                 searchSuggestion3.Name = constraint.toString();
                 searchSuggestion3.EngineToUse = SearchURLSuggestions.SearchEngine.YAHOO;
-                searchSuggestion4.Value = SEARCH_FOR_PREPEND + "\"" + "<font color=" + CONSTRAINT_TEXT_COLOR + ">" + constraint +
-                        "</font>" + "\"" + SEARCH_ON + SEARCH_AMAZON;
+                searchSuggestion4.Value = String.format(getContext().getString(R.string.search_for_on), "<font color=" +
+                        getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint +
+                        "</font>", getContext().getString(R.string.amazon));
                 searchSuggestion4.Name = constraint.toString();
                 searchSuggestion4.EngineToUse = SearchURLSuggestions.SearchEngine.AMAZON;
 
@@ -96,7 +90,7 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
         protected void publishResults(CharSequence constraint, Filter.FilterResults results) {
             clear();
             if (results != null && results.count > 0) {
-                // we have filtered results
+                // We have filtered results
                 addAll((ArrayList<SearchURLSuggestions>) results.values);
             }
             notifyDataSetChanged();
@@ -105,7 +99,7 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
 
     public SearchURLCustomAdapter(Context context, int textViewResourceId, List<SearchURLSuggestions> suggestions) {
         super(context, textViewResourceId, suggestions);
-        // copy all the customers into a master list
+        // Copy all the customers into a master list
         mSuggestions = new ArrayList<SearchURLSuggestions>(suggestions.size());
         mSuggestions.addAll(suggestions);
         layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -122,7 +116,7 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
         return view;
     }
 
-    //@Override
+    @Override
     public Filter getFilter() {
         return mFilter;
     }
