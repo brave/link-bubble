@@ -10,9 +10,11 @@ import android.widget.Filter;
 import android.widget.TextView;
 
 import com.linkbubble.R;
+import com.linkbubble.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
@@ -20,7 +22,7 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
     public String mRealUrlBarConstraint = "";
 
     private LayoutInflater layoutInflater;
-    List<SearchURLSuggestions> mSuggestions;
+    CopyOnWriteArrayList<SearchURLSuggestions> mSuggestions;
     private int viewResourceId;
 
     private Filter mFilter = new Filter() {
@@ -33,9 +35,9 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
         protected FilterResults performFiltering(CharSequence constraintInCome) {
             FilterResults results = new FilterResults();
 
-            String constraint = mRealUrlBarConstraint;
+            String constraint = Util.getUrlWithoutHttpHttpsWww(getContext(), mRealUrlBarConstraint);
             if (constraint != null && constraint.length() != 0) {
-                ArrayList<SearchURLSuggestions> suggestions = new ArrayList<SearchURLSuggestions>();
+                CopyOnWriteArrayList<SearchURLSuggestions> suggestions = new CopyOnWriteArrayList<SearchURLSuggestions>();
                 for (SearchURLSuggestions suggestion : mSuggestions) {
                     // Note: change the "startsWith" to "contains" if you only want starting matches
                     if (suggestion.Name.toLowerCase().startsWith(constraint.toString().toLowerCase())) {
@@ -91,7 +93,7 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
             clear();
             if (results != null && results.count > 0) {
                 // We have filtered results
-                addAll((ArrayList<SearchURLSuggestions>) results.values);
+                addAll((CopyOnWriteArrayList<SearchURLSuggestions>) results.values);
             }
             notifyDataSetChanged();
         }
@@ -100,7 +102,7 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
     public SearchURLCustomAdapter(Context context, int textViewResourceId, List<SearchURLSuggestions> suggestions) {
         super(context, textViewResourceId, suggestions);
         // Copy all the customers into a master list
-        mSuggestions = new ArrayList<SearchURLSuggestions>(suggestions.size());
+        mSuggestions = new CopyOnWriteArrayList<SearchURLSuggestions>();
         mSuggestions.addAll(suggestions);
         layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         viewResourceId = textViewResourceId;
@@ -119,5 +121,20 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
     @Override
     public Filter getFilter() {
         return mFilter;
+    }
+
+    public void addUrlToAutoSuggestion(String urlToAdd) {
+        String newUrlToAdd = Util.getUrlWithoutHttpHttpsWww(getContext(), urlToAdd);
+        for (SearchURLSuggestions suggestion : mSuggestions) {
+            if (suggestion.Name.equals(newUrlToAdd)) {
+                return;
+            }
+        }
+        SearchURLSuggestions suggestion = new SearchURLSuggestions();
+        suggestion.Name = newUrlToAdd;
+        suggestion.Value = getContext().getString(R.string.top_500_prepend) + " <font color=" +
+                getContext().getString(R.string.url_bar_constraint_text_color) + ">" + suggestion.Name + "</font>";
+        suggestion.EngineToUse = SearchURLSuggestions.SearchEngine.NONE;
+        mSuggestions.add(0, suggestion);
     }
 }
