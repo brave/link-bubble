@@ -1035,6 +1035,9 @@ public class ContentView extends FrameLayout {
                 }
             }
 
+            // Adding the URL to the auto suggestions list
+            mAdapter.addUrlToAutoSuggestion(currentUrl.toString());
+
             MainApplication.saveUrlInHistory(getContext(), null, currentUrl.toString(), currentUrl.getHost(), title);
             //mDelayedAutoContentDisplayLinkLoadedScheduled = true;
             //Log.d(TAG, "set mDelayedAutoContentDisplayLinkLoadedScheduled=" + mDelayedAutoContentDisplayLinkLoadedScheduled);
