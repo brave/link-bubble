@@ -705,4 +705,24 @@ public class Util {
             return Config.sIsTablet ? Constant.USER_AGENT_CHROME_TABLET : Constant.USER_AGENT_CHROME_PHONE;
         }
     }
+
+    // Remove http or https from url
+    public static String getUrlWithoutHttpHttpsWww(Context context, String url) {
+        if (url.startsWith(context.getString(R.string.http_prefix))) {
+            url = url.substring(context.getString(R.string.http_prefix).length());
+        }
+        else if (url.startsWith(context.getString(R.string.https_prefix))) {
+            url = url.substring(context.getString(R.string.https_prefix).length());
+        }
+
+        if (url.startsWith(context.getString(R.string.www_prefix))) {
+            url = url.substring(context.getString(R.string.www_prefix).length());
+        }
+
+        if (url.endsWith("/")) {
+            url = url.substring(0, url.length() - 1);
+        }
+
+        return url;
+    }
 }

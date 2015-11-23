@@ -69,6 +69,7 @@ import com.linkbubble.util.DownloadImage;
 import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.webrender.WebRenderer;
+import com.linkbubble.db.HistoryRecord;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -316,6 +317,68 @@ public class ContentView extends FrameLayout {
         return d;
     }
 
+    // Checks if we have added that suggestion already
+    private boolean suggestedAlreadyAdded(String urlSuggestion, List<SearchURLSuggestions> suggestionsList) {
+        for (SearchURLSuggestions suggestion: suggestionsList) {
+            if (urlSuggestion.equals(suggestion.Name)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // The function configures the urlBar
+    private void configureUrlBar(String urlAsString) {
+        // Set the current URL to the search URL
+        metUrl = (AutoCompleteTextView) findViewById(R.id.autocomplete_top500websites);
+
+        metUrl.setDropDownWidth(getResources().getDisplayMetrics().widthPixels);
+        metUrl.setText(urlAsString);
+        mFirstTimeUrlTyped = true;
+        metUrl.addTextChangedListener(murlTextWatcher);
+        metUrl.setOnFocusChangeListener(murlOnFocusChangeListener);
+        metUrl.setOnItemClickListener(murlOnItemClickListener);
+        metUrl.setOnEditorActionListener(murlActionListener);
+
+        List<SearchURLSuggestions> suggestionsList = new ArrayList<SearchURLSuggestions>();
+        // Fill suggestion list with history URL's
+        List<HistoryRecord> historyRecords = MainApplication.sDatabaseHelper.getAllHistoryRecords();
+        for (HistoryRecord historyRecord : historyRecords) {
+            String historyUrl = Util.getUrlWithoutHttpHttpsWww(getContext(), historyRecord.getUrl());
+            // Looking on duplications
+            if (suggestedAlreadyAdded(historyUrl, suggestionsList)) {
+                continue;
+            }
+            SearchURLSuggestions suggestion = new SearchURLSuggestions();
+            suggestion.Name = historyUrl;
+            suggestion.Value = getContext().getString(R.string.top_500_prepend) + " <font color=" +
+                    getContext().getString(R.string.url_bar_constraint_text_color) + ">" + suggestion.Name + "</font>";
+            suggestion.EngineToUse = SearchURLSuggestions.SearchEngine.NONE;
+            suggestionsList.add(suggestion);
+        }
+        // Set an adapter for search URL control for top 500 websites
+        String[] top500websites = getResources().getStringArray(R.array.top500websites);
+        for (int i = 0; i < top500websites.length; i++) {
+            // Looking on duplications
+            if (suggestedAlreadyAdded(top500websites[i], suggestionsList)) {
+                continue;
+            }
+            SearchURLSuggestions suggestion = new SearchURLSuggestions();
+            suggestion.Name = top500websites[i];
+            suggestion.Value = getContext().getString(R.string.top_500_prepend) + " <font color=" +
+                    getContext().getString(R.string.url_bar_constraint_text_color) + ">" + suggestion.Name + "</font>";
+            suggestion.EngineToUse = SearchURLSuggestions.SearchEngine.NONE;
+            suggestionsList.add(suggestion);
+        }
+        mAdapter = new SearchURLCustomAdapter(getContext(), android.R.layout.simple_list_item_1, suggestionsList);
+        mAdapter.mRealUrlBarConstraint = urlAsString;
+        //
+        metUrl.setAdapter(mAdapter);
+
+        mAdapter.registerDataSetObserver(mDataSetObserver);
+    }
+
     @SuppressLint("SetJavaScriptEnabled")
     void configure(String urlAsString, TabView ownerTabView, long urlLoadStartTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
         mLifeState = LifeState.Alive;
@@ -348,34 +411,7 @@ public class ContentView extends FrameLayout {
 
         findViewById(R.id.content_text_container).setOnTouchListener(mOnTextContainerTouchListener);
 
-        // Set the current URL to the search URL
-        metUrl = (AutoCompleteTextView) findViewById(R.id.autocomplete_top500websites);
-
-        metUrl.setDropDownWidth(getResources().getDisplayMetrics().widthPixels);
-        metUrl.setText(urlAsString);
-        mFirstTimeUrlTyped = true;
-        metUrl.addTextChangedListener(murlTextWatcher);
-        metUrl.setOnFocusChangeListener(murlOnFocusChangeListener);
-        metUrl.setOnItemClickListener(murlOnItemClickListener);
-        metUrl.setOnEditorActionListener(murlActionListener);
-
-        // Set an adapter for search URL control for top 500 websites
-        String[] top500websites = getResources().getStringArray(R.array.top500websites);
-        List<SearchURLSuggestions> suggestionsList = new ArrayList<SearchURLSuggestions>();
-        for (int i = 0; i < top500websites.length; i++) {
-            SearchURLSuggestions suggestion = new SearchURLSuggestions();
-            suggestion.Name = top500websites[i];
-            suggestion.Value = getContext().getString(R.string.top_500_prepend) + " <font color=" +
-                    getContext().getString(R.string.url_bar_constraint_text_color) + ">" + suggestion.Name + "</font>";
-            suggestion.EngineToUse = SearchURLSuggestions.SearchEngine.NONE;
-            suggestionsList.add(suggestion);
-        }
-        mAdapter = new SearchURLCustomAdapter(getContext(), android.R.layout.simple_list_item_1, suggestionsList);
-        mAdapter.mRealUrlBarConstraint = urlAsString;
-        //
-        metUrl.setAdapter(mAdapter);
-
-        mAdapter.registerDataSetObserver(mDataSetObserver);
+        configureUrlBar(urlAsString);
 
         mbtUrlClear = (ImageButton) findViewById(R.id.search_url_clear);
         mbtUrlClear.setOnClickListener(mbtClearUrlClicked);
