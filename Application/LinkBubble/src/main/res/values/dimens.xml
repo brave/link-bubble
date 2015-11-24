@@ -16,6 +16,7 @@
     <dimen name="content_bubble_y_offset">-2dp</dimen>
     <dimen name="toolbar_header">4dp</dimen>
     <dimen name="toolbar_height">48dp</dimen>
+    <dimen name="search_url_height">30dp</dimen>
     <dimen name="webview_margin_top">52dp</dimen>   <!-- Must equal toolbar_header + toolbar_height -->
     <dimen name="content_view_button_max_height">40dp</dimen>
 

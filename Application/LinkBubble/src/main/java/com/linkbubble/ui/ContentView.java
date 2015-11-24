@@ -10,9 +10,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
+import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -21,24 +23,35 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Constant;
@@ -56,13 +69,19 @@ import com.linkbubble.util.DownloadImage;
 import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.webrender.WebRenderer;
+import com.linkbubble.db.HistoryRecord;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Set;
 import java.util.Stack;
 
@@ -104,6 +123,10 @@ public class ContentView extends FrameLayout {
     private EventHandler mEventHandler;
     private int mCurrentProgress = 0;
 
+    // Search URL functionality
+    private AutoCompleteTextView metUrl;
+    private ImageButton mbtUrlClear;
+
     private boolean mPageFinishedLoading;
     private LifeState mLifeState = LifeState.Init;
     private Set<String> mAppPickersUrls = new HashSet<String>();
@@ -122,6 +145,16 @@ public class ContentView extends FrameLayout {
     // We only want to handle this once per link. This prevents 3+ dialogs appearing for some links, which is a bad experience. #224
     private boolean mHandledAppPickerForCurrentUrl = false;
     private boolean mUsingLinkBubbleAsDefaultForCurrentUrl = false;
+
+    private SearchURLCustomAdapter mAdapter;
+    private SearchURLSuggestions mFirstSuggestedItem;
+
+    private float mOneRowAutoSuggestionsSize = 53f;
+    private int mRowsToShowOnAutoSuggestions = 5;
+
+    private boolean mApplyAutoSuggestionToUrlString = true;
+    private boolean mSetTheRealUrlString = true;
+    private boolean mFirstTimeUrlTyped = true;
 
     public ContentView(Context context) {
         this(context, null);
@@ -284,6 +317,68 @@ public class ContentView extends FrameLayout {
         return d;
     }
 
+    // Checks if we have added that suggestion already
+    private boolean suggestedAlreadyAdded(String urlSuggestion, List<SearchURLSuggestions> suggestionsList) {
+        for (SearchURLSuggestions suggestion: suggestionsList) {
+            if (urlSuggestion.equals(suggestion.Name)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // The function configures the urlBar
+    private void configureUrlBar(String urlAsString) {
+        // Set the current URL to the search URL
+        metUrl = (AutoCompleteTextView) findViewById(R.id.autocomplete_top500websites);
+
+        metUrl.setDropDownWidth(getResources().getDisplayMetrics().widthPixels);
+        metUrl.setText(urlAsString);
+        mFirstTimeUrlTyped = true;
+        metUrl.addTextChangedListener(murlTextWatcher);
+        metUrl.setOnFocusChangeListener(murlOnFocusChangeListener);
+        metUrl.setOnItemClickListener(murlOnItemClickListener);
+        metUrl.setOnEditorActionListener(murlActionListener);
+
+        List<SearchURLSuggestions> suggestionsList = new ArrayList<SearchURLSuggestions>();
+        // Fill suggestion list with history URL's
+        List<HistoryRecord> historyRecords = MainApplication.sDatabaseHelper.getAllHistoryRecords();
+        for (HistoryRecord historyRecord : historyRecords) {
+            String historyUrl = Util.getUrlWithoutHttpHttpsWww(getContext(), historyRecord.getUrl());
+            // Looking on duplications
+            if (suggestedAlreadyAdded(historyUrl, suggestionsList)) {
+                continue;
+            }
+            SearchURLSuggestions suggestion = new SearchURLSuggestions();
+            suggestion.Name = historyUrl;
+            suggestion.Value = getContext().getString(R.string.top_500_prepend) + " <font color=" +
+                    getContext().getString(R.string.url_bar_constraint_text_color) + ">" + suggestion.Name + "</font>";
+            suggestion.EngineToUse = SearchURLSuggestions.SearchEngine.NONE;
+            suggestionsList.add(suggestion);
+        }
+        // Set an adapter for search URL control for top 500 websites
+        String[] top500websites = getResources().getStringArray(R.array.top500websites);
+        for (int i = 0; i < top500websites.length; i++) {
+            // Looking on duplications
+            if (suggestedAlreadyAdded(top500websites[i], suggestionsList)) {
+                continue;
+            }
+            SearchURLSuggestions suggestion = new SearchURLSuggestions();
+            suggestion.Name = top500websites[i];
+            suggestion.Value = getContext().getString(R.string.top_500_prepend) + " <font color=" +
+                    getContext().getString(R.string.url_bar_constraint_text_color) + ">" + suggestion.Name + "</font>";
+            suggestion.EngineToUse = SearchURLSuggestions.SearchEngine.NONE;
+            suggestionsList.add(suggestion);
+        }
+        mAdapter = new SearchURLCustomAdapter(getContext(), android.R.layout.simple_list_item_1, suggestionsList);
+        mAdapter.mRealUrlBarConstraint = urlAsString;
+        //
+        metUrl.setAdapter(mAdapter);
+
+        mAdapter.registerDataSetObserver(mDataSetObserver);
+    }
+
     @SuppressLint("SetJavaScriptEnabled")
     void configure(String urlAsString, TabView ownerTabView, long urlLoadStartTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
         mLifeState = LifeState.Alive;
@@ -310,7 +405,16 @@ public class ContentView extends FrameLayout {
         mTitleTextView = (CondensedTextView) findViewById(R.id.title_text);
         mUrlTextView = (CondensedTextView) findViewById(R.id.url_text);
 
+        // Set on click listeners to show the search URL control
+        mTitleTextView.setOnClickListener(mOnURLEnterClicked);
+        mUrlTextView.setOnClickListener(mOnURLEnterClicked);
+
         findViewById(R.id.content_text_container).setOnTouchListener(mOnTextContainerTouchListener);
+
+        configureUrlBar(urlAsString);
+
+        mbtUrlClear = (ImageButton) findViewById(R.id.search_url_clear);
+        mbtUrlClear.setOnClickListener(mbtClearUrlClicked);
 
         mCaretView = findViewById(R.id.caret);
 
@@ -363,6 +467,67 @@ public class ContentView extends FrameLayout {
 
         updateColors(null);
     }
+
+    private void WorkWithURL(String strUrl, SearchURLSuggestions.SearchEngine selectedSearchEngine, boolean fromGoAction) {
+
+        metUrl.dismissDropDown();
+
+        strUrl = strUrl.trim();
+        String strUrlWithPrefix = strUrl;
+        if (!strUrl.startsWith(getContext().getString(R.string.http_prefix)) &&
+                !strUrl.startsWith(getContext().getString(R.string.https_prefix)))
+            strUrlWithPrefix = getContext().getString(R.string.http_prefix) + strUrl;
+
+        if (SearchURLSuggestions.SearchEngine.NONE == selectedSearchEngine && Patterns.WEB_URL.matcher(strUrlWithPrefix).matches()) {
+            LoadWebPage(strUrlWithPrefix);
+        } else if (SearchURLSuggestions.SearchEngine.NONE == selectedSearchEngine && fromGoAction) {
+            if (null != mFirstSuggestedItem) {
+                WorkWithURL(strUrl, mFirstSuggestedItem.EngineToUse, false);
+            }
+        } else if (SearchURLSuggestions.SearchEngine.DUCKDUCKGO == selectedSearchEngine) {
+            // Make the search using duck duck go
+            try {
+                String strQuery = getContext().getString(R.string.duck_duck_search_engine) + URLEncoder.encode(strUrl, "UTF-8");
+                LoadWebPage(strQuery);
+            } catch (IOException ioe) {
+                Log.e(TAG, ioe.getMessage(), ioe);
+            }
+        }
+        else if (SearchURLSuggestions.SearchEngine.GOOGLE == selectedSearchEngine) {
+            // Make the search using google
+            try {
+                String strQuery = getContext().getString(R.string.google_search_engine) + URLEncoder.encode(strUrl, "UTF-8");
+                LoadWebPage(strQuery);
+            } catch (IOException ioe) {
+                Log.e(TAG, ioe.getMessage(), ioe);
+            }
+        }
+        else if (SearchURLSuggestions.SearchEngine.YAHOO == selectedSearchEngine) {
+            // Make the search using yahoo
+            try {
+                String strQuery = getContext().getString(R.string.yahoo_search_engine) + URLEncoder.encode(strUrl, "UTF-8");
+                LoadWebPage(strQuery);
+            } catch (IOException ioe) {
+                Log.e(TAG, ioe.getMessage(), ioe);
+            }
+        }
+        else if (SearchURLSuggestions.SearchEngine.AMAZON == selectedSearchEngine) {
+            // Make the search using amazon
+            try {
+                String strQuery = getContext().getString(R.string.amazon_search_engine) + URLEncoder.encode(strUrl, "UTF-8");
+                LoadWebPage(strQuery);
+            } catch (IOException ioe) {
+                Log.e(TAG, ioe.getMessage(), ioe);
+            }
+        }
+
+        mToolbarLayout.bringToFront();
+    }
+
+    private void LoadWebPage(String strUrl) {
+        updateAndLoadUrl(strUrl);
+    }
+
 
     Integer themeColor;
     void updateColors(Integer color) {
@@ -864,11 +1029,14 @@ public class ContentView extends FrameLayout {
                     }
                 }
 
-                // if no title is set, display nothing rather than "Loading..." #265
+                // If no title is set, display nothing rather than "Loading..." #265
                 if (title == null) {
                     mTitleTextView.setText(null);
                 }
             }
+
+            // Adding the URL to the auto suggestions list
+            mAdapter.addUrlToAutoSuggestion(currentUrl.toString());
 
             MainApplication.saveUrlInHistory(getContext(), null, currentUrl.toString(), currentUrl.getHost(), title);
             //mDelayedAutoContentDisplayLinkLoadedScheduled = true;
@@ -899,6 +1067,165 @@ public class ContentView extends FrameLayout {
         @Override
         public void onClick(View v) {
             showSelectShareMethod(mWebRenderer.getUrl().toString(), true);
+        }
+    };
+
+    OnClickListener mbtClearUrlClicked = new View.OnClickListener() {
+        public void onClick(View v) {
+            metUrl.setText("");
+            mbtUrlClear.setEnabled(false);
+            mbtUrlClear.getBackground().setAlpha(50);
+        }
+    };
+
+    OnFocusChangeListener murlOnFocusChangeListener = new OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View view, boolean b) {
+            if (!b) {
+                // Show the toolbar again if lost focus and hide the soft keyboard
+                findViewById(R.id.content_toolbar).bringToFront();
+
+                InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(metUrl.getWindowToken(),
+                        InputMethodManager.RESULT_UNCHANGED_SHOWN);
+            }
+        }
+    };
+
+    AdapterView.OnItemClickListener murlOnItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            // Hide the soft keyboard
+            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(metUrl.getWindowToken(),
+                    InputMethodManager.RESULT_UNCHANGED_SHOWN);
+
+            SearchURLSuggestions urlSuggestion = (SearchURLSuggestions)adapterView.getItemAtPosition(i);
+
+            WorkWithURL(urlSuggestion.Name, urlSuggestion.EngineToUse, false);
+        }
+    };
+
+    TextView.OnEditorActionListener murlActionListener = new TextView.OnEditorActionListener() {
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_GO) {
+                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(metUrl.getWindowToken(),
+                        InputMethodManager.RESULT_UNCHANGED_SHOWN);
+
+                if (null != mFirstSuggestedItem) {
+                    String strUrl = mFirstSuggestedItem.Name;
+
+                    WorkWithURL(strUrl, SearchURLSuggestions.SearchEngine.NONE, true);
+                }
+            }
+
+            return false;
+        }
+    };
+
+    DataSetObserver mDataSetObserver = new DataSetObserver() {
+        @Override
+        public void onChanged() {
+            super.onChanged();
+            if (mAdapter.getCount() > 0) {
+                mFirstSuggestedItem = (SearchURLSuggestions)mAdapter.getItem(0);
+            }
+            DisplayMetrics metrics = getContext().getResources().getDisplayMetrics();
+            int pixels = 0;
+            if (mAdapter.getCount() > mRowsToShowOnAutoSuggestions) {
+                float dp = mOneRowAutoSuggestionsSize * mRowsToShowOnAutoSuggestions;
+                float fpixels = metrics.density * dp;
+                pixels = (int) (fpixels + 0.5f);
+            }
+            else {
+                float dp = mOneRowAutoSuggestionsSize;
+                float fpixels = metrics.density * dp;
+                pixels = (int) (fpixels + 0.5f) * mAdapter.getCount();
+            }
+
+            metUrl.setDropDownHeight(pixels);
+
+            // Set an autosuggestion
+            String urlText = metUrl.getText().toString();
+            if (mApplyAutoSuggestionToUrlString && 0 != urlText.length() && null != mFirstSuggestedItem &&
+                    SearchURLSuggestions.SearchEngine.NONE == mFirstSuggestedItem.EngineToUse) {
+                String suggestedString = mFirstSuggestedItem.Name;
+                String stringToAppend = "";
+                if (suggestedString.length() > urlText.length()) {
+                    stringToAppend = suggestedString.substring(urlText.length());
+                    String toCompare = suggestedString.substring(0, urlText.length());
+                    if (toCompare.equals(urlText)) {
+                        mSetTheRealUrlString = false;
+                        metUrl.setText(urlText + stringToAppend);
+                        mSetTheRealUrlString = true;
+                        metUrl.setSelection(urlText.length(), urlText.length() + stringToAppend.length());
+                    }
+                }
+            }
+        }
+    };
+
+    TextWatcher murlTextWatcher = new TextWatcher() {
+        private String mBeforeTextString;
+        private boolean mApplyAutoSuggestion = true;
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            mBeforeTextString = metUrl.getText().toString();
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            String urlText = metUrl.getText().toString();
+            if (!mFirstTimeUrlTyped &&
+                    (urlText.equals(mAdapter.mRealUrlBarConstraint) || mAdapter.mRealUrlBarConstraint.length() > urlText.length())) {
+                mApplyAutoSuggestion = false;
+            }
+            else {
+                mApplyAutoSuggestion = true;
+            }
+            if (mSetTheRealUrlString) {
+                mAdapter.mRealUrlBarConstraint = urlText;
+            }
+            mFirstTimeUrlTyped = false;
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            String urlText = metUrl.getText().toString();
+            if (!mApplyAutoSuggestion) {
+                mApplyAutoSuggestionToUrlString = false;
+            }
+            else {
+                mApplyAutoSuggestionToUrlString = true;
+            }
+            if (urlText.length() != 0) {
+                mbtUrlClear.setEnabled(true);
+                mbtUrlClear.getBackground().setAlpha(255);
+            }
+            else {
+                mbtUrlClear.setEnabled(false);
+                mbtUrlClear.getBackground().setAlpha(50);
+            }
+        }
+    };
+
+    OnClickListener mOnURLEnterClicked = new OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            metUrl.setText(mWebRenderer.getUrl().toString());
+            mFirstTimeUrlTyped = true;
+            // Bring the search URL layout on top
+            findViewById(R.id.content_edit_url).bringToFront();
+
+            // Request the focus for the search URL control
+            metUrl.requestFocus();
+            metUrl.selectAll();
+            // Show the soft keyboard
+            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(metUrl, InputMethodManager.SHOW_IMPLICIT);
         }
     };
 
