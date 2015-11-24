@@ -1220,7 +1220,7 @@ public class ContentView extends FrameLayout {
             // Bring the search URL layout on top
             findViewById(R.id.content_edit_url).bringToFront();
 
-            //request the focus for the search URL control
+            // Request the focus for the search URL control
             metUrl.requestFocus();
             metUrl.selectAll();
             // Show the soft keyboard
