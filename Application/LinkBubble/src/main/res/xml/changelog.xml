@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
     <release version="1.6.8">
+        <change>NEW: Bubble URL bar and suggestions when typing.</change>
         <change>IMPROVEMENT: Flick tracking improvements.</change>
         <change>IMPROVEMENT: Tweaked some animations for better performance around collapsing and expanding bubbles.</change>
         <change>BUG FIX: Select element crash regression on some devices.</change>

@@ -461,6 +461,8 @@ public class MainApplication extends Application {
             Log.d("langcheck", String.format(getString(R.string.undo_close_tab_title), blerg));
             Log.d("langcheck", getResources().getQuantityString(R.plurals.restore_tabs_from_previous_session, 1, 1));
             Log.d("langcheck", getResources().getQuantityString(R.plurals.restore_tabs_from_previous_session, 2, 2));
+            Log.d("langcheck", String.format(getString(R.string.search_for_with), blerg, blerg));
+            Log.d("langcheck", String.format(getString(R.string.search_for_on), blerg, blerg));
         }
     } */
 }
