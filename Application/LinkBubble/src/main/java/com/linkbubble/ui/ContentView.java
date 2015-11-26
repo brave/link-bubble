@@ -382,6 +382,12 @@ public class ContentView extends FrameLayout {
         mbtUrlClear.setOnClickListener(mbtClearUrlClicked);
     }
 
+    void setTabAsActive () {
+        if (mUrlTextView.getText().toString().equals(getContext().getString(R.string.empty_bubble_page))) {
+            mTitleTextView.performClick();
+        }
+    }
+
     @SuppressLint("SetJavaScriptEnabled")
     void configure(String urlAsString, TabView ownerTabView, long urlLoadStartTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
         mLifeState = LifeState.Alive;
