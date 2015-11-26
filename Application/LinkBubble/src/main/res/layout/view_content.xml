@@ -65,7 +65,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:paddingLeft="8dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
             <com.linkbubble.ui.CondensedTextView
                 android:layout_width="wrap_content"
@@ -73,6 +76,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#555555"
                 android:singleLine="true"
+                android:clickable="false"
+                android:duplicateParentState="true"
                 android:id="@+id/title_text"/>
 
             <com.linkbubble.ui.CondensedTextView
@@ -82,6 +87,8 @@
                 android:paddingBottom="2dp"
                 android:textColor="#555555"
                 android:singleLine="true"
+                android:clickable="false"
+                android:duplicateParentState="true"
                 android:id="@+id/url_text"/>
 
         </LinearLayout>
