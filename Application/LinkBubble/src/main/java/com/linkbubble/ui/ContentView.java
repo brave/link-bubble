@@ -377,6 +377,9 @@ public class ContentView extends FrameLayout {
         metUrl.setAdapter(mAdapter);
 
         mAdapter.registerDataSetObserver(mDataSetObserver);
+
+        mbtUrlClear = (ImageButton) findViewById(R.id.search_url_clear);
+        mbtUrlClear.setOnClickListener(mbtClearUrlClicked);
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -412,9 +415,6 @@ public class ContentView extends FrameLayout {
         findViewById(R.id.content_text_container).setOnTouchListener(mOnTextContainerTouchListener);
 
         configureUrlBar(urlAsString);
-
-        mbtUrlClear = (ImageButton) findViewById(R.id.search_url_clear);
-        mbtUrlClear.setOnClickListener(mbtClearUrlClicked);
 
         mCaretView = findViewById(R.id.caret);
 
@@ -827,6 +827,9 @@ public class ContentView extends FrameLayout {
                 return;
             }
 
+            if (url.equals(getContext().getString(R.string.empty_bubble_page))) {
+                mTitleTextView.setTextColor(0xFFFFFFFF);
+            }
             mTitleTextView.setText(title);
             if (MainApplication.sTitleHashMap != null && url != null) {
                 MainApplication.sTitleHashMap.put(url, title);
@@ -1035,10 +1038,14 @@ public class ContentView extends FrameLayout {
                 }
             }
 
-            // Adding the URL to the auto suggestions list
-            mAdapter.addUrlToAutoSuggestion(currentUrl.toString());
-
-            MainApplication.saveUrlInHistory(getContext(), null, currentUrl.toString(), currentUrl.getHost(), title);
+            if (!currentUrl.toString().equals(getContext().getString(R.string.empty_bubble_page))) {
+                // Adding the URL to the auto suggestions list
+                mAdapter.addUrlToAutoSuggestion(currentUrl.toString());
+                MainApplication.saveUrlInHistory(getContext(), null, currentUrl.toString(), currentUrl.getHost(), title);
+            }
+            else {
+                mTitleTextView.performClick();
+            }
             //mDelayedAutoContentDisplayLinkLoadedScheduled = true;
             //Log.d(TAG, "set mDelayedAutoContentDisplayLinkLoadedScheduled=" + mDelayedAutoContentDisplayLinkLoadedScheduled);
             postDelayed(mDelayedAutoContentDisplayLinkLoadedRunnable, Constant.AUTO_CONTENT_DISPLAY_DELAY);
@@ -1215,7 +1222,12 @@ public class ContentView extends FrameLayout {
     OnClickListener mOnURLEnterClicked = new OnClickListener() {
         @Override
         public void onClick(View view) {
-            metUrl.setText(mWebRenderer.getUrl().toString());
+            if (!mWebRenderer.getUrl().toString().equals(getContext().getString(R.string.empty_bubble_page))) {
+                metUrl.setText(mWebRenderer.getUrl().toString());
+            }
+            else {
+                metUrl.setText("");
+            }
             mFirstTimeUrlTyped = true;
             // Bring the search URL layout on top
             findViewById(R.id.content_edit_url).bringToFront();
@@ -1344,6 +1356,7 @@ public class ContentView extends FrameLayout {
                     .setChecked(mWebRenderer.getUserAgentString(mContext).equals(Constant.USER_AGENT_CHROME_DESKTOP));
 
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_copy_link, Menu.NONE, resources.getString(R.string.action_copy_to_clipboard));
+            mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_new_bubble, Menu.NONE, resources.getString(R.string.action_new_bubble));
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_close_tab, Menu.NONE, resources.getString(R.string.action_close_tab));
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_settings, Menu.NONE, resources.getString(R.string.action_settings));
             mOverflowPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -1402,6 +1415,11 @@ public class ContentView extends FrameLayout {
 
                         case R.id.item_stop: {
                             mWebRenderer.stopLoading();
+                            break;
+                        }
+
+                        case R.id.item_new_bubble: {
+                            MainApplication.openLink(getContext(), getContext().getString(R.string.empty_bubble_page), "");
                             break;
                         }
 
@@ -1981,8 +1999,12 @@ public class ContentView extends FrameLayout {
 
     void updateUrlTitleAndText(String urlAsString) {
         String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(urlAsString) : null;
+        boolean showTitleUrl = !urlAsString.equals(getContext().getString(R.string.empty_bubble_page));
         if (title == null) {
             title = mLoadingString;
+        }
+        else if (!showTitleUrl) {
+            mTitleTextView.setTextColor(0xFFFFFFFF);
         }
         mTitleTextView.setText(title);
 
@@ -1992,6 +2014,9 @@ public class ContentView extends FrameLayout {
             mUrlTextView.setText(Constant.WELCOME_MESSAGE_DISPLAY_URL);
         } else {
             mUrlTextView.setText(urlAsString.replace("http://", ""));
+            if (!showTitleUrl) {
+                mUrlTextView.setTextColor(0xFFFFFFFF);
+            }
         }
     }
 

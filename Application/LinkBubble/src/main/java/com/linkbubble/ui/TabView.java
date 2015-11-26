@@ -172,6 +172,10 @@ public class TabView extends BubbleView {
         if (MainController.get() != null) {
             MainController.get().onPageLoaded(this, withError);
         }
+
+        if (mUrl.toString().equals(getContext().getString(R.string.empty_bubble_page))) {
+            performClick();
+        }
     }
 
     public ContentView getContentView() {
