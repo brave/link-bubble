@@ -244,6 +244,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     private void setCurrentTab(TabView tab) {
         if (mCurrentTab == tab) {
+            if (null != mCurrentTab) {
+                mCurrentTab.getContentView().setTabAsActive();
+            }
+
             return;
         }
 
