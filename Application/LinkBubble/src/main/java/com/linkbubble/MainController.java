@@ -722,7 +722,7 @@ public class MainController implements Choreographer.FrameCallback {
 
         Analytics.trackOpenUrl(openedFromAppName);
 
-        if (wasUrlRecentlyLoaded(urlAsString, urlLoadStartTime)) {
+        if (wasUrlRecentlyLoaded(urlAsString, urlLoadStartTime) && !urlAsString.equals(mContext.getString(R.string.empty_bubble_page))) {
             Toast.makeText(mContext, R.string.duplicate_link_will_not_be_loaded, Toast.LENGTH_SHORT).show();
             return null;
         }

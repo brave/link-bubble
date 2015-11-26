@@ -32,6 +32,7 @@
     <string name="action_save_image">Save image</string>
     <string name="action_share">Share</string>
     <string name="action_close_all">Close all</string>
+    <string name="action_new_bubble">New bubble</string>
     <string name="action_close_tab">Close bubble</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Undo</string>
@@ -382,5 +383,6 @@
     <string name="google">Google</string>
     <string name="yahoo">Yahoo</string>
     <string name="amazon">Amazon</string>
+    <string name="empty_bubble_page">file:///android_asset/blank.html</string>
 
 </resources>
