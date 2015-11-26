@@ -255,6 +255,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         MainApplication.postEvent(getContext(), mCurrentTabChangedEvent);
         if (mCurrentTab != null) {
             mCurrentTab.setImitator(mBubbleDraggable);
+            mCurrentTab.getContentView().setTabAsActive();
         }
     }
 
