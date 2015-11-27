@@ -780,11 +780,17 @@ public class MainController implements Choreographer.FrameCallback {
             }
         }
 
+        boolean openedFromItself = false;
+        if (openedFromAppName.equals(Analytics.OPENED_URL_FROM_NEW_TAB)
+                || openedFromAppName.equals(Analytics.OPENED_URL_FROM_HISTORY)) {
+            showAppPicker = true;
+            openedFromItself = true;
+        }
         mCanAutoDisplayLink = true;
         final TabView result = openUrlInTab(urlAsString, urlLoadStartTime, setAsCurrentTab, showAppPicker);
 
         // Show app picker after creating the tab to load so that we have the instance to close if redirecting to an app, re #292.
-        if (showAppPicker && MainApplication.sShowingAppPickerDialog == false) {
+        if (!openedFromItself && showAppPicker && MainApplication.sShowingAppPickerDialog == false) {
             AlertDialog dialog = ActionItem.getActionItemPickerAlert(mContext, resolveInfos, R.string.pick_default_app,
                     new ActionItem.OnActionItemDefaultSelectedListener() {
                         @Override

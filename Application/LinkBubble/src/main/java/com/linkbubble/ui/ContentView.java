@@ -1425,7 +1425,8 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_new_bubble: {
-                            MainApplication.openLink(getContext(), getContext().getString(R.string.empty_bubble_page), "");
+                            MainApplication.openLink(getContext(), getContext().getString(R.string.empty_bubble_page),
+                                    Analytics.OPENED_URL_FROM_NEW_TAB);
                             break;
                         }
 
