@@ -781,8 +781,8 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         boolean openedFromItself = false;
-        if (openedFromAppName.equals(Analytics.OPENED_URL_FROM_NEW_TAB)
-                || openedFromAppName.equals(Analytics.OPENED_URL_FROM_HISTORY)) {
+        if (null != openedFromAppName && (openedFromAppName.equals(Analytics.OPENED_URL_FROM_NEW_TAB)
+                || openedFromAppName.equals(Analytics.OPENED_URL_FROM_HISTORY))) {
             showAppPicker = true;
             openedFromItself = true;
         }
