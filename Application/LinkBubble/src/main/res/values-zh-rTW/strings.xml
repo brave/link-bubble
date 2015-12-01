@@ -32,6 +32,7 @@
     <string name="action_save_image">儲存圖片</string>
     <string name="action_share">分享</string>
     <string name="action_close_all">全部關閉</string>
+    
     <string name="action_close_tab">關閉氣泡</string>
     <string name="action_stop">停止</string>
     <string name="action_undo">復原</string>
@@ -337,5 +338,22 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="welcome_page_ps">PS. 若要關閉這個氣泡，按下返回鍵或按住氣泡將其拖動至關閉用的氣泡即可。</string>
 
     <string name="duplicate_link_will_not_be_loaded">已讀取此連結。忽略重複點擊…</string>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 </resources>

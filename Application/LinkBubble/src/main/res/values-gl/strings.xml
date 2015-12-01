@@ -32,6 +32,7 @@
     <string name="action_save_image">Gardar imaxe</string>
     <string name="action_share">Compartir</string>
     
+    
     <string name="action_close_tab">Pechar burbulla</string>
     
     <string name="action_undo">Desfacer</string>
@@ -266,7 +267,10 @@
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     
-    
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
+    </plurals>
 
     
     
@@ -306,6 +310,23 @@
     
     
 
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
 </resources>

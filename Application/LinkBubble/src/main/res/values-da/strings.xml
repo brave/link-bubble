@@ -32,6 +32,7 @@
     
     <string name="action_share">Del</string>
     <string name="action_close_all">Luk alle</string>
+    
     <string name="action_close_tab">Luk boble</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Fortryd</string>
@@ -337,5 +338,22 @@ Alternativ web renderings metoder, såsom FireFox\'s GeckoView og Chromium vil s
     <string name="welcome_page_ps">PS. For at lukke denne boble, tryk enten på knappen Tilbage eller lav et langt tryk på boblen og træk den hen på Luk boble.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Link allerede indlæst. Ignorerer...</string>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 </resources>

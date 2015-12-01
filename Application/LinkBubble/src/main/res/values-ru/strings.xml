@@ -32,6 +32,7 @@
     <string name="action_save_image">Сохранить изображение</string>
     <string name="action_share">Поделиться</string>
     <string name="action_close_all">Закрыть все</string>
+    
     <string name="action_close_tab">Закрыть пузырь</string>
     <string name="action_stop">Стоп</string>
     <string name="action_undo">Отмена</string>
@@ -337,5 +338,22 @@ Link Bubble.]]></string>
     <string name="welcome_page_ps">P.S. Чтобы закрыть пузырь, нажмите кнопку Назад или смахните его вниз на пузырь закрытия.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Ссылка уже загружена. Пропуск...</string>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 </resources>

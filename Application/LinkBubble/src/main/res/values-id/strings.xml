@@ -39,6 +39,7 @@
     
     
     
+    
 
     
     
@@ -266,7 +267,10 @@
     
 
     
-    
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
+    </plurals>
 
     
     
@@ -306,6 +310,23 @@
     
     
 
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
 </resources>

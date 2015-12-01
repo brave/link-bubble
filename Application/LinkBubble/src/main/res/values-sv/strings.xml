@@ -32,6 +32,7 @@
     
     <string name="action_share">Dela</string>
     <string name="action_close_all">Stäng alla</string>
+    
     <string name="action_close_tab">Stäng bubbla</string>
     <string name="action_stop">Stoppa</string>
     <string name="action_undo">Ångra</string>
@@ -305,7 +306,10 @@ att folk tar det som ett åtagande och blir upprörda när det dröjer av någon
     
 
     
-    
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
+    </plurals>
 
     <string name="content_description_button">Knapp</string>
     <string name="content_description_target_icon">Bubbelmålikon</string>
@@ -346,6 +350,23 @@ att folk tar det som ett åtagande och blir upprörda när det dröjer av någon
     
     
 
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
 </resources>

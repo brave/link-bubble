@@ -1,296 +1,372 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="download_activity_label">Yükleyici</string>
-    
-    <string name="notification_summary">Açık olan tüm sekmeleri kapatmak için dokunun</string>
-    
-    
-    
-    
-    <string name="share_picker_label">Paylaşım Aracı</string>
+    <string name="download_activity_label">İndirici</string>
+    <string name="send_intent_label">Link Bubble ile aç</string>
+    <string name="notification_summary">Açık olan tüm baloncukları gizlemek için dokun</string>
+    <string name="notification_default_summary">Gizlemek için dokun, Tümünü Kapatmak için genişlet</string>
+    <string name="notification_unhide_summary">Göstermek için dokun, Tümünü Kapatmak için genişlet</string>
+    <string name="notification_action_close_all">Tümünü Kapat</string>
+    <string name="notification_action_hide">Gizle</string>
+    <string name="share_picker_label">Paylaşım aracı</string>
 
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
     <string name="cancel">İptal</string>
 
     <string name="action_ok">Tamam</string>
-    
-    <string name="action_remove">Sil</string>
-    <string name="action_cancel">İptal et</string>
+    <string name="action_open">Aç</string>
+    <string name="action_remove">Kaldır</string>
+    <string name="action_cancel">İptal</string>
     <string name="action_clear_data">Verileri temizle</string>
-    <string name="action_use_default">Varsayılan</string>
+    <string name="action_use_default">Varsayılanı kullan</string>
     <string name="action_settings">Seçenekler</string>
     <string name="action_help">Yardım</string>
     <string name="action_reload_page">Yeniden yükle</string>
-    <string name="action_open_in_browser">%1$s saniyede açıldı</string>
-    
-    <string name="action_open_in_new_bubble">Yeni sekmede aç</string>
-    
-    
-    <string name="action_copy_to_clipboard">Linki kopyala</string>
-    
+    <string name="action_open_in_browser">%1$s ile aç</string>
+    <string name="action_request_desktop_site">Masaüstü sitesi iste</string>
+    <string name="action_open_in_new_bubble">Yeni baloncukta aç</string>
+    <string name="action_open_link_in_new_bubble">Bağlantıyı yeni baloncukta aç</string>
+    <string name="action_open_image_in_new_bubble">Resmi yeni baloncukta aç</string>
+    <string name="action_copy_to_clipboard">Bağlantıyı kopyala</string>
+    <string name="action_save_image">Resmi kaydet</string>
     <string name="action_share">Paylaş</string>
     <string name="action_close_all">Tümünü kapat</string>
     
-    
-    
-    
-    
-    <string name="share_via">Paylaş...</string>
-    
+    <string name="action_close_tab">Baloncuğu kapat</string>
+    <string name="action_stop">Durdur</string>
+    <string name="action_undo">Geri al</string>
+    <string name="action_add">Ekle</string>
+    <string name="action_no_recommended">Hayır (önerilen)</string>
+    <string name="share_via">Şununla paylaş...</string>
+    <string name="not_set">Ayarlanmamış</string>
 
-    
-    
-    
+    <string name="error_saving_image">Resmi kaydederken hata.</string>
+    <string name="image_saved">Resim indirildi.</string>
+    <string name="notice_download_started">İndirme başlatıldı.</string>
 
-    
-    
+    <string name="warning">Uyarı!</string>
+    <string name="untrusted_certificate">%1$s sertifikası güvenli değil. Yine de devam edilsin mi?</string>
 
-    <string name="share_invalid_data">Link Bubble geçerli bir URL olmadığı için bu öğeyi paylaşamıyor.</string>
-    <string name="consume_activity_not_found">Uygulama bulunamıyor. Ayarlar ile baloncuk ayarlarını değiştirmeyi deneyin.</string>
-    
+    <string name="share_invalid_data">Link Bubble bu öğeyi geçerli bir URL olmadığı için paylaşamıyor.</string>
+    <string name="consume_activity_not_found">Uygulama bulunamıyor. Ayarlardan baloncuk eylemini değiştirmeyi deneyin.</string>
+    <string name="consume_activity_security_exception">Harici uygulama ile paylaşılamadı.</string>
 
-    
-    
-    
+    <string name="upgrade">Yükselt</string>
+    <string name="upgrade_theme">Başka bir tema mı kullanmak istiyorsun?</string>
+    <string name="upgrade_theme_toolbar">Araç çubuğunu internet sitelerinin rengine uyacak şekilde mi renklendirmek istiyorsun?</string>
 
-    
-    
+    <string name="undo_close_tab_title">%1$s kapatıldı</string>
+    <string name="undo_close_tab_no_title">Sekme kapatıldı</string>
 
     <string name="pick_default_app">Varsayılan uygulamayı seç</string>
     <string name="default_browser_set">Link Bubble varsayılan tarayıcı olarak ayarlandı.</string>
-    
-    
+    <string name="invalid_send_action">Geçerli bağlantı bulunamadı.</string>
+    <string name="unable_to_launch_app">3\'üncü taraf uygulama başlatılamadı.</string>
     <string name="clear_history">Geçmişi temizle</string>
 
     <string name="preference_category_general">Genel</string>
     <string name="preference_category_configuration">Uygulama Kontrolleri</string>
-    
+    <string name="preference_category_configuration2">Yapılandırma</string>
     <string name="preference_category_browser">Tarayıcı</string>
-    <string name="preference_enabled_title">Aktif</string>
-    <string name="preference_auto_content_display_link_loaded_title">Otomatik Genişlet</string>
-    <string name="preference_auto_content_display_link_loaded_summary">Her hangi bir baloncuk yüklenmesi bitince</string>
+    <string name="preference_enabled_title">Etkin</string>
+    <string name="preference_auto_content_display_link_loaded_title">Otomatik genişlet</string>
+    <string name="preference_auto_content_display_link_loaded_summary">Herhangi bir baloncuğun yüklenmesi bitince</string>
 
     <string name="preference_left_consume_bubble_title">Sol baloncuk</string>
     <string name="preference_right_consume_bubble_title">Sağ baloncuk</string>
-    
-    <string name="preference_configure_bubble_title">Baloncuk ayarla</string>
-    <string name="preference_category_debug">Ayıkla</string>
+    <string name="preference_double_tap_title">Bağlantı çift dokunma</string>
+    <string name="preference_configure_bubble_title">Baloncuğu yapılandır</string>
+    <string name="preference_category_debug">Hata ayıkla</string>
     <string name="preference_default_browser">Varsayılan yedek tarayıcı</string>
     <string name="preference_category_redirect_to_browser">Yedek tarayıcıya yönlendir</string>
     <string name="preference_category_fallback_browser">Varsayılan yedek tarayıcı</string>
     <string name="preference_category_other_apps">Diğer uygulamalar</string>
     <string name="preference_default_apps_title">Varsayılan uygulamalar</string>
-    
-    
-    
-    <string name="preference_google_account_redirect_title">Google Hesap yönlendirmesi</string>
-    <string name="preference_google_account_redirect_summary">accounts.google.com linklerini varsayılan yedek tarayıcıya yönlendir</string>
+    <string name="preference_default_apps_summary">Yedek tarayıcı, url-özgü uygulamalar</string>
+    <string name="preference_default_apps_notice_summary">Bir URL\'yi açabilecek bir veya daha fazla tarayıcı olmayan uygulama varsa
+kullanılır.\n\nBir varsayılanı kaldırmak için dokun.</string>
+    <string name="preference_default_apps_notice_no_defaults_summary">Bir URL\'yi açabilecek bir veya daha fazla tarayıcı olmayan uygulama varsa kullanılır,
+böyle bağlantıları açacak varsayılan uygulamayı yapılandırabilirsin.\n\nBu durumda kullanılacak varsayılan uygulama
+bağlantıları Link Bubble ile açtığın zaman yapılandırılır.</string>
+    <string name="preference_google_account_redirect_title">Google Hesabı yönlendirmesi</string>
+    <string name="preference_google_account_redirect_summary">accounts.google.com bağlantılarını varsayılan yedek tarayıcıya yönlendir</string>
     <string name="preference_set_default_browser_title">Varsayılan sistem tarayıcısını ayarla</string>
-    
-    <string name="preference_more">Devamı...</string>
-    <string name="preference_intercept_links_from_title">Linkleri şunlardan yakala</string>
-    
-    <string name="preference_scan_for_youtube_embeds_title">Youtube gömülü videolar için kontrol et</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="preference_clear_browser_cache_title">Özel verileri temizle</string>
+    <string name="preference_set_default_browser_summary">Link Bubble çalışabilmek için varsayılan tarayıcı olarak ayarlanmalıdır. Yapılandırmak için dokun.</string>
+    <string name="preference_more">Daha fazla...</string>
+    <string name="preference_intercept_links_from_title">Bağlantıları şunlardan yakala</string>
+    <string name="preference_intercept_links_from_disabled_for_L">Android 5.0 ile birlikte, Google bu işlev için gerekli API desteğini kaldırdı.</string>
+    <string name="preference_scan_for_youtube_embeds_title">YouTube gömülü videolarını kontrol et</string>
+    <string name="preference_scan_for_youtube_embeds_summary">Gömülü videoları YouTube uygulamasında yüklemek için kısayol göster.</string>
+    <string name="preference_webview_battery_save_title">Pil Tasarrufu Modu (Beta)</string>
+    <string name="preference_webview_battery_save_aggressive_title">Agresif</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Link Bubble küçültüldüğünde web sayfalarını güncellemeyi duraklat.\nYüklenmekte olan sayfaların yüklemesi duraklamadan önce tamamlanır.</string>
+    <string name="preference_webview_battery_save_default_title">Varsayılan</string>
+    <string name="preference_webview_battery_save_default_summary">Ekran kapalıyken web sayfalarını güncellemeyi duraklat ve cihazın kilidi açıkken devam ettir.\nYüklenmekte olan sayfaların yüklemesi duraklamadan önce tamamlanır.</string>
+    <string name="preference_webview_battery_save_off_title">Kapalı</string>
+    <string name="preference_webview_battery_save_off_summary">Web sayfaları her zaman etkindir. YouTube videoları izlerken ve benzeri işlemlerde kullanışlıdır.</string>
+    <string name="preference_theme_title">Tema</string>
+    <string name="preference_theme_light_color">Açık + simge rengi</string>
+    <string name="preference_theme_light_no_color">Açık + nötr renk</string>
+    <string name="preference_theme_dark_color">Koyu + simge rengi</string>
+    <string name="preference_theme_dark_no_color">Koyu + nötr renk</string>
+    <string name="preference_theme_toolbar_title">Araç çubuğunu renklendir</string>
+    <string name="preference_theme_toolbar_summary">İnternet sitelerinin tema rengi/simge vurgu rengi ile uyumlu olması için.</string>
+    <string name="preference_article_mode_title">Okuma Modu</string>
+    <string name="preference_reading_mode_on_wear_title">Wear için Okuma Modu</string>
+    <string name="preference_article_mode_summary">Eylem çubuğundaki düğme ile etkinleşir.</string>
+    <string name="preference_webview_text_zoom_title">Metin boyutu</string>
+    <string name="preference_webview_text_zoom_note">Not: Mevcut baloncuklar \"TAMAM" seçildikten sonra yeni metin boyutu uygulanmış olarak yeniden yüklenecekler.</string>
+    <string name="preference_webview_text_zoom_reloading_current">Yeni metin boyutu seviyesi uygulandı. Mevcut baloncuklar yeniden yükleniyor...</string>
+    <string name="preference_clear_browser_cache_title">Kişisel verileri temizle</string>
     <string name="preference_clear_cache">Önbellek</string>
     <string name="preference_clear_cookies">Çerezler</string>
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="preference_clear_favicons">Site simgeleri</string>
+    <string name="preference_clear_form_data">Form verileri</string>
+    <string name="preference_clear_history">Geçmiş</string>
+    <string name="preference_clear_passwords">Şifreler</string>
+    <string name="preference_incognito_title">Gizli Mod</string>
+    <string name="preference_incognito_summary">Tüm geçmiş ve çerezlerin depolanmasını engelle.</string>
+    <string name="incognito_mode_changed_reloading_current">Gizlilik ayarı değişti. Mevcut baloncuklar yeniden yükleniyor...</string>
+    <string name="preference_user_agent_title">Kullanıcı Aracısı</string>
     <string-array name="preference_user_agent_options">
-        <item>Default</item>
-        <item>Chrome Phone</item>
+        <item>Varsayılan</item>
+        <item>Chrome Telefon</item>
         <item>Chrome Tablet</item>
-        <item>Chrome Desktop</item>
+        <item>Chrome Masaüstü</item>
     </string-array>
 
-    
-    
-    
-    
-    
-    
-    
+    <string name="preference_domains_title">Alan yönlendirmeleri</string>
+    <string name="preference_domains_summary">Her zaman yedek tarayıcıda yüklenecek bağlantıları belirt.</string>
+    <string name="preference_redirects_title">Yedek tarayıcıya yönlendir</string>
+    <string name="preference_add_domain_title">Alan ekle</string>
+    <string name="add_domain_hint">Url sunucusu</string>
+    <string name="add_domain_detail">İnternet sitesi adresinin yalnızca \'ana\' kısmını belirtin. Ör.,
+\"accounts.google.com\" veya \"bbc.co.uk\".</string>
+    <string name="add_domain_error">Geçerli bir URL sunucusu olmadığından, \"%1$s\" eklenemiyor.</string>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="preference_help_title">Yardım</string>
+    <string name="preference_show_welcome_message_title">Başlangıç sayfasını göster</string>
+    <string name="preference_credits_title">Hakkında</string>
+    <string name="preference_osl_title">Açık kaynak lisansları</string>
+    <string name="preference_privacy_policy_title">Gizlilik İlkesi</string>
+    <string name="preference_terms_of_service_title">Hizmet Kullanım Şartları</string>
+    <string name="preference_say_thanks_title">Teşekkürlerini ilet!</string>
+    <string name="preference_say_thanks_summary">Link Bubble\'ı beğendin mi? Lütfen bir Play Store incelemesi yaz.</string>
+    <string name="preference_version_title">Sürüm</string>
+    <string name="preference_version_summary">Neler yeni?</string>
+    <string name="preference_more_title">Daha fazla&#8230;</string>
+    <string name="preference_show_undo_close_tab_title">Kapatılan sekmeyi geri alma iletisi</string>
 
-    
-    
+    <string name="preference_my_other_apps_title">Link Bubble\'dan başka uygulamalar</string>
+    <string name="preference_my_other_apps_summary">Link Bubble\'ı beğendin mi? Neden başka uygulamalarımıza göz atmıyorsun?</string>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="remove_default_title">Varsayılan kaldırılsın mı?</string>
+    <string name="remove_default_message">%1$s %2$s bağlantılarını yükleyen varsayılan uygulama olmaktan çıkarılsın mı?\n\nNot: %2$s bağlantısının bir sonraki
+yüklenişinde yeni bir varsayılan uygulama ayarlayabilirsin.</string>
+    <string name="long_press_unsupported_default_browser">Bu öğe görüntülenemiyor. Bağlantı %1$s ile açılsın mı?</string>
+    <string name="long_press_unsupported_no_default_browser">Bu öğe görüntülenemiyor. Bağlantıyı bir tarayıcı ile aç.</string>
+    <string name="unsupported_scheme_default_browser">Bağlantı türü henüz desteklenmiyor. Web sayfası %1$s ile açılsın mı?</string>
+    <string name="unsupported_scheme_no_default_browser">Bağlantı türü henüz desteklenmiyor. Bağlantıyı bir tarayıcı ile aç.</string>
+    <string name="unsupported_scheme">Bağlantı türü henüz desteklenmiyor.</string>
+    <string name="unsupported_drop_down_default_browser">Bu öğe ile etkileşim kurulamıyor. %1$s ile açılsın mı?</string>
+    <string name="unsupported_drop_down_no_default_browser">Bu öğe ile etkileşim kurulamıyor. Bağlantıyı bir tarayıcı ile aç.</string>
 
-    
-    
+    <string name="consume_category_view">Bağlantıyı görüntüle</string>
+    <string name="consume_category_share">Bağlantıyı gönder/paylaş</string>
 
-    
+    <string name="title_settings">Ayarlar</string>
 
-    
-    
-    
-    
+    <string name="title_youtube_embed_to_load">Oynatılacak videoyu seç</string>
+    <string name="loading_youtube_embed_info">YouTube videoları hakkında bilgi alınıyor...</string>
+    <string name="youtube_embed_error_title">Eyvah</string>
+    <string name="youtube_embed_error_summary">YouTube videoları hakkında şu anda bilgi alınamıyor. Lütfen daha sonra tekrar dene.</string>
 
-    
+    <string name="loading">Yükleniyor...</string>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="histroy_unread">Okunmamış</string>
+    <string name="histroy_all">Tümü</string>
+    <string name="history">Geçmiş</string>
+    <string name="erase_all_history_title">Tümü silinsin mi?</string>
+    <string name="erase_all_history_message">Tüm Link Bubble tarama geçmişi silinsin mi?</string>
+    <string name="empty">Boş</string>
+    <string name="history_already_empty">Geçmiş zaten boş</string>
+    <string name="private_data_cleared">Kişisel veriler temizlendi</string>
+    <string name="private_data_cleared_reloading_current">Kişisel veriler temizlendi. Mevcut baloncuklar yeniden yükleniyor...</string>
+    <string name="user_agent_changed_reloading_current">Kullanıcı Aracısı değişti. Mevcut baloncuklar yeniden yükleniyor...</string>
+    <string name="theme_toolbar_reloading_current">Renkli araç çubuğu ayarı değişti. Mevcut baloncuklar yeniden yükleniyor...</string>
+    <string name="article_mode_changed_reloading_current">Okuma Modu ayarı değişti. Mevcut baloncuklar yeniden yükleniyor...</string>
+    <string name="link_loaded_with_app">%1$s ile yüklendi</string>
+    <string name="link_redirected">Şuna yönlendiriliyor: %1$s</string>
 
-    
+    <string name="tampered_apk">Link Bubble kopyanız üzerinde yasa dışı olarak değişiklik yapılmış ve dolayısıyla güvenilir şekilde çalışamayacak. Lütfen Play Store\'dan yeniden yükleyin.</string>
 
-    
-    
+    <string name="bubble_link_copied_to_clipboard">Baloncuk bağlantısı panoya kopyalandı.</string>
+    <string name="link_copied_to_clipboard">Bağlantı panoya kopyalandı.</string>
 
-    
-    
-    
-    
-    
-    
-    
+    <string name="stat_saves_you">bağlantı başına</string>
+    <string name="stat_has_saved_you">şu ana kadar</string>
+    <string name="stat_so_far">tasarruf etti</string>
+    <string name="stat_per_link">tasarruf ediyor</string>
+    <string name="time_seconds">saniye</string>
+    <string name="time_minutes">dakika</string>
+    <string name="time_hours">saat</string>
 
-    
+    <string name="confirm_title">Onayla</string>
 
-    
+    <string name="no_default_browser">Sistemde hiçbir varsayılan tarayıcı bulunamadı.</string>
 
-    
-    
+    <string name="title_changelog">Değişiklik günlüğü</string>
+    <string name="changelog_close">Kapat</string>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="faq_close_tab_question">Bir sekmeyi nasıl hızlıca kapatabilirim?</string>
+    <string name="faq_close_tab_answer">Telefonunun Geri tuşuna basmak en hızlı yoldur. Bir diğer iyi yol ise sekmeyi Kapat düğmesine sürüklemektir.</string>
+    <string name="faq_back_button_minimize_question">Bence Geri tuşuna basmak tarayıcıyı küçültmeli!</string>
+    <string name="faq_back_button_minimize_answer"><![CDATA[Link Bubble\'ı cihazın Geri tuşuna basarak küçültmek uygulanabilir değildir.
+Aşağıdaki duruma göz atın:<br/>
+1). ornek.com/sayfa1 ilk sekmede yüklüdür.<br/>
+2). Bu sayfada bir bağlantıya tıklarsın, ve aynı sekmede ornek.com/sayfa2 yüklenir.<br/>
+3). Şimdi 1\'inci adımdaki bağlantıya gitmek istersin.<br/><br/>
+Cihazın Geri tuşu Link Bubble\'ı küçültürken bunu nasıl yapabilirsin? Sekmede bulunan küçük geri işaretine basmak
+uygulanabilir değildir.<br/><br/>
+Link Bubble bir tarayıcıdır, ve Android tarayıcıları öteden beri süregelen Geri tuşuna basıldığında
+ya URL yığınında geri gitmeyi, ya da öyle bir yığın yoksa mevcut sayfayı kapatmayı öngören bir standardı benimsemişlerdir.
+Link Bubble bu standardı takip eder.]]></string>
+    <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble bağlantıları yakalamıyor!]]></string>
+    <string name="faq_app_internal_browser_answer"><![CDATA[Bunun 3 sebebi vardır:<br/>
+1). Link Bubble dışında başka bir tarayıcı varsayılan olarak ayarlıdır. Bunu değiştirmek için Link Bubble Ayarları
+içinde \"Varsayılan sistem tarayıcısını ayarla\" seçeneğine bak.<br/>
+2). Link Bubble mevcut uygulamadaki bağlantıları yakalamayacak şekilde yapılandırılmıştır. Link Bubble Ayarları
+içinde \"Bağlantıları şunlardan yakala\" seçeneğine bak.<br/>
+3). Talon, Reddit is Fun ve diğer bazı uygulamaların içinde bağlantıları işleyen tarayıcılar bulunur. O uygulamanın ayarlarını kontrol edip
+\"Harici tarayıcıyı\" etkinleştirin veya \"Bütünleşik tarayıcıyı\" devre dışı bırak.
+<br/><br/>Not: Chrome gibi diğer tarayıcı uygulamaları bağlantıları kendileri açacak şekilde doğrudan kodlanmıştır, bu yüzden Link Bubble
+diğer tarayıcı uygulamalarından tıklanan bağlantıları açamaz.
+]]></string>
+    <string name="faq_article_mode_question">Okuma Modu\'nu nasıl kullanırım? Neden bazı bağlantılar çalışmıyor?</string>
+    <string name="faq_article_mode_answer"><![CDATA[Öncelikle, Okuma Modu\'nun etkin olduğundan emin ol (Ayarlar -> Uygulama Kontrolleri / Daha fazla&#8230; -> Okuma Modu).<br/><br/>
+Bu noktadan itibaren, Okuma Modu mevcut sekmede kullanılabilir olduğunda, eylem çubuğunda Okuma Modu simgesi görüntülenecektir (Paylaş düğmesinin yanında).
+Bu simgenin yalnızca bağlantı yüklenmesi tamamlandığında ve yalnızca Link Bubble Okuma Modu içeriğini bağlantıdan başarıyla ayıkladığında görüntülendiğinin farkında ol.<br/><br/>
+Not: İnternetten içerik ayıklamak güvenilir bir süreç değildir, ve %100 isabetle çalışmayabilir. İnternetin hareketli ve durmadan değişen doğası göz önüne alındığında,
+bu konuda yapılacak çok az şey vardır.]]></string>
+    <string name="faq_future_features_question">Yer işaretleri, sık kullanılanlar, eklentiler vs. desteği ekleyecek misiniz?</string>
+    <string name="faq_future_features_answer">Asla asla deme, ancak şimdilik Link Bubble sadece başka uygulamalardan yüklenen bağlantıları en iyi
+şekilde yüklemeye ve tüketmeye odaklanıyor.</string>
+    <string name="faq_translations_question">Uygulamanın çevirisine yardım edebilir miyim?</string>
+    <string name="faq_translations_answer"><![CDATA[Çeviri desteğini en kısa zamanda eklemeyi umuyorum.<br/><br/>Yaptığımda, mutlaka Google+ (+Link Bubble)
+üzerinden çeviri yardımı için çağrıda bulunacağım, o yüzden gözün yayınımın üzerinde olsun.]]></string>
+    <string name="faq_roadmap_question">Bir özellik yol haritası yayımlıyor musun? Yaklaşan özellikleri oylayabilir miyim?</string>
+    <string name="faq_roadmap_answer">Rekabetçi sebepler yüzünden, iki sorunun da cevabı maalesef \'hayır\'.</string>
+    <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble şimdilik yalnızca Google Play üzerinden satın alımları destekliyor.<br/><br/>Ek
+satın alım yöntemleri umarım ki gelecekte eklenecek (Google Play Geliştirici Programı Politikaları\'nı ihlal etmediğini varsayarak).]]></string>
+    <string name="faq_cant_type_url_question">Neden ziyaret etmek istediğim bağlantının adını yazamıyorum?</string>
+    <string name="faq_cant_type_url_answer"><![CDATA[Bu tamamen bu şekilde amaçlanmıştır. Link Bubble tarayıcıların yerini tümüyle almak için değil, diğer uygulamalardaki bağlantıları
+mümkün olduğu kadar şık bir biçimde, kolayca ve hızlıca yükleyip görüntülemek için tasarlandı.<br/><br/>Link Bubble içinde yeni bir url yüklemek istiyorsan,
+bir sayfayı Google Now\'da arayıp sonucu Link Bubble ile yüklemek bunun için harika bir yoldur.<br/><br/>Sık kullanılanları
+hızlıca yüklemek için, Chrome Favoriler widget\'ını çok faydalı buluyorum.]]></string>
+    <string name="faq_copy_text_question">Neden bir web sayfasından metin kopyalayamıyorum?</string>
+    <string name="faq_copy_text_answer"><![CDATA[Maalesef Android system sınırlamaları bunun çalışmasına engel oluyor.<br/><br/>Teknik cevap:
+Kopyalama işlevi Android WebView bir Etkinlik içinden kullanıldığında çalışır, ancak Servis içinden çalışmaz (Link Bubble bunu kullanır).]]></string>
+    <string name="faq_translucent_status_bar_question">Uygulama saydam durum çubuğunun üzerine neden çizim yapmıyor?</string>
+    <string name="faq_translucent_status_bar_answer">Maalesef Android sistem kısıtlamaları buna engel oluyor.</string>
+    <string name="faq_beta_programme_question">Bir beta programı var mı? Nasıl katılabilirim?</string>
+    <string name="faq_beta_programme_answer">Beta programıyla ilgili detaylar zamanla duyurulacaktır. Duyurular için gözün benim Google+ (+Link Bubble) yayınımın üzerinde olsun.</string>
+    <string name="faq_low_spec_performance_question">Link Bubble neden Nexus S / Galaxy S1 / Moto G sınıfı cihazımda yavaş çalışıyor?</string>
+    <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble kaynakları yoğun olarak kullanan bir uygulama, ve bunun sonucunda düşük özellikli
+cihazlar uygulamayı daha güçlü cihazlara kadar iyi çalıştırmakta zorlanabilir. Gelecek güncellemeler Link Bubble\'ın
+performansını geliştirmeyi hedefliyor, ancak gerçekçi olmak gerekirse bu alanda yapılabilecek çok az şey var.<br/><br/>Teknik cevap: Temel olarak, Link Bubble
+çalışmak için bir Hizmet ve WebView kullanımına ihtiyaç duyar. Çoğunlukla birkaç WebView ve hatta birkaç Hizmet daha mevcuttur.
+Doğal olarak, bu öğeleri tahsis etmek (özellikle WebView\'lar için) <i>çok</i> fazla bellek/kaynak tüketir. Düşük özellikli cihazlar genellikle
+Link Bubble\'ın ihtiyaç duyduğundan daha az belleğe sahiptir, ve bu yüzden çöp toplama işlemlerinin sıklıkla tetiklenmesi performansı olumsuz etkiler.
+Örnek olarak, Nexus S\'nin en yüksek yığın boyutu 48 MB iken, bu değer Nexus 5\'te 192 MB\'dir.]]></string>
+    <string name="faq_crap_webview_question">Bazen web sayfaları doğru görüntülenmiyor veya videolar oynatılmıyor.</string>
+    <string name="faq_crap_webview_answer"><![CDATA[Link Bubble standard Android WebView kullanır, ancak bu maalesef bazen güvenilir değildir.
+FireFox\'un GeckoView\'ı ve Chromium gibi alternatif web işleyici yöntemleri muhtemelen zamanla incelenecektir.
+<br/><br/>Bir internet sayfasının Link Bubble ile düzgün görüntülenemediği zamanlarda, yapılacak en kolay şey o bağlantıyı yüklemek için geleneksel bir tarayıcı kullanmaktır.]]></string>
+    <string name="faq_ongoing_notificaion_question">Devam eden bildirim neden Link Bubble çalışırken sürekli görüntüleniyor?</string>
+    <string name="faq_ongoing_notificaion_answer"><![CDATA[Maalesef bu devam eden bildirim Android İS\'nin Link Bubble\'ı sona erdirmemesini teşvik etmek için
+gereklidir..]]></string>
+    <string name="faq_next_update_eta_question">Bir sonraki güncelleme ne zaman geliyor?</string>
+    <string name="faq_next_update_eta_answer"><![CDATA[Hazır olduğunda!<br/><br/>Bundan daha açık olmak maalesef çok uygulanabilir değil
+(aşağı yukarı bir tahminde bulunmak bile).<br/><br/>Gerçek şu ki, tahminde bulunulduğunda insanlar çoğunlukla onu bir taahhüt
+olarak alıp, herhangi bir sebeple gecikme olursa/olduğunda sinirlenebilirler.]]></string>
+    <string name="faq_close_quickly_question">Link Bubble\'ın çalışmasını nasıl hızlıca durdurabilirim?</string>
+    <string name="faq_close_quickly_answer">Bildirim panelini açmak için ekranın yukarısından kaydır ve \"Link Bubble\" bildirimine tıkla.</string>
+    <string name="faq_change_default_browser_question">Link Bubble\' nasıl varsayılan tarayıcı olarak kaldırabilirim?</string>
+    <string name="faq_change_default_browser_answer">Sistem Ayarları -> Uygulamalar -> İndirilenler -> Link Bubble -> Varsayılanları temizle.</string>
+    <string name="faq_report_bug_question">Bir hata bildir</string>
+    <string name="faq_report_bug_answer"><![CDATA[e-posta]]></string>
 
-    
-    
+    <string name="faq_title">SSS</string>
+    <string name="preference_faq_summary">Uygulama hakkında sorun mu var? Burayı dene.</string>
     <string name="faq_section_general">Genel</string>
+    <string name="faq_section_functionality">Uygulama işlevselliği</string>
+    <string name="faq_section_issues">Sorunlar</string>
+
+    <string name="activity_resolver_use_always">Her zaman</string>
+    <string name="activity_resolver_use_once">Sadece bir kez</string>
+
+    <string name="credits_title">Link Bubble Hakkında</string>
+    <string name="credits_name">Link Bubble</string>
+    <string name="credits_credit">Konsept, tasarım ve programlama</string>
+    <string name="credits_app_copyright">Telif Hakkı 2015, Link Bubble.</string>
+
     
-    
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Önceki oturumdaki sekme geri yüklensin mi?</item>
+        <item quantity="other">Önceki oturumdaki %d sekme geri yüklensin mi?</item>
+    </plurals>
+
+    <string name="content_description_button">Düğme</string>
+    <string name="content_description_target_icon">Baloncuk hedef simgesi</string>
+    <string name="content_description_close_bubble_icon">Baloncuğu kapat simgesi</string>
+    <string name="content_description_link_bubble_logo">Link Bubble logosu</string>
+    <string name="content_description_app_icon">Uygulama simgesi</string>
+    <string name="content_description_youtube_video_thumbnail">YouTube video küçük resmi</string>
+    <string name="content_description_history">Geçmiş</string>
+    <string name="content_description_settings">Ayarlar</string>
+    <string name="content_description_can_go_back">Geri gidebilirsin</string>
+
+    <string name="requesting_location_message">%1$s konumuna erişmek istiyor. İzin verilsin mi?</string>
+
+    <string name="accept_terms_and_privacy"><![CDATA[Devam ederek, Link Bubble
+<a href="http://www.linkbubble.com/terms">hükümlerini</a> ve <a href="http://www.linkbubble.com/privacy">gizlilik ilkesini</a> kabul etmiş olursunuz.]]></string>
+
+    <string name="service_name">Link Bubble İşleyicisi</string>
+    <string name="notification_title">Link Bubble</string>
+
+    <string name="store_listing_title">Link Bubble</string>
+    <string name="store_listing_promo_text">Mobil taramanın doğru yolu.</string>
+    <string name="store_listing_description_title">Link Bubble sadece mobil cihazlar düşünülerek tasarlanmış ve hazırlanmış tamamen yeni bir tarayıcıdır.</string>
+    <string name="store_listing_description_features">Özellikleri şunlardır:
+• Bir uygulama içinde bir bağlantıya tıkladığınızda, Link Bubble web sayfasını arka planda yükleyerek, değerli zamanınızı bir sayfanın yüklenmesini izleyerek boşa harcamak yerine mevcut uygulamanızı kullanmaya devam etmenizi sağlar. Sayfa tamamen yüklendiğinde ekranda görünür.
+• Link Bubble\'ın kaydırma hareketleri bir saniyenin çok az üstünde bir sürede bir bağlantıya tıklayıp bağlantı paylaşmayı veya onu Pocket gibi bir hizmete eklemeyi mümkün kılar!
+• Mevcut uygulamanızdan birden fazla bağlantıyı aynı anda yükleyin.
+• Başka uygulamalara yönlendiren bağlantıları incelikle ele alır. Twitter\'daki bir Instagram bağlantısına tıklamak artık sizi Instagram\'ı açmadan tam ekran bir tarayıcıya yönlendirmeyecek!
+• Sisteminizdeki uygulamalarla derinlemesine bütünleşiktir.
+• Web sayfalarındaki gömülü YouTube videolarını tespit eder, ve YouTube uygulamasındaki o videolara doğrudan bir kısayol sağlar.
+• Link Bubble kullanarak ne kadar zaman tasarruf ettiğinizi açıklayan kullanışlı istatistikler sunar.</string>
+    <string name="store_listing_description_location_permission">Konum izni hakkında: Bu izin sizin bir internet sitesine (gömülü bir harita içerenler gibi) konumunuza erişme izni verebilmeniz için gereklidir. Link Bubble asla konumunuza erişmez.</string>
+
+    <string name="welcome_page_title">Link Bubble\'a Hoş Geldin!</string>
+    <string name="welcome_page_intro_title">Nasıl çalışır?</string>
+    <string name="welcome_page_intro_point_1">Uygulama içinde bir bağlantıya tıkla.</string>
+    <string name="welcome_page_intro_point_2">Ekranın kenarında bir baloncuk belirecek ve bağlantı arka planda yüklenmeye başlayacak. Sayfa yüklenir yüklenmez, görüntülenecek.</string>
+    <string name="welcome_page_intro_end">Bu kadar basit! Link Bubble ile, bağlantıların yönlendirilmesini izlemek ve sayfaların yüklenmesini beklemek yerine, mevcut uygulamanı kullanmaya devam edebilirsin. Harika değil mi?</string>
+    <string name="welcome_page_more_title">Daha fazla göster!</string>
+    <string name="welcome_page_more_pocket_start">Ayrıca bir bağlantıyı hızlıca paylaşabilir veya Pocket gibi bir uygulamaya ekleyebilirsin.</string>
+    <string name="welcome_page_more_pocket_end">Hem eğlenceli hem de kullanışlı duruyor değil mi?</string>
+    <string name="welcome_page_more_also">Link Bubble ayrıca:</string>
+    <string name="welcome_page_more_point_1">Bağlantıları ilgili uygulamaya yönlendirir (ör. Instagram).</string>
+    <string name="welcome_page_more_point_2">Gömülü videoları bulur, böylece onları kolayca YouTube uygulamasında açabilirsin.</string>
+    <string name="welcome_page_more_point_3">Aynı anda çok sayıda baloncuğu yükler.</string>
+    <string name="welcome_page_more_point_4">Tüm uygulamalardaki bağlantıları yükler.</string>
+    <string name="welcome_page_ps">Not: Bu baloncuğu kapatmak için, ya Geri tuşuna bas ya da baloncuğa uzun bas ve Kapat baloncuğuna sürükle.</string>
+
+    <string name="duplicate_link_will_not_be_loaded">Bağlantı zaten yüklü. Yok sayılıyor...</string>
 
     
     
-
-    
-    
-    
-    
-
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-
-    
-
-    
-    
-
-    
-    
-    
-    
-    
-
     
     
     
@@ -304,8 +380,6 @@
     
     
     
-    
-
     
 
 </resources>

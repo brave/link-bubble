@@ -32,6 +32,7 @@
     <string name="action_save_image">Salva immagine</string>
     <string name="action_share">Condividi</string>
     <string name="action_close_all">Chiudi tutto</string>
+    
     <string name="action_close_tab">Chiudi la bolla</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Annulla</string>
@@ -340,5 +341,22 @@ In futuro valuterò usi alternativi di rendering come FireFox, GeckoView e Chrom
     <string name="welcome_page_ps">P.S.: Per chiudere questa bolla, premi il tasto Indietro oppure tieni premuta una bolla e trascinala sulla bolla Chiudi.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Link già caricato. Sarà ignorato...</string>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 </resources>

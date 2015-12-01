@@ -32,6 +32,7 @@
     <string name="action_save_image">Bild speichern</string>
     <string name="action_share">Teilen</string>
     <string name="action_close_all">Alle schließen</string>
+    
     <string name="action_close_tab">Blase schließen</string>
     <string name="action_stop">Anhalten</string>
     <string name="action_undo">Rückgängig</string>
@@ -357,5 +358,22 @@ die Seite geladen ist. Sobald die Seite fertig geladen ist, wird es auf dem Bild
     <string name="welcome_page_ps">PS: Um diese Bubble zu schließen, drücke entweder die Zurück-Schaltfläche oder halte die Bubble gedrückt und verschiebe sie auf die "Schließen"-Bubble.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Link wurde bereits geladen. Ignorieren…</string>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 </resources>
