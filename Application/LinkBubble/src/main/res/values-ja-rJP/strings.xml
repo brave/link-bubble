@@ -32,6 +32,7 @@
     
     <string name="action_share">シェア</string>
     <string name="action_close_all">すべて閉じる</string>
+    
     <string name="action_close_tab">バブルを閉じる</string>
     <string name="action_stop">停止</string>
     
@@ -266,7 +267,10 @@
     
 
     
-    
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
+    </plurals>
 
     <string name="content_description_button">ボタン</string>
     <string name="content_description_target_icon">Bubble ターゲットアイコン</string>
@@ -307,6 +311,23 @@
     <string name="welcome_page_more_point_4">すべてのアプリからリンクを読み込む</string>
     
 
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
 </resources>

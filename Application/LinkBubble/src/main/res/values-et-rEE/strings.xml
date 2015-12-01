@@ -32,6 +32,7 @@
     <string name="action_save_image">Salvesta pilt</string>
     <string name="action_share">Jaga</string>
     <string name="action_close_all">Sulge kõik</string>
+    
     <string name="action_close_tab">Sulge mull</string>
     <string name="action_stop">Peata</string>
     <string name="action_undo">Võta tagasi</string>
@@ -313,5 +314,22 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
     
 
     <string name="duplicate_link_will_not_be_loaded">Link on juba laetud. Ignoreerin...</string>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 </resources>

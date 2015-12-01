@@ -32,6 +32,7 @@
     <string name="action_save_image">บันทึกรูปภาพ</string>
     <string name="action_share">แบ่งปัน</string>
     <string name="action_close_all">ปิดทั้งหมด</string>
+    
     <string name="action_close_tab">ปิดหน้าต่าง</string>
     <string name="action_stop">หยุด</string>
     <string name="action_undo">เลิกทำ</string>
@@ -333,5 +334,22 @@ Link Bubble เป็นเบราว์เซอร์, และเบรา
     <string name="welcome_page_ps">ปล. ในการปิดหน้าต่าง คุณสามารถใช้การกดปุ่มย้อนกลับ หรือกดค้างบนไอคอนหน้าต่าง แล้วโยนมันไปยังปุ่มปิด</string>
 
     <string name="duplicate_link_will_not_be_loaded">ลิงก์ถูกโหลดอยู่แล้ว กำลังละทิ้ง...</string>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 </resources>

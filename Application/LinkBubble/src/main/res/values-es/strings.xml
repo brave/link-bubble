@@ -32,6 +32,7 @@
     <string name="action_save_image">Guardar imagen</string>
     <string name="action_share">Compartir</string>
     <string name="action_close_all">Cerrar todas</string>
+    
     <string name="action_close_tab">Cerrar burbuja</string>
     <string name="action_stop">Detener</string>
     <string name="action_undo">Deshacer</string>
@@ -351,5 +352,22 @@ y la <a href="http://www.linkbubble.com/privacy">política de privacidad</a> de 
     <string name="welcome_page_ps">PD. Para cerrar la burbuja, pulsa el botón Volver o manten pulsado la burbuja y llevarlo a la burbuja de Cierre.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Enlace ya cargado. Ignorando...</string>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 </resources>

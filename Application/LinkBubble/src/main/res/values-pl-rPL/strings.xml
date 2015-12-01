@@ -32,6 +32,7 @@
     <string name="action_save_image">Zapisz obraz</string>
     <string name="action_share">Udostępnij</string>
     <string name="action_close_all">Zamknij wszystko</string>
+    
     <string name="action_close_tab">Zamknij dymek</string>
     <string name="action_stop">Zatrzymaj</string>
     <string name="action_undo">Cofnij</string>
@@ -333,5 +334,22 @@ Uwaga: Wczytywanie treści ze strony jest niedokładnym procesem, który może n
     <string name="welcome_page_ps">P.S. Aby zamknąć ten dymek naciśnij przycisk Wstecz albo przytrzymaj dymek i przeciągnij go do dymku zamykającego.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Link został już wczytany. Ignoruję...</string>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 </resources>

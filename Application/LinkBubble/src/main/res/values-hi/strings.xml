@@ -32,6 +32,7 @@
     
     <string name="action_share">शेयर</string>
     <string name="action_close_all">सभी बंद करे </string>
+    
     <string name="action_close_tab">बबल बंद करे </string>
     <string name="action_stop">बंद </string>
     
@@ -292,7 +293,10 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     
 
     
-    
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
+    </plurals>
 
     <string name="content_description_button">बटन</string>
     <string name="content_description_target_icon">बबल टारगेट आइकॉन </string>
@@ -334,6 +338,23 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="welcome_page_more_point_4">सभी ऐप्स से लिंक्स लोड करे। </string>
     <string name="welcome_page_ps">अनुलेख। बबल्स को बंद करने के दो तरीके हे। या तोह बेक बटन दबाये या फिर बबल को दबा रखते हुए बंद करने वाले बबल तक घसीटे। </string>
 
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
 </resources>

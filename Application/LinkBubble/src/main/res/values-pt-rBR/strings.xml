@@ -32,6 +32,7 @@
     <string name="action_save_image">Salvar imagem</string>
     <string name="action_share">Compartilhar</string>
     <string name="action_close_all">Fechar todas</string>
+    
     <string name="action_close_tab">Fechar bolha</string>
     <string name="action_stop">Parar</string>
     <string name="action_undo">Desfazer</string>
@@ -349,5 +350,22 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="welcome_page_ps">PS. Para fechar esta bolha, pressione o botão Voltar ou aperte e segure na bolha e arraste até a bolha Fechar.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Link já carregado. Ignorando...</string>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 </resources>

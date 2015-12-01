@@ -32,6 +32,7 @@
     
     <string name="action_share">Partager</string>
     <string name="action_close_all">Tout fermer</string>
+    
     <string name="action_close_tab">Fermer la bulle</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Défaire</string>
@@ -275,7 +276,10 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     
-    
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
+    </plurals>
 
     <string name="content_description_button">Bouton</string>
     <string name="content_description_target_icon">Icône de la cible bulle</string>
@@ -316,6 +320,23 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="welcome_page_more_point_4">Charger des liens depuis toutes les applications.</string>
     <string name="welcome_page_ps">PS: Pour fermer cette bulle, appuyez sur le bouton retour ou maintenez appuyé sur la bulle et posez la sur Fermer la bulle.</string>
 
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
 </resources>

@@ -32,6 +32,7 @@
     
     <string name="action_share">分享</string>
     <string name="action_close_all">全部关闭</string>
+    
     <string name="action_close_tab">关闭泡泡</string>
     <string name="action_stop">停止</string>
     <string name="action_undo">撤销</string>
@@ -329,5 +330,22 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="welcome_page_ps">注：若要关闭本泡泡，请按返回键或长按泡泡并拖动到屏幕底部的关闭泡泡中。</string>
 
     <string name="duplicate_link_will_not_be_loaded">已加载该链接，忽略本次点击操作。</string>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 </resources>

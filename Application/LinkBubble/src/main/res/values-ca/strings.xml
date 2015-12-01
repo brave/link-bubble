@@ -32,6 +32,7 @@
     <string name="action_save_image">Guarda la imatge</string>
     <string name="action_share">Comparteix</string>
     <string name="action_close_all">Tanca totes</string>
+    
     <string name="action_close_tab">Tanca la bombolla</string>
     <string name="action_stop">Atura</string>
     <string name="action_undo">Desfés</string>
@@ -314,5 +315,22 @@ poden gestionar una URL, pots configurar l\'aplicació per defecte per carregar 
     <string name="welcome_page_ps">PD: Per tancar aquesta bombolla, premi el botó d\'endarrera o premi la bombolla i arrossegui-la a la bombolla te tancar.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Enllaç ja carregat. Ignorant...</string>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 </resources>

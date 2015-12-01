@@ -32,6 +32,7 @@
     
     <string name="action_share">مشاركة</string>
     <string name="action_close_all">أغلق الكل</string>
+    
     <string name="action_close_tab">إغلاق الفقاعة</string>
     <string name="action_stop">إيقاف</string>
     
@@ -277,7 +278,10 @@
     
 
     
-    
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
+    </plurals>
 
     <string name="content_description_button">زر</string>
     <string name="content_description_target_icon">أيقونة فقاعة الهدف</string>
@@ -317,6 +321,23 @@
     <string name="welcome_page_more_point_4">يحمل العناوين من عدة تطبيقات.</string>
     <string name="welcome_page_ps">ملاحظة:لإغلاق الفقاعة,إما قم بضغط زر الخلف أو قم بسحب الفقاعة إلى زر الإغلاق.</string>
 
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
 </resources>

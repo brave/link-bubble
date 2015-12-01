@@ -32,6 +32,7 @@
     <string name="action_save_image">Afbeelding opslaan</string>
     <string name="action_share">Delen</string>
     <string name="action_close_all">Alles sluiten</string>
+    
     <string name="action_close_tab">Bubbel sluiten</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Ongedaan maken</string>
@@ -359,5 +360,22 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="welcome_page_ps">PS. Deze bubbel kun je sluiten door op de Terug-knop te drukken, of door lang te drukken op de bubbel en deze bovenop de Sluit-bubbel te vegen.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Link al geladen. Negeren...</string>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 </resources>

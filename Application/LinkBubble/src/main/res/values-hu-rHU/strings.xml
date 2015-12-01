@@ -32,6 +32,7 @@
     
     <string name="action_share">Megosztás</string>
     <string name="action_close_all">Összes bezárása</string>
+    
     <string name="action_close_tab">Buborék bezárása</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Visszavonás</string>
@@ -272,7 +273,10 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     
 
     
-    
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
+    </plurals>
 
     <string name="content_description_button">Gomb</string>
     
@@ -313,6 +317,23 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="welcome_page_more_point_4">Minden alkalmazásból "elkaphatsz" linkeket</string>
     <string name="welcome_page_ps">UI: ezen buborék bezárásához nyomd meg a Vissza gombot, vagy húzd a buborékot a Bezárás gombra</string>
 
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
 </resources>
