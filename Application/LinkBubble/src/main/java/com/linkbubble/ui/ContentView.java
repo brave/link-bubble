@@ -340,6 +340,7 @@ public class ContentView extends FrameLayout {
         metUrl.setOnFocusChangeListener(murlOnFocusChangeListener);
         metUrl.setOnItemClickListener(murlOnItemClickListener);
         metUrl.setOnEditorActionListener(murlActionListener);
+        metUrl.setImeOptions(EditorInfo.IME_ACTION_GO | EditorInfo.IME_FLAG_NO_EXTRACT_UI);
 
         List<SearchURLSuggestions> suggestionsList = new ArrayList<SearchURLSuggestions>();
         // Fill suggestion list with history URL's
@@ -1248,7 +1249,8 @@ public class ContentView extends FrameLayout {
             metUrl.selectAll();
             // Show the soft keyboard
             InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.showSoftInput(metUrl, InputMethodManager.SHOW_IMPLICIT);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+            imm.showSoftInput(metUrl,InputMethodManager.SHOW_FORCED);
         }
     };
 
