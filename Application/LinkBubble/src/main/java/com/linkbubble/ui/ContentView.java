@@ -371,7 +371,8 @@ public class ContentView extends FrameLayout {
             suggestion.EngineToUse = SearchURLSuggestions.SearchEngine.NONE;
             suggestionsList.add(suggestion);
         }
-        mAdapter = new SearchURLCustomAdapter(getContext(), android.R.layout.simple_list_item_1, suggestionsList);
+        mAdapter = new SearchURLCustomAdapter(getContext(), android.R.layout.simple_list_item_1, suggestionsList,
+                getResources().getDisplayMetrics().widthPixels);
         mAdapter.mRealUrlBarConstraint = urlAsString;
         //
         metUrl.setAdapter(mAdapter);

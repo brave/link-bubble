@@ -10,6 +10,10 @@ public class SearchURLSuggestions {
         NONE
     }
 
+    public SearchURLSuggestions() {
+        EngineToUse = SearchEngine.NONE;
+    }
+
     public String Name;
     public String Value;
     public SearchEngine EngineToUse;

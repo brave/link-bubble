@@ -1,6 +1,7 @@
 package com.linkbubble.ui;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,9 @@ import com.linkbubble.R;
 import com.linkbubble.util.Util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
@@ -21,9 +24,10 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
 
     public String mRealUrlBarConstraint = "";
 
-    private LayoutInflater layoutInflater;
     CopyOnWriteArrayList<SearchURLSuggestions> mSuggestions;
-    private int viewResourceId;
+    private int mControlSize;
+    private HashMap<SearchURLSuggestions.SearchEngine, Integer> mMaxCharsCountToUse =
+            new HashMap<SearchURLSuggestions.SearchEngine, Integer>();
 
     private Filter mFilter = new Filter() {
         @Override
@@ -51,24 +55,25 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
                 SearchURLSuggestions searchSuggestion2 = new SearchURLSuggestions();
                 SearchURLSuggestions searchSuggestion3 = new SearchURLSuggestions();
                 SearchURLSuggestions searchSuggestion4 = new SearchURLSuggestions();
-                searchSuggestion1.Value = String.format(getContext().getString(R.string.search_for_with), "<font color=" +
-                        getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint +
-                        "</font>", getContext().getString(R.string.duck_duck_go));
+
+                searchSuggestion1.Value = String.format(getContext().getString(R.string.search_for_with),
+                        getContext().getString(R.string.google),
+                        "<font color=" + getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint);
                 searchSuggestion1.Name = constraint.toString();
-                searchSuggestion1.EngineToUse = SearchURLSuggestions.SearchEngine.DUCKDUCKGO;
-                searchSuggestion2.Value = String.format(getContext().getString(R.string.search_for_with), "<font color=" +
-                        getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint +
-                        "</font>", getContext().getString(R.string.google));
+                searchSuggestion1.EngineToUse = SearchURLSuggestions.SearchEngine.GOOGLE;
+                searchSuggestion2.Value = String.format(getContext().getString(R.string.search_for_with),
+                        getContext().getString(R.string.duck_duck_go),
+                        "<font color=" + getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint);
                 searchSuggestion2.Name = constraint.toString();
-                searchSuggestion2.EngineToUse = SearchURLSuggestions.SearchEngine.GOOGLE;
-                searchSuggestion3.Value = String.format(getContext().getString(R.string.search_for_with), "<font color=" +
-                        getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint +
-                        "</font>", getContext().getString(R.string.yahoo));
+                searchSuggestion2.EngineToUse = SearchURLSuggestions.SearchEngine.DUCKDUCKGO;
+                searchSuggestion3.Value = String.format(getContext().getString(R.string.search_for_with),
+                        getContext().getString(R.string.yahoo),
+                        "<font color=" + getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint);
                 searchSuggestion3.Name = constraint.toString();
                 searchSuggestion3.EngineToUse = SearchURLSuggestions.SearchEngine.YAHOO;
-                searchSuggestion4.Value = String.format(getContext().getString(R.string.search_for_on), "<font color=" +
-                        getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint +
-                        "</font>", getContext().getString(R.string.amazon));
+                searchSuggestion4.Value = String.format(getContext().getString(R.string.search_for_with),
+                        getContext().getString(R.string.amazon),
+                        "<font color=" + getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint);
                 searchSuggestion4.Name = constraint.toString();
                 searchSuggestion4.EngineToUse = SearchURLSuggestions.SearchEngine.AMAZON;
 
@@ -99,13 +104,17 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
         }
     };
 
-    public SearchURLCustomAdapter(Context context, int textViewResourceId, List<SearchURLSuggestions> suggestions) {
+    public SearchURLCustomAdapter(Context context, int textViewResourceId, List<SearchURLSuggestions> suggestions,
+                                  int controlSize) {
         super(context, textViewResourceId, suggestions);
         // Copy all the customers into a master list
         mSuggestions = new CopyOnWriteArrayList<SearchURLSuggestions>();
         mSuggestions.addAll(suggestions);
-        layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        viewResourceId = textViewResourceId;
+        mControlSize = controlSize - 130;
+        mMaxCharsCountToUse.put(SearchURLSuggestions.SearchEngine.GOOGLE, 0);
+        mMaxCharsCountToUse.put(SearchURLSuggestions.SearchEngine.DUCKDUCKGO, 0);
+        mMaxCharsCountToUse.put(SearchURLSuggestions.SearchEngine.YAHOO, 0);
+        mMaxCharsCountToUse.put(SearchURLSuggestions.SearchEngine.AMAZON, 0);
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -113,7 +122,36 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
 
         TextView name = (TextView) view;
         SearchURLSuggestions suggestion = getItem(position);
-        name.setText(Html.fromHtml(suggestion.Value));
+        if (SearchURLSuggestions.SearchEngine.NONE == suggestion.EngineToUse) {
+            name.setText(Html.fromHtml(suggestion.Value));
+        }
+        else {
+
+            String valueToSet = suggestion.Value;
+            Paint textPaint = name.getPaint();
+            String toAdd = "</font>";
+            float textWidth = textPaint.measureText(Html.fromHtml(valueToSet + toAdd).toString());
+            if (textWidth > mControlSize) {
+                int charactersToLeft = mMaxCharsCountToUse.get(suggestion.EngineToUse);
+                if (charactersToLeft >= valueToSet.length()) {
+                    charactersToLeft = valueToSet.length() - 1;
+                }
+                if (0 == charactersToLeft) {
+                    float percentToShow = (float)mControlSize * 100 / textWidth;
+                    charactersToLeft =  (int)(valueToSet.length() * percentToShow / 100);
+                }
+
+                valueToSet = valueToSet.substring(0, charactersToLeft);
+                toAdd = "..." + toAdd;
+            }
+            else {
+                toAdd += "\"";
+                mMaxCharsCountToUse.put(suggestion.EngineToUse, valueToSet.length());
+            }
+
+            valueToSet += toAdd;
+            name.setText(Html.fromHtml(valueToSet));
+        }
 
         return view;
     }
