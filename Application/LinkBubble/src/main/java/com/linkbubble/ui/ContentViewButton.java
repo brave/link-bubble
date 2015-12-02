@@ -95,6 +95,9 @@ public class ContentViewButton extends FrameLayout {
                 } else if (width < height) {
                     newHeight = maxIconSize;
                     newWidth = (int)((float)(width / height) * maxIconSize);
+                    if (0 == newWidth) {
+                        newWidth = newHeight;
+                    }
                 } else {
                     newWidth = newHeight = maxIconSize;
                 }
