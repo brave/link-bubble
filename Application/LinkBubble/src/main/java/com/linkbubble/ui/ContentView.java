@@ -1128,7 +1128,11 @@ public class ContentView extends FrameLayout {
                 imm.hideSoftInputFromWindow(metUrl.getWindowToken(),
                         InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
-                if (null != mFirstSuggestedItem) {
+                String urlText = metUrl.getText().toString();
+                if (Util.isValidURL(getContext(), urlText)) {
+                    WorkWithURL(urlText, SearchURLSuggestions.SearchEngine.NONE, true);
+                }
+                else if (null != mFirstSuggestedItem) {
                     String strUrl = mFirstSuggestedItem.Name;
 
                     WorkWithURL(strUrl, SearchURLSuggestions.SearchEngine.NONE, true);

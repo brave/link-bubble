@@ -42,45 +42,51 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
             String constraint = Util.getUrlWithoutHttpHttpsWww(getContext(), mRealUrlBarConstraint);
             if (constraint != null && constraint.length() != 0) {
                 CopyOnWriteArrayList<SearchURLSuggestions> suggestions = new CopyOnWriteArrayList<SearchURLSuggestions>();
+                boolean showSearchEngines = true;
                 for (SearchURLSuggestions suggestion : mSuggestions) {
                     // Note: change the "startsWith" to "contains" if you only want starting matches
-                    if (suggestion.Name.toLowerCase().startsWith(constraint.toString().toLowerCase())) {
+                    if (suggestion.Name.toLowerCase().startsWith(constraint.toLowerCase())) {
                         suggestions.add(suggestion);
+                        if (suggestion.Name.length() == constraint.length()) {
+                            showSearchEngines = false;
+                        }
                     }
                 }
 
 
                 // For search engines
-                SearchURLSuggestions searchSuggestion1 = new SearchURLSuggestions();
-                SearchURLSuggestions searchSuggestion2 = new SearchURLSuggestions();
-                SearchURLSuggestions searchSuggestion3 = new SearchURLSuggestions();
-                SearchURLSuggestions searchSuggestion4 = new SearchURLSuggestions();
+                if (showSearchEngines && !Util.isValidURL(getContext(), mRealUrlBarConstraint)) {
+                    SearchURLSuggestions searchSuggestion1 = new SearchURLSuggestions();
+                    SearchURLSuggestions searchSuggestion2 = new SearchURLSuggestions();
+                    SearchURLSuggestions searchSuggestion3 = new SearchURLSuggestions();
+                    SearchURLSuggestions searchSuggestion4 = new SearchURLSuggestions();
 
-                searchSuggestion1.Value = String.format(getContext().getString(R.string.search_for_with),
-                        getContext().getString(R.string.google),
-                        "<font color=" + getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint);
-                searchSuggestion1.Name = constraint.toString();
-                searchSuggestion1.EngineToUse = SearchURLSuggestions.SearchEngine.GOOGLE;
-                searchSuggestion2.Value = String.format(getContext().getString(R.string.search_for_with),
-                        getContext().getString(R.string.duck_duck_go),
-                        "<font color=" + getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint);
-                searchSuggestion2.Name = constraint.toString();
-                searchSuggestion2.EngineToUse = SearchURLSuggestions.SearchEngine.DUCKDUCKGO;
-                searchSuggestion3.Value = String.format(getContext().getString(R.string.search_for_with),
-                        getContext().getString(R.string.yahoo),
-                        "<font color=" + getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint);
-                searchSuggestion3.Name = constraint.toString();
-                searchSuggestion3.EngineToUse = SearchURLSuggestions.SearchEngine.YAHOO;
-                searchSuggestion4.Value = String.format(getContext().getString(R.string.search_for_with),
-                        getContext().getString(R.string.amazon),
-                        "<font color=" + getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint);
-                searchSuggestion4.Name = constraint.toString();
-                searchSuggestion4.EngineToUse = SearchURLSuggestions.SearchEngine.AMAZON;
+                    searchSuggestion1.Value = String.format(getContext().getString(R.string.search_for_with),
+                            getContext().getString(R.string.google),
+                            "<font color=" + getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint);
+                    searchSuggestion1.Name = constraint.toString();
+                    searchSuggestion1.EngineToUse = SearchURLSuggestions.SearchEngine.GOOGLE;
+                    searchSuggestion2.Value = String.format(getContext().getString(R.string.search_for_with),
+                            getContext().getString(R.string.duck_duck_go),
+                            "<font color=" + getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint);
+                    searchSuggestion2.Name = constraint.toString();
+                    searchSuggestion2.EngineToUse = SearchURLSuggestions.SearchEngine.DUCKDUCKGO;
+                    searchSuggestion3.Value = String.format(getContext().getString(R.string.search_for_with),
+                            getContext().getString(R.string.yahoo),
+                            "<font color=" + getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint);
+                    searchSuggestion3.Name = constraint.toString();
+                    searchSuggestion3.EngineToUse = SearchURLSuggestions.SearchEngine.YAHOO;
+                    searchSuggestion4.Value = String.format(getContext().getString(R.string.search_for_with),
+                            getContext().getString(R.string.amazon),
+                            "<font color=" + getContext().getString(R.string.url_bar_constraint_text_color) + ">" + constraint);
+                    searchSuggestion4.Name = constraint.toString();
+                    searchSuggestion4.EngineToUse = SearchURLSuggestions.SearchEngine.AMAZON;
 
-                suggestions.add(searchSuggestion1);
-                suggestions.add(searchSuggestion2);
-                suggestions.add(searchSuggestion3);
-                suggestions.add(searchSuggestion4);
+                    suggestions.add(searchSuggestion1);
+                    suggestions.add(searchSuggestion2);
+                    suggestions.add(searchSuggestion3);
+                    suggestions.add(searchSuggestion4);
+                }
                 //
                 results.values = suggestions;
                 results.count = suggestions.size();

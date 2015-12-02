@@ -725,4 +725,26 @@ public class Util {
 
         return url;
     }
+
+    public static String getUrlWithPrefix(Context context, String url) {
+        if (!url.startsWith(context.getString(R.string.http_prefix)) &&
+                !url.startsWith(context.getString(R.string.https_prefix)))
+            return context.getString(R.string.http_prefix) + url;
+
+        return url;
+    }
+
+    public static boolean isValidURL(Context context, String url) {
+
+        boolean result = true;
+
+        try {
+            URL validURL = new URL(url);
+        }
+        catch (MalformedURLException e) {
+            result = false;
+        }
+
+        return result;
+    }
 }
