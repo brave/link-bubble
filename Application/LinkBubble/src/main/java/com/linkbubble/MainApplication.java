@@ -75,6 +75,7 @@ public class MainApplication extends Application {
         recreateFaviconCache();
 
         CrashTracking.log("MainApplication.onCreate()");
+        //checkStrings();
     }
 
     public Bus getBus() {
@@ -439,7 +440,7 @@ public class MainApplication extends Application {
 
     }
 
-    /*
+/*
     private void checkStrings() {
         String blerg = "blerg";
         String[] langs = {"ar", "cs", "cs-rCZ", "da", "de", "es", "fr", "hi", "hu-rHU", "it", "ja-rJP", "nl", "pl-rPL",
@@ -462,9 +463,8 @@ public class MainApplication extends Application {
             Log.d("langcheck", getResources().getQuantityString(R.plurals.restore_tabs_from_previous_session, 1, 1));
             Log.d("langcheck", getResources().getQuantityString(R.plurals.restore_tabs_from_previous_session, 2, 2));
             Log.d("langcheck", String.format(getString(R.string.search_for_with), blerg, blerg));
-            Log.d("langcheck", String.format(getString(R.string.search_for_on), blerg, blerg));
         }
-    } */
+    }*/
 }
 
 

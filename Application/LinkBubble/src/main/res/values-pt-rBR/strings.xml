@@ -32,7 +32,7 @@
     <string name="action_save_image">Salvar imagem</string>
     <string name="action_share">Compartilhar</string>
     <string name="action_close_all">Fechar todas</string>
-    
+    <string name="action_new_bubble">Nova bolha</string>
     <string name="action_close_tab">Fechar bolha</string>
     <string name="action_stop">Parar</string>
     <string name="action_undo">Desfazer</string>
@@ -351,21 +351,21 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
 
     <string name="duplicate_link_will_not_be_loaded">Link já carregado. Ignorando...</string>
 
+    <string name="edit_url">Pesquisar ou digitar endereço</string>
+    <string name="http_prefix">http://</string>
+    <string name="https_prefix">https://</string>
+    <string name="www_prefix">www.</string>
+    <string name="duck_duck_search_engine">https://duckduckgo.com/?q=</string>
+    <string name="google_search_engine">http://www.google.com/search?q=</string>
+    <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
+    <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>
+    <string name="top_500_prepend">Visitar</string>
+    <string name="url_bar_constraint_text_color">\'#A349A4\'</string>
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="duck_duck_go">Duck Duck Go</string>
+    <string name="google">Google</string>
+    <string name="yahoo">Yahoo</string>
+    <string name="amazon">Amazon</string>
+    <string name="empty_bubble_page">file:///android_asset/blank.html</string>
 
 </resources>
