@@ -297,6 +297,9 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         updateScales(getScrollX());
 
         setExactPos(0, 0);
+        if (null != mCurrentTab) {
+            mCurrentTab.getContentView().onOrientationChanged();
+        }
     }
 
     public void clearTargetPos() {

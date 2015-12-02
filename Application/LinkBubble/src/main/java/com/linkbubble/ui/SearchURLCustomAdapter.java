@@ -116,12 +116,17 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
         // Copy all the customers into a master list
         mSuggestions = new CopyOnWriteArrayList<SearchURLSuggestions>();
         mSuggestions.addAll(suggestions);
-        mControlSize = controlSize - 130;
+        setDropDownWidth(controlSize);
         mMaxCharsCountToUse.put(SearchURLSuggestions.SearchEngine.GOOGLE, 0);
         mMaxCharsCountToUse.put(SearchURLSuggestions.SearchEngine.DUCKDUCKGO, 0);
         mMaxCharsCountToUse.put(SearchURLSuggestions.SearchEngine.YAHOO, 0);
         mMaxCharsCountToUse.put(SearchURLSuggestions.SearchEngine.AMAZON, 0);
     }
+
+    public void setDropDownWidth(int controlSize) {
+        mControlSize = controlSize - 130;
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = super.getView(position, convertView, parent);
