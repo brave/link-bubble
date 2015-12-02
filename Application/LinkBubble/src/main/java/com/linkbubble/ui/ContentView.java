@@ -382,6 +382,7 @@ public class ContentView extends FrameLayout {
 
         mbtUrlClear = (ImageButton) findViewById(R.id.search_url_clear);
         mbtUrlClear.setOnClickListener(mbtClearUrlClicked);
+
     }
 
     void setTabAsActive () {
@@ -1860,7 +1861,8 @@ public class ContentView extends FrameLayout {
     }
 
     void onOrientationChanged() {
-        invalidate();
+        metUrl.setDropDownWidth(getResources().getDisplayMetrics().widthPixels);
+        mAdapter.setDropDownWidth(getResources().getDisplayMetrics().widthPixels);
     }
 
     private boolean updateUrl(String urlAsString) {
