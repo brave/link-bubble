@@ -967,11 +967,17 @@ public class MainController implements Choreographer.FrameCallback {
 
         // If the tab is already closing, do nothing. Otherwise we could end up in a weird state,
         // where we attempt to show multiple prompts and crashing upon tab restore.
-        if (tabView.mIsClosing == true) {
+        if (null == tabView || tabView.mIsClosing == true) {
             CrashTracking.log("Ignoring duplicate tabView close request");
             return false;
         }
-        tabView.mIsClosing = true;
+        if (null != tabView) {
+            tabView.mIsClosing = true;
+        }
+        else {
+            CrashTracking.log("attempt to access on null tabView");
+            return false;
+        }
 
         boolean contentViewShowing = contentViewShowing();
         CrashTracking.log("MainController.closeTab(): action:" + action.toString() + ", contentViewShowing:" + contentViewShowing
