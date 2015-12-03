@@ -201,15 +201,22 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             if (flickDistance > 0.0001f) {
                 intFraction = intersectionDistance / flickDistance;
             }
-            Util.Assert(intFraction >= 0.0f && intFraction <= 1.05f, "intFraction:" + intFraction + ", flickDistance:" + flickDistance);
-            float intTime = flickAnimPeriod * intFraction;
+            try {
+                Util.Assert(intFraction >= 0.0f && intFraction <= 1.05f, "intFraction:" + intFraction + ", flickDistance:" + flickDistance);
+                float intTime = flickAnimPeriod * intFraction;
 
-            animType = DraggableHelper.AnimationType.Linear;
-            flickAnimPeriod = intTime;
-            targetX = (int) intBubbleX;
-            targetY = (int) intBubbleY;
+                animType = DraggableHelper.AnimationType.Linear;
+                flickAnimPeriod = intTime;
+                targetX = (int) intBubbleX;
+                targetY = (int) intBubbleY;
 
-            tv.setTargetCenter(mTractorBeamIntersectionPoint.x, mTractorBeamIntersectionPoint.y);
+                tv.setTargetCenter(mTractorBeamIntersectionPoint.x, mTractorBeamIntersectionPoint.y);
+            }
+            catch (AssertionError exc) {
+                if (animType != DraggableHelper.AnimationType.Linear) {
+                    flickAnimPeriod += 0.15f;
+                }
+            }
 
         } else {
             if (animType != DraggableHelper.AnimationType.Linear) {
