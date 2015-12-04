@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.7.1">
+        <change>BUG FIX: Fixed top crashes.</change>
+    </release>
+
     <release version="1.7.0">
         <change>NEW: Bubble URL bar and suggestions when typing.</change>
         <change>NEW: New bubble menu item added.</change>
