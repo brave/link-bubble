@@ -87,7 +87,8 @@ public class Util {
         "org.adblockplus.browser",
         "com.apusapps.browser",
         "com.apusapps.browser.turbo",
-        "com.onedepth.search"
+        "com.onedepth.search",
+        "com.sec.android.app.sbrowser"
     };
 
     public static float clamp(float v0, float v, float v1) {
