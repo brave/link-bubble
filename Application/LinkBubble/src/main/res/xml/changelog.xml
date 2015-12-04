@@ -2,6 +2,7 @@
 <changelog>
     <release version="1.7.1">
         <change>BUG FIX: Fixed top crashes.</change>
+        <change>BUG FIX: When you click back button it does not close the current bubble.</change>
     </release>
 
     <release version="1.7.0">

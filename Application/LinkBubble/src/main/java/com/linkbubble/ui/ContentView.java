@@ -1051,6 +1051,7 @@ public class ContentView extends FrameLayout {
                 // Adding the URL to the auto suggestions list
                 mAdapter.addUrlToAutoSuggestion(currentUrl.toString());
                 MainApplication.saveUrlInHistory(getContext(), null, currentUrl.toString(), currentUrl.getHost(), title);
+
             }
             else {
                 mTitleTextView.performClick();
@@ -1060,6 +1061,7 @@ public class ContentView extends FrameLayout {
             postDelayed(mDelayedAutoContentDisplayLinkLoadedRunnable, Constant.AUTO_CONTENT_DISPLAY_DELAY);
 
             mWebRenderer.onPageLoadComplete();
+            mWebRenderer.getView().requestFocus();
         }
 
         mPageFinishedIgnoredUrl = null;
