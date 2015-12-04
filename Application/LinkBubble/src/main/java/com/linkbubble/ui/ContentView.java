@@ -389,6 +389,9 @@ public class ContentView extends FrameLayout {
         if (mUrlTextView.getText().toString().equals(getContext().getString(R.string.empty_bubble_page))) {
             mTitleTextView.performClick();
         }
+        else {
+            mWebRenderer.getView().requestFocus();
+        }
     }
 
     @SuppressLint("SetJavaScriptEnabled")
