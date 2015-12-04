@@ -735,55 +735,57 @@ public class ContentView extends FrameLayout {
                                 resolveInfos.add(appForUrl.mResolveInfo);
                             }
                         }
-                        AlertDialog dialog = ActionItem.getActionItemPickerAlert(context, resolveInfos, R.string.pick_default_app,
-                                new ActionItem.OnActionItemDefaultSelectedListener() {
-                                    @Override
-                                    public void onSelected(ActionItem actionItem, boolean always) {
-                                        CrashTracking.log("onPageStarted(): OnActionItemDefaultSelectedListener.onSelected()");
-                                        boolean loaded = false;
-                                        String appPackageName = context.getPackageName();
-                                        for (ResolveInfo resolveInfo : resolveInfos) {
-                                            if (resolveInfo.activityInfo.packageName.equals(actionItem.mPackageName)
-                                                    && resolveInfo.activityInfo.name.equals(actionItem.mActivityClassName)) {
-                                                if (always) {
-                                                    Settings.get().setDefaultApp(urlAsString, resolveInfo);
-                                                }
+                        if (0 != resolveInfos.size()) {
+                            AlertDialog dialog = ActionItem.getActionItemPickerAlert(context, resolveInfos, R.string.pick_default_app,
+                                    new ActionItem.OnActionItemDefaultSelectedListener() {
+                                        @Override
+                                        public void onSelected(ActionItem actionItem, boolean always) {
+                                            CrashTracking.log("onPageStarted(): OnActionItemDefaultSelectedListener.onSelected()");
+                                            boolean loaded = false;
+                                            String appPackageName = context.getPackageName();
+                                            for (ResolveInfo resolveInfo : resolveInfos) {
+                                                if (resolveInfo.activityInfo.packageName.equals(actionItem.mPackageName)
+                                                        && resolveInfo.activityInfo.name.equals(actionItem.mActivityClassName)) {
+                                                    if (always) {
+                                                        Settings.get().setDefaultApp(urlAsString, resolveInfo);
+                                                    }
 
-                                                // Jump out of the loop and load directly via a BubbleView below
-                                                if (resolveInfo.activityInfo.packageName.equals(appPackageName)) {
+                                                    // Jump out of the loop and load directly via a BubbleView below
+                                                    if (resolveInfo.activityInfo.packageName.equals(appPackageName)) {
+                                                        break;
+                                                    }
+
+                                                    mInitialUrlLoadStartTime = -1;
+                                                    loaded = MainApplication.loadIntent(context, actionItem.mPackageName,
+                                                            actionItem.mActivityClassName, urlAsString, -1, true);
                                                     break;
                                                 }
-
-                                                mInitialUrlLoadStartTime = -1;
-                                                loaded = MainApplication.loadIntent(context, actionItem.mPackageName,
-                                                        actionItem.mActivityClassName, urlAsString, -1, true);
-                                                break;
                                             }
-                                        }
 
-                                        if (loaded) {
-                                            if (MainController.get() != null) {
-                                                MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), false);
+                                            if (loaded) {
+                                                if (MainController.get() != null) {
+                                                    MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), false);
+                                                }
+                                                Settings.get().addRedirectToApp(urlAsString);
                                             }
-                                            Settings.get().addRedirectToApp(urlAsString);
+                                            // NOTE: no need to call loadUrl(urlAsString) or anything in the event the link is to be handled by
+                                            // Link Bubble. The flow already assumes that will happen by continuing the load when the Dialog displays. #244
                                         }
-                                        // NOTE: no need to call loadUrl(urlAsString) or anything in the event the link is to be handled by
-                                        // Link Bubble. The flow already assumes that will happen by continuing the load when the Dialog displays. #244
-                                    }
-                                });
+                                    });
 
-                        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-                                MainApplication.sShowingAppPickerDialog = false;
-                            }
-                        });
+                            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+                                    MainApplication.sShowingAppPickerDialog = false;
+                                }
+                            });
 
-                        dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                        dialog.show();
-                        MainApplication.sShowingAppPickerDialog = true;
-                        mHandledAppPickerForCurrentUrl = true;
-                        mAppPickersUrls.add(urlAsString);
+                            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                            dialog.show();
+                            MainApplication.sShowingAppPickerDialog = true;
+                            mHandledAppPickerForCurrentUrl = true;
+                            mAppPickersUrls.add(urlAsString);
+                        }
                     }
                 }
             }

@@ -240,26 +240,29 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
                 for (ContentView.AppForUrl item : mAppsForUrl) {
                     resolveInfos.add(item.mResolveInfo);
                 }
-                AlertDialog dialog = ActionItem.getActionItemPickerAlert(getContext(), resolveInfos, R.string.pick_default_app,
-                        new ActionItem.OnActionItemDefaultSelectedListener() {
-                            @Override
-                            public void onSelected(ActionItem actionItem, boolean always) {
-                                ContentView.AppForUrl appForUrl = getAppForUrl(actionItem.mPackageName, actionItem.mActivityClassName);
-                                if (appForUrl != null) {
-                                    if (always) {
-                                        Settings.get().setDefaultApp(appForUrl.mUrl.toString(), appForUrl.mResolveInfo);
-                                    }
-                                    if (MainApplication.loadIntent(getContext(), appForUrl.mResolveInfo.activityInfo.packageName,
-                                            appForUrl.mResolveInfo.activityInfo.name, appForUrl.mUrl.toString(), -1, true)) {
-                                        if (mOnOpenInAppClickListener != null) {
-                                            mOnOpenInAppClickListener.onAppOpened();
+
+                if (0 != resolveInfos.size()) {
+                    AlertDialog dialog = ActionItem.getActionItemPickerAlert(getContext(), resolveInfos, R.string.pick_default_app,
+                            new ActionItem.OnActionItemDefaultSelectedListener() {
+                                @Override
+                                public void onSelected(ActionItem actionItem, boolean always) {
+                                    ContentView.AppForUrl appForUrl = getAppForUrl(actionItem.mPackageName, actionItem.mActivityClassName);
+                                    if (appForUrl != null) {
+                                        if (always) {
+                                            Settings.get().setDefaultApp(appForUrl.mUrl.toString(), appForUrl.mResolveInfo);
+                                        }
+                                        if (MainApplication.loadIntent(getContext(), appForUrl.mResolveInfo.activityInfo.packageName,
+                                                appForUrl.mResolveInfo.activityInfo.name, appForUrl.mUrl.toString(), -1, true)) {
+                                            if (mOnOpenInAppClickListener != null) {
+                                                mOnOpenInAppClickListener.onAppOpened();
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        });
-                dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                Util.showThemedDialog(dialog);
+                            });
+                    dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                    Util.showThemedDialog(dialog);
+                }
             }
         }
     }
