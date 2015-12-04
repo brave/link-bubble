@@ -841,7 +841,7 @@ public class ContentView extends FrameLayout {
                 return;
             }
 
-            if (url.equals(getContext().getString(R.string.empty_bubble_page))) {
+            if (url != null && url.equals(getContext().getString(R.string.empty_bubble_page))) {
                 mTitleTextView.setTextColor(0xFFFFFFFF);
             }
             mTitleTextView.setText(title);
