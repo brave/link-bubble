@@ -15,6 +15,5 @@ public class SearchURLSuggestions {
     }
 
     public String Name;
-    public String Value;
     public SearchEngine EngineToUse;
 }
