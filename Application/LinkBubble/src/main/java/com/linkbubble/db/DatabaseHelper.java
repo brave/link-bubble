@@ -118,7 +118,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ContentValues values = getContentValues(historyRecord);
             String id = String.valueOf(historyRecord.getId());
             db.update(TABLE_LINK_HISTORY, values,
-                                KEY_ID + " = ?", new String[] { id });
+                    KEY_ID + " = ?", new String[]{id});
             CrashTracking.log("DatabaseHelper.updateHistoryRecord() success, id:" + id);
         } catch (IllegalStateException ex) {
             CrashTracking.log("DatabaseHelper.addHistoryRecord() IllegalStateException");
@@ -187,6 +187,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<HistoryRecord> records = new ArrayList<HistoryRecord>();
 
         String query = "SELECT * FROM " + TABLE_LINK_HISTORY + " ORDER BY " + KEY_TIME + " DESC;";
+
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                HistoryRecord historyRecord = new HistoryRecord();
+                historyRecord.setId(Integer.parseInt(cursor.getString(0)));
+                historyRecord.setTitle(cursor.getString(1));
+                historyRecord.setUrl(cursor.getString(2));
+                historyRecord.setHost(cursor.getString(3));
+                historyRecord.setTime(cursor.getLong(4));
+
+                records.add(historyRecord);
+            } while (cursor.moveToNext());
+        }
+
+        db.close();
+        return records;
+    }
+
+    public List<HistoryRecord> getRecentNHistoryRecords(int countToGet) {
+        List<HistoryRecord> records = new ArrayList<HistoryRecord>();
+
+        String query = "SELECT * FROM " + TABLE_LINK_HISTORY + " ORDER BY " + KEY_TIME + " DESC LIMIT " + String.valueOf(countToGet) + ";";
 
         SQLiteDatabase db = getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);

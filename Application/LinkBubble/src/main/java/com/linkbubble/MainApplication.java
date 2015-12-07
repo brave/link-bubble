@@ -23,6 +23,7 @@ import com.linkbubble.Constant.BubbleAction;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
+import com.linkbubble.ui.SearchURLSuggestionsContainer;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
@@ -45,6 +46,7 @@ public class MainApplication extends Application {
 
     private Bus mBus;
     public static DatabaseHelper sDatabaseHelper;
+    public static SearchURLSuggestionsContainer sSearchURLSuggestionsContainer;
     public static ConcurrentHashMap<String, String> sTitleHashMap = new ConcurrentHashMap<String, String>(64);
     public static Favicons sFavicons;
     public static boolean sShowingAppPickerDialog = false;
@@ -68,6 +70,7 @@ public class MainApplication extends Application {
         Prompt.initModule(this);
 
         sDatabaseHelper = new DatabaseHelper(this);
+        sSearchURLSuggestionsContainer = new SearchURLSuggestionsContainer();
 
         Analytics.init(this);
 

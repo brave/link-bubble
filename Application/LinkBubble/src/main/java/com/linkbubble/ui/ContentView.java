@@ -317,17 +317,6 @@ public class ContentView extends FrameLayout {
         return d;
     }
 
-    // Checks if we have added that suggestion already
-    private boolean suggestedAlreadyAdded(String urlSuggestion, List<SearchURLSuggestions> suggestionsList) {
-        for (SearchURLSuggestions suggestion: suggestionsList) {
-            if (urlSuggestion.equals(suggestion.Name)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     // The function configures the urlBar
     private void configureUrlBar(String urlAsString) {
         // Set the current URL to the search URL
@@ -342,47 +331,15 @@ public class ContentView extends FrameLayout {
         metUrl.setOnEditorActionListener(murlActionListener);
         metUrl.setImeOptions(EditorInfo.IME_ACTION_GO | EditorInfo.IME_FLAG_NO_EXTRACT_UI);
 
-        List<SearchURLSuggestions> suggestionsList = new ArrayList<SearchURLSuggestions>();
-        // Fill suggestion list with history URL's
-        List<HistoryRecord> historyRecords = MainApplication.sDatabaseHelper.getAllHistoryRecords();
-        for (HistoryRecord historyRecord : historyRecords) {
-            String historyUrl = Util.getUrlWithoutHttpHttpsWww(getContext(), historyRecord.getUrl());
-            // Looking on duplications
-            if (suggestedAlreadyAdded(historyUrl, suggestionsList)) {
-                continue;
-            }
-            SearchURLSuggestions suggestion = new SearchURLSuggestions();
-            suggestion.Name = historyUrl;
-            suggestion.Value = getContext().getString(R.string.top_500_prepend) + " <font color=" +
-                    getContext().getString(R.string.url_bar_constraint_text_color) + ">" + suggestion.Name + "</font>";
-            suggestion.EngineToUse = SearchURLSuggestions.SearchEngine.NONE;
-            suggestionsList.add(suggestion);
-        }
-        // Set an adapter for search URL control for top 500 websites
-        String[] top500websites = getResources().getStringArray(R.array.top500websites);
-        for (int i = 0; i < top500websites.length; i++) {
-            // Looking on duplications
-            if (suggestedAlreadyAdded(top500websites[i], suggestionsList)) {
-                continue;
-            }
-            SearchURLSuggestions suggestion = new SearchURLSuggestions();
-            suggestion.Name = top500websites[i];
-            suggestion.Value = getContext().getString(R.string.top_500_prepend) + " <font color=" +
-                    getContext().getString(R.string.url_bar_constraint_text_color) + ">" + suggestion.Name + "</font>";
-            suggestion.EngineToUse = SearchURLSuggestions.SearchEngine.NONE;
-            suggestionsList.add(suggestion);
-        }
-        mAdapter = new SearchURLCustomAdapter(getContext(), android.R.layout.simple_list_item_1, suggestionsList,
+        mAdapter = new SearchURLCustomAdapter(getContext(), android.R.layout.simple_list_item_1, getResources(),
                 getResources().getDisplayMetrics().widthPixels);
         mAdapter.mRealUrlBarConstraint = urlAsString;
-        //
         metUrl.setAdapter(mAdapter);
 
         mAdapter.registerDataSetObserver(mDataSetObserver);
 
         mbtUrlClear = (ImageButton) findViewById(R.id.search_url_clear);
         mbtUrlClear.setOnClickListener(mbtClearUrlClicked);
-
     }
 
     void setTabAsActive () {
@@ -402,6 +359,13 @@ public class ContentView extends FrameLayout {
         View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
         mWebRenderer = WebRenderer.create(WebRenderer.Type.WebView, getContext(), mWebRendererController, webRendererPlaceholder, TAG);
         mWebRenderer.setUrl(urlAsString);
+
+        // Generates 1000 history links
+        /*for (int i = 0; i < 1000; i++) {
+            URL currentUrl = mWebRenderer.getUrl();
+            MainApplication.saveUrlInHistory(getContext(), null, currentUrl.toString() + String.valueOf(i), currentUrl.getHost(), "111_test");
+        }*/
+        //
 
         if (mArticleRenderer != null) {
             mArticleRenderer.destroy();
