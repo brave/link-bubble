@@ -18,7 +18,7 @@ public class SearchURLSuggestionsContainer {
 
     public static final int HISTORY_ROWS_TO_GET = 50;
 
-    public CopyOnWriteArrayList<SearchURLSuggestions> mSuggestions;
+    public static CopyOnWriteArrayList<SearchURLSuggestions> mSuggestions;
 
     public void loadSuggestions(Context context, Resources resources) {
         if (null == mSuggestions) {
