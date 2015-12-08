@@ -228,10 +228,12 @@ class WebViewRenderer extends WebRenderer {
         cancelBuildArticleContentTask();
         mArticleContent = null;
 
-        mWebView.stopLoading();
+        if (null != mWebView) {
+            mWebView.stopLoading();
 
-        // Ensure the loading indicators cease when stop is pressed.
-        mWebChromeClient.onProgressChanged(mWebView, 100);
+            // Ensure the loading indicators cease when stop is pressed.
+            mWebChromeClient.onProgressChanged(mWebView, 100);
+        }
     }
 
     @Override
