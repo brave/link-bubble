@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
     <release version="1.7.2">
-        <change></change>
+        <change>IMPROVEMENT: Speed up the auto suggestion control. Limit suggestion to show only 50 recent history urls.</change>
+        <change>IMPROVEMENT: Decreased memory usage.</change>
+        <change>BUG FIX: The toolbar does not appear properly when there is an embedded youtube context.</change>
+        <change>BUG FIX: Fixed top crashes.</change>
     </release>
     <release version="1.7.1">
         <change>BUG FIX: Fixed top crashes.</change>
