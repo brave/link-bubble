@@ -90,7 +90,9 @@ public class Util {
         "com.onedepth.search",
         "com.sec.android.app.sbrowser",
         "com.flynx",
-        "com.uc.browser.en"
+        "com.uc.browser.en",
+        "mobi.browser.flashfox",
+        "acr.browser.barebones"
     };
 
     public static float clamp(float v0, float v, float v1) {
