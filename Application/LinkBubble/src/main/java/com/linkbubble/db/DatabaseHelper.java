@@ -186,50 +186,62 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<HistoryRecord> getAllHistoryRecords() {
         List<HistoryRecord> records = new ArrayList<HistoryRecord>();
 
-        String query = "SELECT * FROM " + TABLE_LINK_HISTORY + " ORDER BY " + KEY_TIME + " DESC;";
+        try {
+            String query = "SELECT * FROM " + TABLE_LINK_HISTORY + " ORDER BY " + KEY_TIME + " DESC;";
 
-        SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
+            SQLiteDatabase db = getWritableDatabase();
+            Cursor cursor = db.rawQuery(query, null);
 
-        if (cursor.moveToFirst()) {
-            do {
-                HistoryRecord historyRecord = new HistoryRecord();
-                historyRecord.setId(Integer.parseInt(cursor.getString(0)));
-                historyRecord.setTitle(cursor.getString(1));
-                historyRecord.setUrl(cursor.getString(2));
-                historyRecord.setHost(cursor.getString(3));
-                historyRecord.setTime(cursor.getLong(4));
+            if (cursor.moveToFirst()) {
+                do {
+                    HistoryRecord historyRecord = new HistoryRecord();
+                    historyRecord.setId(Integer.parseInt(cursor.getString(0)));
+                    historyRecord.setTitle(cursor.getString(1));
+                    historyRecord.setUrl(cursor.getString(2));
+                    historyRecord.setHost(cursor.getString(3));
+                    historyRecord.setTime(cursor.getLong(4));
 
-                records.add(historyRecord);
-            } while (cursor.moveToNext());
+                    records.add(historyRecord);
+                } while (cursor.moveToNext());
+            }
+
+            db.close();
+        }
+        catch (IllegalStateException exc) {
+            // TODO: just skip it for now, we will need to refactor db code in future
         }
 
-        db.close();
         return records;
     }
 
     public List<HistoryRecord> getRecentNHistoryRecords(int countToGet) {
         List<HistoryRecord> records = new ArrayList<HistoryRecord>();
 
-        String query = "SELECT * FROM " + TABLE_LINK_HISTORY + " ORDER BY " + KEY_TIME + " DESC LIMIT " + String.valueOf(countToGet) + ";";
+        try {
+            String query = "SELECT * FROM " + TABLE_LINK_HISTORY + " ORDER BY " + KEY_TIME + " DESC LIMIT " + String.valueOf(countToGet) + ";";
 
-        SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
+            SQLiteDatabase db = getWritableDatabase();
+            Cursor cursor = db.rawQuery(query, null);
 
-        if (cursor.moveToFirst()) {
-            do {
-                HistoryRecord historyRecord = new HistoryRecord();
-                historyRecord.setId(Integer.parseInt(cursor.getString(0)));
-                historyRecord.setTitle(cursor.getString(1));
-                historyRecord.setUrl(cursor.getString(2));
-                historyRecord.setHost(cursor.getString(3));
-                historyRecord.setTime(cursor.getLong(4));
+            if (cursor.moveToFirst()) {
+                do {
+                    HistoryRecord historyRecord = new HistoryRecord();
+                    historyRecord.setId(Integer.parseInt(cursor.getString(0)));
+                    historyRecord.setTitle(cursor.getString(1));
+                    historyRecord.setUrl(cursor.getString(2));
+                    historyRecord.setHost(cursor.getString(3));
+                    historyRecord.setTime(cursor.getLong(4));
 
-                records.add(historyRecord);
-            } while (cursor.moveToNext());
+                    records.add(historyRecord);
+                } while (cursor.moveToNext());
+            }
+
+            db.close();
+        }
+        catch (IllegalStateException exc) {
+            // TODO: just skip it for now, we will need to refactor db code in future
         }
 
-        db.close();
         return records;
     }
 
