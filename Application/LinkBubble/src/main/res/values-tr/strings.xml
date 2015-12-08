@@ -375,7 +375,7 @@ olarak alıp, herhangi bir sebeple gecikme olursa/olduğunda sinirlenebilirler.]
     <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>
     <string name="top_500_prepend">Ziyaret et</string>
     <string name="url_bar_constraint_text_color">\'#A349A4\'</string>
-    
+    <string name="search_for_with">%1$s ile \"%2$s için arama yap</string>
     <string name="duck_duck_go">DuckDuckGo</string>
     <string name="google">Google</string>
     <string name="yahoo">Yahoo</string>

@@ -26,13 +26,13 @@
     <string name="action_open_in_browser">In %1$s öffnen</string>
     <string name="action_request_desktop_site">Desktop-Version</string>
     <string name="action_open_in_new_bubble">In neuer Blase öffnen</string>
-    
-    
+    <string name="action_open_link_in_new_bubble">Link in neuer Blase öffnen</string>
+    <string name="action_open_image_in_new_bubble">Bild in neuer Blase öffnen</string>
     <string name="action_copy_to_clipboard">Link kopieren</string>
     <string name="action_save_image">Bild speichern</string>
     <string name="action_share">Teilen</string>
     <string name="action_close_all">Alle schließen</string>
-    
+    <string name="action_new_bubble">Neue Blase</string>
     <string name="action_close_tab">Blase schließen</string>
     <string name="action_stop">Anhalten</string>
     <string name="action_undo">Rückgängig</string>
@@ -359,21 +359,21 @@ die Seite geladen ist. Sobald die Seite fertig geladen ist, wird es auf dem Bild
 
     <string name="duplicate_link_will_not_be_loaded">Link wurde bereits geladen. Ignorieren…</string>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="edit_url">Suchen oder Adresse eingeben</string>
+    <string name="http_prefix">http://</string>
+    <string name="https_prefix">https://</string>
+    <string name="www_prefix">www.</string>
+    <string name="duck_duck_search_engine">https://duckduckgo.com/?q=</string>
+    <string name="google_search_engine">http://www.google.com/search?q=</string>
+    <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
+    <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>
+    <string name="top_500_prepend">Besuchen</string>
+    <string name="url_bar_constraint_text_color">\'#A349A4\'</string>
+    <string name="search_for_with">Durchsuche %1$s nach \"%2$s</string>
+    <string name="duck_duck_go">Duck Duck Go</string>
+    <string name="google">Google</string>
+    <string name="yahoo">Yahoo</string>
+    <string name="amazon">Amazon</string>
+    <string name="empty_bubble_page">file:///android_asset/blank.html</string>
 
 </resources>
