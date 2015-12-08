@@ -20,6 +20,8 @@ public class SearchURLSuggestionsContainer {
 
     public static CopyOnWriteArrayList<SearchURLSuggestions> mSuggestions;
 
+    private int mTotalHistoryRecords = 0;
+
     public void loadSuggestions(Context context, Resources resources) {
         if (null == mSuggestions) {
             mSuggestions = new CopyOnWriteArrayList<SearchURLSuggestions>();
@@ -30,6 +32,7 @@ public class SearchURLSuggestionsContainer {
 
         // Fill suggestion list with history URL's
         List<HistoryRecord> historyRecords = MainApplication.sDatabaseHelper.getRecentNHistoryRecords(HISTORY_ROWS_TO_GET);
+        mTotalHistoryRecords = historyRecords.size();
         for (HistoryRecord historyRecord : historyRecords) {
             String historyUrl = Util.getUrlWithoutHttpHttpsWww(context, historyRecord.getUrl());
             // Looking on duplications
@@ -62,6 +65,13 @@ public class SearchURLSuggestionsContainer {
             if (suggestion.Name.equals(newUrlToAdd)) {
                 return;
             }
+        }
+        if (mTotalHistoryRecords >= HISTORY_ROWS_TO_GET
+                && MainApplication.sSearchURLSuggestionsContainer.mSuggestions.size() > HISTORY_ROWS_TO_GET) {
+            MainApplication.sSearchURLSuggestionsContainer.mSuggestions.remove(mTotalHistoryRecords - 1);
+        }
+        else {
+            mTotalHistoryRecords++;
         }
         SearchURLSuggestions suggestion = new SearchURLSuggestions();
         suggestion.Name = newUrlToAdd;
