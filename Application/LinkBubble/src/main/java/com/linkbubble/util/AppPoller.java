@@ -100,12 +100,16 @@ public class AppPoller {
         return false;
     }
 
+    private static final int sCountToCallGc = 2000;
+    private int mCurrentLoopCount = 0;
+
     private final Handler mHandler = new Handler() {
 
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case ACTION_POLL_CURRENT_APP: {
+                    mCurrentLoopCount++;
                     mHandler.removeMessages(ACTION_POLL_CURRENT_APP);
 
                     if (MainController.get() == null) {
@@ -164,6 +168,10 @@ public class AppPoller {
                         mNextAppFirstRunningTime = -1;
                         mNextAppFlatComponentName = null;
                         mHandler.sendEmptyMessageDelayed(ACTION_POLL_CURRENT_APP, LOOP_TIME);
+                    }
+                    if (mCurrentLoopCount == sCountToCallGc) {
+                        System.gc();
+                        mCurrentLoopCount = 0;
                     }
                     break;
                 }
