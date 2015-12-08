@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.7.3">
+        <change></change>
+    </release>
     <release version="1.7.2">
         <change>IMPROVEMENT: Speed up the auto suggestion control. Limit suggestion to show only 50 recent history urls.</change>
         <change>IMPROVEMENT: Decreased memory usage.</change>
