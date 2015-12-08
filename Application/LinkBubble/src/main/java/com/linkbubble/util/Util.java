@@ -88,7 +88,9 @@ public class Util {
         "com.apusapps.browser",
         "com.apusapps.browser.turbo",
         "com.onedepth.search",
-        "com.sec.android.app.sbrowser"
+        "com.sec.android.app.sbrowser",
+        "com.flynx",
+        "com.uc.browser.en"
     };
 
     public static float clamp(float v0, float v, float v1) {
