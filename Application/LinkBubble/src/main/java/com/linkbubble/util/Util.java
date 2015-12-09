@@ -92,7 +92,8 @@ public class Util {
         "com.flynx",
         "com.uc.browser.en",
         "mobi.browser.flashfox",
-        "acr.browser.barebones"
+        "acr.browser.barebones",
+        "com.ineedyourservice.RBrowser"
     };
 
     public static float clamp(float v0, float v, float v1) {
