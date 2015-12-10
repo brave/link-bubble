@@ -64,10 +64,12 @@ import java.util.Locale;
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
     public static class IncognitoModeChangedEvent {
-        public IncognitoModeChangedEvent(boolean value) {
+        public IncognitoModeChangedEvent(boolean value, MainController controller) {
             mIncognito = value;
+            mainController = controller;
         }
         public boolean mIncognito;
+        public MainController mainController;
     }
 
     @Override
@@ -187,7 +189,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
                         MainApplication app = (MainApplication) getActivity().getApplication();
                         Bus bus = app.getBus();
-                        bus.post(new IncognitoModeChangedEvent((Boolean)newValue));
+                        bus.post(new IncognitoModeChangedEvent((Boolean) newValue, MainController.get()));
 
                         if (MainController.get() != null && MainController.get().reloadAllTabs(getActivity())) {
                             Toast.makeText(getActivity(), R.string.incognito_mode_changed_reloading_current, Toast.LENGTH_SHORT).show();

@@ -24,6 +24,7 @@ import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
 import com.linkbubble.ui.SearchURLSuggestionsContainer;
+import com.linkbubble.ui.SettingsActivity;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
@@ -441,6 +442,15 @@ public class MainApplication extends Application {
     @Subscribe
     public void onCheckStateEvent(CheckStateEvent event) {
 
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onIncognitoModeChanged(SettingsActivity.IncognitoModeChangedEvent event) {
+        if (null == event.mainController) {
+            return;
+        }
+        event.mainController.updateIncognitoMode(event.mIncognito);
     }
 
 /*
