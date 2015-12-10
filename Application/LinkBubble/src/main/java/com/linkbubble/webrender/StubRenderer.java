@@ -62,6 +62,16 @@ class StubRenderer extends WebRenderer {
     }
 
     @Override
+    public void resumeOnSetActive() {
+
+    }
+
+    @Override
+    public void pauseOnSetInactive() {
+
+    }
+
+    @Override
     public YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper() {
         return null;
     }
