@@ -37,6 +37,8 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     private Point mTempSize = new Point();
 
     private MainController.CurrentTabChangedEvent mCurrentTabChangedEvent = new MainController.CurrentTabChangedEvent();
+    private MainController.CurrentTabResumeEvent mCurrentTabResumeEvent = new MainController.CurrentTabResumeEvent();
+    private MainController.CurrentTabPauseEvent mCurrentTabPauseEvent = new MainController.CurrentTabPauseEvent();
 
     public interface EventHandler {
         public void onMotionEvent_Touch(BubbleFlowDraggable sender, DraggableHelper.TouchEvent event);
@@ -243,23 +245,32 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     private void setCurrentTab(TabView tab) {
+        mCurrentTabResumeEvent.mTab = tab;
+        MainApplication.postEvent(getContext(), mCurrentTabResumeEvent);
         if (mCurrentTab == tab) {
             if (null != mCurrentTab) {
-                mCurrentTab.getContentView().setTabAsActive();
+                ContentView contentView = mCurrentTab.getContentView();
+                if (null != contentView) {
+                    contentView.setTabAsActive();
+                }
             }
-
             return;
         }
 
         if (mCurrentTab != null) {
             mCurrentTab.setImitator(null);
         }
+        mCurrentTabPauseEvent.mTab = mCurrentTab;
+        MainApplication.postEvent(getContext(), mCurrentTabPauseEvent);
         mCurrentTab = tab;
         mCurrentTabChangedEvent.mTab = tab;
         MainApplication.postEvent(getContext(), mCurrentTabChangedEvent);
         if (mCurrentTab != null) {
             mCurrentTab.setImitator(mBubbleDraggable);
-            mCurrentTab.getContentView().setTabAsActive();
+            ContentView contentView = mCurrentTab.getContentView();
+            if (null != contentView) {
+                contentView.setTabAsActive();
+            }
         }
     }
 

@@ -99,6 +99,10 @@ public abstract class WebRenderer {
 
     public abstract void setUserAgentString(String userAgentString);
 
+    public abstract void resumeOnSetActive();
+
+    public abstract void pauseOnSetInactive();
+
     public void onPageLoadComplete() {}
 
     public URL getUrl() {
