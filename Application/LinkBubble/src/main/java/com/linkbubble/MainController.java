@@ -490,12 +490,6 @@ public class MainController implements Choreographer.FrameCallback {
 
     @SuppressWarnings("unused")
     @Subscribe
-    public void onIncognitoModeChanged(SettingsActivity.IncognitoModeChangedEvent event) {
-        updateIncognitoMode(event.mIncognito);
-    }
-
-    @SuppressWarnings("unused")
-    @Subscribe
     public void onEndCollapseTransition(EndCollapseTransitionEvent e) {
         showBadge(true);
     }
