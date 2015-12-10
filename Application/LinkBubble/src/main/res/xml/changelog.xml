@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
     <release version="1.7.4">
-        <change></change>
+        <change>IMPROVEMENT: Optimized battery usage for expanded, inactive, and at rest bubbles.</change>
+        <change>BUG FIX: Incognito mode wasn’t working.</change>
+        <change>BUG FIX: Fixed top crashes.</change>
     </release>
     <release version="1.7.3">
         <change>BUG FIX: Fixed top crashes.</change>
