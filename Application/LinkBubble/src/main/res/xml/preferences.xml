@@ -79,7 +79,7 @@
         </PreferenceScreen> -->
 
         <Preference
-            android:key="preference_webview_battery_save"
+            android:key="preference_webview_battery_save_v2"
             android:title="@string/preference_webview_battery_save_title"
             />
 
