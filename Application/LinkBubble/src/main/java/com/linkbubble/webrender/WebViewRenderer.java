@@ -92,7 +92,7 @@ class WebViewRenderer extends WebRenderer {
 
         ViewGroup parent = (ViewGroup)mWebView.getParent();
         int index = parent.indexOfChild(mWebView);
-        parent.addView(mTouchInterceptorView, index+1);
+        parent.addView(mTouchInterceptorView, index + 1);
 
         mWebView.setLongClickable(true);
         mWebView.setWebChromeClient(mWebChromeClient);
@@ -711,6 +711,24 @@ class WebViewRenderer extends WebRenderer {
         Log.d(BATTERY_SAVE_TAG, msg + ", url:" + getUrl().getHost());
     }
 
+    @Override
+    public void resumeOnSetActive() {
+        switch (Settings.get().getWebViewBatterySaveMode()) {
+            case Aggressive:
+                webviewResume("setActive");
+                break;
+        }
+    }
+
+    @Override
+    public void pauseOnSetInactive() {
+        switch (Settings.get().getWebViewBatterySaveMode()) {
+            case Aggressive:
+                webviewPause("setInactive");
+                break;
+        }
+    }
+
     @SuppressWarnings("unused")
     @Subscribe
     public void onUserPresentEvent(MainController.UserPresentEvent event) {
@@ -745,11 +763,7 @@ class WebViewRenderer extends WebRenderer {
     @SuppressWarnings("unused")
     @Subscribe
     public void onBeginExpandTransitionEvent(MainController.BeginExpandTransitionEvent event) {
-        switch (Settings.get().getWebViewBatterySaveMode()) {
-            case Aggressive:
-                webviewResume("beginExpand");
-                break;
-        }
+        // Do nothing here for now as we Resume current active Tab on resumeOnSetActive
     }
 
     @SuppressWarnings("unused")

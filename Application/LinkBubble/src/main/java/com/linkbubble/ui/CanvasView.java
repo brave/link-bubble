@@ -24,6 +24,7 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.physics.Circle;
 import com.linkbubble.util.Util;
+import com.linkbubble.webrender.WebRenderer;
 import com.squareup.otto.Subscribe;
 
 import java.util.Vector;
@@ -357,6 +358,40 @@ public class CanvasView extends FrameLayout {
 
     private void hideContentView() {
         applyContentViewAlpha(0);
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onCurrentTabResume(MainController.CurrentTabResumeEvent e) {
+        if (null == e.mTab) {
+            return;
+        }
+        ContentView contentView = e.mTab.getContentView();
+        if (null == contentView) {
+            return;
+        }
+        WebRenderer webRenderer = contentView.getWebRenderer();
+        if (null == webRenderer) {
+            return;
+        }
+        webRenderer.resumeOnSetActive();
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onCurrentTabPause(MainController.CurrentTabPauseEvent e) {
+        if (null == e.mTab) {
+            return;
+        }
+        ContentView contentView = e.mTab.getContentView();
+        if (null == contentView) {
+            return;
+        }
+        WebRenderer webRenderer = contentView.getWebRenderer();
+        if (null == webRenderer) {
+            return;
+        }
+        webRenderer.pauseOnSetInactive();
     }
 
     @SuppressWarnings("unused")
