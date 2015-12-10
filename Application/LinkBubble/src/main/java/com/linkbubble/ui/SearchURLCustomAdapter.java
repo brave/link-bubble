@@ -39,8 +39,8 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
             FilterResults results = new FilterResults();
 
             String constraint = Util.getUrlWithoutHttpHttpsWww(getContext(), mRealUrlBarConstraint);
+            MainApplication.sSearchURLSuggestionsContainer.loadSuggestions(getContext(), mResources);
             if (constraint != null && constraint.length() != 0) {
-                MainApplication.sSearchURLSuggestionsContainer.loadSuggestions(getContext(), mResources);
                 CopyOnWriteArrayList<SearchURLSuggestions> suggestions = new CopyOnWriteArrayList<SearchURLSuggestions>();
                 boolean showSearchEngines = true;
                 for (SearchURLSuggestions suggestion : MainApplication.sSearchURLSuggestionsContainer.mSuggestions) {
