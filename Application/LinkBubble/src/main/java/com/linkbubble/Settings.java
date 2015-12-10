@@ -81,7 +81,7 @@ public class Settings {
 
     public static final String PREFERENCE_AUTO_ARTICLE_MODE = "preference_auto_article_mode";
     public static final String PREFERENCE_INCOGNITO_MODE = "preference_incognito";
-    public static final String PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE = "preference_webview_battery_save";
+    public static final String PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE = "preference_webview_battery_save_v2";
 
     public static final String PREFERENCE_WEBVIEW_TEXT_ZOOM = "preference_webview_text_zoom2";
     public static final int     PREFERENCE_WEBVIEW_TEXT_ZOOM_MIN = 50;
@@ -101,7 +101,6 @@ public class Settings {
     private static final String WELCOME_MESSAGE_DISPLAYED = "welcome_message_displayed";
     private static final String TERMS_ACCEPTED = "terms_accepted";
     private static final String LAST_FLUSH_WEBVIEW_CACHE_TIME = "last_flush_cache_time";
-    private static final String RESET_TO_BATTERY_SAVE_AGGRESIVE_MODE = "reset_to_battery_save_aggressive_mode";
 
     public enum WebViewBatterySaveMode {
         Aggressive,
@@ -193,7 +192,6 @@ public class Settings {
             SharedPreferences.Editor editor = mSharedPreferences.edit();
             editor.putBoolean("first_run", false);
             editor.putLong(LAST_FLUSH_WEBVIEW_CACHE_TIME, System.currentTimeMillis());
-            editor.putBoolean(RESET_TO_BATTERY_SAVE_AGGRESIVE_MODE, true);
             editor.commit();
 
             PackageManager packageManager = mContext.getPackageManager();
@@ -208,12 +206,6 @@ public class Settings {
             if (mSharedPreferences.getLong(LAST_FLUSH_WEBVIEW_CACHE_TIME, -1) == -1) {
                 SharedPreferences.Editor editor = mSharedPreferences.edit();
                 editor.putLong(LAST_FLUSH_WEBVIEW_CACHE_TIME, System.currentTimeMillis() - Constant.EMPTY_WEBVIEW_CACHE_INTERVAL);
-                editor.apply();
-            }
-            if (mSharedPreferences.getBoolean(RESET_TO_BATTERY_SAVE_AGGRESIVE_MODE, false) == false) {
-                SharedPreferences.Editor editor = mSharedPreferences.edit();
-                editor.putBoolean(RESET_TO_BATTERY_SAVE_AGGRESIVE_MODE, true);
-                setWebViewBatterySaveMode("aggressive");
                 editor.apply();
             }
         }
