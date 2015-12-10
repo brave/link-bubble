@@ -101,6 +101,7 @@ public class Settings {
     private static final String WELCOME_MESSAGE_DISPLAYED = "welcome_message_displayed";
     private static final String TERMS_ACCEPTED = "terms_accepted";
     private static final String LAST_FLUSH_WEBVIEW_CACHE_TIME = "last_flush_cache_time";
+    private static final String RESET_TO_BATTERY_SAVE_AGGRESIVE_MODE = "reset_to_battery_save_aggressive_mode";
 
     public enum WebViewBatterySaveMode {
         Aggressive,
@@ -192,6 +193,7 @@ public class Settings {
             SharedPreferences.Editor editor = mSharedPreferences.edit();
             editor.putBoolean("first_run", false);
             editor.putLong(LAST_FLUSH_WEBVIEW_CACHE_TIME, System.currentTimeMillis());
+            editor.putBoolean(RESET_TO_BATTERY_SAVE_AGGRESIVE_MODE, true);
             editor.commit();
 
             PackageManager packageManager = mContext.getPackageManager();
@@ -208,6 +210,12 @@ public class Settings {
                 editor.putLong(LAST_FLUSH_WEBVIEW_CACHE_TIME, System.currentTimeMillis() - Constant.EMPTY_WEBVIEW_CACHE_INTERVAL);
                 editor.apply();
             }
+            if (mSharedPreferences.getBoolean(RESET_TO_BATTERY_SAVE_AGGRESIVE_MODE, false) == false) {
+                SharedPreferences.Editor editor = mSharedPreferences.edit();
+                editor.putBoolean(RESET_TO_BATTERY_SAVE_AGGRESIVE_MODE, true);
+                setWebViewBatterySaveMode("aggressive");
+                editor.apply();
+            }
         }
 
         configureDefaultApps(mSharedPreferences.getString(PREFERENCE_DEFAULT_APPS, null));
@@ -217,7 +225,7 @@ public class Settings {
         loadRecentAppRedirects();
         loadIgnoreLinksFromPackageNames();
 
-        setWebViewBatterySaveMode(mSharedPreferences.getString(PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE, "default"));
+        setWebViewBatterySaveMode(mSharedPreferences.getString(PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE, "aggressive"));
 
         HashSet<String> defaultRedirects = new HashSet<>();
         defaultRedirects.add("accounts.google.com");

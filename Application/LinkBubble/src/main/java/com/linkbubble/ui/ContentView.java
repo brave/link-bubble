@@ -792,6 +792,9 @@ public class ContentView extends FrameLayout {
             }
 
             onPageLoadComplete(urlAsString);
+            if (MainController.get().getCurrentTab() != mOwnerTabView) {
+                mWebRenderer.pauseOnSetInactive();
+            }
         }
 
         @Override

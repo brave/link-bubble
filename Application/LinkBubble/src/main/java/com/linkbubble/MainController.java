@@ -98,6 +98,26 @@ public class MainController implements Choreographer.FrameCallback {
         public TabView mTab;
     }
 
+    public static class CurrentTabResumeEvent {
+        public CurrentTabResumeEvent() {
+        }
+
+        public CurrentTabResumeEvent(TabView tabView) {
+            mTab = tabView;
+        }
+        public TabView mTab;
+    }
+
+    public static class CurrentTabPauseEvent {
+        public CurrentTabPauseEvent() {
+        }
+
+        public CurrentTabPauseEvent(TabView tabView) {
+            mTab = tabView;
+        }
+        public TabView mTab;
+    }
+
     public static class DraggableBubbleMovedEvent {
         public int mX, mY;
     }
