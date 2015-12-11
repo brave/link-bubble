@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">下载器</string>
-    <string name="send_intent_label">使用 Link Bubble 打开</string>
+    <string name="send_intent_label">使用 Brave 打开</string>
     <string name="notification_summary">触按隐藏所有打开的泡泡</string>
     <string name="notification_default_summary">点触可隐藏</string>
     <string name="notification_unhide_summary">点触可显示</string>
@@ -48,7 +48,7 @@
     <string name="warning">警告！</string>
     <string name="untrusted_certificate">%1$s 的证书不被信任。确定仍然继续吗？</string>
 
-    <string name="share_invalid_data">Link Bubble 不能分享本条目，因为它不是一个有效的链接。</string>
+    <string name="share_invalid_data">Brave 不能分享本条目，因为它不是一个有效的链接。</string>
     <string name="consume_activity_not_found">无法找到程序。请到设置中更改泡泡的跳转动作。</string>
     <string name="consume_activity_security_exception">无法分享至外部应用程序</string>
 
@@ -85,7 +85,7 @@
     <string name="preference_default_apps_title">默认应用</string>
     <string name="preference_default_apps_summary">待援浏览器、特定链接地址应用</string>
     <string name="preference_default_apps_notice_summary">当系统中一个或多个程序可以用于打开某链接的时候，使用该程序。\n\n 点击删除一个默认程序。</string>
-    <string name="preference_default_apps_notice_no_defaults_summary">当系统中一个或多个程序可用于打开某链接时，您可以设置一个默认程序载入该类链接。\n\n当您用 Link Bubble 打开该类链接时默认使用的应用程序。</string>
+    <string name="preference_default_apps_notice_no_defaults_summary">当系统中一个或多个程序可用于打开某链接时，您可以设置一个默认程序载入该类链接。\n\n当您用 Brave 打开该类链接时默认使用的应用程序。</string>
     <string name="preference_google_account_redirect_title">谷歌账号重定向</string>
     <string name="preference_google_account_redirect_summary">用默认待援浏览器重定向
 accounts.google.com 链接</string>
@@ -141,7 +141,7 @@ accounts.google.com 链接</string>
     <string name="add_domain_hint">链接地址主机</string>
     <string name="add_domain_detail">只指定网站的头部例如：
 \"accounts.google.com\" 或 \"bbc.co.uk\"</string>
-    <string name="add_domain_error">Link Bubble 不能添加「%1$s」，因为它不是一个有效的链接。</string>
+    <string name="add_domain_error">Brave 不能添加「%1$s」，因为它不是一个有效的链接。</string>
 
     <string name="preference_help_title">帮助</string>
     <string name="preference_show_welcome_message_title">显示欢迎页面</string>
@@ -150,14 +150,14 @@ accounts.google.com 链接</string>
     <string name="preference_privacy_policy_title">隐私政策</string>
     <string name="preference_terms_of_service_title">服务条款</string>
     <string name="preference_say_thanks_title">表示感谢！</string>
-    <string name="preference_say_thanks_summary">喜欢 Link Bubble 吗？请在 Play 商店中留下反馈。</string>
+    <string name="preference_say_thanks_summary">喜欢 Brave 吗？请在 Play 商店中留下反馈。</string>
     <string name="preference_version_title">版本</string>
     <string name="preference_version_summary">更新日志</string>
     <string name="preference_more_title">更多&#8230;</string>
     <string name="preference_show_undo_close_tab_title">撤销关闭标签提示</string>
 
     <string name="preference_my_other_apps_title">开发者的其他应用程序</string>
-    <string name="preference_my_other_apps_summary">喜欢 Link Bubble 吗？来看看我们开发的其他应用吧。</string>
+    <string name="preference_my_other_apps_summary">喜欢 Brave 吗？来看看我们开发的其他应用吧。</string>
 
     <string name="remove_default_title">移除默认？</string>
     <string name="remove_default_message">移除 %1$s 作为载入 %2$s 链接的默认程序的设置？\n\n备注：下次载入 %2$s 链接时可以选择一个新的默认程序。</string>
@@ -185,7 +185,7 @@ accounts.google.com 链接</string>
     <string name="histroy_all">全部</string>
     <string name="history">历史记录</string>
     <string name="erase_all_history_title">全部清空？</string>
-    <string name="erase_all_history_message">清空所有 Link Bubble 中的浏览记录？</string>
+    <string name="erase_all_history_message">清空所有 Brave 中的浏览记录？</string>
     <string name="empty">空</string>
     <string name="history_already_empty">历史记录已清空</string>
     <string name="private_data_cleared">私人数据已清除</string>
@@ -196,7 +196,7 @@ accounts.google.com 链接</string>
     <string name="link_loaded_with_app">已用 %1$s 加载</string>
     <string name="link_redirected">重定向至 %1$s</string>
 
-    <string name="tampered_apk">您的 Link Bubble 已被非法修改，因此无法可靠运行。请到 Play 商店重新安装。</string>
+    <string name="tampered_apk">您的 Brave 已被非法修改，因此无法可靠运行。请到 Play 商店重新安装。</string>
 
     <string name="bubble_link_copied_to_clipboard">泡泡的链接已复制到剪贴板。</string>
     <string name="link_copied_to_clipboard">链接已复制到剪贴板。</string>
@@ -219,55 +219,55 @@ accounts.google.com 链接</string>
     <string name="faq_close_tab_question">如何快速关闭一个标签页？</string>
     <string name="faq_close_tab_answer">按返回键是最快的方式。把一个标签页滑到关闭键上是另一个好方式。</string>
     <string name="faq_back_button_minimize_question">我觉得按返回键应该最小化浏览器！</string>
-    <string name="faq_back_button_minimize_answer"><![CDATA[无法通过点按返回键来最小化 Link Bubble 泡泡
+    <string name="faq_back_button_minimize_answer"><![CDATA[无法通过点按返回键来最小化 Brave 泡泡
 试想如下情景：<br/>
 1). 在第一个标签页加载 example.com/page1 <br/>
 2). 您点击了本页面上的链接，在同一个泡泡中载入了 example.com/page2<br/>
 3). 现在您想返回到之前的链接<br/><br/>
 如果点按返回键操作是最小化泡泡，这时该怎么办？点按泡泡上的小返回指示器是不可行的。<br/><br/>
-Link Bubble 是一个浏览器，而 Android 的浏览器有一套长期以来已成文的标准——当点按返回键时，返回链接堆叠中上一链接，或者当堆叠不存在时关闭当前页。
-Link Bubble 亦遵循该标准。]]></string>
-    <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble 无法接管链接！]]></string>
+Brave 是一个浏览器，而 Android 的浏览器有一套长期以来已成文的标准——当点按返回键时，返回链接堆叠中上一链接，或者当堆叠不存在时关闭当前页。
+Brave 亦遵循该标准。]]></string>
+    <string name="faq_app_internal_browser_question"><![CDATA[Brave 无法接管链接！]]></string>
     <string name="faq_app_internal_browser_answer"><![CDATA[有三种可能导致这个问题：<br/>
-1). 目前系统默认浏览器不是 Link Bubble 。请用 Link Bubble 设置中的「设为系统默认浏览器」选项进行设置。<br/>
-2). Link Bubble 被设定为不从特定程式中接管链接。请至 Link Buuble 设置中的 「接管链接」选项进行设置。<br/>
+1). 目前系统默认浏览器不是 Brave 。请用 Brave 设置中的「设为系统默认浏览器」选项进行设置。<br/>
+2). Brave 被设定为不从特定程式中接管链接。请至 Link Buuble 设置中的 「接管链接」选项进行设置。<br/>
 3). 像是 Talon，Reddit is Fun 或其他程序会用它们内置的浏览器来打开链接。请检查该程序的设置，并启用「外部浏览器」或取消勾选「整合式浏览器」之类的选项。
-<br/><br/>请注意：像 Chrome 这类的浏览器都会在程式中写死，只能使用它自身来载入网页，故 Link Bubble 无法读取在其他浏览器中点击的连结。
+<br/><br/>请注意：像 Chrome 这类的浏览器都会在程式中写死，只能使用它自身来载入网页，故 Brave 无法读取在其他浏览器中点击的连结。
 ]]></string>
     <string name="faq_article_mode_question">我该如何使用阅读模式？为什么许多链接无法使用阅读模式？</string>
     
     <string name="faq_future_features_question">你会加入书签、收藏、扩展等功能吗？</string>
-    <string name="faq_future_features_answer">不确定，但是目前 Link Bubble 只是专注于将载入和处理应用内链接做到最好。</string>
+    <string name="faq_future_features_answer">不确定，但是目前 Brave 只是专注于将载入和处理应用内链接做到最好。</string>
     <string name="faq_translations_question">我能帮助翻译本应用吗？</string>
-    <string name="faq_translations_answer"><![CDATA[我希望尽快加入多国语言的翻译。<br/><br/>当我需要帮助的时候，我会在 Google+ (+Link Bubble) 上寻求帮助，所以请关注我分享的信息。]]></string>
+    <string name="faq_translations_answer"><![CDATA[我希望尽快加入多国语言的翻译。<br/><br/>当我需要帮助的时候，我会在 Google+ (+Brave) 上寻求帮助，所以请关注我分享的信息。]]></string>
     <string name="faq_roadmap_question">你有公布功能路线图吗？我能给要更新的功能投票吗？</string>
     <string name="faq_roadmap_answer">因为竞争原因，恐怕这两个问题的答案都是否定的。<br/><br/></string>
-    <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble 目前仅支持通过 Google Play 购买。<br/><br/>希望以后会增加更多途径（如果它们不会违背 Google Play 开发者项目条例的话）。]]></string>
+    <string name="faq_alternate_payment_answer"><![CDATA[Brave 目前仅支持通过 Google Play 购买。<br/><br/>希望以后会增加更多途径（如果它们不会违背 Google Play 开发者项目条例的话）。]]></string>
     <string name="faq_cant_type_url_question">为什么我不能直接输入我想要浏览的链接地址？</string>
-    <string name="faq_cant_type_url_answer"><![CDATA[这是本意。Link Bubble 的初衷并不是为了完全替代您的浏览器，恰恰相反，它是为了尽快地载入并将网页呈现给你。<br/><br/>如果你想要通过 Link Bubble 打开新链接的话，先从谷歌即时中搜索然后再用 Link Bubble 载入倒也是个不错的办法。<br/><br/>如果想要快速加载您的收藏，我觉得 Chrome 书签的小部件很好用。]]></string>
+    <string name="faq_cant_type_url_answer"><![CDATA[这是本意。Brave 的初衷并不是为了完全替代您的浏览器，恰恰相反，它是为了尽快地载入并将网页呈现给你。<br/><br/>如果你想要通过 Brave 打开新链接的话，先从谷歌即时中搜索然后再用 Brave 载入倒也是个不错的办法。<br/><br/>如果想要快速加载您的收藏，我觉得 Chrome 书签的小部件很好用。]]></string>
     <string name="faq_copy_text_question">为什么我不能在页面中复制文本？</string>
     <string name="faq_copy_text_answer"><![CDATA[很遗憾，Android 系统的的局限不允许这么做。<br/><br/>技术上的回答：
-在一个活动中使用 Android 网络视图时复制功能能正常工作，但是服务却不行（而 Link Bubble 用的就是服务）。]]></string>
+在一个活动中使用 Android 网络视图时复制功能能正常工作，但是服务却不行（而 Brave 用的就是服务）。]]></string>
     <string name="faq_translucent_status_bar_question">为什么应用状态栏不是半透明的？</string>
     <string name="faq_translucent_status_bar_answer">很遗憾，Android 系统的局限不允许这么做。</string>
     <string name="faq_beta_programme_question">本应用有没有测试版？我怎么参与测试？</string>
-    <string name="faq_beta_programme_answer">测试版程序项目的细节会在适当的时候公布。关注我的 Google+ (+Link Bubble) 获取公布信息。</string>
-    <string name="faq_low_spec_performance_question">为什么 Link Bubble 在我的 Nexus S / Galaxy S1 / Moto G 等设备中运行缓慢？</string>
-    <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble 是一个大量消耗资源的应用，因此低端设备运行本应用会出现卡顿。未来的更新会以提高 Link Bubble 的性能为目标，但是现在实际上只能做这么多了。<br/><br/>技术上的回答：在最低限度 Link Bubble 需要运行一个服务（Service）和一个网络视图（WebView）来运行其功能。往往也存在多个网络视图（WebView）甚至多个活动（Activities）。
-自然，分配这些项目（特别是网络视图）消耗 <b>大量</b>的内存/资源。低端设备的可用内存通常比 Link Bubble 所需的要少，由于无用项目消除被频繁触发，性能就降低了。
+    <string name="faq_beta_programme_answer">测试版程序项目的细节会在适当的时候公布。关注我的 Google+ (+Brave) 获取公布信息。</string>
+    <string name="faq_low_spec_performance_question">为什么 Brave 在我的 Nexus S / Galaxy S1 / Moto G 等设备中运行缓慢？</string>
+    <string name="faq_low_spec_performance_answer"><![CDATA[Brave 是一个大量消耗资源的应用，因此低端设备运行本应用会出现卡顿。未来的更新会以提高 Brave 的性能为目标，但是现在实际上只能做这么多了。<br/><br/>技术上的回答：在最低限度 Brave 需要运行一个服务（Service）和一个网络视图（WebView）来运行其功能。往往也存在多个网络视图（WebView）甚至多个活动（Activities）。
+自然，分配这些项目（特别是网络视图）消耗 <b>大量</b>的内存/资源。低端设备的可用内存通常比 Brave 所需的要少，由于无用项目消除被频繁触发，性能就降低了。
 举个例子：Nexus S 的最大堆栈大小是 48MB，而 Nexus 5 是192MB。]]></string>
     <string name="faq_crap_webview_question">有时网页不正常显示或者视频不播放。</string>
     <string name="faq_crap_webview_answer"><![CDATA[LinkBubble 使用标准 Andoid 网页视图，但是很不幸，它有时候并不可靠。
 可供选择的网页渲染方式，比如火狐的 GeckoView 及 Chromium 可能在以后研究。<br/><br/>
 如果网页没有在泡泡中正确显示， 最简单的解决办法就是在传统浏览器中加载链接。]]></string>
-    <string name="faq_ongoing_notificaion_question">为什么 Link Bubble 运行的时候总是显示常驻通知？</string>
-    <string name="faq_ongoing_notificaion_answer"><![CDATA[很不幸，该常驻通知是必要的，以阻止 Android 系统结束 Link Bubble 进程。]]></string>
+    <string name="faq_ongoing_notificaion_question">为什么 Brave 运行的时候总是显示常驻通知？</string>
+    <string name="faq_ongoing_notificaion_answer"><![CDATA[很不幸，该常驻通知是必要的，以阻止 Android 系统结束 Brave 进程。]]></string>
     <string name="faq_next_update_eta_question">下次更新是什么时候?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[在我准备好的时候！<br/><br/>很不幸，除此以外没有详情了（估计也没有）。<br/><br/>事实中当我给出估计估计时后，人们最终通常把它当作承诺，如果/当更新跳票的时候他们会很郁闷。]]></string>
-    <string name="faq_close_quickly_question">我能快速停止 Link Bubble 运行吗？</string>
-    <string name="faq_close_quickly_answer">从屏幕顶部下拉打开通知面板，点击 Link Bubble 通知。</string>
-    <string name="faq_change_default_browser_question">如何取消 Link Bubble 作为默认浏览器的设置？</string>
-    <string name="faq_change_default_browser_answer">系统设置 -> 应用 -> 已下载 -> Link Bubble -> 清除默认设置。</string>
+    <string name="faq_close_quickly_question">我能快速停止 Brave 运行吗？</string>
+    <string name="faq_close_quickly_answer">从屏幕顶部下拉打开通知面板，点击 Brave 通知。</string>
+    <string name="faq_change_default_browser_question">如何取消 Brave 作为默认浏览器的设置？</string>
+    <string name="faq_change_default_browser_answer">系统设置 -> 应用 -> 已下载 -> Brave -> 清除默认设置。</string>
     <string name="faq_report_bug_question">回报错误</string>
     <string name="faq_report_bug_answer"><![CDATA[电子邮箱]]></string>
 
@@ -280,10 +280,10 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="activity_resolver_use_always">总是</string>
     <string name="activity_resolver_use_once">仅一次</string>
 
-    <string name="credits_title">关于 Link Bubble</string>
+    <string name="credits_title">关于 Brave</string>
     <string name="credits_name">链接泡泡</string>
     <string name="credits_credit">概念、设计及开发</string>
-    <string name="credits_app_copyright">Link Bubble 版权所有</string>
+    <string name="credits_app_copyright">Brave 版权所有</string>
 
     
     <plurals name="restore_tabs_from_previous_session">
@@ -294,7 +294,7 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="content_description_button">按钮</string>
     <string name="content_description_target_icon">泡泡目标图标</string>
     <string name="content_description_close_bubble_icon">关闭泡泡图标</string>
-    <string name="content_description_link_bubble_logo">Link Bubble 标志</string>
+    <string name="content_description_link_bubble_logo">Brave 标志</string>
     <string name="content_description_app_icon">应用图标</string>
     <string name="content_description_youtube_video_thumbnail">YouTube 视频缩略图</string>
     <string name="content_description_history">历史记录</string>
@@ -303,18 +303,18 @@ Link Bubble 亦遵循该标准。]]></string>
 
     <string name="requesting_location_message">%1$s 正在请求您的位置。是否允许？</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[如果要继续，请确认您接受 Link Bubble 的<a href="http://www.linkbubble.com/terms">条款</a>和<a href="http://www.linkbubble.com/privacy">隐私政策</a>。]]></string>
+    <string name="accept_terms_and_privacy"><![CDATA[如果要继续，请确认您接受 Brave 的<a href="http://www.linkbubble.com/terms">条款</a>和<a href="http://www.linkbubble.com/privacy">隐私政策</a>。]]></string>
 
-    <string name="service_name">Link Bubble 渲染器</string>
-    <string name="notification_title">Link Bubble</string>
+    <string name="service_name">Brave 渲染器</string>
+    <string name="notification_title">Brave</string>
 
-    <string name="store_listing_title">Link Bubble</string>
+    <string name="store_listing_title">Brave</string>
     <string name="store_listing_promo_text">移动浏览已正确加载。</string>
-    <string name="store_listing_description_title">Link Bubble 是一个独具匠心、潜心制作的用于移动设备的浏览器。</string>
+    <string name="store_listing_description_title">Brave 是一个独具匠心、潜心制作的用于移动设备的浏览器。</string>
     
-    <string name="store_listing_description_location_permission">关于位置权限：您可能个要授予一个网站获取您位置的权限（例如嵌入地图的网页），本权限在此时需要。Link Bubble 本身不会获取您的位置。</string>
+    <string name="store_listing_description_location_permission">关于位置权限：您可能个要授予一个网站获取您位置的权限（例如嵌入地图的网页），本权限在此时需要。Brave 本身不会获取您的位置。</string>
 
-    <string name="welcome_page_title">欢迎使用 Link Bubble！</string>
+    <string name="welcome_page_title">欢迎使用 Brave！</string>
     <string name="welcome_page_intro_title">它是如何运作的？</string>
     <string name="welcome_page_intro_point_1">在一个应用中点击链接。</string>
     <string name="welcome_page_intro_point_2">泡泡将出现在屏幕边缘并与后台加载。在加载完成后，泡泡自动会显示。</string>
@@ -322,7 +322,7 @@ Link Bubble 亦遵循该标准。]]></string>
     <string name="welcome_page_more_title">告诉我更多！</string>
     <string name="welcome_page_more_pocket_start">您也可以快速分享链接或将其添加到其他应用，例如 Pocket：</string>
     <string name="welcome_page_more_pocket_end">是不是看上去既有趣又有用？</string>
-    <string name="welcome_page_more_also">Link Bubble 也可以：</string>
+    <string name="welcome_page_more_also">Brave 也可以：</string>
     <string name="welcome_page_more_point_1">重定向链接到特定应用（例如 Instagram）</string>
     <string name="welcome_page_more_point_2">查找页面内嵌入式视频并在 YouTube 应用中加载。</string>
     

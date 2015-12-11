@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Downloader</string>
-    <string name="send_intent_label">Åbn med Link Bubble</string>
+    <string name="send_intent_label">Åbn med Brave</string>
     <string name="notification_summary">Tryk for at skjule alle åbne bobler</string>
     <string name="notification_default_summary">Tryk for at Skjule, udvid for at Lukke Alle</string>
     <string name="notification_unhide_summary">Tryk for at Vise, udvid for at Lukke Alle</string>
@@ -48,7 +48,7 @@
     
     
 
-    <string name="share_invalid_data">Link Bubble er ikke i stand til at dele dette, da det ikke er en gyldig URL.</string>
+    <string name="share_invalid_data">Brave er ikke i stand til at dele dette, da det ikke er en gyldig URL.</string>
     <string name="consume_activity_not_found">Kan ikke finde applikationen. Overvej at ændre boble handling via indstillinger.</string>
     
 
@@ -60,7 +60,7 @@
     <string name="undo_close_tab_no_title">Lukkede fane</string>
 
     <string name="pick_default_app">Vælg standard app</string>
-    <string name="default_browser_set">Link Bubble er valgt som standardbrowser.</string>
+    <string name="default_browser_set">Brave er valgt som standardbrowser.</string>
     <string name="invalid_send_action">Gyldigt link ikke fundet.</string>
     <string name="unable_to_launch_app">Ikke i stand til at starte 3. parts applikation.</string>
     <string name="clear_history">Ryd historik</string>
@@ -87,7 +87,7 @@
     <string name="preference_default_apps_notice_summary">Bruges, når en eller flere ikke-browser apps på dit system kan håndtere en 
 URL.\n\nTryk at fjerne en standard.</string>
     <string name="preference_default_apps_notice_no_defaults_summary">Bruges, når en eller flere ikke-browser apps på din enhed kan håndtere en URL,
-du kan konfigurere standard appen til at indlæse sådanne links med.\n\nDen standard app der bruges i denne sammenhæng er konfigureret, når du indlæser links med Link Bubble.</string>
+du kan konfigurere standard appen til at indlæse sådanne links med.\n\nDen standard app der bruges i denne sammenhæng er konfigureret, når du indlæser links med Brave.</string>
     <string name="preference_google_account_redirect_title">Google Konti omdirigering</string>
     <string name="preference_google_account_redirect_summary">Omdiriger accounts.google.com links til sekundær browser</string>
     <string name="preference_set_default_browser_title">Vælg standard system browser</string>
@@ -99,7 +99,7 @@ du kan konfigurere standard appen til at indlæse sådanne links med.\n\nDen sta
     <string name="preference_scan_for_youtube_embeds_summary">Vis genvej til at indlæse video(r) på YouTube appen.</string>
     <string name="preference_webview_battery_save_title">Strømbesparingstilstand (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Aggressiv</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Pause opdatering af web-sider, når Link Bubble er minimeret.\nSider igang med af indlæse vil afslutte indlæsning før pause.</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Pause opdatering af web-sider, når Brave er minimeret.\nSider igang med af indlæse vil afslutte indlæsning før pause.</string>
     <string name="preference_webview_battery_save_default_title">Standard</string>
     <string name="preference_webview_battery_save_default_summary">Pause opdatering af websider, når skærmen er slukket og genoptag når enheden er låst op.\nSider igang med af indlæse vil afslutte indlæsning før pause.</string>
     <string name="preference_webview_battery_save_off_title">Fra</string>
@@ -150,7 +150,7 @@ du kan konfigurere standard appen til at indlæse sådanne links med.\n\nDen sta
     <string name="preference_privacy_policy_title">Privatlivspolitik</string>
     <string name="preference_terms_of_service_title">Service Vilkår</string>
     <string name="preference_say_thanks_title">Sig tak!</string>
-    <string name="preference_say_thanks_summary">Synes du om Link Bubble? Overvej at skriv en anmeldelse på Play Butik.</string>
+    <string name="preference_say_thanks_summary">Synes du om Brave? Overvej at skriv en anmeldelse på Play Butik.</string>
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">Hvad er nyt?</string>
     <string name="preference_more_title">Mere&#8230;</string>
@@ -186,7 +186,7 @@ gang du indlæser et %2$s link.</string>
     <string name="histroy_all">Alle</string>
     <string name="history">Historik</string>
     <string name="erase_all_history_title">Slet alle?</string>
-    <string name="erase_all_history_message">Slet hele din Link Bubble browser historik?</string>
+    <string name="erase_all_history_message">Slet hele din Brave browser historik?</string>
     <string name="empty">Tom</string>
     <string name="history_already_empty">Historik allerede tom</string>
     <string name="private_data_cleared">Private data ryddet</string>
@@ -197,7 +197,7 @@ gang du indlæser et %2$s link.</string>
     <string name="link_loaded_with_app">Indlæst med %1$s</string>
     <string name="link_redirected">Omdirigeret til %1$s</string>
 
-    <string name="tampered_apk">Din kopi af Link Bubble er blevet ulovligt ændret, og vil dermed vil ikke fungere pålideligt. Geninstaller fra Play Butik.</string>
+    <string name="tampered_apk">Din kopi af Brave er blevet ulovligt ændret, og vil dermed vil ikke fungere pålideligt. Geninstaller fra Play Butik.</string>
 
     <string name="bubble_link_copied_to_clipboard">Boble link kopieret til udklipsholder.</string>
     <string name="link_copied_to_clipboard">Link kopieret til udklipsholder.</string>
@@ -220,61 +220,61 @@ gang du indlæser et %2$s link.</string>
     <string name="faq_close_tab_question">Hvordan kan jeg hurtigt lukke en fane?</string>
     <string name="faq_close_tab_answer">Ved at trykke på knappen Tilbage er den hurtigste måde. Træk fanen til knappen Luk er en anden god måde.</string>
     <string name="faq_back_button_minimize_question">Jeg synes knappen Tilbage, bør minimere browser!</string>
-    <string name="faq_back_button_minimize_answer"><![CDATA[Minimering af Link Bubble, når der trykkes på Tilbage knappen ikke er mulig. 
+    <string name="faq_back_button_minimize_answer"><![CDATA[Minimering af Brave, når der trykkes på Tilbage knappen ikke er mulig.
 Overvej følgende tilfælde:<br/>
 1). example.com/page1 er indlæst i den første fane.<br/>
 2). Du klikker på et link på denne side, og indlæser example.com/page2 i samme fane.<br/>
 3). Du ønsker nu at gå tilbage til linket i trin 1.<br/><br/>
-Hvordan gør du det, hvis du minimerer Link Bubble når du trykker på Tilbage knappen? Hvis et tryk på den lille tilbage indikator på fanen ikke er mulig.<br/><br/>
-Link Bubble er en browser og Android browsere, har for længst etableret en standard af 
+Hvordan gør du det, hvis du minimerer Brave når du trykker på Tilbage knappen? Hvis et tryk på den lille tilbage indikator på fanen ikke er mulig.<br/><br/>
+Brave er en browser og Android browsere, har for længst etableret en standard af
 enten at gå tilbage i webadressen stakken, eller hvis der ikke findes en stak, lukke den aktuelle side, når der trykkes på knappen Tilbage. 
-Link Bubble følger denne standard.]]></string>
-    <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble opfanger ikke links!]]></string>
+Brave følger denne standard.]]></string>
+    <string name="faq_app_internal_browser_question"><![CDATA[Brave opfanger ikke links!]]></string>
     <string name="faq_app_internal_browser_answer"><![CDATA[Der er 3 årsager til dette:<br/>
-1). En anden browser end Link Bubble, er angivet som din standard system browser. Se 
-\"Sæt standard system browser\" valgmuligheden i Link Bubble\'s Indstillinger for at ændre dette.<br/>
-2). Link Bubble er blevet konfigureret til ikke at opsnappe links fra din nuværende app. Se 
-\"Opfang links fra\" valgmuligheden i Link Bubble\'s indstillinger.<br/>
+1). En anden browser end Brave, er angivet som din standard system browser. Se
+\"Sæt standard system browser\" valgmuligheden i Brave\'s Indstillinger for at ændre dette.<br/>
+2). Brave er blevet konfigureret til ikke at opsnappe links fra din nuværende app. Se
+\"Opfang links fra\" valgmuligheden i Brave\'s indstillinger.<br/>
 3). Apps såsom Talon, Reddit is Fun og andre har indbyggede browsere, der åbner links. Kontrollér indstillingerne for disse apps og 
 aktiver \"Ekstern browser\" eller fravælg \"Integreret browser\" eller lignende.
-<br/><br/>Bemærk: Andre browser apps såsom Chrome er hårdtkodet til at indlæse links i sig selv og derfor er Link Bubble ikke i stand 
+<br/><br/>Bemærk: Andre browser apps såsom Chrome er hårdtkodet til at indlæse links i sig selv og derfor er Brave ikke i stand
 at indlæse links fra andre browser apps.
 ]]></string>
     <string name="faq_article_mode_question">Hvordan bruger jeg Læse TIlstand? Hvorfor nogle links ikke virker?</string>
     
     <string name="faq_future_features_question">Vil du tilføje understøttelse af bogmærker, favoritter, udvidelser mv.?</string>
-    <string name="faq_future_features_answer">Aldrig sige aldrig, men for nu er Link Bubble fokuseret udelukkende på, at være den bedst mulige måde for at indlæse 
+    <string name="faq_future_features_answer">Aldrig sige aldrig, men for nu er Brave fokuseret udelukkende på, at være den bedst mulige måde for at indlæse
 links fra andre apps.</string>
     <string name="faq_translations_question">Kan jeg hjælpe med at oversætte appen?</string>
     
     <string name="faq_roadmap_question">Har du en køreplan for kommende funktioner? Kan jeg komme med foreslag til kommende funktioner?</string>
     <string name="faq_roadmap_answer">Af konkurrencemæssige årsager er svaret på begge spørgsmål \'nej\' desværre.<br/><br/></string>
-    <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble understøtter kun køb via Google Play på dette tidspunkt.<br/><br/>Yderligere 
+    <string name="faq_alternate_payment_answer"><![CDATA[Brave understøtter kun køb via Google Play på dette tidspunkt.<br/><br/>Yderligere
 betalingsmetoder vil forhåbentlig blive tilføjet i fremtiden (forudsat at de ikke overtræder Programpolitikker for udviklere i Google Play).]]></string>
     <string name="faq_cant_type_url_question">Hvorfor kan jeg ikke skrive navnet på det link, jeg ønsker at besøge?</string>
-    <string name="faq_cant_type_url_answer"><![CDATA[Dette er helt efter hensigten. Link Bubble er designet til ikke at være en komplet erstatning for din browser, men i stedet til at indlæse og vise links fra andre apps så elegant, hjælpsomt og så hurtigt som muligt.<br/><br/>Hvis du ønsker at indlæse en ny URL i Link Bubble, 
-kan en søgning i Google Nu og indlæsning af resultatet med Link Bubble, være en fantastisk måde at gøre det.<br/><br/>For hurtig 
+    <string name="faq_cant_type_url_answer"><![CDATA[Dette er helt efter hensigten. Brave er designet til ikke at være en komplet erstatning for din browser, men i stedet til at indlæse og vise links fra andre apps så elegant, hjælpsomt og så hurtigt som muligt.<br/><br/>Hvis du ønsker at indlæse en ny URL i Brave,
+kan en søgning i Google Nu og indlæsning af resultatet med Brave, være en fantastisk måde at gøre det.<br/><br/>For hurtig
 indlæsning af dine favoritter, kan Chrome Bogmærker widget være meget nyttigt.]]></string>
     <string name="faq_copy_text_question">Hvorfor kan jeg ikke kopiere tekst fra en web side?</string>
     <string name="faq_copy_text_answer"><![CDATA[Desværre forhindrer Android systembegrænsninger dette.<br/><br/>Tekinsk svar:
-Kopier funktionen virker, når du bruger Android\'s WebView fra en aktivitet, men ikke fra en Tjeneste (som Link Bubble bruger).]]></string>
+Kopier funktionen virker, når du bruger Android\'s WebView fra en aktivitet, men ikke fra en Tjeneste (som Brave bruger).]]></string>
     <string name="faq_translucent_status_bar_question">Hvorfor går appen ikke ind over den gennemsigtige status linie?</string>
     <string name="faq_translucent_status_bar_answer">Desværre forhindrer Android systembegrænsninger dette.</string>
     <string name="faq_beta_programme_question">Er der et beta program? Hvordan kan jeg deltage?</string>
     
-    <string name="faq_low_spec_performance_question">Hvorfor kører Link Bubble langsomt på min Nexus S / Galaxy S1 / Moto G - type enhed?</string>
-    <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble er en meget ressourcekrævende app, og dermed vil enheder med lavere specs kæmpe for at køre den app flydende. Fremtidige opdateringer vil sigte mod at forbedre Link Bubble\'s ydeevne, men realistisk set, er der ikke så meget der kan gøres her.<br/><br/>Teknisk svar: På et absolut minimum, kræver Link Bubble brugen af ​​en Service og en WebView for at fungere. Ofte er flere WebViews og flere Aktiviteter også til stede. Naturligvis forbruger disse poster (især WebViews) en <i>masse</i> hukommelse/ressourcer. Lavere spec enheder har generelt mindre hukommelse til rådighed end Link Bubble kræver, og det går derved ud over ydeevnen. Som et eksempel er max heap størrelsen på en Nexus S 48MB, og 192MB på Nexus 5.]]></string>
+    <string name="faq_low_spec_performance_question">Hvorfor kører Brave langsomt på min Nexus S / Galaxy S1 / Moto G - type enhed?</string>
+    <string name="faq_low_spec_performance_answer"><![CDATA[Brave er en meget ressourcekrævende app, og dermed vil enheder med lavere specs kæmpe for at køre den app flydende. Fremtidige opdateringer vil sigte mod at forbedre Brave\'s ydeevne, men realistisk set, er der ikke så meget der kan gøres her.<br/><br/>Teknisk svar: På et absolut minimum, kræver Brave brugen af ​​en Service og en WebView for at fungere. Ofte er flere WebViews og flere Aktiviteter også til stede. Naturligvis forbruger disse poster (især WebViews) en <i>masse</i> hukommelse/ressourcer. Lavere spec enheder har generelt mindre hukommelse til rådighed end Brave kræver, og det går derved ud over ydeevnen. Som et eksempel er max heap størrelsen på en Nexus S 48MB, og 192MB på Nexus 5.]]></string>
     <string name="faq_crap_webview_question">Nogen gange vises websider ikke korrekt eller videoer vil ikke afspille.</string>
     <string name="faq_crap_webview_answer"><![CDATA[LinkBubble bruger standard Android WebView, men desværre er det nogle gange upålideligt. 
-Alternativ web renderings metoder, såsom FireFox\'s GeckoView og Chromium vil sandsynligvis blive undersøgt fremadrettet.<br/><br/>I tilfælde af en webside ikke vises korrekt i Link Bubble, er den nemmeste løsning blot at indlæse den i en traditionel browser.]]></string>
-    <string name="faq_ongoing_notificaion_question">Hvorfor vises der en igangværende underretning, når Link Bubble kører?</string>
-    <string name="faq_ongoing_notificaion_answer"><![CDATA[Desværre er en igangværende underretning nødvendig, for ikke at Android OS skal afslutte Link Bubble.]]></string>
+Alternativ web renderings metoder, såsom FireFox\'s GeckoView og Chromium vil sandsynligvis blive undersøgt fremadrettet.<br/><br/>I tilfælde af en webside ikke vises korrekt i Brave, er den nemmeste løsning blot at indlæse den i en traditionel browser.]]></string>
+    <string name="faq_ongoing_notificaion_question">Hvorfor vises der en igangværende underretning, når Brave kører?</string>
+    <string name="faq_ongoing_notificaion_answer"><![CDATA[Desværre er en igangværende underretning nødvendig, for ikke at Android OS skal afslutte Brave.]]></string>
     <string name="faq_next_update_eta_question">Hvornår kommer den næste opdatering?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[Når den er klar!<br/><br/>Det er ikke muligt at være mere specifik end det desværre (vil ikke engang give et skøn).<br/><br/>Virkeligheden er, når et skøn er givet, ender folk ofte med at tage det som giver, og kan blive kede af det, hvis/når en udgivelse udebliver uanset årsagen.]]></string>
-    <string name="faq_close_quickly_question">Hvordan kan jeg hurtigt stoppe Link Bubble med at køre?</string>
-    <string name="faq_close_quickly_answer">Stryg ned fra toppen af skærmen for at åbne underretnings panelet og klik på \"Link Bubble\" underretningen.</string>
-    <string name="faq_change_default_browser_question">Hvordan kan jeg fjerne Link Bubble som standardbrowser?</string>
-    <string name="faq_change_default_browser_answer">Systemindstillinger -> Applikationer -> Downloads -> Link Bubble -> Ryd standarder.</string>
+    <string name="faq_close_quickly_question">Hvordan kan jeg hurtigt stoppe Brave med at køre?</string>
+    <string name="faq_close_quickly_answer">Stryg ned fra toppen af skærmen for at åbne underretnings panelet og klik på \"Brave\" underretningen.</string>
+    <string name="faq_change_default_browser_question">Hvordan kan jeg fjerne Brave som standardbrowser?</string>
+    <string name="faq_change_default_browser_answer">Systemindstillinger -> Applikationer -> Downloads -> Brave -> Ryd standarder.</string>
     <string name="faq_report_bug_question">Rapporter en fejl</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
 
@@ -287,7 +287,7 @@ Alternativ web renderings metoder, såsom FireFox\'s GeckoView og Chromium vil s
     <string name="activity_resolver_use_always">Altid</string>
     <string name="activity_resolver_use_once">Kun én gang</string>
 
-    <string name="credits_title">Link Bubble Credits</string>
+    <string name="credits_title">Brave Credits</string>
     
     <string name="credits_credit">Koncept, design og programmering</string>
     
@@ -301,7 +301,7 @@ Alternativ web renderings metoder, såsom FireFox\'s GeckoView og Chromium vil s
     <string name="content_description_button">Knap</string>
     <string name="content_description_target_icon">Boble mål ikon</string>
     <string name="content_description_close_bubble_icon">Luk boble ikon</string>
-    <string name="content_description_link_bubble_logo">Link Bubble logo</string>
+    <string name="content_description_link_bubble_logo">Brave logo</string>
     <string name="content_description_app_icon">App ikon</string>
     <string name="content_description_youtube_video_thumbnail">YouTube video thumbnail</string>
     <string name="content_description_history">Historik</string>
@@ -310,27 +310,27 @@ Alternativ web renderings metoder, såsom FireFox\'s GeckoView og Chromium vil s
 
     <string name="requesting_location_message">%1$s anmoder din placering. Tillad?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[Ved at fortsætte, anerkender du, at du accepterer Link Bubble\'s
+    <string name="accept_terms_and_privacy"><![CDATA[Ved at fortsætte, anerkender du, at du accepterer Brave\'s
 <a href="http://www.linkbubble.com/terms">vilkår</a> og <a href="http://www.linkbubble.com/privacy">fortrolighedspolitik</a>.]]></string>
 
-    <string name="service_name">Link Bubble Renderer</string>
-    <string name="notification_title">Link Bubble</string>
+    <string name="service_name">Brave Renderer</string>
+    <string name="notification_title">Brave</string>
 
-    <string name="store_listing_title">Link Bubble</string>
+    <string name="store_listing_title">Brave</string>
     <string name="store_listing_promo_text">Mobil browsing gjort på den rigtige måde.</string>
-    <string name="store_listing_description_title">Link Bubble er en helt ny browser fremstillet og designet udelukkende med mobile enheder i tankerne.</string>
+    <string name="store_listing_description_title">Brave er en helt ny browser fremstillet og designet udelukkende med mobile enheder i tankerne.</string>
     
-    <string name="store_listing_description_location_permission">Om placerings tilladelse: Dette er nødvendigt for, at du kan give tilladelse til en hjemmeside, for at få adgang til din placering (såsom dem med et indbygget kort). Link Bubble får aldrig selv adgang til din placering.</string>
+    <string name="store_listing_description_location_permission">Om placerings tilladelse: Dette er nødvendigt for, at du kan give tilladelse til en hjemmeside, for at få adgang til din placering (såsom dem med et indbygget kort). Brave får aldrig selv adgang til din placering.</string>
 
-    <string name="welcome_page_title">Velkommen til Link Bubble!</string>
+    <string name="welcome_page_title">Velkommen til Brave!</string>
     <string name="welcome_page_intro_title">Hvordan fungerer det?</string>
     <string name="welcome_page_intro_point_1">Klik på et link i en app.</string>
     <string name="welcome_page_intro_point_2">En boble vises på kanten af ​​skærmen og linket begynde at indlæse i baggrunden. Så snart siden er indlæst, vil det blive vist.</string>
-    <string name="welcome_page_intro_end">Det er så simpelt! Med Link Bubble, kan du fortsætte med at bruge din nuværende app, i stedet for at spilde din tid på at se links omdirigere og vente på at siderne indlæses. Det kan man da kun syntes om!</string>
+    <string name="welcome_page_intro_end">Det er så simpelt! Med Brave, kan du fortsætte med at bruge din nuværende app, i stedet for at spilde din tid på at se links omdirigere og vente på at siderne indlæses. Det kan man da kun syntes om!</string>
     <string name="welcome_page_more_title">Vis mig mere!</string>
     <string name="welcome_page_more_pocket_start">Du kan også hurtigt dele et link eller tilføje det til en app såsom Pocket:</string>
     <string name="welcome_page_more_pocket_end">Ser både sjovt og nyttigt ud ikke?</string>
-    <string name="welcome_page_more_also">Link Bubble kan også:</string>
+    <string name="welcome_page_more_also">Brave kan også:</string>
     <string name="welcome_page_more_point_1">Omdirigerer links til en dedikeret app (f.eks. Instagram).</string>
     <string name="welcome_page_more_point_2">Finder indlejrede videoer, så du nemt kan indlæse dem i YouTube appen.</string>
     

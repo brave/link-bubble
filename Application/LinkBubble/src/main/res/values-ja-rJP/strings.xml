@@ -183,7 +183,7 @@
     <string name="histroy_all">すべて</string>
     <string name="history">履歴</string>
     <string name="erase_all_history_title">すべて消しますか？</string>
-    <string name="erase_all_history_message">すべての Link Bubble ブラウザ履歴を消しますか？</string>
+    <string name="erase_all_history_message">すべての Brave ブラウザ履歴を消しますか？</string>
     <string name="empty">ありません</string>
     <string name="history_already_empty">履歴は既にありません</string>
     <string name="private_data_cleared">プライベートデータがクリアされました</string>
@@ -261,7 +261,7 @@
     <string name="activity_resolver_use_always">常時</string>
     <string name="activity_resolver_use_once">今回のみ</string>
 
-    <string name="credits_title">Link Bubble クレジット</string>
+    <string name="credits_title">Brave クレジット</string>
     
     <string name="credits_credit">コンセプト、デザインとプログラミング</string>
     
@@ -275,7 +275,7 @@
     <string name="content_description_button">ボタン</string>
     <string name="content_description_target_icon">Bubble ターゲットアイコン</string>
     <string name="content_description_close_bubble_icon">bubble アイコンを閉じる</string>
-    <string name="content_description_link_bubble_logo">Link Bubble ロゴ</string>
+    <string name="content_description_link_bubble_logo">Brave ロゴ</string>
     <string name="content_description_app_icon">アプリアイコン</string>
     <string name="content_description_youtube_video_thumbnail">YouTubeビデオサムネイル</string>
     <string name="content_description_history">履歴</string>
@@ -287,10 +287,10 @@
     <string name="accept_terms_and_privacy"><![CDATA[続けることによって、Link Bubbleの
 <a href="http://www.linkbubble.com/terms">規約</a>と<a href="http://www.linkbubble.com/privacy">プライバシーポリシー</a>を受け入れたとみなします。.]]></string>
 
-    <string name="service_name">Link Bubble レンダラー</string>
-    <string name="notification_title">Link Bubble</string>
+    <string name="service_name">Brave レンダラー</string>
+    <string name="notification_title">Brave</string>
 
-    <string name="store_listing_title">Link Bubble</string>
+    <string name="store_listing_title">Brave</string>
     <string name="store_listing_promo_text">モバイルブラウジング完了</string>
     
     
@@ -304,7 +304,7 @@
     
     
     
-    <string name="welcome_page_more_also">Link Bubble または:</string>
+    <string name="welcome_page_more_also">Brave または:</string>
     <string name="welcome_page_more_point_1">リンクは専用アプリにリダイレクト (例 Instagram)</string>
     <string name="welcome_page_more_point_2">YouTubeアプリで簡単に視聴することができるので、埋め込まれたビデオを検索します。</string>
     

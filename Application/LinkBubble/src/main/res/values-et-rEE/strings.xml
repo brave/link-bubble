@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Allalaadija</string>
-    <string name="send_intent_label">Ava Link Bubble-ga</string>
+    <string name="send_intent_label">Ava Brave-ga</string>
     <string name="notification_summary">Koputa kõikide avatud mullide peitmiseks</string>
     <string name="notification_default_summary">Koputa peitmiseks, laienda kõikide sulgemiseks</string>
     <string name="notification_unhide_summary">Koputa kuvamiseks, laienda kõikide sulgemiseks</string>
@@ -48,7 +48,7 @@
     <string name="warning">Hoiatus!</string>
     <string name="untrusted_certificate">%1$s sertifikaat pole usaldusväärne. Jätkad siiski?</string>
 
-    <string name="share_invalid_data">Link Bubble ei ole võimeline seda üksust jagama kuna see ei ole sobiv URL.</string>
+    <string name="share_invalid_data">Brave ei ole võimeline seda üksust jagama kuna see ei ole sobiv URL.</string>
     <string name="consume_activity_not_found">Rakendust ei leitud. Kaalu mulli tegevuse vahetamist seadetes.</string>
     <string name="consume_activity_security_exception">Välisele rakendusele ei suudetud jagada.</string>
 
@@ -60,7 +60,7 @@
     <string name="undo_close_tab_no_title">Kaart on suletud</string>
 
     <string name="pick_default_app">Vali vaikerakenduseks</string>
-    <string name="default_browser_set">Link Bubble on seatud vaikebrauseriks.</string>
+    <string name="default_browser_set">Brave on seatud vaikebrauseriks.</string>
     <string name="invalid_send_action">Sobivat linki ei leitud.</string>
     <string name="unable_to_launch_app">3. osapoole rakendust ei suudetud avada.</string>
     <string name="clear_history">Tühjenda ajalugu</string>
@@ -86,11 +86,11 @@
     <string name="preference_default_apps_summary">Erandibrauser, URLi-põhised rakendused</string>
     <string name="preference_default_apps_notice_summary">Kasutatakse, kui üks või rohkem mitte-brauser rakendust sinu seadmes 
 võivad hallata URLi.\n\nKoputa, et eemaldada vaikeväärtus.</string>
-    <string name="preference_default_apps_notice_no_defaults_summary">Kasutatakse, kui üks või rohkem mitte-brauser rakendust sinu seadmes võivad hallata URLi, sa võid seadistada nende avamiseks vaikerakenduse.\n\nVaikimisi rakendus sel juhul kasutamiseks on seadistatud, kui laed linke Link Bubble\'ga.</string>
+    <string name="preference_default_apps_notice_no_defaults_summary">Kasutatakse, kui üks või rohkem mitte-brauser rakendust sinu seadmes võivad hallata URLi, sa võid seadistada nende avamiseks vaikerakenduse.\n\nVaikimisi rakendus sel juhul kasutamiseks on seadistatud, kui laed linke Brave\'ga.</string>
     <string name="preference_google_account_redirect_title">Google\'i kasutaja ümbersuunamine</string>
     <string name="preference_google_account_redirect_summary">Suuna accounts.google.com lingid erandite vaikebrauserisse</string>
     <string name="preference_set_default_browser_title">Määra vaikimisi süsteemibrauseriks</string>
-    <string name="preference_set_default_browser_summary">Link Bubble tuleb toimimiseks seada vaikimisi süsteemibrauseriks. Koputa, et seadistada.</string>
+    <string name="preference_set_default_browser_summary">Brave tuleb toimimiseks seada vaikimisi süsteemibrauseriks. Koputa, et seadistada.</string>
     <string name="preference_more">Veel...</string>
     <string name="preference_intercept_links_from_title">Kasuta rakenduses</string>
     <string name="preference_intercept_links_from_disabled_for_L">Alates Androidi versioonist 5.0 on Google eemaldanud seda funktsiooni võimaldava API.</string>
@@ -98,7 +98,7 @@ võivad hallata URLi.\n\nKoputa, et eemaldada vaikeväärtus.</string>
     <string name="preference_scan_for_youtube_embeds_summary">Kuva otsetee lehesiseste videote laadimiseks YouTube rakenduses.</string>
     <string name="preference_webview_battery_save_title">Akusäästurežiim (beeta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Agressivne</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Peata veebilehtede laadimine, kui Link Bubble on minimeeritud.\nLaadimisprotsessis lehed lõpetavad laadimise enne peatamist.</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Peata veebilehtede laadimine, kui Brave on minimeeritud.\nLaadimisprotsessis lehed lõpetavad laadimise enne peatamist.</string>
     <string name="preference_webview_battery_save_default_title">Vaikimisi</string>
     <string name="preference_webview_battery_save_default_summary">Peata veebilehtede laadimine, kui ekraan on väljas ja jätka, kui seadme lukk on avatud.\nLaadimisprotsessis lehed lõpetavad laadimise enne peatamist.</string>
     <string name="preference_webview_battery_save_off_title">Väljas</string>
@@ -150,14 +150,14 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
     <string name="preference_privacy_policy_title">Privaatsuseeskirjad</string>
     <string name="preference_terms_of_service_title">Teenusetingimused</string>
     <string name="preference_say_thanks_title">Täna meid!</string>
-    <string name="preference_say_thanks_summary">Naudid Link Bubble\'it? Palun kaalu Play poe arvustuse kirjutamist.</string>
+    <string name="preference_say_thanks_summary">Naudid Brave\'it? Palun kaalu Play poe arvustuse kirjutamist.</string>
     <string name="preference_version_title">Versioon</string>
     <string name="preference_version_summary">Mis on uut?</string>
     <string name="preference_more_title">Veel&#8230;</string>
     <string name="preference_show_undo_close_tab_title">Kaardi sulgemise tagasivõtmise valik</string>
 
-    <string name="preference_my_other_apps_title">Rohkem rakendusi Link Bubble poolt</string>
-    <string name="preference_my_other_apps_summary">Meeldib Link Bubble? Miks mitte vaadata ka meie teisi rakendusi?</string>
+    <string name="preference_my_other_apps_title">Rohkem rakendusi Brave poolt</string>
+    <string name="preference_my_other_apps_summary">Meeldib Brave? Miks mitte vaadata ka meie teisi rakendusi?</string>
 
     <string name="remove_default_title">Eemaldad vaikeväärtuse?</string>
     <string name="remove_default_message">Eemaldad %1$s vaikerakendusena %2$s laadimiseks?\n\nMärkus: sa võid seada uue vaikerakenduse, mida kasutada järgmine kord kui laed %2$s linki.
@@ -186,7 +186,7 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
     <string name="histroy_all">Kõik</string>
     <string name="history">Ajalugu</string>
     <string name="erase_all_history_title">Kustutad kõik?</string>
-    <string name="erase_all_history_message">Kustutad kogu oma Link Bubble sirvimisajaloo?</string>
+    <string name="erase_all_history_message">Kustutad kogu oma Brave sirvimisajaloo?</string>
     <string name="empty">Tühi</string>
     <string name="history_already_empty">Ajalugu on juba tühi</string>
     <string name="private_data_cleared">Privaatsed andmed on kustutatud</string>
@@ -197,7 +197,7 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
     <string name="link_loaded_with_app">Laaditud %1$s abil</string>
     <string name="link_redirected">Suunatud rakendusse %1$s</string>
 
-    <string name="tampered_apk">Sinu Link Bubble rakendus on illegaalselt muudetud ja seetõttu ei tööta stabiilselt. Palun taasinstalli see Play poest.</string>
+    <string name="tampered_apk">Sinu Brave rakendus on illegaalselt muudetud ja seetõttu ei tööta stabiilselt. Palun taasinstalli see Play poest.</string>
 
     <string name="bubble_link_copied_to_clipboard">Mulli link kopeeritud lõikelauale.</string>
     <string name="link_copied_to_clipboard">Link kopeeritud lõikelauale.</string>
@@ -264,8 +264,8 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
     <string name="activity_resolver_use_always">Alati</string>
     <string name="activity_resolver_use_once">Ainult korra</string>
 
-    <string name="credits_title">Link Bubble autorid</string>
-    <string name="credits_name">Link Bubble</string>
+    <string name="credits_title">Brave autorid</string>
+    <string name="credits_name">Brave</string>
     <string name="credits_credit">Kontseptsioon, disain ja programeerimine</string>
     
 
@@ -278,7 +278,7 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
     <string name="content_description_button">Nupp</string>
     
     <string name="content_description_close_bubble_icon">Sulge mulliikoon</string>
-    <string name="content_description_link_bubble_logo">Link Bubble logo</string>
+    <string name="content_description_link_bubble_logo">Brave logo</string>
     <string name="content_description_app_icon">Rakenduse ikoon</string>
     <string name="content_description_youtube_video_thumbnail">YouTube video pisipilt</string>
     <string name="content_description_history">Ajalugu</string>
@@ -289,16 +289,16 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
 
     
 
-    <string name="service_name">Link Bubble renderdaja</string>
-    <string name="notification_title">Link Bubble</string>
+    <string name="service_name">Brave renderdaja</string>
+    <string name="notification_title">Brave</string>
 
-    <string name="store_listing_title">Link Bubble</string>
+    <string name="store_listing_title">Brave</string>
     <string name="store_listing_promo_text">Korralik mobiilne sirvimine.</string>
     
     
     
 
-    <string name="welcome_page_title">Tere tulemast Link Bubble\'sse!</string>
+    <string name="welcome_page_title">Tere tulemast Brave\'sse!</string>
     <string name="welcome_page_intro_title">Kuidas see töötab?</string>
     <string name="welcome_page_intro_point_1">Klõpsa mõnes rakenduses lingile.</string>
     
@@ -306,7 +306,7 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
     <string name="welcome_page_more_title">Näita mulle veel!</string>
     
     <string name="welcome_page_more_pocket_end">Tundub nii lõbus kui kasulik, mis?</string>
-    <string name="welcome_page_more_also">Link Bubble lisaks:</string>
+    <string name="welcome_page_more_also">Brave lisaks:</string>
     
     
     <string name="welcome_page_more_point_3">Laadi lõpmatuid mulle ühekorraga.</string>

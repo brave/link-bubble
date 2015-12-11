@@ -243,12 +243,12 @@
     
     <string name="faq_roadmap_question">क्या आप आके के फीचर्स लो रोडमैप पब्लिश करते हे क्या? क्या में उनके लिए समर्थन (voting) कर सकता हु क्या?</string>
     <string name="faq_roadmap_answer">प्रतिस्पर्धी कारणों से, इन दोनों सवालों का जवाब \'\नहीं \' हे।<br/><br/></string>
-    <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble solo soporta compras via Google Play en este momento.<br/><br/>Metodos adicionales de pago seran añadidos en un futuro (asumiendo que no violan las Politicas del Programa de Desarrolladores de Google Play).]]></string>
+    <string name="faq_alternate_payment_answer"><![CDATA[Brave solo soporta compras via Google Play en este momento.<br/><br/>Metodos adicionales de pago seran añadidos en un futuro (asumiendo que no violan las Politicas del Programa de Desarrolladores de Google Play).]]></string>
     <string name="faq_cant_type_url_question">मै एप में लिंक टाइप क्यों नही कर सकता?</string>
     <string name="faq_cant_type_url_answer"><![CDATA[यह इरादा पूरी तरह से स्पष्ठ है. लिंक बबल अपने ब्राउज़र के लिए एक पूरी प्रतिस्थापन होने के लिए नहीं बनाया गया है, लेकिन इसके बजाय सहायक और जितनी जल्दी संभव हो, सुंदर ढंग के रूप में अन्य क्षुधा से लिंक लोड और प्रदर्शन करने के लिए इस्तेमाल किया जाएगा.<br/><br/>अगर आप लिंक बबल से लोड करना चाहते हैं तो अब गूगल नाउ के माध्यम से खोज और लिंक बबल के साथ परिणाम लोड करना एक अच्छा तरीका है.<br/><br/>जल्दी से अपने पसंदीदा पेज लोड करने के लिए, मुझे क्रोम बुकमार्क्स विजेट बहुत सहायक लगता हे।]]></string>
     <string name="faq_copy_text_question">में बेब पेज से कुछ कॉपी क्यों नही कर सकता?</string>
     <string name="faq_copy_text_answer"><![CDATA[दुर्भाग्यवश एंड्राइड सिस्टम इसे चलने से रोकता हे.<br/><br/>Technical answer:
-Copy functionality works when using Android\'s WebView from an Activity, but not from a Service (which Link Bubble uses).]]></string>
+Copy functionality works when using Android\'s WebView from an Activity, but not from a Service (which Brave uses).]]></string>
     <string name="faq_translucent_status_bar_question">पारदर्शी उस बार के ऊपर एप क्यों नही आती?</string>
     <string name="faq_translucent_status_bar_answer">अभाग्यवश, एंड्राइड सिस्टम यह करने की इजाजत नजी देता हे। </string>
     <string name="faq_beta_programme_question">क्या इसका कोई बीटा प्रोग्राम हे? मै केसे ज्वाइन कर सकता हूँ?</string>
@@ -256,10 +256,10 @@ Copy functionality works when using Android\'s WebView from an Activity, but not
     <string name="faq_low_spec_performance_question">लिंक बबल मेरी Nexus S /Galaxy S1/Moto G श्रेनि के मोबाइल्स पर धीरे क्यों चलता हे?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[लिंक बबल एक बहुत संसाधन गहन app है इसीलिए कम स्पेक्स वाले
  और अधिक शक्तिशाली उपकरण भी इसे चलाने के लिए संघर्ष कर सकते हैं. भविष्य में इसमें सुधर किया जाएगा लेकिन सुधार की भी एक सीमा होगी।
-<br/> <br/> तकनीकी जवाब:.  At the bare minimum, Link Bubble requires the
+<br/> <br/> तकनीकी जवाब:.  At the bare minimum, Brave requires the
 use of a Service and a WebView in order to function. Often multiple WebViews and even multiple Activities are also present.
 Naturally, allocating these items (especially the WebViews) consumes a <i>lot</i> of memory/resources. Lower spec devices generally
-have less memory available than Link Bubble requires, and thus performance suffers as garbage collections are frequently triggered.
+have less memory available than Brave requires, and thus performance suffers as garbage collections are frequently triggered.
 As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on the Nexus 5.]]></string>
     <string name="faq_crap_webview_question">कभी कभी वेब पेजेज ढंग से नहीं खुलते या वीडियोस नही चलते हे ?</string>
     <string name="faq_crap_webview_answer"><![CDATA[लिंक बबल Android WebView का उपयोग करता है, लेकिन दुर्भाग्य से यह कभी कभी अविश्वसनीय है। 
