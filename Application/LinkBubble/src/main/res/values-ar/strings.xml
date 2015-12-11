@@ -48,7 +48,7 @@
     
     
 
-    <string name="share_invalid_data">Link Bubble غير قادر على مشاركة هذا المحتوى لأنه ليس رابطاً صحيحاً</string>
+    <string name="share_invalid_data">Brave غير قادر على مشاركة هذا المحتوى لأنه ليس رابطاً صحيحاً</string>
     <string name="consume_activity_not_found">غير قادر على إيجاد البرنامج. قم بتغيير عمل الـ bubble من الإعدادت</string>
     
 
@@ -60,7 +60,7 @@
     
 
     <string name="pick_default_app">اختر تطبيق افتراضي</string>
-    <string name="default_browser_set">تم تعيين Link Bubble المتصفح الافتراضي</string>
+    <string name="default_browser_set">تم تعيين Brave المتصفح الافتراضي</string>
     
     
     <string name="clear_history">امسح التاريخ</string>
@@ -85,7 +85,7 @@
     <string name="preference_default_apps_title">التطبيقات الافتراضية</string>
     
     <string name="preference_default_apps_notice_summary">يستخدم عندما يكون هناك على جهازك تطبيق أو أكثر من تطبيق (غير المتصفحات) يمكنها معالجة رابط.\n\nاضغط على تطبيق لحذفه.</string>
-    <string name="preference_default_apps_notice_no_defaults_summary">يستخدم عندما يكون هناك على جهازك تطبيق أو أكثر من تطبيق (غير المتصفحات) يمكنها معالجة رابط. يمكنك اختيار التطبيق الافتراضي لتحميل مثل هذه الروابط.\n\n في مثل هذه الحالات، يتم اختيار التطبيق الافتراضي كلما قمت بفتح الوابط باستخدام Link Bubble</string>
+    <string name="preference_default_apps_notice_no_defaults_summary">يستخدم عندما يكون هناك على جهازك تطبيق أو أكثر من تطبيق (غير المتصفحات) يمكنها معالجة رابط. يمكنك اختيار التطبيق الافتراضي لتحميل مثل هذه الروابط.\n\n في مثل هذه الحالات، يتم اختيار التطبيق الافتراضي كلما قمت بفتح الوابط باستخدام Brave</string>
     <string name="preference_google_account_redirect_title">إعادة التحويل لحسابات قوقل</string>
     <string name="preference_google_account_redirect_summary">إعادة توجيه العناوين من قوقل إلى المتصفح الإفتراضي</string>
     <string name="preference_set_default_browser_title">ضبط متصفح النظام الافتراضي</string>
@@ -257,9 +257,9 @@
     <string name="faq_next_update_eta_question">متى سيكون التحديث القادم؟</string>
     <string name="faq_next_update_eta_answer">لايوجد وقت محدد لأانه عند وضع وقت وتم التخلف عن هذا الوقت يثير استياء الناس لأنهم يرونه وعد وليس تقدير .</string>
     <string name="faq_close_quickly_question">كيف يمكنني توقيف فقاعة العنوان عن العمل؟</string>
-    <string name="faq_close_quickly_answer">إسحب ن أعلى الشاشة لفتح ستارة التنبيهات وإضغط على تنبيه Link Bubble</string>
+    <string name="faq_close_quickly_answer">إسحب ن أعلى الشاشة لفتح ستارة التنبيهات وإضغط على تنبيه Brave</string>
     <string name="faq_change_default_browser_question">كيف يمكنني إزالة فقاعة العنوان كمتصفح إفتراضي؟</string>
-    <string name="faq_change_default_browser_answer">إعدادات النظام>تطبيقات> المحملة> Link Bubble> إزالة الإفتراض</string>
+    <string name="faq_change_default_browser_answer">إعدادات النظام>تطبيقات> المحملة> Brave> إزالة الإفتراض</string>
     <string name="faq_report_bug_question">التبليغ عن خطأ</string>
     <string name="faq_report_bug_answer">اإيميل</string>
 

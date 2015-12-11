@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">下載器</string>
-    <string name="send_intent_label">以 Link Bubble 開啟</string>
+    <string name="send_intent_label">以 Brave 開啟</string>
     <string name="notification_summary">點此隱藏所有開啟的氣泡</string>
     <string name="notification_default_summary">點擊此處隱藏，展開通知後可關閉所有分頁</string>
     <string name="notification_unhide_summary">點擊此處顯示，展開通知後可關閉所有分頁</string>
@@ -48,7 +48,7 @@
     <string name="warning">警告！</string>
     <string name="untrusted_certificate">%1$s 的憑證有安全疑慮。要繼續嗎？</string>
 
-    <string name="share_invalid_data">Link Bubble 無法分享這個無效的 URL。</string>
+    <string name="share_invalid_data">Brave 無法分享這個無效的 URL。</string>
     <string name="consume_activity_not_found">無法找到該應用程式，請至設定中修改。</string>
     <string name="consume_activity_security_exception">無法分享至外部應用程式。</string>
 
@@ -60,7 +60,7 @@
     <string name="undo_close_tab_no_title">已關閉分頁</string>
 
     <string name="pick_default_app">選擇預設程式</string>
-    <string name="default_browser_set">Link Bubble 已成為預設的瀏覽器。</string>
+    <string name="default_browser_set">Brave 已成為預設的瀏覽器。</string>
     <string name="invalid_send_action">找不到有效連結。</string>
     <string name="unable_to_launch_app">無法啟動第三方應用程式。</string>
     <string name="clear_history">清除歷史紀錄</string>
@@ -88,11 +88,11 @@
 \n\n點擊可移除其預設值。</string>
     <string name="preference_default_apps_notice_no_defaults_summary">當裝置中具有可開啟該連結的程式時使用，
 您可以為這類連結設定預設的應用程式。
-\n\nLink Bubble 會在讀取到連結時供您設定預設的程式。</string>
+\n\nBrave 會在讀取到連結時供您設定預設的程式。</string>
     <string name="preference_google_account_redirect_title">重新導向 Google 帳號</string>
     <string name="preference_google_account_redirect_summary">將 accounts.google.com 的連結重新導向至預設備援瀏覽器</string>
     <string name="preference_set_default_browser_title">設為系統預設的瀏覽器</string>
-    <string name="preference_set_default_browser_summary">Link Bubble 必須設系統預設的瀏覽器才能運作。請點此設定。</string>
+    <string name="preference_set_default_browser_summary">Brave 必須設系統預設的瀏覽器才能運作。請點此設定。</string>
     <string name="preference_more">更多…</string>
     <string name="preference_intercept_links_from_title">擷取連結</string>
     <string name="preference_intercept_links_from_disabled_for_L">自 Android 5.0 開始，Google 移除了這項功能所需的 API。</string>
@@ -100,7 +100,7 @@
     <string name="preference_scan_for_youtube_embeds_summary">顯示以 YouTube 程式讀取內嵌影片的按鈕。</string>
     <string name="preference_webview_battery_save_title">省電模式 (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">積極</string>
-    <string name="preference_webview_battery_save_aggressive_summary">當 Link Bubble 最小化時暫停更新網頁。\n暫停前會先將載入中的網頁讀取完畢。</string>
+    <string name="preference_webview_battery_save_aggressive_summary">當 Brave 最小化時暫停更新網頁。\n暫停前會先將載入中的網頁讀取完畢。</string>
     <string name="preference_webview_battery_save_default_title">預設</string>
     <string name="preference_webview_battery_save_default_summary">當螢幕關閉時暫停更新網頁，並於畫面解鎖後恢復。\n暫停前會先將載入中的網頁讀取完畢。</string>
     <string name="preference_webview_battery_save_off_title">關閉</string>
@@ -151,14 +151,14 @@
     <string name="preference_privacy_policy_title">隱私權政策</string>
     <string name="preference_terms_of_service_title">服務條款</string>
     <string name="preference_say_thanks_title">表達謝意！</string>
-    <string name="preference_say_thanks_summary">喜歡 Link Bubble 嗎？請移步至 Play 商店留下感想。</string>
+    <string name="preference_say_thanks_summary">喜歡 Brave 嗎？請移步至 Play 商店留下感想。</string>
     <string name="preference_version_title">版本</string>
     <string name="preference_version_summary">多了什麼新東西？</string>
     <string name="preference_more_title">其他選項&#8230;</string>
     <string name="preference_show_undo_close_tab_title">復原已關閉分頁的提醒視窗</string>
 
-    <string name="preference_my_other_apps_title">其他由 Link Bubble 製作的 app</string>
-    <string name="preference_my_other_apps_summary">喜歡 Link Bubble 嗎？何不看看其他的作品呢？</string>
+    <string name="preference_my_other_apps_title">其他由 Brave 製作的 app</string>
+    <string name="preference_my_other_apps_summary">喜歡 Brave 嗎？何不看看其他的作品呢？</string>
 
     <string name="remove_default_title">移除預設值？</string>
     <string name="remove_default_message">要移除以 %1$s 開啟 %2$s 連結的預設值嗎？
@@ -187,7 +187,7 @@
     <string name="histroy_all">全部</string>
     <string name="history">歷史紀錄</string>
     <string name="erase_all_history_title">全部清除？</string>
-    <string name="erase_all_history_message">清除 Link Bubble 中的所有瀏覽紀錄？</string>
+    <string name="erase_all_history_message">清除 Brave 中的所有瀏覽紀錄？</string>
     <string name="empty">沒有紀錄</string>
     <string name="history_already_empty">已清空歷史紀錄</string>
     <string name="private_data_cleared">已清除隱私資料</string>
@@ -198,7 +198,7 @@
     <string name="link_loaded_with_app">已用 %1$s 讀取</string>
     <string name="link_redirected">已重新導向至 %1$s</string>
 
-    <string name="tampered_apk">您的 Link Bubble 已被非法修改，因此無法正常運作。請從 Play 商店重新下載。</string>
+    <string name="tampered_apk">您的 Brave 已被非法修改，因此無法正常運作。請從 Play 商店重新下載。</string>
 
     <string name="bubble_link_copied_to_clipboard">已將氣泡的連結複製到剪貼簿。</string>
     <string name="link_copied_to_clipboard">已將連結複製到剪貼簿。</string>
@@ -221,54 +221,54 @@
     <string name="faq_close_tab_question">如何快速關閉一個分頁？</string>
     <string name="faq_close_tab_answer">最快的方法是按下返回鍵，也可以將分頁滑至關閉按鈕上。</string>
     <string name="faq_back_button_minimize_question">我覺得返回鍵應該用來將瀏覽器最小化！</string>
-    <string name="faq_back_button_minimize_answer"><![CDATA[按下返回鍵來最小化 Link Bubble 是不可行的。
+    <string name="faq_back_button_minimize_answer"><![CDATA[按下返回鍵來最小化 Brave 是不可行的。
 請試想下列情境：<br/>
 1). 在第一個分頁中載入 example.com/page1。<br/>
 2). 您在該頁面中點了一個連結，在同個分頁中載入 example.com/page2。<br/>
 3). 您現在想要回到第一步的連結。<br/><br/>
-如果您要用返回鍵來最小化 Link Bubble，那這時該怎麼辦呢？點擊氣泡上的小小返回鈕顯然是不可行的。<br/><br/>
-Link Bubble 是一個瀏覽器，而 Android 的瀏覽器在一開始建立的標準是，點擊返回鍵時，若網址堆疊中沒有上一頁，就關閉目前頁面。
-Link Bubble 亦遵循此標準。]]></string>
-    <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble 無法擷取連結！]]></string>
+如果您要用返回鍵來最小化 Brave，那這時該怎麼辦呢？點擊氣泡上的小小返回鈕顯然是不可行的。<br/><br/>
+Brave 是一個瀏覽器，而 Android 的瀏覽器在一開始建立的標準是，點擊返回鍵時，若網址堆疊中沒有上一頁，就關閉目前頁面。
+Brave 亦遵循此標準。]]></string>
+    <string name="faq_app_internal_browser_question"><![CDATA[Brave 無法擷取連結！]]></string>
     <string name="faq_app_internal_browser_answer"><![CDATA[有 3 種可能導致這個問題：<br/>
-1). 有個非 Link Bubble 的瀏覽器被設為目前的系統預設值。請用 Link Bubble 設定中的 \"設為系統預設的瀏覽器\" 選項進行設定。<br/>
-2). Link Bubble 被設定為不從特定程式中擷取連結。請至 Link Buuble 設定中的 \"擷取連結\" 選項進行設定。<br/>
+1). 有個非 Brave 的瀏覽器被設為目前的系統預設值。請用 Brave 設定中的 \"設為系統預設的瀏覽器\" 選項進行設定。<br/>
+2). Brave 被設定為不從特定程式中擷取連結。請至 Link Buuble 設定中的 \"擷取連結\" 選項進行設定。<br/>
 3). 像是 Talon，Reddit is Fun 或其他程式會用它們內建的瀏覽器來開啟連結。請檢查該程式的設定，並啟用 \"外部瀏覽器\" 或取消勾選 \"整合式瀏覽器\" 之類的選項。
-<br/><br/>請注意：像 Chrome 這類的瀏覽器都會在程式中寫死，只能使用它們本身來載入網頁，故 Link Bubble 無法讀取在其他瀏覽器中點擊的連結。
+<br/><br/>請注意：像 Chrome 這類的瀏覽器都會在程式中寫死，只能使用它們本身來載入網頁，故 Brave 無法讀取在其他瀏覽器中點擊的連結。
 ]]></string>
     <string name="faq_article_mode_question">我要如何使用閱讀模式？為什麼有些連結沒辦法用？</string>
     <string name="faq_article_mode_answer"><![CDATA[首先，請確定閱讀模式是啟用的 (設定 -> 程式控制 / 其他選項&#8230; -> 閱讀模式)。<br/><br/>
 完成之後，當閱讀模式可在目前分頁使用時，操作欄上會顯示閱讀模式的按鈕 (就在分享按鈕旁邊)。
-該按鈕只會在連結載入完畢後，且 Link Bubble 成功地摘錄出文章內容時出現。<br/><br/>
+該按鈕只會在連結載入完畢後，且 Brave 成功地摘錄出文章內容時出現。<br/><br/>
 請注意：在網頁上摘錄內容的過程是太不可靠的，且不見得 100% 準確。對於動態甚至千變萬化的網頁而言，只能盡量做到這樣了。]]></string>
     <string name="faq_future_features_question">你會加入書籤、收藏及套件之類的功能嗎？</string>
-    <string name="faq_future_features_answer">這很難說，不過目前 Link Bubble 想要先把程式內載入、閱讀的工作做到最好。</string>
+    <string name="faq_future_features_answer">這很難說，不過目前 Brave 想要先把程式內載入、閱讀的工作做到最好。</string>
     <string name="faq_translations_question">我可以協助翻譯這個 app 嗎？</string>
     <string name="faq_translations_answer"><![CDATA[我希望能盡快地加入各語系的翻譯。<br/><br/>到時候我會PO在 Google+
-(+Link Bubble) 上面來尋求翻譯，所以請隨時注意我的動態。]]></string>
+(+Brave) 上面來尋求翻譯，所以請隨時注意我的動態。]]></string>
     <string name="faq_roadmap_question">你會發布未來功能的藍圖嗎？我能不能替即將到來的新功能投票呢？</string>
     <string name="faq_roadmap_answer">出於競爭考量，我想這兩個問題的答案都是「不」。<br/><br/></string>
-    <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble 目前只支援從 Google Play 上購買。<br/><br/>未來可能會新增其他的付費方式 (前提是他們不會違反 Google Play 開發人員計劃政策)。]]></string>
+    <string name="faq_alternate_payment_answer"><![CDATA[Brave 目前只支援從 Google Play 上購買。<br/><br/>未來可能會新增其他的付費方式 (前提是他們不會違反 Google Play 開發人員計劃政策)。]]></string>
     <string name="faq_cant_type_url_question">為什麼我不能輸入想要開啟的網址？</string>
-    <string name="faq_cant_type_url_answer"><![CDATA[故意設計成這樣的。Link Bubble 並不是要設計來取代你的瀏覽器，只是要用來載入並顯示在其他程式中開啟的連結，並盡可能地做到優雅、快速且實用。<br/><br/>如果您想要在 Link Bubble 中開啟新的網址，透過 Google Now 搜尋並以 Link Bubble 開啟搜尋結果也是個不錯的方式。<br/><br/>若要快速開啟您的最愛，我想 Chrome 的書籤小工具會非常有用。]]></string>
+    <string name="faq_cant_type_url_answer"><![CDATA[故意設計成這樣的。Brave 並不是要設計來取代你的瀏覽器，只是要用來載入並顯示在其他程式中開啟的連結，並盡可能地做到優雅、快速且實用。<br/><br/>如果您想要在 Brave 中開啟新的網址，透過 Google Now 搜尋並以 Brave 開啟搜尋結果也是個不錯的方式。<br/><br/>若要快速開啟您的最愛，我想 Chrome 的書籤小工具會非常有用。]]></string>
     <string name="faq_copy_text_question">為什麼我不能從網頁上複製文字？</string>
-    <string name="faq_copy_text_answer"><![CDATA[Android 系統本身的限制阻止了這項功能的運作。<br/><br/>從技術層面來說就是：一個 Activity 可以在 Android 的 WebView 使用 Copy 功能，但 Service 卻不能這麼做 (而 Link Bubble 採用後者)。]]></string>
+    <string name="faq_copy_text_answer"><![CDATA[Android 系統本身的限制阻止了這項功能的運作。<br/><br/>從技術層面來說就是：一個 Activity 可以在 Android 的 WebView 使用 Copy 功能，但 Service 卻不能這麼做 (而 Brave 採用後者)。]]></string>
     <string name="faq_translucent_status_bar_question">為什麼這個程式不能蓋過半透明的狀態列？</string>
     <string name="faq_translucent_status_bar_answer">受限於系統本身的限制。</string>
     <string name="faq_beta_programme_question">有推出 beta 版的計劃嗎？我要怎麼加入呢？</string>
-    <string name="faq_beta_programme_answer">Beta 版程式會在適當的時候公布。請隨時注意我的 Google+ (+Link Bubble) 公告。</string>
-    <string name="faq_low_spec_performance_question">為什麼 Link Bubble 在 Nexus S / Galaxy S1 / Moto G 這種等級的裝置上跑得這麼慢？</string>
-    <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble 是一款比較吃資源的程式，硬體規格較低的裝置可能會顯得比較吃力。未來更新的重點會放在改進 Link Bubble 的效能，但實際上能做的並不多。<br/><br/>從技術層面來說就是：在最低限度下，Link Bubble 需要一個 Service 及一個 WebView 來運作。而同時存在多個 WebView 甚至是多個 Activity 也是常有的事。一般來說，配置這些物件 (特別是 WebView)  會消耗<i>大量的</i>記憶體/資源。對於硬體規格較低的裝置而言，可用記憶體通常比 Link Bubble 所需要的要來得少，因此頻繁地觸發垃圾收集 (garbage collection) 就會影響效能。舉個例子，Nexus S 上的最大記憶體配置是 48MB，而 Nexus 5 的是 192 MB。]]></string>
+    <string name="faq_beta_programme_answer">Beta 版程式會在適當的時候公布。請隨時注意我的 Google+ (+Brave) 公告。</string>
+    <string name="faq_low_spec_performance_question">為什麼 Brave 在 Nexus S / Galaxy S1 / Moto G 這種等級的裝置上跑得這麼慢？</string>
+    <string name="faq_low_spec_performance_answer"><![CDATA[Brave 是一款比較吃資源的程式，硬體規格較低的裝置可能會顯得比較吃力。未來更新的重點會放在改進 Brave 的效能，但實際上能做的並不多。<br/><br/>從技術層面來說就是：在最低限度下，Brave 需要一個 Service 及一個 WebView 來運作。而同時存在多個 WebView 甚至是多個 Activity 也是常有的事。一般來說，配置這些物件 (特別是 WebView)  會消耗<i>大量的</i>記憶體/資源。對於硬體規格較低的裝置而言，可用記憶體通常比 Brave 所需要的要來得少，因此頻繁地觸發垃圾收集 (garbage collection) 就會影響效能。舉個例子，Nexus S 上的最大記憶體配置是 48MB，而 Nexus 5 的是 192 MB。]]></string>
     <string name="faq_crap_webview_question">有些網頁無法正常顯示或影片無法正常播放。</string>
-    <string name="faq_crap_webview_answer"><![CDATA[LinkBubble 使用了標準的 Android WebView，可惜這東西有時不太可靠。未來可能會研究 Firefox 的 GeckoView 及 Chromium 作為相應的替代方案。<br/><br/>若碰到了 Link Bubble 無法正常顯示的網頁，最簡單的方法就是在傳統瀏覽器中開啟該連結。]]></string>
-    <string name="faq_ongoing_notificaion_question">為什麼執行 Link Bubble 時總是會在通知欄中顯示？</string>
-    <string name="faq_ongoing_notificaion_answer"><![CDATA[為了告訴 Android 作業系統不要終止 Link Bubble 程式，這是必要的。]]></string>
+    <string name="faq_crap_webview_answer"><![CDATA[LinkBubble 使用了標準的 Android WebView，可惜這東西有時不太可靠。未來可能會研究 Firefox 的 GeckoView 及 Chromium 作為相應的替代方案。<br/><br/>若碰到了 Brave 無法正常顯示的網頁，最簡單的方法就是在傳統瀏覽器中開啟該連結。]]></string>
+    <string name="faq_ongoing_notificaion_question">為什麼執行 Brave 時總是會在通知欄中顯示？</string>
+    <string name="faq_ongoing_notificaion_answer"><![CDATA[為了告訴 Android 作業系統不要終止 Brave 程式，這是必要的。]]></string>
     <string name="faq_next_update_eta_question">下次更新是什麼時候？</string>
     <string name="faq_next_update_eta_answer"><![CDATA[等它準備好推出的時候！<br/><br/>除此之外無可奉告，連粗略的時間點也無法提供。<br/><br/>因為，給予人們一個大概的時間點時，他們會將其視為一個承諾。無論出於什麼原因導致延期，都會讓大家不開心。]]></string>
     <string name="faq_close_quickly_question">怎樣可以快速關閉執行中的 Link Buuble？</string>
-    <string name="faq_close_quickly_answer">將螢幕上方的通知面板下拉，點擊 "Link Bubble" 那項即可。</string>
-    <string name="faq_change_default_browser_question">怎麼移除 Link Bubble 本身的預設瀏覽器設定？</string>
-    <string name="faq_change_default_browser_answer">系統設定 -> 應用程式 -> 已下載 -> Link Bubble -> 清除預設值。</string>
+    <string name="faq_close_quickly_answer">將螢幕上方的通知面板下拉，點擊 "Brave" 那項即可。</string>
+    <string name="faq_change_default_browser_question">怎麼移除 Brave 本身的預設瀏覽器設定？</string>
+    <string name="faq_change_default_browser_answer">系統設定 -> 應用程式 -> 已下載 -> Brave -> 清除預設值。</string>
     <string name="faq_report_bug_question">回報 bug</string>
     <string name="faq_report_bug_answer"><![CDATA[電子郵件]]></string>
 
@@ -281,10 +281,10 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="activity_resolver_use_always">一律採用</string>
     <string name="activity_resolver_use_once">僅限一次</string>
 
-    <string name="credits_title">關於 Link Bubble</string>
-    <string name="credits_name">Link Bubble</string>
+    <string name="credits_title">關於 Brave</string>
+    <string name="credits_name">Brave</string>
     <string name="credits_credit">概念，設計及程式設計</string>
-    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
+    <string name="credits_app_copyright">Copyright 2015, Brave.</string>
 
     
     <plurals name="restore_tabs_from_previous_session">
@@ -295,7 +295,7 @@ Link Bubble 亦遵循此標準。]]></string>
     <string name="content_description_button">按鈕</string>
     <string name="content_description_target_icon">氣泡目標圖示</string>
     <string name="content_description_close_bubble_icon">關閉氣泡圖示</string>
-    <string name="content_description_link_bubble_logo">Link Bubble 圖示</string>
+    <string name="content_description_link_bubble_logo">Brave 圖示</string>
     <string name="content_description_app_icon">程式圖示</string>
     <string name="content_description_youtube_video_thumbnail">YouTube 影片縮圖</string>
     <string name="content_description_history">歷史紀錄</string>
@@ -304,33 +304,33 @@ Link Bubble 亦遵循此標準。]]></string>
 
     <string name="requesting_location_message">%1$s 想要取得您的位置。要允許嗎？</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[繼續後，表示您了解並接受 Link Bubble 的<a href="http://www.linkbubble.com/terms">條款</a>及<a href="http://www.linkbubble.com/privacy">隱私權政策</a>。]]></string>
+    <string name="accept_terms_and_privacy"><![CDATA[繼續後，表示您了解並接受 Brave 的<a href="http://www.linkbubble.com/terms">條款</a>及<a href="http://www.linkbubble.com/privacy">隱私權政策</a>。]]></string>
 
-    <string name="service_name">Link Bubble 渲染器</string>
-    <string name="notification_title">Link Bubble</string>
+    <string name="service_name">Brave 渲染器</string>
+    <string name="notification_title">Brave</string>
 
-    <string name="store_listing_title">Link Bubble</string>
+    <string name="store_listing_title">Brave</string>
     <string name="store_listing_promo_text">正確的行動瀏覽方式。</string>
-    <string name="store_listing_description_title">Link Bubble 是專為行動裝置打造的全新瀏覽器。</string>
+    <string name="store_listing_description_title">Brave 是專為行動裝置打造的全新瀏覽器。</string>
     <string name="store_listing_description_features">包括以下功能：
-• 當您在某個程式中點擊了連結，Link Bubble 就會在背景讀取該網頁，您可以在該程式中繼續瀏覽，而不必浪費寶貴的時間發呆等網頁載入。一旦網頁載入完畢，會顯示動畫提醒。
-• Link Bubble 的滑動功能可讓您瞬間分享連結或加入 Pocket 等服務！
+• 當您在某個程式中點擊了連結，Brave 就會在背景讀取該網頁，您可以在該程式中繼續瀏覽，而不必浪費寶貴的時間發呆等網頁載入。一旦網頁載入完畢，會顯示動畫提醒。
+• Brave 的滑動功能可讓您瞬間分享連結或加入 Pocket 等服務！
 • 可同時從目前的程式中讀取多個連結。
 • 優雅地處理其他程式中的重新導向連結。在 Twitter 中點選 Instagram 的連結時，不用再傻傻地看著瀏覽器開啟、跳轉，最後才啟動程式！
 • 與系統內的應用程式高度整合。
 • 找出網頁中內嵌的 YouTube 影片，提供直接在 YouTube 程式中播放的功能。
-• 統計功能會說明 Link Bubble 為您省下了多少時間。</string>
-    <string name="store_listing_description_location_permission">關於位置權限：您可能會授權網站來取得位置資訊 (像是內嵌地圖的網站)，這時就會用到。Link Bubble 本身並不會存取您的位置資訊。</string>
+• 統計功能會說明 Brave 為您省下了多少時間。</string>
+    <string name="store_listing_description_location_permission">關於位置權限：您可能會授權網站來取得位置資訊 (像是內嵌地圖的網站)，這時就會用到。Brave 本身並不會存取您的位置資訊。</string>
 
-    <string name="welcome_page_title">歡迎使用 Link Bubble！</string>
+    <string name="welcome_page_title">歡迎使用 Brave！</string>
     <string name="welcome_page_intro_title">這是如何運作的？</string>
     <string name="welcome_page_intro_point_1">在程式中點擊一個連結。</string>
     <string name="welcome_page_intro_point_2">螢幕邊會出現一個氣泡，之後該連結會在背景載入。連結載入完畢便會顯示。</string>
-    <string name="welcome_page_intro_end">就是這麼簡單！有了 Link Bubble，您可以繼續在程式中瀏覽，而不必浪費時間望著連結跳轉然後慢慢讀取。這教人如何不愛呢？</string>
+    <string name="welcome_page_intro_end">就是這麼簡單！有了 Brave，您可以繼續在程式中瀏覽，而不必浪費時間望著連結跳轉然後慢慢讀取。這教人如何不愛呢？</string>
     <string name="welcome_page_more_title">告訴我更多訊息！</string>
     <string name="welcome_page_more_pocket_start">您也可以快速地分享連結或加入如 Pocket 的服務。</string>
     <string name="welcome_page_more_pocket_end">看起來實用又有趣對吧？</string>
-    <string name="welcome_page_more_also">Link Bubble 還可以：</string>
+    <string name="welcome_page_more_also">Brave 還可以：</string>
     <string name="welcome_page_more_point_1">將連結重新導向至專用的程式 (如 Instagram)。</string>
     <string name="welcome_page_more_point_2">找出內嵌的影片讓您直接以 YouTube 程式播放。</string>
     <string name="welcome_page_more_point_3">可一次讀取多個氣泡。</string>

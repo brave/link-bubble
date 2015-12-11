@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     
-    <string name="send_intent_label">Otvoriť s Link Bubble</string>
+    <string name="send_intent_label">Otvoriť s Brave</string>
     <string name="notification_summary">Stlač pre skrytie všetkých otvorených bublín</string>
     <string name="notification_default_summary">Stlač pre skrytie, roztiahni pre zavretie všetkých</string>
     <string name="notification_unhide_summary">Stlač pre odhalenie, roztiahni pre zavretie všetkých</string>
@@ -48,7 +48,7 @@
     
     
 
-    <string name="share_invalid_data">Link Bubble toto nedokáže zdieľať (neplatná URL)</string>
+    <string name="share_invalid_data">Brave toto nedokáže zdieľať (neplatná URL)</string>
     
     
 
@@ -60,7 +60,7 @@
     <string name="undo_close_tab_no_title">Zavretý tab</string>
 
     <string name="pick_default_app">Zvoliť predvolenú app</string>
-    <string name="default_browser_set">Link Bubble bol zvolený ako predvolený prehliadač.</string>
+    <string name="default_browser_set">Brave bol zvolený ako predvolený prehliadač.</string>
     <string name="invalid_send_action">Funkčný link nenájdený.</string>
     <string name="unable_to_launch_app">Nemožno spustiť aplikáciu tretích strán.</string>
     <string name="clear_history">Vymazať históriu</string>

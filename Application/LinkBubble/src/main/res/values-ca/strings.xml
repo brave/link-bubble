@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Gestor de descàrregues</string>
-    <string name="send_intent_label">Obre amb Link Bubble</string>
+    <string name="send_intent_label">Obre amb Brave</string>
     <string name="notification_summary">Prem per amagar totes les bombolles obertes</string>
     <string name="notification_default_summary">Prem per amagar, expandeix per tancar totes</string>
     <string name="notification_unhide_summary">Prem per mostrar, expandeix per tancar totes</string>
@@ -48,7 +48,7 @@
     <string name="warning">Atenció!</string>
     <string name="untrusted_certificate">El certificat a %1$s no és de fiar. Continuar igualment?</string>
 
-    <string name="share_invalid_data">Link Bubble no pot compartir aquest ítem perquè no és una URL vàlida.</string>
+    <string name="share_invalid_data">Brave no pot compartir aquest ítem perquè no és una URL vàlida.</string>
     <string name="consume_activity_not_found">No es pot trobar l\'aplicació. Considera canviar l\'acció de la bombolla a la configuració.</string>
     <string name="consume_activity_security_exception">No es pot compartir a l\'aplicació externa.</string>
 
@@ -60,7 +60,7 @@
     <string name="undo_close_tab_no_title">Pestanya tancada</string>
 
     <string name="pick_default_app">Selecciona app per defecte</string>
-    <string name="default_browser_set">Link Bubble no ha sigut escollida com a navegador per defecte.</string>
+    <string name="default_browser_set">Brave no ha sigut escollida com a navegador per defecte.</string>
     <string name="invalid_send_action">Enllaç vàlid no trobat.</string>
     <string name="unable_to_launch_app">No s\'ha pogut posar en marxa l\'aplicació de tercers.</string>
     <string name="clear_history">Esborra l\'historial</string>
@@ -88,11 +88,11 @@
 poden gestionar una URL.\n\nPrem per esborrar-ne una.</string>
     <string name="preference_default_apps_notice_no_defaults_summary">Es fan servir quan una o més aplicacions (a part de navegadors) en el vostre sistema
 poden gestionar una URL, pots configurar l\'aplicació per defecte per carregar aquests enllaços.
-\n\nL\'app per defecte per fer servir en aquest cas és configurada quan carregues enllaços amb Link Bubble.</string>
+\n\nL\'app per defecte per fer servir en aquest cas és configurada quan carregues enllaços amb Brave.</string>
     <string name="preference_google_account_redirect_title">Redirecció a Google Account</string>
     <string name="preference_google_account_redirect_summary">Redirecciona enllaços d\'accounts.google.com al navegador secundari</string>
     <string name="preference_set_default_browser_title">Escull navegador secundari predeterminat</string>
-    <string name="preference_set_default_browser_summary">Link Bubble ha de ser el navegador predeterminat del sistema perquè funcioni. Prem per configurar-ho.</string>
+    <string name="preference_set_default_browser_summary">Brave ha de ser el navegador predeterminat del sistema perquè funcioni. Prem per configurar-ho.</string>
     <string name="preference_more">Més...</string>
     <string name="preference_intercept_links_from_title">Intercepta enllaços de</string>
     <string name="preference_intercept_links_from_disabled_for_L">Des d\'Android 5.0, Google ha eliminat l\'API necessària per aquesta funcionalitat.</string>
@@ -100,7 +100,7 @@ poden gestionar una URL, pots configurar l\'aplicació per defecte per carregar 
     <string name="preference_scan_for_youtube_embeds_summary">Mostra drecera per carregar vídeos incrustats a la app de YouTube.</string>
     <string name="preference_webview_battery_save_title">Mode d\'estalvi de bateria (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Agressiu</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Pausa la càrrega de pàgines web quan Link Bubble estigui minimitzat.\nPàgines en procés de càrrega la finalitzaran abans de pausar.</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Pausa la càrrega de pàgines web quan Brave estigui minimitzat.\nPàgines en procés de càrrega la finalitzaran abans de pausar.</string>
     <string name="preference_webview_battery_save_default_title">Per defecte</string>
     <string name="preference_webview_battery_save_default_summary">Pausa la càrrega de pàgines web quan la pantalla s\'apagui i continua quan es torni a engegar.\nPàgines en procés de càrrega la finalitzaran abans de pausar.</string>
     <string name="preference_webview_battery_save_off_title">Apagat</string>
@@ -152,14 +152,14 @@ poden gestionar una URL, pots configurar l\'aplicació per defecte per carregar 
     <string name="preference_privacy_policy_title">Política de privacitat</string>
     <string name="preference_terms_of_service_title">Condicions de servei</string>
     <string name="preference_say_thanks_title">Digues gràcies!</string>
-    <string name="preference_say_thanks_summary">Gaudint de Link Bubble? Si us plau, consideri deixar una ressenya a la Play Store.</string>
+    <string name="preference_say_thanks_summary">Gaudint de Brave? Si us plau, consideri deixar una ressenya a la Play Store.</string>
     <string name="preference_version_title">Versió</string>
     <string name="preference_version_summary">Què hi ha de nou?</string>
     <string name="preference_more_title">Més&#8230;</string>
     <string name="preference_show_undo_close_tab_title">Avís de desfer tancament</string>
 
-    <string name="preference_my_other_apps_title">Més apps de Link Bubble</string>
-    <string name="preference_my_other_apps_summary">T\'agrada Link Bubble? Per què no proves les nostres altres aplicacions?</string>
+    <string name="preference_my_other_apps_title">Més apps de Brave</string>
+    <string name="preference_my_other_apps_summary">T\'agrada Brave? Per què no proves les nostres altres aplicacions?</string>
 
     <string name="remove_default_title">Esborra predeterminat?</string>
     
@@ -187,7 +187,7 @@ poden gestionar una URL, pots configurar l\'aplicació per defecte per carregar 
     <string name="histroy_all">Tot</string>
     <string name="history">Historial</string>
     <string name="erase_all_history_title">Esborrar tot?</string>
-    <string name="erase_all_history_message">Vol esborrar tot l\'historial de navegació a Link Bubble?</string>
+    <string name="erase_all_history_message">Vol esborrar tot l\'historial de navegació a Brave?</string>
     <string name="empty">Buit</string>
     <string name="history_already_empty">L\'historial ja està buit</string>
     <string name="private_data_cleared">Dades privades esborrades</string>
@@ -265,8 +265,8 @@ poden gestionar una URL, pots configurar l\'aplicació per defecte per carregar 
     <string name="activity_resolver_use_always">Sempre</string>
     <string name="activity_resolver_use_once">Només una vegada</string>
 
-    <string name="credits_title">Crèdits de Link Bubble</string>
-    <string name="credits_name">Link Bubble</string>
+    <string name="credits_title">Crèdits de Brave</string>
+    <string name="credits_name">Brave</string>
     
     
 
@@ -279,7 +279,7 @@ poden gestionar una URL, pots configurar l\'aplicació per defecte per carregar 
     <string name="content_description_button">Botó</string>
     
     <string name="content_description_close_bubble_icon">Tanca la icona de la bombolla</string>
-    <string name="content_description_link_bubble_logo">Logo de Link Bubble</string>
+    <string name="content_description_link_bubble_logo">Logo de Brave</string>
     <string name="content_description_app_icon">Icona de l\'aplicació</string>
     
     <string name="content_description_history">Historial</string>
@@ -291,15 +291,15 @@ poden gestionar una URL, pots configurar l\'aplicació per defecte per carregar 
     
 
     
-    <string name="notification_title">Link Bubble</string>
+    <string name="notification_title">Brave</string>
 
-    <string name="store_listing_title">Link Bubble</string>
+    <string name="store_listing_title">Brave</string>
     <string name="store_listing_promo_text">Navegació mòbil com hauria de ser.</string>
-    <string name="store_listing_description_title">Link Bubble és un navegador nou pensat i dissenyat completament per mòbils.</string>
+    <string name="store_listing_description_title">Brave és un navegador nou pensat i dissenyat completament per mòbils.</string>
     
     
 
-    <string name="welcome_page_title">Benvingut/da a Link Bubble!</string>
+    <string name="welcome_page_title">Benvingut/da a Brave!</string>
     <string name="welcome_page_intro_title">Com funciona?</string>
     <string name="welcome_page_intro_point_1">Prem en un enllaç dins l\'app.</string>
     

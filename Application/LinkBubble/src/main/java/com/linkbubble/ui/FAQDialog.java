@@ -110,7 +110,7 @@ public class FAQDialog {
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO,
                                                     Uri.fromParts("mailto", "support@linkbubble.com", null));
                     String appVersion = BuildConfig.VERSION_NAME;
-                    String subject = "[Link Bubble] Report a bug (v" + appVersion + ", Android " + Constant.getOSFlavor()
+                    String subject = "[Brave] Report a bug (v" + appVersion + ", Android " + Constant.getOSFlavor()
                             + ", " + android.os.Build.MODEL + ", " + Locale.getDefault().getLanguage() + ")";
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
                     emailIntent.putExtra(Intent.EXTRA_TEXT, "My bug is ...\n\nHow often does the problem occur?\n\nAre you running a ROM and/or a modified framework/kernel? ");

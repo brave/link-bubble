@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     
-    <string name="send_intent_label">Abrir con Link Bubble</string>
+    <string name="send_intent_label">Abrir con Brave</string>
     <string name="notification_summary">Toca para agochar todas as burbullas abertas</string>
     
     
@@ -262,9 +262,9 @@
     
 
     
-    <string name="credits_name">Link Bubble</string>
+    <string name="credits_name">Brave</string>
     <string name="credits_credit">Concepto, deseño e programación</string>
-    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
+    <string name="credits_app_copyright">Copyright 2015, Brave.</string>
 
     
     <plurals name="restore_tabs_from_previous_session">
@@ -287,9 +287,9 @@
     
 
     
-    <string name="notification_title">Link Bubble</string>
+    <string name="notification_title">Brave</string>
 
-    <string name="store_listing_title">Link Bubble</string>
+    <string name="store_listing_title">Brave</string>
     
     
     
