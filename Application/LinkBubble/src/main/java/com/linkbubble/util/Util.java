@@ -74,6 +74,7 @@ public class Util {
         "com.android.chrome",
         "com.opera.browser",
         "com.opera.mini.native",
+        "com.opera.mini.android",
         "com.opera.browser.beta",
         "com.opera.mini.native.beta",
         "com.chrome.dev",
@@ -93,7 +94,9 @@ public class Util {
         "com.uc.browser.en",
         "mobi.browser.flashfox",
         "acr.browser.barebones",
-        "com.ineedyourservice.RBrowser"
+        "com.ineedyourservice.RBrowser",
+        "com.lastpass.lpandroid",
+        "org.hola"
     };
 
     public static float clamp(float v0, float v, float v1) {
