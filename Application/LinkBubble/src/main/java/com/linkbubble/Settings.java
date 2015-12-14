@@ -81,6 +81,7 @@ public class Settings {
 
     public static final String PREFERENCE_AUTO_ARTICLE_MODE = "preference_auto_article_mode";
     public static final String PREFERENCE_INCOGNITO_MODE = "preference_incognito";
+
     public static final String PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE = "preference_webview_battery_save_v2";
     public static final String PREFERENCE_TRACKINGPROTECTION_MODE = "preference_trackingprotection";
     public static final String PREFERENCE_ADBLOCK_MODE = "preference_adblock";
