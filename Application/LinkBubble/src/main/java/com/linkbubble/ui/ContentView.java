@@ -812,7 +812,8 @@ public class ContentView extends FrameLayout {
                             continue;
                         }
 
-                        if (info.mResolveInfo.activityInfo.packageName.startsWith("com.linkbubble.playstore")) {
+                        if (info.mResolveInfo.activityInfo.packageName.startsWith("com.linkbubble.playstore")
+                                || info.mResolveInfo.activityInfo.packageName.startsWith("com.brave.playstore")) {
                             isLinkBubblePresent = true;
                             break;
                         }

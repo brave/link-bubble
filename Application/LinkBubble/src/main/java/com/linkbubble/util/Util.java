@@ -110,7 +110,6 @@ public class Util {
         "net.fast.web.browser",
         "com.wisesharksoftware.browser",
         "org.hola",
-        "com.brave.playstore",
         "com.kk.jd.browser2"
     };
 
