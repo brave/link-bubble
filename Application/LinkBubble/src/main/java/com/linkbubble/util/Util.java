@@ -96,7 +96,9 @@ public class Util {
         "acr.browser.barebones",
         "com.ineedyourservice.RBrowser",
         "com.lastpass.lpandroid",
-        "org.hola"
+        "org.hola",
+        "com.brave.playstore",          // Made that temporary(remove when merge to master)
+        "com.brave.playstore.dev"       // Made that temporary(remove when merge to master)
     };
 
     public static float clamp(float v0, float v, float v1) {

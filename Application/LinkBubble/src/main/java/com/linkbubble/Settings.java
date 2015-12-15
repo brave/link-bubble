@@ -900,12 +900,14 @@ public class Settings {
                     } else {
                         // And some special case code for me to ignore alternate builds
                         if (BuildConfig.DEBUG) {
-                            if (info.activityInfo.packageName.equals("com.linkbubble.playstore")) {
+                            if (info.activityInfo.packageName.equals("com.linkbubble.playstore")
+                                    || info.activityInfo.packageName.equals("com.brave.playstore")) {
                                 //Log.d("blerg", "ignore " + info.activityInfo.packageName);
                                 packageOk = false;
                             }
                         } else {
-                            if (info.activityInfo.packageName.equals("com.linkbubble.playstore.dev")) {
+                            if (info.activityInfo.packageName.equals("com.linkbubble.playstore.dev")
+                                    || info.activityInfo.packageName.equals("com.brave.playstore.dev")) {
                                 //Log.d("blerg", "ignore " + info.activityInfo.packageName);
                                 packageOk = false;
                             }

@@ -784,7 +784,8 @@ public class MainController implements Choreographer.FrameCallback {
             } else {
                 // If LinkBubble is a valid resolve target, do not show other options to open the content.
                 for (ResolveInfo info : resolveInfos) {
-                    if (info.activityInfo.packageName.startsWith("com.linkbubble.playstore")) {
+                    if (info.activityInfo.packageName.startsWith("com.linkbubble.playstore")
+                            || info.activityInfo.packageName.startsWith("com.brave.playstore")) {
                         showAppPicker = false;
                         break;
                     } else {
