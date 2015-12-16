@@ -387,5 +387,7 @@
     <string name="yahoo">Yahoo</string>
     <string name="amazon">Amazon</string>
     <string name="empty_bubble_page">file:///android_asset/blank.html</string>
+    <string name="adblock_url">http://brave.github.io/adblock-data/0.2.16/ABPFilterParserData.dat</string>
+    <string name="adblock_localfilename">FromUrlABPFilterParserData.dat</string>
 
 </resources>

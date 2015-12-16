@@ -158,7 +158,6 @@ public class ContentView extends FrameLayout {
     private boolean mApplyAutoSuggestionToUrlString = true;
     private boolean mSetTheRealUrlString = true;
     private boolean mFirstTimeUrlTyped = true;
-    private ABPFilterParser mABPParser = new ABPFilterParser(getContext());
 
     public ContentView(Context context) {
         this(context, null);
