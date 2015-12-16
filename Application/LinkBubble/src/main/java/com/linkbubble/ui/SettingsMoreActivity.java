@@ -22,17 +22,25 @@ import com.linkbubble.Settings;
 import com.linkbubble.util.AppPickerList;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
+import com.squareup.otto.Bus;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
+import de.jetwick.snacktory.Converter;
+
 /*
  * This class exists solely because Android's PreferenceScreen implementation doesn't do anything
  * when the Up button is touched, and we need to go back in that case given our use of the Up button.
  */
 public class SettingsMoreActivity extends AppCompatPreferenceActivity {
+
+    public static class AdBlockTurnOnEvent {
+        public AdBlockTurnOnEvent() {
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +104,20 @@ public class SettingsMoreActivity extends AppCompatPreferenceActivity {
                     if (MainController.get() != null && MainController.get().reloadAllTabs(getActivity())) {
                         Toast.makeText(getActivity(), R.string.article_mode_changed_reloading_current, Toast.LENGTH_SHORT).show();
                     }
+                    return true;
+                }
+            });
+
+            final CheckBoxPreference adBlockPreference = (CheckBoxPreference) findPreference(Settings.PREFERENCE_ADBLOCK_MODE);
+            adBlockPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    if ((boolean)newValue) {
+                        MainApplication app = (MainApplication) getActivity().getApplication();
+                        Bus bus = app.getBus();
+                        bus.post(new AdBlockTurnOnEvent());
+                    }
+
                     return true;
                 }
             });

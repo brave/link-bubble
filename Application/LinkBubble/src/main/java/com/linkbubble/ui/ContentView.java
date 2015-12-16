@@ -550,7 +550,27 @@ public class ContentView extends FrameLayout {
         @Override
         public boolean shouldAdBlockUrl(String baseHost, String urlStr) {
             MainApplication app = (MainApplication) mContext.getApplicationContext();
-            return app.getABPParser().shouldBlock(baseHost, urlStr);
+            ABPFilterParser parser = null;
+            int count = 0;
+            for (;;) {
+                if (count >= 1000) {  // It is about 50 seconds, we just return false;
+                    return false;
+                }
+                parser = app.getABPParser();
+                if (null == parser) {
+                    try {
+                        Thread.sleep(50);
+                    }
+                    catch (InterruptedException e) {
+                    }
+                }
+                else {
+                    break;
+                }
+                count++;
+            }
+
+            return parser.shouldBlock(baseHost, urlStr);
         }
 
         @Override
@@ -809,7 +829,7 @@ public class ContentView extends FrameLayout {
             }
 
             onPageLoadComplete(urlAsString);
-            if (MainController.get().getCurrentTab() != mOwnerTabView) {
+            if (MainController.get() != null && MainController.get().getCurrentTab() != mOwnerTabView) {
                 mWebRenderer.pauseOnSetInactive();
             }
         }
