@@ -26,6 +26,7 @@ import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
 import com.linkbubble.ui.SearchURLSuggestionsContainer;
 import com.linkbubble.ui.SettingsActivity;
+import com.linkbubble.ui.SettingsMoreActivity;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
@@ -81,6 +82,10 @@ public class MainApplication extends Application {
         Favicons.attachToContext(this);
         recreateFaviconCache();
 
+        if (Settings.get().isAdBlockEnabled()) {
+            mBus.post(new SettingsMoreActivity.AdBlockTurnOnEvent());
+        }
+
         CrashTracking.log("MainApplication.onCreate()");
         //checkStrings();
     }
@@ -89,12 +94,15 @@ public class MainApplication extends Application {
         return mBus;
     }
 
-    public ABPFilterParser getABPParser() {
+    public void createABPParser() {
         // Lazy load ABPFilterParser so that if it is disabled we don't even read the binary data
         // to initialize the library.
         if (mABPParser == null) {
             mABPParser = new ABPFilterParser(this);
         }
+    }
+
+    public ABPFilterParser getABPParser() {
         return mABPParser;
     }
 
@@ -463,6 +471,12 @@ public class MainApplication extends Application {
             return;
         }
         event.mainController.updateIncognitoMode(event.mIncognito);
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onAdBlockOn(SettingsMoreActivity.AdBlockTurnOnEvent event) {
+        createABPParser();
     }
 
 /*
