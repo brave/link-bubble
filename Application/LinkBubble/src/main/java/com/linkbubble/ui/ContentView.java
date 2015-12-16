@@ -575,11 +575,28 @@ public class ContentView extends FrameLayout {
 
         @Override
         public boolean shouldTrackingProtectionBlockUrl(String baseHost, String host) {
-            if (TrackingProtectionList.shouldBlockHost(baseHost, host)) {
-                // Just return a blank bad resource;
-                return true;
+            MainApplication app = (MainApplication) mContext.getApplicationContext();
+            TrackingProtectionList tpList = null;
+            int count = 0;
+            for (;;) {
+                if (count >= 1000) {  // It is about 50 seconds, we just return false;
+                    return false;
+                }
+                tpList = app.getTrackingProtectionList();
+                if (null == tpList) {
+                    try {
+                        Thread.sleep(50);
+                    }
+                    catch (InterruptedException e) {
+                    }
+                }
+                else {
+                    break;
+                }
+                count++;
             }
-            return false;
+
+            return tpList.shouldBlockHost(baseHost, host);
         }
 
         @Override

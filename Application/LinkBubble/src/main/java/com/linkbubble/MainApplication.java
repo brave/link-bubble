@@ -14,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import com.linkbubble.Constant.BubbleAction;
 import com.linkbubble.adblock.ABPFilterParser;
+import com.linkbubble.adblock.TrackingProtectionList;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
@@ -56,6 +58,7 @@ public class MainApplication extends Application {
     private static long sTrialStartTime = -1;
 
     private ABPFilterParser mABPParser = null;
+    private TrackingProtectionList mTrackingProtectionList = null;
 
     public IconCache mIconCache;
 
@@ -85,6 +88,9 @@ public class MainApplication extends Application {
         if (Settings.get().isAdBlockEnabled()) {
             mBus.post(new SettingsMoreActivity.AdBlockTurnOnEvent());
         }
+        if (Settings.get().isTrackingProtectionEnabled()) {
+            mBus.post(new SettingsMoreActivity.TrackingProtectionTurnOnEvent());
+        }
 
         CrashTracking.log("MainApplication.onCreate()");
         //checkStrings();
@@ -92,6 +98,16 @@ public class MainApplication extends Application {
 
     public Bus getBus() {
         return mBus;
+    }
+
+    public void createTrackingProtectionList() {
+        if (null == mTrackingProtectionList) {
+            mTrackingProtectionList = new TrackingProtectionList(this);
+        }
+    }
+
+    public TrackingProtectionList getTrackingProtectionList() {
+        return mTrackingProtectionList;
     }
 
     public void createABPParser() {
@@ -473,10 +489,34 @@ public class MainApplication extends Application {
         event.mainController.updateIncognitoMode(event.mIncognito);
     }
 
+    class DownloadAdBlockDataAsyncTask extends AsyncTask<Void,Void,Long> {
+
+        protected Long doInBackground(Void... params) {
+            createABPParser();
+
+            return null;
+        }
+    }
+
     @SuppressWarnings("unused")
     @Subscribe
     public void onAdBlockOn(SettingsMoreActivity.AdBlockTurnOnEvent event) {
-        createABPParser();
+        new DownloadAdBlockDataAsyncTask().execute();;
+    }
+
+    class DownloadTrackingProtectionDataAsyncTask extends AsyncTask<Void,Void,Long> {
+
+        protected Long doInBackground(Void... params) {
+            createTrackingProtectionList();
+
+            return null;
+        }
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onTrackingProtectionOn(SettingsMoreActivity.TrackingProtectionTurnOnEvent event) {
+        new DownloadTrackingProtectionDataAsyncTask().execute();
     }
 
 /*
