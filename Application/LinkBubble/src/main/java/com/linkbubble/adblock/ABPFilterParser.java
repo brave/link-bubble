@@ -1,13 +1,25 @@
 package com.linkbubble.adblock;
 
 import android.content.Context;
+import android.content.pm.ResolveInfo;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+import android.os.Environment;
+
+import com.linkbubble.R;
+import com.linkbubble.util.Util;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by bbondy on 2015-10-13.
@@ -15,24 +27,55 @@ import java.io.InputStreamReader;
  * Wrapper for native library
  */
 public class ABPFilterParser {
+
     static {
         System.loadLibrary("LinkBubble");
     }
 
     public ABPFilterParser(Context context) {
+        mVerNumber = getDataVerNumber(context);
         mBuffer = readAdblockData(context);
-        init(mBuffer);
+        if (mBuffer != null) {
+            init(mBuffer);
+        }
+    }
+
+    private String getDataVerNumber(Context context) {
+        String url = context.getString(R.string.adblock_url);
+        String[] split = url.split("/");
+        if (split.length > 2) {
+            return split[split.length - 2];
+        }
+
+        return "";
+    }
+
+    private void removeOldVersionFiles(Context context) {
+        File dataDirPath = new File(context.getApplicationInfo().dataDir);
+        File[] fileList = dataDirPath.listFiles();
+
+        for (File file : fileList) {
+            if (file.getAbsoluteFile().toString().endsWith(context.getString(R.string.adblock_localfilename))) {
+                file.delete();
+            }
+        }
     }
 
     // One time load of binary data for the filter measured to be ~10-30ms
     // List is ~1MB but it is highly compressed > 80% when it is read from disk.
     private byte[] readAdblockData(Context context) {
+        File dataPath = new File(context.getApplicationInfo().dataDir,
+                mVerNumber + context.getString(R.string.adblock_localfilename));
+        if (!dataPath.exists()) {
+            removeOldVersionFiles(context);
+
+            return downloadAdblockData(context);
+        }
+
         byte[] buffer = null;
-        AssetManager assetManager = context.getResources().getAssets();
-        InputStream inputStream = null;
-        String path = "data/ABPFilterParserData.dat";
+        FileInputStream inputStream = null;
         try {
-            inputStream = assetManager.open(path);
+            inputStream = new FileInputStream(dataPath.getAbsolutePath());
             int size = inputStream.available();
             buffer = new byte[size];
             inputStream.read(buffer, 0, size);
@@ -40,6 +83,62 @@ public class ABPFilterParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return buffer;
+    }
+
+    private byte[] downloadAdblockData(Context context) {
+        byte[] buffer = null;
+        InputStream inputStream = null;
+        HttpURLConnection connection = null;
+
+        try {
+            URL url = new URL(context.getString(R.string.adblock_url));
+            connection = (HttpURLConnection) url.openConnection();
+            connection.connect();
+
+            if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                return buffer;
+            }
+
+            int size = connection.getContentLength();
+            buffer = new byte[size];
+
+            inputStream = connection.getInputStream();
+            inputStream.read(buffer);
+            FileOutputStream outputStream;
+
+            try {
+                File path = new File(context.getApplicationInfo().dataDir,
+                        mVerNumber + context.getString(R.string.adblock_localfilename));
+
+                outputStream = new FileOutputStream(path);
+                outputStream.write(buffer);
+                outputStream.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if (connection != null)
+                connection.disconnect();
+        }
+
         return buffer;
     }
 
@@ -47,4 +146,5 @@ public class ABPFilterParser {
     public native String stringFromJNI();
     public native boolean shouldBlock(String baseHost, String url);
     private byte[] mBuffer;
+    private String mVerNumber;
 }
