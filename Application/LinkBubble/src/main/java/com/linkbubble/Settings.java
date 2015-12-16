@@ -725,11 +725,11 @@ public class Settings {
     }
 
     public boolean isTrackingProtectionEnabled() {
-        return mSharedPreferences.getBoolean(PREFERENCE_TRACKINGPROTECTION_MODE, false);
+        return mSharedPreferences.getBoolean(PREFERENCE_TRACKINGPROTECTION_MODE, true);
     }
 
     public boolean isAdBlockEnabled() {
-        return mSharedPreferences.getBoolean(PREFERENCE_ADBLOCK_MODE, false);
+        return mSharedPreferences.getBoolean(PREFERENCE_ADBLOCK_MODE, true);
     }
 
     public boolean isHttpsEverywhereEnabled() {
