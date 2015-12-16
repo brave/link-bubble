@@ -42,6 +42,11 @@ public class SettingsMoreActivity extends AppCompatPreferenceActivity {
         }
     }
 
+    public static class TrackingProtectionTurnOnEvent {
+        public TrackingProtectionTurnOnEvent() {
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
