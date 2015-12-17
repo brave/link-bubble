@@ -28,7 +28,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
         android:textSize="@dimen/stat_bubble_text_size"
-        android:background="@drawable/stat_background_lime_green"
+        android:background="@drawable/stat_background_brave_orange"
         tools:ignore="HardcodedText"/>
 
     <com.linkbubble.ui.CondensedTextView
