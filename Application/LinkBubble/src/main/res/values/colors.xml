@@ -8,7 +8,7 @@
     <color name="lime_green">#339966</color>
     <color name="moderate_yellow">#999933</color>
 
-    <color name="color_primary">#663399</color>
+    <color name="color_primary">#4a4a4a</color>
     <color name="color_primary_dark">#402060</color>
     <color name="color_primary_bright">#8c53c6</color>
     <color name="color_highlight">@color/lime_green</color>
