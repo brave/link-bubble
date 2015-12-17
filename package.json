@@ -4,6 +4,7 @@
   "description": "Link Bubble Browser",
   "scripts": {
     "translate": "babel-node scripts/updateTranslations.js",
+    "postinstall": "sh ./scripts/copyJNIFiles.js",
     "lint": "semistandard scripts/* Application/LinkBubble/src/main/assets/pagescripts/*"
   },
   "repository": {
@@ -24,5 +25,8 @@
   "devDependencies": {
     "babel": "^5.8.21",
     "semistandard": "^7.0.2"
+  },
+  "dependencies": {
+    "abp-filter-parser-cpp": "^0.2.16"
   }
 }
