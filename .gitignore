@@ -59,3 +59,20 @@ Application/LinkBubble/fabric.properties
 # release builds
 dist
 build-release.sh
+
+# Adblock lib copied via npm install from package.json's postinstall
+Application/LinkBubble/src/main/jni/ABPFilterParser.cpp
+Application/LinkBubble/src/main/jni/ABPFilterParser.h
+Application/LinkBubble/src/main/jni/BloomFilter.cpp
+Application/LinkBubble/src/main/jni/BloomFilter.h
+Application/LinkBubble/src/main/jni/HashItem.h
+Application/LinkBubble/src/main/jni/HashSet.cpp
+Application/LinkBubble/src/main/jni/HashSet.h
+Application/LinkBubble/src/main/jni/badFingerprint.h
+Application/LinkBubble/src/main/jni/badFingerprints.h
+Application/LinkBubble/src/main/jni/base.h
+Application/LinkBubble/src/main/jni/cosmeticFilter.cpp
+Application/LinkBubble/src/main/jni/cosmeticFilter.h
+Application/LinkBubble/src/main/jni/filter.cpp
+Application/LinkBubble/src/main/jni/filter.h
+Application/LinkBubble/src/main/jni/hashFn.h
