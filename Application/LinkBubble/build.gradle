@@ -47,6 +47,9 @@ android {
         buildConfigField "String", "GIT_SHA", "\"${gitSha}\""
         buildConfigField "String", "BUILD_TIME", "\"${buildTime}\""
 
+        ndk {
+            ldLibs "log"
+        }
     }
 
     productFlavors {
