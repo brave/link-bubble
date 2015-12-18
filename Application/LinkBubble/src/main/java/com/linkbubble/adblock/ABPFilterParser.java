@@ -40,6 +40,7 @@ public class ABPFilterParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
         return buffer;
     }
 
