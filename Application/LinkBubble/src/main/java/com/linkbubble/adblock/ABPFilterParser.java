@@ -68,8 +68,7 @@ public class ABPFilterParser {
                 mVerNumber + context.getString(R.string.adblock_localfilename));
         if (!dataPath.exists()) {
             removeOldVersionFiles(context);
-
-            return downloadAdblockData(context);
+            downloadAdblockData(context);
         }
 
         byte[] buffer = null;
@@ -101,23 +100,17 @@ public class ABPFilterParser {
                 return buffer;
             }
 
-            int size = connection.getContentLength();
-            buffer = new byte[size];
-
+            File path = new File(context.getApplicationInfo().dataDir,
+                    mVerNumber + context.getString(R.string.adblock_localfilename));
+            FileOutputStream outputStream = new FileOutputStream(path);
             inputStream = connection.getInputStream();
-            inputStream.read(buffer);
-            FileOutputStream outputStream;
-
-            try {
-                File path = new File(context.getApplicationInfo().dataDir,
-                        mVerNumber + context.getString(R.string.adblock_localfilename));
-
-                outputStream = new FileOutputStream(path);
-                outputStream.write(buffer);
-                outputStream.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+            buffer = new byte[16384];
+            int n = - 1;
+            while ( (n = inputStream.read(buffer)) != -1)
+            {
+                outputStream.write(buffer, 0, n);
             }
+            outputStream.close();
         }
         catch (MalformedURLException e) {
             e.printStackTrace();

@@ -3,6 +3,14 @@
 #include "com_linkbubble_adblock_ABPFilterParser.h"
 #include "ABPFilterParser.h"
 
+#include <android/log.h>
+
+#define  LOG_TAG    "ABPFilterParser"
+
+#define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
+#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
+
+
 ABPFilterParser parser;
 
 /*
