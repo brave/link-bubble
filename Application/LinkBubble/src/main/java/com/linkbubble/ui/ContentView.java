@@ -41,6 +41,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -60,6 +61,7 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.adblock.TrackingProtectionList;
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.articlerender.ArticleRenderer;
 import com.linkbubble.util.ActionItem;
@@ -70,6 +72,7 @@ import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.webrender.WebRenderer;
 import com.linkbubble.db.HistoryRecord;
+import com.linkbubble.adblock.ABPFilterParser;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -542,8 +545,59 @@ public class ContentView extends FrameLayout {
     void setFaviconColor(Integer color) {
         updateColors(color);
     }
-
     WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {
+
+        @Override
+        public boolean shouldAdBlockUrl(String baseHost, String urlStr) {
+            MainApplication app = (MainApplication) mContext.getApplicationContext();
+            ABPFilterParser parser = null;
+            int count = 0;
+            for (;;) {
+                if (count >= 1000) {  // It is about 50 seconds, we just return false;
+                    return false;
+                }
+                parser = app.getABPParser();
+                if (null == parser) {
+                    try {
+                        Thread.sleep(50);
+                    }
+                    catch (InterruptedException e) {
+                    }
+                }
+                else {
+                    break;
+                }
+                count++;
+            }
+
+            return parser.shouldBlock(baseHost, urlStr);
+        }
+
+        @Override
+        public boolean shouldTrackingProtectionBlockUrl(String baseHost, String host) {
+            MainApplication app = (MainApplication) mContext.getApplicationContext();
+            TrackingProtectionList tpList = null;
+            int count = 0;
+            for (;;) {
+                if (count >= 1000) {  // It is about 50 seconds, we just return false;
+                    return false;
+                }
+                tpList = app.getTrackingProtectionList();
+                if (null == tpList) {
+                    try {
+                        Thread.sleep(50);
+                    }
+                    catch (InterruptedException e) {
+                    }
+                }
+                else {
+                    break;
+                }
+                count++;
+            }
+
+            return tpList.shouldBlockHost(baseHost, host);
+        }
 
         @Override
         public boolean shouldOverrideUrlLoading(String urlAsString, boolean viaUserInput) {
@@ -793,7 +847,7 @@ public class ContentView extends FrameLayout {
             }
 
             onPageLoadComplete(urlAsString);
-            if (MainController.get().getCurrentTab() != mOwnerTabView) {
+            if (MainController.get() != null && MainController.get().getCurrentTab() != mOwnerTabView) {
                 mWebRenderer.pauseOnSetInactive();
             }
         }

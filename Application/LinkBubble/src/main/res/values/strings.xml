@@ -128,6 +128,10 @@
     <string name="preference_incognito_title">Incognito Mode</string>
     <string name="preference_incognito_summary">Prevent storing all history and cookies</string>
     <string name="incognito_mode_changed_reloading_current">Incognito setting changed. Reloading current bubbles…</string>
+    <string name="preference_trackingprotection_title">Tracking Protection</string>
+    <string name="preference_trackingprotection_summary">Prevent resources that track you from loading</string>
+    <string name="preference_adblock_title">Ad Block</string>
+    <string name="preference_adblock_summary">Prevent ads from loading</string>
     <string name="preference_user_agent_title">User Agent</string>
     <string-array name="preference_user_agent_options">
         <item>Default</item>
@@ -383,5 +387,9 @@
     <string name="yahoo">Yahoo</string>
     <string name="amazon">Amazon</string>
     <string name="empty_bubble_page">file:///android_asset/blank.html</string>
+    <string name="adblock_url">http://brave.github.io/adblock-data/0.3.1/ABPFilterParserData.dat</string>
+    <string name="adblock_localfilename">FromUrlABPFilterParserData.dat</string>
+    <string name="tracking_protection_url">http://brave.github.io/adblock-data/0.3.1/TrackingProtection.dat</string>
+    <string name="tracking_protection_localfilename">TrackingProtection.dat</string>
 
 </resources>

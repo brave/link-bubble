@@ -8,7 +8,7 @@ Either install the [Crashlytics/Fabric Android Studio plugin](http://try.crashly
 
 ##Building Link Bubble Free
 
-Open `./Application/` in Android Studio and build.
+Open `./Application/` in Android Studio and build.  You'll need the NDK installed if you don't already have it, instructions below.
 
 ##Building release build
 
@@ -21,6 +21,14 @@ If you get an error about similar to:
 > Failure [INSTALL_PARSE_FAILED_INCONSISTENT_CERTIFICATES]
 
 Try uninstalling the application which already exists on your plugged in device.
+
+##Installing the NDK
+
+Android Studio has an easy way to download and link to the NDK.
+
+In the menu navigate to File, Project Structure. Click the 'Download Android NDK' link. This should download and unzip the NDK, as well as link it inside of local.properties.
+
+If you are not using Android Studio, reference this commit: https://github.com/brave/link-bubble/commit/0fa9f58286e0679ec5772e19b995d6a508907691
 
 ##Telling getlocalization.com about new strings
 

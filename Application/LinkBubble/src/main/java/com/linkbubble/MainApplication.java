@@ -14,17 +14,21 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.linkbubble.Constant.BubbleAction;
+import com.linkbubble.adblock.ABPFilterParser;
+import com.linkbubble.adblock.TrackingProtectionList;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
 import com.linkbubble.ui.SearchURLSuggestionsContainer;
 import com.linkbubble.ui.SettingsActivity;
+import com.linkbubble.ui.SettingsMoreActivity;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
@@ -53,6 +57,9 @@ public class MainApplication extends Application {
     public static boolean sShowingAppPickerDialog = false;
     private static long sTrialStartTime = -1;
 
+    private ABPFilterParser mABPParser = null;
+    private TrackingProtectionList mTrackingProtectionList = null;
+
     public IconCache mIconCache;
 
     public static String sLastLoadedUrl;
@@ -78,12 +85,41 @@ public class MainApplication extends Application {
         Favicons.attachToContext(this);
         recreateFaviconCache();
 
+        if (Settings.get().isAdBlockEnabled()) {
+            mBus.post(new SettingsMoreActivity.AdBlockTurnOnEvent());
+        }
+        if (Settings.get().isTrackingProtectionEnabled()) {
+            mBus.post(new SettingsMoreActivity.TrackingProtectionTurnOnEvent());
+        }
+
         CrashTracking.log("MainApplication.onCreate()");
         //checkStrings();
     }
 
     public Bus getBus() {
         return mBus;
+    }
+
+    public void createTrackingProtectionList() {
+        if (null == mTrackingProtectionList) {
+            mTrackingProtectionList = new TrackingProtectionList(this);
+        }
+    }
+
+    public TrackingProtectionList getTrackingProtectionList() {
+        return mTrackingProtectionList;
+    }
+
+    public void createABPParser() {
+        // Lazy load ABPFilterParser so that if it is disabled we don't even read the binary data
+        // to initialize the library.
+        if (mABPParser == null) {
+            mABPParser = new ABPFilterParser(this);
+        }
+    }
+
+    public ABPFilterParser getABPParser() {
+        return mABPParser;
     }
 
     /**
@@ -451,6 +487,36 @@ public class MainApplication extends Application {
             return;
         }
         event.mainController.updateIncognitoMode(event.mIncognito);
+    }
+
+    class DownloadAdBlockDataAsyncTask extends AsyncTask<Void,Void,Long> {
+
+        protected Long doInBackground(Void... params) {
+            createABPParser();
+
+            return null;
+        }
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onAdBlockOn(SettingsMoreActivity.AdBlockTurnOnEvent event) {
+        new DownloadAdBlockDataAsyncTask().execute();;
+    }
+
+    class DownloadTrackingProtectionDataAsyncTask extends AsyncTask<Void,Void,Long> {
+
+        protected Long doInBackground(Void... params) {
+            createTrackingProtectionList();
+
+            return null;
+        }
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onTrackingProtectionOn(SettingsMoreActivity.TrackingProtectionTurnOnEvent event) {
+        new DownloadTrackingProtectionDataAsyncTask().execute();
     }
 
 /*
