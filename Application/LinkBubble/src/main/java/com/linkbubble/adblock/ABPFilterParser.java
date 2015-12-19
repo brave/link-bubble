@@ -32,6 +32,8 @@ public class ABPFilterParser {
         System.loadLibrary("LinkBubble");
     }
 
+    private static final int BUFFER_TO_READ = 16384;    // 16Kb
+
     public ABPFilterParser(Context context) {
         mVerNumber = getDataVerNumber(context);
         mBuffer = readAdblockData(context);
@@ -77,7 +79,13 @@ public class ABPFilterParser {
             inputStream = new FileInputStream(dataPath.getAbsolutePath());
             int size = inputStream.available();
             buffer = new byte[size];
-            inputStream.read(buffer, 0, size);
+            int n = - 1;
+            int bytesOffset = 0;
+            byte[] tempBuffer = new byte[BUFFER_TO_READ];
+            while ( (n = inputStream.read(tempBuffer)) != -1) {
+                System.arraycopy(tempBuffer, 0, buffer, bytesOffset, n);
+                bytesOffset += n;
+            }
             inputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -104,7 +112,7 @@ public class ABPFilterParser {
                     mVerNumber + context.getString(R.string.adblock_localfilename));
             FileOutputStream outputStream = new FileOutputStream(path);
             inputStream = connection.getInputStream();
-            buffer = new byte[16384];
+            buffer = new byte[BUFFER_TO_READ];
             int n = - 1;
             while ( (n = inputStream.read(buffer)) != -1)
             {

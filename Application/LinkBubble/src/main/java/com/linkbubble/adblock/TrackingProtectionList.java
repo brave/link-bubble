@@ -20,6 +20,8 @@ import java.util.regex.Pattern;
 
 public class TrackingProtectionList {
 
+    private static final int BUFFER_TO_READ = 16384;    // 16Kb
+
     public TrackingProtectionList(Context context) {
         mVerNumber = getDataVerNumber(context);
         mDisconnectDomains = readTrackingProtectionData(context);
@@ -61,7 +63,13 @@ public class TrackingProtectionList {
             inputStream = new FileInputStream(dataPath.getAbsolutePath());
             int size = inputStream.available();
             buffer = new byte[size];
-            inputStream.read(buffer, 0, size);
+            int n = - 1;
+            int bytesOffset = 0;
+            byte[] tempBuffer = new byte[BUFFER_TO_READ];
+            while ( (n = inputStream.read(tempBuffer)) != -1) {
+                System.arraycopy(tempBuffer, 0, buffer, bytesOffset, n);
+                bytesOffset += n;
+            }
             inputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -94,23 +102,19 @@ public class TrackingProtectionList {
                 return new HashSet<String>();
             }
 
-            int size = connection.getContentLength();
-            buffer = new byte[size];
+            File path = new File(context.getApplicationInfo().dataDir,
+                    mVerNumber + context.getString(R.string.tracking_protection_localfilename));
+
+            FileOutputStream outputStream = new FileOutputStream(path);
 
             inputStream = connection.getInputStream();
-            inputStream.read(buffer);
-            FileOutputStream outputStream;
-
-            try {
-                File path = new File(context.getApplicationInfo().dataDir,
-                        mVerNumber + context.getString(R.string.tracking_protection_localfilename));
-
-                outputStream = new FileOutputStream(path);
-                outputStream.write(buffer);
-                outputStream.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+            buffer = new byte[BUFFER_TO_READ];
+            int n = - 1;
+            while ( (n = inputStream.read(buffer)) != -1)
+            {
+                outputStream.write(buffer, 0, n);
             }
+            outputStream.close();
         }
         catch (MalformedURLException e) {
             e.printStackTrace();
