@@ -52,7 +52,11 @@ import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
 import com.squareup.otto.Subscribe;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
+import java.util.Map;
 
 class WebViewRenderer extends WebRenderer {
 
@@ -421,9 +425,7 @@ class WebViewRenderer extends WebRenderer {
             return mController.shouldOverrideUrlLoading(urlAsString, viaInput);
         }
 
-
-        @Override
-        public WebResourceResponse shouldInterceptRequest (WebView view, String urlStr) {
+        private WebResourceResponse interceptTheCall(WebView view, String urlStr, String filterOption, boolean apiLevelAbove21) {
             // null signifies allowing the request
             WebResourceResponse allowRequest = null;
 
@@ -451,14 +453,115 @@ class WebViewRenderer extends WebRenderer {
 
             if (mTrackingProtectionEnabled &&
                     mController.shouldTrackingProtectionBlockUrl(mHost, host) ||
-                    mAdblockEnabled && mController.shouldAdBlockUrl(mHost, urlStr)) {
+                    mAdblockEnabled && mController.shouldAdBlockUrl(mHost, urlStr, filterOption)) {
                 // Unfortunately the deprecated API that we're targetting doesn't have a better
                 // way to block this. Once we upgrade our target then we can use a better override
                 // which allows us to set a response code.
-                return new WebResourceResponse("text/html", "UTF-8", null);
+                if (!apiLevelAbove21) {
+                    return new WebResourceResponse("text/html", "UTF-8", null);
+                }
+                else {
+                    return new WebResourceResponse("text/html", "UTF-8", 150, "Blocked", null, null);
+                }
             }
 
             return allowRequest;
+        }
+
+        @Override
+        public WebResourceResponse shouldInterceptRequest (WebView view, String urlStr) {
+            // That call is for the API level is lower then 21
+
+            // Just return as is for now, we will have a solution for older devices later
+            return null;
+
+            // Quickly check to see if no checks are needed because ad blocking and tracking
+            // protection are not enabled.
+            /*if (!mTrackingProtectionEnabled && !mAdblockEnabled) {
+                return null;
+            }
+
+            String filterOption = "none";*/
+
+            /*HttpURLConnection connection;
+            try {
+                URL url = new URL(urlStr);
+                connection = (HttpURLConnection)url.openConnection();
+                connection.setConnectTimeout(3000);
+                connection.connect();
+                // get the size of the file which is in the header of the request
+                int size = connection.getContentLength();
+                if (-1 != size) {
+                    InputStream inputStream = connection.getInputStream();
+                    byte[] buffer = new byte[size];
+                    inputStream.read(buffer);
+                    String str = new String(buffer);
+                    if (null != str) {
+                        if (str.contains("Accept")) {
+
+                        }
+                    }
+                }
+            }
+            catch (Exception e) {
+                // Do nothing here
+            }*/
+
+            /*try {
+                URL url = new URL(urlStr);
+                String urlPath = url.getPath();
+                if (urlPath.endsWith("css") || urlStr.endsWith(".css") || urlStr.endsWith(".woff")) {
+                    filterOption = "/css";
+                }
+                else if (urlStr.endsWith(".png") || urlStr.endsWith(".ico") || urlStr.endsWith(".gif")
+                        || urlStr.endsWith(".svg") || urlStr.endsWith(".icns") || urlStr.endsWith(".bmp")
+                        || urlStr.endsWith(".pdf") || urlStr.endsWith(".pcd") || urlStr.endsWith(".fpx")
+                        || urlStr.endsWith(".jp2") || urlStr.endsWith(".jpx") || urlStr.endsWith(".j2k")
+                        || urlStr.endsWith(".j2c") || urlStr.endsWith(".jpeg") || urlStr.endsWith(".jpg")
+                        || urlStr.endsWith(".jif") || urlStr.endsWith(".jfif") || urlStr.endsWith(".bmp")
+                        || urlStr.endsWith(".tif") || urlStr.endsWith(".tiff")) {
+                    filterOption = "image/";
+                }
+                else if (urlStr.endsWith(".js") || urlPath.endsWith("js")) {
+                    filterOption = "javascript";
+                }
+            } catch (Exception e) {
+                // Do nothing here
+            }
+
+            return interceptTheCall(view, urlStr, filterOption, false);*/
+        }
+
+        @Override
+        public WebResourceResponse shouldInterceptRequest (WebView view, WebResourceRequest resourceRequest) {
+            // That call is for the API level is higher or equal to 21
+
+            // Quickly check to see if no checks are needed because ad blocking and tracking
+            // protection are not enabled.
+            if (!mTrackingProtectionEnabled && !mAdblockEnabled) {
+                return null;
+            }
+
+            String filterOption = "none";
+            Map<String, String> requestHeaders = resourceRequest.getRequestHeaders();
+            for (Map.Entry<String, String> entry : requestHeaders.entrySet()) {
+                if (entry.getKey().equals("Accept")) {
+                    if (entry.getValue().contains("/css")) {
+                        filterOption = "/css";
+                        break;
+                    }
+                    else if (entry.getValue().contains("image/")) {
+                        filterOption = "image/";
+                        break;
+                    }
+                    else if (entry.getValue().contains("javascript")) {
+                        filterOption = "javascript";
+                        break;
+                    }
+                }
+            }
+
+            return interceptTheCall(view, resourceRequest.getUrl().toString(), filterOption, true);
         }
 
         @Override

@@ -132,6 +132,7 @@
     <string name="preference_trackingprotection_summary">Prevent resources that track you from loading</string>
     <string name="preference_adblock_title">Ad Block</string>
     <string name="preference_adblock_summary">Prevent ads from loading</string>
+    <string name="preference_adblock_tracking_protection_from_disabled">This feature is only available from Android 5.0 and higher.</string>
     <string name="preference_user_agent_title">User Agent</string>
     <string-array name="preference_user_agent_options">
         <item>Default</item>

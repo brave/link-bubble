@@ -32,11 +32,26 @@ JNIEXPORT void JNICALL Java_com_linkbubble_adblock_ABPFilterParser_init(JNIEnv *
  * Method:    stringFromJNI
  * Signature: ()Ljava/lang/String;
  */
-JNIEXPORT jboolean JNICALL Java_com_linkbubble_adblock_ABPFilterParser_shouldBlock(JNIEnv *env, jobject obj, jstring baseHost, jstring input) {
+JNIEXPORT jboolean JNICALL Java_com_linkbubble_adblock_ABPFilterParser_shouldBlock(JNIEnv *env, jobject obj, jstring baseHost, jstring input, jstring filterOption) {
     const char *nativeBaseHost = env->GetStringUTFChars(baseHost, 0);
     const char *nativeInput = env->GetStringUTFChars(input, 0);
+    const char *nativeFilterOption = env->GetStringUTFChars(filterOption, 0);
 
-    bool shouldBlock = parser.matches(nativeInput, FONoFilterOption, nativeBaseHost);
+    FilterOption currentOption = FONoFilterOption;
+    if (0 == strcmp(nativeFilterOption, "/css"))
+    {
+        currentOption = FOStylesheet;
+    }
+    else if (0 == strcmp(nativeFilterOption, "image/"))
+    {
+        currentOption = FOImage;
+    }
+    else if (0 == strcmp(nativeFilterOption, "javascript"))
+    {
+        currentOption = FOScript;
+    }
+
+    bool shouldBlock = parser.matches(nativeInput, currentOption, nativeBaseHost);
 
     env->ReleaseStringUTFChars(input, nativeInput);
     env->ReleaseStringUTFChars(baseHost, nativeBaseHost);

@@ -145,7 +145,7 @@ public class ABPFilterParser {
 
     public native void init(byte[] data);
     public native String stringFromJNI();
-    public native boolean shouldBlock(String baseHost, String url);
+    public native boolean shouldBlock(String baseHost, String url, String filterOption);
     private byte[] mBuffer;
     private String mVerNumber;
 }
