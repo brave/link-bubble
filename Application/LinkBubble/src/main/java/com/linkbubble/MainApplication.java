@@ -15,6 +15,8 @@ import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Vibrator;
+import android.preference.Preference;
+import android.preference.PreferenceScreen;
 import android.util.Log;
 import android.widget.Toast;
 

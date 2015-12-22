@@ -548,9 +548,29 @@ public class ContentView extends FrameLayout {
     WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {
 
         @Override
-        public boolean shouldAdBlockUrl(String baseHost, String urlStr) {
+        public boolean shouldAdBlockUrl(String baseHost, String urlStr, String filterOption) {
             MainApplication app = (MainApplication) mContext.getApplicationContext();
-            return app.getABPParser().shouldBlock(baseHost, urlStr);
+            ABPFilterParser parser = null;
+            int count = 0;
+            for (;;) {
+                if (count >= 1000) {  // It is about 50 seconds, we just return false;
+                    return false;
+                }
+                parser = app.getABPParser();
+                if (null == parser) {
+                    try {
+                        Thread.sleep(50);
+                    }
+                    catch (InterruptedException e) {
+                    }
+                }
+                else {
+                    break;
+                }
+                count++;
+            }
+
+            return filterOption != "/css" && parser.shouldBlock(baseHost, urlStr, filterOption);
         }
 
         @Override

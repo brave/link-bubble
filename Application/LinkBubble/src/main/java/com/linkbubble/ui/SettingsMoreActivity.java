@@ -22,6 +22,7 @@ import com.linkbubble.Settings;
 import com.linkbubble.util.AppPickerList;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
+import com.squareup.otto.Bus;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -33,6 +34,16 @@ import java.util.Locale;
  * when the Up button is touched, and we need to go back in that case given our use of the Up button.
  */
 public class SettingsMoreActivity extends AppCompatPreferenceActivity {
+
+    public static class AdBlockTurnOnEvent {
+        public AdBlockTurnOnEvent() {
+        }
+    }
+
+    public static class TrackingProtectionTurnOnEvent {
+        public TrackingProtectionTurnOnEvent() {
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +111,45 @@ public class SettingsMoreActivity extends AppCompatPreferenceActivity {
                 }
             });
 
+            final CheckBoxPreference adBlockPreference = (CheckBoxPreference) findPreference(Settings.PREFERENCE_ADBLOCK_MODE);
+            final CheckBoxPreference trackingProtectionPreference = (CheckBoxPreference) findPreference(Settings.PREFERENCE_TRACKINGPROTECTION_MODE);
+            // Hide Adblock and tracking protection preferences on API level lower then 21
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                trackingProtectionPreference.setSummary(R.string.preference_adblock_tracking_protection_from_disabled);
+                trackingProtectionPreference.setChecked(false);
+                trackingProtectionPreference.setEnabled(false);
+
+                adBlockPreference.setSummary(R.string.preference_adblock_tracking_protection_from_disabled);
+                adBlockPreference.setChecked(false);
+                adBlockPreference.setEnabled(false);
+            }
+            else {
+                trackingProtectionPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object newValue) {
+                        if ((boolean) newValue) {
+                            MainApplication app = (MainApplication) getActivity().getApplication();
+                            Bus bus = app.getBus();
+                            bus.post(new TrackingProtectionTurnOnEvent());
+                        }
+
+                        return true;
+                    }
+                });
+
+                adBlockPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object newValue) {
+                        if ((boolean) newValue) {
+                            MainApplication app = (MainApplication) getActivity().getApplication();
+                            Bus bus = app.getBus();
+                            bus.post(new AdBlockTurnOnEvent());
+                        }
+
+                        return true;
+                    }
+                });
+            }
 
             Preference interceptLinksFromPreference = findPreference(Settings.PREFERENCE_IGNORE_LINKS_FROM);
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {

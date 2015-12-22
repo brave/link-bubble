@@ -23,7 +23,7 @@ JNIEXPORT void JNICALL Java_com_linkbubble_adblock_ABPFilterParser_init
  * Signature: ()Ljava/lang/String;
  */
 JNIEXPORT jboolean JNICALL Java_com_linkbubble_adblock_ABPFilterParser_shouldBlock
-        (JNIEnv *, jobject, jstring, jstring);
+        (JNIEnv *, jobject, jstring, jstring, jstring);
 
 #ifdef __cplusplus
 }
