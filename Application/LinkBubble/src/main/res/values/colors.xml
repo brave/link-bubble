@@ -6,12 +6,13 @@
     <color name="green">#339933</color>
     <color name="flat_green">#669933</color>
     <color name="lime_green">#339966</color>
+    <color name="dark_grey">#4a4a4a</color>
     <color name="moderate_yellow">#999933</color>
 
     <color name="color_primary">#4a4a4a</color>
     <color name="color_primary_dark">#402060</color>
     <color name="color_primary_bright">#8c53c6</color>
-    <color name="color_highlight">@color/lime_green</color>
+    <color name="color_highlight">@color/dark_grey</color>
     <color name="color_highlight_2">@color/moderate_yellow</color>
     <color name="material_grey_600">#CBCBCB</color>
     <color name="text_color_primary">#fff</color>
