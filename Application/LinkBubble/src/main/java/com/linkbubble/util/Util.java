@@ -83,6 +83,7 @@ public class Util {
         "com.UCMobile.intl",
         "mobi.mgeek.TunnyBrowser",
         "com.explore.web.browser",
+        "explore.web.browser",
         "com.ghostery.android.ghostery",
         "jp.ddo.pigsty.HabitBrowser",
         "org.adblockplus.browser",
@@ -97,6 +98,16 @@ public class Util {
         "com.ineedyourservice.RBrowser",
         "com.lastpass.lpandroid",
         "arun.com.chromer",
+        "com.jiubang.browser",
+        "com.uc.browser.hd",
+        "com.ilegendsoft.mercury",
+        "com.UCMobile",
+        "com.tencent.mtt.intl",
+        "com.tencent.mtt",
+        "com.cloudmosa.puffinFree",
+        "com.mx.browser",
+        "net.fast.web.browser",
+        "com.wisesharksoftware.browser",
         "org.hola"
     };
 
