@@ -96,6 +96,7 @@ public class Util {
         "acr.browser.barebones",
         "com.ineedyourservice.RBrowser",
         "com.lastpass.lpandroid",
+        "arun.com.chromer",
         "org.hola"
     };
 
