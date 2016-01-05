@@ -76,3 +76,7 @@ Application/LinkBubble/src/main/jni/cosmeticFilter.h
 Application/LinkBubble/src/main/jni/filter.cpp
 Application/LinkBubble/src/main/jni/filter.h
 Application/LinkBubble/src/main/jni/hashFn.h
+Application/LinkBubble/src/main/jni/FirstPartyHost.h
+Application/LinkBubble/src/main/jni/TrackerData.h
+Application/LinkBubble/src/main/jni/TPParser.h
+Application/LinkBubble/src/main/jni/TPParser.cpp
