@@ -55,6 +55,7 @@ JNIEXPORT jboolean JNICALL Java_com_linkbubble_adblock_ABPFilterParser_shouldBlo
 
     env->ReleaseStringUTFChars(input, nativeInput);
     env->ReleaseStringUTFChars(baseHost, nativeBaseHost);
+    env->ReleaseStringUTFChars(filterOption, nativeFilterOption);
 
     return shouldBlock ? JNI_TRUE : JNI_FALSE;
 }
