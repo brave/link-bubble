@@ -20,6 +20,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Calendar;
 
 /**
  * Created by bbondy on 2015-10-13.
@@ -32,7 +33,7 @@ public class ABPFilterParser {
         System.loadLibrary("LinkBubble");
     }
 
-    private static final int BUFFER_TO_READ = 16384;    // 16Kb
+    private static final String ETAG_PREPEND = "abp";
 
     public ABPFilterParser(Context context) {
         mVerNumber = getDataVerNumber(context);
@@ -68,9 +69,11 @@ public class ABPFilterParser {
     private byte[] readAdblockData(Context context) {
         File dataPath = new File(context.getApplicationInfo().dataDir,
                 mVerNumber + context.getString(R.string.adblock_localfilename));
-        if (!dataPath.exists()) {
-            removeOldVersionFiles(context);
-            downloadAdblockData(context);
+        boolean fileExists = dataPath.exists();
+        EtagObject previousEtag = ADBlockUtils.getETagInfo(context, ETAG_PREPEND);
+        long milliSeconds = Calendar.getInstance().getTimeInMillis();
+        if (!fileExists || (milliSeconds - previousEtag.mMilliSeconds >= ADBlockUtils.MILLISECONDS_IN_A_DAY)) {
+            downloadAdblockData(context, fileExists, previousEtag, milliSeconds);
         }
 
         byte[] buffer = null;
@@ -81,7 +84,7 @@ public class ABPFilterParser {
             buffer = new byte[size];
             int n = - 1;
             int bytesOffset = 0;
-            byte[] tempBuffer = new byte[BUFFER_TO_READ];
+            byte[] tempBuffer = new byte[ADBlockUtils.BUFFER_TO_READ];
             while ( (n = inputStream.read(tempBuffer)) != -1) {
                 System.arraycopy(tempBuffer, 0, buffer, bytesOffset, n);
                 bytesOffset += n;
@@ -94,7 +97,7 @@ public class ABPFilterParser {
         return buffer;
     }
 
-    private byte[] downloadAdblockData(Context context) {
+    private void downloadAdblockData(Context context, boolean fileExist, EtagObject previousEtag, long currentMilliSeconds) {
         byte[] buffer = null;
         InputStream inputStream = null;
         HttpURLConnection connection = null;
@@ -102,17 +105,29 @@ public class ABPFilterParser {
         try {
             URL url = new URL(context.getString(R.string.adblock_url));
             connection = (HttpURLConnection) url.openConnection();
+            String etag = connection.getHeaderField("ETag");
+            boolean downloadFile = true;
+            if (fileExist && etag.equals(previousEtag.mEtag)) {
+                downloadFile = false;
+            }
+            previousEtag.mEtag = etag;
+            previousEtag.mMilliSeconds = currentMilliSeconds;
+            ADBlockUtils.saveETagInfo(context, ETAG_PREPEND, previousEtag);
+            if (!downloadFile) {
+                return;
+            }
+            removeOldVersionFiles(context);
             connection.connect();
 
             if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-                return buffer;
+                return;
             }
 
             File path = new File(context.getApplicationInfo().dataDir,
                     mVerNumber + context.getString(R.string.adblock_localfilename));
             FileOutputStream outputStream = new FileOutputStream(path);
             inputStream = connection.getInputStream();
-            buffer = new byte[BUFFER_TO_READ];
+            buffer = new byte[ADBlockUtils.BUFFER_TO_READ];
             int n = - 1;
             while ( (n = inputStream.read(buffer)) != -1)
             {
@@ -140,7 +155,7 @@ public class ABPFilterParser {
                 connection.disconnect();
         }
 
-        return buffer;
+        return;
     }
 
     public native void init(byte[] data);
