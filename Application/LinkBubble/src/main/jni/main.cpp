@@ -41,16 +41,11 @@ JNIEXPORT jboolean JNICALL Java_com_linkbubble_adblock_ABPFilterParser_shouldBlo
     const char *nativeFilterOption = env->GetStringUTFChars(filterOption, 0);
 
     FilterOption currentOption = FONoFilterOption;
-    if (0 == strcmp(nativeFilterOption, "/css"))
-    {
+    if (0 == strcmp(nativeFilterOption, "/css")) {
         currentOption = FOStylesheet;
-    }
-    else if (0 == strcmp(nativeFilterOption, "image/"))
-    {
+    } else if (0 == strcmp(nativeFilterOption, "image/")) {
         currentOption = FOImage;
-    }
-    else if (0 == strcmp(nativeFilterOption, "javascript"))
-    {
+    } else if (0 == strcmp(nativeFilterOption, "javascript")) {
         currentOption = FOScript;
     }
 
