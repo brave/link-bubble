@@ -14,7 +14,6 @@ import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -23,7 +22,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
@@ -60,17 +58,15 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.adblock.TrackingProtectionList;
+import com.linkbubble.adblock.TPFilterParser;
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.articlerender.ArticleRenderer;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.DownloadImage;
-import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.webrender.WebRenderer;
-import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.adblock.ABPFilterParser;
 
 import java.io.IOException;
@@ -78,12 +74,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Set;
 import java.util.Stack;
 
@@ -158,6 +151,9 @@ public class ContentView extends FrameLayout {
     private boolean mSetTheRealUrlString = true;
     private boolean mFirstTimeUrlTyped = true;
     private ABPFilterParser mABPParser = new ABPFilterParser(getContext());
+
+    // Tracking protection third party hosts
+    private String mThirdPartyHosts = null;
 
     public ContentView(Context context) {
         this(context, null);
@@ -575,10 +571,45 @@ public class ContentView extends FrameLayout {
 
         @Override
         public boolean shouldTrackingProtectionBlockUrl(String baseHost, String host) {
-            if (TrackingProtectionList.shouldBlockHost(baseHost, host)) {
-                // Just return a blank bad resource;
+            MainApplication app = (MainApplication) mContext.getApplicationContext();
+            TPFilterParser tpList = null;
+            int count = 0;
+            for (;;) {
+                if (count >= 1000) {  // It is about 50 seconds, we just return false;
+                    return false;
+                }
+                tpList = app.getTrackingProtectionList();
+                if (null == tpList) {
+                    try {
+                        Thread.sleep(50);
+                    }
+                    catch (InterruptedException e) {
+                    }
+                }
+                else {
+                    break;
+                }
+                count++;
+            }
+            if (tpList.matchesTracker(host)) {
+                if (null == mThirdPartyHosts) {
+                    mThirdPartyHosts = tpList.findFirstPartyHosts(baseHost);
+                }
+
+                if (mThirdPartyHosts.contains(host)) {
+                    return false;
+                } else {
+                    String[] thirdPartyHosts = mThirdPartyHosts.split(",");
+                    for (int i = 0; i < thirdPartyHosts.length; i++) {
+                        if (host.endsWith(thirdPartyHosts[i])) {
+                            return false;
+                        }
+                    }
+                }
+
                 return true;
             }
+
             return false;
         }
 
@@ -1894,6 +1925,7 @@ public class ContentView extends FrameLayout {
     }
 
     private void updateAndLoadUrl(String urlAsString) {
+        mThirdPartyHosts = null;
         updateUrl(urlAsString);
         URL updatedUrl = getUrl();
 

@@ -9,20 +9,16 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Vibrator;
-import android.preference.Preference;
-import android.preference.PreferenceScreen;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.linkbubble.Constant.BubbleAction;
 import com.linkbubble.adblock.ABPFilterParser;
+import com.linkbubble.adblock.TPFilterParser;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
@@ -57,6 +53,7 @@ public class MainApplication extends Application {
     private static long sTrialStartTime = -1;
 
     private ABPFilterParser mABPParser = null;
+    private TPFilterParser mTPParser = null;
 
     public IconCache mIconCache;
 
@@ -91,13 +88,24 @@ public class MainApplication extends Application {
         return mBus;
     }
 
-    public ABPFilterParser getABPParser() {
+    public ABPFilterParser getABPParser() { return mABPParser; }
+
+    public void createTrackingProtectionList() {
+        if (null == mTPParser) {
+            mTPParser = new TPFilterParser(this);
+        }
+    }
+
+    public TPFilterParser getTrackingProtectionList() {
+        return mTPParser;
+    }
+
+    public void createABPParser() {
         // Lazy load ABPFilterParser so that if it is disabled we don't even read the binary data
         // to initialize the library.
         if (mABPParser == null) {
             mABPParser = new ABPFilterParser(this);
         }
-        return mABPParser;
     }
 
     /**

@@ -6,25 +6,30 @@ import com.linkbubble.R;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.regex.Pattern;
 
-public class TrackingProtectionList {
+/**
+ * Created by serg on 16-01-05.
+ */
+public class TPFilterParser {
+
+    static {
+        System.loadLibrary("LinkBubble");
+    }
 
     private static final int BUFFER_TO_READ = 16384;    // 16Kb
 
-    public TrackingProtectionList(Context context) {
+    public TPFilterParser(Context context) {
         mVerNumber = getDataVerNumber(context);
-        mDisconnectDomains = readTrackingProtectionData(context);
+        mBuffer = readTPData(context);
+        if (mBuffer != null) {
+            init(mBuffer);
+        }
     }
 
     private String getDataVerNumber(Context context) {
@@ -48,13 +53,12 @@ public class TrackingProtectionList {
         }
     }
 
-    private HashSet<String> readTrackingProtectionData(Context context) {
+    private byte[] readTPData(Context context) {
         File dataPath = new File(context.getApplicationInfo().dataDir,
                 mVerNumber + context.getString(R.string.tracking_protection_localfilename));
         if (!dataPath.exists()) {
             removeOldVersionFiles(context);
-
-            return downloadTrackingProtectionData(context);
+            downloadTPData(context);
         }
 
         byte[] buffer = null;
@@ -75,20 +79,10 @@ public class TrackingProtectionList {
             e.printStackTrace();
         }
 
-        return byteToHashSet(buffer);
+        return buffer;
     }
 
-    private HashSet<String> byteToHashSet(byte[] buffer) {
-        if (null == buffer) {
-            return new HashSet<String>();
-        }
-        String str = new String(buffer);
-        String[] elems = str.split(",");
-
-        return new HashSet<String>(Arrays.asList(elems));
-    }
-
-    private HashSet<String> downloadTrackingProtectionData(Context context) {
+    private byte[] downloadTPData(Context context) {
         byte[] buffer = null;
         InputStream inputStream = null;
         HttpURLConnection connection = null;
@@ -99,14 +93,12 @@ public class TrackingProtectionList {
             connection.connect();
 
             if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-                return new HashSet<String>();
+                return buffer;
             }
 
             File path = new File(context.getApplicationInfo().dataDir,
                     mVerNumber + context.getString(R.string.tracking_protection_localfilename));
-
             FileOutputStream outputStream = new FileOutputStream(path);
-
             inputStream = connection.getInputStream();
             buffer = new byte[BUFFER_TO_READ];
             int n = - 1;
@@ -132,34 +124,18 @@ public class TrackingProtectionList {
                 e.printStackTrace();
             }
 
-            if (connection != null) {
+            if (connection != null)
                 connection.disconnect();
-            }
         }
 
-        return byteToHashSet(buffer);
+        return buffer;
     }
 
-    public Boolean shouldBlockHost(String baseHost, String host) {
-        if (null == mDisconnectDomains) {
-            return false;
-        }
-        String[] domainParts = host.split(Pattern.quote("."));
-        if (domainParts.length <= 1) {
-            return false;
-        }
-        StringBuilder domainToCheck = new StringBuilder(domainParts[domainParts.length - 1]);
-        for (int i = domainParts.length - 2; i >= 0; i--) {
-            domainToCheck.insert(0, ".");
-            domainToCheck.insert(0, domainParts[i]);
-            if (mDisconnectDomains.contains(domainToCheck.toString())) {
-                return true;
-            }
-        }
 
-        return false;
-    }
+    public native void init(byte[] data);
+    public native boolean matchesTracker(String baseHost);
+    public native String findFirstPartyHosts(String baseHost);
 
-    HashSet<String> mDisconnectDomains;
+    private byte[] mBuffer;
     private String mVerNumber;
 }
