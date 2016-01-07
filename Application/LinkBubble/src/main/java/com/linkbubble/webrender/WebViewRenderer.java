@@ -456,7 +456,7 @@ class WebViewRenderer extends WebRenderer {
                     return new WebResourceResponse("text/html", "UTF-8", null);
                 }
                 else {
-                    return new WebResourceResponse("text/html", "UTF-8", 150, "Blocked", null, null);
+                    return new WebResourceResponse("text/html", "UTF-8", 450, "Blocked", null, null);
                 }
             }
 
@@ -468,7 +468,8 @@ class WebViewRenderer extends WebRenderer {
         public WebResourceResponse shouldInterceptRequest (WebView view, String urlStr) {
             // That call is for the API level is lower then 21
 
-            // Just return as is for now, we will have a solution for older devices later
+            // Just return as is for now, we will have a solution for older devices later.
+            // The blocking by file extension not being reliable enough for now.
             return null;
 
             // Quickly check to see if no checks are needed because ad blocking and tracking

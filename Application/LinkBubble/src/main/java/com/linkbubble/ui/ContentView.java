@@ -566,7 +566,7 @@ public class ContentView extends FrameLayout {
                 count++;
             }
 
-            return filterOption != "/css" && parser.shouldBlock(baseHost, urlStr, filterOption);
+            return parser.shouldBlock(baseHost, urlStr, filterOption);
         }
 
         @Override
