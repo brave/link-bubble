@@ -600,7 +600,7 @@ public class ContentView extends FrameLayout {
                 } else {
                     String[] thirdPartyHosts = mThirdPartyHosts.split(",");
                     for (int i = 0; i < thirdPartyHosts.length; i++) {
-                        if (host.endsWith(thirdPartyHosts[i])) {
+                        if (host == thirdPartyHosts[i] || host.endsWith("." + thirdPartyHosts[i])) {
                             return false;
                         }
                     }
