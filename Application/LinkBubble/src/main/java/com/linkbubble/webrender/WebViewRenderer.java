@@ -40,8 +40,6 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
-import com.linkbubble.adblock.ABPFilterParser;
-import com.linkbubble.adblock.TrackingProtectionList;
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.ui.TabView;
 import com.linkbubble.util.Analytics;
@@ -52,10 +50,7 @@ import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
 import com.squareup.otto.Subscribe;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.Map;
 
 class WebViewRenderer extends WebRenderer {

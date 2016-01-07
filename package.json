@@ -27,7 +27,7 @@
     "semistandard": "^7.0.2"
   },
   "dependencies": {
-    "abp-filter-parser-cpp": "^0.3.1",
-    "tracking-protection": "^1.0.1"
+    "abp-filter-parser-cpp": "^1.0.15",
+    "tracking-protection": "^1.0.5"
   }
 }

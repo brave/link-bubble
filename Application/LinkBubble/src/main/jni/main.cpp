@@ -1,7 +1,9 @@
 #include <string.h>
 #include <jni.h>
 #include "com_linkbubble_adblock_ABPFilterParser.h"
+#include "com_linkbubble_adblock_TPFilterParser.h"
 #include "ABPFilterParser.h"
+#include "TPParser.h"
 
 #include <android/log.h>
 
@@ -12,6 +14,7 @@
 
 
 ABPFilterParser parser;
+CTPParser tpParser;
 
 /*
  * Class:     com_linkbubble_adblock_ABPFilterParser
@@ -58,4 +61,47 @@ JNIEXPORT jboolean JNICALL Java_com_linkbubble_adblock_ABPFilterParser_shouldBlo
     env->ReleaseStringUTFChars(filterOption, nativeFilterOption);
 
     return shouldBlock ? JNI_TRUE : JNI_FALSE;
+}
+
+/*
+ * Class:     com_linkbubble_adblock_TPFilterParser
+ * Method:    init
+ * Signature: ()Ljava/lang/void;
+ */
+JNIEXPORT void JNICALL Java_com_linkbubble_adblock_TPFilterParser_init(JNIEnv *env, jobject obj, jbyteArray array) {
+    jbyte *bufferPtr = env->GetByteArrayElements(array, NULL);
+    tpParser.deserialize((char *)bufferPtr);
+}
+
+JNIEXPORT jboolean JNICALL Java_com_linkbubble_adblock_TPFilterParser_matchesTracker(JNIEnv *env, jobject obj, jstring baseHost) {
+    const char *nativeBaseHost = env->GetStringUTFChars(baseHost, 0);
+
+    bool shouldBlock = tpParser.matchesTracker(nativeBaseHost);
+
+    env->ReleaseStringUTFChars(baseHost, nativeBaseHost);
+
+    return shouldBlock ? JNI_TRUE : JNI_FALSE;
+}
+
+/*
+ * Class:     com_linkbubble_adblock_TPFilterParser
+ * Method:    init
+ * Signature: ()Ljava/lang/void;
+ */
+JNIEXPORT jstring JNICALL Java_com_linkbubble_adblock_TPFilterParser_findFirstPartyHosts(JNIEnv *env, jobject obj, jstring baseHost) {
+    const char *nativeBaseHost = env->GetStringUTFChars(baseHost, 0);
+
+    char *thirdPartyHosts = tpParser.findFirstPartyHosts(nativeBaseHost);
+
+    env->ReleaseStringUTFChars(baseHost, nativeBaseHost);
+
+    if (nullptr == thirdPartyHosts) {
+        return env->NewString((jchar*)"", 0);
+    }
+
+    jstring result = env->NewStringUTF(thirdPartyHosts);
+
+    delete []thirdPartyHosts;
+
+    return result;
 }

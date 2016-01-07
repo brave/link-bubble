@@ -9,22 +9,17 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Vibrator;
-import android.preference.Preference;
-import android.preference.PreferenceScreen;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.linkbubble.Constant.BubbleAction;
 import com.linkbubble.adblock.ABPFilterParser;
-import com.linkbubble.adblock.TrackingProtectionList;
+import com.linkbubble.adblock.TPFilterParser;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
@@ -60,7 +55,7 @@ public class MainApplication extends Application {
     private static long sTrialStartTime = -1;
 
     private ABPFilterParser mABPParser = null;
-    private TrackingProtectionList mTrackingProtectionList = null;
+    private TPFilterParser mTPParser = null;
 
     public IconCache mIconCache;
 
@@ -103,13 +98,13 @@ public class MainApplication extends Application {
     }
 
     public void createTrackingProtectionList() {
-        if (null == mTrackingProtectionList) {
-            mTrackingProtectionList = new TrackingProtectionList(this);
+        if (null == mTPParser) {
+            mTPParser = new TPFilterParser(this);
         }
     }
 
-    public TrackingProtectionList getTrackingProtectionList() {
-        return mTrackingProtectionList;
+    public TPFilterParser getTrackingProtectionList() {
+        return mTPParser;
     }
 
     public void createABPParser() {
