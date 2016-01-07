@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Calendar;
 
 /**
  * Created by serg on 16-01-05.
@@ -22,7 +23,7 @@ public class TPFilterParser {
         System.loadLibrary("LinkBubble");
     }
 
-    private static final int BUFFER_TO_READ = 16384;    // 16Kb
+    private static final String ETAG_PREPEND = "tp";
 
     public TPFilterParser(Context context) {
         mVerNumber = getDataVerNumber(context);
@@ -56,9 +57,11 @@ public class TPFilterParser {
     private byte[] readTPData(Context context) {
         File dataPath = new File(context.getApplicationInfo().dataDir,
                 mVerNumber + context.getString(R.string.tracking_protection_localfilename));
-        if (!dataPath.exists()) {
-            removeOldVersionFiles(context);
-            downloadTPData(context);
+        boolean fileExists = dataPath.exists();
+        EtagObject previousEtag = ADBlockUtils.getETagInfo(context, ETAG_PREPEND);
+        long milliSeconds = Calendar.getInstance().getTimeInMillis();
+        if (!fileExists || (milliSeconds - previousEtag.mMilliSeconds >= ADBlockUtils.MILLISECONDS_IN_A_DAY)) {
+            downloadTPData(context, fileExists, previousEtag, milliSeconds);
         }
 
         byte[] buffer = null;
@@ -69,7 +72,7 @@ public class TPFilterParser {
             buffer = new byte[size];
             int n = - 1;
             int bytesOffset = 0;
-            byte[] tempBuffer = new byte[BUFFER_TO_READ];
+            byte[] tempBuffer = new byte[ADBlockUtils.BUFFER_TO_READ];
             while ( (n = inputStream.read(tempBuffer)) != -1) {
                 System.arraycopy(tempBuffer, 0, buffer, bytesOffset, n);
                 bytesOffset += n;
@@ -82,7 +85,7 @@ public class TPFilterParser {
         return buffer;
     }
 
-    private byte[] downloadTPData(Context context) {
+    private void downloadTPData(Context context, boolean fileExist, EtagObject previousEtag, long currentMilliSeconds) {
         byte[] buffer = null;
         InputStream inputStream = null;
         HttpURLConnection connection = null;
@@ -90,17 +93,29 @@ public class TPFilterParser {
         try {
             URL url = new URL(context.getString(R.string.tracking_protection_url));
             connection = (HttpURLConnection) url.openConnection();
+            String etag = connection.getHeaderField("ETag");
+            boolean downloadFile = true;
+            if (fileExist && etag.equals(previousEtag.mEtag)) {
+                downloadFile = false;
+            }
+            previousEtag.mEtag = etag;
+            previousEtag.mMilliSeconds = currentMilliSeconds;
+            ADBlockUtils.saveETagInfo(context, ETAG_PREPEND, previousEtag);
+            if (!downloadFile) {
+                return;
+            }
+            removeOldVersionFiles(context);
             connection.connect();
 
             if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-                return buffer;
+                return;
             }
 
             File path = new File(context.getApplicationInfo().dataDir,
                     mVerNumber + context.getString(R.string.tracking_protection_localfilename));
             FileOutputStream outputStream = new FileOutputStream(path);
             inputStream = connection.getInputStream();
-            buffer = new byte[BUFFER_TO_READ];
+            buffer = new byte[ADBlockUtils.BUFFER_TO_READ];
             int n = - 1;
             while ( (n = inputStream.read(buffer)) != -1)
             {
@@ -128,7 +143,7 @@ public class TPFilterParser {
                 connection.disconnect();
         }
 
-        return buffer;
+        return;
     }
 
 
