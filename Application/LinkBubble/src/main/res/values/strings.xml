@@ -390,7 +390,7 @@
     <string name="empty_bubble_page">file:///android_asset/blank.html</string>
     <string name="adblock_url">https://s3.amazonaws.com/adblock-data/1/ABPFilterParserData.dat</string>
     <string name="adblock_localfilename">FromUrlABPFilterParserData.dat</string>
-    <string name="tracking_protection_url">https://s3.amazonaws.com/tracking-protection-data/0/TrackingProtection.dat</string>
+    <string name="tracking_protection_url">https://s3.amazonaws.com/tracking-protection-data/1/TrackingProtection.dat</string>
     <string name="tracking_protection_localfilename">TrackingProtection.dat</string>
 
 </resources>
