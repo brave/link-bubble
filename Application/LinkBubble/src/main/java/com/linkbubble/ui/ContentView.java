@@ -152,7 +152,7 @@ public class ContentView extends FrameLayout {
     private boolean mFirstTimeUrlTyped = true;
 
     // Tracking protection third party hosts
-    private String mThirdPartyHosts = null;
+    String[] mThirdPartyHosts = null;
 
     public ContentView(Context context) {
         this(context, null);
@@ -592,15 +592,12 @@ public class ContentView extends FrameLayout {
             }
             if (tpList.matchesTracker(host)) {
                 if (null == mThirdPartyHosts) {
-                    mThirdPartyHosts = tpList.findFirstPartyHosts(baseHost);
+                    mThirdPartyHosts = tpList.findFirstPartyHosts(baseHost).split(",");
                 }
 
-                if (mThirdPartyHosts.contains(host)) {
-                    return false;
-                } else {
-                    String[] thirdPartyHosts = mThirdPartyHosts.split(",");
-                    for (int i = 0; i < thirdPartyHosts.length; i++) {
-                        if (host == thirdPartyHosts[i] || host.endsWith("." + thirdPartyHosts[i])) {
+                if (null != mThirdPartyHosts) {
+                    for (int i = 0; i < mThirdPartyHosts.length; i++) {
+                        if (host == mThirdPartyHosts[i] || host.endsWith("." + mThirdPartyHosts[i])) {
                             return false;
                         }
                     }
