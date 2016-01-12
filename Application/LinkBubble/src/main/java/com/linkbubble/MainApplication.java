@@ -9,6 +9,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
@@ -20,6 +21,7 @@ import com.crashlytics.android.Crashlytics;
 import com.linkbubble.Constant.BubbleAction;
 import com.linkbubble.adblock.ABPFilterParser;
 import com.linkbubble.adblock.TPFilterParser;
+import com.linkbubble.adinsert.AdInserter;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
@@ -56,6 +58,8 @@ public class MainApplication extends Application {
 
     private ABPFilterParser mABPParser = null;
     private TPFilterParser mTPParser = null;
+    private AdInserter mADInserter = null;
+    public boolean mAdInserterEnabled = false;
 
     public IconCache mIconCache;
 
@@ -88,6 +92,12 @@ public class MainApplication extends Application {
         if (Settings.get().isTrackingProtectionEnabled()) {
             mBus.post(new SettingsMoreActivity.TrackingProtectionTurnOnEvent());
         }
+        // Enable ad insertion for Crashlytics builds and disable for play store builds
+        ApplicationInfo appInfo = getApplicationInfo();
+        if (appInfo.packageName.equals("com.brave.playstore") || appInfo.packageName.equals("com.brave.playstore.dev")) {
+            mAdInserterEnabled = true;
+            new DownloadAdInsertionDataAsyncTask().execute();
+        }
 
         CrashTracking.log("MainApplication.onCreate()");
         //checkStrings();
@@ -117,6 +127,16 @@ public class MainApplication extends Application {
 
     public ABPFilterParser getABPParser() {
         return mABPParser;
+    }
+
+    public void createAdInsertionList() {
+        if (null == mADInserter) {
+            mADInserter = new AdInserter(this);
+        }
+    }
+
+    public AdInserter getAdInserter() {
+        return mADInserter;
     }
 
     /**
@@ -514,6 +534,15 @@ public class MainApplication extends Application {
     @Subscribe
     public void onTrackingProtectionOn(SettingsMoreActivity.TrackingProtectionTurnOnEvent event) {
         new DownloadTrackingProtectionDataAsyncTask().execute();
+    }
+
+    class DownloadAdInsertionDataAsyncTask extends AsyncTask<Void,Void,Long> {
+
+        protected Long doInBackground(Void... params) {
+            createAdInsertionList();
+
+            return null;
+        }
     }
 
 /*

@@ -59,6 +59,7 @@ import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.adblock.TPFilterParser;
+import com.linkbubble.adinsert.AdInserter;
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.articlerender.ArticleRenderer;
 import com.linkbubble.util.ActionItem;
@@ -610,6 +611,35 @@ public class ContentView extends FrameLayout {
         }
 
         @Override
+        public String adInsertionList(String baseHost) {
+            MainApplication app = (MainApplication) mContext.getApplicationContext();
+            if (!app.mAdInserterEnabled) {
+                return "";
+            }
+            AdInserter adInsertionList = null;
+            int count = 0;
+            for (;;) {
+                if (count >= 1000) {  // It is about 50 seconds, we just return false;
+                    return "";
+                }
+                adInsertionList = app.getAdInserter();
+                if (null == adInsertionList) {
+                    try {
+                        Thread.sleep(50);
+                    }
+                    catch (InterruptedException e) {
+                    }
+                }
+                else {
+                    break;
+                }
+                count++;
+            }
+
+            return adInsertionList.getHostObjects(baseHost);
+        }
+
+        @Override
         public boolean shouldOverrideUrlLoading(String urlAsString, boolean viaUserInput) {
             if (mLifeState != LifeState.Alive) {
                 return true;
@@ -1054,7 +1084,7 @@ public class ContentView extends FrameLayout {
             }
         }
 
-        mWebRenderer.runPageInspector();
+        mWebRenderer.runPageInspector(mWebRendererController.adInsertionList(currentUrl.getHost().replace("www.", "").replace("m.", "")));
 
         if (equalUrl) {
             updateAppsForUrl(currentUrl);
