@@ -9,9 +9,11 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Vibrator;
 import android.widget.Toast;
 
@@ -19,11 +21,13 @@ import com.crashlytics.android.Crashlytics;
 import com.linkbubble.Constant.BubbleAction;
 import com.linkbubble.adblock.ABPFilterParser;
 import com.linkbubble.adblock.TPFilterParser;
+import com.linkbubble.adinsert.AdInserter;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.ui.Prompt;
 import com.linkbubble.ui.SearchURLSuggestionsContainer;
 import com.linkbubble.ui.SettingsActivity;
+import com.linkbubble.ui.SettingsMoreActivity;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
@@ -54,6 +58,8 @@ public class MainApplication extends Application {
 
     private ABPFilterParser mABPParser = null;
     private TPFilterParser mTPParser = null;
+    private AdInserter mADInserter = null;
+    public boolean mAdInserterEnabled = false;
 
     public IconCache mIconCache;
 
@@ -80,6 +86,19 @@ public class MainApplication extends Application {
         Favicons.attachToContext(this);
         recreateFaviconCache();
 
+        if (Settings.get().isAdBlockEnabled()) {
+            mBus.post(new SettingsMoreActivity.AdBlockTurnOnEvent());
+        }
+        if (Settings.get().isTrackingProtectionEnabled()) {
+            mBus.post(new SettingsMoreActivity.TrackingProtectionTurnOnEvent());
+        }
+        // Enable ad insertion for Crashlytics builds and disable for play store builds
+        ApplicationInfo appInfo = getApplicationInfo();
+        if (appInfo.packageName.equals("com.brave.playstore") || appInfo.packageName.equals("com.brave.playstore.dev")) {
+            mAdInserterEnabled = true;
+            new DownloadAdInsertionDataAsyncTask().execute();
+        }
+
         CrashTracking.log("MainApplication.onCreate()");
         //checkStrings();
     }
@@ -87,8 +106,6 @@ public class MainApplication extends Application {
     public Bus getBus() {
         return mBus;
     }
-
-    public ABPFilterParser getABPParser() { return mABPParser; }
 
     public void createTrackingProtectionList() {
         if (null == mTPParser) {
@@ -106,6 +123,20 @@ public class MainApplication extends Application {
         if (mABPParser == null) {
             mABPParser = new ABPFilterParser(this);
         }
+    }
+
+    public ABPFilterParser getABPParser() {
+        return mABPParser;
+    }
+
+    public void createAdInsertionList() {
+        if (null == mADInserter) {
+            mADInserter = new AdInserter(this);
+        }
+    }
+
+    public AdInserter getAdInserter() {
+        return mADInserter;
     }
 
     /**
@@ -475,6 +506,44 @@ public class MainApplication extends Application {
         event.mainController.updateIncognitoMode(event.mIncognito);
     }
 
+    class DownloadAdBlockDataAsyncTask extends AsyncTask<Void,Void,Long> {
+
+        protected Long doInBackground(Void... params) {
+            createABPParser();
+
+            return null;
+        }
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onAdBlockOn(SettingsMoreActivity.AdBlockTurnOnEvent event) {
+        new DownloadAdBlockDataAsyncTask().execute();;
+    }
+
+    class DownloadTrackingProtectionDataAsyncTask extends AsyncTask<Void,Void,Long> {
+
+        protected Long doInBackground(Void... params) {
+            createTrackingProtectionList();
+
+            return null;
+        }
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onTrackingProtectionOn(SettingsMoreActivity.TrackingProtectionTurnOnEvent event) {
+        new DownloadTrackingProtectionDataAsyncTask().execute();
+    }
+
+    class DownloadAdInsertionDataAsyncTask extends AsyncTask<Void,Void,Long> {
+
+        protected Long doInBackground(Void... params) {
+            createAdInsertionList();
+
+            return null;
+        }
+    }
 /*
     private void checkStrings() {
         String blerg = "blerg";

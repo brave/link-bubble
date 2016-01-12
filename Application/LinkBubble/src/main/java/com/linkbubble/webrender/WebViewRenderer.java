@@ -50,6 +50,7 @@ import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
 import com.squareup.otto.Subscribe;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 
@@ -279,8 +280,8 @@ class WebViewRenderer extends WebRenderer {
     }
 
     @Override
-    public void runPageInspector() {
-        mPageInspector.run(mWebView);
+    public void runPageInspector(String adInsert) {
+        mPageInspector.run(mWebView, adInsert);
     }
 
     @Override
@@ -674,7 +675,13 @@ class WebViewRenderer extends WebRenderer {
             // Inject page scripts after there has been some progress, otherwise they get injected into an empty page.
             if (mCurrentProgress >= 60 && mRunPageScripts == 0) {
                 mRunPageScripts = 1;
-                mPageInspector.run(webView);
+                try {
+                    URL currentUrl = new URL(webView.getUrl());
+                    mPageInspector.run(webView, mController.adInsertionList(currentUrl.getHost().replace("www.", "").replace("m.", "")));
+                }
+                catch (MalformedURLException exc) {
+                    exc.printStackTrace();
+                }
             }
 
             if (mCurrentProgress == 100 && mPauseOnComplete) {

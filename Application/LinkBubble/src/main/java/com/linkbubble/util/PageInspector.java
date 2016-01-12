@@ -74,7 +74,7 @@ public class PageInspector {
         webView.addJavascriptInterface(mJSEmbedHandler, JS_VARIABLE);
     }
 
-    public void run(WebView webView) {
+    public void run(WebView webView, String adInsert) {
         mWebViewUrl = webView.getUrl();
 
         if (mScriptCache == null) {
@@ -91,11 +91,18 @@ public class PageInspector {
             mScriptCache += getFileContents("FetchContent");
 
             mScriptCache += getFileContents("ThemeColor");
-
-            mScriptCache += "}());";
         }
 
-        webView.loadUrl(mScriptCache);
+        String scriptToExecute = mScriptCache;
+
+        if (null != adInsert && !adInsert.equals("")) {
+            scriptToExecute += "\nvar adInfoObject = " + adInsert + ";\n";
+            scriptToExecute += getFileContents("AddInsertion");
+        }
+
+        scriptToExecute += "}());";
+
+        webView.loadUrl(scriptToExecute);
     }
 
     public String getFileContents(String pageScript) {

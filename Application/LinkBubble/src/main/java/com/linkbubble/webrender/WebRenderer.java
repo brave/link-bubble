@@ -19,9 +19,9 @@ public abstract class WebRenderer {
     }
 
     public interface Controller {
-        public boolean
-        shouldAdBlockUrl(String baseHost, String urlStr, String filterOption);
+        public boolean shouldAdBlockUrl(String baseHost, String urlStr, String filterOption);
         public boolean shouldTrackingProtectionBlockUrl(String baseHost, String host);
+        public String adInsertionList(String baseHost);
         public boolean shouldOverrideUrlLoading(String urlAsString, boolean viaUserInput);
         public void onLoadUrl(String urlAsString);      // may or may not be called
         public void onReceivedError();
@@ -94,7 +94,7 @@ public abstract class WebRenderer {
 
     public abstract void resetPageInspector();
 
-    public void runPageInspector() {}
+    public void runPageInspector(String adInsert) {}
 
     public abstract YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper();
 
