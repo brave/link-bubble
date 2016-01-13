@@ -97,6 +97,7 @@ public class Util {
         "com.ineedyourservice.RBrowser",
         "com.lastpass.lpandroid",
         "org.hola",
+        "com.linkbubble.playstore",
         "com.brave.playstore",          // Made that temporary(remove when merge to master)
         "com.brave.playstore.dev"       // Made that temporary(remove when merge to master)
     };
