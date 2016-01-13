@@ -91,6 +91,8 @@ public class PageInspector {
             mScriptCache += getFileContents("FetchContent");
 
             mScriptCache += getFileContents("ThemeColor");
+
+            mScriptCache += getFileContents("HideBrokenImages");
         }
 
         String scriptToExecute = mScriptCache;
