@@ -28,6 +28,6 @@
   },
   "dependencies": {
     "abp-filter-parser-cpp": "^1.0.15",
-    "tracking-protection": "^1.0.5"
+    "tracking-protection": "^1.0.8"
   }
 }
