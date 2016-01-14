@@ -59,6 +59,8 @@ public class AdInserter {
         return new String(buffer);
     }
 
+    // We could use Json object here in future maybe, but unfortunately
+    // JSONObject isn't working properly for me maybe because of the structure's size.
     private void parseDatObject(String datObject) {
         int currentIndex = 0;
         while(datObject.length() > currentIndex) {
