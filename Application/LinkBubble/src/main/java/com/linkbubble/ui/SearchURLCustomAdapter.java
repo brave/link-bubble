@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Paint;
 import android.text.Html;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -20,6 +21,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
+
+    private static final float DROP_DOWN_TEXT_SIZE = 16;
 
     public String mRealUrlBarConstraint = "";
 
@@ -120,6 +123,7 @@ public class SearchURLCustomAdapter extends ArrayAdapter<SearchURLSuggestions> {
         View view = super.getView(position, convertView, parent);
 
         TextView name = (TextView) view;
+        name.setTextSize(TypedValue.COMPLEX_UNIT_DIP, DROP_DOWN_TEXT_SIZE);
         SearchURLSuggestions suggestion = getItem(position);
         if (SearchURLSuggestions.SearchEngine.NONE == suggestion.EngineToUse) {
             name.setText(Html.fromHtml(getContext().getString(R.string.top_500_prepend) + " <font color=" +
