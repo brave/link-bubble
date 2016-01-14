@@ -1217,12 +1217,9 @@ public class ContentView extends FrameLayout {
     };
 
     EditText.OnKeyListener murlKeyListener = new EditText.OnKeyListener() {
-        public boolean onKey(View v, int keyCode, KeyEvent event)
-        {
-            if (event.getAction() == KeyEvent.ACTION_DOWN)
-            {
-                if (keyCode == KeyEvent.KEYCODE_BACK)
-                {
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
+            if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
                     return ContentView.this.onBackPressed();
                 }
             }
