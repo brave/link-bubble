@@ -44,6 +44,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -329,6 +330,7 @@ public class ContentView extends FrameLayout {
         metUrl.setOnItemClickListener(murlOnItemClickListener);
         metUrl.setOnEditorActionListener(murlActionListener);
         metUrl.setImeOptions(EditorInfo.IME_ACTION_GO | EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        metUrl.setOnKeyListener(murlKeyListener);
 
         mAdapter = new SearchURLCustomAdapter(getContext(), android.R.layout.simple_list_item_1, getResources(),
                 getResources().getDisplayMetrics().widthPixels);
@@ -1210,6 +1212,20 @@ public class ContentView extends FrameLayout {
                 }
             }
 
+            return false;
+        }
+    };
+
+    EditText.OnKeyListener murlKeyListener = new EditText.OnKeyListener() {
+        public boolean onKey(View v, int keyCode, KeyEvent event)
+        {
+            if (event.getAction() == KeyEvent.ACTION_DOWN)
+            {
+                if (keyCode == KeyEvent.KEYCODE_BACK)
+                {
+                    return ContentView.this.onBackPressed();
+                }
+            }
             return false;
         }
     };
