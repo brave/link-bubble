@@ -1,23 +1,16 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 package com.linkbubble.ui;
 
 import android.app.ActivityManager;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.widget.ScrollView;
-import android.widget.TextView;
-
-import com.linkbubble.BuildConfig;
-import com.linkbubble.Config;
-import com.linkbubble.R;
-import com.linkbubble.util.Util;
 
 public class SettingsBaseFragment extends PreferenceFragment {
 

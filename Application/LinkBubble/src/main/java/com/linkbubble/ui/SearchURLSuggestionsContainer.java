@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 package com.linkbubble.ui;
 
 import android.content.Context;
@@ -11,9 +15,6 @@ import com.linkbubble.R;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/**
- * Created by serg on 15-12-07.
- */
 public class SearchURLSuggestionsContainer {
 
     public static final int HISTORY_ROWS_TO_GET = 50;

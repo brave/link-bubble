@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 package com.linkbubble.util;
 
 import android.content.BroadcastReceiver;
@@ -5,13 +9,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.webkit.WebView;
 
 import com.linkbubble.webrender.WebRenderer;
 
-/**
- * Created by kevin on 8/5/15.
- */
 public class NetworkReceiver extends BroadcastReceiver {
 
     protected WebRenderer mWebRenderer;
