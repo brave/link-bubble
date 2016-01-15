@@ -1,10 +1,13 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 package com.linkbubble.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.graphics.PixelFormat;
-import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -13,14 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
 import android.view.WindowManager;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.linkbubble.Config;
 import com.linkbubble.R;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.SwipeDismissTouchListener;

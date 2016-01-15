@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 package com.linkbubble.ui;
 
 import android.app.Activity;
@@ -13,7 +17,6 @@ import android.view.ActionMode;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 

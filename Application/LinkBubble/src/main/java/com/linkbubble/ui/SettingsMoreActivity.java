@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 package com.linkbubble.ui;
 
 import android.app.AlertDialog;
@@ -7,8 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceScreen;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;

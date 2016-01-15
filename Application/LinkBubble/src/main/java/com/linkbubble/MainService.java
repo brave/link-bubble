@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 package com.linkbubble;
 
 import android.app.Notification;
@@ -25,9 +29,6 @@ import io.fabric.sdk.android.Fabric;
 
 import java.util.Vector;
 
-/**
- * Created by gw on 28/08/13.
- */
 public class MainService extends Service {
 
     private static final String BCAST_CONFIGCHANGED = "android.intent.action.CONFIGURATION_CHANGED";

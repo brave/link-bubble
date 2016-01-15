@@ -1,8 +1,9 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 package com.linkbubble.physics;
 
-/**
- * Created by gw on 23/10/13.
- */
 public class Circle {
     public float mX;
     public float mY;
