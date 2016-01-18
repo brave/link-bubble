@@ -59,6 +59,9 @@ Application/LinkBubble/fabric.properties
 # API keys like youtube and etc
 Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java
 
+# Crashlytics API keys
+Application/LinkBubble/src/main/AndroidManifest.xml
+
 # release builds
 dist
 build-release.sh

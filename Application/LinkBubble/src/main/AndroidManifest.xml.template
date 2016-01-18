@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.linkbubble" >
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+
+    <application
+        android:name="com.linkbubble.MainApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Holo.Light" >
+
+        <activity
+            android:name=".ui.HomeActivity"
+            android:theme="@style/AppTheme"
+            android:excludeFromRecents="false"/>
+
+
+        <!--
+        <activity
+            android:name=".ui.BubbleFlowActivity"
+            android:theme="@android:style/Theme.Holo.Light"
+            android:label="LinkBubble - BubbleFlow"
+            android:excludeFromRecents="false">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>-->
+
+        <activity
+            android:name=".ui.HistoryActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/history">
+        </activity>
+
+        <activity
+            android:name=".ui.EntryActivity"
+            android:label="@string/app_name"
+            android:configChanges="keyboardHidden|orientation"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/TransparentTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+            </intent-filter>
+
+            <intent-filter android:label="@string/send_intent_label">
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity android:name=".ui.NotificationCloseAllActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/TransparentTheme"
+            android:exported="false"
+            android:finishOnTaskLaunch="true"
+            android:clearTaskOnLaunch="true"/>
+
+        <activity android:name=".ui.NotificationCloseTabActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/TransparentTheme"
+            android:exported="false"
+            android:finishOnTaskLaunch="true"
+            android:clearTaskOnLaunch="true"/>
+
+        <activity android:name=".ui.NotificationHideActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/TransparentTheme"
+            android:exported="false"
+            android:finishOnTaskLaunch="true"
+            android:clearTaskOnLaunch="true"/>
+
+        <activity android:name=".ui.NotificationOpenTabActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/TransparentTheme"
+            android:exported="false"
+            android:finishOnTaskLaunch="true"
+            android:clearTaskOnLaunch="true"/>
+
+        <activity android:name=".ui.NotificationUnhideActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/TransparentTheme"
+            android:exported="false"
+            android:finishOnTaskLaunch="true"
+            android:clearTaskOnLaunch="true"/>
+
+        <activity android:name=".ui.SettingsActivity"
+                  android:label="@string/app_name"
+                  android:theme="@style/AppTheme">
+        </activity>
+
+        <activity android:name=".ui.SettingsDefaultAppsActivity"
+            android:label="@string/preference_more_title"
+            android:theme="@style/AppTheme">
+        </activity>
+
+        <activity android:name=".ui.SettingsMoreActivity"
+            android:label="@string/preference_default_apps_title"
+            android:theme="@style/AppTheme">
+        </activity>
+
+        <activity android:name=".ui.SettingsHelpActivity"
+            android:label="@string/preference_help_title"
+            android:theme="@style/AppTheme">
+        </activity>
+
+        <activity android:name=".ui.SettingsDomainsActivity"
+            android:label="@string/preference_domains_title"
+            android:theme="@style/AppTheme">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+
+        </activity>
+
+        <activity android:name=".ui.DefaultBrowserResetActivity" android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="*"
+                    android:scheme="http" />
+                <data
+                    android:host="*"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+
+        <service android:name="com.linkbubble.MainService"
+                 android:label="@string/service_name"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.CONFIGURATION_CHANGED"/>
+            </intent-filter>
+        </service>
+
+        <meta-data android:name="com.crashlytics.ApiKey" android:value="key-here"/>
+
+        <activity
+            android:name=".ui.ExpandedActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/ExpandedModeTheme">
+        </activity>
+
+        <!--
+
+        <activity
+            android:name=".ui.DownloadHandlerActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/TransparentTheme"
+            android:label="@string/download_activity_label"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:scheme="ftp"/>
+                <data android:scheme="sftp"/>
+                <data android:host="*"/>
+                <data android:pathPattern=".*\.apk"/>
+                <data android:pathPattern=".*\.apk.*"/>
+                <data android:pathPattern=".*\..*\.apk.*"/>
+                <data android:pathPattern=".*\..*\..*\.apk.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\.apk.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\.apk.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\.apk.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.apk.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\.apk.*"/>
+                <data android:pathPattern=".*\.mp3"/>
+                <data android:pathPattern=".*\.mp3.*"/>
+                <data android:pathPattern=".*\..*\.mp3.*"/>
+                <data android:pathPattern=".*\..*\..*\.mp3.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\.mp3.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\.mp3.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\.mp3.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.mp3.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\.mp3.*"/>
+                <data android:pathPattern=".*\.ape"/>
+                <data android:pathPattern=".*\.mp4"/>
+                <data android:pathPattern=".*\.avi"/>
+                <data android:pathPattern=".*\.wmv"/>
+                <data android:pathPattern=".*\.wav"/>
+                <data android:pathPattern=".*\.asf"/>
+                <data android:pathPattern=".*\.mpg"/>
+                <data android:pathPattern=".*\.3gp"/>
+                <data android:pathPattern=".*\.3gpp"/>
+                <data android:pathPattern=".*\.amr"/>
+                <data android:pathPattern=".*\.rm"/>
+                <data android:pathPattern=".*\.rmvb"/>
+                <data android:pathPattern=".*\.ogg"/>
+                <data android:pathPattern=".*\.oga"/>
+                <data android:pathPattern=".*\.ogv"/>
+                <data android:pathPattern=".*\.wma"/>
+                <data android:pathPattern=".*\.doc"/>
+                <data android:pathPattern=".*\.docx"/>
+                <data android:pathPattern=".*\.ppt"/>
+                <data android:pathPattern=".*\.pps"/>
+                <data android:pathPattern=".*\.ppx"/>
+                <data android:pathPattern=".*\.pptx"/>
+                <data android:pathPattern=".*\.xls"/>
+                <data android:pathPattern=".*\.xlsx"/>
+                <data android:pathPattern=".*\.chm"/>
+                <data android:pathPattern=".*\.txt"/>
+                <data android:pathPattern=".*\.zip"/>
+                <data android:pathPattern=".*\.zip.*"/>
+                <data android:pathPattern=".*\..*\.zip.*"/>
+                <data android:pathPattern=".*\..*\..*\.zip.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\.zip.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\.zip.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\.zip.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.zip.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\.zip.*"/>
+                <data android:pathPattern=".*\.rar"/>
+                <data android:pathPattern=".*\.rar.*"/>
+                <data android:pathPattern=".*\..*\.rar.*"/>
+                <data android:pathPattern=".*\..*\..*\.rar.*"/>
+                <data android:pathPattern=".*\..*\..*\..*\.rar.*"/>
+                <data android:pathPattern=".*\.pdf"/>
+                <data android:pathPattern=".*\.torrent"/>
+                <data android:pathPattern=".*\.mkv"/>
+                <data android:pathPattern=".*\.swf"/>
+                <data android:pathPattern=".*\.flv"/>
+                <data android:pathPattern=".*\.aiff"/>
+                <data android:pathPattern=".*\.pcs"/>
+                <data android:pathPattern=".*\.mov"/>
+            </intent-filter>
+        </activity>
+
+        -->
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="key-here" />
+    </application>
+
+</manifest>

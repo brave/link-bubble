@@ -8,6 +8,11 @@ Either install the [Crashlytics/Fabric Android Studio plugin](http://try.crashly
 
 Copy `Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java.template` to `Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java` and fill in the youtube apiSecret.
 
+Copy `Application/LinkBubble/src/main/AndroidManifest.xml.template` to `Application/LinkBubble/src/main/AndroidManifest.xml` and fill up `com.crashlytics.ApiKey` and
+`io.fabric.ApiKey`
+
+npm install
+
 ##Building Link Bubble Free
 
 Open `./Application/` in Android Studio and build.  You'll need the NDK installed if you don't already have it, instructions below.
