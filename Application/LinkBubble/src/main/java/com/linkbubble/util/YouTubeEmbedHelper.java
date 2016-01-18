@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.linkbubble.Config;
+import com.linkbubble.ConfigAPIs;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
@@ -306,7 +307,7 @@ public class YouTubeEmbedHelper {
                 thumbnailsArg = Config.YOUTUBE_API_THUMBNAILS_HIGH_QUALITY;
             }
 
-            String url = "https://www.googleapis.com/youtube/v3/videos?id=" + idsAsString + "&key=" + Config.YOUTUBE_API_KEY +
+            String url = "https://www.googleapis.com/youtube/v3/videos?id=" + idsAsString + "&key=" + ConfigAPIs.YOUTUBE_API_KEY +
                     "&part=snippet&fields=items(id,snippet(title," + thumbnailsArg + "))";
 
             mEmbedInfo.clear();
