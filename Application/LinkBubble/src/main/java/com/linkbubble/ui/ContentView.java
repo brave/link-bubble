@@ -80,6 +80,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -605,6 +606,12 @@ public class ContentView extends FrameLayout {
                             return false;
                         }
                     }
+                }
+
+                // Temporary whitelist until we have an UI to unblock hosts
+                List<String> whitelistHosts = Arrays.asList("connect.facebook.net");
+                if (whitelistHosts.contains(host)) {
+                    return false;
                 }
 
                 return true;
