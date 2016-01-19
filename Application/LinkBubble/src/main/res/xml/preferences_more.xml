@@ -30,13 +30,13 @@
         android:key="preference_trackingprotection"
         android:title="@string/preference_trackingprotection_title"
         android:summary="@string/preference_trackingprotection_summary"
-        android:defaultValue="true"
+        android:defaultValue="false"
         />
     <CheckBoxPreference
         android:key="preference_adblock"
         android:title="@string/preference_adblock_title"
         android:summary="@string/preference_adblock_summary"
-        android:defaultValue="true"
+        android:defaultValue="false"
         />
     <Preference
         android:key="preference_ignore_links_from"
