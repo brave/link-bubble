@@ -2,9 +2,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-let fs = require('fs');
-let path = require('path');
-var https = require('https');
+const fs = require('fs');
+const path = require('path');
+const https = require('https');
 
 if (process.argv.length !== 4) {
   console.error('usage: babel-node udpateTranslations.js <username> <password>');
@@ -56,11 +56,11 @@ requestTranslations().then(translations => {
     }
 
     for (let i = 0; i < translations.length; i++) {
-      let translation = translations[i];
+      const translation = translations[i];
       let fileData = values[i];
 
       // Android calls: en-US -> en-rUS
-      let filename = translation.iana_code.split('-').join('-r');
+      const filename = translation.iana_code.split('-').join('-r');
       let toPath = `./Application/LinkBubble/src/main/res/values-${filename}`;
       if (!fs.existsSync(toPath)) {
         fs.mkdirSync(toPath);
