@@ -26,6 +26,7 @@ public abstract class WebRenderer {
         public boolean shouldAdBlockUrl(String baseHost, String urlStr, String filterOption);
         public boolean shouldTrackingProtectionBlockUrl(String baseHost, String host);
         public String adInsertionList(String baseHost);
+        public String getHTTPSUrl(String originalUrl);
         public boolean shouldOverrideUrlLoading(String urlAsString, boolean viaUserInput);
         public void onLoadUrl(String urlAsString);      // may or may not be called
         public void onReceivedError();

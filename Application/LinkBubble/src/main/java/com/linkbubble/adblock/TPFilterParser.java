@@ -18,7 +18,7 @@ public class TPFilterParser {
     public TPFilterParser(Context context) {
         mVerNumber = ADBlockUtils.getDataVerNumber(context.getString(R.string.tracking_protection_url));
         mBuffer = ADBlockUtils.readData(context, context.getString(R.string.tracking_protection_localfilename),
-                context.getString(R.string.tracking_protection_url), ETAG_PREPEND, mVerNumber);
+                context.getString(R.string.tracking_protection_url), ETAG_PREPEND, mVerNumber, false);
         if (mBuffer != null) {
             init(mBuffer);
         }

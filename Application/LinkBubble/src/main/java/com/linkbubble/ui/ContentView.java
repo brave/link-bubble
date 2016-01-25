@@ -67,6 +67,7 @@ import com.linkbubble.adblock.TPFilterParser;
 import com.linkbubble.adinsert.AdInserter;
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.articlerender.ArticleRenderer;
+import com.linkbubble.httpseverywhere.HttpsEverywhere;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
@@ -546,6 +547,32 @@ public class ContentView extends FrameLayout {
         updateColors(color);
     }
     WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {
+
+        @Override
+        public String getHTTPSUrl(String originalUrl) {
+            MainApplication app = (MainApplication) mContext.getApplicationContext();
+            HttpsEverywhere httpsEverywhere = null;
+            int count = 0;
+            for (;;) {
+                if (count >= 1000) {  // It is about 50 seconds, we just return false;
+                    return originalUrl;
+                }
+                httpsEverywhere = app.getHttpsEverywhere();
+                if (null == httpsEverywhere) {
+                    try {
+                        Thread.sleep(50);
+                    }
+                    catch (InterruptedException e) {
+                    }
+                }
+                else {
+                    break;
+                }
+                count++;
+            }
+
+            return httpsEverywhere.getRealUrl(originalUrl);
+        }
 
         @Override
         public boolean shouldAdBlockUrl(String baseHost, String urlStr, String filterOption) {
