@@ -442,15 +442,6 @@ class WebViewRenderer extends WebRenderer {
                 return allowRequest;
             }
 
-            // Never block for hosts which are not third party to the baseHost
-            if (host.length() == mHost.length() && host.equalsIgnoreCase(mHost)) {
-                return null;
-            } else if(host.length() > mHost.length() &&
-                    host.charAt(host.length() - mHost.length() - 1) == '.' &&
-                    host.substring(host.length() - mHost.length()).equalsIgnoreCase(mHost)) {
-                return allowRequest;
-            }
-
             if (mTrackingProtectionEnabled &&
                     mController.shouldTrackingProtectionBlockUrl(mHost, host) ||
                     mAdblockEnabled && mController.shouldAdBlockUrl(mHost, urlStr, filterOption)) {
