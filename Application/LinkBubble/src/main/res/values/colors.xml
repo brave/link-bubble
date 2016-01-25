@@ -11,7 +11,7 @@
 
     <color name="color_primary">#4a4a4a</color>
     <color name="color_primary_dark">#402060</color>
-    <color name="color_primary_bright">#8c53c6</color>
+    <color name="color_primary_bright">#fff</color>
     <color name="color_highlight">@color/dark_grey</color>
     <color name="color_highlight_2">@color/moderate_yellow</color>
     <color name="material_grey_600">#CBCBCB</color>
