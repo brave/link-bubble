@@ -362,7 +362,7 @@ public class ContentView extends FrameLayout {
 
         View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
         mWebRenderer = WebRenderer.create(WebRenderer.Type.WebView, getContext(), mWebRendererController, webRendererPlaceholder, TAG);
-        mWebRenderer.setUrl(urlAsString);
+        mWebRenderer.setUrl(mWebRendererController.getHTTPSUrl(urlAsString));
 
         // Generates 1000 history links
         /*for (int i = 0; i < 1000; i++) {
@@ -550,6 +550,9 @@ public class ContentView extends FrameLayout {
 
         @Override
         public String getHTTPSUrl(String originalUrl) {
+            if (!Settings.get().isHttpsEverywhereEnabled()) {
+                return originalUrl;
+            }
             MainApplication app = (MainApplication) mContext.getApplicationContext();
             HttpsEverywhere httpsEverywhere = null;
             int count = 0;
@@ -1989,7 +1992,7 @@ public class ContentView extends FrameLayout {
         if (urlAsString.equals(mWebRenderer.getUrl().toString()) == false) {
             try {
                 Log.d(TAG, "change url from " + mWebRenderer.getUrl() + " to " + urlAsString);
-                mWebRenderer.setUrl(urlAsString);
+                mWebRenderer.setUrl(mWebRendererController.getHTTPSUrl(urlAsString));
             } catch (MalformedURLException e) {
                 return false;
             }
