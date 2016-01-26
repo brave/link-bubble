@@ -61,6 +61,7 @@
 
     if (node.tagName === 'IFRAME') {
       node.srcdoc = src;
+      node.sandbox = 'allow-scripts';
     } else {
       while (node.firstChild) {
         node.removeChild(node.firstChild);
@@ -72,6 +73,7 @@
       iframe.style.width = adSize[0] + 'px';
       iframe.style.height = adSize[1] + 'px';
       iframe.srcdoc = src;
+      iframe.sandbox = 'allow-scripts';
       node.appendChild(iframe);
       ensureNodeVisible(node);
       if (node.parentNode) {
