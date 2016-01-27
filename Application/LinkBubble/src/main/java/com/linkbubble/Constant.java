@@ -55,8 +55,8 @@ public class Constant {
 
     public static final int DESIRED_FAVICON_SIZE = 96;
 
-    public static final String WELCOME_MESSAGE_URL = "http://linkbubble.com/device/welcome.html";
-    public static final String WELCOME_MESSAGE_DISPLAY_URL = "linkbubble.com/device/welcome";
+    public static final String WELCOME_MESSAGE_URL = "http://brave.com/brave_android_welcome.html";
+    public static final String WELCOME_MESSAGE_DISPLAY_URL = "brave.com/brave_android_welcome";
 
     // When opening a link in a new tab, there is no reliable way to get the link to be loaded. Use this guy
     // so we can determine when this is occurring, and not pollute the history. #280
