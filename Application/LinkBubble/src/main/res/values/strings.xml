@@ -191,6 +191,7 @@
 
     <string name="histroy_unread">Unread</string>
     <string name="histroy_all">All</string>
+    <string name="new_bubble">New Bubble</string>
     <string name="history">History</string>
     <string name="erase_all_history_title">Erase all?</string>
     <string name="erase_all_history_message">Erase your entire Brave browsing history?</string>

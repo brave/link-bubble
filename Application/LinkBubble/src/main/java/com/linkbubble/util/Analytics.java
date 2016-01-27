@@ -17,6 +17,7 @@ public class Analytics {
 
     public static final String OPENED_URL_FROM_SETTINGS = "LinkBubble-Settings";
     public static final String OPENED_URL_FROM_NEW_TAB = "LinkBubble-NewTab";
+    public static final String OPENED_URL_FROM_MAIN_NEW_TAB = "LinkBubble-MainNewTab";
     public static final String OPENED_URL_FROM_NEW_WINDOW = "LinkBubble-NewWindow";
     public static final String OPENED_URL_FROM_RESTORE = "LinkBubble-Restore";
     public static final String OPENED_URL_FROM_HISTORY = "LinkBubble-History";

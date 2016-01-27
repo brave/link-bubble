@@ -30,6 +30,7 @@ public class TabView extends BubbleView {
     private ContentView mContentView;
     private ImageView mBackIndicatorView;
     private ScaleUpAnimHelper mBackIndicatorAnimHelper;
+    private boolean mPerformEmptyClick;
 
     public boolean mWasRestored;
     public boolean mIsClosing;
@@ -46,9 +47,10 @@ public class TabView extends BubbleView {
         super(context, attrs, defStyle);
     }
 
-    void configure(String url, long urlLoadStartTime, boolean hasShownAppPicker) throws MalformedURLException {
+    void configure(String url, long urlLoadStartTime, boolean hasShownAppPicker, boolean performEmptyClick) throws MalformedURLException {
         super.configure(url);
 
+        mPerformEmptyClick = performEmptyClick;
         mBackIndicatorView = (ImageView) findViewById(R.id.back_indicator);
         if (Settings.get().getDarkThemeEnabled()) {
             mBackIndicatorView.setBackgroundResource(R.drawable.badge_plate_dark);
@@ -178,7 +180,12 @@ public class TabView extends BubbleView {
         }
 
         if (mUrl.toString().equals(getContext().getString(R.string.empty_bubble_page))) {
-            performClick();
+            if (mPerformEmptyClick) {
+                performClick();
+            }
+            else {
+                mPerformEmptyClick = true;
+            }
         }
     }
 
