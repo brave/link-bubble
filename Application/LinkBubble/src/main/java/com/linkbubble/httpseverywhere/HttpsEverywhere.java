@@ -96,10 +96,15 @@ public class HttpsEverywhere {
     public String getRealUrl(String originalUrl) {
         String host;
         try {
-            host = new URL(originalUrl).getHost();
+            URL url = new URL(originalUrl);
+            host = url.getHost();
+            if (url.getProtocol().equals("https")) {
+                return originalUrl;
+            }
         } catch (Exception e) {
             return originalUrl;
         }
+
         String[] domainParts = host.split(Pattern.quote("."));
         if (domainParts.length <= 1) {
             return originalUrl;
@@ -130,12 +135,15 @@ public class HttpsEverywhere {
             return originalUrl;
         }
 
-        String newHost = getNewHostFromIds(ruleIds);
+        String newHost = getNewHostFromIds(ruleIds, originalUrl);
+        if (0 != newHost.length()) {
+            return newHost;
+        }
 
         return originalUrl;
     }
 
-    private String getNewHostFromIds(String ruleIds) {
+    private String getNewHostFromIds(String ruleIds, String originalUrl) {
         if (null == mDB) {
             return "";
         }
@@ -151,7 +159,7 @@ public class HttpsEverywhere {
             return "";
         }
 
-        String newHost = "";
+        String newUrl = "";
 
         for (String result: results) {
             try {
@@ -170,7 +178,7 @@ public class HttpsEverywhere {
                             while (reader.hasNext()) {
                                 String name = reader.nextName();
                                 if (name.equals("default_off") || name.equals("platform")) {
-                                    return newHost;
+                                    break;
                                 }
                                 reader.skipValue();
                             }
@@ -188,12 +196,53 @@ public class HttpsEverywhere {
                                     if (!reader.nextName().equals("pattern")) {
                                         break;
                                     }
-                                    String exclusion = reader.nextString();
+                                    if (originalUrl.matches(".*" + reader.nextString() + ".*")) {
+                                        return newUrl;
+                                    }
                                 }
                                 reader.endObject();
                                 reader.endObject();
                             }
                             reader.endArray();
+                        }
+                        else if (topName.equals("rule")) {
+                            reader.beginArray();
+                            while (reader.hasNext()) {
+                                reader.beginObject();
+                                if (!reader.nextName().equals("$")) {
+                                    break;
+                                }
+                                reader.beginObject();
+                                String from = "";
+                                String to = "";
+                                while (reader.hasNext()) {
+                                    String fromToName = reader.nextName();
+                                    if (fromToName.equals("from")) {
+                                        from = reader.nextString();
+                                    }
+                                    else if (fromToName.equals("to")) {
+                                        to = reader.nextString();
+                                    }
+                                    else {
+                                        reader.skipValue();
+                                    }
+                                }
+                                reader.endObject();
+                                reader.endObject();
+                                if (0 != from.length() && 0 != to.length() && originalUrl.matches(".*" + from + ".*")) {
+                                    newUrl = originalUrl.replaceAll(from, to);
+                                    if (newUrl == originalUrl) {
+                                        newUrl = "";
+                                    }
+                                    else {
+                                        return newUrl;
+                                    }
+                                }
+                            }
+                            reader.endArray();
+                        }
+                        else {
+                            reader.skipValue();
                         }
                     }
                     reader.endObject();
@@ -208,7 +257,7 @@ public class HttpsEverywhere {
             }
         }
 
-        return newHost;
+        return newUrl;
     }
 
     private String mVerNumber;
