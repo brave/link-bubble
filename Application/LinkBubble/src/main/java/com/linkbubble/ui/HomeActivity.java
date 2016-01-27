@@ -34,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
 
     Button mActionButtonView;
+    Button mNewBubble;
     FlipView mStatsFlipView;
     View mTimeSavedPerLinkContainerView;
     CondensedTextView mTimeSavedPerLinkTextView;
@@ -51,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
         Analytics.trackScreenView(HomeActivity.class.getSimpleName());
 
         mActionButtonView = (Button)findViewById(R.id.big_white_button);
+        mNewBubble = (Button)findViewById(R.id.new_bubble);
         mStatsFlipView = (FlipView) findViewById(R.id.stats_flip_view);
         mTimeSavedPerLinkContainerView = mStatsFlipView.getDefaultView();
         mTimeSavedPerLinkTextView = (CondensedTextView) mTimeSavedPerLinkContainerView.findViewById(R.id.time_per_link);
@@ -105,6 +107,14 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomeActivity.this, HistoryActivity.class), v);
+            }
+        });
+
+        mNewBubble.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainApplication.openLink(HomeActivity.this, HomeActivity.this.getString(R.string.empty_bubble_page),
+                        Analytics.OPENED_URL_FROM_MAIN_NEW_TAB);
             }
         });
 

@@ -801,7 +801,8 @@ public class MainController implements Choreographer.FrameCallback {
             openedFromItself = true;
         }
         mCanAutoDisplayLink = true;
-        final TabView result = openUrlInTab(urlAsString, urlLoadStartTime, setAsCurrentTab, showAppPicker);
+        final TabView result = openUrlInTab(urlAsString, urlLoadStartTime, setAsCurrentTab, showAppPicker,
+                (null == openedFromAppName) || !(openedFromAppName.equals(Analytics.OPENED_URL_FROM_MAIN_NEW_TAB)));
 
         // Show app picker after creating the tab to load so that we have the instance to close if redirecting to an app, re #292.
         if (!openedFromItself && showAppPicker && MainApplication.sShowingAppPickerDialog == false && 0 != resolveInfos.size()) {
@@ -857,7 +858,8 @@ public class MainController implements Choreographer.FrameCallback {
         return result;
     }
 
-    protected TabView openUrlInTab(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker) {
+    protected TabView openUrlInTab(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker,
+                                   boolean performEmptyClick) {
         setHiddenByUser(false);
 
         if (getActiveTabCount() == 0) {
@@ -875,7 +877,7 @@ public class MainController implements Choreographer.FrameCallback {
             }
         }
 
-        TabView result = mBubbleFlowDraggable.openUrlInTab(url, urlLoadStartTime, setAsCurrentTab, hasShownAppPicker);
+        TabView result = mBubbleFlowDraggable.openUrlInTab(url, urlLoadStartTime, setAsCurrentTab, hasShownAppPicker, performEmptyClick);
         showBadge(getActiveTabCount() > 1 ? true : false);
         ++mBubblesLoaded;
 

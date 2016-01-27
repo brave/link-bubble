@@ -41,7 +41,21 @@
                 flipview:flipView="@layout/view_stat_total_time"
                 flipview:isAnimated="true"/>
 
+            <Button
+                style="@style/ActionButton"
+                android:id="@+id/new_bubble"
+                android:text="@string/new_bubble"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="7dp" />
+
+            <View
+                android:layout_width="214dp"
+                android:layout_height="58dp"
+                android:layout_gravity="center_horizontal|bottom"
+                android:background="@drawable/action_button_shadow"/>
+
         </FrameLayout>
+
 
         <FrameLayout
             android:layout_width="wrap_content"

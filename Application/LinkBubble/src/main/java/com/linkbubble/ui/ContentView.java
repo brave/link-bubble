@@ -869,7 +869,8 @@ public class ContentView extends FrameLayout {
                 mShareButton.setVisibility(VISIBLE);
             }
 
-            if (urlAsString.equals(Constant.WELCOME_MESSAGE_URL) && MainController.get() != null) {
+            if ((urlAsString.equals(Constant.WELCOME_MESSAGE_URL) ||
+                    urlAsString.equals(getContext().getString(R.string.empty_bubble_page))) && MainController.get() != null) {
                 MainController.get().displayTab(mOwnerTabView);
             }
         }
@@ -898,6 +899,9 @@ public class ContentView extends FrameLayout {
             onPageLoadComplete(urlAsString);
             if (MainController.get().getCurrentTab() != mOwnerTabView) {
                 mWebRenderer.pauseOnSetInactive();
+            }
+            if (mUrlTextView.getText().toString().equals(getContext().getString(R.string.empty_bubble_page))) {
+                mTitleTextView.performClick();
             }
         }
 
