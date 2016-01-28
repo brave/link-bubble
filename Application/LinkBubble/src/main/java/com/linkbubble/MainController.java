@@ -802,7 +802,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
         mCanAutoDisplayLink = true;
         final TabView result = openUrlInTab(urlAsString, urlLoadStartTime, setAsCurrentTab, showAppPicker,
-                (null == openedFromAppName) || !(openedFromAppName.equals(Analytics.OPENED_URL_FROM_MAIN_NEW_TAB)));
+                !(null == openedFromAppName ? false : openedFromAppName.equals(Analytics.OPENED_URL_FROM_MAIN_NEW_TAB)));
 
         // Show app picker after creating the tab to load so that we have the instance to close if redirecting to an app, re #292.
         if (!openedFromItself && showAppPicker && MainApplication.sShowingAppPickerDialog == false && 0 != resolveInfos.size()) {
