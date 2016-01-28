@@ -655,7 +655,12 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     public void setTargetPos(int xp, int yp, float t, DraggableHelper.AnimationType type, DraggableHelper.AnimationEventListener listener) {
-        Util.Assert(!mAnimActive, "mAnimActive:" + mAnimActive);
+        try {
+            Util.Assert(!mAnimActive, "mAnimActive:" + mAnimActive);
+        }
+        catch (AssertionError e) {
+            e.printStackTrace();
+        }
         //Util.Assert(t > 0.0f, "t:" + t);      // Don't think this happens anymore - just to catch if it does happen and investigate why.
         mAnimActive = listener != null;
         mDraggableHelper.setTargetPos(xp, yp, t, type, listener);
