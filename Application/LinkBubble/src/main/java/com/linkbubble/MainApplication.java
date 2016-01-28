@@ -18,6 +18,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Vibrator;
 import android.widget.Toast;
 
@@ -90,11 +91,13 @@ public class MainApplication extends Application {
         Favicons.attachToContext(this);
         recreateFaviconCache();
 
-        if (Settings.get().isAdBlockEnabled()) {
-            mBus.post(new SettingsMoreActivity.AdBlockTurnOnEvent());
-        }
-        if (Settings.get().isTrackingProtectionEnabled()) {
-            mBus.post(new SettingsMoreActivity.TrackingProtectionTurnOnEvent());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (Settings.get().isAdBlockEnabled()) {
+                mBus.post(new SettingsMoreActivity.AdBlockTurnOnEvent());
+            }
+            if (Settings.get().isTrackingProtectionEnabled()) {
+                mBus.post(new SettingsMoreActivity.TrackingProtectionTurnOnEvent());
+            }
         }
         // Enable ad insertion for Crashlytics builds and disable for play store builds
         ApplicationInfo appInfo = getApplicationInfo();
