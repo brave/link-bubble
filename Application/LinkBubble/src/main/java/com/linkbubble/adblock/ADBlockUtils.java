@@ -108,6 +108,9 @@ public class ADBlockUtils {
             URL url = new URL(urlString);
             connection = (HttpURLConnection) url.openConnection();
             String etag = connection.getHeaderField("ETag");
+            if (null == etag) {
+                etag = "";
+            }
             boolean downloadFile = true;
             if (fileExist && etag.equals(previousEtag.mEtag)) {
                 downloadFile = false;
