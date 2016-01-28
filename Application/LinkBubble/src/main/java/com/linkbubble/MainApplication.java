@@ -29,6 +29,7 @@ import com.linkbubble.adblock.TPFilterParser;
 import com.linkbubble.adinsert.AdInserter;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
+import com.linkbubble.httpseverywhere.HttpsEverywhere;
 import com.linkbubble.ui.Prompt;
 import com.linkbubble.ui.SearchURLSuggestionsContainer;
 import com.linkbubble.ui.SettingsActivity;
@@ -61,6 +62,7 @@ public class MainApplication extends Application {
     public static boolean sShowingAppPickerDialog = false;
     private static long sTrialStartTime = -1;
 
+    private HttpsEverywhere mHttpsEverywhere = null;
     private ABPFilterParser mABPParser = null;
     private TPFilterParser mTPParser = null;
     private AdInserter mADInserter = null;
@@ -99,6 +101,9 @@ public class MainApplication extends Application {
                 mBus.post(new SettingsMoreActivity.TrackingProtectionTurnOnEvent());
             }
         }
+        if (Settings.get().isHttpsEverywhereEnabled()) {
+            mBus.post(new SettingsMoreActivity.HttpsEverywhereTurnOnEvent());
+        }
         // Enable ad insertion for Crashlytics builds and disable for play store builds
         ApplicationInfo appInfo = getApplicationInfo();
         if (appInfo.packageName.equals("com.brave.playstore") || appInfo.packageName.equals("com.brave.playstore.dev")) {
@@ -113,6 +118,14 @@ public class MainApplication extends Application {
     public Bus getBus() {
         return mBus;
     }
+
+    public void enableHttpsEverywhere() {
+        if (null == mHttpsEverywhere) {
+            mHttpsEverywhere = new HttpsEverywhere(this);
+        }
+    }
+
+    public HttpsEverywhere getHttpsEverywhere() { return mHttpsEverywhere; }
 
     public void createTrackingProtectionList() {
         if (null == mTPParser) {
@@ -547,6 +560,21 @@ public class MainApplication extends Application {
 
         protected Long doInBackground(Void... params) {
             createAdInsertionList();
+
+            return null;
+        }
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onHttpsEverywhereOn(SettingsMoreActivity.HttpsEverywhereTurnOnEvent event) {
+        new DownloadHttpsEverywhereDataAsyncTask().execute();
+    }
+
+    class DownloadHttpsEverywhereDataAsyncTask extends AsyncTask<Void,Void,Long> {
+
+        protected Long doInBackground(Void... params) {
+            enableHttpsEverywhere();
 
             return null;
         }

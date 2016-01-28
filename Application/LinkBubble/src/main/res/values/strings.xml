@@ -133,6 +133,8 @@
     <string name="preference_adblock_summary">Prevent ads from loading</string>
     <string name="preference_trackingprotection_title">Tracking Protection Mode</string>
     <string name="preference_adblock_tracking_protection_from_disabled">This feature is only available from Android 5.0 and higher.</string>
+    <string name="preference_https_everywhere_title">Https Everywhere</string>
+    <string name="preference_https_everywhere_summary">Opens sites using HTTPS instead of HTTP</string>
     <string name="preference_user_agent_title">User Agent</string>
     <string-array name="preference_user_agent_options">
         <item>Default</item>
@@ -390,5 +392,9 @@
     <string name="adblock_localfilename">FromUrlABPFilterParserData.dat</string>
     <string name="tracking_protection_url">https://s3.amazonaws.com/tracking-protection-data/1/TrackingProtection.dat</string>
     <string name="tracking_protection_localfilename">TrackingProtection.dat</string>
+    <string name="https_everywhere_rulesets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/rulesets.sqlite</string>
+    <string name="https_everywhere_targets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/httpse-targets.json</string>
+    <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
+    <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
 
 </resources>
