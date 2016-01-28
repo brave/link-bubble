@@ -75,7 +75,12 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         setBubbleFlowViewListener(new BubbleFlowView.Listener() {
             @Override
             public void onCenterItemClicked(BubbleFlowView sender, View view) {
-                MainController.get().switchToBubbleView();
+                try {
+                    MainController.get().switchToBubbleView();
+                }
+                catch (NullPointerException exc) {
+                    CrashTracking.logHandledException(exc);
+                }
             }
 
             @Override
