@@ -187,6 +187,9 @@ public class ActionItem {
 
 
         for (ResolveInfo resolveInfo : resolveInfos) {
+            if (null == resolveInfo) {
+                continue;
+            }
             actionItems.add(new ActionItem(Constant.ActionType.View,
                     resources,
                     resolveInfo.loadLabel(packageManager).toString(),
