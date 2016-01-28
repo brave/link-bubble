@@ -116,7 +116,12 @@ public class MainService extends Service {
         Config.init(this);
         Settings.get().onOrientationChange();
 
-        WebIconDatabase.getInstance().open(getDir("icons", MODE_PRIVATE).getPath());
+        try {
+            WebIconDatabase.getInstance().open(getDir("icons", MODE_PRIVATE).getPath());
+        }
+        catch (RuntimeException exc) {
+            CrashTracking.logHandledException(exc);
+        }
 
         MainController.create(this, new MainController.EventHandler() {
                 @Override
