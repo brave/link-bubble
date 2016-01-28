@@ -25,7 +25,7 @@ public class ABPFilterParser {
         // One time load of binary data for the filter measured to be ~10-30ms
         // List is ~1MB but it is highly compressed > 80% when it is read from disk.
         mBuffer = ADBlockUtils.readData(context, context.getString(R.string.adblock_localfilename),
-                context.getString(R.string.adblock_url), ETAG_PREPEND, mVerNumber);
+                context.getString(R.string.adblock_url), ETAG_PREPEND, mVerNumber, false);
         if (mBuffer != null) {
             init(mBuffer);
         }

@@ -49,6 +49,11 @@ public class SettingsMoreActivity extends AppCompatPreferenceActivity {
         }
     }
 
+    public static class HttpsEverywhereTurnOnEvent {
+        public HttpsEverywhereTurnOnEvent() {
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,6 +160,19 @@ public class SettingsMoreActivity extends AppCompatPreferenceActivity {
                 });
             }
 
+            final CheckBoxPreference httpsEverywherePreference = (CheckBoxPreference) findPreference(Settings.PREFERENCE_HTTPS_EVERYWHERE_MODE);
+            httpsEverywherePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    if ((boolean) newValue) {
+                        MainApplication app = (MainApplication) getActivity().getApplication();
+                        Bus bus = app.getBus();
+                        bus.post(new HttpsEverywhereTurnOnEvent());
+                    }
+
+                    return true;
+                }
+            });
 
             Preference interceptLinksFromPreference = findPreference(Settings.PREFERENCE_IGNORE_LINKS_FROM);
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {

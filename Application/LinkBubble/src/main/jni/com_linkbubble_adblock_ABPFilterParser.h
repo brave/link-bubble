@@ -1,4 +1,5 @@
 /* This file was originally machine generated, but is now manually maintained. */
+
 #include <jni.h>
 /* Header for class com_linkbubble_adblock_ABPFilterParser */
 

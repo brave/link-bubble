@@ -53,7 +53,9 @@ import com.linkbubble.util.PageInspector;
 import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
 import com.squareup.otto.Subscribe;
-
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
@@ -80,6 +82,7 @@ class WebViewRenderer extends WebRenderer {
     private boolean mRegisteredForBus;
     private boolean mTrackingProtectionEnabled = false;
     private boolean mAdblockEnabled = false;
+    private boolean mHttpsEverywhereEnabled = false;
 
     private ArticleContent.BuildContentTask mBuildArticleContentTask;
     private ArticleContent mArticleContent;
@@ -202,6 +205,7 @@ class WebViewRenderer extends WebRenderer {
         }
         mTrackingProtectionEnabled = Settings.get().isTrackingProtectionEnabled();
         mAdblockEnabled = Settings.get().isAdBlockEnabled();
+        mHttpsEverywhereEnabled = Settings.get().isHttpsEverywhereEnabled();
 
         String urlAsString = url.toString();
         Log.d(TAG, "loadUrl() - " + urlAsString);
@@ -239,6 +243,7 @@ class WebViewRenderer extends WebRenderer {
                 // In case the user changes adblock / TP settings and reloads the current bubble
                 mTrackingProtectionEnabled = Settings.get().isTrackingProtectionEnabled();
                 mAdblockEnabled = Settings.get().isAdBlockEnabled();
+                mHttpsEverywhereEnabled = Settings.get().isHttpsEverywhereEnabled();
                 mWebView.reload();
                 break;
         }
@@ -431,7 +436,7 @@ class WebViewRenderer extends WebRenderer {
 
             // Quickly check to see if no checks are needed because ad blocking and tracking
             // protection are not enabled.
-            if (!mTrackingProtectionEnabled && !mAdblockEnabled) {
+            if (!mTrackingProtectionEnabled && !mAdblockEnabled && !mHttpsEverywhereEnabled) {
                 return allowRequest;
             }
 
@@ -456,7 +461,36 @@ class WebViewRenderer extends WebRenderer {
                 }
             }
 
-            return allowRequest;
+            return HttpsEverywhereResponse(urlStr);
+        }
+
+        private WebResourceResponse HttpsEverywhereResponse(String urlStr) {
+            if (!mHttpsEverywhereEnabled) {
+                return null;
+            }
+
+            String newUrl = mController.getHTTPSUrl(urlStr);
+            if (!newUrl.equals(urlStr)) {
+                try {
+                    URL url = new URL(newUrl);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                    String mimeType = conn.getContentType();
+                    String encoding = conn.getContentEncoding();
+
+                    InputStream is = conn.getInputStream();
+
+                    return new WebResourceResponse(mimeType, encoding, is);
+                }
+                catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return null;
         }
 
         @Override
@@ -465,7 +499,7 @@ class WebViewRenderer extends WebRenderer {
 
             // Just return as is for now, we will have a solution for older devices later.
             // The blocking by file extension not being reliable enough for now.
-            return null;
+            return HttpsEverywhereResponse(urlStr);
 
             // Quickly check to see if no checks are needed because ad blocking and tracking
             // protection are not enabled.
@@ -530,7 +564,7 @@ class WebViewRenderer extends WebRenderer {
 
             // Quickly check to see if no checks are needed because ad blocking and tracking
             // protection are not enabled.
-            if (!mTrackingProtectionEnabled && !mAdblockEnabled) {
+            if (!mTrackingProtectionEnabled && !mAdblockEnabled && !mHttpsEverywhereEnabled) {
                 return null;
             }
 

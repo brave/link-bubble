@@ -68,7 +68,8 @@ public class ADBlockUtils {
         }
     }
 
-    public static byte[] readData(Context context, String fileName, String urlString, String eTagPrepend, String verNumber) {
+    public static byte[] readData(Context context, String fileName, String urlString, String eTagPrepend, String verNumber,
+            boolean downloadOnly) {
         File dataPath = new File(context.getApplicationInfo().dataDir, verNumber + fileName);
         boolean fileExists = dataPath.exists();
         EtagObject previousEtag = ADBlockUtils.getETagInfo(context, eTagPrepend);
@@ -78,6 +79,10 @@ public class ADBlockUtils {
         }
 
         byte[] buffer = null;
+        if (downloadOnly) {
+            return buffer;
+        }
+
         FileInputStream inputStream = null;
         try {
             inputStream = new FileInputStream(dataPath.getAbsolutePath());

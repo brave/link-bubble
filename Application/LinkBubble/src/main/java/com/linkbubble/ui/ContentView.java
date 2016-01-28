@@ -67,6 +67,7 @@ import com.linkbubble.adblock.TPFilterParser;
 import com.linkbubble.adinsert.AdInserter;
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.articlerender.ArticleRenderer;
+import com.linkbubble.httpseverywhere.HttpsEverywhere;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
@@ -144,7 +145,7 @@ public class ContentView extends FrameLayout {
     // We only want to handle this once per link. This prevents 3+ dialogs appearing for some links, which is a bad experience. #224
     private boolean mHandledAppPickerForCurrentUrl = false;
     private boolean mUsingLinkBubbleAsDefaultForCurrentUrl = false;
-
+    
     private SearchURLCustomAdapter mAdapter;
     private SearchURLSuggestions mFirstSuggestedItem;
 
@@ -361,7 +362,7 @@ public class ContentView extends FrameLayout {
 
         View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
         mWebRenderer = WebRenderer.create(WebRenderer.Type.WebView, getContext(), mWebRendererController, webRendererPlaceholder, TAG);
-        mWebRenderer.setUrl(urlAsString);
+        mWebRenderer.setUrl(mWebRendererController.getHTTPSUrl(urlAsString));
 
         // Generates 1000 history links
         /*for (int i = 0; i < 1000; i++) {
@@ -546,6 +547,35 @@ public class ContentView extends FrameLayout {
         updateColors(color);
     }
     WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {
+
+        @Override
+        public String getHTTPSUrl(String originalUrl) {
+            if (!Settings.get().isHttpsEverywhereEnabled()) {
+                return originalUrl;
+            }
+            MainApplication app = (MainApplication) mContext.getApplicationContext();
+            HttpsEverywhere httpsEverywhere = null;
+            int count = 0;
+            for (;;) {
+                if (count >= 1000) {  // It is about 50 seconds, we just return false;
+                    return originalUrl;
+                }
+                httpsEverywhere = app.getHttpsEverywhere();
+                if (null == httpsEverywhere) {
+                    try {
+                        Thread.sleep(50);
+                    }
+                    catch (InterruptedException e) {
+                    }
+                }
+                else {
+                    break;
+                }
+                count++;
+            }
+
+            return httpsEverywhere.getRealUrl(originalUrl);
+        }
 
         @Override
         public boolean shouldAdBlockUrl(String baseHost, String urlStr, String filterOption) {
@@ -898,7 +928,7 @@ public class ContentView extends FrameLayout {
             }
 
             onPageLoadComplete(urlAsString);
-            if (MainController.get() != null && MainController.get().getCurrentTab() != mOwnerTabView) {
+            if (null != MainController.get() && MainController.get().getCurrentTab() != mOwnerTabView) {
                 mWebRenderer.pauseOnSetInactive();
             }
             if (mUrlTextView.getText().toString().equals(getContext().getString(R.string.empty_bubble_page))) {
@@ -1967,7 +1997,7 @@ public class ContentView extends FrameLayout {
         if (urlAsString.equals(mWebRenderer.getUrl().toString()) == false) {
             try {
                 Log.d(TAG, "change url from " + mWebRenderer.getUrl() + " to " + urlAsString);
-                mWebRenderer.setUrl(urlAsString);
+                mWebRenderer.setUrl(mWebRendererController.getHTTPSUrl(urlAsString));
             } catch (MalformedURLException e) {
                 return false;
             }

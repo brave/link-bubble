@@ -80,6 +80,7 @@ public class Util {
         "com.UCMobile.intl",
         "mobi.mgeek.TunnyBrowser",
         "com.explore.web.browser",
+        "explore.web.browser",
         "com.ghostery.android.ghostery",
         "jp.ddo.pigsty.HabitBrowser",
         "org.adblockplus.browser",
@@ -93,10 +94,21 @@ public class Util {
         "acr.browser.barebones",
         "com.ineedyourservice.RBrowser",
         "com.lastpass.lpandroid",
-        "org.hola",
         "com.linkbubble.playstore",
         "com.brave.playstore",          // Made that temporary(remove when merge to master)
-        "com.brave.playstore.dev"       // Made that temporary(remove when merge to master)
+        "com.brave.playstore.dev",       // Made that temporary(remove when merge to master)
+        "arun.com.chromer",
+        "com.jiubang.browser",
+        "com.uc.browser.hd",
+        "com.ilegendsoft.mercury",
+        "com.UCMobile",
+        "com.tencent.mtt.intl",
+        "com.tencent.mtt",
+        "com.cloudmosa.puffinFree",
+        "com.mx.browser",
+        "net.fast.web.browser",
+        "com.wisesharksoftware.browser",
+        "org.hola"
     };
 
     public static float clamp(float v0, float v, float v1) {
