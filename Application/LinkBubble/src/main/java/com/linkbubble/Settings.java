@@ -721,15 +721,15 @@ public class Settings {
     }
 
     public boolean isTrackingProtectionEnabled() {
-        return mSharedPreferences.getBoolean(PREFERENCE_TRACKINGPROTECTION_MODE, true);
+        return mSharedPreferences.getBoolean(PREFERENCE_TRACKINGPROTECTION_MODE, false);
     }
 
     public boolean isAdBlockEnabled() {
-        return mSharedPreferences.getBoolean(PREFERENCE_ADBLOCK_MODE, true);
+        return mSharedPreferences.getBoolean(PREFERENCE_ADBLOCK_MODE, false);
     }
 
     public boolean isHttpsEverywhereEnabled() {
-        return mSharedPreferences.getBoolean(PREFERENCE_HTTPS_EVERYWHERE_MODE, true);
+        return mSharedPreferences.getBoolean(PREFERENCE_HTTPS_EVERYWHERE_MODE, false);
     }
 
     public void setWebViewBatterySaveMode(String mode) {
