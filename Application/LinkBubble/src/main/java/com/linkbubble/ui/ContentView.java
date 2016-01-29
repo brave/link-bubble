@@ -92,6 +92,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ContentView extends FrameLayout {
 
     private static final String TAG = "UrlLoad";
+    private static final Integer BLACK_LIST_MAX_REDIRECT_COUNT = 5;
 
     private static int sNextArticleNotificationId = 1111;
 
@@ -561,13 +562,13 @@ public class ContentView extends FrameLayout {
             HttpsEverywhere httpsEverywhere = null;
             int count = 0;
             for (;;) {
-                if (count >= 1000) {  // It is about 50 seconds, we just return false;
+                if (count >= 1000) {  // It is about 1 second, we just return originalUrl;
                     return originalUrl;
                 }
                 httpsEverywhere = app.getHttpsEverywhere();
                 if (null == httpsEverywhere) {
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(1);
                     }
                     catch (InterruptedException e) {
                     }
@@ -582,13 +583,13 @@ public class ContentView extends FrameLayout {
             if (null != mHostRedirectCounter && null != originalUrl && !originalUrl.startsWith("https")) {
                 String urlToBlackList = originalUrl;
                 if (urlToBlackList.startsWith("http://m.")) {
-                    urlToBlackList = "http://" + urlToBlackList.substring(9);
+                    urlToBlackList = "http://" + urlToBlackList.substring("http://m.".length());
                 }
                 redirectedCount = mHostRedirectCounter.get(urlToBlackList);
                 if (null == redirectedCount) {
                     redirectedCount = 0;
                 }
-                if (redirectedCount >= 5) {
+                if (redirectedCount >= BLACK_LIST_MAX_REDIRECT_COUNT) {
                     return originalUrl;
                 }
             }
