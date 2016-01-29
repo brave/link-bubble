@@ -94,13 +94,17 @@ public class HttpsEverywhere {
     }
 
     public String getRealUrl(String originalUrl) {
-        String host;
+        String host = "";
+        String protocol = "";
+        String path = "";
         try {
             URL url = new URL(originalUrl);
             host = url.getHost();
-            if (url.getProtocol().equals("https")) {
+            protocol = url.getProtocol();
+            if (protocol.equals("https")) {
                 return originalUrl;
             }
+            path = url.getPath();
         } catch (Exception e) {
             return originalUrl;
         }
@@ -135,9 +139,13 @@ public class HttpsEverywhere {
             return originalUrl;
         }
 
-        String newHost = getNewHostFromIds(ruleIds, originalUrl);
+        String newHost = getNewHostFromIds(ruleIds, protocol + "://" + host);
         if (0 != newHost.length()) {
-            return newHost;
+            String[] hostSplit = newHost.split(Pattern.quote("."));
+            if (hostSplit.length < 3) {
+                newHost = newHost.replace("https://", "https://www.");
+            }
+            return newHost + path;
         }
 
         return originalUrl;
@@ -231,7 +239,7 @@ public class HttpsEverywhere {
                                 reader.endObject();
                                 if (0 != from.length() && 0 != to.length() && originalUrl.matches(".*" + from + ".*")) {
                                     newUrl = originalUrl.replaceAll(from, to);
-                                    if (newUrl == originalUrl) {
+                                    if (newUrl.equals(originalUrl)) {
                                         newUrl = "";
                                     }
                                     else {
@@ -262,6 +270,5 @@ public class HttpsEverywhere {
 
     private String mVerNumber;
     ConcurrentHashMap<String, List> mTargets;
-    ConcurrentHashMap<String, Integer> mHostRedirectCounter;
     SQLiteDatabase mDB;
 }

@@ -87,6 +87,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ContentView extends FrameLayout {
 
@@ -155,6 +156,8 @@ public class ContentView extends FrameLayout {
     private boolean mApplyAutoSuggestionToUrlString = true;
     private boolean mSetTheRealUrlString = true;
     private boolean mFirstTimeUrlTyped = true;
+
+    ConcurrentHashMap<String, Integer> mHostRedirectCounter;
 
     // Tracking protection third party hosts
     String[] mThirdPartyHosts = null;
@@ -357,6 +360,7 @@ public class ContentView extends FrameLayout {
 
     @SuppressLint("SetJavaScriptEnabled")
     void configure(String urlAsString, TabView ownerTabView, long urlLoadStartTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
+        mHostRedirectCounter = new ConcurrentHashMap<String, Integer>();
         mLifeState = LifeState.Alive;
         mTintableDrawables.clear();
 
@@ -574,7 +578,29 @@ public class ContentView extends FrameLayout {
                 count++;
             }
 
-            return httpsEverywhere.getRealUrl(originalUrl);
+            Integer redirectedCount = 0;
+            if (null != mHostRedirectCounter && null != originalUrl && !originalUrl.startsWith("https")) {
+                String urlToBlackList = originalUrl;
+                if (urlToBlackList.startsWith("http://m.")) {
+                    urlToBlackList = "http://" + urlToBlackList.substring(9);
+                }
+                redirectedCount = mHostRedirectCounter.get(urlToBlackList);
+                if (null == redirectedCount) {
+                    redirectedCount = 0;
+                }
+                if (redirectedCount >= 5) {
+                    return originalUrl;
+                }
+            }
+            String realUrl = httpsEverywhere.getRealUrl(originalUrl);
+            if (!realUrl.equals(originalUrl)) {
+                redirectedCount++;
+                if (null != mHostRedirectCounter) {
+                    mHostRedirectCounter.put(originalUrl, redirectedCount);
+                }
+            }
+
+            return realUrl;
         }
 
         @Override
