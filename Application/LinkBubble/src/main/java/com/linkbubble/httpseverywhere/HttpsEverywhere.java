@@ -46,7 +46,9 @@ public class HttpsEverywhere {
                 context.getString(R.string.https_everywhere_targets_url), ETAG_PREPEND_RULE_SETS, mVerNumber, false);
 
         mTargets = new ConcurrentHashMap<String, List>();
-        ParseJSONObject(new ByteArrayInputStream(targets));
+        if (null != targets) {
+            ParseJSONObject(new ByteArrayInputStream(targets));
+        }
 
         String dbName = context.getApplicationInfo().dataDir + "/" + mVerNumber +
                 context.getString(R.string.https_everywhere_rulesets_localfilename);
@@ -128,10 +130,10 @@ public class HttpsEverywhere {
             if (null == values) {
                 continue;
             }
-            if (0 != ruleIds.length()) {
-                ruleIds += ", ";
-            }
             for (int j = 0; j < values.size(); j++) {
+                if (0 != ruleIds.length()) {
+                    ruleIds += ", ";
+                }
                 ruleIds += values.get(j).toString();
             }
         }
