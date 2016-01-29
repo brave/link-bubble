@@ -16,6 +16,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.Choreographer;
 import android.view.Gravity;
@@ -48,7 +49,10 @@ import com.squareup.otto.Subscribe;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Vector;
 
 public class MainController implements Choreographer.FrameCallback {
@@ -770,7 +774,12 @@ public class MainController implements Choreographer.FrameCallback {
         boolean showAppPicker = false;
 
         PackageManager packageManager = mContext.getPackageManager();
-        final List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url.toString(), packageManager);
+        String urlString = urlAsString.toString();
+        List<ResolveInfo> tempResolveInfos = new ArrayList<>();
+        if (!urlString.equals(mContext.getString(R.string.empty_bubble_page))) {
+            tempResolveInfos = Settings.get().getAppsThatHandleUrl(urlString, packageManager);
+        }
+        final List<ResolveInfo> resolveInfos = tempResolveInfos;
         ResolveInfo defaultAppResolveInfo = Settings.get().getDefaultAppForUrl(url, resolveInfos);
         if (resolveInfos != null && resolveInfos.size() > 0) {
             if (defaultAppResolveInfo != null) {

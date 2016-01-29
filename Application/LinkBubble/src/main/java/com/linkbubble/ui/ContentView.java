@@ -1829,7 +1829,12 @@ public class ContentView extends FrameLayout {
     }
 
     private void updateAppsForUrl(URL url) {
-        List<ResolveInfo> resolveInfos = Settings.get().getAppsThatHandleUrl(url.toString(), getContext().getPackageManager());
+        String urlString = url.toString();
+        List<ResolveInfo> tempResolveInfos = new ArrayList<>();
+        if (!urlString.equals(mContext.getString(R.string.empty_bubble_page))) {
+            tempResolveInfos = Settings.get().getAppsThatHandleUrl(urlString, getContext().getPackageManager());
+        }
+        final List<ResolveInfo> resolveInfos = tempResolveInfos;
         updateAppsForUrl(resolveInfos, url);
     }
 
