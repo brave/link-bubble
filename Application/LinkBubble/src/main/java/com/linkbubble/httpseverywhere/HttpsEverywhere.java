@@ -6,6 +6,7 @@ package com.linkbubble.httpseverywhere;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabaseCorruptException;
 import android.database.sqlite.SQLiteException;
 import android.support.annotation.NonNull;
 import android.util.JsonReader;
@@ -13,6 +14,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.linkbubble.R;
 import com.linkbubble.adblock.ADBlockUtils;
+import com.linkbubble.util.CrashTracking;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -141,13 +143,18 @@ public class HttpsEverywhere {
             return originalUrl;
         }
 
-        String newHost = getNewHostFromIds(ruleIds, protocol + "://" + host);
-        if (0 != newHost.length()) {
-            String[] hostSplit = newHost.split(Pattern.quote("."));
-            if (hostSplit.length < 3) {
-                newHost = newHost.replace("https://", "https://www.");
+        try {
+            String newHost = getNewHostFromIds(ruleIds, protocol + "://" + host);
+            if (0 != newHost.length()) {
+                /*String[] hostSplit = newHost.split(Pattern.quote("."));
+                if (hostSplit.length < 3) {
+                    newHost = newHost.replace("https://", "https://www.");
+                }*/
+                return newHost + path;
             }
-            return newHost + path;
+        }
+        catch (SQLiteDatabaseCorruptException exc) {
+            CrashTracking.logHandledException(exc);
         }
 
         return originalUrl;
