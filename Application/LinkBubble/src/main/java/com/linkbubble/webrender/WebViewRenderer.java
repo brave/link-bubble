@@ -47,6 +47,7 @@ import com.linkbubble.Settings;
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.ui.TabView;
 import com.linkbubble.util.Analytics;
+import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.NetworkConnectivity;
 import com.linkbubble.util.NetworkReceiver;
 import com.linkbubble.util.PageInspector;
@@ -254,11 +255,16 @@ class WebViewRenderer extends WebRenderer {
         cancelBuildArticleContentTask();
         mArticleContent = null;
 
-        if (null != mWebView) {
-            mWebView.stopLoading();
+        try {
+            if (null != mWebView) {
+                mWebView.stopLoading();
 
-            // Ensure the loading indicators cease when stop is pressed.
-            mWebChromeClient.onProgressChanged(mWebView, 100);
+                // Ensure the loading indicators cease when stop is pressed.
+                mWebChromeClient.onProgressChanged(mWebView, 100);
+            }
+        }
+        catch (NullPointerException exc) {
+            CrashTracking.logHandledException(exc);
         }
     }
 

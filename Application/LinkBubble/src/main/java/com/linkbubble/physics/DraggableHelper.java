@@ -12,6 +12,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 
 import com.linkbubble.MainController;
+import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
 
 public class DraggableHelper {
@@ -292,7 +293,12 @@ public class DraggableHelper {
     }
 
     public void setTargetPos(int x, int y, float t, AnimationType type, AnimationEventListener listener) {
-        Util.Assert(mAnimationListener == null, "non-null mAnimationListener");
+        try {
+            Util.Assert(mAnimationListener == null, "non-null mAnimationListener");
+        }
+        catch (AssertionError exc) {
+            CrashTracking.logHandledException(exc);
+        }
         mAnimationListener = listener;
 
         if (x != mTargetX || y != mTargetY) {
