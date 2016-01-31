@@ -146,10 +146,10 @@ public class HttpsEverywhere {
         try {
             String newHost = getNewHostFromIds(ruleIds, protocol + "://" + host);
             if (0 != newHost.length()) {
-                /*String[] hostSplit = newHost.split(Pattern.quote("."));
-                if (hostSplit.length < 3) {
+                // Temp fix for thestar.com, it will be fixed and remove on next https release
+                if (newHost.startsWith("https://thestar.com")) {
                     newHost = newHost.replace("https://", "https://www.");
-                }*/
+                }
                 return newHost + path;
             }
         }
