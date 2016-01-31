@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.8.0">
+        <change>BUG FIX: Fix to avoid crashes with HTTPS Everywhere on some devices.</change>
+    </release>
     <release version="1.7.9">
         <change>IMPROVEMENT: Added HTTPS Everywhere feature (which can be turned off in Settings->More).</change>
         <change>BUG FIX: Fixed top crashes.</change>
