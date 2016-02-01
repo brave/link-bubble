@@ -26,7 +26,7 @@ public class TPFilterParser {
 
 
     public native void init(byte[] data);
-    public native boolean matchesTracker(String baseHost);
+    public native boolean matchesTracker(String baseHost, String host);
     public native String findFirstPartyHosts(String baseHost);
 
     private byte[] mBuffer;
