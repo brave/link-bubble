@@ -580,8 +580,14 @@ public class ContentView extends FrameLayout {
             }
 
             Integer redirectedCount = 0;
+            String urlToBlackList = "";
+            try {
+                urlToBlackList = new URL(originalUrl).getHost();
+            }
+            catch (MalformedURLException exc) {
+                urlToBlackList = originalUrl;
+            }
             if (null != mHostRedirectCounter && null != originalUrl && !originalUrl.startsWith("https")) {
-                String urlToBlackList = originalUrl;
                 if (urlToBlackList.startsWith("http://m.")) {
                     urlToBlackList = "http://" + urlToBlackList.substring("http://m.".length());
                 }
@@ -597,7 +603,7 @@ public class ContentView extends FrameLayout {
             if (!realUrl.equals(originalUrl)) {
                 redirectedCount++;
                 if (null != mHostRedirectCounter) {
-                    mHostRedirectCounter.put(originalUrl, redirectedCount);
+                    mHostRedirectCounter.put(urlToBlackList, redirectedCount);
                 }
             }
 
