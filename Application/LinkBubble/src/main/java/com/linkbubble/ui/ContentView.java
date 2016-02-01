@@ -658,7 +658,7 @@ public class ContentView extends FrameLayout {
                 }
                 count++;
             }
-            if (!baseHost.equals(host) && !host.equals("www." + baseHost) && tpList.matchesTracker(host)) {
+            if (tpList.matchesTracker(baseHost, host)) {
                 if (null == mThirdPartyHosts) {
                     mThirdPartyHosts = tpList.findFirstPartyHosts(baseHost).split(",");
                 }

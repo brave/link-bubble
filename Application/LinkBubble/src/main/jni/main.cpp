@@ -68,12 +68,15 @@ JNIEXPORT void JNICALL Java_com_linkbubble_adblock_TPFilterParser_init(JNIEnv *e
     tpParser.deserialize((char *)bufferPtr);
 }
 
-JNIEXPORT jboolean JNICALL Java_com_linkbubble_adblock_TPFilterParser_matchesTracker(JNIEnv *env, jobject obj, jstring baseHost) {
+JNIEXPORT jboolean JNICALL Java_com_linkbubble_adblock_TPFilterParser_matchesTracker(JNIEnv *env, jobject obj, jstring baseHost,
+    jstring host) {
     const char *nativeBaseHost = env->GetStringUTFChars(baseHost, 0);
+    const char *nativeHost = env->GetStringUTFChars(host, 0);
 
-    bool shouldBlock = tpParser.matchesTracker(nativeBaseHost);
+    bool shouldBlock = tpParser.matchesTracker(nativeBaseHost, nativeHost);
 
     env->ReleaseStringUTFChars(baseHost, nativeBaseHost);
+    env->ReleaseStringUTFChars(host, nativeHost);
 
     return shouldBlock ? JNI_TRUE : JNI_FALSE;
 }

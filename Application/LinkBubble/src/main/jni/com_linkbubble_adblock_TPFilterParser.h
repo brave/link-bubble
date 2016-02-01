@@ -23,7 +23,7 @@ JNIEXPORT void JNICALL Java_com_linkbubble_adblock_TPFilterParser_init
  * Signature: ()Ljava/lang/void;
  */
 JNIEXPORT jboolean JNICALL Java_com_linkbubble_adblock_TPFilterParser_matchesTracker
-    (JNIEnv *, jobject, jstring);
+    (JNIEnv *, jobject, jstring, jstring);
 
 /*
  * Class:     com_linkbubble_adblock_TPFilterParser
