@@ -17,6 +17,7 @@ import com.linkbubble.adblock.ADBlockUtils;
 import com.linkbubble.util.CrashTracking;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -61,6 +62,7 @@ public class HttpsEverywhere {
             e.printStackTrace();
             mDB = null;
         }
+        mContext = context;
     }
 
     private void ParseJSONObject(InputStream in) {
@@ -150,10 +152,24 @@ public class HttpsEverywhere {
                 if (newHost.startsWith("https://thestar.com")) {
                     newHost = newHost.replace("https://", "https://www.");
                 }
+
                 return newHost + path;
             }
         }
         catch (SQLiteDatabaseCorruptException exc) {
+            String dbName = mContext.getApplicationInfo().dataDir + "/" + mVerNumber +
+                    mContext.getString(R.string.https_everywhere_rulesets_localfilename);
+            long length = -1;
+            try {
+                File file = new File(dbName);
+                length = file.length();
+            }
+            catch (NullPointerException e) {
+            }
+            catch (SecurityException e) {
+            }
+            String toLog = "File " + dbName + ", size == " + length;
+            CrashTracking.log(toLog);
             CrashTracking.logHandledException(exc);
         }
 
@@ -280,4 +296,5 @@ public class HttpsEverywhere {
     private String mVerNumber;
     ConcurrentHashMap<String, List> mTargets;
     SQLiteDatabase mDB;
+    Context mContext;
 }
