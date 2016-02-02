@@ -381,7 +381,7 @@
     <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
     <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>
     <string name="top_500_prepend">Visit</string>
-    <string name="url_bar_constraint_text_color">\'#A349A4\'</string>
+    <string name="url_bar_constraint_text_color">\'#4A4A4A\'</string>
     <string name="search_for_with">Search %1$s for \"%2$s</string>
     <string name="duck_duck_go">Duck Duck Go</string>
     <string name="google">Google</string>
