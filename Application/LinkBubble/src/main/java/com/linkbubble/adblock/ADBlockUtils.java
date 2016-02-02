@@ -6,7 +6,6 @@ package com.linkbubble.adblock;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
