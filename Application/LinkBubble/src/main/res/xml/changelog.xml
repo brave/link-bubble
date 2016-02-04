@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.8.1">
+        <change>IMPROVEMENT: Added HTTPS Everywhere feature (which can be turned on in Settings->More).</change>
+        <change>IMPROVEMENT: Added Tracking Protection feature (which can be turned on in Settings->More).</change>
+        <change>IMPROVEMENT: Added Ad Block feature (which can be turned on in Settings->More).</change>
+        <change>BUG FIX: Fixed top crashes and small bugs.</change>
+    </release>
     <release version="1.8.0">
         <change>BUG FIX: Fix to avoid crashes with HTTPS Everywhere on some devices.</change>
     </release>
