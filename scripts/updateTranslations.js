@@ -29,6 +29,7 @@ const request = (path) => {
       });
       res.on('end', function () {
         if (res.statusCode !== 200) {
+          console.log('path = ', path, ' ||| statusCode = ', res.statusCode);
           reject(res.statusCode);
         } else {
           resolve(body);
