@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.8.2">
+        <change>IMPROVEMENT: Added disable protection option to easily whitelist at the site level (menu item ’Brave site protection’).</change>
+    </release>
     <release version="1.8.1">
         <change>IMPROVEMENT: Added HTTPS Everywhere feature (which can be turned on in Settings->More).</change>
         <change>IMPROVEMENT: Added Tracking Protection feature (which can be turned on in Settings->More).</change>
