@@ -616,13 +616,13 @@ public class ContentView extends FrameLayout {
             ABPFilterParser parser = null;
             int count = 0;
             for (;;) {
-                if (count >= 1000) {  // It is about 50 seconds, we just return false;
+                if (count >= 1000) {  // It is about 1 second, we just return false;
                     return false;
                 }
                 parser = app.getABPParser();
                 if (null == parser) {
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(1);
                     }
                     catch (InterruptedException e) {
                     }
@@ -642,13 +642,13 @@ public class ContentView extends FrameLayout {
             TPFilterParser tpList = null;
             int count = 0;
             for (;;) {
-                if (count >= 1000) {  // It is about 50 seconds, we just return false;
+                if (count >= 1000) {  // It is about 1 second, we just return false;
                     return false;
                 }
                 tpList = app.getTrackingProtectionList();
                 if (null == tpList) {
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(1);
                     }
                     catch (InterruptedException e) {
                     }
@@ -692,13 +692,13 @@ public class ContentView extends FrameLayout {
             AdInserter adInsertionList = null;
             int count = 0;
             for (;;) {
-                if (count >= 1000) {  // It is about 50 seconds, we just return false;
+                if (count >= 1000) {  // It is about 1 seconds, we just return false;
                     return "";
                 }
                 adInsertionList = app.getAdInserter();
                 if (null == adInsertionList) {
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(1);
                     }
                     catch (InterruptedException e) {
                     }
