@@ -285,7 +285,11 @@ public class Settings {
     private void configureDefaultApp(PackageManager packageManager, String urlAsString, String desiredPackageName) {
         try {
             URL url = new URL(urlAsString);
-            final List<ResolveInfo> resolveInfos = getAppsThatHandleUrl(url.toString(), packageManager);
+            List<ResolveInfo> tempResolveInfos = new ArrayList<>();
+            if (!urlAsString.equals(mContext.getString(R.string.empty_bubble_page))) {
+                tempResolveInfos = Settings.get().getAppsThatHandleUrl(urlAsString, packageManager);
+            }
+            final List<ResolveInfo> resolveInfos = tempResolveInfos;
 
             for (ResolveInfo resolveInfo : resolveInfos) {
                 if (resolveInfo.activityInfo != null) {

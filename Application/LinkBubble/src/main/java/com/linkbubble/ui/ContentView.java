@@ -739,7 +739,12 @@ public class ContentView extends FrameLayout {
             if (urlAsString.equals(Constant.ABOUT_BLANK_URI)) {
                 Log.d(TAG, "ignore " + urlAsString);
             } else if (updateUrl(urlAsString) == false) {
-                List<ResolveInfo> apps = Settings.get().getAppsThatHandleUrl(urlAsString, getContext().getPackageManager());
+                List<ResolveInfo> tempResolveInfos = new ArrayList<>();
+                if (!urlAsString.equals(mContext.getString(R.string.empty_bubble_page))) {
+                    tempResolveInfos = Settings.get().getAppsThatHandleUrl(urlAsString, getContext().getPackageManager());
+                }
+                final List<ResolveInfo> apps = tempResolveInfos;
+
                 boolean openedInApp = apps != null && apps.size() > 0 ? openInApp(apps.get(0), urlAsString) : false;
                 if (openedInApp == false) {
                     CrashTracking.log("ContentView.onPageStarted() - openedInApp == false");
@@ -758,7 +763,13 @@ public class ContentView extends FrameLayout {
             PackageManager packageManager = context.getPackageManager();
 
             URL currentUrl = mWebRenderer.getUrl();
-            updateAppsForUrl(Settings.get().getAppsThatHandleUrl(currentUrl.toString(), packageManager), currentUrl);
+
+            List<ResolveInfo> tempResolveInfos = new ArrayList<>();
+            if (!currentUrl.toString().equals(mContext.getString(R.string.empty_bubble_page))) {
+                tempResolveInfos = Settings.get().getAppsThatHandleUrl(currentUrl.toString(), getContext().getPackageManager());
+            }
+
+            updateAppsForUrl(tempResolveInfos, currentUrl);
             if (Settings.get().redirectUrlToBrowser(currentUrl)) {
                 CrashTracking.log("ContentView.onPageStarted() - url redirects to browser");
                 if (openInBrowser(urlAsString)) {
