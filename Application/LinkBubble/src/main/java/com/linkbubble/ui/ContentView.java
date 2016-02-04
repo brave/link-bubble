@@ -559,25 +559,11 @@ public class ContentView extends FrameLayout {
                 return originalUrl;
             }
             MainApplication app = (MainApplication) mContext.getApplicationContext();
-            HttpsEverywhere httpsEverywhere = null;
-            int count = 0;
-            for (;;) {
-                if (count >= 1000) {  // It is about 1 second, we just return originalUrl;
-                    return originalUrl;
-                }
-                httpsEverywhere = app.getHttpsEverywhere();
-                if (null == httpsEverywhere) {
-                    try {
-                        Thread.sleep(1);
-                    }
-                    catch (InterruptedException e) {
-                    }
-                }
-                else {
-                    break;
-                }
-                count++;
+            HttpsEverywhere httpsEverywhere = app.getHttpsEverywhere();
+            if (null == httpsEverywhere) {
+                return originalUrl;
             }
+
 
             Integer redirectedCount = 0;
             String urlToBlackList = "";
@@ -613,24 +599,9 @@ public class ContentView extends FrameLayout {
         @Override
         public boolean shouldAdBlockUrl(String baseHost, String urlStr, String filterOption) {
             MainApplication app = (MainApplication) mContext.getApplicationContext();
-            ABPFilterParser parser = null;
-            int count = 0;
-            for (;;) {
-                if (count >= 1000) {  // It is about 1 second, we just return false;
-                    return false;
-                }
-                parser = app.getABPParser();
-                if (null == parser) {
-                    try {
-                        Thread.sleep(1);
-                    }
-                    catch (InterruptedException e) {
-                    }
-                }
-                else {
-                    break;
-                }
-                count++;
+            ABPFilterParser parser = app.getABPParser();
+            if (null == parser) {
+                return false;
             }
 
             return parser.shouldBlock(baseHost, urlStr, filterOption);
@@ -639,25 +610,11 @@ public class ContentView extends FrameLayout {
         @Override
         public boolean shouldTrackingProtectionBlockUrl(String baseHost, String host) {
             MainApplication app = (MainApplication) mContext.getApplicationContext();
-            TPFilterParser tpList = null;
-            int count = 0;
-            for (;;) {
-                if (count >= 1000) {  // It is about 1 second, we just return false;
-                    return false;
-                }
-                tpList = app.getTrackingProtectionList();
-                if (null == tpList) {
-                    try {
-                        Thread.sleep(1);
-                    }
-                    catch (InterruptedException e) {
-                    }
-                }
-                else {
-                    break;
-                }
-                count++;
+            TPFilterParser tpList = app.getTrackingProtectionList();
+            if (null == tpList) {
+                return false;
             }
+
             if (tpList.matchesTracker(baseHost, host)) {
                 if (null == mThirdPartyHosts) {
                     mThirdPartyHosts = tpList.findFirstPartyHosts(baseHost).split(",");
@@ -689,24 +646,9 @@ public class ContentView extends FrameLayout {
             if (!app.mAdInserterEnabled) {
                 return "";
             }
-            AdInserter adInsertionList = null;
-            int count = 0;
-            for (;;) {
-                if (count >= 1000) {  // It is about 1 seconds, we just return false;
-                    return "";
-                }
-                adInsertionList = app.getAdInserter();
-                if (null == adInsertionList) {
-                    try {
-                        Thread.sleep(1);
-                    }
-                    catch (InterruptedException e) {
-                    }
-                }
-                else {
-                    break;
-                }
-                count++;
+            AdInserter adInsertionList = app.getAdInserter();
+            if (null == adInsertionList) {
+                return "";
             }
 
             return adInsertionList.getHostObjects(baseHost);
