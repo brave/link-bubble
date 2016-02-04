@@ -287,7 +287,7 @@ public class Settings {
             URL url = new URL(urlAsString);
             List<ResolveInfo> tempResolveInfos = new ArrayList<>();
             if (!urlAsString.equals(mContext.getString(R.string.empty_bubble_page))) {
-                tempResolveInfos = Settings.get().getAppsThatHandleUrl(urlAsString, packageManager);
+                tempResolveInfos = getAppsThatHandleUrl(urlAsString, packageManager);
             }
             final List<ResolveInfo> resolveInfos = tempResolveInfos;
 
