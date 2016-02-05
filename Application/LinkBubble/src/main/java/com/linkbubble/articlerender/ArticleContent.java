@@ -207,11 +207,6 @@ public class ArticleContent {
             return false;
         }
 
-        // Ignore the Link Bubble welcome page
-        if (path.equals("/linkbubble/welcome.html")) {
-            return false;
-        }
-
         return true;
     }
 }
