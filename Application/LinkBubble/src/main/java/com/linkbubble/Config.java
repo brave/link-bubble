@@ -92,7 +92,7 @@ public class Config {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, mDm);
     }
 
-    public static final String SET_DEFAULT_BROWSER_URL = "http://linkbubble.com/configure";
+    public static final String SET_DEFAULT_BROWSER_URL = "https://brave.com";
 
     public static final String YOUTUBE_WATCH_PREFIX = "http://www.youtube.com/watch?v=";
     public static final String YOUTUBE_EMBED_PATH_SUFFIX = "embed/";

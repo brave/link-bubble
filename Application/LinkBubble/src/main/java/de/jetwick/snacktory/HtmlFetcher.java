@@ -72,6 +72,7 @@ public class HtmlFetcher {
         }
         reader.close();
     }
+    // We never use it, maybe we should remove it in future
     private String referrer = "https://www.linkbubble.com";
     private String userAgent = "Mozilla/5.0 (compatible; LinkBubble-ClearView; +" + referrer + ")";
     private String cacheControl = "max-age=0";
