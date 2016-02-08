@@ -25,6 +25,7 @@
     <string name="action_reload_page">Reload</string>
     <string name="action_open_in_browser">Open in %1$s</string>
     <string name="action_request_desktop_site">Request desktop site</string>
+    <string name="action_site_protection">Brave site protection</string>
     <string name="action_open_in_new_bubble">Open in new bubble</string>
     <string name="action_open_link_in_new_bubble">Open link in new bubble</string>
     <string name="action_open_image_in_new_bubble">Open image in new bubble</string>
@@ -396,5 +397,6 @@
     <string name="https_everywhere_targets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/httpse-targets.json</string>
     <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
     <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
+    <string name="whitelist_localfilename">whitelist.dat</string>
 
 </resources>

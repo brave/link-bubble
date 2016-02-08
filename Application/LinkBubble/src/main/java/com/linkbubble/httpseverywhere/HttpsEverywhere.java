@@ -294,7 +294,7 @@ public class HttpsEverywhere {
     }
 
     private String mVerNumber;
-    ConcurrentHashMap<String, List> mTargets;
-    SQLiteDatabase mDB;
-    Context mContext;
+    private ConcurrentHashMap<String, List> mTargets;
+    private SQLiteDatabase mDB;
+    private Context mContext;
 }

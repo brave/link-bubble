@@ -26,6 +26,7 @@ import com.crashlytics.android.Crashlytics;
 import com.linkbubble.Constant.BubbleAction;
 import com.linkbubble.adblock.ABPFilterParser;
 import com.linkbubble.adblock.TPFilterParser;
+import com.linkbubble.adblock.WhiteListCollector;
 import com.linkbubble.adinsert.AdInserter;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
@@ -66,6 +67,7 @@ public class MainApplication extends Application {
     private ABPFilterParser mABPParser = null;
     private TPFilterParser mTPParser = null;
     private AdInserter mADInserter = null;
+    private WhiteListCollector mWhiteListCollector = null;
     public boolean mAdInserterEnabled = false;
 
     public IconCache mIconCache;
@@ -110,9 +112,19 @@ public class MainApplication extends Application {
             mAdInserterEnabled = true;
             new DownloadAdInsertionDataAsyncTask().execute();
         }
+        new InitWhiteListCollectorAsyncTask().execute();
 
         CrashTracking.log("MainApplication.onCreate()");
         //checkStrings();
+    }
+
+    class InitWhiteListCollectorAsyncTask extends AsyncTask<Void,Void,Long> {
+
+        protected Long doInBackground(Void... params) {
+            initWhiteListCollector();
+
+            return null;
+        }
     }
 
     public Bus getBus() {
@@ -126,6 +138,16 @@ public class MainApplication extends Application {
     }
 
     public HttpsEverywhere getHttpsEverywhere() { return mHttpsEverywhere; }
+
+    public void initWhiteListCollector() {
+        if (mWhiteListCollector == null) {
+            mWhiteListCollector = new WhiteListCollector(this);
+        }
+    }
+
+    public WhiteListCollector getWhiteListCollector() {
+        return mWhiteListCollector;
+    }
 
     public void createTrackingProtectionList() {
         if (null == mTPParser) {
