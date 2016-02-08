@@ -64,6 +64,7 @@ import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.adblock.TPFilterParser;
+import com.linkbubble.adblock.WhiteListCollector;
 import com.linkbubble.adinsert.AdInserter;
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.articlerender.ArticleRenderer;
@@ -157,6 +158,7 @@ public class ContentView extends FrameLayout {
     private boolean mApplyAutoSuggestionToUrlString = true;
     private boolean mSetTheRealUrlString = true;
     private boolean mFirstTimeUrlTyped = true;
+    private boolean mHostInWhiteList = false;
 
     ConcurrentHashMap<String, Integer> mHostRedirectCounter;
 
@@ -324,6 +326,51 @@ public class ContentView extends FrameLayout {
         return d;
     }
 
+    private void HostInWhiteListCheck(String url) {
+        MainApplication app = (MainApplication) mContext.getApplicationContext();
+
+        WhiteListCollector whiteListCollector = app.getWhiteListCollector();
+        if (null == whiteListCollector) {
+            mHostInWhiteList = false;
+
+            return;
+        }
+
+        String host = "";
+        try {
+            host = new URL(url).getHost();
+        }
+        catch (MalformedURLException exc) {
+        }
+
+        mHostInWhiteList = whiteListCollector.isInWhiteList(host);
+    }
+
+    private void AddRemoveHostFromWhiteList(String url, boolean add) {
+        MainApplication app = (MainApplication) mContext.getApplicationContext();
+
+        WhiteListCollector whiteListCollector = app.getWhiteListCollector();
+        if (null == whiteListCollector) {
+            mHostInWhiteList = false;
+
+            return;
+        }
+
+        String host = "";
+        try {
+            host = new URL(url).getHost();
+        }
+        catch (MalformedURLException exc) {
+        }
+
+        if (add) {
+            whiteListCollector.addHostToWhiteList(host);
+        }
+        else {
+            whiteListCollector.removeHostFromWhiteList(host);
+        }
+    }
+
     // The function configures the urlBar
     private void configureUrlBar(String urlAsString) {
         // Set the current URL to the search URL
@@ -365,6 +412,7 @@ public class ContentView extends FrameLayout {
         mLifeState = LifeState.Alive;
         mTintableDrawables.clear();
 
+        HostInWhiteListCheck(urlAsString);
         View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
         mWebRenderer = WebRenderer.create(WebRenderer.Type.WebView, getContext(), mWebRendererController, webRendererPlaceholder, TAG);
         mWebRenderer.setUrl(mWebRendererController.getHTTPSUrl(urlAsString));
@@ -555,7 +603,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public String getHTTPSUrl(String originalUrl) {
-            if (!Settings.get().isHttpsEverywhereEnabled()) {
+            if (mHostInWhiteList || !Settings.get().isHttpsEverywhereEnabled()) {
                 return originalUrl;
             }
             MainApplication app = (MainApplication) mContext.getApplicationContext();
@@ -598,6 +646,10 @@ public class ContentView extends FrameLayout {
 
         @Override
         public boolean shouldAdBlockUrl(String baseHost, String urlStr, String filterOption) {
+            if (mHostInWhiteList) {
+                return false;
+            }
+
             if (null != mWebRenderer) {
                 URL currentUrl = mWebRenderer.getUrl();
                 if (currentUrl.toString().equals(urlStr)) {
@@ -616,6 +668,10 @@ public class ContentView extends FrameLayout {
 
         @Override
         public boolean shouldTrackingProtectionBlockUrl(String baseHost, String host) {
+            if (mHostInWhiteList) {
+                return false;
+            }
+
             MainApplication app = (MainApplication) mContext.getApplicationContext();
             TPFilterParser tpList = app.getTrackingProtectionList();
             if (null == tpList) {
@@ -649,6 +705,10 @@ public class ContentView extends FrameLayout {
 
         @Override
         public String adInsertionList(String baseHost) {
+            if (mHostInWhiteList) {
+                return "";
+            }
+
             MainApplication app = (MainApplication) mContext.getApplicationContext();
             if (!app.mAdInserterEnabled) {
                 return "";
@@ -1471,6 +1531,9 @@ public class ContentView extends FrameLayout {
             final Context context = getContext();
             mOverflowPopupMenu = new PopupMenu(context, mOverflowButton);
             Resources resources = context.getResources();
+            final MenuItem siteProtection = mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_site_protection, Menu.NONE, resources.getString(R.string.action_site_protection))
+                    .setCheckable(true)
+                    .setChecked(!mHostInWhiteList);
             if (mCurrentProgress != 100) {
                 mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_stop, Menu.NONE, resources.getString(R.string.action_stop));
             }
@@ -1494,6 +1557,15 @@ public class ContentView extends FrameLayout {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     switch (item.getItemId()) {
+                        case R.id.item_site_protection: {
+                            CrashTracking.log("R.id.item_site_protection");
+                            // This looks backwards, but is correct, as isChecked() isn't true until
+                            // after onMenuItemClick() is called.
+                            AddRemoveHostFromWhiteList(mWebRenderer.getUrl().toString(), siteProtection.isChecked());
+                            HostInWhiteListCheck(mWebRenderer.getUrl().toString());
+                            // We need to go to reload page case.
+                        }
+
                         case R.id.item_reload_page: {
                             CrashTracking.log("R.id.item_reload_page");
                             mWebRenderer.resetPageInspector();
@@ -1995,6 +2067,7 @@ public class ContentView extends FrameLayout {
         if (urlAsString.equals(mWebRenderer.getUrl().toString()) == false) {
             try {
                 Log.d(TAG, "change url from " + mWebRenderer.getUrl() + " to " + urlAsString);
+                HostInWhiteListCheck(urlAsString);
                 mWebRenderer.setUrl(mWebRendererController.getHTTPSUrl(urlAsString));
             } catch (MalformedURLException e) {
                 return false;
