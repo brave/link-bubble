@@ -102,9 +102,7 @@ public class HttpsEverywhere {
     public String getRealUrl(String originalUrl) {
         String host = "";
         String protocol = "";
-        if (originalUrl.endsWith("/") && originalUrl.length() > 2) {
-            originalUrl = originalUrl.substring(0, originalUrl.length() - 1);
-        }
+        String path = "";
         try {
             URL url = new URL(originalUrl);
             host = url.getHost();
@@ -112,6 +110,7 @@ public class HttpsEverywhere {
             if (protocol.equals("https")) {
                 return originalUrl;
             }
+            path = originalUrl.substring(protocol.length() + "://".length() + host.length());
         } catch (Exception e) {
             return originalUrl;
         }
@@ -145,14 +144,14 @@ public class HttpsEverywhere {
         }
 
         try {
-            String newUrl = getNewHostFromIds(ruleIds, originalUrl);
-            if (0 != newUrl.length()) {
+            String newHost = getNewHostFromIds(ruleIds, protocol + "://" + host);
+            if (0 != newHost.length()) {
                 // Temp fix for thestar.com, it will be fixed and remove on next https release
-                if (newUrl.startsWith("https://thestar.com")) {
-                    newUrl = newUrl.replace("https://", "https://www.");
+                if (newHost.startsWith("https://thestar.com")) {
+                    newHost = newHost.replace("https://", "https://www.");
                 }
 
-                return newUrl;
+                return newHost + path;
             }
         }
         catch (SQLiteDatabaseCorruptException exc) {
