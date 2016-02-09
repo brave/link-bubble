@@ -598,6 +598,13 @@ public class ContentView extends FrameLayout {
 
         @Override
         public boolean shouldAdBlockUrl(String baseHost, String urlStr, String filterOption) {
+            if (null != mWebRenderer) {
+                URL currentUrl = mWebRenderer.getUrl();
+                if (currentUrl.toString().equals(urlStr)) {
+                    return false;
+                }
+            }
+
             MainApplication app = (MainApplication) mContext.getApplicationContext();
             ABPFilterParser parser = app.getABPParser();
             if (null == parser) {
