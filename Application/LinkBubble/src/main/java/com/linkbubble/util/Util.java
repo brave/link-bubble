@@ -106,7 +106,8 @@ public class Util {
         "net.fast.web.browser",
         "com.wisesharksoftware.browser",
         "org.hola",
-        "com.brave.playstore"
+        "com.brave.playstore",
+        "com.kk.jd.browser2"
     };
 
     public static float clamp(float v0, float v, float v1) {
