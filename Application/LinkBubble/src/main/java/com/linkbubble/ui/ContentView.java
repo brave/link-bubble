@@ -649,6 +649,12 @@ public class ContentView extends FrameLayout {
             if (mHostInWhiteList) {
                 return false;
             }
+            if (null != mWebRenderer) {
+                URL currentUrl = mWebRenderer.getUrl();
+                if (currentUrl.toString().equals(urlStr)) {
+                    return false;
+                }
+            }
 
             MainApplication app = (MainApplication) mContext.getApplicationContext();
             ABPFilterParser parser = app.getABPParser();
