@@ -102,7 +102,9 @@ public class HttpsEverywhere {
     public String getRealUrl(String originalUrl) {
         String host = "";
         String protocol = "";
-        String path = "";
+        if (originalUrl.endsWith("/") && originalUrl.length() > 2) {
+            originalUrl = originalUrl.substring(0, originalUrl.length() - 1);
+        }
         try {
             URL url = new URL(originalUrl);
             host = url.getHost();
@@ -110,7 +112,6 @@ public class HttpsEverywhere {
             if (protocol.equals("https")) {
                 return originalUrl;
             }
-            path = originalUrl.substring(protocol.length() + "://".length() + host.length());
         } catch (Exception e) {
             return originalUrl;
         }
@@ -119,8 +120,6 @@ public class HttpsEverywhere {
         if (domainParts.length <= 1) {
             return originalUrl;
         }
-        //to do black list
-        //
         StringBuilder domainToCheck = new StringBuilder(domainParts[domainParts.length - 1]);
         String ruleIds = "";
         for (int i = domainParts.length - 2; i >= 0; i--) {
@@ -146,14 +145,14 @@ public class HttpsEverywhere {
         }
 
         try {
-            String newHost = getNewHostFromIds(ruleIds, protocol + "://" + host);
-            if (0 != newHost.length()) {
+            String newUrl = getNewHostFromIds(ruleIds, originalUrl);
+            if (0 != newUrl.length()) {
                 // Temp fix for thestar.com, it will be fixed and remove on next https release
-                if (newHost.startsWith("https://thestar.com")) {
-                    newHost = newHost.replace("https://", "https://www.");
+                if (newUrl.startsWith("https://thestar.com")) {
+                    newUrl = newUrl.replace("https://", "https://www.");
                 }
 
-                return newHost + path;
+                return newUrl;
             }
         }
         catch (SQLiteDatabaseCorruptException exc) {
