@@ -110,7 +110,7 @@ public class HttpsEverywhere {
             if (protocol.equals("https")) {
                 return originalUrl;
             }
-            path = url.getPath();
+            path = originalUrl.substring(protocol.length() + "://".length() + host.length());
         } catch (Exception e) {
             return originalUrl;
         }
