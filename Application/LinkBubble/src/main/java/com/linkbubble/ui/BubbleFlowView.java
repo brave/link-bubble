@@ -525,6 +525,7 @@ public class BubbleFlowView extends HorizontalScrollView {
         }
         mCollapseEndAnimationEventListener = null;
         mDoingCollapse = false;
+
         return result;
     }
 

@@ -251,6 +251,12 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         return mCurrentTab;
     }
 
+    public void setCurrentTabAsActive() {
+        if (null != mCurrentTab) {
+            setCurrentTab(mCurrentTab);
+        }
+    }
+
     private void setCurrentTab(TabView tab) {
         mCurrentTabResumeEvent.mTab = tab;
         MainApplication.postEvent(getContext(), mCurrentTabResumeEvent);

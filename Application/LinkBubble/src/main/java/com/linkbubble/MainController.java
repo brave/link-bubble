@@ -171,6 +171,7 @@ public class MainController implements Choreographer.FrameCallback {
                 // Hack to ensure BubbleFlowDraggable doesn't display in Bubble mode, fix #457
                 if (v instanceof BubbleFlowView) {
                     ((BubbleFlowView)v).forceCollapseEnd();
+                    ((BubbleFlowDraggable)v).setCurrentTabAsActive();
                 }
             }
             mRootWindowsVisible = true;
