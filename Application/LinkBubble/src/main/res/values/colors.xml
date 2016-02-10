@@ -38,7 +38,7 @@
 
     <color name="request_location_box_color">#ffefe4c6</color>
 
-    <color name="action_button_pressed">#402060</color>
+    <color name="action_button_pressed">#6e6e6e</color>
     <color name="action_button_normal">@color/color_primary</color>
 
     <drawable name="color_highlight_2">@color/color_highlight_2</drawable>
