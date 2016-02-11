@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Brave[D]</string>
+    <string name="app_name">Link Bubble™ by Brave[D]</string>
     <string name="service_name">Brave Renderer[D]</string>
     <string name="notification_title">Brave[D]</string>
     <string name="send_intent_label">Open with Brave[D]</string>
