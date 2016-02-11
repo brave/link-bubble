@@ -340,66 +340,59 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
     private void doAnimateToContentView(boolean saveBubbleRestingPoint) {
         CrashTracking.log("doAnimateToContentView()");
-        try {
-            if (mAnimActive) {
-                if (mMode == Mode.ContentView) {
-                    CrashTracking.log("doAnimateToContentView() mMode == Mode.ContentView, early exit");
-                    return;
+        if (mAnimActive) {
+            if (mMode == Mode.ContentView) {
+                CrashTracking.log("doAnimateToContentView() mMode == Mode.ContentView, early exit");
+                return;
+            } else {
+                CrashTracking.log("doAnimateToContentView() cancelAnimation()");
+                mDraggableHelper.cancelAnimation();
+            }
+        }
+
+        if (mMode != Mode.ContentView && saveBubbleRestingPoint) {
+            Settings.get().setBubbleRestingPoint(mDraggableHelper.getXPos(), mDraggableHelper.getYPos());
+        }
+
+        mTouchDown = false;
+        mMode = Mode.ContentView;
+
+        final float bubblePeriod = (float) Constant.BUBBLE_ANIM_TIME / 1000.f;
+        final float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
+
+        final MainController mainController = MainController.get();
+        setVisibility(View.VISIBLE);
+
+        animate().alpha(1.0f).setDuration(Constant.BUBBLE_ANIM_TIME);
+        mBadgeView.animate().alpha(1.0f).setDuration(Constant.BUBBLE_ANIM_TIME);
+
+        int xp = (int) Config.getContentViewX(0, 1);
+        int yp = Config.mContentViewBubbleY;
+
+        setTargetPos(xp, yp, bubblePeriod, DraggableHelper.AnimationType.SmallOvershoot, new DraggableHelper.AnimationEventListener() {
+            @Override
+            public void onAnimationComplete() {
+                onAnimComplete();
+                int activeCount = mainController.getActiveTabCount();
+                if (activeCount == 0) {
+                    // Ensure we don't enter state where there are no tabs to display. Fix #448
+                    MainApplication.postEvent(getContext(), new MainController.EndCollapseTransitionEvent());
+                    MainApplication.postEvent(getContext(), new ExpandedActivity.MinimizeExpandedActivityEvent());
+                    CrashTracking.log("doAnimateToContentView(): onAnimationComplete(): getActiveTabCount()==0");
                 } else {
-                    CrashTracking.log("doAnimateToContentView() cancelAnimation()");
-                    mDraggableHelper.cancelAnimation();
+                    MainApplication.postEvent(getContext(), mEndExpandTransitionEvent);
+                    CrashTracking.log("doAnimateToContentView(): onAnimationComplete(): getActiveTabCount():" + activeCount);
                 }
             }
-
-            if (mMode != Mode.ContentView && saveBubbleRestingPoint) {
-                Settings.get().setBubbleRestingPoint(mDraggableHelper.getXPos(), mDraggableHelper.getYPos());
+            @Override
+            public void onCancel() {
+                onAnimComplete();
+                mainController.endAppPolling();
+                mainController.collapseBubbleFlow((long) (contentPeriod * 1000));
             }
-
-            mTouchDown = false;
-            mMode = Mode.ContentView;
-
-            final float bubblePeriod = (float) Constant.BUBBLE_ANIM_TIME / 1000.f;
-            final float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
-
-            final MainController mainController = MainController.get();
-            setVisibility(View.VISIBLE);
-
-            animate().alpha(1.0f).setDuration(Constant.BUBBLE_ANIM_TIME);
-            mBadgeView.animate().alpha(1.0f).setDuration(Constant.BUBBLE_ANIM_TIME);
-
-            int xp = (int) Config.getContentViewX(0, 1);
-            int yp = Config.mContentViewBubbleY;
-
-            setTargetPos(xp, yp, bubblePeriod, DraggableHelper.AnimationType.SmallOvershoot, new DraggableHelper.AnimationEventListener() {
-                @Override
-                public void onAnimationComplete() {
-                    onAnimComplete();
-                    int activeCount = mainController.getActiveTabCount();
-                    if (activeCount == 0) {
-                        // Ensure we don't enter state where there are no tabs to display. Fix #448
-                        MainApplication.postEvent(getContext(), new MainController.EndCollapseTransitionEvent());
-                        MainApplication.postEvent(getContext(), new ExpandedActivity.MinimizeExpandedActivityEvent());
-                        CrashTracking.log("doAnimateToContentView(): onAnimationComplete(): getActiveTabCount()==0");
-                    } else {
-                        MainApplication.postEvent(getContext(), mEndExpandTransitionEvent);
-                        CrashTracking.log("doAnimateToContentView(): onAnimationComplete(): getActiveTabCount():" + activeCount);
-                    }
-                }
-
-                @Override
-                public void onCancel() {
-                    onAnimComplete();
-                    mainController.endAppPolling();
-                    mainController.collapseBubbleFlow((long) (contentPeriod * 1000));
-                }
-            });
-            mainController.beginAppPolling();
-            mainController.expandBubbleFlow((long) (contentPeriod * 1000), true);
-        }
-        catch (NullPointerException exc) {
-            // mainController is null probably
-            CrashTracking.logHandledException(exc);
-        }
+        });
+        mainController.beginAppPolling();
+        mainController.expandBubbleFlow((long) (contentPeriod * 1000), true);
     }
 
     public void configure(int x0, int y0, int targetX, int targetY, int targetTime, CanvasView cv)  {
