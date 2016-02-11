@@ -134,17 +134,12 @@ public class MainController implements Choreographer.FrameCallback {
     public static class UserPresentEvent {};
 
     public static void addRootWindow(View v, WindowManager.LayoutParams lp) {
-        try {
-            MainController mc = get();
-            if (!mc.mRootViews.contains(v)) {
-                mc.mRootViews.add(v);
-                if (mc.mRootWindowsVisible) {
-                    mc.mWindowManager.addView(v, lp);
-                }
+        MainController mc = get();
+        if (!mc.mRootViews.contains(v)) {
+            mc.mRootViews.add(v);
+            if (mc.mRootWindowsVisible) {
+                mc.mWindowManager.addView(v, lp);
             }
-        }
-        catch (SecurityException exc) {
-            CrashTracking.logHandledException(exc);
         }
     }
 
