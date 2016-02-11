@@ -25,7 +25,7 @@
     <string name="action_reload_page">Reload</string>
     <string name="action_open_in_browser">Open in %1$s</string>
     <string name="action_request_desktop_site">Request desktop site</string>
-    <string name="action_site_protection">Enable Brave Shields</string>
+    <string name="action_site_protection">Enable Brave shields</string>
     <string name="action_open_in_new_bubble">Open in new bubble</string>
     <string name="action_open_link_in_new_bubble">Open link in new bubble</string>
     <string name="action_open_image_in_new_bubble">Open image in new bubble</string>
