@@ -462,7 +462,12 @@ public class MainApplication extends Application {
             CrashTracking.log("post(" + simpleName + ")");
             sLastPostClassName = simpleName;
         }
-        app.getBus().post(event);
+        try {
+            app.getBus().post(event);
+        }
+        catch (RuntimeException exc) {
+            CrashTracking.logHandledException(exc);
+        }
     }
 
     public static void registerForBus(Context context, Object object) {
