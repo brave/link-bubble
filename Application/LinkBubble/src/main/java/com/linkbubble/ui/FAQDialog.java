@@ -102,6 +102,7 @@ public class FAQDialog {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == sBetaIndex) {
+                    // We do not use it with Brave, maybe have to remove.
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse("http://linkbubble.com/device/link_bubble_beta.html"));
                     mActivity.startActivity(i);
