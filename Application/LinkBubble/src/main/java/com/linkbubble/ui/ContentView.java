@@ -43,6 +43,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -721,9 +722,12 @@ public class ContentView extends FrameLayout {
             return adInsertionList.getHostObjects(baseHost);
         }
 
+        private int mConsecutiveRedirectCount = 0;
+
         @Override
         public boolean shouldOverrideUrlLoading(String urlAsString, boolean viaUserInput) {
             if (mLifeState != LifeState.Alive) {
+                mConsecutiveRedirectCount = 0;
                 return true;
             }
 
@@ -732,6 +736,7 @@ public class ContentView extends FrameLayout {
                 if (MainApplication.loadIntent(getContext(), intent, urlAsString, mInitialUrlLoadStartTime)) {
                     MainController.get().switchToBubbleView();
                 }
+                mConsecutiveRedirectCount = 0;
                 return true;
             }
 
@@ -740,6 +745,7 @@ public class ContentView extends FrameLayout {
                 Log.d(TAG, "ignore unsupported URI scheme: " + urlAsString);
                 showOpenInBrowserPrompt(R.string.unsupported_scheme_default_browser,
                         R.string.unsupported_scheme_no_default_browser, mWebRenderer.getUrl().toString());
+                mConsecutiveRedirectCount = 0;
                 return true;        // true because we've handled the link ourselves
             }
 
@@ -759,6 +765,25 @@ public class ContentView extends FrameLayout {
             //}
             removeCallbacks(mDelayedAutoContentDisplayLinkLoadedRunnable);
 
+            String host;
+            try {
+                URL url = new URL(urlAsString);
+                host = url.getHost();
+                if (host.equals("www.forbes.com")) {
+                    CookieManager.getInstance().setCookie("http://www.forbes.com", "forbes_ab=true");
+                    CookieManager.getInstance().setCookie("http://www.forbes.com", "welcomeAd=true");
+                    CookieManager.getInstance().setCookie("http://www.forbes.com", "adblock_session=Off");
+                    CookieManager.getInstance().setCookie("http://www.forbes.com", "dailyWelcomeCookie=true");
+                    if (url.getPath().equals("/forbes/welcome/") && mConsecutiveRedirectCount < 5) {
+                        mConsecutiveRedirectCount++;
+                        updateAndLoadUrl("http://www.forbes.com/");
+                        return true;
+                    }
+                }
+            } catch (Exception e) {
+            }
+
+            mConsecutiveRedirectCount = 0;
             updateAndLoadUrl(urlAsString);
             return true;
         }
