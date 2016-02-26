@@ -115,6 +115,7 @@ public class BubbleView extends FrameLayout  {
     }
 
     protected void loadFavicon() {
+        mThemeColor = null;
         maybeCancelFaviconLoad();
 
         final int tabFaviconSize = getResources().getDimensionPixelSize(R.dimen.browser_toolbar_favicon_size);
