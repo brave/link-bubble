@@ -8,8 +8,8 @@ Either install the [Crashlytics/Fabric Android Studio plugin](http://try.crashly
 
 Copy `Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java.template` to `Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java` and fill in the youtube apiSecret.
 
-Copy `Application/LinkBubble/src/main/AndroidManifest.xml.template` to `Application/LinkBubble/src/main/AndroidManifest.xml` and fill up `com.crashlytics.ApiKey` and
-`io.fabric.ApiKey`
+Copy `Application/LinkBubble/src/main/AndroidManifest.xml.template` to `Application/LinkBubble/src/main/AndroidManifest.xml` and fill in `com.crashlytics.ApiKey` and
+`io.fabric.ApiKey` with your Crashlytics API key. You can obtain it from logging into your Fabric account and going to: `Settings -> Organizations -> Brave (or your organization)` then click on `API Key` at the top.
 
 npm install
 
