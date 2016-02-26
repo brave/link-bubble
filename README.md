@@ -1,8 +1,8 @@
-# Link Bubble Browser
+# Brave for Android (formerly Link Bubble)
 
 ##Install instructions and setup
 
-`git clone git@github.com:brave/LinkBubble.git`
+`git clone git@github.com:brave/browser-android.git`
 
 Either install the [Crashlytics/Fabric Android Studio plugin](http://try.crashlytics.com/sdk-android/) or copy `Application/LinkBubble/fabric.properties.template` to `Application/LinkBubble/fabric.properties` and fill in the apiSecret.
 
@@ -13,7 +13,7 @@ Copy `Application/LinkBubble/src/main/AndroidManifest.xml.template` to `Applicat
 
 npm install
 
-##Building Link Bubble Free
+##Building
 
 Open `./Application/` in Android Studio and build.  You'll need the NDK installed if you don't already have it, instructions below.
 
@@ -35,7 +35,7 @@ Android Studio has an easy way to download and link to the NDK.
 
 In the menu navigate to File, Project Structure. Click the 'Download Android NDK' link. This should download and unzip the NDK, as well as link it inside of local.properties.
 
-If you are not using Android Studio, reference this commit: https://github.com/brave/link-bubble/commit/0fa9f58286e0679ec5772e19b995d6a508907691
+If you are not using Android Studio, reference this commit: https://github.com/brave/browser-android/commit/0fa9f58286e0679ec5772e19b995d6a508907691
 
 ##Telling getlocalization.com about new strings
 
