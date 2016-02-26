@@ -5,7 +5,7 @@
   "scripts": {
     "translate": "babel-node scripts/updateTranslations.js",
     "postinstall": "sh ./scripts/copyJNIFiles.js",
-    "lint": "semistandard scripts/* Application/LinkBubble/src/main/assets/pagescripts/*"
+    "lint": "semistandard Application/LinkBubble/src/main/assets/pagescripts/*"
   },
   "repository": "brave/browser-android",
   "author": "Brave Software <support@brave.com>",
