@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Downloader</string>
-    <string name="send_intent_label">Openen met Brave</string>
+    
     <string name="notification_summary">Tik om alle open bubbels te verbergen</string>
     <string name="notification_default_summary">Tik voor Verbergen, uitbreiden voor Alles sluiten</string>
     <string name="notification_unhide_summary">Tik voor Zichtbaar maken, uitbreiden voor Alles sluiten</string>
@@ -25,6 +25,7 @@
     <string name="action_reload_page">Vernieuwen</string>
     <string name="action_open_in_browser">Openen in %1$s</string>
     <string name="action_request_desktop_site">Desktopversie opvragen</string>
+    
     <string name="action_open_in_new_bubble">Openen in nieuwe bubbel</string>
     <string name="action_open_link_in_new_bubble">Link openen in nieuwe bubbel</string>
     <string name="action_open_image_in_new_bubble">Afbeelding openen in nieuwe bubbel</string>
@@ -32,7 +33,7 @@
     <string name="action_save_image">Afbeelding opslaan</string>
     <string name="action_share">Delen</string>
     <string name="action_close_all">Alles sluiten</string>
-    
+    <string name="action_new_bubble">Nieuwe bubbel</string>
     <string name="action_close_tab">Bubbel sluiten</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Ongedaan maken</string>
@@ -48,7 +49,7 @@
     <string name="warning">Waarschuwing!</string>
     <string name="untrusted_certificate">Het certificaat van %1$s wordt niet vertrouwd. Toch doorgaan?</string>
 
-    <string name="share_invalid_data">Brave kan dit item niet delen, omdat de URL ongeldig is.</string>
+    
     <string name="consume_activity_not_found">Kan app niet vinden. Overweeg de bubbelactie te wijzigen via Instellingen.</string>
     <string name="consume_activity_security_exception">Kan niet delen met externe app.</string>
 
@@ -60,7 +61,7 @@
     <string name="undo_close_tab_no_title">Tab gesloten</string>
 
     <string name="pick_default_app">Standaardapp kiezen</string>
-    <string name="default_browser_set">Brave is ingesteld als de standaardbrowser.</string>
+    
     <string name="invalid_send_action">Geen geldige link gevonden.</string>
     <string name="unable_to_launch_app">Kan externe app niet starten.</string>
     <string name="clear_history">Geschiedenis wissen</string>
@@ -86,13 +87,11 @@
     <string name="preference_default_apps_summary">Terugvalbrowser, URL-specifieke apps</string>
     <string name="preference_default_apps_notice_summary">Wordt gebruikt als één of meer niet-browserapps op je systeem de URL
 kunnen afhandelen.\n\nTik om een standaard te verwijderen.</string>
-    <string name="preference_default_apps_notice_no_defaults_summary">Wordt gebruikt als één of meer niet-browserapps op je apparaat de URL kunnen afhandelen.
-Je kan de standaardapp instellen om deze links mee te openen.\n\nDe standaardapp die gebruikt wordt in dit geval,
-wordt ingesteld als je links laadt met Brave.</string>
+    
     <string name="preference_google_account_redirect_title">Google Account redirect</string>
     <string name="preference_google_account_redirect_summary">Stuur accounts.google.com-links door naar de standaard terugvalbrowser</string>
     <string name="preference_set_default_browser_title">Stel standaard systeembrowser in</string>
-    <string name="preference_set_default_browser_summary">Brave moet de standaard systeembrowser zijn om te kunnen werken. Tik om te configureren.</string>
+    
     <string name="preference_more">Meer...</string>
     <string name="preference_intercept_links_from_title">Links onderscheppen van</string>
     <string name="preference_intercept_links_from_disabled_for_L">Vanaf Android 5.0 heeft Google de API verwijderd die nodig is voor deze functionaliteit.</string>
@@ -100,7 +99,7 @@ wordt ingesteld als je links laadt met Brave.</string>
     <string name="preference_scan_for_youtube_embeds_summary">Snelkoppeling weergeven om ingesloten video(\'s) te laden in de YouTube-app.</string>
     <string name="preference_webview_battery_save_title">Batterij-spaarstand (beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Aggressief</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Pauzeer het bijwerken van webpagina\'s als Brave is geminimaliseerd.\nPagina\'s die al aan het laden zijn, gaan door met laden voor ze pauzeren.</string>
+    
     <string name="preference_webview_battery_save_default_title">Standaard</string>
     <string name="preference_webview_battery_save_default_summary">Pauzeer het bijwerken van pagina\'s als het scherm uit is, en ga verder wanneer je apparaat wordt ontgrendeld.\nPagina\'s die al aan het laden zijn, gaan door met laden voor ze pauzeren.</string>
     <string name="preference_webview_battery_save_off_title">Uit</string>
@@ -128,6 +127,13 @@ wordt ingesteld als je links laadt met Brave.</string>
     <string name="preference_incognito_title">Incognitostand</string>
     <string name="preference_incognito_summary">Voorkom het bewaren van geschiedenis en cookies</string>
     <string name="incognito_mode_changed_reloading_current">Incognito-instelling gewijzigd. Alle huidige bubbels herladen...</string>
+    <string name="preference_trackingprotection_summary">Voorkom laden van bronnen die je volgen</string>
+    <string name="preference_adblock_title">Ad Block</string>
+    <string name="preference_adblock_summary">Voorkom laden van advertenties</string>
+    <string name="preference_trackingprotection_title">Volgpreventiestand</string>
+    <string name="preference_adblock_tracking_protection_from_disabled">Deze mogelijkheid is alleen beschikbaar in Android 5.0 en hoger.</string>
+    <string name="preference_https_everywhere_title">HTTPS overal</string>
+    <string name="preference_https_everywhere_summary">Opent websites via HTTPS in plaats van HTTP</string>
     <string name="preference_user_agent_title">User Agent</string>
     <string-array name="preference_user_agent_options">
         <item>Standaard</item>
@@ -152,14 +158,14 @@ wordt ingesteld als je links laadt met Brave.</string>
     <string name="preference_privacy_policy_title">Privacyvoorwaarden</string>
     <string name="preference_terms_of_service_title">Algemene voorwaarden</string>
     <string name="preference_say_thanks_title">Zeg dankjewel!</string>
-    <string name="preference_say_thanks_summary">Waardeer je Brave? Misschien wil je dan een review achterlaten in de Play Store.</string>
+    
     <string name="preference_version_title">Versie</string>
     <string name="preference_version_summary">Wat is er nieuw?</string>
     <string name="preference_more_title">Meer&#8230;</string>
     <string name="preference_show_undo_close_tab_title">Aanwijzing tab sluiten ongedaan maken</string>
 
-    <string name="preference_my_other_apps_title">Meer apps van Brave</string>
-    <string name="preference_my_other_apps_summary">Bevalt Brave? Bekijk dan ook onze andere apps!</string>
+    
+    
 
     <string name="remove_default_title">Standaard verwijderen?</string>
     <string name="remove_default_message">%1$s verwijderen als de standaardapp om %2$s-links mee te laden?\n\nLet op: je kan de volgende keer
@@ -186,9 +192,10 @@ dat je een %2$s-link laadt een nieuwe standaardapp instellen.</string>
 
     <string name="histroy_unread">Ongelezen</string>
     <string name="histroy_all">Alles</string>
+    <string name="new_bubble">Nieuwe bubbel</string>
     <string name="history">Geschiedenis</string>
     <string name="erase_all_history_title">Alles wissen?</string>
-    <string name="erase_all_history_message">Volledige browsegeschiedenis van Brave wissen?</string>
+    
     <string name="empty">Leeg</string>
     <string name="history_already_empty">Geschiedenis is al leeg</string>
     <string name="private_data_cleared">Privégegevens gewist</string>
@@ -199,7 +206,7 @@ dat je een %2$s-link laadt een nieuwe standaardapp instellen.</string>
     <string name="link_loaded_with_app">Geladen met %1$s</string>
     <string name="link_redirected">Doorgestuurd naar %1$s</string>
 
-    <string name="tampered_apk">Dit exemplaar van Brave is illegaal aangepast en zal dus niet betrouwbaar werken. Installeer opnieuw vanuit de Play Store.</string>
+    
 
     <string name="bubble_link_copied_to_clipboard">Bubbellink gekopieerd naar klembord.</string>
     <string name="link_copied_to_clipboard">Link gekopieerd naar klembord.</string>
@@ -222,74 +229,40 @@ dat je een %2$s-link laadt een nieuwe standaardapp instellen.</string>
     <string name="faq_close_tab_question">Hoe kan ik snel een tab sluiten?</string>
     <string name="faq_close_tab_answer">De snelste manier is het drukken op de vaste Terug-knop. Een tab naar de Sluitknop slepen is ook een goede manier.</string>
     <string name="faq_back_button_minimize_question">Ik vind dat drukken op de Terug-knop de browser moet minimaliseren!</string>
-    <string name="faq_back_button_minimize_answer"><![CDATA[Brave minimaliseren als de op vaste Terug-knop wordt gedrukt is niet haalbaar.
-Stel je het volgende geval voor:<br/>
-1). voorbeeld.com/pagina1 is geladen in de eerste tab.<br/>
-2). Je klikt op een link op deze pagina, en laadt voorbeeld.com/pagina2 in dezelfde tab.<br/>
-3). Nu wil je terug naar de link in stap 1.<br/><br/>
-Hoe doe je dit als drukken op de vaste Terug-knop Brave minimaliseert? Drukken op de kleine terug-indicator op de tab zelf
-is niet haalbaar.<br/><br/>
-Brave is een browser, en Android-browsers hebben al heel lang de standaard dat als op de Terug-knop wordt gedrukt
-je ofwel terug gaat in de URL-stapel, of, als er geen stapel is, de huidige pagina sluit.
-Brave volgt deze standaard.]]></string>
-    <string name="faq_app_internal_browser_question"><![CDATA[Brave onderschept geen links!]]></string>
-    <string name="faq_app_internal_browser_answer"><![CDATA[Er zijn drie oorzaken hiervan:<br/>
-1). Een andere browser dan Brave is ingesteld als de standaard systeembrowser. Zie de
-optie \"Standaard systeembrowser instellen\" in Brave\'s Instellingen om dit te wijzigen.<br/>
-2). Brave is ingesteld om geen links te onderscheppen van je huidige app. Zie de optie
-\"Links onderscheppen van\" in Brave\'s Instellingen.<br/>
-3). Apps zoals Talon, Reddit is Fun en anderen hebben ingebouwde browsers om links weer te geven. Controleer de instellingen van deze app en
-schakel \"Externe browser\" in of zet \"Geïntegreerde browser\" uit, of iets dergelijks.
-<br/><br/>Let op: andere browserapps zoals Chrome zijn geprogrammeerd om links zelf te laden, en daarom kan Brave geen links laden
-waarop in andere browserapps wordt geklikt.
-]]></string>
+    
+    
+    
     <string name="faq_article_mode_question">Hoe gebruik ik Leesmodus? Waarom werkt het niet voor sommige links?</string>
-    <string name="faq_article_mode_answer"><![CDATA[Ten eerste, zorg dat Leesmodus is ingeschakeld (Instellingen -> Besturing app / Meer&#8230; -> Leesmodus).<br/><br/> Daarna zal, als Leesmodus beschikbaar is voor de huidige tab, het Leesmodus-pictogram zichtbaar zijn op de actiebalk (naast de Delen-knop). Bedenk dat dit pictogram alleen verschijnt als de link klaar is met laden, en alleen als Brave er in slaagt inhoud voor Leesmodus eruit te halen.<br/><br/> Let op: Inhoud van het web extraheren is geen betrouwbare procedure, en werkt mogelijk niet 100% accuraat. Gezien het dynamische en immer veranderende karakter van het web zelf, is er weinig wat hieraan gedaan kan worden.]]></string>
+    
     <string name="faq_future_features_question">Ga je ondersteuning inbouwen voor bladwijzers, favorieten, extensies, enzovoort?</string>
-    <string name="faq_future_features_answer">Zeg nooit nooit, maar op dit moment is Brave alleen gericht op het zijn van de best mogelijke manier
-om links van andere apps te laden en te verwerken.</string>
+    
     <string name="faq_translations_question">Kan ik meehelpen deze app te vertalen?</string>
-    <string name="faq_translations_answer"><![CDATA[Ik hoop binnenkort vertalingen te kunnen toevoegen.<br/><br/>Wanneer ik dat doe, zal ik zeker een oproep doen via Google+
-(+Brave) voor hulp bij de vertalingen, dus hou mijn feed in de gaten.]]></string>
+    
     <string name="faq_roadmap_question">Heb je een roadmap gepubliceerd? Kan ik stemmen voor toekomstige functies?</string>
     <string name="faq_roadmap_answer">Ik ben bang dat vanwege de concurrentie het antwoord op beide vragen \'nee\' is.</string>
-    <string name="faq_alternate_payment_answer"><![CDATA[Brave ondersteunt op dit moment alleen aanschaf via Google Play.<br/><br/>Aanvullende
-betaalmogelijkheden worden hopelijk in de toekomst aangeboden (voor zover ze de Google Play Developer Program Policies niet schenden).]]></string>
-    <string name="faq_cant_type_url_question">Waarom kan ik niet de naam van de link die ik wil bezoeken invoeren?</string>
-    <string name="faq_cant_type_url_answer"><![CDATA[Dit werkt geheel zoals bedoeld. Brave is niet ontworpen om een complete vervanging toe zijn voor je browser, maar om gebruikt te worden om
-links van andere apps te laden en weer te geven zo elegant, behulpzaam en snel als mogelijk.<br/><br/>Als je een nieuwe url in Brave wilt laden,
-is het zoeken naar een pagina via Google Now en het laden van het resultaar met Brave een goede methode.<br/><br/>Voor het snel
-laden van je favorieten, vind ik het Chrome Bookmarks-widget erg handig.]]></string>
+    
+    <string name="faq_cant_type_url_question">Hoe voer ik de naam in van de link die ik wil bezoeken?</string>
+    <string name="faq_cant_type_url_answer"><![CDATA[Tik op de paginatitel/URL.  Deze zal veranderen in een invoerveld en suggesties bieden op basis van je geschiedenis en topwebsites.]]></string>
     <string name="faq_copy_text_question">Waarom kan ik geen tekst kopiëren van een webpagina?</string>
-    <string name="faq_copy_text_answer"><![CDATA[Door beperkingen van het Androidsysteem werkt dit helaas niet.<br/><br/>Technisch antwoord:
-De kopieerfunctionaliteit werkt bij het gebruiken van Android\'s WebView vanuit een Activity, maar niet vanuit een Service (wat Brave gebruikt).]]></string>
+    
     <string name="faq_translucent_status_bar_question">Waarom tekent de app niet over de doorzichtige statusbalk?</string>
     <string name="faq_translucent_status_bar_answer">Door beperkingen van het Androidsysteem kan dit niet.</string>
     <string name="faq_beta_programme_question">Is er een beta-programma? Hoe kan ik meedoen?</string>
-    <string name="faq_beta_programme_answer">Details van het beta-programma zullen te zijner tijd worden aangekondigd. Houd mijn Google+ (+Brave)-feed in de gaten voor aankondigingen.</string>
-    <string name="faq_low_spec_performance_question">Waarom draait Brave langzaam op mijn Nexus S / Galaxy S1 / Moto G-klasse apparaat?</string>
-    <string name="faq_low_spec_performance_answer"><![CDATA[Brave is een app die veel vraagt van een apparaat, en daarom kunnen apparaten met minder goede specs moeite
-hebben om de app zo goed te draaien als meer krachtige apparaten. Toekomstige versies zullen proberen om de prestaties  van Brave
-te verbeteren, maar de mogelijkheden hiervoor zijn beperkt.<br/><br/>Technisch antwoord: in de kern vereist Brave het gebruik
-van een Service en een WebView om te functioneren. Vaak zijn er meerdere WebViews en zelfs meerdere Activities aanwezig.
-Het toewijzen van deze onderdelen (vooral de WebViews) verbruikt <i>veel</i> geheugen/hulpbronnen. Apparaten met mindere specs hebben
-over het algemeen minder geheugen ter beschikking dan Brave nodig heeft, waardoor de prestaties eronder leiden als garbage collections veelvuldig voorkomen.
-Zo is bijvoorbeelde de max heap size op de Nexus S 48MB, vergeleken met 192MB op de Nexus 5.]]></string>
+    
+    
+    
     <string name="faq_crap_webview_question">Webpagina\'s worden soms niet goed weergegeven of video\'s spelen niet.</string>
-    <string name="faq_crap_webview_answer"><![CDATA[LinkBubble gebruikt de standaard Android WebView, helaas is deze soms niet betrouwbaar.
-Alternatieve webweergavemethodes zoals FireFox\'s GeckoView en Chromium zullen waarschijnlijk worden bekeken
-in de toekomst.<br/><br/>Wanneer een webpagina niet goed wordt weergegeven in Brave, is het de makkelijkste oplossing om gewoon een traditionele browser te laden voor die link.]]></string>
-    <string name="faq_ongoing_notificaion_question">Waarom wordt er altijd een doorlopende melding getoond als Brave draait?</string>
-    <string name="faq_ongoing_notificaion_answer"><![CDATA[Helaas is deze doorlopende melding nodig om het Androidsysteem aan te sporen Brave
-niet te beëindigen.]]></string>
+    
+    
+    
     <string name="faq_next_update_eta_question">Wanneer komt de volgende update?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[Wanneer hij klaar is!<br/><br/>Het is helaas niet mogelijk om specifieker te zijn dan dat
 (zelfs niet om een grove schatting te maken).<br/><br/>Het is de realiteit dat wanneer een schatting wordt gegeven, mensen dit gaan opvatten als een doelstelling,
 en teleurgesteld worden als/wanneer een release vertraagt om de een of andere reden.]]></string>
-    <string name="faq_close_quickly_question">Hoe kan ik Brave snel stoppen?</string>
-    <string name="faq_close_quickly_answer">Veeg vanaf de bovenkant van het scherm om het meldingenscherm te openen, en klik op de \"Brave\"-melding.</string>
-    <string name="faq_change_default_browser_question">Hoe kan ik Brave weghalen als standaardbrowser?</string>
-    <string name="faq_change_default_browser_answer">Systeeminstellingen -> Apps -> Gedownload -> Brave -> Standaardwaarden wissen.</string>
+    
+    
+    
+    
     <string name="faq_report_bug_question">Een bug melden</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
 
@@ -302,10 +275,10 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="activity_resolver_use_always">Altijd</string>
     <string name="activity_resolver_use_once">Eén keer</string>
 
-    <string name="credits_title">Brave credits</string>
-    <string name="credits_name">Brave</string>
+    
+    
     <string name="credits_credit">Concept, ontwerp en programmeren</string>
-    <string name="credits_app_copyright">Copyright 2015, Brave.</string>
+    
 
     
     <plurals name="restore_tabs_from_previous_session">
@@ -316,7 +289,7 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     <string name="content_description_button">Knop</string>
     <string name="content_description_target_icon">Bubbeldoelpictogram</string>
     <string name="content_description_close_bubble_icon">Bubbelsluitenpictogram</string>
-    <string name="content_description_link_bubble_logo">Brave-logo</string>
+    
     <string name="content_description_app_icon">App-pictogram</string>
     <string name="content_description_youtube_video_thumbnail">YouTube-video-miniatuur</string>
     <string name="content_description_history">Geschiedenis</string>
@@ -325,34 +298,26 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
 
     <string name="requesting_location_message">%1$s vraagt naar je locatie. Toestaan?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[Door verder te gaan, accepteer je de Brave
-<a href="http://www.linkbubble.com/terms">voorwaarden</a> en het <a href="http://www.linkbubble.com/privacy">privacybeleid</a>.]]></string>
+    
 
-    <string name="service_name">Brave Renderer</string>
-    <string name="notification_title">Brave</string>
+    
+    
 
-    <string name="store_listing_title">Brave</string>
+    
     <string name="store_listing_promo_text">Mobiel browsen zoals het zou moeten.</string>
-    <string name="store_listing_description_title">Brave is een geheel nieuwe browser, ontworpen en gemaakt met alleen mobiele apparaten in gedachten.</string>
-    <string name="store_listing_description_features">Functies zijn onder meer:
-• Wanneer je klikt op een link in een app, laadt Brave die webpagina op de achtergrond, zodat je vrij bent om je huidige app te blijven gebruiken in plaats van je kostbare tijd te verspillen aan het kijken naar een ladende pagina. Zodra de pagina volledig is geladen. zal deze op het scherm verschijnen.
-• Met Brave\'s veegbewegingen kun je in weinig minder dan een seconde vanaf het klikken op een link, deze link delen of de link toevoegen aan een dienst als Pocket!
-• Laad meerdere links tegelijkertijd vanuit je huidige app op hetzelfde moment.
-• Slim omgaan met links die doorverwijzen naar andere apps. Niet langer krijg je na het klikken op een Instagram-link in Twitter eerst een volledige browser voordat Instagram opent!
-• Diepe integratie met de apps op je systeem.
-• Vind ingesloten YouTube-video\'s op webpagina\'s, en bied een snelkoppeling om die video\'s direct in de YouTube-app te laden. 
-• Handige statistieken die laten zien hoeveel tijd je bespaart door Brave te gebruiken.</string>
-    <string name="store_listing_description_location_permission">Wat betreft de toestemming voor Locatie: dit is nodig, omdat je mogelijk toestemming wil geven aan een website om je locatie te zien (bijvoorbeeld in het geval van een ingebouwde kaart). Brave zelf kijkt nooit naar je locatie.</string>
+    
+    
+    
 
-    <string name="welcome_page_title">Welkom bij Brave!</string>
+    
     <string name="welcome_page_intro_title">Hoe werkt het?</string>
     <string name="welcome_page_intro_point_1">Klik op een link in een app.</string>
     <string name="welcome_page_intro_point_2">Een bubbel verschijnt aan de rand van het scherm en de link begint met laden op de achtergrond. Zodra de pagina is geladen, zal deze worden getoond.</string>
-    <string name="welcome_page_intro_end">Zo simpel is het! Met Brave kan je doorgaan met je huidige app, in plaats van je tijd te verdoen met het kijken naar links die doorgestuurd worden en wachten op pagina\'s die laden.</string>
+    
     <string name="welcome_page_more_title">Laat me meer zien!</string>
     <string name="welcome_page_more_pocket_start">Je kan ook snel een link delen, of toevoegen aan een app zoals Pocket:</string>
     <string name="welcome_page_more_pocket_end">Dat ziet er leuk en handig uit, toch?</string>
-    <string name="welcome_page_more_also">Brave kan ook:</string>
+    
     <string name="welcome_page_more_point_1">Links doorsturen naar een specifieke app (bijv. Instagram).</string>
     <string name="welcome_page_more_point_2">Ingesloten video\'s vinden zodat je deze makkelijk in de YouTube-app kan laden.</string>
     <string name="welcome_page_more_point_3">Onbeperkt bubbels tegelijkertijd laden.</string>
@@ -361,21 +326,30 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
 
     <string name="duplicate_link_will_not_be_loaded">Link al geladen. Negeren...</string>
 
+    <string name="edit_url">Zoeken of adres invoeren</string>
+    <string name="http_prefix">http://</string>
+    <string name="https_prefix">https://</string>
+    <string name="www_prefix">www.</string>
+    <string name="duck_duck_search_engine">https://duckduckgo.com/?q=</string>
+    <string name="google_search_engine">http://www.google.com/search?q=</string>
+    <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
+    <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>
+    <string name="top_500_prepend">Bezoeken</string>
     
+    <string name="search_for_with">Zoeken %1$s naar \"%2$s</string>
+    <string name="duck_duck_go">Duck Duck Go</string>
+    <string name="google">Google</string>
+    <string name="yahoo">Yahoo</string>
+    <string name="amazon">Amazon</string>
+    <string name="empty_bubble_page">file:///android_asset/blank.html</string>
+    <string name="adblock_url">https://s3.amazonaws.com/adblock-data/1/ABPFilterParserData.dat</string>
+    <string name="adblock_localfilename">FromUrlABPFilterParserData.dat</string>
+    <string name="tracking_protection_url">https://s3.amazonaws.com/tracking-protection-data/1/TrackingProtection.dat</string>
+    <string name="tracking_protection_localfilename">TrackingProtection.dat</string>
+    <string name="https_everywhere_rulesets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/rulesets.sqlite</string>
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
+    <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
     
 
 </resources>

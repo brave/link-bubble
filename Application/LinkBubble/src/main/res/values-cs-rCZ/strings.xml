@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Stahování</string>
-    <string name="send_intent_label">Otevřít pomocí Brave</string>
+    
     <string name="notification_summary">Po kliknutí se schovají všechny otevřené bubliny</string>
     <string name="notification_default_summary">Kliknutím schovat, roztažením zavřít vše</string>
     <string name="notification_unhide_summary">Kliknutím odkrýt, roztažením zavřít vše</string>
@@ -25,6 +25,7 @@
     <string name="action_reload_page">Načíst znovu</string>
     <string name="action_open_in_browser">Otevřít v %1$s</string>
     <string name="action_request_desktop_site">Vyžádat verzi webu pro PC</string>
+    
     <string name="action_open_in_new_bubble">Otevřít v nové bublině</string>
     
     
@@ -48,7 +49,7 @@
     <string name="warning">Varování!</string>
     <string name="untrusted_certificate">Certifikát na %1$s není důvěryhodný. Přesto pokračovat?</string>
 
-    <string name="share_invalid_data">Brave nedokáže sdílet tuto položku, protože neobsahuje platný odkaz.</string>
+    
     <string name="consume_activity_not_found">Nelze najít aplikaci. Zkuste v nastavení změnit chování bubliny.</string>
     <string name="consume_activity_security_exception">Nelze sdílet do externí aplikace.</string>
 
@@ -60,7 +61,7 @@
     <string name="undo_close_tab_no_title">Zavřená záložka</string>
 
     <string name="pick_default_app">Vyber výchozí aplikaci</string>
-    <string name="default_browser_set">Brave byl nastaven jako výchozí prohlížeč.</string>
+    
     <string name="invalid_send_action">Nebyl nalezen funkční odkaz.</string>
     <string name="unable_to_launch_app">Nelze spustit externí aplikaci.</string>
     <string name="clear_history">Smazat historii</string>
@@ -85,9 +86,7 @@
     <string name="preference_default_apps_title">Výchozí aplikace</string>
     <string name="preference_default_apps_summary">Sekundární prohlížeč a jiné aplikace</string>
     <string name="preference_default_apps_notice_summary">Používá se, pokud ve vašem systému umí odkaz otevřít jedna nebo více aplikací kromě prohlížečů.\n\nPo kliknutí už nebudou výchozí.</string>
-    <string name="preference_default_apps_notice_no_defaults_summary">Používá se, pokud ve vašem systému umí odkaz otevřít jedna nebo více aplikací kromě prohlížečů.
-Můžete si nastavit výchozí aplikaci pro otevírání takových odkazů.\n\nVýchozí aplikace je v tomto případě nastavena,
-jakmile přes Brave načtete odkazy.</string>
+    
     <string name="preference_google_account_redirect_title">Přesměrování na účet Googlu</string>
     <string name="preference_google_account_redirect_summary">Přesměruje odkazy accounts.google.com do zvoleného sekundárního prohlížeče</string>
     <string name="preference_set_default_browser_title">Nastavit výchozí systémový prohlížeč</string>
@@ -99,7 +98,7 @@ jakmile přes Brave načtete odkazy.</string>
     <string name="preference_scan_for_youtube_embeds_summary">Zobrazit zkratky pro načítání vložených videí v aplikaci YouTube.</string>
     <string name="preference_webview_battery_save_title">Úsporný režim (beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Agresivní</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Zastav aktualizování stránek, když je Brave minimalizovaný.\nStávající stránky se načtou do konce a až pak se proces zastaví.</string>
+    
     <string name="preference_webview_battery_save_default_title">Výchozí</string>
     <string name="preference_webview_battery_save_default_summary">Zastav aktualizování stránek, když je displej vypnutý, a pokračuj, když je zařízení opět odemknuté.\nStávající stránky se načtou do konce a až pak se proces zastaví.</string>
     <string name="preference_webview_battery_save_off_title">Vypnout</string>
@@ -127,6 +126,13 @@ jakmile přes Brave načtete odkazy.</string>
     <string name="preference_incognito_title">Anonymní režim</string>
     <string name="preference_incognito_summary">Neukládá historii prohlížení ani cookies</string>
     <string name="incognito_mode_changed_reloading_current">Nastavení anonymního režimu změněno. Aktualizuji současné bubliny…</string>
+    
+    
+    
+    
+    
+    
+    
     <string name="preference_user_agent_title">User Agent</string>
     <string-array name="preference_user_agent_options">
         <item>Výchozí</item>
@@ -150,7 +156,7 @@ jakmile přes Brave načtete odkazy.</string>
     <string name="preference_privacy_policy_title">Zásady ochrany soukromí</string>
     <string name="preference_terms_of_service_title">Podmínky služby</string>
     <string name="preference_say_thanks_title">Řekněte díky!</string>
-    <string name="preference_say_thanks_summary">Líbí se vám Brave? Budeme rádi za recenzi v Play Store.</string>
+    
     <string name="preference_version_title">Verze</string>
     <string name="preference_version_summary">Co je nového?</string>
     <string name="preference_more_title">Více&#8230;</string>
@@ -184,9 +190,10 @@ až příště načtete odkaz z %2$s.</string>
 
     <string name="histroy_unread">Nepřečteno</string>
     <string name="histroy_all">Vše</string>
+    
     <string name="history">Historie</string>
     <string name="erase_all_history_title">Smazat vše?</string>
-    <string name="erase_all_history_message">Smazat kompletní historii prohlížení v Brave?</string>
+    
     <string name="empty">Prázdné</string>
     <string name="history_already_empty">Historie je prázdná</string>
     <string name="private_data_cleared">Osobní data smazána</string>
@@ -197,7 +204,7 @@ až příště načtete odkaz z %2$s.</string>
     <string name="link_loaded_with_app">Načteno s %1$s</string>
     <string name="link_redirected">Přesměrováno do %1$s</string>
 
-    <string name="tampered_apk">Vaše kopie Brave byla nelegálně pozměněna, a proto nebude fungovat spolehlivě. Přeinstalujte si ji prosím z Play Store.</string>
+    
 
     <string name="bubble_link_copied_to_clipboard">Odkaz zkopírován do schránky.</string>
     <string name="link_copied_to_clipboard">Odkaz zkopírován do schránky.</string>
@@ -220,71 +227,40 @@ až příště načtete odkaz z %2$s.</string>
     <string name="faq_close_tab_question">Jak můžu rychle zavřít záložku?</string>
     <string name="faq_close_tab_answer">Nejrychlejším způsobem je stisknutí tlačítka Zpět. Přetažením záložky na tlačítko Zavřít to ale jde také dost rychle.</string>
     <string name="faq_back_button_minimize_question">Myslel jsem, že tlačítko Zpět minimalizuje prohlížeč!</string>
-    <string name="faq_back_button_minimize_answer"><![CDATA[Minimalizování Brave pomocí tlačítka Zpět není možné.
-Například:<br/>
-1). V první záložce se načte stránka něco.cz/stránka1.<br/>
-2). Kliknete na odkaz na stránce a ve stejné záložce se načte něco.cz/stránka2.<br/>
-3). Vy se chcete dostane zpět na první stránku.<br/><br/>
-Jak byste to udělali, kdyby tlačítko Zpět minimalizovalo Brave? Stisknutí malého tlačítka zpět na samotné záložce není realizovatelné.<br/><br/>
-Brave je prohlížeč a prohlížeče na Androidu už dlouho používají jako standard, že vás tlačítko Zpět vrátí na předchozí stránku.
-Pokud žádná předchozí stránka není, tlačítko Zpět stávající stránku zavře.
-Brave se tímto standardem také řídí.]]></string>
-    <string name="faq_app_internal_browser_question"><![CDATA[Brave neumí zpracovat odkazy!]]></string>
-    <string name="faq_app_internal_browser_answer"><![CDATA[K tomu existují tři příčiny:<br/>
-1). Jiný prohlížeč než Brave je nastaven jako výchozí. Podívej se do nastavení
-\"Nastavit výchozí systémový prohlížeč\".<br/>
-2). Brave nebyl nastaven, aby zpracovával odkazy ze současné aplikace. Podívej se do nastavení
-\"Zpracovat odkazy z\".<br/>
-3). Aplikace jako Talon, Reddit is Fun a další mají vlastní interní prohlížeče. Podívej se do jejich nastavení a aktivuj funkci
- \"Externí prohlížeč\", nebo zruš funkci \"Interní prohlížeč\" či něco podobného.
-<br/><br/>Poznámka: Ostatní prohlížeče jako Chrome mají napevno nastaveno, že budou odkazy otevírat samy, 
-a proto Brave nemůže zpracovat odkazy, na které klikneš v jiných prohlížečích.
-]]></string>
+    
+    
+    
     <string name="faq_article_mode_question">Jak mám použít Čtečku? Proč některé odkazy nefungují?</string>
     
     <string name="faq_future_features_question">Přidáte podporu pro záložky, oblíbené položky, rozšíření apod.?</string>
-    <string name="faq_future_features_answer">Nikdy neříkej nikdy, ale zatím se Brave soustřeďuje pouze na to,
-aby co nejlépe načítal a zobrazoval odkazy z jiných aplikací.</string>
+    
     <string name="faq_translations_question">Můžu pomoci s překladem aplikace?</string>
     
     <string name="faq_roadmap_question">Zveřejníte roadmapu s chystanými funkcemi? Můžu o nových vychytávkách hlasovat?</string>
     <string name="faq_roadmap_answer">Z konkurenčních důvodů se bojím, že odpověď na obě otázky je  \'no\'.<br/><br/></string>
-    <string name="faq_alternate_payment_answer"><![CDATA[V tuto chvíli je Brave dostupný jen přes Google Play.<br/><br/>
-Doufám, že další způsoby placení přidám v  budoucnu (což nesmí být v rozporu s Programovými zásadami služby Google Play pro vývojáře).]]></string>
-    <string name="faq_cant_type_url_question">Proč nikde nemůžu napsat adresu stránku, kterou chci navštívit?</string>
-    <string name="faq_cant_type_url_answer"><![CDATA[To je záměr. Brave nebyl vytvořen k tomu, aby nahradil běžný prohlížeč, ale aby se používal
-k načítání a zobrazování odkazů z jiných aplikací, jak nejrychleji, nejelegantněji a nejužitečněji to jen jde.<br/><br/>Pokud chcete v  Brave otevřít nový odkaz,
-vyhledejte stránku v Google Now a přes Brave si nechte načíst výsledek.<br/><br/>Pro rychlé načtení oblíbených stránek
-mi přijdou nejlepší widgety z Google Chrome.]]></string>
+    
+    
+    
     <string name="faq_copy_text_question">Proč nemůžu ze stránky zkopírovat text?</string>
-    <string name="faq_copy_text_answer"><![CDATA[Je to bohužel omezení samotného systému Android. <br/><br/>Technická odpověď:
- Kopírování funguje jen tehdy, pokud WebView v Androidu běží přes Activity, nikoliv Service (což je případ Brave).]]></string>
+    
     <string name="faq_translucent_status_bar_question">Proč se aplikace nepřekresluje přes průsvitný stavový řádek?</string>
     <string name="faq_translucent_status_bar_answer">Je to bohužel omezení samotného systému Android.</string>
     <string name="faq_beta_programme_question">Existuje nějaký beta program? Jak se do něj můžu zapojit?</string>
     
-    <string name="faq_low_spec_performance_question">Proč Brave běží pomalu na zařízeních jako Nexus S, Galaxy S nebo Moto G?</string>
-    <string name="faq_low_spec_performance_answer"><![CDATA[Brave je velmi náročný na systémové prostředky, v důsledku toho nemohou zařízení se slabšími specifikacemi
-běžet stejně rychle jako výkonná zařízení. Chystané aktualizace zlepší výkon Brave,
-ale není toho moc, co by šlo skutečně dělat.<br/><br/>Technická odpověď: Jako minimum Brave potřebuje
- Service a WebView, aby vůbec mohl fungovat. Často se používají vícenásobné WebViews i Activities.
-Samozřejmě, že přidělování těchto položek (hlavně WebViews) spotřebuje <i>hodně</i> paměti a prostředků. Slabší zařízení mají 
-obvykle méně paměti, než Brave potřebuje, a proto výkon klesá, jakmile se často spouští garbage collections.
-Příklad: maximální velikost haldy na Nexusu S je 48 MB, Nexus 5 ale zvládne 192 MB.]]></string>
+    
+    
     <string name="faq_crap_webview_question">Někdy se stránka nenačte správně nebo se video nepřehraje.</string>
-    <string name="faq_crap_webview_answer"><![CDATA[LinkBubble využívá standardní WebView v Androidu, které je bohužel občas nespolehlivé.
-Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve Firefoxu nebo Chromiu.
-<br/><br/>Pokud se stránka nenačte správně v Brave, nejjednodušší řešení bude použít tradiční prohlížeč.]]></string>
-    <string name="faq_ongoing_notificaion_question">Proč se vždy při spuštění Brave zobrazí probíhající notifikace?</string>
-    <string name="faq_ongoing_notificaion_answer"><![CDATA[Je to bohužel nezbytné k tomu, aby Android neukončil běh aplikace Brave.]]></string>
+    
+    
+    
     <string name="faq_next_update_eta_question">Kdy přijde další aktualizace?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[Až bude připravená!<br/><br/>Nemůžu být bohužel nijak konkrétnější a nemám ani přibližný odhad.
 <br/><br/>Lidé ve skutečnosti berou odhady jako závazek
  a pak jsou naštvaní, když se vydání z různých důvodů zpozdí.]]></string>
-    <string name="faq_close_quickly_question">Jak můžu Brave rychle zastavit?</string>
-    <string name="faq_close_quickly_answer">Panel s notifikacemi otevřete táhnutím prstu shora obrazovky a pak kliknete na notifikace \"Brave\".</string>
-    <string name="faq_change_default_browser_question">Jak můžu odstranit Brave coby výchozí prohlížeč?</string>
-    <string name="faq_change_default_browser_answer">Nastavení systému -> Aplikace -> Stažené -> Brave -> Vymazat výchozí nastavení.</string>
+    
+    
+    
+    
     <string name="faq_report_bug_question">Nahlásit chybu</string>
     <string name="faq_report_bug_answer"><![CDATA[e-mail]]></string>
 
@@ -297,7 +273,7 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
     <string name="activity_resolver_use_always">Vždy</string>
     <string name="activity_resolver_use_once">Pouze jednou</string>
 
-    <string name="credits_title">Autoři Brave</string>
+    
     
     <string name="credits_credit">Koncept, design a programování</string>
     
@@ -311,7 +287,7 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
     <string name="content_description_button">Tlačítko</string>
     <string name="content_description_target_icon">Ikona cílové bubliny</string>
     <string name="content_description_close_bubble_icon">Ikona zavření bubliny</string>
-    <string name="content_description_link_bubble_logo">Logo Brave</string>
+    
     <string name="content_description_app_icon">Ikona aplikace</string>
     <string name="content_description_youtube_video_thumbnail">Náhled videa z YouTube</string>
     <string name="content_description_history">Historie</string>
@@ -320,27 +296,26 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
 
     <string name="requesting_location_message">%1$s chce znát vaši polohu. Souhlasíte?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[Pokračováním potvrzujete, že souhlasíte s
-<a href="http://www.linkbubble.com/terms">podmínkami použití</a> a <a href="http://www.linkbubble.com/privacy">zásadami ochrany soukromí</a> aplikace Brave.]]></string>
-
-    <string name="service_name">Brave Renderer</string>
-    <string name="notification_title">Brave</string>
-
-    <string name="store_listing_title">Brave</string>
-    <string name="store_listing_promo_text">Prohlížení na mobilu, jak má být.</string>
-    <string name="store_listing_description_title">Brave je zcela nový prohlížeč navržený a vytvořený pouze s ohledem na mobilní zařízení.</string>
     
-    <string name="store_listing_description_location_permission">K oprávnění týkající se Vaší polohy: Je to vyžadováno kvůli webům, které chtějí vědět, kde se nacházíte (např. kvůli vložené mapě.). Samotný Brave vaši polohu nikdy nesleduje.</string>
 
-    <string name="welcome_page_title">Vítejte v Brave!</string>
+    
+    
+
+    
+    <string name="store_listing_promo_text">Prohlížení na mobilu, jak má být.</string>
+    
+    
+    
+
+    
     <string name="welcome_page_intro_title">Jak to funguje?</string>
     <string name="welcome_page_intro_point_1">Klikněte na odkaz v aplikaci.</string>
     <string name="welcome_page_intro_point_2">Na okraji obrazovky se objeví bublina a odkaz se načítá na pozadí. Jakmile bude stránka načtena, bublina se stránkou se rozbalí.</string>
-    <string name="welcome_page_intro_end">Je to tak snadné! Můžete dál používat stávající aplikaci místo toho, abyste zabíjeli čas sledováním, jak se načítá prázdná stránka. Co na tom nelze milovat?</string>
+    
     <string name="welcome_page_more_title">Ukaž mi více!</string>
     <string name="welcome_page_more_pocket_start">Odkaz můžete také rychle sdílet nebo poslat do aplikace jako např. Pocket.</string>
     <string name="welcome_page_more_pocket_end">Obojí vypadá zábavně i užitečně, že jo?</string>
-    <string name="welcome_page_more_also">Brave umí také:</string>
+    
     <string name="welcome_page_more_point_1">Přesměrovat odkazy do zvláštní aplikace (např. Instagram).</string>
     <string name="welcome_page_more_point_2">Najít na webu vložená videa a nechat je jednoduše otevřít v aplikaci YouTube.</string>
     
@@ -349,6 +324,15 @@ Pravděpodobně vyzkouším alternativní renderovací metody jako GeckoView ve 
 
     <string name="duplicate_link_will_not_be_loaded">Odkaz už je načtený. Ignorování…</string>
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

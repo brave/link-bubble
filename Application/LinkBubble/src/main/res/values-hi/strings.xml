@@ -25,6 +25,7 @@
     <string name="action_reload_page">रीलोड </string>
     <string name="action_open_in_browser">%1$s में खोले </string>
     
+    
     <string name="action_open_in_new_bubble">नये बबल में खोलें</string>
     
     
@@ -48,7 +49,7 @@
     
     
 
-    <string name="share_invalid_data">लिंक बबल इसे शेयर नही कर सकता क्युकि URL गलत हे </string>
+    
     <string name="consume_activity_not_found">एप्लीकेशन नही मिली।  क्रपया सेटिंग  में जा कर बबल एक्शन चूज  करे </string>
     
 
@@ -60,7 +61,7 @@
     
 
     <string name="pick_default_app">डिफ़ॉल्ट एप्प  सलेक्ट  करे</string>
-    <string name="default_browser_set">लिंक बबल अब डिफ़ॉल्ट ब्राउज़र हे </string>
+    
     
     
     <string name="clear_history">हिस्ट्री मिटाये </string>
@@ -86,9 +87,7 @@
     
     <string name="preference_default_apps_notice_summary">जब एक या ज्यादा नॉन-ब्रोव्सेर ऐप्स URL का यूज़ कर सकती हे \n \n 
 डिफ़ॉल्ट को हटाने के लिए टच करे </string>
-    <string name="preference_default_apps_notice_no_defaults_summary">जब एक या ज्यादा नॉन-ब्रोव्सेर ऐप्स URL का यूज़ कर सकती हे, 
-आप ऐसे लिंक्स के लिए डिफ़ॉल्ट ऐप कॉन्फ़िगर कर सकते हे. \n \n 
-इसके लिए डिफ़ॉल्ट एप का चयन आपके द्रारा लिंक्स को लिङ्क बबल  से खोलने पर होगा।</string>
+    
     <string name="preference_google_account_redirect_title">गूगल अकाउंट रीडरेक्ट</string>
     <string name="preference_google_account_redirect_summary">रीडरेक्ट accounts.google.com लिंक्स टू डिफ़ॉल्ट फालबैक ब्राउज़र</string>
     <string name="preference_set_default_browser_title">डिफ़ॉल्ट ब्राउज़र का चयन करे </string>
@@ -128,6 +127,13 @@
     <string name="preference_incognito_title">गुप्त मोड</string>
     <string name="preference_incognito_summary">हिस्ट्री और कूकीज स्टोर ना करे </string>
     
+    
+    
+    
+    
+    
+    
+    
     <string name="preference_user_agent_title">उपभोक्ता </string>
     <string-array name="preference_user_agent_options">
         <item>डिफ़ॉल्ट </item>
@@ -151,7 +157,7 @@
     <string name="preference_privacy_policy_title">गोपनीयता नीति</string>
     <string name="preference_terms_of_service_title">सेवा की शर्तें</string>
     <string name="preference_say_thanks_title">धन्यवाद काहे। </string>
-    <string name="preference_say_thanks_summary">लिंक बबल आपको उपयोगी लगा ? क्रपा करके प्ले स्टोर में आपका मूल्यवान रिव्यु लिखे। </string>
+    
     <string name="preference_version_title">वर्जन </string>
     <string name="preference_version_summary">इसमें  नया क्या हे?</string>
     
@@ -185,9 +191,10 @@
 
     <string name="histroy_unread">नहीं पढ़े हुए </string>
     <string name="histroy_all">सभी </string>
+    
     <string name="history">हिस्ट्री</string>
     <string name="erase_all_history_title">सभी मिटा दे ?</string>
-    <string name="erase_all_history_message">लिंक बबल की सारी  हिस्ट्री मिटा दे?</string>
+    
     <string name="empty">खाली </string>
     <string name="history_already_empty">हिस्ट्री पहले से खाली हे </string>
     <string name="private_data_cleared">प्राइवेट डाटा हटा दिया गया </string>
@@ -198,7 +205,7 @@
     <string name="link_loaded_with_app">%1$s से लोड किया</string>
     <string name="link_redirected">%1$s पर भेजा </string>
 
-    <string name="tampered_apk">आपकी लिंक बबल ऐप में गेर क़ानूनी ढंग से बदलाव किये गए हें इसीलिए ये ढंग से काम नही करेगी। क्रपया प्ले स्टोर फिर से इनस्टॉल करे।   </string>
+    
 
     <string name="bubble_link_copied_to_clipboard">बबल का लिंक क्लिपबोर्ड पर कॉपी हो गया हे। </string>
     <string name="link_copied_to_clipboard">लिंक क्लिपबोर्ड पर  कॉपी हो गया हे। </string>
@@ -221,60 +228,39 @@
     <string name="faq_close_tab_question">जल्दी से टैब  केसे बंद कर सकते हें?</string>
     <string name="faq_close_tab_answer">पीछे जाने वाला बटन दबाना सबसे आसन तरीका हे। टैब  को क्लोज बटन तक घसीटना भी एक अच्छा तरीका हें। </string>
     <string name="faq_back_button_minimize_question">मेरे ख्याल में पीछे के बटन को दबाने से ब्राउज़र मिनीमाइज होना चाहिए!</string>
-    <string name="faq_back_button_minimize_answer"><![CDATA[हार्डवेयर बेक  बटन दबाने  से लिंक बबल  को मिनीमाइज करना संभव नहीं है।
-निम्नलिखित मामले पर विचार करें:<br/>
-1.) example.com/page1 पहला टैब में लोड किया जाता है।<br/>
-2.) आप इस पेज पर एक लिंक पर क्लिक करें और एक ही टैब में example.com/page2 लोड।<br/>
-3.) अब आप चरण 1 वाले लिंक पर वापस जाना चाहते  हो। <br/><br/>
-आप यह केसे कर सकते हे अगर हार्डवेयर बेक बटन दबाने से लिंक बबल मिनीमाइज हओ जाता हे? पर टेब पर बने छोटे बेक सूचक को दबाना  
-संभव नहीं है। <br/> <br/> 
-लिंक बबल एक ब्राउज़र है, और एंड्रॉयड ब्राउज़रों की एक लंबे समय के बाद स्थापित मानक है। 
-वापस यूआरएल ढेर में जाता है, या कोई ऐसी ढेर मौजूद नहीं  हे , तब वापस बटन दबाने पर वर्तमान पेज को बंद किया जाता हे।  
-लिंक बबल का यही मानक है.]]>
-
-</string>
-    <string name="faq_app_internal_browser_question"><![CDATA[लिंक बबल ने लिंक्स को इंतर्सेप्त नही किया!]]></string>
+    
+    
     
     
     
     <string name="faq_future_features_question">क्या आप bookmarks, favourites, extentions आदि के लिए support देंगे?</string>
-    <string name="faq_future_features_answer">नेवर से नेवर, लेकिन अभी के लिए लिंक बबल का लक्ष्य पूरी तरह से केवल दूसरी एप्स से लिंक्स को बेहतर ढंग से खोलना हे।</string>
+    
     
     
     <string name="faq_roadmap_question">क्या आप आके के फीचर्स लो रोडमैप पब्लिश करते हे क्या? क्या में उनके लिए समर्थन (voting) कर सकता हु क्या?</string>
     <string name="faq_roadmap_answer">प्रतिस्पर्धी कारणों से, इन दोनों सवालों का जवाब \'\नहीं \' हे।<br/><br/></string>
-    <string name="faq_alternate_payment_answer"><![CDATA[Brave solo soporta compras via Google Play en este momento.<br/><br/>Metodos adicionales de pago seran añadidos en un futuro (asumiendo que no violan las Politicas del Programa de Desarrolladores de Google Play).]]></string>
-    <string name="faq_cant_type_url_question">मै एप में लिंक टाइप क्यों नही कर सकता?</string>
-    <string name="faq_cant_type_url_answer"><![CDATA[यह इरादा पूरी तरह से स्पष्ठ है. लिंक बबल अपने ब्राउज़र के लिए एक पूरी प्रतिस्थापन होने के लिए नहीं बनाया गया है, लेकिन इसके बजाय सहायक और जितनी जल्दी संभव हो, सुंदर ढंग के रूप में अन्य क्षुधा से लिंक लोड और प्रदर्शन करने के लिए इस्तेमाल किया जाएगा.<br/><br/>अगर आप लिंक बबल से लोड करना चाहते हैं तो अब गूगल नाउ के माध्यम से खोज और लिंक बबल के साथ परिणाम लोड करना एक अच्छा तरीका है.<br/><br/>जल्दी से अपने पसंदीदा पेज लोड करने के लिए, मुझे क्रोम बुकमार्क्स विजेट बहुत सहायक लगता हे।]]></string>
+    
+    
+    
     <string name="faq_copy_text_question">में बेब पेज से कुछ कॉपी क्यों नही कर सकता?</string>
-    <string name="faq_copy_text_answer"><![CDATA[दुर्भाग्यवश एंड्राइड सिस्टम इसे चलने से रोकता हे.<br/><br/>Technical answer:
-Copy functionality works when using Android\'s WebView from an Activity, but not from a Service (which Brave uses).]]></string>
+    
     <string name="faq_translucent_status_bar_question">पारदर्शी उस बार के ऊपर एप क्यों नही आती?</string>
     <string name="faq_translucent_status_bar_answer">अभाग्यवश, एंड्राइड सिस्टम यह करने की इजाजत नजी देता हे। </string>
     <string name="faq_beta_programme_question">क्या इसका कोई बीटा प्रोग्राम हे? मै केसे ज्वाइन कर सकता हूँ?</string>
     
-    <string name="faq_low_spec_performance_question">लिंक बबल मेरी Nexus S /Galaxy S1/Moto G श्रेनि के मोबाइल्स पर धीरे क्यों चलता हे?</string>
-    <string name="faq_low_spec_performance_answer"><![CDATA[लिंक बबल एक बहुत संसाधन गहन app है इसीलिए कम स्पेक्स वाले
- और अधिक शक्तिशाली उपकरण भी इसे चलाने के लिए संघर्ष कर सकते हैं. भविष्य में इसमें सुधर किया जाएगा लेकिन सुधार की भी एक सीमा होगी।
-<br/> <br/> तकनीकी जवाब:.  At the bare minimum, Brave requires the
-use of a Service and a WebView in order to function. Often multiple WebViews and even multiple Activities are also present.
-Naturally, allocating these items (especially the WebViews) consumes a <i>lot</i> of memory/resources. Lower spec devices generally
-have less memory available than Brave requires, and thus performance suffers as garbage collections are frequently triggered.
-As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on the Nexus 5.]]></string>
+    
+    
     <string name="faq_crap_webview_question">कभी कभी वेब पेजेज ढंग से नहीं खुलते या वीडियोस नही चलते हे ?</string>
-    <string name="faq_crap_webview_answer"><![CDATA[लिंक बबल Android WebView का उपयोग करता है, लेकिन दुर्भाग्य से यह कभी कभी अविश्वसनीय है। 
-दुसरे तरीके जेसे फ़ायरफ़ॉक्स का  GeckoView और क्रोमियम जैसे वैकल्पिक वेब प्रतिपादन तरीकों संभावना जा जांच की जाएगी। 
- <br/> <br/> यदि लिंक बबल किसी वेब पेज को ढंग से प्रदर्शित नही करता हे तब सबसे आसन विकल्प हे उस लिंक को किसी अन्य ब्राउज़र में लोड करना।]]></string>
-    <string name="faq_ongoing_notificaion_question">जब भी लिंक बबल चल रहा होता हे तब सारे notifications भी दीखते हे।  एसा क्यों?</string>
-    <string name="faq_ongoing_notificaion_answer"><![CDATA[दुर्भाग्य से चल रहे इस नोटीफिकेशन लिंक बबल को बंद करने से रोकने के लिए Android को प्रोत्साहित करने के लिए आवश्यक है.]]></string>
+    
+    
+    
     <string name="faq_next_update_eta_question">इस एप का अगला वर्जन कब आ रहा हे। </string>
     <string name="faq_next_update_eta_answer"><![CDATA[जब यह तैयार होगा !<br/><br/> इससे और अधिक स्पेसिफिक होना संभव नही होगा।
 (यहां तक ​​कि एक ballpark अनुमान प्रदान करने के लिए). वास्तविकता में जब अनुमान दिए जाते हे, लोग अक्सर उन्हें निश्चितता समज लेते हे और नाराज होते हे जब भी नयी उप्दतेस नही आती हे।]]></string>
-    <string name="faq_close_quickly_question">में लिंक बबल को जल्दी से बंद करने के लिए क्या करू?</string>
-    <string name="faq_close_quickly_answer">स्क्रीन के उपर से नोटीफिकेशन पेन खोले और \"लिंक बबल \" पर क्लिक करे। </string>
-    <string name="faq_change_default_browser_question">मैं डिफ़ॉल्ट ब्राउज़र के रूप में कैसे लिंक बबल को केसे हटाऊ ?</string>
-    <string name="faq_change_default_browser_answer">सिस्टम सेटिंग -> ऐप्स -> डाउनलोडेड -> लिंक बबल ->
-डिफ़ॉल्ट हटाये।</string>
+    
+    
+    
+    
     <string name="faq_report_bug_question">बग की रिपोर्ट करे। </string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
 
@@ -287,7 +273,7 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="activity_resolver_use_always">हमेशा </string>
     <string name="activity_resolver_use_once">सिर्फ एक बार </string>
 
-    <string name="credits_title">लिंक बबल क्रेडिट्स </string>
+    
     
     <string name="credits_credit">कंसेप्ट, डिज़ाइन और प्रोग्रामिंग </string>
     
@@ -301,7 +287,7 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="content_description_button">बटन</string>
     <string name="content_description_target_icon">बबल टारगेट आइकॉन </string>
     <string name="content_description_close_bubble_icon">बबल आइकॉन को बंद करे </string>
-    <string name="content_description_link_bubble_logo">लिंक बबल लोगो</string>
+    
     <string name="content_description_app_icon">ऐप्प आइकॉन </string>
     <string name="content_description_youtube_video_thumbnail">यू ट्यूब विडियो थम्बलिम </string>
     <string name="content_description_history">हिस्ट्री 
@@ -311,27 +297,26 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
 
     <string name="requesting_location_message">%1$s आपकी लोकेशन मांग रहा हे। लोकेशन की जानकारी दे या नहीं?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[आगे बढ़ने पर यह माना जाएगा की आप लिंक बबल की इन टर्म को मानते हे। 
-<a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
-
-    <string name="service_name">लिंक बबल Renderer</string>
-    <string name="notification_title">लिंक बबल </string>
-
-    <string name="store_listing_title">लिंक बबल </string>
-    <string name="store_listing_promo_text">मोबाइल ब्राउज़िंग सही से हुई। </string>
-    <string name="store_listing_description_title">लिंक बबल एक अदभुत ब्राउज़र हे जिसे मोबाइल दिवाइजेज को ध्यान में रखकर बनाया गया हे। </string>
     
-    <string name="store_listing_description_location_permission">लोकेशन परमिशन को रेंडर करना: इसकी जरुरत इसलिए हे ताकि आप जो वेबसाइट चला रहे हे उसे आपकी लोकेशन की जानकारी दी जा सके। (जेसे की एम्बेडेड मैप्स वाली वेबसाइट) लिंक बबल खुद आपकी लोकेशन जानकारी का उपयोग नही करता हे। </string>
 
-    <string name="welcome_page_title">लिंक बबल में आपका स्वागत हे!</string>
+    
+    
+
+    
+    <string name="store_listing_promo_text">मोबाइल ब्राउज़िंग सही से हुई। </string>
+    
+    
+    
+
+    
     <string name="welcome_page_intro_title">यह केसे काम करता हे?</string>
     <string name="welcome_page_intro_point_1">किसी भी ऐप  में कोई लिंक पर क्लिक करे। </string>
     <string name="welcome_page_intro_point_2">एक बब्ल स्क्रीन की साइड में दिखाई देगा और आपका लिंक लोड होने लगेगा बैकग्राउंड में। जब लिंक लोड हो जाएगा तब स्क्रीन पर दिखाई देगा। </string>
-    <string name="welcome_page_intro_end">यह एक सैंपल हे। लिकं बबल से आप अपनी करंट ऐप  को उसे कर सकते हे और आपका लिंक बैकग्राउंड में लोड होता जाएगा। बिलकुल भी टाइम वेस्ट नही। हे न ये कमाल की ऐप। </string>
+    
     <string name="welcome_page_more_title">पूरा बताये। </string>
     <string name="welcome_page_more_pocket_start">आप जल्दी से कोई लिंक शेयर या किसी ऐप में ऐड कर सकते हे जेसे की Pocket:</string>
     <string name="welcome_page_more_pocket_end">येह मजेदार और सहयोगी दोनों हे ना?</string>
-    <string name="welcome_page_more_also">लिंक बबल से ये भी: </string>
+    
     <string name="welcome_page_more_point_1">किसी भी चयनित ऐप से लिंक को रेदिरेक्ट करे (जेसे की Instagram)</string>
     <string name="welcome_page_more_point_2">एम्बेडेड विडियो को खोजे ताकि सीधे यू ट्यूब ऐप में चला सके। </string>
     
@@ -340,6 +325,15 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
 
     
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

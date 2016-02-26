@@ -25,6 +25,7 @@
     <string name="action_reload_page">تحديث الصفحة</string>
     <string name="action_open_in_browser">فتح في %1$s</string>
     
+    
     <string name="action_open_in_new_bubble">افتح في bubble جديدة</string>
     
     
@@ -48,7 +49,7 @@
     
     
 
-    <string name="share_invalid_data">Brave غير قادر على مشاركة هذا المحتوى لأنه ليس رابطاً صحيحاً</string>
+    
     <string name="consume_activity_not_found">غير قادر على إيجاد البرنامج. قم بتغيير عمل الـ bubble من الإعدادت</string>
     
 
@@ -60,7 +61,7 @@
     
 
     <string name="pick_default_app">اختر تطبيق افتراضي</string>
-    <string name="default_browser_set">تم تعيين Brave المتصفح الافتراضي</string>
+    
     
     
     <string name="clear_history">امسح التاريخ</string>
@@ -85,7 +86,7 @@
     <string name="preference_default_apps_title">التطبيقات الافتراضية</string>
     
     <string name="preference_default_apps_notice_summary">يستخدم عندما يكون هناك على جهازك تطبيق أو أكثر من تطبيق (غير المتصفحات) يمكنها معالجة رابط.\n\nاضغط على تطبيق لحذفه.</string>
-    <string name="preference_default_apps_notice_no_defaults_summary">يستخدم عندما يكون هناك على جهازك تطبيق أو أكثر من تطبيق (غير المتصفحات) يمكنها معالجة رابط. يمكنك اختيار التطبيق الافتراضي لتحميل مثل هذه الروابط.\n\n في مثل هذه الحالات، يتم اختيار التطبيق الافتراضي كلما قمت بفتح الوابط باستخدام Brave</string>
+    
     <string name="preference_google_account_redirect_title">إعادة التحويل لحسابات قوقل</string>
     <string name="preference_google_account_redirect_summary">إعادة توجيه العناوين من قوقل إلى المتصفح الإفتراضي</string>
     <string name="preference_set_default_browser_title">ضبط متصفح النظام الافتراضي</string>
@@ -125,6 +126,13 @@
     <string name="preference_incognito_title">وضع التصفح المتخفي</string>
     <string name="preference_incognito_summary">منع تخزين التاريخ والكوكيز</string>
     
+    
+    
+    
+    
+    
+    
+    
     <string name="preference_user_agent_title">وكيل المستخدم</string>
     <string-array name="preference_user_agent_options">
         <item>إفتراضي</item>
@@ -148,7 +156,7 @@
     <string name="preference_privacy_policy_title">سياسة الخصوصية</string>
     <string name="preference_terms_of_service_title">شروط الخدمة</string>
     <string name="preference_say_thanks_title">قل شكرا!</string>
-    <string name="preference_say_thanks_summary">مستمتع بإستخدام فقاعة العنوان؟الرجاء وضع رأيكم في البلاي ستور.</string>
+    
     <string name="preference_version_title">نسخة</string>
     <string name="preference_version_summary">ما هو الجديد؟</string>
     
@@ -181,9 +189,10 @@
 
     <string name="histroy_unread">غير مقروء</string>
     <string name="histroy_all">الكل</string>
+    
     <string name="history">التاريخ</string>
     <string name="erase_all_history_title">مسح الكل؟</string>
-    <string name="erase_all_history_message">مسح جميع تاريخ المتصفح في فقاعة العنوان؟</string>
+    
     <string name="empty">فارغ</string>
     <string name="history_already_empty">التاريخ فارغ مسبقا</string>
     <string name="private_data_cleared">البيانات الخاصة أفرغت</string>
@@ -194,7 +203,7 @@
     <string name="link_loaded_with_app">حملت باستخدام %1$s</string>
     <string name="link_redirected">إعادة توجيه إلى %1$s</string>
 
-    <string name="tampered_apk">نسختك من فقاعة العنوان عدل عليها بشكل غير قانوني لذلك لن تعمل بكفاءة.الرجاء إعادة تنصيبها من البلاي ستور.</string>
+    
 
     <string name="bubble_link_copied_to_clipboard">تم نسخ عنوان الفقاعة إلى الحافظة.</string>
     <string name="link_copied_to_clipboard">تم نسخ العنوان  إلى الحافظة.</string>
@@ -217,49 +226,38 @@
     <string name="faq_close_tab_question">كيف يمكنني إغلاق نافذة بسرعة؟</string>
     <string name="faq_close_tab_answer">الضغط على زر الرجوع هو أسرع طريقة.سحب النافذة إلى زر الإغلاق طريقة أخرى جيدة.</string>
     <string name="faq_back_button_minimize_question">أعتقد أن ضغط زر الخلف يجب أن يقوم بتصغير النافذة!</string>
-    <string name="faq_back_button_minimize_answer">تصغير فقاعة العنوان عند الضغط على زر العودة الأجهزة ليست مجدية. 
-خذ بالإعتبار الحالة التالية:
-1-تم تشغيل عنوان بالنافذة الأولى.
-2-تضغط على رابط بنفس النافذة,فيحولك للرابط الجديد بنفس النافذة.
-3-الان تريد العودة للعنوان السابق.
-كيف تستطيع العودة للعنوان السابق إذا كان زر الخلف يغلق الفقاعة؟الضغط على علامة الخلف بالمتصفح غير ظاهرة.
-فقاعة العنوان هو متصفح,ويتبع أساسيات المتصفحات في الأندرويد إذا تم ضغط زر الخلف ولا يوجد هناك عناوين سابقة بنفس الصفحة سوف يتم إغلاق المتصفح.</string>
-    <string name="faq_app_internal_browser_question">فقاعة العنوان لا يقوم بإعتراض العناوين</string>
+    
+    
     
     
     
     <string name="faq_future_features_question">هل ستقوم بإضافة العلامات المرجعية,المفضلة,الإضافات,إلخ؟</string>
-    <string name="faq_future_features_answer">لاتقول لا أبدا, لكن حاليا فقاعة العنوان أكثر تركيزا على أن يكون أفضل طريقة لتحميل العناوين و الحصول عليها من التطبيقات الأخرى.</string>
+    
     
     
     <string name="faq_roadmap_question">هل تنشر خارطة  المميزات المستقبلية؟ هل يمكنني  التصويت على   القادم من الميزات؟</string>
     <string name="faq_roadmap_answer">لأسباب تنافسية الجواب على السؤالين المطروحين للأسف لا.</string>
-    <string name="faq_alternate_payment_answer">فقاعة العنوان حاليا يدعم فقط الشراء عن طريق القوقل بلاي.نأمل إضافة طرق أخرى للشراء في المستقبل بشرط ألا تخالف سياسة مطوري قوقل بلاي.</string>
-    <string name="faq_cant_type_url_question">لما>ا لا أستطيع كتابة نوع العنوان الذي أريد زيارته؟</string>
-    <string name="faq_cant_type_url_answer">هذا هو المقصود.فقاعة العنوان لم يصمم ليستبدل المتصفح,لكن بدلا من ذلك لتحميل وعرض العناوين من التطبقات بطريقة سهلة,للمساعدة وبأسرع طريقة ممكنة.
-إذا كنت تريد تحميل عنوان جديد عن طريق فقاعة العنوان ,أبحث عن الصفحة بإستخدام قوقل ناو وتحميل النتائج بإستخدام فقاعة العنوان طريقة جيدة لفعل >لك.
-لتحميل سريع لمفضلتك, أنا اجد أن نافذ الإشارات المرجعية للكروم تكون مساعدة جدا.</string>
+    
+    
+    
     <string name="faq_copy_text_question">لماذا لا أستطيع نسخ نص من صفحة الأنترنت؟</string>
-    <string name="faq_copy_text_answer">للأسف قيود نظام أندرويد تمنع هذا من العمل.</string>
+    
     <string name="faq_translucent_status_bar_question">لماذا لا يسمح البرنامج السحب فوق الشريط الشفاف للحالة؟</string>
     <string name="faq_translucent_status_bar_answer">للأسف نظام أندرويد يمنع هذا.</string>
     <string name="faq_beta_programme_question">هيل يوجد هناك نسخة أولية للبرنامج؟هل أستطيع الإنضمام؟</string>
     
-    <string name="faq_low_spec_performance_question">لماذا  فقاعة العنوان يشتغل ببطء على الجهاز فئة نيكسس S / جالاكسي S1 / موتو جي ؟</string>
-    <string name="faq_low_spec_performance_answer">فقاعة العنوان هو تطبيق مكثف الموارد جدا، وبالتالي الأجهزة مع المواصفات أقل 
-يمكن النضال من أجل تشغيل التطبيق ليس  كالأجهزة الأكثر قوة. وتهدف التحديثات المستقبلية لتحسين أداء فقاعة العنوان.ولكن هناك فقط القليل لنستطبع فعله بواقعية هنا.</string>
+    
+    
     <string name="faq_crap_webview_question">في بعض الأحيان الصفحات لا تعرض بشكل صحيح أو الفيديو لا يشتغل؟</string>
-    <string name="faq_crap_webview_answer">يستخدم فقاعة العنوان معيار الأندرويد لعرض الويب، ولكن للأسف أنه لا يمكن الاعتماد عليها في بعض الأحيان. 
-ومن المرجح أن يتم التحقيق في أساليب تقديم بديل على شبكة الإنترنت مثل فايرفوكس والقيكو فيو وغيرها في المستقبل.</string>
-    <string name="faq_ongoing_notificaion_question">لماذا التنبيهات الجارية تعرض دائما عند تشغيل  فقاعة العنوان؟</string>
-    <string name="faq_ongoing_notificaion_answer">للأسف هذا التنبيه  ضروري لتشجيع نظام تشغيل الأندرويد على عدم إنهاء 
-فقاعة العنوان.</string>
+    
+    
+    
     <string name="faq_next_update_eta_question">متى سيكون التحديث القادم؟</string>
     <string name="faq_next_update_eta_answer">لايوجد وقت محدد لأانه عند وضع وقت وتم التخلف عن هذا الوقت يثير استياء الناس لأنهم يرونه وعد وليس تقدير .</string>
-    <string name="faq_close_quickly_question">كيف يمكنني توقيف فقاعة العنوان عن العمل؟</string>
-    <string name="faq_close_quickly_answer">إسحب ن أعلى الشاشة لفتح ستارة التنبيهات وإضغط على تنبيه Brave</string>
-    <string name="faq_change_default_browser_question">كيف يمكنني إزالة فقاعة العنوان كمتصفح إفتراضي؟</string>
-    <string name="faq_change_default_browser_answer">إعدادات النظام>تطبيقات> المحملة> Brave> إزالة الإفتراض</string>
+    
+    
+    
+    
     <string name="faq_report_bug_question">التبليغ عن خطأ</string>
     <string name="faq_report_bug_answer">اإيميل</string>
 
@@ -272,7 +270,7 @@
     <string name="activity_resolver_use_always">دائما</string>
     <string name="activity_resolver_use_once">مرة واحدة</string>
 
-    <string name="credits_title">شكر فقاعة العنوان</string>
+    
     
     <string name="credits_credit">مفهوم والتصميم والبرمجة</string>
     
@@ -286,7 +284,7 @@
     <string name="content_description_button">زر</string>
     <string name="content_description_target_icon">أيقونة فقاعة الهدف</string>
     <string name="content_description_close_bubble_icon">أيقونة إغلاق الفقاعة</string>
-    <string name="content_description_link_bubble_logo">شعار فقاعة العنوان</string>
+    
     <string name="content_description_app_icon">شعار التطبيق</string>
     <string name="content_description_youtube_video_thumbnail">فيديو يوتيوب المصغرة</string>
     <string name="content_description_history">التاريخ</string>
@@ -295,26 +293,26 @@
 
     <string name="requesting_location_message">%1$s يطلب معرفة مكانك.السماح؟</string>
 
-    <string name="accept_terms_and_privacy">بالإستمرار,تعترف أنك تقبل فقاعة العنوان</string>
-
-    <string name="service_name">فقاعة العنوان العارض</string>
-    <string name="notification_title">فقاعة العنوان</string>
-
-    <string name="store_listing_title">فقاعة العنوان</string>
-    <string name="store_listing_promo_text">تصفح الجوال بالطريقة الصحيحة.</string>
-    <string name="store_listing_description_title">فقاعة العنوان هو متصفح جديد مصمم خصيصا للأجهزة المحمولة.</string>
     
-    <string name="store_listing_description_location_permission">بشأن الإذن للموقع: هذا مطلوب حتى يتسنى لك  منح الإذن لموقع على شبكة الانترنت للوصول إلى الموقع الخاص بك (مثل تلك التي تتضمن خريطة لموقع معين).  فقاعة العنوان نفسه لايدخل  إلى الموقع الخاص بك أبدا.</string>
 
-    <string name="welcome_page_title">مرحبا بك في فقاعة العنوان!</string>
+    
+    
+
+    
+    <string name="store_listing_promo_text">تصفح الجوال بالطريقة الصحيحة.</string>
+    
+    
+    
+
+    
     <string name="welcome_page_intro_title">كيف يعمل؟</string>
     <string name="welcome_page_intro_point_1">إضغط على عنوان في التطبيق.</string>
     <string name="welcome_page_intro_point_2">فقاعة سوف تظهر في جانب الشاشة وتبدأ بتحميل العنوان في الخلفية. عندما تنتهي الصفحة من التحميل,سوف تظهر.</string>
-    <string name="welcome_page_intro_end">إنه بهذه البساطة!بإستخدام فقاعة العنوان,سوف إكمال استخدامك لتطبيقك الحالي عوضا عن تضييع وقتك في مشاهدة العناوين وتحويلها والوقت اللتي تستغرقه بالتحميل.مالذي لاتحبه في هذا؟</string>
+    
     <string name="welcome_page_more_title">أرني المزيد!</string>
     <string name="welcome_page_more_pocket_start">تستطيع أيضا مشاركة عوان بسرعة أو إضافته إلى تطبيق مثل بوكيت.</string>
     <string name="welcome_page_more_pocket_end">يبدو ممتعا ومفيدا أليس كذلك؟</string>
-    <string name="welcome_page_more_also">فقاعة العنوان أيضا:</string>
+    
     <string name="welcome_page_more_point_1">يعيد تحويل العناوين إلى تطبيق معين مثل الإنستقرام.</string>
     <string name="welcome_page_more_point_2">يجد فيديوهات مضمنة لتستطيع تحميلهم بسهولة في تطبيق اليوتيوب.</string>
     
@@ -323,6 +321,15 @@
 
     
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

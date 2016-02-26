@@ -25,6 +25,7 @@
     <string name="action_reload_page">Recarregar</string>
     <string name="action_open_in_browser">Abrir no %1$s</string>
     
+    
     <string name="action_open_in_new_bubble">Abrir em nova bolha</string>
     
     
@@ -48,20 +49,14 @@
     
     
 
-    <string name="share_invalid_data">Brave não consegue partilhar este elemento porque não é um URL válido.</string>
-    
-    
-
     
     
     
 
     
     
+    
 
-    
-    
-    
     
     
 
@@ -70,9 +65,22 @@
     
     
     
+
+    
+    
+    
+    
+    
     
     
 
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -179,6 +187,7 @@
 
     
 
+    
     
     
     
@@ -312,6 +321,15 @@
 
     
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

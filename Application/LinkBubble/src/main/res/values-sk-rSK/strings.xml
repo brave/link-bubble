@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     
-    <string name="send_intent_label">Otvoriť s Brave</string>
+    
     <string name="notification_summary">Stlač pre skrytie všetkých otvorených bublín</string>
     <string name="notification_default_summary">Stlač pre skrytie, roztiahni pre zavretie všetkých</string>
     <string name="notification_unhide_summary">Stlač pre odhalenie, roztiahni pre zavretie všetkých</string>
@@ -24,6 +24,7 @@
     <string name="action_help">Pomoc</string>
     <string name="action_reload_page">Obnoviť</string>
     <string name="action_open_in_browser">Otvoriť v %1$s</string>
+    
     
     <string name="action_open_in_new_bubble">Otvoriť v novej bubline</string>
     
@@ -48,7 +49,7 @@
     
     
 
-    <string name="share_invalid_data">Brave toto nedokáže zdieľať (neplatná URL)</string>
+    
     
     
 
@@ -60,7 +61,7 @@
     <string name="undo_close_tab_no_title">Zavretý tab</string>
 
     <string name="pick_default_app">Zvoliť predvolenú app</string>
-    <string name="default_browser_set">Brave bol zvolený ako predvolený prehliadač.</string>
+    
     <string name="invalid_send_action">Funkčný link nenájdený.</string>
     <string name="unable_to_launch_app">Nemožno spustiť aplikáciu tretích strán.</string>
     <string name="clear_history">Vymazať históriu</string>
@@ -92,6 +93,13 @@
     
     <string name="preference_more">Viac...</string>
     <string name="preference_intercept_links_from_title">Prijímaj linky z aplikácii</string>
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -179,6 +187,7 @@
 
     
 
+    
     
     
     
@@ -312,6 +321,15 @@
 
     
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

@@ -4,8 +4,8 @@
     <string name="download_activity_label">Téléchargeur</string>
     <string name="send_intent_label">Ouvrir avec Brave</string>
     <string name="notification_summary">Appuyez pour masquer toutes les bulles ouvertes</string>
-    
-    
+    <string name="notification_default_summary">Appuyer pour masquer, développer pour tout fermer</string>
+    <string name="notification_unhide_summary">Appuyer pour démasquer, développer pour tout fermer</string>
     <string name="notification_action_close_all">Tout fermer</string>
     <string name="notification_action_hide">Cacher</string>
     <string name="share_picker_label">Choix de l\'outil de partage</string>
@@ -15,7 +15,7 @@
     <string name="cancel">Annuler</string>
 
     <string name="action_ok">OK</string>
-    
+    <string name="action_open">Ouvrir</string>
     <string name="action_remove">Retirer</string>
     <string name="action_cancel">Annuler</string>
     <string name="action_clear_data">Effacer les données</string>
@@ -24,45 +24,46 @@
     <string name="action_help">Aide</string>
     <string name="action_reload_page">Recharger</string>
     <string name="action_open_in_browser">Ouvrir dans %1$s</string>
-    
+    <string name="action_request_desktop_site">Demander la version bureau</string>
+    <string name="action_site_protection">Activer les boucliers de Brave</string>
     <string name="action_open_in_new_bubble">Ouvrir dans une nouvelle bulle</string>
-    
-    
+    <string name="action_open_link_in_new_bubble">Ouvrir le lien dans une nouvelle bulle</string>
+    <string name="action_open_image_in_new_bubble">Ouvrir l\'image dans une nouvelle bulle</string>
     <string name="action_copy_to_clipboard">Copier le lien</string>
-    
+    <string name="action_save_image">Enregistrer l\'image</string>
     <string name="action_share">Partager</string>
     <string name="action_close_all">Tout fermer</string>
-    
+    <string name="action_new_bubble">Nouvelle bulle</string>
     <string name="action_close_tab">Fermer la bulle</string>
     <string name="action_stop">Stop</string>
-    <string name="action_undo">Défaire</string>
+    <string name="action_undo">Annuler</string>
     <string name="action_add">Ajouter</string>
     <string name="action_no_recommended">Non (recommandé)</string>
     <string name="share_via">Partager via…</string>
     <string name="not_set">Non défini</string>
 
-    
-    
-    
+    <string name="error_saving_image">Erreur d\'enregistrement d\'image.</string>
+    <string name="image_saved">Image téléchargée.</string>
+    <string name="notice_download_started">Téléchargement commencé.</string>
 
-    
-    
+    <string name="warning">Alerte !</string>
+    <string name="untrusted_certificate">Le certificat du %1$s est invalide. Continuer malgré tout ?</string>
 
-    <string name="share_invalid_data">Brave ne peut pas partager cet élément car ce n\'est pas une URL valide.</string>
+    <string name="share_invalid_data">Brave ne peut pas partager cet élément, car ce n\'est pas une URL valide.</string>
     <string name="consume_activity_not_found">Impossible de trouver l\'application. Veuillez changer l\'action de la bulle dans les paramètres.</string>
-    
+    <string name="consume_activity_security_exception">Impossible de partager avec l\'application externe.</string>
 
     <string name="upgrade">Mettre à niveau</string>
-    
-    
+    <string name="upgrade_theme">Utiliser un autre thème ?</string>
+    <string name="upgrade_theme_toolbar">Faire correspondre la couleur de la barre d\'outils aux couleurs des sites web ?</string>
 
-    
-    
+    <string name="undo_close_tab_title">%1$s fermé</string>
+    <string name="undo_close_tab_no_title">Onglet fermé</string>
 
     <string name="pick_default_app">Sélectionnez l\'application par défaut</string>
-    <string name="default_browser_set">Brave a été définie comme navigateur par défaut.</string>
-    
-    
+    <string name="default_browser_set">Brave a été défini comme navigateur par défaut.</string>
+    <string name="invalid_send_action">Lien valide non trouvé.</string>
+    <string name="unable_to_launch_app">Impossible de lancer l\'application tierce.</string>
     <string name="clear_history">Nettoyer l\'historique</string>
 
     <string name="preference_category_general">Général</string>
@@ -75,7 +76,7 @@
 
     <string name="preference_left_consume_bubble_title">Bulle de gauche</string>
     <string name="preference_right_consume_bubble_title">Bulle de droite</string>
-    
+    <string name="preference_double_tap_title">Double-clic sur lien</string>
     <string name="preference_configure_bubble_title">Configurer la bulle</string>
     <string name="preference_category_debug">Débogage</string>
     <string name="preference_default_browser">Navigateur de repli par défaut</string>
@@ -83,36 +84,38 @@
     <string name="preference_category_fallback_browser">Navigateur de repli par défaut</string>
     <string name="preference_category_other_apps">Autres applications</string>
     <string name="preference_default_apps_title">Applications par défaut</string>
-    
+    <string name="preference_default_apps_summary">Navigateur de repli, applications spécifiques aux URLs</string>
     <string name="preference_default_apps_notice_summary">Utilisé lorsqu\'une ou plusieurs applications hors navigateurs peuvent traiter une URL.\n\n
 Appuyez dessus pour en retirer une.</string>
-    <string name="preference_default_apps_notice_no_defaults_summary">Utilisé lorsqu\'une ou plusieurs applications hors navigateurs peuvent traiter une URL, vous pouvez configurer l\'application chargeant ces liens par défaut.\n\nL\'application par défaut à utiliser dans ce cas est configurée lorsque vous chargez des liens avec Brave.</string>
+    <string name="preference_default_apps_notice_no_defaults_summary">Utilisé lorsqu\'une ou plusieurs applications hors navigateur peut traiter une URL,
+vous pouvez configurer l\'application par défaut pour charger de tels liens.\n\nL\'application par défaut à utiliser dans ce cas est configurée quand
+vous chargez des liens avec Brave.</string>
     <string name="preference_google_account_redirect_title">Redirection compte Google</string>
     <string name="preference_google_account_redirect_summary">Rediriger les liens accounts.google.com vers le navigateur par défaut.</string>
     <string name="preference_set_default_browser_title">Définir comme navigateur par défaut</string>
-    
+    <string name="preference_set_default_browser_summary">Brave doit être défini comme le navigateur par défaut du système pour fonctionner. Appuyez pour configurer.</string>
     <string name="preference_more">Plus…</string>
     <string name="preference_intercept_links_from_title">Intercepter les liens depuis</string>
-    
+    <string name="preference_intercept_links_from_disabled_for_L">A partir d\'Android 5.0, Google a supprimé l\'API nécessaire à cette fonctionnalité.</string>
     <string name="preference_scan_for_youtube_embeds_title">Vérifier les incrustations YouTube</string>
     <string name="preference_scan_for_youtube_embeds_summary">Afficher le raccourci pour charger les vidéos intégrées dans l\'application Youtube.</string>
-    
+    <string name="preference_webview_battery_save_title">Mode économiseur de batterie (Bêta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Aggressif</string>
-    
+    <string name="preference_webview_battery_save_aggressive_summary">Interrompre la mise à jour des pages Web lorsque Brave est réduit.\nLes pages en cours de chargement seront chargées avant l\'interruption.</string>
     <string name="preference_webview_battery_save_default_title">Par défaut</string>
-    
+    <string name="preference_webview_battery_save_default_summary">Interrompre la mise à jour des pages web lorsque l\'écran est éteint et reprendre lorsque l\'appareil est déverrouillé.\nLes pages en cours de chargement seront chargées avant l\'interruption.</string>
     <string name="preference_webview_battery_save_off_title">Off</string>
-    
+    <string name="preference_webview_battery_save_off_summary">Les pages web sont toujours actives. Utile lorsque vous regardez des vidéos en streaming sur YouTube et autres.</string>
     <string name="preference_theme_title">Thème</string>
     <string name="preference_theme_light_color">Clair + icônes colorées</string>
     <string name="preference_theme_light_no_color">Clair + couleurs neutres</string>
     <string name="preference_theme_dark_color">Sombre + icônes colorées</string>
     <string name="preference_theme_dark_no_color">Sombre + couleurs neutres</string>
-    
-    
+    <string name="preference_theme_toolbar_title">Couleur de la barre d\'outils</string>
+    <string name="preference_theme_toolbar_summary">Pour être assorti aux couleurs de l\'icône ou du thème d\'un site Web</string>
     <string name="preference_article_mode_title">Mode lecture</string>
-    
-    
+    <string name="preference_reading_mode_on_wear_title">Mode lecture sur Android Wear</string>
+    <string name="preference_article_mode_summary">Activé par le bouton sur la barre d\'action</string>
     <string name="preference_webview_text_zoom_title">Zoom du texte</string>
     <string name="preference_webview_text_zoom_note">À noter : Les bulles actuelles vont être rechargées avec le nouveau zoom choisir après avoir appuyé sur « OK ».</string>
     <string name="preference_webview_text_zoom_reloading_current">Nouveau zoom de texte appliqué. Rechargement des bulles…</string>
@@ -125,7 +128,14 @@ Appuyez dessus pour en retirer une.</string>
     <string name="preference_clear_passwords">Mot de passe</string>
     <string name="preference_incognito_title">Mode incognito</string>
     <string name="preference_incognito_summary">Empêcher le stockage de l\'historique et des cookies</string>
-    
+    <string name="incognito_mode_changed_reloading_current">Le paramètre « mode incognito » a été modifié. Chargement de vos bulles actuelles...</string>
+    <string name="preference_trackingprotection_summary">Empêcher le chargement des ressources qui vous pistent</string>
+    <string name="preference_adblock_title">Blocage des publicités</string>
+    <string name="preference_adblock_summary">Empêcher le chargement des publicités</string>
+    <string name="preference_trackingprotection_title">Mode de protection de suivi</string>
+    <string name="preference_adblock_tracking_protection_from_disabled">Cette fonctionnalité est uniquement disponible à partir d\'Android 5.0 et supérieure.</string>
+    <string name="preference_https_everywhere_title">HTTPS Everywhere</string>
+    <string name="preference_https_everywhere_summary">Ouvrir les sites en utilisant HTTPS plutôt que HTTP</string>
     <string name="preference_user_agent_title">User Agent</string>
     <string-array name="preference_user_agent_options">
         <item>Par défaut</item>
@@ -134,13 +144,13 @@ Appuyez dessus pour en retirer une.</string>
         <item>Chrome Bureau</item>
     </string-array>
 
-    
-    
-    
+    <string name="preference_domains_title">Redirections de domaines</string>
+    <string name="preference_domains_summary">Spécifier les liens à toujours charger dans votre navigateur de repli.</string>
+    <string name="preference_redirects_title">Rediriger vers le navigateur de repli</string>
     <string name="preference_add_domain_title">Ajouter un domaine</string>
-    
-    
-    
+    <string name="add_domain_hint">Hôte URL</string>
+    <string name="add_domain_detail">Préciser uniquement la section « principale » de l\'adresse d\'un site web. Par exemple, \'accounts.google.com\' ou \'bbc.co.uk\'.</string>
+    <string name="add_domain_error">Impossible d\'ajouter \"%1$s\", car l’hôte URL est invalide.</string>
 
     <string name="preference_help_title">Aide</string>
     <string name="preference_show_welcome_message_title">Afficher la page de bienvenue</string>
@@ -153,20 +163,20 @@ Appuyez dessus pour en retirer une.</string>
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">Dernières nouveautés</string>
     <string name="preference_more_title">Plus&#8230;</string>
-    
+    <string name="preference_show_undo_close_tab_title">Invite « annuler la fermeture de l\'onglet »</string>
 
-    
-    
+    <string name="preference_my_other_apps_title">Plus d\'applications par Brave</string>
+    <string name="preference_my_other_apps_summary">Vous aimez Brave ? N\'hésitez pas à consulter nos autres applications !</string>
 
     <string name="remove_default_title">Retirer l\'action par défaut ?</string>
     <string name="remove_default_message">Retirer %1$s comme application par défaut pour l\'ouverture des liens %2$s ? \n\nNote: vous pourrez définir une nouvelle application par défaut la prochaine fois que vous ouvrirez un lien %2$s.</string>
-    
-    
+    <string name="long_press_unsupported_default_browser">Impossible d\'afficher cet objet. Ouvrir le lien dans %1$s ?</string>
+    <string name="long_press_unsupported_no_default_browser">Impossible d\'afficher cet objet. Ouvrir le lien dans un navigateur.</string>
     <string name="unsupported_scheme_default_browser">Type de lien actuellement non compatible. Ouvrir la page dans %1$s ?</string>
     <string name="unsupported_scheme_no_default_browser">Type de lien actuellement non compatible. Ouvrir la page dans le navigateur ?</string>
     <string name="unsupported_scheme">Type de lien actuellement non compatible.</string>
-    
-    
+    <string name="unsupported_drop_down_default_browser">Impossible d\'interagir avec cet objet. Ouvrir dans %1$s ?</string>
+    <string name="unsupported_drop_down_no_default_browser">Impossible d\'interagir avec cet objet. Ouvrir dans un navigateur ?</string>
 
     <string name="consume_category_view">Voir lien</string>
     <string name="consume_category_share">Envoyer ou partager le lien</string>
@@ -182,6 +192,7 @@ Appuyez dessus pour en retirer une.</string>
 
     <string name="histroy_unread">Non lu</string>
     <string name="histroy_all">Tout</string>
+    <string name="new_bubble">Nouvelle bulle</string>
     <string name="history">Historique</string>
     <string name="erase_all_history_title">Tout effacer ?</string>
     <string name="erase_all_history_message">Supprimer la totalité de votre historique de navigation Brave ?</string>
@@ -190,12 +201,12 @@ Appuyez dessus pour en retirer une.</string>
     <string name="private_data_cleared">Données privées effacées</string>
     <string name="private_data_cleared_reloading_current">Données privées effacées. Chargement de vos bulles actuelles...</string>
     <string name="user_agent_changed_reloading_current">Le User Agent a été modifié. Chargement de vos bulles actuelles...</string>
-    
-    
+    <string name="theme_toolbar_reloading_current">Le paramètre « couleur de la barre d\'outils » a été modifié. Chargement de vos bulles actuelles...</string>
+    <string name="article_mode_changed_reloading_current">Le paramètre « mode lecture » a été modifié. Chargement de vos bulles actuelles...</string>
     <string name="link_loaded_with_app">Chargé avec %1$s</string>
     <string name="link_redirected">Rediriger vers %1$s</string>
 
-    <string name="tampered_apk">Votre version de Brave a été modifiée illégalement et ne fonctionnera pas de façon fiable. Réinstallez-la depuis le Play Store svp.</string>
+    <string name="tampered_apk">Votre version de Brave a été modifiée illégalement et ne fonctionnera pas de façon fiable. Veuillez réinstaller depuis le Play Store.</string>
 
     <string name="bubble_link_copied_to_clipboard">Lien de la bulle copié dans le presse-papier.</string>
     <string name="link_copied_to_clipboard">Lien copié dans le presse-papier.</string>
@@ -218,46 +229,38 @@ Appuyez dessus pour en retirer une.</string>
     <string name="faq_close_tab_question">Comment puis-je rapidement fermer un onglet ?</string>
     <string name="faq_close_tab_answer">Appuyer sur la touche retour est le moyen le plus rapide. Un autre moyen est de déplacer la bulle sur le bouton Fermer.</string>
     <string name="faq_back_button_minimize_question">Je pense qu\'appuyer sur le bouton Retour devrait minimiser le navigateur!</string>
-    <string name="faq_back_button_minimize_answer"><![CDATA[Minimiser Brave en appuyant sur le bouton Retour n\'est pas possible.
-Prenons l\'exemple suivant:<br/>
-1). exemple.com/page1 est chargée dans le premier onglet.<br/>
-2). Vous cliquez sur un lien sur cette page et chargez exemple.com/page2 dans le même onglet.<br/>
-3). Vous voulez à présent revenir sur le lien de l\'étape 1.<br/><br/>
-Comment pouvez-vous le faire si un clic sur le bouton Retour minimise Brave ? Appuyer sur le petit indicateur retour sur l\'onglet n\'est pas faisable.<br/><br/>
-Brave est un navigateur et les navigateurs Android ont pour standard établi le fait soit de revenir en arrière dans la chaîne des URL, soit, si une telle chaîne n\'existe pas, de fermer la page actuelle quand le bouton Retour est pressé.
-Brave suit ce standard.]]></string>
-    <string name="faq_app_internal_browser_question"><![CDATA[Brave n\'intercepte pas de liens!]]></string>
     
+    <string name="faq_app_internal_browser_question"><![CDATA[Brave n\'intercepte pas de liens !]]></string>
     
+    <string name="faq_article_mode_question">Comment utiliser le « mode lecture » ? Pourquoi certains liens ne marchent pas ?</string>
     
     <string name="faq_future_features_question">Allez-vous ajouter les signets, favoris, extensions etc.?</string>
-    <string name="faq_future_features_answer">Ne jamais dire jamais, mais pour le moment Brave est concentrée uniquement sur le fait d\'être la meilleure solution pour ouvrir et consommer des liens ouverts depuis d\'autres applications.</string>
+    
     <string name="faq_translations_question">Puis-je aider à traduire l\'application ?</string>
     
     <string name="faq_roadmap_question">Avez-vous une feuille de route ? Puis-je voter pour les fonctionnalités à venir ?</string>
     <string name="faq_roadmap_answer">Pour des raisons de concurrence, j\'ai peur que la réponse à ces deux questions soit \'non\'.<br/><br/></string>
-    <string name="faq_alternate_payment_answer"><![CDATA[Brave ne supporte que les achats via Google Play pour le moment.<br/><br/>Des méthodes additionnelles de paiement seront peut-être ajoutées dans le futur (en présumant qu\'elles ne violent pas les conditions d\'utilisation Google Play Developper Program)]]></string>
-    <string name="faq_cant_type_url_question">Pourquoi ne puis-je pas taper l\'URL du lien que je souhaite visiter ?</string>
-    <string name="faq_cant_type_url_answer"><![CDATA[Cela est prévu ainsi. Brave n\'est pas conçu pour être un navigateur de remplacement, mais pour charger et afficher les liens des autres applications aussi élégamment, intuitivement et rapidement que possible.<br/><br/>Si vous souhaitez charger une nouvelle url dans Brave, vous pouvez rechercher la page via Google Now et charger le résultat avec Brave<br/><br/>Pour charger rapidement vos favoris Je trouve que les widgets de favoris de Chrome sont vraiment très efficaces.]]></string>
+    
+    <string name="faq_cant_type_url_question">Comment saisir le nom d\'un lien que je souhaite visiter ?</string>
+    <string name="faq_cant_type_url_answer"><![CDATA[Il suffit d\'appuyer sur le titre de la page/URL. Ceci passera en mode édition et vous fournira des suggestions basées sur votre historique et vos favoris.]]></string>
     <string name="faq_copy_text_question">Pourquoi ne puis-je pas copier de texte depuis la page web ?</string>
-    <string name="faq_copy_text_answer"><![CDATA[Malheureusement des limitations systèmes d\'Android empêchent cela de fonctionner.<br/><br/>Réponse technique :
-La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis une Activity, mais pas depuis un Service (que Brave utilise).]]></string>
+    
     <string name="faq_translucent_status_bar_question">Pourquoi l\'application ne dessine-t-elle pas par-dessus la barre de statut transparente ?</string>
     <string name="faq_translucent_status_bar_answer">Malheureusement des limitations systèmes d\'Android empêchent cela.</string>
     <string name="faq_beta_programme_question">Y a-t-il un programme bêta ? Comment puis-je le rejoindre ?</string>
-    
+    <string name="faq_beta_programme_answer">Des détails sur le programme bêta seront annoncé au moment convenu. Gardez un œil sur mon profil Google+ (+Brave) pour les annonces.</string>
     <string name="faq_low_spec_performance_question">Pourquoi Brave est-il si lent sur mon Nexus S / Galaxy S1 / Moto G ?</string>
-    <string name="faq_low_spec_performance_answer"><![CDATA[Brave est très gourmande en ressources et par conséquent les appareils disposant de specs plus basses peuvent avoir du mal à la faire tourner aussi bien que les terminaux plus puissant. De futures mises à jour vont essayer d\'améliorer les performances de Brave mais il ne faut pas s\'attendre à des miracles.<br/><br/>Réponse technique: Au minimum, Brave nécessite l\'utilisation d\'un Service et une WebView pour fonctionner. Il y a souvent plusieurs WebViews et de multiples Activités. Naturellement, l\'allocation de ces items (surtout les WebViews) consomme <i>beaucoup<i> de mémoire/ressources. Les appareils peu puissants disposent généralement de moins de mémoire que ce que Brave nécessite et les performances seront affectées. Par exemple, le maximum d\'allocation mémoire sur le Nexus S est de 48Mb, comparé aux 192Mb sur le Nexus 5.]]></string>
+    
     <string name="faq_crap_webview_question">Parfois les pages web n\'affichent pas correctement ou ne jouent pas les vidéos.</string>
-    <string name="faq_crap_webview_answer"><![CDATA[Brave utilise de standard Android WebView, mais malheureusement il est parfois peu fiable. Des méthodes alternatives de rendu web comme le GeckoView de FireFox et Chromium seront étudiez par la suite.<br/><br/>Dans la situation où une page web ne s\'affiche par correctement dans Brave, le plus simple est de la charger dans un navigateur traditionnel.]]></string>
+    
     <string name="faq_ongoing_notificaion_question">Pourquoi y a-t-il une notification permanente lorsque Brave est lancé ?</string>
-    <string name="faq_ongoing_notificaion_answer"><![CDATA[Malheureusement, cette notification permanente est nécessaire pour que l\'OS Android ne termine pas Brave.]]></string>
+    
     <string name="faq_next_update_eta_question">Quand sortira la prochaine version ?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[Quand ce sera prêt !<br/><br/>Il m\'est hélas impossible d\'être plus précis que ça (et même de faire une quelconque estimation).<br/><br/>En réalité, lorsqu\'on donne une date de sortie estimée, les gens, la plupart du temps, pensent que c\'est une date certaine et peuvent être déçus si le délai n\'est pas respecté pour quelle raison que ce soit.]]></string>
     <string name="faq_close_quickly_question">Comment puis-je rapidement empêcher Brave de se lancer ?</string>
-    <string name="faq_close_quickly_answer">Glissez depuis le haut de l\'écran pour ouvrir la barre de notification et cliquez sur la notification \"Brave\".</string>
+    <string name="faq_close_quickly_answer">Glissez depuis le haut de l\'écran pour ouvrir la barre de notification et cliquez sur la notification « Brave ».</string>
     <string name="faq_change_default_browser_question">Comment puis-je supprimer Brave comme navigateur par défaut ?</string>
-    <string name="faq_change_default_browser_answer">Paramètres -> Applications -> Téléchargées -> Brave -> Effacer les actions par défaut.</string>
+    
     <string name="faq_report_bug_question">Signaler un bogue</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
 
@@ -270,21 +273,21 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
     <string name="activity_resolver_use_always">Toujours</string>
     <string name="activity_resolver_use_once">Juste une fois</string>
 
-    <string name="credits_title">Crédits de Brave</string>
+    <string name="credits_title">Crédits</string>
     <string name="credits_name">Brave</string>
     <string name="credits_credit">Concept, design et programmation</string>
     <string name="credits_app_copyright">Copyright 2015, Brave.</string>
 
     
     <plurals name="restore_tabs_from_previous_session">
-        <item quantity="one">Restore tab from previous session?</item>
-        <item quantity="other">Restore %d tabs from previous session?</item>
+        <item quantity="one">Restaurer l\'onglet de la session précédente ?</item>
+        <item quantity="other">Restaurer %d onglets de la session précédente ?</item>
     </plurals>
 
     <string name="content_description_button">Bouton</string>
     <string name="content_description_target_icon">Icône de la cible bulle</string>
     <string name="content_description_close_bubble_icon">Icône de la bulle fermer</string>
-    <string name="content_description_link_bubble_logo">Logo Brave</string>
+    <string name="content_description_link_bubble_logo">Logo de Brave</string>
     <string name="content_description_app_icon">Icône de l\'application</string>
     <string name="content_description_youtube_video_thumbnail">vignette de la vidéo YouTube</string>
     <string name="content_description_history">Historique</string>
@@ -293,50 +296,58 @@ La fonctionnalité de copie fonctionne quand vous utilisez les WebView depuis un
 
     <string name="requesting_location_message">%1$s demande votre localisation. L\'autoriser ?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[Si vous continuez, vous acceptez les <a href="http://www.linkbubble.com/terms">conditions d\'utilisation</a> et la <a href="http://www.linkbubble.com/privacy">politique de confidentialité</a> de Brave.]]>
-</string>
+    
 
-    <string name="service_name">Moteur de rendu Brave</string>
+    <string name="service_name">Brave</string>
     <string name="notification_title">Brave</string>
 
     <string name="store_listing_title">Brave</string>
     <string name="store_listing_promo_text">La navigation web sur mobiles telle qu\'elle devrait l\'être.</string>
     <string name="store_listing_description_title">Brave est un tout nouveau navigateur web conçu et créé dans l\'optique d\'être utilisé sur des appareils mobiles.</string>
     
-    <string name="store_listing_description_location_permission">Concernant la permission de localisation : cela est requis pour les pages web demandant un accès à votre position (comme celles avec une carte intégrée). Brave en lui-même n’accédera jamais à votre position.</string>
+    
 
-    <string name="welcome_page_title">Bienvenue dans Brave !</string>
+    <string name="welcome_page_title">Bienvenue à Brave !</string>
     <string name="welcome_page_intro_title">Comment cela fonctionne-t-il ?</string>
     <string name="welcome_page_intro_point_1">Cliquez un lien dans une application.</string>
     <string name="welcome_page_intro_point_2">Une bulle va apparaître au bord de l\'écran et le lien va commencer à charger en tâche de fond. Dès que la page est chargée, elle s\'affichera.</string>
-    <string name="welcome_page_intro_end">C\'est aussi simple que cela ! Avec Brave vous pouvez continuer à utiliser votre application courante plutôt que de gaspiller votre temps à regarder les liens de redirection ou le chargement des pages. Qu\'y a-t-il à ne pas aimer là-dedans ?</string>
+    
     <string name="welcome_page_more_title">Montrez m\'en plus !</string>
     <string name="welcome_page_more_pocket_start">Vous pouvez aussi rapidement partager un lien ou l\'ajouter dans une application comme Pocket:</string>
     <string name="welcome_page_more_pocket_end">Ca a l\'air fun ET utile pas vrai ?</string>
-    <string name="welcome_page_more_also">Brave c\'est aussi:</string>
+    
     <string name="welcome_page_more_point_1">La redirection vers une application dédiée (par exemple Instagram).</string>
     <string name="welcome_page_more_point_2">La recherche de vidéos incrustées que vous pourrez facilement ouvrir dans l\'application YouTube.</string>
-    
+    <string name="welcome_page_more_point_3">Charger un nombre illimité de bulles en même temps.</string>
     <string name="welcome_page_more_point_4">Charger des liens depuis toutes les applications.</string>
     <string name="welcome_page_ps">PS: Pour fermer cette bulle, appuyez sur le bouton retour ou maintenez appuyé sur la bulle et posez la sur Fermer la bulle.</string>
 
-    
+    <string name="duplicate_link_will_not_be_loaded">Lien déjà chargé. Ignorer...</string>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="edit_url">Recherchez un terme ou entrez une adresse</string>
+    <string name="http_prefix">http://</string>
+    <string name="https_prefix">https://</string>
+    <string name="www_prefix">www.</string>
+    <string name="duck_duck_search_engine">https://duckduckgo.com/?q=</string>
+    <string name="google_search_engine">http://www.google.com/search?q=</string>
+    <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
+    <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>
+    <string name="top_500_prepend">Visiter</string>
+    <string name="url_bar_constraint_text_color">\'#4A4A4A\'</string>
+    <string name="search_for_with">Rechercher \"%2$s avec %1$s</string>
+    <string name="duck_duck_go">Duck Duck Go</string>
+    <string name="google">Google</string>
+    <string name="yahoo">Yahoo</string>
+    <string name="amazon">Amazon</string>
+    <string name="empty_bubble_page">file:///android_asset/blank.html</string>
+    <string name="adblock_url">https://s3.amazonaws.com/adblock-data/1/ABPFilterParserData.dat</string>
+    <string name="adblock_localfilename">FromUrlABPFilterParserData.dat</string>
+    <string name="tracking_protection_url">https://s3.amazonaws.com/tracking-protection-data/1/TrackingProtection.dat</string>
+    <string name="tracking_protection_localfilename">TrackingProtection.dat</string>
+    <string name="https_everywhere_rulesets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/rulesets.sqlite</string>
+    <string name="https_everywhere_targets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/httpse-targets.json</string>
+    <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
+    <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
+    <string name="whitelist_localfilename">listeblanche.dat</string>
 
 </resources>

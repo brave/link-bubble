@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">מוריד</string>
-    <string name="send_intent_label">פתיחה באמצעות Brave</string>
+    
     <string name="notification_summary">לחיצה להסתרת כל הבועות הפתוחות</string>
     <string name="notification_default_summary">לחיצה להסתרה, הרחבה לסגירת הכל</string>
     <string name="notification_unhide_summary">לחיצה להסתרה, הרחבה לסגירת הכל</string>
@@ -24,6 +24,7 @@
     <string name="action_help">עזרה</string>
     <string name="action_reload_page">טעינה מחודשת</string>
     <string name="action_open_in_browser">פתיחה באמצעות %1$s</string>
+    
     
     <string name="action_open_in_new_bubble">פתיחה בבועה חדשה</string>
     
@@ -48,7 +49,7 @@
     <string name="warning">אזהרה!</string>
     
 
-    <string name="share_invalid_data">Brave איננו יכול לשתף פריט זה מכיוון שהוא איננו כתובת אינטרנט תקפה.</string>
+    
     <string name="consume_activity_not_found">לא ניתן למצוא אפליקציה. תשקלו לשנות פעולת בועה דרך ההגדרות.</string>
     
 
@@ -60,7 +61,7 @@
     <string name="undo_close_tab_no_title">לשונית שנסגרה</string>
 
     <string name="pick_default_app">בחירת אפליקציית ברירת מחדל</string>
-    <string name="default_browser_set">Brave נקבע כדפדפן ברירת מחדל.</string>
+    
     <string name="invalid_send_action">לא נמצא קישור תקף.</string>
     
     <string name="clear_history">ניקוי ההיסטוריה</string>
@@ -126,6 +127,13 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
     <string-array name="preference_user_agent_options">
         <item>ברירת מחדל</item>
         <item>Chrome טלפון</item>
@@ -181,6 +189,7 @@
 
     <string name="histroy_unread">לא נקרא</string>
     <string name="histroy_all">הכל</string>
+    
     <string name="history">היסטוריה</string>
     <string name="erase_all_history_title">למחוק הכל?</string>
     
@@ -275,7 +284,7 @@
     <string name="content_description_button">כפתור</string>
     
     
-    <string name="content_description_link_bubble_logo">לוגו Brave</string>
+    
     <string name="content_description_app_icon">אייקון אפליקציה</string>
     
     <string name="content_description_history">היסטוריה</string>
@@ -289,13 +298,13 @@
     
     
 
-    <string name="store_listing_title">Brave</string>
+    
     
     
     
     
 
-    <string name="welcome_page_title">ברוך הבא ל-Brave!</string>
+    
     <string name="welcome_page_intro_title">כיצד זה עובד?</string>
     
     
@@ -312,6 +321,15 @@
 
     
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

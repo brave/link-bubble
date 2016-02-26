@@ -25,6 +25,7 @@
     <string name="action_reload_page">Yeniden yükle</string>
     <string name="action_open_in_browser">%1$s ile aç</string>
     <string name="action_request_desktop_site">Masaüstü sitesi iste</string>
+    <string name="action_site_protection">Brave kalkanlarını etkinleştir</string>
     <string name="action_open_in_new_bubble">Yeni baloncukta aç</string>
     <string name="action_open_link_in_new_bubble">Bağlantıyı yeni baloncukta aç</string>
     <string name="action_open_image_in_new_bubble">Resmi yeni baloncukta aç</string>
@@ -92,7 +93,7 @@ bağlantıları Brave ile açtığın zaman yapılandırılır.</string>
     <string name="preference_google_account_redirect_title">Google Hesabı yönlendirmesi</string>
     <string name="preference_google_account_redirect_summary">accounts.google.com bağlantılarını varsayılan yedek tarayıcıya yönlendir</string>
     <string name="preference_set_default_browser_title">Varsayılan sistem tarayıcısını ayarla</string>
-    <string name="preference_set_default_browser_summary">Brave çalışabilmek için varsayılan tarayıcı olarak ayarlanmalıdır. Yapılandırmak için dokun.</string>
+    <string name="preference_set_default_browser_summary">Brave çalışmak için varsayılan tarayıcı olarak ayarlanmalıdır. Ayarlamak için dokunun.</string>
     <string name="preference_more">Daha fazla...</string>
     <string name="preference_intercept_links_from_title">Bağlantıları şunlardan yakala</string>
     <string name="preference_intercept_links_from_disabled_for_L">Android 5.0 ile birlikte, Google bu işlev için gerekli API desteğini kaldırdı.</string>
@@ -128,6 +129,13 @@ bağlantıları Brave ile açtığın zaman yapılandırılır.</string>
     <string name="preference_incognito_title">Gizli Mod</string>
     <string name="preference_incognito_summary">Tüm geçmiş ve çerezlerin depolanmasını engelle.</string>
     <string name="incognito_mode_changed_reloading_current">Gizlilik ayarı değişti. Mevcut baloncuklar yeniden yükleniyor...</string>
+    <string name="preference_trackingprotection_summary">Seni izleyen kaynakların yüklenmesini önle</string>
+    <string name="preference_adblock_title">Reklam Engelleme</string>
+    <string name="preference_adblock_summary">Reklamların yüklenmesini önle</string>
+    <string name="preference_trackingprotection_title">İzlenme Koruması Modu</string>
+    <string name="preference_adblock_tracking_protection_from_disabled">Bu özellik sadece Android 5.0 ve üzerinde mevcuttur.</string>
+    <string name="preference_https_everywhere_title">Her yerde HTTPS</string>
+    <string name="preference_https_everywhere_summary">Siteleri HTTP yerine HTTPS kullanarak açar</string>
     <string name="preference_user_agent_title">Kullanıcı Aracısı</string>
     <string-array name="preference_user_agent_options">
         <item>Varsayılan</item>
@@ -152,14 +160,14 @@ bağlantıları Brave ile açtığın zaman yapılandırılır.</string>
     <string name="preference_privacy_policy_title">Gizlilik İlkesi</string>
     <string name="preference_terms_of_service_title">Hizmet Kullanım Şartları</string>
     <string name="preference_say_thanks_title">Teşekkürlerini ilet!</string>
-    <string name="preference_say_thanks_summary">Brave\'ı beğendin mi? Lütfen bir Play Store incelemesi yaz.</string>
+    <string name="preference_say_thanks_summary">Brave\'i beğendin mi? Lütfen bir Play Store incelemesi yaz.</string>
     <string name="preference_version_title">Sürüm</string>
     <string name="preference_version_summary">Neler yeni?</string>
     <string name="preference_more_title">Daha fazla&#8230;</string>
     <string name="preference_show_undo_close_tab_title">Kapatılan sekmeyi geri alma iletisi</string>
 
-    <string name="preference_my_other_apps_title">Brave\'dan başka uygulamalar</string>
-    <string name="preference_my_other_apps_summary">Brave\'ı beğendin mi? Neden başka uygulamalarımıza göz atmıyorsun?</string>
+    <string name="preference_my_other_apps_title">Brave\'den başka uygulamalar</string>
+    <string name="preference_my_other_apps_summary">Brave\'i beğendin mi? Neden başka uygulamalarımıza göz atmıyorsun?</string>
 
     <string name="remove_default_title">Varsayılan kaldırılsın mı?</string>
     <string name="remove_default_message">%1$s %2$s bağlantılarını yükleyen varsayılan uygulama olmaktan çıkarılsın mı?\n\nNot: %2$s bağlantısının bir sonraki
@@ -186,6 +194,7 @@ yüklenişinde yeni bir varsayılan uygulama ayarlayabilirsin.</string>
 
     <string name="histroy_unread">Okunmamış</string>
     <string name="histroy_all">Tümü</string>
+    <string name="new_bubble">Yeni Baloncuk</string>
     <string name="history">Geçmiş</string>
     <string name="erase_all_history_title">Tümü silinsin mi?</string>
     <string name="erase_all_history_message">Tüm Brave tarama geçmişi silinsin mi?</string>
@@ -222,12 +231,12 @@ yüklenişinde yeni bir varsayılan uygulama ayarlayabilirsin.</string>
     <string name="faq_close_tab_question">Bir sekmeyi nasıl hızlıca kapatabilirim?</string>
     <string name="faq_close_tab_answer">Telefonunun Geri tuşuna basmak en hızlı yoldur. Bir diğer iyi yol ise sekmeyi Kapat düğmesine sürüklemektir.</string>
     <string name="faq_back_button_minimize_question">Bence Geri tuşuna basmak tarayıcıyı küçültmeli!</string>
-    <string name="faq_back_button_minimize_answer"><![CDATA[Brave\'ı cihazın Geri tuşuna basarak küçültmek uygulanabilir değildir.
-Aşağıdaki duruma göz atın:<br/>
+    <string name="faq_back_button_minimize_answer"><![CDATA[Brave\'i cihazın Geri tuşuna basarak küçültmek uygulanabilir değildir.
+Aşağıdaki duruma bir göz at:<br/>
 1). ornek.com/sayfa1 ilk sekmede yüklüdür.<br/>
-2). Bu sayfada bir bağlantıya tıklarsın, ve aynı sekmede ornek.com/sayfa2 yüklenir.<br/>
-3). Şimdi 1\'inci adımdaki bağlantıya gitmek istersin.<br/><br/>
-Cihazın Geri tuşu Brave\'ı küçültürken bunu nasıl yapabilirsin? Sekmede bulunan küçük geri işaretine basmak
+2). Bu sayfada bir bağlantıya tıklıyorsun, ve aynı sekmede ornek.com/sayfa2 yükleniyor.<br/>
+3). Şimdi de birinci adımdaki bağlantıya gitmek istiyorsun.<br/><br/>
+Cihazın Geri tuşu Brave\'i küçültürken bunu nasıl yapabilirsin? Sekmede bulunan küçük geri işaretine basmak
 uygulanabilir değildir.<br/><br/>
 Brave bir tarayıcıdır, ve Android tarayıcıları öteden beri süregelen Geri tuşuna basıldığında
 ya URL yığınında geri gitmeyi, ya da öyle bir yığın yoksa mevcut sayfayı kapatmayı öngören bir standardı benimsemişlerdir.
@@ -239,7 +248,7 @@ içinde \"Varsayılan sistem tarayıcısını ayarla\" seçeneğine bak.<br/>
 2). Brave mevcut uygulamadaki bağlantıları yakalamayacak şekilde yapılandırılmıştır. Brave Ayarları
 içinde \"Bağlantıları şunlardan yakala\" seçeneğine bak.<br/>
 3). Talon, Reddit is Fun ve diğer bazı uygulamaların içinde bağlantıları işleyen tarayıcılar bulunur. O uygulamanın ayarlarını kontrol edip
-\"Harici tarayıcıyı\" etkinleştirin veya \"Bütünleşik tarayıcıyı\" devre dışı bırak.
+\"Harici tarayıcıyı\" etkinleştir veya \"Bütünleşik tarayıcıyı\" devre dışı bırak.
 <br/><br/>Not: Chrome gibi diğer tarayıcı uygulamaları bağlantıları kendileri açacak şekilde doğrudan kodlanmıştır, bu yüzden Brave
 diğer tarayıcı uygulamalarından tıklanan bağlantıları açamaz.
 ]]></string>
@@ -249,7 +258,7 @@ Bu noktadan itibaren, Okuma Modu mevcut sekmede kullanılabilir olduğunda, eyle
 Bu simgenin yalnızca bağlantı yüklenmesi tamamlandığında ve yalnızca Brave Okuma Modu içeriğini bağlantıdan başarıyla ayıkladığında görüntülendiğinin farkında ol.<br/><br/>
 Not: İnternetten içerik ayıklamak güvenilir bir süreç değildir, ve %100 isabetle çalışmayabilir. İnternetin hareketli ve durmadan değişen doğası göz önüne alındığında,
 bu konuda yapılacak çok az şey vardır.]]></string>
-    <string name="faq_future_features_question">Yer işaretleri, sık kullanılanlar, eklentiler vs. desteği ekleyecek misiniz?</string>
+    <string name="faq_future_features_question">Yer işaretleri, sık kullanılanlar, eklentiler vs. desteği ekleyecek misin?</string>
     <string name="faq_future_features_answer">Asla asla deme, ancak şimdilik Brave sadece başka uygulamalardan yüklenen bağlantıları en iyi
 şekilde yüklemeye ve tüketmeye odaklanıyor.</string>
     <string name="faq_translations_question">Uygulamanın çevirisine yardım edebilir miyim?</string>
@@ -257,13 +266,10 @@ bu konuda yapılacak çok az şey vardır.]]></string>
 üzerinden çeviri yardımı için çağrıda bulunacağım, o yüzden gözün yayınımın üzerinde olsun.]]></string>
     <string name="faq_roadmap_question">Bir özellik yol haritası yayımlıyor musun? Yaklaşan özellikleri oylayabilir miyim?</string>
     <string name="faq_roadmap_answer">Rekabetçi sebepler yüzünden, iki sorunun da cevabı maalesef \'hayır\'.</string>
-    <string name="faq_alternate_payment_answer"><![CDATA[Brave şimdilik yalnızca Google Play üzerinden satın alımları destekliyor.<br/><br/>Ek
-satın alım yöntemleri umarım ki gelecekte eklenecek (Google Play Geliştirici Programı Politikaları\'nı ihlal etmediğini varsayarak).]]></string>
-    <string name="faq_cant_type_url_question">Neden ziyaret etmek istediğim bağlantının adını yazamıyorum?</string>
-    <string name="faq_cant_type_url_answer"><![CDATA[Bu tamamen bu şekilde amaçlanmıştır. Brave tarayıcıların yerini tümüyle almak için değil, diğer uygulamalardaki bağlantıları
-mümkün olduğu kadar şık bir biçimde, kolayca ve hızlıca yükleyip görüntülemek için tasarlandı.<br/><br/>Brave içinde yeni bir url yüklemek istiyorsan,
-bir sayfayı Google Now\'da arayıp sonucu Brave ile yüklemek bunun için harika bir yoldur.<br/><br/>Sık kullanılanları
-hızlıca yüklemek için, Chrome Favoriler widget\'ını çok faydalı buluyorum.]]></string>
+    <string name="faq_alternate_payment_answer"><![CDATA[Brave şu anda sadece Google Play üzerinden satın alımları desteklemektedir.<br/><br/>İlave
+ödeme yöntemleri umarım gelecekte eklenecektir (Google Play Geliştirici Programı Politikaları\'nı ihlal etmediğini varsayarsak).]]></string>
+    <string name="faq_cant_type_url_question">Ziyaret etmek istediğim bağlantının adını nasıl yazabilirim?</string>
+    <string name="faq_cant_type_url_answer"><![CDATA[Sadece sayfaya / URL başlığına dokunun. Düzenleme modu açılır ve geçmişin ve favorilerine göre öneriler sunar.]]></string>
     <string name="faq_copy_text_question">Neden bir web sayfasından metin kopyalayamıyorum?</string>
     <string name="faq_copy_text_answer"><![CDATA[Maalesef Android system sınırlamaları bunun çalışmasına engel oluyor.<br/><br/>Teknik cevap:
 Kopyalama işlevi Android WebView bir Etkinlik içinden kullanıldığında çalışır, ancak Servis içinden çalışmaz (Brave bunu kullanır).]]></string>
@@ -273,26 +279,26 @@ Kopyalama işlevi Android WebView bir Etkinlik içinden kullanıldığında çal
     <string name="faq_beta_programme_answer">Beta programıyla ilgili detaylar zamanla duyurulacaktır. Duyurular için gözün benim Google+ (+Brave) yayınımın üzerinde olsun.</string>
     <string name="faq_low_spec_performance_question">Brave neden Nexus S / Galaxy S1 / Moto G sınıfı cihazımda yavaş çalışıyor?</string>
     <string name="faq_low_spec_performance_answer"><![CDATA[Brave kaynakları yoğun olarak kullanan bir uygulama, ve bunun sonucunda düşük özellikli
-cihazlar uygulamayı daha güçlü cihazlara kadar iyi çalıştırmakta zorlanabilir. Gelecek güncellemeler Brave\'ın
+cihazlar uygulamayı daha güçlü cihazlara kadar iyi çalıştırmakta zorlanabilir. Gelecek güncellemeler Brave\'in
 performansını geliştirmeyi hedefliyor, ancak gerçekçi olmak gerekirse bu alanda yapılabilecek çok az şey var.<br/><br/>Teknik cevap: Temel olarak, Brave
 çalışmak için bir Hizmet ve WebView kullanımına ihtiyaç duyar. Çoğunlukla birkaç WebView ve hatta birkaç Hizmet daha mevcuttur.
 Doğal olarak, bu öğeleri tahsis etmek (özellikle WebView\'lar için) <i>çok</i> fazla bellek/kaynak tüketir. Düşük özellikli cihazlar genellikle
-Brave\'ın ihtiyaç duyduğundan daha az belleğe sahiptir, ve bu yüzden çöp toplama işlemlerinin sıklıkla tetiklenmesi performansı olumsuz etkiler.
+Brave\'in ihtiyaç duyduğundan daha az belleğe sahiptir, ve bu yüzden çöp toplama işlemlerinin sıklıkla tetiklenmesi performansı olumsuz etkiler.
 Örnek olarak, Nexus S\'nin en yüksek yığın boyutu 48 MB iken, bu değer Nexus 5\'te 192 MB\'dir.]]></string>
     <string name="faq_crap_webview_question">Bazen web sayfaları doğru görüntülenmiyor veya videolar oynatılmıyor.</string>
-    <string name="faq_crap_webview_answer"><![CDATA[Brave standard Android WebView kullanır, ancak bu maalesef bazen güvenilir değildir.
-FireFox\'un GeckoView\'ı ve Chromium gibi alternatif web işleyici yöntemleri muhtemelen zamanla incelenecektir.
-<br/><br/>Bir internet sayfasının Brave ile düzgün görüntülenemediği zamanlarda, yapılacak en kolay şey o bağlantıyı yüklemek için geleneksel bir tarayıcı kullanmaktır.]]></string>
+    <string name="faq_crap_webview_answer"><![CDATA[Brave standart Android WebView kullanır, ancak bu maalesef bazen güvenilir değildir.
+Firefox\'un GeckoView\'ı ve Chromium gibi alternatif web işleyici yöntemleri muhtemelen zamanla
+incelenecektir.<br/><br/>Bir web sayfasının Brave ile düzgün görüntülenemediği zamanlarda, yapılacak en kolay şey o bağlantıyı yüklemek için geleneksek bir tarayıcı kullanmaktır.]]></string>
     <string name="faq_ongoing_notificaion_question">Devam eden bildirim neden Brave çalışırken sürekli görüntüleniyor?</string>
-    <string name="faq_ongoing_notificaion_answer"><![CDATA[Maalesef bu devam eden bildirim Android İS\'nin Brave\'ı sona erdirmemesini teşvik etmek için
+    <string name="faq_ongoing_notificaion_answer"><![CDATA[Maalesef bu devam eden bildirim Android İS\'nin Brave\'i sona erdirmemesini teşvik etmek için
 gereklidir..]]></string>
     <string name="faq_next_update_eta_question">Bir sonraki güncelleme ne zaman geliyor?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[Hazır olduğunda!<br/><br/>Bundan daha açık olmak maalesef çok uygulanabilir değil
 (aşağı yukarı bir tahminde bulunmak bile).<br/><br/>Gerçek şu ki, tahminde bulunulduğunda insanlar çoğunlukla onu bir taahhüt
 olarak alıp, herhangi bir sebeple gecikme olursa/olduğunda sinirlenebilirler.]]></string>
-    <string name="faq_close_quickly_question">Brave\'ın çalışmasını nasıl hızlıca durdurabilirim?</string>
+    <string name="faq_close_quickly_question">Brave\'in çalışmasını nasıl hızlıca durdurabilirim?</string>
     <string name="faq_close_quickly_answer">Bildirim panelini açmak için ekranın yukarısından kaydır ve \"Brave\" bildirimine tıkla.</string>
-    <string name="faq_change_default_browser_question">Brave\' nasıl varsayılan tarayıcı olarak kaldırabilirim?</string>
+    <string name="faq_change_default_browser_question">Brave\'i nasıl varsayılan tarayıcı olarak kaldırabilirim?</string>
     <string name="faq_change_default_browser_answer">Sistem Ayarları -> Uygulamalar -> İndirilenler -> Brave -> Varsayılanları temizle.</string>
     <string name="faq_report_bug_question">Bir hata bildir</string>
     <string name="faq_report_bug_answer"><![CDATA[e-posta]]></string>
@@ -330,7 +336,7 @@ olarak alıp, herhangi bir sebeple gecikme olursa/olduğunda sinirlenebilirler.]
     <string name="requesting_location_message">%1$s konumuna erişmek istiyor. İzin verilsin mi?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[Devam ederek, Brave
-<a href="http://www.linkbubble.com/terms">hükümlerini</a> ve <a href="http://www.linkbubble.com/privacy">gizlilik ilkesini</a> kabul etmiş olursunuz.]]></string>
+<a href="https://brave.com/terms_of_use">hükümlerini</a> ve <a href="https://brave.com/privacy_android">gizlilik ilkesini</a> kabul etmiş olursunuz.]]></string>
 
     <string name="service_name">Brave İşleyicisi</string>
     <string name="notification_title">Brave</string>
@@ -340,7 +346,7 @@ olarak alıp, herhangi bir sebeple gecikme olursa/olduğunda sinirlenebilirler.]
     <string name="store_listing_description_title">Brave sadece mobil cihazlar düşünülerek tasarlanmış ve hazırlanmış tamamen yeni bir tarayıcıdır.</string>
     <string name="store_listing_description_features">Özellikleri şunlardır:
 • Bir uygulama içinde bir bağlantıya tıkladığınızda, Brave web sayfasını arka planda yükleyerek, değerli zamanınızı bir sayfanın yüklenmesini izleyerek boşa harcamak yerine mevcut uygulamanızı kullanmaya devam etmenizi sağlar. Sayfa tamamen yüklendiğinde ekranda görünür.
-• Brave\'ın kaydırma hareketleri bir saniyenin çok az üstünde bir sürede bir bağlantıya tıklayıp bağlantı paylaşmayı veya onu Pocket gibi bir hizmete eklemeyi mümkün kılar!
+• Brave\'in kaydırma hareketleri bir saniyenin çok az üstünde bir sürede bir bağlantıya tıklayıp bağlantı paylaşmayı veya onu Pocket gibi bir hizmete eklemeyi mümkün kılar!
 • Mevcut uygulamanızdan birden fazla bağlantıyı aynı anda yükleyin.
 • Başka uygulamalara yönlendiren bağlantıları incelikle ele alır. Twitter\'daki bir Instagram bağlantısına tıklamak artık sizi Instagram\'ı açmadan tam ekran bir tarayıcıya yönlendirmeyecek!
 • Sisteminizdeki uygulamalarla derinlemesine bütünleşiktir.
@@ -348,7 +354,7 @@ olarak alıp, herhangi bir sebeple gecikme olursa/olduğunda sinirlenebilirler.]
 • Brave kullanarak ne kadar zaman tasarruf ettiğinizi açıklayan kullanışlı istatistikler sunar.</string>
     <string name="store_listing_description_location_permission">Konum izni hakkında: Bu izin sizin bir internet sitesine (gömülü bir harita içerenler gibi) konumunuza erişme izni verebilmeniz için gereklidir. Brave asla konumunuza erişmez.</string>
 
-    <string name="welcome_page_title">Brave\'a Hoş Geldin!</string>
+    <string name="welcome_page_title">Brave\'e hoş geldin!</string>
     <string name="welcome_page_intro_title">Nasıl çalışır?</string>
     <string name="welcome_page_intro_point_1">Uygulama içinde bir bağlantıya tıkla.</string>
     <string name="welcome_page_intro_point_2">Ekranın kenarında bir baloncuk belirecek ve bağlantı arka planda yüklenmeye başlayacak. Sayfa yüklenir yüklenmez, görüntülenecek.</string>
@@ -374,12 +380,21 @@ olarak alıp, herhangi bir sebeple gecikme olursa/olduğunda sinirlenebilirler.]
     <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
     <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>
     <string name="top_500_prepend">Ziyaret et</string>
-    <string name="url_bar_constraint_text_color">\'#A349A4\'</string>
+    <string name="url_bar_constraint_text_color">\'#4A4A4A\'</string>
     <string name="search_for_with">%1$s ile \"%2$s için arama yap</string>
     <string name="duck_duck_go">DuckDuckGo</string>
     <string name="google">Google</string>
     <string name="yahoo">Yahoo</string>
     <string name="amazon">Amazon</string>
     <string name="empty_bubble_page">file:///android_asset/blank.html</string>
+    <string name="adblock_url">https://s3.amazonaws.com/adblock-data/1/ABPFilterParserData.dat</string>
+    <string name="adblock_localfilename">FromUrlABPFilterParserData.dat</string>
+    <string name="tracking_protection_url">https://s3.amazonaws.com/tracking-protection-data/1/TrackingProtection.dat</string>
+    <string name="tracking_protection_localfilename">TrackingProtection.dat</string>
+    <string name="https_everywhere_rulesets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/rulesets.sqlite</string>
+    <string name="https_everywhere_targets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/httpse-targets.json</string>
+    <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
+    <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
+    <string name="whitelist_localfilename">whitelist.dat</string>
 
 </resources>

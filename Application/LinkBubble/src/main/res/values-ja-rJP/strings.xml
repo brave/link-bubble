@@ -25,6 +25,7 @@
     <string name="action_reload_page">リロード</string>
     <string name="action_open_in_browser">%1$s で開く</string>
     
+    
     <string name="action_open_in_new_bubble">新しいバブルで開く</string>
     
     
@@ -48,7 +49,7 @@
     
     
 
-    <string name="share_invalid_data">有効なURLではないためリンクバブルはこのリンクをシェアできません</string>
+    
     <string name="consume_activity_not_found">目標アプリケーションが見つかりません。設定からバブルアクションを変えることをオススメします。</string>
     
 
@@ -60,7 +61,7 @@
     
 
     <string name="pick_default_app">デフォルトアプリを設定</string>
-    <string name="default_browser_set">リンクバブルはデフォルトブラウザに設定されました。</string>
+    
     
     
     <string name="clear_history">履歴クリア</string>
@@ -125,6 +126,13 @@
     <string name="preference_incognito_title">シークレットモード</string>
     <string name="preference_incognito_summary">履歴とCookiesを保存しない</string>
     
+    
+    
+    
+    
+    
+    
+    
     <string name="preference_user_agent_title">ユーザーエージェント</string>
     <string-array name="preference_user_agent_options">
         <item>デフォルト</item>
@@ -148,7 +156,7 @@
     <string name="preference_privacy_policy_title">プライバシーポリシー</string>
     <string name="preference_terms_of_service_title">利用規約</string>
     <string name="preference_say_thanks_title">感謝の言葉を！</string>
-    <string name="preference_say_thanks_summary">リンクバブルで捗ってますか？プレイストアでレビューをつけましょう。</string>
+    
     <string name="preference_version_title">バージョン</string>
     <string name="preference_version_summary">更新履歴</string>
     
@@ -181,9 +189,10 @@
 
     <string name="histroy_unread">未読</string>
     <string name="histroy_all">すべて</string>
+    
     <string name="history">履歴</string>
     <string name="erase_all_history_title">すべて消しますか？</string>
-    <string name="erase_all_history_message">すべての Brave ブラウザ履歴を消しますか？</string>
+    
     <string name="empty">ありません</string>
     <string name="history_already_empty">履歴は既にありません</string>
     <string name="private_data_cleared">プライベートデータがクリアされました</string>
@@ -261,7 +270,7 @@
     <string name="activity_resolver_use_always">常時</string>
     <string name="activity_resolver_use_once">今回のみ</string>
 
-    <string name="credits_title">Brave クレジット</string>
+    
     
     <string name="credits_credit">コンセプト、デザインとプログラミング</string>
     
@@ -275,7 +284,7 @@
     <string name="content_description_button">ボタン</string>
     <string name="content_description_target_icon">Bubble ターゲットアイコン</string>
     <string name="content_description_close_bubble_icon">bubble アイコンを閉じる</string>
-    <string name="content_description_link_bubble_logo">Brave ロゴ</string>
+    
     <string name="content_description_app_icon">アプリアイコン</string>
     <string name="content_description_youtube_video_thumbnail">YouTubeビデオサムネイル</string>
     <string name="content_description_history">履歴</string>
@@ -284,19 +293,18 @@
 
     <string name="requesting_location_message">%1$s は現在位置情報の取得を要求しています。許可しますか？</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[続けることによって、Link Bubbleの
-<a href="http://www.linkbubble.com/terms">規約</a>と<a href="http://www.linkbubble.com/privacy">プライバシーポリシー</a>を受け入れたとみなします。.]]></string>
+    
 
-    <string name="service_name">Brave レンダラー</string>
-    <string name="notification_title">Brave</string>
+    
+    
 
-    <string name="store_listing_title">Brave</string>
+    
     <string name="store_listing_promo_text">モバイルブラウジング完了</string>
     
     
     
 
-    <string name="welcome_page_title">リンクバブルへようこそ！</string>
+    
     <string name="welcome_page_intro_title">仕組みは？</string>
     <string name="welcome_page_intro_point_1">アプリでリンクをタップします。</string>
     
@@ -304,7 +312,7 @@
     
     
     
-    <string name="welcome_page_more_also">Brave または:</string>
+    
     <string name="welcome_page_more_point_1">リンクは専用アプリにリダイレクト (例 Instagram)</string>
     <string name="welcome_page_more_point_2">YouTubeアプリで簡単に視聴することができるので、埋め込まれたビデオを検索します。</string>
     
@@ -313,6 +321,15 @@
 
     
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

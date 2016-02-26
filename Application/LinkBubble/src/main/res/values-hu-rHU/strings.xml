@@ -25,6 +25,7 @@
     <string name="action_reload_page">Újratöltés</string>
     <string name="action_open_in_browser">Megnyitás %1$s alkalzamásban</string>
     
+    
     <string name="action_open_in_new_bubble">Megnyitás új buborékban</string>
     
     
@@ -48,7 +49,7 @@
     
     
 
-    <string name="share_invalid_data">A Brave nem tudja ezt megosztani - érvénytelen az URL</string>
+    
     <string name="consume_activity_not_found">Nem találom az alkalmazást. Változtasd meg a beállításokban</string>
     
 
@@ -60,7 +61,7 @@
     <string name="undo_close_tab_no_title">Bezárt fül</string>
 
     <string name="pick_default_app">Válaszd ki az alapértelmezett alkalmazást</string>
-    <string name="default_browser_set">Brave lett alapértelmezett böngészőnek beállítva</string>
+    
     <string name="invalid_send_action">Nem érvényes hivatkozás</string>
     <string name="unable_to_launch_app">Külső alkalmazás megynyitása sikertelen</string>
     <string name="clear_history">Előzmények törlése</string>
@@ -125,6 +126,13 @@
     <string name="preference_incognito_title">Inkognitó mód</string>
     <string name="preference_incognito_summary">Nem tárolja az előzményeket és a cookie-kat</string>
     
+    
+    
+    
+    
+    
+    
+    
     <string name="preference_user_agent_title">HTTP kliens mód</string>
     <string-array name="preference_user_agent_options">
         <item>Alapértelmezett</item>
@@ -148,7 +156,7 @@
     <string name="preference_privacy_policy_title">Adatkezelési alapelvek</string>
     <string name="preference_terms_of_service_title">Felhasználás feltételei</string>
     <string name="preference_say_thanks_title">Köszönet nyilvánítás!</string>
-    <string name="preference_say_thanks_summary">Tetszik a Brave? Érdékeld a Play Store-ban, kérlek!</string>
+    
     <string name="preference_version_title">Verzió</string>
     <string name="preference_version_summary">Változások</string>
     
@@ -181,9 +189,10 @@
 
     <string name="histroy_unread">Olvasatlan</string>
     <string name="histroy_all"> Mind</string>
+    
     <string name="history">Előzmények</string>
     <string name="erase_all_history_title">Összes törlése?</string>
-    <string name="erase_all_history_message">Összes Brave böngészési előzmény törlése?</string>
+    
     <string name="empty">Üres</string>
     <string name="history_already_empty">Az előzménylista már üres</string>
     <string name="private_data_cleared">Személyes adatok törölve</string>
@@ -194,7 +203,7 @@
     <string name="link_loaded_with_app">Betöltve %1$s alkalmazással</string>
     <string name="link_redirected">Átirányítva %1$s alkalmazásba</string>
 
-    <string name="tampered_apk">A Brave alkalmazás megsérült vagy illegálisan módosítva lett, ezért nem fog megfelelően működni. Telepítsd újra a Play Store-ból</string>
+    
 
     <string name="bubble_link_copied_to_clipboard">Buborék link a vágólapra másolva</string>
     <string name="link_copied_to_clipboard">Link a vágólapra másolva</string>
@@ -218,43 +227,37 @@
     <string name="faq_close_tab_answer">A vissza gomb megnyomása a leggyorsabb, de ráhúzhatsz egy buborékot a Bezárás gombra is</string>
     <string name="faq_back_button_minimize_question">A Vissza Gomb megnyomása tudomásommal háttérbe küldi a böngészőt</string>
     
-    <string name="faq_app_internal_browser_question"><![CDATA[Brave nem fogadja a linkeket]]></string>
+    
     
     <string name="faq_article_mode_question">Hogyan működik az olvasó mód? Bizonyos oldalak nem működnek</string>
     
     <string name="faq_future_features_question">Tervben van könyvjelzők, kedvencek, kiegészítők, stb. támogatása a jövőben?</string>
-    <string name="faq_future_features_answer">Soha ne mondd, hogy soha, bár jelenleg a Brave fő célja a linkek más app-okból való lehető legjobb betöltése és feldolgozása</string>
+    
     <string name="faq_translations_question">Segíthetek az alkalmazás fordításában?</string>
     
     <string name="faq_roadmap_question">Ismerteted a jövőbeli, tervezett funkciókat? Lehet szavazni rájuk?</string>
     <string name="faq_roadmap_answer">A konkurencia miatt sajnos mindkét kérdésre NEM a válasz.<br/><br/></string>
-    <string name="faq_alternate_payment_answer"><![CDATA[A Brave jelenleg csak a Google Play Store-ból vásárolható meg.<br/><br/>Talán lesznek további fizetési módok is a jövőben (amennyiben ezek nem ellentétesek a Google Play Developer Program Alapelveivel).]]></string>
-    <string name="faq_cant_type_url_question">Miért nem írhatom be a linket manuálisan?</string>
-    <string name="faq_cant_type_url_answer"><![CDATA[Ez szándékosan van így. Brave nem kívánja helyettesíteni a teljes böngészőt, hanem linkek gyors, elegáns, korszerű megnyitására szolgál egy forradalmian új, eddig ismeretlen formában.<br/><br/>Ha egy oldalt szeretnél megnyitni a Brave-ben, keress rá a Google Now-ban és töltsd be például onnan.<br/><br/>Kedvencek gyors betöltéséhez a Chrome könyvjelző widget-et ajánlom leginkább.]]></string>
+    
+    
+    
     <string name="faq_copy_text_question">Miért nem tudok szöveget kimásolni egy oldalról?</string>
-    <string name="faq_copy_text_answer"><![CDATA[Sajnos, az Android rendszer korlátozásai miatt nem lehetséges ez.<br/><br/>Technikai válasz:
-A másolás funkció csak mint tevékenység webnézetben lehetséges, mint szolgáltatás nem (amit a Brave használna).]]></string>
+    
     
     <string name="faq_translucent_status_bar_answer">Sajnos az Android rendszer korlátozásai miatt ez nem lehetséges.</string>
     <string name="faq_beta_programme_question">Van beta program? Hogyan csatlakozhatok?</string>
     
-    <string name="faq_low_spec_performance_question">Miért fut lassan a Brave olyan eszközökön, mint egy Nexus S / Galaxy S1 / Moto G ?</string>
-    <string name="faq_low_spec_performance_answer"><![CDATA[A Brave eléggé igénybe veszi az eszköz erőforrásait, ezért "gyengébb" készülékeken előfordulhat lassú működés, de akár egészen erős eszközökön is. Future updates will aim to improve Brave\'s
-performance, but there is only so much that can realistically be done here.<br/><br/>Technical answer: At the bare minimum, Brave requires the
-use of a Service and a WebView in order to function. Often multiple WebViews and even multiple Activities are also present.
-Naturally, allocating these items (especially the WebViews) consumes a <i>lot</i> of memory/resources. Lower spec devices generally
-have less memory available than Brave requires, and thus performance suffers as garbage collections are frequently triggered.
-As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on the Nexus 5.]]></string>
+    
+    
     <string name="faq_crap_webview_question">Néha bizonyos weblapok nem jelennek meg jól vagy bizonyos videók nem játszódnak le.</string>
     
-    <string name="faq_ongoing_notificaion_question">Miért látszik folyamatosan az értesítés, ha fut a Brave?</string>
-    <string name="faq_ongoing_notificaion_answer"><![CDATA[Sajnos az állandó értesítés ahhoz szükséges, hogy az Android rendszer ne zárja be a Brave-t.]]></string>
+    
+    
     <string name="faq_next_update_eta_question">Mikor jön a következő frissítés?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[Ahogy elkészül!<br/><br/>Sajnos nem lehet előre megmondani, még csak saccolni sem tudom.<br/><br/>Általában ha közölnek egy várható release időpontot, azt véglegesnek veszik az emberek, sőt még fel is háborodnak, ha kicsit csúszik a végső kiadás valami miatt.]]></string>
-    <string name="faq_close_quickly_question">Hogy tudom gyorsan leállítani a Brave-t?</string>
-    <string name="faq_close_quickly_answer">Húzd le az értesítési területet és kattints a \"Brave\" értesítésre.</string>
-    <string name="faq_change_default_browser_question">Hogy tudom beállítani, hogy ne a Brave legyen az alapértelmezett böngésző?</string>
-    <string name="faq_change_default_browser_answer">Rendszerbeállítások -> Alkalmazások-> Letöltött-> Brave -> Alapértelmezés törlése.</string>
+    
+    
+    
+    
     <string name="faq_report_bug_question">Hiba jelentése</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
 
@@ -267,7 +270,7 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="activity_resolver_use_always">Mindig</string>
     <string name="activity_resolver_use_once">Csak egyszer</string>
 
-    <string name="credits_title">Brave készítői</string>
+    
     
     <string name="credits_credit">Ötlet, tervezés és programozás</string>
     
@@ -281,7 +284,7 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="content_description_button">Gomb</string>
     
     <string name="content_description_close_bubble_icon">Buborék bezárása ikon</string>
-    <string name="content_description_link_bubble_logo">Brave logo</string>
+    
     <string name="content_description_app_icon">Alkalmazás ikon</string>
     <string name="content_description_youtube_video_thumbnail">YouTube video bélyegkép</string>
     <string name="content_description_history">Előzmények</string>
@@ -290,19 +293,18 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
 
     <string name="requesting_location_message">%1$s szeretne hozzáférni a tartózkodási helyedhez. Engedélyezed?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[A folytatással elfogadom a Brave
-<a href="http://www.linkbubble.com/terms">végfelhasználói feltételeit</a> és<a href="http://www.linkbubble.com/privacy">adatvédelmi alapelveit</a>.]]></string>
+    
 
-    <string name="service_name">Brave Renderer</string>
-    <string name="notification_title">Brave</string>
+    
+    
 
-    <string name="store_listing_title">Brave</string>
+    
     <string name="store_listing_promo_text">Böngészés mobilon - ahogyan még nem láttad</string>
-    <string name="store_listing_description_title">Brave egy teljesen új (mini)böngésző, amiben a mobil eszköz maga a figyelem központja.</string>
+    
     
     
 
-    <string name="welcome_page_title">Üdv a Brave-ban!</string>
+    
     <string name="welcome_page_intro_title">Hogyan működik?</string>
     <string name="welcome_page_intro_point_1">Kattints egy link-re egy alkalmazásban</string>
     <string name="welcome_page_intro_point_2">A képernyő szélén megjelenik egy buborék és benne betöltődik a link. Amint betöltődött, megjelenik a kívánt oldal.</string>
@@ -310,7 +312,7 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
     <string name="welcome_page_more_title">Többet akarok, még még...</string>
     <string name="welcome_page_more_pocket_start">Villámgyorsan meg is oszthatsz hivatkozásokat, vagy a Pocket-hez vagy más alkalmazásokhoz adhatod</string>
     <string name="welcome_page_more_pocket_end">Na, ez elég komoly, hasznos és jól is néz ki, nem?</string>
-    <string name="welcome_page_more_also">A Brave továbbá:</string>
+    
     <string name="welcome_page_more_point_1">Átirányítja a hivatkozásokat a megfelelő app-ba (pl. Instagram)</string>
     <string name="welcome_page_more_point_2">Felismeri a beágyazott videókat és segít, hogy könnyen megnézhesd a Youtube-on</string>
     
@@ -319,6 +321,15 @@ As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on th
 
     
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

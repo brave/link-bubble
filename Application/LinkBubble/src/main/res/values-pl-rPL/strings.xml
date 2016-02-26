@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Pobieranie</string>
-    <string name="send_intent_label">Otwórz w Brave</string>
+    
     <string name="notification_summary">Dotknij, aby ukryć wszystkie otwarte dymki</string>
     <string name="notification_default_summary">Dotknij, by ukryć, rozwiń, by zamknąć wszystkie</string>
     <string name="notification_unhide_summary">Dotknij, by odkryć, rozwiń, by zamknąć wszystkie</string>
@@ -25,6 +25,7 @@
     <string name="action_reload_page">Odśwież</string>
     <string name="action_open_in_browser">Otwórz w %1$s</string>
     <string name="action_request_desktop_site">Zażądaj wersji na komputer</string>
+    
     <string name="action_open_in_new_bubble">Otwórz w nowym dymku</string>
     <string name="action_open_link_in_new_bubble">Otwórz link w nowym dymku</string>
     <string name="action_open_image_in_new_bubble">Otwórz obraz w nowym dymku</string>
@@ -48,7 +49,7 @@
     <string name="warning">Uwaga!</string>
     <string name="untrusted_certificate">Certyfikat z %1$s nie jest zaufany. Czy kontynuować?</string>
 
-    <string name="share_invalid_data">Brave nie może tego udostępnić, ponieważ adres URL nie jest poprawny.</string>
+    
     <string name="consume_activity_not_found">Nie znaleziono aplikacji. Sprawdź akcję dymku w ustawieniach.</string>
     <string name="consume_activity_security_exception">Nie można udostępnić do zewnętrznej aplikacji.</string>
 
@@ -60,7 +61,7 @@
     <string name="undo_close_tab_no_title">Zamknięto zakładkę</string>
 
     <string name="pick_default_app">Wybierz domyślną aplikację</string>
-    <string name="default_browser_set">Aplikacja Brave jest teraz domyślną przeglądarką.</string>
+    
     <string name="invalid_send_action">Nie znaleziono poprawnego linku.</string>
     <string name="unable_to_launch_app">Nie udało się uruchomić aplikacji innego producenta.</string>
     <string name="clear_history">Wyczyść historię</string>
@@ -85,11 +86,11 @@
     <string name="preference_default_apps_title">Domyślne aplikacje</string>
     <string name="preference_default_apps_summary">Przeglądarka drugorzędna, inne aplikacje</string>
     <string name="preference_default_apps_notice_summary">Używane, gdy więcej niż jedna zainstalowana aplikacja nie będąca przeglądarką może otworzyć dany adres URL.\n\nDotknij, aby usunąć wartość domyślną.</string>
-    <string name="preference_default_apps_notice_no_defaults_summary">Używane, gdy więcej niż jedna zainstalowana aplikacja nie będąca przeglądarką może otworzyć dany adres URL. Możesz ustawić domyślną aplikację do wczytywania takich adresów.\n\nAplikację domyślną ustawia się, gdy Brave wczytuje adres URL.</string>
+    
     <string name="preference_google_account_redirect_title">Przekierowanie na konto Google</string>
     <string name="preference_google_account_redirect_summary">Przekierowuje linki do accounts.google.com do domyślnej przeglądarki drugorzędnej</string>
     <string name="preference_set_default_browser_title">Ustaw domyślną przeglądarkę systemu</string>
-    <string name="preference_set_default_browser_summary">Aby działać, aplikacja Brave musi być domyślną przeglądarką systemu. Stuknij, aby skonfigurować.</string>
+    
     <string name="preference_more">Więcej...</string>
     <string name="preference_intercept_links_from_title">Przechwytuj linki z</string>
     <string name="preference_intercept_links_from_disabled_for_L">W Androidzie 5.0 Google usunęło API odpowiadające za tę funkcję.</string>
@@ -97,7 +98,7 @@
     <string name="preference_scan_for_youtube_embeds_summary">Wyświetlaj skrót umożliwiający wczytywanie osadzonych nagrań w aplikacji YouTube.</string>
     <string name="preference_webview_battery_save_title">Tryb oszczędzania baterii (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Agresywny</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Wstrzymuje wczytywanie stron, gdy Brave jest zminimalizowany.\nStrony w trakcie wczytywania zostaną wczytane przed wstrzymaniem.</string>
+    
     <string name="preference_webview_battery_save_default_title">Domyślne</string>
     <string name="preference_webview_battery_save_default_summary">Wstrzymuje wczytywanie stron, gdy ekran jest wyłączony i wznawia, gdy urządzenie jest odblokowane.\nStrony w trakcie wczytywania zostaną wczytane przed wstrzymaniem.</string>
     <string name="preference_webview_battery_save_off_title">Wyłączone</string>
@@ -125,6 +126,13 @@
     <string name="preference_incognito_title">Tryb incognito</string>
     <string name="preference_incognito_summary">Nie przechowuj historii ani plików cookie</string>
     <string name="incognito_mode_changed_reloading_current">Zmieniono ustawienia incognito. Odświeżam aktywne dymki...</string>
+    
+    
+    
+    
+    
+    
+    
     <string name="preference_user_agent_title">Agent użytkownika</string>
     <string-array name="preference_user_agent_options">
         <item>Wartość domyślna</item>
@@ -148,14 +156,14 @@
     <string name="preference_privacy_policy_title">Polityka prywatności</string>
     <string name="preference_terms_of_service_title">Warunki świadczenia usług</string>
     <string name="preference_say_thanks_title">Podziękuj nam!</string>
-    <string name="preference_say_thanks_summary">Podoba Ci się Brave? Możesz o tym opowiedzieć innym, pisząc recenzję w Sklepie Play.</string>
+    
     <string name="preference_version_title">Wersja</string>
     <string name="preference_version_summary">Co się zmieniło?</string>
     <string name="preference_more_title">Więcej&#8230;</string>
     <string name="preference_show_undo_close_tab_title">Monit o przywrócenie zamkniętego dymku</string>
 
-    <string name="preference_my_other_apps_title">Więcej aplikacji od Brave</string>
-    <string name="preference_my_other_apps_summary">Podoba Ci się Brave? Sprawdź inne nasze aplikacje!</string>
+    
+    
 
     <string name="remove_default_title">Usunąć wartość domyślną?</string>
     <string name="remove_default_message">Czy chcesz przestać używać %1$s jako domyślnej aplikacji do otwierania linków %2$s?\n\nUwaga: Możesz ustawić nową domyślną aplikację, która uruchomi się, gdy następnym razem otworzysz link %2$s.</string>
@@ -181,9 +189,10 @@
 
     <string name="histroy_unread">Nieprzeczytane</string>
     <string name="histroy_all">Wszystkie</string>
+    
     <string name="history">Historia</string>
     <string name="erase_all_history_title">Usunąć wszystko?</string>
-    <string name="erase_all_history_message">Usunąć całą historię przeglądania z aplikacji Brave?</string>
+    
     <string name="empty">Pusto</string>
     <string name="history_already_empty">Brak danych w historii</string>
     <string name="private_data_cleared">Usunięto prywatne dane</string>
@@ -194,7 +203,7 @@
     <string name="link_loaded_with_app">Wczytano przy użyciu aplikacji %1$s</string>
     <string name="link_redirected">Przekierowano do aplikacji %1$s</string>
 
-    <string name="tampered_apk">Twoja aplikacja Brave została nielegalnie zmodyfikowana i nie będzie działać poprawnie. Zainstaluj ponownie wersję ze Sklepu Play.</string>
+    
 
     <string name="bubble_link_copied_to_clipboard">Skopiowano link z dymku do schowka.</string>
     <string name="link_copied_to_clipboard">Skopiowano link do schowka.</string>
@@ -217,54 +226,38 @@
     <string name="faq_close_tab_question">Jak mogę szybko zamknąć kartę?</string>
     <string name="faq_close_tab_answer">Najszybsze będzie naciśnięcie przycisku Wstecz. Inny sposób to przeciągnięcie otwartej karty na dymek zamykający.</string>
     <string name="faq_back_button_minimize_question">Sądzę że przycisk Wstecz powinien minimalizować przeglądarkę!</string>
-    <string name="faq_back_button_minimize_answer"><![CDATA[Minimalizowanie karty Brave po wciśnięciu przycisku Wstecz to nie jest dobry pomysł.
-Rozważmy następującą sytuację:<br/>
-1) Strona www.example.com/page1 jest otwarta w pierwszej karcie.<br/>
-2) Możesz kliknąć link na tej stronie i wczytać stronę www.example.com/page2 w tej samej karcie.<br/>
-3) Chcesz teraz wrócić do strony zx kroku 1).<br/><br/>
-Jak chcesz to zrobić, jeśli przycisk Wstecz minimalizuje aplikację Brave? Wciskanie malutkiej strzałki wstecz pojawiającej się przy dymku to nie jest dobre rozwiązanie.<br/><br/>
-Brave to przeglądarka, a przeglądarki w systemie Android mają od dawna ustalone działanie przycisku Wstecz - cofają się o jeden krok w historii, albo - jeśli to pierwsza karta w historii - zamykają otwartą kartę.
-Brave działa w zgodzie z tym standardem.]]></string>
-    <string name="faq_app_internal_browser_question"><![CDATA[Brave nie przechwytuje linków!]]></string>
-    <string name="faq_app_internal_browser_answer"><![CDATA[Są trzy możliwe przyczyny:<br/>
-1). Aplikacja Brave nie jest ustawiona jako Twoja domyślna przeglądarka. Aby to naprawić, wybierz opcję \"Ustaw domyślną przeglądarkę systemu\" w Ustawieniach Brave.<br/>
-2). Aplikację Brave skonfigurowano tak, by nie przechwytywała linków z aktualnie otwartej aplikacji. Aby to zmienić, wybierz opcję \"Przechwytuj linki z\" w ustawieniach Brave.<br/>
-3). Aplikacje takie jak Talon, Reddit, Fun i inne posiadają wbudowane przeglądarki,w  których wczytują linki. Sprawdź ustawienia takiej aplikacji i włącz opcję \"Zewnętrzna przeglądarka\" lub wyłącz opcję \"Zintegrowana przeglądarka\" lub podobne.
-<br/><br/>Uwaga: przeglądarki takie jak Chrome są zakodowane w taki sposób, by zawsze same wczytywać linki. Brave nie jest w stanie przechwytywać linków z innych przeglądarek.
-]]></string>
+    
+    
+    
     <string name="faq_article_mode_question">Jak korzystać z trybu czytania? Czemu nie działa na niektórych stronach?</string>
-    <string name="faq_article_mode_answer"><![CDATA[Po pierwsze, upewnij się, że tryb czytania jest włączony (Ustawienia -> Sterowanie / Więcej&#8230; -> Tryb czytania.<br/><br/>
-Po włączeniu, jeśli w danej zakładce możliwe jest przejście w tryb czytania, na pasku zadań zostanie wyświetlona odpowiednia ikona (na lewo od ikony udostępniania).
-Co ważne, ikona ta pojawia się tylko po całkowitym wczytaniu danej strony, i tylko jeśli aplikacji Brave uda się skutecznie wczytać całą treść w trybie artykułu.<br/><br/>
-Uwaga: Wczytywanie treści ze strony jest niedokładnym procesem, który może nie powieść się w 100%. Ze względu na nieustannie zmieniającą się naturę sieci, niewiele można na to poradzić.]]></string>
+    
     <string name="faq_future_features_question">Czy pojawi się możliwość korzystania z zakładek, ulubionych stron, wtyczek itd.?</string>
-    <string name="faq_future_features_answer">Być może w odległej przyszłości. Na razie koncentruję się na tym, żeby Brave była najlepszą metodą wczytywania linków z innych aplikacji.</string>
+    
     <string name="faq_translations_question">Czy mogę pomóc w tłumaczeniu aplikacji?</string>
-    <string name="faq_translations_answer"><![CDATA[Tłumaczenie już wkrótce powinno być możliwe.<br/><br/>Kiedy to nastąpi, z pewnością dam znać na Google+
-(+Brave), że poszukuję tłumaczy. Najlepiej po prostu obserwować mój profil.]]></string>
+    
     <string name="faq_roadmap_question">Czy znajdę gdzieś listę planowanych funkcji? Mogę na nie głosować?</string>
     <string name="faq_roadmap_answer">Konkurencja nie śpi, dlatego odpowiedź na oba pytania brzmi \"nie\".<br/><br/></string>
-    <string name="faq_alternate_payment_answer"><![CDATA[W chwili obecnej Brave Pro można kupić wyłącznie za pośrednictwem Sklepu Play.<br/><br/>Inne metody zakupu być może zostaną dodane w przyszłości (pod warunkiem, że nie będą naruszać Zasad programu dla programistów w Google Play).]]></string>
-    <string name="faq_cant_type_url_question">Czemu nie mogę wpisać adresu linku, który chcę otworzyć?</string>
-    <string name="faq_cant_type_url_answer"><![CDATA[To zamierzony efekt. Brave nie ma być kompletną przeglądarką, ale raczej elegancką, wygodną i szybką metodą wyświetlania linków z innych aplikacji.<br/><br/>Jeśli koniecznie chcesz otworzyć jakąś stronę w Brave, najlepiej wyszukać ją przy pomocy Google Now i otworzyć w dymku.<br/><br/>Osobiście do szybkiego otwierania ulubionych stron używam widżetu zakładek Google Chrome.]]></string>
+    
+    
+    
     <string name="faq_copy_text_question">Czemu nie mogę skopiować tekstu wyświetlanego na stronie?</string>
-    <string name="faq_copy_text_answer"><![CDATA[Niestety uniemożliwiają to ograniczenia systemowe Androida.<br/><br/>Wyjaśnienie techniczne: kopiować można tylko wtedy, gdy używa się Android WebView z poziomu Activity, ale już nie z poziomu Service (którego używa Brave).]]></string>
+    
     <string name="faq_translucent_status_bar_question">Czemu dymki nie zachodzą na przezroczysty pasek stanu?</string>
     <string name="faq_translucent_status_bar_answer">Niestety uniemożliwiają to ograniczenia systemowe Androida.</string>
     <string name="faq_beta_programme_question">Czy istnieje Beta aplikacji Brave? Jak mogę do niej dołączyć?</string>
-    <string name="faq_beta_programme_answer">Szczegóły dotyczące Bety Brave pojawią się już niedługo. Warto śledzić mój profil na Google+ (+Brave).</string>
-    <string name="faq_low_spec_performance_question">Czemu Brave tak powoli działa na moim Galaxy S1/Nexusie S/Moto G?</string>
-    <string name="faq_low_spec_performance_answer"><![CDATA[Aplikacja Brave mocno obciąża system, w związku z czym na słabszych urządzeniach nie będzie działała na pełnych obrotach. W kolejnych aktualizacjach planuję poprawić wydajność, ale nie będą to wielkie zmiany.<br/><br/>Wyjaśnienie techniczne: Absolutnym minimum potrzebnym Brave do działania jest Service i WebView. Bardzo często potrzebne bedzie kilka WebView i kilka Activity. Co oczywiste, alokowanie kilku WebView wymaga BARDZO dużo mocy obliczeniowych i pamięci. Słabsze urządzenia mają zazwyczaj mniej pamięci, niż Brave wymaga, co wiąże się z częstym czyszczeniem pamięci. Na przykład rozmiar stosu w Nexusie S to 48 MB, a w Nexusie 5 - 192 MB.]]></string>
+    
+    
+    
     <string name="faq_crap_webview_question">Czasami strony nie wyświetlają się poprawnie, bywają też problemy z odtwarzaniem nagrań.</string>
-    <string name="faq_crap_webview_answer"><![CDATA[Brave używa standardowego Android WebView, który niestety bywa czasem zawodny. W przyszłości rozważę prawdopodobnie inne metody renderowania stron, takie jak Firefox GeckoView czy Chromium.<br/><br/>Jeśli strona nie wyświetla się poprawnie w Brave, najprościej będzie otworzyć ją w zwykłej przeglądarce.]]></string>
-    <string name="faq_ongoing_notificaion_question">Czemu powiadomienie wyświetla się przez cały czas, gdy Brave działa?</string>
-    <string name="faq_ongoing_notificaion_answer"><![CDATA[Niestety stałe powiadomienie jest konieczne, żeby Android nie próbował zamknąć działającego Brave.]]></string>
+    
+    
+    
     <string name="faq_next_update_eta_question">Kiedy będzie następna aktualizacja?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[Kiedy będzie gotowa!<br/><br/>Niestety nie mogę podać choćby przybliżonego terminu.<br/><br/>Gdybym to zrobił, użytkownicy mogliby go uznać za oficjalny termin wydania nowej aktualizacji, i dowolny, choćby i niezamierzony poślizg mógłby ich zirytować.]]></string>
-    <string name="faq_close_quickly_question">Jak mogę szybko zamknąć Brave?</string>
-    <string name="faq_close_quickly_answer">Ściągnij w dół pasek powiadomień i dotknij powiadomienia \"Brave\".</string>
-    <string name="faq_change_default_browser_question">Jak mogę przestać używać Brave jako domyślnej przeglądarki?</string>
-    <string name="faq_change_default_browser_answer">Ustawienia (systemu) -> Aplikacje -> Pobrane -> Brave -> Wyczyść domyślne.</string>
+    
+    
+    
+    
     <string name="faq_report_bug_question">Zgłoś błąd</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
 
@@ -277,10 +270,10 @@ Uwaga: Wczytywanie treści ze strony jest niedokładnym procesem, który może n
     <string name="activity_resolver_use_always">Zawsze</string>
     <string name="activity_resolver_use_once">Tylko raz</string>
 
-    <string name="credits_title">Twórcy Brave</string>
-    <string name="credits_name">Brave</string>
+    
+    
     <string name="credits_credit">Pomysł, projekt, programowanie</string>
-    <string name="credits_app_copyright">Copyright 2015, Brave.</string>
+    
 
     
     <plurals name="restore_tabs_from_previous_session">
@@ -291,7 +284,7 @@ Uwaga: Wczytywanie treści ze strony jest niedokładnym procesem, który może n
     <string name="content_description_button">Przycisk</string>
     <string name="content_description_target_icon">Ikona celu dymku</string>
     <string name="content_description_close_bubble_icon">Ikona zamknięcia dymku</string>
-    <string name="content_description_link_bubble_logo">Logo Brave</string>
+    
     <string name="content_description_app_icon">Ikona aplikacji</string>
     <string name="content_description_youtube_video_thumbnail">Miniatura nagrania YouTube</string>
     <string name="content_description_history">Historia</string>
@@ -300,33 +293,26 @@ Uwaga: Wczytywanie treści ze strony jest niedokładnym procesem, który może n
 
     <string name="requesting_location_message">%1$s chce poznać Twoją lokalizację. Zezwolić?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[Kontynuując akceptujesz postanowienia <a href="http://www.linkbubble.com/terms">regulaminu</a> i <a href="http://www.linkbubble.com/privacy">politykę prywatności</a> aplikacji Brave.]]></string>
+    
 
-    <string name="service_name">Renderer Brave</string>
-    <string name="notification_title">Brave</string>
+    
+    
 
-    <string name="store_listing_title">Brave</string>
+    
     <string name="store_listing_promo_text">Prawdzie mobilna przeglądarka.</string>
-    <string name="store_listing_description_title">Brave to zupełnie nowe podejście do przeglądania stron na urządzeniach mobilnych.</string>
-    <string name="store_listing_description_features">Oferuje między innymi następujące możliwości:
-• Kiedy klikniesz na link w aplikacji, Brave wczyta stronę w tle, podczas gdy Ty nadal będziesz przeglądać pierwotną aplikację. Oszczędzasz w ten sposób czas, zamiast gapić się na ekran wczytywania strony. Kiedy strona wczyta się w całości, będzie ją można obejrzeć w dowolnej chwili.
-• Dzięki dymkowemu interfejsowi Brave jednym ruchem ręki udostępnisz link lub zapiszesz go w aplikacji typu Pocket!
-• Wczytasz wiele linków z jednej aplikacji w tym samym czasie.
-• Świetnie radzi sobie z linkami, które przekierowują do innych aplikacji. Już nigdy nie będziesz czekać na to, aż podany na Twitterze link do Instagrama załaduje się w przeglądarce tylko po to, żeby otworzyć dedykowaną aplikację Instagram!
-• Jest głęboko zintegrowany z aplikacjami, które masz zainstalowane na swoim urządzeniu.
-• Wyszukuje osadzone na stronach nagrania YouTube i wyświetla specjalny skrót, umożliwiający otwarcie ich bezpośrednio w aplikacji YouTube.
-• Na bieżąco informuje Cię o tym, ile czasu oszczędzasz korzystając z Brave.</string>
-    <string name="store_listing_description_location_permission">W kwestii uprawnienia do odczytywania lokalizacji: Jest ono konieczne, by ładowane strony mogły sprawdzać Twoją lokalizację (na przykład takie, w których osadzono mapę). Brave nigdy nie zbiera danych o Twojej lokalizacji.</string>
+    
+    
+    
 
-    <string name="welcome_page_title">Witaj w Brave!</string>
+    
     <string name="welcome_page_intro_title">Jak to działa?</string>
     <string name="welcome_page_intro_point_1">Kliknij link w dowolnej aplikacji.</string>
     <string name="welcome_page_intro_point_2">Na krawędzi ekranu pojawi się dymek, a strona zacznie wczytywać się w tle. Kiedy załaduje się w całości, będzie ją można wyświetlić.</string>
-    <string name="welcome_page_intro_end">To proste! Dzięki Brave zyskasz możliwość dalszego używania aplikacji, podczas gdy wszystkie linki będą ładowały się w tle. Czyż to nie genialne?</string>
+    
     <string name="welcome_page_more_title">Pokaż mi więcej!</string>
     <string name="welcome_page_more_pocket_start">Możesz też szybko udostępnić link lub wysłać go do innej aplikacji, np. Pocket.</string>
     <string name="welcome_page_more_pocket_end">Efektowne i efektywne, prawda?</string>
-    <string name="welcome_page_more_also">Aplikacja Brave może również:</string>
+    
     <string name="welcome_page_more_point_1">Przekierowywać linki do dedykowanej aplikacji (np. Instargrama)</string>
     <string name="welcome_page_more_point_2">Znajdować osadzone nagrania i ułatwić otwieranie ich w aplikacji YouTube</string>
     <string name="welcome_page_more_point_3">Wczytuj nieskończenie wiele dymków równocześnie.</string>
@@ -344,12 +330,21 @@ Uwaga: Wczytywanie treści ze strony jest niedokładnym procesem, który może n
     <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
     <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>
     <string name="top_500_prepend">Odwiedź</string>
-    <string name="url_bar_constraint_text_color">\'#A349A4\'</string>
+    
     <string name="search_for_with">Szukaj %1$s dla \"%2$s</string>
     <string name="duck_duck_go">Duck Duck Go</string>
     <string name="google">Google</string>
     <string name="yahoo">Yahoo</string>
     <string name="amazon">Amazon</string>
     <string name="empty_bubble_page">file:///android_asset/blank.html</string>
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 </resources>
