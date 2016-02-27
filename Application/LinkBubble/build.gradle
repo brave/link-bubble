@@ -54,7 +54,7 @@ android {
 
     productFlavors {
         playstore {
-            applicationId='com.linkbubble.playstore'
+            applicationId='com.brave.playstore'
 
             buildConfigField "String", "STORE_PACKAGE", "\"com.android.vending\""
             buildConfigField "String", "STORE_URL_PREFIX", "\"http://play.google.com/store/apps/details?id=\""
