@@ -130,6 +130,7 @@ public class ContentView extends FrameLayout {
     // Search URL functionality
     private AutoCompleteTextView metUrl;
     private ImageButton mbtUrlClear;
+    private FrameLayout contentEditUrl;
 
     private boolean mPageFinishedLoading;
     private LifeState mLifeState = LifeState.Init;
@@ -376,6 +377,7 @@ public class ContentView extends FrameLayout {
     private void configureUrlBar(String urlAsString) {
         // Set the current URL to the search URL
         metUrl = (AutoCompleteTextView) findViewById(R.id.autocomplete_top500websites);
+        contentEditUrl = (FrameLayout)findViewById(R.id.content_edit_url);
 
         metUrl.setDropDownWidth(getResources().getDisplayMetrics().widthPixels);
         metUrl.setText(urlAsString);
@@ -589,6 +591,9 @@ public class ContentView extends FrameLayout {
         mToolbarLayout.setBackgroundColor(bgColor);
         mTitleTextView.setTextColor(textColor);
         mUrlTextView.setTextColor(textColor);
+        metUrl.setBackgroundColor(bgColor);
+        metUrl.setTextColor(textColor);
+        contentEditUrl.setBackgroundColor(bgColor);
 
         for (Drawable d : mTintableDrawables) {
             DrawableCompat.setTint(d, textColor);

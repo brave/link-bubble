@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
     <release version="1.9.1">
-        <change>BUG FIX: Fix loading articles on forbes.com</change>
+        <change>BUG FIX: Fix loading articles on forbes.com.</change>
         <change>BUG FIX: Fix loading indicator and theme colors not getting reset when the URL changes within a bubble.</change>
+        <change>BUG FIX: URL input view now respects theme preferences.</change>
     </release>
     <release version="1.9.0">
         <change>IMPROVEMENT: Rebranded to Brave.</change>
