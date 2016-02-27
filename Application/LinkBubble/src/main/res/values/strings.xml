@@ -132,6 +132,8 @@
     <string name="preference_trackingprotection_summary">Prevent resources that track you from loading</string>
     <string name="preference_adblock_title">Ad Block</string>
     <string name="preference_adblock_summary">Prevent ads from loading</string>
+    <string name="preference_block_3p_cookies_title">Block Third Party Cookies</string>
+    <string name="preference_block_3p_cookies_summary">Stops some types of tracking by advertisers</string>
     <string name="preference_trackingprotection_title">Tracking Protection Mode</string>
     <string name="preference_adblock_tracking_protection_from_disabled">This feature is only available from Android 5.0 and higher.</string>
     <string name="preference_https_everywhere_title">HTTPS Everywhere</string>

@@ -47,6 +47,13 @@
         android:defaultValue="true"
         />
 
+    <CheckBoxPreference
+        android:key="preference_block_3p"
+        android:title="@string/preference_block_3p_cookies_title"
+        android:summary="@string/preference_block_3p_cookies_summary"
+        android:defaultValue="true"
+        />
+
     <Preference
         android:key="preference_ignore_links_from"
         android:title="@string/preference_intercept_links_from_title"

@@ -20,6 +20,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Vibrator;
+import android.webkit.CookieManager;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
@@ -565,14 +566,13 @@ public class MainApplication extends Application {
     @SuppressWarnings("unused")
     @Subscribe
     public void onAdBlockOn(SettingsMoreActivity.AdBlockTurnOnEvent event) {
-        new DownloadAdBlockDataAsyncTask().execute();;
+        new DownloadAdBlockDataAsyncTask().execute();
     }
 
     class DownloadTrackingProtectionDataAsyncTask extends AsyncTask<Void,Void,Long> {
 
         protected Long doInBackground(Void... params) {
             createTrackingProtectionList();
-
             return null;
         }
     }
@@ -587,7 +587,6 @@ public class MainApplication extends Application {
 
         protected Long doInBackground(Void... params) {
             createAdInsertionList();
-
             return null;
         }
     }

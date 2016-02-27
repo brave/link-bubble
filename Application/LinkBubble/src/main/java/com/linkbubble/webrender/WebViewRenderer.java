@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.http.SslError;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.ConsoleMessage;
+import android.webkit.CookieManager;
 import android.webkit.DownloadListener;
 import android.webkit.GeolocationPermissions;
 import android.webkit.JsPromptResult;
@@ -208,6 +210,7 @@ class WebViewRenderer extends WebRenderer {
         mTrackingProtectionEnabled = Settings.get().isTrackingProtectionEnabled();
         mAdblockEnabled = Settings.get().isAdBlockEnabled();
         mHttpsEverywhereEnabled = Settings.get().isHttpsEverywhereEnabled();
+        refresh3PCookieSetting();
 
         String urlAsString = url.toString();
         Log.d(TAG, "loadUrl() - " + urlAsString);
@@ -234,6 +237,12 @@ class WebViewRenderer extends WebRenderer {
         }
     }
 
+    private void refresh3PCookieSetting() {
+        if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            CookieManager.getInstance().setAcceptThirdPartyCookies(mWebView, !Settings.get().isBlock3PCookiesEnabled());
+        }
+    }
+
     @Override
     public void reload() {
         switch (mMode) {
@@ -246,6 +255,7 @@ class WebViewRenderer extends WebRenderer {
                 mTrackingProtectionEnabled = Settings.get().isTrackingProtectionEnabled();
                 mAdblockEnabled = Settings.get().isAdBlockEnabled();
                 mHttpsEverywhereEnabled = Settings.get().isHttpsEverywhereEnabled();
+                refresh3PCookieSetting();
                 mWebView.reload();
                 break;
         }

@@ -89,6 +89,7 @@ public class Settings {
     public static final String PREFERENCE_WEBVIEW_BATTERY_SAVING_MODE = "preference_webview_battery_save_v2";
     public static final String PREFERENCE_TRACKINGPROTECTION_MODE = "preference_trackingprotection";
     public static final String PREFERENCE_ADBLOCK_MODE = "preference_adblock";
+    public static final String PREFERENCE_BLOCK_3P_COOKIES = "preference_block_3p";
     public static final String PREFERENCE_HTTPS_EVERYWHERE_MODE = "preference_httpseverywhere";
 
     public static final String PREFERENCE_WEBVIEW_TEXT_ZOOM = "preference_webview_text_zoom2";
@@ -730,6 +731,10 @@ public class Settings {
 
     public boolean isAdBlockEnabled() {
         return mSharedPreferences.getBoolean(PREFERENCE_ADBLOCK_MODE, true);
+    }
+
+    public boolean isBlock3PCookiesEnabled() {
+        return mSharedPreferences.getBoolean(PREFERENCE_BLOCK_3P_COOKIES, true);
     }
 
     public boolean isHttpsEverywhereEnabled() {
