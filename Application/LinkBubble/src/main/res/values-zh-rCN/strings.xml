@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">下载器</string>
-    
+    <string name="send_intent_label">使用 Brave 打开</string>
     <string name="notification_summary">触按隐藏所有打开的泡泡</string>
     <string name="notification_default_summary">点触可隐藏</string>
     <string name="notification_unhide_summary">点触可显示</string>
@@ -15,7 +15,7 @@
     <string name="cancel">取消</string>
 
     <string name="action_ok">确定</string>
-    
+    <string name="action_open">打开</string>
     <string name="action_remove">删除</string>
     <string name="action_cancel">取消</string>
     <string name="action_clear_data">清除数据</string>
@@ -24,16 +24,16 @@
     <string name="action_help">帮助</string>
     <string name="action_reload_page">重新载入</string>
     <string name="action_open_in_browser">在 %1$s 中打开</string>
-    
+    <string name="action_request_desktop_site">请求桌面站点</string>
     
     <string name="action_open_in_new_bubble">在新的泡泡中打开</string>
-    
-    
+    <string name="action_open_link_in_new_bubble">在新的泡泡中打开连接</string>
+    <string name="action_open_image_in_new_bubble">在新的泡泡中打开图片</string>
     <string name="action_copy_to_clipboard">复制链接</string>
-    
+    <string name="action_save_image">保存图片</string>
     <string name="action_share">分享</string>
     <string name="action_close_all">全部关闭</string>
-    
+    <string name="action_new_bubble">新泡泡</string>
     <string name="action_close_tab">关闭泡泡</string>
     <string name="action_stop">停止</string>
     <string name="action_undo">撤销</string>
@@ -42,9 +42,9 @@
     <string name="share_via">分享页面，通过</string>
     <string name="not_set">尚未设置</string>
 
-    
-    
-    
+    <string name="error_saving_image">保存图片出错</string>
+    <string name="image_saved">图片已下载.</string>
+    <string name="notice_download_started">开始下载.</string>
 
     <string name="warning">警告！</string>
     <string name="untrusted_certificate">%1$s 的证书不被信任。确定仍然继续吗？</string>
@@ -61,7 +61,7 @@
     <string name="undo_close_tab_no_title">已关闭标签</string>
 
     <string name="pick_default_app">选择默认应用</string>
-    
+    <string name="default_browser_set">Brave 已被设为默认浏览器。</string>
     <string name="invalid_send_action">未找到有效链接</string>
     <string name="unable_to_launch_app">无法启动第三方应用程序</string>
     <string name="clear_history">清除历史记录</string>
@@ -91,7 +91,7 @@
     <string name="preference_google_account_redirect_summary">用默认待援浏览器重定向
 accounts.google.com 链接</string>
     <string name="preference_set_default_browser_title">设置系统默认浏览器</string>
-    
+    <string name="preference_set_default_browser_summary">Brave 必须被设为系统默认浏览器才能正常工作。点击配置。</string>
     <string name="preference_more">更多...</string>
     <string name="preference_intercept_links_from_title">接管链接</string>
     <string name="preference_intercept_links_from_disabled_for_L">谷歌在 Android 5.0 中移除了本功能所需的 API</string>
@@ -111,7 +111,7 @@ accounts.google.com 链接</string>
     <string name="preference_theme_dark_no_color">暗底+中性色边框</string>
     <string name="preference_theme_toolbar_title">色彩工具栏</string>
     <string name="preference_theme_toolbar_summary">匹配网站的主题色与图标高亮色</string>
-    
+    <string name="preference_article_mode_title">阅读模式</string>
     <string name="preference_reading_mode_on_wear_title">智能手表阅读模式</string>
     <string name="preference_article_mode_summary">通过操作栏按钮切换</string>
     <string name="preference_webview_text_zoom_title">文字缩放</string>
@@ -128,12 +128,14 @@ accounts.google.com 链接</string>
     <string name="preference_incognito_summary">不记录浏览历史及小型文本文件(cookie)</string>
     <string name="incognito_mode_changed_reloading_current">已变更隐身模式。正在重新加载当前泡泡...</string>
     
+    <string name="preference_adblock_title">广告拦截</string>
+    <string name="preference_adblock_summary">阻止广告加载</string>
     
     
+    <string name="preference_trackingprotection_title">追踪保护模式</string>
     
-    
-    
-    
+    <string name="preference_https_everywhere_title">HTTPS Everywhere</string>
+    <string name="preference_https_everywhere_summary">使用 HTTPS 而非 HTTP 打开站点</string>
     <string name="preference_user_agent_title">用户代理</string>
     <string-array name="preference_user_agent_options">
         <item>默认</item>
@@ -158,14 +160,14 @@ accounts.google.com 链接</string>
     <string name="preference_privacy_policy_title">隐私政策</string>
     <string name="preference_terms_of_service_title">服务条款</string>
     <string name="preference_say_thanks_title">表示感谢！</string>
-    
+    <string name="preference_say_thanks_summary">喜欢 Brave 吗？ 请在 Play 商店中留下反馈。</string>
     <string name="preference_version_title">版本</string>
     <string name="preference_version_summary">更新日志</string>
     <string name="preference_more_title">更多&#8230;</string>
     <string name="preference_show_undo_close_tab_title">撤销关闭标签提示</string>
 
-    
-    
+    <string name="preference_my_other_apps_title">更多由 Brave 开发的程序</string>
+    <string name="preference_my_other_apps_summary">喜欢 Brave 吗？ 来看看我们开发的其他应用吧。</string>
 
     <string name="remove_default_title">移除默认？</string>
     <string name="remove_default_message">移除 %1$s 作为载入 %2$s 链接的默认程序的设置？\n\n备注：下次载入 %2$s 链接时可以选择一个新的默认程序。</string>
@@ -191,10 +193,10 @@ accounts.google.com 链接</string>
 
     <string name="histroy_unread">未读</string>
     <string name="histroy_all">全部</string>
-    
+    <string name="new_bubble">新泡泡</string>
     <string name="history">历史记录</string>
     <string name="erase_all_history_title">全部清空？</string>
-    
+    <string name="erase_all_history_message">清空 Brave 中的所有浏览记录？</string>
     <string name="empty">空</string>
     <string name="history_already_empty">历史记录已清空</string>
     <string name="private_data_cleared">私人数据已清除</string>
@@ -205,7 +207,7 @@ accounts.google.com 链接</string>
     <string name="link_loaded_with_app">已用 %1$s 加载</string>
     <string name="link_redirected">重定向至 %1$s</string>
 
-    
+    <string name="tampered_apk">您的 Brave 已被非法修改， 因此无法可靠运行. 请到 Play 商店重新安装.</string>
 
     <string name="bubble_link_copied_to_clipboard">泡泡的链接已复制到剪贴板。</string>
     <string name="link_copied_to_clipboard">链接已复制到剪贴板。</string>
@@ -229,7 +231,7 @@ accounts.google.com 链接</string>
     <string name="faq_close_tab_answer">按返回键是最快的方式。把一个标签页滑到关闭键上是另一个好方式。</string>
     <string name="faq_back_button_minimize_question">我觉得按返回键应该最小化浏览器！</string>
     
-    
+    <string name="faq_app_internal_browser_question"><![CDATA[Brave 无法接管链接！]]></string>
     
     <string name="faq_article_mode_question">我该如何使用阅读模式？为什么许多链接无法使用阅读模式？</string>
     
@@ -252,12 +254,12 @@ accounts.google.com 链接</string>
     
     <string name="faq_crap_webview_question">有时网页不正常显示或者视频不播放。</string>
     
-    
-    
+    <string name="faq_ongoing_notificaion_question">为什么 Brave 运行的时候总是显示常驻通知？</string>
+    <string name="faq_ongoing_notificaion_answer"><![CDATA[很抱歉，该常驻通知是必要的，以阻止 Android 系统结束 Brave 进程.]]></string>
     <string name="faq_next_update_eta_question">下次更新是什么时候?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[在我准备好的时候！<br/><br/>很不幸，除此以外没有详情了（估计也没有）。<br/><br/>事实中当我给出估计估计时后，人们最终通常把它当作承诺，如果/当更新跳票的时候他们会很郁闷。]]></string>
-    
-    
+    <string name="faq_close_quickly_question">我能快速停止 Brave 运行吗？</string>
+    <string name="faq_close_quickly_answer">从屏幕顶部下拉打开通知面板，点击 \"Brave\" 通知。</string>
     
     
     <string name="faq_report_bug_question">回报错误</string>
@@ -273,9 +275,9 @@ accounts.google.com 链接</string>
     <string name="activity_resolver_use_once">仅一次</string>
 
     
-    
+    <string name="credits_name">Brave</string>
     <string name="credits_credit">概念、设计及开发</string>
-    
+    <string name="credits_app_copyright">版权所有 2015, Brave</string>
 
     
     <plurals name="restore_tabs_from_previous_session">
@@ -317,7 +319,7 @@ accounts.google.com 链接</string>
     
     <string name="welcome_page_more_point_1">重定向链接到特定应用（例如 Instagram）</string>
     <string name="welcome_page_more_point_2">查找页面内嵌入式视频并在 YouTube 应用中加载。</string>
-    
+    <string name="welcome_page_more_point_3">同时加载多个泡泡.</string>
     <string name="welcome_page_more_point_4">从所有应用中加载链接</string>
     <string name="welcome_page_ps">注：若要关闭本泡泡，请按返回键或长按泡泡并拖动到屏幕底部的关闭泡泡中。</string>
 

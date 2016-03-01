@@ -133,6 +133,8 @@
     
     
     
+    
+    
     <string name="preference_user_agent_title">User Agent</string>
     <string-array name="preference_user_agent_options">
         <item>Výchozí</item>

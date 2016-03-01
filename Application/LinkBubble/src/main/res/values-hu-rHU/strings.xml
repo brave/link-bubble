@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Letöltő</string>
-    
+    <string name="send_intent_label">Megnyitás Brave-vel</string>
     <string name="notification_summary">Az összes nyitott buborék elrejtéséhez érintsd meg itt</string>
     
     
@@ -12,13 +12,13 @@
 
     <string name="yes">Igen</string>
     <string name="no">Nem</string>
-    <string name="cancel">Törlés</string>
+    <string name="cancel">Mégse</string>
 
     <string name="action_ok">OK</string>
     
     <string name="action_remove">Eltávolítod?</string>
-    <string name="action_cancel">Megszakítás</string>
-    <string name="action_clear_data">Adat(ok) törlése</string>
+    <string name="action_cancel">Mégse</string>
+    <string name="action_clear_data">Adatok törlése</string>
     <string name="action_use_default">Alapértelmezett használata</string>
     <string name="action_settings">Beállítások</string>
     <string name="action_help">Segítség</string>
@@ -27,26 +27,26 @@
     
     
     <string name="action_open_in_new_bubble">Megnyitás új buborékban</string>
-    
-    
+    <string name="action_open_link_in_new_bubble">Link megnyitása új buborékban</string>
+    <string name="action_open_image_in_new_bubble">Kép megnyitása új buborékban</string>
     <string name="action_copy_to_clipboard">Link másolása</string>
-    
+    <string name="action_save_image">Kép mentése</string>
     <string name="action_share">Megosztás</string>
-    <string name="action_close_all">Összes bezárása</string>
-    
+    <string name="action_close_all">Mind bezár</string>
+    <string name="action_new_bubble">Új buborék</string>
     <string name="action_close_tab">Buborék bezárása</string>
     <string name="action_stop">Stop</string>
     <string name="action_undo">Visszavonás</string>
-    
-    
+    <string name="action_add">Hozzáad</string>
+    <string name="action_no_recommended">Nem (javasolt)</string>
     <string name="share_via">Megosztás ezzel</string>
     
 
     
-    
-    
+    <string name="image_saved">A kép letöltve.</string>
+    <string name="notice_download_started">A letöltés elindult.</string>
 
-    
+    <string name="warning">Figyelem!</string>
     
 
     
@@ -75,7 +75,7 @@
     <string name="preference_auto_content_display_link_loaded_summary">Ha valamelyik buborék betöltődött</string>
 
     <string name="preference_left_consume_bubble_title">Bal oldali buborék</string>
-    <string name="preference_right_consume_bubble_title">Jobb ooldali buborék</string>
+    <string name="preference_right_consume_bubble_title">Jobb oldali buborék</string>
     <string name="preference_double_tap_title">Hivatkozás dupla érintése</string>
     <string name="preference_configure_bubble_title">Buborék beállítása</string>
     <string name="preference_category_debug">Hibakereső</string>
@@ -91,7 +91,7 @@
     <string name="preference_google_account_redirect_summary">accounts.google.com linkek átirányítása a "tartalék" böngészőbe</string>
     <string name="preference_set_default_browser_title">Alapértelmezett böngésző beállítása</string>
     
-    <string name="preference_more">Több</string>
+    <string name="preference_more">Több...</string>
     <string name="preference_intercept_links_from_title">Linkek fogadása innen:</string>
     
     <string name="preference_scan_for_youtube_embeds_title">Ellenőrizze a beágyazott YouTube videókat</string>
@@ -125,6 +125,8 @@
     <string name="preference_clear_passwords">Jelszavak</string>
     <string name="preference_incognito_title">Inkognitó mód</string>
     <string name="preference_incognito_summary">Nem tárolja az előzményeket és a cookie-kat</string>
+    
+    
     
     
     
@@ -319,23 +321,23 @@
     <string name="welcome_page_more_point_4">Minden alkalmazásból "elkaphatsz" linkeket</string>
     <string name="welcome_page_ps">UI: ezen buborék bezárásához nyomd meg a Vissza gombot, vagy húzd a buborékot a Bezárás gombra</string>
 
-    
+    <string name="duplicate_link_will_not_be_loaded">A link már betöltve. Kihagyás...</string>
 
     
+    <string name="http_prefix">http://</string>
+    <string name="https_prefix">https://</string>
+    <string name="www_prefix">www.</string>
+    <string name="duck_duck_search_engine">https://duckduckgo.com/?q=</string>
+    <string name="google_search_engine">http://www.google.hu/search?q=</string>
+    <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
+    <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="duck_duck_go">Duck Duck Go</string>
+    <string name="google">Google</string>
+    <string name="yahoo">Yahoo</string>
+    <string name="amazon">Amazon</string>
     
     
     

@@ -130,6 +130,8 @@ kunnen afhandelen.\n\nTik om een standaard te verwijderen.</string>
     <string name="preference_trackingprotection_summary">Voorkom laden van bronnen die je volgen</string>
     <string name="preference_adblock_title">Ad Block</string>
     <string name="preference_adblock_summary">Voorkom laden van advertenties</string>
+    
+    
     <string name="preference_trackingprotection_title">Volgpreventiestand</string>
     <string name="preference_adblock_tracking_protection_from_disabled">Deze mogelijkheid is alleen beschikbaar in Android 5.0 en hoger.</string>
     <string name="preference_https_everywhere_title">HTTPS overal</string>

@@ -134,6 +134,8 @@ võivad hallata URLi.\n\nKoputa, et eemaldada vaikeväärtus.</string>
     
     
     
+    
+    
     <string name="preference_user_agent_title">Kasutajaagent</string>
     <string-array name="preference_user_agent_options">
         <item>Vaikimisi</item>

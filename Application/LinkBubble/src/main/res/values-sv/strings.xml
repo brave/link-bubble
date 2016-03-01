@@ -134,6 +134,8 @@ URL.\n\nTryck för att ta bort en standardapp.</string>
     
     
     
+    
+    
     <string name="preference_user_agent_title">Användaragent</string>
     <string-array name="preference_user_agent_options">
         <item>Standard</item>

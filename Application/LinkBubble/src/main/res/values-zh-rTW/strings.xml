@@ -33,7 +33,7 @@
     <string name="action_save_image">儲存圖片</string>
     <string name="action_share">分享</string>
     <string name="action_close_all">全部關閉</string>
-    
+    <string name="action_new_bubble">新增氣泡</string>
     <string name="action_close_tab">關閉氣泡</string>
     <string name="action_stop">停止</string>
     <string name="action_undo">復原</string>
@@ -61,7 +61,7 @@
     <string name="undo_close_tab_no_title">已關閉分頁</string>
 
     <string name="pick_default_app">選擇預設程式</string>
-    
+    <string name="default_browser_set">Brave 已成為預設的瀏覽器。</string>
     <string name="invalid_send_action">找不到有效連結。</string>
     <string name="unable_to_launch_app">無法啟動第三方應用程式。</string>
     <string name="clear_history">清除歷史紀錄</string>
@@ -87,11 +87,13 @@
     <string name="preference_default_apps_summary">備援瀏覽器及開啟特定網址的應用程式</string>
     <string name="preference_default_apps_notice_summary">當系統中具有可開啟該連結的程式時使用。
 \n\n點擊可移除其預設值。</string>
-    
+    <string name="preference_default_apps_notice_no_defaults_summary">當裝置中具有可開啟該連結的程式時使用，
+您可以為這類連結設定預設的應用程式。
+\n\nBrave 會在讀取到連結時供您設定預設的程式。</string>
     <string name="preference_google_account_redirect_title">重新導向 Google 帳號</string>
     <string name="preference_google_account_redirect_summary">將 accounts.google.com 的連結重新導向至預設備援瀏覽器</string>
     <string name="preference_set_default_browser_title">設為系統預設的瀏覽器</string>
-    
+    <string name="preference_set_default_browser_summary">Brave 必須設為系統預設的瀏覽器才能運作，請點此設定。</string>
     <string name="preference_more">更多…</string>
     <string name="preference_intercept_links_from_title">擷取連結</string>
     <string name="preference_intercept_links_from_disabled_for_L">自 Android 5.0 開始，Google 移除了這項功能所需的 API。</string>
@@ -99,7 +101,7 @@
     <string name="preference_scan_for_youtube_embeds_summary">顯示以 YouTube 程式讀取內嵌影片的按鈕。</string>
     <string name="preference_webview_battery_save_title">省電模式 (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">積極</string>
-    
+    <string name="preference_webview_battery_save_aggressive_summary">當 Brave 最小化時暫停更新網頁。\n暫停前會先將載入中的網頁讀取完畢。</string>
     <string name="preference_webview_battery_save_default_title">預設</string>
     <string name="preference_webview_battery_save_default_summary">當螢幕關閉時暫停更新網頁，並於畫面解鎖後恢復。\n暫停前會先將載入中的網頁讀取完畢。</string>
     <string name="preference_webview_battery_save_off_title">關閉</string>
@@ -127,9 +129,11 @@
     <string name="preference_incognito_title">無痕模式</string>
     <string name="preference_incognito_summary">防止儲存所有的歷史紀錄及 cookies</string>
     <string name="incognito_mode_changed_reloading_current">已變更無痕模式設定。重新載入氣泡中…</string>
-    
+    <string name="preference_trackingprotection_summary">資源載入時避免追蹤</string>
     <string name="preference_adblock_title">廣告封鎖</string>
     <string name="preference_adblock_summary">避免廣告載入</string>
+    
+    
     <string name="preference_trackingprotection_title">追蹤防護模式</string>
     <string name="preference_adblock_tracking_protection_from_disabled">此功能僅可用於 Andriod 5.0 或更高版本。</string>
     <string name="preference_https_everywhere_title">所有位置均使用 HTTPS</string>
@@ -157,14 +161,14 @@
     <string name="preference_privacy_policy_title">隱私權政策</string>
     <string name="preference_terms_of_service_title">服務條款</string>
     <string name="preference_say_thanks_title">表達謝意！</string>
-    
+    <string name="preference_say_thanks_summary">喜歡 Brave 嗎？請移步至 Play 商店留下感想。</string>
     <string name="preference_version_title">版本</string>
     <string name="preference_version_summary">多了什麼新東西？</string>
     <string name="preference_more_title">其他選項&#8230;</string>
     <string name="preference_show_undo_close_tab_title">復原已關閉分頁的提醒視窗</string>
 
-    
-    
+    <string name="preference_my_other_apps_title">Brave 的其他作品</string>
+    <string name="preference_my_other_apps_summary">喜歡 Brave 嗎？何不看看其他的作品呢？</string>
 
     <string name="remove_default_title">移除預設值？</string>
     <string name="remove_default_message">要移除以 %1$s 開啟 %2$s 連結的預設值嗎？
@@ -191,10 +195,10 @@
 
     <string name="histroy_unread">未讀</string>
     <string name="histroy_all">全部</string>
-    
+    <string name="new_bubble">新增氣泡</string>
     <string name="history">歷史紀錄</string>
     <string name="erase_all_history_title">全部清除？</string>
-    
+    <string name="erase_all_history_message">清除 Brave 中的所有瀏覽紀錄？</string>
     <string name="empty">沒有紀錄</string>
     <string name="history_already_empty">已清空歷史紀錄</string>
     <string name="private_data_cleared">已清除隱私資料</string>
@@ -205,7 +209,7 @@
     <string name="link_loaded_with_app">已用 %1$s 讀取</string>
     <string name="link_redirected">已重新導向至 %1$s</string>
 
-    
+    <string name="tampered_apk">您的 Brave 已被非法修改，因此無法正常運作。請從 Play 商店重新下載。</string>
 
     <string name="bubble_link_copied_to_clipboard">已將氣泡的連結複製到剪貼簿。</string>
     <string name="link_copied_to_clipboard">已將連結複製到剪貼簿。</string>
@@ -229,7 +233,7 @@
     <string name="faq_close_tab_answer">最快的方法是按下返回鍵，也可以將分頁滑至關閉按鈕上。</string>
     <string name="faq_back_button_minimize_question">我覺得返回鍵應該用來將瀏覽器最小化！</string>
     
-    
+    <string name="faq_app_internal_browser_question"><![CDATA[Brave 無法擷取連結！]]></string>
     
     <string name="faq_article_mode_question">我要如何使用閱讀模式？為什麼有些連結沒辦法用？</string>
     

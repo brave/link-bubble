@@ -134,6 +134,8 @@ poden gestionar una URL.\n\nPrem per esborrar-ne una.</string>
     
     
     
+    
+    
     <string name="preference_user_agent_title">Agent d\'usuari</string>
     <string-array name="preference_user_agent_options">
         <item>Per defecte</item>
