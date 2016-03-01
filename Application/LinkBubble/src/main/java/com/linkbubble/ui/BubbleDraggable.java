@@ -576,7 +576,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         });
 
         if (mDraggableHelper.isAlive()) {
-            MainController.addRootWindow(this, windowManagerParams);
+            //to do debug
+            //MainController.addRootWindow(this, windowManagerParams);
+            //
 
             slideOnScreen(x0, y0, targetX, targetY, targetTime);
         }

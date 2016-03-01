@@ -155,7 +155,9 @@ public class CanvasView extends FrameLayout {
         mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
         mWindowManagerParams.setTitle("LinkBubble: CanvasView");
+        //to do debug
         MainController.addRootWindow(this, mWindowManagerParams);
+        //
 
         if (Constant.DEBUG_SHOW_TARGET_REGIONS) {
             mTargetDebugRect = new Rect();
