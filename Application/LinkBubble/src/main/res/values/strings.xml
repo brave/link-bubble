@@ -49,7 +49,7 @@
     <string name="warning">Warning!</string>
     <string name="untrusted_certificate">The certificate at %1$s is not trusted. Proceed anyway?</string>
 
-    <string name="share_invalid_data">Brave us unable to share this item as it is not a valid URL.</string>
+    <string name="share_invalid_data">Brave is unable to share this item as it is not a valid URL.</string>
     <string name="consume_activity_not_found">Unable to find application. Consider changing bubble action via Settings.</string>
     <string name="consume_activity_security_exception">Unable to share to external application.</string>
 
