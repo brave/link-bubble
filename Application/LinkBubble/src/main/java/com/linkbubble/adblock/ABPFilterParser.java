@@ -31,9 +31,16 @@ public class ABPFilterParser {
         }
     }
 
+    public boolean shouldBlockJava(String baseHost, String url, String filterOption) {
+        if (null == mBuffer) {
+            return false;
+        }
+
+        return shouldBlock(baseHost, url, filterOption);
+    }
+
 
     public native void init(byte[] data);
-    public native String stringFromJNI();
     public native boolean shouldBlock(String baseHost, String url, String filterOption);
     private byte[] mBuffer;
     private String mVerNumber;

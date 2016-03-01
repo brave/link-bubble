@@ -27,7 +27,7 @@ public class WhiteListCollector {
 
             byte[] buffer = null;
             if (dataPath.exists()) {
-                buffer = ADBlockUtils.readLocalFile(dataPath.getAbsolutePath());
+                buffer = ADBlockUtils.readLocalFile(dataPath);
             }
             if (null != buffer) {
                 String[] array = new String(buffer).split(",");

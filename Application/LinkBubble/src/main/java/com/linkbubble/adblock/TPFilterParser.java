@@ -24,6 +24,20 @@ public class TPFilterParser {
         }
     }
 
+    public boolean matchesTrackerJava(String baseHost, String host) {
+        if (null == mBuffer) {
+            return false;
+        }
+
+        return matchesTracker(baseHost, host);
+    }
+    public String findFirstPartyHostsJava(String baseHost) {
+        if (null == mBuffer) {
+            return "";
+        }
+
+        return findFirstPartyHosts(baseHost);
+    }
 
     public native void init(byte[] data);
     public native boolean matchesTracker(String baseHost, String host);

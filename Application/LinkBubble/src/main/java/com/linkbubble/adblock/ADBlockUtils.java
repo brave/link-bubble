@@ -67,12 +67,15 @@ public class ADBlockUtils {
         }
     }
 
-    public static byte[] readLocalFile(String path) {
+    public static byte[] readLocalFile(File path) {
         byte[] buffer = null;
 
         FileInputStream inputStream = null;
         try {
-            inputStream = new FileInputStream(path);
+            if (!path.exists()) {
+                return null;
+            }
+            inputStream = new FileInputStream(path.getAbsolutePath());
             int size = inputStream.available();
             buffer = new byte[size];
             int n = - 1;
@@ -93,21 +96,21 @@ public class ADBlockUtils {
     public static byte[] readData(Context context, String fileName, String urlString, String eTagPrepend, String verNumber,
             boolean downloadOnly) {
         File dataPath = new File(context.getApplicationInfo().dataDir, verNumber + fileName);
-        boolean fileExists = dataPath.exists();
+        long oldFileSize = dataPath.length();
         EtagObject previousEtag = ADBlockUtils.getETagInfo(context, eTagPrepend);
         long milliSeconds = Calendar.getInstance().getTimeInMillis();
-        if (!fileExists || (milliSeconds - previousEtag.mMilliSeconds >= ADBlockUtils.MILLISECONDS_IN_A_DAY)) {
-            ADBlockUtils.downloadDatFile(context, fileExists, previousEtag, milliSeconds, fileName, urlString, eTagPrepend, verNumber);
+        if (0 == oldFileSize || (milliSeconds - previousEtag.mMilliSeconds >= ADBlockUtils.MILLISECONDS_IN_A_DAY)) {
+            ADBlockUtils.downloadDatFile(context, oldFileSize, previousEtag, milliSeconds, fileName, urlString, eTagPrepend, verNumber);
         }
 
         if (downloadOnly) {
             return null;
         }
 
-        return readLocalFile(dataPath.getAbsolutePath());
+        return readLocalFile(dataPath);
     }
 
-    public static void downloadDatFile(Context context, boolean fileExist, EtagObject previousEtag, long currentMilliSeconds,
+    public static void downloadDatFile(Context context, long oldFileSize, EtagObject previousEtag, long currentMilliSeconds,
                                        String fileName, String urlString, String eTagPrepend, String verNumber) {
         byte[] buffer = null;
         InputStream inputStream = null;
@@ -117,11 +120,12 @@ public class ADBlockUtils {
             URL url = new URL(urlString);
             connection = (HttpURLConnection) url.openConnection();
             String etag = connection.getHeaderField("ETag");
+            int length = connection.getContentLength();
             if (null == etag) {
                 etag = "";
             }
             boolean downloadFile = true;
-            if (fileExist && etag.equals(previousEtag.mEtag)) {
+            if (oldFileSize == length && etag.equals(previousEtag.mEtag)) {
                 downloadFile = false;
             }
             previousEtag.mEtag = etag;
@@ -131,6 +135,7 @@ public class ADBlockUtils {
                 return;
             }
             ADBlockUtils.removeOldVersionFiles(context, fileName);
+
             connection.connect();
 
             if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
@@ -142,11 +147,16 @@ public class ADBlockUtils {
             inputStream = connection.getInputStream();
             buffer = new byte[ADBlockUtils.BUFFER_TO_READ];
             int n = - 1;
+            int totalReadSize = 0;
             while ( (n = inputStream.read(buffer)) != -1)
             {
                 outputStream.write(buffer, 0, n);
+                totalReadSize += n;
             }
             outputStream.close();
+            if (length != totalReadSize) {
+                ADBlockUtils.removeOldVersionFiles(context, fileName);
+            }
         }
         catch (MalformedURLException e) {
             e.printStackTrace();

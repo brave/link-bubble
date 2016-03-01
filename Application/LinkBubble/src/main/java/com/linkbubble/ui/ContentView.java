@@ -669,7 +669,7 @@ public class ContentView extends FrameLayout {
                 return false;
             }
 
-            return parser.shouldBlock(baseHost, urlStr, filterOption);
+            return parser.shouldBlockJava(baseHost, urlStr, filterOption);
         }
 
         @Override
@@ -684,9 +684,9 @@ public class ContentView extends FrameLayout {
                 return false;
             }
 
-            if (tpList.matchesTracker(baseHost, host)) {
+            if (tpList.matchesTrackerJava(baseHost, host)) {
                 if (null == mThirdPartyHosts) {
-                    mThirdPartyHosts = tpList.findFirstPartyHosts(baseHost).split(",");
+                    mThirdPartyHosts = tpList.findFirstPartyHostsJava(baseHost).split(",");
                 }
 
                 if (null != mThirdPartyHosts) {
