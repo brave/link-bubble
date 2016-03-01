@@ -80,9 +80,9 @@ public class PageInspector {
         if (mScriptCache == null) {
             mScriptCache = "javascript:(function() {\n";
 
-            if (MainController.get() == null || !MainController.get().hasStableWebViewForSelects(mContext)) {
-                mScriptCache += getFileContents("SelectElements");
-            }
+            //if (MainController.get() == null || !MainController.get().hasStableWebViewForSelects(mContext)) {
+            //    mScriptCache += getFileContents("SelectElements");
+            //}
 
             mScriptCache += getFileContents("TouchIcon");
 
