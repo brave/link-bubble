@@ -276,7 +276,9 @@ public class MainController implements Choreographer.FrameCallback {
     protected boolean mUpdateScheduled;
     protected CanvasView mCanvasView;
 
-    private BubbleFlowDraggable mBubbleFlowDraggable;
+    //to do debug
+    public BubbleFlowDraggable mBubbleFlowDraggable;
+    //
     private BubbleDraggable mBubbleDraggable;
 
     private long mPreviousFrameTime;
@@ -353,6 +355,10 @@ public class MainController implements Choreographer.FrameCallback {
         }
     };
 
+    public void addBubble(View view, boolean insertNextToCenterItem) {
+        mBubbleFlowDraggable.add(view, insertNextToCenterItem);
+    }
+
     protected MainController(Context context, EventHandler eventHandler) {
         Util.Assert(sInstance == null, "non-null instance");
         sInstance = this;
@@ -413,7 +419,7 @@ public class MainController implements Choreographer.FrameCallback {
         });
 
         mBubbleFlowDraggable = (BubbleFlowDraggable) inflater.inflate(R.layout.view_bubble_flow, null);
-        mBubbleFlowDraggable.configure(null);
+        mBubbleFlowDraggable.configure(null, true);
         mBubbleFlowDraggable.collapse(0, null);
         mBubbleFlowDraggable.setBubbleDraggable(mBubbleDraggable);
         mBubbleFlowDraggable.setVisibility(View.GONE);

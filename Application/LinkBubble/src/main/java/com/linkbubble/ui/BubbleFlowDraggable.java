@@ -5,6 +5,9 @@
 package com.linkbubble.ui;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.util.AttributeSet;
@@ -35,7 +38,9 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     private int mBubbleFlowWidth;
     private int mBubbleFlowHeight;
     private TabView mCurrentTab;
-    private BubbleDraggable mBubbleDraggable;
+    //to do debug
+    public BubbleDraggable mBubbleDraggable;
+    //
     private Point mTempSize = new Point();
 
     private MainController.CurrentTabChangedEvent mCurrentTabChangedEvent = new MainController.CurrentTabChangedEvent();
@@ -64,7 +69,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         return false;
     }
 
-    public void configure(EventHandler eventHandler)  {
+    public void configure(EventHandler eventHandler, boolean addRootWindow)  {
         mBubbleFlowWidth = Config.mScreenWidth;
         mBubbleFlowHeight = getResources().getDimensionPixelSize(R.dimen.bubble_pager_height);
 
@@ -141,7 +146,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
         mEventHandler = eventHandler;
 
-        if (mDraggableHelper.isAlive()) {
+        if (mDraggableHelper.isAlive() && addRootWindow) {
             MainController.addRootWindow(this, windowManagerParams);
 
             setExactPos(0, 0);
@@ -257,7 +262,8 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     }
 
-    private void setCurrentTab(TabView tab) {
+    //to do debug
+    public void setCurrentTab(TabView tab) {
         mCurrentTabResumeEvent.mTab = tab;
         MainApplication.postEvent(getContext(), mCurrentTabResumeEvent);
         if (mCurrentTab == tab) {
@@ -336,11 +342,49 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     public TabView openUrlInTab(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker,
                                 boolean performEmptyClick) {
+        //to do debug
+        Intent intent1 = new Intent(getContext(), BubbleFlowActivity.class);
+        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+        intent1.putExtra("host", "http://macworld.com");
+        getContext().startActivity(intent1);
+
+        /*ActivityInfo[] list;
+        try {
+            list = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), PackageManager.GET_ACTIVITIES).activities;
+            for(int i = 0;i< list.length;i++)
+            {
+                System.out.println("List of running activities"+list[i].name);
+
+            }
+        }
+        catch (PackageManager.NameNotFoundException e) {
+
+        }*/
+
+//        Intent intent2 = new Intent(getContext(), BubbleFlowActivity.class);
+//        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK/* | Intent.FLAG_ACTIVITY_CLEAR_TOP /*| Intent.FLAG_ACTIVITY_MULTIPLE_TASK*/);
+//        intent2.putExtra("host", "http://slashdot.org");
+//        getContext().startActivity(intent2);
+        //
+
+        /*try {
+            list = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), PackageManager.GET_ACTIVITIES).activities;
+            for(int i = 0;i< list.length;i++)
+            {
+                System.out.println("List of running activities"+list[i].name);
+
+            }
+        }
+        catch (PackageManager.NameNotFoundException e) {
+
+        }*/
+        //
+
         TabView tabView;
         try {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             tabView = (TabView) inflater.inflate(R.layout.view_tab, null);
-            tabView.configure(url, urlLoadStartTime, hasShownAppPicker, performEmptyClick);
+            tabView.configure(url, urlLoadStartTime, hasShownAppPicker, performEmptyClick, true);
         } catch (MalformedURLException e) {
             // TODO: Inform the user somehow?
             return null;
@@ -357,6 +401,8 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
 
         saveCurrentTabs();
+        //return new TabView(getContext());//tabView;
+
         return tabView;
     }
 

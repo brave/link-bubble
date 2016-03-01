@@ -2,6 +2,7 @@
 <resources>
     <!--http://www.colorhexa.com/663399-->
 
+    <color name="transparent">#000000</color>
     <color name="moderate_orange">#996633</color>
     <color name="green">#339933</color>
     <color name="flat_green">#669933</color>

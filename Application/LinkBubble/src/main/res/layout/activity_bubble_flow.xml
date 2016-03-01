@@ -6,53 +6,261 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.linkbubble.ui.BubbleFlowView
+    <!--<com.linkbubble.ui.BubbleFlowDraggable
         android:id="@+id/bubble_flow"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/bubble_pager_height"
-        android:layout_gravity="top|center_horizontal"/>
+        android:layout_gravity="top|center_horizontal"/> -->
 
-    <View
-        android:layout_width="1dp"
-        android:layout_height="@dimen/bubble_pager_height"
-        android:background="@android:color/holo_blue_dark"
-        android:layout_gravity="top|center_horizontal"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/debug_text"
-        android:text="blerg"
-        tools:ignore="HardcodedText"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
-        android:orientation="horizontal">
+<!--    <com.linkbubble.ui.ContentView
+        android:id="@+id/content_view_id"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="@dimen/bubble_pager_height">
 
-        <Button
-            android:id="@+id/add_bubble_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="+ Bubble"
-            tools:ignore="ButtonStyle,HardcodedText"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_header"/>
 
-        <Button
-            android:id="@+id/remove_bubble_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="- Bubble"
-            tools:ignore="ButtonStyle,HardcodedText"/>
+        <FrameLayout
+            android:id="@+id/content_edit_url"
+            android:focusable="true"
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            android:layout_height="@dimen/toolbar_height"
+            android:layout_marginTop="@dimen/toolbar_header"
+            android:background="#ffffffff">
 
-        <Button
-            android:id="@+id/animate_bubble_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Shrink"
-            tools:ignore="ButtonStyle,HardcodedText"/>
+            <AutoCompleteTextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/autocomplete_top500websites"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/search_url_height"
+                android:singleLine="true"
+                android:background="@null"
+                android:layout_marginRight="150px"
+                android:paddingLeft="5dp"
+                android:hint="@string/edit_url"
+                android:layout_alignParentLeft="true"
+                android:imeOptions="actionGo"
+                android:completionThreshold="1"
+                android:dropDownWidth="match_parent"
+                android:dropDownAnchor="@+id/content_edit_url"
+                android:dropDownSelector="?android:attr/listChoiceBackgroundIndicator"
+                android:inputType="textUri"
+                android:layout_gravity="center_vertical"
+                android:textIsSelectable="true"
+                android:textSize="16dp" />
 
-    </LinearLayout>
+            <ImageButton android:id="@+id/search_url_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40px"
+                android:background="@drawable/search_url_button_selector"
+                android:layout_alignParentRight = "true"
+                android:baselineAlignBottom="false"
+                android:clickable="true"
+                android:layout_gravity="right|center_vertical" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/content_toolbar"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:background="@color/color_content_view_light"
+            android:layout_height="@dimen/toolbar_height"
+            android:layout_marginTop="@dimen/toolbar_header">
+
+            <LinearLayout
+                android:id="@+id/content_text_container"
+                android:orientation="vertical"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <com.linkbubble.ui.CondensedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#555555"
+                    android:singleLine="true"
+                    android:clickable="false"
+                    android:duplicateParentState="true"
+                    android:id="@+id/title_text"/>
+
+                <com.linkbubble.ui.CondensedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:paddingBottom="2dp"
+                    android:textColor="#555555"
+                    android:singleLine="true"
+                    android:clickable="false"
+                    android:duplicateParentState="true"
+                    android:id="@+id/url_text"/>
+
+            </LinearLayout>
+
+            <com.linkbubble.ui.OpenEmbedButton
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/ToolbarButton"
+                android:id="@+id/open_embed_button"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:paddingBottom="6dp"
+                    android:src="@drawable/embed"
+                    android:layout_gravity="bottom|right"
+                    tools:ignore="ContentDescription"/>
+
+            </com.linkbubble.ui.OpenEmbedButton>
+
+            <com.linkbubble.ui.OpenInAppButton
+                style="@style/ToolbarButton"
+                android:id="@+id/open_in_app_button"
+                android:visibility="invisible"
+                />
+
+            <com.linkbubble.ui.ContentViewButton
+                style="@style/ToolbarButton"
+                android:id="@+id/reload_button"
+                android:visibility="gone"
+                />
+
+            <com.linkbubble.ui.ArticleModeButton
+                style="@style/ToolbarButton"
+                android:id="@+id/article_mode_button"
+                android:visibility="gone"/>
+
+            <com.linkbubble.ui.ContentViewButton
+                style="@style/ToolbarButton"
+                android:id="@+id/share_button"
+                />
+
+            <com.linkbubble.ui.ContentViewButton
+                style="@style/ToolbarButton"
+                android:id="@+id/overflow_button"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/web_renderer_placeholder"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="@dimen/webview_margin_top"/>
+
+        <View
+            android:id="@+id/article_renderer_placeholder"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="@dimen/webview_margin_top"
+            android:visibility="invisible"/>
+
+        <LinearLayout
+            android:id="@+id/request_location_container"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/requesting_location_box_height"
+            android:layout_gravity="bottom"
+            android:background="@color/request_location_box_color"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:visibility="gone">
+
+            <com.linkbubble.ui.CondensedTextView
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#555555"
+                android:id="@+id/requesting_location_text_view"
+                android:text="@string/requesting_location_message"/>
+
+            <Button
+                android:id="@+id/access_location_no"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/no"/>
+
+            <Button
+                android:id="@+id/access_location_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/yes"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/request_location_shadow"
+            android:layout_width="fill_parent"
+            android:layout_height="8dp"
+            android:background="@drawable/action_bar_shadow"
+            android:layout_gravity="bottom"
+            android:rotation="180"
+            android:layout_marginBottom="@dimen/requesting_location_box_height"
+            tools:ignore="ContentDescription"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="8dp"
+            android:background="@drawable/action_bar_shadow"
+            android:layout_marginTop="@dimen/webview_margin_top"
+            tools:ignore="ContentDescription"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/toolbar_header">
+
+            <ImageView
+                android:layout_height="fill_parent"
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_gravity="left"
+                android:background="@drawable/content_view_top_shadow"
+                tools:ignore="ContentDescription"/>
+
+            <FrameLayout
+                android:layout_width="12dp"
+                android:layout_height="@dimen/toolbar_header">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/content_view_caret_shadow"
+                    tools:ignore="ContentDescription"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/caret"
+                    android:layout_gravity="center_horizontal"
+                    tools:ignore="ContentDescription"/>
+            </FrameLayout>
+
+
+            <ImageView
+                android:layout_height="fill_parent"
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_gravity="right"
+                android:background="@drawable/content_view_top_shadow"
+                tools:ignore="ContentDescription"/>
+
+        </LinearLayout>
+
+    </com.linkbubble.ui.ContentView> -->
 
 </merge>

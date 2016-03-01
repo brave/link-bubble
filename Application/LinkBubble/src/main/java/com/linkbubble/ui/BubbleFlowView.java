@@ -166,7 +166,7 @@ public class BubbleFlowView extends HorizontalScrollView {
         mMinScaleX = mItemWidth * 1.2f;
     }
 
-    void add(View view, boolean insertNextToCenterItem) {
+    public void add(View view, boolean insertNextToCenterItem) {
 
         //view.setBackgroundColor(mViews.size() % 2 == 0 ? 0xff660066 : 0xff666600);
 

@@ -27,7 +27,7 @@ import java.net.URL;
 
 public class TabView extends BubbleView {
 
-    private ContentView mContentView;
+    public ContentView mContentView;
     private ImageView mBackIndicatorView;
     private ScaleUpAnimHelper mBackIndicatorAnimHelper;
     private boolean mPerformEmptyClick;
@@ -47,7 +47,8 @@ public class TabView extends BubbleView {
         super(context, attrs, defStyle);
     }
 
-    void configure(String url, long urlLoadStartTime, boolean hasShownAppPicker, boolean performEmptyClick) throws MalformedURLException {
+    void configure(String url, long urlLoadStartTime, boolean hasShownAppPicker, boolean performEmptyClick,
+                   boolean needToInflate) throws MalformedURLException {
         super.configure(url);
 
         mPerformEmptyClick = performEmptyClick;
@@ -62,7 +63,9 @@ public class TabView extends BubbleView {
         mBackIndicatorAnimHelper = new ScaleUpAnimHelper(mBackIndicatorView, 1.0f);
         mBackIndicatorAnimHelper.hide();
 
-        mContentView = (ContentView)inflate(getContext(), R.layout.view_content, null);
+        if (needToInflate) {
+            mContentView = (ContentView) inflate(getContext(), R.layout.view_content, null);
+        }
         mContentView.configure(mUrl.toString(), this, urlLoadStartTime, hasShownAppPicker, new ContentView.EventHandler() {
 
             @Override
