@@ -915,12 +915,15 @@ public class ContentView extends FrameLayout {
         @Override
         public void onPageStarted(final String urlAsString, Bitmap favIcon) {
             Log.d(TAG, "onPageStarted() - " + urlAsString);
+            //to do debug
+            /*
             try {
                 CrashTracking.log("onPageStarted(), " + urlAsString + ", index:" + MainController.get().getTabIndex(mOwnerTabView));
             } catch (NullPointerException npe) {
                 CrashTracking.log("onPageStarted(), " + urlAsString + ", index: no current MainController");
                 Log.e(TAG, npe.getLocalizedMessage(), npe);
             }
+            */
 
             if (mLifeState != LifeState.Alive) {
                 return;
@@ -1758,8 +1761,13 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_new_bubble: {
-                            MainApplication.openLink(getContext(), getContext().getString(R.string.empty_bubble_page),
-                                    Analytics.OPENED_URL_FROM_NEW_TAB);
+                            //to do debug
+                            Intent intent = new Intent(getContext(), BubbleFlowActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            getContext().startActivity(intent);
+                            //
+                            //MainApplication.openLink(getContext(), getContext().getString(R.string.empty_bubble_page),
+                            //        Analytics.OPENED_URL_FROM_NEW_TAB);
                             break;
                         }
 
@@ -2186,9 +2194,11 @@ public class ContentView extends FrameLayout {
         hidePopups();
         resetButtonPressedStates();
 
-        if (isCurrent && MainController.get().contentViewShowing()) {
-            saveLoadTime();
-        }
+        //to do debug
+        //if (isCurrent && MainController.get().contentViewShowing()) {
+        //    saveLoadTime();
+        //}
+        //
     }
 
     public void saveLoadTime() {
