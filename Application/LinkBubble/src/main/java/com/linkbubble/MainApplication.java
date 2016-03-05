@@ -20,7 +20,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Vibrator;
-import android.webkit.CookieManager;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
@@ -628,6 +627,7 @@ public class MainApplication extends Application {
             Log.d("langcheck", getResources().getQuantityString(R.plurals.restore_tabs_from_previous_session, 1, 1));
             Log.d("langcheck", getResources().getQuantityString(R.plurals.restore_tabs_from_previous_session, 2, 2));
             Log.d("langcheck", String.format(getString(R.string.search_for_with), blerg, blerg));
+            Log.d("langcheck", String.format(getString(R.string.duckduckgo_search_engine), blerg));
         }
     }*/
 }

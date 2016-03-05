@@ -523,7 +523,7 @@ public class ContentView extends FrameLayout {
         } else if (SearchURLSuggestions.SearchEngine.DUCKDUCKGO == selectedSearchEngine) {
             // Make the search using duck duck go
             try {
-                String strQuery = getContext().getString(R.string.duck_duck_search_engine) + URLEncoder.encode(strUrl, "UTF-8");
+                String strQuery = String.format(getContext().getString(R.string.duckduckgo_search_engine), URLEncoder.encode(strUrl, "UTF-8"));
                 LoadWebPage(strQuery);
             } catch (IOException ioe) {
                 Log.e(TAG, ioe.getMessage(), ioe);
