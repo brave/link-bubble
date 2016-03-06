@@ -428,6 +428,11 @@ class WebViewRenderer extends WebRenderer {
 
     WebViewClient mWebViewClient = new WebViewClient() {
         @Override
+        public void doUpdateVisitedHistory (WebView view, String url, boolean isReload) {
+            mController.doUpdateVisitedHistory(url, isReload);
+        }
+
+        @Override
         public boolean shouldOverrideUrlLoading(WebView wView, final String urlAsString) {
             boolean viaInput = false;
             if (mLastWebViewTouchUpTime > -1) {

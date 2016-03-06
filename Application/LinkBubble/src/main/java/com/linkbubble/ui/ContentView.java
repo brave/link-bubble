@@ -730,6 +730,22 @@ public class ContentView extends FrameLayout {
         private int mConsecutiveRedirectCount = 0;
 
         @Override
+        public void doUpdateVisitedHistory (String url, boolean isReload) {
+            if (isReload || url.equals("file:///android_asset/blank.html") ||
+                    mUrlStack.size() > 0 && mUrlStack.peek().toString().equals(url)) {
+                return;
+            }
+
+            try {
+                URL historyUrl = new URL(url);
+                Log.d(TAG, "[urlstack] push:" + url + ", urlStack.size():" + mUrlStack.size());
+                mUrlStack.push(historyUrl);
+                mEventHandler.onCanGoBackChanged(mUrlStack.size() > 1);
+            } catch (MalformedURLException e) {
+            }
+        }
+
+        @Override
         public boolean shouldOverrideUrlLoading(String urlAsString, boolean viaUserInput) {
             if (mLifeState != LifeState.Alive) {
                 mConsecutiveRedirectCount = 0;
@@ -757,9 +773,6 @@ public class ContentView extends FrameLayout {
             Log.d(TAG, "shouldOverrideUrlLoading() - url:" + urlAsString);
             if (viaUserInput) {
                 URL currentUrl = mWebRenderer.getUrl();
-                mUrlStack.push(currentUrl);
-                mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
-                Log.d(TAG, "[urlstack] push:" + currentUrl.toString() + ", urlStack.size():" + mUrlStack.size());// + ", delta:" + touchUpTimeDelta);
                 mHandledAppPickerForCurrentUrl = false;
                 mUsingLinkBubbleAsDefaultForCurrentUrl = false;
             }
@@ -1711,7 +1724,7 @@ public class ContentView extends FrameLayout {
     }
 
     private boolean onBackPressed() {
-        if (mUrlStack.size() == 0) {
+        if (mUrlStack.size() <= 1) {
             CrashTracking.log("onBackPressed() - closeTab()");
             if (MainController.get() != null) {
                 MainController.get().closeTab(mOwnerTabView, BubbleAction.BackButton, true, true);
@@ -1722,9 +1735,10 @@ public class ContentView extends FrameLayout {
             mWebRenderer.stopLoading();
             String urlBefore = mWebRenderer.getUrl().toString();
 
-            URL previousUrl = mUrlStack.pop();
+            mUrlStack.pop();
+            URL previousUrl = mUrlStack.peek();
             String previousUrlAsString = previousUrl.toString();
-            mEventHandler.onCanGoBackChanged(mUrlStack.size() > 0);
+            mEventHandler.onCanGoBackChanged(mUrlStack.size() > 1);
             mHandledAppPickerForCurrentUrl = false;
             mUsingLinkBubbleAsDefaultForCurrentUrl = false;
             updateAndLoadUrl(previousUrlAsString);

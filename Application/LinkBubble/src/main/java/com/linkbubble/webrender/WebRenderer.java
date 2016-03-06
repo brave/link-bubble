@@ -28,6 +28,7 @@ public abstract class WebRenderer {
         public String adInsertionList(String baseHost);
         public String getHTTPSUrl(String originalUrl);
         public boolean shouldOverrideUrlLoading(String urlAsString, boolean viaUserInput);
+        public void doUpdateVisitedHistory (String url, boolean isReload);
         public void onLoadUrl(String urlAsString);      // may or may not be called
         public void onReceivedError();
         public void onPageStarted(String urlAsString, Bitmap favIcon);
