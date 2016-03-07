@@ -180,19 +180,19 @@ public class BubbleFlowView extends HorizontalScrollView {
             ((ViewGroup)view.getParent()).removeView(view);
         }
 
-        FrameLayout.LayoutParams lp = new LayoutParams(mItemWidth, mItemHeight, Gravity.TOP|Gravity.LEFT);
+        /*FrameLayout.LayoutParams lp = new LayoutParams(mItemWidth, mItemHeight, Gravity.TOP|Gravity.LEFT);
         lp.leftMargin = mEdgeMargin + insertAtIndex * mItemWidth;
         mContent.addView(view, lp);
-        mContent.invalidate();
+        mContent.invalidate();*/
 
-        if (insertNextToCenterItem) {
+        /*if (insertNextToCenterItem) {
             mViews.add(centerIndex+1, view);
         } else {
             mViews.add(view);
-        }
+        }*/
 
-        updatePositions();
-        updateScales(getScrollX());
+        //updatePositions();
+        /*updateScales(getScrollX());
 
         if (insertNextToCenterItem) {
             TranslateAnimation slideOnAnim = new TranslateAnimation(0, 0, -mItemHeight, 0);
@@ -207,11 +207,11 @@ public class BubbleFlowView extends HorizontalScrollView {
                 slideRightAnim.setFillAfter(true);
                 viewToShift.startAnimation(slideRightAnim);
             }
-        }
+        }*/
 
-        ViewGroup.LayoutParams contentLP = mContent.getLayoutParams();
-        contentLP.width = (mViews.size() * mItemWidth) + mItemWidth + (2 * mEdgeMargin);
-        mContent.setLayoutParams(contentLP);
+        //ViewGroup.LayoutParams contentLP = mContent.getLayoutParams();
+        //contentLP.width = (mViews.size() * mItemWidth) + mItemWidth + (2 * mEdgeMargin);
+        //mContent.setLayoutParams(contentLP);
     }
 
     // Called when the item has actually been removed. Will be instantly when no animation occurs,

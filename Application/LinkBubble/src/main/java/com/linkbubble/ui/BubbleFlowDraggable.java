@@ -10,6 +10,9 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -29,6 +32,8 @@ import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.VerticalGestureListener;
 
 import java.net.MalformedURLException;
+import java.util.HashSet;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 
 public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
@@ -40,6 +45,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     private TabView mCurrentTab;
     //to do debug
     public BubbleDraggable mBubbleDraggable;
+    public static final Object mActivitySharedLock = new Object();
+    private static boolean mActivityIsUp = false;
+    private HashSet<OpenUrlSettings> mUrlsToOpen;
+    private ReentrantReadWriteLock mUrlsToOpenLock;
     //
     private Point mTempSize = new Point();
 
@@ -52,6 +61,25 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         public void onMotionEvent_Move(BubbleFlowDraggable sender, DraggableHelper.MoveEvent event);
         public void onMotionEvent_Release(BubbleFlowDraggable sender, DraggableHelper.ReleaseEvent event);
     }
+
+    //to do debug
+    public static class OpenUrlSettings {
+        OpenUrlSettings(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker,
+                        boolean performEmptyClick) {
+            mUrl = url;
+            mUrlLoadStartTime = urlLoadStartTime;
+            mSetAsCurrentTab = setAsCurrentTab;
+            mHasShownAppPicker = hasShownAppPicker;
+            mPerformEmptyClick = performEmptyClick;
+        }
+
+        String mUrl;
+        long mUrlLoadStartTime;
+        boolean mSetAsCurrentTab;
+        boolean mHasShownAppPicker;
+        boolean mPerformEmptyClick;
+    }
+    //
 
     public BubbleFlowDraggable(Context context) {
         this(context, null);
@@ -70,6 +98,8 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     public void configure(EventHandler eventHandler, boolean addRootWindow)  {
+        mUrlsToOpen = new HashSet<OpenUrlSettings>();
+        mUrlsToOpenLock = new ReentrantReadWriteLock();
         mBubbleFlowWidth = Config.mScreenWidth;
         mBubbleFlowHeight = getResources().getDimensionPixelSize(R.dimen.bubble_pager_height);
 
@@ -151,6 +181,80 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
             setExactPos(0, 0);
         }
+
+        new StartBubblesEvent(getContext()).execute();
+    }
+
+    class StartBubblesEvent extends AsyncTask<Void,Void,Long> {
+        Context mContext;
+
+        StartBubblesEvent(Context context) {
+            super();
+            mContext = context;
+        }
+        protected Long doInBackground(Void... params) {
+            //to do debug
+            Intent intent1 = new Intent(mContext, BubbleFlowActivity.class);
+            intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mContext.startActivity(intent1);
+
+            synchronized (mActivitySharedLock) {
+                try {
+                    mActivitySharedLock.wait();
+                    BubbleFlowDraggable.mActivityIsUp = true;
+
+                    try {
+                        mUrlsToOpenLock.writeLock().lock();
+                        for (OpenUrlSettings urlToOpen : mUrlsToOpen) {
+                            Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
+                            intent.putExtra("url", urlToOpen.mUrl);
+                            intent.putExtra("urlStartTime", urlToOpen.mUrlLoadStartTime);
+                            intent.putExtra("hasShownAppPicker", urlToOpen.mHasShownAppPicker);
+                            intent.putExtra("performEmptyClick", urlToOpen.mPerformEmptyClick);
+                            intent.putExtra("setAsCurrentTab", urlToOpen.mSetAsCurrentTab);
+                            LocalBroadcastManager bm = LocalBroadcastManager.getInstance(mContext);
+                            bm.sendBroadcast(intent);
+
+                            Intent intentActivity = new Intent(mContext, BubbleFlowActivity.class);
+                            intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            mContext.startActivity(intentActivity);
+                        }
+                        mUrlsToOpen.clear();
+                    }
+                    finally {
+                        mUrlsToOpenLock.writeLock().unlock();
+                    }
+                    /*Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
+                    intent.putExtra("url", "http://macworld.com");
+                    LocalBroadcastManager bm = LocalBroadcastManager.getInstance(mContext);
+                    bm.sendBroadcast(intent);
+
+                    Intent intentActivity = new Intent(mContext, BubbleFlowActivity.class);
+                    intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(intentActivity);*/
+                }
+                catch (InterruptedException exc) {
+                }
+            }
+            //
+
+            return null;
+        }
+    }
+
+    private void passUrlToActivity(OpenUrlSettings urlToOpen) {
+        Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
+        intent.putExtra("url", urlToOpen.mUrl);
+        intent.putExtra("urlStartTime", urlToOpen.mUrlLoadStartTime);
+        intent.putExtra("hasShownAppPicker", urlToOpen.mHasShownAppPicker);
+        intent.putExtra("performEmptyClick", urlToOpen.mPerformEmptyClick);
+        intent.putExtra("setAsCurrentTab", urlToOpen.mSetAsCurrentTab);
+        LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
+        bm.sendBroadcast(intent);
+
+        Intent intentActivity = new Intent(getContext(), BubbleFlowActivity.class);
+        intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getContext().startActivity(intentActivity);
     }
 
     @Override
@@ -342,12 +446,31 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     public TabView openUrlInTab(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker,
                                 boolean performEmptyClick) {
-        //to do debug
-        Intent intent1 = new Intent(getContext(), BubbleFlowActivity.class);
-        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
-        intent1.putExtra("host", "http://macworld.com");
-        getContext().startActivity(intent1);
 
+        try {
+            mUrlsToOpenLock.writeLock().lock();
+            OpenUrlSettings openUrlSettings = new OpenUrlSettings(url, urlLoadStartTime, setAsCurrentTab, hasShownAppPicker,
+                    performEmptyClick);
+            if (!mActivityIsUp) {
+                mUrlsToOpen.add(openUrlSettings);
+            }
+            else {
+                passUrlToActivity(openUrlSettings);
+            }
+        }
+        finally {
+            mUrlsToOpenLock.writeLock().unlock();
+        }
+
+        /*try {
+            do {
+                Thread.sleep(10);
+            } while (null == mActivityMessageHandler);
+        }
+        catch (InterruptedException e) {
+        }*/
+
+        //mActivityMessageHandler.openUrl(url);
         /*ActivityInfo[] list;
         try {
             list = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), PackageManager.GET_ACTIVITIES).activities;
@@ -380,19 +503,21 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }*/
         //
 
-        TabView tabView;
+        /*TabView tabView;
         try {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             tabView = (TabView) inflater.inflate(R.layout.view_tab, null);
-            tabView.configure(url, urlLoadStartTime, hasShownAppPicker, performEmptyClick, true);
+            // Stub
+            tabView.configure(getContext().getString(R.string.empty_bubble_page), urlLoadStartTime, hasShownAppPicker, performEmptyClick, true);
+            //tabView.configure(url, urlLoadStartTime, hasShownAppPicker, performEmptyClick, true);
         } catch (MalformedURLException e) {
             // TODO: Inform the user somehow?
             return null;
-        }
+        }*/
 
         // Only insert next to current Bubble when in ContentView mode. Ensures links opened when app is
         // minimized are added to the end.
-        add(tabView, mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView);
+        /*add(tabView, mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView);
 
         mBubbleDraggable.mBadgeView.setCount(getActiveTabCount());
 
@@ -400,10 +525,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             setCurrentTab(tabView);
         }
 
-        saveCurrentTabs();
-        //return new TabView(getContext());//tabView;
+        saveCurrentTabs();*/
+        return new TabView(getContext());//tabView;
 
-        return tabView;
+        //return tabView;
     }
 
     public void restoreTab(TabView tabView) {
