@@ -1626,12 +1626,12 @@ public class ContentView extends FrameLayout {
 
                         case R.id.item_new_bubble: {
                             //to do debug
-                            Intent intent = new Intent(getContext(), BubbleFlowActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            getContext().startActivity(intent);
+                            //Intent intent = new Intent(getContext(), BubbleFlowActivity.class);
+                            //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            //getContext().startActivity(intent);
                             //
-                            //MainApplication.openLink(getContext(), getContext().getString(R.string.empty_bubble_page),
-                            //        Analytics.OPENED_URL_FROM_NEW_TAB);
+                            MainApplication.openLink(getContext(), getContext().getString(R.string.empty_bubble_page),
+                                    Analytics.OPENED_URL_FROM_NEW_TAB);
                             break;
                         }
 
@@ -2099,6 +2099,11 @@ public class ContentView extends FrameLayout {
                 mode = WebRenderer.Mode.Article;
             }
         }
+
+        //if (mWebRenderer.getUrl().toString().equals(getContext().getString(R.string.empty_bubble_page))) {
+            //mWebRenderer.getView().bringToFront();
+        //}
+
 
         mWebRenderer.loadUrl(updatedUrl, mode);
     }
