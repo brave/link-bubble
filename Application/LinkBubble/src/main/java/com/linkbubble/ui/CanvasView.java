@@ -357,9 +357,11 @@ public class CanvasView extends FrameLayout {
             return;
         }
         if (mContentView != null) {
-            FrameLayout.LayoutParams p = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            p.topMargin = Config.mContentOffset;
-            addView(mContentView, p);
+            //to do debug
+            //FrameLayout.LayoutParams p = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            //p.topMargin = Config.mContentOffset;
+            //addView(mContentView, p);
+            //
             mContentView.onCurrentContentViewChanged(true);
             mContentView.requestFocus();
         }
