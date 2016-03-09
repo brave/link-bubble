@@ -42,6 +42,12 @@ import java.util.ListIterator;
 public class BubbleFlowActivity extends Activity {
 
     static final String ACTIVITY_INTENT_NAME = "com.google.app.brave.bubblesactivity";
+
+    // Commands for service-activity interaction
+    public static final int OPEN_URL            = 0;
+    public static final int SET_TAB_AS_ACTIVE   = 1;
+    //
+
     //BubbleFlowDraggable mBubbleFlowView;
     List<ContentView> mContentViews;
 
@@ -93,18 +99,44 @@ public class BubbleFlowActivity extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(BubbleFlowActivity.ACTIVITY_INTENT_NAME)) {
+                int command = intent.getIntExtra("command", 0);
                 String url = intent.getStringExtra("url");
-                long urlStartTime = intent.getLongExtra("urlStartTime", 1);
-                boolean hasShownAppPicker = intent.getBooleanExtra("hasShownAppPicker", false);
-                boolean performEmptyClick = intent.getBooleanExtra("performEmptyClick", false);
-                boolean setAsCurrentTab = intent.getBooleanExtra("setAsCurrentTab", false);
-                openUrl(new BubbleFlowDraggable.OpenUrlSettings(url, urlStartTime, hasShownAppPicker, performEmptyClick, setAsCurrentTab));
-                //Intent intentActivity = getPackageManager().getLaunchIntentForPackage(getPackageName());
-                //intentActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                //startActivity(intentActivity);
+                switch (command) {
+                    case OPEN_URL:
+                        long urlStartTime = intent.getLongExtra("urlStartTime", 1);
+                        boolean hasShownAppPicker = intent.getBooleanExtra("hasShownAppPicker", false);
+                        boolean performEmptyClick = intent.getBooleanExtra("performEmptyClick", false);
+                        boolean setAsCurrentTab = intent.getBooleanExtra("setAsCurrentTab", false);
+                        openUrl(new BubbleFlowDraggable.OpenUrlSettings(url, urlStartTime, hasShownAppPicker, performEmptyClick, setAsCurrentTab));
+
+                        break;
+                    case SET_TAB_AS_ACTIVE:
+                        setAsCurrentTab(url);
+                        /*for (ContentView contentView: mContentViews) {
+                            if (contentView.getUrl().toString().equals(url)) {
+                                contentView.setVisibility(View.VISIBLE);
+                            }
+                            else {
+                                contentView.setVisibility(View.GONE);
+                            }
+                        }*/
+
+                        break;
+                }
             }
         }
     };
+
+    private void setAsCurrentTab(String url) {
+        for (ContentView contentView: mContentViews) {
+            if (contentView.getUrl().toString().equals(url)) {
+                contentView.setVisibility(View.VISIBLE);
+            }
+            else {
+                contentView.setVisibility(View.GONE);
+            }
+        }
+    }
 
     public void openUrl(BubbleFlowDraggable.OpenUrlSettings openUrlSettings) {
         MainController controller = MainController.get();
@@ -170,30 +202,31 @@ public class BubbleFlowActivity extends Activity {
         //mBubbleFlowView.add(bubble, false);
         //mContentViews.get(0).setVisibility(View.GONE);
         ///
-        TabView bubble2 = (TabView) inflater.inflate(R.layout.view_tab, null);
+        //TabView bubble = (TabView) inflater.inflate(R.layout.view_tab, null);
         ContentView contentView = (ContentView) inflater.inflate(R.layout.view_content, null);
-        //FrameLayout.LayoutParams pr = new FrameLayout.LayoutParams(-1, -1);//(FrameLayout.LayoutParams) mContentView.getLayoutParams();
-        //to do debug
-        //pr.topMargin = 128;
-        //
-        addContentView(contentView, pr);
         mContentViews.add(contentView);
+        addContentView(contentView, pr);
+        controller.mBubbleFlowDraggable.createTabView(contentView, openUrlSettings, controller);
+        /*if (openUrlSettings.mSetAsCurrentTab) {
+            setAsCurrentTab(openUrlSettings.mUrl);
+        }*/
+        /*mTabViews.add(bubble);
         try {
-            bubble2.mContentView = contentView;
+            bubble.mContentView = contentView;
             //to do debug
             if (openUrlSettings.mUrl.contains("blank")) {
                 openUrlSettings.mUrl = "http://www.google.ca";
             }
             //
-            bubble2.configure(openUrlSettings.mUrl, openUrlSettings.mUrlLoadStartTime, openUrlSettings.mHasShownAppPicker,
-                    openUrlSettings.mPerformEmptyClick, false);
+            bubble.configure(openUrlSettings.mUrl, openUrlSettings.mUrlLoadStartTime, openUrlSettings.mHasShownAppPicker,
+                    openUrlSettings.mPerformEmptyClick, false, controller);
         }
         catch (MalformedURLException exc) {
         }
-        controller.addBubble(bubble2, false);
+        controller.addBubble(bubble, false);*/
         //controller.mBubbleFlowDraggable.mBubbleDraggable.mBadgeView.setCount(1);
         //controller.mBubbleFlowDraggable.saveCurrentTabs();
-        //controller.mBubbleFlowDraggable.setCurrentTab(bubble2);
+        //controller.mBubbleFlowDraggable.setCurrentTab(bubble);
         //controller.showBadge(true);
         //mBubbleFlowView.add(bubble2, false);
         //mContentViews.get(1).setVisibility(View.GONE);
