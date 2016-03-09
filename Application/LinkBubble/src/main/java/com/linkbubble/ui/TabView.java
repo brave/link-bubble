@@ -65,7 +65,7 @@ public class TabView extends BubbleView {
     }
 
     void configure(String url, long urlLoadStartTime, boolean hasShownAppPicker, boolean performEmptyClick,
-                   boolean needToInflate) throws MalformedURLException {
+                   boolean needToInflate, MainController controller) throws MalformedURLException {
         super.configure(url);
 
         mPerformEmptyClick = performEmptyClick;
@@ -83,7 +83,7 @@ public class TabView extends BubbleView {
         if (needToInflate) {
             mContentView = (ContentView) inflate(getContext(), R.layout.view_content, null);
         }
-        mContentView.configure(mUrl.toString(), this, urlLoadStartTime, hasShownAppPicker, new ContentView.EventHandler() {
+        mContentView.configure(mUrl.toString(), this, urlLoadStartTime, hasShownAppPicker, controller, new ContentView.EventHandler() {
 
             @Override
             public void onPageLoading(URL url) {
