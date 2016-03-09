@@ -133,8 +133,6 @@
     
     
     
-    
-    
     <string name="preference_user_agent_title">ユーザーエージェント</string>
     <string-array name="preference_user_agent_options">
         <item>デフォルト</item>
