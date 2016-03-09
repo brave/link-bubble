@@ -92,6 +92,7 @@ public class Util {
         "com.uc.browser.en",
         "mobi.browser.flashfox",
         "acr.browser.barebones",
+        "acr.browser.lightning",
         "com.ineedyourservice.RBrowser",
         "com.lastpass.lpandroid",
         "com.linkbubble.playstore",
