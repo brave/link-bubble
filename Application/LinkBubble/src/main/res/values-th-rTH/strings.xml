@@ -49,7 +49,7 @@
     <string name="warning">ระวัง!</string>
     <string name="untrusted_certificate">ใบรับรองของ %1$s ไม่น่าเชื่อถือ ดำเนินการต่อหรือไม่?</string>
 
-    
+    <string name="share_invalid_data">Brave ไม่สามารถแบ่งปันสิ่งนี้เพราะมันไม่ใช่ URL ที่ถูกต้อง</string>
     <string name="consume_activity_not_found">ไม่พบแอป ลองเปลี่ยนตัวเลือกทางลัดผ่านการตั้งค่า</string>
     <string name="consume_activity_security_exception">ไม่สามารถแบ่งปันไปยังแอปภายนอกได้</string>
 
@@ -131,8 +131,8 @@
     <string name="preference_trackingprotection_summary">ป้องกันการโหลดทรัพยากรที่ติดตามคุณ</string>
     <string name="preference_adblock_title">บล็อกโฆษณา</string>
     <string name="preference_adblock_summary">ป้องกันการโหลดโฆษณา</string>
-    
-    
+    <string name="preference_block_3p_cookies_title">บล็อกคุกกี้จากบุคคลที่สาม</string>
+    <string name="preference_block_3p_cookies_summary">หยุดการติดตามบางชนิดจากผู้เผยแพร่โฆษณา</string>
     <string name="preference_trackingprotection_title">โหมดป้องกันการติดตาม</string>
     <string name="preference_adblock_tracking_protection_from_disabled">คุณสมบัตินี้พร้อมใช้งานบน Android 5.0 ขึ้นไปเท่านั้น</string>
     <string name="preference_https_everywhere_title">HTTPS Everywhere</string>
@@ -365,7 +365,7 @@ Brave ทำตามมาตรฐานนี้]]></string>
     <string name="http_prefix">http://</string>
     <string name="https_prefix">https://</string>
     <string name="www_prefix">www.</string>
-    <string name="duck_duck_search_engine">https://duckduckgo.com/?q=</string>
+
     <string name="google_search_engine">http://www.google.com/search?q=</string>
     <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
     <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>

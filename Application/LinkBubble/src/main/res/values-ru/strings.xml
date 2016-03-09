@@ -354,7 +354,7 @@ Brave.]]></string>
     <string name="http_prefix">http://</string>
     <string name="https_prefix">https://</string>
     <string name="www_prefix">www.</string>
-    <string name="duck_duck_search_engine">https://duckduckgo.com/?q=</string>
+
     <string name="google_search_engine">http://www.google.com/search?q=</string>
     <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
     <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>

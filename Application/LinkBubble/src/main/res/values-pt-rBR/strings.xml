@@ -49,7 +49,7 @@
     <string name="warning">Atenção!</string>
     <string name="untrusted_certificate">O certificado de %1$s não é confiável. Continuar mesmo assim?</string>
 
-    
+    <string name="share_invalid_data">Não foi possível compartilhar esse item pois a URL não é valida.</string>
     <string name="consume_activity_not_found">Não foi possível encontrar o aplicativo. Considere alterar Bubble Action nas Configurações.</string>
     <string name="consume_activity_security_exception">Impossível compartilhar para aplicação externa.</string>
 
@@ -129,8 +129,8 @@
     <string name="preference_trackingprotection_summary">Evitar recursos que podem lhe rastrear.</string>
     <string name="preference_adblock_title">Bloquear Propagandas</string>
     <string name="preference_adblock_summary">Evita o carregamento de propagandas</string>
-    
-    
+    <string name="preference_block_3p_cookies_title">Bloquear Cookies de Terceiros</string>
+    <string name="preference_block_3p_cookies_summary">Isso interrompe alguns tipos de rastreamento de anunciantes</string>
     <string name="preference_trackingprotection_title">Modo Anti-Rastreio</string>
     <string name="preference_adblock_tracking_protection_from_disabled">Esta função está disponível para Android 5 e superior</string>
     <string name="preference_https_everywhere_title">HTTPS Em Todo Lugar</string>
@@ -365,7 +365,7 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="http_prefix">http://</string>
     <string name="https_prefix">https://</string>
     <string name="www_prefix">www.</string>
-    <string name="duck_duck_search_engine">https://duckduckgo.com/?q=</string>
+
     <string name="google_search_engine">http://www.google.com/search?q=</string>
     <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
     <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>

@@ -49,7 +49,7 @@
     <string name="warning">Uyarı!</string>
     <string name="untrusted_certificate">%1$s sertifikası güvenli değil. Yine de devam edilsin mi?</string>
 
-    
+    <string name="share_invalid_data">Brave bu öğeyi geçerli bir URL olmadığı için paylaşamıyor.</string>
     <string name="consume_activity_not_found">Uygulama bulunamıyor. Ayarlardan baloncuk eylemini değiştirmeyi deneyin.</string>
     <string name="consume_activity_security_exception">Harici uygulama ile paylaşılamadı.</string>
 
@@ -132,7 +132,7 @@ bağlantıları Brave ile açtığın zaman yapılandırılır.</string>
     <string name="preference_trackingprotection_summary">Seni izleyen kaynakların yüklenmesini önle</string>
     <string name="preference_adblock_title">Reklam Engelleme</string>
     <string name="preference_adblock_summary">Reklamların yüklenmesini önle</string>
-    
+    <string name="preference_block_3p_cookies_title">Üçüncü Taraf Çerezleri Engelle</string>
     
     <string name="preference_trackingprotection_title">İzlenme Koruması Modu</string>
     <string name="preference_adblock_tracking_protection_from_disabled">Bu özellik sadece Android 5.0 ve üzerinde mevcuttur.</string>
@@ -377,7 +377,7 @@ olarak alıp, herhangi bir sebeple gecikme olursa/olduğunda sinirlenebilirler.]
     <string name="http_prefix">http://</string>
     <string name="https_prefix">https://</string>
     <string name="www_prefix">www.</string>
-    <string name="duck_duck_search_engine">https://duckduckgo.com/?q=</string>
+
     <string name="google_search_engine">http://www.google.com.tr/search?q=</string>
     <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
     <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>
