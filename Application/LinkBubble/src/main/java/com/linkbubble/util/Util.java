@@ -110,7 +110,9 @@ public class Util {
         "net.fast.web.browser",
         "com.wisesharksoftware.browser",
         "org.hola",
-        "com.kk.jd.browser2"
+        "com.kk.jd.browser2",
+        "com.rsbrowser.browser",
+        "com.ineedyourservice.RBrowser"
     };
 
     public static float clamp(float v0, float v, float v1) {
