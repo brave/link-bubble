@@ -146,6 +146,7 @@ public class ContentView extends FrameLayout {
     private String mInitialUrlAsString;
     private String mLoadingString;
     private Context mContext;
+    private MainController mController;
 
     private Stack<URL> mUrlStack = new Stack<URL>();
     // We only want to handle this once per link. This prevents 3+ dialogs appearing for some links, which is a bad experience. #224
@@ -428,7 +429,9 @@ public class ContentView extends FrameLayout {
     }
 
     @SuppressLint("SetJavaScriptEnabled")
-    void configure(String urlAsString, TabView ownerTabView, long urlLoadStartTime, boolean hasShownAppPicker, EventHandler eventHandler) throws MalformedURLException {
+    void configure(String urlAsString, TabView ownerTabView, long urlLoadStartTime, boolean hasShownAppPicker,
+                   MainController controller, EventHandler eventHandler) throws MalformedURLException {
+        mController = controller;
         mHostRedirectCounter = new ConcurrentHashMap<String, Integer>();
         mLifeState = LifeState.Alive;
         mTintableDrawables.clear();
@@ -1037,8 +1040,8 @@ public class ContentView extends FrameLayout {
             }
 
             if ((urlAsString.equals(Constant.WELCOME_MESSAGE_URL) ||
-                    urlAsString.equals(getContext().getString(R.string.empty_bubble_page))) && MainController.get() != null) {
-                MainController.get().displayTab(mOwnerTabView);
+                    urlAsString.equals(getContext().getString(R.string.empty_bubble_page)) ) && mController != null) {
+                mController.displayTab(mOwnerTabView);
             }
         }
 
@@ -1885,7 +1888,9 @@ public class ContentView extends FrameLayout {
                     });
                     webView.requestFocusNodeHref(msg);
                 } if (string.equals(openLinkInNewBubbleLabel) || string.equals(openImageInNewBubbleLabel)) {
-                    MainController.get().openUrl(urlAsString, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_TAB);
+                    //MainController.get().openUrl(urlAsString, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_TAB);
+                    MainApplication.openLink(getContext(), urlAsString,
+                            Analytics.OPENED_URL_FROM_NEW_TAB);
                 } else if (openInBrowserLabel != null && string.equals(openInBrowserLabel)) {
                     openInBrowser(urlAsString);
                 } else if (string.equals(shareLabel)) {

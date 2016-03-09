@@ -116,8 +116,8 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         doAnimateToBubbleView(0);
     }
 
-    public void switchToExpandedView() {
-        doAnimateToContentView();
+    public void switchToExpandedView(MainController controller) {
+        doAnimateToContentView(controller);
     }
 
     private void doSnapAction(Constant.BubbleAction action) {
@@ -130,7 +130,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         } else {
             if (mainController.closeCurrentTab(action, false)) {
                 if (mMode == Mode.ContentView && action == Constant.BubbleAction.Close) {
-                    doAnimateToContentView();
+                    doAnimateToContentView(mainController);
                 } else {
                     doAnimateToBubbleView(0);
                 }
@@ -334,11 +334,12 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         MainApplication.postEvent(getContext(), mBeginCollapseTransitionEvent);
     }
 
-    private void doAnimateToContentView() {
-        doAnimateToContentView(true);
+    private void doAnimateToContentView(MainController controller) {
+        doAnimateToContentView(true, controller);
     }
 
-    private void doAnimateToContentView(boolean saveBubbleRestingPoint) {
+    private void doAnimateToContentView(boolean saveBubbleRestingPoint, MainController controller) {
+        //to do debug
         CrashTracking.log("doAnimateToContentView()");
         if (mAnimActive) {
             if (mMode == Mode.ContentView) {
@@ -360,7 +361,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         final float bubblePeriod = (float) Constant.BUBBLE_ANIM_TIME / 1000.f;
         final float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
 
-        final MainController mainController = MainController.get();
+        final MainController mainController = controller;
         setVisibility(View.VISIBLE);
 
         animate().alpha(1.0f).setDuration(Constant.BUBBLE_ANIM_TIME);
@@ -426,6 +427,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         windowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         windowManagerParams.format = PixelFormat.TRANSPARENT;
         windowManagerParams.setTitle("LinkBubble: BubbleDraggable");
+        final MainController controller = MainController.get();
 
         mDraggableHelper = new DraggableHelper(this, windowManagerParams, true, new DraggableHelper.OnTouchActionEventListener() {
 
@@ -545,7 +547,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                                     doSnap();
                                 } else {
                                     CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doAnimateToContentView() [mHasMoved==true]");
-                                    doAnimateToContentView();
+                                    doAnimateToContentView(controller);
                                 }
                             }
                         } else {
@@ -558,11 +560,11 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
                         if (mMode == Mode.BubbleView) {
                             CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doAnimateToContentView() [mMode == Mode.BubbleView]");
-                            doAnimateToContentView();
+                            doAnimateToContentView(controller);
                         } else {
                             if (mMode == Mode.ContentView && mBubbleFlowDraggable.isExpanded() == false) {
                                 CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doAnimateToContentView() [mMode == Mode.ContentView]");
-                                doAnimateToContentView();
+                                doAnimateToContentView(controller);
                             } else {
                                 CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doAnimateToBubbleView()");
                                 doAnimateToBubbleView(0);
@@ -648,7 +650,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         if (mMode == Mode.BubbleView) {
             doAnimateToBubbleView(1);
         } else {
-            switchToExpandedView();
+            switchToExpandedView(MainController.get());
         }
     }
 
