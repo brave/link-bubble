@@ -207,6 +207,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                         mUrlsToOpenLock.writeLock().lock();
                         for (OpenUrlSettings urlToOpen : mUrlsToOpen) {
                             Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
+                            intent.putExtra("command", BubbleFlowActivity.OPEN_URL);
                             intent.putExtra("url", urlToOpen.mUrl);
                             intent.putExtra("urlStartTime", urlToOpen.mUrlLoadStartTime);
                             intent.putExtra("hasShownAppPicker", urlToOpen.mHasShownAppPicker);
@@ -244,11 +245,24 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     private void passUrlToActivity(OpenUrlSettings urlToOpen) {
         Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
+        intent.putExtra("command", BubbleFlowActivity.OPEN_URL);
         intent.putExtra("url", urlToOpen.mUrl);
         intent.putExtra("urlStartTime", urlToOpen.mUrlLoadStartTime);
         intent.putExtra("hasShownAppPicker", urlToOpen.mHasShownAppPicker);
         intent.putExtra("performEmptyClick", urlToOpen.mPerformEmptyClick);
         intent.putExtra("setAsCurrentTab", urlToOpen.mSetAsCurrentTab);
+        LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
+        bm.sendBroadcast(intent);
+
+        Intent intentActivity = new Intent(getContext(), BubbleFlowActivity.class);
+        intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getContext().startActivity(intentActivity);
+    }
+
+    public void setTabAsActive(TabView tabView) {
+        Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
+        intent.putExtra("command", BubbleFlowActivity.SET_TAB_AS_ACTIVE);
+        intent.putExtra("url", tabView.getUrl().toString());
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
         bm.sendBroadcast(intent);
 
@@ -375,6 +389,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                 ContentView contentView = mCurrentTab.getContentView();
                 if (null != contentView) {
                     contentView.setTabAsActive();
+                    setTabAsActive(tab);
                 }
             }
             return;
@@ -393,6 +408,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             ContentView contentView = mCurrentTab.getContentView();
             if (null != contentView) {
                 contentView.setTabAsActive();
+                setTabAsActive(tab);
             }
         }
     }
@@ -442,6 +458,33 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     public void setExactPos(int x, int y) {
         mDraggableHelper.setExactPos(x, y);
+    }
+
+    public void createTabView(ContentView view, BubbleFlowDraggable.OpenUrlSettings openUrlSettings, MainController controller) {
+        TabView tabView;
+        try {
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            tabView = (TabView) inflater.inflate(R.layout.view_tab, null);
+            tabView.mContentView = view;
+            // to do debug
+            /*if (openUrlSettings.mUrl.contains("blank")) {
+                openUrlSettings.mUrl = "http://www.google.ca";
+            }*/
+            //
+            tabView.configure(openUrlSettings.mUrl, openUrlSettings.mUrlLoadStartTime, openUrlSettings.mHasShownAppPicker,
+                    openUrlSettings.mPerformEmptyClick, false, controller);
+        } catch (MalformedURLException e) {
+            // TODO: Inform the user somehow?
+            return;
+        }
+
+        add(tabView, mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView);
+
+        mBubbleDraggable.mBadgeView.setCount(getActiveTabCount());
+        //controller.addBubble(tabView, false);
+        if (openUrlSettings.mSetAsCurrentTab) {
+            setCurrentTab(tabView);
+        }
     }
 
     public TabView openUrlInTab(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker,

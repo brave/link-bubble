@@ -476,7 +476,11 @@ public class MainController implements Choreographer.FrameCallback {
             switch (mBubbleDraggable.getCurrentMode()) {
                 case BubbleView:
                     mBubbleFlowDraggable.setCenterItem(tab);
-                    mBubbleDraggable.switchToExpandedView();
+                    mBubbleDraggable.switchToExpandedView(this);
+                    //to do debug
+                    //mBubbleFlowDraggable.setTabAsActive(tab);
+                    //
+
                     return true;
             }
         }
@@ -533,10 +537,12 @@ public class MainController implements Choreographer.FrameCallback {
 
     public void showExpandedActivity() {
         Log.e(TAG, "showExpandedActivity()");
-        sStartExpandedActivityTime = System.currentTimeMillis();
+        // to do debug
+        /*sStartExpandedActivityTime = System.currentTimeMillis();
         Intent intent = new Intent(mContext, ExpandedActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        mContext.getApplicationContext().startActivity(intent);
+        mContext.getApplicationContext().startActivity(intent);*/
+        //
     }
 
     public void scheduleUpdate() {
@@ -959,7 +965,7 @@ public class MainController implements Choreographer.FrameCallback {
             boolean contentViewShowing = contentViewShowing();
             mBubbleFlowDraggable.setCurrentTabByNotification(notificationId, contentViewShowing);
             if (!contentViewShowing) {
-                mBubbleDraggable.switchToExpandedView();
+                mBubbleDraggable.switchToExpandedView(this);
             }
         }
     }
@@ -1144,7 +1150,7 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void switchToExpandedView() {
-        mBubbleDraggable.switchToExpandedView();
+        mBubbleDraggable.switchToExpandedView(this);
     }
 
     public void beginAppPolling() {
