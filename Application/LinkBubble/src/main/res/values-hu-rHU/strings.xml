@@ -6,7 +6,7 @@
     <string name="notification_summary">Az összes nyitott buborék elrejtéséhez érintsd meg itt</string>
     
     
-    
+    <string name="notification_action_close_all">Mind bezár</string>
     <string name="notification_action_hide">Elrejt</string>
     <string name="share_picker_label">Megosztás kiválasztása</string>
 
@@ -110,7 +110,7 @@
     <string name="preference_theme_dark_no_color">Sötét + semleges szín</string>
     
     
-    
+    <string name="preference_article_mode_title">Olvasó mód</string>
     <string name="preference_reading_mode_on_wear_title">Wear olvasó mód</string>
     
     <string name="preference_webview_text_zoom_title">Szöveg nagyítás</string>
@@ -146,7 +146,7 @@
     
     
     
-    
+    <string name="preference_add_domain_title">Domain hozzáadása</string>
     
     
     
@@ -161,7 +161,7 @@
     
     <string name="preference_version_title">Verzió</string>
     <string name="preference_version_summary">Változások</string>
-    
+    <string name="preference_more_title">Több&#8230;</string>
     
 
     
@@ -191,7 +191,7 @@
 
     <string name="histroy_unread">Olvasatlan</string>
     <string name="histroy_all"> Mind</string>
-    
+    <string name="new_bubble">Új buborék</string>
     <string name="history">Előzmények</string>
     <string name="erase_all_history_title">Összes törlése?</string>
     
@@ -214,7 +214,7 @@
     <string name="stat_has_saved_you">spórolt már</string>
     <string name="stat_so_far">eddig</string>
     <string name="stat_per_link">linkenként</string>
-    <string name="time_seconds">másodpercet</string>
+    <string name="time_seconds">mpercet</string>
     <string name="time_minutes">percet</string>
     <string name="time_hours">órát</string>
 
@@ -259,7 +259,7 @@
     
     
     
-    
+    <string name="faq_change_default_browser_answer">Rendszerbeállítások -> Alkalmazások -> Letöltött -> Brave -> Alapértelmezések törlése.</string>
     <string name="faq_report_bug_question">Hiba jelentése</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
 
@@ -273,9 +273,9 @@
     <string name="activity_resolver_use_once">Csak egyszer</string>
 
     
-    
+    <string name="credits_name">Brave</string>
     <string name="credits_credit">Ötlet, tervezés és programozás</string>
-    
+    <string name="credits_app_copyright">Copyright 2015, Brave.</string>
 
     
     <plurals name="restore_tabs_from_previous_session">
@@ -286,7 +286,7 @@
     <string name="content_description_button">Gomb</string>
     
     <string name="content_description_close_bubble_icon">Buborék bezárása ikon</string>
-    
+    <string name="content_description_link_bubble_logo">Brave logó</string>
     <string name="content_description_app_icon">Alkalmazás ikon</string>
     <string name="content_description_youtube_video_thumbnail">YouTube video bélyegkép</string>
     <string name="content_description_history">Előzmények</string>
@@ -298,9 +298,9 @@
     
 
     
-    
+    <string name="notification_title">Brave</string>
 
-    
+    <string name="store_listing_title">Brave</string>
     <string name="store_listing_promo_text">Böngészés mobilon - ahogyan még nem láttad</string>
     
     
@@ -327,7 +327,7 @@
     <string name="http_prefix">http://</string>
     <string name="https_prefix">https://</string>
     <string name="www_prefix">www.</string>
-    <string name="duck_duck_search_engine">https://duckduckgo.com/?q=</string>
+    <string name="duckduckgo_search_engine">https://duckduckgo.com/?q=</string>
     <string name="google_search_engine">http://www.google.hu/search?q=</string>
     <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
     <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>
