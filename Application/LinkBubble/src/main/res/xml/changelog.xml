@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.9.4">
+        <change>IMPROVEMENT: Made bubbles smaller.</change>
+        <change>BUG FIX: Made url bar's autosuggestion less aggresive.</change>
+        <change>BUG FIX: Fixed crashes.</change>
+    </release>
     <release version="1.9.3">
         <change>NEW: Added rsbrowser/rbrowser, lightning to fallback browser list.</change>
         <change>BUG FIX: Fixed back button behaviour.</change>
