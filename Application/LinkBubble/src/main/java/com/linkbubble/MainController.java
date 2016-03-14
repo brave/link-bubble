@@ -439,8 +439,13 @@ public class MainController implements Choreographer.FrameCallback {
 
         // Debounce the saving call so we don't attempt to save after every concurrent page load, causing potential problems with the database connection.
         if (mTimer != null) {
-            mTimer.cancel();
-            mTimer.purge();
+            try {
+                mTimer.cancel();
+                mTimer.purge();
+            }
+            catch (NullPointerException exc) {
+                // We can have a crash here sometimes when several pages loaded at one time, some of threads will do those calls in any case
+            }
         }
 
         mTimer = new java.util.Timer();
