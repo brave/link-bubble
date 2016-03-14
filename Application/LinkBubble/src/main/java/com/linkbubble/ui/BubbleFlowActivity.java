@@ -48,11 +48,7 @@ public class BubbleFlowActivity extends Activity {
     public static final int SET_TAB_AS_ACTIVE   = 1;
     //
 
-    //BubbleFlowDraggable mBubbleFlowView;
     List<ContentView> mContentViews;
-
-    //CanvasView mCanvasView;
-    //BubbleDraggable mBubbleDraggable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,19 +68,6 @@ public class BubbleFlowActivity extends Activity {
         synchronized (BubbleFlowDraggable.mActivitySharedLock) {
             BubbleFlowDraggable.mActivitySharedLock.notify();
         }
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        /*mBubbleFlowView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mBubbleFlowView.setCenterIndex(6);
-            }
-        }, 100);*/
     }
 
     @Override
@@ -112,14 +95,6 @@ public class BubbleFlowActivity extends Activity {
                         break;
                     case SET_TAB_AS_ACTIVE:
                         setAsCurrentTab(url);
-                        /*for (ContentView contentView: mContentViews) {
-                            if (contentView.getUrl().toString().equals(url)) {
-                                contentView.setVisibility(View.VISIBLE);
-                            }
-                            else {
-                                contentView.setVisibility(View.GONE);
-                            }
-                        }*/
 
                         break;
                 }
@@ -146,94 +121,14 @@ public class BubbleFlowActivity extends Activity {
         }
         //
 
-        //Intent intent = getIntent();
-        //String host = intent.getExtras().getString("host");
-
-        //Point size = new Point();
-        //WindowManager w = getWindowManager();
-        //w.getDefaultDisplay().getSize(size);
-
         final LayoutInflater inflater = LayoutInflater.from(this);
-        //mCanvasView = new CanvasView(this);
-        //mBubbleDraggable = (BubbleDraggable) inflater.inflate(R.layout.view_bubble_draggable, null);
-        //Point bubbleRestingPoint = Settings.get().getBubbleRestingPoint();
-        //int fromX = Settings.get().getBubbleStartingX(bubbleRestingPoint);
-        //mBubbleDraggable.configure(fromX, bubbleRestingPoint.y, bubbleRestingPoint.x, bubbleRestingPoint.y,
-        //        Constant.BUBBLE_SLIDE_ON_SCREEN_TIME, mCanvasView);
-
-        /*mBubbleDraggable.setOnUpdateListener(new BubbleDraggable.OnUpdateListener() {
-            @Override
-            public void onUpdate(Draggable draggable, float dt) {
-                if (!draggable.isDragging()) {
-                    mBubbleFlowView.syncWithBubble(draggable);
-                }
-            }
-        });
-
-        mBubbleFlowView = (BubbleFlowDraggable) findViewById(R.id.bubble_flow);
-        mBubbleFlowView.configure(null, false);
-        mBubbleFlowView.collapse(0, null);
-        mBubbleFlowView.setBubbleDraggable(mBubbleDraggable);
-        mBubbleDraggable.setBubbleFlowDraggable(mBubbleFlowView);*/
-        //mContentView = (ContentView) findViewById(R.id.content_view_id);
-        //ContentView contentView = (ContentView) inflater.inflate(R.layout.view_content, null);
-        FrameLayout.LayoutParams pr = new FrameLayout.LayoutParams(-1, -1);//(FrameLayout.LayoutParams) mContentView.getLayoutParams();
+        FrameLayout.LayoutParams pr = new FrameLayout.LayoutParams(-1, -1);
         //to do debug
-        pr.topMargin = 128;
-        //
-        //addContentView(contentView, pr);
-        //mContentViews.add(contentView);
-        /*mBubbleFlowView.configure(size.x,
-                getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_width),
-                getResources().getDimensionPixelSize(R.dimen.bubble_pager_item_height));*/
-
-        //TabView bubble = (TabView) inflater.inflate(R.layout.view_tab, null);
-        //ContentView contentView = (ContentView) inflater.inflate(R.layout.view_content, null);
-            /*try {
-                bubble.mContentView = mContentViews.get(0);
-                bubble.configure("http://macworld.com", 1, false, true, false);
-            }
-            catch (MalformedURLException exc) {
-            }
-            controller.addBubble(bubble, false);*/
-        //controller.mBubbleFlowDraggable.mBubbleDraggable.mBadgeView.setCount(1);
-        //controller.mBubbleFlowDraggable.saveCurrentTabs();
-        //controller.showBadge(true);
-        //mBubbleFlowView.add(bubble, false);
-        //mContentViews.get(0).setVisibility(View.GONE);
-        ///
-        //TabView bubble = (TabView) inflater.inflate(R.layout.view_tab, null);
+        //pr.topMargin = 128;
         ContentView contentView = (ContentView) inflater.inflate(R.layout.view_content, null);
         mContentViews.add(contentView);
         addContentView(contentView, pr);
         controller.mBubbleFlowDraggable.createTabView(contentView, openUrlSettings, controller);
-        /*if (openUrlSettings.mSetAsCurrentTab) {
-            setAsCurrentTab(openUrlSettings.mUrl);
-        }*/
-        /*mTabViews.add(bubble);
-        try {
-            bubble.mContentView = contentView;
-            //to do debug
-            if (openUrlSettings.mUrl.contains("blank")) {
-                openUrlSettings.mUrl = "http://www.google.ca";
-            }
-            //
-            bubble.configure(openUrlSettings.mUrl, openUrlSettings.mUrlLoadStartTime, openUrlSettings.mHasShownAppPicker,
-                    openUrlSettings.mPerformEmptyClick, false, controller);
-        }
-        catch (MalformedURLException exc) {
-        }
-        controller.addBubble(bubble, false);*/
-        //controller.mBubbleFlowDraggable.mBubbleDraggable.mBadgeView.setCount(1);
-        //controller.mBubbleFlowDraggable.saveCurrentTabs();
-        //controller.mBubbleFlowDraggable.setCurrentTab(bubble);
-        //controller.showBadge(true);
-        //mBubbleFlowView.add(bubble2, false);
-        //mContentViews.get(1).setVisibility(View.GONE);
-        //mContentViews.get(0).setVisibility(View.VISIBLE);
-        ///
-
-        //moveTaskToBack(true);
     }
 
     @Override
