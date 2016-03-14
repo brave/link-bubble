@@ -1340,7 +1340,11 @@ public class ContentView extends FrameLayout {
                         InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
                 String urlText = metUrl.getText().toString();
-                if (Util.isValidURL(getContext(), urlText)) {
+                String urlToCheck = urlText;
+                if (!urlToCheck.startsWith(getContext().getString(R.string.http_prefix)) &&
+                        !urlToCheck.startsWith(getContext().getString(R.string.https_prefix)))
+                    urlToCheck = getContext().getString(R.string.http_prefix) + urlToCheck;
+                if (Util.isValidURL(getContext(), urlToCheck)) {
                     WorkWithURL(urlText, SearchURLSuggestions.SearchEngine.NONE, true);
                 }
                 else if (null != mFirstSuggestedItem) {
