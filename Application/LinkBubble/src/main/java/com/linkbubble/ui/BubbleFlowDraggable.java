@@ -357,6 +357,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
 
         saveCurrentTabs();
+
         return tabView;
     }
 

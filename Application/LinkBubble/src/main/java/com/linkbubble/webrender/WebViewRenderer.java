@@ -69,7 +69,7 @@ class WebViewRenderer extends WebRenderer {
 
     protected String TAG;
     private Handler mHandler;
-    protected WebView mWebView;
+    protected CustomWebView mWebView;
     private View mTouchInterceptorView;
     private long mLastWebViewTouchUpTime = -1;
     private String mLastWebViewTouchDownUrl;
@@ -99,7 +99,7 @@ class WebViewRenderer extends WebRenderer {
         mHandler = new Handler();
         TAG = tag;
 
-        mWebView = new WebView(mContext);
+        mWebView = new CustomWebView(mContext);
         mWebView.setLayoutParams(webRendererPlaceholder.getLayoutParams());
         Util.replaceViewAtPosition(webRendererPlaceholder, mWebView);
 
@@ -118,6 +118,7 @@ class WebViewRenderer extends WebRenderer {
         mWebView.setDownloadListener(mDownloadListener);
         mWebView.setOnLongClickListener(mOnWebViewLongClickListener);
         mWebView.setOnKeyListener(mOnKeyListener);
+        mWebView.setOnScrollChangedCallback(mOnScrollChangedCallback);
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -405,6 +406,13 @@ class WebViewRenderer extends WebRenderer {
         }
     };
 
+    CustomWebView.OnScrollChangedCallback mOnScrollChangedCallback = new CustomWebView.OnScrollChangedCallback() {
+        @Override
+        public void onScroll(int newX, int newY, int oldX, int oldY) {
+            mController.adjustBubblesPanel(newX, newY, oldX, oldY, false);
+        }
+    };
+
     private View.OnTouchListener mWebViewOnTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
@@ -418,6 +426,7 @@ class WebViewRenderer extends WebRenderer {
                 case MotionEvent.ACTION_UP:
                     mLastWebViewTouchUpTime = System.currentTimeMillis();
                     //Log.d(TAG, "[urlstack] WebView - MotionEvent.ACTION_UP");
+                    mController.adjustBubblesPanel(0, 0, 0, 0, true);
                     break;
             }
             // Forcibly pass along to the WebView. This ensures we receive the ACTION_UP event above.
