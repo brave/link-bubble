@@ -11,6 +11,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.linkbubble.Constant;
@@ -31,6 +33,8 @@ public class TabView extends BubbleView {
     private ImageView mBackIndicatorView;
     private ScaleUpAnimHelper mBackIndicatorAnimHelper;
     private boolean mPerformEmptyClick;
+    private int mOriginalParamsTopMargin;
+    private FrameLayout.LayoutParams mOriginalParams;
 
     public boolean mWasRestored;
     public boolean mIsClosing;
@@ -119,10 +123,10 @@ public class TabView extends BubbleView {
 
             @Override
             public boolean hasHighQualityFavicon() {
-                String tag = (String)mFavicon.getTag();
+                String tag = (String) mFavicon.getTag();
                 Drawable drawable = mFavicon.getDrawable();
                 if (tag != null && drawable != null && drawable instanceof BitmapDrawable) {
-                    Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+                    Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
                     if (bitmap != null && bitmap.getWidth() >= Constant.DESIRED_FAVICON_SIZE) {
                         return true;
                     }
@@ -170,6 +174,33 @@ public class TabView extends BubbleView {
         if (mContentView != null) {
             mContentView.destroy();
         }
+    }
+
+    public boolean adjustBubblesPanel(int adjustOn, boolean originalTopMargin, boolean heightSizeTopMargin) {
+        FrameLayout.LayoutParams currentParams = (FrameLayout.LayoutParams)mContentView.getLayoutParams();
+        if (null == currentParams) {
+            return false;
+        }
+        if (null == mOriginalParams) {
+            mOriginalParams = currentParams;
+            mOriginalParamsTopMargin = mOriginalParams.topMargin;
+        }
+        if (originalTopMargin) {
+            currentParams.topMargin = mOriginalParamsTopMargin;
+        }
+        else if (heightSizeTopMargin) {
+            currentParams.topMargin = 0 - currentParams.height;
+        }
+        else {
+            currentParams.topMargin -= adjustOn;
+        }
+
+        if (!mContentView.adjustToolBar(adjustOn, originalTopMargin, heightSizeTopMargin)) {
+            return false;
+        }
+        mContentView.setLayoutParams(currentParams);
+
+        return true;
     }
 
     @Override

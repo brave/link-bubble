@@ -130,7 +130,7 @@ public class ContentView extends FrameLayout {
     // Search URL functionality
     private AutoCompleteTextView metUrl;
     private ImageButton mbtUrlClear;
-    private FrameLayout contentEditUrl;
+    private FrameLayout mContentEditUrl;
 
     private boolean mPageFinishedLoading;
     private LifeState mLifeState = LifeState.Init;
@@ -161,6 +161,15 @@ public class ContentView extends FrameLayout {
     private boolean mSetTheRealUrlString = true;
     private boolean mFirstTimeUrlTyped = true;
     private boolean mHostInWhiteList = false;
+
+    private View mWebRendererPlaceholder;
+    private int mOriginalUrlBarParamsTopMargin;
+    private FrameLayout.LayoutParams mOriginalUrlBarParams;
+    private int mOriginalToolBarParamsTopMargin;
+    private FrameLayout.LayoutParams mOriginalToolBarParams;
+    private int mOriginalWebViewParamsTopMargin;
+    private FrameLayout.LayoutParams mOriginalWebViewParams;
+    private boolean mSkipAdjust = false;
 
     ConcurrentHashMap<String, Integer> mHostRedirectCounter;
 
@@ -373,12 +382,64 @@ public class ContentView extends FrameLayout {
         }
     }
 
+    public boolean adjustToolBar(int adjustOn, boolean originalTopMargin, boolean heightSizeTopMargin) {
+        if (null == mContentEditUrl || null == mToolbarLayout || null == mWebRendererPlaceholder ||
+                null == mOriginalUrlBarParams || null == mOriginalToolBarParams || null == mOriginalWebViewParams) {
+            return false;
+        }
+        FrameLayout.LayoutParams currentUrlBarParams = (FrameLayout.LayoutParams)mContentEditUrl.getLayoutParams();
+        FrameLayout.LayoutParams currentToolBarParams = (FrameLayout.LayoutParams)mToolbarLayout.getLayoutParams();
+        FrameLayout.LayoutParams currentWebViewParams = (FrameLayout.LayoutParams)mWebRendererPlaceholder.getLayoutParams();
+        if (null == currentUrlBarParams || null == currentToolBarParams || null == currentWebViewParams) {
+            return false;
+        }
+        if (originalTopMargin) {
+            currentUrlBarParams.topMargin = mOriginalUrlBarParamsTopMargin;
+            currentToolBarParams.topMargin = mOriginalToolBarParamsTopMargin;
+            currentWebViewParams.topMargin = mOriginalWebViewParamsTopMargin;
+        }
+        else if (heightSizeTopMargin) {
+            currentUrlBarParams.topMargin = 0 - currentUrlBarParams.height;
+            currentToolBarParams.topMargin = 0 - currentToolBarParams.height;
+            currentWebViewParams.topMargin = 0 - currentWebViewParams.height;
+        }
+        else {
+            currentUrlBarParams.topMargin -= adjustOn;
+            currentToolBarParams.topMargin -= adjustOn;
+            currentWebViewParams.topMargin -= adjustOn;
+        }
+        if (currentUrlBarParams.topMargin != mOriginalUrlBarParamsTopMargin) {
+            findViewById(R.id.caret_layout).setVisibility(GONE);
+            findViewById(R.id.actionbar_shadow).setVisibility(GONE);
+        }
+        else {
+            findViewById(R.id.caret_layout).setVisibility(VISIBLE);
+            findViewById(R.id.actionbar_shadow).setVisibility(VISIBLE);
+        }
+
+        mContentEditUrl.setLayoutParams(currentUrlBarParams);
+        mToolbarLayout.setLayoutParams(currentToolBarParams);
+        mWebRendererPlaceholder.setLayoutParams(currentWebViewParams);
+        if (mSkipAdjust) {
+            mSkipAdjust = false;
+        }
+        else {
+            mSkipAdjust = true;
+        }
+
+        return true;
+    }
+
     // The function configures the urlBar
     private void configureUrlBar(String urlAsString) {
         // Set the current URL to the search URL
         metUrl = (AutoCompleteTextView) findViewById(R.id.autocomplete_top500websites);
-        contentEditUrl = (FrameLayout)findViewById(R.id.content_edit_url);
+        mContentEditUrl = (FrameLayout)findViewById(R.id.content_edit_url);
 
+        mOriginalUrlBarParams = (FrameLayout.LayoutParams)mContentEditUrl.getLayoutParams();
+        if (null != mOriginalUrlBarParams) {
+            mOriginalUrlBarParamsTopMargin = mOriginalUrlBarParams.topMargin;
+        }
         metUrl.setDropDownWidth(getResources().getDisplayMetrics().widthPixels);
         metUrl.setText(urlAsString);
         mFirstTimeUrlTyped = true;
@@ -416,9 +477,14 @@ public class ContentView extends FrameLayout {
         mTintableDrawables.clear();
 
         HostInWhiteListCheck(urlAsString);
-        View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
-        mWebRenderer = WebRenderer.create(WebRenderer.Type.WebView, getContext(), mWebRendererController, webRendererPlaceholder, TAG);
+        mWebRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
+        mWebRenderer = WebRenderer.create(WebRenderer.Type.WebView, getContext(), mWebRendererController, mWebRendererPlaceholder, TAG);
         mWebRenderer.setUrl(mWebRendererController.getHTTPSUrl(urlAsString));
+
+        mOriginalWebViewParams = (FrameLayout.LayoutParams)mWebRendererPlaceholder.getLayoutParams();
+        if (null != mOriginalWebViewParams) {
+            mOriginalWebViewParamsTopMargin = mOriginalWebViewParams.topMargin;
+        }
 
         // Generates 1000 history links
         /*for (int i = 0; i < 1000; i++) {
@@ -443,6 +509,11 @@ public class ContentView extends FrameLayout {
         mToolbarLayout = (LinearLayout) findViewById(R.id.content_toolbar);
         mTitleTextView = (CondensedTextView) findViewById(R.id.title_text);
         mUrlTextView = (CondensedTextView) findViewById(R.id.url_text);
+
+        mOriginalToolBarParams = (FrameLayout.LayoutParams)mToolbarLayout.getLayoutParams();
+        if (null != mOriginalToolBarParams) {
+            mOriginalToolBarParamsTopMargin = mOriginalToolBarParams.topMargin;
+        }
 
         // Set on click listeners to show the search URL control
         mTitleTextView.setOnClickListener(mOnURLEnterClicked);
@@ -562,6 +633,7 @@ public class ContentView extends FrameLayout {
 
     private void LoadWebPage(String strUrl) {
         updateAndLoadUrl(strUrl);
+        mWebRendererController.resetBubblePanelAdjustment();
     }
 
 
@@ -593,7 +665,7 @@ public class ContentView extends FrameLayout {
         mUrlTextView.setTextColor(textColor);
         metUrl.setBackgroundColor(bgColor);
         metUrl.setTextColor(textColor);
-        contentEditUrl.setBackgroundColor(bgColor);
+        mContentEditUrl.setBackgroundColor(bgColor);
 
         for (Drawable d : mTintableDrawables) {
             DrawableCompat.setTint(d, textColor);
@@ -606,6 +678,27 @@ public class ContentView extends FrameLayout {
         updateColors(color);
     }
     WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {
+
+        @Override
+        public void resetBubblePanelAdjustment() {
+            MainController mainController = MainController.get();
+            if (null != mainController) {
+                mainController.adjustBubblesPanel(0, 0, 0, 0, false, true);
+            }
+        }
+
+        @Override
+        public void adjustBubblesPanel(int newX, int newY, int oldX, int oldY, boolean afterTouchAdjust) {
+            if (mSkipAdjust) {
+                mSkipAdjust = false;
+
+                return;
+            }
+            MainController mainController = MainController.get();
+            if (null != mainController) {
+                mainController.adjustBubblesPanel(newX, newY, oldX, oldY, afterTouchAdjust, false);
+            }
+        }
 
         @Override
         public String getHTTPSUrl(String originalUrl) {
@@ -803,6 +896,7 @@ public class ContentView extends FrameLayout {
 
             mConsecutiveRedirectCount = 0;
             updateAndLoadUrl(urlAsString);
+            mWebRendererController.resetBubblePanelAdjustment();
             return true;
         }
 

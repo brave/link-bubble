@@ -199,6 +199,7 @@
         android:visibility="gone"/>
 
     <ImageView
+        android:id="@+id/actionbar_shadow"
         android:layout_width="fill_parent"
         android:layout_height="8dp"
         android:background="@drawable/action_bar_shadow"
@@ -207,6 +208,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
+        android:id="@+id/caret_layout"
         android:layout_height="@dimen/toolbar_header">
 
     <ImageView
