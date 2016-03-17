@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.9.5">
+        <change>IMPROVEMENT: Hide bubbles on scroll down and show on scroll up.</change>
+    </release>
     <release version="1.9.4">
         <change>IMPROVEMENT: Made bubbles smaller.</change>
         <change>BUG FIX: Made url bar's autosuggestion less aggresive.</change>
