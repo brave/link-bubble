@@ -4,6 +4,7 @@
 
 package com.linkbubble;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.KeyguardManager;
 import android.content.Context;
@@ -23,10 +24,12 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.ValueCallback;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -280,6 +283,9 @@ public class MainController implements Choreographer.FrameCallback {
     private BubbleDraggable mBubbleDraggable;
 
     private long mPreviousFrameTime;
+    private WindowManager.LayoutParams mOriginalBubbleFlowDraggableParams;
+    private int mOriginalBubbleFlowDraggableLayoutTopMargin;
+    private int mPreviousBubbleAdjustmentValue = 0;
 
     // false if the user has forcibilty minimized the Bubbles from ContentView. Set back to true once a new link is loaded.
     private boolean mCanAutoDisplayLink;
@@ -417,6 +423,13 @@ public class MainController implements Choreographer.FrameCallback {
         mBubbleFlowDraggable.collapse(0, null);
         mBubbleFlowDraggable.setBubbleDraggable(mBubbleDraggable);
         mBubbleFlowDraggable.setVisibility(View.GONE);
+        mOriginalBubbleFlowDraggableParams = (WindowManager.LayoutParams)mBubbleFlowDraggable.getLayoutParams();
+        try {
+            mOriginalBubbleFlowDraggableLayoutTopMargin = ((FrameLayout.LayoutParams) mBubbleFlowDraggable.getChildAt(0).getLayoutParams()).height;
+        }
+        catch (NullPointerException exc) {
+            mOriginalBubbleFlowDraggableLayoutTopMargin = 0;
+        }
 
         mBubbleDraggable.setBubbleFlowDraggable(mBubbleFlowDraggable);
     }
@@ -430,6 +443,63 @@ public class MainController implements Choreographer.FrameCallback {
 
     private TextView mTextView;
     private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
+
+    public void adjustBubblesPanel(int newX, int newY, int oldX, int oldY, boolean afterTouchAdjust, boolean resetToOriginal) {
+        if (!resetToOriginal && (null == mOriginalBubbleFlowDraggableParams ||
+                (mPreviousBubbleAdjustmentValue - newY > -5 && mPreviousBubbleAdjustmentValue - newY < 5))) {
+            return;
+        }
+        mPreviousBubbleAdjustmentValue = newY;
+        int adjustOn = newY - oldY;
+        FrameLayout.LayoutParams currentParams = null;
+        try {
+            currentParams = (FrameLayout.LayoutParams) mBubbleFlowDraggable.getChildAt(0).getLayoutParams();
+        }
+        catch (NullPointerException exc) {
+        }
+        if (null == currentParams) {
+            return;
+        }
+        boolean originalTopMargin = false;
+        boolean heightSizeTopMargin = false;
+        if (!afterTouchAdjust && 0 == oldY && adjustOn > -5 && adjustOn < 5 || resetToOriginal) {
+            currentParams.topMargin = mOriginalBubbleFlowDraggableLayoutTopMargin;
+            originalTopMargin = true;
+        }
+        else if (0 == adjustOn) {
+            int half = (mOriginalBubbleFlowDraggableParams.height + currentParams.height) / 2;
+            if (0 - currentParams.topMargin > half) {
+                currentParams.topMargin = 0 - (mOriginalBubbleFlowDraggableParams.height + currentParams.height);
+                heightSizeTopMargin = true;
+            }
+            else {
+                currentParams.topMargin = mOriginalBubbleFlowDraggableLayoutTopMargin;
+                originalTopMargin = true;
+            }
+        }
+        else {
+            currentParams.topMargin -= adjustOn;
+            if (currentParams.topMargin + (mOriginalBubbleFlowDraggableParams.height + currentParams.height) < 0) {
+                currentParams.topMargin = 0 - (mOriginalBubbleFlowDraggableParams.height + currentParams.height);
+                heightSizeTopMargin = true;
+            } else if (currentParams.topMargin > 0) {
+                currentParams.topMargin = mOriginalBubbleFlowDraggableLayoutTopMargin;
+                originalTopMargin = true;
+            }
+        }
+        TabView currentTabView = getCurrentTab();
+        if (null != currentTabView) {
+            if (currentTabView.adjustBubblesPanel(adjustOn, originalTopMargin, heightSizeTopMargin)) {
+                mBubbleFlowDraggable.getChildAt(0).setLayoutParams(currentParams);
+            }
+        }
+        if (!heightSizeTopMargin) {
+            mBubbleFlowDraggable.setVisibility(View.VISIBLE);
+        }
+        else {
+            mBubbleFlowDraggable.setVisibility(View.GONE);
+        }
+    }
 
     public void onPageLoaded(TabView tab, boolean withError) {
         // Ensure this is not an edge case where the Tab has already been destroyed, re #254
@@ -1129,6 +1199,21 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void collapseBubbleFlow(long time) {
+        try {
+            FrameLayout.LayoutParams currentParams = (FrameLayout.LayoutParams) mBubbleFlowDraggable.getChildAt(0).getLayoutParams();
+            currentParams.topMargin = mOriginalBubbleFlowDraggableLayoutTopMargin;
+
+            TabView currentTabView = getCurrentTab();
+            if (null != currentTabView) {
+                if (currentTabView.adjustBubblesPanel(0, true, false)) {
+                    mBubbleFlowDraggable.getChildAt(0).setLayoutParams(currentParams);
+                }
+            }
+            mBubbleFlowDraggable.setVisibility(View.VISIBLE);
+        }
+        catch (NullPointerException exc) {
+        }
+
         mBubbleFlowDraggable.collapse(time, mOnBubbleFlowCollapseFinishedListener);
     }
 
