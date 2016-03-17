@@ -35,7 +35,7 @@
 
     <dimen name="back_indicator_size">12dp</dimen>
     <dimen name="badge_size">18dp</dimen>
-    <dimen name="badge_margin">1dp</dimen>
+    <dimen name="badge_margin">2dp</dimen>
     <dimen name="bubble_size">48dp</dimen>
     <dimen name="bubble_icon_size">45dp</dimen>
     <dimen name="bubble_icon_stroke_size">1px</dimen>
