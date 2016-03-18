@@ -148,10 +148,17 @@ public class ADBlockUtils {
             buffer = new byte[ADBlockUtils.BUFFER_TO_READ];
             int n = - 1;
             int totalReadSize = 0;
-            while ( (n = inputStream.read(buffer)) != -1)
-            {
-                outputStream.write(buffer, 0, n);
-                totalReadSize += n;
+            try {
+                while ((n = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, n);
+                    totalReadSize += n;
+                }
+            }
+            catch (IllegalStateException exc) {
+                // Sometimes it gives us that exception, found that we should do that way to avoid it:
+                // Each HttpURLConnection instance is used to make a single request but the
+                // underlying network connection to the HTTP server may be transparently shared by other instance.
+                // But we do that way, so just wrapped it for now and we will redownload the file on next request
             }
             outputStream.close();
             if (length != totalReadSize) {
