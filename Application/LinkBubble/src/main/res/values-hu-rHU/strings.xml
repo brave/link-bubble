@@ -327,7 +327,7 @@
     <string name="http_prefix">http://</string>
     <string name="https_prefix">https://</string>
     <string name="www_prefix">www.</string>
-
+    <string name="duckduckgo_search_engine">https://duckduckgo.com/?q=%1$s&amp;t=brave</string>
     <string name="google_search_engine">http://www.google.hu/search?q=</string>
     <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
     <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>
@@ -338,15 +338,15 @@
     <string name="google">Google</string>
     <string name="yahoo">Yahoo</string>
     <string name="amazon">Amazon</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="empty_bubble_page">file:///android_asset/blank.html</string>
+    <string name="adblock_url">https://s3.amazonaws.com/adblock-data/1/ABPFilterParserData.dat</string>
+    <string name="adblock_localfilename">FromUrlABPFilterParserData.dat</string>
+    <string name="tracking_protection_url">https://s3.amazonaws.com/tracking-protection-data/1/TrackingProtection.dat</string>
+    <string name="tracking_protection_localfilename">TrackingProtection.dat</string>
+    <string name="https_everywhere_rulesets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/rulesets.sqlite</string>
+    <string name="https_everywhere_targets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/httpse-targets.json</string>
+    <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
+    <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
+    <string name="whitelist_localfilename">whitelist.dat</string>
 
 </resources>

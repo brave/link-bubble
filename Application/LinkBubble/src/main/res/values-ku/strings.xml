@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="download_activity_label">داگرتن</string>
+    <string name="send_intent_label">كردنه‌وه‌ له‌گه‌ڵ Brave</string>
+    <string name="notification_summary">گرته‌ بكه‌ بۆ شاردنه‌وه‌ی هه‌مووی</string>
+    
+    
+    <string name="notification_action_close_all">داخستنی هه‌مووی</string>
+    <string name="notification_action_hide">شاردنه‌وه‌</string>
+    
+
+    <string name="yes">به‌ڵێ</string>
+    <string name="no">نه‌خێر</string>
+    <string name="cancel">پاشگه‌زبوونه‌وه‌</string>
+
+    <string name="action_ok">باشه‌</string>
+    <string name="action_open">كردنه‌وه‌</string>
+    <string name="action_remove">لادان</string>
+    <string name="action_cancel">پاشگه‌زبوونه‌وه‌</string>
+    <string name="action_clear_data">سڕینه‌وه‌ی داتا</string>
+    <string name="action_use_default">به‌كارهێنان وه‌ك سه‌ره‌كی</string>
+    <string name="action_settings">ڕێكخستنه‌كان</string>
+    <string name="action_help">یارمه‌تی</string>
+    <string name="action_reload_page">نوێكردنه‌وه‌</string>
+    <string name="action_open_in_browser">%1$s كراوه‌ته‌وه‌</string>
+    <string name="action_request_desktop_site">شێوازی كۆمپیوته‌ر</string>
+    
+    <string name="action_open_in_new_bubble">كردنه‌وه‌ له‌ په‌ڕه‌یه‌كی نوێ</string>
+    <string name="action_open_link_in_new_bubble">كردنه‌وه‌ی به‌سته‌ر له‌ په‌ڕه‌یه‌كی نوێ</string>
+    <string name="action_open_image_in_new_bubble">كردنه‌وه‌ی وێنه‌ له‌ په‌ڕه‌یه‌كی نوێ</string>
+    <string name="action_copy_to_clipboard">كۆپیكردنی به‌سته‌ر</string>
+    <string name="action_save_image">داگرتنی وێنه‌</string>
+    <string name="action_share">بڵاوكردنه‌وه‌</string>
+    <string name="action_close_all">داخستنی هه‌مووی</string>
+    <string name="action_new_bubble">په‌ڕه‌ی نوێ</string>
+    <string name="action_close_tab">داخستنی په‌ڕه‌</string>
+    <string name="action_stop">ڕاگرتن</string>
+    <string name="action_undo">گه‌ڕانه‌وه‌</string>
+    <string name="action_add">زیادكردن</string>
+    <string name="action_no_recommended">نه‌خێر</string>
+    <string name="share_via">بڵاوكردنه‌وه‌ به‌..</string>
+    <string name="not_set">دانه‌نراو</string>
+
+    <string name="error_saving_image">ناتوانیت دایبگریت</string>
+    <string name="image_saved">وێنه‌ داگرترا</string>
+    <string name="notice_download_started">داگرتن ده‌ستپێده‌كات</string>
+
+    <string name="warning">ئاگاداربه‌!</string>
+    
+
+    
+    
+    <string name="consume_activity_security_exception">ناتوانرێت بۆپڕۆگرامی ده‌ره‌كی بڵاوبكرێته‌وه‌</string>
+
+    <string name="upgrade">به‌رزكردنه‌وه‌</string>
+    <string name="upgrade_theme">ئایا زێمی ده‌گۆڕیت؟</string>
+    <string name="upgrade_theme_toolbar">ئایا ده‌ته‌وێت هه‌مان زێمی ناو وێبسایته‌كان دابنرێت؟</string>
+
+    <string name="undo_close_tab_title">%1$s داخرا</string>
+    <string name="undo_close_tab_no_title">په‌ڕه‌ داخرا</string>
+
+    <string name="pick_default_app">هه‌ڵبژاردنی پڕۆگرامی سه‌ره‌كی</string>
+    <string name="default_browser_set">Brave كرایه‌ وێبگه‌ری سه‌ره‌كی</string>
+    <string name="invalid_send_action">به‌سته‌ر هه‌ڵه‌یه‌</string>
+    <string name="unable_to_launch_app">ناتوانرێت بكرێته‌وه‌</string>
+    <string name="clear_history">سڕینه‌وه‌ی مێژوو</string>
+
+    <string name="preference_category_general">گشتی</string>
+    <string name="preference_category_configuration">كۆنترۆڵی پڕۆگرام</string>
+    <string name="preference_category_configuration2">پیرۆزه‌</string>
+    <string name="preference_category_browser">وێبگه‌ر</string>
+    <string name="preference_enabled_title">چالاككرا</string>
+    
+    <string name="preference_auto_content_display_link_loaded_summary">هه‌ركاتێك په‌ڕه‌یه‌ك به‌ته‌واوی بۆوه‌</string>
+
+    <string name="preference_left_consume_bubble_title">په‌ڕه‌ی چه‌پ</string>
+    <string name="preference_right_consume_bubble_title">په‌ڕه‌ی ڕاست</string>
+    <string name="preference_double_tap_title">دووجار گرته‌ بكه‌ بۆ به‌سته‌ر</string>
+    
+    
+    
+    
+    
+    <string name="preference_category_other_apps">پڕۆگرامیتر</string>
+    <string name="preference_default_apps_title">پڕۆگرامه‌ سه‌ره‌كییه‌كان</string>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <string-array name="preference_user_agent_options">
+        <item>Default</item>
+        <item>Chrome Phone</item>
+        <item>Chrome Tablet</item>
+        <item>كرۆمی كۆمپیوته‌ری</item>
+    </string-array>
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+
+    
+
+    
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
+    </plurals>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+</resources>
