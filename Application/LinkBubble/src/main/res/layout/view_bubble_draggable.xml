@@ -42,7 +42,7 @@
         android:layout_width="@dimen/badge_size"
         android:layout_height="@dimen/badge_size"
         android:text="3"
-        android:textSize="12sp"
+        android:textSize="16sp"
         android:layout_marginLeft="@dimen/badge_margin"
         android:layout_marginRight="@dimen/badge_margin"
         android:layout_marginTop="@dimen/badge_margin"
