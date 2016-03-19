@@ -32,20 +32,19 @@
 
     <dimen name="snackbar_height">64dp</dimen>
     <dimen name="home_activity_bottom_margin">64dp</dimen>
-
-    <dimen name="back_indicator_size">12dp</dimen>
-    <dimen name="badge_size">18dp</dimen>
+    <dimen name="back_indicator_size">16dp</dimen>
+    <dimen name="badge_size">24dp</dimen>
     <dimen name="badge_margin">2dp</dimen>
-    <dimen name="bubble_size">48dp</dimen>
-    <dimen name="bubble_icon_size">45dp</dimen>
+    <dimen name="bubble_size">64dp</dimen>
+    <dimen name="bubble_icon_size">60dp</dimen>
     <dimen name="bubble_icon_stroke_size">1px</dimen>
-    <dimen name="bubble_favicon_size">23dp</dimen>
-    <dimen name="bubble_pager_item_width">54dp</dimen>
+    <dimen name="bubble_favicon_size">30dp</dimen>
+    <dimen name="bubble_pager_item_width">72dp</dimen>
     <dimen name="bubble_pager_item_height">@dimen/bubble_size</dimen>
     <dimen name="bubble_pager_height">@dimen/bubble_pager_item_height</dimen>
-    <dimen name="bubble_progress_size">43dp</dimen>
-    <dimen name="bubble_progress_stroke">0.5dp</dimen>
-    <dimen name="content_offset">44dp</dimen>
+    <dimen name="bubble_progress_size">57.5dp</dimen>
+    <dimen name="bubble_progress_stroke">2dp</dimen>
+    <dimen name="content_offset">59dp</dimen>
     <dimen name="stat_height">200dp</dimen>
     <dimen name="stat_bubble_size">140dp</dimen>
     <dimen name="stat_bubble_text_size">28sp</dimen>
