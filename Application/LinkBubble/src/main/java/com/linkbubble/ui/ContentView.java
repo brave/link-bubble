@@ -691,8 +691,9 @@ public class ContentView extends FrameLayout {
         public void adjustBubblesPanel(int newX, int newY, int oldX, int oldY, boolean afterTouchAdjust) {
             if (mSkipAdjust) {
                 mSkipAdjust = false;
-
-                return;
+                if (newY != 0 || oldY != 0) {
+                    return;
+                }
             }
             MainController mainController = MainController.get();
             if (null != mainController) {

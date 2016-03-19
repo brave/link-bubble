@@ -445,7 +445,7 @@ public class MainController implements Choreographer.FrameCallback {
     private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
 
     public void adjustBubblesPanel(int newX, int newY, int oldX, int oldY, boolean afterTouchAdjust, boolean resetToOriginal) {
-        if (!resetToOriginal && (null == mOriginalBubbleFlowDraggableParams ||
+        if (!afterTouchAdjust && !resetToOriginal && (null == mOriginalBubbleFlowDraggableParams ||
                 (mPreviousBubbleAdjustmentValue - newY > -5 && mPreviousBubbleAdjustmentValue - newY < 5))) {
             return;
         }
