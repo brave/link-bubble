@@ -494,7 +494,9 @@ public class MainController implements Choreographer.FrameCallback {
             }
         }
         if (!heightSizeTopMargin) {
-            mBubbleFlowDraggable.setVisibility(View.VISIBLE);
+            if (mBubbleFlowDraggable.isExpanded()) {
+                mBubbleFlowDraggable.setVisibility(View.VISIBLE);
+            }
         }
         else {
             mBubbleFlowDraggable.setVisibility(View.GONE);
@@ -1209,7 +1211,9 @@ public class MainController implements Choreographer.FrameCallback {
                     mBubbleFlowDraggable.getChildAt(0).setLayoutParams(currentParams);
                 }
             }
-            mBubbleFlowDraggable.setVisibility(View.VISIBLE);
+            if (mBubbleFlowDraggable.isExpanded()) {
+                mBubbleFlowDraggable.setVisibility(View.VISIBLE);
+            }
         }
         catch (NullPointerException exc) {
         }
