@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.9.8">
+        <change>IMPROVEMENT: Bubble size reverted to original size, we’ll add an option to control it later.</change>
+        <change>BUG FIX: Fixed bug with new bubbles in collapsed mode.</change>
+    </release>
     <release version="1.9.7">
         <change>IMPROVEMENT: Bubble size reverted to original size, we’ll add an option to control it later.</change>
     </release>
