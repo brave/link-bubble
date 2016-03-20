@@ -529,7 +529,7 @@ public class BubbleFlowView extends HorizontalScrollView {
         return result;
     }
 
-    boolean isExpanded() {
+    public boolean isExpanded() {
         return mIsExpanded;
     }
 
