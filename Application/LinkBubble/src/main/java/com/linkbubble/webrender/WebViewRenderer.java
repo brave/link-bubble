@@ -408,8 +408,13 @@ class WebViewRenderer extends WebRenderer {
 
     CustomWebView.OnScrollChangedCallback mOnScrollChangedCallback = new CustomWebView.OnScrollChangedCallback() {
         @Override
-        public void onScroll(int newX, int newY, int oldX, int oldY) {
-            mController.adjustBubblesPanel(newX, newY, oldX, oldY, false);
+        public void onScroll(int newY, int oldY) {
+            if (!mWebView.mInterceptScrollChangeCalls && 0 == newY) {
+                mController.resetBubblePanelAdjustment();
+            }
+            else {
+                mController.adjustBubblesPanel(newY, oldY, false);
+            }
         }
     };
 
@@ -420,13 +425,15 @@ class WebViewRenderer extends WebRenderer {
             switch (action) {
                 case MotionEvent.ACTION_DOWN:
                     mLastWebViewTouchDownUrl = mUrl.toString();
+                    mWebView.mInterceptScrollChangeCalls = true;
                     //Log.d(TAG, "[urlstack] WebView - MotionEvent.ACTION_DOWN");
                     break;
 
                 case MotionEvent.ACTION_UP:
                     mLastWebViewTouchUpTime = System.currentTimeMillis();
+                    mWebView.mInterceptScrollChangeCalls = false;
                     //Log.d(TAG, "[urlstack] WebView - MotionEvent.ACTION_UP");
-                    mController.adjustBubblesPanel(0, 0, 0, 0, true);
+                    mController.adjustBubblesPanel(0, 0, true);
                     break;
             }
             // Forcibly pass along to the WebView. This ensures we receive the ACTION_UP event above.

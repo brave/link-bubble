@@ -6,10 +6,12 @@ package com.linkbubble.webrender;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.webkit.WebView;
 
 public class CustomWebView extends WebView {
     private OnScrollChangedCallback mOnScrollChangedCallback;
+    public boolean mInterceptScrollChangeCalls = false;
 
     public CustomWebView(Context context) {
         super(context);
@@ -27,14 +29,10 @@ public class CustomWebView extends WebView {
     protected void onScrollChanged(int newX, int newY, int oldX, int oldY)
     {
         super.onScrollChanged(newX, newY, oldX, oldY);
-        if(mOnScrollChangedCallback != null) {
-            mOnScrollChangedCallback.onScroll(newX, newY, oldX, oldY);
+        //Log.d("My", "newX = " + newX + ", newY = " + newY + ", oldX = " + oldX + ", oldY = " + oldY);
+        if ((mInterceptScrollChangeCalls || 0 == newY) && mOnScrollChangedCallback != null) {
+            mOnScrollChangedCallback.onScroll(newY, oldY);
         }
-    }
-
-    public OnScrollChangedCallback getOnScrollChangedCallback()
-    {
-        return mOnScrollChangedCallback;
     }
 
     public void setOnScrollChangedCallback(final OnScrollChangedCallback onScrollChangedCallback)
@@ -45,6 +43,6 @@ public class CustomWebView extends WebView {
 
     public static interface OnScrollChangedCallback
     {
-        void onScroll(int newX, int newY, int oldX, int oldY);
+        void onScroll(int newY, int oldY);
     }
 }
