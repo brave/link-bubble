@@ -5,13 +5,24 @@
 package com.linkbubble.ui;
 
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.Transformation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -35,6 +46,8 @@ public class TabView extends BubbleView {
     private boolean mPerformEmptyClick;
     private int mOriginalParamsTopMargin;
     private FrameLayout.LayoutParams mOriginalParams;
+    private float mOriginalLocationY;
+    private int mOriginalBottomMargin;
 
     public boolean mWasRestored;
     public boolean mIsClosing;
@@ -176,32 +189,62 @@ public class TabView extends BubbleView {
         }
     }
 
-    public boolean adjustBubblesPanel(int adjustOn, boolean originalTopMargin, boolean heightSizeTopMargin) {
-        FrameLayout.LayoutParams currentParams = (FrameLayout.LayoutParams)mContentView.getLayoutParams();
-        if (null == currentParams) {
-            return false;
-        }
-        if (null == mOriginalParams) {
-            mOriginalParams = currentParams;
-            mOriginalParamsTopMargin = mOriginalParams.topMargin;
-        }
-        if (originalTopMargin) {
-            currentParams.topMargin = mOriginalParamsTopMargin;
-        }
-        else if (heightSizeTopMargin) {
-            currentParams.topMargin = 0 - currentParams.height;
-        }
-        else {
-            currentParams.topMargin -= adjustOn;
+    public int toolbarHeight() {
+        if (null != mContentView) {
+            return mContentView.toolbarHeight();
         }
 
-        if (!mContentView.adjustToolBar(adjustOn, originalTopMargin, heightSizeTopMargin)) {
-            return false;
+        return 0;
+    }
+
+    public boolean adjustBubblesPanel(float adjustOn, boolean heightSizeTopMargin, int animDuration) {
+        if (null == mOriginalParams) {
+            mOriginalParams = (FrameLayout.LayoutParams)mContentView.getLayoutParams();
+            if (null == mOriginalParams) {
+                return false;
+            }
+            mOriginalBottomMargin = mOriginalParams.bottomMargin;
         }
-        mContentView.setLayoutParams(currentParams);
+        if (heightSizeTopMargin) {
+            FrameLayout.LayoutParams currentParams = (FrameLayout.LayoutParams)mContentView.getLayoutParams();
+            if (null == currentParams) {
+                return false;
+            }
+            float locationYToMove = 0 - currentParams.height - currentParams.topMargin - mContentView.toolbarHeight();
+            currentParams.bottomMargin = mOriginalBottomMargin + (int)locationYToMove;
+            mContentView.setLayoutParams(currentParams);
+        }
+
+        ObjectAnimator
+                .ofFloat(mContentView, "translationY", adjustOn)
+                .setDuration(animDuration)
+                .start();
 
         return true;
     }
+
+    // Empty listener is set so that the mHideListener is not still used, potentially setting the view visibilty as GONE
+    /*private Animator.AnimatorListener mShowListener = new Animator.AnimatorListener() {
+        @Override
+        public void onAnimationStart(Animator animation) {
+             mContentView.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animation) {
+            mContentView.setVisibility(View.GONE);
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animation) {
+
+        }
+
+        @Override
+        public void onAnimationRepeat(Animator animation) {
+
+        }
+    };*/
 
     @Override
     protected void onPageLoaded(boolean withError) {
