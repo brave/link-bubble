@@ -128,6 +128,8 @@
     <string name="preference_clear_passwords">Passwords</string>
     <string name="preference_incognito_title">Incognito Mode</string>
     <string name="preference_incognito_summary">Prevent storing all history and cookies</string>
+    <string name="preference_hide_bubbles_title">Hide Bubbles on scroll</string>
+    <string name="preference_hide_bubbles_summary">Hide Bubbles on scroll down and show on scroll up</string>
     <string name="incognito_mode_changed_reloading_current">Incognito setting changed. Reloading current bubbles…</string>
     <string name="preference_trackingprotection_summary">Prevent resources that track you from loading</string>
     <string name="preference_adblock_title">Ad Block</string>

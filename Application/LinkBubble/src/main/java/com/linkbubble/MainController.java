@@ -455,6 +455,10 @@ public class MainController implements Choreographer.FrameCallback {
     private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
 
     public void adjustBubblesPanel(int newY, int oldY, boolean afterTouchAdjust, boolean resetToOriginal) {
+        if (!Settings.get().isHideBubbles()) {
+            return;
+        }
+
         TabView currentTabView = getCurrentTab();
 
         if (null == currentTabView || !afterTouchAdjust && !resetToOriginal && (null == mOriginalBubbleFlowDraggableParams ||
