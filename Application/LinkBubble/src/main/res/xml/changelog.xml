@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.9.9">
+        <change>IMPROVEMENT: Made hide bubbles on scroll down more smooth.</change>
+        <change>IMPROVEMENT: Added an option to disable hide bubbles in scroll down (Settings->More->Hide Bubbles on scroll).</change>
+    </release>
     <release version="1.9.8">
         <change>IMPROVEMENT: Bubble size reverted to original size, we’ll add an option to control it later.</change>
         <change>BUG FIX: Fixed bug with new bubbles in collapsed mode.</change>
