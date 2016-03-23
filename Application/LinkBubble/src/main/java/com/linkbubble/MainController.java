@@ -462,9 +462,9 @@ public class MainController implements Choreographer.FrameCallback {
 
         TabView currentTabView = getCurrentTab();
 
-        if (null == currentTabView || !afterTouchAdjust && !resetToOriginal && (null == mOriginalBubbleFlowDraggableParams ||
+        if (null == mOriginalBubbleFlowDraggableParams || null == currentTabView || !afterTouchAdjust && !resetToOriginal &&
                 (mPreviousBubbleAdjustmentValue - newY > (0 - PIXELS_TO_SKIP_BEFORE_SCROLL) &&
-                        mPreviousBubbleAdjustmentValue - newY < PIXELS_TO_SKIP_BEFORE_SCROLL))) {
+                        mPreviousBubbleAdjustmentValue - newY < PIXELS_TO_SKIP_BEFORE_SCROLL)) {
             return;
         }
         final int toolbarHeight = currentTabView.toolbarHeight();
