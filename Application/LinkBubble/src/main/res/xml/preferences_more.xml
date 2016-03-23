@@ -21,6 +21,13 @@
         />
 
     <CheckBoxPreference
+        android:key="preference_hide_bubbles"
+        android:title="@string/preference_hide_bubbles_title"
+        android:summary="@string/preference_hide_bubbles_summary"
+        android:defaultValue="true"
+        />
+
+    <CheckBoxPreference
         android:key="preference_auto_content_display_link_loaded"
         android:title="@string/preference_auto_content_display_link_loaded_title"
         android:summary="@string/preference_auto_content_display_link_loaded_summary"
