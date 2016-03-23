@@ -455,7 +455,8 @@ public class MainController implements Choreographer.FrameCallback {
     private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
 
     public void adjustBubblesPanel(int newY, int oldY, boolean afterTouchAdjust, boolean resetToOriginal) {
-        if (!Settings.get().isHideBubbles()) {
+        Settings settings = Settings.get();
+        if (null != settings && !settings.isHideBubbles()) {
             return;
         }
 
