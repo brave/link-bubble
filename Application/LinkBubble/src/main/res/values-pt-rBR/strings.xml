@@ -125,6 +125,8 @@
     <string name="preference_clear_passwords">Senhas</string>
     <string name="preference_incognito_title">Modo Anônimo</string>
     <string name="preference_incognito_summary">Previne armazenar todo o histórico e cookies</string>
+    
+    
     <string name="incognito_mode_changed_reloading_current">Configurações do modo Incógnito alteradas. Recarregando páginas…</string>
     <string name="preference_trackingprotection_summary">Evitar recursos que podem lhe rastrear.</string>
     <string name="preference_adblock_title">Bloquear Propagandas</string>

@@ -126,6 +126,8 @@ poden gestionar una URL.\n\nPrem per esborrar-ne una.</string>
     <string name="preference_clear_passwords">Contrasenyes </string>
     <string name="preference_incognito_title">Mode incògnit</string>
     <string name="preference_incognito_summary">Evita guardar res d\'historial ni galetes</string>
+    
+    
     <string name="incognito_mode_changed_reloading_current">Configuració d\'incògnit canviada. Tornant a carregar bombolles actuals...</string>
     
     

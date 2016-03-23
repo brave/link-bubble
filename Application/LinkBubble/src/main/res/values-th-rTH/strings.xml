@@ -127,6 +127,8 @@
     <string name="preference_clear_passwords">รหัสผ่าน</string>
     <string name="preference_incognito_title">โหมดไม่ระบุตัวตน</string>
     <string name="preference_incognito_summary">ไม่บันทึกประวัติและคุกกี้</string>
+    
+    
     <string name="incognito_mode_changed_reloading_current">การตั้งค่าโหมดไม่ระบุตัวตนถูกเปลี่ยน กำลังโหลดหน้าเว็บใหม่...</string>
     <string name="preference_trackingprotection_summary">ป้องกันการโหลดทรัพยากรที่ติดตามคุณ</string>
     <string name="preference_adblock_title">บล็อกโฆษณา</string>

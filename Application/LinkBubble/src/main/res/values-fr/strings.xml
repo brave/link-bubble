@@ -128,6 +128,8 @@ vous chargez des liens avec Brave.</string>
     <string name="preference_clear_passwords">Mot de passe</string>
     <string name="preference_incognito_title">Mode incognito</string>
     <string name="preference_incognito_summary">Empêcher le stockage de l\'historique et des cookies</string>
+    
+    
     <string name="incognito_mode_changed_reloading_current">Le paramètre « mode incognito » a été modifié. Chargement de vos bulles actuelles...</string>
     <string name="preference_trackingprotection_summary">Empêcher le chargement des ressources qui vous pistent</string>
     <string name="preference_adblock_title">Blocage des publicités</string>

@@ -126,6 +126,8 @@
     <string name="preference_clear_passwords">Пароли</string>
     <string name="preference_incognito_title">Режим инкогнито</string>
     <string name="preference_incognito_summary">Не сохранять историю и cookies</string>
+    
+    
     <string name="incognito_mode_changed_reloading_current">Настройки инкогнито изменены. Вкладки перезагружаются...</string>
     <string name="preference_trackingprotection_summary">Не загружать отслеживающие вас ресурсы</string>
     <string name="preference_adblock_title">Блок рекламы</string>

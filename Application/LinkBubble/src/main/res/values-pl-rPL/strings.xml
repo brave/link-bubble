@@ -125,6 +125,8 @@
     <string name="preference_clear_passwords">Hasła</string>
     <string name="preference_incognito_title">Tryb incognito</string>
     <string name="preference_incognito_summary">Nie przechowuj historii ani plików cookie</string>
+    
+    
     <string name="incognito_mode_changed_reloading_current">Zmieniono ustawienia incognito. Odświeżam aktywne dymki...</string>
     
     
