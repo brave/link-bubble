@@ -126,6 +126,8 @@ accounts.google.com 链接</string>
     <string name="preference_clear_passwords">密码</string>
     <string name="preference_incognito_title">隐身模式</string>
     <string name="preference_incognito_summary">不记录浏览历史及小型文本文件(cookie)</string>
+    
+    
     <string name="incognito_mode_changed_reloading_current">已变更隐身模式。正在重新加载当前泡泡...</string>
     
     <string name="preference_adblock_title">广告拦截</string>

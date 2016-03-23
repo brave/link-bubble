@@ -125,6 +125,8 @@
     <string name="preference_clear_passwords">Hesla</string>
     <string name="preference_incognito_title">Anonymní režim</string>
     <string name="preference_incognito_summary">Neukládá historii prohlížení ani cookies</string>
+    
+    
     <string name="incognito_mode_changed_reloading_current">Nastavení anonymního režimu změněno. Aktualizuji současné bubliny…</string>
     
     

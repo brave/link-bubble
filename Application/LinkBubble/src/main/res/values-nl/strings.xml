@@ -126,6 +126,8 @@ kunnen afhandelen.\n\nTik om een standaard te verwijderen.</string>
     <string name="preference_clear_passwords">Wachtwoorden</string>
     <string name="preference_incognito_title">Incognitostand</string>
     <string name="preference_incognito_summary">Voorkom het bewaren van geschiedenis en cookies</string>
+    
+    
     <string name="incognito_mode_changed_reloading_current">Incognito-instelling gewijzigd. Alle huidige bubbels herladen...</string>
     <string name="preference_trackingprotection_summary">Voorkom laden van bronnen die je volgen</string>
     <string name="preference_adblock_title">Ad Block</string>

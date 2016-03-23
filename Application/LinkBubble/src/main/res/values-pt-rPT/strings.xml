@@ -136,6 +136,8 @@
     
     
     
+    
+    
     <string-array name="preference_user_agent_options">
         <item>Default</item>
         <item>Chrome Phone</item>

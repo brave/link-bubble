@@ -126,6 +126,8 @@ võivad hallata URLi.\n\nKoputa, et eemaldada vaikeväärtus.</string>
     <string name="preference_clear_passwords">Paroolid</string>
     <string name="preference_incognito_title">Inkognito režiim</string>
     <string name="preference_incognito_summary">Väldi ajaloo ja küpsiste salvestamist</string>
+    
+    
     <string name="incognito_mode_changed_reloading_current">Inkognito seade muudetud. Laadin mullid uuesti...</string>
     
     

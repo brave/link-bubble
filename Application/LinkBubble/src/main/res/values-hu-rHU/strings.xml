@@ -135,6 +135,8 @@
     
     
     
+    
+    
     <string name="preference_user_agent_title">HTTP kliens mód</string>
     <string-array name="preference_user_agent_options">
         <item>Alapértelmezett</item>

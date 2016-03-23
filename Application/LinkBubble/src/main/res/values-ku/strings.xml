@@ -2,13 +2,13 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">داگرتن</string>
-    <string name="send_intent_label">كردنه‌وه‌ له‌گه‌ڵ Brave</string>
+    <string name="send_intent_label">كردنه‌وه‌ له‌گه‌ڵ وێبگه‌ر</string>
     <string name="notification_summary">گرته‌ بكه‌ بۆ شاردنه‌وه‌ی هه‌مووی</string>
-    
-    
+    <string name="notification_default_summary">گرته‌ بكه‌ بۆ شاردنه‌وه‌ یاخوود داخستن</string>
+    <string name="notification_unhide_summary">گرته‌ بكه‌ بۆ نه‌شاردنه‌وه‌ یاخوود داخستن</string>
     <string name="notification_action_close_all">داخستنی هه‌مووی</string>
     <string name="notification_action_hide">شاردنه‌وه‌</string>
-    
+    <string name="share_picker_label">هاوبه‌شپێكردن</string>
 
     <string name="yes">به‌ڵێ</string>
     <string name="no">نه‌خێر</string>
@@ -22,16 +22,16 @@
     <string name="action_use_default">به‌كارهێنان وه‌ك سه‌ره‌كی</string>
     <string name="action_settings">ڕێكخستنه‌كان</string>
     <string name="action_help">یارمه‌تی</string>
-    <string name="action_reload_page">نوێكردنه‌وه‌</string>
-    <string name="action_open_in_browser">%1$s كراوه‌ته‌وه‌</string>
+    <string name="action_reload_page">باركردنه‌وه‌</string>
+    <string name="action_open_in_browser">%1$s كردنه‌وه‌ له‌</string>
     <string name="action_request_desktop_site">شێوازی كۆمپیوته‌ر</string>
-    
+    <string name="action_site_protection">چالاككردنی پاراستنی وێبگه‌ر</string>
     <string name="action_open_in_new_bubble">كردنه‌وه‌ له‌ په‌ڕه‌یه‌كی نوێ</string>
     <string name="action_open_link_in_new_bubble">كردنه‌وه‌ی به‌سته‌ر له‌ په‌ڕه‌یه‌كی نوێ</string>
     <string name="action_open_image_in_new_bubble">كردنه‌وه‌ی وێنه‌ له‌ په‌ڕه‌یه‌كی نوێ</string>
     <string name="action_copy_to_clipboard">كۆپیكردنی به‌سته‌ر</string>
     <string name="action_save_image">داگرتنی وێنه‌</string>
-    <string name="action_share">بڵاوكردنه‌وه‌</string>
+    <string name="action_share">هاوبه‌شپێكردن</string>
     <string name="action_close_all">داخستنی هه‌مووی</string>
     <string name="action_new_bubble">په‌ڕه‌ی نوێ</string>
     <string name="action_close_tab">داخستنی په‌ڕه‌</string>
@@ -39,19 +39,19 @@
     <string name="action_undo">گه‌ڕانه‌وه‌</string>
     <string name="action_add">زیادكردن</string>
     <string name="action_no_recommended">نه‌خێر</string>
-    <string name="share_via">بڵاوكردنه‌وه‌ به‌..</string>
+    <string name="share_via">هاوبه‌شپێكردن به‌</string>
     <string name="not_set">دانه‌نراو</string>
 
-    <string name="error_saving_image">ناتوانیت دایبگریت</string>
+    <string name="error_saving_image">ناتوانیت وێنه‌كه‌ دابگریت</string>
     <string name="image_saved">وێنه‌ داگرترا</string>
-    <string name="notice_download_started">داگرتن ده‌ستپێده‌كات</string>
+    <string name="notice_download_started">داگرتن ده‌ستیپێكرد</string>
 
     <string name="warning">ئاگاداربه‌!</string>
-    
+    <string name="untrusted_certificate">%1$s ی بڕوانامه‌كه‌ بڕواپێكراو نییه‌ به‌رده‌وام بێت؟</string>
 
-    
-    
-    <string name="consume_activity_security_exception">ناتوانرێت بۆپڕۆگرامی ده‌ره‌كی بڵاوبكرێته‌وه‌</string>
+    <string name="share_invalid_data">ناتوانرێت بڵاوبكرێته‌وه‌ </string>
+    <string name="consume_activity_not_found">پڕۆگرام نه‌دۆزرایه‌وه‌ </string>
+    <string name="consume_activity_security_exception">ناتوانرێت بۆپڕۆگرامی ده‌ره‌كی هاوبه‌شپێبكرێت</string>
 
     <string name="upgrade">به‌رزكردنه‌وه‌</string>
     <string name="upgrade_theme">ئایا زێمی ده‌گۆڕیت؟</string>
@@ -71,282 +71,333 @@
     <string name="preference_category_configuration2">پیرۆزه‌</string>
     <string name="preference_category_browser">وێبگه‌ر</string>
     <string name="preference_enabled_title">چالاككرا</string>
-    
-    <string name="preference_auto_content_display_link_loaded_summary">هه‌ركاتێك په‌ڕه‌یه‌ك به‌ته‌واوی بۆوه‌</string>
+    <string name="preference_auto_content_display_link_loaded_title">فراوانكردنی خۆكارانه‌</string>
+    <string name="preference_auto_content_display_link_loaded_summary">هه‌ركاتێك په‌ڕه‌یه‌ك به‌ته‌واوی باركرا</string>
 
     <string name="preference_left_consume_bubble_title">په‌ڕه‌ی چه‌پ</string>
     <string name="preference_right_consume_bubble_title">په‌ڕه‌ی ڕاست</string>
     <string name="preference_double_tap_title">دووجار گرته‌ بكه‌ بۆ به‌سته‌ر</string>
-    
-    
-    
-    
-    
+    <string name="preference_configure_bubble_title">ڕێكخستنی په‌ڕه‌</string>
+    <string name="preference_category_debug">دیبوگ</string>
+    <string name="preference_default_browser">وێبگه‌ری سه‌ره‌كی</string>
+    <string name="preference_category_redirect_to_browser">باركردن له‌ وێبگه‌ری فه‌رمی</string>
+    <string name="preference_category_fallback_browser">وێبگه‌ری سه‌ره‌كی</string>
     <string name="preference_category_other_apps">پڕۆگرامیتر</string>
     <string name="preference_default_apps_title">پڕۆگرامه‌ سه‌ره‌كییه‌كان</string>
+    <string name="preference_default_apps_summary">وێبگه‌ر، پڕۆگرامی دیاریكراو</string>
+    <string name="preference_default_apps_notice_summary">كاتێ به‌كاردێت كه‌ یه‌ك وێبگه‌ر یان زیاتر به‌سته‌ر بكاته‌وه‌ گرته‌ بكه‌ بۆ لابردنیان</string>
+    <string name="preference_default_apps_notice_no_defaults_summary">به‌كاردێت كاتێك یه‌ك وێبگه‌ر یان زیاتر توانای كردنه‌وه‌ی به‌سته‌ریان هه‌بێت تۆ ده‌توانیت پڕۆگرامی سه‌ره‌كی دیاریبكه‌یت بۆ ئه‌و كاره‌</string>
+    <string name="preference_google_account_redirect_title">كرنه‌وه‌ی هه‌ژماری گۆگڵ</string>
+    <string name="preference_google_account_redirect_summary">كردنه‌وه‌ی هه‌ژماره‌كانی گۆگڵ له‌ وێبگه‌ری فه‌رمی</string>
+    <string name="preference_set_default_browser_title">دانانی وێبگه‌ری فه‌رمی سیسته‌م</string>
+    <string name="preference_set_default_browser_summary">پێویسته‌ بۆباشتر كاركردن بره‌یڤ بكه‌یته‌ وێبگه‌ری فه‌رمی </string>
+    <string name="preference_more">زیاتر</string>
+    <string name="preference_intercept_links_from_title">ڕێگرتن له‌كردنه‌وه‌ی به‌سته‌ر له‌</string>
+    <string name="preference_intercept_links_from_disabled_for_L">بۆ سیسته‌می 5.0 گۆگڵ API لابردووه‌</string>
+    <string name="preference_scan_for_youtube_embeds_title">پشكنین بۆ ناونیشانی یوتوب</string>
+    <string name="preference_scan_for_youtube_embeds_summary">پیشاندانی كورته‌ڕێ بۆ پیشاندانی ڤیدیۆكانی یوتوب</string>
+    <string name="preference_webview_battery_save_title">دۆخی پاراستنی پاتری</string>
+    <string name="preference_webview_battery_save_aggressive_title">په‌لاماردان</string>
+    <string name="preference_webview_battery_save_aggressive_summary">كاتی لابردنی وێبگه‌ر نوێكردنه‌وه‌ی ماڵپه‌ر ڕاده‌وه‌ستێ و ماڵپه‌ڕه‌كان به‌ته‌واوی ده‌بنه‌وه‌ پێش ڕاگرتن</string>
+    <string name="preference_webview_battery_save_default_title">فه‌رمی</string>
+    <string name="preference_webview_battery_save_default_summary">ڕاگرتنی نوێبوونه‌وه‌ی ماڵپه‌ڕ كاتی داخستنی شاشه‌ و ده‌ستپێكردنه‌وه‌ی له‌گه‌ڵ كردنه‌وه‌ی شاشه‌</string>
+    <string name="preference_webview_battery_save_off_title">ناچالاككردن</string>
+    <string name="preference_webview_battery_save_off_summary">نوێكردنه‌وه‌ی ماڵپه‌ڕ هه‌میشه‌ چالاكده‌بێت</string>
+    <string name="preference_theme_title">زێمی</string>
+    <string name="preference_theme_light_color">ڕووناك + ڕه‌نگی ئایكۆن</string>
+    <string name="preference_theme_light_no_color">ڕووناك+ ڕه‌نگی سروشت</string>
+    <string name="preference_theme_dark_color">تاریك + ڕه‌نگی ئایكۆن</string>
+    <string name="preference_theme_dark_no_color">تاریك + ڕه‌نگی سروشت</string>
+    <string name="preference_theme_toolbar_title">ڕه‌نگی تووڵباڕ</string>
+    <string name="preference_theme_toolbar_summary">بۆ گونجانی زێمی ماڵپه‌ڕ له‌گه‌ڵ ڕه‌نگی ئایكۆن</string>
+    <string name="preference_article_mode_title">دۆخی خوێندنه‌وه‌</string>
+    <string name="preference_reading_mode_on_wear_title">دانانی دۆخی خوێندنه‌وه‌</string>
+    <string name="preference_article_mode_summary">كرایه‌ تۆگڵ </string>
+    <string name="preference_webview_text_zoom_title">زوومی نوسین</string>
+    <string name="preference_webview_text_zoom_note">تێبینی: په‌ڕه‌كراوه‌كان نوێده‌بنه‌وه‌ له‌گه‌ڵ زوومی نوسینه‌كان له‌كاتی داگرتنی باشه‌</string>
+    <string name="preference_webview_text_zoom_reloading_current">زومی نوێی نوسین چالاككرا په‌ڕه‌كان نوێده‌كرێنه‌وه‌</string>
+    <string name="preference_clear_browser_cache_title">سڕینه‌وه‌ی داتاكان</string>
+    <string name="preference_clear_cache">فایلی زیاده‌</string>
+    <string name="preference_clear_cookies">كۆكیس</string>
+    <string name="preference_clear_favicons">ئایكۆنه‌ هه‌ڵبژێردراوه‌كان</string>
+    <string name="preference_clear_form_data">له‌ داتا</string>
+    <string name="preference_clear_history">مێژوو</string>
+    <string name="preference_clear_passwords">پاسۆورده‌كان</string>
+    <string name="preference_incognito_title">دۆخی نهێنی</string>
+    <string name="preference_incognito_summary">ڕێگرتن له‌ تۆماركردنی مێژوو</string>
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="incognito_mode_changed_reloading_current">دۆخی نهێنی گۆڕا ، په‌ڕه‌كان نوێده‌كرێنه‌وه‌</string>
+    <string name="preference_trackingprotection_summary">ڕێگرتن له‌ تۆماركردنی زانیارییه‌كانت</string>
+    <string name="preference_adblock_title">لادانی ڕیكلام</string>
+    <string name="preference_adblock_summary">ڕێگرتن له‌ ڕیكلام</string>
+    <string name="preference_block_3p_cookies_title">بلۆككردنی كۆكی 3p</string>
+    <string name="preference_block_3p_cookies_summary">ڕاگرتنی هه‌ندێ تۆماركه‌ری په‌خش</string>
+    <string name="preference_trackingprotection_title">دۆخی پاراستن</string>
+    <string name="preference_adblock_tracking_protection_from_disabled">ئه‌م تایبه‌تمه‌ندییه‌ ته‌نها له‌ وه‌شانی 5.0 به‌رده‌سته‌</string>
+    <string name="preference_https_everywhere_title">HTTPS له‌هه‌موو شوێنێك</string>
+    <string name="preference_https_everywhere_summary">كردنه‌وه‌ی سایت به‌ HTTPS  له‌جیاتی HTTP</string>
+    <string name="preference_user_agent_title">بریكاری به‌كاربه‌ر</string>
     <string-array name="preference_user_agent_options">
-        <item>Default</item>
-        <item>Chrome Phone</item>
-        <item>Chrome Tablet</item>
+        <item>سه‌ره‌كی</item>
+        <item>كرۆمی مۆبایل</item>
+        <item>كرۆمی تابلێتی</item>
         <item>كرۆمی كۆمپیوته‌ری</item>
     </string-array>
 
-    
-    
-    
-    
-    
-    
-    
+    <string name="preference_domains_title">باركردنی دۆمه‌ین</string>
+    <string name="preference_domains_summary">دیاریكردنی ئه‌و به‌سته‌رانه‌ی كه‌ له‌ وێبگه‌ری فه‌رمیدا بكرێنه‌وه‌</string>
+    <string name="preference_redirects_title">باركردنه‌وه‌ له‌ وێبگه‌ری فه‌رمی</string>
+    <string name="preference_add_domain_title">زیادكردنی دۆمه‌ین</string>
+    <string name="add_domain_hint">Url host</string>
+    <string name="add_domain_detail">Specify only the \'main\' portion of a website address. E.g.,
+\"accounts.google.com\" or \"bbc.co.uk\".</string>
+    <string name="add_domain_error"> %1$s ناتوانرێت دابنرێت</string>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="preference_help_title">یارمه‌تی</string>
+    <string name="preference_show_welcome_message_title">پیشاندانی په‌ڕه‌ی به‌خێرهاتن</string>
+    <string name="preference_credits_title">متمانه‌</string>
+    <string name="preference_osl_title">كردنه‌وه‌ی سه‌رچاوه‌ی مۆڵه‌ت</string>
+    <string name="preference_privacy_policy_title">سیاسه‌تی كاره‌كان</string>
+    <string name="preference_terms_of_service_title">خزمه‌تگوزارییه‌كان</string>
+    <string name="preference_say_thanks_title">سوپاسگوزاری ده‌ربڕه‌</string>
+    <string name="preference_say_thanks_summary">تكایه‌ پله‌مان بۆ دانێ</string>
+    <string name="preference_version_title">وه‌شان</string>
+    <string name="preference_version_summary">چ شتێك نوێیه‌؟</string>
+    <string name="preference_more_title">More&#8230;</string>
+    <string name="preference_show_undo_close_tab_title">گه‌ڕانه‌وه‌ی په‌ڕه‌ی داخراو</string>
 
-    
-    
+    <string name="preference_my_other_apps_title">پڕۆگرامی زیاتر</string>
+    <string name="preference_my_other_apps_summary">پڕۆگرامه‌كه‌مانت به‌دڵه‌؟. سه‌یری ئه‌وانیتر بكه‌</string>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="remove_default_title">لادانی فه‌رمی؟</string>
+    <string name="remove_default_message">Remove %1$s as the default app to load %2$s links with?\n\nNote: you can set a new default app to use next
+time you load a %2$s link.</string>
+    <string name="long_press_unsupported_default_browser">ناتوانرێت نیشان بدرێت كاتێكیتر بكرێته‌وه‌؟</string>
+    <string name="long_press_unsupported_no_default_browser">ناتوانرێت نیشان بدرێت له‌ وێبگه‌ر بیكه‌ره‌وه‌</string>
+    <string name="unsupported_scheme_default_browser">به‌سته‌ر كێشه‌ی هه‌یه‌ دواتر بكرێته‌وه‌؟</string>
+    <string name="unsupported_scheme_no_default_browser">به‌سته‌ر كێشه‌ی هه‌یه‌ له‌ وێبگه‌ر بیكه‌ره‌وه‌</string>
+    <string name="unsupported_scheme">به‌سته‌ر كێشه‌ی هه‌یه‌</string>
+    <string name="unsupported_drop_down_default_browser">ناتوانرێت له‌گه‌ڵ ئه‌مه‌ چالاكبكرێیت دواتر بكرێته‌وه‌؟</string>
+    <string name="unsupported_drop_down_no_default_browser">ناتوانرێت چالاكبكرێت له‌ وێبگه‌ر بیكه‌ره‌وه‌</string>
 
-    
-    
+    <string name="consume_category_view">بینینی به‌سته‌ر</string>
+    <string name="consume_category_share">ناردنی به‌سته‌ر</string>
 
-    
+    <string name="title_settings">ڕێكخستنه‌كان</string>
 
-    
-    
-    
-    
+    <string name="title_youtube_embed_to_load">هه‌ڵبژاردنی ڤیدیۆ بۆ لێدان</string>
+    <string name="loading_youtube_embed_info">هێنانی زانیاری له‌ یوتوب</string>
+    <string name="youtube_embed_error_title">ئۆپس</string>
+    <string name="youtube_embed_error_summary">ناتوانرێت زانیاری له‌ یوتوب وه‌رگریت دواتر هه‌وڵبده‌ره‌وه‌</string>
 
-    
+    <string name="loading">بارده‌كرێت</string>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="histroy_unread">نه‌خوێنراو</string>
+    <string name="histroy_all">هه‌مووی</string>
+    <string name="new_bubble">په‌ڕه‌ی نوێ</string>
+    <string name="history">مێژوو</string>
+    <string name="erase_all_history_title">سڕینه‌وه‌ی هه‌مووی؟</string>
+    <string name="erase_all_history_message">سڕینه‌وه‌ی مێژوو؟</string>
+    <string name="empty">به‌تاڵه‌</string>
+    <string name="history_already_empty">مێژوو به‌تاڵه‌</string>
+    <string name="private_data_cleared">داتا سڕایه‌وه‌</string>
+    <string name="private_data_cleared_reloading_current">داتا سڕایه‌وه‌ په‌ڕه‌كان نوێده‌كرێنه‌وه‌</string>
+    <string name="user_agent_changed_reloading_current">بریكاری به‌كاربه‌ر گۆڕا په‌ڕه‌كان نوێده‌بنه‌وه‌</string>
+    <string name="theme_toolbar_reloading_current">ڕه‌نگی تووڵباڕ گۆڕا په‌ڕه‌كان نوێده‌بنه‌وه‌</string>
+    <string name="article_mode_changed_reloading_current">دۆخی خوێندنه‌وه‌ گۆڕا په‌ڕه‌كان نوێده‌بنه‌وه‌</string>
+    <string name="link_loaded_with_app">%1$s باركرا</string>
+    <string name="link_redirected">%1$s بارده‌كرێته‌وه‌</string>
 
-    
+    <string name="tampered_apk">ئه‌م پڕۆگرامه‌ كۆپیكراوه‌ و متمانه‌ی پێ ناكرێت تكایه‌ له‌ گۆگڵ پله‌ی دایگره‌وه‌</string>
 
-    
-    
+    <string name="bubble_link_copied_to_clipboard">به‌سته‌ر كۆپیكرا</string>
+    <string name="link_copied_to_clipboard">به‌سته‌ر كۆپیكرا</string>
 
-    
-    
-    
-    
-    
-    
-    
+    <string name="stat_saves_you">ده‌تپارێزێت</string>
+    <string name="stat_has_saved_you">پاراستتی</string>
+    <string name="stat_so_far">گه‌لێك زۆر</string>
+    <string name="stat_per_link">له‌ به‌سته‌ر</string>
+    <string name="time_seconds">چركه‌</string>
+    <string name="time_minutes">خوله‌ك</string>
+    <string name="time_hours">كاتژمێر</string>
 
-    
+    <string name="confirm_title">دڵنیایی</string>
 
-    
+    <string name="no_default_browser">هیچ وێبگه‌رێكی فه‌رمی نییه‌</string>
 
-    
-    
+    <string name="title_changelog">گۆڕینی تۆمار</string>
+    <string name="changelog_close">داخستن</string>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="faq_close_tab_question">چۆن به‌خێرایی په‌ڕه‌یه‌ك دابخه‌م؟</string>
+    <string name="faq_close_tab_answer">داگرتنی دوگمه‌ی گه‌ڕانه‌وه‌ ئاسان وخێراترینه‌ یاخود ده‌ستداگرتنی هێمای داخستن خراپ نییه‌</string>
+    <string name="faq_back_button_minimize_question">داگرتنی دوگمه‌ی گه‌ڕانه‌وه‌ له‌وانه‌یه‌ وێبگه‌ره‌كه‌ لابدات</string>
+    <string name="faq_back_button_minimize_answer"><![CDATA[Minimizing Brave when the hardware Back button is pressed is not feasible.
+Consider the following case:<br/>
+1). example.com/page1 is loaded in the first tab.<br/>
+2). You click a link on this page, and load example.com/page2 in the same tab.<br/>
+3). You now want to go back to the link in step 1.<br/><br/>
+How do you do this if pressing the hardware Back button minimizes Brave? Pressing the tiny back indicator on the
+tab itself is not feasible.<br/><br/>
+Brave is a browser, and Android browsers have a long since established standard of
+either going back in the URL stack, or if no such stack exists, closing the current page when the Back button is pressed.
+Brave follows this standard.]]></string>
+    <string name="faq_app_internal_browser_question"><![CDATA[Brave isn\'t intercepting links!]]></string>
+    <string name="faq_app_internal_browser_answer"><![CDATA[There are 3 causes of this:<br/>
+1). A browser other thank Brave is set as your default system browser. See the
+\"Set default system browser\" option in Brave\'s Settings to change this.<br/>
+2). Brave has been configured not to intercept links from your current app. See the
+\"Intercept links from\" option in Brave\'s Settings.<br/>
+3). Apps such as Talon, Reddit is Fun and others have inbuilt browsers that render links. Check the settings of that app and
+enable \"External browser\" or deselect \"Integrated browser\" or similar.
+<br/><br/>Note: other browser apps such as Chrome are hardcoded to load links in themselves, and thus Brave is unable
+to load links clicked from other browser apps.
+]]></string>
+    <string name="faq_article_mode_question">How do I use Reading Mode? Why do some links not work?</string>
+    <string name="faq_article_mode_answer"><![CDATA[Firstly, ensure Reading Mode is enabled (Settings -> App Controls / More&#8230; -> Reading Mode).<br/><br/>
+From that point, when Reading Mode is available for the current tab, the Reading Mode icon will display on the action bar (next to the Share button).
+Be aware that this icon only appears after the link has finished loading, and only if Brave successfully extracted content for Article Mode from the link.<br/><br/>
+Note: Extracting content from the web is an unreliable process, and may not work 100% accurately. Given the dynamic and ever-changing nature of the web itself,
+there is little than can be done here.]]></string>
+    <string name="faq_future_features_question">Will you add support for bookmarks, favorites, extensions, etc.?</string>
+    <string name="faq_future_features_answer">Never say never, but for now Brave is focused solely on being the best possible way of loading
+and consuming links loaded from other apps.</string>
+    <string name="faq_translations_question">Can I help translate the app?</string>
+    <string name="faq_translations_answer"><![CDATA[I hope to add translation support soon.<br/><br/>When I do, I will definitely put a call out on Google+
+(+Brave) for help with translations, so be sure to keep an eye on my feed.]]></string>
+    <string name="faq_roadmap_question">Do you publish a feature roadmap? Can I up-vote upcoming features?</string>
+    <string name="faq_roadmap_answer">For competitive reasons, the answer to both of these questions is \'no\' I\'m afraid.</string>
+    <string name="faq_alternate_payment_answer"><![CDATA[Brave only supports purchases via Google Play at this time.<br/><br/>Additional
+payment methods will hopefully be added in the future (assuming they do not violate the Google Play Developer Program Policies).]]></string>
+    <string name="faq_cant_type_url_question">How do I type the name of the link I want to visit?</string>
+    <string name="faq_cant_type_url_answer"><![CDATA[Just tap on the page / URL title. It will change to an edit control and provide suggestions based on your history and top sites.]]></string>
+    <string name="faq_copy_text_question">Why can\'t I copy text from a web page?</string>
+    <string name="faq_copy_text_answer"><![CDATA[Unfortunately Android system limitations prevent this from working.<br/><br/>Technical answer:
+Copy functionality works when using Android\'s WebView from an Activity, but not from a Service (which Brave uses).]]></string>
+    <string name="faq_translucent_status_bar_question">Why doesn\'t the app draw over the translucent status bar?</string>
+    <string name="faq_translucent_status_bar_answer">Unfortunately Android system limitations prevent this.</string>
+    <string name="faq_beta_programme_question">Is there a beta programme? How can I join?</string>
+    <string name="faq_beta_programme_answer">Details on the beta programme will be announced in due course. Keep an eye on my Google+ (+Brave) feed for announcements.</string>
+    <string name="faq_low_spec_performance_question">Why does Brave run slowly on my Nexus S / Galaxy S1 / Moto G class device?</string>
+    <string name="faq_low_spec_performance_answer"><![CDATA[Brave is a very resource intensive app, and consequently devices with lower specs
+can struggle to run the app as well as more powerful devices. Future updates will aim to improve Brave\'s
+performance, but there is only so much that can realistically be done here.<br/><br/>Technical answer: At the bare minimum, Brave requires the
+use of a Service and a WebView in order to function. Often multiple WebViews and even multiple Activities are also present.
+Naturally, allocating these items (especially the WebViews) consumes a <i>lot</i> of memory/resources. Lower spec devices generally
+have less memory available than Brave requires, and thus performance suffers as garbage collections are frequently triggered.
+As an example, the max heap size on the Nexus S is 48MB, compared to 192MB on the Nexus 5.]]></string>
+    <string name="faq_crap_webview_question">Sometimes web pages don\'t display correctly or videos don\'t play.</string>
+    <string name="faq_crap_webview_answer"><![CDATA[Brave uses the standard Android WebView, but unfortunately it is sometimes unreliable.
+Alternative web rendering methods such as FireFox\'s GeckoView and Chromium will likely be investigated going
+forward.<br/><br/>In the event a web page doesn\'t display correctly in Brave, the easiest thing to do is just to load a traditional browser for that link.]]></string>
+    <string name="faq_ongoing_notificaion_question">Why does the ongoing notification always display when Brave is running?</string>
+    <string name="faq_ongoing_notificaion_answer"><![CDATA[Unfortunately this ongoing notification is necessary to encourage the Android OS not to terminate
+Brave.]]></string>
+    <string name="faq_next_update_eta_question">When is the next update coming?</string>
+    <string name="faq_next_update_eta_answer"><![CDATA[When it\'s ready!<br/><br/>It\'s not feasible to be any more specific than that unfortunately
+(even to provide a ballpark estimate).<br/><br/>The reality is, when estimates are given people often end up taking them as a
+commitment, and can get upset if/when a release slips for whatever reason.]]></string>
+    <string name="faq_close_quickly_question">How can I quickly stop Brave from running?</string>
+    <string name="faq_close_quickly_answer">Swipe from the top of the screen to open the notifications pane and click the \"Brave\" notification.</string>
+    <string name="faq_change_default_browser_question">How can I remove Brave as the default browser?</string>
+    <string name="faq_change_default_browser_answer">System Settings -> Apps -> Downloaded -> Brave -> Clear defaults.</string>
+    <string name="faq_report_bug_question">Report a bug</string>
+    <string name="faq_report_bug_answer"><![CDATA[email]]></string>
 
-    
-    
-    
-    
-    
+    <string name="faq_title">FAQ</string>
+    <string name="preference_faq_summary">لێره‌پرسیار دانێ</string>
+    <string name="faq_section_general">گشتی</string>
+    <string name="faq_section_functionality">فه‌نكه‌شناڵی پڕۆگرام</string>
+    <string name="faq_section_issues">پێشهات</string>
 
-    
-    
+    <string name="activity_resolver_use_always">هه‌میشه‌یی</string>
+    <string name="activity_resolver_use_once">بۆ یه‌كجار</string>
 
-    
-    
-    
-    
+    <string name="credits_title">متمانه‌ی وێبگه‌ر</string>
+    <string name="credits_name">Brave
+</string>
+    <string name="credits_credit">چه‌مك، دیزاین و پڕۆگرامساز</string>
+    <string name="credits_app_copyright">Copyright 2015, Brave.</string>
 
     
     <plurals name="restore_tabs_from_previous_session">
-        <item quantity="one">Restore tab from previous session?</item>
-        <item quantity="other">Restore %d tabs from previous session?</item>
+        <item quantity="one">په‌ڕه‌كان بگه‌ڕێنه‌وه‌ پێش داخران؟</item>
+        <item quantity="other">گه‌ڕانه‌وه‌ی %d  په‌ڕه‌ وه‌كو خۆی؟</item>
     </plurals>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="content_description_button">دوگمه‌</string>
+    <string name="content_description_target_icon">ئایكۆن</string>
+    <string name="content_description_close_bubble_icon">داخستنی ئایكۆن</string>
+    <string name="content_description_link_bubble_logo">لۆگۆ</string>
+    <string name="content_description_app_icon">ئایكۆن</string>
+    <string name="content_description_youtube_video_thumbnail">كورتكراوه‌ی ڤیدیۆی یوتوب</string>
+    <string name="content_description_history">مێژوو</string>
+    <string name="content_description_settings">ڕێكخستنه‌كان</string>
+    <string name="content_description_can_go_back">گه‌ڕانه‌وه‌</string>
 
-    
+    <string name="requesting_location_message">%1$s  داوای زانینی شوێنه‌كه‌ت ده‌كات، ڕێگه‌بدرێت؟</string>
 
-    
+    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Brave
+<a href="https://brave.com/terms_of_use">terms</a> and <a href="https://brave.com/privacy_android">privacy policy</a>.]]></string>
 
-    
-    
+    <string name="service_name">ڕێندێره‌ری وێبگه‌ر</string>
+    <string name="notification_title">Brave</string>
 
-    
-    
-    
-    
-    
+    <string name="store_listing_title">Brave</string>
+    <string name="store_listing_promo_text">وێبگه‌ری باشی مۆبایل</string>
+    <string name="store_listing_description_title">Brave is an all-new browser designed and crafted solely with mobile devices in mind.</string>
+    <string name="store_listing_description_features">Features include:
+• When you click on a link in an app, Brave loads that web page in the background, leaving you free to keep using your current app rather than your precious time being wasted watching a page load. Once the page has fully loaded, it will animate on screen.
+• Brave\'s flick physics allow you to go from clicking a link to sharing a link or adding it to a service such as Pocket in little more than a second!
+• Load multiple links from your current app at the same time.
+• Gracefully handles links that redirect to other apps. No longer does clicking an Instagram link in Twitter redirect to a full screen browser before loading Instagram!
+• Deep integration with the apps on your system.
+• Locates embedded YouTube videos on web pages, and provides a shortcut to load those videos directly in the YouTube app.
+• Handy stats that illustrate how much time you are saving by using Brave.</string>
+    <string name="store_listing_description_location_permission">Regarding the Location permission: This is required so that you might grant permission for a website to access your location (such as those with an embedded map). Brave itself never accesses your location.</string>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="welcome_page_title">به‌خێربێیت </string>
+    <string name="welcome_page_intro_title">چۆن كارده‌كات؟</string>
+    <string name="welcome_page_intro_point_1">ده‌ست بنێ به‌ به‌سته‌ر له‌ پڕۆگرامێكه‌وه‌</string>
+    <string name="welcome_page_intro_point_2">په‌ڕه‌كه‌ له‌سه‌ر شاشه‌ ده‌مێنێته‌وه‌ و له‌پشتی شاشه‌وه‌ به‌سته‌ر بارده‌كرێت و هه‌ركات به‌ته‌واوی باركرا پیشان ده‌درێت</string>
+    <string name="welcome_page_intro_end">هه‌موو شتێك له‌م وێبگه‌ره‌وه‌ ئاسانتره‌ ، تۆ ده‌توانیت له‌هه‌مانكاتدا پڕۆگرامێك به‌كاربهێنیت له‌گه‌ڵ ئه‌م وێبگه‌ره‌ زۆر به‌ئاسانی ئایا ئه‌مه‌ باش نییه‌؟</string>
+    <string name="welcome_page_more_title">پیشاندانی زیاتر</string>
+    <string name="welcome_page_more_pocket_start">به‌ئاسانی ده‌توانیت به‌سته‌ر بڵاوبكه‌یته‌وه‌ یاخوود له‌ پڕۆگرامێكدا هه‌ڵیبگریت</string>
+    <string name="welcome_page_more_pocket_end">هونه‌ری و به‌سوود دیاره‌؟</string>
+    <string name="welcome_page_more_also">وێبگه‌ر به‌هه‌مان شێوه‌:</string>
+    <string name="welcome_page_more_point_1">كردنه‌وه‌ی به‌سته‌ری تایبه‌ت به‌ پڕۆگرام</string>
+    <string name="welcome_page_more_point_2">چه‌قی ڤیدیۆكان بدۆزه‌وه‌ بۆ باركردنیان زۆر به‌ئاسانی له‌ یوتوب</string>
+    <string name="welcome_page_more_point_3">باركردنی بێسنووری په‌ڕه‌كان له‌یه‌ك كات</string>
+    <string name="welcome_page_more_point_4">باركردنی به‌سته‌ر له‌ پڕۆگرامه‌كانه‌وه‌</string>
+    <string name="welcome_page_ps">بۆ داخستنی په‌ڕه‌ دوگمه‌ی گه‌ڕانه‌وه‌ داگره‌ یاخوود ده‌ست بنێ به‌ هێمای داخستن</string>
 
-    
+    <string name="duplicate_link_will_not_be_loaded">به‌سته‌ر به‌ته‌واوی باركراوه‌، پشتگوێخستن..</string>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="edit_url">گه‌ڕان یاخود دانانی به‌سته‌ر</string>
+    <string name="http_prefix">http://</string>
+    <string name="https_prefix">https://</string>
+    <string name="www_prefix">www.</string>
+    <string name="duckduckgo_search_engine">https://duckduckgo.com/?q=%1$s&amp;t=brave</string>
+    <string name="google_search_engine">http://www.google.com/search?q=</string>
+    <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
+    <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>
+    <string name="top_500_prepend">سه‌ردانكردن</string>
+    <string name="url_bar_constraint_text_color">\'#4A4A4A\'</string>
+    <string name="search_for_with">Search %1$s for \"%2$s</string>
+    <string name="duck_duck_go">Duck Duck Go</string>
+    <string name="google">گۆگڵ</string>
+    <string name="yahoo">یاهۆ</string>
+    <string name="amazon">ئه‌مازۆن</string>
+    <string name="empty_bubble_page">file:///android_asset/blank.html</string>
+    <string name="adblock_url">https://s3.amazonaws.com/adblock-data/1/ABPFilterParserData.dat</string>
+    <string name="adblock_localfilename">FromUrlABPFilterParserData.dat</string>
+    <string name="tracking_protection_url">https://s3.amazonaws.com/tracking-protection-data/1/TrackingProtection.dat</string>
+    <string name="tracking_protection_localfilename">TrackingProtection.dat</string>
+    <string name="https_everywhere_rulesets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/rulesets.sqlite</string>
+    <string name="https_everywhere_targets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/httpse-targets.json</string>
+    <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
+    <string name="https_everywhere_targets_localfilename">httpse-targets.json
+</string>
+    <string name="whitelist_localfilename">whitelist.dat</string>
 
 </resources>

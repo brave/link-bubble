@@ -128,6 +128,8 @@
     <string name="preference_clear_passwords">密碼</string>
     <string name="preference_incognito_title">無痕模式</string>
     <string name="preference_incognito_summary">防止儲存所有的歷史紀錄及 cookies</string>
+    
+    
     <string name="incognito_mode_changed_reloading_current">已變更無痕模式設定。重新載入氣泡中…</string>
     <string name="preference_trackingprotection_summary">資源載入時避免追蹤</string>
     <string name="preference_adblock_title">廣告封鎖</string>

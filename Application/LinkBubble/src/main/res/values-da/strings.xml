@@ -126,6 +126,8 @@ URL.\n\nTryk at fjerne en standard.</string>
     <string name="preference_clear_passwords">Adgangskoder</string>
     <string name="preference_incognito_title">Inkognito tilstand</string>
     <string name="preference_incognito_summary">Forhindre lagring af alle historik og cookies</string>
+    
+    
     <string name="incognito_mode_changed_reloading_current">Inkognito indstilling ændret. Genindlæser nuværende bobler...</string>
     
     

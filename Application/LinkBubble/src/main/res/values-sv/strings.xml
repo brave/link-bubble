@@ -126,6 +126,8 @@ URL.\n\nTryck för att ta bort en standardapp.</string>
     <string name="preference_clear_passwords">Lösenord</string>
     <string name="preference_incognito_title">Inkognitoläge</string>
     <string name="preference_incognito_summary">Hindrar lagring av all historik och cookies</string>
+    
+    
     <string name="incognito_mode_changed_reloading_current">Inkognitoinställning ändrad. Laddar om nuvarande bubblor...</string>
     
     

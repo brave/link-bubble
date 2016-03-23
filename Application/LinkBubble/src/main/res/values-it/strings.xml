@@ -125,6 +125,8 @@
     <string name="preference_clear_passwords">Password</string>
     <string name="preference_incognito_title">Modalità in incognito</string>
     <string name="preference_incognito_summary">Previeni la memorizzazione della cronologia e dei cookie</string>
+    
+    
     <string name="incognito_mode_changed_reloading_current">Impostazioni modalità Incognito modificate Ricaricamento bolle attive...</string>
     
     

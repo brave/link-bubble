@@ -127,6 +127,8 @@ cuando carga enlaces con Brave.</string>
     <string name="preference_clear_passwords">Contraseñas</string>
     <string name="preference_incognito_title">Modo incógnito</string>
     <string name="preference_incognito_summary">Prevenir almacenamiento historial y cookies</string>
+    
+    
     <string name="incognito_mode_changed_reloading_current">Configuración del modo incógnito cambiada. Recargando las burbujas actuales...</string>
     <string name="preference_trackingprotection_summary">Evitar que carguen recursos que lo rastrean</string>
     <string name="preference_adblock_title">Ad Block</string>

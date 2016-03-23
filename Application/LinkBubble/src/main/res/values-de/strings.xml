@@ -125,6 +125,8 @@
     <string name="preference_clear_passwords">Passwörter</string>
     <string name="preference_incognito_title">Inkognito Modus</string>
     <string name="preference_incognito_summary">Das Speichern des gesamten Verlaufes und aller Cookies verhindern</string>
+    
+    
     <string name="incognito_mode_changed_reloading_current">Inkognito-Einstellungen geändert. Aktuelle Blasen werden neugeladen…</string>
     
     
