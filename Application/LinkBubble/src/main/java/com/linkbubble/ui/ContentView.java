@@ -415,7 +415,10 @@ public class ContentView extends FrameLayout {
             mTitleTextView.performClick();
         }
         else {
-            mWebRenderer.getView().requestFocus();
+            View view = mWebRenderer.getView();
+            if (null != view) {
+                view.requestFocus();
+            }
         }
     }
 
