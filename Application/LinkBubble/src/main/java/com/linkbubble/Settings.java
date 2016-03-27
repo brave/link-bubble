@@ -294,6 +294,9 @@ public class Settings {
             }
             final List<ResolveInfo> resolveInfos = tempResolveInfos;
 
+            if (null == resolveInfos) {
+                return;
+            }
             for (ResolveInfo resolveInfo : resolveInfos) {
                 if (resolveInfo.activityInfo != null) {
                     String packageName = resolveInfo.activityInfo.packageName;
