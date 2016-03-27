@@ -538,8 +538,11 @@ public class MainController implements Choreographer.FrameCallback {
                         if (mBubbleFlowDraggable.isExpanded()) {
                             mBubbleFlowDraggable.setVisibility(View.VISIBLE);
                         }
-                    } else {
-                        mBubbleFlowDraggable.setVisibility(View.GONE);
+                    } else  {
+                        TabView view = mBubbleFlowDraggable.getCurrentTab();
+                        if (null != view && !view.mIsClosing) {
+                            mBubbleFlowDraggable.setVisibility(View.GONE);
+                        }
                     }
                 }
 
@@ -1146,6 +1149,13 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         int activeTabCount = getActiveTabCount();
+
+        if (activeTabCount > 0
+                && null != mBubbleFlowDraggable.getCurrentTab()
+                && mBubbleFlowDraggable.isExpanded()) {
+            adjustBubblesPanel(0, 0, false, true);
+        }
+
         showBadge(activeTabCount > 1 ? true : false);
         if (activeTabCount == 0) {
             hideBubbleDraggable();
