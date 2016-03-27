@@ -233,17 +233,17 @@ vous chargez des liens avec Brave.</string>
     <string name="faq_close_tab_question">Comment puis-je rapidement fermer un onglet ?</string>
     <string name="faq_close_tab_answer">Appuyer sur la touche retour est le moyen le plus rapide. Un autre moyen est de déplacer la bulle sur le bouton Fermer.</string>
     <string name="faq_back_button_minimize_question">Je pense qu\'appuyer sur le bouton Retour devrait minimiser le navigateur!</string>
-    <string name="faq_back_button_minimize_answer"><![CDATA[Minimiser Brave lorsqu&apos;un appui sur le bouton matériel retour n&apos;est pas possible.
+    <string name="faq_back_button_minimize_answer"><![CDATA[Minimiser Brave lorsqu\'un appui sur le bouton matériel retour n\'est pas possible.
 Prenons le cas suivant:<br/>
 1). example.com/page1 est ouverte dans le premier onglet.<br/>
 2). Cliquez sur un lien de cette page, et ouvrez example.com/page2 dans le même onglet.<br/>
-3). Vous voulez maintenant revenir sur le lien de l&apos;étape 1.<br/><br/>
-Comment pouvez vous faire cela si en pressant le bouton matériel retour, Brave se minimize? Appuyez sur le petit icône de retour directement sur l&apos;onglet.<br/><br/>
+3). Vous voulez maintenant revenir sur le lien de l\'étape 1.<br/><br/>
+Comment pouvez vous faire cela si en pressant le bouton matériel retour, Brave se minimize? Appuyez sur le petit icône de retour directement sur l\'onglet.<br/><br/>
 Brave est un navigateur internet Android. Des standards sont depuis longtemps établis.
-Lors d&apos;un appui sur le bouton retour matériel, ont retourne sur la pile de pages déjà visitées. Si cette pile n&apos;existe pas, l&apos;onglet se ferme.
+Lors d\'un appui sur le bouton retour matériel, ont retourne sur la pile de pages déjà visitées. Si cette pile n\'existe pas, l\'onglet se ferme.
 Brave suit ce standard.]]></string>
     <string name="faq_app_internal_browser_question"><![CDATA[Brave n\'intercepte pas de liens !]]></string>
-    <string name="faq_app_internal_browser_answer"><![CDATA[Il y a 3 raisons pour ceci :<br/> 1). Un navigateur autre que LinkBubble est défini comme navigateur système par défaut. Vous pouvez changer cette option dans les paramètres de LinkBubble « Définir comme navigateur par défaut ».<br/> 2). LinkBubble a été configuré pour ne pas intercepter les liens de votre application en cours. Vous pouvez changer cette option dans les paramètres de LinkBubble « Intercepter les liens depuis ».<br/> 3). Les applications comme Talon, Reddit is Fun et d&apos;autres ont des navigateur intégrés qui affichent les liens.  Vous pouvez changer cette option dans les paramètres de LinkBubble « Navigateur externe » et désélectionnez « Navigateur intégré ». <br/><br/>Note : des navigateurs tels que Chrome sont codés de telle sorte qu&apos;ils chargent leurs liens directement, par conséquent, LinkBubble ne peut pas ouvrir des liens dans d&apos;autres navigateurs. ]]></string>
+    <string name="faq_app_internal_browser_answer"><![CDATA[Il y a 3 raisons pour ceci :<br/> 1). Un navigateur autre que LinkBubble est défini comme navigateur système par défaut. Vous pouvez changer cette option dans les paramètres de LinkBubble « Définir comme navigateur par défaut ».<br/> 2). LinkBubble a été configuré pour ne pas intercepter les liens de votre application en cours. Vous pouvez changer cette option dans les paramètres de LinkBubble « Intercepter les liens depuis ».<br/> 3). Les applications comme Talon, Reddit is Fun et d\'autres ont des navigateur intégrés qui affichent les liens.  Vous pouvez changer cette option dans les paramètres de LinkBubble « Navigateur externe » et désélectionnez « Navigateur intégré ». <br/><br/>Note : des navigateurs tels que Chrome sont codés de telle sorte qu\'ils chargent leurs liens directement, par conséquent, LinkBubble ne peut pas ouvrir des liens dans d\'autres navigateurs. ]]></string>
     <string name="faq_article_mode_question">Comment utiliser le « mode lecture » ? Pourquoi certains liens ne marchent pas ?</string>
     
     <string name="faq_future_features_question">Allez-vous ajouter les signets, favoris, extensions etc.?</string>
