@@ -411,14 +411,19 @@ public class ContentView extends FrameLayout {
     }
 
     void setTabAsActive () {
-        if (mUrlTextView.getText().toString().equals(getContext().getString(R.string.empty_bubble_page))) {
-            mTitleTextView.performClick();
-        }
-        else {
-            View view = mWebRenderer.getView();
-            if (null != view) {
-                view.requestFocus();
+        try {
+            if (mUrlTextView.getText().toString().equals(getContext().getString(R.string.empty_bubble_page))) {
+                mTitleTextView.performClick();
+            } else {
+                View view = mWebRenderer.getView();
+                if (null != view) {
+                    view.requestFocus();
+                }
             }
+        }
+        catch (NullPointerException exc) {
+            // We have that exception sometimes inside Android SDK on requestFocus,
+            // we would better to not get focus than crash
         }
     }
 
