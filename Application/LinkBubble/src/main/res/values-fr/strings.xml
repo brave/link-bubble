@@ -128,8 +128,8 @@ vous chargez des liens avec Brave.</string>
     <string name="preference_clear_passwords">Mot de passe</string>
     <string name="preference_incognito_title">Mode incognito</string>
     <string name="preference_incognito_summary">Empêcher le stockage de l\'historique et des cookies</string>
-    
-    
+    <string name="preference_hide_bubbles_title">Cacher les bulles lors du défilement </string>
+    <string name="preference_hide_bubbles_summary">Cacher les bulles lors du défilement vers le bas et les afficher lors du défilement vers le haut </string>
     <string name="incognito_mode_changed_reloading_current">Le paramètre « mode incognito » a été modifié. Chargement de vos bulles actuelles...</string>
     <string name="preference_trackingprotection_summary">Empêcher le chargement des ressources qui vous pistent</string>
     <string name="preference_adblock_title">Blocage des publicités</string>
@@ -233,13 +233,21 @@ vous chargez des liens avec Brave.</string>
     <string name="faq_close_tab_question">Comment puis-je rapidement fermer un onglet ?</string>
     <string name="faq_close_tab_answer">Appuyer sur la touche retour est le moyen le plus rapide. Un autre moyen est de déplacer la bulle sur le bouton Fermer.</string>
     <string name="faq_back_button_minimize_question">Je pense qu\'appuyer sur le bouton Retour devrait minimiser le navigateur!</string>
-    
+    <string name="faq_back_button_minimize_answer"><![CDATA[Minimiser Brave lorsqu&apos;un appui sur le bouton matériel retour n&apos;est pas possible.
+Prenons le cas suivant:<br/>
+1). example.com/page1 est ouverte dans le premier onglet.<br/>
+2). Cliquez sur un lien de cette page, et ouvrez example.com/page2 dans le même onglet.<br/>
+3). Vous voulez maintenant revenir sur le lien de l&apos;étape 1.<br/><br/>
+Comment pouvez vous faire cela si en pressant le bouton matériel retour, Brave se minimize? Appuyez sur le petit icône de retour directement sur l&apos;onglet.<br/><br/>
+Brave est un navigateur internet Android. Des standards sont depuis longtemps établis.
+Lors d&apos;un appui sur le bouton retour matériel, ont retourne sur la pile de pages déjà visitées. Si cette pile n&apos;existe pas, l&apos;onglet se ferme.
+Brave suit ce standard.]]></string>
     <string name="faq_app_internal_browser_question"><![CDATA[Brave n\'intercepte pas de liens !]]></string>
-    
+    <string name="faq_app_internal_browser_answer"><![CDATA[Il y a 3 raisons pour ceci :<br/> 1). Un navigateur autre que LinkBubble est défini comme navigateur système par défaut. Vous pouvez changer cette option dans les paramètres de LinkBubble « Définir comme navigateur par défaut ».<br/> 2). LinkBubble a été configuré pour ne pas intercepter les liens de votre application en cours. Vous pouvez changer cette option dans les paramètres de LinkBubble « Intercepter les liens depuis ».<br/> 3). Les applications comme Talon, Reddit is Fun et d&apos;autres ont des navigateur intégrés qui affichent les liens.  Vous pouvez changer cette option dans les paramètres de LinkBubble « Navigateur externe » et désélectionnez « Navigateur intégré ». <br/><br/>Note : des navigateurs tels que Chrome sont codés de telle sorte qu&apos;ils chargent leurs liens directement, par conséquent, LinkBubble ne peut pas ouvrir des liens dans d&apos;autres navigateurs. ]]></string>
     <string name="faq_article_mode_question">Comment utiliser le « mode lecture » ? Pourquoi certains liens ne marchent pas ?</string>
     
     <string name="faq_future_features_question">Allez-vous ajouter les signets, favoris, extensions etc.?</string>
-    
+    <string name="faq_future_features_answer">Ne jamais dire jamais, mais pour le moment Brave est uniquement concentré sur le fait d\'être la meilleure solution pour ouvrir et afficher des liens ouverts depuis d\'autres applications.</string>
     <string name="faq_translations_question">Puis-je aider à traduire l\'application ?</string>
     
     <string name="faq_roadmap_question">Avez-vous une feuille de route ? Puis-je voter pour les fonctionnalités à venir ?</string>
@@ -264,7 +272,7 @@ vous chargez des liens avec Brave.</string>
     <string name="faq_close_quickly_question">Comment puis-je rapidement empêcher Brave de se lancer ?</string>
     <string name="faq_close_quickly_answer">Glissez depuis le haut de l\'écran pour ouvrir la barre de notification et cliquez sur la notification « Brave ».</string>
     <string name="faq_change_default_browser_question">Comment puis-je supprimer Brave comme navigateur par défaut ?</string>
-    
+    <string name="faq_change_default_browser_answer">Paramètres -> Applications -> Téléchargé -> Brave -> Supprimer les valeurs par défaut.</string>
     <string name="faq_report_bug_question">Signaler un bogue</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
 
@@ -309,17 +317,17 @@ vous chargez des liens avec Brave.</string>
     <string name="store_listing_promo_text">La navigation web sur mobiles telle qu\'elle devrait l\'être.</string>
     <string name="store_listing_description_title">Brave est un tout nouveau navigateur web conçu et créé dans l\'optique d\'être utilisé sur des appareils mobiles.</string>
     
-    
+    <string name="store_listing_description_location_permission">Concernant la permission de localisation : cela est requis pour les pages web demandant un accès à votre position (comme celles avec une carte intégrée). Brave en lui-même n’accédera jamais à votre position.</string>
 
     <string name="welcome_page_title">Bienvenue à Brave !</string>
     <string name="welcome_page_intro_title">Comment cela fonctionne-t-il ?</string>
     <string name="welcome_page_intro_point_1">Cliquez un lien dans une application.</string>
     <string name="welcome_page_intro_point_2">Une bulle va apparaître au bord de l\'écran et le lien va commencer à charger en tâche de fond. Dès que la page est chargée, elle s\'affichera.</string>
-    
+    <string name="welcome_page_intro_end">C\'est tellement simple! Avec Brave, vous pouvez continuer à utiliser votre application actuelle plutôt que de perdre du temps à regarder des liens redirigés et d\'attendre le chargement des pages. Qui peut ne pas aimer cela?</string>
     <string name="welcome_page_more_title">Montrez m\'en plus !</string>
     <string name="welcome_page_more_pocket_start">Vous pouvez aussi rapidement partager un lien ou l\'ajouter dans une application comme Pocket:</string>
     <string name="welcome_page_more_pocket_end">Ca a l\'air fun ET utile pas vrai ?</string>
-    
+    <string name="welcome_page_more_also">Brave aussi:</string>
     <string name="welcome_page_more_point_1">La redirection vers une application dédiée (par exemple Instagram).</string>
     <string name="welcome_page_more_point_2">La recherche de vidéos incrustées que vous pourrez facilement ouvrir dans l\'application YouTube.</string>
     <string name="welcome_page_more_point_3">Charger un nombre illimité de bulles en même temps.</string>
@@ -332,7 +340,7 @@ vous chargez des liens avec Brave.</string>
     <string name="http_prefix">http://</string>
     <string name="https_prefix">https://</string>
     <string name="www_prefix">www.</string>
-
+    <string name="duckduckgo_search_engine">https://duckduckgo.com/?q=%1$s&amp;t=brave</string>
     <string name="google_search_engine">http://www.google.com/search?q=</string>
     <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
     <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>

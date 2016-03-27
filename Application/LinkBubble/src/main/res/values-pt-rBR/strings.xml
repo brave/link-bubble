@@ -24,7 +24,7 @@
     <string name="action_help">Ajuda</string>
     <string name="action_reload_page">Recarregar</string>
     <string name="action_open_in_browser">Abrir no %1$s</string>
-    <string name="action_request_desktop_site">Solicitar site para desktop</string>
+    <string name="action_request_desktop_site">Versão para desktop</string>
     <string name="action_site_protection">Ativar escudos do Brave</string>
     <string name="action_open_in_new_bubble">Abrir em uma nova bolha</string>
     <string name="action_open_link_in_new_bubble">Abrir link em nova bolha</string>
@@ -125,8 +125,8 @@
     <string name="preference_clear_passwords">Senhas</string>
     <string name="preference_incognito_title">Modo Anônimo</string>
     <string name="preference_incognito_summary">Previne armazenar todo o histórico e cookies</string>
-    
-    
+    <string name="preference_hide_bubbles_title">Ocultar bolhas ao rolar</string>
+    <string name="preference_hide_bubbles_summary">Ocultar bolhas ao rolar para baixo e mostrar ao rolar para cima</string>
     <string name="incognito_mode_changed_reloading_current">Configurações do modo Incógnito alteradas. Recarregando páginas…</string>
     <string name="preference_trackingprotection_summary">Evitar recursos que podem lhe rastrear.</string>
     <string name="preference_adblock_title">Bloquear Propagandas</string>
@@ -137,7 +137,7 @@
     <string name="preference_adblock_tracking_protection_from_disabled">Esta função está disponível para Android 5 e superior</string>
     <string name="preference_https_everywhere_title">HTTPS Em Todo Lugar</string>
     <string name="preference_https_everywhere_summary">Abre sites usando HTTPS ao invés de HTTP</string>
-    <string name="preference_user_agent_title">Agente de Usuário</string>
+    <string name="preference_user_agent_title">User Agent</string>
     <string-array name="preference_user_agent_options">
         <item>Padrão</item>
         <item>Chrome Móvel</item>
