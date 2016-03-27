@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.9.11">
+        <change>BUG FIX: Fixed problem with bubble bar being left behind when closing while bubble bar animation was showing.</change>
+        <change>BUG FIX: Fixed top crashes.</change>
+    </release>
     <release version="1.9.10">
         <change>IMPROVEMENT: Made hide bubbles on scroll down more smooth.</change>
         <change>IMPROVEMENT: Added an option to disable hide bubbles in scroll down (Settings->More->Hide Bubbles on scroll).</change>
