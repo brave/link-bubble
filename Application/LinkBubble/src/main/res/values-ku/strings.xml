@@ -125,8 +125,8 @@
     <string name="preference_clear_passwords">پاسۆورده‌كان</string>
     <string name="preference_incognito_title">دۆخی نهێنی</string>
     <string name="preference_incognito_summary">ڕێگرتن له‌ تۆماركردنی مێژوو</string>
-    
-    
+    <string name="preference_hide_bubbles_title">شاردنه‌وه‌ی په‌ڕه‌ به‌لووله‌یی</string>
+    <string name="preference_hide_bubbles_summary">شاردنه‌وه‌ی په‌ڕه‌ به‌لووله‌یی بۆ خواره‌وه‌ و ده‌رخستنی به‌لووله‌یی بۆ سه‌ره‌وه‌</string>
     <string name="incognito_mode_changed_reloading_current">دۆخی نهێنی گۆڕا ، په‌ڕه‌كان نوێده‌كرێنه‌وه‌</string>
     <string name="preference_trackingprotection_summary">ڕێگرتن له‌ تۆماركردنی زانیارییه‌كانت</string>
     <string name="preference_adblock_title">لادانی ڕیكلام</string>
