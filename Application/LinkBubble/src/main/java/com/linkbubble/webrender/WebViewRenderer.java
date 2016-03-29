@@ -535,6 +535,11 @@ class WebViewRenderer extends WebRenderer {
         public WebResourceResponse shouldInterceptRequest (WebView view, String urlStr) {
             // That call is for the API level is lower then 21
 
+            // We do not change or block the top URL
+            if (mUrl.toString().equals(urlStr)) {
+                return null;
+            }
+
             // Just return as is for now, we will have a solution for older devices later.
             // The blocking by file extension not being reliable enough for now.
             return HttpsEverywhereResponse(urlStr);
@@ -600,9 +605,11 @@ class WebViewRenderer extends WebRenderer {
         public WebResourceResponse shouldInterceptRequest (WebView view, WebResourceRequest resourceRequest) {
             // That call is for the API level is higher or equal to 21
 
+            String currentUrl = resourceRequest.getUrl().toString();
             // Quickly check to see if no checks are needed because ad blocking and tracking
             // protection are not enabled.
-            if (!mTrackingProtectionEnabled && !mAdblockEnabled && !mHttpsEverywhereEnabled) {
+            if (!mTrackingProtectionEnabled && !mAdblockEnabled && !mHttpsEverywhereEnabled ||
+                    mUrl.toString().equals(currentUrl)) {
                 return null;
             }
 
@@ -625,7 +632,7 @@ class WebViewRenderer extends WebRenderer {
                 }
             }
 
-            return interceptTheCall(view, resourceRequest.getUrl().toString(), filterOption, true);
+            return interceptTheCall(view, currentUrl, filterOption, true);
         }
 
         @Override
