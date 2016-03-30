@@ -1141,6 +1141,9 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         boolean contentViewShowing = contentViewShowing();
+        if (contentViewShowing && mBubbleFlowDraggable.getVisibility() == View.GONE && mBubbleFlowDraggable.isExpanded()) {
+            mBubbleFlowDraggable.setVisibility(View.VISIBLE);
+        }
         CrashTracking.log("MainController.closeTab(): action:" + action.toString() + ", contentViewShowing:" + contentViewShowing
                 + ", visibleTabCount:" + getVisibleTabCount() + ", activeTabCount:" + getActiveTabCount() + ", canShowUndoPrompt:" + canShowUndoPrompt
                 + ", animateOff:" + animateOff + ", canShowUndoPrompt:" + canShowUndoPrompt);
