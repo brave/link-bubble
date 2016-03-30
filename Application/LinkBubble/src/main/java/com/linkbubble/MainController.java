@@ -109,12 +109,15 @@ public class MainController implements Choreographer.FrameCallback {
 
     public static class CurrentTabChangedEvent {
         public CurrentTabChangedEvent() {
+            mUnhideNotification = false;
         }
 
-        public CurrentTabChangedEvent(TabView tabView) {
+        public CurrentTabChangedEvent(TabView tabView, boolean unhideNotification) {
             mTab = tabView;
+            mUnhideNotification = unhideNotification;
         }
         public TabView mTab;
+        public boolean mUnhideNotification;
     }
 
     public static class CurrentTabResumeEvent {
@@ -1376,7 +1379,7 @@ public class MainController implements Choreographer.FrameCallback {
                 MainApplication.postEvent(mContext, new HideContentEvent());
                 MainApplication.postEvent(mContext, new MainService.ShowUnhideNotificationEvent());
             } else {
-                MainApplication.postEvent(mContext, new CurrentTabChangedEvent(mBubbleFlowDraggable.getCurrentTab()));
+                MainApplication.postEvent(mContext, new CurrentTabChangedEvent(mBubbleFlowDraggable.getCurrentTab(), true));
                 MainApplication.postEvent(mContext, new MainService.ShowDefaultNotificationEvent());
                 MainApplication.postEvent(mContext, new UnhideContentEvent());
             }
