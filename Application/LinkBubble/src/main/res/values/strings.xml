@@ -139,7 +139,7 @@
     <string name="preference_trackingprotection_title">Tracking Protection Mode</string>
     <string name="preference_adblock_tracking_protection_from_disabled">This feature is only available from Android 5.0 and higher.</string>
     <string name="preference_https_everywhere_title">HTTPS Everywhere</string>
-    <string name="preference_https_everywhere_summary">Opens sites using HTTPS instead of HTTP</string>
+    <string name="preference_https_everywhere_summary">Opens supported sites using HTTPS instead of HTTP when possible</string>
     <string name="preference_user_agent_title">User Agent</string>
     <string-array name="preference_user_agent_options">
         <item>Default</item>
