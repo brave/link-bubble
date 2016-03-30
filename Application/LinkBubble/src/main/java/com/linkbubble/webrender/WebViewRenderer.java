@@ -950,11 +950,9 @@ class WebViewRenderer extends WebRenderer {
 
     @Override
     public void resumeOnSetActive() {
-        switch (Settings.get().getWebViewBatterySaveMode()) {
-            case Aggressive:
-                webviewResume("setActive");
-                break;
-        }
+        // Nothing happens if we call resume on resumed WebView but
+        // we should resume if we had Aggressive mode before and paused it and set it to Default or Off in Settings
+        webviewResume("setActive");
     }
 
     @Override
