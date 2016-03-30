@@ -278,6 +278,7 @@ public class CanvasView extends FrameLayout {
             if (mContentViewTargetAlpha != 0 && !mExpanded) {
                 mContentView.setAlpha(0f);
             }
+
             mContentView.animate().alpha(targetAlpha).setDuration(Constant.CANVAS_FADE_ANIM_TIME).setListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animation) {
@@ -289,6 +290,9 @@ public class CanvasView extends FrameLayout {
                         if (mContentViewTargetAlpha == 0) {
                             mContentView.setAlpha(0f);
                             mContentView.setVisibility(GONE);
+                            if (!mExpanded) {
+                                removeView(mContentView);
+                            }
                         } else {
                             mContentView.setAlpha(1f);
                             mContentView.setVisibility(VISIBLE);
@@ -319,7 +323,7 @@ public class CanvasView extends FrameLayout {
         }
     }
 
-    private void setContentView(TabView bubble) {
+    private void setContentView(TabView bubble, boolean unhideNotification) {
         if (mContentView != null) {
 
             // The webview can throw an exception when trying to remove focus inside of removeView.
@@ -347,6 +351,9 @@ public class CanvasView extends FrameLayout {
         //Log.d("blerg", "setContentView(): from " + (mContentView != null ? "valid" : "none") + " to " + (contentView != null ? "valid" : "none"));
 
         mContentView = contentView;
+        if (unhideNotification) {
+            return;
+        }
         if (mContentView != null) {
             FrameLayout.LayoutParams p = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             p.topMargin = Config.mContentOffset;
@@ -401,7 +408,7 @@ public class CanvasView extends FrameLayout {
     @SuppressWarnings("unused")
     @Subscribe
     public void onCurrentTabChanged(MainController.CurrentTabChangedEvent e) {
-        setContentView(e.mTab);
+        setContentView(e.mTab, e.mUnhideNotification);
     }
 
     @SuppressWarnings("unused")
@@ -430,6 +437,7 @@ public class CanvasView extends FrameLayout {
         mDragging = false;
         mExpanded = false;
         fadeOut();
+        removeView(mContentView);
         setVisibility(GONE);
         MainController.get().showBadge(true);
         MainApplication.postEvent(getContext(), mMinimizeExpandedActivityEvent);
@@ -454,6 +462,7 @@ public class CanvasView extends FrameLayout {
         fadeIn();
 
         if (mContentView != null) {
+            addView(mContentView);
             mContentView.onAnimateOnScreen();
             showContentView();
         }
@@ -482,7 +491,7 @@ public class CanvasView extends FrameLayout {
     public void onBeginAnimateFinalTabAway(MainController.BeginAnimateFinalTabAwayEvent event) {
         fadeOut();
         hideContentView();
-        setContentView(event.mTab);
+        setContentView(event.mTab, false);
         MainController.BeginCollapseTransitionEvent collapseTransitionEvent = new MainController.BeginCollapseTransitionEvent();
         collapseTransitionEvent.mPeriod = (Constant.BUBBLE_ANIM_TIME / 1000.f) * 0.666667f;
         onBeginCollapseTransition(collapseTransitionEvent);
@@ -491,7 +500,7 @@ public class CanvasView extends FrameLayout {
     @SuppressWarnings("unused")
     @Subscribe
     public void onHideContentEvent(MainController.HideContentEvent event) {
-        setContentView(null);
+        setContentView(null, false);
     }
 
     @SuppressWarnings("unused")
