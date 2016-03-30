@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.9.14">
+        <change>BUG FIX: Fixed an issue with rendering text sometimes instead HTML.</change>
+        <change>BUG FIX: Fixed streaming content in background on Marshmallow.</change>
+        <change>BUG FIX: Fixed problem with bubble bar being left behind when closing while bubble bar animation was showing.</change>
+    </release>
     <release version="1.9.13">
         <change>BUG FIX: Fixed an issue with rendering text sometimes instead HTML.</change>
         <change>BUG FIX: Fixed streaming content in background on Marshmallow.</change>
