@@ -337,6 +337,16 @@ public class MainController implements Choreographer.FrameCallback {
         mBubbleFlowDraggable.postDelayed(mSetBubbleFlowGoneRunnable, 33);
     }
 
+    public void onBubbleFlowContextMenuAppearedGone(boolean appeared) {
+        if (appeared) {
+            mSetBubbleFlowGone = true;
+            mBubbleFlowDraggable.postDelayed(mSetBubbleFlowGoneRunnable, 33);
+        }
+        else {
+            mBubbleFlowDraggable.setVisibility(View.VISIBLE);
+        }
+    }
+
     private boolean mSetBubbleFlowGone = false;
     Runnable mSetBubbleFlowGoneRunnable = new Runnable() {
         @Override
