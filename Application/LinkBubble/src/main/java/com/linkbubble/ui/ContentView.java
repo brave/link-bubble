@@ -390,8 +390,8 @@ public class ContentView extends FrameLayout {
     // The function configures the urlBar
     private void configureUrlBar(String urlAsString, final MainController controller) {
         // Set the current URL to the search URL
-        metUrl = (CustomAutoCompleteTextView) findViewById(R.id.autocomplete_top500websites);
         mContentEditUrl = (FrameLayout)findViewById(R.id.content_edit_url);
+        metUrl = (CustomAutoCompleteTextView) findViewById(R.id.autocomplete_top500websites);
 
         metUrl.setDropDownWidth(getResources().getDisplayMetrics().widthPixels);
         metUrl.setText(urlAsString);
