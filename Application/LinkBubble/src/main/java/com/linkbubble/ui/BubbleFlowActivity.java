@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -81,5 +82,15 @@ public class BubbleFlowActivity extends Activity {
                 mBubbleFlowView.setCenterIndex(6);
             }
         }, 100);
+    }
+
+    @Override
+    public void onWindowFocusChanged (boolean hasWindowFocus) {
+        super.onWindowFocusChanged(hasWindowFocus);
+
+
+        if (hasWindowFocus) {
+            hasWindowFocus = false;
+        }
     }
 }
