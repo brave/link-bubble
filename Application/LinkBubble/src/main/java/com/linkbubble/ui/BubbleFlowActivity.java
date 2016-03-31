@@ -17,6 +17,7 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -128,5 +129,15 @@ public class BubbleFlowActivity extends Activity {
         mContentViews.add(contentView);
         addContentView(contentView, pr);
         controller.mBubbleFlowDraggable.createTabView(contentView, openUrlSettings, controller);
+    }
+
+    @Override
+    public void onWindowFocusChanged (boolean hasWindowFocus) {
+        super.onWindowFocusChanged(hasWindowFocus);
+
+
+        if (hasWindowFocus) {
+            hasWindowFocus = false;
+        }
     }
 }

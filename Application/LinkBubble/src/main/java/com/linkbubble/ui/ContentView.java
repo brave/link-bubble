@@ -36,9 +36,11 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
@@ -127,7 +129,7 @@ public class ContentView extends FrameLayout {
     private int mCurrentProgress = 0;
 
     // Search URL functionality
-    private AutoCompleteTextView metUrl;
+    private CustomAutoCompleteTextView metUrl;
     private ImageButton mbtUrlClear;
 
     private boolean mPageFinishedLoading;
@@ -373,9 +375,9 @@ public class ContentView extends FrameLayout {
     }
 
     // The function configures the urlBar
-    private void configureUrlBar(String urlAsString) {
+    private void configureUrlBar(String urlAsString, final MainController controller) {
         // Set the current URL to the search URL
-        metUrl = (AutoCompleteTextView) findViewById(R.id.autocomplete_top500websites);
+        metUrl = (CustomAutoCompleteTextView) findViewById(R.id.autocomplete_top500websites);
 
         metUrl.setDropDownWidth(getResources().getDisplayMetrics().widthPixels);
         metUrl.setText(urlAsString);
@@ -386,6 +388,23 @@ public class ContentView extends FrameLayout {
         metUrl.setOnEditorActionListener(murlActionListener);
         metUrl.setImeOptions(EditorInfo.IME_ACTION_GO | EditorInfo.IME_FLAG_NO_EXTRACT_UI);
         metUrl.setOnKeyListener(murlKeyListener);
+        metUrl.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (metUrl.mCopyPasteContextMenuCreated) {
+                    controller.onBubbleFlowContextMenuAppearedGone(false);
+                    metUrl.mCopyPasteContextMenuCreated = false;
+                }
+            }
+        });
+        metUrl.configure(controller);
+        metUrl.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
+            @Override
+            public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+                metUrl.mCopyPasteContextMenuCreated = true;
+                controller.onBubbleFlowContextMenuAppearedGone(true);
+            }
+        });
 
         mAdapter = new SearchURLCustomAdapter(getContext(), android.R.layout.simple_list_item_1, getResources(),
                 getResources().getDisplayMetrics().widthPixels);
@@ -450,7 +469,7 @@ public class ContentView extends FrameLayout {
 
         findViewById(R.id.content_text_container).setOnTouchListener(mOnTextContainerTouchListener);
 
-        configureUrlBar(urlAsString);
+        configureUrlBar(urlAsString, controller);
 
         mCaretView = findViewById(R.id.caret);
 
