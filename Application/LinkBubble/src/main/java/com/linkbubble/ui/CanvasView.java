@@ -156,7 +156,7 @@ public class CanvasView extends FrameLayout {
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
         mWindowManagerParams.setTitle("LinkBubble: CanvasView");
         //to do debug
-        //MainController.addRootWindow(this, mWindowManagerParams);
+        MainController.addRootWindow(this, mWindowManagerParams);
         //
 
         if (Constant.DEBUG_SHOW_TARGET_REGIONS) {
@@ -276,7 +276,13 @@ public class CanvasView extends FrameLayout {
         if (mContentView != null) {
             mContentView.animate().cancel();
             mContentView.setVisibility(VISIBLE);
-            setVisibility(VISIBLE);
+            //to do debug
+            if (1 == targetAlpha) {
+                setVisibility(GONE);
+            }
+            else {
+                setVisibility(VISIBLE);
+            }
             if (mContentViewTargetAlpha != 0 && !mExpanded) {
                 mContentView.setAlpha(0f);
             }
