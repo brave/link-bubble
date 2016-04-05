@@ -766,14 +766,27 @@ public class ContentView extends FrameLayout {
         private int mConsecutiveRedirectCount = 0;
 
         @Override
-        public void doUpdateVisitedHistory (String url, boolean isReload) {
+        public void doUpdateVisitedHistory (String url, boolean isReload, boolean unknownClick) {
+            String peekUrl = "";
+            if (mUrlStack.size() > 0) {
+                peekUrl = mUrlStack.peek().toString();
+            }
             if (isReload || url.equals("file:///android_asset/blank.html") ||
-                    mUrlStack.size() > 0 && mUrlStack.peek().toString().equals(url)) {
+                    mUrlStack.size() > 0 && peekUrl.equals(url)) {
                 return;
             }
 
             try {
                 URL historyUrl = new URL(url);
+                if (unknownClick) {
+                    String ref = historyUrl.getRef();
+                    if (null != ref && 0 != ref.length()) {
+                        String originalUrl = url.substring(0, url.length() - ref.length() - 1);
+                        if (peekUrl.equals(originalUrl)) {
+                            return;
+                        }
+                    }
+                }
                 Log.d(TAG, "[urlstack] push:" + url + ", urlStack.size():" + mUrlStack.size());
                 mUrlStack.push(historyUrl);
                 mEventHandler.onCanGoBackChanged(mUrlStack.size() > 1);

@@ -32,13 +32,12 @@ public class ScaleUpAnimHelper {
             duration = 500;
             mView.animate().cancel();
             mView.setAlpha(0f);
-            mView.setVisibility(View.VISIBLE);
             mView.setScaleX(0.33f);
             mView.setScaleY(0.33f);
         } else if (mAnimState == AnimState.Hiding) {
             mView.animate().cancel();
-            mView.setVisibility(View.VISIBLE);
         }
+        mView.setVisibility(View.VISIBLE);
 
         mView.animate().alpha(mAlpha).scaleX(1f).scaleY(1f)
                 .setDuration(duration)
