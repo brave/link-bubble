@@ -29,7 +29,13 @@ public class NetworkReceiver extends BroadcastReceiver {
         // If there is a connection reload the webivew.
         if (networkInfo != null) {
             mWebRenderer.reload();
-            context.unregisterReceiver(this);
+            try {
+                // We had a crash here "Receiver not registered"
+                context.unregisterReceiver(this);
+            }
+            catch (IllegalArgumentException exc) {
+                exc.printStackTrace();
+            }
         }
     }
 }
