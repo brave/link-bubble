@@ -113,6 +113,7 @@ public class Util {
         "org.hola",
         "com.kk.jd.browser2",
         "com.rsbrowser.browser",
+        "org.chromium.chrome",
         "com.ineedyourservice.RBrowser"
     };
 
