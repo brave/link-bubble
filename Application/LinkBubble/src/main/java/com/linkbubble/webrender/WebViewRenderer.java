@@ -153,7 +153,22 @@ class WebViewRenderer extends WebRenderer {
         }
         cancelBuildArticleContentTask();
         mIsDestroyed = true;
-        mWebView.destroy();
+        try {
+            // The exception sometimes here is possible related to how we create our WebView. We use an application context,
+            // but seems like should use an activity. That is the possible fix for the crash. It should gone when we have WebView
+            // inside an Activity
+            mWebView.stopLoading();
+            mWebView.removeAllViews();
+            mWebView.clearCache(true);
+            mWebView.destroyDrawingCache();
+            mWebView.destroy();
+        }
+        catch (IllegalArgumentException exc) {
+            exc.printStackTrace();
+        }
+        catch (Exception exc) {
+            exc.printStackTrace();
+        }
         Log.d("Article", "WebViewRenderer.destroy()");
     }
 
