@@ -771,6 +771,8 @@ public class ContentView extends FrameLayout {
             if (mUrlStack.size() > 0) {
                 peekUrl = mUrlStack.peek().toString();
             }
+            // We need isReload check when click on links from twitter. It usually has some internal links which are not the same
+            // as real link and isReload is true in that case, so we need to skip them if it is a top website
             if ((isReload && 0 == mUrlStack.size()) || url.equals("file:///android_asset/blank.html") ||
                     mUrlStack.size() > 0 && peekUrl.equals(url)) {
                 return;
