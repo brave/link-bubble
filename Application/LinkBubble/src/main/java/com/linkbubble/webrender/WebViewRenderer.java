@@ -460,17 +460,28 @@ class WebViewRenderer extends WebRenderer {
     WebViewClient mWebViewClient = new WebViewClient() {
         @Override
         public void doUpdateVisitedHistory (WebView view, String url, boolean isReload) {
-            String extraRes = mWebView.getHitTestResult().getExtra();
-            if (null != extraRes) {
-                try {
-                    URL extraURL = new URL(extraRes);
-                    extraRes = extraRes.substring(extraURL.getProtocol().length() + ("://").length());
-                } catch (MalformedURLException exc) {
-                    exc.printStackTrace();
+            WebView.HitTestResult hitResult = null;
+            if (null != mWebView) {
+                hitResult = mWebView.getHitTestResult();
+            }
+            String extraRes = null;
+            if (null != mWebView && null != hitResult) {
+                extraRes = hitResult.getExtra();
+                if (null != extraRes) {
+                    try {
+                        URL extraURL = new URL(extraRes);
+                        extraRes = extraRes.substring(extraURL.getProtocol().length() + ("://").length());
+                    } catch (MalformedURLException exc) {
+                        exc.printStackTrace();
+                    }
                 }
             }
+            int webViewHitResultType = WebView.HitTestResult.UNKNOWN_TYPE;
+            if (null != hitResult) {
+                webViewHitResultType = hitResult.getType();
+            }
             if (null == extraRes || (null != extraRes && url.endsWith(extraRes))) {
-                mController.doUpdateVisitedHistory(url, isReload, mWebView.getHitTestResult().getType() == WebView.HitTestResult.UNKNOWN_TYPE);
+                mController.doUpdateVisitedHistory(url, isReload, webViewHitResultType == WebView.HitTestResult.UNKNOWN_TYPE);
             }
         }
 
