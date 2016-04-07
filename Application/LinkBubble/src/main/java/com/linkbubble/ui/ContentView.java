@@ -771,7 +771,7 @@ public class ContentView extends FrameLayout {
             if (mUrlStack.size() > 0) {
                 peekUrl = mUrlStack.peek().toString();
             }
-            if (url.equals("file:///android_asset/blank.html") ||
+            if ((isReload && 0 == mUrlStack.size()) || url.equals("file:///android_asset/blank.html") ||
                     mUrlStack.size() > 0 && peekUrl.equals(url)) {
                 return;
             }
