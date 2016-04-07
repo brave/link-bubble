@@ -138,7 +138,7 @@ cuando carga enlaces con Brave.</string>
     <string name="preference_trackingprotection_title">Modo de protección de rastreo</string>
     <string name="preference_adblock_tracking_protection_from_disabled">Esta función sólo está disponible para Android 5.0 y superiores.</string>
     <string name="preference_https_everywhere_title">HTTPS Siempre</string>
-    <string name="preference_https_everywhere_summary">Abre sitios usando HTTPS en lugar de HTTP</string>
+    
     <string name="preference_user_agent_title">User Agent</string>
     <string-array name="preference_user_agent_options">
         <item>Por defecto</item>

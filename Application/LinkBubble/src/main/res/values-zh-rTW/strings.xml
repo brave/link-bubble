@@ -139,7 +139,7 @@
     <string name="preference_trackingprotection_title">追蹤防護模式</string>
     <string name="preference_adblock_tracking_protection_from_disabled">此功能僅可用於 Andriod 5.0 或更高版本。</string>
     <string name="preference_https_everywhere_title">所有位置均使用 HTTPS</string>
-    <string name="preference_https_everywhere_summary">使用 HTTPS 而不使用 HTTP 開啟網站</string>
+    
     <string name="preference_user_agent_title">使用者代理</string>
     <string-array name="preference_user_agent_options">
         <item>預設值</item>

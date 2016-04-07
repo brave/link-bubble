@@ -139,7 +139,7 @@ bağlantıları Brave ile açtığın zaman yapılandırılır.</string>
     <string name="preference_trackingprotection_title">İzlenme Koruması Modu</string>
     <string name="preference_adblock_tracking_protection_from_disabled">Bu özellik sadece Android 5.0 ve üzerinde mevcuttur.</string>
     <string name="preference_https_everywhere_title">Her yerde HTTPS</string>
-    <string name="preference_https_everywhere_summary">Siteleri HTTP yerine HTTPS kullanarak açar</string>
+    
     <string name="preference_user_agent_title">Kullanıcı Aracısı</string>
     <string-array name="preference_user_agent_options">
         <item>Varsayılan</item>

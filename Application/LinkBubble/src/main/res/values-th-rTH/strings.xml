@@ -138,7 +138,7 @@
     <string name="preference_trackingprotection_title">โหมดป้องกันการติดตาม</string>
     <string name="preference_adblock_tracking_protection_from_disabled">คุณสมบัตินี้พร้อมใช้งานบน Android 5.0 ขึ้นไปเท่านั้น</string>
     <string name="preference_https_everywhere_title">HTTPS Everywhere</string>
-    <string name="preference_https_everywhere_summary">เปิดเว็บไซต์ด้วย HTTPS แทน of HTTP</string>
+    
     <string name="preference_user_agent_title">ตัวแทนผู้ใช้</string>
     <string-array name="preference_user_agent_options">
         <item>ค่าเริ่มต้น</item>

@@ -136,7 +136,7 @@
     <string name="preference_trackingprotection_title">دۆخی پاراستن</string>
     <string name="preference_adblock_tracking_protection_from_disabled">ئه‌م تایبه‌تمه‌ندییه‌ ته‌نها له‌ وه‌شانی 5.0 به‌رده‌سته‌</string>
     <string name="preference_https_everywhere_title">HTTPS له‌هه‌موو شوێنێك</string>
-    <string name="preference_https_everywhere_summary">كردنه‌وه‌ی سایت به‌ HTTPS  له‌جیاتی HTTP</string>
+    
     <string name="preference_user_agent_title">بریكاری به‌كاربه‌ر</string>
     <string-array name="preference_user_agent_options">
         <item>سه‌ره‌كی</item>
