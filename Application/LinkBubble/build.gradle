@@ -12,7 +12,7 @@ buildscript {
 // Manifest version information!
 def versionMajor = 1
 def versionMinor = 9
-def versionPatch = 15
+def versionPatch = 16
 def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 apply plugin:'com.android.application'
