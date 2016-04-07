@@ -461,7 +461,15 @@ class WebViewRenderer extends WebRenderer {
         @Override
         public void doUpdateVisitedHistory (WebView view, String url, boolean isReload) {
             String extraRes = mWebView.getHitTestResult().getExtra();
-            if (null == extraRes || (null != extraRes && url.equals(extraRes))) {
+            if (null != extraRes) {
+                try {
+                    URL extraURL = new URL(extraRes);
+                    extraRes = extraRes.substring(extraURL.getProtocol().length() + ("://").length());
+                } catch (MalformedURLException exc) {
+                    exc.printStackTrace();
+                }
+            }
+            if (null == extraRes || (null != extraRes && url.endsWith(extraRes))) {
                 mController.doUpdateVisitedHistory(url, isReload, mWebView.getHitTestResult().getType() == WebView.HitTestResult.UNKNOWN_TYPE);
             }
         }
