@@ -138,7 +138,7 @@ accounts.google.com 链接</string>
     <string name="preference_trackingprotection_title">追踪保护模式</string>
     <string name="preference_adblock_tracking_protection_from_disabled">该特性仅在 Android 5.0 及更高版本可用</string>
     <string name="preference_https_everywhere_title">HTTPS Everywhere</string>
-    <string name="preference_https_everywhere_summary">使用 HTTPS 而非 HTTP 打开站点</string>
+    
     <string name="preference_user_agent_title">用户代理</string>
     <string-array name="preference_user_agent_options">
         <item>默认</item>

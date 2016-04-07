@@ -137,7 +137,7 @@ kunnen afhandelen.\n\nTik om een standaard te verwijderen.</string>
     <string name="preference_trackingprotection_title">Volgpreventiestand</string>
     <string name="preference_adblock_tracking_protection_from_disabled">Deze mogelijkheid is alleen beschikbaar in Android 5.0 en hoger.</string>
     <string name="preference_https_everywhere_title">HTTPS overal</string>
-    <string name="preference_https_everywhere_summary">Opent websites via HTTPS in plaats van HTTP</string>
+    
     <string name="preference_user_agent_title">User Agent</string>
     <string-array name="preference_user_agent_options">
         <item>Standaard</item>
