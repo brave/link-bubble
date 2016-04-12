@@ -2314,8 +2314,8 @@ public class ContentView extends FrameLayout {
             Settings.get().addRedirectToApp(urlAsString);
 
             // L_WATCH: L currently lacks getRecentTasks(), so minimize here
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                MainController.get().switchToBubbleView();
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT && null != mainController) {
+                mainController.switchToBubbleView();
             }
             return true;
         }
