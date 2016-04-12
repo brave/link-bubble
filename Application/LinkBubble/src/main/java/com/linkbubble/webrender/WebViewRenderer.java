@@ -214,7 +214,9 @@ class WebViewRenderer extends WebRenderer {
     @Override
     public void setUserAgentString(String userAgentString) {
         WebSettings webSettings = mWebView.getSettings();
-        webSettings.setUserAgentString(userAgentString);
+        if (null != webSettings) {
+            webSettings.setUserAgentString(userAgentString);
+        }
     }
 
     @Override
