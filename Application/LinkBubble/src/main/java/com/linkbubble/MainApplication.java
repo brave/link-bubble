@@ -20,6 +20,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Vibrator;
+import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
@@ -115,6 +116,7 @@ public class MainApplication extends Application {
         new InitWhiteListCollectorAsyncTask().execute();
 
         CrashTracking.log("MainApplication.onCreate()");
+        //WebView.setWebContentsDebuggingEnabled(true);
         //checkStrings();
     }
 

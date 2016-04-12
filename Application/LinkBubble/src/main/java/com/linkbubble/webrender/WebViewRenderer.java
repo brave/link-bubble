@@ -480,8 +480,12 @@ class WebViewRenderer extends WebRenderer {
             if (null != hitResult) {
                 webViewHitResultType = hitResult.getType();
             }
-            if (null == extraRes || (null != extraRes && url.endsWith(extraRes))) {
-                mController.doUpdateVisitedHistory(url, isReload, webViewHitResultType == WebView.HitTestResult.UNKNOWN_TYPE);
+            if (null == extraRes
+                    || WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE == webViewHitResultType
+                    || (null != extraRes && url.endsWith(extraRes))) {
+                mController.doUpdateVisitedHistory(url, isReload,
+                        WebView.HitTestResult.UNKNOWN_TYPE == webViewHitResultType
+                        || WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE == webViewHitResultType);
             }
         }
 
