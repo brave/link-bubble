@@ -510,6 +510,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         int closeCount = 0;
         for (View view : mViews) {
             closeTab(((TabView) view), false, false);
+            ((TabView) view).destroy();
             closeCount++;
         }
 
