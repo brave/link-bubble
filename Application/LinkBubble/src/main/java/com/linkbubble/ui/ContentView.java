@@ -75,6 +75,7 @@ import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.DownloadImage;
 import com.linkbubble.util.Util;
+import com.linkbubble.webrender.CustomWebView;
 import com.linkbubble.webrender.WebRenderer;
 import com.linkbubble.adblock.ABPFilterParser;
 
@@ -781,11 +782,25 @@ public class ContentView extends FrameLayout {
             try {
                 URL historyUrl = new URL(url);
                 if (unknownClick) {
+                    // Here we check on anchors change without clicking on them
                     String ref = historyUrl.getRef();
-                    if (null != ref && 0 != ref.length()) {
+                    if (null != ref && 0 != ref.length()
+                            && (ref.indexOf("/") == -1 || ref.equals("/") || ref.length() >= 2 && ref.indexOf("/", 1) == -1)) {
                         String originalUrl = url.substring(0, url.length() - ref.length() - 1);
                         if (peekUrl.equals(originalUrl)) {
                             return;
+                        }
+                        else if (0 != peekUrl.length()){
+                            URL peekURLForRef = new URL(peekUrl);
+                            String peekRef = peekURLForRef.getRef();
+                            if (null != peekRef && 0 != peekRef.length()
+                                    && (peekRef.indexOf("/") == -1 || peekRef.equals("/")
+                                        || peekRef.length() >= 2 && peekRef.indexOf("/", 1) == -1)) {
+                                String originalPeekUrl = peekUrl.substring(0, peekUrl.length() - peekRef.length() - 1);
+                                if (originalPeekUrl.equals(originalUrl)) {
+                                    return;
+                                }
+                            }
                         }
                     }
                 }
@@ -812,7 +827,7 @@ public class ContentView extends FrameLayout {
                 return true;
             }
 
-            URL updatedUrl = getUpdatedUrl(urlAsString);
+            URL updatedUrl = getUpdatedUrl(urlAsString, !viaUserInput);
             if (updatedUrl == null) {
                 Log.d(TAG, "ignore unsupported URI scheme: " + urlAsString);
                 showOpenInBrowserPrompt(R.string.unsupported_scheme_default_browser,
@@ -1797,8 +1812,8 @@ public class ContentView extends FrameLayout {
             mEventHandler.onCanGoBackChanged(mUrlStack.size() > 1);
             mHandledAppPickerForCurrentUrl = false;
             mUsingLinkBubbleAsDefaultForCurrentUrl = false;
-            updateAndLoadUrl(previousUrlAsString);
             Log.d(TAG, "[urlstack] Go back: " + urlBefore + " -> " + mWebRenderer.getUrl() + ", urlStack.size():" + mUrlStack.size());
+            updateAndLoadUrl(previousUrlAsString);
             updateUrlTitleAndText(previousUrlAsString);
 
             mEventHandler.onPageLoading(mWebRenderer.getUrl());
@@ -1809,6 +1824,13 @@ public class ContentView extends FrameLayout {
 
             mWebRenderer.resetPageInspector();
             configureOpenEmbedButton();
+            // The WebView doesn't reload on all pages correctly if call only loadUrl, seems like there is some kind of cache as
+            // it loads fast on back but doesn't load pictures for thestar.com website. clearCache method doesn't work also. Only
+            // reload works nice here. Perhaps it is some bu in API as lots of people say that problem with loadUrl method
+            // That is the temp fix, thestar.com has a new beta website and it works great with it without reloading
+            if (previousUrlAsString.endsWith("m.thestar.com/#/?referrer=")) {
+                mWebRenderer.reload();
+            }
 
             return true;
         }
@@ -2193,11 +2215,26 @@ public class ContentView extends FrameLayout {
         mWebRenderer.loadUrl(updatedUrl, mode);
     }
 
-    private URL getUpdatedUrl(String urlAsString) {
+    private void cleanVisitedHistory(String urlToLook) {
+        String peekUrl = "";
+        if (mUrlStack.size() > 0) {
+            peekUrl = mUrlStack.peek().toString();
+        }
+        if (peekUrl.equals(urlToLook)) {
+            mUrlStack.pop();
+            mEventHandler.onCanGoBackChanged(mUrlStack.size() > 1);
+        }
+    }
+
+    private URL getUpdatedUrl(String urlAsString, boolean cleanVisitedHistory) {
         URL currentUrl = mWebRenderer.getUrl();
+        String currentUrlString = currentUrl.toString();
         if (urlAsString.equals(currentUrl.toString()) == false) {
+            if (cleanVisitedHistory) {
+                cleanVisitedHistory(currentUrlString);
+            }
             try {
-                Log.d(TAG, "getUpdatedUrl(): change url from " + currentUrl + " to " + urlAsString);
+                Log.d(TAG, "getUpdatedUrl(): change url from " + currentUrlString + " to " + urlAsString);
                 return new URL(urlAsString);
             } catch (MalformedURLException e) {
                 return null;
