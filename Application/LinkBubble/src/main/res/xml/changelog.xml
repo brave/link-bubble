@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.9.18">
+        <change>BUG FIX: Fixed a back button issue on thestar.com.</change>
+        <change>BUG FIX: WebViews were not destroying on Close All bubbles command.</change>
+        <change>BUG FIX: Fixed incognito mode.</change>
+        <change>BUG FIX: Fixed a crash sometimes in open in Application dialog.</change>
+        <change>BUG FIX: Fixed a crash when changing a WebView's settings.</change>
+    </release>
     <release version="1.9.17">
         <change>BUG FIX: Fixed a back button issue on websites with anchors.</change>
         <change>BUG FIX: Fixed a crash that appears sometimes on close and refresh bubble.</change>
