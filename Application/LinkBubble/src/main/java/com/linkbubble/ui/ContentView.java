@@ -1322,9 +1322,12 @@ public class ContentView extends FrameLayout {
             }
 
             if (!currentUrl.toString().equals(getContext().getString(R.string.empty_bubble_page))) {
-                // Adding the URL to the auto suggestions list
-                mAdapter.addUrlToAutoSuggestion(currentUrl.toString());
-                MainApplication.saveUrlInHistory(getContext(), null, currentUrl.toString(), currentUrl.getHost(), title);
+                Settings settings = Settings.get();
+                if (null != settings && !settings.isIncognitoMode()) {
+                    // Adding the URL to the auto suggestions list
+                    mAdapter.addUrlToAutoSuggestion(currentUrl.toString());
+                    MainApplication.saveUrlInHistory(getContext(), null, currentUrl.toString(), currentUrl.getHost(), title);
+                }
 
             }
             else {
