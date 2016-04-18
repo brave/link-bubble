@@ -500,7 +500,6 @@ public class BubbleFlowView extends HorizontalScrollView {
             //Log.d(TAG, "[longpress] collapse(): mStillTouchFrameCount=" + mStillTouchFrameCount);
         }
 
-        int size = mViews.size();
         int centerIndex = getCenterIndex();
         if (centerIndex == -1) {
             return;

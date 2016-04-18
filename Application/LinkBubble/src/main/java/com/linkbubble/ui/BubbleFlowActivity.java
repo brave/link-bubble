@@ -46,6 +46,7 @@ public class BubbleFlowActivity extends Activity {
     // Commands for service-activity interaction
     public static final int OPEN_URL            = 0;
     public static final int SET_TAB_AS_ACTIVE   = 1;
+    public static final int COLLAPSE            = 2;
     //
 
     List<ContentView> mContentViews;
@@ -97,6 +98,10 @@ public class BubbleFlowActivity extends Activity {
                         setAsCurrentTab(url);
 
                         break;
+                    case COLLAPSE:
+                        moveTaskToBack(true);
+
+                        break;
                 }
             }
         }
@@ -129,15 +134,5 @@ public class BubbleFlowActivity extends Activity {
         mContentViews.add(contentView);
         addContentView(contentView, pr);
         controller.mBubbleFlowDraggable.createTabView(contentView, openUrlSettings, controller);
-    }
-
-    @Override
-    public void onWindowFocusChanged (boolean hasWindowFocus) {
-        super.onWindowFocusChanged(hasWindowFocus);
-
-
-        if (hasWindowFocus) {
-            hasWindowFocus = false;
-        }
     }
 }
