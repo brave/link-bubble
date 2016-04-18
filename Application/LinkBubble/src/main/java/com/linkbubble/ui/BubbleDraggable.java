@@ -8,6 +8,7 @@ import android.content.Context;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -455,7 +456,13 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
             @Override
             public void onActionMove(DraggableHelper.MoveEvent e) {
+                //to do debug
+                Log.d(TAG, "!!!!!Moving");
+                //
                 if (mTouchDown) {
+                    //to do debug
+                    setVisibility(View.VISIBLE);
+                    //
                     int targetX = targetX = (int) (e.rawX - Config.mBubbleWidth * 0.5);
                     int targetY = (int) (e.rawY - Config.mBubbleHeight);
 
