@@ -213,8 +213,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                             intent.putExtra("hasShownAppPicker", urlToOpen.mHasShownAppPicker);
                             intent.putExtra("performEmptyClick", urlToOpen.mPerformEmptyClick);
                             intent.putExtra("setAsCurrentTab", urlToOpen.mSetAsCurrentTab);
-                            LocalBroadcastManager bm = LocalBroadcastManager.getInstance(mContext);
-                            bm.sendBroadcast(intent);
+                            LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 
                             Intent intentActivity = new Intent(mContext, BubbleFlowActivity.class);
                             intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -269,6 +268,23 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         Intent intentActivity = new Intent(getContext(), BubbleFlowActivity.class);
         intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getContext().startActivity(intentActivity);
+    }
+
+    @Override
+    public void collapse(long time, AnimationEventListener animationEventListener) {
+        //to do debug
+        /*if (mViews.size() > 0) {
+            Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
+            intent.putExtra("command", BubbleFlowActivity.COLLAPSE);
+            LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
+            bm.sendBroadcast(intent);
+
+            Intent intentActivity = new Intent(getContext(), BubbleFlowActivity.class);
+            intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getContext().startActivity(intentActivity);
+        }*/
+
+        super.collapse(time, animationEventListener);
     }
 
     @Override

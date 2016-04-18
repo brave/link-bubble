@@ -335,6 +335,7 @@ public class MainController implements Choreographer.FrameCallback {
         if (tab != null) {
             tab.setImitator(mBubbleDraggable);
         }
+
         mSetBubbleFlowGone = true;
         mBubbleFlowDraggable.postDelayed(mSetBubbleFlowGoneRunnable, 33);
     }
