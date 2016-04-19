@@ -532,8 +532,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                                 doFlick(e.vx, e.vy);
                                 CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doFlick()");
                             } else {
-                                MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
-
                                 boolean doBubbleView = mMode == Mode.BubbleView ||
                                         e.posX < Config.mScreenWidth * 0.2f ||
                                         e.posX > Config.mScreenWidth * 0.8f ||
@@ -541,6 +539,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
                                 if (doBubbleView) {
                                     mMode = Mode.BubbleView;
+                                }
+                                MainApplication.postEvent(getContext(), mEndBubbleDragEvent);
+
+                                if (doBubbleView) {
                                     CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doSnap()");
                                     doSnap();
                                 } else {
