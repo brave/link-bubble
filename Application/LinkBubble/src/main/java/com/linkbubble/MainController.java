@@ -1070,7 +1070,7 @@ public class MainController implements Choreographer.FrameCallback {
             int tabCount = mBubbleFlowDraggable.getActiveTabCount();
             mBubbleDraggable.mBadgeView.setCount(tabCount);
             if (show) {
-                if (tabCount > 1) {
+                if (tabCount > 1 && mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.BubbleView) {
                     mBubbleDraggable.mBadgeView.show();
                 }
             } else {
