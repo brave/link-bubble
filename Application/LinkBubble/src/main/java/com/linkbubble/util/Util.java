@@ -114,7 +114,9 @@ public class Util {
         "com.kk.jd.browser2",
         "com.rsbrowser.browser",
         "org.chromium.chrome",
-        "com.ineedyourservice.RBrowser"
+        "com.ineedyourservice.RBrowser",
+        "com.browser.speed",
+        "tugapower.codeaurora.browser"
     };
 
     public static float clamp(float v0, float v, float v1) {
