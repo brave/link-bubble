@@ -116,7 +116,9 @@ public class Util {
         "org.chromium.chrome",
         "com.ineedyourservice.RBrowser",
         "com.browser.speed",
-        "tugapower.codeaurora.browser"
+        "tugapower.codeaurora.browser",
+        "com.mmbox.xbrowser.gp",
+        "com.mmbox.xbrowser.pro"
     };
 
     public static float clamp(float v0, float v, float v1) {
