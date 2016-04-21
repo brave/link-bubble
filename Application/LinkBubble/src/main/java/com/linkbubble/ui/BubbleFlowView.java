@@ -409,11 +409,6 @@ public class BubbleFlowView extends HorizontalScrollView {
 
     private static final int DEFAULT_ANIM_TIME = 300;
 
-    public boolean expand() {
-        // Note: if this function changes to not pass default arguments along, be sure to update BubbleFlowDraggable's expand() override(s) accordingly.
-        return expand(DEFAULT_ANIM_TIME, null);
-    }
-
     public boolean expand(long time, final AnimationEventListener animationEventListener) {
         CrashTracking.log("BubbleFlowView.expand(" + time + "), mIsExpanded:" + mIsExpanded);
         if (mIsExpanded) {
@@ -481,10 +476,6 @@ public class BubbleFlowView extends HorizontalScrollView {
         tabView.bringToFront();
         mContent.requestLayout();
         mContent.invalidate();
-    }
-
-    public void collapse() {
-        collapse(DEFAULT_ANIM_TIME, null);
     }
 
     public void collapse(long time, AnimationEventListener animationEventListener) {
