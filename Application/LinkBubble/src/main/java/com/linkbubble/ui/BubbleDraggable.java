@@ -281,6 +281,11 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                 mDraggableHelper.cancelAnimation();
             }
         }
+        //to do debug
+        /*if (mMode == Mode.BubbleView) {
+            return;
+        }*/
+        //
 
         //StackTraceElement[] cause = Thread.currentThread().getStackTrace();
         //String log = "";
@@ -585,9 +590,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         });
 
         if (mDraggableHelper.isAlive()) {
-            //to do debug
-            //MainController.addRootWindow(this, windowManagerParams);
-            //
+            MainController.addRootWindow(this, windowManagerParams);
 
             slideOnScreen(x0, y0, targetX, targetY, targetTime);
         }
