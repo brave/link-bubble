@@ -417,6 +417,11 @@ class WebViewRenderer extends WebRenderer {
                             }
                         });
                         mWebView.requestFocusNodeHref(msg);
+
+                        //to do debug
+                        // That gives us an opportunity to show WebViews copy/select dialog
+                        return false;
+                        //
                     }
                     return true;
             }

@@ -158,7 +158,10 @@ public class AppPoller {
                                 Log.d(TAG, "ignore app changing from " + mCurrentAppFlatComponentName + " to " + appFlatComponentName);
                             } else {
                                 Log.d(TAG, "current app changed from " + mCurrentAppFlatComponentName + " to " + appFlatComponentName + ", triggering onAppChanged()...");
-                                if (mAppPollingListener != null) {
+                                //to do debug
+                                if (mAppPollingListener != null && !appFlatComponentName.contains("BubbleFlowActivity")) {
+                                //if (mAppPollingListener != null) {
+                                //
                                     mAppPollingListener.onAppChanged();
                                 }
                             }
