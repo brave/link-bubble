@@ -5,6 +5,8 @@
 package com.linkbubble.ui;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -478,6 +480,13 @@ public class BubbleFlowView extends HorizontalScrollView {
         mContent.invalidate();
     }
 
+    public void hideActivity() {
+        Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
+        intent.putExtra("command", BubbleFlowActivity.COLLAPSE);
+        LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
+        bm.sendBroadcast(intent);
+    }
+
     public void collapse(long time, AnimationEventListener animationEventListener) {
         CrashTracking.log("BubbleFlowView.collapse(): time:" + time + ", mIsExpanded:" + mIsExpanded);
         if (mIsExpanded == false) {
@@ -493,6 +502,8 @@ public class BubbleFlowView extends HorizontalScrollView {
 
         int centerIndex = getCenterIndex();
         if (centerIndex == -1) {
+            hideActivity();
+
             return;
         }
         View centerView = mViews.get(centerIndex);

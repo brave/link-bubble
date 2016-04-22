@@ -214,10 +214,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                             intent.putExtra("performEmptyClick", urlToOpen.mPerformEmptyClick);
                             intent.putExtra("setAsCurrentTab", urlToOpen.mSetAsCurrentTab);
                             LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
-
-                            Intent intentActivity = new Intent(mContext, BubbleFlowActivity.class);
-                            intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            mContext.startActivity(intentActivity);
                         }
                         mUrlsToOpen.clear();
                     }
@@ -252,10 +248,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         intent.putExtra("setAsCurrentTab", urlToOpen.mSetAsCurrentTab);
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
         bm.sendBroadcast(intent);
-
-        Intent intentActivity = new Intent(getContext(), BubbleFlowActivity.class);
-        intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        getContext().startActivity(intentActivity);
     }
 
     public void setTabAsActive(TabView tabView) {
@@ -264,15 +256,11 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         intent.putExtra("url", tabView.getUrl().toString());
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
         bm.sendBroadcast(intent);
-
-        Intent intentActivity = new Intent(getContext(), BubbleFlowActivity.class);
-        intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        getContext().startActivity(intentActivity);
     }
 
     @Override
     public void collapse(long time, AnimationEventListener animationEventListener) {
-        if (mViews.size() > 0) {
+        /*if (mViews.size() > 0) {
             Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
             intent.putExtra("command", BubbleFlowActivity.COLLAPSE);
             LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
@@ -281,7 +269,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             Intent intentActivity = new Intent(getContext(), BubbleFlowActivity.class);
             intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getContext().startActivity(intentActivity);
-        }
+        }*/
 
         super.collapse(time, animationEventListener);
     }
@@ -375,9 +363,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
 
         if (mViews.size() > 0) {
-            Intent intentActivity = new Intent(getContext(), BubbleFlowActivity.class);
-            intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            getContext().startActivity(intentActivity);
+            Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
+            intent.putExtra("command", BubbleFlowActivity.EXPAND);
+            LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
+            bm.sendBroadcast(intent);
         }
 
         if (super.expand(time, animationEventListener)) {

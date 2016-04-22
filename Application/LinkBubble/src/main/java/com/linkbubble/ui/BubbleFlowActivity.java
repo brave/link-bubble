@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -47,6 +48,7 @@ public class BubbleFlowActivity extends Activity {
     public static final int OPEN_URL            = 0;
     public static final int SET_TAB_AS_ACTIVE   = 1;
     public static final int COLLAPSE            = 2;
+    public static final int EXPAND              = 3;
     //
 
     List<ContentView> mContentViews;
@@ -54,13 +56,13 @@ public class BubbleFlowActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("TAG", "!!!!! ON CREATE");
         mContentViews = new ArrayList<>();
-        moveTaskToBack(true);
+        //moveTaskToBack(true);
+        setVisible(false);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_bubble_flow);
-
-        MainController controller = MainController.get();
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTIVITY_INTENT_NAME);
@@ -99,7 +101,13 @@ public class BubbleFlowActivity extends Activity {
 
                         break;
                     case COLLAPSE:
-                        moveTaskToBack(true);
+                        Log.d("TAG", "!!!!! ACTIVITY GONE");
+                        setVisible(false);
+
+                        break;
+                    case EXPAND:
+                        Log.d("TAG", "!!!!! ACTIVITY VISIBLE");
+                        setVisible(true);
 
                         break;
                 }
@@ -110,9 +118,11 @@ public class BubbleFlowActivity extends Activity {
     private void setAsCurrentTab(String url) {
         for (ContentView contentView: mContentViews) {
             if (contentView.getUrl().toString().equals(url)) {
+                Log.d("TAG", "!!!!!VISIBLE");
                 contentView.setVisibility(View.VISIBLE);
             }
             else {
+                Log.d("TAG", "!!!!!GONE");
                 contentView.setVisibility(View.GONE);
             }
         }
@@ -126,6 +136,14 @@ public class BubbleFlowActivity extends Activity {
         }
         //
 
+        if (!controller.mBubbleFlowDraggable.isExpanded()) {
+            Log.d("TAG", "!!!!! ACTIVITY1 GONE");
+            setVisible(false);
+        }
+        else {
+            Log.d("TAG", "!!!!! ACTIVITY1 VISIBLE");
+            setVisible(true);
+        }
         final LayoutInflater inflater = LayoutInflater.from(this);
         FrameLayout.LayoutParams pr = new FrameLayout.LayoutParams(-1, -1);
         //to do debug
