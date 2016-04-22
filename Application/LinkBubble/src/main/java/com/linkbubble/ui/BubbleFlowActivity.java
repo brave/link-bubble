@@ -49,6 +49,8 @@ public class BubbleFlowActivity extends Activity {
     public static final int SET_TAB_AS_ACTIVE   = 1;
     public static final int COLLAPSE            = 2;
     public static final int EXPAND              = 3;
+    public static final int CLOSE_VIEW          = 4;
+    public static final int DESTROY_ACTIVITY    = 5;
     //
 
     List<ContentView> mContentViews;
@@ -68,8 +70,14 @@ public class BubbleFlowActivity extends Activity {
         filter.addAction(ACTIVITY_INTENT_NAME);
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(this);
         bm.registerReceiver(mBroadcastReceiver, filter);
-        synchronized (BubbleFlowDraggable.mActivitySharedLock) {
-            BubbleFlowDraggable.mActivitySharedLock.notify();
+        MainController controller = MainController.get();
+        // to do debug, sometimes it returns a null object
+        if (null == controller) {
+            controller = MainController.get();
+        }
+        //
+        synchronized (controller.mBubbleFlowDraggable.mActivitySharedLock) {
+            controller.mBubbleFlowDraggable.mActivitySharedLock.notify();
         }
     }
 
@@ -110,10 +118,42 @@ public class BubbleFlowActivity extends Activity {
                         setVisible(true);
 
                         break;
+                    case CLOSE_VIEW:
+                        for (ContentView contentView: mContentViews) {
+                            if (contentView.getUrl().toString().equals(url)) {
+                                mContentViews.remove(contentView);
+                                break;
+                            }
+                        }
+                        if (0 == mContentViews.size()) {
+                            destroyActivity();
+                        }
+
+                        break;
+                    case DESTROY_ACTIVITY:
+                        mContentViews.clear();
+                        destroyActivity();
+
+                        break;
                 }
             }
         }
     };
+
+    private void destroyActivity() {
+        MainController controller = MainController.get();
+        // to do debug, sometimes it returns a null object
+        if (null == controller) {
+            controller = MainController.get();
+        }
+        //
+
+        BubbleFlowDraggable.mActivityIsUp = false;
+        if (null != controller) {
+            controller.mBubbleFlowDraggable.mActivitySharedLock = new Object();
+        }
+        finish();
+    }
 
     private void setAsCurrentTab(String url) {
         for (ContentView contentView: mContentViews) {
