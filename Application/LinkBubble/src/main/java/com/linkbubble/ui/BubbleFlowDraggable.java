@@ -45,8 +45,8 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     private TabView mCurrentTab;
     //to do debug
     public BubbleDraggable mBubbleDraggable;
-    public static final Object mActivitySharedLock = new Object();
-    private static boolean mActivityIsUp = false;
+    public Object mActivitySharedLock = new Object();
+    public static boolean mActivityIsUp = false;
     private HashSet<OpenUrlSettings> mUrlsToOpen;
     private ReentrantReadWriteLock mUrlsToOpenLock;
     //
@@ -293,6 +293,11 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     public void destroy() {
         //setOnTouchListener(null);
+        Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
+        intent.putExtra("command", BubbleFlowActivity.DESTROY_ACTIVITY);
+        LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
+        bm.sendBroadcast(intent);
+
         mDraggableHelper.destroy();
     }
 
@@ -367,6 +372,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             intent.putExtra("command", BubbleFlowActivity.EXPAND);
             LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
             bm.sendBroadcast(intent);
+
+            /*Intent intentActivity = new Intent(getContext(), BubbleFlowActivity.class);
+            intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            getContext().startActivity(intentActivity);*/
         }
 
         if (super.expand(time, animationEventListener)) {
@@ -678,16 +687,26 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     }
 
+    private void closeTabInActivity(String url) {
+        Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
+        intent.putExtra("command", BubbleFlowActivity.CLOSE_VIEW);
+        intent.putExtra("url", url);
+        LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
+        bm.sendBroadcast(intent);
+    }
+
     private void closeTab(TabView tab, boolean animateRemove, boolean removeFromList) {
         int index = mViews.indexOf(tab);
         if (index == -1) {
             return;
         }
 
-        if (removeFromList == true && tab.getUrl().toString().equals(Constant.WELCOME_MESSAGE_URL)) {
+        String url = tab.getUrl().toString();
+        if (removeFromList == true && url.equals(Constant.WELCOME_MESSAGE_URL)) {
             Settings.get().setWelcomeMessageDisplayed(true);
         }
 
+        closeTabInActivity(url);
         remove(index, animateRemove, removeFromList, mOnTabRemovedListener);
 
         // Don't do this if we're animating the final tab off, as the setCurrentTab() call messes with the
@@ -734,6 +753,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         int closeCount = 0;
         for (View view : mViews) {
             closeTab(((TabView) view), false, false);
+            ((TabView) view).destroy();
             closeCount++;
         }
 
