@@ -5,8 +5,10 @@
 package com.linkbubble.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -324,6 +326,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         setTargetPos(bubbleRestingPoint.x, bubbleRestingPoint.y, bubblePeriod, DraggableHelper.AnimationType.SmallOvershoot, new DraggableHelper.AnimationEventListener() {
             @Override
             public void onAnimationComplete() {
+                mBubbleFlowDraggable.hideActivity();
                 MainApplication.postEvent(getContext(), mEndCollapseTransitionEvent);
                 onAnimComplete();
             }
