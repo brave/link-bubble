@@ -14,6 +14,7 @@ import android.util.Log;
 
 import com.linkbubble.BuildConfig;
 import com.linkbubble.MainController;
+import com.linkbubble.ui.BubbleFlowActivity;
 import com.linkbubble.ui.EntryActivity;
 import com.linkbubble.ui.ExpandedActivity;
 import com.linkbubble.ui.NotificationCloseAllActivity;
@@ -90,11 +91,14 @@ public class AppPoller {
             BuildConfig.APPLICATION_ID + "/" + NotificationHideActivity.class.getName(),
             BuildConfig.APPLICATION_ID + "/" + NotificationUnhideActivity.class.getName(),
             BuildConfig.APPLICATION_ID + "/" + NotificationOpenTabActivity.class.getName(),
-            BuildConfig.APPLICATION_ID + "/" + EntryActivity.class.getName()};
+            BuildConfig.APPLICATION_ID + "/" + EntryActivity.class.getName(),
+            BuildConfig.APPLICATION_ID + "/" + BubbleFlowActivity.class.getName()};
+
     private boolean shouldIgnoreActivity(String flatComponentName) {
         for (String string : IGNORE_ACTIVITIES) {
             if (string.equals(flatComponentName)) {
-                if (flatComponentName.contains(ExpandedActivity.class.getName()) == false) {
+                if (flatComponentName.contains(ExpandedActivity.class.getName()) == false
+                        && flatComponentName.contains(BubbleFlowActivity.class.getName()) == false) {
                     Log.d(TAG, "ignore " + flatComponentName);
                 }
                 return true;
@@ -158,10 +162,7 @@ public class AppPoller {
                                 Log.d(TAG, "ignore app changing from " + mCurrentAppFlatComponentName + " to " + appFlatComponentName);
                             } else {
                                 Log.d(TAG, "current app changed from " + mCurrentAppFlatComponentName + " to " + appFlatComponentName + ", triggering onAppChanged()...");
-                                //to do debug
-                                if (mAppPollingListener != null && !appFlatComponentName.contains("BubbleFlowActivity")) {
-                                //if (mAppPollingListener != null) {
-                                //
+                                if (mAppPollingListener != null) {
                                     mAppPollingListener.onAppChanged();
                                 }
                             }

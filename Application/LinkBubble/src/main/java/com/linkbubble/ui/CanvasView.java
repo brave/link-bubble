@@ -60,7 +60,7 @@ public class CanvasView extends FrameLayout {
 
     private ImageView mStatusBarCoverView;
 
-    private ExpandedActivity.MinimizeExpandedActivityEvent mMinimizeExpandedActivityEvent = new ExpandedActivity.MinimizeExpandedActivityEvent();
+    //private ExpandedActivity.MinimizeExpandedActivityEvent mMinimizeExpandedActivityEvent = new ExpandedActivity.MinimizeExpandedActivityEvent();
 
     public CanvasView(Context context) {
         super(context);
@@ -450,7 +450,7 @@ public class CanvasView extends FrameLayout {
         removeView(mContentView);
         setVisibility(GONE);
         MainController.get().showBadge(true);
-        MainApplication.postEvent(getContext(), mMinimizeExpandedActivityEvent);
+        //MainApplication.postEvent(getContext(), mMinimizeExpandedActivityEvent);
     }
 
     @SuppressWarnings("unused")
@@ -462,7 +462,7 @@ public class CanvasView extends FrameLayout {
             fadeOut();
         }
 
-        MainApplication.postEvent(getContext(), mMinimizeExpandedActivityEvent);
+        //MainApplication.postEvent(getContext(), mMinimizeExpandedActivityEvent);
     }
 
     @SuppressWarnings("unused")

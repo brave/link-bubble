@@ -344,6 +344,11 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     private void doAnimateToContentView(MainController controller) {
+        //to do debug
+        Intent intentActivity = new Intent(getContext(), BubbleFlowActivity.class);
+        intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        getContext().startActivity(intentActivity);
+        //
         doAnimateToContentView(true, controller);
     }
 
@@ -387,7 +392,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                 if (activeCount == 0) {
                     // Ensure we don't enter state where there are no tabs to display. Fix #448
                     MainApplication.postEvent(getContext(), new MainController.EndCollapseTransitionEvent());
-                    MainApplication.postEvent(getContext(), new ExpandedActivity.MinimizeExpandedActivityEvent());
+                    //MainApplication.postEvent(getContext(), new ExpandedActivity.MinimizeExpandedActivityEvent());
                     CrashTracking.log("doAnimateToContentView(): onAnimationComplete(): getActiveTabCount()==0");
                 } else {
                     MainApplication.postEvent(getContext(), mEndExpandTransitionEvent);
