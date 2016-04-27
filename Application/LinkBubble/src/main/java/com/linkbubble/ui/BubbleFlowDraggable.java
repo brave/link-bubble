@@ -368,14 +368,14 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
 
         if (mViews.size() > 0) {
+            /*Intent intentActivity = new Intent(getContext(), BubbleFlowActivity.class);
+            intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            getContext().startActivity(intentActivity);*/
+
             Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
             intent.putExtra("command", BubbleFlowActivity.EXPAND);
             LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
             bm.sendBroadcast(intent);
-
-            /*Intent intentActivity = new Intent(getContext(), BubbleFlowActivity.class);
-            intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            getContext().startActivity(intentActivity);*/
         }
 
         if (super.expand(time, animationEventListener)) {
@@ -486,11 +486,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             tabView = (TabView) inflater.inflate(R.layout.view_tab, null);
             tabView.mContentView = view;
-            // to do debug
-            /*if (openUrlSettings.mUrl.contains("blank")) {
-                openUrlSettings.mUrl = "http://www.google.ca";
-            }*/
-            //
             tabView.configure(openUrlSettings.mUrl, openUrlSettings.mUrlLoadStartTime, openUrlSettings.mHasShownAppPicker,
                     openUrlSettings.mPerformEmptyClick, false, controller);
         } catch (MalformedURLException e) {

@@ -44,6 +44,7 @@ import android.widget.Toast;
 
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.ui.BubbleDraggable;
+import com.linkbubble.ui.BubbleFlowActivity;
 import com.linkbubble.ui.BubbleFlowDraggable;
 import com.linkbubble.ui.BubbleFlowView;
 import com.linkbubble.ui.CanvasView;
@@ -218,7 +219,7 @@ public class MainController implements Choreographer.FrameCallback {
 
     private OrientationChangedEvent mOrientationChangedEvent = new OrientationChangedEvent();
     private BeginExpandTransitionEvent mBeginExpandTransitionEvent = new BeginExpandTransitionEvent();
-    private ExpandedActivity.MinimizeExpandedActivityEvent mMinimizeExpandedActivityEvent = new ExpandedActivity.MinimizeExpandedActivityEvent();
+    //private ExpandedActivity.MinimizeExpandedActivityEvent mMinimizeExpandedActivityEvent = new ExpandedActivity.MinimizeExpandedActivityEvent();
 
     private UserPresentEvent mUserPresentEvent = new UserPresentEvent();
     private ScreenOnEvent mScreenOnEvent = new ScreenOnEvent();
@@ -668,6 +669,10 @@ public class MainController implements Choreographer.FrameCallback {
     public void onEndExpandTransition(MainController.EndExpandTransitionEvent e) {
         if (Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
             showExpandedActivity();
+
+            /*Intent intentActivity = new Intent(mContext, BubbleFlowActivity.class);
+            intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            mContext.startActivity(intentActivity);*/
         }
     }
 
@@ -686,11 +691,15 @@ public class MainController implements Choreographer.FrameCallback {
     public void showExpandedActivity() {
         Log.e(TAG, "showExpandedActivity()");
         // to do debug
-        /*sStartExpandedActivityTime = System.currentTimeMillis();
-        Intent intent = new Intent(mContext, ExpandedActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        mContext.getApplicationContext().startActivity(intent);*/
+        //sStartExpandedActivityTime = System.currentTimeMillis();
+        //Intent intent = new Intent(mContext, ExpandedActivity.class);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        //mContext.getApplicationContext().startActivity(intent);
         //
+
+        /*Intent intentActivity = new Intent(mContext, BubbleFlowActivity.class);
+        intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        mContext.startActivity(intentActivity);*/
     }
 
     public void scheduleUpdate() {
@@ -1191,7 +1200,7 @@ public class MainController implements Choreographer.FrameCallback {
             // Ensure BubbleFlowDraggable gets at least 1 update in the event items are animating off screen. See #237.
             scheduleUpdate();
 
-            MainApplication.postEvent(mContext, mMinimizeExpandedActivityEvent);
+            //MainApplication.postEvent(mContext, mMinimizeExpandedActivityEvent);
         }
 
         if (tabView == null) {
