@@ -65,12 +65,13 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     //to do debug
     public static class OpenUrlSettings {
         OpenUrlSettings(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker,
-                        boolean performEmptyClick) {
+                        boolean performEmptyClick, boolean openedFromItself) {
             mUrl = url;
             mUrlLoadStartTime = urlLoadStartTime;
             mSetAsCurrentTab = setAsCurrentTab;
             mHasShownAppPicker = hasShownAppPicker;
             mPerformEmptyClick = performEmptyClick;
+            mOpenedFromItself = openedFromItself;
         }
 
         String mUrl;
@@ -78,6 +79,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         boolean mSetAsCurrentTab;
         boolean mHasShownAppPicker;
         boolean mPerformEmptyClick;
+        boolean mOpenedFromItself;
     }
     //
 
@@ -213,6 +215,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                             intent.putExtra("hasShownAppPicker", urlToOpen.mHasShownAppPicker);
                             intent.putExtra("performEmptyClick", urlToOpen.mPerformEmptyClick);
                             intent.putExtra("setAsCurrentTab", urlToOpen.mSetAsCurrentTab);
+                            intent.putExtra("openedFromItself", urlToOpen.mOpenedFromItself);
                             LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
                         }
                         mUrlsToOpen.clear();
@@ -246,6 +249,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         intent.putExtra("hasShownAppPicker", urlToOpen.mHasShownAppPicker);
         intent.putExtra("performEmptyClick", urlToOpen.mPerformEmptyClick);
         intent.putExtra("setAsCurrentTab", urlToOpen.mSetAsCurrentTab);
+        intent.putExtra("openedFromItself", urlToOpen.mOpenedFromItself);
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
         bm.sendBroadcast(intent);
     }
@@ -500,15 +504,18 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         if (openUrlSettings.mSetAsCurrentTab) {
             setCurrentTab(tabView);
         }
+
+        controller.afterTabLoaded(tabView, openUrlSettings.mUrlLoadStartTime, openUrlSettings.mHasShownAppPicker,
+                openUrlSettings.mOpenedFromItself);
     }
 
-    public TabView openUrlInTab(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker,
-                                boolean performEmptyClick) {
+    public void openUrlInTab(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker,
+                                boolean performEmptyClick, boolean openedFromItself) {
 
         try {
             mUrlsToOpenLock.writeLock().lock();
             OpenUrlSettings openUrlSettings = new OpenUrlSettings(url, urlLoadStartTime, setAsCurrentTab, hasShownAppPicker,
-                    performEmptyClick);
+                    performEmptyClick, openedFromItself);
             if (!mActivityIsUp) {
                 mUrlsToOpen.add(openUrlSettings);
             }
@@ -584,7 +591,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
 
         saveCurrentTabs();*/
-        return new TabView(getContext());//tabView;
+        //return new TabView(getContext());//tabView;
 
         //return tabView;
     }
