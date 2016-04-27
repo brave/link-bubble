@@ -905,14 +905,14 @@ public class MainController implements Choreographer.FrameCallback {
         return false;
     }
 
-    public TabView openUrl(final String urlAsString, long urlLoadStartTime, final boolean setAsCurrentTab,
+    public void openUrl(final String urlAsString, long urlLoadStartTime, final boolean setAsCurrentTab,
                            String openedFromAppName) {
 
         Analytics.trackOpenUrl(openedFromAppName);
 
         if (wasUrlRecentlyLoaded(urlAsString, urlLoadStartTime) && !urlAsString.equals(mContext.getString(R.string.empty_bubble_page))) {
             Toast.makeText(mContext, R.string.duplicate_link_will_not_be_loaded, Toast.LENGTH_SHORT).show();
-            return null;
+            return;
         }
 
         URL url;
@@ -923,7 +923,7 @@ public class MainController implements Choreographer.FrameCallback {
             if (getActiveTabCount() == 0 && Prompt.isShowing() == false) {
                 finish();
             }
-            return null;
+            return;
         }
 
         if (Settings.get().redirectUrlToBrowser(url)) {
@@ -937,7 +937,7 @@ public class MainController implements Choreographer.FrameCallback {
 
                 String title = String.format(mContext.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
                 MainApplication.saveUrlInHistory(mContext, null, urlAsString, title);
-                return null;
+                return;
             }
         }
 
@@ -954,22 +954,11 @@ public class MainController implements Choreographer.FrameCallback {
         if (resolveInfos != null && resolveInfos.size() > 0) {
             if (defaultAppResolveInfo != null) {
                 if (handleResolveInfo(defaultAppResolveInfo, urlAsString, urlLoadStartTime)) {
-                    return null;
+                    return;
                 }
             } else if (resolveInfos.size() == 1) {
                 if (handleResolveInfo(resolveInfos.get(0), urlAsString, urlLoadStartTime)) {
-                    return null;
-                }
-            } else {
-                // If LinkBubble is a valid resolve target, do not show other options to open the content.
-                for (ResolveInfo info : resolveInfos) {
-                    if (info.activityInfo.packageName.startsWith("com.linkbubble.playstore")
-                            || info.activityInfo.packageName.startsWith("com.brave.playstore")) {
-                        showAppPicker = false;
-                        break;
-                    } else {
-                        showAppPicker = true;
-                    }
+                    return;
                 }
             }
         }
@@ -981,11 +970,12 @@ public class MainController implements Choreographer.FrameCallback {
             openedFromItself = true;
         }
         mCanAutoDisplayLink = true;
-        final TabView result = openUrlInTab(urlAsString, urlLoadStartTime, setAsCurrentTab, showAppPicker,
-                !(null == openedFromAppName ? false : openedFromAppName.equals(Analytics.OPENED_URL_FROM_MAIN_NEW_TAB)));
+        openUrlInTab(urlAsString, urlLoadStartTime, setAsCurrentTab, showAppPicker,
+                !(null == openedFromAppName ? false : openedFromAppName.equals(Analytics.OPENED_URL_FROM_MAIN_NEW_TAB)),
+                openedFromItself);
 
         // Show app picker after creating the tab to load so that we have the instance to close if redirecting to an app, re #292.
-        if (!openedFromItself && showAppPicker && MainApplication.sShowingAppPickerDialog == false && 0 != resolveInfos.size()) {
+        /*if (!openedFromItself && showAppPicker && MainApplication.sShowingAppPickerDialog == false && 0 != resolveInfos.size()) {
             AlertDialog dialog = ActionItem.getActionItemPickerAlert(mContext, resolveInfos, R.string.pick_default_app,
                     new ActionItem.OnActionItemDefaultSelectedListener() {
                         @Override
@@ -1033,13 +1023,11 @@ public class MainController implements Choreographer.FrameCallback {
             dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
             Util.showThemedDialog(dialog);
             MainApplication.sShowingAppPickerDialog = true;
-        }
-
-        return result;
+        }*/
     }
 
-    protected TabView openUrlInTab(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker,
-                                   boolean performEmptyClick) {
+    protected void openUrlInTab(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker,
+                                   boolean performEmptyClick, boolean openedFromItself) {
         setHiddenByUser(false);
 
         if (getActiveTabCount() == 0) {
@@ -1057,13 +1045,78 @@ public class MainController implements Choreographer.FrameCallback {
             }
         }
 
-        TabView result = mBubbleFlowDraggable.openUrlInTab(url, urlLoadStartTime, setAsCurrentTab, hasShownAppPicker, performEmptyClick);
+        mBubbleFlowDraggable.openUrlInTab(url, urlLoadStartTime, setAsCurrentTab, hasShownAppPicker, performEmptyClick,
+                openedFromItself);
+        /*showBadge(getActiveTabCount() > 1 ? true : false);
+        ++mBubblesLoaded;
+
+        mOpenUrlInfos.add(new OpenUrlInfo(url, urlLoadStartTime));*/
+    }
+
+    public void afterTabLoaded(final TabView tab, long urlLoadStartTime, boolean showAppPicker, boolean openedFromItself) {
         showBadge(getActiveTabCount() > 1 ? true : false);
         ++mBubblesLoaded;
 
-        mOpenUrlInfos.add(new OpenUrlInfo(url, urlLoadStartTime));
+        final String urlString = tab.getUrl().toString();
+        mOpenUrlInfos.add(new OpenUrlInfo(urlString, urlLoadStartTime));
 
-        return result;
+        PackageManager packageManager = mContext.getPackageManager();
+        List<ResolveInfo> tempResolveInfos = new ArrayList<>();
+        if (!urlString.equals(mContext.getString(R.string.empty_bubble_page))) {
+            tempResolveInfos = Settings.get().getAppsThatHandleUrl(urlString, packageManager);
+        }
+        final List<ResolveInfo> resolveInfos = tempResolveInfos;
+
+        // Show app picker after creating the tab to load so that we have the instance to close if redirecting to an app, re #292.
+        if (!openedFromItself && showAppPicker && MainApplication.sShowingAppPickerDialog == false && 0 != resolveInfos.size()) {
+            AlertDialog dialog = ActionItem.getActionItemPickerAlert(mContext, resolveInfos, R.string.pick_default_app,
+                    new ActionItem.OnActionItemDefaultSelectedListener() {
+                        @Override
+                        public void onSelected(ActionItem actionItem, boolean always) {
+                            boolean loaded = false;
+                            for (ResolveInfo resolveInfo : resolveInfos) {
+                                if (resolveInfo.activityInfo.packageName.equals(actionItem.mPackageName)
+                                        && resolveInfo.activityInfo.name.equals(actionItem.mActivityClassName)) {
+                                    if (always) {
+                                        Settings.get().setDefaultApp(urlString, resolveInfo);
+                                    }
+
+                                    // Jump out of the loop and load directly via a BubbleView below
+                                    if (resolveInfo.activityInfo.packageName.equals(mAppPackageName)) {
+                                        break;
+                                    }
+
+                                    loaded = MainApplication.loadIntent(mContext, actionItem.mPackageName,
+                                            actionItem.mActivityClassName, urlString, -1, true);
+                                    break;
+                                }
+                            }
+
+                            if (loaded) {
+                                Settings.get().addRedirectToApp(urlString);
+                                closeTab(tab, contentViewShowing(), false);
+                                if (getActiveTabCount() == 0 && Prompt.isShowing() == false) {
+                                    finish();
+                                }
+                                // L_WATCH: L currently lacks getRecentTasks(), so minimize here
+                                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+                                    MainController.get().switchToBubbleView();
+                                }
+                            }
+                        }
+                    });
+
+            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    MainApplication.sShowingAppPickerDialog = false;
+                }
+            });
+
+            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            Util.showThemedDialog(dialog);
+            MainApplication.sShowingAppPickerDialog = true;
+        }
     }
 
     protected void restoreTab(TabView tab) {

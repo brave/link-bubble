@@ -101,7 +101,9 @@ public class BubbleFlowActivity extends Activity {
                         boolean hasShownAppPicker = intent.getBooleanExtra("hasShownAppPicker", false);
                         boolean performEmptyClick = intent.getBooleanExtra("performEmptyClick", false);
                         boolean setAsCurrentTab = intent.getBooleanExtra("setAsCurrentTab", false);
-                        openUrl(new BubbleFlowDraggable.OpenUrlSettings(url, urlStartTime, hasShownAppPicker, performEmptyClick, setAsCurrentTab));
+                        boolean openedFromItself = intent.getBooleanExtra("openedFromItself", false);
+                        openUrl(new BubbleFlowDraggable.OpenUrlSettings(url, urlStartTime, setAsCurrentTab, hasShownAppPicker,
+                                performEmptyClick, openedFromItself));
 
                         break;
                     case SET_TAB_AS_ACTIVE:
