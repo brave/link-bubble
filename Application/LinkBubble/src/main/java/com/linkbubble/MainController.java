@@ -20,6 +20,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -44,7 +45,6 @@ import android.widget.Toast;
 
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.ui.BubbleDraggable;
-import com.linkbubble.ui.BubbleFlowActivity;
 import com.linkbubble.ui.BubbleFlowDraggable;
 import com.linkbubble.ui.BubbleFlowView;
 import com.linkbubble.ui.CanvasView;
@@ -74,6 +74,7 @@ public class MainController implements Choreographer.FrameCallback {
     private static final int PIXELS_TO_SKIP_BEFORE_SCROLL = 50;
     private static final int ANIMATION_DURATION_BUBBLES_HIDE = 850;
     private static final int ANIMATION_DURATION_BUBBLES_SHOW = 765;
+    private static final int MILLISECONDS_TO_HIDE_BUBBLES = 5000;
 
     protected static MainController sInstance;
 
@@ -844,7 +845,35 @@ public class MainController implements Choreographer.FrameCallback {
         if (delta < 200) {
             return;
         }
+        if (!getHiddenByUser()) {
+            new HideAndShowBubbles().execute();
+        }
         switchToBubbleView();
+    }
+
+    class HideAndShowBubbles extends AsyncTask<Void,Integer,Long> {
+
+        protected Long doInBackground(Void... params) {
+            publishProgress(0);
+            try {
+                Thread.sleep(MILLISECONDS_TO_HIDE_BUBBLES);
+            }
+            catch (InterruptedException e) {
+
+            }
+            publishProgress(1);
+
+            return null;
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+            if (0 == progress[0]) {
+                setHiddenByUser(true);
+            }
+            else {
+                setHiddenByUser(false);
+            }
+        }
     }
 
     // Before this version select elements would crash WebView in a background service
@@ -973,57 +1002,6 @@ public class MainController implements Choreographer.FrameCallback {
         openUrlInTab(urlAsString, urlLoadStartTime, setAsCurrentTab, showAppPicker,
                 !(null == openedFromAppName ? false : openedFromAppName.equals(Analytics.OPENED_URL_FROM_MAIN_NEW_TAB)),
                 openedFromItself);
-
-        // Show app picker after creating the tab to load so that we have the instance to close if redirecting to an app, re #292.
-        /*if (!openedFromItself && showAppPicker && MainApplication.sShowingAppPickerDialog == false && 0 != resolveInfos.size()) {
-            AlertDialog dialog = ActionItem.getActionItemPickerAlert(mContext, resolveInfos, R.string.pick_default_app,
-                    new ActionItem.OnActionItemDefaultSelectedListener() {
-                        @Override
-                        public void onSelected(ActionItem actionItem, boolean always) {
-                            boolean loaded = false;
-                            for (ResolveInfo resolveInfo : resolveInfos) {
-                                if (resolveInfo.activityInfo.packageName.equals(actionItem.mPackageName)
-                                        && resolveInfo.activityInfo.name.equals(actionItem.mActivityClassName)) {
-                                    if (always) {
-                                        Settings.get().setDefaultApp(urlAsString, resolveInfo);
-                                    }
-
-                                    // Jump out of the loop and load directly via a BubbleView below
-                                    if (resolveInfo.activityInfo.packageName.equals(mAppPackageName)) {
-                                        break;
-                                    }
-
-                                    loaded = MainApplication.loadIntent(mContext, actionItem.mPackageName,
-                                            actionItem.mActivityClassName, urlAsString, -1, true);
-                                    break;
-                                }
-                            }
-
-                            if (loaded) {
-                                Settings.get().addRedirectToApp(urlAsString);
-                                closeTab(result, contentViewShowing(), false);
-                                if (getActiveTabCount() == 0 && Prompt.isShowing() == false) {
-                                    finish();
-                                }
-                                // L_WATCH: L currently lacks getRecentTasks(), so minimize here
-                                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                                    MainController.get().switchToBubbleView();
-                                }
-                            }
-                        }
-                    });
-
-            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    MainApplication.sShowingAppPickerDialog = false;
-                }
-            });
-
-            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-            Util.showThemedDialog(dialog);
-            MainApplication.sShowingAppPickerDialog = true;
-        }*/
     }
 
     protected void openUrlInTab(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker,
@@ -1047,10 +1025,6 @@ public class MainController implements Choreographer.FrameCallback {
 
         mBubbleFlowDraggable.openUrlInTab(url, urlLoadStartTime, setAsCurrentTab, hasShownAppPicker, performEmptyClick,
                 openedFromItself);
-        /*showBadge(getActiveTabCount() > 1 ? true : false);
-        ++mBubblesLoaded;
-
-        mOpenUrlInfos.add(new OpenUrlInfo(url, urlLoadStartTime));*/
     }
 
     public void afterTabLoaded(final TabView tab, long urlLoadStartTime, boolean showAppPicker, boolean openedFromItself) {
@@ -1331,6 +1305,12 @@ public class MainController implements Choreographer.FrameCallback {
     private long mDeferredExpandBubbleFlowTime = -1;
     private boolean mDeferredExpandBubbleFlowHideDraggable;
 
+    public void doAnimateToContentView() {
+        if (null != mBubbleDraggable) {
+            mBubbleDraggable.doAnimateToContentView(this);
+        }
+    }
+
     public void expandBubbleFlow(long time, boolean hideDraggable) {
         if (Constant.ACTIVITY_WEBVIEW_RENDERING) {
             mDeferredExpandBubbleFlowTime = time;
@@ -1353,6 +1333,8 @@ public class MainController implements Choreographer.FrameCallback {
         if (hideDraggable) {
             mBubbleDraggable.postDelayed(mSetBubbleGoneRunnable, 33);
         }
+
+        MainApplication.postEvent(mContext, new MainService.UpdateNotificationEvent());
     }
 
     public void collapseBubbleFlow(long time) {
@@ -1375,6 +1357,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         mBubbleFlowDraggable.collapse(time, mOnBubbleFlowCollapseFinishedListener);
+        MainApplication.postEvent(mContext, new MainService.UpdateNotificationEvent());
     }
 
     public void switchToBubbleView() {
@@ -1452,6 +1435,11 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     private boolean mHiddenByUser = false;
+
+    public boolean getHiddenByUser () {
+        return mHiddenByUser;
+    }
+
     public void setHiddenByUser(boolean hiddenByUser) {
         if (mHiddenByUser != hiddenByUser) {
             mHiddenByUser = hiddenByUser;
