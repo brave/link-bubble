@@ -302,10 +302,17 @@ public class MainService extends Service {
 
 
     private BroadcastReceiver mDialogReceiver = new BroadcastReceiver() {
+        String SYSTEM_REASON = "reason";
+        String SYSTEM_HOME_KEY = "homekey";
         @Override
         public void onReceive(Context context, Intent myIntent) {
             if (myIntent.getAction().equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)) {
-                MainController.get().onCloseSystemDialogs();
+                String reason = myIntent.getStringExtra(SYSTEM_REASON);
+                boolean homeKeyClick = false;
+                if (reason.equals(SYSTEM_HOME_KEY)) {
+                    homeKeyClick = true;
+                }
+                MainController.get().onCloseSystemDialogs(homeKeyClick);
             }
         }
     };
