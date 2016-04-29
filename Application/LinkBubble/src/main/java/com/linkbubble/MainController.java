@@ -74,7 +74,7 @@ public class MainController implements Choreographer.FrameCallback {
     private static final int PIXELS_TO_SKIP_BEFORE_SCROLL = 50;
     private static final int ANIMATION_DURATION_BUBBLES_HIDE = 850;
     private static final int ANIMATION_DURATION_BUBBLES_SHOW = 765;
-    private static final int MILLISECONDS_TO_HIDE_BUBBLES = 5000;
+    private static final int MILLISECONDS_TO_HIDE_BUBBLES = 4000;
 
     protected static MainController sInstance;
 
@@ -839,16 +839,16 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    public void onCloseSystemDialogs() {
+    public void onCloseSystemDialogs(boolean homeKeyClick) {
         long delta = System.currentTimeMillis() - mLastOpenTabFromNotificationTime;
         // Intent.ACTION_CLOSE_SYSTEM_DIALOGS gets triggered when NotificationOpenTabActivity is instantiated. Ignore that to stop minimizing...
         if (delta < 200) {
             return;
         }
-        if (!getHiddenByUser()) {
+        switchToBubbleView();
+        if (homeKeyClick && !getHiddenByUser()) {
             new HideAndShowBubbles().execute();
         }
-        switchToBubbleView();
     }
 
     class HideAndShowBubbles extends AsyncTask<Void,Integer,Long> {
