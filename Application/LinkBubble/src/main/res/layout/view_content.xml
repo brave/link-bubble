@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:paddingTop="128px">
+    android:paddingTop="60dp">
 
     <View
         android:layout_width="match_parent"
