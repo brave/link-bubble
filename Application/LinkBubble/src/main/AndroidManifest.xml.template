@@ -88,6 +88,13 @@
             android:exported="false"
             android:finishOnTaskLaunch="true"
             android:clearTaskOnLaunch="true"/>
+        <activity android:name=".ui.NotificationShowContentActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/TransparentTheme"
+            android:exported="false"
+            android:finishOnTaskLaunch="true"
+            android:clearTaskOnLaunch="true"/>
 
         <activity android:name=".ui.NotificationCloseTabActivity"
             android:excludeFromRecents="true"
