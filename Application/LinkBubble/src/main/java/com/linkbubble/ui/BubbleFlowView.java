@@ -502,10 +502,9 @@ public class BubbleFlowView extends HorizontalScrollView {
 
         int centerIndex = getCenterIndex();
         if (centerIndex == -1) {
-            hideActivity();
-
             return;
         }
+        hideActivity();
         View centerView = mViews.get(centerIndex);
 
         // There was previously a collapse animation to match the expand animation, but for
