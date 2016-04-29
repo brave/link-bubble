@@ -187,7 +187,12 @@ public class CanvasView extends FrameLayout {
 
     private void applyAlpha(final int targetAlpha) {
         mTargetAlpha = targetAlpha;
-        setVisibility(VISIBLE);
+        if (null != mContentView) {
+            setVisibility(VISIBLE);
+        }
+        else {
+            setVisibility(GONE);
+        }
         if (mStatusBarCoverView != null) {
             mStatusBarCoverView.setVisibility(VISIBLE);
             mStatusBarCoverView.animate().alpha(targetAlpha).setDuration(Constant.CANVAS_FADE_ANIM_TIME).setListener(new Animator.AnimatorListener() {
