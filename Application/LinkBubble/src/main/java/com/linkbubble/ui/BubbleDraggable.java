@@ -4,6 +4,7 @@
 
 package com.linkbubble.ui;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
@@ -343,12 +344,10 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         MainApplication.postEvent(getContext(), mBeginCollapseTransitionEvent);
     }
 
-    private void doAnimateToContentView(MainController controller) {
-        //to do debug
+    public void doAnimateToContentView(MainController controller) {
         Intent intentActivity = new Intent(getContext(), BubbleFlowActivity.class);
         intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         getContext().startActivity(intentActivity);
-        //
         doAnimateToContentView(true, controller);
     }
 
