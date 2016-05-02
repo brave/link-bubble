@@ -197,7 +197,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         protected Long doInBackground(Void... params) {
             //to do debug
             Intent intent1 = new Intent(mContext, BubbleFlowActivity.class);
-            intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             mContext.startActivity(intent1);
 
             synchronized (mActivitySharedLock) {
