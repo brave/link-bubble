@@ -174,6 +174,7 @@ public class BubbleFlowActivity extends Activity {
         if (null != controller) {
             controller.mBubbleFlowDraggable.mActivitySharedLock = new Object();
         }
+        Log.d("TAG", "!!!!! ACTIVITY DESTROYED");
         finish();
     }
 

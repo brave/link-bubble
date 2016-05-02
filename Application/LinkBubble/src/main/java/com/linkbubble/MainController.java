@@ -672,10 +672,6 @@ public class MainController implements Choreographer.FrameCallback {
     public void onEndExpandTransition(MainController.EndExpandTransitionEvent e) {
         if (Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
             showExpandedActivity();
-
-            /*Intent intentActivity = new Intent(mContext, BubbleFlowActivity.class);
-            intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            mContext.startActivity(intentActivity);*/
         }
     }
 
@@ -699,10 +695,6 @@ public class MainController implements Choreographer.FrameCallback {
         //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         //mContext.getApplicationContext().startActivity(intent);
         //
-
-        /*Intent intentActivity = new Intent(mContext, BubbleFlowActivity.class);
-        intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        mContext.startActivity(intentActivity);*/
     }
 
     public void scheduleUpdate() {
