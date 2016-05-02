@@ -54,6 +54,7 @@ public class BubbleFlowActivity extends Activity {
     //
 
     List<ContentView> mContentViews;
+    boolean mCollapsed = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +71,7 @@ public class BubbleFlowActivity extends Activity {
         filter.addAction(ACTIVITY_INTENT_NAME);
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(this);
         bm.registerReceiver(mBroadcastReceiver, filter);
-        MainController controller = MainController.get();
-        // to do debug, sometimes it returns a null object
-        if (null == controller) {
-            controller = MainController.get();
-        }
-        //
+        MainController controller = getMainController();
         synchronized (controller.mBubbleFlowDraggable.mActivitySharedLock) {
             controller.mBubbleFlowDraggable.mActivitySharedLock.notify();
         }
@@ -86,6 +82,22 @@ public class BubbleFlowActivity extends Activity {
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(this);
         bm.unregisterReceiver(mBroadcastReceiver);
         super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        if (!mCollapsed) {
+            MainController controller = getMainController();
+            if (null != controller) {
+                controller.switchToBubbleView();
+            }
+        }
+        super.onStop();
     }
 
     // handler for received data from service
@@ -112,11 +124,13 @@ public class BubbleFlowActivity extends Activity {
                         break;
                     case COLLAPSE:
                         Log.d("TAG", "!!!!! ACTIVITY GONE");
+                        mCollapsed = true;
                         setVisible(false);
 
                         break;
                     case EXPAND:
                         Log.d("TAG", "!!!!! ACTIVITY VISIBLE");
+                        mCollapsed = false;
                         setVisible(true);
 
                         break;
@@ -142,13 +156,19 @@ public class BubbleFlowActivity extends Activity {
         }
     };
 
-    private void destroyActivity() {
+    MainController getMainController() {
         MainController controller = MainController.get();
         // to do debug, sometimes it returns a null object
         if (null == controller) {
             controller = MainController.get();
         }
         //
+
+        return controller;
+    }
+
+    private void destroyActivity() {
+        MainController controller = getMainController();
 
         BubbleFlowDraggable.mActivityIsUp = false;
         if (null != controller) {
@@ -171,12 +191,7 @@ public class BubbleFlowActivity extends Activity {
     }
 
     public void openUrl(BubbleFlowDraggable.OpenUrlSettings openUrlSettings) {
-        MainController controller = MainController.get();
-        // to do debug, sometimes it returns a null object
-        if (null == controller) {
-            controller = MainController.get();
-        }
-        //
+        MainController controller = getMainController();
 
         if (!controller.mBubbleFlowDraggable.isExpanded()) {
             Log.d("TAG", "!!!!! ACTIVITY1 GONE");
