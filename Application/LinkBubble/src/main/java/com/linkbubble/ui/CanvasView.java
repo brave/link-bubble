@@ -305,7 +305,6 @@ public class CanvasView extends FrameLayout {
                             mContentView.setVisibility(GONE);
                             if (!mExpanded) {
                                 removeView(mContentView);
-                                //mContentView.collapse();
                             }
                         } else {
                             mContentView.setAlpha(1f);
@@ -350,7 +349,6 @@ public class CanvasView extends FrameLayout {
             }
 
             removeView(mContentView);
-            //mContentView.collapse();
             if (mExpanded) {
                 applyContentViewAlpha(1);
             }
@@ -455,7 +453,6 @@ public class CanvasView extends FrameLayout {
         mExpanded = false;
         fadeOut();
         removeView(mContentView);
-        //mContentView.collapse();
         setVisibility(GONE);
         MainController.get().showBadge(true);
         //MainApplication.postEvent(getContext(), mMinimizeExpandedActivityEvent);

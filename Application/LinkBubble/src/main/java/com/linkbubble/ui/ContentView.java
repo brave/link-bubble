@@ -645,13 +645,11 @@ public class ContentView extends FrameLayout {
         mArticleModeButton.updateTheme(color);
     }
 
-    /*void collapse() {
-        if (mUrlTextView.getText().toString().equals(getContext().getString(R.string.empty_bubble_page))) {
-            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(metUrl.getWindowToken(),
-                    InputMethodManager.RESULT_UNCHANGED_SHOWN);
-        }
-    }*/
+    public void collapse() {
+        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(metUrl.getWindowToken(),
+                InputMethodManager.RESULT_UNCHANGED_SHOWN);
+    }
 
     void setFaviconColor(Integer color) {
         updateColors(color);
