@@ -644,6 +644,14 @@ public class ContentView extends FrameLayout {
         mArticleModeButton.updateTheme(color);
     }
 
+    /*void collapse() {
+        if (mUrlTextView.getText().toString().equals(getContext().getString(R.string.empty_bubble_page))) {
+            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(metUrl.getWindowToken(),
+                    InputMethodManager.RESULT_UNCHANGED_SHOWN);
+        }
+    }*/
+
     void setFaviconColor(Integer color) {
         updateColors(color);
     }
@@ -789,7 +797,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void doUpdateVisitedHistory (String url, boolean isReload) {
-            if (isReload || url.equals("file:///android_asset/blank.html") ||
+            if (isReload || url.equals(getContext().getString(R.string.empty_bubble_page)) ||
                     mUrlStack.size() > 0 && mUrlStack.peek().toString().equals(url)) {
                 return;
             }

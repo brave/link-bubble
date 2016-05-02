@@ -181,7 +181,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    private void enableRootWindows() {
+    private void enableRootWindows(boolean fromUnhideAction) {
         if (!mRootWindowsVisible) {
             for (View v : mRootViews) {
                 WindowManager.LayoutParams lp = (WindowManager.LayoutParams) v.getLayoutParams();
@@ -191,7 +191,9 @@ public class MainController implements Choreographer.FrameCallback {
                 // Hack to ensure BubbleFlowDraggable doesn't display in Bubble mode, fix #457
                 if (v instanceof BubbleFlowView) {
                     ((BubbleFlowView)v).forceCollapseEnd();
-                    ((BubbleFlowDraggable)v).setCurrentTabAsActive();
+                    if (!fromUnhideAction) {
+                        ((BubbleFlowDraggable) v).setCurrentTabAsActive();
+                    }
                 }
             }
             mRootWindowsVisible = true;
@@ -1470,7 +1472,7 @@ public class MainController implements Choreographer.FrameCallback {
         //Log.d(SCREEN_LOCK_TAG, "*** setCanDisplay() - old:" + mCanDisplay + ", new:" + canDisplay);
         mCanDisplay = canDisplay;
         if (canDisplay) {
-            enableRootWindows();
+            enableRootWindows(true);
         } else {
             disableRootWindows();
         }
