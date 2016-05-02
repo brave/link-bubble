@@ -849,11 +849,12 @@ public class MainController implements Choreographer.FrameCallback {
         }
         switchToBubbleView();
         if (homeKeyClick && !getHiddenByUser()) {
-            new HideAndShowBubbles().execute();
+            setHiddenByUser(true);
+            //new HideAndShowBubbles().execute();
         }
     }
 
-    class HideAndShowBubbles extends AsyncTask<Void,Integer,Long> {
+    /*class HideAndShowBubbles extends AsyncTask<Void,Integer,Long> {
 
         protected Long doInBackground(Void... params) {
             publishProgress(0);
@@ -876,7 +877,7 @@ public class MainController implements Choreographer.FrameCallback {
                 setHiddenByUser(false);
             }
         }
-    }
+    }*/
 
     // Before this version select elements would crash WebView in a background service
     // STABLE_SELECT_WEBVIEW_VERSIONCODE used to be set to 249007650 because drop downs
@@ -1364,7 +1365,7 @@ public class MainController implements Choreographer.FrameCallback {
 
     public void switchToBubbleView() {
         mCanAutoDisplayLink = false;
-        if (MainController.get().getActiveTabCount() > 0) {
+        if (getActiveTabCount() > 0) {
             mBubbleDraggable.switchToBubbleView();
         } else {
             // If there's no tabs, ensuring pressing Home will cause the CanvasView to go away. Fix #448
