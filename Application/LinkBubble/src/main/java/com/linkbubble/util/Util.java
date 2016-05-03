@@ -118,7 +118,9 @@ public class Util {
         "com.browser.speed",
         "tugapower.codeaurora.browser",
         "com.mmbox.xbrowser.gp",
-        "com.mmbox.xbrowser.pro"
+        "com.mmbox.xbrowser.pro",
+        "com.ineedyourservice.RBrowser",
+        "com.android.browser"
     };
 
     public static float clamp(float v0, float v, float v1) {
