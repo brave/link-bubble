@@ -113,7 +113,8 @@ public class Util {
         "org.hola",
         "com.kk.jd.browser2",
         "com.rsbrowser.browser",
-        "com.ineedyourservice.RBrowser"
+        "com.ineedyourservice.RBrowser",
+        "com.android.browser"
     };
 
     public static float clamp(float v0, float v, float v1) {
