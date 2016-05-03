@@ -290,9 +290,11 @@ public class ContentView extends FrameLayout {
         mWebRenderer.updateIncognitoMode(incognito);
     }
 
+    // We need it to be a member, because we need to dismiss it on bubbles collapse
+    private AlertDialog mShareAlertDialog = null;
     private void showSelectShareMethod(final String urlAsString, final boolean closeBubbleOnShare) {
 
-        AlertDialog alertDialog = ActionItem.getShareAlert(getContext(), false, new ActionItem.OnActionItemSelectedListener() {
+        mShareAlertDialog = ActionItem.getShareAlert(getContext(), false, new ActionItem.OnActionItemSelectedListener() {
             @Override
             public void onSelected(ActionItem actionItem) {
                 Intent intent = Util.getSendIntent(actionItem.mPackageName, actionItem.mActivityClassName, urlAsString);
@@ -311,7 +313,7 @@ public class ContentView extends FrameLayout {
                 //}
             }
         });
-        Util.showThemedDialog(alertDialog);
+        Util.showThemedDialog(mShareAlertDialog);
     }
 
     private void saveImage(final String urlAsString) {
@@ -645,6 +647,10 @@ public class ContentView extends FrameLayout {
     }
 
     public void collapse() {
+        if (null != mShareAlertDialog) {
+            mShareAlertDialog.dismiss();
+            mShareAlertDialog = null;
+        }
         InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(metUrl.getWindowToken(),
                 InputMethodManager.RESULT_UNCHANGED_SHOWN);
