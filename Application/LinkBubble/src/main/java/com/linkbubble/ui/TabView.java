@@ -4,10 +4,7 @@
 
 package com.linkbubble.ui;
 
-
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -15,14 +12,6 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.AnticipateOvershootInterpolator;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.Transformation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -44,9 +33,7 @@ public class TabView extends BubbleView {
     private ImageView mBackIndicatorView;
     private ScaleUpAnimHelper mBackIndicatorAnimHelper;
     private boolean mPerformEmptyClick;
-    private int mOriginalParamsTopMargin;
     private FrameLayout.LayoutParams mOriginalParams;
-    private float mOriginalLocationY;
     private int mOriginalBottomMargin;
 
     public boolean mWasRestored;
@@ -213,9 +200,13 @@ public class TabView extends BubbleView {
             if (null == currentParams) {
                 return false;
             }
-            float locationYToMove = 0 - currentParams.height - currentParams.topMargin - mContentView.toolbarHeight();
-            currentParams.bottomMargin = mOriginalBottomMargin + (int)locationYToMove;
-            mContentView.setLayoutParams(currentParams);
+
+            float locationYToMove = 0 - currentParams.height - currentParams.topMargin - mContentView.toolbarHeight() -
+                    mContentView.getPaddingTop() * (float)1.07;
+            if (currentParams.bottomMargin != mOriginalBottomMargin + (int)locationYToMove) {
+                currentParams.bottomMargin = mOriginalBottomMargin + (int) locationYToMove;
+                mContentView.setLayoutParams(currentParams);
+            }
         }
 
         ObjectAnimator
