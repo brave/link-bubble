@@ -61,12 +61,14 @@ public class BubbleFlowActivity extends Activity {
     protected void onDestroy() {
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(this);
         bm.unregisterReceiver(mBroadcastReceiver);
-        super.onDestroy();
-    }
+        MainController controller = getMainController();
+        if (null != controller) {
+            controller.saveCurrentTabs();
+            controller.closeAllBubbles(false);
+            controller.finish();
+        }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
+        super.onDestroy();
     }
 
     @Override
@@ -78,6 +80,18 @@ public class BubbleFlowActivity extends Activity {
             }
         }
         super.onStop();
+    }
+
+    @Override
+    protected void onResume() {
+        setVisible(true);
+
+        MainController controller = getMainController();
+        if (null != controller && !controller.mBubbleFlowDraggable.isExpanded()) {
+            controller.setHiddenByUser(false);
+            controller.doAnimateToContentView();
+        }
+        super.onResume();
     }
 
     // handler for received data from service
@@ -184,8 +198,6 @@ public class BubbleFlowActivity extends Activity {
         }
         final LayoutInflater inflater = LayoutInflater.from(this);
         FrameLayout.LayoutParams pr = new FrameLayout.LayoutParams(-1, -1);
-        //to do debug
-        //pr.topMargin = 128;
         ContentView contentView = (ContentView) inflater.inflate(R.layout.view_content, null);
         mContentViews.add(contentView);
         addContentView(contentView, pr);
