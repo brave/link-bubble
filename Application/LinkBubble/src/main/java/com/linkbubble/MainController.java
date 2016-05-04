@@ -232,6 +232,8 @@ public class MainController implements Choreographer.FrameCallback {
 
     private boolean mHeightSizeTopMargin = false;
 
+    public boolean mRecentAppWasClicked = false;
+
     private static class OpenUrlInfo {
         String mUrlAsString;
         long mStartTime;
@@ -833,12 +835,13 @@ public class MainController implements Choreographer.FrameCallback {
         }
     }
 
-    public void onCloseSystemDialogs(boolean homeKeyClick) {
+    public void onCloseSystemDialogs(boolean homeKeyClick, boolean recentApp) {
         long delta = System.currentTimeMillis() - mLastOpenTabFromNotificationTime;
         // Intent.ACTION_CLOSE_SYSTEM_DIALOGS gets triggered when NotificationOpenTabActivity is instantiated. Ignore that to stop minimizing...
         if (delta < 200) {
             return;
         }
+        mRecentAppWasClicked = recentApp;
         switchToBubbleView();
         if (homeKeyClick && !getHiddenByUser()) {
             setHiddenByUser(true);
