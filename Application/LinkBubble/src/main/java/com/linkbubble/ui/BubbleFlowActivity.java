@@ -4,41 +4,22 @@
 
 package com.linkbubble.ui;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
-import android.widget.AbsoluteLayout;
-import android.widget.Button;
 import android.widget.FrameLayout;
-
-import com.linkbubble.Constant;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
-import com.linkbubble.Settings;
-import com.linkbubble.physics.Draggable;
-
-import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class BubbleFlowActivity extends Activity {
 
@@ -61,7 +42,6 @@ public class BubbleFlowActivity extends Activity {
         super.onCreate(savedInstanceState);
         Log.d("TAG", "!!!!! ON CREATE");
         mContentViews = new ArrayList<>();
-        //moveTaskToBack(true);
         setVisible(false);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
