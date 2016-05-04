@@ -365,10 +365,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
 
         if (mViews.size() > 0) {
-            /*Intent intentActivity = new Intent(getContext(), BubbleFlowActivity.class);
-            intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            getContext().startActivity(intentActivity);*/
-
             Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
             intent.putExtra("command", BubbleFlowActivity.EXPAND);
             LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
