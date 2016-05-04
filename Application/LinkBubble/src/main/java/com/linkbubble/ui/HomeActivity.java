@@ -113,11 +113,6 @@ public class HomeActivity extends AppCompatActivity {
         mNewBubble.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //to do debug
-                //Intent intent = new Intent(HomeActivity.this, BubbleFlowActivity.class);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                //startActivity(intent);
-                //
                 MainApplication.openLink(HomeActivity.this, HomeActivity.this.getString(R.string.empty_bubble_page),
                         Analytics.OPENED_URL_FROM_MAIN_NEW_TAB);
             }
