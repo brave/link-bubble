@@ -84,10 +84,11 @@ public class BubbleFlowActivity extends Activity {
 
     @Override
     protected void onResume() {
-        setVisible(true);
-
         MainController controller = getMainController();
-        if (null != controller && !controller.mBubbleFlowDraggable.isExpanded()) {
+        if (null != controller && controller.mRecentAppWasClicked) {
+            Log.d("TAG", "!!!!!onResume");
+            controller.mRecentAppWasClicked = false;
+            setVisible(true);
             controller.setHiddenByUser(false);
             controller.doAnimateToContentView();
         }
