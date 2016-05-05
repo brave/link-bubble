@@ -30,11 +30,14 @@ public class BubbleFlowActivity extends Activity {
     public static final int SET_TAB_AS_ACTIVE   = 1;
     public static final int COLLAPSE            = 2;
     public static final int EXPAND              = 3;
-    public static final int CLOSE_VIEW          = 4;
-    public static final int DESTROY_ACTIVITY    = 5;
+    public static final int PRE_CLOSE_VIEW      = 4;
+    public static final int CLOSE_VIEW          = 5;
+    public static final int DESTROY_ACTIVITY    = 6;
+    public static final int RESTORE_TAB         = 7;
     //
 
     List<ContentView> mContentViews;
+    List<ContentView> mPreClosedContentViews;
     boolean mCollapsed = true;
 
     @Override
@@ -42,6 +45,7 @@ public class BubbleFlowActivity extends Activity {
         super.onCreate(savedInstanceState);
         Log.d("TAG", "!!!!! ON CREATE");
         mContentViews = new ArrayList<>();
+        mPreClosedContentViews = new ArrayList<>();
         setVisible(false);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -129,6 +133,18 @@ public class BubbleFlowActivity extends Activity {
                         setVisible(true);
 
                         break;
+                    case PRE_CLOSE_VIEW:
+                        for (ContentView contentView: mContentViews) {
+                            if (contentView.getUrl().toString().equals(url)) {
+                                mPreClosedContentViews.add(contentView);
+                                mContentViews.remove(contentView);
+                                break;
+                            }
+                        }
+                        if (0 == mContentViews.size()) {
+                            setVisible(false);
+                        }
+                        break;
                     case CLOSE_VIEW:
                         for (ContentView contentView: mContentViews) {
                             if (contentView.getUrl().toString().equals(url)) {
@@ -136,10 +152,25 @@ public class BubbleFlowActivity extends Activity {
                                 break;
                             }
                         }
-                        if (0 == mContentViews.size()) {
+                        for (ContentView contentView: mPreClosedContentViews) {
+                            if (contentView.getUrl().toString().equals(url)) {
+                                mPreClosedContentViews.remove(contentView);
+                                break;
+                            }
+                        }
+                        if (0 == mContentViews.size() && 0 == mPreClosedContentViews.size()) {
                             destroyActivity();
                         }
 
+                        break;
+                    case RESTORE_TAB:
+                        for (ContentView contentView: mPreClosedContentViews) {
+                            if (contentView.getUrl().toString().equals(url)) {
+                                mContentViews.add(contentView);
+                                mPreClosedContentViews.remove(contentView);
+                                break;
+                            }
+                        }
                         break;
                     case DESTROY_ACTIVITY:
                         mContentViews.clear();
