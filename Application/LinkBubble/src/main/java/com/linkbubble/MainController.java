@@ -1245,6 +1245,7 @@ public class MainController implements Choreographer.FrameCallback {
         mBubbleDraggable.postDelayed(new Runnable() {
             @Override
             public void run() {
+                mBubbleFlowDraggable.closeTabInActivity(tabView.getUrl().toString());
                 tabView.destroy();
             }
         }, 500);
@@ -1280,6 +1281,7 @@ public class MainController implements Choreographer.FrameCallback {
                     @Override
                     public void onClose() {
                         if (tabView.mWasRestored == false) {
+                            mBubbleFlowDraggable.closeTabInActivity(tabView.getUrl().toString());
                             tabView.destroy();
                         }
                     }

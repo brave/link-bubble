@@ -585,7 +585,16 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         //return tabView;
     }
 
+    public void restoreTabInActivity(String url) {
+        Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
+        intent.putExtra("command", BubbleFlowActivity.RESTORE_TAB);
+        intent.putExtra("url", url);
+        LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
+        bm.sendBroadcast(intent);
+    }
+
     public void restoreTab(TabView tabView) {
+        restoreTabInActivity(tabView.getUrl().toString());
         add(tabView, mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView);
 
         mBubbleDraggable.mBadgeView.setCount(getActiveTabCount());
@@ -678,7 +687,15 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     }
 
-    private void closeTabInActivity(String url) {
+    public void preCloseTabInActivity(String url) {
+        Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
+        intent.putExtra("command", BubbleFlowActivity.PRE_CLOSE_VIEW);
+        intent.putExtra("url", url);
+        LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
+        bm.sendBroadcast(intent);
+    }
+
+    public void closeTabInActivity(String url) {
         Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
         intent.putExtra("command", BubbleFlowActivity.CLOSE_VIEW);
         intent.putExtra("url", url);
@@ -697,7 +714,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             Settings.get().setWelcomeMessageDisplayed(true);
         }
 
-        closeTabInActivity(url);
+        preCloseTabInActivity(url);
         remove(index, animateRemove, removeFromList, mOnTabRemovedListener);
 
         // Don't do this if we're animating the final tab off, as the setCurrentTab() call messes with the
