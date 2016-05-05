@@ -105,12 +105,7 @@
             android:clearTaskOnLaunch="true"/>
 
         <activity android:name=".ui.NotificationHideActivity"
-            android:excludeFromRecents="true"
-            android:launchMode="singleInstance"
-            android:theme="@style/TransparentTheme"
-            android:exported="false"
-            android:finishOnTaskLaunch="true"
-            android:clearTaskOnLaunch="true"/>
+            android:theme="@style/TransparentTheme"/>
 
         <activity android:name=".ui.NotificationOpenTabActivity"
             android:excludeFromRecents="true"
@@ -121,12 +116,7 @@
             android:clearTaskOnLaunch="true"/>
 
         <activity android:name=".ui.NotificationUnhideActivity"
-            android:excludeFromRecents="true"
-            android:launchMode="singleInstance"
-            android:theme="@style/TransparentTheme"
-            android:exported="false"
-            android:finishOnTaskLaunch="true"
-            android:clearTaskOnLaunch="true"/>
+            android:theme="@style/TransparentTheme"/>
 
         <activity android:name=".ui.SettingsActivity"
                   android:label="@string/app_name"
