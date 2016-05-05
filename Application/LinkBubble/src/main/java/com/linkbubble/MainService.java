@@ -186,9 +186,9 @@ public class MainService extends Service {
         closeAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent closeAllPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), closeAllIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Intent showContentViewIntent = new Intent(this, NotificationShowContentActivity.class);
+        /*Intent showContentViewIntent = new Intent(this, NotificationShowContentActivity.class);
         showContentViewIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent showContentViewPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), showContentViewIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent showContentViewPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), showContentViewIntent, PendingIntent.FLAG_UPDATE_CURRENT);*/
 
         Intent hideIntent = new Intent(this, NotificationHideActivity.class);
         hideIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -208,14 +208,14 @@ public class MainService extends Service {
                 .setLocalOnly(true)
                 .setContentIntent(hidePendingIntent);
 
-        MainController controller = MainController.get();
+        /*MainController controller = MainController.get();
         if (null != controller && null != controller.mBubbleFlowDraggable) {
             if (!controller.mBubbleFlowDraggable.isExpanded()) {
                 notificationBuilder
                         .addAction(R.drawable.ic_stat, getString(R.string.notification_expand), showContentViewPendingIntent)
                         .setContentText(getString(R.string.notification_default_expand_summary));
             }
-        }
+        }*/
 
         // Nuke all previous notifications and generate unique ids
         NotificationManagerCompat.from(this).cancelAll();
@@ -229,9 +229,9 @@ public class MainService extends Service {
         unhideIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent unhidePendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), unhideIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Intent showContentViewIntent = new Intent(this, NotificationShowContentActivity.class);
+        /*Intent showContentViewIntent = new Intent(this, NotificationShowContentActivity.class);
         showContentViewIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent showContentViewPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), showContentViewIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent showContentViewPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), showContentViewIntent, PendingIntent.FLAG_UPDATE_CURRENT);*/
 
         Intent closeAllIntent = new Intent(this, NotificationCloseAllActivity.class);
         closeAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -248,14 +248,14 @@ public class MainService extends Service {
                 .addAction(Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT ? R.drawable.ic_action_cancel_white : R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
                 .setContentIntent(unhidePendingIntent);
 
-        MainController controller = MainController.get();
+        /*MainController controller = MainController.get();
         if (null != controller && null != controller.mBubbleFlowDraggable) {
             if (!controller.mBubbleFlowDraggable.isExpanded()) {
                 notificationBuilder
                         .addAction(R.drawable.ic_stat, getString(R.string.notification_expand), showContentViewPendingIntent)
                         .setContentText(getString(R.string.notification_unhide_expand_summary));
             }
-        }
+        }*/
 
         NotificationManagerCompat.from(this).cancelAll();
         startForeground(1, notificationBuilder.build());
