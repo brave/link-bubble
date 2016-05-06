@@ -18,6 +18,8 @@ import android.view.Window;
 import android.widget.FrameLayout;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
+import com.linkbubble.Settings;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +45,11 @@ public class BubbleFlowActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Settings settings = Settings.get();
+        if (null != settings) {
+            setTheme(settings.getDarkThemeEnabled() ? R.style.ThemeTransparentDark : R.style.ThemeTransparent);
+        }
         Log.d("TAG", "!!!!! ON CREATE");
         mContentViews = new ArrayList<>();
         mPreClosedContentViews = new ArrayList<>();
