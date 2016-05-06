@@ -48,7 +48,7 @@
         </activity>
 
         <activity android:name=".ui.BubbleFlowActivity"
-            android:theme="@style/Theme.Transparent"
+            android:theme="@style/ThemeTransparent"
             android:launchMode="singleTask"
             android:configChanges="orientation|screenSize"/>
 
