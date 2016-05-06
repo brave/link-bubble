@@ -114,7 +114,8 @@ public class Util {
         "com.kk.jd.browser2",
         "com.rsbrowser.browser",
         "com.ineedyourservice.RBrowser",
-        "com.android.browser"
+        "com.android.browser",
+        "com.metalasfook.nochromo"
     };
 
     public static float clamp(float v0, float v, float v1) {
