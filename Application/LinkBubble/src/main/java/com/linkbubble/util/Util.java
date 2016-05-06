@@ -120,7 +120,8 @@ public class Util {
         "com.mmbox.xbrowser.gp",
         "com.mmbox.xbrowser.pro",
         "com.ineedyourservice.RBrowser",
-        "com.android.browser"
+        "com.android.browser",
+        "com.metalasfook.nochromo"
     };
 
     public static float clamp(float v0, float v, float v1) {
