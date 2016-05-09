@@ -289,7 +289,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     }
 
     public void destroy() {
-        //setOnTouchListener(null);
         Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
         intent.putExtra("command", BubbleFlowActivity.DESTROY_ACTIVITY);
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());

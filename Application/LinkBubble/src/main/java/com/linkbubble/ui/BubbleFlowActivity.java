@@ -9,6 +9,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -16,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.FrameLayout;
+
+import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
@@ -70,6 +73,7 @@ public class BubbleFlowActivity extends Activity {
 
     @Override
     protected void onDestroy() {
+        boolean isFinishing = isFinishing();
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(this);
         bm.unregisterReceiver(mBroadcastReceiver);
         MainController controller = getMainController();
@@ -80,6 +84,7 @@ public class BubbleFlowActivity extends Activity {
         }
 
         super.onDestroy();
+        setFinishedActivityEvent();
     }
 
     @Override
@@ -200,6 +205,13 @@ public class BubbleFlowActivity extends Activity {
         return controller;
     }
 
+    private void setFinishedActivityEvent() {
+        synchronized (MainApplication.mDestroyActivitySharedLock) {
+            MainApplication.mActivityDestroyed = true;
+            MainApplication.mDestroyActivitySharedLock.notify();
+        }
+    }
+
     private void destroyActivity() {
         MainController controller = getMainController();
 
@@ -209,6 +221,7 @@ public class BubbleFlowActivity extends Activity {
         }
         Log.d("TAG", "!!!!! ACTIVITY DESTROYED");
         finish();
+        //setFinishedActivityEvent();
     }
 
     private void setAsCurrentTab(String url) {
