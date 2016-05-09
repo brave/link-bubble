@@ -84,6 +84,10 @@ public class BubbleFlowActivity extends Activity {
         }
 
         super.onDestroy();
+        BubbleFlowDraggable.mActivityIsUp = false;
+        if (null != controller) {
+            controller.mBubbleFlowDraggable.mActivitySharedLock = new Object();
+        }
         setFinishedActivityEvent();
     }
 
@@ -215,10 +219,6 @@ public class BubbleFlowActivity extends Activity {
     private void destroyActivity() {
         MainController controller = getMainController();
 
-        BubbleFlowDraggable.mActivityIsUp = false;
-        if (null != controller) {
-            controller.mBubbleFlowDraggable.mActivitySharedLock = new Object();
-        }
         Log.d("TAG", "!!!!! ACTIVITY DESTROYED");
         finish();
         //setFinishedActivityEvent();
