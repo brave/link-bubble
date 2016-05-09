@@ -112,6 +112,7 @@ public class Settings {
     private static final String WELCOME_MESSAGE_DISPLAYED = "welcome_message_displayed";
     private static final String TERMS_ACCEPTED = "terms_accepted";
     private static final String LAST_FLUSH_WEBVIEW_CACHE_TIME = "last_flush_cache_time";
+    private static final String HOME_BUTTON_CLICKED_FIRST_TIME = "home_button_clicked_first_time";
 
     public enum WebViewBatterySaveMode {
         Aggressive,
@@ -309,6 +310,18 @@ public class Settings {
         } catch (MalformedURLException ex) {
 
         }
+    }
+
+    public boolean showHomeButtonMessage() {
+        if (mSharedPreferences.getBoolean(HOME_BUTTON_CLICKED_FIRST_TIME, true)) {
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            editor.putBoolean(HOME_BUTTON_CLICKED_FIRST_TIME, false);
+            editor.apply();
+
+            return true;
+        }
+
+        return false;
     }
 
     public void saveData() {

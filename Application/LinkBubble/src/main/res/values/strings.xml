@@ -405,5 +405,6 @@
     <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
     <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
     <string name="whitelist_localfilename">whitelist.dat</string>
+    <string name="home_button_click_message">Bubbles are hidden when the Home button is click. You can unhide them using the Recent Apps button or in the Notifications Panel.</string>
 
 </resources>
