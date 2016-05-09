@@ -84,8 +84,8 @@ public class BubbleFlowActivity extends Activity {
         }
 
         super.onDestroy();
-        BubbleFlowDraggable.mActivityIsUp = false;
         if (null != controller) {
+            controller.mBubbleFlowDraggable.mActivityIsUp = false;
             controller.mBubbleFlowDraggable.mActivitySharedLock = new Object();
         }
         setFinishedActivityEvent();

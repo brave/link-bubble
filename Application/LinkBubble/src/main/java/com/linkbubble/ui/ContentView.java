@@ -1101,7 +1101,8 @@ public class ContentView extends FrameLayout {
             }
 
             if ((urlAsString.equals(Constant.WELCOME_MESSAGE_URL) ||
-                    urlAsString.equals(getContext().getString(R.string.empty_bubble_page)) ) && mController != null) {
+                    urlAsString.equals(getContext().getString(R.string.empty_bubble_page))) && mController != null
+                    && 1 == mController.mBubbleFlowDraggable.getActiveTabCount()) {
                 mController.displayTab(mOwnerTabView);
             }
         }
@@ -1566,6 +1567,9 @@ public class ContentView extends FrameLayout {
     OnClickListener mOnURLEnterClicked = new OnClickListener() {
         @Override
         public void onClick(View view) {
+            if (null != mController && !mController.mBubbleFlowDraggable.isExpanded()) {
+                return;
+            }
             if (!mWebRenderer.getUrl().toString().equals(getContext().getString(R.string.empty_bubble_page))) {
                 metUrl.setText(mWebRenderer.getUrl().toString());
             }
