@@ -46,7 +46,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     //to do debug
     public BubbleDraggable mBubbleDraggable;
     public Object mActivitySharedLock = new Object();
-    public static boolean mActivityIsUp = false;
+    public boolean mActivityIsUp = false;
     private HashSet<OpenUrlSettings> mUrlsToOpen;
     private ReentrantReadWriteLock mUrlsToOpenLock;
     //
@@ -183,7 +183,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
             setExactPos(0, 0);
         }
+        StartActivity();
+    }
 
+    public void StartActivity() {
         new StartBubblesEvent(getContext()).execute();
     }
 
@@ -195,15 +198,18 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             mContext = context;
         }
         protected Long doInBackground(Void... params) {
-            //to do debug
-            Intent intent1 = new Intent(mContext, BubbleFlowActivity.class);
-            intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            mContext.startActivity(intent1);
 
             synchronized (mActivitySharedLock) {
+                if (mActivityIsUp) {
+                    return null;
+                }
+                Intent intent1 = new Intent(mContext, BubbleFlowActivity.class);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                mContext.startActivity(intent1);
+
                 try {
                     mActivitySharedLock.wait();
-                    BubbleFlowDraggable.mActivityIsUp = true;
+                    mActivityIsUp = true;
 
                     try {
                         mUrlsToOpenLock.writeLock().lock();
@@ -514,6 +520,9 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         finally {
             mUrlsToOpenLock.writeLock().unlock();
         }
+        if (!mActivityIsUp) {
+            StartActivity();
+        }
 
         /*try {
             do {
@@ -702,7 +711,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         bm.sendBroadcast(intent);
     }
 
-    private void closeTab(TabView tab, boolean animateRemove, boolean removeFromList) {
+    private void closeTab(TabView tab, boolean animateRemove, boolean removeFromList, boolean closeAllBubbels) {
         int index = mViews.indexOf(tab);
         if (index == -1) {
             return;
@@ -735,7 +744,9 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                     }
                 }
             }
-            setCurrentTab(newCurrentTab);
+            if (!closeAllBubbels) {
+                setCurrentTab(newCurrentTab);
+            }
         }
     }
 
@@ -748,7 +759,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     public void closeTab(TabView tabView, boolean animateRemove, Constant.BubbleAction action, long totalTrackedLoadTime) {
         if (tabView != null) {
             String url = tabView.getUrl().toString();
-            closeTab(tabView, animateRemove, true);
+            closeTab(tabView, animateRemove, true, false);
             postClosedTab(true);
             if (action != Constant.BubbleAction.None) {
                 MainApplication.handleBubbleAction(getContext(), action, url, totalTrackedLoadTime);
@@ -759,7 +770,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     public void closeAllBubbles(boolean removeFromCurrentTabs) {
         int closeCount = 0;
         for (View view : mViews) {
-            closeTab(((TabView) view), false, false);
+            closeTab(((TabView) view), false, false, true);
             ((TabView) view).destroy();
             closeCount++;
         }
