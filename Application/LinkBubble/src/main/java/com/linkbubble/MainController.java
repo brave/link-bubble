@@ -844,6 +844,21 @@ public class MainController implements Choreographer.FrameCallback {
         mRecentAppWasClicked = recentApp;
         switchToBubbleView();
         if (homeKeyClick && !getHiddenByUser()) {
+            Settings settings = Settings.get();
+            if (null == settings || settings.showHomeButtonMessage()) {
+                Prompt.show(mContext.getResources().getString(R.string.home_button_click_message),
+                        mContext.getResources().getString(android.R.string.ok),
+                        Prompt.LENGTH_LONG,
+                        new Prompt.OnPromptEventListener() {
+                            @Override
+                            public void onActionClick() {
+                            }
+
+                            @Override
+                            public void onClose() {
+                            }
+                        });
+            }
             setHiddenByUser(true);
             //new HideAndShowBubbles().execute();
         }
