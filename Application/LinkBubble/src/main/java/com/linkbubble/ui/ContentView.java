@@ -1763,7 +1763,7 @@ public class ContentView extends FrameLayout {
 
                         case R.id.item_settings: {
                             Intent intent = new Intent(context, SettingsActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             context.startActivity(intent);
                             MainController.get().switchToBubbleView();
                             break;

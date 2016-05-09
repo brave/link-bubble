@@ -61,6 +61,8 @@ public class MainApplication extends Application {
     public static ConcurrentHashMap<String, String> sTitleHashMap = new ConcurrentHashMap<String, String>(64);
     public static Favicons sFavicons;
     public static boolean sShowingAppPickerDialog = false;
+    public static Object mDestroyActivitySharedLock = null;
+    public static boolean mActivityDestroyed = false;
     private static long sTrialStartTime = -1;
 
     private HttpsEverywhere mHttpsEverywhere = null;
