@@ -11,10 +11,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.util.Log;
 import android.webkit.WebIconDatabase;
 
 import com.linkbubble.ui.NotificationCloseAllActivity;
@@ -28,6 +30,7 @@ import com.squareup.otto.Subscribe;
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 
+import java.util.Objects;
 import java.util.Vector;
 
 public class MainService extends Service {
@@ -126,6 +129,9 @@ public class MainService extends Service {
         catch (RuntimeException exc) {
             CrashTracking.logHandledException(exc);
         }
+
+        MainApplication.mDestroyActivitySharedLock = new Object();
+        MainApplication.mActivityDestroyed = false;
 
         MainController.create(this, new MainController.EventHandler() {
                 @Override
@@ -294,10 +300,40 @@ public class MainService extends Service {
     @SuppressWarnings("unused")
     @Subscribe
     public void onReloadMainServiceEvent(ReloadMainServiceEvent event) {
+        Vector<String> urls = Settings.get().loadCurrentTabs();
         stopSelf();
+        new WaitActivityDestroyedRestoreLinksEvent(event.mContext, urls).execute();
+    }
 
-        final Vector<String> urls = Settings.get().loadCurrentTabs();
-        MainApplication.restoreLinks(event.mContext, urls.toArray(new String[urls.size()]));
+    class WaitActivityDestroyedRestoreLinksEvent extends AsyncTask<Void,Void,Long> {
+        Context mContext;
+        Vector<String> mUrls;
+
+        WaitActivityDestroyedRestoreLinksEvent(Context context, Vector<String> urls) {
+            super();
+            mContext = context;
+            mUrls = urls;
+        }
+        protected Long doInBackground(Void... params) {
+
+            if (null != MainApplication.mDestroyActivitySharedLock) {
+                Log.d("TAG", "!!!!!Creating service");
+                synchronized (MainApplication.mDestroyActivitySharedLock) {
+                    if (!MainApplication.mActivityDestroyed) {
+                        try {
+                            Log.d("TAG", "!!!!!Waiting in service");
+                            MainApplication.mDestroyActivitySharedLock.wait();
+                            Log.d("TAG", "!!!!!Notified in service");
+                        } catch (InterruptedException e) {
+                        }
+                    }
+                }
+            }
+
+            MainApplication.restoreLinks(mContext, mUrls.toArray(new String[mUrls.size()]));
+
+            return null;
+        }
     }
 
 
