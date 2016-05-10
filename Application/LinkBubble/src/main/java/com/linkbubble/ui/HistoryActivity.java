@@ -86,7 +86,6 @@ public class HistoryActivity extends AppCompatActivity
                 finish();
             }
         });
-
         mMessageView = (TextView) findViewById(R.id.message_view);
         mListView = (ListView) findViewById(R.id.listview);
     }
