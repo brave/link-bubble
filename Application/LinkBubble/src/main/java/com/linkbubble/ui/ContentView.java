@@ -1149,7 +1149,7 @@ public class ContentView extends FrameLayout {
             }
 
             if (url != null && url.equals(getContext().getString(R.string.empty_bubble_page))) {
-                mTitleTextView.setTextColor(0xFFFFFFFF);
+                changeTitleTextColor();
             }
             mTitleTextView.setText(title);
             if (MainApplication.sTitleHashMap != null && url != null) {
@@ -2404,6 +2404,22 @@ public class ContentView extends FrameLayout {
         });
     }
 
+    private void changeTitleTextColor() {
+        Settings settings = Settings.get();
+        mTitleTextView.setTextColor(0xFFFFFFFF);
+        if (null != settings && settings.getDarkThemeEnabled()) {
+            mTitleTextView.setTextColor(0x0);
+        }
+    }
+
+    private void changeUrlTextColor() {
+        Settings settings = Settings.get();
+        mUrlTextView.setTextColor(0xFFFFFFFF);
+        if (null != settings && settings.getDarkThemeEnabled()) {
+            mUrlTextView.setTextColor(0x0);
+        }
+    }
+
     void updateUrlTitleAndText(String urlAsString) {
         String title = MainApplication.sTitleHashMap != null ? MainApplication.sTitleHashMap.get(urlAsString) : null;
         boolean showTitleUrl = !urlAsString.equals(getContext().getString(R.string.empty_bubble_page));
@@ -2411,7 +2427,7 @@ public class ContentView extends FrameLayout {
             title = mLoadingString;
         }
         else if (!showTitleUrl) {
-            mTitleTextView.setTextColor(0xFFFFFFFF);
+            changeTitleTextColor();
         }
         mTitleTextView.setText(title);
 
@@ -2422,7 +2438,7 @@ public class ContentView extends FrameLayout {
         } else {
             mUrlTextView.setText(urlAsString.replace("http://", ""));
             if (!showTitleUrl) {
-                mUrlTextView.setTextColor(0xFFFFFFFF);
+                changeUrlTextColor();
             }
         }
     }
