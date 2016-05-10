@@ -9,7 +9,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -68,8 +67,10 @@ public class BubbleFlowActivity extends Activity {
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(this);
         bm.registerReceiver(mBroadcastReceiver, filter);
         MainController controller = getMainController();
-        synchronized (controller.mBubbleFlowDraggable.mActivitySharedLock) {
-            controller.mBubbleFlowDraggable.mActivitySharedLock.notify();
+        if (null != controller && null != controller.mBubbleFlowDraggable) {
+            synchronized (controller.mBubbleFlowDraggable.mActivitySharedLock) {
+                controller.mBubbleFlowDraggable.mActivitySharedLock.notify();
+            }
         }
     }
 
