@@ -34,6 +34,7 @@ public class Prompt {
 
     public static final int LENGTH_SHORT = 3000;
     public static final int LENGTH_LONG = 6000;
+    public static final int LENGTH_VERY_LONG = 60000;
 
     private static Prompt sPrompt;
     private static boolean sIsShowing;
