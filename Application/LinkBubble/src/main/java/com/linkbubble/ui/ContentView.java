@@ -664,6 +664,9 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void resetBubblePanelAdjustment() {
+            if (!mWebRenderer.getView().hasFocus()) {
+                mWebRenderer.getView().requestFocus();
+            }
             MainController mainController = MainController.get();
             if (null != mainController) {
                 mainController.adjustBubblesPanel(0, 0, false, true);
@@ -672,6 +675,9 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void adjustBubblesPanel(int newY, int oldY, boolean afterTouchAdjust) {
+            if (!mWebRenderer.getView().hasFocus()) {
+                mWebRenderer.getView().requestFocus();
+            }
             MainController mainController = MainController.get();
             if (null != mainController) {
                 mainController.adjustBubblesPanel(newY, oldY, afterTouchAdjust, false);
