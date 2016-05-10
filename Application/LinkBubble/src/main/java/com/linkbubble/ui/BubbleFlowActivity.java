@@ -41,12 +41,14 @@ public class BubbleFlowActivity extends Activity {
     public static final int RESTORE_TAB         = 7;
     //
 
-    List<ContentView> mContentViews;
-    List<ContentView> mPreClosedContentViews;
-    boolean mCollapsed = true;
+    private List<ContentView> mContentViews;
+    private List<ContentView> mPreClosedContentViews;
+    private boolean mCollapsed = true;
+    private boolean mDestroyed = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mDestroyed = false;
         super.onCreate(savedInstanceState);
 
         Settings settings = Settings.get();
@@ -73,7 +75,7 @@ public class BubbleFlowActivity extends Activity {
 
     @Override
     protected void onDestroy() {
-        boolean isFinishing = isFinishing();
+        mDestroyed = true;
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(this);
         bm.unregisterReceiver(mBroadcastReceiver);
         MainController controller = getMainController();
@@ -122,6 +124,9 @@ public class BubbleFlowActivity extends Activity {
             if (intent.getAction().equals(BubbleFlowActivity.ACTIVITY_INTENT_NAME)) {
                 int command = intent.getIntExtra("command", 0);
                 String url = intent.getStringExtra("url");
+                if (mDestroyed) {
+                    return;
+                }
                 switch (command) {
                     case OPEN_URL:
                         long urlStartTime = intent.getLongExtra("urlStartTime", 1);
@@ -217,11 +222,9 @@ public class BubbleFlowActivity extends Activity {
     }
 
     private void destroyActivity() {
-        MainController controller = getMainController();
-
         Log.d("TAG", "!!!!! ACTIVITY DESTROYED");
+        mDestroyed = true;
         finish();
-        //setFinishedActivityEvent();
     }
 
     private void setAsCurrentTab(String url) {
