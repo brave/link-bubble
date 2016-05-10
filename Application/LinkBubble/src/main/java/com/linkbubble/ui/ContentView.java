@@ -2297,11 +2297,10 @@ public class ContentView extends FrameLayout {
         intent.setData(Uri.parse(urlAsString));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         if (MainApplication.openInBrowser(getContext(), intent, true) && MainController.get() != null && mOwnerTabView != null) {
-            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), canShowUndoPrompt);
             // L_WATCH: L currently lacks getRecentTasks(), so minimize here
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                MainController.get().switchToBubbleView();
-            }
+            MainController.get().switchToBubbleView();
+            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), canShowUndoPrompt);
+
             return true;
         }
 
