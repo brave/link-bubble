@@ -158,6 +158,7 @@ public class BubbleFlowActivity extends Activity {
                     case PRE_CLOSE_VIEW:
                         for (ContentView contentView: mContentViews) {
                             if (contentView.getUrl().toString().equals(url)) {
+                                contentView.setVisibility(View.GONE);
                                 mPreClosedContentViews.add(contentView);
                                 mContentViews.remove(contentView);
                                 break;
