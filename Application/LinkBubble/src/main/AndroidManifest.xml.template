@@ -24,6 +24,7 @@
         <activity
             android:name=".ui.HomeActivity"
             android:excludeFromRecents="true"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme"/>
 
 
@@ -45,6 +46,7 @@
             android:name=".ui.HistoryActivity"
             android:excludeFromRecents="true"
             android:theme="@style/AppTheme"
+            android:launchMode="singleTask"
             android:label="@string/history">
         </activity>
 
