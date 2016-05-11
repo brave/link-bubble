@@ -54,6 +54,7 @@ import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.IconCache;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 
@@ -90,6 +91,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 finish();
             }
         });
+        MainApplication.registerForBus(this, this);
     }
 
     @Override
@@ -123,6 +125,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
 
         return false;
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void OnDestroyMainServiceEvent(MainService.OnDestroyMainServiceEvent event) {
+        finish();
     }
 
     static public class SettingsFragment extends SettingsBaseFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
