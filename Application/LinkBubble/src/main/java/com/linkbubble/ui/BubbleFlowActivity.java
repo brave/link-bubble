@@ -71,6 +71,9 @@ public class BubbleFlowActivity extends Activity {
             synchronized (controller.mBubbleFlowDraggable.mActivitySharedLock) {
                 controller.mBubbleFlowDraggable.mActivitySharedLock.notify();
             }
+        } else {
+            mDestroyed = true;
+            finish();
         }
     }
 
