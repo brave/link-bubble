@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
+import com.linkbubble.MainService;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.Analytics;
@@ -209,5 +210,11 @@ public class HomeActivity extends AppCompatActivity {
     @Subscribe
     public void onLinkLoadTimeStatsUpdatedEvent(Settings.LinkLoadTimeStatsUpdatedEvent event) {
         updateLinkLoadTimeStats();
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void OnDestroyMainServiceEvent(MainService.OnDestroyMainServiceEvent event) {
+        finish();
     }
 }

@@ -22,11 +22,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.linkbubble.MainApplication;
+import com.linkbubble.MainService;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
+import com.squareup.otto.Subscribe;
 
 import java.util.TreeMap;
 
@@ -52,6 +55,8 @@ public class SettingsDefaultAppsActivity extends AppCompatPreferenceActivity {
                 finish();
             }
         });
+
+        MainApplication.registerForBus(this, this);
     }
 
     @Override
@@ -69,6 +74,12 @@ public class SettingsDefaultAppsActivity extends AppCompatPreferenceActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.activity_close_enter, R.anim.activity_close_exit);
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void OnDestroyMainServiceEvent(MainService.OnDestroyMainServiceEvent event) {
+        finish();
     }
 
     static public class SettingsDefaultAppsFragment extends SettingsBaseFragment implements SharedPreferences.OnSharedPreferenceChangeListener {

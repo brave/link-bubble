@@ -24,8 +24,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.linkbubble.MainApplication;
+import com.linkbubble.MainService;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.squareup.otto.Subscribe;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -76,6 +79,14 @@ public class SettingsDomainsActivity extends AppCompatActivity {
                 showAddRedirectDialog();
             }
         });
+
+        MainApplication.registerForBus(this, this);
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void OnDestroyMainServiceEvent(MainService.OnDestroyMainServiceEvent event) {
+        finish();
     }
 
     void showAddRedirectDialog() {

@@ -20,10 +20,12 @@ import android.widget.Toast;
 
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
+import com.linkbubble.MainService;
 import com.linkbubble.R;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
+import com.squareup.otto.Subscribe;
 
 /*
  * This class exists solely because Android's PreferenceScreen implementation doesn't do anything
@@ -47,6 +49,8 @@ public class SettingsHelpActivity extends AppCompatPreferenceActivity {
                 finish();
             }
         });
+
+        MainApplication.registerForBus(this, this);
     }
 
     @Override
@@ -64,6 +68,12 @@ public class SettingsHelpActivity extends AppCompatPreferenceActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.activity_close_enter, R.anim.activity_close_exit);
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void OnDestroyMainServiceEvent(MainService.OnDestroyMainServiceEvent event) {
+        finish();
     }
 
     static public class SettingsHelpFragment extends PreferenceFragment {

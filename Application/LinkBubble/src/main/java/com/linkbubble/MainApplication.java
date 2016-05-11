@@ -55,7 +55,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 public class MainApplication extends Application {
-
     private Bus mBus;
     public static DatabaseHelper sDatabaseHelper;
     public static SearchURLSuggestionsContainer sSearchURLSuggestionsContainer;

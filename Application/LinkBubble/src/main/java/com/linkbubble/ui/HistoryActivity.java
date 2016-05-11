@@ -34,6 +34,7 @@ import com.linkbubble.Config;
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
+import com.linkbubble.MainService;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.db.DatabaseHelper;
@@ -65,6 +66,7 @@ public class HistoryActivity extends AppCompatActivity
     private static int sInstanceCount = 0;
     private static Favicons sFavicons = null;
     private static final int FAVICON_CACHE_SIZE = 4 * 1024 * 1024;
+    public boolean mStarted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,8 @@ public class HistoryActivity extends AppCompatActivity
         });
         mMessageView = (TextView) findViewById(R.id.message_view);
         mListView = (ListView) findViewById(R.id.listview);
+
+        ((MainApplication)getApplicationContext()).getBus().register(this);
     }
 
     @Override
@@ -104,10 +108,9 @@ public class HistoryActivity extends AppCompatActivity
     public void onStart() {
         super.onStart();
 
+        mStarted = true;
         mHistoryRecords = MainApplication.sDatabaseHelper.getAllHistoryRecords();
         setupListView();
-
-        ((MainApplication)getApplicationContext()).getBus().register(this);
 
         MainApplication.checkRestoreCurrentTabs(this);
     }
@@ -115,8 +118,7 @@ public class HistoryActivity extends AppCompatActivity
     @Override
     public void onStop() {
         super.onStop();
-
-        ((MainApplication)getApplicationContext()).getBus().unregister(this);
+        mStarted = false;
     }
 
     private void setupListView() {
@@ -455,6 +457,9 @@ public class HistoryActivity extends AppCompatActivity
     @SuppressWarnings("unused")
     @Subscribe
     public void onHistoryRecordChangedEvent(HistoryRecord.ChangedEvent event) {
+        if (!mStarted) {
+            return;
+        }
         boolean setupList = false;
         if (mHistoryRecords == null) {
             mHistoryRecords = new ArrayList<HistoryRecord>();
@@ -485,5 +490,11 @@ public class HistoryActivity extends AppCompatActivity
                 mHistoryAdapter.notifyDataSetChanged();
             }
         }
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void OnDestroyMainServiceEvent(MainService.OnDestroyMainServiceEvent event) {
+        finish();
     }
 }

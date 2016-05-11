@@ -19,12 +19,14 @@ import android.widget.Toast;
 import com.linkbubble.BuildConfig;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
+import com.linkbubble.MainService;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.util.AppPickerList;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -69,6 +71,7 @@ public class SettingsMoreActivity extends AppCompatPreferenceActivity {
             }
         });
 
+        MainApplication.registerForBus(this, this);
     }
 
     @Override
@@ -86,6 +89,12 @@ public class SettingsMoreActivity extends AppCompatPreferenceActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.activity_close_enter, R.anim.activity_close_exit);
+    }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void OnDestroyMainServiceEvent(MainService.OnDestroyMainServiceEvent event) {
+        finish();
     }
 
     static public class SettingsMoreFragment extends SettingsBaseFragment {
