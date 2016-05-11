@@ -928,15 +928,15 @@ class WebViewRenderer extends WebRenderer {
 
         @Override
         public boolean onCreateWindow(WebView view, boolean dialog, boolean userGesture, Message resultMsg) {
-            //to do debug
-            /*TabView tabView = */MainController.get().openUrl(Constant.NEW_TAB_URL, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_WINDOW);
-            /*if (tabView != null) {
-                WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
-                transport.setWebView((WebView) tabView.getContentView().getWebRenderer().getView());
-                resultMsg.sendToTarget();
-                return true;
-            }*/
-            //
+            WebView.HitTestResult hitTestResult = mWebView.getHitTestResult();
+            switch (hitTestResult.getType()) {
+                case WebView.HitTestResult.IMAGE_TYPE:
+                case WebView.HitTestResult.SRC_ANCHOR_TYPE:
+                case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: {
+                    String url = hitTestResult.getExtra();
+                    MainController.get().openUrl(url, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_WINDOW);
+                }
+            }
 
             return false;
         }

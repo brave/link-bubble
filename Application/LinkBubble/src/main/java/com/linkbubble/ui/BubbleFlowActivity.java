@@ -259,6 +259,9 @@ public class BubbleFlowActivity extends Activity {
         final LayoutInflater inflater = LayoutInflater.from(this);
         FrameLayout.LayoutParams pr = new FrameLayout.LayoutParams(-1, -1);
         ContentView contentView = (ContentView) inflater.inflate(R.layout.view_content, null);
+        if (!openUrlSettings.mSetAsCurrentTab) {
+            contentView.setVisibility(View.GONE);
+        }
         mContentViews.add(contentView);
         addContentView(contentView, pr);
         controller.mBubbleFlowDraggable.createTabView(contentView, openUrlSettings, controller);
