@@ -74,6 +74,7 @@ public class BubbleFlowActivity extends Activity {
         } else {
             mDestroyed = true;
             finish();
+            startActivityForResult(new Intent(this, EntryActivity.class), 0);
         }
     }
 
@@ -95,6 +96,7 @@ public class BubbleFlowActivity extends Activity {
             controller.mBubbleFlowDraggable.mActivitySharedLock = new Object();
         }
         setFinishedActivityEvent();
+        Log.d("TAG", "!!!!! ACTIVITY DESTROYED");
     }
 
     @Override
@@ -230,7 +232,6 @@ public class BubbleFlowActivity extends Activity {
     }
 
     private void destroyActivity() {
-        Log.d("TAG", "!!!!! ACTIVITY DESTROYED");
         mDestroyed = true;
         finish();
     }
