@@ -220,6 +220,9 @@ public class BubbleFlowActivity extends Activity {
     }
 
     private void setFinishedActivityEvent() {
+        if (null == MainApplication.mDestroyActivitySharedLock) {
+            return;
+        }
         synchronized (MainApplication.mDestroyActivitySharedLock) {
             MainApplication.mActivityDestroyed = true;
             MainApplication.mDestroyActivitySharedLock.notify();
