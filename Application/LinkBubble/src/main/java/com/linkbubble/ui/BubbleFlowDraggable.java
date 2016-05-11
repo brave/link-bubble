@@ -494,7 +494,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         add(tabView, mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView);
 
         mBubbleDraggable.mBadgeView.setCount(getActiveTabCount());
-        //controller.addBubble(tabView, false);
         if (openUrlSettings.mSetAsCurrentTab) {
             setCurrentTab(tabView);
         }
@@ -523,74 +522,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         if (!mActivityIsUp) {
             StartActivity();
         }
-
-        /*try {
-            do {
-                Thread.sleep(10);
-            } while (null == mActivityMessageHandler);
-        }
-        catch (InterruptedException e) {
-        }*/
-
-        //mActivityMessageHandler.openUrl(url);
-        /*ActivityInfo[] list;
-        try {
-            list = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), PackageManager.GET_ACTIVITIES).activities;
-            for(int i = 0;i< list.length;i++)
-            {
-                System.out.println("List of running activities"+list[i].name);
-
-            }
-        }
-        catch (PackageManager.NameNotFoundException e) {
-
-        }*/
-
-//        Intent intent2 = new Intent(getContext(), BubbleFlowActivity.class);
-//        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK/* | Intent.FLAG_ACTIVITY_CLEAR_TOP /*| Intent.FLAG_ACTIVITY_MULTIPLE_TASK*/);
-//        intent2.putExtra("host", "http://slashdot.org");
-//        getContext().startActivity(intent2);
-        //
-
-        /*try {
-            list = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), PackageManager.GET_ACTIVITIES).activities;
-            for(int i = 0;i< list.length;i++)
-            {
-                System.out.println("List of running activities"+list[i].name);
-
-            }
-        }
-        catch (PackageManager.NameNotFoundException e) {
-
-        }*/
-        //
-
-        /*TabView tabView;
-        try {
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            tabView = (TabView) inflater.inflate(R.layout.view_tab, null);
-            // Stub
-            tabView.configure(getContext().getString(R.string.empty_bubble_page), urlLoadStartTime, hasShownAppPicker, performEmptyClick, true);
-            //tabView.configure(url, urlLoadStartTime, hasShownAppPicker, performEmptyClick, true);
-        } catch (MalformedURLException e) {
-            // TODO: Inform the user somehow?
-            return null;
-        }*/
-
-        // Only insert next to current Bubble when in ContentView mode. Ensures links opened when app is
-        // minimized are added to the end.
-        /*add(tabView, mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView);
-
-        mBubbleDraggable.mBadgeView.setCount(getActiveTabCount());
-
-        if (setAsCurrentTab) {
-            setCurrentTab(tabView);
-        }
-
-        saveCurrentTabs();*/
-        //return new TabView(getContext());//tabView;
-
-        //return tabView;
     }
 
     public void restoreTabInActivity(String url) {
