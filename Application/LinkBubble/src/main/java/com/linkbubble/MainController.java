@@ -860,34 +860,8 @@ public class MainController implements Choreographer.FrameCallback {
                         });
             }
             setHiddenByUser(true);
-            //new HideAndShowBubbles().execute();
         }
     }
-
-    /*class HideAndShowBubbles extends AsyncTask<Void,Integer,Long> {
-
-        protected Long doInBackground(Void... params) {
-            publishProgress(0);
-            try {
-                Thread.sleep(MILLISECONDS_TO_HIDE_BUBBLES);
-            }
-            catch (InterruptedException e) {
-
-            }
-            publishProgress(1);
-
-            return null;
-        }
-
-        protected void onProgressUpdate(Integer... progress) {
-            if (0 == progress[0]) {
-                setHiddenByUser(true);
-            }
-            else {
-                setHiddenByUser(false);
-            }
-        }
-    }*/
 
     // Before this version select elements would crash WebView in a background service
     // STABLE_SELECT_WEBVIEW_VERSIONCODE used to be set to 249007650 because drop downs
