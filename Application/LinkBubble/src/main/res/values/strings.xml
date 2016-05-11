@@ -6,7 +6,6 @@
     <string name="notification_summary">Touch to hide all open bubbles</string>
     <string name="notification_default_summary">Touch to Hide, expand to Close All</string>
     <string name="notification_unhide_summary">Touch to Unhide, expand to Close All</string>
-    <!--<string name="notification_default_expand_summary">Touch to Hide, expand to Close All or Expand All</string>-->
     <string name="notification_unhide_expand_summary">Touch to Unhide, expand to Close All or Expand All</string>
     <string name="notification_action_close_all">Close All</string>
     <string name="notification_expand">Expand All</string>

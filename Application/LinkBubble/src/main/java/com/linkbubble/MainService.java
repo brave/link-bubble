@@ -347,10 +347,12 @@ public class MainService extends Service {
                 String reason = myIntent.getStringExtra(SYSTEM_REASON);
                 boolean homeKeyClick = false;
                 boolean recentApp = false;
-                if (reason.equals(SYSTEM_HOME_KEY)) {
-                    homeKeyClick = true;
-                } else if (reason.equals(SYSTEM_RECENTAPP_KEY)) {
-                    recentApp = true;
+                if (null != reason) {
+                    if (reason.equals(SYSTEM_HOME_KEY)) {
+                        homeKeyClick = true;
+                    } else if (reason.equals(SYSTEM_RECENTAPP_KEY)) {
+                        recentApp = true;
+                    }
                 }
                 MainController.get().onCloseSystemDialogs(homeKeyClick, recentApp);
             }
