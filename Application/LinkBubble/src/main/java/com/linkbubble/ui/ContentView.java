@@ -663,6 +663,17 @@ public class ContentView extends FrameLayout {
     WebRenderer.Controller mWebRendererController = new WebRenderer.Controller() {
 
         @Override
+        public void onWebViewContextMenuAppearedGone(boolean appeared) {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
+                return;
+            }
+            MainController mainController = MainController.get();
+            if (null != mainController) {
+                //mainController.onWebViewContextMenuAppearedGone(appeared);
+            }
+        }
+
+        @Override
         public void resetBubblePanelAdjustment() {
             if (!mWebRenderer.getView().hasFocus()) {
                 mWebRenderer.getView().requestFocus();

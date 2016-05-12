@@ -217,6 +217,15 @@ public class TabView extends BubbleView {
         return true;
     }
 
+    public void adjustLayoutOnCopyPasteMenu(int paddingTop) {
+        FrameLayout.LayoutParams currentParams = (FrameLayout.LayoutParams)mContentView.getLayoutParams();
+        if (null == currentParams) {
+            return;
+        }
+        currentParams.topMargin += paddingTop;
+        mContentView.setLayoutParams(currentParams);
+    }
+
     // Empty listener is set so that the mHideListener is not still used, potentially setting the view visibilty as GONE
     /*private Animator.AnimatorListener mShowListener = new Animator.AnimatorListener() {
         @Override
