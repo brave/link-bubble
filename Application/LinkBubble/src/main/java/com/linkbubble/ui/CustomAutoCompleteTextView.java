@@ -48,7 +48,6 @@ public class CustomAutoCompleteTextView extends AutoCompleteTextView {
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
     }
 
-    //@Override
     public boolean onTextContextMenuItem(int id) {
         if (null != mMainController && mCopyPasteContextMenuCreated) {
             mMainController.onBubbleFlowContextMenuAppearedGone(false);

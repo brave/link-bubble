@@ -231,6 +231,7 @@ public class MainController implements Choreographer.FrameCallback {
     private java.util.Timer mTimer = null;
 
     private boolean mHeightSizeTopMargin = false;
+    private boolean mStayInTopMargin = false;
 
     public boolean mRecentAppWasClicked = false;
 
@@ -368,20 +369,86 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void onWebViewContextMenuAppearedGone(boolean appeared) {
-        if (mHeightSizeTopMargin) {
-            return;
-        }
+        mStayInTopMargin = appeared;
         TabView currentTabView = getCurrentTab();
         if (null == currentTabView) {
             return;
         }
+        if (mHeightSizeTopMargin) {
+            return;
+        }
+        int toolbarHeight = currentTabView.toolbarHeight();
+        FrameLayout.LayoutParams currentParams = null;
+        try {
+            currentParams = (FrameLayout.LayoutParams) mBubbleFlowDraggable.getChildAt(0).getLayoutParams();
+        }
+        catch (NullPointerException exc) {
+        }
+        if (null == currentParams) {
+            return;
+        }
+        int animationDuration = ANIMATION_DURATION_BUBBLES_HIDE;
+        Animator.AnimatorListener animatorListener = null;
+        float adjustment = 0;
         if (appeared) {
-            currentTabView.adjustLayoutOnCopyPasteMenu(0 - mOriginalBubbleFlowDraggableParams.height);
-            mSetBubbleFlowGone = true;
-            mBubbleFlowDraggable.postDelayed(mSetBubbleFlowGoneRunnable, 33);
+            adjustment = 0 - (mOriginalBubbleFlowDraggableParams.height + currentParams.height + toolbarHeight);
+            animatorListener = new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animator) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    TabView view = mBubbleFlowDraggable.getCurrentTab();
+                    if (null != view && !view.mIsClosing) {
+                        mBubbleFlowDraggable.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animator) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animator) {
+
+                }
+            };
         } else {
-            currentTabView.adjustLayoutOnCopyPasteMenu(mOriginalBubbleFlowDraggableParams.height);
-            mBubbleFlowDraggable.setVisibility(View.VISIBLE);
+            adjustment = mOriginalLocationY;
+            animatorListener = new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animator) {
+                    if (mBubbleFlowDraggable.isExpanded()) {
+                        mBubbleFlowDraggable.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    if (mBubbleFlowDraggable.isExpanded()) {
+                        mBubbleFlowDraggable.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animator) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animator) {
+
+                }
+            };
+        }
+
+        if (currentTabView.adjustBubblesPanel(adjustment, appeared, animationDuration)) {
+            ObjectAnimator animator = ObjectAnimator.ofFloat(mBubbleFlowDraggable.getChildAt(0), "translationY", adjustment)
+                    .setDuration(animationDuration);
+            animator.addListener(animatorListener);
+            animator.start();
         }
     }
 
@@ -506,6 +573,9 @@ public class MainController implements Choreographer.FrameCallback {
     private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
 
     public void adjustBubblesPanel(int newY, int oldY, boolean afterTouchAdjust, boolean resetToOriginal) {
+        if (mStayInTopMargin) {
+            return;
+        }
         Settings settings = Settings.get();
         if (null != settings && !settings.isHideBubbles()) {
             return;

@@ -664,12 +664,13 @@ public class ContentView extends FrameLayout {
 
         @Override
         public void onWebViewContextMenuAppearedGone(boolean appeared) {
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1
+                    || mUrlTextView.getText().toString().equals(getContext().getString(R.string.empty_bubble_page))) {
                 return;
             }
             MainController mainController = MainController.get();
             if (null != mainController) {
-                //mainController.onWebViewContextMenuAppearedGone(appeared);
+                mainController.onWebViewContextMenuAppearedGone(appeared);
             }
         }
 
@@ -1980,9 +1981,14 @@ public class ContentView extends FrameLayout {
                     });
                     webView.requestFocusNodeHref(msg);
                 } if (string.equals(openLinkInNewBubbleLabel) || string.equals(openImageInNewBubbleLabel)) {
-                    //MainController.get().openUrl(urlAsString, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_TAB);
-                    MainApplication.openLink(getContext(), urlAsString,
-                            Analytics.OPENED_URL_FROM_NEW_TAB);
+                    MainController controller = MainController.get();
+                    if (null != controller) {
+                        controller.openUrl(urlAsString, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_TAB);
+                    }
+                    else {
+                        MainApplication.openLink(getContext(), urlAsString,
+                                Analytics.OPENED_URL_FROM_NEW_TAB);
+                    }
                 } else if (openInBrowserLabel != null && string.equals(openInBrowserLabel)) {
                     openInBrowser(urlAsString);
                 } else if (string.equals(shareLabel)) {
