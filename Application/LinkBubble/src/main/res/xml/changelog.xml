@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.9.21">
+        <change>BUG FIX: Fixed URL bar copy/paste menu for pre Android M devices.</change>
+        <change>BUG FIX: Corrected open links from twitter.</change>
+        <change>BUG FIX: Fixed memory leaks.</change>
+        <change>BUG FIX: Fixed top crashes.</change>
+    </release>
     <release version="1.9.20">
         <change>NEW: Implemented copy/paste functionality in the location bar and in web content.</change>
         <change>BUG FIX: Fixed remaining crashes in HTML select elements.</change>
