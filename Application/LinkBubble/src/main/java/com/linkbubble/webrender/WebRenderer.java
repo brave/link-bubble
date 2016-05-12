@@ -25,6 +25,7 @@ public abstract class WebRenderer {
     public interface Controller {
         public void resetBubblePanelAdjustment();
         public void adjustBubblesPanel(int newY, int oldY, boolean afterTouchAdjust);
+        public void onWebViewContextMenuAppearedGone(boolean appeared);
         public boolean shouldAdBlockUrl(String baseHost, String urlStr, String filterOption);
         public boolean shouldTrackingProtectionBlockUrl(String baseHost, String host);
         public String adInsertionList(String baseHost);

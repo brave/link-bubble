@@ -18,6 +18,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -119,6 +121,16 @@ class WebViewRenderer extends WebRenderer {
         mWebView.setOnLongClickListener(mOnWebViewLongClickListener);
         mWebView.setOnKeyListener(mOnKeyListener);
         mWebView.setOnScrollChangedCallback(mOnScrollChangedCallback);
+        mWebView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+            @Override
+            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+                if (!mWebView.mCopyPasteContextMenuCreated) {
+                    mController.onWebViewContextMenuAppearedGone(true);
+                    mWebView.mCopyPasteContextMenuCreated = true;
+                }
+            }
+        });
+        mWebView.configure(mController);
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -459,10 +471,26 @@ class WebViewRenderer extends WebRenderer {
                     break;
             }
             // Forcibly pass along to the WebView. This ensures we receive the ACTION_UP event above.
+            gestureDetector.onTouchEvent(event);
             mWebView.onTouchEvent(event);
             return true;
         }
     };
+
+    final GestureDetector gestureDetector = new GestureDetector(mContext, new GestureListener());
+
+    public class GestureListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onSingleTapUp(MotionEvent e)
+        {
+            if (null != mController && mWebView.mCopyPasteContextMenuCreated) {
+                mController.onWebViewContextMenuAppearedGone(false);
+                mWebView.mCopyPasteContextMenuCreated = false;
+            }
+
+            return super.onSingleTapUp(e);
+        }
+    }
 
     WebViewClient mWebViewClient = new WebViewClient() {
         @Override

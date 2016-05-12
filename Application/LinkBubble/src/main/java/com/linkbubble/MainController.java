@@ -354,6 +354,35 @@ public class MainController implements Choreographer.FrameCallback {
         else {
             mBubbleFlowDraggable.setVisibility(View.VISIBLE);
         }
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            TabView currentTabView = getCurrentTab();
+            if (null == currentTabView) {
+                return;
+            }
+            int adjustOn = mOriginalBubbleFlowDraggableParams.height;
+            if (appeared) {
+                adjustOn = 0 - mOriginalBubbleFlowDraggableParams.height;
+            }
+            currentTabView.adjustLayoutOnCopyPasteMenu(adjustOn);
+        }
+    }
+
+    public void onWebViewContextMenuAppearedGone(boolean appeared) {
+        if (mHeightSizeTopMargin) {
+            return;
+        }
+        TabView currentTabView = getCurrentTab();
+        if (null == currentTabView) {
+            return;
+        }
+        if (appeared) {
+            currentTabView.adjustLayoutOnCopyPasteMenu(0 - mOriginalBubbleFlowDraggableParams.height);
+            mSetBubbleFlowGone = true;
+            mBubbleFlowDraggable.postDelayed(mSetBubbleFlowGoneRunnable, 33);
+        } else {
+            currentTabView.adjustLayoutOnCopyPasteMenu(mOriginalBubbleFlowDraggableParams.height);
+            mBubbleFlowDraggable.setVisibility(View.VISIBLE);
+        }
     }
 
     private boolean mSetBubbleFlowGone = false;
@@ -395,10 +424,6 @@ public class MainController implements Choreographer.FrameCallback {
             return result;
         }
     };
-
-    public void addBubble(View view, boolean insertNextToCenterItem) {
-        mBubbleFlowDraggable.add(view, insertNextToCenterItem);
-    }
 
     protected MainController(Context context, EventHandler eventHandler) {
         Util.Assert(sInstance == null, "non-null instance");
