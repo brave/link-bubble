@@ -58,6 +58,7 @@ public class BubbleFlowActivity extends Activity {
         mContentViews = new ArrayList<>();
         mPreClosedContentViews = new ArrayList<>();
         setVisible(false);
+        moveTaskToBack(true);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_bubble_flow);
@@ -152,6 +153,7 @@ public class BubbleFlowActivity extends Activity {
                         Log.d("TAG", "!!!!! ACTIVITY GONE");
                         mCollapsed = true;
                         setVisible(false);
+                        moveTaskToBack(true);
 
                         break;
                     case EXPAND:
@@ -255,6 +257,7 @@ public class BubbleFlowActivity extends Activity {
         if (!controller.mBubbleFlowDraggable.isExpanded()) {
             Log.d("TAG", "!!!!! ACTIVITY1 GONE");
             setVisible(false);
+            moveTaskToBack(true);
         }
         else {
             Log.d("TAG", "!!!!! ACTIVITY1 VISIBLE");
