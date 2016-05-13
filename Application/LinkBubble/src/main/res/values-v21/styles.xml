@@ -21,6 +21,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:popupMenuStyle">@style/popupMenuStyleLight</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
     <style name="ThemeTransparentDark" parent="android:Theme.Material">
@@ -30,6 +31,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:popupMenuStyle">@style/popupMenuStyleDark</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
 
