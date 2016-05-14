@@ -115,6 +115,10 @@ public abstract class WebRenderer {
 
     public abstract void pauseOnSetInactive();
 
+    public abstract boolean isCopyPasteShown();
+
+    public abstract void copyPasteDialogWasDestroyed();
+
     public void onPageLoadComplete() {}
 
     public URL getUrl() {

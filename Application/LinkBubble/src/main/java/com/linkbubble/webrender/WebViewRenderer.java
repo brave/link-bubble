@@ -125,12 +125,11 @@ class WebViewRenderer extends WebRenderer {
             @Override
             public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
                 if (!mWebView.mCopyPasteContextMenuCreated) {
-                    mController.onWebViewContextMenuAppearedGone(true);
                     mWebView.mCopyPasteContextMenuCreated = true;
+                    mController.onWebViewContextMenuAppearedGone(true);
                 }
             }
         });
-        mWebView.configure(mController);
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -204,6 +203,19 @@ class WebViewRenderer extends WebRenderer {
             mWebView.getSettings().setAppCacheEnabled(true);
 
             mWebView.getSettings().setSaveFormData(true);
+        }
+    }
+
+    @Override
+    public boolean isCopyPasteShown() {
+        return mWebView.mCopyPasteContextMenuCreated;
+    }
+
+    @Override
+    public void copyPasteDialogWasDestroyed() {
+        if (null != mController && mWebView.mCopyPasteContextMenuCreated) {
+            mWebView.mCopyPasteContextMenuCreated = false;
+            mController.onWebViewContextMenuAppearedGone(false);
         }
     }
 
@@ -471,26 +483,10 @@ class WebViewRenderer extends WebRenderer {
                     break;
             }
             // Forcibly pass along to the WebView. This ensures we receive the ACTION_UP event above.
-            gestureDetector.onTouchEvent(event);
             mWebView.onTouchEvent(event);
             return true;
         }
     };
-
-    final GestureDetector gestureDetector = new GestureDetector(mContext, new GestureListener());
-
-    public class GestureListener extends GestureDetector.SimpleOnGestureListener {
-        @Override
-        public boolean onSingleTapUp(MotionEvent e)
-        {
-            if (null != mController && mWebView.mCopyPasteContextMenuCreated) {
-                mController.onWebViewContextMenuAppearedGone(false);
-                mWebView.mCopyPasteContextMenuCreated = false;
-            }
-
-            return super.onSingleTapUp(e);
-        }
-    }
 
     WebViewClient mWebViewClient = new WebViewClient() {
         @Override
