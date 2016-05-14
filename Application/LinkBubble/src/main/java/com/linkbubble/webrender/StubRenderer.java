@@ -76,6 +76,16 @@ class StubRenderer extends WebRenderer {
     }
 
     @Override
+    public boolean isCopyPasteShown() {
+        return false;
+    }
+
+    @Override
+    public void copyPasteDialogWasDestroyed() {
+
+    }
+
+    @Override
     public YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper() {
         return null;
     }

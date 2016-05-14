@@ -14,7 +14,6 @@ public class CustomWebView extends WebView {
     private OnScrollChangedCallback mOnScrollChangedCallback;
     public boolean mInterceptScrollChangeCalls = false;
     public boolean mCopyPasteContextMenuCreated = false;
-    private WebRenderer.Controller mController = null;
 
     public CustomWebView(Context context) {
         super(context);
@@ -26,20 +25,6 @@ public class CustomWebView extends WebView {
 
     public CustomWebView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    public void configure(WebRenderer.Controller mainController) {
-        mController = mainController;
-    }
-
-    @Override
-    public void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
-        if (!focused && null != mController && mCopyPasteContextMenuCreated) {
-            mController.onWebViewContextMenuAppearedGone(false);
-            mCopyPasteContextMenuCreated = false;
-        }
-
-        super.onFocusChanged(focused, direction, previouslyFocusedRect);
     }
 
     @Override

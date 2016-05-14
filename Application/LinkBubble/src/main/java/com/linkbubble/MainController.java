@@ -572,6 +572,19 @@ public class MainController implements Choreographer.FrameCallback {
     private TextView mTextView;
     private WindowManager.LayoutParams mWindowManagerParams = new WindowManager.LayoutParams();
 
+    public int getCurrentHeight() {
+        FrameLayout.LayoutParams currentParams = null;
+        try {
+            currentParams = (FrameLayout.LayoutParams) mBubbleFlowDraggable.getChildAt(0).getLayoutParams();
+        }
+        catch (NullPointerException exc) {
+        }
+        if (null == currentParams) {
+            return mOriginalBubbleFlowDraggableParams.height;
+        }
+
+        return mOriginalBubbleFlowDraggableParams.height + currentParams.height;
+    }
     public void adjustBubblesPanel(int newY, int oldY, boolean afterTouchAdjust, boolean resetToOriginal) {
         if (mStayInTopMargin) {
             return;
@@ -1396,6 +1409,7 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void expandBubbleFlow(long time, boolean hideDraggable) {
+        mStayInTopMargin = false;
         if (Constant.ACTIVITY_WEBVIEW_RENDERING) {
             mDeferredExpandBubbleFlowTime = time;
             mDeferredExpandBubbleFlowHideDraggable = hideDraggable;
@@ -1422,6 +1436,7 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void collapseBubbleFlow(long time) {
+        mStayInTopMargin = false;
         try {
             mCurrentAdjustment = mOriginalLocationY;
             TabView currentTabView = getCurrentTab();

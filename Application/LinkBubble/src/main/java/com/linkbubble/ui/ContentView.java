@@ -42,6 +42,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -166,6 +167,9 @@ public class ContentView extends FrameLayout {
     private boolean mSetTheRealUrlString = true;
     private boolean mFirstTimeUrlTyped = true;
     private boolean mHostInWhiteList = false;
+
+    private int mToolBarHeight = DEFAULT_TOOLBAR_SIZE;
+    private int[] mOriginalLocation = new int[2];
 
     ConcurrentHashMap<String, Integer> mHostRedirectCounter;
 
@@ -381,13 +385,19 @@ public class ContentView extends FrameLayout {
     }
 
     public int toolbarHeight() {
+        return mToolBarHeight;
+    }
+
+    public void calculateToolbarHeight() {
         FrameLayout.LayoutParams currentUrlBarParams = (FrameLayout.LayoutParams)mContentEditUrl.getLayoutParams();
         FrameLayout.LayoutParams currentShadowParams = (FrameLayout.LayoutParams)findViewById(R.id.actionbar_shadow).getLayoutParams();
         if (null != currentUrlBarParams && null != currentShadowParams) {
-            return currentUrlBarParams.height + currentShadowParams.height;
+            mToolBarHeight = currentUrlBarParams.height + currentShadowParams.height;
+
+            return;
         }
 
-        return DEFAULT_TOOLBAR_SIZE;
+        mToolBarHeight = DEFAULT_TOOLBAR_SIZE;
     }
     // The function configures the urlBar
     private void configureUrlBar(String urlAsString, final MainController controller) {
@@ -463,6 +473,34 @@ public class ContentView extends FrameLayout {
         View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
         mWebRenderer = WebRenderer.create(WebRenderer.Type.WebView, getContext(), mWebRendererController, webRendererPlaceholder, TAG);
         mWebRenderer.setUrl(mWebRendererController.getHTTPSUrl(urlAsString));
+
+        getLocationOnScreen(mOriginalLocation);
+        getViewTreeObserver().addOnGlobalLayoutListener(
+                new ViewTreeObserver.OnGlobalLayoutListener() {
+
+                    @SuppressLint("NewApi")
+                    @Override
+                    public void onGlobalLayout() {
+                        // We do that to detect when copy/paste dialog is going to destroy on pre Android M
+                        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1
+                                || (null == mWebRenderer || !mWebRenderer.isCopyPasteShown())
+                                && (null == mArticleRenderer || !mArticleRenderer.isCopyPasteShown())) {
+                            return;
+                        }
+                        int[] location = new int[2];
+                        getLocationOnScreen(location);
+                        if (location[1] - mOriginalLocation[1] >= 0 ||
+                                location[1] - mOriginalLocation[1] + (mController.getCurrentHeight() + toolbarHeight()) < -10) {
+                            return;
+                        }
+                        if (mWebRenderer.isCopyPasteShown()) {
+                            mWebRenderer.copyPasteDialogWasDestroyed();
+                        }
+                        else {
+                            mArticleRenderer.copyPasteDialogWasDestroyed();
+                        }
+                    }
+                });
 
         // Generates 1000 history links
         /*for (int i = 0; i < 1000; i++) {
@@ -546,6 +584,7 @@ public class ContentView extends FrameLayout {
         updateUrlTitleAndText(urlAsString);
 
         updateColors(null);
+        calculateToolbarHeight();
     }
 
     private void WorkWithURL(String strUrl, SearchURLSuggestions.SearchEngine selectedSearchEngine, boolean fromGoAction) {
@@ -1667,6 +1706,18 @@ public class ContentView extends FrameLayout {
             // Ugly hack to get ensure the Back button works in Article mode
             if (mArticleModeButton.getState() == ArticleModeButton.State.Web) {
                 mWebRenderer.getView().setVisibility(View.INVISIBLE);
+            }
+        }
+
+        @Override
+        public void onWebViewContextMenuAppearedGone(boolean appeared) {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1
+                    || mUrlTextView.getText().toString().equals(getContext().getString(R.string.empty_bubble_page))) {
+                return;
+            }
+            MainController mainController = MainController.get();
+            if (null != mainController) {
+                mainController.onWebViewContextMenuAppearedGone(appeared);
             }
         }
     };;

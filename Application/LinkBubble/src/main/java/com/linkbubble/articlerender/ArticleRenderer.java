@@ -7,6 +7,7 @@ package com.linkbubble.articlerender;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.DownloadListener;
@@ -19,6 +20,7 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.Settings;
 import com.linkbubble.util.Util;
+import com.linkbubble.webrender.CustomWebView;
 import com.squareup.otto.Subscribe;
 
 
@@ -30,10 +32,11 @@ public class ArticleRenderer {
         public boolean onBackPressed();
         public void onShowBrowserPrompt();
         public void onFirstPageLoadStarted();
+        public void onWebViewContextMenuAppearedGone(boolean appeared);
     }
 
     private Context mContext;
-    private WebView mWebView;
+    private CustomWebView mWebView;
     private boolean mIsDestroyed = false;
     private boolean mFirstPageLoadTriggered = false;
     private Controller mController;
@@ -44,7 +47,7 @@ public class ArticleRenderer {
         mController = controller;
         Log.e(BATTERY_SAVE_TAG, "create: " + this.getClass().getSimpleName());
 
-        mWebView = new WebView(context);
+        mWebView = new CustomWebView(context);
         mWebView.setLayoutParams(articleRendererPlaceholder.getLayoutParams());
         Util.replaceViewAtPosition(articleRendererPlaceholder, mWebView);
 
@@ -53,6 +56,16 @@ public class ArticleRenderer {
         mWebView.setOnKeyListener(mOnKeyListener);
 
         mWebView.setWebViewClient(mWebViewClient);
+
+        mWebView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+            @Override
+            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+                if (!mWebView.mCopyPasteContextMenuCreated) {
+                    mWebView.mCopyPasteContextMenuCreated = true;
+                    mController.onWebViewContextMenuAppearedGone(true);
+                }
+            }
+        });
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setSupportZoom(true);
@@ -93,6 +106,17 @@ public class ArticleRenderer {
 
     public View getView() {
         return mWebView;
+    }
+
+    public boolean isCopyPasteShown() {
+        return mWebView.mCopyPasteContextMenuCreated;
+    }
+
+    public void copyPasteDialogWasDestroyed() {
+        if (null != mController && mWebView.mCopyPasteContextMenuCreated) {
+            mWebView.mCopyPasteContextMenuCreated = false;
+            mController.onWebViewContextMenuAppearedGone(false);
+        }
     }
 
     public void stopLoading() {
@@ -139,9 +163,9 @@ public class ArticleRenderer {
 
                 case WebView.HitTestResult.UNKNOWN_TYPE:
                 default:
-                    if (Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
-                        mController.onShowBrowserPrompt();
-                    }
+                    //if (Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
+                    //    mController.onShowBrowserPrompt();
+                    //}
                     return false;
             }
         }
