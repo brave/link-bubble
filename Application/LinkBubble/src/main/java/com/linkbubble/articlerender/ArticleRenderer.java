@@ -9,7 +9,9 @@ import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.DownloadListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -33,6 +35,8 @@ public class ArticleRenderer {
         public void onShowBrowserPrompt();
         public void onFirstPageLoadStarted();
         public void onWebViewContextMenuAppearedGone(boolean appeared);
+        public void resetBubblePanelAdjustment();
+        public void adjustBubblesPanel(int newY, int oldY, boolean afterTouchAdjust);
     }
 
     private Context mContext;
@@ -66,6 +70,8 @@ public class ArticleRenderer {
                 }
             }
         });
+        mWebView.setOnScrollChangedCallback(mOnScrollChangedCallback);
+        mWebView.setOnTouchListener(mRealWebViewOnTouchListener);
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setSupportZoom(true);
@@ -265,4 +271,36 @@ public class ArticleRenderer {
                 break;
         }
     }
+
+    CustomWebView.OnScrollChangedCallback mOnScrollChangedCallback = new CustomWebView.OnScrollChangedCallback() {
+        @Override
+        public void onScroll(int newY, int oldY) {
+            if (!mWebView.mInterceptScrollChangeCalls && 0 == newY) {
+                mController.resetBubblePanelAdjustment();
+            }
+            else {
+                mController.adjustBubblesPanel(newY, oldY, false);
+            }
+        }
+    };
+
+    private View.OnTouchListener mRealWebViewOnTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            final int action = event.getAction() & MotionEvent.ACTION_MASK;
+            switch (action) {
+                case MotionEvent.ACTION_DOWN:
+                    mWebView.mInterceptScrollChangeCalls = true;
+                    break;
+
+                case MotionEvent.ACTION_UP:
+                    mWebView.mInterceptScrollChangeCalls = false;
+                    mController.adjustBubblesPanel(0, 0, true);
+                    break;
+            }
+            mWebView.onTouchEvent(event);
+
+            return true;
+        }
+    };
 }

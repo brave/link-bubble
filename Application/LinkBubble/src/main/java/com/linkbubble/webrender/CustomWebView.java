@@ -43,7 +43,7 @@ public class CustomWebView extends WebView {
     }
 
 
-    public static interface OnScrollChangedCallback
+    public interface OnScrollChangedCallback
     {
         void onScroll(int newY, int oldY);
     }

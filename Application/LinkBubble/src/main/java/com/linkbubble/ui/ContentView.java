@@ -1720,7 +1720,29 @@ public class ContentView extends FrameLayout {
                 mainController.onWebViewContextMenuAppearedGone(appeared);
             }
         }
-    };;
+
+        @Override
+        public void resetBubblePanelAdjustment() {
+            if (!mArticleRenderer.getView().hasFocus()) {
+                mArticleRenderer.getView().requestFocus();
+            }
+            MainController mainController = MainController.get();
+            if (null != mainController) {
+                mainController.adjustBubblesPanel(0, 0, false, true);
+            }
+        }
+
+        @Override
+        public void adjustBubblesPanel(int newY, int oldY, boolean afterTouchAdjust) {
+            if (!mArticleRenderer.getView().hasFocus()) {
+                mArticleRenderer.getView().requestFocus();
+            }
+            MainController mainController = MainController.get();
+            if (null != mainController) {
+                mainController.adjustBubblesPanel(newY, oldY, afterTouchAdjust, false);
+            }
+        }
+    };
 
     OnClickListener mOnArticleModeButtonClickListener = new OnClickListener() {
         @Override
@@ -1736,6 +1758,7 @@ public class ContentView extends FrameLayout {
                         mArticleRenderer.getView().setVisibility(View.INVISIBLE);
                     }
                     mWebRenderer.getView().setVisibility(View.VISIBLE);
+                    mWebRenderer.getView().bringToFront();
                     break;
 
                 case Web:
@@ -1747,6 +1770,7 @@ public class ContentView extends FrameLayout {
                         mWebRenderer.getView().setVisibility(View.INVISIBLE);
                     }
                     mArticleRenderer.getView().setVisibility(VISIBLE);
+                    mArticleRenderer.getView().bringToFront();
                     break;
             }
         }

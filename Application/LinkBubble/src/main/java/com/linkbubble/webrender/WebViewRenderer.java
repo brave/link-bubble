@@ -19,12 +19,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.ContextMenu;
-import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.ConsoleMessage;
 import android.webkit.CookieManager;
@@ -49,7 +47,6 @@ import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.articlerender.ArticleContent;
-import com.linkbubble.ui.TabView;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.NetworkConnectivity;
@@ -72,7 +69,6 @@ class WebViewRenderer extends WebRenderer {
     protected String TAG;
     private Handler mHandler;
     protected CustomWebView mWebView;
-    private View mTouchInterceptorView;
     private long mLastWebViewTouchUpTime = -1;
     private String mLastWebViewTouchDownUrl;
     private String mHost;
@@ -105,15 +101,6 @@ class WebViewRenderer extends WebRenderer {
         mWebView.setLayoutParams(webRendererPlaceholder.getLayoutParams());
         Util.replaceViewAtPosition(webRendererPlaceholder, mWebView);
 
-        mTouchInterceptorView = new View(mContext);
-        mTouchInterceptorView.setLayoutParams(webRendererPlaceholder.getLayoutParams());
-        mTouchInterceptorView.setWillNotDraw(true);
-        mTouchInterceptorView.setOnTouchListener(mWebViewOnTouchListener);
-
-        ViewGroup parent = (ViewGroup)mWebView.getParent();
-        int index = parent.indexOfChild(mWebView);
-        parent.addView(mTouchInterceptorView, index + 1);
-
         mWebView.setLongClickable(true);
         mWebView.setWebChromeClient(mWebChromeClient);
         mWebView.setWebViewClient(mWebViewClient);
@@ -130,6 +117,7 @@ class WebViewRenderer extends WebRenderer {
                 }
             }
         });
+        mWebView.setOnTouchListener(mRealWebViewOnTouchListener);
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -464,7 +452,7 @@ class WebViewRenderer extends WebRenderer {
         }
     };
 
-    private View.OnTouchListener mWebViewOnTouchListener = new View.OnTouchListener() {
+    private View.OnTouchListener mRealWebViewOnTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             final int action = event.getAction() & MotionEvent.ACTION_MASK;
@@ -472,18 +460,16 @@ class WebViewRenderer extends WebRenderer {
                 case MotionEvent.ACTION_DOWN:
                     mLastWebViewTouchDownUrl = mUrl.toString();
                     mWebView.mInterceptScrollChangeCalls = true;
-                    //Log.d(TAG, "[urlstack] WebView - MotionEvent.ACTION_DOWN");
                     break;
 
                 case MotionEvent.ACTION_UP:
                     mLastWebViewTouchUpTime = System.currentTimeMillis();
                     mWebView.mInterceptScrollChangeCalls = false;
-                    //Log.d(TAG, "[urlstack] WebView - MotionEvent.ACTION_UP");
                     mController.adjustBubblesPanel(0, 0, true);
                     break;
             }
-            // Forcibly pass along to the WebView. This ensures we receive the ACTION_UP event above.
             mWebView.onTouchEvent(event);
+
             return true;
         }
     };
