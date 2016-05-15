@@ -38,6 +38,7 @@ public class MainService extends Service {
     private static final String BCAST_CONFIGCHANGED = "android.intent.action.CONFIGURATION_CHANGED";
 
     private boolean mRestoreComplete;
+    private boolean mDestroyAllActivities = true;
 
     public static class UpdateNotificationEvent {
     }
@@ -110,6 +111,7 @@ public class MainService extends Service {
     @Override
     public void onCreate() {
 
+        mDestroyAllActivities = true;
         mRestoreComplete = false;
 
         setTheme(Settings.get().getDarkThemeEnabled() ? R.style.MainServiceThemeDark : R.style.MainServiceThemeLight);
@@ -172,7 +174,9 @@ public class MainService extends Service {
 
     @Override
     public void onDestroy() {
-        MainApplication.postEvent(MainService.this, new OnDestroyMainServiceEvent());
+        if (mDestroyAllActivities) {
+            MainApplication.postEvent(MainService.this, new OnDestroyMainServiceEvent());
+        }
         MainApplication.unregisterForBus(this, this);
         unregisterReceiver(mScreenReceiver);
         unregisterReceiver(mDialogReceiver);
@@ -301,6 +305,7 @@ public class MainService extends Service {
     @Subscribe
     public void onReloadMainServiceEvent(ReloadMainServiceEvent event) {
         Vector<String> urls = Settings.get().loadCurrentTabs();
+        mDestroyAllActivities = false;
         stopSelf();
         new WaitActivityDestroyedRestoreLinksEvent(event.mContext, urls).execute();
     }
