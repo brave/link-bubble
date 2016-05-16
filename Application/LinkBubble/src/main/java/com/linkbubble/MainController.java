@@ -96,9 +96,6 @@ public class MainController implements Choreographer.FrameCallback {
         public float mPeriod;
     }
 
-    public static class EndExpandTransitionEvent {
-    }
-
     public static class BeginCollapseTransitionEvent {
         public float mPeriod;
     }
@@ -779,14 +776,6 @@ public class MainController implements Choreographer.FrameCallback {
 
     @SuppressWarnings("unused")
     @Subscribe
-    public void onEndExpandTransition(MainController.EndExpandTransitionEvent e) {
-        if (Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
-            showExpandedActivity();
-        }
-    }
-
-    @SuppressWarnings("unused")
-    @Subscribe
     public void onExpandedActivityReadyEvent(ExpandedActivity.ExpandedActivityReadyEvent event) {
         if (mDeferredExpandBubbleFlowTime > -1) {
             doExpandBubbleFlow(mDeferredExpandBubbleFlowTime, mDeferredExpandBubbleFlowHideDraggable);
@@ -796,16 +785,6 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     static public long sStartExpandedActivityTime = -1;
-
-    public void showExpandedActivity() {
-        Log.e(TAG, "showExpandedActivity()");
-        // to do debug
-        //sStartExpandedActivityTime = System.currentTimeMillis();
-        //Intent intent = new Intent(mContext, ExpandedActivity.class);
-        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        //mContext.getApplicationContext().startActivity(intent);
-        //
-    }
 
     public void scheduleUpdate() {
         if (!mUpdateScheduled) {
@@ -1208,10 +1187,6 @@ public class MainController implements Choreographer.FrameCallback {
                 final float bubblePeriod = (float) Constant.BUBBLE_ANIM_TIME / 1000.f;
                 final float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
                 expandBubbleFlow((long) (contentPeriod * 1000), false);
-                if (Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
-                    // No need to do this if above is true because it's already done
-                    showExpandedActivity();
-                }
             }
         } else {
             showBadge(true);
@@ -1413,7 +1388,6 @@ public class MainController implements Choreographer.FrameCallback {
         if (Constant.ACTIVITY_WEBVIEW_RENDERING) {
             mDeferredExpandBubbleFlowTime = time;
             mDeferredExpandBubbleFlowHideDraggable = hideDraggable;
-            showExpandedActivity();
         } else {
             doExpandBubbleFlow(time, hideDraggable);
         }

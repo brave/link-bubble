@@ -477,11 +477,11 @@ public class CanvasView extends FrameLayout {
         fadeIn();
 
         if (mContentView != null) {
+            mContentView.onAnimateOnScreen();
             if (null == mContentView.getParent()) {
                 addView(mContentView);
+                showContentView();
             }
-            mContentView.onAnimateOnScreen();
-            showContentView();
         }
     }
 

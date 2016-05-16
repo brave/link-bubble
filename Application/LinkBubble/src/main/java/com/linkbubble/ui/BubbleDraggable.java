@@ -45,7 +45,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     private MainController.BeginBubbleDragEvent mBeginBubbleDragEvent = new MainController.BeginBubbleDragEvent();
     private MainController.DraggableBubbleMovedEvent mDraggableBubbleMovedEvent = new MainController.DraggableBubbleMovedEvent();
     private MainController.EndBubbleDragEvent mEndBubbleDragEvent = new MainController.EndBubbleDragEvent();
-    private MainController.EndExpandTransitionEvent mEndExpandTransitionEvent = new MainController.EndExpandTransitionEvent();
     private MainController.BeginCollapseTransitionEvent mBeginCollapseTransitionEvent = new MainController.BeginCollapseTransitionEvent();
     private MainController.EndCollapseTransitionEvent mEndCollapseTransitionEvent = new MainController.EndCollapseTransitionEvent();
 
@@ -393,9 +392,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                     MainApplication.postEvent(getContext(), new MainController.EndCollapseTransitionEvent());
                     //MainApplication.postEvent(getContext(), new ExpandedActivity.MinimizeExpandedActivityEvent());
                     CrashTracking.log("doAnimateToContentView(): onAnimationComplete(): getActiveTabCount()==0");
-                } else {
-                    MainApplication.postEvent(getContext(), mEndExpandTransitionEvent);
-                    CrashTracking.log("doAnimateToContentView(): onAnimationComplete(): getActiveTabCount():" + activeCount);
                 }
             }
             @Override
