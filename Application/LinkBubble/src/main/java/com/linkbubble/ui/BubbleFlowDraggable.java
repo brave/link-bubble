@@ -165,7 +165,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             }
 
             @Override
-            public void onActionUp(DraggableHelper.ReleaseEvent event) {
+            public void onActionUp(DraggableHelper.ReleaseEvent event, boolean startDelay) {
                 if (mEventHandler != null) {
                     mEventHandler.onMotionEvent_Release(BubbleFlowDraggable.this, event);
                 }

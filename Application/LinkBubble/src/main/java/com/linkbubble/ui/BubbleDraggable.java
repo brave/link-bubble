@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
+import android.os.AsyncTask;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -101,7 +102,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(Constant.BUBBLE_ANIM_TIME);
         mBadgeView.animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(Constant.BUBBLE_ANIM_TIME);
 
-        setTargetPos(xp, yp, 0.5f, DraggableHelper.AnimationType.MediumOvershoot, new DraggableHelper.AnimationEventListener() {
+        setTargetPos(xp, yp, 0.5f, DraggableHelper.AnimationType.MediumOvershoot, false, new DraggableHelper.AnimationEventListener() {
             @Override
             public void onAnimationComplete() {
                 onAnimComplete();
@@ -120,7 +121,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     public void switchToExpandedView(MainController controller) {
-        doAnimateToContentView(controller);
+        doAnimateToContentView(controller, false);
     }
 
     private void doSnapAction(Constant.BubbleAction action) {
@@ -133,7 +134,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         } else {
             if (mainController.closeCurrentTab(action, false)) {
                 if (mMode == Mode.ContentView && action == Constant.BubbleAction.Close) {
-                    doAnimateToContentView(mainController);
+                    doAnimateToContentView(mainController, false);
                 } else {
                     doAnimateToBubbleView(0);
                 }
@@ -237,7 +238,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(Constant.BUBBLE_ANIM_TIME);
         mBadgeView.animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(Constant.BUBBLE_ANIM_TIME);
 
-        setTargetPos(targetX, targetY, flickAnimPeriod, animType, new DraggableHelper.AnimationEventListener() {
+        setTargetPos(targetX, targetY, flickAnimPeriod, animType, false, new DraggableHelper.AnimationEventListener() {
             @Override
             public void onAnimationComplete() {
                 BubbleTargetView.disableTractor();
@@ -270,7 +271,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         MainController.get().collapseBubbleFlow(0);
 
         Point bubbleRestingPoint = Settings.get().getBubbleRestingPoint();
-        setTargetPos(bubbleRestingPoint.x, bubbleRestingPoint.y, 0, DraggableHelper.AnimationType.Linear, null);
+        setTargetPos(bubbleRestingPoint.x, bubbleRestingPoint.y, 0, DraggableHelper.AnimationType.Linear, false, null);
 
         MainApplication.postEvent(getContext(), mEndCollapseTransitionEvent);
     }
@@ -311,7 +312,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         }
 
         Point bubbleRestingPoint = Settings.get().getBubbleRestingPoint();
-        setTargetPos(bubbleRestingPoint.x, bubbleRestingPoint.y, bubblePeriod, DraggableHelper.AnimationType.SmallOvershoot, new DraggableHelper.AnimationEventListener() {
+        setTargetPos(bubbleRestingPoint.x, bubbleRestingPoint.y, bubblePeriod, DraggableHelper.AnimationType.SmallOvershoot, false, new DraggableHelper.AnimationEventListener() {
             @Override
             public void onAnimationComplete() {
                 mBubbleFlowDraggable.hideActivity();
@@ -331,14 +332,14 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         MainApplication.postEvent(getContext(), mBeginCollapseTransitionEvent);
     }
 
-    public void doAnimateToContentView(MainController controller) {
+    public void doAnimateToContentView(MainController controller, boolean startDelay) {
         Intent intentActivity = new Intent(getContext(), BubbleFlowActivity.class);
         intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         getContext().startActivity(intentActivity);
-        doAnimateToContentView(true, controller);
+        doAnimateToContentView(true, startDelay, controller);
     }
 
-    private void doAnimateToContentView(boolean saveBubbleRestingPoint, MainController controller) {
+    private void doAnimateToContentView(boolean saveBubbleRestingPoint, boolean startDelay, MainController controller) {
         CrashTracking.log("doAnimateToContentView()");
         if (mAnimActive) {
             if (mMode == Mode.ContentView) {
@@ -372,7 +373,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         int xp = (int) Config.getContentViewX(0, 1);
         int yp = Config.mContentViewBubbleY;
 
-        setTargetPos(xp, yp, bubblePeriod, DraggableHelper.AnimationType.SmallOvershoot, new DraggableHelper.AnimationEventListener() {
+        setTargetPos(xp, yp, bubblePeriod, DraggableHelper.AnimationType.SmallOvershoot, startDelay, new DraggableHelper.AnimationEventListener() {
             @Override
             public void onAnimationComplete() {
                 onAnimComplete();
@@ -478,7 +479,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
                         if (mCurrentSnapTarget == null) {
                             if (tv == null) {
-                                setTargetPos(targetX, targetY, 0.0f, DraggableHelper.AnimationType.DistanceProportion, null);
+                                setTargetPos(targetX, targetY, 0.0f, DraggableHelper.AnimationType.DistanceProportion, false, null);
                             } else {
                                 tv.beginSnapping();
                                 mCurrentSnapTarget = tv;
@@ -487,7 +488,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                                 Circle dc = tv.GetDefaultCircle();
                                 int xt = (int) (0.5f + dc.mX - Config.mBubbleWidth * 0.5f);
                                 int yt = (int) (0.5f + dc.mY - Config.mBubbleHeight * 0.5f);
-                                setTargetPos(xt, yt, Config.ANIMATE_TO_SNAP_TIME, DraggableHelper.AnimationType.Linear, new DraggableHelper.AnimationEventListener() {
+                                setTargetPos(xt, yt, Config.ANIMATE_TO_SNAP_TIME, DraggableHelper.AnimationType.Linear, false, new DraggableHelper.AnimationEventListener() {
                                     @Override
                                     public void onAnimationComplete() {
                                         onAnimComplete();
@@ -500,7 +501,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                             }
                         } else {
                             if (tv == null) {
-                                setTargetPos(targetX, targetY, 0.05f, DraggableHelper.AnimationType.Linear, new DraggableHelper.AnimationEventListener() {
+                                setTargetPos(targetX, targetY, 0.05f, DraggableHelper.AnimationType.Linear, false, new DraggableHelper.AnimationEventListener() {
                                     @Override
                                     public void onAnimationComplete() {
                                         mCurrentSnapTarget.endSnapping();
@@ -521,7 +522,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             }
 
             @Override
-            public void onActionUp(DraggableHelper.ReleaseEvent e) {
+            public void onActionUp(DraggableHelper.ReleaseEvent e, boolean startDelay) {
                 if (mTouchDown) {
                     CrashTracking.log("BubbleDraggable.configure(): onActionUp() - end drag");
                     mDraggableHelper.cancelAnimation();
@@ -549,7 +550,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                                     doSnap();
                                 } else {
                                     CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doAnimateToContentView() [mHasMoved==true]");
-                                    doAnimateToContentView(controller);
+                                    doAnimateToContentView(controller, startDelay);
                                 }
                             }
                         } else {
@@ -562,11 +563,11 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
                         if (mMode == Mode.BubbleView) {
                             CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doAnimateToContentView() [mMode == Mode.BubbleView]");
-                            doAnimateToContentView(controller);
+                            doAnimateToContentView(controller, startDelay);
                         } else {
                             if (mMode == Mode.ContentView && mBubbleFlowDraggable.isExpanded() == false) {
                                 CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doAnimateToContentView() [mMode == Mode.ContentView]");
-                                doAnimateToContentView(controller);
+                                doAnimateToContentView(controller, startDelay);
                             } else {
                                 CrashTracking.log("BubbleDraggable.configure(): onActionUp() - doAnimateToBubbleView()");
                                 doAnimateToBubbleView(0);
@@ -589,7 +590,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     public void slideOnScreen(int x0, int y0, int targetX, int targetY, int targetTime) {
         setExactPos(x0, y0);
         if (targetX != x0 || targetY != y0) {
-            setTargetPos(targetX, targetY, (float) targetTime / 1000.f, DraggableHelper.AnimationType.LargeOvershoot, null);
+            setTargetPos(targetX, targetY, (float) targetTime / 1000.f, DraggableHelper.AnimationType.LargeOvershoot, false, null);
         }
         CrashTracking.log("BubbleDraggable.slideOnScreen()");
     }
@@ -658,7 +659,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         mDraggableHelper.setExactPos(x, y);
     }
 
-    public void setTargetPos(int xp, int yp, float t, DraggableHelper.AnimationType type, DraggableHelper.AnimationEventListener listener) {
+    public void setTargetPos(int xp, int yp, float t, DraggableHelper.AnimationType type, boolean startDelay, DraggableHelper.AnimationEventListener listener) {
         try {
             Util.Assert(!mAnimActive, "mAnimActive:" + mAnimActive);
         }
@@ -667,7 +668,45 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         }
         //Util.Assert(t > 0.0f, "t:" + t);      // Don't think this happens anymore - just to catch if it does happen and investigate why.
         mAnimActive = listener != null;
-        mDraggableHelper.setTargetPos(xp, yp, t, type, listener);
+        if (!startDelay) {
+            mDraggableHelper.setTargetPos(xp, yp, t, type, listener);
+        }
+        else {
+            new SetTargetPosWithDelay(xp, yp, t, type, listener).execute();
+        }
+    }
+
+    class SetTargetPosWithDelay extends AsyncTask<Void,Integer,Long> {
+        int mxp;
+        int myp;
+        float mt;
+        DraggableHelper.AnimationType mtype;
+        DraggableHelper.AnimationEventListener mlistener;
+
+        public SetTargetPosWithDelay(int xp, int yp, float t, DraggableHelper.AnimationType type, DraggableHelper.AnimationEventListener listener) {
+            mxp = xp;
+            myp = yp;
+            mt = t;
+            mtype = type;
+            mlistener = listener;
+        }
+
+        protected Long doInBackground(Void... params) {
+            try {
+                Thread.sleep(Constant.BUBBLE_ANIMATION_EXPAND_DELAY);
+            }
+            catch (InterruptedException exc) {
+
+            }
+
+            publishProgress(0);
+
+            return null;
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+            mDraggableHelper.setTargetPos(mxp, myp, mt, mtype, mlistener);
+        }
     }
 
 }

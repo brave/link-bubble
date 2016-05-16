@@ -28,7 +28,7 @@ public class DraggableHelper {
     public interface OnTouchActionEventListener {
         void onActionDown(TouchEvent event);
         void onActionMove(MoveEvent event);
-        void onActionUp(ReleaseEvent event);
+        void onActionUp(ReleaseEvent event, boolean startDelay);
     }
 
     public static class TouchEvent {
@@ -182,7 +182,7 @@ public class DraggableHelper {
         return mStartTouchRaw.mTime != 0 && mEndTouchRaw.mTime != 0 && mEndTouchRaw.mTime != mStartTouchRaw.mTime;
     }
 
-    public boolean onTouchActionUp(MotionEvent event) {
+    public boolean onTouchActionUp(MotionEvent event, boolean startDelay) {
         mReleaseEvent.posX = mWindowManagerParams.x;
         mReleaseEvent.posY = mWindowManagerParams.y;
         mReleaseEvent.vx = 0.0f;
@@ -209,7 +209,7 @@ public class DraggableHelper {
         }
 
         if (mOnTouchActionEventListener != null) {
-            mOnTouchActionEventListener.onActionUp(mReleaseEvent);
+            mOnTouchActionEventListener.onActionUp(mReleaseEvent, startDelay);
         }
 
         mStartTouchX = -1;
@@ -232,7 +232,7 @@ public class DraggableHelper {
                     return onTouchActionMove(event);
                 }
                 case MotionEvent.ACTION_UP: {
-                    return onTouchActionUp(event);
+                    return onTouchActionUp(event, true);
                 }
                 //case MotionEvent.ACTION_CANCEL: {
                 //    return true;
