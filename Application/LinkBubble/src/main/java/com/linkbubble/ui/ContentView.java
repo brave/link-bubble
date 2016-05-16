@@ -1205,13 +1205,10 @@ public class ContentView extends FrameLayout {
                 return;
             }
 
-            if (url != null && url.equals(getContext().getString(R.string.empty_bubble_page))) {
-                changeTitleTextColor();
-            }
-            mTitleTextView.setText(title);
             if (MainApplication.sTitleHashMap != null && url != null) {
                 MainApplication.sTitleHashMap.put(url, title);
             }
+            updateUrlTitleAndText(url);
         }
 
         @Override
@@ -1456,7 +1453,7 @@ public class ContentView extends FrameLayout {
     OnClickListener mOnShareButtonClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            showSelectShareMethod(mWebRenderer.getUrl().toString(), true);
+            showSelectShareMethod(mUrlTextView.getText().toString(), true);
         }
     };
 
@@ -1628,7 +1625,7 @@ public class ContentView extends FrameLayout {
                 return;
             }
             if (!mWebRenderer.getUrl().toString().equals(getContext().getString(R.string.empty_bubble_page))) {
-                metUrl.setText(mWebRenderer.getUrl().toString());
+                metUrl.setText(mUrlTextView.getText().toString());
             }
             else {
                 metUrl.setText("");
