@@ -481,7 +481,7 @@ public class MainController implements Choreographer.FrameCallback {
 
         @Override
         public boolean onTouchActionUp(MotionEvent event) {
-            boolean result = mBubbleDraggable.getDraggableHelper().onTouchActionUp(event);
+            boolean result = mBubbleDraggable.getDraggableHelper().onTouchActionUp(event, false);
             mBubbleFlowDraggable.setTouchInterceptor(null);
             return result;
         }
@@ -1374,7 +1374,7 @@ public class MainController implements Choreographer.FrameCallback {
 
     public void doAnimateToContentView() {
         if (null != mBubbleDraggable) {
-            mBubbleDraggable.doAnimateToContentView(this);
+            mBubbleDraggable.doAnimateToContentView(this, false);
         }
     }
 
