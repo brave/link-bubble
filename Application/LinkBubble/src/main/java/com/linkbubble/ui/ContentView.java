@@ -2310,11 +2310,9 @@ public class ContentView extends FrameLayout {
         hidePopups();
         resetButtonPressedStates();
 
-        //to do debug
-        //if (isCurrent && MainController.get().contentViewShowing()) {
-        //    saveLoadTime();
-        //}
-        //
+        if (isCurrent && MainController.get().contentViewShowing()) {
+            saveLoadTime();
+        }
     }
 
     public void saveLoadTime() {

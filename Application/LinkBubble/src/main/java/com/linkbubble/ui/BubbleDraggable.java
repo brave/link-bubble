@@ -283,18 +283,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                 mDraggableHelper.cancelAnimation();
             }
         }
-        //to do debug
-        /*if (mMode == Mode.BubbleView) {
-            return;
-        }*/
-        //
-
-        //StackTraceElement[] cause = Thread.currentThread().getStackTrace();
-        //String log = "";
-        //for (StackTraceElement i : cause) {
-        //    log += i.toString() + "\n";
-        //}
-        //Log.d(TAG, "doAnimateToBubbleView() - " + log);
 
         mTouchDown = false;
         mMode = Mode.BubbleView;
@@ -351,7 +339,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     private void doAnimateToContentView(boolean saveBubbleRestingPoint, MainController controller) {
-        //to do debug
         CrashTracking.log("doAnimateToContentView()");
         if (mAnimActive) {
             if (mMode == Mode.ContentView) {
@@ -376,6 +363,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         final MainController mainController = controller;
         setVisibility(View.VISIBLE);
 
+        mainController.beginAppPolling();
+        mainController.expandBubbleFlow((long) (contentPeriod * 1000), true);
+
         animate().alpha(1.0f).setDuration(Constant.BUBBLE_ANIM_TIME);
         mBadgeView.animate().alpha(1.0f).setDuration(Constant.BUBBLE_ANIM_TIME);
 
@@ -394,6 +384,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                     CrashTracking.log("doAnimateToContentView(): onAnimationComplete(): getActiveTabCount()==0");
                 }
             }
+
             @Override
             public void onCancel() {
                 onAnimComplete();
@@ -401,8 +392,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                 mainController.collapseBubbleFlow((long) (contentPeriod * 1000));
             }
         });
-        mainController.beginAppPolling();
-        mainController.expandBubbleFlow((long) (contentPeriod * 1000), true);
     }
 
     public void configure(int x0, int y0, int targetX, int targetY, int targetTime, CanvasView cv)  {
@@ -464,13 +453,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
             @Override
             public void onActionMove(DraggableHelper.MoveEvent e) {
-                //to do debug
                 Log.d(TAG, "!!!!!Moving");
-                //
                 if (mTouchDown) {
-                    //to do debug
                     setVisibility(View.VISIBLE);
-                    //
                     int targetX = targetX = (int) (e.rawX - Config.mBubbleWidth * 0.5);
                     int targetY = (int) (e.rawY - Config.mBubbleHeight);
 

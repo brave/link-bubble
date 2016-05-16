@@ -155,9 +155,7 @@ public class CanvasView extends FrameLayout {
         mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
         mWindowManagerParams.format = PixelFormat.TRANSPARENT;
         mWindowManagerParams.setTitle("LinkBubble: CanvasView");
-        //to do debug
         MainController.addRootWindow(this, mWindowManagerParams);
-        //
 
         if (Constant.DEBUG_SHOW_TARGET_REGIONS) {
             mTargetDebugRect = new Rect();
@@ -281,7 +279,6 @@ public class CanvasView extends FrameLayout {
         if (mContentView != null) {
             mContentView.animate().cancel();
             mContentView.setVisibility(VISIBLE);
-            //to do debug
             if (1 == targetAlpha) {
                 setVisibility(GONE);
             }
@@ -368,11 +365,6 @@ public class CanvasView extends FrameLayout {
             return;
         }
         if (mContentView != null) {
-            //to do debug
-            //FrameLayout.LayoutParams p = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            //p.topMargin = Config.mContentOffset;
-            //addView(mContentView, p);
-            //
             mContentView.onCurrentContentViewChanged(true);
             mContentView.requestFocus();
         }
