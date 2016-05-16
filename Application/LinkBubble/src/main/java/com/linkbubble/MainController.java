@@ -300,9 +300,7 @@ public class MainController implements Choreographer.FrameCallback {
     protected boolean mUpdateScheduled;
     protected CanvasView mCanvasView;
 
-    //to do debug
     public BubbleFlowDraggable mBubbleFlowDraggable;
-    //
     private BubbleDraggable mBubbleDraggable;
 
     private long mPreviousFrameTime;
@@ -736,9 +734,6 @@ public class MainController implements Choreographer.FrameCallback {
                 case BubbleView:
                     mBubbleFlowDraggable.setCenterItem(tab);
                     mBubbleDraggable.switchToExpandedView(this);
-                    //to do debug
-                    //mBubbleFlowDraggable.setTabAsActive(tab);
-                    //
 
                     return true;
             }

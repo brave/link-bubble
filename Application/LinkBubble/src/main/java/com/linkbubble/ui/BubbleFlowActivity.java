@@ -214,7 +214,7 @@ public class BubbleFlowActivity extends Activity {
 
     MainController getMainController() {
         MainController controller = MainController.get();
-        // to do debug, sometimes it returns a null object
+        // Sometimes it returns a null object
         if (null == controller) {
             controller = MainController.get();
         }

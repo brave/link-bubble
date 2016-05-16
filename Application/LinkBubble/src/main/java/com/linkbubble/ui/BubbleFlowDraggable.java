@@ -43,13 +43,11 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     private int mBubbleFlowWidth;
     private int mBubbleFlowHeight;
     private TabView mCurrentTab;
-    //to do debug
     public BubbleDraggable mBubbleDraggable;
     public Object mActivitySharedLock = new Object();
     public boolean mActivityIsUp = false;
     private HashSet<OpenUrlSettings> mUrlsToOpen;
     private ReentrantReadWriteLock mUrlsToOpenLock;
-    //
     private Point mTempSize = new Point();
 
     private MainController.CurrentTabChangedEvent mCurrentTabChangedEvent = new MainController.CurrentTabChangedEvent();
@@ -62,7 +60,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         public void onMotionEvent_Release(BubbleFlowDraggable sender, DraggableHelper.ReleaseEvent event);
     }
 
-    //to do debug
     public static class OpenUrlSettings {
         OpenUrlSettings(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker,
                         boolean performEmptyClick, boolean openedFromItself) {
@@ -81,7 +78,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         boolean mPerformEmptyClick;
         boolean mOpenedFromItself;
     }
-    //
 
     public BubbleFlowDraggable(Context context) {
         this(context, null);
@@ -398,7 +394,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
     }
 
-    //to do debug
     public void setCurrentTab(TabView tab) {
         mCurrentTabResumeEvent.mTab = tab;
         MainApplication.postEvent(getContext(), mCurrentTabResumeEvent);
