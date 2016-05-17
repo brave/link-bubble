@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.9.23">
+        <change>BUG FIX: Fixed WebView copy/paste menu for pre Android M devices.</change>
+        <change>BUG FIX: Removed status bar on WebViews Activity.</change>
+        <change>BUG FIX: Removed destroy of Settings when changing Theme.</change>
+        <change>BUG FIX: Removed GET_ACCOUNTS permission.</change>
+        <change>BUG FIX: Corrected Share button to get the correct URL.</change>
+        <change>BUG FIX: Made expand bubbles more smooth.</change>
+        <change>NEW: Added bubbles hide on scroll support for article mode.</change>
+    </release>
     <release version="1.9.22">
         <change>BUG FIX: Fixed WebView copy/paste menu for pre Android M devices.</change>
         <change>BUG FIX: Corrected "Open link in new bubble" functionality to show corresponding bubble.</change>
