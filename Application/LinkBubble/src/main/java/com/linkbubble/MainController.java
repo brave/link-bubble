@@ -988,7 +988,7 @@ public class MainController implements Choreographer.FrameCallback {
         boolean isLinkBubble = resolveInfo.activityInfo != null
                 && resolveInfo.activityInfo.packageName.equals(mAppPackageName);
         if (isLinkBubble == false && MainApplication.loadResolveInfoIntent(mContext, resolveInfo, urlAsString, -1)) {
-            if (getActiveTabCount() == 0 && Prompt.isShowing() == false) {
+            if (getActiveTabCount() == 0) {
                 finish();
             }
 

@@ -44,11 +44,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     private int mBubbleFlowHeight;
     private TabView mCurrentTab;
     public BubbleDraggable mBubbleDraggable;
-    public Object mActivitySharedLock = new Object();
-    public boolean mActivityIsUp = false;
     private HashSet<OpenUrlSettings> mUrlsToOpen;
     private ReentrantReadWriteLock mUrlsToOpenLock;
     private Point mTempSize = new Point();
+    private boolean mDestroyed = true;
 
     private MainController.CurrentTabChangedEvent mCurrentTabChangedEvent = new MainController.CurrentTabChangedEvent();
     private MainController.CurrentTabResumeEvent mCurrentTabResumeEvent = new MainController.CurrentTabResumeEvent();
@@ -179,6 +178,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
             setExactPos(0, 0);
         }
+        mDestroyed = false;
         StartActivity();
     }
 
@@ -195,8 +195,8 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         }
         protected Long doInBackground(Void... params) {
 
-            synchronized (mActivitySharedLock) {
-                if (mActivityIsUp) {
+            synchronized (MainApplication.mActivitySharedLock) {
+                if (MainApplication.mActivityIsUp || mDestroyed) {
                     return null;
                 }
                 Intent intent1 = new Intent(mContext, BubbleFlowActivity.class);
@@ -204,8 +204,11 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                 mContext.startActivity(intent1);
 
                 try {
-                    mActivitySharedLock.wait();
-                    mActivityIsUp = true;
+                    MainApplication.mActivitySharedLock.wait();
+                    if (mDestroyed) {
+                        return null;
+                    }
+                    MainApplication.mActivityIsUp = true;
 
                     try {
                         mUrlsToOpenLock.writeLock().lock();
@@ -225,19 +228,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                     finally {
                         mUrlsToOpenLock.writeLock().unlock();
                     }
-                    /*Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
-                    intent.putExtra("url", "http://macworld.com");
-                    LocalBroadcastManager bm = LocalBroadcastManager.getInstance(mContext);
-                    bm.sendBroadcast(intent);
-
-                    Intent intentActivity = new Intent(mContext, BubbleFlowActivity.class);
-                    intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    mContext.startActivity(intentActivity);*/
                 }
                 catch (InterruptedException exc) {
                 }
             }
-            //
 
             return null;
         }
@@ -295,6 +289,10 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         intent.putExtra("command", BubbleFlowActivity.DESTROY_ACTIVITY);
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
         bm.sendBroadcast(intent);
+        mDestroyed = true;
+        synchronized (MainApplication.mActivitySharedLock) {
+            MainApplication.mActivitySharedLock.notify();
+        }
 
         mDraggableHelper.destroy();
     }
@@ -504,7 +502,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             mUrlsToOpenLock.writeLock().lock();
             OpenUrlSettings openUrlSettings = new OpenUrlSettings(url, urlLoadStartTime, setAsCurrentTab, hasShownAppPicker,
                     performEmptyClick, openedFromItself);
-            if (!mActivityIsUp) {
+            if (!MainApplication.mActivityIsUp) {
                 mUrlsToOpen.add(openUrlSettings);
             }
             else {
@@ -514,7 +512,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         finally {
             mUrlsToOpenLock.writeLock().unlock();
         }
-        if (!mActivityIsUp) {
+        if (!MainApplication.mActivityIsUp) {
             StartActivity();
         }
     }
