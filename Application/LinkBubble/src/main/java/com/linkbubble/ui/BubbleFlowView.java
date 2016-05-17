@@ -373,6 +373,16 @@ public class BubbleFlowView extends HorizontalScrollView {
         return mViews.indexOf(view);
     }
 
+    public int getIndexOfContentView(View view) {
+        for (View currentView: mViews) {
+            if (((TabView)currentView).getContentView().equals(view)) {
+                return mViews.indexOf(currentView);
+            }
+        }
+
+        return -1;
+    }
+
     int getCenterIndex() {
         int centerX = (mWidth/2) + getScrollX();
         int closestXAbsDelta = Integer.MAX_VALUE;

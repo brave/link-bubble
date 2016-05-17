@@ -48,6 +48,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     private ReentrantReadWriteLock mUrlsToOpenLock;
     private Point mTempSize = new Point();
     private boolean mDestroyed = true;
+    public TabView mDelayDeletedItem = null;
 
     private MainController.CurrentTabChangedEvent mCurrentTabChangedEvent = new MainController.CurrentTabChangedEvent();
     private MainController.CurrentTabResumeEvent mCurrentTabResumeEvent = new MainController.CurrentTabResumeEvent();
@@ -626,7 +627,6 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
         intent.putExtra("command", BubbleFlowActivity.PRE_CLOSE_VIEW);
         intent.putExtra("url", tab.getUrl().toString());
-        intent.putExtra("index", getIndexOfView(tab));
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
         bm.sendBroadcast(intent);
     }
@@ -650,8 +650,9 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             Settings.get().setWelcomeMessageDisplayed(true);
         }
 
-        preCloseTabInActivity(tab);
         remove(index, animateRemove, removeFromList, mOnTabRemovedListener);
+        mDelayDeletedItem = tab;
+        preCloseTabInActivity(tab);
 
         // Don't do this if we're animating the final tab off, as the setCurrentTab() call messes with the
         // CanvasView.mContentView, which has already been forcible set above in remove() via BeginAnimateFinalTabAwayEvent.
