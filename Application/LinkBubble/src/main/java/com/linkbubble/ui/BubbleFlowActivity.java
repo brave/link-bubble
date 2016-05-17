@@ -160,14 +160,14 @@ public class BubbleFlowActivity extends Activity {
 
                         break;
                     case COLLAPSE:
-                        Log.d("TAG", "!!!!! ACTIVITY GONE");
+                        Log.d("TAG", "!!!!! ACTIVITY GONE COLLAPSE");
                         mCollapsed = true;
                         setVisible(false);
                         moveTaskToBack(true);
 
                         break;
                     case EXPAND:
-                        Log.d("TAG", "!!!!! ACTIVITY VISIBLE");
+                        Log.d("TAG", "!!!!! ACTIVITY VISIBLE EXPAND");
                         mCollapsed = false;
                         setVisible(true);
 
