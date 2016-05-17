@@ -132,7 +132,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
             @Override
             public void onCenterItemChanged(BubbleFlowView sender, View view) {
-                setCurrentTab((TabView) view);
+                setCurrentTab((TabView) view, true);
             }
         });
 
@@ -254,6 +254,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
         intent.putExtra("command", BubbleFlowActivity.SET_TAB_AS_ACTIVE);
         intent.putExtra("url", tabView.getUrl().toString());
+        intent.putExtra("index", getIndexOfView(tabView));
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
         bm.sendBroadcast(intent);
     }
@@ -373,7 +374,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         if (super.expand(time, animationEventListener)) {
             int centerIndex = getCenterIndex();
             if (centerIndex > -1) {
-                setCurrentTab((TabView) mViews.get(centerIndex));
+                setCurrentTab((TabView) mViews.get(centerIndex), true);
             }
             return true;
         }
@@ -388,11 +389,11 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     public void setCurrentTabAsActive() {
         if (null != mCurrentTab) {
-            setCurrentTab(mCurrentTab);
+            setCurrentTab(mCurrentTab, true);
         }
     }
 
-    public void setCurrentTab(TabView tab) {
+    public void setCurrentTab(TabView tab, boolean sendIntentToActivity) {
         mCurrentTabResumeEvent.mTab = tab;
         MainApplication.postEvent(getContext(), mCurrentTabResumeEvent);
         if (mCurrentTab == tab) {
@@ -419,7 +420,9 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             ContentView contentView = mCurrentTab.getContentView();
             if (null != contentView) {
                 contentView.setTabAsActive();
-                setTabAsActive(tab);
+                if (sendIntentToActivity) {
+                    setTabAsActive(tab);
+                }
             }
         }
     }
@@ -488,7 +491,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
         mBubbleDraggable.mBadgeView.setCount(getActiveTabCount());
         if (openUrlSettings.mSetAsCurrentTab) {
-            setCurrentTab(tabView);
+            setCurrentTab(tabView, false);
         }
 
         controller.afterTabLoaded(tabView, openUrlSettings.mUrlLoadStartTime, openUrlSettings.mHasShownAppPicker,
@@ -534,7 +537,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         saveCurrentTabs();
 
         if (getActiveTabCount() == 1) {
-            setCurrentTab(tabView);
+            setCurrentTab(tabView, true);
         }
 
         tabView.mWasRestored = true;
@@ -614,15 +617,16 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                         setCenterIndex(currentTabIndex, false);
                     }
                 }
-                setCurrentTab(tabView);
+                setCurrentTab(tabView, true);
             }
         }
     }
 
-    public void preCloseTabInActivity(String url) {
+    public void preCloseTabInActivity(TabView tab) {
         Intent intent = new Intent(BubbleFlowActivity.ACTIVITY_INTENT_NAME);
         intent.putExtra("command", BubbleFlowActivity.PRE_CLOSE_VIEW);
-        intent.putExtra("url", url);
+        intent.putExtra("url", tab.getUrl().toString());
+        intent.putExtra("index", getIndexOfView(tab));
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
         bm.sendBroadcast(intent);
     }
@@ -646,7 +650,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             Settings.get().setWelcomeMessageDisplayed(true);
         }
 
-        preCloseTabInActivity(url);
+        preCloseTabInActivity(tab);
         remove(index, animateRemove, removeFromList, mOnTabRemovedListener);
 
         // Don't do this if we're animating the final tab off, as the setCurrentTab() call messes with the
@@ -669,7 +673,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                 }
             }
             if (!closeAllBubbels) {
-                setCurrentTab(newCurrentTab);
+                setCurrentTab(newCurrentTab, true);
             }
         }
     }
