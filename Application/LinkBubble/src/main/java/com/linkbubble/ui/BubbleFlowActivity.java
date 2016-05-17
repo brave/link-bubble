@@ -156,7 +156,8 @@ public class BubbleFlowActivity extends Activity {
 
                         break;
                     case SET_TAB_AS_ACTIVE:
-                        setAsCurrentTab(url);
+                        int index = intent.getIntExtra("index", -1);
+                        setAsCurrentTabByIndex(url, index);
 
                         break;
                     case COLLAPSE:
@@ -173,29 +174,42 @@ public class BubbleFlowActivity extends Activity {
 
                         break;
                     case PRE_CLOSE_VIEW:
-                        for (ContentView contentView: mContentViews) {
-                            if (contentView.getUrl().toString().equals(url)) {
-                                contentView.setVisibility(View.GONE);
-                                mPreClosedContentViews.add(contentView);
-                                mContentViews.remove(contentView);
-                                break;
+                        int indexForDelete = intent.getIntExtra("index", -1);
+                        if (-1 == indexForDelete || mContentViews.size() - 1 < indexForDelete) {
+                            for (ContentView contentView : mContentViews) {
+                                if (contentView.getUrl().toString().equals(url)) {
+                                    contentView.setVisibility(View.GONE);
+                                    mPreClosedContentViews.add(contentView);
+                                    mContentViews.remove(contentView);
+                                    break;
+                                }
                             }
+                        }
+                        else {
+                            ContentView contentView = mContentViews.get(indexForDelete);
+                            contentView.setVisibility(View.GONE);
+                            mPreClosedContentViews.add(contentView);
+                            mContentViews.remove(contentView);
                         }
                         if (0 == mContentViews.size()) {
                             setVisible(false);
                         }
                         break;
                     case CLOSE_VIEW:
-                        for (ContentView contentView: mContentViews) {
-                            if (contentView.getUrl().toString().equals(url)) {
-                                mContentViews.remove(contentView);
-                                break;
-                            }
-                        }
+                        boolean foundView = false;
                         for (ContentView contentView: mPreClosedContentViews) {
                             if (contentView.getUrl().toString().equals(url)) {
                                 mPreClosedContentViews.remove(contentView);
+                                foundView = true;
                                 break;
+                            }
+                        }
+                        if (!foundView) {
+                            for (ContentView contentView : mContentViews) {
+                                if (contentView.getUrl().toString().equals(url)) {
+                                    mContentViews.remove(contentView);
+                                    break;
+                                }
                             }
                         }
                         if (0 == mContentViews.size() && 0 == mPreClosedContentViews.size()) {
@@ -248,11 +262,31 @@ public class BubbleFlowActivity extends Activity {
         finish();
     }
 
-    private void setAsCurrentTab(String url) {
+    private void setAsCurrentTabByIndex(String url, int index) {
+        if (-1 == index || mContentViews.size() - 1 < index) {
+            setAsCurrentTab(url, false);
+        }
+        int iCurrent = 0;
         for (ContentView contentView: mContentViews) {
-            if (contentView.getUrl().toString().equals(url)) {
+            if (index == iCurrent) {
                 Log.d("TAG", "!!!!!VISIBLE");
                 contentView.setVisibility(View.VISIBLE);
+            }
+            else {
+                Log.d("TAG", "!!!!!GONE");
+                contentView.setVisibility(View.GONE);
+            }
+            iCurrent++;
+        }
+    }
+
+    private void setAsCurrentTab(String url, boolean allToGone) {
+        boolean foundUrl = false;
+        for (ContentView contentView: mContentViews) {
+            if (!foundUrl && !allToGone && contentView.getUrl().toString().equals(url)) {
+                Log.d("TAG", "!!!!!VISIBLE");
+                contentView.setVisibility(View.VISIBLE);
+                foundUrl = true;
             }
             else {
                 Log.d("TAG", "!!!!!GONE");
@@ -278,6 +312,10 @@ public class BubbleFlowActivity extends Activity {
         ContentView contentView = (ContentView) inflater.inflate(R.layout.view_content, null);
         if (!openUrlSettings.mSetAsCurrentTab) {
             contentView.setVisibility(View.GONE);
+        }
+        if (openUrlSettings.mSetAsCurrentTab) {
+            contentView.setVisibility(View.VISIBLE);
+            setAsCurrentTab(openUrlSettings.mUrl, true);
         }
         mContentViews.add(contentView);
         addContentView(contentView, pr);
