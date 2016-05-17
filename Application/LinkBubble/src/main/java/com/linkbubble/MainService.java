@@ -335,7 +335,9 @@ public class MainService extends Service {
                 }
             }
 
-            MainApplication.restoreLinks(mContext, mUrls.toArray(new String[mUrls.size()]));
+            if (null != mUrls && 0 != mUrls.size()) {
+                MainApplication.restoreLinks(mContext, mUrls.toArray(new String[mUrls.size()]));
+            }
 
             return null;
         }

@@ -73,8 +73,8 @@ public class BubbleFlowActivity extends Activity {
         bm.registerReceiver(mBroadcastReceiver, filter);
         MainController controller = getMainController();
         if (null != controller && null != controller.mBubbleFlowDraggable) {
-            synchronized (controller.mBubbleFlowDraggable.mActivitySharedLock) {
-                controller.mBubbleFlowDraggable.mActivitySharedLock.notify();
+            synchronized (MainApplication.mActivitySharedLock) {
+                MainApplication.mActivitySharedLock.notify();
             }
         } else {
             mDestroyed = true;
@@ -104,10 +104,8 @@ public class BubbleFlowActivity extends Activity {
         }
 
         super.onDestroy();
-        if (null != controller) {
-            controller.mBubbleFlowDraggable.mActivityIsUp = false;
-            controller.mBubbleFlowDraggable.mActivitySharedLock = new Object();
-        }
+        MainApplication.mActivityIsUp = false;
+        MainApplication.mActivitySharedLock = new Object();
         setFinishedActivityEvent();
         Log.d("TAG", "!!!!! ACTIVITY DESTROYED");
     }

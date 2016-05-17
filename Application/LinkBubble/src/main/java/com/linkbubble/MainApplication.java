@@ -63,6 +63,8 @@ public class MainApplication extends Application {
     public static boolean sShowingAppPickerDialog = false;
     public static Object mDestroyActivitySharedLock = null;
     public static boolean mActivityDestroyed = false;
+    public static Object mActivitySharedLock = new Object();
+    public static boolean mActivityIsUp = false;
     private static long sTrialStartTime = -1;
 
     private HttpsEverywhere mHttpsEverywhere = null;
