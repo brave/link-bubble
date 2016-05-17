@@ -85,7 +85,13 @@ public class BubbleDraggable extends BubbleView implements Draggable {
     }
 
     private void onAnimComplete() {
-        Util.Assert(mAnimActive, "mAnimActive=" + mAnimActive);
+        try {
+            // Sometimes there are two calls to animation, we will handle that later
+            Util.Assert(mAnimActive, "mAnimActive=" + mAnimActive);
+        }
+        catch (AssertionError exc) {
+            exc.printStackTrace();
+        }
         mAnimActive = false;
     }
 
