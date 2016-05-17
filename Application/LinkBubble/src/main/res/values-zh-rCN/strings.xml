@@ -6,7 +6,9 @@
     <string name="notification_summary">触按隐藏所有打开的泡泡</string>
     <string name="notification_default_summary">点触可隐藏</string>
     <string name="notification_unhide_summary">点触可显示</string>
+    
     <string name="notification_action_close_all">关闭所有泡泡</string>
+    
     <string name="notification_action_hide">隐藏</string>
     <string name="share_picker_label">分享触发器</string>
 
@@ -373,5 +375,6 @@ Brave 亦遵循这一标准.]]></string>
     <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
     <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
     <string name="whitelist_localfilename">whitelist.dat</string>
+    
 
 </resources>

@@ -6,7 +6,9 @@
     <string name="notification_summary">Po kliknutí se schovají všechny otevřené bubliny</string>
     <string name="notification_default_summary">Kliknutím schovat, roztažením zavřít vše</string>
     <string name="notification_unhide_summary">Kliknutím odkrýt, roztažením zavřít vše</string>
+    
     <string name="notification_action_close_all">Zavřít vše</string>
+    
     <string name="notification_action_hide">Schovat</string>
     <string name="share_picker_label">Další sdílení</string>
 
@@ -328,6 +330,7 @@ až příště načtete odkaz z %2$s.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Odkaz už je načtený. Ignorování…</string>
 
+    
     
     
     

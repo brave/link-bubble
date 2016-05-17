@@ -6,7 +6,9 @@
     <string name="notification_summary">Az összes nyitott buborék elrejtéséhez érintsd meg itt</string>
     
     
+    
     <string name="notification_action_close_all">Mind bezár</string>
+    
     <string name="notification_action_hide">Elrejt</string>
     <string name="share_picker_label">Megosztás kiválasztása</string>
 
@@ -350,5 +352,6 @@
     <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
     <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
     <string name="whitelist_localfilename">whitelist.dat</string>
+    
 
 </resources>

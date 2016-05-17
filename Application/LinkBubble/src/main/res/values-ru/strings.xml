@@ -6,7 +6,9 @@
     <string name="notification_summary">Нажмите для закрытия всех вкладок</string>
     <string name="notification_default_summary">Нажмите для скрытия, ↓ для закрытия всех</string>
     <string name="notification_unhide_summary">Нажмите, чтобы показать, ↓ для закрытия всех</string>
+    
     <string name="notification_action_close_all">Закрыть все</string>
+    
     <string name="notification_action_hide">Скрыть</string>
     <string name="share_picker_label">Поделиться</string>
 
@@ -376,6 +378,7 @@ Brave.]]></string>
     <string name="https_everywhere_targets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/httpse-targets.json</string>
     <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
     <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
+    
     
 
 </resources>

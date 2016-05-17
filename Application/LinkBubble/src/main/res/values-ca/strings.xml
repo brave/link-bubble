@@ -6,7 +6,9 @@
     <string name="notification_summary">Prem per amagar totes les bombolles obertes</string>
     <string name="notification_default_summary">Prem per amagar, expandeix per tancar totes</string>
     <string name="notification_unhide_summary">Prem per mostrar, expandeix per tancar totes</string>
+    
     <string name="notification_action_close_all">Tanca totes</string>
+    
     <string name="notification_action_hide">Amaga</string>
     <string name="share_picker_label">Selector de compartir</string>
 
@@ -327,6 +329,7 @@ poden gestionar una URL.\n\nPrem per esborrar-ne una.</string>
 
     <string name="duplicate_link_will_not_be_loaded">Enllaç ja carregat. Ignorant...</string>
 
+    
     
     
     

@@ -6,7 +6,9 @@
     <string name="notification_summary">Berühren, um alle offenen Blasen auszublenden</string>
     <string name="notification_default_summary">Zum Ausblenden berühren, erweitern um alle zu schließen</string>
     <string name="notification_unhide_summary">Zum Einblenden berühren, erweitern um alle zu schließen</string>
+    
     <string name="notification_action_close_all">Alle schließen</string>
+    
     <string name="notification_action_hide">Ausblenden</string>
     <string name="share_picker_label">Teilen-Auswahl</string>
 
@@ -344,6 +346,7 @@ aufgefasst werden und diese sich dann aufregen, wenn sich der Termin aus irgend 
     <string name="yahoo">Yahoo</string>
     <string name="amazon">Amazon</string>
     <string name="empty_bubble_page">file:///android_asset/blank.html</string>
+    
     
     
     

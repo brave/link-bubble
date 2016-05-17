@@ -6,7 +6,9 @@
     <string name="notification_summary">Tryck för att gömma alla öppna bubblor</string>
     <string name="notification_default_summary">Tryck för att dölja, expandera för att Stänga alla</string>
     <string name="notification_unhide_summary">Tryck för att Visa, expandera för att Stänga alla</string>
+    
     <string name="notification_action_close_all">Stäng alla</string>
+    
     <string name="notification_action_hide">Dölj</string>
     <string name="share_picker_label">Delaväljare</string>
 
@@ -330,6 +332,7 @@ att folk tar det som ett åtagande och blir upprörda när det dröjer av någon
 
     
 
+    
     
     
     

@@ -6,7 +6,9 @@
     <string name="notification_summary">Toque para ocultar todas as bolhas abertas</string>
     <string name="notification_default_summary">Toque para ocultar, expanda para fechar tudo.</string>
     <string name="notification_unhide_summary">Toque para mostrar, expanda para fechar tudo.</string>
+    
     <string name="notification_action_close_all">Fechar Todas</string>
+    
     <string name="notification_action_hide">Ocultar</string>
     <string name="share_picker_label">Ação de compartilhar</string>
 
@@ -388,5 +390,6 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
     <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
     <string name="whitelist_localfilename">whitelist.dat</string>
+    
 
 </resources>

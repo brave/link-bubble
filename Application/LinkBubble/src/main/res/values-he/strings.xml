@@ -6,7 +6,9 @@
     <string name="notification_summary">לחיצה להסתרת כל הבועות הפתוחות</string>
     <string name="notification_default_summary">לחיצה להסתרה, הרחבה לסגירת הכל</string>
     <string name="notification_unhide_summary">לחיצה להסתרה, הרחבה לסגירת הכל</string>
+    
     <string name="notification_action_close_all">סגירת הכל</string>
+    
     <string name="notification_action_hide">הסתרה</string>
     
 
@@ -325,6 +327,7 @@
 
     
 
+    
     
     
     

@@ -6,7 +6,9 @@
     <string name="notification_summary">點此隱藏所有開啟的氣泡</string>
     <string name="notification_default_summary">點擊此處隱藏，展開通知後可關閉所有分頁</string>
     <string name="notification_unhide_summary">點擊此處顯示，展開通知後可關閉所有分頁</string>
+    
     <string name="notification_action_close_all">關閉所有分頁</string>
+    
     <string name="notification_action_hide">隱藏</string>
     <string name="share_picker_label">分享選擇器</string>
 
@@ -340,6 +342,7 @@
     <string name="top_500_prepend">拜訪</string>
     
     <string name="search_for_with">使用 %1$s 搜尋 \"%2$s</string>
+    
     
     
     
