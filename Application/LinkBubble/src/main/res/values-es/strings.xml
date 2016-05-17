@@ -6,7 +6,9 @@
     <string name="notification_summary">Toca para ocultar todas las burbujas abiertas</string>
     <string name="notification_default_summary">Tocar para ocultar, expandir o cerrar todo</string>
     <string name="notification_unhide_summary">Tocar para mostrar, expandir o cerrar todo</string>
+    
     <string name="notification_action_close_all">Cerrar todo</string>
+    
     <string name="notification_action_hide">Ocultar</string>
     <string name="share_picker_label">Elige como compartir</string>
 
@@ -399,5 +401,6 @@ y la <a href="https://brave.com/privacy_android">política de privacidad</a> de 
     <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
     <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
     <string name="whitelist_localfilename">whitelist.dat</string>
+    
 
 </resources>

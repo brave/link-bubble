@@ -6,7 +6,9 @@
     <string name="notification_summary">Appuyez pour masquer toutes les bulles ouvertes</string>
     <string name="notification_default_summary">Appuyer pour masquer, développer pour tout fermer</string>
     <string name="notification_unhide_summary">Appuyer pour démasquer, développer pour tout fermer</string>
+    
     <string name="notification_action_close_all">Tout fermer</string>
+    
     <string name="notification_action_hide">Cacher</string>
     <string name="share_picker_label">Choix de l\'outil de partage</string>
 
@@ -361,5 +363,6 @@ Brave suit ce standard.]]></string>
     <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
     <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
     <string name="whitelist_localfilename">listeblanche.dat</string>
+    
 
 </resources>

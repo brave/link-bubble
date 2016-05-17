@@ -6,7 +6,9 @@
     <string name="notification_summary">Tik om alle open bubbels te verbergen</string>
     <string name="notification_default_summary">Tik voor Verbergen, uitbreiden voor Alles sluiten</string>
     <string name="notification_unhide_summary">Tik voor Zichtbaar maken, uitbreiden voor Alles sluiten</string>
+    
     <string name="notification_action_close_all">Alles sluiten</string>
+    
     <string name="notification_action_hide">Verbergen</string>
     <string name="share_picker_label">Delen-kiezer</string>
 
@@ -354,6 +356,7 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
     
     <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
     <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
+    
     
 
 </resources>

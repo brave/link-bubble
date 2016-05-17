@@ -6,7 +6,9 @@
     <string name="notification_summary">Tryk for at skjule alle åbne bobler</string>
     <string name="notification_default_summary">Tryk for at Skjule, udvid for at Lukke Alle</string>
     <string name="notification_unhide_summary">Tryk for at Vise, udvid for at Lukke Alle</string>
+    
     <string name="notification_action_close_all">Luk Alle</string>
+    
     <string name="notification_action_hide">Skjul</string>
     <string name="share_picker_label">Del vælger</string>
 
@@ -344,6 +346,7 @@ gang du indlæser et %2$s link.</string>
     <string name="yahoo">Yahoo</string>
     <string name="amazon">Amazon</string>
     <string name="empty_bubble_page">file:///android_asset/blank.html</string>
+    
     
     
     

@@ -6,7 +6,9 @@
     <string name="notification_summary">گرته‌ بكه‌ بۆ شاردنه‌وه‌ی هه‌مووی</string>
     <string name="notification_default_summary">گرته‌ بكه‌ بۆ شاردنه‌وه‌ یاخوود داخستن</string>
     <string name="notification_unhide_summary">گرته‌ بكه‌ بۆ نه‌شاردنه‌وه‌ یاخوود داخستن</string>
+    
     <string name="notification_action_close_all">داخستنی هه‌مووی</string>
+    
     <string name="notification_action_hide">شاردنه‌وه‌</string>
     <string name="share_picker_label">هاوبه‌شپێكردن</string>
 
@@ -136,7 +138,7 @@
     <string name="preference_trackingprotection_title">دۆخی پاراستن</string>
     <string name="preference_adblock_tracking_protection_from_disabled">ئه‌م تایبه‌تمه‌ندییه‌ ته‌نها له‌ وه‌شانی 5.0 به‌رده‌سته‌</string>
     <string name="preference_https_everywhere_title">HTTPS له‌هه‌موو شوێنێك</string>
-    
+    <string name="preference_https_everywhere_summary">كردنه‌وه‌ی سایت به‌ HTTPS  له‌جیاتی HTTP</string>
     <string name="preference_user_agent_title">بریكاری به‌كاربه‌ر</string>
     <string-array name="preference_user_agent_options">
         <item>سه‌ره‌كی</item>
@@ -399,5 +401,6 @@ commitment, and can get upset if/when a release slips for whatever reason.]]></s
     <string name="https_everywhere_targets_localfilename">httpse-targets.json
 </string>
     <string name="whitelist_localfilename">whitelist.dat</string>
+    
 
 </resources>

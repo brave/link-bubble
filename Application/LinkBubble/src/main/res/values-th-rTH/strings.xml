@@ -6,7 +6,9 @@
     <string name="notification_summary">แตะเพื่อซ่อนหน้าต่างทั้งหมด</string>
     <string name="notification_default_summary">แตะะพื่อซ่อน, ขยายเพื่อปิดทั้งหมด</string>
     <string name="notification_unhide_summary">แตะเพื่อเลิกซ่อน, ขยายเพื่อปิดทั้งหมด</string>
+    
     <string name="notification_action_close_all">ปิดทั้งหมด</string>
+    
     <string name="notification_action_hide">ซ่อน</string>
     <string name="share_picker_label">เลือกการแบ่งปัน</string>
 
@@ -388,5 +390,6 @@ Brave ทำตามมาตรฐานนี้]]></string>
     <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
     <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
     <string name="whitelist_localfilename">whitelist.dat</string>
+    
 
 </resources>

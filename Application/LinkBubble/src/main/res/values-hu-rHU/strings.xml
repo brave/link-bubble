@@ -6,7 +6,9 @@
     <string name="notification_summary">Az összes nyitott buborék elrejtéséhez érintsd meg itt</string>
     
     
+    
     <string name="notification_action_close_all">Mind bezár</string>
+    
     <string name="notification_action_hide">Elrejt</string>
     <string name="share_picker_label">Megosztás kiválasztása</string>
 
@@ -340,15 +342,16 @@
     <string name="google">Google</string>
     <string name="yahoo">Yahoo</string>
     <string name="amazon">Amazon</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="empty_bubble_page">file:///android_asset/blank.html</string>
+    <string name="adblock_url">https://s3.amazonaws.com/adblock-data/1/ABPFilterParserData.dat</string>
+    <string name="adblock_localfilename">FromUrlABPFilterParserData.dat</string>
+    <string name="tracking_protection_url">https://s3.amazonaws.com/tracking-protection-data/1/TrackingProtection.dat</string>
+    <string name="tracking_protection_localfilename">TrackingProtection.dat</string>
+    <string name="https_everywhere_rulesets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/rulesets.sqlite</string>
+    <string name="https_everywhere_targets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/httpse-targets.json</string>
+    <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
+    <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
+    <string name="whitelist_localfilename">whitelist.dat</string>
     
 
 </resources>
