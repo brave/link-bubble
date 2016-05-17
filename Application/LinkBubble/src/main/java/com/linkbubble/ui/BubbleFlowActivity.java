@@ -174,8 +174,25 @@ public class BubbleFlowActivity extends Activity {
 
                         break;
                     case PRE_CLOSE_VIEW:
-                        int indexForDelete = intent.getIntExtra("index", -1);
-                        if (-1 == indexForDelete || mContentViews.size() - 1 < indexForDelete) {
+                        MainController controller = getMainController();
+                        boolean useURL = false;
+                        if (null == controller || null == controller.mBubbleFlowDraggable
+                                || null == controller.mBubbleFlowDraggable.mDelayDeletedItem) {
+                            useURL = true;
+                        }
+                        else {
+                            useURL = true;
+                            for (ContentView contentView: mContentViews) {
+                                if (contentView.equals(controller.mBubbleFlowDraggable.mDelayDeletedItem.getContentView())) {
+                                    contentView.setVisibility(View.GONE);
+                                    mPreClosedContentViews.add(contentView);
+                                    mContentViews.remove(contentView);
+                                    useURL = false;
+                                    break;
+                                }
+                            }
+                        }
+                        if (useURL) {
                             for (ContentView contentView : mContentViews) {
                                 if (contentView.getUrl().toString().equals(url)) {
                                     contentView.setVisibility(View.GONE);
@@ -184,12 +201,6 @@ public class BubbleFlowActivity extends Activity {
                                     break;
                                 }
                             }
-                        }
-                        else {
-                            ContentView contentView = mContentViews.get(indexForDelete);
-                            contentView.setVisibility(View.GONE);
-                            mPreClosedContentViews.add(contentView);
-                            mContentViews.remove(contentView);
                         }
                         if (0 == mContentViews.size()) {
                             setVisible(false);
@@ -212,6 +223,11 @@ public class BubbleFlowActivity extends Activity {
                                 }
                             }
                         }
+                        MainController controllerForDelete = getMainController();
+                        if (null != controllerForDelete && null != controllerForDelete.mBubbleFlowDraggable
+                                && null != controllerForDelete.mBubbleFlowDraggable.mDelayDeletedItem) {
+                            controllerForDelete.mBubbleFlowDraggable.mDelayDeletedItem = null;
+                        }
                         if (0 == mContentViews.size() && 0 == mPreClosedContentViews.size()) {
                             destroyActivity();
                         }
@@ -224,6 +240,11 @@ public class BubbleFlowActivity extends Activity {
                                 mPreClosedContentViews.remove(contentView);
                                 break;
                             }
+                        }
+                        MainController controllerForRestore = getMainController();
+                        if (null != controllerForRestore && null != controllerForRestore.mBubbleFlowDraggable
+                                && null != controllerForRestore.mBubbleFlowDraggable.mDelayDeletedItem) {
+                            controllerForRestore.mBubbleFlowDraggable.mDelayDeletedItem = null;
                         }
                         break;
                     case DESTROY_ACTIVITY:
@@ -263,20 +284,24 @@ public class BubbleFlowActivity extends Activity {
     }
 
     private void setAsCurrentTabByIndex(String url, int index) {
-        if (-1 == index || mContentViews.size() - 1 < index) {
+        MainController controller = getMainController();
+        if (-1 == index || mContentViews.size() - 1 < index || null == controller || null == controller.mBubbleFlowDraggable) {
             setAsCurrentTab(url, false);
         }
-        int iCurrent = 0;
+        boolean found = false;
         for (ContentView contentView: mContentViews) {
-            if (index == iCurrent) {
+            if (index == controller.mBubbleFlowDraggable.getIndexOfContentView(contentView)) {
                 Log.d("TAG", "!!!!!VISIBLE");
                 contentView.setVisibility(View.VISIBLE);
+                found = true;
             }
             else {
                 Log.d("TAG", "!!!!!GONE");
                 contentView.setVisibility(View.GONE);
             }
-            iCurrent++;
+        }
+        if (!found) {
+            setAsCurrentTab(url, false);
         }
     }
 
