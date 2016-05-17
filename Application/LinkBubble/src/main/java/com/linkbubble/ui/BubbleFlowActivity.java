@@ -12,10 +12,13 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
@@ -44,6 +47,7 @@ public class BubbleFlowActivity extends Activity {
     private List<ContentView> mPreClosedContentViews;
     private boolean mCollapsed = true;
     private boolean mDestroyed = true;
+    private ImageView mTopMaskView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +81,14 @@ public class BubbleFlowActivity extends Activity {
             finish();
             startActivityForResult(new Intent(this, EntryActivity.class), 0);
         }
+        int canvasMaskHeight = getResources().getDimensionPixelSize(R.dimen.canvas_mask_height);
+        mTopMaskView = new ImageView(this);
+        mTopMaskView.setImageResource(R.drawable.masked_background_half);
+        mTopMaskView.setScaleType(ImageView.ScaleType.FIT_XY);
+        FrameLayout.LayoutParams topMaskLP = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, canvasMaskHeight);
+        topMaskLP.gravity = Gravity.TOP;
+        mTopMaskView.setLayoutParams(topMaskLP);
+        addContentView(mTopMaskView, topMaskLP);
     }
 
     @Override
