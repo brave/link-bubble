@@ -303,7 +303,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         }
 
         animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(animTimeMs);
-        mBadgeView.animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(animTimeMs);
 
         float bubblePeriod = (float)animTimeMs / 1000.f;
         float contentPeriod = bubblePeriod * 0.666667f;      // 0.66667 is the normalized t value when f = 1.0f for overshoot interpolator of 0.5 tension
@@ -321,7 +320,6 @@ public class BubbleDraggable extends BubbleView implements Draggable {
         setTargetPos(bubbleRestingPoint.x, bubbleRestingPoint.y, bubblePeriod, DraggableHelper.AnimationType.SmallOvershoot, false, new DraggableHelper.AnimationEventListener() {
             @Override
             public void onAnimationComplete() {
-                mBubbleFlowDraggable.hideActivity();
                 MainApplication.postEvent(getContext(), mEndCollapseTransitionEvent);
                 onAnimComplete();
             }
@@ -331,6 +329,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             }
         });
 
+        mBadgeView.animate().alpha(Constant.BUBBLE_MODE_ALPHA).setDuration(animTimeMs);
         mainController.endAppPolling();
         mainController.collapseBubbleFlow((long) (contentPeriod * 1000));
 
@@ -670,6 +669,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             Util.Assert(!mAnimActive, "mAnimActive:" + mAnimActive);
         }
         catch (AssertionError e) {
+            mDraggableHelper.cancelAnimation();
             e.printStackTrace();
         }
         //Util.Assert(t > 0.0f, "t:" + t);      // Don't think this happens anymore - just to catch if it does happen and investigate why.
