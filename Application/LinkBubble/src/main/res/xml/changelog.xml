@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.9.24">
+        <change>BUG FIX: Fixed shadow not always appearing on top of web views in the bubble bar.</change>
+        <change>BUG FIX: Fixed an unstable state around creating / destroying activities.</change>
+        <change>BUG FIX: Corrected working with several of the same URLs in bubbles.</change>
+        <change>BUG FIX: Fixed a crash on the second call of the bubble animation.</change>
+        <change>IMPROVEMENT: Bubbles collapse improvement.</change>
+    </release>
     <release version="1.9.23">
         <change>BUG FIX: Fixed WebView copy/paste menu for pre Android M devices.</change>
         <change>BUG FIX: Removed status bar on WebViews Activity.</change>
