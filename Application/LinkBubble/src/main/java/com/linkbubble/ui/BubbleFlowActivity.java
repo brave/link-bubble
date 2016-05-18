@@ -49,6 +49,7 @@ public class BubbleFlowActivity extends Activity {
     private List<ContentView> mPreClosedContentViews;
     private boolean mCollapsed = true;
     private boolean mDestroyed = true;
+    private boolean mCollapseFromStop = true;
     private ImageView mTopMaskView;
 
     @Override
@@ -77,7 +78,7 @@ public class BubbleFlowActivity extends Activity {
             synchronized (MainApplication.mActivitySharedLock) {
                 MainApplication.mActivitySharedLock.notify();
             }
-            if (null != settings && settings.getWelcomeMessageDisplayed()) {
+            if (MainApplication.mMoveWebViewsActivityToBack) {
                 moveTaskToBack(true);
             }
         } else {
@@ -120,6 +121,7 @@ public class BubbleFlowActivity extends Activity {
         if (!mCollapsed) {
             MainController controller = getMainController();
             if (null != controller) {
+                mCollapseFromStop = true;
                 controller.switchToBubbleView();
             }
         }
@@ -132,10 +134,10 @@ public class BubbleFlowActivity extends Activity {
         if (null != controller && controller.mRecentAppWasClicked) {
             Log.d("TAG", "!!!!!onResume");
             controller.mRecentAppWasClicked = false;
-            setVisible(true);
             controller.setHiddenByUser(false);
             controller.doAnimateToContentView();
         }
+        setVisible(true);
         super.onResume();
     }
 
@@ -177,7 +179,10 @@ public class BubbleFlowActivity extends Activity {
                         }
                         mCollapsed = true;
                         setVisible(false);
-                        moveTaskToBack(true);
+                        if (!mCollapseFromStop) {
+                            moveTaskToBack(true);
+                        }
+                        mCollapseFromStop = false;
 
                         break;
                     case EXPAND:
@@ -339,9 +344,9 @@ public class BubbleFlowActivity extends Activity {
         if (!controller.mBubbleFlowDraggable.isExpanded()) {
             Log.d("TAG", "!!!!! ACTIVITY1 GONE");
             setVisible(false);
-            Settings settings = Settings.get();
-            if (null != settings && settings.getWelcomeMessageDisplayed()) {
+            if (MainApplication.mMoveWebViewsActivityToBack) {
                 moveTaskToBack(true);
+                MainApplication.mMoveWebViewsActivityToBack = false;
             }
         }
         else {

@@ -124,6 +124,7 @@ public class EntryActivity extends Activity {
                 boolean showedWelcomeUrl = false;
                 if (Settings.get().getWelcomeMessageDisplayed() == false) {
                     if (!(MainController.get() != null && MainController.get().isUrlActive(Constant.WELCOME_MESSAGE_URL))) {
+                        MainApplication.mMoveWebViewsActivityToBack = true;
                         MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL, null);
                         showedWelcomeUrl = true;
                     }
