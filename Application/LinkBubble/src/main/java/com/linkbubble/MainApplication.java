@@ -65,6 +65,7 @@ public class MainApplication extends Application {
     public static boolean mActivityDestroyed = false;
     public static Object mActivitySharedLock = new Object();
     public static boolean mActivityIsUp = false;
+    public static boolean mMoveWebViewsActivityToBack = false;
     private static long sTrialStartTime = -1;
 
     private HttpsEverywhere mHttpsEverywhere = null;

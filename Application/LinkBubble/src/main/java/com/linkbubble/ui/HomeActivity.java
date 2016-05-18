@@ -122,6 +122,7 @@ public class HomeActivity extends AppCompatActivity {
         MainApplication.registerForBus(this, this);
 
         Settings.get().getBrowsers();
+        MainApplication.mMoveWebViewsActivityToBack = false;
     }
 
     @Override
