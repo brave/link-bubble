@@ -277,51 +277,25 @@ public class CanvasView extends FrameLayout {
     private void applyContentViewAlpha(final int targetAlpha) {
         mContentViewTargetAlpha = targetAlpha;
         if (mContentView != null) {
-            mContentView.animate().cancel();
-            mContentView.setVisibility(VISIBLE);
             if (1 == targetAlpha) {
                 setVisibility(GONE);
             }
             else {
                 setVisibility(VISIBLE);
             }
-            if (mContentViewTargetAlpha != 0 && !mExpanded) {
-                mContentView.setAlpha(0f);
+
+            if (mContentViewTargetAlpha == 0) {
+                mContentView.setVisibility(GONE);
+                if (!mExpanded) {
+                    removeView(mContentView);
+                }
+            } else {
+                mContentView.setVisibility(VISIBLE);
             }
-
-            mContentView.animate().alpha(targetAlpha).setDuration(Constant.CANVAS_FADE_ANIM_TIME).setListener(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animation) {
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    if (mContentView != null) {
-                        if (mContentViewTargetAlpha == 0) {
-                            mContentView.setAlpha(0f);
-                            mContentView.setVisibility(GONE);
-                            if (!mExpanded) {
-                                removeView(mContentView);
-                            }
-                        } else {
-                            mContentView.setAlpha(1f);
-                            mContentView.setVisibility(VISIBLE);
-                        }
-                    }
-                    // If we also have target alpha 0 then hide the view so clicks behind will work.
-                    if (mTargetAlpha == 0 && !mDragging) {
-                        setVisibility(GONE);
-                    }
-                }
-
-                @Override
-                public void onAnimationCancel(Animator animation) {
-                }
-
-                @Override
-                public void onAnimationRepeat(Animator animation) {
-                }
-            });
+            // If we also have target alpha 0 then hide the view so clicks behind will work.
+            if (mTargetAlpha == 0 && !mDragging) {
+                setVisibility(GONE);
+            }
 
             if (targetAlpha == 0) {
                 try {

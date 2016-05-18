@@ -9,6 +9,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -162,10 +163,18 @@ public class BubbleFlowActivity extends Activity {
                     case SET_TAB_AS_ACTIVE:
                         int index = intent.getIntExtra("index", -1);
                         setAsCurrentTabByIndex(url, index);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            Window window = getWindow();
+                            window.setStatusBarColor(getResources().getColor(R.color.background_material_dark));
+                        }
 
                         break;
                     case COLLAPSE:
                         Log.d("TAG", "!!!!! ACTIVITY GONE COLLAPSE");
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            Window window = getWindow();
+                            window.setStatusBarColor(getResources().getColor(R.color.transparent));
+                        }
                         mCollapsed = true;
                         setVisible(false);
                         moveTaskToBack(true);
