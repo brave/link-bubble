@@ -20,6 +20,7 @@ import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
@@ -62,7 +63,6 @@ public class BubbleFlowActivity extends Activity {
         mContentViews = new ArrayList<>();
         mPreClosedContentViews = new ArrayList<>();
         setVisible(false);
-        moveTaskToBack(true);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_bubble_flow);
@@ -76,7 +76,11 @@ public class BubbleFlowActivity extends Activity {
             synchronized (MainApplication.mActivitySharedLock) {
                 MainApplication.mActivitySharedLock.notify();
             }
+            if (null != settings && settings.getWelcomeMessageDisplayed()) {
+                moveTaskToBack(true);
+            }
         } else {
+            moveTaskToBack(true);
             mDestroyed = true;
             finish();
             startActivityForResult(new Intent(this, EntryActivity.class), 0);
@@ -326,7 +330,10 @@ public class BubbleFlowActivity extends Activity {
         if (!controller.mBubbleFlowDraggable.isExpanded()) {
             Log.d("TAG", "!!!!! ACTIVITY1 GONE");
             setVisible(false);
-            moveTaskToBack(true);
+            Settings settings = Settings.get();
+            if (null != settings && settings.getWelcomeMessageDisplayed()) {
+                moveTaskToBack(true);
+            }
         }
         else {
             Log.d("TAG", "!!!!! ACTIVITY1 VISIBLE");
