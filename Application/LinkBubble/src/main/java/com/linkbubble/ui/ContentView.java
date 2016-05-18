@@ -419,8 +419,7 @@ public class ContentView extends FrameLayout {
             public void onClick(View view) {
                 if (CustomAutoCompleteTextView.MENU_APPEARS_TIME_ATER_DESTROY < System.currentTimeMillis() - metUrl.mCopyPasteDestroyedLastTime) {
                     metUrl.onCopyPasteDestroyed();
-                }
-                else {
+                } else {
                     metUrl.onCopyPasteCreated();
                 }
             }
