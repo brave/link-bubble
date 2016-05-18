@@ -13,8 +13,10 @@ import android.widget.AutoCompleteTextView;
 import com.linkbubble.MainController;
 
 public class CustomAutoCompleteTextView extends AutoCompleteTextView {
+    public static final long MENU_APPEARS_TIME_ATER_DESTROY = 15000;
 
     public boolean mCopyPasteContextMenuCreated = false;
+    public long mCopyPasteDestroyedLastTime = 0;
 
     private MainController mMainController = null;
 
@@ -40,20 +42,31 @@ public class CustomAutoCompleteTextView extends AutoCompleteTextView {
 
     @Override
     public void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
-        if (!focused && null != mMainController && mCopyPasteContextMenuCreated) {
-            mMainController.onBubbleFlowContextMenuAppearedGone(false);
-            mCopyPasteContextMenuCreated = false;
+        if (!focused) {
+            onCopyPasteDestroyed();
         }
 
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
     }
 
     public boolean onTextContextMenuItem(int id) {
+        mCopyPasteDestroyedLastTime = System.currentTimeMillis();
+        onCopyPasteDestroyed();
+
+        return super.onTextContextMenuItem(id);
+    }
+
+    public void onCopyPasteDestroyed() {
         if (null != mMainController && mCopyPasteContextMenuCreated) {
             mMainController.onBubbleFlowContextMenuAppearedGone(false);
             mCopyPasteContextMenuCreated = false;
         }
+    }
 
-        return super.onTextContextMenuItem(id);
+    public void onCopyPasteCreated() {
+        if (null != mMainController && !mCopyPasteContextMenuCreated) {
+            mCopyPasteContextMenuCreated = true;
+            mMainController.onBubbleFlowContextMenuAppearedGone(true);
+        }
     }
 }
