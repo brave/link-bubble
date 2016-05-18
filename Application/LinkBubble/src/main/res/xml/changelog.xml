@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.9.25">
+        <change>BUG FIX: Fixed a behaviour that WebView didn't appear after screen lock.</change>
+        <change>BUG FIX: Corrected copy/paste dialog to hide bubbles on tap.</change>
+        <change>IMPROVEMENT: Removed alpha animation of a WebView on collapse and expand.</change>
+    </release>
     <release version="1.9.24">
         <change>BUG FIX: Fixed shadow not always appearing on top of web views in the bubble bar.</change>
         <change>BUG FIX: Fixed an unstable state around creating / destroying activities.</change>
