@@ -417,9 +417,11 @@ public class ContentView extends FrameLayout {
         metUrl.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (metUrl.mCopyPasteContextMenuCreated) {
-                    controller.onBubbleFlowContextMenuAppearedGone(false);
-                    metUrl.mCopyPasteContextMenuCreated = false;
+                if (CustomAutoCompleteTextView.MENU_APPEARS_TIME_ATER_DESTROY < System.currentTimeMillis() - metUrl.mCopyPasteDestroyedLastTime) {
+                    metUrl.onCopyPasteDestroyed();
+                }
+                else {
+                    metUrl.onCopyPasteCreated();
                 }
             }
         });
@@ -427,8 +429,7 @@ public class ContentView extends FrameLayout {
         metUrl.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
             @Override
             public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-                metUrl.mCopyPasteContextMenuCreated = true;
-                controller.onBubbleFlowContextMenuAppearedGone(true);
+                metUrl.onCopyPasteCreated();
             }
         });
 
