@@ -121,10 +121,10 @@ public class EntryActivity extends Activity {
             } else if (openLink) {
                 MainApplication.checkRestoreCurrentTabs(this);
 
+                MainApplication.mMoveWebViewsActivityToBack = true;
                 boolean showedWelcomeUrl = false;
                 if (Settings.get().getWelcomeMessageDisplayed() == false) {
                     if (!(MainController.get() != null && MainController.get().isUrlActive(Constant.WELCOME_MESSAGE_URL))) {
-                        MainApplication.mMoveWebViewsActivityToBack = true;
                         MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL, null);
                         showedWelcomeUrl = true;
                     }
