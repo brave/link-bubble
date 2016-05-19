@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.9.50">
+        <change>NEW: Implemented copy/paste functionality in the location bar and in web content.</change>
+        <change>BUG FIX: Fixed remaining crashes in HTML select elements.</change>
+        <change>BUG FIX: Fixed HTML5 color pickers control.</change>
+        <change>BUG FIX: Fixed bug with translate.google.com.</change>
+    </release>
     <release version="1.9.25">
         <change>BUG FIX: Fixed a behaviour that WebView didn't appear after screen lock.</change>
         <change>BUG FIX: Corrected copy/paste dialog to hide bubbles on tap.</change>
