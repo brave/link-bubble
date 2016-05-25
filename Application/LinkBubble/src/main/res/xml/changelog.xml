@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.9.52">
+        <change>BUG FIX: Reverted web view in the activity to bring back bubbles showing when the home button is pressed.</change>
+    </release>
     <release version="1.9.19">
         <change>BUG FIX: Fixed a back button issue on thestar.com.</change>
         <change>BUG FIX: WebViews were not destroying on Close All bubbles command.</change>
