@@ -939,6 +939,9 @@ class WebViewRenderer extends WebRenderer {
         @Override
         public boolean onCreateWindow(WebView view, boolean dialog, boolean userGesture, Message resultMsg) {
             WebView.HitTestResult hitTestResult = mWebView.getHitTestResult();
+            if (null == hitTestResult) {
+                return false;
+            }
             switch (hitTestResult.getType()) {
                 case WebView.HitTestResult.IMAGE_TYPE:
                 case WebView.HitTestResult.SRC_ANCHOR_TYPE:
