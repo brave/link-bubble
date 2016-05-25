@@ -28,6 +28,7 @@ import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.physics.Draggable;
 import com.linkbubble.physics.DraggableHelper;
+import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.VerticalGestureListener;
 
@@ -43,6 +44,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
     private int mBubbleFlowWidth;
     private int mBubbleFlowHeight;
     private TabView mCurrentTab;
+    private TabView mCurrentEmptyTab = null;
     public BubbleDraggable mBubbleDraggable;
     private HashSet<OpenUrlSettings> mUrlsToOpen;
     private ReentrantReadWriteLock mUrlsToOpenLock;
@@ -62,13 +64,14 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
 
     public static class OpenUrlSettings {
         OpenUrlSettings(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker,
-                        boolean performEmptyClick, boolean openedFromItself) {
+                        boolean performEmptyClick, boolean openedFromItself, boolean openHiddenEmptyLink) {
             mUrl = url;
             mUrlLoadStartTime = urlLoadStartTime;
             mSetAsCurrentTab = setAsCurrentTab;
             mHasShownAppPicker = hasShownAppPicker;
             mPerformEmptyClick = performEmptyClick;
             mOpenedFromItself = openedFromItself;
+            mOpenHiddenEmptyLink = openHiddenEmptyLink;
         }
 
         String mUrl;
@@ -77,6 +80,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         boolean mHasShownAppPicker;
         boolean mPerformEmptyClick;
         boolean mOpenedFromItself;
+        boolean mOpenHiddenEmptyLink;
     }
 
     public BubbleFlowDraggable(Context context) {
@@ -227,6 +231,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                             intent.putExtra("performEmptyClick", urlToOpen.mPerformEmptyClick);
                             intent.putExtra("setAsCurrentTab", urlToOpen.mSetAsCurrentTab);
                             intent.putExtra("openedFromItself", urlToOpen.mOpenedFromItself);
+                            intent.putExtra("openHiddenEmptyLink", urlToOpen.mOpenHiddenEmptyLink);
                             LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
                         }
                         mUrlsToOpen.clear();
@@ -252,6 +257,7 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
         intent.putExtra("performEmptyClick", urlToOpen.mPerformEmptyClick);
         intent.putExtra("setAsCurrentTab", urlToOpen.mSetAsCurrentTab);
         intent.putExtra("openedFromItself", urlToOpen.mOpenedFromItself);
+        intent.putExtra("openHiddenEmptyLink", urlToOpen.mOpenHiddenEmptyLink);
         LocalBroadcastManager bm = LocalBroadcastManager.getInstance(getContext());
         bm.sendBroadcast(intent);
     }
@@ -493,24 +499,30 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
             return;
         }
 
-        add(tabView, mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView);
+        if (!openUrlSettings.mOpenHiddenEmptyLink) {
+            add(tabView, mBubbleDraggable.getCurrentMode() == BubbleDraggable.Mode.ContentView);
 
-        mBubbleDraggable.mBadgeView.setCount(getActiveTabCount());
-        if (openUrlSettings.mSetAsCurrentTab) {
-            setCurrentTab(tabView, false);
+            mBubbleDraggable.mBadgeView.setCount(getActiveTabCount());
+            if (openUrlSettings.mSetAsCurrentTab) {
+                setCurrentTab(tabView, false);
+            }
+
+            controller.afterTabLoaded(tabView, openUrlSettings.mUrlLoadStartTime, openUrlSettings.mHasShownAppPicker,
+                    openUrlSettings.mOpenedFromItself);
         }
 
-        controller.afterTabLoaded(tabView, openUrlSettings.mUrlLoadStartTime, openUrlSettings.mHasShownAppPicker,
-                openUrlSettings.mOpenedFromItself);
+        /*if (null == mCurrentEmptyTab) {
+            controller.openUrl(Constant.NEW_TAB_URL, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_WINDOW, true);
+        }*/
     }
 
     public void openUrlInTab(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker,
-                                boolean performEmptyClick, boolean openedFromItself) {
+                                boolean performEmptyClick, boolean openedFromItself, boolean openHiddenEmptyLink) {
 
         try {
             mUrlsToOpenLock.writeLock().lock();
             OpenUrlSettings openUrlSettings = new OpenUrlSettings(url, urlLoadStartTime, setAsCurrentTab, hasShownAppPicker,
-                    performEmptyClick, openedFromItself);
+                    performEmptyClick, openedFromItself, openHiddenEmptyLink);
             if (!MainApplication.mActivityIsUp) {
                 mUrlsToOpen.add(openUrlSettings);
             }

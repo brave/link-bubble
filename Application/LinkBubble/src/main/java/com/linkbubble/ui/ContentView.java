@@ -2060,7 +2060,7 @@ public class ContentView extends FrameLayout {
                         public void handleMessage(Message msg) {
                             Bundle b = msg.getData();
                             if (b != null && b.getString("url") != null) {
-                                MainController.get().openUrl(b.getString("url"), System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_TAB);
+                                MainController.get().openUrl(b.getString("url"), System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_TAB, false);
                             }
                         }
                     });
@@ -2068,7 +2068,7 @@ public class ContentView extends FrameLayout {
                 } if (string.equals(openLinkInNewBubbleLabel) || string.equals(openImageInNewBubbleLabel)) {
                     MainController controller = MainController.get();
                     if (null != controller) {
-                        controller.openUrl(urlAsString, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_TAB);
+                        controller.openUrl(urlAsString, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_TAB, false);
                     }
                     else {
                         MainApplication.openLink(getContext(), urlAsString,

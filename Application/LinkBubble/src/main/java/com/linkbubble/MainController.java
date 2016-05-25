@@ -1004,7 +1004,7 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public void openUrl(final String urlAsString, long urlLoadStartTime, final boolean setAsCurrentTab,
-                           String openedFromAppName) {
+                           String openedFromAppName, boolean openHiddenEmptyContentView) {
 
         Analytics.trackOpenUrl(openedFromAppName);
 
@@ -1070,11 +1070,11 @@ public class MainController implements Choreographer.FrameCallback {
         mCanAutoDisplayLink = true;
         openUrlInTab(urlAsString, urlLoadStartTime, setAsCurrentTab, showAppPicker,
                 !(null == openedFromAppName ? false : openedFromAppName.equals(Analytics.OPENED_URL_FROM_MAIN_NEW_TAB)),
-                openedFromItself);
+                openedFromItself, openHiddenEmptyContentView);
     }
 
     protected void openUrlInTab(String url, long urlLoadStartTime, boolean setAsCurrentTab, boolean hasShownAppPicker,
-                                   boolean performEmptyClick, boolean openedFromItself) {
+                                   boolean performEmptyClick, boolean openedFromItself, boolean openHiddenEmptyContentView) {
         setHiddenByUser(false);
 
         if (getActiveTabCount() == 0) {
@@ -1093,7 +1093,7 @@ public class MainController implements Choreographer.FrameCallback {
         }
 
         mBubbleFlowDraggable.openUrlInTab(url, urlLoadStartTime, setAsCurrentTab, hasShownAppPicker, performEmptyClick,
-                openedFromItself);
+                openedFromItself, openHiddenEmptyContentView);
     }
 
     public void afterTabLoaded(final TabView tab, long urlLoadStartTime, boolean showAppPicker, boolean openedFromItself) {

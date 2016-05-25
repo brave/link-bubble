@@ -290,7 +290,7 @@ public class HistoryActivity extends AppCompatActivity
                     String urlAsString = historyItem.mHistoryRecord.getUrl();
                     if (string.equals(openInNewBubbleLabel)) {
                         if (MainController.get() != null) {
-                            MainController.get().openUrl(urlAsString, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_HISTORY);
+                            MainController.get().openUrl(urlAsString, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_HISTORY, false);
                         } else {
                             MainApplication.openLink(getApplicationContext(), urlAsString, Analytics.OPENED_URL_FROM_HISTORY);
                         }

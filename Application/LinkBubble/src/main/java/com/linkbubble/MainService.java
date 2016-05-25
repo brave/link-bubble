@@ -81,7 +81,7 @@ public class MainService extends Service {
             String url = intent.getStringExtra("url");
             if (url != null) {
                 String openedFromAppName = intent.getStringExtra("openedFromAppName");
-                mainController.openUrl(url, urlLoadStartTime, true, openedFromAppName);
+                mainController.openUrl(url, urlLoadStartTime, true, openedFromAppName, false);
             }
         } else if (cmd.compareTo("restore") == 0) {
             if (!mRestoreComplete) {
@@ -97,7 +97,7 @@ public class MainService extends Service {
                                 setAsCurrentTab = i == urls.length - 1;
                             }
 
-                            mainController.openUrl(urlAsString, urlLoadStartTime, setAsCurrentTab, Analytics.OPENED_URL_FROM_RESTORE);
+                            mainController.openUrl(urlAsString, urlLoadStartTime, setAsCurrentTab, Analytics.OPENED_URL_FROM_RESTORE, false);
                         }
                     }
                 }

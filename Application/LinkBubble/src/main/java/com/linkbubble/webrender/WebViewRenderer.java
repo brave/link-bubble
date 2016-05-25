@@ -121,6 +121,8 @@ class WebViewRenderer extends WebRenderer {
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        webSettings.setAllowFileAccess(true);
         webSettings.setDomStorageEnabled(true);
         webSettings.setGeolocationEnabled(true);
         webSettings.setSupportZoom(true);
@@ -947,9 +949,26 @@ class WebViewRenderer extends WebRenderer {
                 case WebView.HitTestResult.SRC_ANCHOR_TYPE:
                 case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: {
                     String url = hitTestResult.getExtra();
-                    MainController.get().openUrl(url, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_WINDOW);
+                    MainController.get().openUrl(url, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_WINDOW, false);
+                    break;
+                }
+                case WebView.HitTestResult.UNKNOWN_TYPE: {
+                    //WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
+                    //transport.setWebView(mWebView);
+                    //resultMsg.sendToTarget();
+                    //return true;
                 }
             }
+
+            //to do debug
+            //TabView tabView = MainController.get().openUrl(Constant.NEW_TAB_URL, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_WINDOW);
+            //if (tabView != null) {
+                 //WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
+                 //transport.setWebView(mWebView);
+                 //resultMsg.sendToTarget();
+                 //return true;
+             //}
+            //
 
             return false;
         }

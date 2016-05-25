@@ -47,6 +47,7 @@ public class BubbleFlowActivity extends Activity {
 
     private List<ContentView> mContentViews;
     private List<ContentView> mPreClosedContentViews;
+    private ContentView mHiddenEmptyContentView = null;
     private boolean mCollapsed = true;
     private boolean mDestroyed = true;
     private boolean mCollapseFromStop = false;
@@ -113,6 +114,10 @@ public class BubbleFlowActivity extends Activity {
         MainApplication.mActivityIsUp = false;
         MainApplication.mActivitySharedLock = new Object();
         setFinishedActivityEvent();
+        if (null != mHiddenEmptyContentView) {
+            mHiddenEmptyContentView.destroy();
+            mHiddenEmptyContentView = null;
+        }
         Log.d("TAG", "!!!!! ACTIVITY DESTROYED");
     }
 
@@ -158,8 +163,9 @@ public class BubbleFlowActivity extends Activity {
                         boolean performEmptyClick = intent.getBooleanExtra("performEmptyClick", false);
                         boolean setAsCurrentTab = intent.getBooleanExtra("setAsCurrentTab", false);
                         boolean openedFromItself = intent.getBooleanExtra("openedFromItself", false);
+                        boolean openHiddenEmptyLink = intent.getBooleanExtra("openHiddenEmptyLink", false);
                         openUrl(new BubbleFlowDraggable.OpenUrlSettings(url, urlStartTime, setAsCurrentTab, hasShownAppPicker,
-                                performEmptyClick, openedFromItself));
+                                performEmptyClick, openedFromItself, openHiddenEmptyLink));
 
                         break;
                     case SET_TAB_AS_ACTIVE:
@@ -366,7 +372,14 @@ public class BubbleFlowActivity extends Activity {
             contentView.setVisibility(View.VISIBLE);
             setAsCurrentTab(openUrlSettings.mUrl, true);
         }
-        mContentViews.add(contentView);
+        if (openUrlSettings.mOpenHiddenEmptyLink) {
+            if (null != mHiddenEmptyContentView) {
+                mHiddenEmptyContentView.destroy();
+                mHiddenEmptyContentView = contentView;
+            }
+        } else {
+            mContentViews.add(contentView);
+        }
         addContentView(contentView, pr);
         controller.mBubbleFlowDraggable.createTabView(contentView, openUrlSettings, controller);
     }
