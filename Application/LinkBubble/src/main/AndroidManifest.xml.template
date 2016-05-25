@@ -21,11 +21,10 @@
         android:theme="@android:style/Theme.Holo.Light" >
 
         <activity
-            android:name=".ui.HomeActivity"
+            android:name=".ui.TermsActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme"/>
-
+            android:theme="@style/AppTheme" />
 
         <!--
         <activity

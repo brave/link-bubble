@@ -22,6 +22,7 @@ import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 
 import java.net.MalformedURLException;
@@ -48,6 +49,8 @@ public class EntryActivity extends Activity {
         }
 
         super.onCreate(savedInstanceState);
+        Settings settings = Settings.get();
+        MainController controller = MainController.get();
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, true);
 
@@ -92,7 +95,7 @@ public class EntryActivity extends Activity {
 
             String openedFromAppName = null;
             boolean canLoadFromThisApp = true;
-            if (Settings.get().isEnabled()) {
+            if (null != settings && settings.isEnabled()) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     openLink = true;
                 } else {
@@ -106,7 +109,7 @@ public class EntryActivity extends Activity {
 
                             if (url.equals(Constant.TERMS_OF_SERVICE_URL)
                                     || url.equals(Constant.PRIVACY_POLICY_URL)
-                                    || !Settings.get().ignoreLinkFromPackageName(componentName.getPackageName())) {
+                                    || !settings.ignoreLinkFromPackageName(componentName.getPackageName())) {
                                 openLink = true;
                             }
                         } else {
@@ -122,11 +125,9 @@ public class EntryActivity extends Activity {
                 MainApplication.checkRestoreCurrentTabs(this);
 
                 MainApplication.mMoveWebViewsActivityToBack = true;
-                boolean showedWelcomeUrl = false;
-                if (Settings.get().getWelcomeMessageDisplayed() == false) {
-                    if (!(MainController.get() != null && MainController.get().isUrlActive(Constant.WELCOME_MESSAGE_URL))) {
+                if (null != settings && settings.getWelcomeMessageDisplayed() == false) {
+                    if (!(controller != null && controller.isUrlActive(Constant.WELCOME_MESSAGE_URL))) {
                         MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL, null);
-                        showedWelcomeUrl = true;
                     }
                 }
 
@@ -135,7 +136,18 @@ public class EntryActivity extends Activity {
                 MainApplication.openInBrowser(this, intent, true);
             }
         } else {
-            startActivityForResult(new Intent(this, HomeActivity.class), 0);
+            Settings.get().getBrowsers();
+            MainApplication.mMoveWebViewsActivityToBack = false;
+
+            if (null != settings && !settings.getTermsAccepted()) {
+                startActivityForResult(new Intent(this, TermsActivity.class), 0);
+            } else if (!(controller != null && 0 != controller.getActiveTabCount())) {
+                MainApplication.checkRestoreCurrentTabs(this);
+                MainApplication.openLink(this, getString(R.string.empty_bubble_page), Analytics.OPENED_URL_FROM_MAIN_NEW_TAB);
+            } else if (null != controller){
+                controller.setHiddenByUser(false);
+                controller.doAnimateToContentView();
+            }
         }
 
         finish();

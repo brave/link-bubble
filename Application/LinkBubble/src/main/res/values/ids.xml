@@ -9,6 +9,8 @@
     <item name="item_open_in_bubble" type="id"/>
     <item name="item_copy_link" type="id"/>
     <item name="item_new_bubble" type="id"/>
+    <item name="item_history" type="id"/>
+    <item name="item_statistics" type="id"/>
     <item name="item_close_tab" type="id"/>
     <item name="item_stop" type="id"/>
 

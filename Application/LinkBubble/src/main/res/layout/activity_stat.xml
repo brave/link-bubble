@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/window_background">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ToolbarTheme"/>
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/content"
+            android:layout_width="240dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <com.linkbubble.ui.FlipView
+                xmlns:flipview="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/stats_flip_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/stat_height"
+                android:src="@drawable/ic_launcher"
+                android:layout_gravity="center"
+                flipview:defaultView="@layout/view_stat_time_per_link"
+                flipview:flipView="@layout/view_stat_total_time"
+                flipview:isAnimated="true"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -49,7 +49,7 @@ public class BubbleFlowActivity extends Activity {
     private List<ContentView> mPreClosedContentViews;
     private boolean mCollapsed = true;
     private boolean mDestroyed = true;
-    private boolean mCollapseFromStop = true;
+    private boolean mCollapseFromStop = false;
     private ImageView mTopMaskView;
 
     @Override
@@ -180,7 +180,10 @@ public class BubbleFlowActivity extends Activity {
                         mCollapsed = true;
                         setVisible(false);
                         if (!mCollapseFromStop) {
-                            moveTaskToBack(true);
+                            MainController collapseController = getMainController();
+                            if (null == collapseController || !collapseController.mRecentAppWasClicked) {
+                                moveTaskToBack(true);
+                            }
                         }
                         mCollapseFromStop = false;
 

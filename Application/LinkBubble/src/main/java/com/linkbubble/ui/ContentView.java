@@ -1801,6 +1801,8 @@ public class ContentView extends FrameLayout {
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_new_bubble, Menu.NONE, resources.getString(R.string.action_new_bubble));
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_close_tab, Menu.NONE, resources.getString(R.string.action_close_tab));
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_settings, Menu.NONE, resources.getString(R.string.action_settings));
+            mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_history, Menu.NONE, resources.getString(R.string.history));
+            mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_statistics, Menu.NONE, resources.getString(R.string.statistics));
             mOverflowPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
@@ -1870,11 +1872,6 @@ public class ContentView extends FrameLayout {
                         }
 
                         case R.id.item_new_bubble: {
-                            //to do debug
-                            //Intent intent = new Intent(getContext(), BubbleFlowActivity.class);
-                            //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            //getContext().startActivity(intent);
-                            //
                             MainApplication.openLink(getContext(), getContext().getString(R.string.empty_bubble_page),
                                     Analytics.OPENED_URL_FROM_NEW_TAB);
                             break;
@@ -1890,6 +1887,22 @@ public class ContentView extends FrameLayout {
 
                         case R.id.item_settings: {
                             Intent intent = new Intent(context, SettingsActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            context.startActivity(intent);
+                            MainController.get().switchToBubbleView();
+                            break;
+                        }
+
+                        case R.id.item_history: {
+                            Intent intent = new Intent(context, HistoryActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            context.startActivity(intent);
+                            MainController.get().switchToBubbleView();
+                            break;
+                        }
+
+                        case R.id.item_statistics: {
+                            Intent intent = new Intent(context, StatActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             context.startActivity(intent);
                             MainController.get().switchToBubbleView();

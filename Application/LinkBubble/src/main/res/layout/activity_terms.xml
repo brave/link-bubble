@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root_layout"
+    android:background="#ee000000">
+
+    <LinearLayout
+        style="@style/AcceptTermsText"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/accept_terms_and_privacy_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/accept_terms_and_privacy"
+            android:textAppearance="?android:attr/textAppearanceMediumInverse"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            style="@style/ActionButton"
+            android:id="@+id/accept_terms_and_privacy_button"
+            android:text="@android:string/ok"
+            android:layout_gravity="center_horizontal|bottom"
+            />
+
+    </LinearLayout>
+
+</FrameLayout>
