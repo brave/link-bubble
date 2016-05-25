@@ -205,7 +205,12 @@ public class BubbleFlowDraggable extends BubbleFlowView implements Draggable {
                 mContext.startActivity(intent1);
 
                 try {
-                    MainApplication.mActivitySharedLock.wait();
+                    try {
+                        MainApplication.mActivitySharedLock.wait();
+                    }
+                    catch (IllegalMonitorStateException exc) {
+                        // We have that exception when we called wait before the lock, so just proceed as is
+                    }
                     if (mDestroyed) {
                         return null;
                     }
