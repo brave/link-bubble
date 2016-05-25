@@ -132,6 +132,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
 
     private void doSnapAction(Constant.BubbleAction action) {
         MainController mainController = MainController.get();
+        if (null == mainController) {
+            return;
+        }
 
         float snapTime = mTimeOnSnapTarget - Config.ANIMATE_TO_SNAP_TIME;
         if (action == Constant.BubbleAction.Close && snapTime >= Config.CLOSE_ALL_BUBBLES_DELAY) {
