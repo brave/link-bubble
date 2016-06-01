@@ -340,7 +340,7 @@
     <string name="requesting_location_message">%1$s is requesting your location. Allow?</string>
 
     <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Brave
-    <a href="http://www.linkbubble.com/terms">terms</a> and <a href="http://www.linkbubble.com/privacy">privacy policy</a>.]]></string>
+    <a href="https://brave.com/terms_of_use">terms</a> and <a href="https://brave.com/privacy_android">privacy policy</a>.]]></string>
 
     <string name="service_name">Brave Renderer</string>
     <string name="notification_title">Brave</string>
