@@ -735,7 +735,7 @@ public class ContentView extends FrameLayout {
                 }
 
                 // Temporary whitelist until we have an UI to unblock hosts
-                List<String> whitelistHosts = Arrays.asList("connect.facebook.net");
+                List<String> whitelistHosts = Arrays.asList("connect.facebook.net", "connect.facebook.com", "staticxx.facebook.com", "www.facebook.com", "scontent.xx.fbcdn.net", "pbs.twimg.com", "scontent-sjc2-1.xx.fbcdn.net", "platform.twitter.com", "syndication.twitter.com");
                 if (whitelistHosts.contains(host)) {
                     return false;
                 }
