@@ -14,6 +14,7 @@ cp -f node_modules/abp-filter-parser-cpp/badFingerprints.h ./Application/LinkBub
 cp -f node_modules/bloom-filter-cpp/BloomFilter.cpp ./Application/LinkBubble/src/main/jni/BloomFilter.cpp
 cp -f node_modules/bloom-filter-cpp/BloomFilter.h ./Application/LinkBubble/src/main/jni/BloomFilter.h
 cp -f node_modules/bloom-filter-cpp/hashFn.h ./Application/LinkBubble/src/main/jni/hashFn.h
+cp -f node_modules/bloom-filter-cpp/hashFn.cpp ./Application/LinkBubble/src/main/jni/hashFn.cpp
 cp -f node_modules/hashset-cpp/HashSet.cpp ./Application/LinkBubble/src/main/jni/HashSet.cpp
 cp -f node_modules/hashset-cpp/HashSet.h ./Application/LinkBubble/src/main/jni/HashSet.h
 cp -f node_modules/hashset-cpp/HashItem.h ./Application/LinkBubble/src/main/jni/HashItem.h
