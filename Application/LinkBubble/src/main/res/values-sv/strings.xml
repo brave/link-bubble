@@ -100,7 +100,7 @@ URL.\n\nTryck för att ta bort en standardapp.</string>
     <string name="preference_scan_for_youtube_embeds_title">Kolla efter YouTube-inbäddningar</string>
     <string name="preference_scan_for_youtube_embeds_summary">Visa genväg för att ladda inbäddad video i YouTube-appen.</string>
     <string name="preference_webview_battery_save_title">Batterisparläge (Beta)</string>
-    <string name="preference_webview_battery_save_aggressive_title">Aggresivt</string>
+    <string name="preference_webview_battery_save_aggressive_title">Aggressivt</string>
     
     <string name="preference_webview_battery_save_default_title">Standard</string>
     <string name="preference_webview_battery_save_default_summary">Stoppa uppdateringen av hemsidor när skärmen är avstängd och återuppta när enheten låses upp.\nSidorna som håller på att läsas in laddas färdigt innan de stoppas.</string>
