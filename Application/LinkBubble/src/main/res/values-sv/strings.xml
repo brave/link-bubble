@@ -4,8 +4,8 @@
     <string name="download_activity_label">Nedladdare</string>
     
     <string name="notification_summary">Tryck för att gömma alla öppna bubblor</string>
-    <string name="notification_default_summary">Tryck för att dölja, expandera för att Stänga alla</string>
-    <string name="notification_unhide_summary">Tryck för att Visa, expandera för att Stänga alla</string>
+    <string name="notification_default_summary">Tryck för att dölja, expandera för att stänga alla</string>
+    <string name="notification_unhide_summary">Tryck för att visa, expandera för att stänga alla</string>
     
     <string name="notification_action_close_all">Stäng alla</string>
     
