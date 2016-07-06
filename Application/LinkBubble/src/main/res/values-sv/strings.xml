@@ -4,8 +4,8 @@
     <string name="download_activity_label">Nedladdare</string>
     
     <string name="notification_summary">Tryck för att gömma alla öppna bubblor</string>
-    <string name="notification_default_summary">Tryck för att dölja, expandera för att Stänga alla</string>
-    <string name="notification_unhide_summary">Tryck för att Visa, expandera för att Stänga alla</string>
+    <string name="notification_default_summary">Tryck för att dölja, expandera för att stänga alla</string>
+    <string name="notification_unhide_summary">Tryck för att visa, expandera för att stänga alla</string>
     
     <string name="notification_action_close_all">Stäng alla</string>
     
@@ -100,7 +100,7 @@ URL.\n\nTryck för att ta bort en standardapp.</string>
     <string name="preference_scan_for_youtube_embeds_title">Kolla efter YouTube-inbäddningar</string>
     <string name="preference_scan_for_youtube_embeds_summary">Visa genväg för att ladda inbäddad video i YouTube-appen.</string>
     <string name="preference_webview_battery_save_title">Batterisparläge (Beta)</string>
-    <string name="preference_webview_battery_save_aggressive_title">Aggresivt</string>
+    <string name="preference_webview_battery_save_aggressive_title">Aggressivt</string>
     
     <string name="preference_webview_battery_save_default_title">Standard</string>
     <string name="preference_webview_battery_save_default_summary">Stoppa uppdateringen av hemsidor när skärmen är avstängd och återuppta när enheten låses upp.\nSidorna som håller på att läsas in laddas färdigt innan de stoppas.</string>
