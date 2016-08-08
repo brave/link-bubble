@@ -868,6 +868,11 @@ public class Settings {
 
     public boolean redirectUrlToBrowser(URL url) {
         String host = url.getHost();
+        for(String redirectHost : mFallbackRedirectHosts) {
+            if (host.endsWith(redirectHost)) {
+                return true;
+            }
+        }
         String hostAlt = host.contains("www.") ? host.replace("www.", "") : "www." + host;
         return mFallbackRedirectHosts.contains(host) || mFallbackRedirectHosts.contains(hostAlt);
 
