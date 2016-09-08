@@ -114,7 +114,22 @@ public class Util {
         "com.kk.jd.browser2",
         "com.rsbrowser.browser",
         "org.chromium.chrome",
-        "com.ineedyourservice.RBrowser"
+        "com.ineedyourservice.RBrowser",
+        "jp.co.fenrir.android.sleipnir",
+        "jp.co.fenrir.android.sleipnir_test",
+        "tugapower.codeaurora.browser",
+        "com.fevdev.nakedbrowser",
+        "com.fevdev.nakedbrowserpro",
+        "com.yandex.browser",
+        "com.yandex.browser.alpha",
+        "com.yandex.browser.beta",
+        "com.flyperinc.flyperlink",
+        "com.wSpeedBrowser4G",
+        "com.wSpeedBrowsermini",
+        "com.mokee.yubrowser",
+        "org.mozilla.fennec",
+        "org.gnu.icecat",
+        "devian.tubemate.home"
     };
 
     public static float clamp(float v0, float v, float v1) {
