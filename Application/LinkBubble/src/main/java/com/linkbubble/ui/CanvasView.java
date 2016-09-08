@@ -446,6 +446,9 @@ public class CanvasView extends FrameLayout {
     @SuppressWarnings("unused")
     @Subscribe
     public void onBeginCollapseTransition(MainController.BeginCollapseTransitionEvent e) {
+        if (!mExpanded) {
+            return;
+        }
         mExpanded = false;
         if (mContentView != null) {
             mContentView.onAnimateOffscreen();
@@ -473,7 +476,9 @@ public class CanvasView extends FrameLayout {
     @SuppressWarnings("unused")
     @Subscribe
     public void onEndCollapseTransition(MainController.EndCollapseTransitionEvent e) {
-        fadeOut();
+        if (mExpanded) {
+            fadeOut();
+        }
     }
 
     @SuppressWarnings("unused")
