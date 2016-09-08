@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.9.54">
+        <change>NEW: Added Android N support.</change>
+        <change>NEW: Added several fallback browsers.</change>
+    </release>
     <release version="1.9.52">
         <change>BUG FIX: Reverted web view in the activity to bring back bubbles showing when the home button is pressed.</change>
     </release>
