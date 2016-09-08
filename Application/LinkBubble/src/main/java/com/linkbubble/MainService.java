@@ -259,6 +259,14 @@ public class MainService extends Service {
         @Override
         public void onReceive(Context context, Intent myIntent) {
             if (myIntent.getAction().equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)) {
+                // TODO made a Nougat after SDK update. It's a fix for it to avoid delays on HOME and Recent Apps button click
+                if (Build.VERSION.SDK_INT >= 24) {
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+
+                    }
+            }
                 MainController.get().onCloseSystemDialogs();
             }
         }
