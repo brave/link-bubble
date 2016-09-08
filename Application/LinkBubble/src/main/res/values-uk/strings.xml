@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="download_activity_label">Завантажувач</string>
+    <string name="send_intent_label">Відкрити з Brave</string>
+    <string name="notification_summary">Торкніться, щоб приховати всі відкриті бульбашки</string>
+    <string name="notification_default_summary">Торкніться, щоб приховати, розгорніть, щоб закрити всі</string>
+    <string name="notification_unhide_summary">Торкніться, щоб показати, розгорніть, щоб закрити всі</string>
+    <string name="notification_action_close_all">Закрити всі</string>
+    <string name="notification_action_hide">Приховати</string>
+    
+
+    <string name="yes">Так</string>
+    <string name="no">Ні</string>
+    <string name="cancel">Скасувати</string>
+
+    <string name="action_ok">ОК</string>
+    <string name="action_open">Відкрити</string>
+    <string name="action_remove">Вилучити</string>
+    <string name="action_cancel">Скасувати</string>
+    <string name="action_clear_data">Стерти дані</string>
+    <string name="action_use_default">Використовувати типово</string>
+    <string name="action_settings">Налаштування</string>
+    <string name="action_help">Допомога</string>
+    <string name="action_reload_page">Перезавантажити</string>
+    <string name="action_open_in_browser">Відкрити в %1$s</string>
+    <string name="action_request_desktop_site">Повна версія сайту</string>
+    <string name="action_site_protection">Увімкнути Brave shields</string>
+    <string name="action_open_in_new_bubble">Відкрити в новій бульбашці</string>
+    <string name="action_open_link_in_new_bubble">Відкрити посилання в новій бульбашці</string>
+    <string name="action_open_image_in_new_bubble">Відкрити зображення в новій бульбашці</string>
+    <string name="action_copy_to_clipboard">Копіювати посилання</string>
+    <string name="action_save_image">Зберегти зображення</string>
+    <string name="action_share">Поділитись</string>
+    <string name="action_close_all">Закрити все</string>
+    <string name="action_new_bubble">Нова бульбашка</string>
+    <string name="action_close_tab">Закрити бульбашку</string>
+    <string name="action_stop">Стоп</string>
+    <string name="action_undo">Відмінити</string>
+    <string name="action_add">Додати</string>
+    <string name="action_no_recommended">Немає (рекомендовано)</string>
+    <string name="share_via">Поділитись через...</string>
+    <string name="not_set">Не встановлено</string>
+
+    <string name="error_saving_image">Помилка збереження зображення.</string>
+    <string name="image_saved">Зображення завантажено.</string>
+    <string name="notice_download_started">Завантаження почалось.</string>
+
+    <string name="warning">Попередження!</string>
+    <string name="untrusted_certificate">Сертифікат на %1$s не є довіреним. Все одно продовжити?</string>
+
+    <string name="share_invalid_data">Brave не може поділитися цим елементом, тому що URL є недійсним.</string>
+    <string name="consume_activity_not_found">Не вдалося знайти програму. Розгляньте зміну дії бульбашки через налаштування.</string>
+    <string name="consume_activity_security_exception">Не вдалося поділитися із зовнішньою програмою.</string>
+
+    <string name="upgrade">Оновити</string>
+    <string name="upgrade_theme">Хочете використовувати іншу тему?</string>
+    <string name="upgrade_theme_toolbar">Хочете змінити тему панелі для відповідності кольоровій схемі веб-сайтів?</string>
+
+    <string name="undo_close_tab_title">Закрито %1$s</string>
+    <string name="undo_close_tab_no_title">Закрити вкладку</string>
+
+    <string name="pick_default_app">Вибрати типовою програмою</string>
+    <string name="default_browser_set">Brave був встановлений типовим браузером.</string>
+    <string name="invalid_send_action">Дійсне посилання не знайдено.</string>
+    <string name="unable_to_launch_app">Не вдалося запустити сторонню програму.</string>
+    <string name="clear_history">Стерти історію</string>
+
+    <string name="preference_category_general">Загальні</string>
+    <string name="preference_category_configuration">Керування програмою</string>
+    <string name="preference_category_configuration2">Конфігурація</string>
+    <string name="preference_category_browser">Браузер</string>
+    <string name="preference_enabled_title">Увімкнено</string>
+    <string name="preference_auto_content_display_link_loaded_title">Авто-розгортання</string>
+    <string name="preference_auto_content_display_link_loaded_summary">Коли завантаження будь-якої бульбашки завершено</string>
+
+    <string name="preference_left_consume_bubble_title">Ліва бульбашка</string>
+    <string name="preference_right_consume_bubble_title">Права бульбашка</string>
+    <string name="preference_double_tap_title">Подвійний дотик до посилань</string>
+    <string name="preference_configure_bubble_title">Конфігурація бульбашки</string>
+    <string name="preference_category_debug">Зневадження</string>
+    <string name="preference_default_browser">Типовий запасний браузер</string>
+    <string name="preference_category_redirect_to_browser">Перенаправити до запасного браузера</string>
+    <string name="preference_category_fallback_browser">Типовий запасний браузер</string>
+    <string name="preference_category_other_apps">Інші програми</string>
+    <string name="preference_default_apps_title">Типові програми</string>
+    <string name="preference_default_apps_summary">Типовий запасний браузер, програми для відкриття посилань</string>
+    <string name="preference_default_apps_notice_summary">Використовується коли одна чи більше програм в системі можуть обробляти
+URL.\n\nТоркніться, щоб вилучити типову.</string>
+    
+    <string name="preference_google_account_redirect_title">Перенаправлення облікового запису Google</string>
+    <string name="preference_google_account_redirect_summary">Перенаправляти посилання accounts.google.com в типовий запасний браузер</string>
+    <string name="preference_set_default_browser_title">Встановити типовим браузером системи</string>
+    <string name="preference_set_default_browser_summary">Brave повинен бути типовим системним браузером. Торкніться для налаштування.</string>
+    <string name="preference_more">Більше...</string>
+    <string name="preference_intercept_links_from_title">Перехоплювати посилання з</string>
+    <string name="preference_intercept_links_from_disabled_for_L">Починаючи з Android 5.0, Google вилучив API, необхідний для цієї можливості.</string>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <string name="preference_article_mode_title">Режим читання</string>
+    <string name="preference_reading_mode_on_wear_title">Режим читання на Wear</string>
+    
+    <string name="preference_webview_text_zoom_title">Збільшення тексту</string>
+    
+    
+    <string name="preference_clear_browser_cache_title">Стерти приватні дані</string>
+    <string name="preference_clear_cache">Кеш</string>
+    <string name="preference_clear_cookies">Куки</string>
+    <string name="preference_clear_favicons">Піктограми</string>
+    <string name="preference_clear_form_data">Дані форм</string>
+    <string name="preference_clear_history">Історію</string>
+    <string name="preference_clear_passwords">Паролі</string>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <string-array name="preference_user_agent_options">
+        <item>Default</item>
+        <item>Chrome Phone</item>
+        <item>Chrome Tablet</item>
+        <item>Chrome Desktop</item>
+    </string-array>
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+
+    
+
+    
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <plurals name="restore_tabs_from_previous_session">
+        <item quantity="one">Restore tab from previous session?</item>
+        <item quantity="other">Restore %d tabs from previous session?</item>
+    </plurals>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+</resources>

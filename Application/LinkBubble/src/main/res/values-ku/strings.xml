@@ -2,11 +2,11 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">داگرتن</string>
-    <string name="send_intent_label">كردنه‌وه‌ له‌گه‌ڵ وێبگه‌ر</string>
-    <string name="notification_summary">گرته‌ بكه‌ بۆ شاردنه‌وه‌ی هه‌مووی</string>
-    <string name="notification_default_summary">گرته‌ بكه‌ بۆ شاردنه‌وه‌ یاخوود داخستن</string>
-    <string name="notification_unhide_summary">گرته‌ بكه‌ بۆ نه‌شاردنه‌وه‌ یاخوود داخستن</string>
-    <string name="notification_action_close_all">داخستنی هه‌مووی</string>
+    <string name="send_intent_label">كردنه‌وه‌ له‌ بره‌یڤ</string>
+    <string name="notification_summary">گرته‌ بكه‌ بۆ شاردنه‌وه‌ی هه‌موو پەڕەکان</string>
+    <string name="notification_default_summary">گرته‌ بكه‌ بۆ شاردنه‌وه‌, فراوانکردن بۆ داخستن</string>
+    <string name="notification_unhide_summary">گرته‌ بكه‌ بۆ نه‌شاردنه‌وه‌, فراوانکردن بۆ داخستن</string>
+    <string name="notification_action_close_all">داخستنی پەڕەکان</string>
     <string name="notification_action_hide">شاردنه‌وه‌</string>
     <string name="share_picker_label">هاوبه‌شپێكردن</string>
 
@@ -19,13 +19,13 @@
     <string name="action_remove">لادان</string>
     <string name="action_cancel">پاشگه‌زبوونه‌وه‌</string>
     <string name="action_clear_data">سڕینه‌وه‌ی داتا</string>
-    <string name="action_use_default">به‌كارهێنان وه‌ك سه‌ره‌كی</string>
+    <string name="action_use_default">به‌كارهێنان وه‌كو فه‌رمی</string>
     <string name="action_settings">ڕێكخستنه‌كان</string>
     <string name="action_help">یارمه‌تی</string>
     <string name="action_reload_page">باركردنه‌وه‌</string>
     <string name="action_open_in_browser">%1$s كردنه‌وه‌ له‌</string>
     <string name="action_request_desktop_site">شێوازی كۆمپیوته‌ر</string>
-    <string name="action_site_protection">چالاككردنی پاراستنی وێبگه‌ر</string>
+    <string name="action_site_protection">چالاككردنی پاراستنی بره‌یڤ</string>
     <string name="action_open_in_new_bubble">كردنه‌وه‌ له‌ په‌ڕه‌یه‌كی نوێ</string>
     <string name="action_open_link_in_new_bubble">كردنه‌وه‌ی به‌سته‌ر له‌ په‌ڕه‌یه‌كی نوێ</string>
     <string name="action_open_image_in_new_bubble">كردنه‌وه‌ی وێنه‌ له‌ په‌ڕه‌یه‌كی نوێ</string>
@@ -39,10 +39,10 @@
     <string name="action_undo">گه‌ڕانه‌وه‌</string>
     <string name="action_add">زیادكردن</string>
     <string name="action_no_recommended">نه‌خێر</string>
-    <string name="share_via">هاوبه‌شپێكردن به‌</string>
+    <string name="share_via">هاوبه‌شپێكردن به‌..</string>
     <string name="not_set">دانه‌نراو</string>
 
-    <string name="error_saving_image">ناتوانیت وێنه‌كه‌ دابگریت</string>
+    <string name="error_saving_image">وێنه‌ دانه‌گیرا</string>
     <string name="image_saved">وێنه‌ داگرترا</string>
     <string name="notice_download_started">داگرتن ده‌ستیپێكرد</string>
 
@@ -61,7 +61,7 @@
     <string name="undo_close_tab_no_title">په‌ڕه‌ داخرا</string>
 
     <string name="pick_default_app">هه‌ڵبژاردنی پڕۆگرامی سه‌ره‌كی</string>
-    <string name="default_browser_set">Brave كرایه‌ وێبگه‌ری سه‌ره‌كی</string>
+    <string name="default_browser_set">بره‌یڤ كرایه‌ وێبگه‌ری سه‌ره‌كی</string>
     <string name="invalid_send_action">به‌سته‌ر هه‌ڵه‌یه‌</string>
     <string name="unable_to_launch_app">ناتوانرێت بكرێته‌وه‌</string>
     <string name="clear_history">سڕینه‌وه‌ی مێژوو</string>
@@ -76,7 +76,7 @@
 
     <string name="preference_left_consume_bubble_title">په‌ڕه‌ی چه‌پ</string>
     <string name="preference_right_consume_bubble_title">په‌ڕه‌ی ڕاست</string>
-    <string name="preference_double_tap_title">دووجار گرته‌ بكه‌ بۆ به‌سته‌ر</string>
+    <string name="preference_double_tap_title">دووجار گرته‌ كردن له‌سه‌ر به‌سته‌ر</string>
     <string name="preference_configure_bubble_title">ڕێكخستنی په‌ڕه‌</string>
     <string name="preference_category_debug">دیبوگ</string>
     <string name="preference_default_browser">وێبگه‌ری سه‌ره‌كی</string>
@@ -136,7 +136,7 @@
     <string name="preference_trackingprotection_title">دۆخی پاراستن</string>
     <string name="preference_adblock_tracking_protection_from_disabled">ئه‌م تایبه‌تمه‌ندییه‌ ته‌نها له‌ وه‌شانی 5.0 به‌رده‌سته‌</string>
     <string name="preference_https_everywhere_title">HTTPS له‌هه‌موو شوێنێك</string>
-    
+    <string name="preference_https_everywhere_summary">كردنه‌وه‌ی سایت به‌ HTTPS  له‌جیاتی HTTP</string>
     <string name="preference_user_agent_title">بریكاری به‌كاربه‌ر</string>
     <string-array name="preference_user_agent_options">
         <item>سه‌ره‌كی</item>

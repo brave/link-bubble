@@ -6,7 +6,9 @@
     <string name="notification_summary">Az összes nyitott buborék elrejtéséhez érintsd meg itt</string>
     
     
+    
     <string name="notification_action_close_all">Mind bezár</string>
+    
     <string name="notification_action_hide">Elrejt</string>
     <string name="share_picker_label">Megosztás kiválasztása</string>
 
@@ -15,13 +17,13 @@
     <string name="cancel">Mégse</string>
 
     <string name="action_ok">OK</string>
-    
+    <string name="action_open">Megnyit</string>
     <string name="action_remove">Eltávolítod?</string>
     <string name="action_cancel">Mégse</string>
     <string name="action_clear_data">Adatok törlése</string>
     <string name="action_use_default">Alapértelmezett használata</string>
     <string name="action_settings">Beállítások</string>
-    <string name="action_help">Segítség</string>
+    <string name="action_help">Súgó</string>
     <string name="action_reload_page">Újratöltés</string>
     <string name="action_open_in_browser">Megnyitás %1$s alkalzamásban</string>
     
@@ -350,5 +352,6 @@
     <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
     <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
     <string name="whitelist_localfilename">whitelist.dat</string>
+    
 
 </resources>

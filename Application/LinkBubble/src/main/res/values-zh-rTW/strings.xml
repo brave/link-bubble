@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">下載器</string>
-    
+    <string name="send_intent_label">使用 Brave 開啟</string>
     <string name="notification_summary">點此隱藏所有開啟的氣泡</string>
     <string name="notification_default_summary">點擊此處隱藏，展開通知後可關閉所有分頁</string>
     <string name="notification_unhide_summary">點擊此處顯示，展開通知後可關閉所有分頁</string>
@@ -25,7 +25,7 @@
     <string name="action_reload_page">重新載入</string>
     <string name="action_open_in_browser">以 %1$s 開啟</string>
     <string name="action_request_desktop_site">使用桌面版網站</string>
-    
+    <string name="action_site_protection">啟用 Brave 防護</string>
     <string name="action_open_in_new_bubble">在新的氣泡中開啟</string>
     <string name="action_open_link_in_new_bubble">在新的氣泡中開啟連結</string>
     <string name="action_open_image_in_new_bubble">在新的氣泡中開啟圖片</string>
@@ -49,7 +49,7 @@
     <string name="warning">警告！</string>
     <string name="untrusted_certificate">%1$s 的憑證有安全疑慮。要繼續嗎？</string>
 
-    
+    <string name="share_invalid_data">無效的 URL，無法使用 Brave 開啟</string>
     <string name="consume_activity_not_found">無法找到該應用程式，請至設定中修改。</string>
     <string name="consume_activity_security_exception">無法分享至外部應用程式。</string>
 
@@ -128,18 +128,18 @@
     <string name="preference_clear_passwords">密碼</string>
     <string name="preference_incognito_title">無痕模式</string>
     <string name="preference_incognito_summary">防止儲存所有的歷史紀錄及 cookies</string>
-    
-    
+    <string name="preference_hide_bubbles_title">在瀏覽時隱藏所有氣泡</string>
+    <string name="preference_hide_bubbles_summary">往下瀏覽時隱藏所有氣泡，往上時顯示所有氣泡</string>
     <string name="incognito_mode_changed_reloading_current">已變更無痕模式設定。重新載入氣泡中…</string>
     <string name="preference_trackingprotection_summary">資源載入時避免追蹤</string>
     <string name="preference_adblock_title">廣告封鎖</string>
     <string name="preference_adblock_summary">避免廣告載入</string>
-    
+    <string name="preference_block_3p_cookies_title">阻止第三方的 Cookires</string>
     
     <string name="preference_trackingprotection_title">追蹤防護模式</string>
     <string name="preference_adblock_tracking_protection_from_disabled">此功能僅可用於 Andriod 5.0 或更高版本。</string>
     <string name="preference_https_everywhere_title">所有位置均使用 HTTPS</string>
-    
+    <string name="preference_https_everywhere_summary">如果網站支援，盡可能的使用 HTTPS 來開啟網站</string>
     <string name="preference_user_agent_title">使用者代理</string>
     <string-array name="preference_user_agent_options">
         <item>預設值</item>
@@ -312,7 +312,7 @@
     
     
 
-    
+    <string name="welcome_page_title">歡迎使用 Brave!</string>
     <string name="welcome_page_intro_title">這是如何運作的？</string>
     <string name="welcome_page_intro_point_1">在程式中點擊一個連結。</string>
     <string name="welcome_page_intro_point_2">螢幕邊會出現一個氣泡，之後該連結會在背景載入。連結載入完畢便會顯示。</string>
@@ -330,17 +330,20 @@
     <string name="duplicate_link_will_not_be_loaded">已讀取此連結。忽略重複點擊…</string>
 
     <string name="edit_url">搜尋或輸入網址</string>
-    
-    
-    
-    
-    
-    
-    
+    <string name="http_prefix">http://</string>
+    <string name="https_prefix">https://</string>
+    <string name="www_prefix">www.</string>
+    <string name="duckduckgo_search_engine">https://duckduckgo.com/?q=%1$s&amp;t=brave</string>
+    <string name="google_search_engine">http://www.google.com/search?q=</string>
+    <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
+    <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>
     <string name="top_500_prepend">拜訪</string>
-    
+    <string name="url_bar_constraint_text_color">\'#4A4A4A\'</string>
     <string name="search_for_with">使用 %1$s 搜尋 \"%2$s</string>
     
+    <string name="google">Google</string>
+    <string name="yahoo">Yahoo</string>
+    <string name="amazon">Amazon</string>
     
     
     
@@ -350,9 +353,7 @@
     
     
     
-    
-    
-    
+    <string name="whitelist_localfilename">whitelist.dat</string>
     
 
 </resources>
