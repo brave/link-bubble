@@ -74,7 +74,7 @@ public class DownloadImage {
                         intent.setDataAndType(imageUri, "image/*");
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mContext.startActivity(intent);
-                        MainController.get().switchToBubbleView();
+                        MainController.get().switchToBubbleView(false);
                     }
 
                     @Override

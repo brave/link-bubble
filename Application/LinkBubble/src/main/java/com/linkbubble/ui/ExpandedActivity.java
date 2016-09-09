@@ -288,7 +288,7 @@ public class ExpandedActivity extends Activity {
     }
 
     void showFileBrowser(final String[] acceptTypes, ValueCallback<Uri[]> filePathCallback) {
-        MainController.get().switchToBubbleView();
+        MainController.get().switchToBubbleView(false);
         mFilePathCallback = filePathCallback;
 
         Runnable runnable = new Runnable() {

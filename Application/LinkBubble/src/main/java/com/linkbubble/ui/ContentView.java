@@ -301,7 +301,7 @@ public class ContentView extends FrameLayout {
 
                 // L_WATCH: L currently lacks getRecentTasks(), so minimize here
                 if (isCopyToClipboardAction == false && Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                    MainController.get().switchToBubbleView();
+                    MainController.get().switchToBubbleView(false);
                 }
 
                 //if (closeBubbleOnShare && isCopyToClipboardAction == false && MainController.get() != null) {
@@ -821,7 +821,7 @@ public class ContentView extends FrameLayout {
             if (urlAsString.startsWith("tel:")) {
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(urlAsString));
                 if (MainApplication.loadIntent(getContext(), intent, urlAsString, mInitialUrlLoadStartTime)) {
-                    MainController.get().switchToBubbleView();
+                    MainController.get().switchToBubbleView(false);
                 }
                 mConsecutiveRedirectCount = 0;
                 return true;
@@ -1558,7 +1558,7 @@ public class ContentView extends FrameLayout {
                 MainController.get().closeTab(mOwnerTabView, true, false);
                 // L_WATCH: L currently lacks getRecentTasks(), so minimize here
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                    MainController.get().switchToBubbleView();
+                    MainController.get().switchToBubbleView(false);
                 }
             }
         }
@@ -1756,7 +1756,7 @@ public class ContentView extends FrameLayout {
                             Intent intent = new Intent(context, SettingsActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             context.startActivity(intent);
-                            MainController.get().switchToBubbleView();
+                            MainController.get().switchToBubbleView(false);
                             break;
                         }
                     }
@@ -1792,7 +1792,7 @@ public class ContentView extends FrameLayout {
             MainController.get().closeTab(mOwnerTabView, true, false);
             // L_WATCH: L currently lacks getRecentTasks(), so minimize here
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                MainController.get().switchToBubbleView();
+                MainController.get().switchToBubbleView(false);
             }
         }
     }
@@ -2294,7 +2294,7 @@ public class ContentView extends FrameLayout {
             MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), canShowUndoPrompt);
             // L_WATCH: L currently lacks getRecentTasks(), so minimize here
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                MainController.get().switchToBubbleView();
+                MainController.get().switchToBubbleView(false);
             }
             return true;
         }
@@ -2318,7 +2318,7 @@ public class ContentView extends FrameLayout {
 
             // L_WATCH: L currently lacks getRecentTasks(), so minimize here
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT && null != mainController) {
-                mainController.switchToBubbleView();
+                mainController.switchToBubbleView(false);
             }
             return true;
         }

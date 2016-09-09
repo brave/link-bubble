@@ -12,6 +12,7 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -455,7 +456,10 @@ public class CanvasView extends FrameLayout {
             fadeOut();
         }
 
-        MainApplication.postEvent(getContext(), mMinimizeExpandedActivityEvent);
+        // TODO: replace 24 with Android N version once we update an SDK
+        if (Build.VERSION.SDK_INT < 24 || !e.mFromCloseSystemDialogs) {
+            MainApplication.postEvent(getContext(), mMinimizeExpandedActivityEvent);
+        }
     }
 
     @SuppressWarnings("unused")

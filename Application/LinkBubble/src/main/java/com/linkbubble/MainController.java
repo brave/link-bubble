@@ -98,7 +98,16 @@ public class MainController implements Choreographer.FrameCallback {
     }
 
     public static class BeginCollapseTransitionEvent {
+        public BeginCollapseTransitionEvent() {
+            mFromCloseSystemDialogs = false;
+        }
+
+        public BeginCollapseTransitionEvent(boolean fromCloseSystemDialogs) {
+            mFromCloseSystemDialogs = fromCloseSystemDialogs;
+        }
+
         public float mPeriod;
+        public boolean mFromCloseSystemDialogs;
     }
 
     public static class EndCollapseTransitionEvent {
@@ -812,7 +821,7 @@ public class MainController implements Choreographer.FrameCallback {
         if (delta < 200) {
             return;
         }
-        switchToBubbleView();
+        switchToBubbleView(true);
     }
 
     // Before this version select elements would crash WebView in a background service
@@ -985,7 +994,7 @@ public class MainController implements Choreographer.FrameCallback {
                                 }
                                 // L_WATCH: L currently lacks getRecentTasks(), so minimize here
                                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                                    MainController.get().switchToBubbleView();
+                                    MainController.get().switchToBubbleView(false);
                                 }
                             }
                         }
@@ -1292,10 +1301,10 @@ public class MainController implements Choreographer.FrameCallback {
         mBubbleFlowDraggable.collapse(time, mOnBubbleFlowCollapseFinishedListener);
     }
 
-    public void switchToBubbleView() {
+    public void switchToBubbleView(boolean fromCloseSystemDialogs) {
         mCanAutoDisplayLink = false;
         if (MainController.get().getActiveTabCount() > 0) {
-            mBubbleDraggable.switchToBubbleView();
+            mBubbleDraggable.switchToBubbleView(fromCloseSystemDialogs);
         } else {
             // If there's no tabs, ensuring pressing Home will cause the CanvasView to go away. Fix #448
             MainApplication.postEvent(mContext, new MainController.EndCollapseTransitionEvent());
@@ -1321,7 +1330,7 @@ public class MainController implements Choreographer.FrameCallback {
     AppPoller.AppPollerListener mAppPollerListener = new AppPoller.AppPollerListener() {
         @Override
         public void onAppChanged() {
-            switchToBubbleView();
+            switchToBubbleView(false);
         }
     };
 
