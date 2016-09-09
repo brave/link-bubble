@@ -857,7 +857,7 @@ public class Settings {
         String host = url.getHost();
 
         for(String redirectHost : mFallbackRedirectHosts) {
-            if (host.endsWith(redirectHost)) {
+            if (host.endsWith("." + redirectHost)) {
                 return true;
             }
         }
