@@ -156,6 +156,14 @@ public class BubbleFlowView extends HorizontalScrollView {
         }
     }
 
+    public TouchInterceptor getTouchInterceptor() {
+        return mTouchInterceptor;
+    }
+
+    public void setInterceptingTouch(boolean interceptingTouch) {
+        mInterceptingTouch = interceptingTouch;
+    }
+
     void configure(int width, int itemWidth, int itemHeight) {
         mWidth = width;
         mItemWidth = itemWidth;

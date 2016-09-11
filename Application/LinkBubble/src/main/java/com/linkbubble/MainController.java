@@ -694,6 +694,9 @@ public class MainController implements Choreographer.FrameCallback {
         mBubbleFlowDraggable.setTouchInterceptor(mBubbleFlowTouchInterceptor);
         mBubbleFlowDraggable.collapse(Constant.BUBBLE_ANIM_TIME, mOnBubbleFlowCollapseFinishedListener);
         mBubbleDraggable.setVisibility(View.VISIBLE);
+        if (mBubbleFlowDraggable.getTouchInterceptor() != null) {
+            mBubbleFlowDraggable.setInterceptingTouch(true);
+        }
     }
 
     public BubbleDraggable getBubbleDraggable() {
