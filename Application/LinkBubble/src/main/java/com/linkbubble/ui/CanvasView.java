@@ -340,6 +340,10 @@ public class CanvasView extends FrameLayout {
             if (mExpanded) {
                 applyContentViewAlpha(1);
             }
+            else {
+                mContentView.setAlpha(0f);
+                mContentView.setVisibility(GONE);
+            }
             mContentView.onCurrentContentViewChanged(false);
         }
 
@@ -350,7 +354,6 @@ public class CanvasView extends FrameLayout {
         //}
 
         //Log.d("blerg", "setContentView(): from " + (mContentView != null ? "valid" : "none") + " to " + (contentView != null ? "valid" : "none"));
-
         mContentView = contentView;
         if (unhideNotification) {
             return;
@@ -511,6 +514,7 @@ public class CanvasView extends FrameLayout {
     @SuppressWarnings("unused")
     @Subscribe
     public void onHideContentEvent(MainController.HideContentEvent event) {
+        mExpanded = false;
         setContentView(null, false);
     }
 
