@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.9.56">
+        <change>BUG FIX: Fixed an unresponsive screen that appears sometimes on Android N on bubbles collapse.</change>
+    </release>
     <release version="1.9.54">
         <change>NEW: Added Android N support.</change>
         <change>NEW: Added several fallback browsers.</change>
