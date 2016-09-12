@@ -280,6 +280,9 @@ public class BubbleDraggable extends BubbleView implements Draggable {
                 mDraggableHelper.cancelAnimation();
             }
         }
+        if (fromCloseSystemDialogs && Mode.BubbleView == mMode) {
+            return;
+        }
 
         //StackTraceElement[] cause = Thread.currentThread().getStackTrace();
         //String log = "";
