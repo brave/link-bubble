@@ -25,7 +25,7 @@
     <string name="action_reload_page">Ponovo učitaj</string>
     <string name="action_open_in_browser">Otvori u %1$s</string>
     <string name="action_request_desktop_site">Zatraži desktop stranicu</string>
-    <string name="action_site_protection">Omogući Brave štitove</string>
+    <string name="action_site_protection">Omogući Link Bubble štitove</string>
     <string name="action_open_in_new_bubble">Otvori u novom mjehuriću</string>
     <string name="action_open_link_in_new_bubble">Otvori link u novom mjehuriću</string>
     <string name="action_open_image_in_new_bubble">Otvori sliku u novom mjehuriću</string>
@@ -49,7 +49,7 @@
     <string name="warning">Upozorenje!</string>
     <string name="untrusted_certificate">Cetrifikat na %1$s nije siguran. Svejedno nastaviti?</string>
 
-    <string name="share_invalid_data">Brave ne može ovo podijeliti jer to nije važeći URL.</string>
+    <string name="share_invalid_data">Link Bubble ne može ovo podijeliti jer to nije važeći URL.</string>
     <string name="consume_activity_not_found">Ne mogu pronaći aplikaciju. Razmotrite mijenjanje ponašanja mjehurića u postavkama.</string>
     <string name="consume_activity_security_exception">Ne mogu podijeliti s eksternom aplikacijom.</string>
 
@@ -61,7 +61,7 @@
     <string name="undo_close_tab_no_title">Zatvoren tab</string>
 
     <string name="pick_default_app">Odaberi zadanu aplikaciju</string>
-    <string name="default_browser_set">Brave je postavljen kao zadani preglednik.</string>
+    <string name="default_browser_set">Link Bubble je postavljen kao zadani preglednik.</string>
     <string name="invalid_send_action">Važeći link nije pronađen.</string>
     <string name="unable_to_launch_app">Ne mogu pokreniti drugu aplikaciju.</string>
     <string name="clear_history">Očisti povijest</string>
@@ -93,7 +93,7 @@ Zadana aplikacija u ovom slučaju je postavljena da otvara linkove s Braveom.</s
     <string name="preference_google_account_redirect_title">Preusmjeravanje na Google Account</string>
     <string name="preference_google_account_redirect_summary">Preusmjerava accounts.google.com linkove na zadani rezervni preglednik</string>
     <string name="preference_set_default_browser_title">Postavi zadani preglednik sustava</string>
-    <string name="preference_set_default_browser_summary">Brave mora biti zadani preglednik sustava da bi radio. Dodirni za postavljanje.</string>
+    <string name="preference_set_default_browser_summary">Link Bubble mora biti zadani preglednik sustava da bi radio. Dodirni za postavljanje.</string>
     <string name="preference_more">Više...</string>
     <string name="preference_intercept_links_from_title">Preuzima linkove od</string>
     <string name="preference_intercept_links_from_disabled_for_L">Za Android 5.0, Google je uklonio potreban API za ovu funkcionalnost.</string>
@@ -101,7 +101,7 @@ Zadana aplikacija u ovom slučaju je postavljena da otvara linkove s Braveom.</s
     <string name="preference_scan_for_youtube_embeds_summary">Pokaži prečac za učitavanje videa u YouTube aplikaciji.</string>
     <string name="preference_webview_battery_save_title">Način štednje baterije (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Agresivno</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Pauziraj učitavanje web stranica kad je Brave minimiziran.
+    <string name="preference_webview_battery_save_aggressive_summary">Pauziraj učitavanje web stranica kad je Link Bubble minimiziran.
 Stranice koje se učitavaju će završiti učitavanje prije pauziranja.</string>
     <string name="preference_webview_battery_save_default_title">Zadano</string>
     <string name="preference_webview_battery_save_default_summary">Pauziraj učitavanje stranica kada je ekran izgašen i pokreni kada je uređaj otključan.

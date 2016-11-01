@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Letöltő</string>
-    <string name="send_intent_label">Megnyitás Brave-vel</string>
+    <string name="send_intent_label">Megnyitás Link Bubble-vel</string>
     <string name="notification_summary">Az összes nyitott buborék elrejtéséhez érintsd meg itt</string>
     
     
@@ -261,7 +261,7 @@
     
     
     
-    <string name="faq_change_default_browser_answer">Rendszerbeállítások -> Alkalmazások -> Letöltött -> Brave -> Alapértelmezések törlése.</string>
+    <string name="faq_change_default_browser_answer">Rendszerbeállítások -> Alkalmazások -> Letöltött -> Link Bubble -> Alapértelmezések törlése.</string>
     <string name="faq_report_bug_question">Hiba jelentése</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
 
@@ -275,9 +275,9 @@
     <string name="activity_resolver_use_once">Csak egyszer</string>
 
     
-    <string name="credits_name">Brave</string>
+    <string name="credits_name">Link Bubble</string>
     <string name="credits_credit">Ötlet, tervezés és programozás</string>
-    <string name="credits_app_copyright">Copyright 2015, Brave.</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     
     <plurals name="restore_tabs_from_previous_session">
@@ -288,7 +288,7 @@
     <string name="content_description_button">Gomb</string>
     
     <string name="content_description_close_bubble_icon">Buborék bezárása ikon</string>
-    <string name="content_description_link_bubble_logo">Brave logó</string>
+    <string name="content_description_link_bubble_logo">Link Bubble logó</string>
     <string name="content_description_app_icon">Alkalmazás ikon</string>
     <string name="content_description_youtube_video_thumbnail">YouTube video bélyegkép</string>
     <string name="content_description_history">Előzmények</string>
@@ -300,9 +300,9 @@
     
 
     
-    <string name="notification_title">Brave</string>
+    <string name="notification_title">Link Bubble</string>
 
-    <string name="store_listing_title">Brave</string>
+    <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Böngészés mobilon - ahogyan még nem láttad</string>
     
     

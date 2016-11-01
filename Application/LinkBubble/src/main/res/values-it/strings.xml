@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Gestore Download</string>
-    <string name="send_intent_label">Apri con Brave</string>
+    <string name="send_intent_label">Apri con Link Bubble</string>
     <string name="notification_summary">Tocca per nascondere tutte le bolle aperte</string>
     <string name="notification_default_summary">Tocca per nascondere, espandi per Chiudere Tutto</string>
     <string name="notification_unhide_summary">Tocca per mostrare, espandi per Chiudere Tutto</string>
@@ -25,7 +25,7 @@
     <string name="action_reload_page">Ricarica</string>
     <string name="action_open_in_browser">Apri su %1$s</string>
     <string name="action_request_desktop_site">Richiedi sito desktop</string>
-    <string name="action_site_protection">Abilita gli scudi di Brave</string>
+    <string name="action_site_protection">Abilita gli scudi di Link Bubble</string>
     <string name="action_open_in_new_bubble">Apri in una nuova bolla</string>
     <string name="action_open_link_in_new_bubble">Apri link in una nuova bolla</string>
     <string name="action_open_image_in_new_bubble">Apri immagine in una nuova bolla</string>
@@ -49,7 +49,7 @@
     <string name="warning">Attenzione!</string>
     <string name="untrusted_certificate">Il certificato a %1$s non è fidato. Procedere comunque?</string>
 
-    <string name="share_invalid_data">Brave non è in grado di condividere questo elemento, non essendo un URL valido.</string>
+    <string name="share_invalid_data">Link Bubble non è in grado di condividere questo elemento, non essendo un URL valido.</string>
     <string name="consume_activity_not_found">Impossibile trovare l\'applicazione. Considera di cambiare l\'azione della bolla nelle Impostazioni.</string>
     <string name="consume_activity_security_exception">Impossibile condividere con un\'applicazione esterna</string>
 
@@ -61,7 +61,7 @@
     <string name="undo_close_tab_no_title">Scheda chiusa</string>
 
     <string name="pick_default_app">Seleziona l\'app predefinita</string>
-    <string name="default_browser_set">Brave è stato impostato come browser predefinito.</string>
+    <string name="default_browser_set">Link Bubble è stato impostato come browser predefinito.</string>
     <string name="invalid_send_action">Nessun link valido trovato.</string>
     <string name="unable_to_launch_app">Impossibile avviare app di terze parti.</string>
     <string name="clear_history">Cancella la cronologia</string>
@@ -90,7 +90,7 @@
     <string name="preference_google_account_redirect_title">Redirection compte Google</string>
     <string name="preference_google_account_redirect_summary">Utilizza il browser predefinito in caso di errore per i collegamenti ad accounts.google.com</string>
     <string name="preference_set_default_browser_title">Imposta il browser predefinito di sistema</string>
-    <string name="preference_set_default_browser_summary">Brave deve essere impostato come browser predefinito per poter funzionare. Tocca per configurare.</string>
+    <string name="preference_set_default_browser_summary">Link Bubble deve essere impostato come browser predefinito per poter funzionare. Tocca per configurare.</string>
     <string name="preference_more">Altro</string>
     <string name="preference_intercept_links_from_title">Intercetta i collegamenti da</string>
     <string name="preference_intercept_links_from_disabled_for_L">Google ha rimosso le API richieste per questa funzionalità da Android 5.0.</string>
@@ -98,7 +98,7 @@
     <string name="preference_scan_for_youtube_embeds_summary">Visualizza una scorciatoia per caricare nell\'app YouTube i video incorporati.</string>
     <string name="preference_webview_battery_save_title">Modalità risparmio energetico (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Aggressiva</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Interrompi l\'aggiornamento delle pagine web quando Brave viene minimizzato.\nLe pagine in caricamento verranno completate prima di essere messe in pausa.</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Interrompi l\'aggiornamento delle pagine web quando Link Bubble viene minimizzato.\nLe pagine in caricamento verranno completate prima di essere messe in pausa.</string>
     <string name="preference_webview_battery_save_default_title">Predefinito</string>
     <string name="preference_webview_battery_save_default_summary">Interrompi l\'aggiornamento delle pagine web quando lo schermo è spento e continualo quando il dispositivo viene sbloccato.\nLe pagine in caricamento verranno completate prima di essere messe in pausa.</string>
     <string name="preference_webview_battery_save_off_title">Off</string>
@@ -161,14 +161,14 @@
     <string name="preference_privacy_policy_title">Privacy Policy</string>
     <string name="preference_terms_of_service_title">Termini del servizio</string>
     <string name="preference_say_thanks_title">Dì grazie!</string>
-    <string name="preference_say_thanks_summary">Ti piace Brave? Considera l\'idea di lasciarci una recensione sul Play Store.</string>
+    <string name="preference_say_thanks_summary">Ti piace Link Bubble? Considera l\'idea di lasciarci una recensione sul Play Store.</string>
     <string name="preference_version_title">Versione</string>
     <string name="preference_version_summary">Ultime novità</string>
     <string name="preference_more_title">Altro&#8230;</string>
     <string name="preference_show_undo_close_tab_title">Annullamento chiusura bolla</string>
 
-    <string name="preference_my_other_apps_title">Altre app di Brave</string>
-    <string name="preference_my_other_apps_summary">Ti piace Brave? Perché non dai un\'occhiata alle nostre altre app?</string>
+    <string name="preference_my_other_apps_title">Altre app di Link Bubble</string>
+    <string name="preference_my_other_apps_summary">Ti piace Link Bubble? Perché non dai un\'occhiata alle nostre altre app?</string>
 
     <string name="remove_default_title">Rimuovi predefinito?</string>
     <string name="remove_default_message">Rimuovi %1$s come app predefinita con cui caricare collegamenti %2$s?\n\nNota: puoi impostare una nuova app predefinita la prossima volta che caricherai un link %2$s.</string>
@@ -197,7 +197,7 @@
     <string name="new_bubble">Nuova bolla</string>
     <string name="history">Cronologia</string>
     <string name="erase_all_history_title">Cancello tutti i dati?</string>
-    <string name="erase_all_history_message">Cancellare l\'intera cronologia di Brave?</string>
+    <string name="erase_all_history_message">Cancellare l\'intera cronologia di Link Bubble?</string>
     <string name="empty">Vuota</string>
     <string name="history_already_empty">La cronologia è già vuota</string>
     <string name="private_data_cleared">Dati privati eliminati</string>
@@ -208,7 +208,7 @@
     <string name="link_loaded_with_app">Caricato con %1$s</string>
     <string name="link_redirected">Ridireziona a %1$s</string>
 
-    <string name="tampered_apk">La tua copia di Brave è stata illegalmente modificata e quindi non funzionerà correttamente. Per favore reinstalla l\'app dal Play Store.</string>
+    <string name="tampered_apk">La tua copia di Link Bubble è stata illegalmente modificata e quindi non funzionerà correttamente. Per favore reinstalla l\'app dal Play Store.</string>
 
     <string name="bubble_link_copied_to_clipboard">Bubble link copiato negli appunti.</string>
     <string name="link_copied_to_clipboard">Link copiato negli appunti.</string>
@@ -232,7 +232,7 @@
     <string name="faq_close_tab_answer">Premere il pulsante Indietro è il modo più veloce. Trascinare una bolla sul pulsante Chiudi è un altro buon metodo.</string>
     <string name="faq_back_button_minimize_question">Io penso che il tasto indietro dovrebbe minimizzare il browser!</string>
     
-    <string name="faq_app_internal_browser_question"><![CDATA[Brave non intercetta i link!!]]></string>
+    <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble non intercetta i link!!]]></string>
     
     <string name="faq_article_mode_question">Come utilizzo la Modalità Lettura? Perché non funziona con alcuni link?</string>
     
@@ -251,7 +251,7 @@
     <string name="faq_translucent_status_bar_answer">Sfortunatamente il sistema di limitazioni di Android previene questo.</string>
     <string name="faq_beta_programme_question">Esiste un programma beta? Posso unirmi?</string>
     
-    <string name="faq_low_spec_performance_question">Perché Brave è lento sul mio Nexus S / Galaxy S1 / Moto G ?</string>
+    <string name="faq_low_spec_performance_question">Perché Link Bubble è lento sul mio Nexus S / Galaxy S1 / Moto G ?</string>
     
     <string name="faq_crap_webview_question">A volte le pagine web non vengono visualizzate correttamente o i video non vengono visualizzati.</string>
     
@@ -275,10 +275,10 @@
     <string name="activity_resolver_use_always">Sempre</string>
     <string name="activity_resolver_use_once">Una sola volta</string>
 
-    <string name="credits_title">Crediti Brave</string>
-    <string name="credits_name">Brave</string>
+    <string name="credits_title">Crediti Link Bubble</string>
+    <string name="credits_name">Link Bubble</string>
     <string name="credits_credit">Idea, design e sviluppo</string>
-    <string name="credits_app_copyright">Copyright 2015, Brave.</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     
     <plurals name="restore_tabs_from_previous_session">
@@ -289,7 +289,7 @@
     <string name="content_description_button">Bottone</string>
     <string name="content_description_target_icon">Icona di riferimento della bolla</string>
     <string name="content_description_close_bubble_icon">Chiudi bolla</string>
-    <string name="content_description_link_bubble_logo">Logo Brave</string>
+    <string name="content_description_link_bubble_logo">Logo Link Bubble</string>
     <string name="content_description_app_icon">Icona App</string>
     <string name="content_description_youtube_video_thumbnail">Miniatura video YouTube</string>
     <string name="content_description_history">Cronologia</string>
@@ -301,19 +301,19 @@
     
 
     
-    <string name="notification_title">Brave</string>
+    <string name="notification_title">Link Bubble</string>
 
-    <string name="store_listing_title">Brave</string>
+    <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Navigazione Internet mobile fatta nel modo giusto.</string>
     
     
     
 
-    <string name="welcome_page_title">Benvenuto su Brave!</string>
+    <string name="welcome_page_title">Benvenuto su Link Bubble!</string>
     <string name="welcome_page_intro_title">Come funziona?</string>
     <string name="welcome_page_intro_point_1">Clicca un link in una app.</string>
     <string name="welcome_page_intro_point_2">Una bolla apparirà lungo il bordo dello schermo e il link sarà caricato in background. Quando la pagina è caricata, verrà visualizzata.</string>
-    <string name="welcome_page_intro_end">E\' semplice, con Brave puoi continuare ad utilizzare la tua app senza perdere tempo aspettando il caricamento dei link. Come c\'è di meglio?</string>
+    <string name="welcome_page_intro_end">E\' semplice, con Link Bubble puoi continuare ad utilizzare la tua app senza perdere tempo aspettando il caricamento dei link. Come c\'è di meglio?</string>
     <string name="welcome_page_more_title">Mostra ancora!</string>
     <string name="welcome_page_more_pocket_start">Puoi condividere velocemente un link o aggiungerlo ad altre app come Pocket.</string>
     <string name="welcome_page_more_pocket_end">Sembra sia divertente che utile, vero?</string>

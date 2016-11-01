@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Nedladdare</string>
-    <string name="send_intent_label">Öppna med Brave</string>
+    <string name="send_intent_label">Öppna med Link Bubble</string>
     <string name="notification_summary">Tryck för att gömma alla öppna bubblor</string>
     <string name="notification_default_summary">Tryck för att dölja, expandera för att Stänga alla</string>
     <string name="notification_unhide_summary">Tryck för att Visa, expandera för att Stänga alla</string>
@@ -25,7 +25,7 @@
     <string name="action_reload_page">Ladda om</string>
     <string name="action_open_in_browser">Öppna med %1$s</string>
     <string name="action_request_desktop_site">Begär webbsida för skrivbordet</string>
-    <string name="action_site_protection">Aktivera Brave</string>
+    <string name="action_site_protection">Aktivera Link Bubble</string>
     <string name="action_open_in_new_bubble">Öppna i ny bubbla</string>
     <string name="action_open_link_in_new_bubble">Öppna länk i en ny bubbla</string>
     <string name="action_open_image_in_new_bubble">Öppna bild i en ny bubbla</string>
@@ -49,7 +49,7 @@
     <string name="warning">Varning!</string>
     <string name="untrusted_certificate">Certifikatet vid %1$s är inte betrott. Fortsätta ändå?</string>
 
-    <string name="share_invalid_data">Brave kan inte dela detta objekt eftersom det inte är en giltig URL.</string>
+    <string name="share_invalid_data">Link Bubble kan inte dela detta objekt eftersom det inte är en giltig URL.</string>
     <string name="consume_activity_not_found">Kan inte hitta applikationen. Ändra bubbelhandling i Inställningar.</string>
     <string name="consume_activity_security_exception">Det går inte att dela till extern applikation.</string>
 
@@ -61,7 +61,7 @@
     <string name="undo_close_tab_no_title">Stängd flik</string>
 
     <string name="pick_default_app">Välj standardapp</string>
-    <string name="default_browser_set">Brave är satt som standardwebbläsare.</string>
+    <string name="default_browser_set">Link Bubble är satt som standardwebbläsare.</string>
     <string name="invalid_send_action">Giltig länk hittades inte. </string>
     <string name="unable_to_launch_app">Lyckades inte starta tredjepartsapplikation.</string>
     <string name="clear_history">Rensa historik</string>
@@ -90,11 +90,11 @@ URL.\n\nTryck för att ta bort en standardapp.</string>
     <string name="preference_default_apps_notice_no_defaults_summary">Används när en eller flera icke-webbläsare på din enhet kan hantera en URL,
 kan du konfigurera att standardappen ska ladda länken.\n\n
 Standardappen som ska användas i detta fall konfigureras när
-du laddar länkar med Brave.</string>
+du laddar länkar med Link Bubble.</string>
     <string name="preference_google_account_redirect_title">Google-konto omdirigering</string>
     <string name="preference_google_account_redirect_summary">Omdirigera accounts.google.com länkar till standard reservwebbläsare</string>
     <string name="preference_set_default_browser_title">Sätt standard systemwebbläsare</string>
-    <string name="preference_set_default_browser_summary">Brave måste vara inställt som standard webbläsare för att detta ska fungera. Tryck för att konfigurera.</string>
+    <string name="preference_set_default_browser_summary">Link Bubble måste vara inställt som standard webbläsare för att detta ska fungera. Tryck för att konfigurera.</string>
     <string name="preference_more">Mer...</string>
     <string name="preference_intercept_links_from_title">Fånga upp länkar från</string>
     <string name="preference_intercept_links_from_disabled_for_L">Från och med Android 5.0 har Google tagit bort API:et som krävs för denna funktion.</string>
@@ -102,7 +102,7 @@ du laddar länkar med Brave.</string>
     <string name="preference_scan_for_youtube_embeds_summary">Visa genväg för att ladda inbäddad video i YouTube-appen.</string>
     <string name="preference_webview_battery_save_title">Batterisparläge (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Aggressivt</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Stoppa uppdateringen av hemsidan när Brave är minimerat.\nSidor som laddas kommer att laddas färdigt innan de stoppas.</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Stoppa uppdateringen av hemsidan när Link Bubble är minimerat.\nSidor som laddas kommer att laddas färdigt innan de stoppas.</string>
     <string name="preference_webview_battery_save_default_title">Standard</string>
     <string name="preference_webview_battery_save_default_summary">Stoppa uppdateringen av hemsidor när skärmen är avstängd och återuppta när enheten låses upp.\nSidorna som håller på att läsas in laddas färdigt innan de stoppas.</string>
     <string name="preference_webview_battery_save_off_title">Av</string>
@@ -156,7 +156,7 @@ du laddar länkar med Brave.</string>
     <string name="add_domain_hint">Url-värd</string>
     <string name="add_domain_detail">Specificera endast \'huvud\'-delen av en webbsidas adress. Dvs,
 \"accounts.google.com\" eller \"bbc.co.uk\". </string>
-    <string name="add_domain_error">Brave kan inte lägga till \"%1$s\", eftersom det inte är en giltig URL-värd.</string>
+    <string name="add_domain_error">Link Bubble kan inte lägga till \"%1$s\", eftersom det inte är en giltig URL-värd.</string>
 
     <string name="preference_help_title">Hjälp</string>
     <string name="preference_show_welcome_message_title">Visa välkomstsida</string>
@@ -165,14 +165,14 @@ du laddar länkar med Brave.</string>
     <string name="preference_privacy_policy_title">Sekretesspolicy</string>
     <string name="preference_terms_of_service_title">Användarvillkor</string>
     <string name="preference_say_thanks_title">Säg tack!</string>
-    <string name="preference_say_thanks_summary">Uppskattar du Brave? Lämna gärna en recension i Playbutiken.</string>
+    <string name="preference_say_thanks_summary">Uppskattar du Link Bubble? Lämna gärna en recension i Playbutiken.</string>
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">Vad är nytt?</string>
     <string name="preference_more_title">Mer&#8230;</string>
     <string name="preference_show_undo_close_tab_title">Fråga om ångra stäng flik</string>
 
-    <string name="preference_my_other_apps_title">Fler appar av Brave</string>
-    <string name="preference_my_other_apps_summary">Gillar du Brave? Kolla in våra andra appar!</string>
+    <string name="preference_my_other_apps_title">Fler appar av Link Bubble</string>
+    <string name="preference_my_other_apps_summary">Gillar du Link Bubble? Kolla in våra andra appar!</string>
 
     <string name="remove_default_title">Ta bort standard?</string>
     <string name="remove_default_message">Ta bort %1$s som standardapp för att ladda %2$s-länkar?\n\nNotera: du kan ange en ny standardapp
@@ -213,7 +213,7 @@ nästa gång du laddar en %2$s-länk </string>
     <string name="link_loaded_with_app">Laddad med %1$s</string>
     <string name="link_redirected">Omdirigerad till %1$s</string>
 
-    <string name="tampered_apk">Din kopia av Brave har blivit olovligt modifierad och kommer inte fungera tillförlitligt. Vänligen ominstallera från Play Store.</string>
+    <string name="tampered_apk">Din kopia av Link Bubble har blivit olovligt modifierad och kommer inte fungera tillförlitligt. Vänligen ominstallera från Play Store.</string>
 
     <string name="bubble_link_copied_to_clipboard">Bubbellänk kopierad till urklipp.</string>
     <string name="link_copied_to_clipboard">Länk kopierad till urklipp.</string>
@@ -260,7 +260,7 @@ nästa gång du laddar en %2$s-länk </string>
     
     <string name="faq_crap_webview_question">Ibland visas inte webbsidor på rätt sätt eller videor spelas inte.</string>
     
-    <string name="faq_ongoing_notificaion_question">Varför visas alltid pågåendenotifierinen när Brave körs?</string>
+    <string name="faq_ongoing_notificaion_question">Varför visas alltid pågåendenotifierinen när Link Bubble körs?</string>
     
     <string name="faq_next_update_eta_question">När kommer nästa uppdatering?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[När den är färdig!<br/><br/>Det är tyvärr inte möjligt att vara mer specifik än så
@@ -282,10 +282,10 @@ att folk tar det som ett åtagande och blir upprörda när det dröjer av någon
     <string name="activity_resolver_use_always">Alltid</string>
     <string name="activity_resolver_use_once">Bara en gång</string>
 
-    <string name="credits_title">Brave Credits</string>
-    <string name="credits_name">Brave</string>
+    <string name="credits_title">Link Bubble Credits</string>
+    <string name="credits_name">Link Bubble</string>
     <string name="credits_credit">Koncept, design och programmering</string>
-    <string name="credits_app_copyright">Copyright 2015, Brave.</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     
     <plurals name="restore_tabs_from_previous_session">

@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">İndirici</string>
-    <string name="send_intent_label">Brave ile aç</string>
+    <string name="send_intent_label">Link Bubble ile aç</string>
     <string name="notification_summary">Açık olan tüm baloncukları gizlemek için dokun</string>
     <string name="notification_default_summary">Gizlemek için dokun, Tümünü Kapatmak için genişlet</string>
     <string name="notification_unhide_summary">Göstermek için dokun, Tümünü Kapatmak için genişlet</string>
@@ -25,7 +25,7 @@
     <string name="action_reload_page">Yeniden yükle</string>
     <string name="action_open_in_browser">%1$s ile aç</string>
     <string name="action_request_desktop_site">Masaüstü sitesi iste</string>
-    <string name="action_site_protection">Brave kalkanlarını etkinleştir</string>
+    <string name="action_site_protection">Link Bubble kalkanlarını etkinleştir</string>
     <string name="action_open_in_new_bubble">Yeni baloncukta aç</string>
     <string name="action_open_link_in_new_bubble">Bağlantıyı yeni baloncukta aç</string>
     <string name="action_open_image_in_new_bubble">Resmi yeni baloncukta aç</string>
@@ -49,7 +49,7 @@
     <string name="warning">Uyarı!</string>
     <string name="untrusted_certificate">%1$s sertifikası güvenli değil. Yine de devam edilsin mi?</string>
 
-    <string name="share_invalid_data">Brave bu öğeyi geçerli bir URL olmadığı için paylaşamıyor.</string>
+    <string name="share_invalid_data">Link Bubble bu öğeyi geçerli bir URL olmadığı için paylaşamıyor.</string>
     <string name="consume_activity_not_found">Uygulama bulunamıyor. Ayarlardan baloncuk eylemini değiştirmeyi deneyin.</string>
     <string name="consume_activity_security_exception">Harici uygulama ile paylaşılamadı.</string>
 
@@ -61,7 +61,7 @@
     <string name="undo_close_tab_no_title">Sekme kapatıldı</string>
 
     <string name="pick_default_app">Varsayılan uygulamayı seç</string>
-    <string name="default_browser_set">Brave varsayılan tarayıcı olarak ayarlandı.</string>
+    <string name="default_browser_set">Link Bubble varsayılan tarayıcı olarak ayarlandı.</string>
     <string name="invalid_send_action">Geçerli bağlantı bulunamadı.</string>
     <string name="unable_to_launch_app">3\'üncü taraf uygulama başlatılamadı.</string>
     <string name="clear_history">Geçmişi temizle</string>
@@ -89,11 +89,11 @@
 kullanılır.\n\nBir varsayılanı kaldırmak için dokun.</string>
     <string name="preference_default_apps_notice_no_defaults_summary">Bir URL\'yi açabilecek bir veya daha fazla tarayıcı olmayan uygulama varsa kullanılır,
 böyle bağlantıları açacak varsayılan uygulamayı yapılandırabilirsin.\n\nBu durumda kullanılacak varsayılan uygulama
-bağlantıları Brave ile açtığın zaman yapılandırılır.</string>
+bağlantıları Link Bubble ile açtığın zaman yapılandırılır.</string>
     <string name="preference_google_account_redirect_title">Google Hesabı yönlendirmesi</string>
     <string name="preference_google_account_redirect_summary">accounts.google.com bağlantılarını varsayılan yedek tarayıcıya yönlendir</string>
     <string name="preference_set_default_browser_title">Varsayılan sistem tarayıcısını ayarla</string>
-    <string name="preference_set_default_browser_summary">Brave çalışmak için varsayılan tarayıcı olarak ayarlanmalıdır. Ayarlamak için dokunun.</string>
+    <string name="preference_set_default_browser_summary">Link Bubble çalışmak için varsayılan tarayıcı olarak ayarlanmalıdır. Ayarlamak için dokunun.</string>
     <string name="preference_more">Daha fazla...</string>
     <string name="preference_intercept_links_from_title">Bağlantıları şunlardan yakala</string>
     <string name="preference_intercept_links_from_disabled_for_L">Android 5.0 ile birlikte, Google bu işlev için gerekli API desteğini kaldırdı.</string>
@@ -101,7 +101,7 @@ bağlantıları Brave ile açtığın zaman yapılandırılır.</string>
     <string name="preference_scan_for_youtube_embeds_summary">Gömülü videoları YouTube uygulamasında yüklemek için kısayol göster.</string>
     <string name="preference_webview_battery_save_title">Pil Tasarrufu Modu (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Agresif</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Brave küçültüldüğünde web sayfalarını güncellemeyi duraklat.\nYüklenmekte olan sayfaların yüklemesi duraklamadan önce tamamlanır.</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Link Bubble küçültüldüğünde web sayfalarını güncellemeyi duraklat.\nYüklenmekte olan sayfaların yüklemesi duraklamadan önce tamamlanır.</string>
     <string name="preference_webview_battery_save_default_title">Varsayılan</string>
     <string name="preference_webview_battery_save_default_summary">Ekran kapalıyken web sayfalarını güncellemeyi duraklat ve cihazın kilidi açıkken devam ettir.\nYüklenmekte olan sayfaların yüklemesi duraklamadan önce tamamlanır.</string>
     <string name="preference_webview_battery_save_off_title">Kapalı</string>
@@ -164,14 +164,14 @@ bağlantıları Brave ile açtığın zaman yapılandırılır.</string>
     <string name="preference_privacy_policy_title">Gizlilik İlkesi</string>
     <string name="preference_terms_of_service_title">Hizmet Kullanım Şartları</string>
     <string name="preference_say_thanks_title">Teşekkürlerini ilet!</string>
-    <string name="preference_say_thanks_summary">Brave\'i beğendin mi? Lütfen bir Play Store incelemesi yaz.</string>
+    <string name="preference_say_thanks_summary">Link Bubble\'i beğendin mi? Lütfen bir Play Store incelemesi yaz.</string>
     <string name="preference_version_title">Sürüm</string>
     <string name="preference_version_summary">Neler yeni?</string>
     <string name="preference_more_title">Daha fazla&#8230;</string>
     <string name="preference_show_undo_close_tab_title">Kapatılan sekmeyi geri alma iletisi</string>
 
-    <string name="preference_my_other_apps_title">Brave\'den başka uygulamalar</string>
-    <string name="preference_my_other_apps_summary">Brave\'i beğendin mi? Neden başka uygulamalarımıza göz atmıyorsun?</string>
+    <string name="preference_my_other_apps_title">Link Bubble\'den başka uygulamalar</string>
+    <string name="preference_my_other_apps_summary">Link Bubble\'i beğendin mi? Neden başka uygulamalarımıza göz atmıyorsun?</string>
 
     <string name="remove_default_title">Varsayılan kaldırılsın mı?</string>
     <string name="remove_default_message">%1$s %2$s bağlantılarını yükleyen varsayılan uygulama olmaktan çıkarılsın mı?\n\nNot: %2$s bağlantısının bir sonraki
@@ -201,7 +201,7 @@ yüklenişinde yeni bir varsayılan uygulama ayarlayabilirsin.</string>
     <string name="new_bubble">Yeni Baloncuk</string>
     <string name="history">Geçmiş</string>
     <string name="erase_all_history_title">Tümü silinsin mi?</string>
-    <string name="erase_all_history_message">Tüm Brave tarama geçmişi silinsin mi?</string>
+    <string name="erase_all_history_message">Tüm Link Bubble tarama geçmişi silinsin mi?</string>
     <string name="empty">Boş</string>
     <string name="history_already_empty">Geçmiş zaten boş</string>
     <string name="private_data_cleared">Kişisel veriler temizlendi</string>
@@ -212,7 +212,7 @@ yüklenişinde yeni bir varsayılan uygulama ayarlayabilirsin.</string>
     <string name="link_loaded_with_app">%1$s ile yüklendi</string>
     <string name="link_redirected">Şuna yönlendiriliyor: %1$s</string>
 
-    <string name="tampered_apk">Brave kopyanız üzerinde yasa dışı olarak değişiklik yapılmış ve dolayısıyla güvenilir şekilde çalışamayacak. Lütfen Play Store\'dan yeniden yükleyin.</string>
+    <string name="tampered_apk">Link Bubble kopyanız üzerinde yasa dışı olarak değişiklik yapılmış ve dolayısıyla güvenilir şekilde çalışamayacak. Lütfen Play Store\'dan yeniden yükleyin.</string>
 
     <string name="bubble_link_copied_to_clipboard">Baloncuk bağlantısı panoya kopyalandı.</string>
     <string name="link_copied_to_clipboard">Bağlantı panoya kopyalandı.</string>
@@ -235,75 +235,75 @@ yüklenişinde yeni bir varsayılan uygulama ayarlayabilirsin.</string>
     <string name="faq_close_tab_question">Bir sekmeyi nasıl hızlıca kapatabilirim?</string>
     <string name="faq_close_tab_answer">Telefonunun Geri tuşuna basmak en hızlı yoldur. Bir diğer iyi yol ise sekmeyi Kapat düğmesine sürüklemektir.</string>
     <string name="faq_back_button_minimize_question">Bence Geri tuşuna basmak tarayıcıyı küçültmeli!</string>
-    <string name="faq_back_button_minimize_answer"><![CDATA[Brave\'i cihazın Geri tuşuna basarak küçültmek uygulanabilir değildir.
+    <string name="faq_back_button_minimize_answer"><![CDATA[Link Bubble\'i cihazın Geri tuşuna basarak küçültmek uygulanabilir değildir.
 Aşağıdaki duruma bir göz at:<br/>
 1). ornek.com/sayfa1 ilk sekmede yüklüdür.<br/>
 2). Bu sayfada bir bağlantıya tıklıyorsun, ve aynı sekmede ornek.com/sayfa2 yükleniyor.<br/>
 3). Şimdi de birinci adımdaki bağlantıya gitmek istiyorsun.<br/><br/>
-Cihazın Geri tuşu Brave\'i küçültürken bunu nasıl yapabilirsin? Sekmede bulunan küçük geri işaretine basmak
+Cihazın Geri tuşu Link Bubble\'i küçültürken bunu nasıl yapabilirsin? Sekmede bulunan küçük geri işaretine basmak
 uygulanabilir değildir.<br/><br/>
-Brave bir tarayıcıdır, ve Android tarayıcıları öteden beri süregelen Geri tuşuna basıldığında
+Link Bubble bir tarayıcıdır, ve Android tarayıcıları öteden beri süregelen Geri tuşuna basıldığında
 ya URL yığınında geri gitmeyi, ya da öyle bir yığın yoksa mevcut sayfayı kapatmayı öngören bir standardı benimsemişlerdir.
-Brave bu standardı takip eder.]]></string>
-    <string name="faq_app_internal_browser_question"><![CDATA[Brave bağlantıları yakalamıyor!]]></string>
+Link Bubble bu standardı takip eder.]]></string>
+    <string name="faq_app_internal_browser_question"><![CDATA[Link Bubble bağlantıları yakalamıyor!]]></string>
     <string name="faq_app_internal_browser_answer"><![CDATA[Bunun 3 sebebi vardır:<br/>
-1). Brave dışında başka bir tarayıcı varsayılan olarak ayarlıdır. Bunu değiştirmek için Brave Ayarları
+1). Link Bubble dışında başka bir tarayıcı varsayılan olarak ayarlıdır. Bunu değiştirmek için Link Bubble Ayarları
 içinde \"Varsayılan sistem tarayıcısını ayarla\" seçeneğine bak.<br/>
-2). Brave mevcut uygulamadaki bağlantıları yakalamayacak şekilde yapılandırılmıştır. Brave Ayarları
+2). Link Bubble mevcut uygulamadaki bağlantıları yakalamayacak şekilde yapılandırılmıştır. Link Bubble Ayarları
 içinde \"Bağlantıları şunlardan yakala\" seçeneğine bak.<br/>
 3). Talon, Reddit is Fun ve diğer bazı uygulamaların içinde bağlantıları işleyen tarayıcılar bulunur. O uygulamanın ayarlarını kontrol edip
 \"Harici tarayıcıyı\" etkinleştir veya \"Bütünleşik tarayıcıyı\" devre dışı bırak.
-<br/><br/>Not: Chrome gibi diğer tarayıcı uygulamaları bağlantıları kendileri açacak şekilde doğrudan kodlanmıştır, bu yüzden Brave
+<br/><br/>Not: Chrome gibi diğer tarayıcı uygulamaları bağlantıları kendileri açacak şekilde doğrudan kodlanmıştır, bu yüzden Link Bubble
 diğer tarayıcı uygulamalarından tıklanan bağlantıları açamaz.
 ]]></string>
     <string name="faq_article_mode_question">Okuma Modu\'nu nasıl kullanırım? Neden bazı bağlantılar çalışmıyor?</string>
     <string name="faq_article_mode_answer"><![CDATA[Öncelikle, Okuma Modu\'nun etkin olduğundan emin ol (Ayarlar -> Uygulama Kontrolleri / Daha fazla&#8230; -> Okuma Modu).<br/><br/>
 Bu noktadan itibaren, Okuma Modu mevcut sekmede kullanılabilir olduğunda, eylem çubuğunda Okuma Modu simgesi görüntülenecektir (Paylaş düğmesinin yanında).
-Bu simgenin yalnızca bağlantı yüklenmesi tamamlandığında ve yalnızca Brave Okuma Modu içeriğini bağlantıdan başarıyla ayıkladığında görüntülendiğinin farkında ol.<br/><br/>
+Bu simgenin yalnızca bağlantı yüklenmesi tamamlandığında ve yalnızca Link Bubble Okuma Modu içeriğini bağlantıdan başarıyla ayıkladığında görüntülendiğinin farkında ol.<br/><br/>
 Not: İnternetten içerik ayıklamak güvenilir bir süreç değildir, ve %100 isabetle çalışmayabilir. İnternetin hareketli ve durmadan değişen doğası göz önüne alındığında,
 bu konuda yapılacak çok az şey vardır.]]></string>
     <string name="faq_future_features_question">Yer işaretleri, sık kullanılanlar, eklentiler vs. desteği ekleyecek misin?</string>
-    <string name="faq_future_features_answer">Asla asla deme, ancak şimdilik Brave sadece başka uygulamalardan yüklenen bağlantıları en iyi
+    <string name="faq_future_features_answer">Asla asla deme, ancak şimdilik Link Bubble sadece başka uygulamalardan yüklenen bağlantıları en iyi
 şekilde yüklemeye ve tüketmeye odaklanıyor.</string>
     <string name="faq_translations_question">Uygulamanın çevirisine yardım edebilir miyim?</string>
-    <string name="faq_translations_answer"><![CDATA[Çeviri desteğini en kısa zamanda eklemeyi umuyorum.<br/><br/>Yaptığımda, mutlaka Google+ (+Brave)
+    <string name="faq_translations_answer"><![CDATA[Çeviri desteğini en kısa zamanda eklemeyi umuyorum.<br/><br/>Yaptığımda, mutlaka Google+ (+Link Bubble)
 üzerinden çeviri yardımı için çağrıda bulunacağım, o yüzden gözün yayınımın üzerinde olsun.]]></string>
     <string name="faq_roadmap_question">Bir özellik yol haritası yayımlıyor musun? Yaklaşan özellikleri oylayabilir miyim?</string>
     <string name="faq_roadmap_answer">Rekabetçi sebepler yüzünden, iki sorunun da cevabı maalesef \'hayır\'.</string>
-    <string name="faq_alternate_payment_answer"><![CDATA[Brave şu anda sadece Google Play üzerinden satın alımları desteklemektedir.<br/><br/>İlave
+    <string name="faq_alternate_payment_answer"><![CDATA[Link Bubble şu anda sadece Google Play üzerinden satın alımları desteklemektedir.<br/><br/>İlave
 ödeme yöntemleri umarım gelecekte eklenecektir (Google Play Geliştirici Programı Politikaları\'nı ihlal etmediğini varsayarsak).]]></string>
     <string name="faq_cant_type_url_question">Ziyaret etmek istediğim bağlantının adını nasıl yazabilirim?</string>
     <string name="faq_cant_type_url_answer"><![CDATA[Sadece sayfaya / URL başlığına dokunun. Düzenleme modu açılır ve geçmişin ve favorilerine göre öneriler sunar.]]></string>
     <string name="faq_copy_text_question">Neden bir web sayfasından metin kopyalayamıyorum?</string>
     <string name="faq_copy_text_answer"><![CDATA[Maalesef Android system sınırlamaları bunun çalışmasına engel oluyor.<br/><br/>Teknik cevap:
-Kopyalama işlevi Android WebView bir Etkinlik içinden kullanıldığında çalışır, ancak Servis içinden çalışmaz (Brave bunu kullanır).]]></string>
+Kopyalama işlevi Android WebView bir Etkinlik içinden kullanıldığında çalışır, ancak Servis içinden çalışmaz (Link Bubble bunu kullanır).]]></string>
     <string name="faq_translucent_status_bar_question">Uygulama saydam durum çubuğunun üzerine neden çizim yapmıyor?</string>
     <string name="faq_translucent_status_bar_answer">Maalesef Android sistem kısıtlamaları buna engel oluyor.</string>
     <string name="faq_beta_programme_question">Bir beta programı var mı? Nasıl katılabilirim?</string>
-    <string name="faq_beta_programme_answer">Beta programıyla ilgili detaylar zamanla duyurulacaktır. Duyurular için gözün benim Google+ (+Brave) yayınımın üzerinde olsun.</string>
-    <string name="faq_low_spec_performance_question">Brave neden Nexus S / Galaxy S1 / Moto G sınıfı cihazımda yavaş çalışıyor?</string>
-    <string name="faq_low_spec_performance_answer"><![CDATA[Brave kaynakları yoğun olarak kullanan bir uygulama, ve bunun sonucunda düşük özellikli
-cihazlar uygulamayı daha güçlü cihazlara kadar iyi çalıştırmakta zorlanabilir. Gelecek güncellemeler Brave\'in
-performansını geliştirmeyi hedefliyor, ancak gerçekçi olmak gerekirse bu alanda yapılabilecek çok az şey var.<br/><br/>Teknik cevap: Temel olarak, Brave
+    <string name="faq_beta_programme_answer">Beta programıyla ilgili detaylar zamanla duyurulacaktır. Duyurular için gözün benim Google+ (+Link Bubble) yayınımın üzerinde olsun.</string>
+    <string name="faq_low_spec_performance_question">Link Bubble neden Nexus S / Galaxy S1 / Moto G sınıfı cihazımda yavaş çalışıyor?</string>
+    <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble kaynakları yoğun olarak kullanan bir uygulama, ve bunun sonucunda düşük özellikli
+cihazlar uygulamayı daha güçlü cihazlara kadar iyi çalıştırmakta zorlanabilir. Gelecek güncellemeler Link Bubble\'in
+performansını geliştirmeyi hedefliyor, ancak gerçekçi olmak gerekirse bu alanda yapılabilecek çok az şey var.<br/><br/>Teknik cevap: Temel olarak, Link Bubble
 çalışmak için bir Hizmet ve WebView kullanımına ihtiyaç duyar. Çoğunlukla birkaç WebView ve hatta birkaç Hizmet daha mevcuttur.
 Doğal olarak, bu öğeleri tahsis etmek (özellikle WebView\'lar için) <i>çok</i> fazla bellek/kaynak tüketir. Düşük özellikli cihazlar genellikle
-Brave\'in ihtiyaç duyduğundan daha az belleğe sahiptir, ve bu yüzden çöp toplama işlemlerinin sıklıkla tetiklenmesi performansı olumsuz etkiler.
+Link Bubble\'in ihtiyaç duyduğundan daha az belleğe sahiptir, ve bu yüzden çöp toplama işlemlerinin sıklıkla tetiklenmesi performansı olumsuz etkiler.
 Örnek olarak, Nexus S\'nin en yüksek yığın boyutu 48 MB iken, bu değer Nexus 5\'te 192 MB\'dir.]]></string>
     <string name="faq_crap_webview_question">Bazen web sayfaları doğru görüntülenmiyor veya videolar oynatılmıyor.</string>
-    <string name="faq_crap_webview_answer"><![CDATA[Brave standart Android WebView kullanır, ancak bu maalesef bazen güvenilir değildir.
+    <string name="faq_crap_webview_answer"><![CDATA[Link Bubble standart Android WebView kullanır, ancak bu maalesef bazen güvenilir değildir.
 Firefox\'un GeckoView\'ı ve Chromium gibi alternatif web işleyici yöntemleri muhtemelen zamanla
-incelenecektir.<br/><br/>Bir web sayfasının Brave ile düzgün görüntülenemediği zamanlarda, yapılacak en kolay şey o bağlantıyı yüklemek için geleneksek bir tarayıcı kullanmaktır.]]></string>
-    <string name="faq_ongoing_notificaion_question">Devam eden bildirim neden Brave çalışırken sürekli görüntüleniyor?</string>
-    <string name="faq_ongoing_notificaion_answer"><![CDATA[Maalesef bu devam eden bildirim Android İS\'nin Brave\'i sona erdirmemesini teşvik etmek için
+incelenecektir.<br/><br/>Bir web sayfasının Link Bubble ile düzgün görüntülenemediği zamanlarda, yapılacak en kolay şey o bağlantıyı yüklemek için geleneksek bir tarayıcı kullanmaktır.]]></string>
+    <string name="faq_ongoing_notificaion_question">Devam eden bildirim neden Link Bubble çalışırken sürekli görüntüleniyor?</string>
+    <string name="faq_ongoing_notificaion_answer"><![CDATA[Maalesef bu devam eden bildirim Android İS\'nin Link Bubble\'i sona erdirmemesini teşvik etmek için
 gereklidir..]]></string>
     <string name="faq_next_update_eta_question">Bir sonraki güncelleme ne zaman geliyor?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[Hazır olduğunda!<br/><br/>Bundan daha açık olmak maalesef çok uygulanabilir değil
 (aşağı yukarı bir tahminde bulunmak bile).<br/><br/>Gerçek şu ki, tahminde bulunulduğunda insanlar çoğunlukla onu bir taahhüt
 olarak alıp, herhangi bir sebeple gecikme olursa/olduğunda sinirlenebilirler.]]></string>
-    <string name="faq_close_quickly_question">Brave\'in çalışmasını nasıl hızlıca durdurabilirim?</string>
-    <string name="faq_close_quickly_answer">Bildirim panelini açmak için ekranın yukarısından kaydır ve \"Brave\" bildirimine tıkla.</string>
-    <string name="faq_change_default_browser_question">Brave\'i nasıl varsayılan tarayıcı olarak kaldırabilirim?</string>
-    <string name="faq_change_default_browser_answer">Sistem Ayarları -> Uygulamalar -> İndirilenler -> Brave -> Varsayılanları temizle.</string>
+    <string name="faq_close_quickly_question">Link Bubble\'in çalışmasını nasıl hızlıca durdurabilirim?</string>
+    <string name="faq_close_quickly_answer">Bildirim panelini açmak için ekranın yukarısından kaydır ve \"Link Bubble\" bildirimine tıkla.</string>
+    <string name="faq_change_default_browser_question">Link Bubble\'i nasıl varsayılan tarayıcı olarak kaldırabilirim?</string>
+    <string name="faq_change_default_browser_answer">Sistem Ayarları -> Uygulamalar -> İndirilenler -> Link Bubble -> Varsayılanları temizle.</string>
     <string name="faq_report_bug_question">Bir hata bildir</string>
     <string name="faq_report_bug_answer"><![CDATA[e-posta]]></string>
 
@@ -316,10 +316,10 @@ olarak alıp, herhangi bir sebeple gecikme olursa/olduğunda sinirlenebilirler.]
     <string name="activity_resolver_use_always">Her zaman</string>
     <string name="activity_resolver_use_once">Sadece bir kez</string>
 
-    <string name="credits_title">Brave Hakkında</string>
-    <string name="credits_name">Brave</string>
+    <string name="credits_title">Link Bubble Hakkında</string>
+    <string name="credits_name">Link Bubble</string>
     <string name="credits_credit">Konsept, tasarım ve programlama</string>
-    <string name="credits_app_copyright">Telif Hakkı 2015, Brave.</string>
+    <string name="credits_app_copyright">Telif Hakkı 2015, Link Bubble.</string>
 
     
     <plurals name="restore_tabs_from_previous_session">
@@ -330,7 +330,7 @@ olarak alıp, herhangi bir sebeple gecikme olursa/olduğunda sinirlenebilirler.]
     <string name="content_description_button">Düğme</string>
     <string name="content_description_target_icon">Baloncuk hedef simgesi</string>
     <string name="content_description_close_bubble_icon">Baloncuğu kapat simgesi</string>
-    <string name="content_description_link_bubble_logo">Brave logosu</string>
+    <string name="content_description_link_bubble_logo">Link Bubble logosu</string>
     <string name="content_description_app_icon">Uygulama simgesi</string>
     <string name="content_description_youtube_video_thumbnail">YouTube video küçük resmi</string>
     <string name="content_description_history">Geçmiş</string>
@@ -341,31 +341,31 @@ olarak alıp, herhangi bir sebeple gecikme olursa/olduğunda sinirlenebilirler.]
 
     
 
-    <string name="service_name">Brave İşleyicisi</string>
-    <string name="notification_title">Brave</string>
+    <string name="service_name">Link Bubble İşleyicisi</string>
+    <string name="notification_title">Link Bubble</string>
 
-    <string name="store_listing_title">Brave</string>
+    <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Mobil taramanın doğru yolu.</string>
-    <string name="store_listing_description_title">Brave sadece mobil cihazlar düşünülerek tasarlanmış ve hazırlanmış tamamen yeni bir tarayıcıdır.</string>
+    <string name="store_listing_description_title">Link Bubble sadece mobil cihazlar düşünülerek tasarlanmış ve hazırlanmış tamamen yeni bir tarayıcıdır.</string>
     <string name="store_listing_description_features">Özellikleri şunlardır:
-• Bir uygulama içinde bir bağlantıya tıkladığınızda, Brave web sayfasını arka planda yükleyerek, değerli zamanınızı bir sayfanın yüklenmesini izleyerek boşa harcamak yerine mevcut uygulamanızı kullanmaya devam etmenizi sağlar. Sayfa tamamen yüklendiğinde ekranda görünür.
-• Brave\'in kaydırma hareketleri bir saniyenin çok az üstünde bir sürede bir bağlantıya tıklayıp bağlantı paylaşmayı veya onu Pocket gibi bir hizmete eklemeyi mümkün kılar!
+• Bir uygulama içinde bir bağlantıya tıkladığınızda, Link Bubble web sayfasını arka planda yükleyerek, değerli zamanınızı bir sayfanın yüklenmesini izleyerek boşa harcamak yerine mevcut uygulamanızı kullanmaya devam etmenizi sağlar. Sayfa tamamen yüklendiğinde ekranda görünür.
+• Link Bubble\'in kaydırma hareketleri bir saniyenin çok az üstünde bir sürede bir bağlantıya tıklayıp bağlantı paylaşmayı veya onu Pocket gibi bir hizmete eklemeyi mümkün kılar!
 • Mevcut uygulamanızdan birden fazla bağlantıyı aynı anda yükleyin.
 • Başka uygulamalara yönlendiren bağlantıları incelikle ele alır. Twitter\'daki bir Instagram bağlantısına tıklamak artık sizi Instagram\'ı açmadan tam ekran bir tarayıcıya yönlendirmeyecek!
 • Sisteminizdeki uygulamalarla derinlemesine bütünleşiktir.
 • Web sayfalarındaki gömülü YouTube videolarını tespit eder, ve YouTube uygulamasındaki o videolara doğrudan bir kısayol sağlar.
-• Brave kullanarak ne kadar zaman tasarruf ettiğinizi açıklayan kullanışlı istatistikler sunar.</string>
-    <string name="store_listing_description_location_permission">Konum izni hakkında: Bu izin sizin bir internet sitesine (gömülü bir harita içerenler gibi) konumunuza erişme izni verebilmeniz için gereklidir. Brave asla konumunuza erişmez.</string>
+• Link Bubble kullanarak ne kadar zaman tasarruf ettiğinizi açıklayan kullanışlı istatistikler sunar.</string>
+    <string name="store_listing_description_location_permission">Konum izni hakkında: Bu izin sizin bir internet sitesine (gömülü bir harita içerenler gibi) konumunuza erişme izni verebilmeniz için gereklidir. Link Bubble asla konumunuza erişmez.</string>
 
-    <string name="welcome_page_title">Brave\'e hoş geldin!</string>
+    <string name="welcome_page_title">Link Bubble\'e hoş geldin!</string>
     <string name="welcome_page_intro_title">Nasıl çalışır?</string>
     <string name="welcome_page_intro_point_1">Uygulama içinde bir bağlantıya tıkla.</string>
     <string name="welcome_page_intro_point_2">Ekranın kenarında bir baloncuk belirecek ve bağlantı arka planda yüklenmeye başlayacak. Sayfa yüklenir yüklenmez, görüntülenecek.</string>
-    <string name="welcome_page_intro_end">Bu kadar basit! Brave ile, bağlantıların yönlendirilmesini izlemek ve sayfaların yüklenmesini beklemek yerine, mevcut uygulamanı kullanmaya devam edebilirsin. Harika değil mi?</string>
+    <string name="welcome_page_intro_end">Bu kadar basit! Link Bubble ile, bağlantıların yönlendirilmesini izlemek ve sayfaların yüklenmesini beklemek yerine, mevcut uygulamanı kullanmaya devam edebilirsin. Harika değil mi?</string>
     <string name="welcome_page_more_title">Daha fazla göster!</string>
     <string name="welcome_page_more_pocket_start">Ayrıca bir bağlantıyı hızlıca paylaşabilir veya Pocket gibi bir uygulamaya ekleyebilirsin.</string>
     <string name="welcome_page_more_pocket_end">Hem eğlenceli hem de kullanışlı duruyor değil mi?</string>
-    <string name="welcome_page_more_also">Brave ayrıca:</string>
+    <string name="welcome_page_more_also">Link Bubble ayrıca:</string>
     <string name="welcome_page_more_point_1">Bağlantıları ilgili uygulamaya yönlendirir (ör. Instagram).</string>
     <string name="welcome_page_more_point_2">Gömülü videoları bulur, böylece onları kolayca YouTube uygulamasında açabilirsin.</string>
     <string name="welcome_page_more_point_3">Aynı anda çok sayıda baloncuğu yükler.</string>

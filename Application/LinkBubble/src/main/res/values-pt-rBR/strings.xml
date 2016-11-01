@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Baixador</string>
-    <string name="send_intent_label">Abrir com o Brave</string>
+    <string name="send_intent_label">Abrir com o Link Bubble</string>
     <string name="notification_summary">Toque para ocultar todas as bolhas abertas</string>
     <string name="notification_default_summary">Toque para ocultar, expanda para fechar tudo.</string>
     <string name="notification_unhide_summary">Toque para mostrar, expanda para fechar tudo.</string>
@@ -25,7 +25,7 @@
     <string name="action_reload_page">Recarregar</string>
     <string name="action_open_in_browser">Abrir no %1$s</string>
     <string name="action_request_desktop_site">Versão para desktop</string>
-    <string name="action_site_protection">Ativar escudos do Brave</string>
+    <string name="action_site_protection">Ativar escudos do Link Bubble</string>
     <string name="action_open_in_new_bubble">Abrir em uma nova bolha</string>
     <string name="action_open_link_in_new_bubble">Abrir link em nova bolha</string>
     <string name="action_open_image_in_new_bubble">Abrir imagem em nova bolha</string>
@@ -61,7 +61,7 @@
     <string name="undo_close_tab_no_title">Aba fechada</string>
 
     <string name="pick_default_app">Selecione o aplicativo padrão</string>
-    <string name="default_browser_set">O Brave foi definido como navegador padrão.</string>
+    <string name="default_browser_set">O Link Bubble foi definido como navegador padrão.</string>
     <string name="invalid_send_action">Link válido não encontrado.</string>
     <string name="unable_to_launch_app">Impossível iniciar aplicativo de terceiro.</string>
     <string name="clear_history">Apagar histórico</string>
@@ -86,11 +86,11 @@
     <string name="preference_default_apps_title">Apps padrão</string>
     <string name="preference_default_apps_summary">Navegador alternativo, aplicativos para url especificas</string>
     <string name="preference_default_apps_notice_summary">Usado quando um ou mais aplicativos que não sejam navegadores podem manipular a URL. Toque para remover.</string>
-    <string name="preference_default_apps_notice_no_defaults_summary">Quando um ou mais aplicativos que não sejam navegadores podem manipular a URL, você pode configurar o aplicativo padrão para carregar cada link.\n\nO aplicativo padrão para estes casos é configurado quando você carrega estes links com o Brave.</string>
+    <string name="preference_default_apps_notice_no_defaults_summary">Quando um ou mais aplicativos que não sejam navegadores podem manipular a URL, você pode configurar o aplicativo padrão para carregar cada link.\n\nO aplicativo padrão para estes casos é configurado quando você carrega estes links com o Link Bubble.</string>
     <string name="preference_google_account_redirect_title">Redirecionamento da Conta Google</string>
     <string name="preference_google_account_redirect_summary">Redirecionar accounts.google.com links para o navegador alternativo padrão</string>
     <string name="preference_set_default_browser_title">Escolha o navegador padrão do sistema</string>
-    <string name="preference_set_default_browser_summary">O Brave precisa estar selecionado como navegador padrão do sistema para funcionar. Toque para configurar.</string>
+    <string name="preference_set_default_browser_summary">O Link Bubble precisa estar selecionado como navegador padrão do sistema para funcionar. Toque para configurar.</string>
     <string name="preference_more">Mais...</string>
     <string name="preference_intercept_links_from_title">Interceptar links de</string>
     <string name="preference_intercept_links_from_disabled_for_L">Desde o Android 5.0, o Google removeu a API necessária a essa funcionalidade.</string>
@@ -98,7 +98,7 @@
     <string name="preference_scan_for_youtube_embeds_summary">Exibir atalho para carregar vídeos no app do YouTube.</string>
     <string name="preference_webview_battery_save_title">Modo economia de bateria</string>
     <string name="preference_webview_battery_save_aggressive_title">Agressivo</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Pausa a atualização de páginas quando o Brave estiver minimizado..\nPáginas que ainda estão sendo carregadas irão terminar de ser atualizadas.</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Pausa a atualização de páginas quando o Link Bubble estiver minimizado..\nPáginas que ainda estão sendo carregadas irão terminar de ser atualizadas.</string>
     <string name="preference_webview_battery_save_default_title">Padrão</string>
     <string name="preference_webview_battery_save_default_summary">Para a atualização de páginas quando a tela está desligada e retorna quando seu dispositivo é desbloqueado.\nPáginas que ainda estão sendo carregadas irão terminar de ser atualizadas.</string>
     <string name="preference_webview_battery_save_off_title">Desligado</string>
@@ -161,14 +161,14 @@
     <string name="preference_privacy_policy_title">Política de privacidade</string>
     <string name="preference_terms_of_service_title">Termos de Serviço</string>
     <string name="preference_say_thanks_title">Diga Obrigado!</string>
-    <string name="preference_say_thanks_summary">Curtindo o Brave? Seria legal se você pudesse fazer um review na Play Store.</string>
+    <string name="preference_say_thanks_summary">Curtindo o Link Bubble? Seria legal se você pudesse fazer um review na Play Store.</string>
     <string name="preference_version_title">Versão</string>
     <string name="preference_version_summary">O que tem de novo?</string>
     <string name="preference_more_title">Mais&#8230;</string>
     <string name="preference_show_undo_close_tab_title">Opção de desfazer fechamento</string>
 
-    <string name="preference_my_other_apps_title">Mais apps da Brave</string>
-    <string name="preference_my_other_apps_summary">Gosta do Brave? Dê uma olhada nos nossos outros apps!</string>
+    <string name="preference_my_other_apps_title">Mais apps da Link Bubble</string>
+    <string name="preference_my_other_apps_summary">Gosta do Link Bubble? Dê uma olhada nos nossos outros apps!</string>
 
     <string name="remove_default_title">Remover padrão?</string>
     <string name="remove_default_message">Remover %1$s como app padrão para carregar links de %2$s?\n\nNota: você pode definir um novo app padrão para carregar links de %2$s.</string>
@@ -197,7 +197,7 @@
     <string name="new_bubble">Nova Bolha</string>
     <string name="history">Histórico</string>
     <string name="erase_all_history_title">Apagar tudo?</string>
-    <string name="erase_all_history_message">Apagar todo o seu histórico de navegação no Brave?</string>
+    <string name="erase_all_history_message">Apagar todo o seu histórico de navegação no Link Bubble?</string>
     <string name="empty">Vazio</string>
     <string name="history_already_empty">Histórico já está vazio</string>
     <string name="private_data_cleared">Informação privada apagada</string>
@@ -208,7 +208,7 @@
     <string name="link_loaded_with_app">Carregado com %1$s</string>
     <string name="link_redirected">Redirecionado para %1$s</string>
 
-    <string name="tampered_apk">Sua cópia do Brave foi ilegalmente modificada e portanto não funcionará confiavelmente. Por favor reinstale pela Play Store.</string>
+    <string name="tampered_apk">Sua cópia do Link Bubble foi ilegalmente modificada e portanto não funcionará confiavelmente. Por favor reinstale pela Play Store.</string>
 
     <string name="bubble_link_copied_to_clipboard">Link da bolha copiado para área de transferência.</string>
     <string name="link_copied_to_clipboard">Link copiado para área de transferência.</string>
@@ -231,68 +231,68 @@
     <string name="faq_close_tab_question">Como eu consigo fechar rapidamente uma aba?</string>
     <string name="faq_close_tab_answer">Apertando o botão de Voltar do celular é o jeito mais rápido. Arrastar a aba até o botão de Fechar também é uma ótima ideia.</string>
     <string name="faq_back_button_minimize_question">Eu acho que apertar o botão de Voltar deveria minimizar o navegador!</string>
-    <string name="faq_back_button_minimize_answer"><![CDATA[Minimizar o Brave quando o botão Voltar for pressionado não é possível.
+    <string name="faq_back_button_minimize_answer"><![CDATA[Minimizar o Link Bubble quando o botão Voltar for pressionado não é possível.
 Considere o seguinte caso:<br/>
 1). exemplo.com/pagina1 é carregada na primeira aba.<br/>
 2). Você clica em um link nessa página, e carrega exemplo.com/pagina2 na mesma aba.<br/>
 3). Você quer voltar para a página do passo 1.<br/><br/>
-Como você fará isso se pressionar o botão Voltar minimizar o Brave? Pressionar o pequeno indicador na aba não é possível.<br/><br/>
-O Brave é um navegador, e navegadores Android têm um padrão de voltar pela tecla Voltar.
-Brave segue este padrão.]]></string>
-    <string name="faq_app_internal_browser_question"><![CDATA[O Brave não está interceptando links!]]></string>
+Como você fará isso se pressionar o botão Voltar minimizar o Link Bubble? Pressionar o pequeno indicador na aba não é possível.<br/><br/>
+O Link Bubble é um navegador, e navegadores Android têm um padrão de voltar pela tecla Voltar.
+Link Bubble segue este padrão.]]></string>
+    <string name="faq_app_internal_browser_question"><![CDATA[O Link Bubble não está interceptando links!]]></string>
     <string name="faq_app_internal_browser_answer"><![CDATA[Existem 3 para isso:<br/>
-1). Um navegador diferente do Brave está definido como padrão. Veja
-\"Definir navegador padrão\" nas configurações do Brave para mudar isso.<br/>
-2). O Brave foi configurado para não interceptar links deste app. Veja
-\"Interceptar links de\" nas configurações do Brave.<br/>
+1). Um navegador diferente do Link Bubble está definido como padrão. Veja
+\"Definir navegador padrão\" nas configurações do Link Bubble para mudar isso.<br/>
+2). O Link Bubble foi configurado para não interceptar links deste app. Veja
+\"Interceptar links de\" nas configurações do Link Bubble.<br/>
 3). Apps tais como Talon, Reddit e outros, têm um navegador embutido. Verifique as configurações daquele app e ative a opção \"Navegador externo\" ou desmarque \"Navegador embutido\" ou outra opção parecida.
-<br/><br/>Nota: alguns navegadores como o Chrome são programados para abrir certos links direto neles, e nesse caso o Brave não pode ser usado.
+<br/><br/>Nota: alguns navegadores como o Chrome são programados para abrir certos links direto neles, e nesse caso o Link Bubble não pode ser usado.
 ]]></string>
     <string name="faq_article_mode_question">Como uso o Modo Leitura? Porquê alguns links não funcionam?</string>
     <string name="faq_article_mode_answer"><![CDATA[Primeiramente, certifique-se de que o Modo Leitura esteja ativado (Configurações - / Mais&#8230; -> Modo Leitura).<br/><br/>
 Daí em diante, quando o modo leitura estiver disponível, o ícone será exibido na barra de ações (perto do botão Compartilhar).
-Saiba que o modo leitura só ficará disponível após o carregamento total da página e se o Brave conseguir extrair o conteúdo no modo artigo.<br/><br/>
+Saiba que o modo leitura só ficará disponível após o carregamento total da página e se o Link Bubble conseguir extrair o conteúdo no modo artigo.<br/><br/>
 Nota: Extrair conteúdo da web é um processo complicado. Devido à natureza da web de estar sempre em mudança, não é garantido o funcionamento em 100% dos casos e não há muito que possa ser feito quanto a isso.]]></string>
     <string name="faq_future_features_question">Quando você vai adicionar suporte a favoritos, extensões, etc?</string>
-    <string name="faq_future_features_answer">Nunca diga nunca, mas por enquanto o Brave está focado somente em ser o melhor jeito possível de carregar 
+    <string name="faq_future_features_answer">Nunca diga nunca, mas por enquanto o Link Bubble está focado somente em ser o melhor jeito possível de carregar
 e consumir links carregados por outros apps.</string>
     <string name="faq_translations_question">Posso ajudar a traduzir o aplicativo?</string>
     <string name="faq_translations_answer"><![CDATA[Eu espero que seja adicionado suporte para tradução logo.<br/><br/>Quando eu fizer, eu irei com certeza avisar no Google+
-(+Brave) por ajuda nas traduções, então fique de olho no meu mural.]]></string>
+(+Link Bubble) por ajuda nas traduções, então fique de olho no meu mural.]]></string>
     <string name="faq_roadmap_question">Você publica um roadmap das próximas versões? [...]</string>
     <string name="faq_roadmap_answer">Por razões competitivas, a resposta para ambas as perguntas é não. Sinto muito. <br/><br/></string>
-    <string name="faq_alternate_payment_answer"><![CDATA[O Brave suporta compras apenas via Google Play no momento.<br/><br/>outras formas de pagamento podem ser adicionadas no futuro (contanto que não violem o Programa de Desenvolvedores da  Google Play.]]></string>
+    <string name="faq_alternate_payment_answer"><![CDATA[O Link Bubble suporta compras apenas via Google Play no momento.<br/><br/>outras formas de pagamento podem ser adicionadas no futuro (contanto que não violem o Programa de Desenvolvedores da  Google Play.]]></string>
     <string name="faq_cant_type_url_question">Como eu digito o nome do link que eu quero visitar?</string>
     <string name="faq_cant_type_url_answer"><![CDATA[Apenas toque na página / título da URL. Irá aparecer um cursor de edição e sugestões de sites baseado no seu histórico de navegação.]]></string>
     <string name="faq_copy_text_question">Por que eu não posso copiar texto de um site?</string>
     <string name="faq_copy_text_answer"><![CDATA[Infelizmente as limitações do Android impedem que isso funcione.<br/><br/>Resposta técnica:
-A função copiar só funciona quando você usa o navegador por uma atividade, mas não de um serviço (que é o que o Brave usa).]]></string>
+A função copiar só funciona quando você usa o navegador por uma atividade, mas não de um serviço (que é o que o Link Bubble usa).]]></string>
     <string name="faq_translucent_status_bar_question">Por que o aplicativo não fica em cima da barra de status transparente?</string>
     <string name="faq_translucent_status_bar_answer">Infelizmente limitações do Android previnem isso.</string>
     <string name="faq_beta_programme_question">Existe algum programa beta? Como posso participar?</string>
-    <string name="faq_beta_programme_answer">Detalhes sobre o beta serão anunciados no futuro. Fique de olho no meu mural do Google+ (+Brave) para novidades.</string>
-    <string name="faq_low_spec_performance_question">Por que o Brave está lento no meu Nexus S / Galaxy S1 / Moto G celular?</string>
-    <string name="faq_low_spec_performance_answer"><![CDATA[Brave é um aplicativo que consome muitos recursos e consequentemente, aparelhos com especificações 
+    <string name="faq_beta_programme_answer">Detalhes sobre o beta serão anunciados no futuro. Fique de olho no meu mural do Google+ (+Link Bubble) para novidades.</string>
+    <string name="faq_low_spec_performance_question">Por que o Link Bubble está lento no meu Nexus S / Galaxy S1 / Moto G celular?</string>
+    <string name="faq_low_spec_performance_answer"><![CDATA[Link Bubble é um aplicativo que consome muitos recursos e consequentemente, aparelhos com especificações
 menores podem sofrer ao executar o app. Atualizações futuras serão miradas em melhorar a performance, mas existe 
-um limite no que pode ser feito aqui. </br></br>Resposta técnica: No mínimo, Brave requer o uso de um serviço e de 
+um limite no que pode ser feito aqui. </br></br>Resposta técnica: No mínimo, Link Bubble requer o uso de um serviço e de
 uma visualização da web. As vezes múltiplas atividades e visualizações estão presentes. Naturalmente, alocar todos esses 
 items (especialmente visualização da web) consome <i>muita</i> memória/recursos. Aparelhos com especificações menores
- geralmente possuem menos memória disponível que o Brave precisa, portanto a performance cai uma vez que lixos da
+ geralmente possuem menos memória disponível que o Link Bubble precisa, portanto a performance cai uma vez que lixos da
  memória são frequentemente chamados. Como um exemplo, o limite do Nexus S é 48MB, comparado a 192MB do Nexus 5.]]></string>
     <string name="faq_crap_webview_question">As vezes as páginas não aparecem corretamente ou vídeos não tocam.</string>
-    <string name="faq_crap_webview_answer"><![CDATA[Brave usa o Android WebView padrão, mas infelizmente as vezes ele não é confiável. Existem métodos 
+    <string name="faq_crap_webview_answer"><![CDATA[Link Bubble usa o Android WebView padrão, mas infelizmente as vezes ele não é confiável. Existem métodos
 alternativos como o GeckoView do Firefox e Chromium que serão investigados no futuro como uma possibilidade.<br/>
 <br/>Caso uma página não seja mostrada corretamente, a coisa mais fácil a se fazer é abrir o link no navegador padrão.]]></string>
-    <string name="faq_ongoing_notificaion_question">Por que aparece uma notificação sempre que o Brave está funcionando?</string>
-    <string name="faq_ongoing_notificaion_answer"><![CDATA[Infelizmente essa notificação em andamento é necessária para evitar que o sistema Android não mate o processo do Brave.]]></string>
+    <string name="faq_ongoing_notificaion_question">Por que aparece uma notificação sempre que o Link Bubble está funcionando?</string>
+    <string name="faq_ongoing_notificaion_answer"><![CDATA[Infelizmente essa notificação em andamento é necessária para evitar que o sistema Android não mate o processo do Link Bubble.]]></string>
     <string name="faq_next_update_eta_question">Quando vai chegar a próxima atualização?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[Quando estiver pronta!<br/><br/>Infelizmente não tenho como
  ser mais específico (nem para estimar uma data).<br/><br/>A realidade é que, quando as estimativas são dadas, as 
 pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por quaisquer motivos.]]></string>
-    <string name="faq_close_quickly_question">Como eu posso interromper o Brave parar rapidamente?</string>
-    <string name="faq_close_quickly_answer">Deslize a partir topo da tela para abrir o painel de notificações e clique em \"Brave\".</string>
-    <string name="faq_change_default_browser_question">Como eu posso remover o Brave como navegador principal?</string>
-    <string name="faq_change_default_browser_answer">Configurações de Sistema -> Apps -> Baixados -> Brave -> Limpar padrões.</string>
+    <string name="faq_close_quickly_question">Como eu posso interromper o Link Bubble parar rapidamente?</string>
+    <string name="faq_close_quickly_answer">Deslize a partir topo da tela para abrir o painel de notificações e clique em \"Link Bubble\".</string>
+    <string name="faq_change_default_browser_question">Como eu posso remover o Link Bubble como navegador principal?</string>
+    <string name="faq_change_default_browser_answer">Configurações de Sistema -> Apps -> Baixados -> Link Bubble -> Limpar padrões.</string>
     <string name="faq_report_bug_question">Relate um bug</string>
     <string name="faq_report_bug_answer"><![CDATA[email]]></string>
 
@@ -306,9 +306,9 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="activity_resolver_use_once">Somente uma vez</string>
 
     <string name="credits_title">Créditos</string>
-    <string name="credits_name">Brave</string>
+    <string name="credits_name">Link Bubble</string>
     <string name="credits_credit">Conceito, design e programação</string>
-    <string name="credits_app_copyright">Copyright 2015, Brave.</string>
+    <string name="credits_app_copyright">Copyright 2015, Link Bubble.</string>
 
     
     <plurals name="restore_tabs_from_previous_session">
@@ -319,7 +319,7 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="content_description_button">Botão</string>
     <string name="content_description_target_icon">Ícone do site na bolha</string>
     <string name="content_description_close_bubble_icon">Fechar bolha</string>
-    <string name="content_description_link_bubble_logo">Logo do Brave</string>
+    <string name="content_description_link_bubble_logo">Logo do Link Bubble</string>
     <string name="content_description_app_icon">Ícone do app</string>
     <string name="content_description_youtube_video_thumbnail">Miniaturas de vídeos do YouTube</string>
     <string name="content_description_history">Histórico</string>
@@ -330,31 +330,31 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
 
     <string name="accept_terms_and_privacy"><![CDATA[Continuando, você entende e aceita os <a href="https://brave.com/terms_of_use">termos</a> e a <a href="https://brave.com/privacy_android">política de privacidade</a>.]]></string>
 
-    <string name="service_name">Renderizador do Brave</string>
-    <string name="notification_title">Brave</string>
+    <string name="service_name">Renderizador do Link Bubble</string>
+    <string name="notification_title">Link Bubble</string>
 
-    <string name="store_listing_title">Brave</string>
+    <string name="store_listing_title">Link Bubble</string>
     <string name="store_listing_promo_text">Navegação móvel feita do jeito certo.</string>
-    <string name="store_listing_description_title">O Brave é um navegador totalmente novo desenhado e aprimorado somente com dispositivos móveis em mente.</string>
+    <string name="store_listing_description_title">O Link Bubble é um navegador totalmente novo desenhado e aprimorado somente com dispositivos móveis em mente.</string>
     <string name="store_listing_description_features">Funções incluem:
-• Quando você clica em um link, o Brave carrega a página em segundo plano, te deixando livre para continuar navegando no app poupando seu tempo vendo uma página carregando. Uma vez carregada o popup será animado.
-• A dinâmica do Brave permite que você compartilhe um conteúdo ou adicione um serviço como o Pocket em pouco mais de um segundo!
+• Quando você clica em um link, o Link Bubble carrega a página em segundo plano, te deixando livre para continuar navegando no app poupando seu tempo vendo uma página carregando. Uma vez carregada o popup será animado.
+• A dinâmica do Link Bubble permite que você compartilhe um conteúdo ou adicione um serviço como o Pocket em pouco mais de um segundo!
 • Carregar vários links simultaneamente.
 • Carregar lindamente links que redirecionam para outros apps. Chega de clicar num link do Instagram no Twitter e ser direcionado para um navegador antes de abrir o Instagram!
 • Integração profunda com os apps do sistema.
 • Identifica links de vídeos do YouTube nas páginas, e cria um atalho para assistir o vídeo direto no app do YouTube.
-• Estatísticas que ilustram o quanto de tempo você economizou usando o Brave.</string>
-    <string name="store_listing_description_location_permission">A respeito da permissão de Localização: Isso é exigido para que você possa conceder permissão a sites que solicitem sua localização (como aqueles que usam mapas). O Brave mesmo, nunca acessa sua localização.</string>
+• Estatísticas que ilustram o quanto de tempo você economizou usando o Link Bubble.</string>
+    <string name="store_listing_description_location_permission">A respeito da permissão de Localização: Isso é exigido para que você possa conceder permissão a sites que solicitem sua localização (como aqueles que usam mapas). O Link Bubble mesmo, nunca acessa sua localização.</string>
 
-    <string name="welcome_page_title">Bem-vindo ao Brave!</string>
+    <string name="welcome_page_title">Bem-vindo ao Link Bubble!</string>
     <string name="welcome_page_intro_title">Como ele funciona?</string>
     <string name="welcome_page_intro_point_1">Clique num link em um app.</string>
     <string name="welcome_page_intro_point_2">Uma bolha irá aparecer no canto da tela e o link será carregado em segundo plano. Assim que a página for carregada, será exibida.</string>
-    <string name="welcome_page_intro_end">É simples! Com o Brave, você pode continuar o que está fazendo ao invés de ficar olhando sua página carregar. Como não amar isso?</string>
+    <string name="welcome_page_intro_end">É simples! Com o Link Bubble, você pode continuar o que está fazendo ao invés de ficar olhando sua página carregar. Como não amar isso?</string>
     <string name="welcome_page_more_title">Me mostre mais!</string>
     <string name="welcome_page_more_pocket_start">Você também pode compartilhar rapidamente um link ou adicionar em apps como o Pocket:</string>
     <string name="welcome_page_more_pocket_end">Parece útil e divertido não é mesmo?</string>
-    <string name="welcome_page_more_also">O Brave também:</string>
+    <string name="welcome_page_more_also">O Link Bubble também:</string>
     <string name="welcome_page_more_point_1">Redireciona links para o app dedicado (por exemplo, Instagram).</string>
     <string name="welcome_page_more_point_2">Encontra facilmente vídeos embutidos, assim você pode assisti-los facilmente no app do YouTube. </string>
     <string name="welcome_page_more_point_3">Carregar múltiplas bolhas de uma vez.</string>

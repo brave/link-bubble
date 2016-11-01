@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="download_activity_label">Завантажувач</string>
-    <string name="send_intent_label">Відкрити з Brave</string>
+    <string name="send_intent_label">Відкрити з Link Bubble</string>
     <string name="notification_summary">Торкніться, щоб приховати всі відкриті бульбашки</string>
     <string name="notification_default_summary">Торкніться, щоб приховати, розгорніть, щоб закрити всі</string>
     <string name="notification_unhide_summary">Торкніться, щоб показати, розгорніть, щоб закрити всі</string>
@@ -25,7 +25,7 @@
     <string name="action_reload_page">Перезавантажити</string>
     <string name="action_open_in_browser">Відкрити в %1$s</string>
     <string name="action_request_desktop_site">Повна версія сайту</string>
-    <string name="action_site_protection">Увімкнути Brave shields</string>
+    <string name="action_site_protection">Увімкнути Link Bubble shields</string>
     <string name="action_open_in_new_bubble">Відкрити в новій бульбашці</string>
     <string name="action_open_link_in_new_bubble">Відкрити посилання в новій бульбашці</string>
     <string name="action_open_image_in_new_bubble">Відкрити зображення в новій бульбашці</string>
@@ -49,7 +49,7 @@
     <string name="warning">Попередження!</string>
     <string name="untrusted_certificate">Сертифікат на %1$s не є довіреним. Все одно продовжити?</string>
 
-    <string name="share_invalid_data">Brave не може поділитися цим елементом, тому що URL є недійсним.</string>
+    <string name="share_invalid_data">Link Bubble не може поділитися цим елементом, тому що URL є недійсним.</string>
     <string name="consume_activity_not_found">Не вдалося знайти програму. Розгляньте зміну дії бульбашки через налаштування.</string>
     <string name="consume_activity_security_exception">Не вдалося поділитися із зовнішньою програмою.</string>
 
@@ -61,7 +61,7 @@
     <string name="undo_close_tab_no_title">Закрити вкладку</string>
 
     <string name="pick_default_app">Вибрати типовою програмою</string>
-    <string name="default_browser_set">Brave був встановлений типовим браузером.</string>
+    <string name="default_browser_set">Link Bubble був встановлений типовим браузером.</string>
     <string name="invalid_send_action">Дійсне посилання не знайдено.</string>
     <string name="unable_to_launch_app">Не вдалося запустити сторонню програму.</string>
     <string name="clear_history">Стерти історію</string>
@@ -91,7 +91,7 @@ URL.\n\nТоркніться, щоб вилучити типову.</string>
     <string name="preference_google_account_redirect_title">Перенаправлення облікового запису Google</string>
     <string name="preference_google_account_redirect_summary">Перенаправляти посилання accounts.google.com в типовий запасний браузер</string>
     <string name="preference_set_default_browser_title">Встановити типовим браузером системи</string>
-    <string name="preference_set_default_browser_summary">Brave повинен бути типовим системним браузером. Торкніться для налаштування.</string>
+    <string name="preference_set_default_browser_summary">Link Bubble повинен бути типовим системним браузером. Торкніться для налаштування.</string>
     <string name="preference_more">Більше...</string>
     <string name="preference_intercept_links_from_title">Перехоплювати посилання з</string>
     <string name="preference_intercept_links_from_disabled_for_L">Починаючи з Android 5.0, Google вилучив API, необхідний для цієї можливості.</string>
@@ -99,7 +99,7 @@ URL.\n\nТоркніться, щоб вилучити типову.</string>
     
     <string name="preference_webview_battery_save_title">Режим збереження заряду (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Агресивний</string>
-    <string name="preference_webview_battery_save_aggressive_summary">Призупиняти оновлення веб-сторінок, коли Brave згорнуто.\nСторінки, що в даний момент завантажуються, зупиняться після завершення завантаження.</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Призупиняти оновлення веб-сторінок, коли Link Bubble згорнуто.\nСторінки, що в даний момент завантажуються, зупиняться після завершення завантаження.</string>
     <string name="preference_webview_battery_save_default_title">Типовий</string>
     <string name="preference_webview_battery_save_default_summary">Призупиняти оновлення веб-сторінок при заблокованому екрані та відновлювати після розблокування пристрою.\nСторінки, що в даний момент завантажуються, зупиняться після завершення завантаження.</string>
     <string name="preference_webview_battery_save_off_title">Вимкнено</string>

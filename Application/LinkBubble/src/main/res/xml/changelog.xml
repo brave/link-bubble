@@ -108,15 +108,15 @@
         <change>BUG FIX: URL input view now respects theme preferences.</change>
     </release>
     <release version="1.9.0">
-        <change>IMPROVEMENT: Rebranded to Brave.</change>
+        <change>IMPROVEMENT: Rebranded to Link Bubble.</change>
         <change>IMPROVEMENT: Turned on Tracking Protection feature by default (can be turned off in Settings->More).</change>
         <change>IMPROVEMENT: Turned on Ad Block feature by default (can be turned off in Settings->More).</change>
-        <change>IMPROVEMENT: Added disable protection option to easily whitelist at the site level (menu item ’Enable Brave shields’).</change>
+        <change>IMPROVEMENT: Added disable protection option to easily whitelist at the site level (menu item ’Enable Link Bubble shields’).</change>
         <change>BUG FIX: Fixed blank bubble after resume from unlock.</change>
         <change>BUG FIX: Fixed top crashes.</change>
     </release>
     <release version="1.8.2">
-        <change>IMPROVEMENT: Added disable protection option to easily whitelist at the site level (menu item ’Brave site protection’).</change>
+        <change>IMPROVEMENT: Added disable protection option to easily whitelist at the site level (menu item ’Link Bubble site protection’).</change>
     </release>
     <release version="1.8.1">
         <change>IMPROVEMENT: Added HTTPS Everywhere feature (which can be turned on in Settings->More).</change>
