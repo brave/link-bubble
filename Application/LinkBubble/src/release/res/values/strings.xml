@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Brave</string>
-    <string name="service_name">Brave Renderer</string>
-    <string name="notification_title">Brave</string>
+    <string name="app_name">Link Bubble</string>
+    <string name="service_name">Link Bubble Renderer</string>
+    <string name="notification_title">Link Bubble</string>
 
 </resources>
