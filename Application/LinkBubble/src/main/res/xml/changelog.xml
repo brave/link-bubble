@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.9.58">
+        <change>NEW: Renamed to Link Bubble.</change>
+        <change>NEW: Added a link to the new Brave browser to the fallback list.</change>
+        <change>NEW: Changed default to use Brave browser, users can change this in Settings->Default apps.</change>
+    </release>
     <release version="1.9.56">
         <change>BUG FIX: Fixed an unresponsive screen problem that could appear on Android N when collapsing bubbles.</change>
     </release>
