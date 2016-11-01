@@ -112,6 +112,7 @@ public class Settings {
     private static final String WELCOME_MESSAGE_DISPLAYED = "welcome_message_displayed";
     private static final String TERMS_ACCEPTED = "terms_accepted";
     private static final String LAST_FLUSH_WEBVIEW_CACHE_TIME = "last_flush_cache_time";
+    private static final String PREFERENCE_DID_RESET_FALLBACK_BROWSER = "did_reset_fallback_browser";
 
     public enum WebViewBatterySaveMode {
         Aggressive,
@@ -217,6 +218,14 @@ public class Settings {
             if (mSharedPreferences.getLong(LAST_FLUSH_WEBVIEW_CACHE_TIME, -1) == -1) {
                 SharedPreferences.Editor editor = mSharedPreferences.edit();
                 editor.putLong(LAST_FLUSH_WEBVIEW_CACHE_TIME, System.currentTimeMillis() - Constant.EMPTY_WEBVIEW_CACHE_INTERVAL);
+                editor.apply();
+            }
+            // This option is being added in 1.9.58 to reset fallback browser, to set it to tabbed Brave.
+            if (!mSharedPreferences.getBoolean(PREFERENCE_DID_RESET_FALLBACK_BROWSER, false)) {
+                SharedPreferences.Editor editor = mSharedPreferences.edit();
+                editor.putBoolean(PREFERENCE_DID_RESET_FALLBACK_BROWSER, true);
+                editor.remove(PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME);
+                editor.remove(PREFERENCE_DEFAULT_BROWSER_LABEL);
                 editor.apply();
             }
         }
