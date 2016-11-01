@@ -370,6 +370,9 @@ public class Settings {
                     if (fallbackDefaultBrowserPackageName == null) {
                         fallbackDefaultBrowserPackageName = resolveInfo.activityInfo.packageName;
                         fallbackDefaultBrowserActivityClassName = resolveInfo.activityInfo.name;
+                    } else if (resolveInfo.activityInfo.packageName.equals(mContext.getResources().getString(R.string.tab_based_browser_id_name))) {
+                        fallbackDefaultBrowserPackageName = resolveInfo.activityInfo.packageName;
+                        fallbackDefaultBrowserActivityClassName = resolveInfo.activityInfo.name;
                     } else if (resolveInfo.activityInfo.packageName.equals("com.android.chrome")) {
                         fallbackDefaultBrowserPackageName = resolveInfo.activityInfo.packageName;
                         fallbackDefaultBrowserActivityClassName = resolveInfo.activityInfo.name;
@@ -379,7 +382,7 @@ public class Settings {
         }
 
         String defaultBrowserPackage = mSharedPreferences.getString(PREFERENCE_DEFAULT_BROWSER_PACKAGE_NAME, null);
-        String rightConsumeBubblePackageName = mSharedPreferences.getString(PREFERENCE_RIGHT_CONSUME_BUBBLE_PACKAGE_NAME, null);
+        //String rightConsumeBubblePackageName = mSharedPreferences.getString(PREFERENCE_RIGHT_CONSUME_BUBBLE_PACKAGE_NAME, null);
         String leftConsumeBubblePackageName = mSharedPreferences.getString(PREFERENCE_LEFT_CONSUME_BUBBLE_PACKAGE_NAME, null);
 
         if (fallbackDefaultBrowserPackageName != null) {
@@ -496,6 +499,10 @@ public class Settings {
             updateBrowsers();
         }
         return mBrowsers;
+    }
+
+    public void initiateBrowsersUpdate() {
+        mBrowsers = null;
     }
 
     public List<String> getBrowserPackageNames() {

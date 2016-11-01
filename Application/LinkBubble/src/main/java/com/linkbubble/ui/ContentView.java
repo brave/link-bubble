@@ -925,7 +925,7 @@ public class ContentView extends FrameLayout {
                 boolean openedInApp = apps != null && apps.size() > 0 ? openInApp(apps.get(0), urlAsString) : false;
                 if (openedInApp == false) {
                     CrashTracking.log("ContentView.onPageStarted() - openedInApp == false");
-                    openInBrowser(urlAsString);
+                    openInBrowser(urlAsString, false);
                 }
                 return;
             }
@@ -949,7 +949,7 @@ public class ContentView extends FrameLayout {
             updateAppsForUrl(tempResolveInfos, currentUrl);
             if (Settings.get().redirectUrlToBrowser(currentUrl)) {
                 CrashTracking.log("ContentView.onPageStarted() - url redirects to browser");
-                if (openInBrowser(urlAsString)) {
+                if (openInBrowser(urlAsString, false)) {
                     String title = String.format(context.getString(R.string.link_redirected), Settings.get().getDefaultBrowserLabel());
                     MainApplication.saveUrlInHistory(context, null, urlAsString, title);
                     return;
@@ -1657,6 +1657,9 @@ public class ContentView extends FrameLayout {
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_reload_page, Menu.NONE, resources.getString(R.string.action_reload_page));
 
             String defaultBrowserLabel = Settings.get().getDefaultBrowserLabel();
+            if (null == defaultBrowserLabel) {
+                defaultBrowserLabel = resources.getString(R.string.tab_based_browser_name);
+            }
             if (defaultBrowserLabel != null) {
                 mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_open_in_browser, Menu.NONE,
                         String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
@@ -1703,7 +1706,13 @@ public class ContentView extends FrameLayout {
 
                         case R.id.item_open_in_browser: {
                             CrashTracking.log("ContentView.setOnMenuItemClickListener() - open in browser clicked");
-                            openInBrowser(mWebRenderer.getUrl().toString(), true);
+                            boolean braveBrowser = false;
+                            if (null != item.getTitle()
+                                    && null != context
+                                    && item.getTitle().toString().endsWith(context.getResources().getString(R.string.tab_based_browser_name))) {
+                                braveBrowser = true;
+                            }
+                            openInBrowser(mWebRenderer.getUrl().toString(), true, braveBrowser);
                             break;
                         }
 
@@ -1787,7 +1796,7 @@ public class ContentView extends FrameLayout {
 
     private void onDownloadStart(String urlAsString) {
         CrashTracking.log("onDownloadStart()");
-        openInBrowser(urlAsString);
+        openInBrowser(urlAsString, false);
         if (MainController.get() != null) {
             MainController.get().closeTab(mOwnerTabView, true, false);
             // L_WATCH: L currently lacks getRecentTasks(), so minimize here
@@ -1919,7 +1928,7 @@ public class ContentView extends FrameLayout {
                 } if (string.equals(openLinkInNewBubbleLabel) || string.equals(openImageInNewBubbleLabel)) {
                     MainController.get().openUrl(urlAsString, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_TAB);
                 } else if (openInBrowserLabel != null && string.equals(openInBrowserLabel)) {
-                    openInBrowser(urlAsString);
+                    openInBrowser(urlAsString, false);
                 } else if (string.equals(shareLabel)) {
                     showSelectShareMethod(urlAsString, false);
                 } else if (string.equals(saveImageLabel)) {
@@ -2280,17 +2289,17 @@ public class ContentView extends FrameLayout {
         }
     }
 
-    private boolean openInBrowser(String urlAsString) {
-        return openInBrowser(urlAsString, false);
+    private boolean openInBrowser(String urlAsString, boolean braveBrowser) {
+        return openInBrowser(urlAsString, false, braveBrowser);
     }
 
-    private boolean openInBrowser(String urlAsString, boolean canShowUndoPrompt) {
+    private boolean openInBrowser(String urlAsString, boolean canShowUndoPrompt, boolean braveBrowser) {
         Log.d(TAG, "ContentView.openInBrowser() - url:" + urlAsString);
         CrashTracking.log("ContentView.openInBrowser()");
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(urlAsString));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        if (MainApplication.openInBrowser(getContext(), intent, true) && MainController.get() != null && mOwnerTabView != null) {
+        if (MainApplication.openInBrowser(getContext(), intent, true, braveBrowser) && MainController.get() != null && mOwnerTabView != null) {
             MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), canShowUndoPrompt);
             // L_WATCH: L currently lacks getRecentTasks(), so minimize here
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
@@ -2340,7 +2349,7 @@ public class ContentView extends FrameLayout {
             public void onActionClick() {
                 if (urlAsString != null) {
                     CrashTracking.log("ContentView.showOpenInBrowserPrompt() - onActionClick()");
-                    openInBrowser(urlAsString);
+                    openInBrowser(urlAsString, false);
                 }
             }
             @Override

@@ -285,7 +285,7 @@ public class MainApplication extends Application {
         context.startService(serviceIntent);
     }
 
-    public static boolean openInBrowser(Context context, Intent intent, boolean showToastIfNoBrowser) {
+    public static boolean openInBrowser(Context context, Intent intent, boolean showToastIfNoBrowser, boolean braveBrowser) {
         boolean activityStarted = false;
         ComponentName defaultBrowserComponentName = Settings.get().getDefaultBrowserComponentName(context);
         if (defaultBrowserComponentName != null) {
@@ -293,6 +293,21 @@ public class MainApplication extends Application {
             context.startActivity(intent);
             activityStarted = true;
             CrashTracking.log("MainApplication.openInBrowser()");
+        }
+        else if (braveBrowser) {
+            try {
+                Intent gpsIntent = new Intent(Intent.ACTION_VIEW);
+                gpsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                gpsIntent.setData(Uri.parse("market://details?id=" + context.getResources().getString(R.string.tab_based_browser_id_name)));
+                context.startActivity(gpsIntent);
+                activityStarted = true;
+                Settings settings = Settings.get();
+                if (null != settings) {
+                    settings.initiateBrowsersUpdate();
+                }
+            } catch (android.content.ActivityNotFoundException anfe) {
+                CrashTracking.log("MainApplication.openInBrowser() could not open google play");
+            }
         }
 
         if (activityStarted == false && showToastIfNoBrowser) {
@@ -305,7 +320,7 @@ public class MainApplication extends Application {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(urlAsString));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        return MainApplication.openInBrowser(context, intent, showToastIfNoBrowser);
+        return MainApplication.openInBrowser(context, intent, showToastIfNoBrowser, false);
     }
 
     public static boolean loadResolveInfoIntent(Context context, ResolveInfo resolveInfo, String url, long urlLoadStartTime) {

@@ -910,7 +910,7 @@ public class MainController implements Choreographer.FrameCallback {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(urlAsString));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            if (MainApplication.openInBrowser(mContext, intent, false)) {
+            if (MainApplication.openInBrowser(mContext, intent, false, false)) {
                 if (getActiveTabCount() == 0 && Prompt.isShowing() == false) {
                     finish();
                 }

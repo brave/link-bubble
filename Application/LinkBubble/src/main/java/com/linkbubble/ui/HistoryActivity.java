@@ -297,7 +297,7 @@ public class HistoryActivity extends AppCompatActivity
                         Intent intent = new Intent(Intent.ACTION_VIEW);
                         intent.setData(Uri.parse(urlAsString));
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        MainApplication.openInBrowser(HistoryActivity.this, intent, true);
+                        MainApplication.openInBrowser(HistoryActivity.this, intent, true, false);
                     } else if (string.equals(shareLabel)) {
                         AlertDialog alertDialog = ActionItem.getShareAlert(HistoryActivity.this, false, new ActionItem.OnActionItemSelectedListener() {
                             @Override

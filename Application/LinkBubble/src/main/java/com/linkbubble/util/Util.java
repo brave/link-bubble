@@ -129,7 +129,8 @@ public class Util {
         "com.mokee.yubrowser",
         "org.mozilla.fennec",
         "org.gnu.icecat",
-        "devian.tubemate.home"
+        "devian.tubemate.home",
+        "com.brave.browser"
     };
 
     public static float clamp(float v0, float v, float v1) {
@@ -659,7 +660,7 @@ public class Util {
         if (BuildConfig.APPLICATION_ID.contains("com.linkbubble") && packageName.contains("com.linkbubble")) {
             return false;
         }
-        else if (BuildConfig.APPLICATION_ID.contains("com.brave") && packageName.contains("com.brave")) {
+        else if (BuildConfig.APPLICATION_ID.contains("com.brave.playstore") && packageName.contains("com.brave.playstore")) {
             return false;
         }
 

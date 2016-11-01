@@ -117,7 +117,7 @@ public class EntryActivity extends Activity {
             }
 
             if (canLoadFromThisApp == false) {
-                MainApplication.openInBrowser(this, intent, true);
+                MainApplication.openInBrowser(this, intent, true, false);
             } else if (openLink) {
                 MainApplication.checkRestoreCurrentTabs(this);
 
@@ -131,7 +131,7 @@ public class EntryActivity extends Activity {
 
                 MainApplication.openLink(this, url, true, openedFromAppName);
             } else {
-                MainApplication.openInBrowser(this, intent, true);
+                MainApplication.openInBrowser(this, intent, true, false);
             }
         } else {
             startActivityForResult(new Intent(this, HomeActivity.class), 0);
