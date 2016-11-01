@@ -337,8 +337,7 @@ commitment, and can get upset if/when a release slips for whatever reason.]]></s
 
     <string name="requesting_location_message">%1$s  داوای زانینی شوێنه‌كه‌ت ده‌كات، ڕێگه‌بدرێت؟</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[By continuing, you acknowledge that you accept the Brave
-<a href="https://brave.com/terms_of_use">terms</a> and <a href="https://brave.com/privacy_android">privacy policy</a>.]]></string>
+    
 
     <string name="service_name">ڕێندێره‌ری وێبگه‌ر</string>
     <string name="notification_title">Brave</string>

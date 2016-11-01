@@ -6,9 +6,7 @@
     <string name="notification_summary">Dotknij, aby ukryć wszystkie otwarte dymki</string>
     <string name="notification_default_summary">Dotknij, by ukryć, rozwiń, by zamknąć wszystkie</string>
     <string name="notification_unhide_summary">Dotknij, by odkryć, rozwiń, by zamknąć wszystkie</string>
-    
     <string name="notification_action_close_all">Zamknij wszystko</string>
-    
     <string name="notification_action_hide">Ukryj</string>
     <string name="share_picker_label">Menu udostępniania</string>
 
@@ -343,7 +341,6 @@
     <string name="yahoo">Yahoo</string>
     <string name="amazon">Amazon</string>
     <string name="empty_bubble_page">file:///android_asset/blank.html</string>
-    
     
     
     

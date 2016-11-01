@@ -6,9 +6,7 @@
     <string name="notification_summary">Koputa kõikide avatud mullide peitmiseks</string>
     <string name="notification_default_summary">Koputa peitmiseks, laienda kõikide sulgemiseks</string>
     <string name="notification_unhide_summary">Koputa kuvamiseks, laienda kõikide sulgemiseks</string>
-    
     <string name="notification_action_close_all">Sulge kõik</string>
-    
     <string name="notification_action_hide">Peida</string>
     <string name="share_picker_label">Jagamisvalija</string>
 
@@ -330,7 +328,6 @@ Näiteks \"accounts.google.com\" või \"bbc.co.uk\".</string>
 
     <string name="duplicate_link_will_not_be_loaded">Link on juba laetud. Ignoreerin...</string>
 
-    
     
     
     

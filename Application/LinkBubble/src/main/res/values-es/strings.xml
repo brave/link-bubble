@@ -6,9 +6,7 @@
     <string name="notification_summary">Toca para ocultar todas las burbujas abiertas</string>
     <string name="notification_default_summary">Tocar para ocultar, expandir o cerrar todo</string>
     <string name="notification_unhide_summary">Tocar para mostrar, expandir o cerrar todo</string>
-    
     <string name="notification_action_close_all">Cerrar todo</string>
-    
     <string name="notification_action_hide">Ocultar</string>
     <string name="share_picker_label">Elige como compartir</string>
 
@@ -340,8 +338,7 @@ terminan tomándose como un compromiso, y pueden molestar si/cuando se postpone 
 
     <string name="requesting_location_message">%1$s está pidiendo ver tu locación. Permitir?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[Al continuar, reconoce que acepta los <a href="https://brave.com/terms_of_use">términos</a>
-y la <a href="https://brave.com/privacy_android">política de privacidad</a> de Brave.]]></string>
+    
 
     <string name="service_name">Representador de Brave</string>
     <string name="notification_title">Brave</string>
@@ -401,6 +398,5 @@ y la <a href="https://brave.com/privacy_android">política de privacidad</a> de 
     <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
     <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
     <string name="whitelist_localfilename">whitelist.dat</string>
-    
 
 </resources>

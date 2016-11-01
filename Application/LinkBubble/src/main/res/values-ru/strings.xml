@@ -6,9 +6,7 @@
     <string name="notification_summary">Нажмите для закрытия всех вкладок</string>
     <string name="notification_default_summary">Нажмите для скрытия, ↓ для закрытия всех</string>
     <string name="notification_unhide_summary">Нажмите, чтобы показать, ↓ для закрытия всех</string>
-    
     <string name="notification_action_close_all">Закрыть все</string>
-    
     <string name="notification_action_hide">Скрыть</string>
     <string name="share_picker_label">Поделиться</string>
 
@@ -325,8 +323,7 @@ Brave.]]></string>
 
     <string name="requesting_location_message">%1$s запрашивает ваше местоположение. Разрешить?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[Продолжая, вы соглашаетесь с 
-<a href="https://brave.com/terms_of_use">условиями</a> и <a href="https://brave.com/privacy_android">политикой конфиденциальности</a> Brave.]]></string>
+    
 
     <string name="service_name">Рендерер Brave</string>
     <string name="notification_title">Brave</string>
@@ -378,7 +375,6 @@ Brave.]]></string>
     <string name="https_everywhere_targets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/httpse-targets.json</string>
     <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
     <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
-    
     
 
 </resources>

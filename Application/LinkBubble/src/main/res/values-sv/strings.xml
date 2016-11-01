@@ -102,7 +102,7 @@ du laddar länkar med Brave.</string>
     <string name="preference_scan_for_youtube_embeds_summary">Visa genväg för att ladda inbäddad video i YouTube-appen.</string>
     <string name="preference_webview_battery_save_title">Batterisparläge (Beta)</string>
     <string name="preference_webview_battery_save_aggressive_title">Aggressivt</string>
-    
+    <string name="preference_webview_battery_save_aggressive_summary">Stoppa uppdateringen av hemsidan när Brave är minimerat.\nSidor som laddas kommer att laddas färdigt innan de stoppas.</string>
     <string name="preference_webview_battery_save_default_title">Standard</string>
     <string name="preference_webview_battery_save_default_summary">Stoppa uppdateringen av hemsidor när skärmen är avstängd och återuppta när enheten låses upp.\nSidorna som håller på att läsas in laddas färdigt innan de stoppas.</string>
     <string name="preference_webview_battery_save_off_title">Av</string>
@@ -132,15 +132,15 @@ du laddar länkar med Brave.</string>
     <string name="preference_hide_bubbles_title">Dölj bubblor vid skrollning</string>
     <string name="preference_hide_bubbles_summary">Dölj bubblor vid skrollning nedåt och visa bubblor vid skrollning uppåt</string>
     <string name="incognito_mode_changed_reloading_current">Inkognitoinställning ändrad. Laddar om nuvarande bubblor...</string>
-    
-    
-    
-    
-    
-    
+    <string name="preference_trackingprotection_summary">Hindra att resurser som spårar dig laddas</string>
+    <string name="preference_adblock_title">Annonsblockering</string>
+    <string name="preference_adblock_summary">Hindra att annonser laddas</string>
+    <string name="preference_block_3p_cookies_title">Blockera kakor från tredjepart</string>
+    <string name="preference_block_3p_cookies_summary">Stoppar vissa typer av spårning av annonsörer</string>
+    <string name="preference_trackingprotection_title">Skydd från spårning</string>
     <string name="preference_adblock_tracking_protection_from_disabled">Den här funktionen är enbart tillgänglig i Android 5.0 eller högre.</string>
-    <string name="preference_https_everywhere_title">HTTPS Överallt</string>
-    
+    <string name="preference_https_everywhere_title">Använd HTTPS överallt</string>
+    <string name="preference_https_everywhere_summary">Öppna sidor med HTTPS istället för HTTP när det är möjligt</string>
     <string name="preference_user_agent_title">Användaragent</string>
     <string-array name="preference_user_agent_options">
         <item>Standard</item>
@@ -161,18 +161,18 @@ du laddar länkar med Brave.</string>
     <string name="preference_help_title">Hjälp</string>
     <string name="preference_show_welcome_message_title">Visa välkomstsida</string>
     <string name="preference_credits_title">Credits</string>
-    <string name="preference_osl_title">Open source-licenser</string>
+    <string name="preference_osl_title">Open Source-licenser</string>
     <string name="preference_privacy_policy_title">Sekretesspolicy</string>
     <string name="preference_terms_of_service_title">Användarvillkor</string>
     <string name="preference_say_thanks_title">Säg tack!</string>
-    
+    <string name="preference_say_thanks_summary">Uppskattar du Brave? Lämna gärna en recension i Playbutiken.</string>
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">Vad är nytt?</string>
     <string name="preference_more_title">Mer&#8230;</string>
     <string name="preference_show_undo_close_tab_title">Fråga om ångra stäng flik</string>
 
     <string name="preference_my_other_apps_title">Fler appar av Brave</string>
-    
+    <string name="preference_my_other_apps_summary">Gillar du Brave? Kolla in våra andra appar!</string>
 
     <string name="remove_default_title">Ta bort standard?</string>
     <string name="remove_default_message">Ta bort %1$s som standardapp för att ladda %2$s-länkar?\n\nNotera: du kan ange en ny standardapp
@@ -185,7 +185,7 @@ nästa gång du laddar en %2$s-länk </string>
     <string name="unsupported_drop_down_default_browser">Lyckades inte interagera detta objekt. Öppna länk i %1$s?</string>
     <string name="unsupported_drop_down_no_default_browser">Lyckades inte interagera detta objekt. Öppna länk i en webbläsare.</string>
 
-    <string name="consume_category_view">Se länk</string>
+    <string name="consume_category_view">Visa länk</string>
     <string name="consume_category_share">Skicka/dela länk</string>
 
     <string name="title_settings">Inställningar</string>
@@ -213,7 +213,7 @@ nästa gång du laddar en %2$s-länk </string>
     <string name="link_loaded_with_app">Laddad med %1$s</string>
     <string name="link_redirected">Omdirigerad till %1$s</string>
 
-    
+    <string name="tampered_apk">Din kopia av Brave har blivit olovligt modifierad och kommer inte fungera tillförlitligt. Vänligen ominstallera från Play Store.</string>
 
     <string name="bubble_link_copied_to_clipboard">Bubbellänk kopierad till urklipp.</string>
     <string name="link_copied_to_clipboard">Länk kopierad till urklipp.</string>
@@ -239,16 +239,16 @@ nästa gång du laddar en %2$s-länk </string>
     
     
     
-    
+    <string name="faq_article_mode_question">Hur använder jag Reading Mode? Varför fungerar inte vissa länkar?</string>
     
     <string name="faq_future_features_question">Kommer du lägga till stöd för bokmärken, favoriter, tillägg, etc.?</string>
     
-    
+    <string name="faq_translations_question">Kan jag hjälpa till att översätta appen?</string>
     
     <string name="faq_roadmap_question">Publicerar du en funktionsfärdplan? Kan jag rösta upp kommande funktioner?</string>
     <string name="faq_roadmap_answer">Av konkurrensskäl är svaret på båda frågorna \'nej\' är jag rädd.<br/><br/></string>
     
-    
+    <string name="faq_cant_type_url_question">Varför kan jag inte skriva in namnet på den länk jag vill besöka?</string>
     
     <string name="faq_copy_text_question">Varför kan jag inte kopiera text från en webbsida?</string>
     
@@ -260,7 +260,7 @@ nästa gång du laddar en %2$s-länk </string>
     
     <string name="faq_crap_webview_question">Ibland visas inte webbsidor på rätt sätt eller videor spelas inte.</string>
     
-    
+    <string name="faq_ongoing_notificaion_question">Varför visas alltid pågåendenotifierinen när Brave körs?</string>
     
     <string name="faq_next_update_eta_question">När kommer nästa uppdatering?</string>
     <string name="faq_next_update_eta_answer"><![CDATA[När den är färdig!<br/><br/>Det är tyvärr inte möjligt att vara mer specifik än så
@@ -282,10 +282,10 @@ att folk tar det som ett åtagande och blir upprörda när det dröjer av någon
     <string name="activity_resolver_use_always">Alltid</string>
     <string name="activity_resolver_use_once">Bara en gång</string>
 
-    
-    
+    <string name="credits_title">Brave Credits</string>
+    <string name="credits_name">Brave</string>
     <string name="credits_credit">Koncept, design och programmering</string>
-    
+    <string name="credits_app_copyright">Copyright 2015, Brave.</string>
 
     
     <plurals name="restore_tabs_from_previous_session">
@@ -333,7 +333,6 @@ att folk tar det som ett åtagande och blir upprörda när det dröjer av någon
 
     
 
-    
     
     
     

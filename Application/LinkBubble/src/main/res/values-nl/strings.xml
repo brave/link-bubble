@@ -312,8 +312,7 @@ en teleurgesteld worden als/wanneer een release vertraagt om de een of andere re
 
     <string name="requesting_location_message">%1$s vraagt naar je locatie. Toestaan?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[Door verder te gaan, erken je dat je Brave
-    <a href="https://brave.com/terms_of_use">voorwaarden</a> en <a href="https://brave.com/privacy_android">privacybeleid</a> accepteerd.]]></string>
+    
 
     <string name="service_name">Brave Renderer</string>
     <string name="notification_title">Brave</string>

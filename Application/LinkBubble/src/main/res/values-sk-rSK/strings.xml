@@ -6,9 +6,7 @@
     <string name="notification_summary">Stlač pre skrytie všetkých otvorených bublín</string>
     <string name="notification_default_summary">Stlač pre skrytie, roztiahni pre zavretie všetkých</string>
     <string name="notification_unhide_summary">Stlač pre odhalenie, roztiahni pre zavretie všetkých</string>
-    
     <string name="notification_action_close_all">Zavrieť všetky</string>
-    
     <string name="notification_action_hide">Skryť</string>
     <string name="share_picker_label">Zdieľať</string>
 
@@ -327,7 +325,6 @@
 
     
 
-    
     
     
     

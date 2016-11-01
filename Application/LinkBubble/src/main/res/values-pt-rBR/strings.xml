@@ -328,7 +328,7 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
 
     <string name="requesting_location_message">%1$s deseja saber a sua localização. Permitir?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[Continuando, você entende e aceita os <a href="https://brave.com/terms_of_use">termos</a> e a <a href="https://brave.com/privacy_android">política de privacidade</a> do Brave.]]></string>
+    <string name="accept_terms_and_privacy"><![CDATA[Continuando, você entende e aceita os <a href="https://brave.com/terms_of_use">termos</a> e a <a href="https://brave.com/privacy_android">política de privacidade</a>.]]></string>
 
     <string name="service_name">Renderizador do Brave</string>
     <string name="notification_title">Brave</string>

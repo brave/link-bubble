@@ -6,9 +6,7 @@
     <string name="notification_summary">Açık olan tüm baloncukları gizlemek için dokun</string>
     <string name="notification_default_summary">Gizlemek için dokun, Tümünü Kapatmak için genişlet</string>
     <string name="notification_unhide_summary">Göstermek için dokun, Tümünü Kapatmak için genişlet</string>
-    
     <string name="notification_action_close_all">Tümünü Kapat</string>
-    
     <string name="notification_action_hide">Gizle</string>
     <string name="share_picker_label">Paylaşım aracı</string>
 
@@ -130,7 +128,7 @@ bağlantıları Brave ile açtığın zaman yapılandırılır.</string>
     <string name="preference_clear_passwords">Şifreler</string>
     <string name="preference_incognito_title">Gizli Mod</string>
     <string name="preference_incognito_summary">Tüm geçmiş ve çerezlerin depolanmasını engelle.</string>
-    
+    <string name="preference_hide_bubbles_title">Baloncukları kaydırma çubuğunda gizle </string>
     
     <string name="incognito_mode_changed_reloading_current">Gizlilik ayarı değişti. Mevcut baloncuklar yeniden yükleniyor...</string>
     <string name="preference_trackingprotection_summary">Seni izleyen kaynakların yüklenmesini önle</string>
@@ -341,8 +339,7 @@ olarak alıp, herhangi bir sebeple gecikme olursa/olduğunda sinirlenebilirler.]
 
     <string name="requesting_location_message">%1$s konumuna erişmek istiyor. İzin verilsin mi?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[Devam ederek, Brave
-<a href="https://brave.com/terms_of_use">hükümlerini</a> ve <a href="https://brave.com/privacy_android">gizlilik ilkesini</a> kabul etmiş olursunuz.]]></string>
+    
 
     <string name="service_name">Brave İşleyicisi</string>
     <string name="notification_title">Brave</string>
@@ -402,6 +399,5 @@ olarak alıp, herhangi bir sebeple gecikme olursa/olduğunda sinirlenebilirler.]
     <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
     <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
     <string name="whitelist_localfilename">whitelist.dat</string>
-    
 
 </resources>

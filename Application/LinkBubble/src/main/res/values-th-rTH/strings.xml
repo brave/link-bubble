@@ -327,7 +327,7 @@ Brave ทำตามมาตรฐานนี้]]></string>
 
     <string name="requesting_location_message">%1$s ต้องการทราบตำแหน่งที่ตั้งของคุณ อนุญาต?</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[ในการดำเนินการต่อ นั่นหมายความว่าคุณยอมรับ <a href="https://brave.com/terms_of_use">ข้อกำหนด</a> และ <a href="https://brave.com/privacy_android">นโยบายความเป็นส่วนตัว</a> ของ Brave]]></string>
+    
 
     <string name="service_name">Brave Renderer</string>
     <string name="notification_title">Brave</string>

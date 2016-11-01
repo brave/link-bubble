@@ -6,9 +6,7 @@
     <string name="notification_summary">触按隐藏所有打开的泡泡</string>
     <string name="notification_default_summary">点触可隐藏</string>
     <string name="notification_unhide_summary">点触可显示</string>
-    
     <string name="notification_action_close_all">关闭所有泡泡</string>
-    
     <string name="notification_action_hide">隐藏</string>
     <string name="share_picker_label">分享触发器</string>
 
@@ -322,7 +320,7 @@ Brave 亦遵循这一标准.]]></string>
 
     <string name="requesting_location_message">%1$s 正在请求您的位置。是否允许？</string>
 
-    <string name="accept_terms_and_privacy"><![CDATA[如果要继续，请确认您接受 Brave 的<a href="https://brave.com/terms_of_use">条款</a> 和 <a href="https://brave.com/privacy_android">隐私政策</a>.]]></string>
+    
 
     <string name="service_name">Brave 渲染引擎</string>
     <string name="notification_title">Brave</string>
@@ -375,6 +373,5 @@ Brave 亦遵循这一标准.]]></string>
     <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
     <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
     <string name="whitelist_localfilename">whitelist.dat</string>
-    
 
 </resources>

@@ -97,20 +97,20 @@ URL.\n\nТоркніться, щоб вилучити типову.</string>
     <string name="preference_intercept_links_from_disabled_for_L">Починаючи з Android 5.0, Google вилучив API, необхідний для цієї можливості.</string>
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="preference_webview_battery_save_title">Режим збереження заряду (Beta)</string>
+    <string name="preference_webview_battery_save_aggressive_title">Агресивний</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Призупиняти оновлення веб-сторінок, коли Brave згорнуто.\nСторінки, що в даний момент завантажуються, зупиняться після завершення завантаження.</string>
+    <string name="preference_webview_battery_save_default_title">Типовий</string>
+    <string name="preference_webview_battery_save_default_summary">Призупиняти оновлення веб-сторінок при заблокованому екрані та відновлювати після розблокування пристрою.\nСторінки, що в даний момент завантажуються, зупиняться після завершення завантаження.</string>
+    <string name="preference_webview_battery_save_off_title">Вимкнено</string>
+    <string name="preference_webview_battery_save_off_summary">Веб-сторінки завжди активні. Корисно при перегляді відео на YouTube та ін.</string>
+    <string name="preference_theme_title">Тема</string>
+    <string name="preference_theme_light_color">Світла + кольорові піктограми</string>
+    <string name="preference_theme_light_no_color">Світла + нейтральні піктограми</string>
+    <string name="preference_theme_dark_color">Темна + кольорові піктограми</string>
+    <string name="preference_theme_dark_no_color">Темна + нейтральні піктограми</string>
+    <string name="preference_theme_toolbar_title">Кольорова панель</string>
+    <string name="preference_theme_toolbar_summary">Відповіність теми та кольору піктограм темі веб-сайта.</string>
     <string name="preference_article_mode_title">Режим читання</string>
     <string name="preference_reading_mode_on_wear_title">Режим читання на Wear</string>
     
@@ -140,10 +140,10 @@ URL.\n\nТоркніться, щоб вилучити типову.</string>
     
     
     <string-array name="preference_user_agent_options">
-        <item>Default</item>
-        <item>Chrome Phone</item>
-        <item>Chrome Tablet</item>
-        <item>Chrome Desktop</item>
+        <item>Типовий</item>
+        <item>Chrome для смартфона</item>
+        <item>Chrome для планшета</item>
+        <item>Chrome для комп\'ютера</item>
     </string-array>
 
     
@@ -282,8 +282,8 @@ URL.\n\nТоркніться, щоб вилучити типову.</string>
 
     
     <plurals name="restore_tabs_from_previous_session">
-        <item quantity="one">Restore tab from previous session?</item>
-        <item quantity="other">Restore %d tabs from previous session?</item>
+        <item quantity="one">Відновити вкладку з попереднього сеансу?</item>
+        <item quantity="other">Відновити %d вкладок з попереднього сеансу?</item>
     </plurals>
 
     
@@ -327,30 +327,29 @@ URL.\n\nТоркніться, щоб вилучити типову.</string>
     
 
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="http_prefix">http://</string>
+    <string name="https_prefix">https://</string>
+    <string name="www_prefix">www.</string>
+    <string name="duckduckgo_search_engine">https://duckduckgo.com/?q=%1$s&amp;t=brave</string>
+    <string name="google_search_engine">http://www.google.com/search?q=</string>
+    <string name="yahoo_search_engine">http://search.yahoo.com/search?p=</string>
+    <string name="amazon_search_engine">http://www.amazon.com/s/field-keywords=</string>
+    <string name="top_500_prepend">Відвідати</string>
+    <string name="url_bar_constraint_text_color">\'#4A4A4A\'</string>
+    <string name="search_for_with">Пошук \"%2$s з %1$s</string>
+    <string name="duck_duck_go">Duck Duck Go</string>
+    <string name="google">Google</string>
+    <string name="yahoo">Yahoo</string>
+    <string name="amazon">Amazon</string>
+    <string name="empty_bubble_page">file:///android_asset/blank.html</string>
+    <string name="adblock_url">https://s3.amazonaws.com/adblock-data/1/ABPFilterParserData.dat</string>
+    <string name="adblock_localfilename">FromUrlABPFilterParserData.dat</string>
+    <string name="tracking_protection_url">https://s3.amazonaws.com/tracking-protection-data/1/TrackingProtection.dat</string>
+    <string name="tracking_protection_localfilename">TrackingProtection.dat</string>
+    <string name="https_everywhere_rulesets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/rulesets.sqlite</string>
+    <string name="https_everywhere_targets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/httpse-targets.json</string>
+    <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
+    <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
+    <string name="whitelist_localfilename">whitelist.dat</string>
 
 </resources>

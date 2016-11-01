@@ -1,122 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="download_activity_label">Preuzimanja</string>
+    <string name="send_intent_label">Otvori u Braveu</string>
+    <string name="notification_summary">Dodirni za sakriti sve otvorene mjehuriće</string>
+    <string name="notification_default_summary">Dodirni za Sakriti, proširi za Zatvoriti Sve</string>
+    <string name="notification_unhide_summary">Dodirni za otkriti, proširi za Zatvoriti Sve</string>
+    <string name="notification_action_close_all">Zatvori sve</string>
+    <string name="notification_action_hide">Sakrij</string>
+    <string name="share_picker_label">Odabir dijeljenja</string>
 
-    
-    
-    
+    <string name="yes">Da</string>
+    <string name="no">Ne</string>
+    <string name="cancel">Poništi</string>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="action_ok">OK</string>
+    <string name="action_open">Otvori</string>
+    <string name="action_remove">Ukloni</string>
+    <string name="action_cancel">Poništi</string>
+    <string name="action_clear_data">Očisti podatke</string>
+    <string name="action_use_default">Koristi zadano</string>
+    <string name="action_settings">Postavke</string>
+    <string name="action_help">Pomoć</string>
+    <string name="action_reload_page">Ponovo učitaj</string>
+    <string name="action_open_in_browser">Otvori u %1$s</string>
+    <string name="action_request_desktop_site">Zatraži desktop stranicu</string>
+    <string name="action_site_protection">Omogući Brave štitove</string>
+    <string name="action_open_in_new_bubble">Otvori u novom mjehuriću</string>
+    <string name="action_open_link_in_new_bubble">Otvori link u novom mjehuriću</string>
+    <string name="action_open_image_in_new_bubble">Otvori sliku u novom mjehuriću</string>
+    <string name="action_copy_to_clipboard">Kopiraj link</string>
+    <string name="action_save_image">Spremi sliku</string>
+    <string name="action_share">Podijeli</string>
+    <string name="action_close_all">Zatvori sve</string>
+    <string name="action_new_bubble">Novi mjehurić</string>
+    <string name="action_close_tab">Zatvori mjehurić</string>
+    <string name="action_stop">Stani</string>
+    <string name="action_undo">Poništi</string>
+    <string name="action_add">Dodaj</string>
+    <string name="action_no_recommended">Ne (preporučeno)</string>
+    <string name="share_via">Podijeli preko...</string>
+    <string name="not_set">Nije postavljeno</string>
 
-    
-    
-    
+    <string name="error_saving_image">Pogreška u spremanju slike.</string>
+    <string name="image_saved">Slika spremljena</string>
+    <string name="notice_download_started">Preuzimanje započeto.</string>
 
-    
-    
+    <string name="warning">Upozorenje!</string>
+    <string name="untrusted_certificate">Cetrifikat na %1$s nije siguran. Svejedno nastaviti?</string>
 
-    
-    
-    
+    <string name="share_invalid_data">Brave ne može ovo podijeliti jer to nije važeći URL.</string>
+    <string name="consume_activity_not_found">Ne mogu pronaći aplikaciju. Razmotrite mijenjanje ponašanja mjehurića u postavkama.</string>
+    <string name="consume_activity_security_exception">Ne mogu podijeliti s eksternom aplikacijom.</string>
 
-    
-    
-    
+    <string name="upgrade">Nadogradnja</string>
+    <string name="upgrade_theme">Želite li koristiti drugu temu?</string>
+    <string name="upgrade_theme_toolbar">Želite li uskladiti alatnu traku s bojama na stranicama?</string>
 
-    
-    
+    <string name="undo_close_tab_title">Zatvoren %1$s</string>
+    <string name="undo_close_tab_no_title">Zatvoren tab</string>
 
-    
-    
-    
-    
-    
+    <string name="pick_default_app">Odaberi zadanu aplikaciju</string>
+    <string name="default_browser_set">Brave je postavljen kao zadani preglednik.</string>
+    <string name="invalid_send_action">Važeći link nije pronađen.</string>
+    <string name="unable_to_launch_app">Ne mogu pokreniti drugu aplikaciju.</string>
+    <string name="clear_history">Očisti povijest</string>
 
-    
-    
-    
-    
-    
-    
-    
+    <string name="preference_category_general">Općenito</string>
+    <string name="preference_category_configuration">Kontrole aplikacije</string>
+    <string name="preference_category_configuration2">Konfiguriranje</string>
+    <string name="preference_category_browser">Preglednik</string>
+    <string name="preference_enabled_title">Omogućeno</string>
+    <string name="preference_auto_content_display_link_loaded_title">Automatsko proširenje</string>
+    <string name="preference_auto_content_display_link_loaded_summary">Kada bilo koji mjehurić završi s učitavanjem</string>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="preference_left_consume_bubble_title">Lijevi mjehurić</string>
+    <string name="preference_right_consume_bubble_title">Desni mjehurić</string>
+    <string name="preference_double_tap_title">Dodirnite link dva puta</string>
+    <string name="preference_configure_bubble_title">Konfiguriraj mjehurić</string>
+    <string name="preference_category_debug">Debugiranje</string>
+    <string name="preference_default_browser">Zadani rezervni preglednik</string>
+    <string name="preference_category_redirect_to_browser">Preusmjeri na rezervni preglednik</string>
+    <string name="preference_category_fallback_browser">Zadani rezervni preglednik</string>
+    <string name="preference_category_other_apps">Druge aplikacije</string>
+    <string name="preference_default_apps_title">Zadane aplikacije</string>
+    <string name="preference_default_apps_summary">Rezervni preglednik, url-određene aplikacije</string>
+    <string name="preference_default_apps_notice_summary">Korišteno kada jedna ili više aplikacija koje nisu browser može otvoriti URL
+Dodirni za uklanjanje zadanog</string>
+    <string name="preference_default_apps_notice_no_defaults_summary">Korišteno kada jedna ili više aplikacija koje nisu browser može otvoriti URL, 
+možete postaviti zadanu aplikaciju da učitava takve linkove.
+Zadana aplikacija u ovom slučaju je postavljena da otvara linkove s Braveom.</string>
+    <string name="preference_google_account_redirect_title">Preusmjeravanje na Google Account</string>
+    <string name="preference_google_account_redirect_summary">Preusmjerava accounts.google.com linkove na zadani rezervni preglednik</string>
+    <string name="preference_set_default_browser_title">Postavi zadani preglednik sustava</string>
+    <string name="preference_set_default_browser_summary">Brave mora biti zadani preglednik sustava da bi radio. Dodirni za postavljanje.</string>
+    <string name="preference_more">Više...</string>
+    <string name="preference_intercept_links_from_title">Preuzima linkove od</string>
+    <string name="preference_intercept_links_from_disabled_for_L">Za Android 5.0, Google je uklonio potreban API za ovu funkcionalnost.</string>
+    <string name="preference_scan_for_youtube_embeds_title">Provjeri YouTube nadogradnje</string>
+    <string name="preference_scan_for_youtube_embeds_summary">Pokaži prečac za učitavanje videa u YouTube aplikaciji.</string>
+    <string name="preference_webview_battery_save_title">Način štednje baterije (Beta)</string>
+    <string name="preference_webview_battery_save_aggressive_title">Agresivno</string>
+    <string name="preference_webview_battery_save_aggressive_summary">Pauziraj učitavanje web stranica kad je Brave minimiziran.
+Stranice koje se učitavaju će završiti učitavanje prije pauziranja.</string>
+    <string name="preference_webview_battery_save_default_title">Zadano</string>
+    <string name="preference_webview_battery_save_default_summary">Pauziraj učitavanje stranica kada je ekran izgašen i pokreni kada je uređaj otključan.
+Stranice koje se učitavaju će završiti učitavanje prije pauziranja.</string>
+    <string name="preference_webview_battery_save_off_title">Off</string>
+    <string name="preference_webview_battery_save_off_summary">Web stranice su uvijek aktivne. Korisno prilikom streamanja YouTube videa i slično.</string>
+    <string name="preference_theme_title">Tema</string>
+    <string name="preference_theme_light_color">Svijetla + boja ikone</string>
+    <string name="preference_theme_light_no_color">Svijetla + neutralna boja</string>
+    <string name="preference_theme_dark_color">Tamna + boja ikone</string>
+    <string name="preference_theme_dark_no_color">Tamna + neutralna boja</string>
+    <string name="preference_theme_toolbar_title">Boja alatne trake</string>
+    <string name="preference_theme_toolbar_summary">Za usklađivanje boje teme stranice/ikone naglasi boju</string>
+    <string name="preference_article_mode_title">Način čitanja</string>
+    <string name="preference_reading_mode_on_wear_title">Način čitanja na Wearu</string>
+    <string name="preference_article_mode_summary">Promijenjeno preko botuna na akcijskoj traci</string>
+    <string name="preference_webview_text_zoom_title">Tekst zoom</string>
+    <string name="preference_webview_text_zoom_note">Primjetite: Trenutni mjehurići će biti ponovo učitani s novim zoomom teksta nakon što pritisnete \"OK\".</string>
     
     
     
@@ -327,7 +330,6 @@
 
     
 
-    
     
     
     
