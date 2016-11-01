@@ -367,13 +367,7 @@ public class Settings {
                     intent.setClassName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
                     mBrowsers.add(intent);
                     mBrowserPackageNames.add(resolveInfo.activityInfo.packageName);
-                    if (fallbackDefaultBrowserPackageName == null) {
-                        fallbackDefaultBrowserPackageName = resolveInfo.activityInfo.packageName;
-                        fallbackDefaultBrowserActivityClassName = resolveInfo.activityInfo.name;
-                    } else if (resolveInfo.activityInfo.packageName.equals(mContext.getResources().getString(R.string.tab_based_browser_id_name))) {
-                        fallbackDefaultBrowserPackageName = resolveInfo.activityInfo.packageName;
-                        fallbackDefaultBrowserActivityClassName = resolveInfo.activityInfo.name;
-                    } else if (resolveInfo.activityInfo.packageName.equals("com.android.chrome")) {
+                    if (resolveInfo.activityInfo.packageName.equals(mContext.getResources().getString(R.string.tab_based_browser_id_name))) {
                         fallbackDefaultBrowserPackageName = resolveInfo.activityInfo.packageName;
                         fallbackDefaultBrowserActivityClassName = resolveInfo.activityInfo.name;
                     }
