@@ -113,6 +113,7 @@ public class Settings {
     private static final String TERMS_ACCEPTED = "terms_accepted";
     private static final String LAST_FLUSH_WEBVIEW_CACHE_TIME = "last_flush_cache_time";
     private static final String PREFERENCE_DID_RESET_FALLBACK_BROWSER = "did_reset_fallback_browser";
+    private static final String PREFERENCE_SHOW_NEW_BRAVE_BROWSER = "show_new_brave_browser";
 
     public enum WebViewBatterySaveMode {
         Aggressive,
@@ -242,6 +243,19 @@ public class Settings {
         HashSet<String> defaultRedirects = new HashSet<>();
         defaultRedirects.add("accounts.google.com");
         configureFallbackRedirectHosts(mSharedPreferences.getStringSet(PREFERENCE_FALLBACK_REDIRECT_HOSTS, defaultRedirects));
+    }
+
+    public boolean showNewBraveBrowserNotification() {
+        // This option is being added in 1.9.58 to show notification about new tabbed Brave browser.
+        if (mSharedPreferences.getBoolean(PREFERENCE_SHOW_NEW_BRAVE_BROWSER, true)) {
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            editor.putBoolean(PREFERENCE_SHOW_NEW_BRAVE_BROWSER, false);
+            editor.apply();
+
+            return true;
+        }
+
+        return false;
     }
 
     private void checkForVersionUpgrade() {

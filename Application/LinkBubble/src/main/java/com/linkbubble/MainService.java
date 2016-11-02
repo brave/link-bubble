@@ -58,7 +58,6 @@ public class MainService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
         String cmd = intent != null ? intent.getStringExtra("cmd") : null;
         CrashTracking.log("MainService.onStartCommand(), cmd:" + cmd);
 
@@ -199,11 +198,11 @@ public class MainService extends Service {
                 .setLocalOnly(true)
                 .setContentIntent(hidePendingIntent);
 
-        // Nuke all previous notifications and generate unique ids
-        NotificationManagerCompat.from(this).cancelAll();
-        int notificationId = 77;
+        // Nuke all previous notifications
+        NotificationManagerCompat.from(this).cancel(NotificationUnhideActivity.NOTIFICATION_ID);
+        NotificationManagerCompat.from(this).cancel(NotificationHideActivity.NOTIFICATION_ID);
 
-        startForeground(notificationId, notificationBuilder.build());
+        startForeground(NotificationHideActivity.NOTIFICATION_ID, notificationBuilder.build());
     }
 
     private void showUnhideHiddenNotification() {
@@ -226,9 +225,10 @@ public class MainService extends Service {
                 .addAction(Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT ? R.drawable.ic_action_cancel_white : R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
                 .setContentIntent(unhidePendingIntent);
 
-        NotificationManagerCompat.from(this).cancelAll();
-        startForeground(1, notificationBuilder.build());
-        //Log.d("blerg", "showUnhideHiddenNotification()");
+        // Nuke all previous notifications
+        NotificationManagerCompat.from(this).cancel(NotificationUnhideActivity.NOTIFICATION_ID);
+        NotificationManagerCompat.from(this).cancel(NotificationHideActivity.NOTIFICATION_ID);
+        startForeground(NotificationUnhideActivity.NOTIFICATION_ID, notificationBuilder.build());
     }
 
     @SuppressWarnings("unused")

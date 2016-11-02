@@ -116,6 +116,14 @@
             android:finishOnTaskLaunch="true"
             android:clearTaskOnLaunch="true"/>
 
+        <activity android:name=".ui.NotificationNewBraveBrowserActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/TransparentTheme"
+            android:exported="false"
+            android:finishOnTaskLaunch="true"
+            android:clearTaskOnLaunch="true"/>
+
         <activity android:name=".ui.SettingsActivity"
                   android:label="@string/app_name"
                   android:theme="@style/AppTheme">

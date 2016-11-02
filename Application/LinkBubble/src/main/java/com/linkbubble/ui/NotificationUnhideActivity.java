@@ -11,6 +11,7 @@ import com.linkbubble.MainController;
 import com.linkbubble.util.CrashTracking;
 
 public class NotificationUnhideActivity extends Activity {
+    public static final int NOTIFICATION_ID = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

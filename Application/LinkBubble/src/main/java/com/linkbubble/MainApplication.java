@@ -6,6 +6,9 @@ package com.linkbubble;
 
 import android.app.AlertDialog;
 import android.app.Application;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -20,6 +23,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Vibrator;
+import android.support.v4.app.NotificationCompat;
 import android.webkit.WebView;
 import android.widget.Toast;
 
@@ -32,6 +36,7 @@ import com.linkbubble.adinsert.AdInserter;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
 import com.linkbubble.httpseverywhere.HttpsEverywhere;
+import com.linkbubble.ui.NotificationNewBraveBrowserActivity;
 import com.linkbubble.ui.Prompt;
 import com.linkbubble.ui.SearchURLSuggestionsContainer;
 import com.linkbubble.ui.SettingsActivity;
@@ -115,9 +120,43 @@ public class MainApplication extends Application {
         }
         new InitWhiteListCollectorAsyncTask().execute();
 
+
+        Settings settings = Settings.get();
+        if (null != settings && settings.showNewBraveBrowserNotification()) {
+            // Check if there is a new Brave Browser already installed
+            List<String> browsersPackageNames = settings.getBrowserPackageNames();
+            if (null != browsersPackageNames && !browsersPackageNames.contains(getResources().getString(R.string.tab_based_browser_id_name))) {
+                showNewBraveBrowserHiddenNotification();
+            }
+        }
+
         CrashTracking.log("MainApplication.onCreate()");
         //WebView.setWebContentsDebuggingEnabled(true);
         //checkStrings();
+    }
+
+    private void showNewBraveBrowserHiddenNotification() {
+        Intent resultIntent = new Intent(this, NotificationNewBraveBrowserActivity.class);
+        resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent resultPendingIntent =
+                PendingIntent.getActivity(
+                        this,
+                        0,
+                        resultIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_stat)
+                .setContentTitle(getResources().getString(R.string.tab_based_browser_notification_title))
+                .setContentText(getResources().getString(R.string.tab_based_browser_notification_text))
+                .setAutoCancel(true)
+                .setContentIntent(resultPendingIntent);
+
+        // Gets an instance of the NotificationManager service
+        NotificationManager notifyMgr =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        // Builds the notification and issues it.
+        notifyMgr.notify(NotificationNewBraveBrowserActivity.NOTIFICATION_ID, builder.build());
     }
 
     class InitWhiteListCollectorAsyncTask extends AsyncTask<Void,Void,Long> {

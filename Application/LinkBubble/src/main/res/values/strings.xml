@@ -404,5 +404,7 @@
     <string name="whitelist_localfilename">whitelist.dat</string>
     <string name="tab_based_browser_id_name">com.brave.browser</string>
     <string name="tab_based_browser_name">Brave</string>
+    <string name="tab_based_browser_notification_title">Try the New Brave Browser!</string>
+    <string name="tab_based_browser_notification_text">Tabs, shields, ad blocking, customization and more!</string>
 
 </resources>
