@@ -133,6 +133,8 @@ public class ContentView extends FrameLayout {
     private AutoCompleteTextView metUrl;
     private ImageButton mbtUrlClear;
     private FrameLayout mContentEditUrl;
+    private String mPreviousMetUrl;
+    private String mPreviousAppendedString;
 
     private boolean mPageFinishedLoading;
     private LifeState mLifeState = LifeState.Init;
@@ -1472,6 +1474,8 @@ public class ContentView extends FrameLayout {
                     String toCompare = suggestedString.substring(0, urlText.length());
                     if (toCompare.equals(urlText)) {
                         mSetTheRealUrlString = false;
+                        mPreviousMetUrl = metUrl.getText().toString();
+                        mPreviousAppendedString = stringToAppend;
                         metUrl.setText(urlText + stringToAppend);
                         mSetTheRealUrlString = true;
                         metUrl.setSelection(urlText.length(), urlText.length() + stringToAppend.length());
@@ -1493,6 +1497,20 @@ public class ContentView extends FrameLayout {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             String urlText = metUrl.getText().toString();
+            if(mPreviousMetUrl != null && mPreviousAppendedString != null) {
+                // Small hack to get around the autocomplete bug when using ZenUI keyboard
+                String previousUrlText = mPreviousMetUrl + mPreviousAppendedString;
+                int difference = urlText.length() - previousUrlText.length();
+                if(difference == 1) {
+                    String urtlTextStart = urlText.substring(0, mPreviousMetUrl.length());
+                    String urtlTextEnd = urlText.substring(mPreviousMetUrl.length() + 1, urlText.length());
+                    if(urtlTextStart.equals(mPreviousMetUrl) && urtlTextEnd.equals(mPreviousAppendedString)) {
+                        String textToSet = urlText.substring(0, mPreviousMetUrl.length() + 1);
+                        metUrl.setText(textToSet);
+                        metUrl.setSelection(textToSet.length());
+                    }
+                }
+            }
             if (!mFirstTimeUrlTyped &&
                     (urlText.equals(mAdapter.mRealUrlBarConstraint) || mAdapter.mRealUrlBarConstraint.length() > urlText.length())) {
                 mApplyAutoSuggestion = false;
