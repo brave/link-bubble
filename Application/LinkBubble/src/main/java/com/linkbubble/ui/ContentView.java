@@ -134,7 +134,7 @@ public class ContentView extends FrameLayout {
     private ImageButton mbtUrlClear;
     private FrameLayout mContentEditUrl;
     private String previousMetUrl;
-    private String previousAppenedString;
+    private String previousAppendedString;
 
     private boolean mPageFinishedLoading;
     private LifeState mLifeState = LifeState.Init;
@@ -1475,7 +1475,7 @@ public class ContentView extends FrameLayout {
                     if (toCompare.equals(urlText)) {
                         mSetTheRealUrlString = false;
                         previousMetUrl = metUrl.getText().toString();
-                        previousAppenedString = stringToAppend;
+                        previousAppendedString = stringToAppend;
                         metUrl.setText(urlText + stringToAppend);
                         mSetTheRealUrlString = true;
                         metUrl.setSelection(urlText.length(), urlText.length() + stringToAppend.length());
@@ -1497,14 +1497,14 @@ public class ContentView extends FrameLayout {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             String urlText = metUrl.getText().toString();
-            if(previousMetUrl != null && previousAppenedString != null) {
+            if(previousMetUrl != null && previousAppendedString != null) {
                 // Small hack to get around the autocomplete bug in Android 5.0.2
-                String previousUrlText = previousMetUrl + previousAppenedString;
+                String previousUrlText = previousMetUrl + previousAppendedString;
                 int difference = urlText.length() - previousUrlText.length();
                 if(difference == 1) {
                     String urtlTextStart = urlText.substring(0, previousMetUrl.length());
                     String urtlTextEnd = urlText.substring(previousMetUrl.length() + 1, urlText.length());
-                    if(urtlTextStart.equals(previousMetUrl) && urtlTextEnd.equals(previousAppenedString)) {
+                    if(urtlTextStart.equals(previousMetUrl) && urtlTextEnd.equals(previousAppendedString)) {
                         String textToSet = urlText.substring(0, previousMetUrl.length() + 1);
                         metUrl.setText(textToSet);
                         metUrl.setSelection(textToSet.length());
