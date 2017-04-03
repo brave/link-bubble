@@ -1,8 +1,8 @@
 # Brave for Android (formerly Link Bubble)
 
-##Install instructions and setup
+## Install instructions and setup
 
-`git clone git@github.com:brave/browser-android.git`
+    git clone git@github.com:brave/browser-android.git
 
 Either install the [Crashlytics/Fabric Android Studio plugin](http://try.crashlytics.com/sdk-android/) or copy `Application/LinkBubble/fabric.properties.template` to `Application/LinkBubble/fabric.properties` and fill in the apiSecret.
 
@@ -11,13 +11,13 @@ Copy `Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java.templa
 Copy `Application/LinkBubble/src/main/AndroidManifest.xml.template` to `Application/LinkBubble/src/main/AndroidManifest.xml` and fill in `com.crashlytics.ApiKey` and
 `io.fabric.ApiKey` with your Crashlytics API key. You can obtain it from logging into your Fabric account and going to: `Settings -> Organizations -> Brave (or your organization)` then click on `API Key` at the top.
 
-npm install
+    npm install
 
-##Building
+## Building
 
 Open `./Application/` in Android Studio and build.  You'll need the NDK installed if you don't already have it, instructions below.
 
-##Building release build
+## Building release build
 
 Copy `build-release.sh.template` to `build-release.sh`.
 
@@ -29,7 +29,7 @@ If you get an error about similar to:
 
 Try uninstalling the application which already exists on your plugged in device.
 
-##Installing the NDK
+## Installing the NDK
 
 Android Studio has an easy way to download and link to the NDK.
 
@@ -37,12 +37,12 @@ In the menu navigate to File, Project Structure. Click the 'Download Android NDK
 
 If you are not using Android Studio, reference this commit: https://github.com/brave/browser-android/commit/0fa9f58286e0679ec5772e19b995d6a508907691
 
-##Telling getlocalization.com about new strings
+## Telling getlocalization.com about new strings
 
 1. Periodically upload the file `./Application/LinkBubble/src/main/res/values/strings.xml` to [getlocalization.com](https://www.getlocalization.com/LinkBubble/files/).  getlocalization.com will determine which strings are new
 2. When prompted on getlocalization.com, press the mark for retranslation (or keep existing) for changed strings.
 
-##Getting new translated strings from getlocalization.com
+## Getting new translated strings from getlocalization.com
 
 1. Install npm dependencies with `npm install`.
 2. Run `npm run translate <username> <password>` to pull down the translated xml files.
@@ -50,13 +50,16 @@ If you are not using Android Studio, reference this commit: https://github.com/b
 
 Remember to uncomment `checkStrings` from `MainApplication` and call it in `onCreate` to make sure the pulled files don't cause crashes with format specifiers.
 
-##ADB
+## ADB
 
 If you don't have `adb` in your path add it to your `~/.bash_profile` or similar file:
 
-`export PATH=/Users/<your-username>/Library/Android/sdk/platform-tools:$PATH`
+    export PATH=/Users/<your-username>/Library/Android/sdk/platform-tools:$PATH
 
-- **Installing an apk onto your device:**  
-  `adb install -r ./LinkBubble/build/outputs/apk/LinkBubble-playstore-release.apk`
+- **Installing an apk onto your device:**
+
+       adb install -r ./LinkBubble/build/outputs/apk/LinkBubble-playstore-release.apk
+       
 - **Getting a list of devices:**
-  `adb devices`
+
+        adb devices
